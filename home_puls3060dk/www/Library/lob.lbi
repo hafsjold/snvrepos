@@ -1,0 +1,35 @@
+<table border="0" cellpadding="0" cellspacing="0" width="117">
+<!-- fwtable fwsrc="Puls3060_menu_lob.png" fwbase="lob.gif" -->
+  <tr>
+   <td colspan="2"><img name="lob_r1_c1" src="../Lob/image/lob_r1_c1.gif" width="117" height="18" border="0"></td>
+  </tr>
+  <tr>
+   <td rowspan="6"><img name="lob_r2_c1" src="../Lob/image/lob_r2_c1.gif" width="4" height="106" border="0"></td>
+   <td><a href="javascript:EspergaerdeloebetLink()" onMouseOut="MM_swapImgRestore();"  onMouseOver="MM_displayStatusMsg('Espergærdeløbet');MM_swapImage('lob_r2_c2','','../Lob/image/lob_r2_c2_f2.gif',1);return document.MM_returnValue" ><img name="lob_r2_c2" src="../Lob/image/lob_r2_c2.gif" width="113" height="14" border="0"></a></td>
+  </tr>
+  <tr>
+   <td><img name="lob_r3_c2" src="../Lob/image/lob_r3_c2.gif" width="113" height="25" border="0"></td>
+  </tr>
+  <tr>
+   <td><table border="0" cellpadding="0" cellspacing="0" width="113">
+	  <tr>
+	   <td><img name="lob_r4_c2" src="../Lob/image/lob_r4_c2.gif" width="6" height="14" border="0"></td>
+	   <td><a href="javascript:LobsTilmeldingLink()" onMouseOut="MM_swapImgRestore();"  onMouseOver="MM_displayStatusMsg('Løbs tilmelding');MM_swapImage('lob_r4_c3','','../Lob/image/lob_r4_c3_f2.gif',1);return document.MM_returnValue" ><img name="lob_r4_c3" src="../Lob/image/lob_r4_c3.gif" width="107" height="14" border="0"></a></td>
+	  </tr>
+	</table></td>
+  </tr>
+  <tr>
+   <td><img name="lob_r5_c2" src="../Lob/image/lob_r5_c2.gif" width="113" height="25" border="0"></td>
+  </tr>
+  <tr>
+   <td><table border="0" cellpadding="0" cellspacing="0" width="113">
+	  <tr>
+	   <td><img name="lob_r6_c2" src="../Lob/image/lob_r6_c2.gif" width="16" height="14" border="0"></td>
+	   <td><a href="javascript:ResultatlisterLink()" onMouseOut="MM_swapImgRestore();"  onMouseOver="MM_displayStatusMsg('Resultat lister');MM_swapImage('lob_r6_c4','','../Lob/image/lob_r6_c4_f2.gif',1);return document.MM_returnValue" ><img name="lob_r6_c4" src="../Lob/image/lob_r6_c4.gif" width="97" height="14" border="0"></a></td>
+	  </tr>
+	</table></td>
+  </tr>
+  <tr>
+   <td><img name="lob_r7_c2" src="../Lob/image/lob_r7_c2.gif" width="113" height="14" border="0"></td>
+  </tr>
+</table>

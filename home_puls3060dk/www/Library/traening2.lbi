@@ -1,0 +1,19 @@
+<table border="0" cellpadding="0" cellspacing="0" width="117">
+<!-- fwtable fwsrc="Puls3060_menu_traening_2.png" fwbase="traening2.gif" -->
+  <tr>
+   <td colspan="2"><img name="traening2_r1_c1" src="../Traening/image/traening2_r1_c1.gif" width="117" height="19" border="0"></td>
+  </tr>
+  <tr>
+   <td rowspan="4"><img name="traening2_r2_c1" src="../Traening/image/traening2_r2_c1.gif" width="20" height="60" border="0"></td>
+   <td><a href="/tramnu/Traening/Mellemholdet.htm" target="_blank" onMouseOut="MM_swapImgRestore();"  onMouseOver="MM_displayStatusMsg('Mellemholdet');MM_swapImage('traening2_r2_c2','','../Traening/image/traening2_r2_c2_f2.gif',1);return document.MM_returnValue" ><img name="traening2_r2_c2" src="../Traening/image/traening2_r2_c2.gif" width="97" height="14" border="0"></a></td>
+  </tr>
+  <tr>
+   <td><img name="traening2_r3_c2" src="../Traening/image/traening2_r3_c2.gif" width="97" height="26" border="0"></td>
+  </tr>
+  <tr>
+   <td><a href="/tramnu/Traening/Halvtimesholdet.htm" onMouseOut="MM_swapImgRestore();"  onMouseOver="MM_displayStatusMsg('Halvtimesholdet');MM_swapImage('traening2_r4_c2','','../Traening/image/traening2_r4_c2_f2.gif',1);return document.MM_returnValue" ><img name="traening2_r4_c2" src="../Traening/image/traening2_r4_c2.gif" width="97" height="14" border="0"></a></td>
+  </tr>
+  <tr>
+   <td><img name="traening2_r5_c2" src="../Traening/image/traening2_r5_c2.gif" width="97" height="6" border="0"></td>
+  </tr>
+</table>

@@ -1,0 +1,13 @@
+<table border="0" cellpadding="0" cellspacing="0" width="117">
+<!-- fwtable fwsrc="Puls3060_menu_nyheder.png" fwbase="nyheder.gif" -->
+  <tr>
+   <td colspan="2"><img name="nyheder_r1_c1" src="../Nyheder/image/nyheder_r1_c1.gif" width="117" height="18" border="0"></td>
+  </tr>
+  <tr>
+   <td rowspan="2"><img name="nyheder_r2_c1" src="../Nyheder/image/nyheder_r2_c1.gif" width="20" height="29" border="0"></td>
+   <td><a href="javascript:NyhederLink()" onMouseOut="MM_swapImgRestore();"  onMouseOver="MM_displayStatusMsg('Nyheder');MM_swapImage('nyheder_r2_c2','','../Nyheder/image/nyheder_r2_c2_f2.gif',1);return document.MM_returnValue" ><img name="nyheder_r2_c2" src="../Nyheder/image/nyheder_r2_c2.gif" width="97" height="14" border="0"></a></td>
+  </tr>
+  <tr>
+   <td><img name="nyheder_r3_c2" src="../Nyheder/image/nyheder_r3_c2.gif" width="97" height="15" border="0"></td>
+  </tr>
+</table>

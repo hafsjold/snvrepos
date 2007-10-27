@@ -1,0 +1,130 @@
+img {
+	border: 0px;
+}
+
+.pagepuls3060 {
+	background-color: White;
+	margin: 0px;
+	width: 608px;
+	padding-top: 15px;
+	padding-left: 20px;
+	padding-bottom: 0px;
+	padding-right: 10px;
+}
+
+.pagepuls3060XYZ {
+	background-color: Orange;
+	margin: 0px;
+	width: 608px;
+	padding-top: 15px;
+	padding-left: 20px;
+	padding-bottom: 0px;
+	padding-right: 10px;
+}
+
+h3 {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: #003399;
+}
+
+p {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #000000;
+}
+
+td {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #000000;
+}
+
+input {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #000000;
+	border: 1px solid #B9B9B9;
+}
+.clslvl1{
+	width: 530px;
+}
+
+.clslvl2L{
+	width: 82px;
+	float: left;
+	margin: 0 0 0 0;
+}
+.clslvl2M{
+	width: 250px;
+	float: left;
+	margin: 0 0 0 0;
+}
+.clslvl2R{
+	width: 196px;
+	float: left;
+	margin: 0 0 0 0;
+}
+.clslvl2E{
+	width: 325px;
+	float: left;
+	margin: 0 0 0 5pt;
+	color: Red;
+}
+
+.clslvl2LBetal{
+	width: 135px;
+	float: left;
+	margin: 0 0 0 0;
+}
+.clslvl2MBetal{
+	width: 197px;
+	float: left;
+	margin: 0 0 0 0;
+}
+
+.top_pagepuls3060 {
+	background-color: White;
+	margin: 0px 0px 0px 0px;
+	width: 620px;
+	padding-top: 0px;
+	padding-left: 0px;
+	padding-bottom: 0px;
+	padding-right: 0px;
+}
+
+.top2_pagepuls3060 {
+	background-color: White;
+	margin: 0px;
+	width: 560px;
+	padding-top: 0px;
+	padding-left: 20px;
+	padding-bottom: 0px;
+	padding-right: 10px;
+}
+
+.step, .astep, .stepok, .astepok {
+	height: 35px;
+	font-size: 64%;
+	font-weight: bold;
+	text-align: center;
+	color: #ffffff;
+	}
+
+.step, .astep {
+	padding-right: 3px;
+}
+
+.step {
+	background: #ffffff url(../gfx/bg_step_arrow.gif) no-repeat right center;
+}
+.astep {
+	background: #ffffff url(../gfx/bg_astep_arrow.gif) no-repeat right center;
+}
+
+.stepok {
+	background: #ffffff url(../gfx/bg_done.gif) repeat-x center center;
+}
+.astepok {
+	background: #ffffff url(../gfx/bg_adone.gif) repeat-x center center;
+}

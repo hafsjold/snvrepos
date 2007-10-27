@@ -1,0 +1,20 @@
+names
+name 10.169.102.0 mp-in
+name 80.199.40.216 mp-out
+
+pdm location mp-in 255.255.255.0 outside
+pdm location mp-out 255.255.255.255 outside
+
+access-list inside_nat0_outbound line 3 permit ip 192.168.10.0 255.255.255.0  10.169.102.0 255.255.255.0
+nat (inside) 0 access-list inside_nat0_outbound
+access-list outside_cryptomap_1020 permit ip 192.168.10.0 255.255.255.0  10.169.102.0 255.255.255.0
+crypto map outside_map 1020 ipsec-isakmp
+crypto map outside_map 1020 match address outside_cryptomap_1020
+crypto map outside_map 1020 set peer 80.199.40.216
+crypto map outside_map 1020 set transform-set ESP-3DES-MD5
+crypto map outside_map interface outside
+
+isakmp key Parkalle112 address 80.199.40.216 netmask 255.255.255.255 no-xauth  no-config-mode
+
+access-list outside_access_in line 5 permit ip 10.169.102.0 255.255.255.0  192.168.10.0 255.255.255.0
+access-group outside_access_in in interface outside

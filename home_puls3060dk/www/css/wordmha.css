@@ -1,0 +1,30 @@
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{
+	margin:0.1cm;
+	margin-bottom:0.0001pt;
+	font-size:12pt;
+	font-family:"Times New Roman";
+	background-color: #00FF66;
+	width:560px;
+
+}
+@page Section1
+	{
+	size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	background: 12;
+}
+div.Section1
+	{page:Section1;}
+
+#Layer1 {
+	position:absolute;
+	width:136px;
+	height:111px;
+	z-index:5;
+	left: 291px;
+	top: 88px;
+	background-color: #FFFFCC;
+	visibility: visible;
+	overflow: visible;
+}

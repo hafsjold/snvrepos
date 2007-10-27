@@ -1,0 +1,14 @@
+# For domain: http://www.puls3060.dk
+
+# All robots will spider the domain
+User-agent: *
+Disallow: /include/
+Disallow: /images/
+Disallow: /Library/
+Disallow: /fireworks/
+Disallow: /Templates/
+Disallow: /Scripts/
+Disallow: /_notes/
+Disallow: /Butik/
+Disallow: /pix/
+Disallow: /mha/

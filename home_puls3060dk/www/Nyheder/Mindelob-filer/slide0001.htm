@@ -1,0 +1,392 @@
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:p="urn:schemas-microsoft-com:office:powerpoint"
+xmlns:oa="urn:schemas-microsoft-com:office:activation"
+xmlns="http://www.w3.org/TR/REC-html40">
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=ProgId content=PowerPoint.Slide>
+<meta name=Generator content="Microsoft PowerPoint 10">
+<link id=Main-File rel=Main-File href="../Mindelob.htm">
+<link rel=Preview href=preview.wmf>
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+p\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+v\:textbox {display:none;}
+</style>
+<![endif]-->
+<title>Mindelob</title>
+<meta name=Description content=07-10-2002>
+<link rel=Stylesheet href="master03_stylesheet.css">
+<![if !ppt]>
+<style media=print>
+<!--.sld
+	{left:0px !important;
+	width:6.0in !important;
+	height:8.0in !important;
+	font-size:138% !important;}
+-->
+</style>
+<script><!--
+function LoadSld()
+{
+	var sld=GetObj("SlideObj")
+	if( !g_supportsPPTHTML ) {
+		sld.style.visibility="visible"
+		return
+	}
+	if( MakeNotesVis() ) return
+	runAnimations = _InitAnimations();
+	if( IsWin("PPTSld") )
+		parent.SldUpdated(GetSldId())
+	g_origSz=parseInt(SlideObj.style.fontSize)
+	g_origH=sld.style.posHeight
+	g_origW=sld.style.posWidth
+	g_scaleHyperlinks=(document.all.tags("AREA").length>0)
+	if( g_scaleHyperlinks )
+		InitHLinkArray()
+	if( g_scaleInFrame||(IsWin("PPTSld") && parent.IsFullScrMode() ) )
+		document.body.scroll="no"
+	_RSW()
+	if( IsWin("PPTSld") && parent.IsFullScrMode() )
+		FullScrInit();
+	
+	MakeSldVis();
+	
+	if( runAnimations )
+	{
+		if( document.all("NSPlay") )
+			document.all("NSPlay").autoStart = false;
+		if( sld.filters && sld.filters.revealtrans )
+			setTimeout( "document.body.start()", sld.filters.revealtrans.duration * 1000 );
+		else
+			document.body.start();
+	}
+}
+function MakeSldVis()
+{
+	var fTrans=g_showAnimation && SldHasTrans()
+	if( fTrans )
+	{
+		if( g_bgSound ) {
+			idx=g_bgSound.indexOf(",");
+			pptSound.src=g_bgSound.substr( 0, idx );
+			pptSound.loop= -(parseInt(g_bgSound.substr(idx+1)));
+		}
+		SlideObj.filters.revealtrans.Apply()
+    }
+	SlideObj.style.visibility="visible"
+	if( fTrans )
+		SlideObj.filters.revealtrans.Play()
+}
+function MakeNotesVis()
+{
+	if( !IsNts() ) return false
+	SlideObj.style.display="none"
+	nObj = document.all.item("NotesObj")
+	parent.SetHasNts(0)
+	if( nObj ) {
+		nObj.style.display=""
+		parent.SetHasNts(1)
+	}
+	return 1
+}
+function ChkAutoAdv()
+{
+	if(SldHasTrans())
+		SlideObj.onfilterchange=AutoAdv
+	else
+		AutoAdv()
+}
+function AutoAdv()
+{
+	if(!IsWin("PPTSld") || !gUseSldTimings )return
+	var sld=GetCurSld()
+	if( (sld.mAdvDelay>0) && !parent.IsFramesMode() )
+		setTimeout("parent.GoToNextSld()",sld.mAdvDelay)
+}
+function GetObj(id)
+{
+	if(g_supportsPPTHTML) return document.all(id);
+	else return document.getElementById(id);
+}
+function SldHasTrans() { return SlideObj.style.getAttribute("filter")!="" }
+function GetSldId() { return sId=location.href.substring(location.href.lastIndexOf('/')+1) }
+function HideMenu() { if( frames["PPTSld"] && PPTSld.document.all.item("ctxtmenu") && PPTSld.ctxtmenu.style.display!="none" ) { PPTSld.ctxtmenu.style.display='none'; return true } return false }
+function IsWin( name ) { return window.name == name }
+function IsNts() { return IsWin("PPTNts") }
+function IsSldOrNts() { return( IsWin("PPTSld")||IsWin("PPTNts") ) }
+function SupportsPPTAnimation() { return( navigator.platform == "Win32" && navigator.appVersion.indexOf("Windows")>0 ) }
+function SupportsPPTHTML()
+{
+	var appVer=navigator.appVersion, msie=appVer.indexOf("MSIE "), ver=0
+	if( msie >= 0 )
+		ver=parseFloat( appVer.substring( msie+5, appVer.indexOf(";",msie) ) )
+	else
+		ver=parseInt(appVer)
+	return( ver >= 4 && msie >= 0 )
+}
+function _RSW()
+{
+	if( !g_supportsPPTHTML || IsNts() ||
+	  ( !g_scaleInFrame && (!IsWin("PPTSld") || !parent.IsFullScrMode()) ) )
+		return
+        var padding=0;
+        if( IsWin("PPTSld") && parent.IsFramesMode() ) padding=6
+	cltWidth=document.body.clientWidth-padding
+	cltHeight=document.body.clientHeight-padding
+	factor=(1.0*cltWidth)/g_origW
+	if( cltHeight < g_origH*factor )
+		factor=(1.0*cltHeight)/g_origH
+	newSize = g_origSz * factor
+	if( newSize < 1 ) newSize=1
+	s=SlideObj.style
+	s.fontSize=newSize+"px"
+	s.posWidth=g_origW*factor
+	s.posHeight=g_origH*factor
+	s.posLeft=(cltWidth-s.posWidth+padding)/2
+	s.posTop=(cltHeight-s.posHeight+padding)/2
+	if( g_scaleHyperlinks )
+		ScaleHyperlinks( factor )
+}
+function _InitAnimations()
+{
+	animRuntimeInstalled = ''+document.body.localTime != 'undefined';
+	isFullScreen = (window.name == "PPTSld") && !parent.IsFramesMode();
+	g_animUseRuntime = g_showAnimation && animRuntimeInstalled && !(isFullScreen && parent.IsSldVisited());
+	if( g_animUseRuntime ) {
+		collSeq = document.all.tags("seq");
+		if( collSeq != null ) {
+			for(ii=0;ii<collSeq.length;ii++) {
+				if( collSeq[ii].getAttribute( "p:nodeType" ) == "mainSeq" ) {
+					g_animMainSequence = collSeq[ii];
+					break;
+				}
+			}
+		}
+		if( g_animItemsToHide ) {
+			for(jj = 0; jj < g_animItemsToHide.length; jj++) {
+				if( hideObj = GetObj(g_animItemsToHide[jj]) )
+					hideObj.runtimeStyle.visibility="hidden";
+			}
+		}
+		if( g_animInteractiveItems ){
+			for(jj = 0; jj < g_animInteractiveItems.length; jj++) {
+				if( triggerObj = GetObj(g_animInteractiveItems[jj]) )
+					triggerObj.runtimeStyle.cursor="hand";
+			}
+		}
+		if( gUseSldTimings && ''+g_animSlideTime != 'undefined' ) {
+			adjustedTime = document.body.calculateAutoAdvanceTimes( g_animSlideTime, g_animEffectTimings );
+			if( IsWin("PPTSld") && adjustedTime != g_animSlideTime ) {
+			   var sld = GetCurSld();
+			   sld.mAdvDelay = adjustedTime * 1000;
+			}
+		}
+	}
+	return g_animUseRuntime;
+}
+
+var g_supportsPPTHTML = SupportsPPTHTML(), g_scaleInFrame = 1, gId="", g_bgSound="",
+    g_scaleHyperlinks = false, g_allowAdvOnClick = 1, g_showInBrowser = 0, gLoopCont = 0, gUseSldTimings = 1;
+var g_showAnimation = g_supportsPPTHTML && SupportsPPTAnimation() && g_showInBrowser;
+var g_animManager = null;
+var g_animUseRuntime = false;
+var g_animItemsToHide, g_animInteractiveItems, g_animSlideTime;
+var g_animMainSequence = null;
+
+//--></script><!--[if vml]><script>g_vml = 1;
+</script><![endif]--><![endif]><o:shapelayout v:ext="edit">
+ <o:idmap v:ext="edit" data="2"/>
+</o:shapelayout>
+</head>
+
+<body lang=EN-US style='margin:0px;background-color:white' onresize="_RSW()"
+onload="LoadSld()">
+
+<div id=SlideObj class=sld style='position:absolute;top:0px;left:0px;
+width:415px;height:554px;font-size:16px;background-color:white;clip:rect(0%, 101%, 101%, 0%);
+visibility:hidden'><p:slide coordsize="540,720"
+ colors="#FFFFFF,#000000,#808080,#000000,#00CC99,#3333CC,#CCCCFF,#B2B2B2"
+ masterhref="master03.xml">
+ <p:shaperange href="master03.xml#_x0000_s1025"/><![if !ppt]><p:shaperange
+  href="master03.xml#_x0000_s1028"/><p:shaperange
+  href="master03.xml#_x0000_s1029"/><![endif]><v:shapetype id="_x0000_t75"
+  coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+  filled="f" stroked="f">
+  <v:stroke joinstyle="miter"/>
+  <v:formulas>
+   <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+   <v:f eqn="sum @0 1 0"/>
+   <v:f eqn="sum 0 0 @1"/>
+   <v:f eqn="prod @2 1 2"/>
+   <v:f eqn="prod @3 21600 pixelWidth"/>
+   <v:f eqn="prod @3 21600 pixelHeight"/>
+   <v:f eqn="sum @0 0 1"/>
+   <v:f eqn="prod @6 1 2"/>
+   <v:f eqn="prod @7 21600 pixelWidth"/>
+   <v:f eqn="sum @8 21600 0"/>
+   <v:f eqn="prod @7 21600 pixelHeight"/>
+   <v:f eqn="sum @10 21600 0"/>
+  </v:formulas>
+  <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+  <o:lock v:ext="edit" aspectratio="t"/>
+ </v:shapetype><v:shape id="_x0000_s2050" type="#_x0000_t75" style='position:absolute;
+  left:300pt;top:18pt;width:219.125pt;height:468pt' fillcolor="#0c9 [4]"
+  strokecolor="black [1]">
+  <v:fill color2="white [0]"/>
+  <v:imagedata src="slide0001_image001.png" o:title=""/>
+  <v:shadow color="gray [2]"/>
+ </v:shape><![if !vml]><img border=0 v:shapes="_x0000_s2050"
+ src="slide0001_image002.jpg" style='position:absolute;top:2.52%;left:55.66%;
+ width:40.48%;height:64.98%'><![endif]><v:shapetype id="_x0000_t202"
+  coordsize="21600,21600" o:spt="202" path="m,l,21600r21600,l21600,xe">
+  <v:stroke joinstyle="miter"/>
+  <v:path gradientshapeok="t" o:connecttype="rect"/>
+ </v:shapetype><v:shape id="_x0000_s2051" type="#_x0000_t202" style='position:absolute;
+  left:25.5pt;top:19.75pt;width:263.625pt;height:180.5pt' filled="f"
+  fillcolor="#0c9 [4]" stroked="f" strokecolor="black [1]">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+  <v:textbox style='mso-fit-shape-to-text:t'/>
+ </v:shape><v:shape id="_x0000_s2052" type="#_x0000_t202" style='position:absolute;
+  left:18.375pt;top:185pt;width:284.25pt;height:105.875pt;mso-wrap-style:none;
+  v-text-anchor:top-baseline' filled="f" fillcolor="#0c9 [4]" stroked="f"
+  strokecolor="black [1]">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+  <v:textbox style='mso-fit-shape-to-text:t'/>
+ </v:shape><v:shape id="_x0000_s2053" type="#_x0000_t202" style='position:absolute;
+  left:16.625pt;top:306.375pt;width:271.375pt;height:180.5pt;mso-wrap-style:none;
+  v-text-anchor:top-baseline' filled="f" fillcolor="#0c9 [4]" stroked="f"
+  strokecolor="black [1]">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+  <v:textbox style='mso-fit-shape-to-text:t'/>
+ </v:shape><v:shape id="_x0000_s2054" type="#_x0000_t202" style='position:absolute;
+  left:18pt;top:7in;width:482pt;height:84.25pt;mso-wrap-style:none;
+  v-text-anchor:top-baseline' filled="f" fillcolor="#0c9 [4]" stroked="f"
+  strokecolor="black [1]">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+  <v:textbox style='mso-fit-shape-to-text:t'/>
+ </v:shape><v:shape id="_x0000_s2056" type="#_x0000_t202" style='position:absolute;
+  left:22.75pt;top:597.25pt;width:473.375pt;height:72.125pt;mso-wrap-style:none;
+  v-text-anchor:top-baseline' filled="f" fillcolor="#0c9 [4]" stroked="f"
+  strokecolor="black [1]">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+  <v:textbox style='mso-fit-shape-to-text:t'/>
+ </v:shape><v:shape id="_x0000_s2057" type="#_x0000_t202" style='position:absolute;
+  left:328.75pt;top:663.25pt;width:111.5pt;height:28.875pt;mso-wrap-style:none;
+  v-text-anchor:top-baseline' filled="f" fillcolor="#0c9 [4]" stroked="f"
+  strokecolor="black [1]">
+  <v:fill color2="white [0]"/>
+  <v:shadow color="gray [2]"/>
+  <v:textbox style='mso-fit-shape-to-text:t'/>
+ </v:shape>
+ <div v:shape="_x0000_s2051" class=O>
+ <div style='position:absolute;top:2.88%;left:6.02%;width:46.26%;height:3.24%'><span
+ style='font-family:"Comic Sans MS";font-size:67%'>Til minde om PULS
+ 3060’es&#13;</span></div>
+ <div style='position:absolute;top:5.59%;left:6.02%;width:52.28%;height:3.24%'><span
+ style='font-family:"Comic Sans MS";font-size:67%'>stifter og mangeårige
+ formand,&#13;</span></div>
+ <div style='position:absolute;top:8.3%;left:6.02%;width:55.18%;height:3.24%'><span
+ style='font-family:"Comic Sans MS";font-size:67%'>Knud Rafn, har klubben
+ besluttet&#13;</span></div>
+ <span style='position:absolute;top:11.01%;left:6.02%;width:51.8%;height:3.24%'><span
+ style='font-family:"Comic Sans MS";font-size:67%'>i samråd med Inge at vise
+ Knud </span></span><span style='position:absolute;top:13.53%;left:6.02%;
+ width:52.04%;height:3.24%'><span style='font-family:"Comic Sans MS";
+ font-size:67%'>en sidste ære ved at arrangere </span></span><span
+ style='position:absolute;top:16.24%;left:6.02%;width:53.97%;height:3.24%'><span
+ style='font-family:"Comic Sans MS";font-size:67%'>et mindeløb i området ved
+ Gurre&#13;</span></span><span style='position:absolute;top:18.95%;left:6.02%;
+ width:53.49%;height:3.24%'><span style='font-family:"Comic Sans MS";
+ font-size:67%'>Sø, som var ét af Knuds favorit- </span></span><span
+ style='position:absolute;top:21.66%;left:6.02%;width:46.26%;height:3.24%'><span
+ style='font-family:"Comic Sans MS";font-size:67%'>steder.&#13;</span></span>
+ <div style='position:absolute;top:24.36%;left:6.02%;width:46.26%;height:3.24%'><span
+ style='font-family:"Comic Sans MS";font-size:67%;mso-special-format:lastCR;
+ display:none'>&#13;</span></div>
+ </div>
+ <div v:shape="_x0000_s2052" class=O>
+ <div style='position:absolute;top:25.81%;left:4.81%;width:56.14%;height:3.24%'><span
+ style='font-family:"Comic Sans MS";font-size:67%'>Dag, dato og tidspunkt for
+ minde-&#13;</span></div>
+ <div style='position:absolute;top:28.51%;left:4.81%;width:50.12%;height:3.24%'><span
+ style='font-family:"Comic Sans MS";font-size:67%'>løbet er&#13;</span></div>
+ <div style='position:absolute;top:31.22%;left:4.81%;width:54.21%;height:3.61%'><span
+ style='font-family:"Comic Sans MS";font-size:75%;color:#009900'><b>lørdag d.
+ 12. oktober kl.10&#13;</b></span></div>
+ <div style='position:absolute;top:34.29%;left:4.81%;width:60.24%;height:3.24%'><span
+ style='font-family:"Comic Sans MS";font-size:67%'>med start fra P-pladsen ved
+ ”laden” &#13;</span></div>
+ <div style='position:absolute;top:36.82%;left:4.81%;width:50.12%;height:3.24%'><span
+ style='font-family:"Comic Sans MS";font-size:67%'>ved Gurre Sø</span></div>
+ </div>
+ <div v:shape="_x0000_s2053" class=O>
+ <div style='position:absolute;top:42.77%;left:4.33%;width:53.97%;height:3.24%'><span
+ style='font-family:"Comic Sans MS";font-size:67%'>Vi foreslår, at deltagerne
+ mødes&#13;</span></div>
+ <div style='position:absolute;top:45.48%;left:4.33%;width:52.53%;height:3.24%'><span
+ style='font-family:"Comic Sans MS";font-size:67%'><u>senest</u></span><span
+ style='font-family:"Comic Sans MS";font-size:67%'> kl. 9.45 ved
+ Espergærde&#13;</span></div>
+ <div style='position:absolute;top:48.01%;left:4.33%;width:57.34%;height:3.24%'><span
+ style='font-family:"Comic Sans MS";font-size:67%'>Hallen og i så mange biler,
+ som der&#13;</span></div>
+ <div style='position:absolute;top:50.72%;left:4.33%;width:54.69%;height:3.24%'><span
+ style='font-family:"Comic Sans MS";font-size:67%'>nu måtte blive behov for –
+ måske&#13;</span></div>
+ <div style='position:absolute;top:53.42%;left:4.33%;width:55.9%;height:3.24%'><span
+ style='font-family:"Comic Sans MS";font-size:67%'>kan deltagerne på forhånd
+ aftale &#13;</span></div>
+ <div style='position:absolute;top:56.13%;left:4.33%;width:48.67%;height:3.24%'><span
+ style='font-family:"Comic Sans MS";font-size:67%'>transport – og ”booke”
+ plads. &#13;</span></div>
+ <div style='position:absolute;top:58.84%;left:4.33%;width:54.93%;height:3.24%'><span
+ style='font-family:"Comic Sans MS";font-size:67%'>Hvis man skulle være lidt
+ sent på&#13;</span></div>
+ <div style='position:absolute;top:61.37%;left:4.33%;width:56.38%;height:3.24%'><span
+ style='font-family:"Comic Sans MS";font-size:67%'>den og kender mødestedet, så
+ kør&#13;</span></div>
+ <div style='position:absolute;top:64.07%;left:4.33%;width:47.71%;height:3.24%'><span
+ style='font-family:"Comic Sans MS";font-size:67%'>blot direkte til ”laden”.</span></div>
+ </div>
+ <div v:shape="_x0000_s2054" class=O>
+ <div style='position:absolute;top:70.21%;left:4.57%;width:103.85%;height:3.24%'><span
+ style='font-family:"Comic Sans MS";font-size:67%'>Ruten bliver omkring 5 km.,
+ og deltagerne kan enten gå, jogge, &#13;</span></div>
+ <div style='position:absolute;top:72.92%;left:4.57%;width:86.74%;height:3.24%'><span
+ style='font-family:"Comic Sans MS";font-size:67%'>power walk’e eller løbe –
+ &#13;</span></div>
+ <div style='position:absolute;top:75.45%;left:4.57%;width:104.09%;height:3.24%'><span
+ style='font-family:"Comic Sans MS";font-size:67%'>Efter løbet vil klubben byde
+ på en forfriskning inden turen går&#13;</span></div>
+ <div style='position:absolute;top:78.15%;left:4.57%;width:86.74%;height:3.24%'><span
+ style='font-family:"Comic Sans MS";font-size:67%'>tilbage til Espergærde.</span></div>
+ </div>
+ <div v:shape="_x0000_s2056" class=O>
+ <div style='position:absolute;top:83.03%;left:5.54%;width:102.16%;height:3.61%'><span
+ style='font-family:"Comic Sans MS";font-size:75%'>I løbets ånd opfordrer vi
+ til stor deltagelse, så mød op&#13;</span></div>
+ <div style='position:absolute;top:86.1%;left:5.54%;width:101.2%;height:3.61%'><span
+ style='font-family:"Comic Sans MS";font-size:75%'>og lad os sammen med Inge
+ mindes Knud og hans store&#13;</span></div>
+ <div style='position:absolute;top:89.16%;left:5.54%;width:85.3%;height:3.61%'><span
+ style='font-family:"Comic Sans MS";font-size:75%'>indsats for vor klub.</span></div>
+ </div>
+ <div v:shape="_x0000_s2057" class=O style='position:absolute;top:92.23%;
+ left:62.16%;width:21.68%;height:3.61%'><span style='font-family:"Comic Sans MS";
+ font-size:75%;color:#009900'><b>PULS 3060</b></span></div>
+</p:slide></div>
+
+</body>
+
+</html>

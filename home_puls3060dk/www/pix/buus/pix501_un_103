@@ -1,0 +1,41 @@
+enable password CspGSaCtv0jkioVy encrypted
+passwd 2KFQnbNIdI.2KYOU encrypted
+hostname un
+domain-name buusjensen.dk
+clock timezone CEST 1
+clock summer-time CEDT recurring last Sun Mar 2:00 last Sun Oct 3:00
+names
+name 192.168.10.0 buus-in
+name 80.160.182.74 buus-out
+pdm location buus-in 255.255.255.0 outside
+pdm location buus-out 255.255.255.255 outside
+
+http 0.0.0.0 0.0.0.0 outside
+
+access-list outside_access_in permit ip buus-in 255.255.255.0 10.169.103.0 255.255.255.0
+access-list inside_nat0_outbound permit ip 10.169.103.0 255.255.255.0 buus-in 255.255.255.0
+access-list outside_cryptomap_10 permit ip 10.169.103.0 255.255.255.0 buus-in 255.255.255.0
+
+nat (inside) 0 access-list inside_nat0_outbound
+access-group outside_access_in in interface outside
+
+crypto ipsec transform-set ESP-3DES-MD5 esp-3des esp-md5-hmac
+crypto map outside_map 10 ipsec-isakmp
+crypto map outside_map 10 match address outside_cryptomap_10
+crypto map outside_map 10 set peer 80.160.182.74
+crypto map outside_map 10 set transform-set ESP-3DES-MD5
+crypto map outside_map interface outside
+isakmp enable outside
+isakmp key Parkalle112 address 80.160.182.74 netmask 255.255.255.255 no-xauth no-config-mode
+isakmp identity address
+isakmp keepalive 60 30
+isakmp policy 10 authentication pre-share
+isakmp policy 10 encryption 3des
+isakmp policy 10 hash md5
+isakmp policy 10 group 2
+isakmp policy 10 lifetime 86400
+
+
+ntp server 194.239.134.10 source outside prefer
+dhcpd dns 192.168.10.7 193.162.159.194
+dhcpd wins 192.168.10.7 

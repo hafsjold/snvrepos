@@ -1,0 +1,693 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?mso-application progid="Word.Document"?>
+<w:wordDocument xmlns:w="http://schemas.microsoft.com/office/word/2003/wordml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:sl="http://schemas.microsoft.com/schemaLibrary/2003/core" xmlns:aml="http://schemas.microsoft.com/aml/2001/core" xmlns:wx="http://schemas.microsoft.com/office/word/2003/auxHint" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:st1="urn:schemas-microsoft-com:office:smarttags" w:macrosPresent="no" w:embeddedObjPresent="no" w:ocxPresent="no" xml:space="preserve">
+<o:SmartTagType o:namespaceuri="urn:schemas-microsoft-com:office:smarttags" o:name="PersonName"/>
+<o:DocumentProperties>
+<o:Title>Elektronisk nyhedsbrev</o:Title>
+<o:Author>Compaq</o:Author>
+<o:LastAuthor>Mogens Hafsjold</o:LastAuthor>
+<o:Revision>3</o:Revision>
+<o:TotalTime>3</o:TotalTime>
+<o:LastPrinted>2006-05-22T06:34:00Z</o:LastPrinted>
+<o:Created>2006-05-23T13:35:00Z</o:Created>
+<o:LastSaved>2006-05-23T13:51:00Z</o:LastSaved>
+<o:Pages>1</o:Pages>
+<o:Words>788</o:Words>
+<o:Characters>4495</o:Characters>
+<o:Company>Compaq</o:Company>
+<o:Lines>37</o:Lines>
+<o:Paragraphs>10</o:Paragraphs>
+<o:CharactersWithSpaces>5273</o:CharactersWithSpaces>
+<o:Version>11.6568</o:Version>
+</o:DocumentProperties>
+<w:fonts>
+<w:defaultFonts w:ascii="Times New Roman" w:fareast="Times New Roman" w:h-ansi="Times New Roman" w:cs="Times New Roman"/>
+</w:fonts>
+<w:styles>
+<w:versionOfBuiltInStylenames w:val="4"/>
+<w:latentStyles w:defLockedState="off" w:latentStyleCount="156"/>
+<w:style w:type="paragraph" w:default="on" w:styleId="Normal">
+<w:name w:val="Normal"/>
+<w:rsid w:val="004229E5"/>
+<w:rPr>
+<wx:font wx:val="Times New Roman"/>
+<w:lang w:val="DA" w:fareast="DA" w:bidi="AR-SA"/>
+</w:rPr>
+</w:style>
+<w:style w:type="paragraph" w:styleId="Heading1">
+<w:name w:val="heading 1"/>
+<wx:uiName wx:val="Heading 1"/>
+<w:basedOn w:val="Normal"/>
+<w:next w:val="Normal"/>
+<w:rsid w:val="004229E5"/>
+<w:pPr>
+<w:pStyle w:val="Heading1"/>
+<w:keepNext/>
+<w:outlineLvl w:val="0"/>
+</w:pPr>
+<w:rPr>
+<wx:font wx:val="Times New Roman"/>
+<w:b/>
+<w:b-cs/>
+<w:i/>
+<w:i-cs/>
+</w:rPr>
+</w:style>
+<w:style w:type="paragraph" w:styleId="Heading2">
+<w:name w:val="heading 2"/>
+<wx:uiName wx:val="Heading 2"/>
+<w:basedOn w:val="Normal"/>
+<w:next w:val="Normal"/>
+<w:rsid w:val="004229E5"/>
+<w:pPr>
+<w:pStyle w:val="Heading2"/>
+<w:keepNext/>
+<w:outlineLvl w:val="1"/>
+</w:pPr>
+<w:rPr>
+<wx:font wx:val="Times New Roman"/>
+<w:b/>
+<w:b-cs/>
+<w:i/>
+<w:i-cs/>
+<w:sz w:val="18"/>
+</w:rPr>
+</w:style>
+<w:style w:type="character" w:default="on" w:styleId="DefaultParagraphFont">
+<w:name w:val="Default Paragraph Font"/>
+<w:semiHidden/>
+</w:style>
+<w:style w:type="table" w:default="on" w:styleId="TableNormal">
+<w:name w:val="Normal Table"/>
+<wx:uiName wx:val="Table Normal"/>
+<w:semiHidden/>
+<w:rPr>
+<wx:font wx:val="Times New Roman"/>
+</w:rPr>
+<w:tblPr>
+<w:tblInd w:w="0" w:type="dxa"/>
+<w:tblCellMar>
+<w:top w:w="0" w:type="dxa"/>
+<w:left w:w="108" w:type="dxa"/>
+<w:bottom w:w="0" w:type="dxa"/>
+<w:right w:w="108" w:type="dxa"/>
+</w:tblCellMar>
+</w:tblPr>
+</w:style>
+<w:style w:type="list" w:default="on" w:styleId="NoList">
+<w:name w:val="No List"/>
+<w:semiHidden/>
+</w:style>
+<w:style w:type="character" w:styleId="Hyperlink">
+<w:name w:val="Hyperlink"/>
+<w:basedOn w:val="DefaultParagraphFont"/>
+<w:rsid w:val="004229E5"/>
+<w:rPr>
+<w:color w:val="0000FF"/>
+<w:u w:val="single"/>
+</w:rPr>
+</w:style>
+<w:style w:type="paragraph" w:styleId="Header">
+<w:name w:val="header"/>
+<wx:uiName wx:val="Header"/>
+<w:basedOn w:val="Normal"/>
+<w:rsid w:val="004229E5"/>
+<w:pPr>
+<w:pStyle w:val="Header"/>
+<w:tabs>
+<w:tab w:val="center" w:pos="4320"/>
+<w:tab w:val="right" w:pos="8640"/>
+</w:tabs>
+</w:pPr>
+<w:rPr>
+<wx:font wx:val="Times New Roman"/>
+</w:rPr>
+</w:style>
+<w:style w:type="paragraph" w:styleId="Footer">
+<w:name w:val="footer"/>
+<wx:uiName wx:val="Footer"/>
+<w:basedOn w:val="Normal"/>
+<w:rsid w:val="004229E5"/>
+<w:pPr>
+<w:pStyle w:val="Footer"/>
+<w:tabs>
+<w:tab w:val="center" w:pos="4320"/>
+<w:tab w:val="right" w:pos="8640"/>
+</w:tabs>
+</w:pPr>
+<w:rPr>
+<wx:font wx:val="Times New Roman"/>
+</w:rPr>
+</w:style>
+</w:styles>
+<w:shapeDefaults>
+<o:shapedefaults v:ext="edit" spidmax="5122"/>
+<o:shapelayout v:ext="edit">
+<o:idmap v:ext="edit" data="1"/>
+</o:shapelayout>
+</w:shapeDefaults>
+<w:docPr>
+<w:view w:val="print"/>
+<w:zoom w:val="best-fit" w:percent="80"/>
+<w:doNotEmbedSystemFonts/>
+<w:attachedTemplate w:val=""/>
+<w:defaultTabStop w:val="1304"/>
+<w:hyphenationZone w:val="425"/>
+<w:displayHorizontalDrawingGridEvery w:val="0"/>
+<w:displayVerticalDrawingGridEvery w:val="0"/>
+<w:useMarginsForDrawingGridOrigin/>
+<w:characterSpacingControl w:val="DontCompress"/>
+<w:optimizeForBrowser/>
+<w:validateAgainstSchema/>
+<w:saveInvalidXML w:val="off"/>
+<w:ignoreMixedContent w:val="off"/>
+<w:alwaysShowPlaceholderText w:val="off"/>
+<w:hdrShapeDefaults>
+<o:shapedefaults v:ext="edit" spidmax="5122"/>
+</w:hdrShapeDefaults>
+<w:footnotePr>
+<w:footnote w:type="separator">
+<w:p>
+<w:r>
+<w:separator/>
+</w:r>
+</w:p>
+</w:footnote>
+<w:footnote w:type="continuation-separator">
+<w:p>
+<w:r>
+<w:continuationSeparator/>
+</w:r>
+</w:p>
+</w:footnote>
+</w:footnotePr>
+<w:endnotePr>
+<w:endnote w:type="separator">
+<w:p>
+<w:r>
+<w:separator/>
+</w:r>
+</w:p>
+</w:endnote>
+<w:endnote w:type="continuation-separator">
+<w:p>
+<w:r>
+<w:continuationSeparator/>
+</w:r>
+</w:p>
+</w:endnote>
+</w:endnotePr>
+<w:compat>
+<w:footnoteLayoutLikeWW8/>
+<w:shapeLayoutLikeWW8/>
+<w:alignTablesRowByRow/>
+<w:forgetLastTabAlignment/>
+<w:doNotUseHTMLParagraphAutoSpacing/>
+<w:layoutRawTableWidth/>
+<w:layoutTableRowsApart/>
+<w:useWord97LineBreakingRules/>
+<w:dontAllowFieldEndSelect/>
+<w:useWord2002TableStyleRules/>
+</w:compat>
+</w:docPr>
+<w:body>
+<wx:sect>
+<wx:sub-section>
+<w:p>
+<w:pPr>
+<w:pStyle w:val="Heading1"/>
+</w:pPr>
+<w:r>
+<w:t>     Elektronisk nyhedsbrev   </w:t>
+</w:r>
+</w:p>
+<w:p/>
+<w:p>
+<w:r>
+<w:t>Dette er første gang, hvor vi udsender vores nyhedsbrev fra Puls 3060 elektronisk. Fra nu af kan du hver den 1/3 - 1/6 </w:t>
+</w:r>
+<w:r>
+<w:noBreakHyphen/>
+<w:t> 1/9 - 1/12 udskrive et nyhedsbrev fra vores hjemmeside </w:t>
+</w:r>
+<w:hlink w:dest="http://www.puls3060.dk/">
+<w:r>
+<w:rPr>
+<w:rStyle w:val="Hyperlink"/>
+</w:rPr>
+<w:t>www.puls3060.dk</w:t>
+</w:r>
+</w:hlink>
+<w:r>
+<w:t>    under nyheder. Alle medlemmer, der har oplyst deres e-mailadresse får nyhedsbrevet direkte som e-mail. Andre kan blot sende de nødvendige oplysninger om  mailadresse til  </w:t>
+</w:r>
+<w:hlink w:dest="mailto:post@puls3060.dk">
+<w:r>
+<w:rPr>
+<w:rStyle w:val="Hyperlink"/>
+</w:rPr>
+<w:t>post@puls3060.dk</w:t>
+</w:r>
+</w:hlink>
+<w:r>
+<w:t>, så vil de fremover modtage nyhedsbrevet automatisk.</w:t>
+</w:r>
+</w:p>
+<w:p>
+<w:r>
+<w:t>Der er sikkert stadig nogle af vores medlemmer, der ikke har internetadgang.  Så kender du en træningskammerat, der derfor ikke får nyhedsbrevet, så gør ham eller hende en lille tjeneste, og udskriv et ekstra eksemplar til vedkommende.</w:t>
+</w:r>
+</w:p>
+<w:p/>
+<wx:sub-section>
+<w:p>
+<w:pPr>
+<w:pStyle w:val="Heading2"/>
+<w:rPr>
+<w:sz w:val="20"/>
+</w:rPr>
+</w:pPr>
+<w:r>
+<w:rPr>
+<w:sz w:val="20"/>
+</w:rPr>
+<w:t>Generalforsamling</w:t>
+</w:r>
+</w:p>
+<w:p/>
+<w:p>
+<w:r>
+<w:t>Den 25. marts havde vi en som sædvanlig velbesøgt generalforsamling, hvor der i år var indlagt lidt underholdning. Tue optrådte med sin sækkepibe og fortalte om sækkepibens historie.  På bifaldet at dømme, var det et meget populært indslag.</w:t>
+</w:r>
+</w:p>
+<w:p/>
+<w:p>
+<w:r>
+<w:t>Bestyrelsen har nu følgende sammensætning:</w:t>
+</w:r>
+</w:p>
+<w:p/>
+<w:p>
+<w:r>
+<w:t>Erik Olsen – formand</w:t>
+</w:r>
+</w:p>
+<w:p>
+<st1:PersonName w:st="on">
+<w:r>
+<w:t>Carsten Veisig</w:t>
+</w:r>
+</st1:PersonName>
+<w:r>
+<w:t> – næstformand</w:t>
+</w:r>
+</w:p>
+<w:p>
+<st1:PersonName w:st="on">
+<w:r>
+<w:t>Mogens Hafsjold</w:t>
+</w:r>
+</st1:PersonName>
+<w:r>
+<w:t> – kasserer</w:t>
+</w:r>
+</w:p>
+<w:p>
+<w:r>
+<w:t>Janne F. Hansen – sekretær</w:t>
+</w:r>
+</w:p>
+<w:p>
+<w:r>
+<w:t>Michael Hansen – bestyrelsesmedlem</w:t>
+</w:r>
+</w:p>
+<w:p>
+<w:r>
+<w:t>Jan-Erik Larsen – bestyrelsessuppleant</w:t>
+</w:r>
+</w:p>
+<w:p>
+<st1:PersonName w:st="on">
+<w:r>
+<w:t>Katrin Christiansen</w:t>
+</w:r>
+</st1:PersonName>
+<w:r>
+<w:t> – bestyrelsessuppleant</w:t>
+</w:r>
+</w:p>
+<w:p/>
+</wx:sub-section>
+</wx:sub-section>
+<wx:sub-section>
+<w:p>
+<w:pPr>
+<w:pStyle w:val="Heading1"/>
+</w:pPr>
+<w:r>
+<w:t>Idéudvalgets forslag</w:t>
+</w:r>
+</w:p>
+<w:p/>
+<w:p>
+<w:r>
+<w:t>I tilknytning til generalforsamlingen blev de mange forslag, der var udarbejdet i idéudvalget, drøftet.</w:t>
+</w:r>
+</w:p>
+<w:p>
+<w:r>
+<w:t>Langt størstedelen af forslagene har bestyrelsen besluttet at føre ud i livet i det omfang, der er ressourcer til det. Som det vil fremgå efterfølgende i teksten, er mange allerede realiseret eller under realisering. </w:t>
+</w:r>
+</w:p>
+<w:p/>
+</wx:sub-section>
+<wx:sub-section>
+<w:p>
+<w:pPr>
+<w:pStyle w:val="Heading1"/>
+</w:pPr>
+<w:r>
+<w:t>Espergærdeløbet</w:t>
+</w:r>
+</w:p>
+<w:p/>
+<w:p>
+<w:r>
+<w:t>Espergærdeløbet havde sæsonens første løb den 9/4 med 63 deltagere, der alle fik en festlig start. Også her havde vi fået Tue til at indlede på sækkepiben.</w:t>
+</w:r>
+</w:p>
+<w:p/>
+</wx:sub-section>
+<wx:sub-section>
+<w:p>
+<w:pPr>
+<w:pStyle w:val="Heading1"/>
+</w:pPr>
+<w:r>
+<w:t>Centerløbet</w:t>
+</w:r>
+</w:p>
+<w:p/>
+<w:p>
+<w:r>
+<w:t>Som det fremgik af presseomtalen blev vores Centerløb den 29/4 i samarbejde med Espergærde Centret betragtet som en stor succes, som man forventer bliver gentaget til næste år. Det var dog kun muligt at etablere dette projekt med en kæmpe indsats fra mange af klubben medlemmer. Æren for vores succes skal derfor i høj grad tilskrives de mange energiske hjælpere.</w:t>
+</w:r>
+</w:p>
+<w:p/>
+</wx:sub-section>
+<wx:sub-section>
+<w:p>
+<w:pPr>
+<w:pStyle w:val="Heading1"/>
+<w:rPr>
+<w:lang w:val="EN-GB"/>
+</w:rPr>
+</w:pPr>
+<w:r>
+<w:rPr>
+<w:lang w:val="EN-GB"/>
+</w:rPr>
+<w:t>BT´s halvmaraton</w:t>
+</w:r>
+</w:p>
+<w:p>
+<w:pPr>
+<w:rPr>
+<w:lang w:val="EN-GB"/>
+</w:rPr>
+</w:pPr>
+</w:p>
+<w:p>
+<w:r>
+<w:t>Dette løb er en af vores faste træningsmål. Denne gang med 9 fra Puls 3060, der gennemført de 21,1 km.</w:t>
+</w:r>
+</w:p>
+<w:p/>
+</wx:sub-section>
+<wx:sub-section>
+<w:p>
+<w:pPr>
+<w:pStyle w:val="Heading1"/>
+</w:pPr>
+<w:r>
+<w:t>Begyndertræning</w:t>
+</w:r>
+</w:p>
+<w:p/>
+<w:p>
+<w:r>
+<w:t>Den 1/5 holdt vi den traditionelle afslutning for begynderne. Ca. 30 fra løb, Power Walk og stavgang gennemførte og fik udleveret et skriftlig bevis for deres indsats. Samtidigt gav beviset adgang til at deltage gratis i 2 Espergærdeløb som belønning.</w:t>
+</w:r>
+</w:p>
+<w:p/>
+</wx:sub-section>
+<wx:sub-section>
+<w:p>
+<w:pPr>
+<w:pStyle w:val="Heading1"/>
+</w:pPr>
+<w:r>
+<w:t>Hjerteforeningens motionsdag</w:t>
+</w:r>
+</w:p>
+<w:p/>
+<w:p>
+<w:r>
+<w:t>Vi deltog den 6/5 i Hjerteforeningens motionsdag. Også her havde en gruppe medlemmer stillet sig til rådighed som instruktører i løb, Power Walk og stavgang.</w:t>
+</w:r>
+</w:p>
+<w:p/>
+</wx:sub-section>
+<wx:sub-section>
+<w:p>
+<w:pPr>
+<w:pStyle w:val="Heading1"/>
+</w:pPr>
+<w:r>
+<w:t>Alternativ træningsaften</w:t>
+</w:r>
+</w:p>
+<w:p/>
+<w:p>
+<w:r>
+<w:t>Den 7/6 bliver der afhold en alternativ træningsaften, hvor der har været mulighed for at melde sig til en udflugt til den militære træningsbane på Svanemøllens Kaserne.</w:t>
+</w:r>
+</w:p>
+<w:p/>
+</wx:sub-section>
+<wx:sub-section>
+<w:p>
+<w:pPr>
+<w:pStyle w:val="Heading1"/>
+</w:pPr>
+<w:r>
+<w:t>Maratonmøde</w:t>
+</w:r>
+</w:p>
+<w:p/>
+<w:p>
+<w:r>
+<w:t>Igen i år er der flere medlemmer i Puls 3060, er har planer om den ultimative udfordring – maraton. Denne gang er det bl.a. New York maraton, der er på banen.</w:t>
+</w:r>
+</w:p>
+<w:p>
+<w:r>
+<w:t>Der vil derfor blive forsøgt organiseret et møde for alle maratoninteresserede, hvor der bliver mulighed for i fællesskab, at udveksle erfaringer om, hvordan man bedst kan lægge sin strategi.</w:t>
+</w:r>
+</w:p>
+<w:p/>
+</wx:sub-section>
+<wx:sub-section>
+<w:p>
+<w:pPr>
+<w:pStyle w:val="Heading1"/>
+</w:pPr>
+<w:r>
+<w:t>Skovtur</w:t>
+</w:r>
+</w:p>
+<w:p/>
+<w:p>
+<w:r>
+<w:t>Den årlige skovtur er planlagt til den 18/6. Der kommer nærmere oplysninger om udflugten inden for kort tid.</w:t>
+</w:r>
+</w:p>
+<w:p/>
+</wx:sub-section>
+<wx:sub-section>
+<w:p>
+<w:pPr>
+<w:pStyle w:val="Heading1"/>
+</w:pPr>
+<w:r>
+<w:t>Vand og toiletter i sommerhalvåret</w:t>
+</w:r>
+</w:p>
+<w:p/>
+<w:p>
+<w:r>
+<w:t>Det tilbagevendende problem med manglende adgang til vand og toiletter ved hallen, ser ud til at være løst. Jan-Erik har fået en aftale om, at det ene toilet ved indgangen til Hallen vil være uaflåst i sommerhalvåret.</w:t>
+</w:r>
+</w:p>
+<w:p/>
+</wx:sub-section>
+<wx:sub-section>
+<w:p>
+<w:pPr>
+<w:pStyle w:val="Heading1"/>
+</w:pPr>
+<w:r>
+<w:t>Efteråret aktiviteter</w:t>
+</w:r>
+</w:p>
+<w:p/>
+<w:p>
+<w:r>
+<w:t>De arrangementer, der skal finde sted i efteråret overvejes i øjeblikket. Der bliver sikkert tale om en foredragsaften, måske et natløb, bowling og julesammenkomst</w:t>
+</w:r>
+</w:p>
+<w:p/>
+</wx:sub-section>
+<wx:sub-section>
+<w:p>
+<w:pPr>
+<w:pStyle w:val="Heading1"/>
+</w:pPr>
+<w:r>
+<w:t>Træneruddannelse</w:t>
+</w:r>
+</w:p>
+<w:p/>
+<w:p>
+<w:r>
+<w:t>Vi har haft den første deltager på DGI´s nye løbetræneruddannelse. Tilsvarende forventer vi, når muligheden er der, at få deltagere på kurser inden for stavgang og Power Walk. </w:t>
+</w:r>
+</w:p>
+<w:p/>
+</wx:sub-section>
+<wx:sub-section>
+<w:p>
+<w:pPr>
+<w:pStyle w:val="Heading1"/>
+</w:pPr>
+<w:r>
+<w:t>Idrætsmærket</w:t>
+</w:r>
+</w:p>
+<w:p/>
+<w:p>
+<w:r>
+<w:t>Bestyrelsen arbejder på at få vores rute i Egebæksvang godkendt i DGI til idrætsmærket. Det vil betyde, at man kan erhverve idrætsmærke ved 2 gang i løbet af året at gennemløbe Espergærdeløbet inden for en given tidsfrist.</w:t>
+</w:r>
+</w:p>
+<w:p/>
+</wx:sub-section>
+<wx:sub-section>
+<w:p>
+<w:pPr>
+<w:pStyle w:val="Heading1"/>
+</w:pPr>
+<w:r>
+<w:t>Klubtøj</w:t>
+</w:r>
+</w:p>
+<w:p/>
+<w:p>
+<w:r>
+<w:t>Vi forhandler i øjeblikket om en aftale med SameSame på Hovvej om klubtøj. Det bliver i givet fald sådan, at medlemmerne selv kan købe tøj med Puls3060-logo i forretningen. Samtidigt vil medlemmer af puls 3060 kunne opnå en pæn rabat på køb af andre tøj- og sportsartikler, f.eks. sko.</w:t>
+</w:r>
+</w:p>
+<w:p/>
+</wx:sub-section>
+<wx:sub-section>
+<w:p>
+<w:pPr>
+<w:pStyle w:val="Heading1"/>
+</w:pPr>
+<w:r>
+<w:t>Aktivitetskalender</w:t>
+</w:r>
+</w:p>
+<w:p/>
+<w:p>
+<w:r>
+<w:t>Vores aktivitetskalender på hjemsiden bliver til stadighed opdateret. Her kan du følge med i tid og sted for kommende aktiviteter.</w:t>
+</w:r>
+</w:p>
+<w:p/>
+</wx:sub-section>
+<wx:sub-section>
+<w:p>
+<w:pPr>
+<w:pStyle w:val="Heading1"/>
+</w:pPr>
+<w:r>
+<w:t>Opslagstavlen</w:t>
+</w:r>
+</w:p>
+<w:p/>
+<w:p>
+<w:r>
+<w:t>På opslagtavlen ved Hallen er der bl.a. mulighed for t følge med i de mange løb m.v. der bliver arrangeret rundt omkring, samt se de træningsprogrammer, der også er på hjemmesiden.</w:t>
+</w:r>
+</w:p>
+<w:p/>
+</wx:sub-section>
+<wx:sub-section>
+<w:p>
+<w:pPr>
+<w:pStyle w:val="Heading1"/>
+</w:pPr>
+<w:r>
+<w:t>Debat</w:t>
+</w:r>
+</w:p>
+<w:p/>
+<w:p>
+<w:r>
+<w:t>Du kan benytte vores debatsted på hjemmesiden – eller kom og tal med bestyrelsesmedlemmer eller træningsledere med kommentarer, spørgsmål, forslag m.v. når vi f.eks. mødes til træningen. Har du noget på hjertet, prøver vi at få det afklaret med det samme.</w:t>
+</w:r>
+</w:p>
+<w:p>
+<w:pPr>
+<w:sectPr>
+<w:pgSz w:w="11906" w:h="16838"/>
+<w:pgMar w:top="1701" w:right="1134" w:bottom="2127" w:left="1134" w:header="720" w:footer="720" w:gutter="0"/>
+<w:cols w:num="2" w:space="709"/>
+<w:titlePg/>
+</w:sectPr>
+</w:pPr>
+</w:p>
+<w:p>
+<w:pPr>
+<w:rPr>
+<w:vanish/>
+</w:rPr>
+</w:pPr>
+<w:r>
+<w:rPr>
+<w:vanish/>
+</w:rPr>
+<w:t>ar du noget på hjertetHar</w:t>
+</w:r>
+</w:p>
+<w:p>
+<w:r>
+<w:rPr>
+<w:vanish/>
+</w:rPr>
+<w:t>HHa</w:t>
+</w:r>
+</w:p>
+<w:sectPr>
+<w:type w:val="continuous"/>
+<w:pgSz w:w="11906" w:h="16838"/>
+<w:pgMar w:top="1701" w:right="1134" w:bottom="1701" w:left="1134" w:header="720" w:footer="720" w:gutter="0"/>
+<w:cols w:space="709"/>
+<w:titlePg/>
+</w:sectPr>
+</wx:sub-section>
+</wx:sect>
+</w:body>
+</w:wordDocument>

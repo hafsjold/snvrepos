@@ -1,0 +1,55 @@
+<table border="0" cellpadding="0" cellspacing="0" width="117">
+<!-- fwtable fwsrc="Puls3060_menu_traening.png" fwbase="traening_.gif" -->
+  <tr>
+   <td colspan="2"><img name="traening__r1_c1" src="../Traening/image/traening__r1_c1.gif" width="117" height="18" border="0"></td>
+  </tr>
+  <tr>
+   <td rowspan="16"><img name="traening__r2_c1" src="../Traening/image/traening__r2_c1.gif" width="20" height="295" border="0"></td>
+   <td><a href="/tramnu/Traening/TProgramIndex.php" onMouseOut="MM_swapImgRestore();"  onMouseOver="MM_displayStatusMsg('Programmer');MM_swapImage('traening__r2_c2','','../Traening/image/traening__r2_c2_f2.gif',1);return document.MM_returnValue" ><img name="traening__r2_c2" src="../Traening/image/traening__r2_c2.gif" width="97" height="14" border="0"></a></td>
+  </tr>
+  <tr>
+   <td><img name="traening__r3_c2" src="../Traening/image/traening__r3_c2.gif" width="97" height="25" border="0"></td>
+  </tr>
+  <tr>
+   <td><a href="/tramnu/Traening/Begyndertraening.htm" onMouseOut="MM_swapImgRestore();"  onMouseOver="MM_displayStatusMsg('Begyndertræning');MM_swapImage('traening__r4_c2','','../Traening/image/traening__r4_c2_f2.gif',1);return document.MM_returnValue" ><img name="traening__r4_c2" src="../Traening/image/traening__r4_c2.gif" width="97" height="14" border="0"></a></td>
+  </tr>
+  <tr>
+   <td><img name="traening__r5_c2" src="../Traening/image/traening__r5_c2.gif" width="97" height="25" border="0"></td>
+  </tr>
+  <tr>
+   <td><a href="/tramnu/Traening/Stavgang.htm" onMouseOut="MM_swapImgRestore();"  onMouseOver="MM_displayStatusMsg('½ times holdet');MM_swapImage('traening__r6_c2','','../Traening/image/traening__r6_c2_f2.gif',1);return document.MM_returnValue" ><img name="traening__r6_c2" src="../Traening/image/traening__r6_c2.gif" width="97" height="14" border="0"></a></td>
+  </tr>
+  <tr>
+   <td><img name="traening__r7_c2" src="../Traening/image/traening__r7_c2.gif" width="97" height="25" border="0"></td>
+  </tr>
+  <tr>
+   <td><a href="/tramnu/Traening/lobtraningsholdet.htm" onMouseOut="MM_swapImgRestore();"  onMouseOver="MM_displayStatusMsg('Løbstrænings holdet');MM_swapImage('traening__r8_c2','','../Traening/image/traening__r8_c2_f2.gif',1);return document.MM_returnValue" ><img name="traening__r8_c2" src="../Traening/image/traening__r8_c2.gif" width="97" height="14" border="0"></a></td>
+  </tr>
+  <tr>
+   <td><img name="traening__r9_c2" src="../Traening/image/traening__r9_c2.gif" width="97" height="25" border="0"></td>
+  </tr>
+  <tr>
+   <td><a href="/tramnu/Traening/gruppelob.htm" onMouseOut="MM_swapImgRestore();"  onMouseOver="MM_displayStatusMsg('Gruppeløb');MM_swapImage('traening__r10_c2','','../Traening/image/traening__r10_c2_f2.gif',1);return document.MM_returnValue" ><img name="traening__r10_c2" src="../Traening/image/traening__r10_c2.gif" width="97" height="14" border="0"></a></td>
+  </tr>
+  <tr>
+   <td><img name="traening__r11_c2" src="../Traening/image/traening__r11_c2.gif" width="97" height="25" border="0"></td>
+  </tr>
+  <tr>
+   <td><a href="/tramnu/Traening/powerwalk.htm" onMouseOut="MM_swapImgRestore();"  onMouseOver="MM_displayStatusMsg('Power Walk');MM_swapImage('traening__r12_c2','','../Traening/image/traening__r12_c2_f2.gif',1);return document.MM_returnValue" ><img name="traening__r12_c2" src="../Traening/image/traening__r12_c2.gif" width="97" height="14" border="0"></a></td>
+  </tr>
+  <tr>
+   <td><img name="traening__r13_c2" src="../Traening/image/traening__r13_c2.gif" width="97" height="26" border="0"></td>
+  </tr>
+  <tr>
+   <td><a href="/Traening/PULS3060ruteforslag.pdf" target="_blank" onMouseOut="MM_swapImgRestore();"  onMouseOver="MM_displayStatusMsg('Ruteforslag');MM_swapImage('traening__r14_c2','','../Traening/image/traening__r14_c2_f2.gif',1);return document.MM_returnValue" ><img name="traening__r14_c2" src="../Traening/image/traening__r14_c2.gif" width="97" height="14" border="0"></a></td>
+  </tr>
+  <tr>
+   <td><img name="traening__r15_c2" src="../Traening/image/traening__r15_c2.gif" width="97" height="26" border="0"></td>
+  </tr>
+  <tr>
+   <td><a href="/Traening/Tranervejledning.pdf" target="_blank" onMouseOut="MM_swapImgRestore();"  onMouseOver="MM_displayStatusMsg('Trænervejledning');MM_swapImage('traening__r16_c2','','../Traening/image/traening__r16_c2_f2.gif',1);return document.MM_returnValue" ><img name="traening__r16_c2" src="../Traening/image/traening__r16_c2.gif" width="97" height="14" border="0"></a></td>
+  </tr>
+  <tr>
+   <td><img name="traening__r17_c2" src="../Traening/image/traening__r17_c2.gif" width="97" height="6" border="0"></td>
+  </tr>
+</table>

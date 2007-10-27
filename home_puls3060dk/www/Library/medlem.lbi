@@ -1,0 +1,37 @@
+<table border="0" cellpadding="0" cellspacing="0" width="117">
+<!-- fwtable fwsrc="Puls3060_menu_medlem.png" fwbase="medlem.gif" -->
+  <tr>
+   <td colspan="2"><img name="medlem_r1_c1" src="../Medlem/image/medlem_r1_c1.gif" width="117" height="18" border="0"></td>
+  </tr>
+  <tr>
+   <td rowspan="10"><img name="medlem_r2_c1" src="../Medlem/image/medlem_r2_c1.gif" width="20" height="183" border="0"></td>
+   <td><a href="javascript:IndmeldelseLink()" onMouseOut="MM_swapImgRestore();"  onMouseOver="MM_displayStatusMsg('Indmeldelse');MM_swapImage('medlem_r2_c2','','../Medlem/image/medlem_r2_c2_f2.gif',1);return document.MM_returnValue" ><img name="medlem_r2_c2" src="../Medlem/image/medlem_r2_c2.gif" width="97" height="14" border="0"></a></td>
+  </tr>
+  <tr>
+   <td><img name="medlem_r3_c2" src="../Medlem/image/medlem_r3_c2.gif" width="97" height="25" border="0"></td>
+  </tr>
+  <tr>
+   <td><a href="javascript:BestyrelseLink()" onMouseOut="MM_swapImgRestore();"  onMouseOver="MM_displayStatusMsg('Bestyrelse');MM_swapImage('medlem_r4_c2','','../Medlem/image/medlem_r4_c2_f2.gif',1);return document.MM_returnValue" ><img name="medlem_r4_c2" src="../Medlem/image/medlem_r4_c2.gif" width="97" height="14" border="0"></a></td>
+  </tr>
+  <tr>
+   <td><img name="medlem_r5_c2" src="../Medlem/image/medlem_r5_c2.gif" width="97" height="25" border="0"></td>
+  </tr>
+  <tr>
+   <td><a href="javascript:UdvalgLink()" onMouseOut="MM_swapImgRestore();"  onMouseOver="MM_displayStatusMsg('Udvalg');MM_swapImage('medlem_r6_c2','','../Medlem/image/medlem_r6_c2_f2.gif',1);return document.MM_returnValue" ><img name="medlem_r6_c2" src="../Medlem/image/medlem_r6_c2.gif" width="97" height="14" border="0"></a></td>
+  </tr>
+  <tr>
+   <td><img name="medlem_r7_c2" src="../Medlem/image/medlem_r7_c2.gif" width="97" height="25" border="0"></td>
+  </tr>
+  <tr>
+   <td><a href="javascript:VedtagterLink()" onMouseOut="MM_swapImgRestore();"  onMouseOver="MM_displayStatusMsg('Vedtægter');MM_swapImage('medlem_r8_c2','','../Medlem/image/medlem_r8_c2_f2.gif',1);return document.MM_returnValue" ><img name="medlem_r8_c2" src="../Medlem/image/medlem_r8_c2.gif" width="97" height="14" border="0"></a></td>
+  </tr>
+  <tr>
+   <td><img name="medlem_r9_c2" src="../Medlem/image/medlem_r9_c2.gif" width="97" height="25" border="0"></td>
+  </tr>
+  <tr>
+   <td><a href="javascript:MoederLink()" onMouseOut="MM_swapImgRestore();"  onMouseOver="MM_displayStatusMsg('Møder');MM_swapImage('medlem_r10_c2','','../Medlem/image/medlem_r10_c2_f2.gif',1);return document.MM_returnValue" ><img name="medlem_r10_c2" src="../Medlem/image/medlem_r10_c2.gif" width="97" height="14" border="0"></a></td>
+  </tr>
+  <tr>
+   <td><img name="medlem_r11_c2" src="../Medlem/image/medlem_r11_c2.gif" width="97" height="13" border="0"></td>
+  </tr>
+</table>
