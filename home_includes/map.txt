@@ -1,0 +1,20 @@
+##
+##  map.txt -- rewriting map
+##
+
+##  RewriteRule	^/(nyhmnu|lobmnu|kalmnu|medmnu|tramnu|velmnu|lnkmnu|formnu|tstmnu)(/.*)$   /index.php?p1=${menu:$1}&p2=$2&p3=no&px=1 [QSA]
+
+##  www.puls3060.dk/lobmnu/Lob/ResultaterIndex.php
+##  www.puls3060.dk/nyhmnu/Nyheder/Foraarsfest2005.htm
+##  www.puls3060.dk/lnkmnu/Links/Links.htm
+##  www.puls3060.dk/kalmnu/Nyheder/Foredrag2003-2.htm
+
+nyhmnu    /menu/nyhedermenu.php
+lobmnu    /menu/lobmenu.php
+kalmnu    /menu/kalendermenu.php
+medmnu    /menu/Medlem.php
+tramnu    /menu/traeningmenu.php
+velmnu    /menu/Velkom.php
+lnkmnu    /Frame/TomMenu.htm
+formnu    /Frame/TomMenu.htm
+tstmnu    /menu/testmenu.php
