@@ -1,0 +1,27 @@
+StartFontMetrics 2.0
+Comment Panose 2 0 0 0 0 0 0 0 0 0
+FullName UntitledRegular
+FontName Untitled
+FamilyName Untitled
+Weight normal
+Version 001.001
+IsFixedPitch false
+ItalicAngle 0.00
+FontBBox 0 0 333 781
+Ascender 700
+Descender -200
+XHeight 500
+CapHeight 700
+UnderlinePosition -100
+UnderlineThickness 50
+StdHW 100
+StdVW 50
+EncodingScheme FontSpecific
+StartCharMetrics 5
+C 32 ; WX 500 ; N space ; B 0 0 0 0 ;
+C 49 ; WX 500 ; N one ; B 98 56 277 781 ;
+C -1 ; WX 0 ; N .null ; B 0 0 0 0 ;
+C -1 ; WX 500 ; N CR ; B 0 0 0 0 ;
+C 156 ; WX 500 ; N .0156 ; B 123 398 333 610 ;
+EndCharMetrics
+EndFontMetrics

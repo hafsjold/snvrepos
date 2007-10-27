@@ -1,0 +1,405 @@
+/* $Id: page_secure.css,v 1.8 2005/11/08 14:09:17 ta Exp $ */
+
+/**********************************************************
+	TOP LEVEL XHTML ELEMENTS
+**********************************************************/
+body, html{
+	margin:0;
+	padding:0;
+	background: #ffffff;
+	color: #333333;
+}
+
+body, html, td {
+	font: 10pt normal verdana,arial,sans-serif;
+}
+
+h1 {
+	margin: 0px;
+	padding: 2px 10px 2px 10px;
+	border-bottom: 1px inset #485569;
+	border-top: 1px inset #485569;
+	background: #485569;
+	color: #ffffff;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+h2 {
+	border-bottom: 1px solid #485569;
+	color: #485569;
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+h3 {
+	color: #333333;
+	font-size: 11pt;
+	font-weight: bold;
+}
+
+img {
+	border: 0px;
+}
+
+a {
+	text-decoration: underline;
+	color: #334563;
+}
+a:visited {}
+a:hover {}
+
+/**********************************************************
+	PAGE STRUCTURE
+**********************************************************/
+
+#header {
+	padding-left: 10px;
+	border-bottom: 1px solid #7c899d;
+	border-top: 1px solid #d6dae0;
+	background: #485569 url(/images/top_bg.gif) center left repeat-x;
+}
+
+#menu {
+	padding: 0px 0px 28px 0px;
+	border-bottom: 1px solid #a1a1a1;
+	background: #e6e6e6;
+}
+
+#content {
+	padding: 0px;
+}
+
+#footer {
+	position: absolute;
+	left: 0px;
+	bottom: 0px;
+	width: 100%;
+}
+
+.pgMargin20 {
+	margin: 20px;
+}
+
+.pgMargin20 {
+	vertical-align:top;
+}
+
+/**********************************************************
+	MENU LEVEL 1
+**********************************************************/
+
+#menu ul, #menu li {
+	display: inline;
+	margin : 0px;
+	padding : 0px;
+	list-style-type : none;
+}
+
+#menu #menu-level-1 {
+	padding: 10px 0px 4px 0px;
+	margin: 0px 0px 0px 0px;
+	border-top: 1px solid #f6f6f6;
+	border-bottom: 1px solid #a1a1a1;
+	background: #e6e6e6;
+	display: block;
+}
+
+#menu-level-1 a {
+	padding: 3px 16px 4px 30px;
+	border-top: 1px solid #777777;
+	border-right: 1px solid #999999;
+	font-size: 10pt;
+	font-weight: normal;
+	text-decoration: none;
+	color: #111111;
+	background: #cccccc;
+	background-position: 5px center;
+	background-repeat: no-repeat;
+}
+#menu-level-1 a:hover {
+	background-color: #f6f6f6;
+	padding: 4px 16px 4px 30px;
+}
+#menu-level-1 a.act {
+	padding: 5px 16px 4px 30px;
+	border: 1px solid #666666;
+	border-bottom: 1px solid #e6e6e6;
+	font-weight: bold;
+	text-decoration: none;
+	background: #e6e6e6;
+	background-position: 5px center;
+	background-repeat: no-repeat;
+	color: #333333;
+}
+
+#menu-level-1 a.iconHome {
+	background-image: url(/images/tb_home.gif);
+}
+#menu-level-1 a.iconTransactions {
+	background-image: url(/images/tb_transactions.gif);
+}
+#menu-level-1 a.iconStatistic {
+	background-image: url(/images/tb_statistic.gif);
+}
+#menu-level-1 a.iconTools {
+	background-image: url(/images/tb_tools.gif);
+}
+#menu-level-1 a.iconSettings {
+	background-image: url(/images/tb_settings.gif);
+}
+#menu-level-1 a.iconUsers {
+	background-image: url(/images/tb_users.gif);
+}
+#menu-level-1 a.iconCMS {
+	background-image: url(/images/tb_cms.gif);
+}
+#menu-level-1 a.iconInvoicing {
+	background-image: url(/images/tb_invoicing.gif);
+}
+#menu-level-1 a.iconLock {
+	background-image: url(/images/tb_lock.gif);
+}
+
+/**********************************************************
+	MENU LEVEL 2
+**********************************************************/
+
+#menu .menu-level-2 {
+	position: absolute;
+	top: 126px;
+	left: 0;
+	padding: 6px 0px 6px 6px;
+	/*border-top: 1px solid #f6f6f6;*/
+}
+
+#menu .menu-level-2 a, #menu .menu-level-2 a.act {
+	padding: 3px 16px 3px 20px;
+	border: 1px solid #e6e6e6;
+	background-color: transparent;
+	background-position: 2px center;
+	background-repeat: no-repeat;
+	background-image: url(/images/bullet_off.gif);
+	text-decoration: none;
+}
+#menu .menu-level-2 a:hover, #menu .menu-level-2 li a.act:hover {
+	padding: 3px 16px 3px 20px;
+	border: 1px solid #aaaaaa;
+	background-color: #f6f6f6;
+	background-image: url(/images/bullet_on.gif);
+}
+
+#menu .show {
+	display: normal;
+}
+#menu .hide {
+	display: none;
+}
+
+/**********************************************************
+	SPREADSHEET TABLE
+**********************************************************/
+
+table.spreadSheet, table.input {
+	background: #ffffff;
+	border-top: 1px solid #a1a1a1;
+	border-right: 1px solid #f7f7f7;
+	border-bottom: 1px solid #f7f7f7;
+	border-left: 1px solid #a1a1a1;
+}
+
+table.spreadSheet thead th {
+	padding: 3px 8px 3px 8px;
+	border-top: 1px solid #f7f7f7;
+	border-left: 1px solid #f7f7f7;
+	border-bottom: 1px solid #a1a1a1;
+	border-right: 1px solid #a1a1a1;
+	background: #e6e6e6;
+	font-size: 9pt;
+	color: #333333;	
+}
+
+table.spreadSheet tbody tr.mover {
+	background: #ffffbf;	
+}
+
+table.spreadSheet tbody th {
+	padding: 2px 4px 2px 4px;
+	border-top: 1px solid #f7f7f7;
+	border-left: 1px solid #f7f7f7;
+	border-bottom: 1px solid #a1a1a1;
+	border-right: 1px solid #a1a1a1;
+	background: #e6e6e6;
+	font-size: 9pt;
+	color: #333333;
+	white-space: nowrap;
+}
+
+table.spreadSheet tbody th input, table.spreadSheet thead th input {
+	vertical-align: middle;
+}
+
+table.spreadSheet tbody th img, table.spreadSheet thead th img {
+	border: 0px;
+	vertical-align: middle;
+}
+
+table.spreadSheet tbody td {
+	padding: 2px 5px 2px 5px;
+	border-bottom: 1px solid #cccccc;
+	border-right: 1px solid #cccccc;
+	font-size: 9pt;
+	white-space: nowrap;
+}
+
+table.spreadSheet td.ssTool {
+	background: #f6f6f6;
+	color: #666666;
+}
+
+/**********************************************************
+	INPUT TABLE
+**********************************************************/
+
+table.input {
+	border: 1px solid #999999;
+}
+
+table.input tbody th {
+	padding: 3px 4px 3px 4px;
+	border-bottom: 1px outset #485569;
+	background: #485569;
+	font-size: 9pt;
+	color: #ffffff;
+	white-space: nowrap;
+}
+
+table.input td {
+	padding: 5px 5px 5px 5px;
+	font-size: 9pt;
+	white-space: nowrap;
+	background: #e6e6e6;
+}
+table.input td * {
+	vertical-align: middle;
+}
+
+table.input td.ssTool {
+	border-top: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
+	background: #f6f6f6;
+	text-align: center;
+}
+/**********************************************************
+	FORM ELEMENTS
+**********************************************************/
+
+.fradio {}
+.fcheckbox {}
+.fimage {}
+.fselect {}
+.ftext {}
+.fbutton {}
+
+/**********************************************************
+	TEXT FORMAT
+**********************************************************/
+
+.bold {
+	font-weight: bold;
+}
+.normal {
+	font-weight: normal;
+}
+
+/**********************************************************
+	MESSAGES FORMAT
+**********************************************************/
+
+.alert {
+	margin: 10px 0px 10px 0px;
+	padding: 1px 0px 0px 18px;
+	background: transparent url(/images/failure.gif) left center no-repeat;
+}
+.warning {
+	margin: 10px 0px 10px 0px;
+	padding: 1px 0px 0px 18px;
+	background: transparent url(/images/warning.gif) left center no-repeat;
+}
+.info {
+	margin: 10px 0px 10px 0px;
+	padding: 1px 0px 0px 18px;
+	background: transparent url(/images/info.gif) left center no-repeat;
+}
+.succes {
+	margin: 10px 0px 10px 0px;
+	padding: 2px 0px 0px 18px;
+	background: transparent url(/images/succes.gif) left center no-repeat;
+}
+
+.sudo {
+	font-weight: bold;
+	color: #892121;
+}
+
+/**********************************************************
+	Bar graphic elements
+**********************************************************/
+table.graphBar {
+	border: 1px solid #000000;
+}
+table.graphBar div.bar {
+	width: 25px;
+	background: green;
+}
+table.graphBar td.text {
+	padding: 1px 2px 1px 2px;
+	padding: 1px;
+	font-size: 7pt;
+	font-weight: bold;
+	text-align: center;
+	color: #ffffff;
+}
+
+/**********************************************************
+	MISC. STYLES
+**********************************************************/
+.top {
+	vertical-align: top;
+}
+.middle {
+	vertical-align: middle;
+}
+.bottom {
+	vertical-align: bottom;
+}
+
+.left {
+	 text-align: left;
+}
+.right {
+	text-align: right;
+}
+.center {
+	text-align: center;
+}
+
+.inline {
+	display: inline;
+}
+.block {
+	display: block;
+}
+
+.nowrap {
+	white-space: nowrap;
+}
+
+.w100 {
+	width: 100%;
+}
+
+.headerDate {
+	font-weight: normal;
+	font-size: 8pt;
+}

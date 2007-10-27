@@ -1,0 +1,14 @@
+Tilmelding til $KLinieText $KLinieDato
+
+Hej $Fornavn
+
+Du kan tilmelde dig elektronisk ved at trykke på dette link http://www.puls3060.dk?p0=$p0 
+
+Efter tilmelding vil du få tilsendt en e-mail som kvitering.
+
+Hvis du vil vide mere om $KLinieText så tryk på dette link http://www.puls3060.dk/Nyheder/bowling2006.htm
+
+Med venlig hilsen
+Puls 3060
+
+Sidste frist for tilmelding er nu på fredag den 13. januar.

@@ -1,0 +1,9 @@
+Resultaterne af Espergærdeløbet $Dato
+
+Hej $Fornavn
+
+Se resultaterne ved at trykke på dette link http://www.puls3060.dk?p0=$p0 
+
+Med venlig hilsen
+Puls 3060
+    

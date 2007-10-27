@@ -1,0 +1,13 @@
+Tilmelding til Espergærdeløbet $Dato
+
+Hej $Fornavn
+
+Du kan tilmelde dig elektronisk ved at trykke på dette link https://www.puls3060.dk?p0=$p0 
+
+Efter tilmelding vil du få tilsendt en e-mail med oplysning om betaling og afhentning af løbsnummer.
+
+Hvis du vil vide mere om Espergærdeløbet så tryk på dette link http://www.puls3060.dk?p1=/menu/lobmenu.php&p2=/Lob/el2007.php&p3=no
+
+Med venlig hilsen
+Puls 3060
+    

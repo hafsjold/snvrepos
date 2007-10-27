@@ -1,0 +1,698 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+ xmlns:s="uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882"
+ xmlns:rs="urn:schemas-microsoft-com:rowset" xmlns:z="#RowsetSchema"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>Mogens Hafsjold</Author>
+  <LastAuthor>Mogens Hafsjold</LastAuthor>
+  <LastPrinted>2006-01-07T21:09:43Z</LastPrinted>
+  <Created>2006-01-07T17:00:00Z</Created>
+  <LastSaved>2006-01-07T17:00:00Z</LastSaved>
+  <Company>Puls 3060</Company>
+  <Version>11.6568</Version>
+ </DocumentProperties>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>8565</WindowHeight>
+  <WindowWidth>19515</WindowWidth>
+  <WindowTopX>405</WindowTopX>
+  <WindowTopY>720</WindowTopY>
+  <HidePivotTableFieldList/>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s21">
+   <NumberFormat ss:Format="#,##0"/>
+  </Style>
+  <Style ss:ID="s22">
+   <Borders>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+   </Borders>
+  </Style>
+  <Style ss:ID="s23">
+   <Borders>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="Background"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+   </Borders>
+  </Style>
+  <Style ss:ID="s24">
+   <Borders>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+   </Borders>
+   <NumberFormat ss:Format="#,##0"/>
+  </Style>
+  <Style ss:ID="s25">
+   <Borders>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="Background"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+   </Borders>
+   <NumberFormat ss:Format="#,##0"/>
+  </Style>
+  <Style ss:ID="s26">
+   <Borders>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+   </Borders>
+   <NumberFormat ss:Format="#,##0"/>
+  </Style>
+  <Style ss:ID="s27">
+   <Borders>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="Background"/>
+   </Borders>
+  </Style>
+  <Style ss:ID="s28">
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+   </Borders>
+  </Style>
+  <Style ss:ID="s29">
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="Background"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+   </Borders>
+  </Style>
+  <Style ss:ID="s30">
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+   </Borders>
+   <NumberFormat ss:Format="#,##0"/>
+  </Style>
+  <Style ss:ID="s31">
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#000000"/>
+   </Borders>
+   <NumberFormat ss:Format="#,##0"/>
+  </Style>
+  <Style ss:ID="s35">
+   <NumberFormat ss:Format="Short Date"/>
+  </Style>
+  <Style ss:ID="s36">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2"
+     ss:Color="#808080"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="2"
+     ss:Color="#808080"/>
+   </Borders>
+   <Font ss:Color="#000080" ss:Bold="1"/>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s37">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="2"
+     ss:Color="#808080"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="2"
+     ss:Color="#808080"/>
+   </Borders>
+   <Font ss:Color="#000080" ss:Bold="1"/>
+   <Interior/>
+   <NumberFormat ss:Format="Short Date"/>
+  </Style>
+  <Style ss:ID="s38">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#808080"/>
+   </Borders>
+   <Interior/>
+  </Style>
+  <Style ss:ID="s39">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"
+     ss:Color="#808080"/>
+   </Borders>
+   <Interior/>
+   <NumberFormat ss:Format="Short Date"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="Regnskab">
+  <Table ss:ExpandedColumnCount="123" ss:ExpandedRowCount="15" x:FullColumns="1"
+   x:FullRows="1">
+   <Column ss:Index="3" ss:AutoFitWidth="0" ss:Width="45"/>
+   <Column ss:StyleID="s21" ss:AutoFitWidth="0" ss:Width="35.25"/>
+   <Column ss:StyleID="s21" ss:Width="55.5"/>
+   <Column ss:Width="69" ss:Span="116"/>
+   <Column ss:Index="123" ss:Width="55.5"/>
+   <Row ss:Index="3">
+    <Cell ss:StyleID="s22"><Data ss:Type="String">Sum of beløb</Data></Cell>
+    <Cell ss:StyleID="s23"/>
+    <Cell ss:StyleID="s23"/>
+    <Cell ss:StyleID="s24"><Data ss:Type="String">dato</Data></Cell>
+    <Cell ss:StyleID="s25"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s22"><Data ss:Type="String">ds</Data></Cell>
+    <Cell ss:StyleID="s22"><Data ss:Type="String">k</Data></Cell>
+    <Cell ss:StyleID="s22"><Data ss:Type="String">konto</Data></Cell>
+    <Cell ss:StyleID="s24"><Data ss:Type="String">jan</Data></Cell>
+    <Cell ss:StyleID="s26"><Data ss:Type="String">Grand Total</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s22"><Data ss:Type="String">D</Data></Cell>
+    <Cell ss:StyleID="s22"><Data ss:Type="String">I</Data></Cell>
+    <Cell ss:StyleID="s22"><Data ss:Type="String">999-aaaa</Data></Cell>
+    <Cell ss:StyleID="s24"><Data ss:Type="Number">120</Data></Cell>
+    <Cell ss:StyleID="s26"><Data ss:Type="Number">120</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s27"/>
+    <Cell ss:StyleID="s22"><Data ss:Type="String">I Total</Data></Cell>
+    <Cell ss:StyleID="s23"/>
+    <Cell ss:StyleID="s24"><Data ss:Type="Number">120</Data></Cell>
+    <Cell ss:StyleID="s26"><Data ss:Type="Number">120</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s22"><Data ss:Type="String">D Total</Data></Cell>
+    <Cell ss:StyleID="s23"/>
+    <Cell ss:StyleID="s23"/>
+    <Cell ss:StyleID="s24"><Data ss:Type="Number">120</Data></Cell>
+    <Cell ss:StyleID="s26"><Data ss:Type="Number">120</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s28"><Data ss:Type="String">Grand Total</Data></Cell>
+    <Cell ss:StyleID="s29"/>
+    <Cell ss:StyleID="s29"/>
+    <Cell ss:StyleID="s30"><Data ss:Type="Number">120</Data></Cell>
+    <Cell ss:StyleID="s31"><Data ss:Type="Number">120</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:Index="4" ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="4" ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="4" ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="4" ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="4" ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="4" ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+   <Row>
+    <Cell ss:Index="4" ss:StyleID="Default"/>
+    <Cell ss:StyleID="Default"/>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Layout x:Orientation="Landscape"/>
+    <Header x:Data="&amp;L&amp;&quot;Arial,Bold&quot;&amp;14Regnskab Puls 3060"/>
+    <Footer x:Data="&amp;L&amp;Z&amp;F&amp;R&amp;D &amp;T"/>
+   </PageSetup>
+   <FitToPage/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>-3</HorizontalResolution>
+    <VerticalResolution>0</VerticalResolution>
+    <Gridlines/>
+   </Print>
+   <Selected/>
+   <TopRowVisible>1</TopRowVisible>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>6</ActiveRow>
+     <ActiveCol>4</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+  <PivotTable xmlns="urn:schemas-microsoft-com:office:excel">
+   <Name>PivotTable3</Name>
+   <ImmediateItemsOnDrop/>
+   <ShowPageMultipleItemLabel/>
+   <Location>R3C1:R8C5</Location>
+   <VersionLastUpdate>2</VersionLastUpdate>
+   <DefaultVersion>1</DefaultVersion>
+   <PivotField>
+    <Name>ds</Name>
+    <Orientation>Row</Orientation>
+    <Position>1</Position>
+    <PivotItem>
+     <Name>D</Name>
+    </PivotItem>
+    <PivotItem>
+     <Name>S</Name>
+     <Missing/>
+    </PivotItem>
+   </PivotField>
+   <PivotField>
+    <Name>k</Name>
+    <Orientation>Row</Orientation>
+    <Position>2</Position>
+    <PivotItem>
+     <Name>A</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>I</Name>
+    </PivotItem>
+    <PivotItem>
+     <Name>P</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>U</Name>
+     <Missing/>
+    </PivotItem>
+   </PivotField>
+   <PivotField>
+    <Name>konto</Name>
+    <Orientation>Row</Orientation>
+    <Position>3</Position>
+    <PivotItem>
+     <Name>10-Medlemskontingent</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>110-Foredrag</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>120-Kontorartikler</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>130-Gaver og repræsentation</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>140-Diverse anskaffelser</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>15-Foreningskontingent</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>160-Vedligehold</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>195-Begyndertræning</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>200-Kasse</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>220-Danske Bank (Giro)</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>226-Debitor samlekonto</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>235-Inventar</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>250-Forudbetalte omkostninger</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>30-Espergærdeløbet</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>400-Skyldige omkostninger</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>410-Depositum</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>430-Egenkapital</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>477-Kontingent næste regnskabsår</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>480-Cykel</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>50-Diverse tilskud</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>55-Træner</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>60-Renter</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>67-Gebyrer</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>70-Forårsfest</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>80-Diverse</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>90-Møder</Name>
+     <Missing/>
+    </PivotItem>
+    <PivotItem>
+     <Name>999-aaaa</Name>
+    </PivotItem>
+   </PivotField>
+   <PivotField>
+    <Name>dato</Name>
+    <NumberFormat>Short Date</NumberFormat>
+    <Orientation>Column</Orientation>
+    <Position>1</Position>
+    <DataType>Date</DataType>
+    <GroupType>Months</GroupType>
+    <GroupStart>2005-01-01T00:00:00</GroupStart>
+    <GroupStartAuto/>
+    <GroupEnd>2005-01-02T00:00:00</GroupEnd>
+    <GroupEndAuto/>
+    <PivotItem>
+     <Name>&lt;01-01-2005</Name>
+     <CachePosition>1</CachePosition>
+    </PivotItem>
+    <PivotItem>
+     <Name>jan</Name>
+     <CachePosition>2</CachePosition>
+    </PivotItem>
+    <PivotItem>
+     <Name>feb</Name>
+     <CachePosition>3</CachePosition>
+    </PivotItem>
+    <PivotItem>
+     <Name>mar</Name>
+     <CachePosition>4</CachePosition>
+    </PivotItem>
+    <PivotItem>
+     <Name>apr</Name>
+     <CachePosition>5</CachePosition>
+    </PivotItem>
+    <PivotItem>
+     <Name>maj</Name>
+     <CachePosition>6</CachePosition>
+    </PivotItem>
+    <PivotItem>
+     <Name>jun</Name>
+     <CachePosition>7</CachePosition>
+    </PivotItem>
+    <PivotItem>
+     <Name>jul</Name>
+     <CachePosition>8</CachePosition>
+    </PivotItem>
+    <PivotItem>
+     <Name>aug</Name>
+     <CachePosition>9</CachePosition>
+    </PivotItem>
+    <PivotItem>
+     <Name>sep</Name>
+     <CachePosition>10</CachePosition>
+    </PivotItem>
+    <PivotItem>
+     <Name>okt</Name>
+     <CachePosition>11</CachePosition>
+    </PivotItem>
+    <PivotItem>
+     <Name>nov</Name>
+     <CachePosition>12</CachePosition>
+    </PivotItem>
+    <PivotItem>
+     <Name>dec</Name>
+     <CachePosition>13</CachePosition>
+    </PivotItem>
+    <PivotItem>
+     <Name>&gt;02-01-2005</Name>
+     <CachePosition>14</CachePosition>
+    </PivotItem>
+   </PivotField>
+   <PivotField>
+    <Name>bilag</Name>
+    <DataType>Integer</DataType>
+   </PivotField>
+   <PivotField>
+    <Name>tekst</Name>
+   </PivotField>
+   <PivotField>
+    <Name>beløb</Name>
+    <DataType>Integer</DataType>
+   </PivotField>
+   <PivotField>
+    <DataField/>
+    <Name>Data</Name>
+    <Orientation>Row</Orientation>
+    <Position>-1</Position>
+   </PivotField>
+   <PivotField>
+    <Name>Sum of beløb</Name>
+    <ParentField>beløb</ParentField>
+    <NumberFormat>#,##0</NumberFormat>
+    <Orientation>Data</Orientation>
+    <Position>1</Position>
+   </PivotField>
+   <PTLineItems>
+    <PTLineItem>
+     <Item>0</Item>
+     <Item>1</Item>
+     <Item>26</Item>
+    </PTLineItem>
+    <PTLineItem>
+     <ItemType>Default</ItemType>
+     <CountOfSameItems>1</CountOfSameItems>
+     <Item>1</Item>
+    </PTLineItem>
+    <PTLineItem>
+     <ItemType>Default</ItemType>
+     <Item>0</Item>
+    </PTLineItem>
+    <PTLineItem>
+     <ItemType>Grand</ItemType>
+     <Item>0</Item>
+    </PTLineItem>
+   </PTLineItems>
+   <PTLineItems>
+    <Orientation>Column</Orientation>
+    <PTLineItem>
+     <Item>1</Item>
+    </PTLineItem>
+    <PTLineItem>
+     <ItemType>Grand</ItemType>
+     <Item>0</Item>
+    </PTLineItem>
+   </PTLineItems>
+   <PTSource>
+    <CacheIndex>1</CacheIndex>
+    <VersionLastRefresh>2</VersionLastRefresh>
+    <RefreshName>Mogens Hafsjold</RefreshName>
+    <RefreshDate>2006-01-07T22:00:13</RefreshDate>
+    <RefreshDateCopy>2006-01-07T22:00:13</RefreshDateCopy>
+    <ConsolidationReference>
+     <FileName>[regnskab.xml]Transer</FileName>
+     <Reference>R1C1:R2C7</Reference>
+    </ConsolidationReference>
+   </PTSource>
+   <PTFormat Style='mso-number-format:"\#\,\#\#0"'>
+    <PTRule>
+     <RuleType>DataOnly</RuleType>
+     <ParseRuleAsV10/>
+    </PTRule>
+   </PTFormat>
+   <PTFormat Style='mso-number-format:"\#\,\#\#0"'>
+    <PTRule>
+     <RuleType>Button</RuleType>
+     <Rule>dato</Rule>
+     <ParseRuleAsV10/>
+    </PTRule>
+   </PTFormat>
+   <PTFormat Style='mso-number-format:"\#\,\#\#0"'>
+    <PTRule>
+     <RuleType>Blanks</RuleType>
+     <ParseRuleAsV10/>
+    </PTRule>
+   </PTFormat>
+   <PTFormat Style='mso-number-format:"\#\,\#\#0"'>
+    <PTRule>
+     <RuleType>LabelOnly</RuleType>
+     <Rule>dato[jan:dec]</Rule>
+     <ParseRuleAsV10/>
+    </PTRule>
+   </PTFormat>
+   <PTFormat Style='mso-number-format:"\#\,\#\#0"'>
+    <PTRule>
+     <RuleType>LabelOnly</RuleType>
+     <Rule>'Row Grand Total'</Rule>
+     <ParseRuleAsV10/>
+    </PTRule>
+   </PTFormat>
+  </PivotTable>
+ </Worksheet>
+ <Worksheet ss:Name="Transer">
+  <Table ss:ExpandedColumnCount="7" ss:ExpandedRowCount="2" x:FullColumns="1"
+   x:FullRows="1">
+   <Column ss:Width="15.75"/>
+   <Column ss:Width="12"/>
+   <Column ss:Width="161.25"/>
+   <Column ss:StyleID="s35" ss:AutoFitWidth="0" ss:Width="83.25"/>
+   <Column ss:Width="31.5"/>
+   <Column ss:Width="250.5"/>
+   <Column ss:Width="50.25"/>
+   <Row ss:AutoFitHeight="0" ss:Height="13.5">
+    <Cell ss:StyleID="s36"><Data ss:Type="String">ds</Data></Cell>
+    <Cell ss:StyleID="s36"><Data ss:Type="String">k</Data></Cell>
+    <Cell ss:StyleID="s36"><Data ss:Type="String">konto</Data></Cell>
+    <Cell ss:StyleID="s37"><Data ss:Type="String">dato</Data></Cell>
+    <Cell ss:StyleID="s36"><Data ss:Type="String">bilag</Data></Cell>
+    <Cell ss:StyleID="s36"><Data ss:Type="String">tekst</Data></Cell>
+    <Cell ss:StyleID="s36"><Data ss:Type="String">beløb</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">D</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">I</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">999-aaaa</Data></Cell>
+    <Cell ss:StyleID="s39"><Data ss:Type="DateTime">2005-01-01T00:00:00.000</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="Number">2</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="String">aaaaa</Data></Cell>
+    <Cell ss:StyleID="s38"><Data ss:Type="Number">120</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0"/>
+    <Footer x:Margin="0"/>
+   </PageSetup>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>1</ActiveRow>
+     <ActiveCol>5</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+  <Sorting xmlns="urn:schemas-microsoft-com:office:excel">
+   <Sort>dato</Sort>
+   <Sort>bilag</Sort>
+   <Sort>konto</Sort>
+  </Sorting>
+ </Worksheet>
+ <PivotCache xmlns="urn:schemas-microsoft-com:office:excel">
+  <CacheIndex>1</CacheIndex>
+  <Schema s:id="RowsetSchema" xmlns="uuid:BDC6E3F0-6DA3-11d1-A2A3-00AA00C14882">
+   <ElementType s:name="row" s:content="eltOnly">
+    <attribute s:type="Col1"/>
+    <attribute s:type="Col2"/>
+    <attribute s:type="Col3"/>
+    <attribute s:type="Col4"/>
+    <attribute s:type="Col5"/>
+    <attribute s:type="Col6"/>
+    <attribute s:type="Col7"/>
+    <extends s:type="rs:rowbase"/>
+   </ElementType>
+   <AttributeType s:name="Col1" rs:name="ds">
+    <datatype dt:maxLength="255"/>
+   </AttributeType>
+   <AttributeType s:name="Col2" rs:name="k">
+    <datatype dt:maxLength="255"/>
+   </AttributeType>
+   <AttributeType s:name="Col3" rs:name="konto">
+    <datatype dt:maxLength="255"/>
+   </AttributeType>
+   <AttributeType s:name="Col4" rs:name="dato">
+    <datatype dt:type="dateTime"/>
+   </AttributeType>
+   <AttributeType s:name="Col5" rs:name="bilag">
+    <datatype dt:type="int"/>
+   </AttributeType>
+   <AttributeType s:name="Col6" rs:name="tekst">
+    <datatype dt:maxLength="255"/>
+   </AttributeType>
+   <AttributeType s:name="Col7" rs:name="beløb">
+    <datatype dt:type="int"/>
+   </AttributeType>
+  </Schema>
+  <data xmlns="urn:schemas-microsoft-com:rowset">
+   <row Col1="D" Col2="I" Col3="999-aaaa" Col4="2005-01-01T00:00:00" Col5="2"
+    Col6="aaaaa" Col7="120" xmlns="#RowsetSchema"/>
+  </data>
+ </PivotCache>
+</Workbook>
