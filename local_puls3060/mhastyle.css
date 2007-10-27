@@ -1,0 +1,9 @@
+    @import url("/ez2/design/base/stylesheets/core.css");
+
+    @import url("/ez2/design/base/stylesheets/site.css");
+
+    @import url("/ez2/packages/styles/t08/files/default/file/design/base/stylesheets/t8/site-colors.css");
+    @import url("/ez2/design/base/stylesheets/classes.css");
+ 
+    @import url("/ez2/packages/styles/t08/files/default/file/design/base/stylesheets/t8/classes-colors.css");
+    @import url("/ez2/design/standard/stylesheets/debug.css");

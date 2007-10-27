@@ -1,0 +1,640 @@
+#!/usr/bin/perl -w
+use lib '/usr/local/puls3060';
+use strict;
+use DBI;
+use DBD::Pg;
+use Mail::Sender;
+use Fcntl;
+use POSIX ":sys_wait_h";
+use Fcntl ':mode';
+use Time::localtime;
+use Net::SFTP;
+use Net::SFTP::Constants qw( :flags );
+use DBI qw(:sql_types);
+use Mail::Sender;
+use daemon3060;
+
+##### make your settings here:
+# databases
+my $db_puls = "puls3060";
+my $db_regnskab = "regnskab3060";
+
+# start daemon
+my $daemon = new daemon3060; 
+# or if we want to change the daemon name
+# my $daemon = new daemon "timeserver";
+
+# the following lines are the defaults, so we don't need them
+# $daemon -> pidfile ("/var/run/puls3060-daemon.pid");
+# $daemon -> logto ('//syslog);
+
+if ($daemon -> check_running()) {
+   $daemon -> kill; # kill daemon if running
+} else {
+   # otherwise start it (if any arguments are given, run in debug mode)
+   unless ($ARGV[0]) {
+      $daemon -> detach;
+   } else {
+      $daemon -> debug;
+   }
+   $daemon -> dolog("started puls3060-daemon");
+
+   my $kid;
+   
+   $daemon->forkchild(\&Listen_Sendqueue);
+   $daemon->forkchild(\&data_fra_pbc_scheduler);
+   
+   while(1) { 
+     my $retval =  select( undef, undef, undef, 3600);
+     if ($retval == 0){
+       $daemon -> dolog("1 houre alive signal");
+     } else {
+       $daemon -> dolog("Interrupted by: $!");
+     }
+
+     foreach my $pid ( keys %{$daemon -> {'child_properties'}} ) {
+       my $status = $daemon->{'child_properties'}->{$pid}->{'EXIT_STATUS'};
+       my $func = $daemon->{'child_properties'}->{$pid}->{'func'};
+
+       if (defined $daemon->{'child_properties'}->{$pid}->{'EXIT_STATUS'}){
+          $daemon->forkchild($func);
+          delete $daemon->{'child_properties'}->{$pid};
+       }
+     }
+   };
+   $daemon -> dolog("puls3060-daemon done its work");
+};
+
+# end daemon (should not be reached)
+exit 0;
+
+##################################################
+# Listen Send Queue
+##################################################
+sub Listen_Sendqueue {
+  my $dbh = undef;
+  my $fd;
+  my $rin;
+  my $rout;
+  my $retval;
+  my $notify_r;
+
+
+  until (defined($dbh)) {
+    eval{
+      $dbh = DBI->connect("dbi:Pg:dbname=$db_regnskab", "pgsql", "",
+   	         {RaiseError => 1, AutoCommit => 1});
+	};
+	if (!defined($dbh)){
+      $daemon -> dolog("Listen_Sendqueue wait for connection");
+      select( undef, undef, undef, 60);
+	}
+  }
+  
+  $daemon -> dolog("Start new Listen_Sendqueue");
+
+  $fd=$dbh->func('getfd');
+  vec($rin,$fd,1) = 1;
+  $dbh->do('LISTEN sendqueue');
+
+  $retval = select( $rout=$rin, undef, undef, 3600); #Timeout 3600 sec
+  
+  if ($retval > 0) {
+    $notify_r = $dbh->func('pg_notifies'); 
+    $daemon -> dolog("Listen_Sendqueue: Notified by name: ".$notify_r->[0]." from PID: ".$notify_r->[1]);
+    if ($notify_r->[0] eq "sendqueue") {  
+      select( undef, undef, undef, 10);	 #Wait 10 sec
+      data_til_pbc();
+	}
+  }elsif($retval == 0){
+    $daemon -> dolog("Listen_Sendqueue: Timeout");
+      data_til_pbc();
+  }else{
+    $daemon -> dolog("Listen_Sendqueue: Notified by: $!");
+  };
+
+  eval {
+    $dbh->disconnect();
+  };
+}
+
+##################################################
+# Data fra PBC Scheduler
+##################################################
+sub data_fra_pbc_scheduler {
+   $daemon -> dolog("Start new data_fra_pbc_scheduler");
+   select( undef, undef, undef, 600);
+   data_fra_pbc();
+}
+
+##################################################
+# Data fra PBC
+##################################################
+sub data_fra_pbc {
+  $daemon -> dolog("Start new data_fra_pbc");
+
+  ##
+  ## Her skal udføres testget.pl
+  ##
+
+  my $dbh_regnskab;
+  my $number_of_files;
+  my $sql_insert_linie;
+  my $sth_insert_linie;
+
+  my $sql_insert_data;
+  my $sth_insert_data;
+
+  my $sql_select_file;
+  my $sth_select_file;
+
+  my $sql_select_sftp;
+  my $sth_select_sftp;
+
+  $dbh_regnskab = DBI->connect( "dbi:Pg:dbname=$db_regnskab", "pgsql", "", {RaiseError => 1, AutoCommit => 0} ) 
+  				|| die "Database connection not made: $DBI::errstr";
+
+  $number_of_files = 0;
+
+  $dbh_regnskab->do( "DELETE FROM pbs.tblpbsnetdir;" );
+
+
+  $sql_insert_linie = <<SQL;
+  	INSERT INTO pbs.tblpbsnetdir 
+   		(
+  			id,
+  			type,
+  			path,
+  			filename,
+  			size,
+  			atime,
+  			mtime,
+  			perm,
+  			uid,
+  			gid
+  		) 
+   		VALUES(
+   			nextval('pbs.tblpbsnetdir_id_seq'::text), 
+ 			?, 
+ 			?, 
+ 			?, 
+ 			?, 
+ 			CAST(? AS timestamp), 
+ 			CAST(? AS timestamp), 
+ 			?, 
+ 			?, 
+ 			?
+   		);
+SQL
+    
+  $sth_insert_linie = $dbh_regnskab->prepare( $sql_insert_linie );
+
+  my ($type, $path, $filename, $size, $atime, $mtime, $perm, $uid, $gid );
+
+  $sql_select_sftp = <<SQL;
+    SELECT 
+      host,
+      "user",
+      "password"
+    FROM
+      pbs.tblsftp
+    WHERE id = ?;
+SQL
+  $sth_select_sftp = $dbh_regnskab->prepare( $sql_select_sftp );
+  $sth_select_sftp->bind_param( 1, 1, SQL_INTEGER );	## 1=PBS, 2=Test (HD03) 
+  $sth_select_sftp->execute();
+
+  my ($host, $user, $password);
+
+  $sth_select_sftp->bind_columns( undef, \$host, \$user, \$password );
+  $sth_select_sftp->fetch();
+
+  my $sftp = Net::SFTP->new($host, user => $user, password => $password, debug => 1, privileged => 0 );
+
+  $sftp->debug("DEBUG-1");
+
+  $path = "OUTBOUND";
+
+  my @outbound_files  = $sftp->ls($path);
+
+  $sftp->debug("DEBUG-2");
+
+  foreach my $item (@outbound_files){
+    $sftp->debug("DEBUG-3");
+    $filename	= $item->{'filename'};
+    if (($filename ne ".") && ($filename ne "..")){
+      my $attrs = $item->{'a'};
+      $size = $attrs->{'size'};
+      $atime = ctime($attrs->{'atime'});
+      $mtime = ctime($attrs->{'mtime'});
+      $perm = ($attrs->{'perm'} & 0777);
+      $type = (S_IFMT($attrs->{'perm'})) >> 12;
+      $uid =  $attrs->{'uid'};
+      $gid =  $attrs->{'gid'};
+
+      $sth_insert_linie->bind_param(  1, $type, SQL_INTEGER );
+      $sth_insert_linie->bind_param(  2, $path, SQL_VARCHAR );
+      $sth_insert_linie->bind_param(  3, $filename, SQL_VARCHAR );
+      $sth_insert_linie->bind_param(  4, "$size", SQL_INTEGER ); 
+      $sth_insert_linie->bind_param(  5, "$atime", SQL_VARCHAR );
+      $sth_insert_linie->bind_param(  6, "$mtime", SQL_VARCHAR );
+      $sth_insert_linie->bind_param(  7, $perm, SQL_INTEGER );
+      $sth_insert_linie->bind_param(  8, $uid, SQL_INTEGER );
+      $sth_insert_linie->bind_param(  9, $gid, SQL_INTEGER );
+      $sth_insert_linie->execute();
+    };
+  };
+
+  $dbh_regnskab->do( "SELECT pbs.mergenewfiles();" );
+
+  $sql_insert_data = <<SQL;
+  	INSERT INTO pbs.tblpbsfile 
+   		(
+  			pbsfilesid,
+  			seqnr,     
+  			data      
+  		) 
+   		VALUES(
+   			?, 
+   			?, 
+   			?
+   		);
+SQL
+  $sth_insert_data = $dbh_regnskab->prepare( $sql_insert_data );
+
+  my $sql_update = <<SQL;
+  	UPDATE pbs.tblpbsfiles set
+  			transmittime = now()
+  	WHERE id = ?;
+SQL
+  my $sth_update = $dbh_regnskab->prepare( $sql_update );
+
+  $sql_select_file = <<SQL;
+    SELECT 
+      id,
+      "path",
+      filename,
+      size
+    FROM
+      pbs.tblpbsfiles
+    WHERE "path" = 'OUTBOUND'
+      AND transmittime IS NULL;
+SQL
+  $sth_select_file = $dbh_regnskab->prepare( $sql_select_file );
+  $sth_select_file->execute();
+  my $pbsfilesid;
+  $sth_select_file->bind_columns( undef, \$pbsfilesid, \$path, \$filename, \$size );
+  while( $sth_select_file->fetch() ) {
+    my $flags = SSH2_FXF_READ;
+    my $handle =  $sftp->do_open($path . "/" . $filename, $flags);
+    my($buffer, $status) = $sftp->do_read($handle, 0, $size);
+    $sftp->do_close($handle);
+    $number_of_files++;
+    SendMail_data_fra_pbc($filename, $buffer);
+    my $data;
+    my $seqnr = 0;
+    my $crlf = "\r\n|\n";
+    foreach $data (split(/$crlf/,$buffer)) {
+      if (($seqnr == 0) && !($data =~ /^PBCNET/)){
+		$seqnr++;
+      }
+      $sth_insert_data->bind_param(  1, $pbsfilesid, SQL_INTEGER );
+      $sth_insert_data->bind_param(  2, $seqnr++, SQL_INTEGER );
+      $sth_insert_data->bind_param(  3, $data, SQL_VARCHAR );
+      $sth_insert_data->execute();
+    };
+    $sth_update->bind_param( 1, $pbsfilesid, SQL_INTEGER );
+    $sth_update->execute();
+  };
+
+  $dbh_regnskab->commit();
+
+  $sth_select_sftp->finish();
+  $sth_insert_linie->finish();
+  $sth_select_file->finish();
+  $sth_insert_data->finish();
+  $sth_update->finish();
+  
+  if ($number_of_files > 0) {
+    $daemon -> dolog("Data modtaget fra pbc");
+    $dbh_regnskab->do("SELECT pbs.betalinger_fra_pbs (0);");
+    $dbh_regnskab->commit();
+    $dbh_regnskab->do("SELECT pbs.bogfør_betalinger_fra_pbs (0);");
+    $dbh_regnskab->commit();
+    $dbh_regnskab->do("SELECT pbs.aftaleoplysninger_fra_pbs (0);");
+    $dbh_regnskab->commit();
+  };
+  
+  $dbh_regnskab->disconnect();
+}
+
+##################################################
+# SendMail_data_fra_pbc with attachment
+##################################################
+sub SendMail_data_fra_pbc {
+   my $filename = shift;
+   my $senddata = shift;
+
+   my $sender;
+   my $subjecttext;
+
+   my $data;
+   my $seqnr = 0;
+   my $crlf = "\r\n|\n";
+   my $nettyp;
+   my $pbssys;
+   my $pbsdat;
+   foreach $data (split(/$crlf/,$senddata)) {
+     if (($seqnr == 0) && ($data =~ /^PBCNET(..)(...)/)) {
+       $nettyp = $1;
+       $pbssys = $2;
+     };
+     if (($seqnr == 1) && ($nettyp == 30) && ($data =~ /^BS002........BS1.(...)/)) {
+       $pbsdat = $1;
+     };
+     $seqnr++;
+   };
+   
+   if ($nettyp == 30) {
+     if ($pbsdat == 602) {
+       $subjecttext = "PBS: Betalinger modtaget fra";
+   	 }
+   	 else {
+       $subjecttext = "PBS: Data ($pbsdat) modtaget fra";
+   	 };
+   }
+   else {
+     $subjecttext = "PBS: Kvitering modtaget fra";
+   };
+   
+   if ($pbssys eq 'OS1') {
+     $subjecttext .= " OverførselsService";
+   }
+   else {
+     $subjecttext .= " BetalingsService";
+   };
+
+   eval {
+      $daemon -> dolog("Notified by name: SendMail");
+      
+      $sender = new Mail::Sender {
+         smtp => 'hd06.hafsjold.dk',
+         from => 'mha@puls3060.dk',
+         on_errors => undef,
+      };
+
+      $sender->OpenMultipart({
+         to => 'mha@hafsjold.dk',
+         bcc => 'arkiv@puls3060.dk',
+         subject => $subjecttext
+      });
+      
+      $sender->Body;
+      $sender->SendEnc(<<'*END*');
+Vedhæftede datafile er modtaget fra PBC.
+
+Mvh, puls3060-daemon
+*END*
+      
+      $filename =~ s/\.([a-zA-Z0-9]+)$/_$1\.txt/;
+      $sender->Part(
+       {description => 'File sent til PBS',
+        ctype => 'text/plain',
+        encoding => 'Base64',
+        disposition => 'attachment; filename="'.$filename.'"; type="txt file"',
+        msg => $senddata,
+       });
+      
+      $sender->Close;
+   };
+   if ($@) {
+      return 0;
+   }
+   else {
+      return 1;
+   }
+}
+
+
+##################################################
+# Data til PBC
+##################################################
+sub data_til_pbc {
+  $daemon -> dolog("Start new data_til_pbc");
+
+  my $dbh_regnskab;
+  my $sql_select;
+  my $sth_select;
+  my $sth_senddata;
+  my $sql_sendqueue;
+  my $sth_sendqueue;
+  my $sql_sendqueue_update;
+  my $sth_sendqueue_update;
+
+  my $sql_update;
+  my $sth_update;
+  my $sql_select_sftp;
+  my $sth_select_sftp;
+  
+  my $filename;
+  my $path;
+  my $transmittime = ctime();
+  my $pbsfilesid;
+
+  $dbh_regnskab = DBI->connect( "dbi:Pg:dbname=$db_regnskab", "pgsql", "", {RaiseError => 1, AutoCommit => 0} ) 
+  				|| die "Database connection not made: $DBI::errstr";
+
+  
+  $sql_sendqueue = <<SQL;
+  	SELECT pbsfilesid
+  	FROM  pbs.tblsendqueue
+  	WHERE send_to_pbc = false
+  	  AND onhold = false;
+SQL
+  $sth_sendqueue = $dbh_regnskab->prepare( $sql_sendqueue );
+
+  $sql_sendqueue_update = <<SQL;
+  	UPDATE pbs.tblsendqueue SET
+  	  send_to_pbc = true
+  	WHERE pbsfilesid = ?;
+SQL
+  $sth_sendqueue_update = $dbh_regnskab->prepare( $sql_sendqueue_update );
+
+  $sql_select = <<SQL;
+  	SELECT data, length(data) AS datalen
+   	FROM  pbs.tblpbsfile
+   	WHERE pbsfilesid = ?
+   	ORDER BY seqnr;
+SQL
+  $sth_select = $dbh_regnskab->prepare( $sql_select );
+
+  $sql_select_sftp = <<SQL;
+    SELECT 
+      host,
+      "user",
+      "password"
+    FROM
+      pbs.tblsftp
+    WHERE id = ?;
+SQL
+  $sth_select_sftp = $dbh_regnskab->prepare( $sql_select_sftp );
+
+  $sql_update = <<SQL;
+  	UPDATE pbs.tblpbsfiles set
+  			type = ?,
+  			path = ?,
+  			filename = ?,
+  			size = ?,
+  			atime = CAST(? AS timestamp),
+  			mtime = CAST(? AS timestamp),
+  			perm = ?,
+  			uid = ?,
+  			gid = ?,
+  			transmittime = CAST(? AS timestamp)
+  	WHERE id = ?;
+SQL
+  $sth_update = $dbh_regnskab->prepare( $sql_update );
+
+$daemon -> dolog("data_til_pbc Debug 0");
+
+  $sth_sendqueue->execute();
+  $sth_sendqueue->bind_columns( undef, \$pbsfilesid );
+  while( $sth_sendqueue->fetch() ) {
+
+    ## Add PBCNET Header og Trailer, samt generer filename
+    $sth_senddata = $dbh_regnskab->prepare( "SELECT pbs.senddata ( ? )");
+    $sth_senddata->bind_param( 1, $pbsfilesid, SQL_INTEGER );
+    $sth_senddata->execute();
+    $sth_senddata->bind_columns( undef, \$filename );
+    $sth_senddata->fetch();
+
+    ## Send data
+    $sth_select->bind_param( 1, $pbsfilesid, SQL_INTEGER );
+    $sth_select->execute();
+
+    my( $data, $datalen );
+    $sth_select->bind_columns( undef, \$data, \$datalen );
+    ## skriv DATA
+    my $senddata = "";;
+    my $crlf = "\r\n";
+
+    while( $sth_select->fetch() ) {
+      $senddata .= $data . $crlf
+    };
+
+    $sth_select_sftp->bind_param( 1, 1, SQL_INTEGER );	## 1=PBS, 2=Test (HD03) 
+    $sth_select_sftp->execute();
+
+    my ($host, $user, $password);
+
+    $sth_select_sftp->bind_columns( undef, \$host, \$user, \$password );
+    $sth_select_sftp->fetch();
+
+    my $sftp = Net::SFTP->new($host, user => $user, password => $password, debug => 0, privileged => 0 );
+
+    my $flags = SSH2_FXF_CREAT | SSH2_FXF_WRITE;
+    $path = "INBOUND";
+    my $handle =  $sftp->do_open($path . "/" . $filename, $flags);
+    $sftp->do_write($handle, 0, $senddata);
+
+    ## Opdater filestatus
+    my ($type, $size, $atime, $mtime, $perm, $uid, $gid );
+
+    my $attrs = $sftp->do_fstat($handle);
+     
+    $size = $attrs->{'size'};
+    $atime = ctime($attrs->{'atime'});
+    $mtime = ctime($attrs->{'mtime'});
+    $perm = ($attrs->{'perm'} & 0777);
+    $type = (S_IFMT($attrs->{'perm'})) >> 12;
+    $uid =  $attrs->{'uid'};
+    $gid =  $attrs->{'gid'};
+
+    $sth_update->bind_param(  1, $type, SQL_INTEGER );
+    $sth_update->bind_param(  2, $path, SQL_VARCHAR );
+    $sth_update->bind_param(  3, $filename, SQL_VARCHAR );
+    $sth_update->bind_param(  4, "$size", SQL_INTEGER ); 
+    $sth_update->bind_param(  5, "$atime", SQL_VARCHAR );
+    $sth_update->bind_param(  6, "$mtime", SQL_VARCHAR );
+    $sth_update->bind_param(  7, $perm, SQL_INTEGER );
+    $sth_update->bind_param(  8, $uid, SQL_INTEGER );
+    $sth_update->bind_param(  9, $gid, SQL_INTEGER );
+    $sth_update->bind_param( 10, "$transmittime", SQL_VARCHAR );
+    $sth_update->bind_param( 11, $pbsfilesid, SQL_INTEGER );
+    $sth_update->execute();
+
+    $sth_sendqueue_update->bind_param( 1, $pbsfilesid, SQL_INTEGER );
+    $sth_sendqueue_update->execute();
+
+    $dbh_regnskab->commit();
+
+    SendMail_data_til_pbc($filename, $senddata);
+    $sftp->do_close($handle);
+  };
+
+  $sth_select_sftp->finish();
+  $sth_senddata->finish();
+  $sth_select->finish();
+  $sth_update->finish();
+  $sth_sendqueue->finish();
+  $sth_sendqueue_update->finish();
+  
+  $dbh_regnskab->disconnect();
+
+  ##
+  ## Her skal udføres testput.pl
+  ##
+
+}
+
+##################################################
+# SendMail_data_til_pbc with attachment
+##################################################
+sub SendMail_data_til_pbc {
+   my $filename = shift;
+   my $senddata = shift;
+
+   my $sender;
+   eval {
+      $daemon -> dolog("Notified by name: SendMail");
+      
+      $sender = new Mail::Sender {
+         smtp => 'hd06.hafsjold.dk',
+         from => 'mha@puls3060.dk',
+         on_errors => undef,
+      };
+
+      $sender->OpenMultipart({
+         to => 'mha@hafsjold.dk',
+         bcc => 'arkiv@puls3060.dk',
+         subject => 'Data sendt til PBC'
+      });
+      
+      $sender->Body;
+      $sender->SendEnc(<<'*END*');
+Vedhæftede datafile er sendt til PBC.
+
+Mvh, Mogens
+*END*
+      
+      $filename =~ s/\.([a-zA-Z0-9]+)$/_$1\.txt/;
+      $sender->Part(
+       {description => 'File sent til PBS',
+        ctype => 'text/plain',
+        encoding => 'Base64',
+        disposition => 'attachment; filename="'.$filename.'"; type="txt file"',
+        msg => $senddata,
+       });
+      
+      $sender->Close;
+   };
+   if ($@) {
+      return 0;
+   }
+   else {
+      return 1;
+   }
+}
+
+
+

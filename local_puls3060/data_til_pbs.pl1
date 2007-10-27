@@ -1,0 +1,119 @@
+#!/usr/bin/perl
+
+## Send data til PBS med tftp
+
+use strict;
+use Fcntl ':mode';
+use Time::localtime;
+use Net::SFTP;
+use DBI;
+use DBD::Pg;
+use DBI qw(:sql_types);
+use Net::SFTP::Constants qw( :flags );
+
+
+my $pbsfilesid = 55;
+my $db_regnskab = "regnskab3060";
+
+my $dbh_regnskab;
+my $sql_select;
+my $sth_select;
+my $sth_senddata;
+my $filename;
+my $path;
+my $transmittime = ctime();
+
+$dbh_regnskab = DBI->connect( "dbi:Pg:dbname=$db_regnskab", "pgsql", "", {RaiseError => 1, AutoCommit => 0} ) 
+				|| die "Database connection not made: $DBI::errstr";
+
+## Add PBCNET Header og Trailer, samt generer filename
+$sth_senddata = $dbh_regnskab->prepare( "SELECT pbs.senddata ( ? )");
+$sth_senddata->bind_param( 1, $pbsfilesid, SQL_INTEGER );
+$sth_senddata->execute();
+$sth_senddata->bind_columns( undef, \$filename );
+$sth_senddata->fetch();
+
+## Send data
+$sql_select = <<SQL;
+	SELECT data, length(data) AS datalen
+	FROM  pbs.tblpbsfile
+	WHERE pbsfilesid = ?
+	ORDER BY seqnr;
+SQL
+
+$sth_select = $dbh_regnskab->prepare( $sql_select );
+$sth_select->bind_param( 1, $pbsfilesid, SQL_INTEGER );
+$sth_select->execute();
+
+my( $data, $datalen );
+$sth_select->bind_columns( undef, \$data, \$datalen );
+## skriv DATA
+my $senddata = "";;
+my $crlf = "\r\n";
+
+while( $sth_select->fetch() ) {
+  $senddata .= $data . $crlf
+};
+
+##my $host ="194.239.133.134";
+##my $user = "lkp";
+##my $password = "vSS12pbT";
+my $host ="hd03.hafsjold.dk";
+my $user = "mha";
+my $password = "mha733";
+
+my $sftp = Net::SFTP->new($host, user => $user, password => $password, debug => 1, privileged => 0 );
+
+my $flags = SSH2_FXF_CREAT | SSH2_FXF_WRITE;
+$path = "INBOUND";
+my $handle =  $sftp->do_open($path . "/" . $filename, $flags);
+$sftp->do_write($handle, 0, $senddata);
+
+## Opdater filestatus
+my $sql_update = <<SQL;
+	UPDATE pbs.tblpbsfiles set
+			type = ?,
+			path = ?,
+			filename = ?,
+			size = ?,
+			atime = ?,
+			mtime = ?,
+			perm = ?,
+			uid = ?,
+			gid = ?,
+			transmittime = ?
+	WHERE id = ?;
+SQL
+my $sth_update = $dbh_regnskab->prepare( $sql_update );
+my ($type, $size, $atime, $mtime, $perm, $uid, $gid );
+
+my $attrs = $sftp->do_fstat($handle);
+ 
+$size = $attrs->{'size'};
+$atime = ctime($attrs->{'atime'});
+$mtime = ctime($attrs->{'mtime'});
+$perm = ($attrs->{'perm'} & 0777);
+$type = (S_IFMT($attrs->{'perm'})) >> 12;
+$uid =  $attrs->{'uid'};
+$gid =  $attrs->{'gid'};
+
+$sth_update->bind_param(  1, $type, SQL_INTEGER );
+$sth_update->bind_param(  2, $path, SQL_VARCHAR );
+$sth_update->bind_param(  3, $filename, SQL_VARCHAR );
+$sth_update->bind_param(  4, "$size", SQL_INTEGER ); 
+$sth_update->bind_param(  5, "$atime", SQL_VARCHAR );
+$sth_update->bind_param(  6, "$mtime", SQL_VARCHAR );
+$sth_update->bind_param(  7, $perm, SQL_INTEGER );
+$sth_update->bind_param(  8, $uid, SQL_INTEGER );
+$sth_update->bind_param(  9, $gid, SQL_INTEGER );
+$sth_update->bind_param( 10, "$transmittime", SQL_VARCHAR );
+$sth_update->bind_param( 11, $pbsfilesid, SQL_INTEGER );
+$sth_update->execute();
+
+$dbh_regnskab->commit();
+
+$sftp->do_close($handle);
+$sth_senddata->finish();
+$sth_select->finish();
+$sth_update->finish();
+$dbh_regnskab->disconnect();

@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0069)http://home.arcor.de/juzkh/projects/daemon/download/daemon-1.0.1.html -->
+<HTML><HEAD><TITLE>C<daemon.pm> - simple daemon controlling object</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252"><LINK 
+rev=made href="mailto:feedback@suse.de">
+<META content="MSHTML 6.00.2800.1276" name=GENERATOR></HEAD>
+<BODY><A name=__index__></A><!-- INDEX BEGIN -->
+<UL>
+  <LI><A 
+  href="http://home.arcor.de/juzkh/projects/daemon/download/daemon-1.0.1.html#name">NAME</A> 
+
+  <LI><A 
+  href="http://home.arcor.de/juzkh/projects/daemon/download/daemon-1.0.1.html#synopsis">SYNOPSIS</A> 
+
+  <LI><A 
+  href="http://home.arcor.de/juzkh/projects/daemon/download/daemon-1.0.1.html#copyright">COPYRIGHT</A> 
+
+  <LI><A 
+  href="http://home.arcor.de/juzkh/projects/daemon/download/daemon-1.0.1.html#description">DESCRIPTION</A> 
+
+  <LI><A 
+  href="http://home.arcor.de/juzkh/projects/daemon/download/daemon-1.0.1.html#method overview">Method 
+  overview</A> 
+  <LI><A 
+  href="http://home.arcor.de/juzkh/projects/daemon/download/daemon-1.0.1.html#bugs">BUGS</A> 
+
+  <LI><A 
+  href="http://home.arcor.de/juzkh/projects/daemon/download/daemon-1.0.1.html#changes">CHANGES</A> 
+  </LI></UL><!-- INDEX END -->
+<HR>
+
+<P>
+<HR>
+
+<H1><A name=name>NAME</A></H1>
+<P><CODE>daemon.pm</CODE> - simple daemon controlling object</P>
+<P>
+<HR>
+
+<H1><A name=synopsis>SYNOPSIS</A></H1>
+<P><CODE>my $daemon = new daemon;</CODE></P>
+<P><CODE>$daemon-</CODE>datach;&gt;</P>
+<P><CODE>open LOGFILE, "&gt;daemon.log";</CODE></P>
+<P><CODE>while (sleep 5) {</CODE> <CODE>print LOGFILE "Hallo, ich 
+arbeite\n";</CODE> <CODE>};</CODE></P>
+<P>
+<HR>
+
+<H1><A name=copyright>COPYRIGHT</A></H1>
+<P>daemon.pm is Copyright (C) 2001-2002 Baltasar Cevc and Walter Werther.</P>
+<P>
+<HR>
+
+<H1><A name=description>DESCRIPTION</A></H1>
+<P>Using this object, you can create a simple daemon. The module provides a 
+straight-forward interface to start, detach and stop the daemon.</P>
+<P>
+<HR>
+
+<H1><A name="method overview">Method overview</A></H1>
+<DL>
+  <DT><STRONG><A name=item_new><CODE>new([daemon-name]</CODE> Create a new 
+  daemon-controller object</A></STRONG><BR>
+  <DD>Creates a new object to controll a daemon, using the given name. If no 
+  name is given, the name of the program that calls this function is used. 
+  <P></P>
+  <DT><STRONG><A 
+  name=item_inthandler_quit><CODE>inthandler_quit(&lt;signame&gt;)</CODE> 
+  Handler for the quit signal (will exit daemon)</A></STRONG><BR>
+  <DD>This is a handler for a quit signal, which will call all methods needed 
+  for a clean exit, afterwards, it will quit the daemon. 
+  <P></P>
+  <DT><STRONG><A name=item_loglevel><CODE>loglevel([level])</CODE> Set or get 
+  the maximum log level</A></STRONG><BR>
+  <DD>Get/Set the log level (higher level means more output). You can define the 
+  maximum at will. 
+  <P></P>
+  <DT><STRONG><A name=item_logto><CODE>logto([destination])</CODE> Set/get the 
+  current log destination</A></STRONG><BR>
+  <DD>If you specify an argument, the log destination will be changed, otherwise 
+  it will return the current destination. Possible destinations are ``//syslog'' 
+  (log to syslog), ``//debug'' (log to STDERR), ``//file'' (log goes to a file) 
+  - to set the log to a file, you just have to call <A 
+  href="http://home.arcor.de/juzkh/projects/daemon/download/daemon-1.0.1.html#item_logto"><CODE>logto 
+  (&lt;filename&gt;);</CODE></A>. This function will also open the log 
+  destination. 
+  <P></P>
+  <DT><STRONG><A name=item_dolog><CODE>dolog(&lt;text&gt;[, 
+  &lt;level&gt;])</CODE> Do logging</A></STRONG><BR>
+  <DD>This function will log the specified text; if a level is given, the text 
+  will only be logged if the level is smaller or equal to the maximum log level. 
+
+  <P></P>
+  <DT><STRONG><A name=item_logclose><CODE>logclose()</CODE> Close log 
+  <CODE>destination(s)</CODE></A></STRONG><BR>
+  <DD>Closes all opened log destinations. This method is called automatically by 
+  the stop or DESTROY methods. You should not use this unless you really know 
+  what you are doing. 
+  <P></P>
+  <DT><STRONG><A name=item_pidfile><CODE>pidfile([pidfilename])</CODE> Get / Set 
+  PID file name</A></STRONG><BR>
+  <DD>This function can be used to set the PID file path. If it is called 
+  without arguments, it will return the name of the PID file. This method MUST 
+  NOT BE USED after having used <A 
+  href="http://home.arcor.de/juzkh/projects/daemon/download/daemon-1.0.1.html#item_detach"><CODE>detach</CODE></A> 
+  or <CODE>debug</CODE>. 
+  <P></P>
+  <DT><STRONG><A name=item_detach><CODE>detach</CODE></A></STRONG><BR>
+  <DD>Detach the daemon from the tty. If the logging destination is ``//debug'', 
+  ``//syslog'' will be used instead. 
+  <P></P>
+  <DT><STRONG><A name=item_wait_seconds><CODE>wait_seconds(int 
+  value)</CODE></A></STRONG><BR>
+  <DD>Sleeps for a specified number of seconds (give a fractional value if you 
+  want to sleep less than a second). This function uses the select call. 
+  <P></P></DD></DL>
+<P>
+<HR>
+
+<H1><A name=bugs>BUGS</A></H1>
+<P>kill function and check_running will not work for programs that use the <A 
+href="http://home.arcor.de/juzkh/projects/daemon/download/daemon-1.0.1.html#item_detach"><CODE>detach</CODE></A> 
+or <CODE>debug</CODE> functions more than once, because they relay on the PID 
+file which will be overwritten be further detaches or debugs.</P>
+<P>
+<HR>
+
+<H1><A name=changes>CHANGES</A></H1>
+<UL>
+  <LI><STRONG><A name=item_Changes_until_version_1%2E0%2E1>Changes until version 
+  1.0.1</A></STRONG><BR>This is more or less the same version as 0.1 (old 
+  version format), except some smaller changes and the introduction of one new 
+  method. 
+  <P>In this version, the version number is properly defined and in debug mode 
+  SIGINT (which is issued by pressing Ctrl-C) will end the program properly. In 
+  this case it does exactly the same as sendingn a SIGTERM.</P>
+  <P>The <CODE>wait_second(int value)</CODE> method was introduced.</P>
+  <P></P></LI></UL></BODY></HTML>
