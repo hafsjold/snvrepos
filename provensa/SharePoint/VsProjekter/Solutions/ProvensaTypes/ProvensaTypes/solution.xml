@@ -1,0 +1,10 @@
+﻿<solution  id="9242175c-5d41-4923-8820-2faea552dc16" name="ProvensaTypes" >
+  <features>
+    <feature  id="ec79fd28-ca42-4bb4-8f68-9ee8443c21ba" name="ProvensaContentTypes" title="Provensa Content Types" description="" version="1.0.0.0" scope="Site" hidden="False" defaultresourcefile="core" >
+    </feature>
+  </features>
+  <templates>
+  </templates>
+  <sitedefinitions>
+  </sitedefinitions>
+</solution>

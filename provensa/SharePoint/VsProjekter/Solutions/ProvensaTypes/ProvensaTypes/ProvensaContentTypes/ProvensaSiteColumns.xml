@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- _filecategory="Module" _filetype="File" _filename="ProvensaSiteColumns.xml" _uniqueid="ec79fd28-ca42-4bb4-8f68-9ee8443c21ba" -->
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Field
+      ID="{656F4157-D95C-48cc-B6B1-2A2A2BFEE8D6}"
+      SourceID="http://schemas.microsoft.com/sharepoint/v3"
+      Name="Industry"
+      StaticName="Industry"
+      DisplayName="Industry"
+      Type="Choice"
+      Format="RadioButtons"
+      Group="Provensa Columns">
+    <CHOICES>
+      <CHOICE>High Tech</CHOICE>
+      <CHOICE>Legal</CHOICE>
+      <CHOICE>Medical</CHOICE>
+    </CHOICES>
+    <Default>High Tech</Default>
+  </Field>
+
+  <Field
+      ID="{3A04B265-60C8-4862-B53A-29AE96059CFC}"
+      Type="Note"
+      RichText="TRUE"
+      AppendOnly="TRUE"
+      Name="ActivityNotes"
+      DisplayName="Activity Notes"
+      Sortable="FALSE"
+      SourceID="http://schemas.microsoft.com/sharepoint/v3"
+      Group="Provensa Columns">
+  </Field>
+</Elements>
