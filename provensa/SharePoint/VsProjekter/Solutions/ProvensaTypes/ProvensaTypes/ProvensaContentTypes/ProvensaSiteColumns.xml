@@ -6,16 +6,16 @@
       SourceID="http://schemas.microsoft.com/sharepoint/v3"
       Name="Industry"
       StaticName="Industry"
-      DisplayName="Industry"
+      DisplayName="$Resources:provensa-core,Industry;"
       Type="Choice"
       Format="RadioButtons"
       Group="$Resources:provensa-core,Provensa_Columns;">
     <CHOICES>
-      <CHOICE>High Tech</CHOICE>
-      <CHOICE>Legal</CHOICE>
-      <CHOICE>Medical</CHOICE>
+      <CHOICE>$Resources:provensa-core,High_Tech;</CHOICE>
+      <CHOICE>$Resources:provensa-core,Legal;</CHOICE>
+      <CHOICE>$Resources:provensa-core,Medical;</CHOICE>
     </CHOICES>
-    <Default>High Tech</Default>
+    <Default>$Resources:provensa-core,High_Tech;</Default>
   </Field>
 
   <Field

@@ -120,6 +120,18 @@
   <data name="Activity_Notes" xml:space="preserve">
     <value>Activity Notes</value>
   </data>
+  <data name="High_Tech" xml:space="preserve">
+    <value>High Tech</value>
+  </data>
+  <data name="Industry" xml:space="preserve">
+    <value>Industry</value>
+  </data>
+  <data name="Legal" xml:space="preserve">
+    <value>Legal</value>
+  </data>
+  <data name="Medical" xml:space="preserve">
+    <value>Medical</value>
+  </data>
   <data name="Provensa_Columns" xml:space="preserve">
     <value>Provensa Columns</value>
   </data>
