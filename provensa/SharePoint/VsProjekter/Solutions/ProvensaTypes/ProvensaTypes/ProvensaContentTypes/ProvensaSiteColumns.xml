@@ -9,7 +9,7 @@
       DisplayName="Industry"
       Type="Choice"
       Format="RadioButtons"
-      Group="Provensa Columns">
+      Group="$Resources:provensa-core,Provensa_Columns;">
     <CHOICES>
       <CHOICE>High Tech</CHOICE>
       <CHOICE>Legal</CHOICE>
@@ -24,9 +24,9 @@
       RichText="TRUE"
       AppendOnly="TRUE"
       Name="ActivityNotes"
-      DisplayName="Activity Notes"
+      DisplayName="$Resources:provensa-core,Activity_Notes;"
       Sortable="FALSE"
       SourceID="http://schemas.microsoft.com/sharepoint/v3"
-      Group="Provensa Columns">
+      Group="$Resources:provensa-core,Provensa_Columns;">
   </Field>
 </Elements>
