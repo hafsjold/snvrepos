@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <Header>
+    <Title>Site Column</Title>
+    <Author>Mogens Hafsjold</Author>
+    <Shortcut>shortcut</Shortcut>
+    <Description>Insert Site Column</Description>
+    <SnippetTypes>
+      <SnippetType>SurroundsWith</SnippetType>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>guid</ID>
+        <Default>{5F110618-0DFF-430b-A2DE-3D038D4ABA15}</Default>
+      </Literal>
+      <Literal>
+        <ID>type</ID>
+        <ToolTip>Note, cccc, yyyy or zzz</ToolTip>
+        <Default>Note</Default>
+      </Literal>
+      <Literal>
+        <ID>name</ID>
+        <ToolTip>Activity Class name</ToolTip>
+        <Default>ActivityNotes</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="XML">
+      <![CDATA[<Field
+      ID="$guid$"
+      Type="$type$"
+      RichText="TRUE"
+      AppendOnly="TRUE"
+      Name="$name$"
+      DisplayName="$$Resources:provensa-core,$name$;"
+      Sortable="FALSE"
+      SourceID="http://schemas.microsoft.com/sharepoint/v3"
+      Group="$$Resources:provensa-core,Provensa_Columns;">
+      $selected$ $end$</Field>]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>
