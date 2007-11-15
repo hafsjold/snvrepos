@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- _filecategory="Module" _filetype="File" _filename="HafsjoldSiteColumns.xml" _uniqueid="41f9c2c5-6401-4589-99bb-44a64806102a" -->
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+<!-- Industry="Industry"  -->
+  <Field
+      ID="{BB97445D-DDE4-4894-8AA0-6A91442D134C}"
+      SourceID="http://schemas.microsoft.com/sharepoint/v3"
+      Name="Industry"
+      StaticName="Industry"
+      DisplayName="$Resources:Hafsjold-core,Industry;"
+      Type="Choice"
+      Format="RadioButtons"
+      Group="$Resources:Hafsjold-core,Hafsjold_Columns;">
+    <CHOICES>
+      <CHOICE>$Resources:Hafsjold-core,High_Tech;</CHOICE>
+      <CHOICE>$Resources:Hafsjold-core,Legal;</CHOICE>
+      <CHOICE>$Resources:Hafsjold-core,Medical;</CHOICE>
+    </CHOICES>
+    <Default>$Resources:Hafsjold-core,High_Tech;</Default>
+  </Field>
+
+<!-- Note="Activity Notes" -->
+  <Field
+      ID="{01C102AC-EF3F-409c-B622-C2AD6CE1EA0E}"
+      Type="Note"
+      RichText="TRUE"
+      AppendOnly="TRUE"
+      Name="ActivityNotes"
+      DisplayName="$Resources:Hafsjold-core,Activity_Notes;"
+      Sortable="FALSE"
+      SourceID="http://schemas.microsoft.com/sharepoint/v3"
+      Group="$Resources:Hafsjold-core,Hafsjold_Columns;">
+  </Field>
+</Elements>

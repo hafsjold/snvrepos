@@ -1,0 +1,10 @@
+﻿<solution  id="7aa938aa-5cf7-4771-949d-a85af24bde9f" name="HafsjoldTypes" >
+  <features>
+    <feature  id="41f9c2c5-6401-4589-99bb-44a64806102a" name="" title="Hafsjold Types" description="" version="1.0.0.0" scope="Web" hidden="False" defaultresourcefile="core" >
+    </feature>
+  </features>
+  <templates>
+  </templates>
+  <sitedefinitions>
+  </sitedefinitions>
+</solution>
