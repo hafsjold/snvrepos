@@ -70,6 +70,15 @@ namespace LanguagePackages.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hafsjold Columns.
+        /// </summary>
+        internal static string Hafsjold_Columns {
+            get {
+                return ResourceManager.GetString("Hafsjold_Columns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to High Tech.
         /// </summary>
         internal static string High_Tech {
@@ -102,15 +111,6 @@ namespace LanguagePackages.Resources {
         internal static string Medical {
             get {
                 return ResourceManager.GetString("Medical", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Provensa Columns.
-        /// </summary>
-        internal static string Provensa_Columns {
-            get {
-                return ResourceManager.GetString("Provensa_Columns", resourceCulture);
             }
         }
     }
