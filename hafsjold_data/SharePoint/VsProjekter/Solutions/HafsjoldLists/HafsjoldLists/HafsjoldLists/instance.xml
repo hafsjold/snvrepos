@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- _filecategory="ListInstance" _filetype="File" _filename="instance.xml" _uniqueid="631b85c2-e7b9-45b9-945a-423879dcb150" -->
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ListInstance
+    FeatureId="2e3b4f69-aafc-4ee9-9306-591ed55790c4" 
+    TemplateType="100" 
+    Title="HafsjoldLists" 
+    Url="Lists/HafsjoldLists">
+  </ListInstance>
+</Elements>
