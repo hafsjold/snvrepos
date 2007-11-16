@@ -31,4 +31,39 @@
       SourceID="http://schemas.microsoft.com/sharepoint/v3"
       Group="$Resources:Hafsjold-core,Hafsjold_Columns;">
   </Field>
+
+  <ContentType
+  ID="0x0100591946825B9F4858A0C4AEBB0C05FD3F"
+  Name="Company"
+  Description="Create a new company"
+  Version="0"
+  Group="$Resources:Hafsjold-core,Hafsjold_Columns;" >
+
+    <FieldRefs>
+      <!-- add in and rename built-in WSS Title column-->
+      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="Company" Sealed="TRUE"  />
+      <!-- add in custom and built-in site columns -->
+      <FieldRef ID="{475c2610-c157-4b91-9e2d-6855031b3538}" Name="FullName" DisplayName="Contact" />
+      <FieldRef ID="{fd630629-c165-4513-b43c-fdb16b86a14d}" Name="WorkPhone" DisplayName="Phone" />
+      <FieldRef ID="{BB97445D-DDE4-4894-8AA0-6A91442D134C}" Name="Industry" />
+      <FieldRef ID="{01C102AC-EF3F-409c-B622-C2AD6CE1EA0E}" Name="ActivityNotes" DisplayName="Activity Notes" />
+    </FieldRefs>
+  </ContentType>
+
+  <ContentType
+		ID="0x010006512556CD8E448F9E08950F55DB0DA5"
+		Name="Individual"
+		Description="Create a new individual"
+		Version="0"
+		Group="$Resources:Hafsjold-core,Hafsjold_Columns;" >
+
+    <FieldRefs>
+      <!-- add in and rename built-in WSS Title column-->
+      <FieldRef ID="{fa564e0f-0c70-4ab9-b863-0177e6ddd247}" Name="Title" DisplayName="Name" Sealed="TRUE"  />
+      <!-- add in custom and built-in site columns -->
+      <FieldRef ID="{fd630629-c165-4513-b43c-fdb16b86a14d}" Name="WorkPhone" />
+      <FieldRef ID="{01C102AC-EF3F-409c-B622-C2AD6CE1EA0E}" Name="ActivityNotes" DisplayName="Activity Notes" />
+    </FieldRefs>
+
+  </ContentType>
 </Elements>
