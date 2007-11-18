@@ -86,5 +86,14 @@ namespace HafsjoldTaskTime.Resources {
                 return ResourceManager.GetString("TaskTime_Columns", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TEST-EN.
+        /// </summary>
+        internal static string TEST {
+            get {
+                return ResourceManager.GetString("TEST", resourceCulture);
+            }
+        }
     }
 }

@@ -11,6 +11,7 @@
     <AssemblyName>HafsjoldTaskTime</AssemblyName>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Properties\Temporary.snk</AssemblyOriginatorKeyFile>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -36,6 +37,8 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent />
+    <PostBuildEvent>@SET RESOURCEDIR="C:\Program Files\Common Files\Microsoft Shared\web server extensions\12\Resources"
+xcopy /e /y $(ProjectDir)Resources\*.resx  %25RESOURCEDIR%25</PostBuildEvent>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio />

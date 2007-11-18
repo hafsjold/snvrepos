@@ -126,4 +126,7 @@
   <data name="TaskTime_Columns" xml:space="preserve">
     <value>TimeSags Kolonner</value>
   </data>
+  <data name="TEST" xml:space="preserve">
+    <value>TEST-DK</value>
+  </data>
 </root>

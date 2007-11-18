@@ -126,4 +126,7 @@
   <data name="TaskTime_Columns" xml:space="preserve">
     <value>TaskTime Columns</value>
   </data>
+  <data name="TEST" xml:space="preserve">
+    <value>TEST-EN</value>
+  </data>
 </root>
