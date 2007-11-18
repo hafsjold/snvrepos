@@ -2,13 +2,13 @@
   <PropertyGroup>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{B77E6076-A50C-4501-972B-6DF5F78D005D}</ProjectGuid>
+    <ProjectGuid>{D275C073-3CA0-4818-8382-983599C3CB8D}</ProjectGuid>
     <ProjectTypeGuids>{9E5D3E2D-E4E2-418e-8D80-2F0DA9A94F9A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <OutputType>Library</OutputType>
-    <RootNamespace>HafsjoldLists</RootNamespace>
-    <AssemblyName>HafsjoldLists</AssemblyName>
+    <RootNamespace>HafsjoldTaskTime</RootNamespace>
+    <AssemblyName>HafsjoldTaskTime</AssemblyName>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Properties\Temporary.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
@@ -41,12 +41,10 @@
     <VisualStudio />
   </ProjectExtensions>
   <ItemGroup>
-    <Content Include="HafsjoldLists\AllItems.aspx" />
-    <Content Include="HafsjoldLists\DispForm.aspx" />
-    <Content Include="HafsjoldLists\EditForm.aspx" />
-    <Content Include="HafsjoldLists\instance.xml" />
-    <Content Include="HafsjoldLists\NewForm.aspx" />
-    <Content Include="HafsjoldLists\schema.xml" />
+    <Content Include="HafsjoldTaskTimeProjectTimeType\HafsjoldTaskTimeProjectTimeType.Fields.xml" />
+    <Content Include="HafsjoldTaskTimeProjectTimeType\HafsjoldTaskTimeProjectTimeType.xml" />
+    <Content Include="HafsjoldTaskTimeSiteColumns\HafsjoldTaskTimeSiteColumns.xml" />
+    <Content Include="HafsjoldTaskTimeSiteColumns\sample.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.SharePoint, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
@@ -57,27 +55,24 @@
     <None Include="Properties\Temporary.snk" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HafsjoldLists\ItemEventReceiver.cs" />
-    <Compile Include="HafsjoldLists\ListEventReceiver.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Attributes.cs" />
-    <Compile Include="Resources\hafsjold-core.Designer.cs">
+    <Compile Include="Resources\HafsjoldTaskTime.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>hafsjold-core.resx</DependentUpon>
+      <DependentUpon>HafsjoldTaskTime.resx</DependentUpon>
     </Compile>
+    <Compile Include="HafsjoldTaskTimeProjectTimeType\ItemEventReceiver.cs" />
+    <Compile Include="HafsjoldTaskTimeProjectTimeType\ListEventReceiver.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Attributes.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\hafsjold-core.da-dk.resx">
+    <EmbeddedResource Include="Resources\HafsjoldTaskTime.da-dk.resx">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\hafsjold-core.resx">
+    <EmbeddedResource Include="Resources\HafsjoldTaskTime.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>hafsjold-core.Designer.cs</LastGenOutput>
+      <LastGenOutput>HafsjoldTaskTime.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Resources\hafsjold-core.da-dk.resx">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
 </Project>

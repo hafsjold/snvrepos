@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- _filecategory="Module" _filetype="File" _filename="module.xml" _uniqueid="efd7c487-9e85-4353-952e-939470810391" -->
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <Module Name="HafsjoldTaskTimeSiteColumns" Url="" Path="">
+    <File Url="sample.txt" />
+  </Module>
+</Elements>

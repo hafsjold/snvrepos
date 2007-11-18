@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <!-- _filecategory="ContentType" _filetype="File" _filename="fields.xml" _uniqueid="d428f703-cc74-41c7-9f32-5c99eef3f52e" -->
+  <Field
+    ID="{d428f703-cc74-41c7-9f32-5c99eef3f52e}"
+    Type="Text"
+    Name="HafsjoldTaskTimeProjectTimeTypeField"
+    DisplayName="HafsjoldTaskTimeProjectTimeType Field"
+    StaticName="HafsjoldTaskTimeProjectTimeTypeField"
+    Hidden="FALSE" 
+    Required="FALSE" 
+    Sealed="FALSE"
+    />
+</Elements>

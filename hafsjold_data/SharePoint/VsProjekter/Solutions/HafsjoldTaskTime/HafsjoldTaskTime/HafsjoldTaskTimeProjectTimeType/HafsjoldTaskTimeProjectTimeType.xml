@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <!-- _filecategory="ContentType" _filetype="Schema" _filename="contenttype.xml" _uniqueid="f7934709-cd20-4e5a-a56d-06e2b6451ef4" -->
+  <ContentType ID="0x0100d5619968e71c4b439a30a015f3cb43ce"
+      Name="HafsjoldTaskTimeProjectTimeType"
+      Group="Development"
+      Description="Developing Content Type"
+      Version="0">
+    <FieldRefs>
+      <FieldRef ID="{d428f703-cc74-41c7-9f32-5c99eef3f52e}" Name="HafsjoldTaskTimeProjectTimeTypeField" />
+    </FieldRefs>
+  </ContentType>
+</Elements>
