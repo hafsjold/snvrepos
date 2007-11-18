@@ -44,7 +44,6 @@
     <Content Include="HafsjoldTaskTimeProjectTimeType\HafsjoldTaskTimeProjectTimeType.Fields.xml" />
     <Content Include="HafsjoldTaskTimeProjectTimeType\HafsjoldTaskTimeProjectTimeType.xml" />
     <Content Include="HafsjoldTaskTimeSiteColumns\HafsjoldTaskTimeSiteColumns.xml" />
-    <Content Include="HafsjoldTaskTimeSiteColumns\sample.txt" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.SharePoint, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />

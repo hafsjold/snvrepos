@@ -59,5 +59,32 @@ namespace HafsjoldTaskTime.Resources {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hafsjold Task Time Site Columns.
+        /// </summary>
+        internal static string HafsjoldTaskTimeSiteColumns {
+            get {
+                return ResourceManager.GetString("HafsjoldTaskTimeSiteColumns", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data.
+        /// </summary>
+        internal static string ProjectTime_Date {
+            get {
+                return ResourceManager.GetString("ProjectTime_Date", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TaskTime Columns.
+        /// </summary>
+        internal static string TaskTime_Columns {
+            get {
+                return ResourceManager.GetString("TaskTime_Columns", resourceCulture);
+            }
+        }
     }
 }

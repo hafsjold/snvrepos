@@ -1,7 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!-- _filecategory="Module" _filetype="File" _filename="module.xml" _uniqueid="efd7c487-9e85-4353-952e-939470810391" -->
+<!-- _filecategory="Module" _filetype="File" _filename="fields.xml" _uniqueid="efd7c487-9e85-4353-952e-939470810392" -->
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <Module Name="HafsjoldTaskTimeSiteColumns" Url="" Path="">
-    <File Url="sample.txt" />
-  </Module>
+
+  <Field
+    ID="{011E7A40-6C3D-48d0-8ABD-F5F4FD5E4B97}"
+    SourceID="http://schemas.microsoft.com/sharepoint/v3"
+    Name="ProjectTime_Date"
+    DisplayName="$Resources:HafsjoldTaskTime,ProjectTime_Date;"
+    Type="DateTime" Format="DateOnly"
+    Sealed="TRUE"
+    AllowDeletion="TRUE"
+    Group="$Resources:HafsjoldTaskTime,TaskTime_Columns;">
+  </Field>
+  
 </Elements>

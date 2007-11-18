@@ -5,12 +5,6 @@
     </feature>
     <feature  id="631b85c2-e7b9-45b9-945a-423879dcb150" name="HafsjoldLists" title="HafsjoldLists" description="" version="1.0.0.0" scope="Web" hidden="False" defaultresourcefile="core" >
     </feature>
-    <feature  id="0f050816-faab-40f4-934e-dd169f53ff62" name="HafsjoldListsListEventReceiver" title="HafsjoldListsListEventReceiver" description="" version="1.0.0.0" scope="Web" hidden="False" defaultresourcefile="core" >
-      <elementmanifest id="0f050816-faab-40f4-934e-dd169f53ff62" fieldaddedenabled="False" fieldaddingenabled="False" fielddeletedenabled="False" fielddeletingenabled="False" fieldupdatedenabled="False" fieldupdatingenabled="False" />
-    </feature>
-    <feature  id="5d8ddf3e-ccaa-4597-bbf3-3e88b8258e50" name="HafsjoldListsItemEventReceiver" title="HafsjoldListsItemEventReceiver" description="" version="1.0.0.0" scope="Web" hidden="False" defaultresourcefile="core" >
-      <elementmanifest id="5d8ddf3e-ccaa-4597-bbf3-3e88b8258e50" itemaddedenabled="False" itemaddingenabled="False" itemattachmentaddedenabled="False" itemattachmentaddingenabled="False" itemattachmentdeletedenabled="False" itemattachmentdeletingenabled="False" itemcheckedinenabled="False" itemcheckedoutenabled="False" itemcheckinginenabled="False" itemcheckingoutenabled="False" itemdeletedenabled="False" itemdeletingenabled="False" itemfileconvertedenabled="False" itemfilemovedenabled="False" itemfilemovingenabled="False" itemuncheckedoutenabled="False" itemuncheckingoutenabled="False" itemupdatedenabled="False" itemupdatingenabled="False" />
-    </feature>
   </features>
   <templates>
   </templates>
