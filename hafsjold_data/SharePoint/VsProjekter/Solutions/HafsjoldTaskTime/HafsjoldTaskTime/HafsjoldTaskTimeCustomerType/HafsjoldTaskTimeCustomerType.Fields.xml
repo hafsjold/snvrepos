@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <!-- _filecategory="ContentType" _filetype="File" _filename="fields.xml" _uniqueid="538046c8-ccd2-4b43-8193-1ae5d84fff25" -->
+  <Field
+    ID="{538046c8-ccd2-4b43-8193-1ae5d84fff25}"
+    Type="Text"
+    Name="CustomerNickname"
+    DisplayName="Nickname"
+    StaticName="CustomerNickname"
+    Hidden="FALSE" 
+    Required="FALSE" 
+    Sealed="FALSE"
+    >
+  </Field>
+</Elements>

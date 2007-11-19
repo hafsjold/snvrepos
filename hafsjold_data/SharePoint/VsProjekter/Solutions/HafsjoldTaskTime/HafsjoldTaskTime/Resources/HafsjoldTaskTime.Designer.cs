@@ -97,6 +97,15 @@ namespace HafsjoldTaskTime.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Text2.
+        /// </summary>
+        internal static string ProjectTime_Title {
+            get {
+                return ResourceManager.GetString("ProjectTime_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ProjectTime Content Type.
         /// </summary>
         internal static string ProjectTimeType {

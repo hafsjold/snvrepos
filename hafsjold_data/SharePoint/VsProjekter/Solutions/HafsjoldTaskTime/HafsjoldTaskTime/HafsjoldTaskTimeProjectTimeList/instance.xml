@@ -2,10 +2,9 @@
 <!-- _filecategory="ListInstance" _filetype="File" _filename="instance.xml" _uniqueid="5623ba91-6205-404e-88bf-0d5d3744057d" -->
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <ListInstance
-    FeatureId="be6230b8-1c03-471b-b2ba-64fbf63126f4" 
-    Id="0x908EA8BE8F4F4fe78A735A0106879ED6" 
+    FeatureId="be6230b8-1c03-471b-b2ba-64fbf63126f4"  
     TemplateType="100" 
-    Title="HafsjoldTaskTimeProjectTimeList" 
+    Title="Hafsjold TaskTime ProjectTime List" 
     Url="Lists/HafsjoldTaskTimeProjectTimeList">
   </ListInstance>
 </Elements>

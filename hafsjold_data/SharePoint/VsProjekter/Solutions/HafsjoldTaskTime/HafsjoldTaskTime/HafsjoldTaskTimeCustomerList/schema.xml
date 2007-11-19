@@ -1,14 +1,21 @@
 <?xml version="1.0"?>
-<List xmlns:ows="Microsoft SharePoint" Title="HafsjoldTaskTimeProjectTimeList" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/HafsjoldTaskTimeProjectTimeList" BaseType="0" Type="100" xmlns="http://schemas.microsoft.com/sharepoint/">
-  <!-- _filecategory="ListDefinition" _filetype="Schema" _filename="schema.xml" _uniqueid="be6230b8-1c03-471b-b2ba-64fbf63126f4" -->
+<List xmlns:ows="Microsoft SharePoint" Title="HafsjoldTaskTimeCustomerList" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/HafsjoldTaskTimeCustomerList" BaseType="0" Type="100" xmlns="http://schemas.microsoft.com/sharepoint/">
+  <!-- _filecategory="ListDefinition" _filetype="Schema" _filename="schema.xml" _uniqueid="a017f64b-547a-43e4-9211-6c2e4727d0ed" -->
   <MetaData>
     <ContentTypes>
-      <ContentTypeRef ID="0x0100d5619968e71c4b439a30a015f3cb43ce" />
+      <ContentTypeRef ID="0x0100317218c260054e1ba1af8aa1b0d67822" />
     </ContentTypes>
     <Fields>
-      <Field ID="{011E7A40-6C3D-48d0-8ABD-F5F4FD5E4B97}" Type="DateTime" Format="DateOnly" Name="ProjectTime_Date" DisplayName="$Resources:HafsjoldTaskTime,ProjectTime_Date;" StaticName="ProjectTime_Date" Hidden="FALSE" Required="TRUE" Sealed="TRUE" />
-      <Field ID="{9F48E189-0962-4f60-9518-BE1238770397}" Type="Text" Name="ProjectTime_Text" DisplayName="$Resources:HafsjoldTaskTime,ProjectTime_Text;" StaticName="ProjectTime_Text" Hidden="FALSE" Required="TRUE" Sealed="TRUE" />
-      <Field ID="{142BA39A-4869-4504-9C50-6057697C2170}" Type="Number" Decimals="2" Min="0" Max="24" Name="ProjectTime_Time" DisplayName="$Resources:HafsjoldTaskTime,ProjectTime_Time;" StaticName="ProjectTime_Time" Hidden="FALSE" Required="TRUE" Sealed="TRUE" />
+      <Field ID="{538046c8-ccd2-4b43-8193-1ae5d84fff25}" Type="Text" Name="CustomerNickname" DisplayName="Nickname" StaticName="CustomerNickname" Hidden="FALSE" Required="FALSE" Sealed="FALSE">
+      </Field>
+      <Field ID="{fc2e188e-ba91-48c9-9dd3-16431afddd50}" Type="Text" Name="WorkAddress" DisplayName="$Resources:core,Address;" >
+      </Field>
+      <Field ID="{9a631556-3dac-49db-8d2f-fb033b0fdc24}" Type="Text" Name="WorkZip" DisplayName="$Resources:core,ZIP_Postal_Code;" >
+      </Field>
+      <Field ID="{6ca7bd7f-b490-402e-af1b-2813cf087b1e}" Type="Text" Name="WorkCity" DisplayName="$Resources:core,City;" >
+      </Field>
+      <Field ID="{3f3a5c85-9d5a-4663-b925-8b68a678ea3a}" Type="Text" Name="WorkCountry" DisplayName="$Resources:core,Country_Region;" >
+      </Field>
     </Fields>
     <Views>
       <View BaseViewID="0" Type="HTML">
@@ -2907,11 +2914,20 @@ ctx]]></HTML>
         </ViewEmpty>
         <Toolbar Type="Standard" />
         <ViewFields>
-          <FieldRef Name="Attachments"/>
-          <FieldRef Name="LinkTitle"/>
-          <FieldRef Name="ProjectTime_Date"/>
-          <FieldRef Name="ProjectTime_Text"/>
-          <FieldRef Name="ProjectTime_Time"/>
+          <FieldRef Name="Attachments">
+          </FieldRef>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+          <FieldRef Name="CustomerNickname">
+          </FieldRef>
+          <FieldRef Name="WorkAddress">
+          </FieldRef>
+          <FieldRef Name="WorkZip">
+          </FieldRef>
+          <FieldRef Name="WorkCity">
+          </FieldRef>
+          <FieldRef Name="WorkCountry">
+          </FieldRef>
         </ViewFields>
         <Query>
           <OrderBy>

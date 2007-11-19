@@ -1,19 +1,30 @@
 ﻿<solution  id="0f7eccc9-b08b-480d-b121-81b380577506" name="HafsjoldTaskTime" >
   <features>
-    <feature  id="efd7c487-9e85-4353-952e-939470810392" name="HafsjoldTaskTimeSiteColumns" title="$Resources:HafsjoldTaskTime,HafsjoldTaskTimeSiteColumns;" description="Dette" version="1.0.0.0" scope="Site" hidden="False" defaultresourcefile="core" >
+    <feature  id="a47fba7f-89f6-448f-9f6a-aaed70cdc494" name="HafsjoldTaskTimeCustomerType" title="HafsjoldTaskTimeCustomerType" description="" version="1.0.0.0" scope="Site" hidden="False" defaultresourcefile="core" >
     </feature>
     <feature  id="f7934709-cd20-4e5a-a56d-06e2b6451ef4" name="HafsjoldTaskTimeProjectTimeType" title="HafsjoldTaskTimeProjectTimeType" description="" version="1.0.0.0" scope="Site" hidden="False" defaultresourcefile="core" >
     </feature>
-    <feature  id="be6230b8-1c03-471b-b2ba-64fbf63126f4" name="HafsjoldTaskTimeProjectTimeList" title="HafsjoldTaskTimeProjectTimeList" description="" version="1.0.0.0" scope="Web" hidden="False" defaultresourcefile="core" >
+    <feature  id="a017f64b-547a-43e4-9211-6c2e4727d0ed" name="HafsjoldTaskTimeCustomerList" title="HafsjoldTaskTimeCustomerList" description="" version="1.0.0.0" scope="Web" hidden="False" defaultresourcefile="core" >
+      <elementmanifest id="a017f64b-547a-43e4-9211-6c2e4727d0ed" title="HafsjoldTaskTimeCustomerList" description="" type="100" basetype="0" onquicklaunch="True" securitybits="11" sequence="410" image="/_layouts/images/itgen.gif" />
+    </feature>
+    <feature  id="be6230b8-1c03-471b-b2ba-64fbf63126f4" name="HafsjoldTaskTimeProjectTimeList" title="HafsjoldTaskTimeProjectTimeList" description="" version="1.0.0.0" scope="Site" hidden="False" defaultresourcefile="core" >
       <elementmanifest id="be6230b8-1c03-471b-b2ba-64fbf63126f4" title="HafsjoldTaskTimeProjectTimeList" description="" type="100" basetype="0" onquicklaunch="True" securitybits="11" sequence="410" image="/_layouts/images/itgen.gif" />
     </feature>
-    <feature  id="5623ba91-6205-404e-88bf-0d5d3744057d" name="HafsjoldTaskTimeProjectTimeList" title="HafsjoldTaskTimeProjectTimeList" description="" version="1.0.0.0" scope="Web" hidden="False" defaultresourcefile="core" >
+    <feature  id="2ee4095a-bc7f-4675-809c-14e08cf6c333" name="HafsjoldTaskTimeCustomerList" title="HafsjoldTaskTimeCustomerList" description="" version="1.0.0.0" scope="Web" hidden="False" defaultresourcefile="core" >
+    </feature>
+    <feature  id="5623ba91-6205-404e-88bf-0d5d3744057d" name="HafsjoldTaskTimeProjectTimeList" title="HafsjoldTaskTimeProjectTimeList" description="" version="1.0.0.0" scope="Site" hidden="False" defaultresourcefile="core" >
     </feature>
     <feature  id="5b1b93d3-663d-432a-81e9-941c3cd2663f" name="HafsjoldTaskTimeProjectTimeTypeListEventReceiver" title="HafsjoldTaskTimeProjectTimeTypeListEventReceiver" description="" version="1.0.0.0" scope="Site" hidden="False" defaultresourcefile="core" >
       <elementmanifest id="5b1b93d3-663d-432a-81e9-941c3cd2663f" fieldaddedenabled="False" fieldaddingenabled="True" fielddeletedenabled="False" fielddeletingenabled="False" fieldupdatedenabled="False" fieldupdatingenabled="False" />
     </feature>
+    <feature  id="f6806b09-18bb-4562-9738-9687a880543a" name="HafsjoldTaskTimeCustomerTypeListEventReceiver" title="HafsjoldTaskTimeCustomerTypeListEventReceiver" description="" version="1.0.0.0" scope="Site" hidden="False" defaultresourcefile="core" >
+      <elementmanifest id="f6806b09-18bb-4562-9738-9687a880543a" fieldaddedenabled="False" fieldaddingenabled="False" fielddeletedenabled="False" fielddeletingenabled="False" fieldupdatedenabled="False" fieldupdatingenabled="False" />
+    </feature>
     <feature  id="9ad75b82-b2fc-4be3-9e4b-3690ee1e3307" name="HafsjoldTaskTimeProjectTimeTypeItemEventReceiver" title="HafsjoldTaskTimeProjectTimeTypeItemEventReceiver" description="" version="1.0.0.0" scope="Site" hidden="False" defaultresourcefile="core" >
       <elementmanifest id="9ad75b82-b2fc-4be3-9e4b-3690ee1e3307" itemaddedenabled="False" itemaddingenabled="True" itemattachmentaddedenabled="False" itemattachmentaddingenabled="False" itemattachmentdeletedenabled="False" itemattachmentdeletingenabled="False" itemcheckedinenabled="False" itemcheckedoutenabled="False" itemcheckinginenabled="False" itemcheckingoutenabled="False" itemdeletedenabled="False" itemdeletingenabled="False" itemfileconvertedenabled="False" itemfilemovedenabled="False" itemfilemovingenabled="False" itemuncheckedoutenabled="False" itemuncheckingoutenabled="False" itemupdatedenabled="False" itemupdatingenabled="False" />
+    </feature>
+    <feature  id="37fcac90-7f4b-4c43-87ea-6870a278f392" name="HafsjoldTaskTimeCustomerTypeItemEventReceiver" title="HafsjoldTaskTimeCustomerTypeItemEventReceiver" description="" version="1.0.0.0" scope="Site" hidden="False" defaultresourcefile="core" >
+      <elementmanifest id="37fcac90-7f4b-4c43-87ea-6870a278f392" itemaddedenabled="False" itemaddingenabled="False" itemattachmentaddedenabled="False" itemattachmentaddingenabled="False" itemattachmentdeletedenabled="False" itemattachmentdeletingenabled="False" itemcheckedinenabled="False" itemcheckedoutenabled="False" itemcheckinginenabled="False" itemcheckingoutenabled="False" itemdeletedenabled="False" itemdeletingenabled="False" itemfileconvertedenabled="False" itemfilemovedenabled="False" itemfilemovingenabled="False" itemuncheckedoutenabled="False" itemuncheckingoutenabled="False" itemupdatedenabled="False" itemupdatingenabled="False" />
     </feature>
   </features>
   <templates>

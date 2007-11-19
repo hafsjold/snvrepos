@@ -129,6 +129,9 @@
   <data name="ProjectTime_Time" xml:space="preserve">
     <value>Time</value>
   </data>
+  <data name="ProjectTime_Title" xml:space="preserve">
+    <value>Text2</value>
+  </data>
   <data name="ProjectTimeType" xml:space="preserve">
     <value>ProjectTime Content Type</value>
   </data>

@@ -44,6 +44,14 @@ xcopy /e /y $(ProjectDir)Resources\*.resx  %25RESOURCEDIR%25</PostBuildEvent>
     <VisualStudio />
   </ProjectExtensions>
   <ItemGroup>
+    <Content Include="HafsjoldTaskTimeCustomerList\AllItems.aspx" />
+    <Content Include="HafsjoldTaskTimeCustomerList\DispForm.aspx" />
+    <Content Include="HafsjoldTaskTimeCustomerList\EditForm.aspx" />
+    <Content Include="HafsjoldTaskTimeCustomerList\instance.xml" />
+    <Content Include="HafsjoldTaskTimeCustomerList\NewForm.aspx" />
+    <Content Include="HafsjoldTaskTimeCustomerList\schema.xml" />
+    <Content Include="HafsjoldTaskTimeCustomerType\HafsjoldTaskTimeCustomerType.Fields.xml" />
+    <Content Include="HafsjoldTaskTimeCustomerType\HafsjoldTaskTimeCustomerType.xml" />
     <Content Include="HafsjoldTaskTimeProjectTimeList\AllItems.aspx" />
     <Content Include="HafsjoldTaskTimeProjectTimeList\DispForm.aspx" />
     <Content Include="HafsjoldTaskTimeProjectTimeList\EditForm.aspx" />
@@ -52,7 +60,6 @@ xcopy /e /y $(ProjectDir)Resources\*.resx  %25RESOURCEDIR%25</PostBuildEvent>
     <Content Include="HafsjoldTaskTimeProjectTimeList\schema.xml" />
     <Content Include="HafsjoldTaskTimeProjectTimeType\HafsjoldTaskTimeProjectTimeType.Fields.xml" />
     <Content Include="HafsjoldTaskTimeProjectTimeType\HafsjoldTaskTimeProjectTimeType.xml" />
-    <Content Include="HafsjoldTaskTimeSiteColumns\HafsjoldTaskTimeSiteColumns.xml" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.SharePoint, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
@@ -63,6 +70,8 @@ xcopy /e /y $(ProjectDir)Resources\*.resx  %25RESOURCEDIR%25</PostBuildEvent>
     <None Include="Properties\Temporary.snk" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HafsjoldTaskTimeCustomerType\ItemEventReceiver.cs" />
+    <Compile Include="HafsjoldTaskTimeCustomerType\ListEventReceiver.cs" />
     <Compile Include="Resources\HafsjoldTaskTime.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
