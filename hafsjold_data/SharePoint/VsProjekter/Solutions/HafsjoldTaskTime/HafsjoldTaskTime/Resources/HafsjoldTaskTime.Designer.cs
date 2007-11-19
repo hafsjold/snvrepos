@@ -79,6 +79,33 @@ namespace HafsjoldTaskTime.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Text.
+        /// </summary>
+        internal static string ProjectTime_Text {
+            get {
+                return ResourceManager.GetString("ProjectTime_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time.
+        /// </summary>
+        internal static string ProjectTime_Time {
+            get {
+                return ResourceManager.GetString("ProjectTime_Time", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ProjectTime Content Type.
+        /// </summary>
+        internal static string ProjectTimeType {
+            get {
+                return ResourceManager.GetString("ProjectTimeType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TaskTime Columns.
         /// </summary>
         internal static string TaskTime_Columns {
@@ -88,11 +115,11 @@ namespace HafsjoldTaskTime.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TEST-EN.
+        ///   Looks up a localized string similar to TaskTime Types.
         /// </summary>
-        internal static string TEST {
+        internal static string TaskTime_Types {
             get {
-                return ResourceManager.GetString("TEST", resourceCulture);
+                return ResourceManager.GetString("TaskTime_Types", resourceCulture);
             }
         }
     }

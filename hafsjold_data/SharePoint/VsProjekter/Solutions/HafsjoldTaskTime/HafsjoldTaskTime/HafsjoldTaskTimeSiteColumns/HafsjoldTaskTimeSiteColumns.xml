@@ -3,14 +3,13 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
 
   <Field
-    ID="{011E7A40-6C3D-48d0-8ABD-F5F4FD5E4B97}"
-    SourceID="http://schemas.microsoft.com/sharepoint/v3"
-    Name="ProjectTime_Date"
-    DisplayName="$Resources:HafsjoldTaskTime,ProjectTime_Date;"
-    Type="DateTime" Format="DateOnly"
-    Sealed="TRUE"
-    AllowDeletion="TRUE"
-    Group="$Resources:HafsjoldTaskTime,TaskTime_Columns;">
+    ID="{d428f703-cc74-41c7-9f32-5c99eef3f52e}"
+    Type="Text"
+    Name="HafsjoldTaskTimeProjectTimeTypeField"
+    DisplayName="HafsjoldTaskTimeProjectTimeType Field"
+    StaticName="HafsjoldTaskTimeProjectTimeTypeField"
+    Hidden="FALSE"
+    Required="FALSE"
+    Sealed="FALSE">
   </Field>
-  
-</Elements>
+    </Elements>

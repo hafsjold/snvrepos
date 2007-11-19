@@ -2,12 +2,14 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <!-- _filecategory="ContentType" _filetype="Schema" _filename="contenttype.xml" _uniqueid="f7934709-cd20-4e5a-a56d-06e2b6451ef4" -->
   <ContentType ID="0x0100d5619968e71c4b439a30a015f3cb43ce"
-      Name="HafsjoldTaskTimeProjectTimeType"
-      Group="Development"
-      Description="Developing Content Type"
+      Name="ProjectTimeType"
+      Description="$Resources:HafsjoldTaskTime,ProjectTimeType;"
+      Group="$Resources:HafsjoldTaskTime,TaskTime_Types;"
       Version="0">
     <FieldRefs>
-      <FieldRef ID="{d428f703-cc74-41c7-9f32-5c99eef3f52e}" Name="HafsjoldTaskTimeProjectTimeTypeField" />
+      <FieldRef ID="{011E7A40-6C3D-48d0-8ABD-F5F4FD5E4B97}" Name="ProjectTime_Date" />
+      <FieldRef ID="{9F48E189-0962-4f60-9518-BE1238770397}" Name="ProjectTime_Text" />
+      <FieldRef ID="{142BA39A-4869-4504-9C50-6057697C2170}" Name="ProjectTime_Time" />
     </FieldRefs>
   </ContentType>
 </Elements>

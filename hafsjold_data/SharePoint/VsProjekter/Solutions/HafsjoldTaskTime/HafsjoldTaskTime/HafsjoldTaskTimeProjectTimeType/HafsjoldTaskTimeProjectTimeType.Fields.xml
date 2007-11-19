@@ -1,14 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <!-- _filecategory="ContentType" _filetype="File" _filename="fields.xml" _uniqueid="d428f703-cc74-41c7-9f32-5c99eef3f52e" -->
+
   <Field
-    ID="{d428f703-cc74-41c7-9f32-5c99eef3f52e}"
-    Type="Text"
-    Name="HafsjoldTaskTimeProjectTimeTypeField"
-    DisplayName="HafsjoldTaskTimeProjectTimeType Field"
-    StaticName="HafsjoldTaskTimeProjectTimeTypeField"
-    Hidden="FALSE" 
-    Required="FALSE" 
-    Sealed="FALSE"
-    />
+    ID="{011E7A40-6C3D-48d0-8ABD-F5F4FD5E4B97}"
+    Type="DateTime" Format="DateOnly"
+    Name="ProjectTime_Date"
+    DisplayName="$Resources:HafsjoldTaskTime,ProjectTime_Date;"
+    StaticName="ProjectTime_Date"
+    Hidden="FALSE"
+    Required="TRUE"
+    Sealed="TRUE"
+    Group="$Resources:HafsjoldTaskTime,TaskTime_Columns;">
+  </Field>
+  <Field
+      ID="{9F48E189-0962-4f60-9518-BE1238770397}"
+      Type="Text"
+      Name="ProjectTime_Text"
+      DisplayName="$Resources:HafsjoldTaskTime,ProjectTime_Text;"
+      StaticName="ProjectTime_Text"
+      Hidden="FALSE"
+      Required="TRUE"
+      Sealed="TRUE"
+      Group="$Resources:HafsjoldTaskTime,TaskTime_Columns;">
+  </Field>
+  <Field
+      ID="{142BA39A-4869-4504-9C50-6057697C2170}"
+      Type="Number" Decimals="2" Min="0" Max="24"
+      Name="ProjectTime_Time"
+      DisplayName="$Resources:HafsjoldTaskTime,ProjectTime_Time;"
+      StaticName="ProjectTime_Time"
+      Hidden="FALSE"
+      Required="TRUE"
+      Sealed="TRUE"
+      Group="$Resources:HafsjoldTaskTime,TaskTime_Columns;">
+  </Field>
 </Elements>

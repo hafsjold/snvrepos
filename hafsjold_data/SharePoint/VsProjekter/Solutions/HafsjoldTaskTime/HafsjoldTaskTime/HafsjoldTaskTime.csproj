@@ -44,6 +44,12 @@ xcopy /e /y $(ProjectDir)Resources\*.resx  %25RESOURCEDIR%25</PostBuildEvent>
     <VisualStudio />
   </ProjectExtensions>
   <ItemGroup>
+    <Content Include="HafsjoldTaskTimeProjectTimeList\AllItems.aspx" />
+    <Content Include="HafsjoldTaskTimeProjectTimeList\DispForm.aspx" />
+    <Content Include="HafsjoldTaskTimeProjectTimeList\EditForm.aspx" />
+    <Content Include="HafsjoldTaskTimeProjectTimeList\instance.xml" />
+    <Content Include="HafsjoldTaskTimeProjectTimeList\NewForm.aspx" />
+    <Content Include="HafsjoldTaskTimeProjectTimeList\schema.xml" />
     <Content Include="HafsjoldTaskTimeProjectTimeType\HafsjoldTaskTimeProjectTimeType.Fields.xml" />
     <Content Include="HafsjoldTaskTimeProjectTimeType\HafsjoldTaskTimeProjectTimeType.xml" />
     <Content Include="HafsjoldTaskTimeSiteColumns\HafsjoldTaskTimeSiteColumns.xml" />

@@ -4,6 +4,11 @@
     </feature>
     <feature  id="f7934709-cd20-4e5a-a56d-06e2b6451ef4" name="HafsjoldTaskTimeProjectTimeType" title="HafsjoldTaskTimeProjectTimeType" description="" version="1.0.0.0" scope="Site" hidden="False" defaultresourcefile="core" >
     </feature>
+    <feature  id="be6230b8-1c03-471b-b2ba-64fbf63126f4" name="HafsjoldTaskTimeProjectTimeList" title="HafsjoldTaskTimeProjectTimeList" description="" version="1.0.0.0" scope="Web" hidden="False" defaultresourcefile="core" >
+      <elementmanifest id="be6230b8-1c03-471b-b2ba-64fbf63126f4" title="HafsjoldTaskTimeProjectTimeList" description="" type="100" basetype="0" onquicklaunch="True" securitybits="11" sequence="410" image="/_layouts/images/itgen.gif" />
+    </feature>
+    <feature  id="5623ba91-6205-404e-88bf-0d5d3744057d" name="HafsjoldTaskTimeProjectTimeList" title="HafsjoldTaskTimeProjectTimeList" description="" version="1.0.0.0" scope="Web" hidden="False" defaultresourcefile="core" >
+    </feature>
     <feature  id="5b1b93d3-663d-432a-81e9-941c3cd2663f" name="HafsjoldTaskTimeProjectTimeTypeListEventReceiver" title="HafsjoldTaskTimeProjectTimeTypeListEventReceiver" description="" version="1.0.0.0" scope="Site" hidden="False" defaultresourcefile="core" >
       <elementmanifest id="5b1b93d3-663d-432a-81e9-941c3cd2663f" fieldaddedenabled="False" fieldaddingenabled="True" fielddeletedenabled="False" fielddeletingenabled="False" fieldupdatedenabled="False" fieldupdatingenabled="False" />
     </feature>

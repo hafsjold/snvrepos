@@ -123,10 +123,19 @@
   <data name="ProjectTime_Date" xml:space="preserve">
     <value>Dato</value>
   </data>
+  <data name="ProjectTime_Text" xml:space="preserve">
+    <value>Tekst</value>
+  </data>
+  <data name="ProjectTime_Time" xml:space="preserve">
+    <value>Tid</value>
+  </data>
+  <data name="ProjectTimeType" xml:space="preserve">
+    <value>Projekt timer Indholdstype</value>
+  </data>
   <data name="TaskTime_Columns" xml:space="preserve">
     <value>TimeSags Kolonner</value>
   </data>
-  <data name="TEST" xml:space="preserve">
-    <value>TEST-DK</value>
+  <data name="TaskTime_Types" xml:space="preserve">
+    <value>TimeSags Indholdstyper</value>
   </data>
 </root>
