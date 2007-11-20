@@ -70,6 +70,7 @@ xcopy /e /y $(ProjectDir)Resources\*.resx  %25RESOURCEDIR%25</PostBuildEvent>
     <None Include="Properties\Temporary.snk" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HafsjoldTaskTimeFeatureReceiver.cs" />
     <Compile Include="HafsjoldTaskTimeCustomerType\ItemEventReceiver.cs" />
     <Compile Include="HafsjoldTaskTimeCustomerType\ListEventReceiver.cs" />
     <Compile Include="Resources\HafsjoldTaskTime.Designer.cs">
