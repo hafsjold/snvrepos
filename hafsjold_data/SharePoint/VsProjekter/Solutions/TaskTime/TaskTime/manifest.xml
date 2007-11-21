@@ -1,0 +1,25 @@
+﻿<Solution SolutionId="24493869-2DA2-49b5-AA30-67FE39550F1C"
+		  xmlns="http://schemas.microsoft.com/sharepoint/">
+
+  <FeatureManifests>
+    <FeatureManifest Location="TaskTimeFields\feature.xml" />
+    <FeatureManifest Location="TaskTimeTypes\feature.xml" />
+    <FeatureManifest Location="TaskTimeCustomerList\feature.xml" />
+    <FeatureManifest Location="TaskTimeProjectTimeList\feature.xml" />
+  </FeatureManifests>
+
+  <Assemblies>
+    <Assembly Location="TaskTime.dll" DeploymentTarget="GlobalAssemblyCache"/>
+<!--  
+      <SafeControls>
+        <SafeControl Assembly="TaskTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9f4da00116c38ec5" Namespace="TaskTime" TypeName="TaskTimeCustomerTypeListEventReceiver" Safe="True" />
+        <SafeControl Assembly="TaskTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9f4da00116c38ec5" Namespace="TaskTime" TypeName="TaskTimeProjectTimeTypeListEventReceiver" Safe="True" />
+        <SafeControl Assembly="TaskTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9f4da00116c38ec5" Namespace="TaskTime" TypeName="TaskTimeProjectTimeTypeItemEventReceiver" Safe="True" />
+        <SafeControl Assembly="TaskTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9f4da00116c38ec5" Namespace="TaskTime" TypeName="TaskTimeCustomerTypeItemEventReceiver" Safe="True" />
+        <SafeControl Assembly="TaskTime, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9f4da00116c38ec5" Namespace="TaskTime" TypeName="FeatureReceiver" Safe="True" />
+      </SafeControls>
+    </Assembly>
+-->    
+  </Assemblies>
+
+</Solution>

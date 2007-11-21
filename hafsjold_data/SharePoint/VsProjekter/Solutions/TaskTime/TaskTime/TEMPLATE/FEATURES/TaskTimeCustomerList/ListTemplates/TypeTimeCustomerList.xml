@@ -1,0 +1,15 @@
+﻿<Elements  xmlns="http://schemas.microsoft.com/sharepoint/">
+
+  <ListTemplate
+    Name="TaskTimeCustomerList"
+    Type="100"
+    BaseType="0"
+    OnQuickLaunch="TRUE"
+    SecurityBits="11"
+    Sequence="410"
+    DisplayName="TaskTimeCustomerList"
+    Description=""
+    Image="/_layouts/images/itgen.gif">
+  </ListTemplate>
+
+</Elements>

@@ -1,0 +1,35 @@
+;
+.OPTION EXPLICIT     ; Generate errors 
+.Set CabinetNameTemplate=TaskTime.wsp     
+.set DiskDirectoryTemplate=CDROM ; All cabinets go in a single directory
+.Set CompressionType=MSZIP;** All files are compressed in cabinet files
+.Set UniqueFiles="ON"
+.Set Cabinet=on
+.Set DiskDirectory1=bin\Debug
+
+manifest.xml manifest.xml
+;*** TaskTimeCustomerList
+TEMPLATE\FEATURES\TaskTimeCustomerList\feature.xml	TaskTimeCustomerList\feature.xml
+TEMPLATE\FEATURES\TaskTimeCustomerList\ListTemplates\TypeTimeCustomerList.xml	TaskTimeCustomerList\ListTemplates\TypeTimeCustomerList.xml
+TEMPLATE\FEATURES\TaskTimeCustomerList\TaskTimeCustomerList\allitems.aspx	TaskTimeCustomerList\TaskTimeCustomerList\allitems.aspx
+TEMPLATE\FEATURES\TaskTimeCustomerList\TaskTimeCustomerList\dispform.aspx	TaskTimeCustomerList\TaskTimeCustomerList\dispform.aspx
+TEMPLATE\FEATURES\TaskTimeCustomerList\TaskTimeCustomerList\editform.aspx	TaskTimeCustomerList\TaskTimeCustomerList\editform.aspx
+TEMPLATE\FEATURES\TaskTimeCustomerList\TaskTimeCustomerList\newform.aspx	TaskTimeCustomerList\TaskTimeCustomerList\newform.aspx
+TEMPLATE\FEATURES\TaskTimeCustomerList\TaskTimeCustomerList\schema.xml	TaskTimeCustomerList\TaskTimeCustomerList\schema.xml
+;*** TaskTimeFields
+TEMPLATE\FEATURES\TaskTimeFields\feature.xml	TaskTimeFields\feature.xml
+TEMPLATE\FEATURES\TaskTimeFields\fields.xml	TaskTimeFields\fields.xml
+;*** TaskTimeProjectTimeList
+TEMPLATE\FEATURES\TaskTimeProjectTimeList\feature.xml	TaskTimeProjectTimeList\feature.xml
+TEMPLATE\FEATURES\TaskTimeProjectTimeList\ListTemplates\TaskTimeProjectTimeList.xml	TaskTimeProjectTimeList\ListTemplates\TaskTimeProjectTimeList.xml
+TEMPLATE\FEATURES\TaskTimeProjectTimeList\TaskTimeProjectTimeList\allitems.aspx	TaskTimeProjectTimeList\TaskTimeProjectTimeList\allitems.aspx
+TEMPLATE\FEATURES\TaskTimeProjectTimeList\TaskTimeProjectTimeList\dispform.aspx	TaskTimeProjectTimeList\TaskTimeProjectTimeList\dispform.aspx
+TEMPLATE\FEATURES\TaskTimeProjectTimeList\TaskTimeProjectTimeList\editform.aspx	TaskTimeProjectTimeList\TaskTimeProjectTimeList\editform.aspx
+TEMPLATE\FEATURES\TaskTimeProjectTimeList\TaskTimeProjectTimeList\newform.aspx	TaskTimeProjectTimeList\TaskTimeProjectTimeList\newform.aspx
+TEMPLATE\FEATURES\TaskTimeProjectTimeList\TaskTimeProjectTimeList\schema.xml	TaskTimeProjectTimeList\TaskTimeProjectTimeList\schema.xml
+;*** TaskTimeTypes
+TEMPLATE\FEATURES\TaskTimeTypes\feature.xml	TaskTimeTypes\feature.xml
+TEMPLATE\FEATURES\TaskTimeTypes\customer_type.xml	TaskTimeTypes\customer_type.xml
+TEMPLATE\FEATURES\TaskTimeTypes\project_time_type.xml	TaskTimeTypes\project_time_type.xml
+bin\Debug\TaskTime.dll	TaskTime.dll
+;*** <the end>

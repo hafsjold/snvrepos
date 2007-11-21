@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x0100d5619968e71c4b439a30a015f3cb43ce"
+      Name="ProjectTimeType"
+      Description="$Resources:HafsjoldTaskTime,ProjectTimeType;"
+      Group="$Resources:HafsjoldTaskTime,TaskTime_Types;"
+      Version="0">
+    <FieldRefs>
+      <FieldRef ID="{011E7A40-6C3D-48d0-8ABD-F5F4FD5E4B97}" Name="ProjectTime_Date" />
+      <FieldRef ID="{9F48E189-0962-4f60-9518-BE1238770397}" Name="ProjectTime_Text" />
+      <FieldRef ID="{142BA39A-4869-4504-9C50-6057697C2170}" Name="ProjectTime_Time" />
+    </FieldRefs>
+  </ContentType>
+</Elements>

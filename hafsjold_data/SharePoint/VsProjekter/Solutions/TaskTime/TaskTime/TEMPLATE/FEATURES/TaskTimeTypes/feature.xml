@@ -1,0 +1,20 @@
+﻿<Feature
+  Title="TaskTimeTypes"
+  Id="BD0ED72A-138B-404a-BE79-576D532D8B3A"
+  Description=""
+  Version="1.0.0.0"
+  Scope="Site"
+  Hidden="FALSE"
+  DefaultResourceFile="core"
+  xmlns="http://schemas.microsoft.com/sharepoint/" >
+
+  <ActivationDependencies>
+    <ActivationDependency FeatureId="49A89A18-B3E2-406e-BFA5-A93F3BDF541C" /> <!--TaskTimeFields-->
+  </ActivationDependencies>
+
+  <ElementManifests>
+    <ElementManifest Location="customer_type.xml"/>
+    <ElementManifest Location="project_time_type.xml"/>
+  </ElementManifests>
+
+</Feature>

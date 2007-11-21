@@ -1,0 +1,23 @@
+﻿<Feature 
+  Title="TypeTimeCustomerList"
+  Id="8ACE75C9-BCFB-46bf-BD74-CAAE6C5653EC"
+  Description=""
+  Version="1.0.0.0"
+  Scope="Web"
+  Hidden="FALSE"
+  DefaultResourceFile="core"  
+  xmlns="http://schemas.microsoft.com/sharepoint/" >
+
+  <ActivationDependencies>
+    <ActivationDependency FeatureId="BD0ED72A-138B-404a-BE79-576D532D8B3A" /> <!--TaskTimeTypes-->
+  </ActivationDependencies>
+  
+  <ElementManifests>
+    <ElementManifest Location="ListTemplates\TypeTimeCustomerList.xml" />
+    <ElementFile Location="TaskTimeCustomerList\schema.xml" />
+    <ElementFile Location="TaskTimeCustomerList\allitems.aspx" />
+    <ElementFile Location="TaskTimeCustomerList\dispform.aspx" />
+    <ElementFile Location="TaskTimeCustomerList\editform.aspx" />
+    <ElementFile Location="TaskTimeCustomerList\newform.aspx" />
+  </ElementManifests>
+</Feature>

@@ -1,0 +1,23 @@
+﻿<Feature  
+   Title="TaskTimeProjectTimeList" 
+   Id="C35864DF-CE77-48ce-9F61-26FAF6E292F5" 
+   Description="" 
+   Version="1.0.0.0" 
+   Scope="Site" 
+   Hidden="FALSE" 
+   DefaultResourceFile="core" 
+   xmlns="http://schemas.microsoft.com/sharepoint/">
+
+  <ActivationDependencies>
+    <ActivationDependency FeatureId="BD0ED72A-138B-404a-BE79-576D532D8B3A" /> <!--TaskTimeTypes-->
+  </ActivationDependencies>
+
+  <ElementManifests>
+    <ElementManifest Location="ListTemplates\TaskTimeProjectTimeList.xml" />
+    <ElementFile Location="TaskTimeProjectTimeList\schema.xml" />
+    <ElementFile Location="TaskTimeProjectTimeList\allitems.aspx" />
+    <ElementFile Location="TaskTimeProjectTimeList\dispform.aspx" />
+    <ElementFile Location="TaskTimeProjectTimeList\editform.aspx" />
+    <ElementFile Location="TaskTimeProjectTimeList\newform.aspx" />
+  </ElementManifests>
+</Feature>
