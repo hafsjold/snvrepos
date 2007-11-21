@@ -40,8 +40,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DeployRemove.cmd" />
     <None Include="Deploy.cmd" />
-    <None Include="TEMPLATE\FEATURES\TaskTimeTypes\Deploy.cmd" />
     <None Include="Install.bat" />
     <None Include="Package.cmd" />
     <None Include="Properties\Temporary.snk" />

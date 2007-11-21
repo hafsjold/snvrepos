@@ -3,7 +3,7 @@
   Id="8ACE75C9-BCFB-46bf-BD74-CAAE6C5653EC"
   Description=""
   Version="1.0.0.0"
-  Scope="Web"
+  Scope="Site"
   Hidden="FALSE"
   DefaultResourceFile="core"  
   xmlns="http://schemas.microsoft.com/sharepoint/" >
