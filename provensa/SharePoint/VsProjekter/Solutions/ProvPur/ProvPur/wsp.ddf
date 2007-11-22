@@ -1,0 +1,35 @@
+;
+.OPTION EXPLICIT     ; Generate errors 
+.Set CabinetNameTemplate=ProvPur.wsp     
+.set DiskDirectoryTemplate=CDROM ; All cabinets go in a single directory
+.Set CompressionType=MSZIP;** All files are compressed in cabinet files
+.Set UniqueFiles="ON"
+.Set Cabinet=on
+.Set DiskDirectory1=bin\Debug
+
+manifest.xml manifest.xml
+;*** ProvPurProductList
+TEMPLATE\FEATURES\ProvPurProductList\feature.xml	ProvPurProductList\feature.xml
+TEMPLATE\FEATURES\ProvPurProductList\ListTemplates\ProvPurProductList.xml	ProvPurProductList\ListTemplates\ProvPurProductList.xml
+TEMPLATE\FEATURES\ProvPurProductList\ProvPurProductList\allitems.aspx	ProvPurProductList\ProvPurProductList\allitems.aspx
+TEMPLATE\FEATURES\ProvPurProductList\ProvPurProductList\dispform.aspx	ProvPurProductList\ProvPurProductList\dispform.aspx
+TEMPLATE\FEATURES\ProvPurProductList\ProvPurProductList\editform.aspx	ProvPurProductList\ProvPurProductList\editform.aspx
+TEMPLATE\FEATURES\ProvPurProductList\ProvPurProductList\newform.aspx	ProvPurProductList\ProvPurProductList\newform.aspx
+TEMPLATE\FEATURES\ProvPurProductList\ProvPurProductList\schema.xml	ProvPurProductList\ProvPurProductList\schema.xml
+;*** ProvPurFields
+TEMPLATE\FEATURES\ProvPurFields\feature.xml	ProvPurFields\feature.xml
+TEMPLATE\FEATURES\ProvPurFields\fields.xml	ProvPurFields\fields.xml
+;*** ProvPurPurOrderList
+TEMPLATE\FEATURES\ProvPurPurOrderList\feature.xml	ProvPurPurOrderList\feature.xml
+TEMPLATE\FEATURES\ProvPurPurOrderList\ListTemplates\ProvPurPurOrderList.xml	ProvPurPurOrderList\ListTemplates\ProvPurPurOrderList.xml
+TEMPLATE\FEATURES\ProvPurPurOrderList\ProvPurPurOrderList\allitems.aspx	ProvPurPurOrderList\ProvPurPurOrderList\allitems.aspx
+TEMPLATE\FEATURES\ProvPurPurOrderList\ProvPurPurOrderList\dispform.aspx	ProvPurPurOrderList\ProvPurPurOrderList\dispform.aspx
+TEMPLATE\FEATURES\ProvPurPurOrderList\ProvPurPurOrderList\editform.aspx	ProvPurPurOrderList\ProvPurPurOrderList\editform.aspx
+TEMPLATE\FEATURES\ProvPurPurOrderList\ProvPurPurOrderList\newform.aspx	ProvPurPurOrderList\ProvPurPurOrderList\newform.aspx
+TEMPLATE\FEATURES\ProvPurPurOrderList\ProvPurPurOrderList\schema.xml	ProvPurPurOrderList\ProvPurPurOrderList\schema.xml
+;*** ProvPurTypes
+TEMPLATE\FEATURES\ProvPurTypes\feature.xml	ProvPurTypes\feature.xml
+TEMPLATE\FEATURES\ProvPurTypes\product_type.xml	ProvPurTypes\product_type.xml
+TEMPLATE\FEATURES\ProvPurTypes\project_time_type.xml	ProvPurTypes\project_time_type.xml
+bin\Debug\ProvPur.dll	ProvPur.dll
+;*** <the end>

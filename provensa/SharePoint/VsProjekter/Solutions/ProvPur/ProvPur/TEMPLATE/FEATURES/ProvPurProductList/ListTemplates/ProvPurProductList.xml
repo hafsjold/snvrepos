@@ -1,0 +1,15 @@
+﻿<Elements  xmlns="http://schemas.microsoft.com/sharepoint/">
+
+  <ListTemplate
+    Name="ProvPurProductList"
+    Type="100"
+    BaseType="0"
+    OnQuickLaunch="TRUE"
+    SecurityBits="11"
+    Sequence="410"
+    DisplayName="ProvPurProductList"
+    Description=""
+    Image="/_layouts/images/itgen.gif">
+  </ListTemplate>
+
+</Elements>

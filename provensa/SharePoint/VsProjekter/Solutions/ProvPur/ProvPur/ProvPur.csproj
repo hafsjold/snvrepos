@@ -1,0 +1,89 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1766A38B-D036-4043-BC35-ED9FC4FCDB44}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PvsPur</RootNamespace>
+    <AssemblyName>PvsPur</AssemblyName>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Properties\Temporary.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.SharePoint, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FeatureReceiver.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DeployRemove.cmd" />
+    <None Include="Deploy.cmd" />
+    <None Include="Install.bat" />
+    <None Include="Package.cmd" />
+    <None Include="Properties\Temporary.snk" />
+    <None Include="wsp.ddf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="manifest.xml" />
+    <Content Include="TEMPLATE\FEATURES\ProvPurFields\feature.xml" />
+    <Content Include="TEMPLATE\FEATURES\ProvPurFields\fields.xml" />
+    <Content Include="TEMPLATE\FEATURES\ProvPurPurOrderList\feature.xml" />
+    <Content Include="TEMPLATE\FEATURES\ProvPurPurOrderList\ListTemplates\ProvPurPurOrderList.xml" />
+    <Content Include="TEMPLATE\FEATURES\ProvPurPurOrderList\ProvPurPurOrderList\allitems.aspx" />
+    <Content Include="TEMPLATE\FEATURES\ProvPurPurOrderList\ProvPurPurOrderList\dispform.aspx" />
+    <Content Include="TEMPLATE\FEATURES\ProvPurPurOrderList\ProvPurPurOrderList\editform.aspx" />
+    <Content Include="TEMPLATE\FEATURES\ProvPurPurOrderList\ProvPurPurOrderList\newform.aspx" />
+    <Content Include="TEMPLATE\FEATURES\ProvPurPurOrderList\ProvPurPurOrderList\schema.xml" />
+    <Content Include="TEMPLATE\FEATURES\ProvPurTypes\product_type.xml" />
+    <Content Include="TEMPLATE\FEATURES\ProvPurTypes\feature.xml" />
+    <Content Include="TEMPLATE\FEATURES\ProvPurTypes\purorder_type.xml" />
+    <Content Include="TEMPLATE\FEATURES\ProvPurProductList\feature.xml" />
+    <Content Include="TEMPLATE\FEATURES\ProvPurProductList\ListTemplates\ProvPurProductList.xml" />
+    <Content Include="TEMPLATE\FEATURES\ProvPurProductList\ProvPurProductList\allitems.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="TEMPLATE\FEATURES\ProvPurProductList\ProvPurProductList\dispform.aspx" />
+    <Content Include="TEMPLATE\FEATURES\ProvPurProductList\ProvPurProductList\editform.aspx" />
+    <Content Include="TEMPLATE\FEATURES\ProvPurProductList\ProvPurProductList\newform.aspx" />
+    <Content Include="TEMPLATE\FEATURES\ProvPurProductList\ProvPurProductList\schema.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TEMPLATE\IMAGES\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <PropertyGroup>
+    <PostBuildEvent>cd $(ProjectDir)
+Package.cmd</PostBuildEvent>
+  </PropertyGroup>
+</Project>

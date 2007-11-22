@@ -1,0 +1,23 @@
+﻿<Feature 
+  Title="ProvPurProductList"
+  Id="463283B8-161F-4f9e-9B09-E4C1DA7265FE"
+  Description=""
+  Version="1.0.0.0"
+  Scope="Site"
+  Hidden="FALSE"
+  DefaultResourceFile="core"  
+  xmlns="http://schemas.microsoft.com/sharepoint/" >
+
+  <ActivationDependencies>
+    <ActivationDependency FeatureId="FBA83C9F-F63F-41eb-8C7E-EA39D9EDFC0A" /> <!--ProvPurTypes-->
+  </ActivationDependencies>
+  
+  <ElementManifests>
+    <ElementManifest Location="ListTemplates\ProvPurProductList.xml" />
+    <ElementFile Location="ProvPurProductList\schema.xml" />
+    <ElementFile Location="ProvPurProductList\allitems.aspx" />
+    <ElementFile Location="ProvPurProductList\dispform.aspx" />
+    <ElementFile Location="ProvPurProductList\editform.aspx" />
+    <ElementFile Location="ProvPurProductList\newform.aspx" />
+  </ElementManifests>
+</Feature>

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  
+  <Field
+    ID="{E087EE90-5EE1-4f5d-8C28-0819079B548E}"
+    Type="Text"
+    Name="ProductNickname"
+    DisplayName="Nickname"
+    StaticName="ProductNickname"
+    Hidden="FALSE"
+    Required="FALSE"
+    Sealed="FALSE">
+  </Field>
+
+  <Field
+    ID="{7F3E9395-2470-4ae9-9A44-3AD8BE44355D}"
+    Type="DateTime" Format="DateOnly"
+    Name="PurOrder_Date"
+    DisplayName="$Resources:ProvPur,PurOrder_Date;"
+    StaticName="PurOrder_Date"
+    Hidden="FALSE"
+    Required="TRUE"
+    Sealed="TRUE"
+    Group="$Resources:ProvPur,ProvPur_Columns;">
+  </Field>
+  
+  <Field
+    ID="{4C5F63AB-BDE4-4d91-9876-D3B263C86EBF}"
+    Type="Text"
+    Name="PurOrder_Text"
+    DisplayName="$Resources:ProvPur,PurOrder_Text;"
+    StaticName="PurOrder_Text"
+    Hidden="FALSE"
+    Required="TRUE"
+    Sealed="TRUE"
+    Group="$Resources:ProvPur,ProvPur_Columns;">
+  </Field>
+  
+  <Field
+    ID="{8AB0CC0F-2A2A-4585-9056-041D8B22E3EC}"
+    Type="Number" Decimals="2" Min="0" Max="24"
+    Name="PurOrder_Time"
+    DisplayName="$Resources:ProvPur,PurOrder_Time;"
+    StaticName="PurOrder_Time"
+    Hidden="FALSE"
+    Required="TRUE"
+    Sealed="TRUE"
+    Group="$Resources:ProvPur,ProvPur_Columns;">
+  </Field>
+  
+</Elements>
