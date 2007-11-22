@@ -7,8 +7,8 @@
     <ProjectGuid>{1766A38B-D036-4043-BC35-ED9FC4FCDB44}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PvsPur</RootNamespace>
-    <AssemblyName>PvsPur</AssemblyName>
+    <RootNamespace>ProvPur</RootNamespace>
+    <AssemblyName>ProvPur</AssemblyName>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>Properties\Temporary.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>

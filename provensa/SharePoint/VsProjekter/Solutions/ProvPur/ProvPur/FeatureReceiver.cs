@@ -1,7 +1,7 @@
 using System;
 using Microsoft.SharePoint;
 
-namespace PvsPur
+namespace ProvPur
 {
     public class FeatureReceiver : SPFeatureReceiver
     {

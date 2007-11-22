@@ -30,6 +30,6 @@ TEMPLATE\FEATURES\ProvPurPurOrderList\ProvPurPurOrderList\schema.xml	ProvPurPurO
 ;*** ProvPurTypes
 TEMPLATE\FEATURES\ProvPurTypes\feature.xml	ProvPurTypes\feature.xml
 TEMPLATE\FEATURES\ProvPurTypes\product_type.xml	ProvPurTypes\product_type.xml
-TEMPLATE\FEATURES\ProvPurTypes\project_time_type.xml	ProvPurTypes\project_time_type.xml
+TEMPLATE\FEATURES\ProvPurTypes\purorder_type.xml	ProvPurTypes\purorder_type.xml
 bin\Debug\ProvPur.dll	ProvPur.dll
 ;*** <the end>

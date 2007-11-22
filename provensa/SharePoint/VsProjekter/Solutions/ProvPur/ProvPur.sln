@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProvPur", "PvsPur\ProvPur.csproj", "{1766A38B-D036-4043-BC35-ED9FC4FCDB44}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProvPur", "ProvPur\ProvPur.csproj", "{1766A38B-D036-4043-BC35-ED9FC4FCDB44}"
 	ProjectSection(WebsiteProperties) = preProject
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.Debug = "False"
