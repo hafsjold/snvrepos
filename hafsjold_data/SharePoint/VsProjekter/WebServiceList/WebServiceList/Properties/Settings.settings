@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WebServiceList.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="WebServiceList_Webs_Webs" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://hd19:45226/_vti_bin/Webs.asmx</Value>
+    </Setting>
+    <Setting Name="WebServiceList_Lists_Lists" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://hd19/_vti_bin/Lists.asmx</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

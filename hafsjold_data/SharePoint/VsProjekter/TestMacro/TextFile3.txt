@@ -1,0 +1,76 @@
+Option Explicit
+
+Const olFolderCalendar = 9
+
+Const ROLE_OWNER = &H5E3 
+Const ROLE_PUBLISH_EDITOR = &H4E3 
+Const ROLE_EDITOR = &H463 
+Const ROLE_PUBLISH_AUTHOR = &H49B 
+Const ROLE_AUTHOR = &H41B 
+Const ROLE_NONEDITING_AUTHOR = &H413 
+Const ROLE_REVIEWER = &H401 
+Const ROLE_CONTRIBUTOR = &H402 
+Const ROLE_NONE = &H400 
+
+Dim intRow, objExcel, objSheet, strPathExcel
+Dim strHomeFolder, strHome, strUser, strName, strEmail
+Dim objFSO, objShell, intRunError 
+
+' Note you will have to amend the following variables
+strHome = "\\revi04\data\home\"
+strPathExcel = "C:\Documents and Settings\Administrator.BUUSJENSEN\My Documents\AdminScripts\newUsers.xls"
+intRow = 3 ' Row 1 contains headings 
+
+' Open the Excel spreadsheet
+Set objFSO = CreateObject("Scripting.FileSystemObject")
+Set objExcel = CreateObject("Excel.Application")
+Set objSheet = objExcel.Workbooks.Open(strPathExcel) 
+
+' Create a shell for cmd and CACLS
+Set objShell = CreateObject("Wscript.Shell") 
+
+' Here is the loop that cycles through the cells
+intRow = 3 ' Row 1 contains headings 
+Do Until (objExcel.Cells(intRow,1).Value) = ""
+  strUser = objExcel.Cells(intRow, 1).Value
+  strName = objExcel.Cells(intRow, 2).Value
+  strEmail = objExcel.Cells(intRow, 3).Value
+  call ShareCalender ' I decided to use a subroutine
+  intRow = intRow + 1
+Loop
+objExcel.Quit ' Clears up Excel 
+
+
+Sub ShareCalender()
+  Dim Session, Folder, AddressEntry, ACE, intxRow, strxUser, strxName, strxEmail
+
+  set Session = CreateObject("Redemption.RDOSession")
+  Session.LogonExchangeMailbox strEmail, "post02.buusjensen.dk"
+  set Folder = Session.GetDefaultFolder(olFolderCalendar)
+
+  Wscript.Echo strName & " - " & Folder.Name
+
+   'Open the Excel spreadsheet
+  intxRow = 3 ' Row 1 contains headings 
+  Do Until (objExcel.Cells(intxRow,1).Value) = ""
+    strxUser = objExcel.Cells(intxRow, 1).Value
+    strxName = objExcel.Cells(intxRow, 2).Value
+    strxEmail = objExcel.Cells(intxRow, 3).Value
+    If strxUser = strUser Then
+      'Wscript.Echo "SELF " & strxUser
+    Else
+      'make sure we get back an Exchange user
+      set AddressEntry = Session.AddressBook.GAL.ResolveName(strxName)
+      set ACE = Folder.ACL.Add(AddressEntry)
+      ACE.Rights = ROLE_REVIEWER
+      Wscript.Echo strxUser & " - " & AddressEntry.Name
+    End If
+    intxRow = intxRow + 1
+  Loop
+
+End Sub
+objExcel.Quit 
+
+WScript.Quit 
+
+' End of Cacls example VBScript

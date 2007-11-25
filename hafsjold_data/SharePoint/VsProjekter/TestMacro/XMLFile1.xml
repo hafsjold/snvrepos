@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+  <Field
+      Name="TestField"
+      DisplayName="$Resources:provensa-core,TestField;"
+      ID="{47dbda6f-9891-482f-9851-73786ea2ea51}"
+      Type="Note" RichText="TRUE" AppendOnly="TRUE" Sortable="FALSE"
+      Group="$Resources:provensa-core,Provensa_Columns;"
+      SourceID="http://schemas.microsoft.com/sharepoint/v3"
+      >
+  </Field>
+
