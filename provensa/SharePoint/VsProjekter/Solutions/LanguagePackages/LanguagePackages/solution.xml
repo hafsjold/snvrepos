@@ -1,5 +1,10 @@
 ﻿<solution  id="dd3e0193-d159-47a5-b62c-5ceec421f1ed" name="LanguagePackages" >
   <features>
+    <feature  id="92a84e48-2850-456b-86ad-e139f13e6e41" name="Content_Type1" title="Content_Type1" description="" version="1.0.0.0" scope="Site" hidden="False" defaultresourcefile="core" >
+    </feature>
+    <feature  id="cb9b2f08-fc15-4a62-a15d-1331fc951751" name="Content_Type1ItemEventReceiver" title="Content_Type1ItemEventReceiver" description="" version="1.0.0.0" scope="Web" hidden="False" defaultresourcefile="core" >
+      <elementmanifest id="cb9b2f08-fc15-4a62-a15d-1331fc951751" itemaddedenabled="False" itemaddingenabled="False" itemattachmentaddedenabled="False" itemattachmentaddingenabled="False" itemattachmentdeletedenabled="False" itemattachmentdeletingenabled="False" itemcheckedinenabled="False" itemcheckedoutenabled="False" itemcheckinginenabled="False" itemcheckingoutenabled="False" itemdeletedenabled="False" itemdeletingenabled="False" itemfileconvertedenabled="False" itemfilemovedenabled="False" itemfilemovingenabled="False" itemuncheckedoutenabled="False" itemuncheckingoutenabled="False" itemupdatedenabled="False" itemupdatingenabled="False" />
+    </feature>
   </features>
   <templates>
   </templates>
