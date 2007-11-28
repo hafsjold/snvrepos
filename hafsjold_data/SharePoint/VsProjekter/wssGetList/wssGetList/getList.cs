@@ -23,7 +23,8 @@ namespace wssGetList
             ls.Credentials = new System.Net.NetworkCredential(login, password, domain);
         }
 
-        public void test(string ListTitle){
+        public DataSet getListData(string ListTitle)
+        {
             XmlNode lists = ls.GetListCollection();
             DataSet dsLists = new DataSet();
             dsLists.ReadXml(new System.IO.StringReader("<?xml version='1.0' ?>" + lists.OuterXml));
@@ -53,7 +54,11 @@ namespace wssGetList
             DataTable rows = dsItems.Tables["row"];
             DataRow row = rows.Rows[1];
             object RowTitle = row["ows_Title"];
-            
+
+            return dsItems;
+        }
+        
+        public void test() { 
             System.Xml.XmlDocument doc2 = new System.Xml.XmlDocument();
             string xmlString = "<Batch OnError='Continue' ListVersion='1'>";
             xmlString += "<Method ID='1' Cmd='Update'><Field Name='ID'>1</Field><Field Name='Title'>Mogens Hafsjold</Field></Method>";
@@ -61,63 +66,7 @@ namespace wssGetList
             xmlString += "</Batch>";
             doc2.LoadXml(xmlString);
             System.Xml.XmlNode myitems = doc2.SelectSingleNode("//Batch");
-
             System.Xml.XmlNode myresult = ls.UpdateListItems("EE24CD1A-B465-4CA7-8F79-96F0BAB67247", myitems);
-
-            /*
-  Name="{EE24CD1A-B465-4CA7-8F79-96F0BAB67247}"
-  DocTemplateUrl=""
-  DefaultViewUrl="/Lists/TestListe/AllItems.aspx"
-  MobileDefaultViewUrl=""
-  ID="{EE24CD1A-B465-4CA7-8F79-96F0BAB67247}"
-  Title="TestListe"
-  Description=""
-  ImageUrl="/_layouts/images/itgen.gif"
-  BaseType="0"
-  FeatureId="00bfea71-de22-43b2-a848-c05709900100"
-  ServerTemplate="100"
-  Created="20071125 01:18:24"
-  Modified="20071125 02:42:00"
-  LastDeleted="20071125 01:18:24"
-  Version="1"
-  Direction="none"
-  ThumbnailSize=""
-  WebImageWidth=""
-  WebImageHeight=""
-  Flags="545263616"
-  ItemCount="3"
-  AnonymousPermMask="0"
-  RootFolder=""
-  ReadSecurity="1"
-  WriteSecurity="1"
-  Author="1"
-  EventSinkAssembly=""
-  EventSinkClass=""
-  EventSinkData=""
-  EmailInsertsFolder=""
-  EmailAlias=""
-  WebFullUrl="/"
-  WebId="6dc093fc-61fd-4253-a02c-4e3ac727135d"
-  SendToLocation=""
-  ScopeId="4b85c08e-eafc-4a36-96a2-d6772463ede0"
-  MajorVersionLimit="0"
-  MajorWithMinorVersionsLimit="0"
-  WorkFlowId=""
-  HasUniqueScopes="False"
-  AllowDeletion="True"
-  AllowMultiResponses="False"
-  EnableAttachments="True"
-  EnableModeration="False"
-  EnableVersioning="False"
-  Hidden="False"
-  MultipleDataList="False"
-  Ordered="False"
-  ShowUser="True"
-  EnableMinorVersion="False"
-  RequireCheckout="False"
-*/
         }
-
-
     }
 }
