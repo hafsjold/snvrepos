@@ -41,7 +41,8 @@ namespace wssGetList
             }
 
             System.Xml.XmlDocument doc = new System.Xml.XmlDocument();
-            doc.LoadXml("<Document><Query><Where><Lt><FieldRef Name='ID' /><Value Type='Counter'>3</Value></Lt></Where></Query><ViewFields><FieldRef Name='ID' /><FieldRef Name='Title' /></ViewFields><QueryOptions /></Document>");
+            //doc.LoadXml("<Document><Query><Where><Lt><FieldRef Name='ID' /><Value Type='Counter'>3</Value></Lt></Where></Query><ViewFields><FieldRef Name='ID' /><FieldRef Name='Title' /></ViewFields><QueryOptions /></Document>");
+            doc.LoadXml("<Document><Query /><ViewFields /><QueryOptions /></Document>");
             System.Xml.XmlNode listQuery = doc.SelectSingleNode("//Query");
             System.Xml.XmlNode listViewFields = doc.SelectSingleNode("//ViewFields");
             System.Xml.XmlNode listQueryOptions = doc.SelectSingleNode("//QueryOptions");

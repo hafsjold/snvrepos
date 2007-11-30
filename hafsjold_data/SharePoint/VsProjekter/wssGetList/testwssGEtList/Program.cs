@@ -11,8 +11,8 @@ namespace testwssGEtList
     {
         static void Main(string[] args)
         {
-            wssGetList.getList myList = new wssGetList.getList("http://localhost", "administrator", "m733", "hd19");
-            DataSet dsItems = myList.getListData("TestListe");
+            wssGetList.getList myList = new wssGetList.getList("http://hd16.hafsjold.dk", "administrator", "m733", "hd16");
+            DataSet dsItems = myList.getListData("ProPurList");
         }
     }
 }
