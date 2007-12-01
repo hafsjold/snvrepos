@@ -46,6 +46,9 @@
     <Content Include="TextFile1.txt" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resource1.da-dk.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resource1.resx">
       <SubType>Designer</SubType>
       <Generator>ResXFileCodeGenerator</Generator>
