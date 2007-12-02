@@ -42,6 +42,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="fields.xml" />
     <Content Include="ModleFile.txt" />
     <Content Include="TextFile1.txt" />
   </ItemGroup>
