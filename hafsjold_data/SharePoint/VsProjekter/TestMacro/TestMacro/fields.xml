@@ -1,90 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <Field ID="{65AF5428-40CE-4BCD-9E10-FFCAE4DB43AC}" Type="Text" Name="pono" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{E397793F-4A86-44E8-BD45-FB32592A2931}" Type="Text" Name="purcom" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{819E5745-5AD9-4FA5-B627-6E9208AA8835}" Type="Text" Name="proorderdate" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{65AF5428-40CE-4BCD-9E10-FFCAE4DB43AC}" Type="Text" Name="pono" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{E397793F-4A86-44E8-BD45-FB32592A2931}" Type="Text" Name="purcom" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{819E5745-5AD9-4FA5-B627-6E9208AA8835}" Type="Text" Name="proorderdate" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{D8795AC1-83AB-4DD6-B166-074D1075DB50}" Type="Text" Name="proqty" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{B6802052-F67A-4266-8511-0631E61B2CB2}" Type="Text" Name="proedt" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{35573249-5626-4523-9D3E-800C5A3078B8}" Type="Text" Name="propotime" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{464247E4-A1E7-41EA-86F2-EE17CA0D7891}" Type="Text" Name="proactualdate" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{B68F435D-7B7A-41E6-A349-6AF9BDA238F0}" Type="Text" Name="procom" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{64821AD0-4138-4207-8AE1-C8581610BAB1}" Type="Text" Name="prototalprice" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{688A7109-1122-43E4-9505-3684CD1A23AF}" Type="Text" Name="clacomname" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{E51D48F3-9CF9-401A-BA1A-461228C28DCD}" Type="Text" Name="clafirstname" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{C5E2C6E4-21D4-4E67-AB76-E77672EC1160}" Type="Text" Name="clasurname" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{18964A6F-1234-460A-966F-D26D4B8D5C2D}" Type="Text" Name="claaddress" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{CAA14690-D7FB-43D1-9DB9-060BFF70AB69}" Type="Text" Name="clapostalcode" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{F9084022-3BFD-4B29-BF5D-DF87E8D49A52}" Type="Text" Name="clapostaldis" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{5BBD797E-28E6-4BB2-9C21-96F19F81A223}" Type="Text" Name="clacity" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{52610151-0DA3-483C-975E-E1568E9646E8}" Type="Text" Name="clatelno" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{D734989A-8BAC-4019-92AD-F212B5E14A3E}" Type="Text" Name="cladirecttno" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{B29D9632-9376-4FE5-811A-E00A299C7065}" Type="Text" Name="clamobilno" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{4CD5FBA9-F886-4B67-B11A-C5BDB7831636}" Type="Text" Name="clamail" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{E8105AF7-323F-4CD4-ACD3-3E93667183BE}" Type="Text" Name="supcomname" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{1D59E2E1-4FEF-4122-B54D-C74620ABD646}" Type="Text" Name="supfirstname" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{3DC9AAD6-AD08-4EA0-BB28-5395D0FF307E}" Type="Text" Name="supsurname" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{5A0A960B-78CD-4553-837B-A79A5D2C6242}" Type="Text" Name="supaddress" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{FBF7CBE6-77A3-40EA-8BE0-E7B225C95C8D}" Type="Text" Name="suppostalcode" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{91798B67-3E7A-49B4-9190-D1CE93801E9C}" Type="Text" Name="suppostaldis" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{B559E72D-C8C2-41D1-9FEC-FB210801A7EC}" Type="Text" Name="supcity" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{58B7FAE9-0615-43F3-B139-E98FF21C3ED0}" Type="Text" Name="suptelno" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{276BF4A9-E5A0-4A19-A679-502E1EC0F068}" Type="Text" Name="selname" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{FA2808B4-6227-455B-A4CA-D615C02896CB}" Type="Text" Name="seldirecttno" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{D7A7A976-71FC-46F3-A52B-F0264D349429}" Type="Text" Name="selmobilno" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{0145FABE-85B4-4632-824F-7A625202393B}" Type="Text" Name="selmail" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{3127A395-85DE-415B-BED8-710A25325C76}" Type="Text" Name="buycomname" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{B4D6EE6B-62DB-49A9-8D47-C455450761E6}" Type="Text" Name="buyfirstname" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{E77A6733-6DB4-4AB9-BD54-AFE5CA8B0ED4}" Type="Text" Name="buysurname" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{B97BBD79-F85A-4FAC-A7A4-2B7B67661EE0}" Type="Text" Name="buyaddress" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{7A7F9EAA-5D8C-42F5-8DD1-A88C8E227962}" Type="Text" Name="buypostalcode" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{9DEC1C8A-D333-4B91-B5D6-A595246A97DD}" Type="Text" Name="buypostaldis" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{96F8A0BA-E10E-4594-93E3-CE1D6747C928}" Type="Text" Name="buycity" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{6E276353-B431-4D1B-A895-BCF613F13385}" Type="Text" Name="buytelno" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{95090A5E-18B2-435D-97E2-D5F297296386}" Type="Text" Name="buydirecttno" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{582C4AA3-708E-47AF-AAA0-CD451DCF8529}" Type="Text" Name="buymobilno" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{0FC3D6A3-7CD1-4180-A2D6-C0F495C353E3}" Type="Text" Name="buymail" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{84A23706-009F-4742-8BAB-DF8DEE938CD3}" Type="Text" Name="prodname" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{F6F7A34E-CF86-455B-B068-C8C16FD2F51B}" Type="Text" Name="proditemno" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{0117021D-188D-421A-854A-1789D9E8ED23}" Type="Text" Name="prodalias" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{2ACE45DC-F2EC-4A0D-909F-8109C0BFD2D3}" Type="Text" Name="proddesc" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{9F4BAE9A-F50F-4029-BB87-488813DDBB38}" Type="Text" Name="produnitdesc" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{54369F04-3996-46E3-B8B8-55AACA96C229}" Type="Text" Name="prodsupname" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{1BEB63AA-E218-4575-AB48-932BCD7B517F}" Type="Text" Name="prodgrossprice" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{E972D51E-7561-431D-AFCD-D8E9D118F8D1}" Type="Text" Name="proddiscountpct" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{658D6540-1DA7-49E2-9513-E5CFDB4E07EB}" Type="Text" Name="prodnetprice" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{1A092111-8512-4CFE-BEAD-214E5A9C64AE}" Type="Text" Name="prodpurpractice" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{3CC492E0-3BFA-46F3-B92E-E864721D9CD7}" Type="Text" Name="proddeltime" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{E46FCD7F-0D2F-4261-8068-582C5EED599D}" Type="Text" Name="prodoptfield" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{C7394074-2DE0-4BD3-9427-DB6A6E551C3F}" Type="Text" Name="delcomname" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{5DDB5ED1-0674-45E2-A611-A03D770EAC84}" Type="Text" Name="delfirstname" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{E7730EDD-23B0-4BC8-A2C7-56CFCF532A22}" Type="Text" Name="delsurname" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{8C280F62-EAD3-4ECF-924A-1BC6A72D3D4C}" Type="Text" Name="deladdress" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{DB328028-FD48-4B91-9FE1-0E13C523ADDC}" Type="Text" Name="delpostalcode" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{349AEB73-EA5D-487D-9174-333E517907CE}" Type="Text" Name="delpostaldis" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{DC62CB10-4D7E-4B1C-94A8-AD7F083EE31C}" Type="Text" Name="delcity" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{C3319F8A-9B84-4A00-ADDE-F26AEBF5F922}" Type="Text" Name="deltelno" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{0CF9DA69-84CC-4286-B67C-497BF965209B}" Type="Text" Name="delmobilno" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{233A61D7-BFF4-478E-B9D1-525C1BA27835}" Type="Text" Name="docname" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{E4AB9099-A3B8-4F38-BABC-91CA2A1CC20E}" Type="Text" Name="docregard" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{F162F836-0270-4CF6-AF05-75BFF632515D}" Type="Text" Name="docattention" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{387C4055-0683-40CE-90F8-A3756C117468}" Type="Text" Name="docwriter" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{932756E0-5AE2-4389-816D-0B3E1D3B9F78}" Type="Text" Name="docsetupdate" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{3D39474A-CAAB-4EF8-B73A-1C1D4EDEB56D}" Type="Text" Name="dnotefilename" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{8546DE16-A7AC-4CE2-A6B1-771AFC1C7B9F}" Type="Text" Name="dnoteregard" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{36CB3948-E042-40BA-8DDD-0C49475A37F4}" Type="Text" Name="dnoteattention" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{2DBC7B7A-30C4-405B-951C-997BAF25F1A2}" Type="Text" Name="dnotewriter" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{377ED501-23C2-4FAA-9A5F-AF94EF5AC935}" Type="Text" Name="dnotesetupdate" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{727B6E40-1850-48EC-83CE-F4AFD6103D2E}" Type="Text" Name="invfilename" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{D1A7A956-7BAE-4005-953A-939CF0D4E111}" Type="Text" Name="invregard" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{BE433D67-2001-478D-9FAB-5B014406C049}" Type="Text" Name="invattention" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{38F08FB8-11DF-4533-98C0-786A933C94EB}" Type="Text" Name="invwriter" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{F9CCA430-3507-4811-A7AD-42583C9CE40D}" Type="Text" Name="invsetupdate" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{F4B34B82-A6BE-4706-8FE8-A224313661AC}" Type="Text" Name="mailpriority" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{7D5F8685-67AF-4E2D-B3D8-A943A27B2E40}" Type="Text" Name="mailattach" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{AD09A349-8F04-413A-B677-E841E30F9B34}" Type="Text" Name="mailfrom" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{A4AEAC83-95EF-43BD-AC2A-E4E54EAEF843}" Type="Text" Name="mailsubject" xmlns="http://schemas.microsoft.com/sharepoint/" />
-  <Field ID="{9A4B1928-F225-4FD9-8895-A125056E5EC5}" Type="Text" Name="mailreceivedate" xmlns="http://schemas.microsoft.com/sharepoint/" />
-</Elements>
+<root>
+  <xs:schema targetNamespace="http://schemas.microsoft.com/sharepoint/" elementFormDefault="qualified" xmlns="http://schemas.microsoft.com/sharepoint/" xmlns:mstns="http://schemas.microsoft.com/sharepoint/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" attributeFormDefault="unqualified">
+    <xs:include schemaLocation="C:\Program Files\Common Files\Microsoft Shared\web server extensions\12\TEMPLATE\XML\wss.xsd" />
+  </xs:schema>
+  <Elements>
+    <Field ID="{9A4B1928-F225-4FD9-8895-A125056E5EC5}" Name="mailreceivedate" DisplayName="$Resources:Resource1,mailreceivedate;" Type="DateTime" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{65AF5428-40CE-4BCD-9E10-FFCAE4DB43AC}" Name="pono" DisplayName="$Resources:Resource1,pono;" Type="Number" Decimals="0" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{E397793F-4A86-44E8-BD45-FB32592A2931}" Name="purcom" DisplayName="$Resources:Resource1,purcom;" Type="Note" NumLines="3" RichText="TRUE" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{819E5745-5AD9-4FA5-B627-6E9208AA8835}" Name="proorderdate" DisplayName="$Resources:Resource1,proorderdate;" Type="DateTime" Format="DateOnly" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{D8795AC1-83AB-4DD6-B166-074D1075DB50}" Name="proqty" DisplayName="$Resources:Resource1,proqty;" Type="Number" Decimals="0" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{B6802052-F67A-4266-8511-0631E61B2CB2}" Name="proedt" DisplayName="$Resources:Resource1,proedt;" Type="DateTime" Format="DateOnly" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{35573249-5626-4523-9D3E-800C5A3078B8}" Name="propotime" DisplayName="$Resources:Resource1,propotime;" Type="DateTime" Format="DateOnly" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{464247E4-A1E7-41EA-86F2-EE17CA0D7891}" Name="proactualdate" DisplayName="$Resources:Resource1,proactualdate;" Type="DateTime" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{B68F435D-7B7A-41E6-A349-6AF9BDA238F0}" Name="procom" DisplayName="$Resources:Resource1,procom;" Type="Note" NumLines="3" RichText="TRUE" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{64821AD0-4138-4207-8AE1-C8581610BAB1}" Name="prototalprice" DisplayName="$Resources:Resource1,prototalprice;" Type="Currency" Decimals="2" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{688A7109-1122-43E4-9505-3684CD1A23AF}" Name="clacomname" DisplayName="$Resources:Resource1,clacomname;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{E51D48F3-9CF9-401A-BA1A-461228C28DCD}" Name="clafirstname" DisplayName="$Resources:Resource1,clafirstname;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{C5E2C6E4-21D4-4E67-AB76-E77672EC1160}" Name="clasurname" DisplayName="$Resources:Resource1,clasurname;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{18964A6F-1234-460A-966F-D26D4B8D5C2D}" Name="claaddress" DisplayName="$Resources:Resource1,claaddress;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{CAA14690-D7FB-43D1-9DB9-060BFF70AB69}" Name="clapostalcode" DisplayName="$Resources:Resource1,clapostalcode;" Type="Number" Decimals="0" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{F9084022-3BFD-4B29-BF5D-DF87E8D49A52}" Name="clapostaldis" DisplayName="$Resources:Resource1,clapostaldis;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{5BBD797E-28E6-4BB2-9C21-96F19F81A223}" Name="clacity" DisplayName="$Resources:Resource1,clacity;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{52610151-0DA3-483C-975E-E1568E9646E8}" Name="clatelno" DisplayName="$Resources:Resource1,clatelno;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{D734989A-8BAC-4019-92AD-F212B5E14A3E}" Name="cladirecttno" DisplayName="$Resources:Resource1,cladirecttno;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{B29D9632-9376-4FE5-811A-E00A299C7065}" Name="clamobilno" DisplayName="$Resources:Resource1,clamobilno;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{4CD5FBA9-F886-4B67-B11A-C5BDB7831636}" Name="clamail" DisplayName="$Resources:Resource1,clamail;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{E8105AF7-323F-4CD4-ACD3-3E93667183BE}" Name="supcomname" DisplayName="$Resources:Resource1,supcomname;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{1D59E2E1-4FEF-4122-B54D-C74620ABD646}" Name="supfirstname" DisplayName="$Resources:Resource1,supfirstname;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{3DC9AAD6-AD08-4EA0-BB28-5395D0FF307E}" Name="supsurname" DisplayName="$Resources:Resource1,supsurname;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{5A0A960B-78CD-4553-837B-A79A5D2C6242}" Name="supaddress" DisplayName="$Resources:Resource1,supaddress;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{FBF7CBE6-77A3-40EA-8BE0-E7B225C95C8D}" Name="suppostalcode" DisplayName="$Resources:Resource1,suppostalcode;" Type="Number" Decimals="0" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{91798B67-3E7A-49B4-9190-D1CE93801E9C}" Name="suppostaldis" DisplayName="$Resources:Resource1,suppostaldis;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{B559E72D-C8C2-41D1-9FEC-FB210801A7EC}" Name="supcity" DisplayName="$Resources:Resource1,supcity;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{58B7FAE9-0615-43F3-B139-E98FF21C3ED0}" Name="suptelno" DisplayName="$Resources:Resource1,suptelno;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{276BF4A9-E5A0-4A19-A679-502E1EC0F068}" Name="selname" DisplayName="$Resources:Resource1,selname;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{FA2808B4-6227-455B-A4CA-D615C02896CB}" Name="seldirecttno" DisplayName="$Resources:Resource1,seldirecttno;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{D7A7A976-71FC-46F3-A52B-F0264D349429}" Name="selmobilno" DisplayName="$Resources:Resource1,selmobilno;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{0145FABE-85B4-4632-824F-7A625202393B}" Name="selmail" DisplayName="$Resources:Resource1,selmail;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{3127A395-85DE-415B-BED8-710A25325C76}" Name="buycomname" DisplayName="$Resources:Resource1,buycomname;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{B4D6EE6B-62DB-49A9-8D47-C455450761E6}" Name="buyfirstname" DisplayName="$Resources:Resource1,buyfirstname;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{E77A6733-6DB4-4AB9-BD54-AFE5CA8B0ED4}" Name="buysurname" DisplayName="$Resources:Resource1,buysurname;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{B97BBD79-F85A-4FAC-A7A4-2B7B67661EE0}" Name="buyaddress" DisplayName="$Resources:Resource1,buyaddress;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{7A7F9EAA-5D8C-42F5-8DD1-A88C8E227962}" Name="buypostalcode" DisplayName="$Resources:Resource1,buypostalcode;" Type="Number" Decimals="0" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{9DEC1C8A-D333-4B91-B5D6-A595246A97DD}" Name="buypostaldis" DisplayName="$Resources:Resource1,buypostaldis;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{96F8A0BA-E10E-4594-93E3-CE1D6747C928}" Name="buycity" DisplayName="$Resources:Resource1,buycity;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{6E276353-B431-4D1B-A895-BCF613F13385}" Name="buytelno" DisplayName="$Resources:Resource1,buytelno;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{95090A5E-18B2-435D-97E2-D5F297296386}" Name="buydirecttno" DisplayName="$Resources:Resource1,buydirecttno;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{582C4AA3-708E-47AF-AAA0-CD451DCF8529}" Name="buymobilno" DisplayName="$Resources:Resource1,buymobilno;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{0FC3D6A3-7CD1-4180-A2D6-C0F495C353E3}" Name="buymail" DisplayName="$Resources:Resource1,buymail;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{84A23706-009F-4742-8BAB-DF8DEE938CD3}" Name="prodname" DisplayName="$Resources:Resource1,prodname;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{F6F7A34E-CF86-455B-B068-C8C16FD2F51B}" Name="proditemno" DisplayName="$Resources:Resource1,proditemno;" Type="Number" Decimals="0" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{0117021D-188D-421A-854A-1789D9E8ED23}" Name="prodalias" DisplayName="$Resources:Resource1,prodalias;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{2ACE45DC-F2EC-4A0D-909F-8109C0BFD2D3}" Name="proddesc" DisplayName="$Resources:Resource1,proddesc;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{9F4BAE9A-F50F-4029-BB87-488813DDBB38}" Name="produnitdesc" DisplayName="$Resources:Resource1,produnitdesc;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{54369F04-3996-46E3-B8B8-55AACA96C229}" Name="prodsupname" DisplayName="$Resources:Resource1,prodsupname;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{1BEB63AA-E218-4575-AB48-932BCD7B517F}" Name="prodgrossprice" DisplayName="$Resources:Resource1,prodgrossprice;" Type="Currency" Decimals="2" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{E972D51E-7561-431D-AFCD-D8E9D118F8D1}" Name="proddiscountpct" DisplayName="$Resources:Resource1,proddiscountpct;" Type="Number" Percentage="TRUE" Min="0" Max="1" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{658D6540-1DA7-49E2-9513-E5CFDB4E07EB}" Name="prodnetprice" DisplayName="$Resources:Resource1,prodnetprice;" Type="Currency" Decimals="2" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{1A092111-8512-4CFE-BEAD-214E5A9C64AE}" Name="prodpurpractice" DisplayName="$Resources:Resource1,prodpurpractice;" Type="Note" NumLines="3" RichText="TRUE" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{3CC492E0-3BFA-46F3-B92E-E864721D9CD7}" Name="proddeltime" DisplayName="$Resources:Resource1,proddeltime;" Type="Number" Decimals="0" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{E46FCD7F-0D2F-4261-8068-582C5EED599D}" Name="prodoptfield" DisplayName="$Resources:Resource1,prodoptfield;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{C7394074-2DE0-4BD3-9427-DB6A6E551C3F}" Name="delcomname" DisplayName="$Resources:Resource1,delcomname;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{5DDB5ED1-0674-45E2-A611-A03D770EAC84}" Name="delfirstname" DisplayName="$Resources:Resource1,delfirstname;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{E7730EDD-23B0-4BC8-A2C7-56CFCF532A22}" Name="delsurname" DisplayName="$Resources:Resource1,delsurname;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{8C280F62-EAD3-4ECF-924A-1BC6A72D3D4C}" Name="deladdress" DisplayName="$Resources:Resource1,deladdress;" Type="Number" Decimals="0" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{DB328028-FD48-4B91-9FE1-0E13C523ADDC}" Name="delpostalcode" DisplayName="$Resources:Resource1,delpostalcode;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{349AEB73-EA5D-487D-9174-333E517907CE}" Name="delpostaldis" DisplayName="$Resources:Resource1,delpostaldis;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{DC62CB10-4D7E-4B1C-94A8-AD7F083EE31C}" Name="delcity" DisplayName="$Resources:Resource1,delcity;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{C3319F8A-9B84-4A00-ADDE-F26AEBF5F922}" Name="deltelno" DisplayName="$Resources:Resource1,deltelno;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{0CF9DA69-84CC-4286-B67C-497BF965209B}" Name="delmobilno" DisplayName="$Resources:Resource1,delmobilno;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{233A61D7-BFF4-478E-B9D1-525C1BA27835}" Name="docname" DisplayName="$Resources:Resource1,docname;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{E4AB9099-A3B8-4F38-BABC-91CA2A1CC20E}" Name="docregard" DisplayName="$Resources:Resource1,docregard;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{F162F836-0270-4CF6-AF05-75BFF632515D}" Name="docattention" DisplayName="$Resources:Resource1,docattention;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{387C4055-0683-40CE-90F8-A3756C117468}" Name="docwriter" DisplayName="$Resources:Resource1,docwriter;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{932756E0-5AE2-4389-816D-0B3E1D3B9F78}" Name="docsetupdate" DisplayName="$Resources:Resource1,docsetupdate;" Type="DateTime" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{3D39474A-CAAB-4EF8-B73A-1C1D4EDEB56D}" Name="dnotefilename" DisplayName="$Resources:Resource1,dnotefilename;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{8546DE16-A7AC-4CE2-A6B1-771AFC1C7B9F}" Name="dnoteregard" DisplayName="$Resources:Resource1,dnoteregard;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{36CB3948-E042-40BA-8DDD-0C49475A37F4}" Name="dnoteattention" DisplayName="$Resources:Resource1,dnoteattention;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{2DBC7B7A-30C4-405B-951C-997BAF25F1A2}" Name="dnotewriter" DisplayName="$Resources:Resource1,dnotewriter;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{377ED501-23C2-4FAA-9A5F-AF94EF5AC935}" Name="dnotesetupdate" DisplayName="$Resources:Resource1,dnotesetupdate;" Type="DateTime" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{727B6E40-1850-48EC-83CE-F4AFD6103D2E}" Name="invfilename" DisplayName="$Resources:Resource1,invfilename;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{D1A7A956-7BAE-4005-953A-939CF0D4E111}" Name="invregard" DisplayName="$Resources:Resource1,invregard;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{BE433D67-2001-478D-9FAB-5B014406C049}" Name="invattention" DisplayName="$Resources:Resource1,invattention;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{38F08FB8-11DF-4533-98C0-786A933C94EB}" Name="invwriter" DisplayName="$Resources:Resource1,invwriter;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{F9CCA430-3507-4811-A7AD-42583C9CE40D}" Name="invsetupdate" DisplayName="$Resources:Resource1,invsetupdate;" Type="DateTime" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{F4B34B82-A6BE-4706-8FE8-A224313661AC}" Name="mailpriority" DisplayName="$Resources:Resource1,mailpriority;" Type="Number" Decimals="0" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{7D5F8685-67AF-4E2D-B3D8-A943A27B2E40}" Name="mailattach" DisplayName="$Resources:Resource1,mailattach;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{AD09A349-8F04-413A-B677-E841E30F9B34}" Name="mailfrom" DisplayName="$Resources:Resource1,mailfrom;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+    <Field ID="{A4AEAC83-95EF-43BD-AC2A-E4E54EAEF843}" Name="mailsubject" DisplayName="$Resources:Resource1,mailsubject;" Type="Text" MaxLength="255" Group="$Resources:Resource1,FieldsGroupName;" xmlns="http://schemas.microsoft.com/sharepoint/" />
+  </Elements>
+</root>

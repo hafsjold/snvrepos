@@ -430,6 +430,15 @@ namespace TestMacro {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FieldsGroupName UK.
+        /// </summary>
+        internal static string FieldsGroupName {
+            get {
+                return ResourceManager.GetString("FieldsGroupName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Attention.
         /// </summary>
         internal static string invattention {
