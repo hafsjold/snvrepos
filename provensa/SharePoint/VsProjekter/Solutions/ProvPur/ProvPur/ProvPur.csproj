@@ -38,6 +38,11 @@
   <ItemGroup>
     <Compile Include="FeatureReceiver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\ProvPur.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProvPur.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="DeployRemove.cmd" />
@@ -70,6 +75,16 @@
     <Content Include="TEMPLATE\FEATURES\ProvPurProductList\ProvPurProductList\editform.aspx" />
     <Content Include="TEMPLATE\FEATURES\ProvPurProductList\ProvPurProductList\newform.aspx" />
     <Content Include="TEMPLATE\FEATURES\ProvPurProductList\ProvPurProductList\schema.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\ProvPur.da-dk.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\ProvPur.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProvPur.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="TEMPLATE\IMAGES\" />
