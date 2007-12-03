@@ -1,4 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?><root><!-- 
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
     Microsoft ResX Schema 
     
     Version 2.0
@@ -56,6 +58,150 @@
     value   : The object must be serialized into a byte array 
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
-    --><xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"><xsd:import namespace="http://www.w3.org/XML/1998/namespace" /><xsd:element name="root" msdata:IsDataSet="true"><xsd:complexType><xsd:choice maxOccurs="unbounded"><xsd:element name="metadata"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" /></xsd:sequence><xsd:attribute name="name" use="required" type="xsd:string" /><xsd:attribute name="type" type="xsd:string" /><xsd:attribute name="mimetype" type="xsd:string" /><xsd:attribute ref="xml:space" /></xsd:complexType></xsd:element><xsd:element name="assembly"><xsd:complexType><xsd:attribute name="alias" type="xsd:string" /><xsd:attribute name="name" type="xsd:string" /></xsd:complexType></xsd:element><xsd:element name="data"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" /><xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" /></xsd:sequence><xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" /><xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" /><xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" /><xsd:attribute ref="xml:space" /></xsd:complexType></xsd:element><xsd:element name="resheader"><xsd:complexType><xsd:sequence><xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" /></xsd:sequence><xsd:attribute name="name" type="xsd:string" use="required" /></xsd:complexType></xsd:element></xsd:choice></xsd:complexType></xsd:element></xsd:schema><resheader name="resmimetype"><value>text/microsoft-resx</value></resheader><resheader name="version"><value>2.0</value></resheader><resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader><resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader><data name="pono" xml:space="preserve"><value>Order number</value><comment>Sagsnummer</comment></data><data name="purcom" xml:space="preserve"><value>Comment</value><comment>Bemærkning vedr. ordre</comment></data><data name="proorderdate" xml:space="preserve"><value>Order date</value><comment>Bestillingsdato</comment></data><data name="proqty" xml:space="preserve"><value>Quantity</value><comment>Antal stk.</comment></data><data name="proedt" xml:space="preserve"><value>Expected delivery time</value><comment>Forventet leveringstid</comment></data><data name="propotime" xml:space="preserve"><value>Possible later delivery time</value><comment>Eventuelt senere leveringstid</comment></data><data name="proactualdate" xml:space="preserve"><value>Actual delivery date</value><comment>Faktisk leveringstidspunkt</comment></data><data name="procom" xml:space="preserve"><value>Comment</value><comment>Bemærkning</comment></data><data name="prototalprice" xml:space="preserve"><value>Total price</value><comment>Pris total for hele ordren</comment></data><data name="clacomname" xml:space="preserve"><value>Company name</value><comment>Firmanavn</comment></data><data name="clafirstname" xml:space="preserve"><value>First name</value><comment>Fornavn</comment></data><data name="clasurname" xml:space="preserve"><value>Surname</value><comment>Efternavn</comment></data><data name="claaddress" xml:space="preserve"><value>Address</value><comment>Adresse</comment></data><data name="clapostalcode" xml:space="preserve"><value>Postal code</value><comment>Postnr.</comment></data><data name="clapostaldis" xml:space="preserve"><value>Postal district</value><comment>Postdistrikt</comment></data><data name="clacity" xml:space="preserve"><value>City</value><comment>By</comment></data><data name="clatelno" xml:space="preserve"><value>Telephone number</value><comment>Telefonnr.</comment></data><data name="cladirecttno" xml:space="preserve"><value>Direct telephone number</value><comment>Direkte telefonnr. </comment></data><data name="clamobilno" xml:space="preserve"><value>Mobil number</value><comment>Mobilnr.</comment></data><data name="clamail" xml:space="preserve"><value>e-mail</value><comment>e-mail</comment></data><data name="supcomname" xml:space="preserve"><value>Company name</value><comment>Firmanavn</comment></data><data name="supfirstname" xml:space="preserve"><value>First name</value><comment>Fornavn</comment></data><data name="supsurname" xml:space="preserve"><value>Surname</value><comment>Efternavn</comment></data><data name="supaddress" xml:space="preserve"><value>Address</value><comment>Adresse</comment></data><data name="suppostalcode" xml:space="preserve"><value>Postal code</value><comment>Postnr.</comment></data><data name="suppostaldis" xml:space="preserve"><value>Postal district</value><comment>Postdistrikt</comment></data><data name="supcity" xml:space="preserve"><value>City</value><comment>By</comment></data><data name="suptelno" xml:space="preserve"><value>Telephone number</value><comment>Telefonnr.</comment></data><data name="selname" xml:space="preserve"><value>Name</value><comment>Navn</comment></data><data name="seldirecttno" xml:space="preserve"><value>Direct telephone number</value><comment>Direkte telefonnr</comment></data><data name="selmobilno" xml:space="preserve"><value>Mobil number</value><comment>Mobilnr.</comment></data><data name="selmail" xml:space="preserve"><value>e-mail</value><comment>e-mail</comment></data><data name="buycomname" xml:space="preserve"><value>Company name</value><comment>Firmanavn</comment></data><data name="buyfirstname" xml:space="preserve"><value>First name</value><comment>Fornavn</comment></data><data name="buysurname" xml:space="preserve"><value>Surname</value><comment>Efternavn</comment></data><data name="buyaddress" xml:space="preserve"><value>Address</value><comment>Adresse</comment></data><data name="buypostalcode" xml:space="preserve"><value>Postal code</value><comment>Postnr.</comment></data><data name="buypostaldis" xml:space="preserve"><value>Postal district</value><comment>Postdistrikt</comment></data><data name="buycity" xml:space="preserve"><value>City</value><comment>By</comment></data><data name="buytelno" xml:space="preserve"><value>Telephone number</value><comment>Telefonnr.</comment></data><data name="buydirecttno" xml:space="preserve"><value>Direct telephone number</value><comment>Direkte telefonnr. </comment></data><data name="buymobilno" xml:space="preserve"><value>Mobil number</value><comment>Mobilnr.</comment></data><data name="buymail" xml:space="preserve"><value>e-mail</value><comment>Mail-adresse</comment></data><data name="prodname" xml:space="preserve"><value>Product name</value><comment>Produktnavn</comment></data><data name="proditemno" xml:space="preserve"><value>Item number</value><comment>Varenummer</comment></data><data name="prodalias" xml:space="preserve"><value>Alias for product name</value><comment>Alias for produktnavn</comment></data><data name="proddesc" xml:space="preserve"><value>Product description</value><comment>Produktbeskrivelse</comment></data><data name="produnitdesc" xml:space="preserve"><value>Unit description</value><comment>Enhedsbetegnelse</comment></data><data name="prodsupname" xml:space="preserve"><value>Supplier name</value><comment>Leverandørnavn</comment></data><data name="prodgrossprice" xml:space="preserve"><value>Gross price</value><comment>Bruttopris</comment></data><data name="proddiscountpct" xml:space="preserve"><value>Discount percent</value><comment>Rabatpct.</comment></data><data name="prodnetprice" xml:space="preserve"><value>Net price</value><comment>Nettopris</comment></data><data name="prodpurpractice" xml:space="preserve"><value>Purchase practice</value><comment>Indkøbspraktik</comment></data><data name="proddeltime" xml:space="preserve"><value>Delivery time</value><comment>Leveringstid</comment></data><data name="prodoptfield" xml:space="preserve"><value>Optional field</value><comment>Valgfri felter vedrørende bestillingsformular</comment></data><data name="delcomname" xml:space="preserve"><value>Company name</value><comment>Firmanavn</comment></data><data name="delfirstname" xml:space="preserve"><value>Attention name</value><comment>Attention navn</comment></data><data name="delsurname" xml:space="preserve"><value>Address</value><comment>Adresse</comment></data><data name="deladdress" xml:space="preserve"><value>Postal code</value><comment>Postnr.</comment></data><data name="delpostalcode" xml:space="preserve"><value>Postal district</value><comment>Postdistrikt</comment></data><data name="delpostaldis" xml:space="preserve"><value>City</value><comment>By</comment></data><data name="delcity" xml:space="preserve"><value>Telephone number</value><comment>Telefonnr.</comment></data><data name="deltelno" xml:space="preserve"><value>Direct telephone number</value><comment>Direkte telefonnr.</comment></data><data name="delmobilno" xml:space="preserve"><value>Mobil number</value><comment>Mobilnr</comment></data><data name="docname" xml:space="preserve"><value>File name</value><comment>Filnavn</comment></data><data name="docregard" xml:space="preserve"><value>Regard</value><comment>Vedrørende</comment></data><data name="docattention" xml:space="preserve"><value>Attention</value><comment>Eventuelt hvem dokumentet er til</comment></data><data name="docwriter" xml:space="preserve"><value>Writer</value><comment>Oprettet af  </comment></data><data name="docsetupdate" xml:space="preserve"><value>Setup date</value><comment>Oprettet dato</comment></data><data name="dnotefilename" xml:space="preserve"><value>File name</value><comment>Filnavn</comment></data><data name="dnoteregard" xml:space="preserve"><value>Regard</value><comment>Vedrørende</comment></data><data name="dnoteattention" xml:space="preserve"><value>Attention</value><comment>Eventuelt hvem dokumentet er til</comment></data><data name="dnotewriter" xml:space="preserve"><value>Writer</value><comment>Oprettet af  </comment></data><data name="dnotesetupdate" xml:space="preserve"><value>Setup date</value><comment>Oprettet dato</comment></data><data name="invfilename" xml:space="preserve"><value>File name</value><comment>Filnavn</comment></data><data name="invregard" xml:space="preserve"><value>Regard</value><comment>Vedrørende</comment></data><data name="invattention" xml:space="preserve"><value>Attention</value><comment>Eventuelt hvem dokumentet er til</comment></data><data name="invwriter" xml:space="preserve"><value>Writer</value><comment>Oprettet af  </comment></data><data name="invsetupdate" xml:space="preserve"><value>Setup date</value><comment>Oprettet dato</comment></data><data name="mailpriority" xml:space="preserve"><value>Priority</value><comment>Prioritet</comment></data><data name="mailattach" xml:space="preserve"><value>Attach</value><comment>Vedhæftet filer</comment></data><data name="mailfrom" xml:space="preserve"><value>From</value><comment>Fra</comment></data><data name="mailsubject" xml:space="preserve"><value>Subject</value><comment>Emne</comment></data><data name="mailreceivedate" xml:space="preserve"><value>Receive date</value><comment>Modtaget dato</comment></data><data name="FieldsGroupName" xml:space="preserve">
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="pono" xml:space="preserve"><value>Order number</value><comment>Sagsnummer</comment></data>
+  <data name="purcom" xml:space="preserve"><value>Comment</value><comment>Bemærkning vedr. ordre</comment></data>
+  <data name="proorderdate" xml:space="preserve"><value>Order date</value><comment>Bestillingsdato</comment></data>
+  <data name="proqty" xml:space="preserve"><value>Quantity</value><comment>Antal stk.</comment></data>
+  <data name="proedt" xml:space="preserve"><value>Expected delivery time</value><comment>Forventet leveringstid</comment></data>
+  <data name="propotime" xml:space="preserve"><value>Possible later delivery time</value><comment>Eventuelt senere leveringstid</comment></data>
+  <data name="proactualdate" xml:space="preserve"><value>Actual delivery date</value><comment>Faktisk leveringstidspunkt</comment></data>
+  <data name="procom" xml:space="preserve"><value>Comment</value><comment>Bemærkning</comment></data>
+  <data name="prototalprice" xml:space="preserve"><value>Total price</value><comment>Pris total for hele ordren</comment></data>
+  <data name="clacomname" xml:space="preserve"><value>Company name</value><comment>Firmanavn</comment></data>
+  <data name="clafirstname" xml:space="preserve"><value>First name</value><comment>Fornavn</comment></data>
+  <data name="clasurname" xml:space="preserve"><value>Surname</value><comment>Efternavn</comment></data>
+  <data name="claaddress" xml:space="preserve"><value>Address</value><comment>Adresse</comment></data>
+  <data name="clapostalcode" xml:space="preserve"><value>Postal code</value><comment>Postnr.</comment></data>
+  <data name="clapostaldis" xml:space="preserve"><value>Postal district</value><comment>Postdistrikt</comment></data>
+  <data name="clacity" xml:space="preserve"><value>City</value><comment>By</comment></data>
+  <data name="clatelno" xml:space="preserve"><value>Telephone number</value><comment>Telefonnr.</comment></data>
+  <data name="cladirecttno" xml:space="preserve"><value>Direct telephone number</value><comment>Direkte telefonnr. </comment></data>
+  <data name="clamobilno" xml:space="preserve"><value>Mobil number</value><comment>Mobilnr.</comment></data>
+  <data name="clamail" xml:space="preserve"><value>e-mail</value><comment>e-mail</comment></data>
+  <data name="supcomname" xml:space="preserve"><value>Company name</value><comment>Firmanavn</comment></data>
+  <data name="supfirstname" xml:space="preserve"><value>First name</value><comment>Fornavn</comment></data>
+  <data name="supsurname" xml:space="preserve"><value>Surname</value><comment>Efternavn</comment></data>
+  <data name="supaddress" xml:space="preserve"><value>Address</value><comment>Adresse</comment></data>
+  <data name="suppostalcode" xml:space="preserve"><value>Postal code</value><comment>Postnr.</comment></data>
+  <data name="suppostaldis" xml:space="preserve"><value>Postal district</value><comment>Postdistrikt</comment></data>
+  <data name="supcity" xml:space="preserve"><value>City</value><comment>By</comment></data>
+  <data name="suptelno" xml:space="preserve"><value>Telephone number</value><comment>Telefonnr.</comment></data>
+  <data name="selname" xml:space="preserve"><value>Name</value><comment>Navn</comment></data>
+  <data name="seldirecttno" xml:space="preserve"><value>Direct telephone number</value><comment>Direkte telefonnr</comment></data>
+  <data name="selmobilno" xml:space="preserve"><value>Mobil number</value><comment>Mobilnr.</comment></data>
+  <data name="selmail" xml:space="preserve"><value>e-mail</value><comment>e-mail</comment></data>
+  <data name="buycomname" xml:space="preserve"><value>Company name</value><comment>Firmanavn</comment></data>
+  <data name="buyfirstname" xml:space="preserve"><value>First name</value><comment>Fornavn</comment></data>
+  <data name="buysurname" xml:space="preserve"><value>Surname</value><comment>Efternavn</comment></data>
+  <data name="buyaddress" xml:space="preserve"><value>Address</value><comment>Adresse</comment></data>
+  <data name="buypostalcode" xml:space="preserve"><value>Postal code</value><comment>Postnr.</comment></data>
+  <data name="buypostaldis" xml:space="preserve"><value>Postal district</value><comment>Postdistrikt</comment></data>
+  <data name="buycity" xml:space="preserve"><value>City</value><comment>By</comment></data>
+  <data name="buytelno" xml:space="preserve"><value>Telephone number</value><comment>Telefonnr.</comment></data>
+  <data name="buydirecttno" xml:space="preserve"><value>Direct telephone number</value><comment>Direkte telefonnr. </comment></data>
+  <data name="buymobilno" xml:space="preserve"><value>Mobil number</value><comment>Mobilnr.</comment></data>
+  <data name="buymail" xml:space="preserve"><value>e-mail</value><comment>Mail-adresse</comment></data>
+  <data name="prodname" xml:space="preserve"><value>Product name</value><comment>Produktnavn</comment></data>
+  <data name="proditemno" xml:space="preserve"><value>Item number</value><comment>Varenummer</comment></data>
+  <data name="prodalias" xml:space="preserve"><value>Alias for product name</value><comment>Alias for produktnavn</comment></data>
+  <data name="proddesc" xml:space="preserve"><value>Product description</value><comment>Produktbeskrivelse</comment></data>
+  <data name="produnitdesc" xml:space="preserve"><value>Unit description</value><comment>Enhedsbetegnelse</comment></data>
+  <data name="prodsupname" xml:space="preserve"><value>Supplier name</value><comment>Leverandørnavn</comment></data>
+  <data name="prodgrossprice" xml:space="preserve"><value>Gross price</value><comment>Bruttopris</comment></data>
+  <data name="proddiscountpct" xml:space="preserve"><value>Discount percent</value><comment>Rabatpct.</comment></data>
+  <data name="prodnetprice" xml:space="preserve"><value>Net price</value><comment>Nettopris</comment></data>
+  <data name="prodpurpractice" xml:space="preserve"><value>Purchase practice</value><comment>Indkøbspraktik</comment></data>
+  <data name="proddeltime" xml:space="preserve"><value>Delivery time</value><comment>Leveringstid</comment></data>
+  <data name="prodoptfield" xml:space="preserve"><value>Optional field</value><comment>Valgfri felter vedrørende bestillingsformular</comment></data>
+  <data name="delcomname" xml:space="preserve"><value>Company name</value><comment>Firmanavn</comment></data>
+  <data name="delfirstname" xml:space="preserve"><value>Attention name</value><comment>Attention navn</comment></data>
+  <data name="delsurname" xml:space="preserve"><value>Address</value><comment>Adresse</comment></data>
+  <data name="deladdress" xml:space="preserve"><value>Postal code</value><comment>Postnr.</comment></data>
+  <data name="delpostalcode" xml:space="preserve"><value>Postal district</value><comment>Postdistrikt</comment></data>
+  <data name="delpostaldis" xml:space="preserve"><value>City</value><comment>By</comment></data>
+  <data name="delcity" xml:space="preserve"><value>Telephone number</value><comment>Telefonnr.</comment></data>
+  <data name="deltelno" xml:space="preserve"><value>Direct telephone number</value><comment>Direkte telefonnr.</comment></data>
+  <data name="delmobilno" xml:space="preserve"><value>Mobil number</value><comment>Mobilnr</comment></data>
+  <data name="docname" xml:space="preserve"><value>File name</value><comment>Filnavn</comment></data>
+  <data name="docregard" xml:space="preserve"><value>Regard</value><comment>Vedrørende</comment></data>
+  <data name="docattention" xml:space="preserve"><value>Attention</value><comment>Eventuelt hvem dokumentet er til</comment></data>
+  <data name="docwriter" xml:space="preserve"><value>Writer</value><comment>Oprettet af  </comment></data>
+  <data name="docsetupdate" xml:space="preserve"><value>Setup date</value><comment>Oprettet dato</comment></data>
+  <data name="dnotefilename" xml:space="preserve"><value>File name</value><comment>Filnavn</comment></data>
+  <data name="dnoteregard" xml:space="preserve"><value>Regard</value><comment>Vedrørende</comment></data>
+  <data name="dnoteattention" xml:space="preserve"><value>Attention</value><comment>Eventuelt hvem dokumentet er til</comment></data>
+  <data name="dnotewriter" xml:space="preserve"><value>Writer</value><comment>Oprettet af  </comment></data>
+  <data name="dnotesetupdate" xml:space="preserve"><value>Setup date</value><comment>Oprettet dato</comment></data>
+  <data name="invfilename" xml:space="preserve"><value>File name</value><comment>Filnavn</comment></data>
+  <data name="invregard" xml:space="preserve"><value>Regard</value><comment>Vedrørende</comment></data>
+  <data name="invattention" xml:space="preserve"><value>Attention</value><comment>Eventuelt hvem dokumentet er til</comment></data>
+  <data name="invwriter" xml:space="preserve"><value>Writer</value><comment>Oprettet af  </comment></data>
+  <data name="invsetupdate" xml:space="preserve"><value>Setup date</value><comment>Oprettet dato</comment></data>
+  <data name="mailpriority" xml:space="preserve"><value>Priority</value><comment>Prioritet</comment></data>
+  <data name="mailattach" xml:space="preserve"><value>Attach</value><comment>Vedhæftet filer</comment></data>
+  <data name="mailfrom" xml:space="preserve"><value>From</value><comment>Fra</comment></data>
+  <data name="mailsubject" xml:space="preserve"><value>Subject</value><comment>Emne</comment></data>
+  <data name="mailreceivedate" xml:space="preserve"><value>Receive date</value><comment>Modtaget dato</comment></data>
+  <data name="FieldsGroupName" xml:space="preserve">
     <value>FieldsGroupName UK</value>
-  </data></root>
+  </data>
+</root>
