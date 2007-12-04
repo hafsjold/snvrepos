@@ -181,4 +181,15 @@
   <data name="mailfrom" xml:space="preserve"><value>Fra</value><comment>E-mail:  Fra</comment></data>
   <data name="mailsubject" xml:space="preserve"><value>Emne</value><comment>E-mail:  Emne</comment></data>
   <data name="mailreceivedate" xml:space="preserve"><value>Modtaget dato</value><comment>E-mail:  Modtaget dato</comment></data>
+  <data name="Dokumenter" xml:space="preserve"><value>Test Display Name DK</value><comment>Test Comment</comment></data>
+  <data name="E-mail" xml:space="preserve"><value>TestDK</value><comment>Test Comment</comment></data>
+  <data name="Faktura" xml:space="preserve"><value>TestDK</value><comment>Test Comment</comment></data>
+  <data name="Følgeseddel" xml:space="preserve"><value>TestDK</value><comment>Test Comment</comment></data>
+  <data name="Indkøbssag" xml:space="preserve"><value>TestDK</value><comment>Test Comment</comment></data>
+  <data name="KontaltpersonIndkøb" xml:space="preserve"><value>TestDK</value><comment>Test Comment</comment></data>
+  <data name="Leverandøroplysninger" xml:space="preserve"><value>TestDK</value><comment>Test Comment</comment></data>
+  <data name="OrdrebehandlerLeverandør" xml:space="preserve"><value>TestDK</value><comment>Test Comment</comment></data>
+  <data name="Produktoplysninger" xml:space="preserve"><value>TestDK</value><comment>Test Comment</comment></data>
+  <data name="Produktordre" xml:space="preserve"><value>TestDK</value><comment>Test Comment</comment></data>
+  <data name="RekvirentOplysninger" xml:space="preserve"><value>TestDK</value><comment>Test Comment</comment></data>
 </root>

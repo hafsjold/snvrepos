@@ -1,16 +1,140 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <ContentType ID="0x0100659912981B044ca6AE4E502CF5A578CD"
-      Name="ProductType"
-      Group="Development"
-      Description="Developing Content Type"
-      Version="0">
+  <ContentType ID="0x0100659912981B044ca6AE4E502CF5A578CD" Name="ProductType" Group="Development" Description="Developing Content Type" Version="0">
     <FieldRefs>
-      <FieldRef ID="{E087EE90-5EE1-4f5d-8C28-0819079B548E}" Name="ProductNickname"/>
-      <FieldRef ID="{fc2e188e-ba91-48c9-9dd3-16431afddd50}" Name="WorkAddress"/>
-      <FieldRef ID="{9a631556-3dac-49db-8d2f-fb033b0fdc24}" Name="WorkZip"/>
-      <FieldRef ID="{6ca7bd7f-b490-402e-af1b-2813cf087b1e}" Name="WorkCity"/>
-      <FieldRef ID="{3f3a5c85-9d5a-4663-b925-8b68a678ea3a}" Name="WorkCountry"/>
+      <FieldRef ID="{E087EE90-5EE1-4f5d-8C28-0819079B548E}" Name="ProductNickname" />
+      <FieldRef ID="{fc2e188e-ba91-48c9-9dd3-16431afddd50}" Name="WorkAddress" />
+      <FieldRef ID="{9a631556-3dac-49db-8d2f-fb033b0fdc24}" Name="WorkZip" />
+      <FieldRef ID="{6ca7bd7f-b490-402e-af1b-2813cf087b1e}" Name="WorkCity" />
+      <FieldRef ID="{3f3a5c85-9d5a-4663-b925-8b68a678ea3a}" Name="WorkCountry" />
+    </FieldRefs>
+  </ContentType>
+  <ContentType ID="0x01003A9C33F2606E45A6951BF27B5B21882A" Name="Dokumenter" Group="$Resources:ProvPur,TypesGroupName;" Description="$Resources:ProvPur,Dokumenter;" Version="0">
+    <FieldRefs>
+      <FieldRef ID="{233A61D7-BFF4-478E-B9D1-525C1BA27835}" Name="docname" />
+      <FieldRef ID="{E4AB9099-A3B8-4F38-BABC-91CA2A1CC20E}" Name="docregard" />
+      <FieldRef ID="{F162F836-0270-4CF6-AF05-75BFF632515D}" Name="docattention" />
+      <FieldRef ID="{387C4055-0683-40CE-90F8-A3756C117468}" Name="docwriter" />
+      <FieldRef ID="{932756E0-5AE2-4389-816D-0B3E1D3B9F78}" Name="docsetupdate" />
+    </FieldRefs>
+  </ContentType>
+  <ContentType ID="0x0100863BD9F81A63442289C3AC3ECCAB89F4" Name="E-mail" Group="$Resources:ProvPur,TypesGroupName;" Description="$Resources:ProvPur,E-mail;" Version="0">
+    <FieldRefs>
+      <FieldRef ID="{F4B34B82-A6BE-4706-8FE8-A224313661AC}" Name="mailpriority" />
+      <FieldRef ID="{7D5F8685-67AF-4E2D-B3D8-A943A27B2E40}" Name="mailattach" />
+      <FieldRef ID="{AD09A349-8F04-413A-B677-E841E30F9B34}" Name="mailfrom" />
+      <FieldRef ID="{A4AEAC83-95EF-43BD-AC2A-E4E54EAEF843}" Name="mailsubject" />
+      <FieldRef ID="{9A4B1928-F225-4FD9-8895-A125056E5EC5}" Name="mailreceivedate" />
+    </FieldRefs>
+  </ContentType>
+  <ContentType ID="0x0100FA9E422ADC9549688C7B75C88CFF1E4D" Name="Faktura" Group="$Resources:ProvPur,TypesGroupName;" Description="$Resources:ProvPur,Faktura;" Version="0">
+    <FieldRefs>
+      <FieldRef ID="{727B6E40-1850-48EC-83CE-F4AFD6103D2E}" Name="invfilename" />
+      <FieldRef ID="{D1A7A956-7BAE-4005-953A-939CF0D4E111}" Name="invregard" />
+      <FieldRef ID="{BE433D67-2001-478D-9FAB-5B014406C049}" Name="invattention" />
+      <FieldRef ID="{38F08FB8-11DF-4533-98C0-786A933C94EB}" Name="invwriter" />
+      <FieldRef ID="{F9CCA430-3507-4811-A7AD-42583C9CE40D}" Name="invsetupdate" />
+    </FieldRefs>
+  </ContentType>
+  <ContentType ID="0x0100897308E4CD0E40B0B4B65EC536BE98B0" Name="Følgeseddel" Group="$Resources:ProvPur,TypesGroupName;" Description="$Resources:ProvPur,Følgeseddel;" Version="0">
+    <FieldRefs>
+      <FieldRef ID="{3D39474A-CAAB-4EF8-B73A-1C1D4EDEB56D}" Name="dnotefilename" />
+      <FieldRef ID="{8546DE16-A7AC-4CE2-A6B1-771AFC1C7B9F}" Name="dnoteregard" />
+      <FieldRef ID="{36CB3948-E042-40BA-8DDD-0C49475A37F4}" Name="dnoteattention" />
+      <FieldRef ID="{2DBC7B7A-30C4-405B-951C-997BAF25F1A2}" Name="dnotewriter" />
+      <FieldRef ID="{377ED501-23C2-4FAA-9A5F-AF94EF5AC935}" Name="dnotesetupdate" />
+    </FieldRefs>
+  </ContentType>
+  <ContentType ID="0x0100DA9E41F46F6745C9ADCA73845FBF0356" Name="Indkøbssag" Group="$Resources:ProvPur,TypesGroupName;" Description="$Resources:ProvPur,Indkøbssag;" Version="0">
+    <FieldRefs>
+      <FieldRef ID="{65AF5428-40CE-4BCD-9E10-FFCAE4DB43AC}" Name="pono" />
+      <FieldRef ID="{E397793F-4A86-44E8-BD45-FB32592A2931}" Name="purcom" />
+    </FieldRefs>
+  </ContentType>
+  <ContentType ID="0x010017374CE5EC04402C855ED0E1FC83ACF1" Name="KontaltpersonIndkøb" Group="$Resources:ProvPur,TypesGroupName;" Description="$Resources:ProvPur,KontaltpersonIndkøb;" Version="0">
+    <FieldRefs>
+      <FieldRef ID="{3127A395-85DE-415B-BED8-710A25325C76}" Name="buycomname" />
+      <FieldRef ID="{B4D6EE6B-62DB-49A9-8D47-C455450761E6}" Name="buyfirstname" />
+      <FieldRef ID="{E77A6733-6DB4-4AB9-BD54-AFE5CA8B0ED4}" Name="buysurname" />
+      <FieldRef ID="{B97BBD79-F85A-4FAC-A7A4-2B7B67661EE0}" Name="buyaddress" />
+      <FieldRef ID="{7A7F9EAA-5D8C-42F5-8DD1-A88C8E227962}" Name="buypostalcode" />
+      <FieldRef ID="{9DEC1C8A-D333-4B91-B5D6-A595246A97DD}" Name="buypostaldis" />
+      <FieldRef ID="{96F8A0BA-E10E-4594-93E3-CE1D6747C928}" Name="buycity" />
+      <FieldRef ID="{6E276353-B431-4D1B-A895-BCF613F13385}" Name="buytelno" />
+      <FieldRef ID="{95090A5E-18B2-435D-97E2-D5F297296386}" Name="buydirecttno" />
+      <FieldRef ID="{582C4AA3-708E-47AF-AAA0-CD451DCF8529}" Name="buymobilno" />
+      <FieldRef ID="{0FC3D6A3-7CD1-4180-A2D6-C0F495C353E3}" Name="buymail" />
+    </FieldRefs>
+  </ContentType>
+  <ContentType ID="0x010093E798B0F1CC4147BFDB690F80FFBD4C" Name="Leverandøroplysninger" Group="$Resources:ProvPur,TypesGroupName;" Description="$Resources:ProvPur,Leverandøroplysninger;" Version="0">
+    <FieldRefs>
+      <FieldRef ID="{E8105AF7-323F-4CD4-ACD3-3E93667183BE}" Name="supcomname" />
+      <FieldRef ID="{1D59E2E1-4FEF-4122-B54D-C74620ABD646}" Name="supfirstname" />
+      <FieldRef ID="{3DC9AAD6-AD08-4EA0-BB28-5395D0FF307E}" Name="supsurname" />
+      <FieldRef ID="{5A0A960B-78CD-4553-837B-A79A5D2C6242}" Name="supaddress" />
+      <FieldRef ID="{FBF7CBE6-77A3-40EA-8BE0-E7B225C95C8D}" Name="suppostalcode" />
+      <FieldRef ID="{91798B67-3E7A-49B4-9190-D1CE93801E9C}" Name="suppostaldis" />
+      <FieldRef ID="{B559E72D-C8C2-41D1-9FEC-FB210801A7EC}" Name="supcity" />
+      <FieldRef ID="{58B7FAE9-0615-43F3-B139-E98FF21C3ED0}" Name="suptelno" />
+      <FieldRef ID="{C7394074-2DE0-4BD3-9427-DB6A6E551C3F}" Name="delcomname" />
+      <FieldRef ID="{5DDB5ED1-0674-45E2-A611-A03D770EAC84}" Name="delfirstname" />
+      <FieldRef ID="{E7730EDD-23B0-4BC8-A2C7-56CFCF532A22}" Name="delsurname" />
+      <FieldRef ID="{8C280F62-EAD3-4ECF-924A-1BC6A72D3D4C}" Name="deladdress" />
+      <FieldRef ID="{DB328028-FD48-4B91-9FE1-0E13C523ADDC}" Name="delpostalcode" />
+      <FieldRef ID="{349AEB73-EA5D-487D-9174-333E517907CE}" Name="delpostaldis" />
+      <FieldRef ID="{DC62CB10-4D7E-4B1C-94A8-AD7F083EE31C}" Name="delcity" />
+      <FieldRef ID="{C3319F8A-9B84-4A00-ADDE-F26AEBF5F922}" Name="deltelno" />
+      <FieldRef ID="{0CF9DA69-84CC-4286-B67C-497BF965209B}" Name="delmobilno" />
+    </FieldRefs>
+  </ContentType>
+  <ContentType ID="0x0100A30B4BF5850A4F2592E86D2E1F38A88F" Name="OrdrebehandlerLeverandør" Group="$Resources:ProvPur,TypesGroupName;" Description="$Resources:ProvPur,OrdrebehandlerLeverandør;" Version="0">
+    <FieldRefs>
+      <FieldRef ID="{276BF4A9-E5A0-4A19-A679-502E1EC0F068}" Name="selname" />
+      <FieldRef ID="{FA2808B4-6227-455B-A4CA-D615C02896CB}" Name="seldirecttno" />
+      <FieldRef ID="{D7A7A976-71FC-46F3-A52B-F0264D349429}" Name="selmobilno" />
+      <FieldRef ID="{0145FABE-85B4-4632-824F-7A625202393B}" Name="selmail" />
+    </FieldRefs>
+  </ContentType>
+  <ContentType ID="0x0100059F8EAB132049A5906F77AF89A668BC" Name="Produktoplysninger" Group="$Resources:ProvPur,TypesGroupName;" Description="$Resources:ProvPur,Produktoplysninger;" Version="0">
+    <FieldRefs>
+      <FieldRef ID="{84A23706-009F-4742-8BAB-DF8DEE938CD3}" Name="prodname" />
+      <FieldRef ID="{F6F7A34E-CF86-455B-B068-C8C16FD2F51B}" Name="proditemno" />
+      <FieldRef ID="{0117021D-188D-421A-854A-1789D9E8ED23}" Name="prodalias" />
+      <FieldRef ID="{2ACE45DC-F2EC-4A0D-909F-8109C0BFD2D3}" Name="proddesc" />
+      <FieldRef ID="{9F4BAE9A-F50F-4029-BB87-488813DDBB38}" Name="produnitdesc" />
+      <FieldRef ID="{54369F04-3996-46E3-B8B8-55AACA96C229}" Name="prodsupname" />
+      <FieldRef ID="{1BEB63AA-E218-4575-AB48-932BCD7B517F}" Name="prodgrossprice" />
+      <FieldRef ID="{E972D51E-7561-431D-AFCD-D8E9D118F8D1}" Name="proddiscountpct" />
+      <FieldRef ID="{658D6540-1DA7-49E2-9513-E5CFDB4E07EB}" Name="prodnetprice" />
+      <FieldRef ID="{1A092111-8512-4CFE-BEAD-214E5A9C64AE}" Name="prodpurpractice" />
+      <FieldRef ID="{3CC492E0-3BFA-46F3-B92E-E864721D9CD7}" Name="proddeltime" />
+      <FieldRef ID="{E46FCD7F-0D2F-4261-8068-582C5EED599D}" Name="prodoptfield" />
+    </FieldRefs>
+  </ContentType>
+  <ContentType ID="0x0100F95E8BFAEEB0485F8FDFF4E440026E69" Name="Produktordre" Group="$Resources:ProvPur,TypesGroupName;" Description="$Resources:ProvPur,Produktordre;" Version="0">
+    <FieldRefs>
+      <FieldRef ID="{819E5745-5AD9-4FA5-B627-6E9208AA8835}" Name="proorderdate" />
+      <FieldRef ID="{D8795AC1-83AB-4DD6-B166-074D1075DB50}" Name="proqty" />
+      <FieldRef ID="{B6802052-F67A-4266-8511-0631E61B2CB2}" Name="proedt" />
+      <FieldRef ID="{35573249-5626-4523-9D3E-800C5A3078B8}" Name="propotime" />
+      <FieldRef ID="{464247E4-A1E7-41EA-86F2-EE17CA0D7891}" Name="proactualdate" />
+      <FieldRef ID="{B68F435D-7B7A-41E6-A349-6AF9BDA238F0}" Name="procom" />
+      <FieldRef ID="{64821AD0-4138-4207-8AE1-C8581610BAB1}" Name="prototalprice" />
+    </FieldRefs>
+  </ContentType>
+  <ContentType ID="0x010040641D0236984C20A0770C5F799C25A2" Name="RekvirentOplysninger" Group="$Resources:ProvPur,TypesGroupName;" Description="$Resources:ProvPur,RekvirentOplysninger;" Version="0">
+    <FieldRefs>
+      <FieldRef ID="{688A7109-1122-43E4-9505-3684CD1A23AF}" Name="clacomname" />
+      <FieldRef ID="{E51D48F3-9CF9-401A-BA1A-461228C28DCD}" Name="clafirstname" />
+      <FieldRef ID="{C5E2C6E4-21D4-4E67-AB76-E77672EC1160}" Name="clasurname" />
+      <FieldRef ID="{18964A6F-1234-460A-966F-D26D4B8D5C2D}" Name="claaddress" />
+      <FieldRef ID="{CAA14690-D7FB-43D1-9DB9-060BFF70AB69}" Name="clapostalcode" />
+      <FieldRef ID="{F9084022-3BFD-4B29-BF5D-DF87E8D49A52}" Name="clapostaldis" />
+      <FieldRef ID="{5BBD797E-28E6-4BB2-9C21-96F19F81A223}" Name="clacity" />
+      <FieldRef ID="{52610151-0DA3-483C-975E-E1568E9646E8}" Name="clatelno" />
+      <FieldRef ID="{D734989A-8BAC-4019-92AD-F212B5E14A3E}" Name="cladirecttno" />
+      <FieldRef ID="{B29D9632-9376-4FE5-811A-E00A299C7065}" Name="clamobilno" />
+      <FieldRef ID="{4CD5FBA9-F886-4B67-B11A-C5BDB7831636}" Name="clamail" />
     </FieldRefs>
   </ContentType>
 </Elements>

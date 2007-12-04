@@ -430,6 +430,51 @@ namespace ProvPur.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Test Display Name UK.
+        /// </summary>
+        internal static string Dokumenter {
+            get {
+                return ResourceManager.GetString("Dokumenter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TestUK.
+        /// </summary>
+        internal static string E_mail {
+            get {
+                return ResourceManager.GetString("E-mail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TestUK.
+        /// </summary>
+        internal static string Faktura {
+            get {
+                return ResourceManager.GetString("Faktura", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TestUK.
+        /// </summary>
+        internal static string Følgeseddel {
+            get {
+                return ResourceManager.GetString("Følgeseddel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TestUK.
+        /// </summary>
+        internal static string Indkøbssag {
+            get {
+                return ResourceManager.GetString("Indkøbssag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Attention.
         /// </summary>
         internal static string invattention {
@@ -475,6 +520,24 @@ namespace ProvPur.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TestUK.
+        /// </summary>
+        internal static string KontaltpersonIndkøb {
+            get {
+                return ResourceManager.GetString("KontaltpersonIndkøb", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TestUK.
+        /// </summary>
+        internal static string Leverandøroplysninger {
+            get {
+                return ResourceManager.GetString("Leverandøroplysninger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Attach.
         /// </summary>
         internal static string mailattach {
@@ -516,6 +579,15 @@ namespace ProvPur.Resources {
         internal static string mailsubject {
             get {
                 return ResourceManager.GetString("mailsubject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TestUK.
+        /// </summary>
+        internal static string OrdrebehandlerLeverandør {
+            get {
+                return ResourceManager.GetString("OrdrebehandlerLeverandør", resourceCulture);
             }
         }
         
@@ -646,6 +718,24 @@ namespace ProvPur.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TestUK.
+        /// </summary>
+        internal static string Produktoplysninger {
+            get {
+                return ResourceManager.GetString("Produktoplysninger", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TestUK.
+        /// </summary>
+        internal static string Produktordre {
+            get {
+                return ResourceManager.GetString("Produktordre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unit description.
         /// </summary>
         internal static string produnitdesc {
@@ -705,6 +795,15 @@ namespace ProvPur.Resources {
         internal static string purcom {
             get {
                 return ResourceManager.GetString("purcom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TestUK.
+        /// </summary>
+        internal static string RekvirentOplysninger {
+            get {
+                return ResourceManager.GetString("RekvirentOplysninger", resourceCulture);
             }
         }
         
