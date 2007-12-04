@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Feature Id="#GUID-FEATURE#"
+    Title="#NAME#List"
+    Description=""
+    Version="1.0.0.0"
+    Scope="Site"
+    Hidden="FALSE"
+    DefaultResourceFile="core"
+    xmlns="http://schemas.microsoft.com/sharepoint/">
+    <ElementManifests>
+        <ElementManifest Location="ListTemplates\#NAME#List.xml" />
+		<ElementFile Location="#NAME#List\schema.xml" />
+   </ElementManifests>
+</Feature>
