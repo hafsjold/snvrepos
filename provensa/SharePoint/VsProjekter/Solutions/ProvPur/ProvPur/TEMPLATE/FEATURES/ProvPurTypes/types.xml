@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ContentType ID="0x0100659912981B044ca6AE4E502CF5A578CD"
+      Name="ProductType"
+      Group="Development"
+      Description="Developing Content Type"
+      Version="0">
+    <FieldRefs>
+      <FieldRef ID="{E087EE90-5EE1-4f5d-8C28-0819079B548E}" Name="ProductNickname"/>
+      <FieldRef ID="{fc2e188e-ba91-48c9-9dd3-16431afddd50}" Name="WorkAddress"/>
+      <FieldRef ID="{9a631556-3dac-49db-8d2f-fb033b0fdc24}" Name="WorkZip"/>
+      <FieldRef ID="{6ca7bd7f-b490-402e-af1b-2813cf087b1e}" Name="WorkCity"/>
+      <FieldRef ID="{3f3a5c85-9d5a-4663-b925-8b68a678ea3a}" Name="WorkCountry"/>
+    </FieldRefs>
+  </ContentType>
+</Elements>

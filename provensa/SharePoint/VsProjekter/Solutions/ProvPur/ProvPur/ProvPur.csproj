@@ -75,6 +75,7 @@
     <Content Include="TEMPLATE\FEATURES\ProvPurProductList\ProvPurProductList\editform.aspx" />
     <Content Include="TEMPLATE\FEATURES\ProvPurProductList\ProvPurProductList\newform.aspx" />
     <Content Include="TEMPLATE\FEATURES\ProvPurProductList\ProvPurProductList\schema.xml" />
+    <Content Include="TEMPLATE\FEATURES\ProvPurTypes\types.xml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\ProvPur.da-dk.resx">
