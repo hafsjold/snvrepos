@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<List xmlns:ows="Microsoft SharePoint" Title="Basic List" FolderCreation="FALSE" Direction="$Resources:Direction;" Url="Lists/Basic List" BaseType="0">
+<List xmlns:ows="Microsoft SharePoint" 
+	  Title="#NAME#List" 
+	  FolderCreation="FALSE" 
+	  Direction="$Resources:Direction;" 
+	  Url="Lists/#NAME#List" 
+	  BaseType="0">
   <MetaData>
     <ContentTypes>
       <ContentTypeRef ID="0x01">
-        <Folder TargetName="Item" />
+        <Folder TargetName="#NAME#List" />
       </ContentTypeRef>
       <ContentTypeRef ID="0x0120" />
     </ContentTypes>
@@ -2152,5 +2157,8 @@ ctx]]></HTML>
       <Form Type="EditForm" Url="EditForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
       <Form Type="NewForm" Url="NewForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
     </Forms>
+	<DefaultDescription>
+        #NAME#List
+    </DefaultDescription>
   </MetaData>
 </List>

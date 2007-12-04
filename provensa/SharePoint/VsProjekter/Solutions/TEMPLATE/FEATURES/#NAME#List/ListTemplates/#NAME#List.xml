@@ -7,7 +7,7 @@
         OnQuickLaunch="TRUE"
         SecurityBits="11"
         Sequence="410"
-        DisplayName="$Resources:core,custList;"
-        Description="$Resources:core,custList_Desc;"
+        DisplayName="#NAME#list"
+        Description="#NAME#list"
         Image="/_layouts/images/itgen.gif"/>
 </Elements>
