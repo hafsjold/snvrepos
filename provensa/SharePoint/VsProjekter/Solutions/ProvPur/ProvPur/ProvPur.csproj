@@ -54,6 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="manifest.xml" />
+    <Content Include="TEMPLATE\FEATURES\PersonList\Feature.xml" />
+    <Content Include="TEMPLATE\FEATURES\PersonList\ListTemplates\PersonList.xml" />
+    <Content Include="TEMPLATE\FEATURES\PersonList\PersonList\schema.xml" />
     <Content Include="TEMPLATE\FEATURES\ProvPurFields\feature.xml" />
     <Content Include="TEMPLATE\FEATURES\ProvPurFields\fields.xml" />
     <Content Include="TEMPLATE\FEATURES\ProvPurPurOrderList\feature.xml" />
