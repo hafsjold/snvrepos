@@ -12,8 +12,9 @@ namespace testwssGEtList
         static void Main(string[] args)
         {
             wssGetList.getList myList = new wssGetList.getList("http://hd16.hafsjold.dk", "administrator", "m733", "hd16");
-            DataSet dsItems1 = myList.getListData("ProPurType");
-            DataSet dsItems2 = myList.getListData("ProPurList");
+            DataSet dsItems1 = myList.getListData("ProPurList");
+            DataSet dsItems2 = myList.getListData("ProPurType");
+            DataSet dsItems3 = myList.getListData("ProPurColumn");
         }
     }
 }
