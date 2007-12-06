@@ -18,5 +18,9 @@ TEMPLATE\FEATURES\ProvPurFields\fields.xml	ProvPurFields\fields.xml
 ;*** ProvPurTypes
 TEMPLATE\FEATURES\ProvPurTypes\feature.xml	ProvPurTypes\feature.xml
 TEMPLATE\FEATURES\ProvPurTypes\types.xml	ProvPurTypes\types.xml
+;*** dlls
 bin\Debug\ProvPur.dll	ProvPur.dll
+;*** Languages
+RESOURCES\ProvPur.resx	Resources\ProvPur.resx
+RESOURCES\ProvPur.da-dk.resx	Resources\ProvPur.da-dk.resx
 ;*** <the end>

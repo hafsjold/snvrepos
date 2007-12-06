@@ -21,4 +21,9 @@
 -->    
   </Assemblies>
 
+  <RootFiles>
+    <RootFile Location="Resources\ProvPur.resx"/>
+    <RootFile Location="Resources\ProvPur.da-dk.resx"/>
+  </RootFiles>
+
 </Solution>
