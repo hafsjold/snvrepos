@@ -4,8 +4,7 @@
   <FeatureManifests>
     <FeatureManifest Location="ProvPurFields\feature.xml" />
     <FeatureManifest Location="ProvPurTypes\feature.xml" />
-    <FeatureManifest Location="ProvPurProductList\feature.xml" />
-    <FeatureManifest Location="ProvPurPurOrderList\feature.xml" />
+    <FeatureManifest Location="PersonList\Feature.xml" />
   </FeatureManifests>
 
   <Assemblies>
