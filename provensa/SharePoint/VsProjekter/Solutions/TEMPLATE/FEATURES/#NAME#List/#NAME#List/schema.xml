@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <List xmlns:ows="Microsoft SharePoint" 
 	  Title="#NAME#List" 
-	  FolderCreation="FALSE" 
+	  FolderCreation="FALSE"
+	  AllowMultipleContentTypes="TRUE"
+	  EnableContentTypes="TRUE"	  
 	  Direction="$Resources:Direction;" 
 	  Url="Lists/#NAME#List" 
 	  BaseType="0">
