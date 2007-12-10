@@ -13,8 +13,7 @@
   </ActivationDependencies>
 
   <ElementManifests>
-    <ElementManifest Location="Product_type.xml"/>
-    <ElementManifest Location="project_time_type.xml"/>
+    <ElementManifest Location="types.xml"/>
   </ElementManifests>
 
 </Feature>

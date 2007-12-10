@@ -8,7 +8,7 @@
   </FeatureManifests>
 
   <Assemblies>
-    <Assembly Location="PvsPur.dll" DeploymentTarget="GlobalAssemblyCache"/>
+    <Assembly Location="ProvPur.dll" DeploymentTarget="GlobalAssemblyCache"/>
 <!--  
       <SafeControls>
         <SafeControl Assembly="PvsPur, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9f4da00116c38ec5" Namespace="PvsPur" TypeName="ProvPurProductTypeListEventReceiver" Safe="True" />
