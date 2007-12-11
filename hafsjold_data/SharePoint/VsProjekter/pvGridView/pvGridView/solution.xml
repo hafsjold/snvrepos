@@ -1,0 +1,11 @@
+﻿<solution  id="854da8b6-082d-49f3-be28-0e70f760dbd7" name="pvGridView" >
+  <features>
+    <feature  id="070a33ad-82d8-49cb-803a-d1bbe046a52b" name="ListMenuSample" title="ListMenuSample" description="" version="1.0.0.0" scope="Site" hidden="False" defaultresourcefile="core" >
+      <element  id="070a33ad-82d8-49cb-803a-d1bbe046a52b" title="ListMenuSample Web Part" description="" importerrormessage="Cannot import ListMenuSample Web Part." />
+    </feature>
+  </features>
+  <templates>
+  </templates>
+  <sitedefinitions>
+  </sitedefinitions>
+</solution>

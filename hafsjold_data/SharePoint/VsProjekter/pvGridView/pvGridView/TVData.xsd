@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="TVData" targetNamespace="http://tempuri.org/TVData.xsd" xmlns:mstns="http://tempuri.org/TVData.xsd" xmlns="http://tempuri.org/TVData.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="TVData" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="TVData" msprop:Generator_DataSetName="TVData">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Presenters" msprop:Generator_UserTableName="Presenters" msprop:Generator_RowDeletedName="PresentersRowDeleted" msprop:Generator_TableClassName="PresentersDataTable" msprop:Generator_RowChangedName="PresentersRowChanged" msprop:Generator_RowClassName="PresentersRow" msprop:Generator_RowChangingName="PresentersRowChanging" msprop:Generator_RowEvArgName="PresentersRowChangeEvent" msprop:Generator_RowEvHandlerName="PresentersRowChangeEventHandler" msprop:Generator_TablePropName="Presenters" msprop:Generator_TableVarName="tablePresenters" msprop:Generator_RowDeletingName="PresentersRowDeleting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInTable="IDColumn" type="xs:int" />
+              <xs:element name="PresenterName" msprop:Generator_UserColumnName="PresenterName" msprop:Generator_ColumnPropNameInRow="PresenterName" msprop:Generator_ColumnVarNameInTable="columnPresenterName" msprop:Generator_ColumnPropNameInTable="PresenterNameColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="ProgrammeName" msprop:Generator_UserColumnName="ProgrammeName" msprop:Generator_ColumnPropNameInRow="ProgrammeName" msprop:Generator_ColumnVarNameInTable="columnProgrammeName" msprop:Generator_ColumnPropNameInTable="ProgrammeNameColumn" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Presenters" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
