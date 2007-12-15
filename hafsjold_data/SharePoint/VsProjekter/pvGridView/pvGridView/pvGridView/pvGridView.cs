@@ -27,6 +27,10 @@ namespace ListMenuSample
             oDataset.Presenters.AddPresentersRow(2, "Kirsty Wark", "Newsnight");
             oDataset.Presenters.AddPresentersRow(6, "Bill Turnbull", "Breakfast");
             oDataset.Presenters.AddPresentersRow(7, "Sian Williams", "Breakfast");
+            oDataset.Presenters.AddPresentersRow(8, "Søren Olsen", "Evning");
+            oDataset.Presenters.AddPresentersRow(9, "Ole Andersen", "Evning");
+            oDataset.Presenters.AddPresentersRow(10, "Peter Pedersen", "Breakfast");
+            oDataset.Presenters.AddPresentersRow(11, "Jens Hansen", "Newsnight");
             // plus a few more entries
         }
 
