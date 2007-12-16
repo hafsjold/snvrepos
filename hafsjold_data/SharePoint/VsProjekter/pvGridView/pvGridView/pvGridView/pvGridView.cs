@@ -19,6 +19,10 @@ namespace ListMenuSample
         private SPGridView oGrid;
         private pvGridView.TVData oDataset;
         private DataView oView;
+        private SPSite siteCollection = SPContext.Current.Site;
+        private SPWeb site = SPContext.Current.Web;
+        SPDataSource test;
+        SPNavigationManager test2;
 
         private void PopulateDataset()
         {

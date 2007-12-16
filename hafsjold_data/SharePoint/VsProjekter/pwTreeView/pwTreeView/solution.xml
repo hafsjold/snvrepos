@@ -1,0 +1,11 @@
+﻿<solution  id="aa19c8ca-f6cc-48e7-888b-7979a2a2528b" name="pwTreeView" >
+  <features>
+    <feature  id="6e6bacbb-c2fe-4dc7-8e5a-cd8e9879f2f2" name="pwTreeView" title="pwTreeView" description="" version="1.0.0.0" scope="Site" hidden="False" defaultresourcefile="core" >
+      <element  id="6e6bacbb-c2fe-4dc7-8e5a-cd8e9879f2f2" title="pwTreeView Web Part" description="" importerrormessage="Cannot import pwTreeView Web Part." />
+    </feature>
+  </features>
+  <templates>
+  </templates>
+  <sitedefinitions>
+  </sitedefinitions>
+</solution>
