@@ -31,8 +31,15 @@ namespace pwTreeView
                     string test = "Test";
                 }
 
+                SPWeb topWeb = SPControl.GetContextWeb(this.Context).Site.RootWeb;
+
                 ds = new SPHierarchyDataSourceControl();
-                ds.RootContextObject = "Web";
+                
+                ds.Web = topWeb;
+                ds.RootWebId = topWeb.Site.RootWeb.ID.ToString();
+                ds.RootContextObject = null; 
+                //ds.RootContextObject = "Web";
+                
                 ds.ID = "TreeViewDataSource";
                 ds.IncludeDiscussionFolders = true;
                 ds.ShowListChildren = true;
