@@ -1,0 +1,13 @@
+﻿<Feature  Title="ProvPurSitePages"
+          Id="99F65F28-7254-4065-8A49-F71F6569140A"
+          Description=""
+          Version="1.0.0.0" 
+          Scope="Site" 
+          Hidden="FALSE" 
+          DefaultResourceFile="core" 
+          xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ElementManifests>
+      <ElementManifest Location="elements.xml"/>
+      <ElementFile Location="PageTemplates\Page01.aspx" />
+  </ElementManifests>
+</Feature>

@@ -18,9 +18,16 @@ TEMPLATE\FEATURES\ProvPurFields\fields.xml	ProvPurFields\fields.xml
 ;*** ProvPurTypes
 TEMPLATE\FEATURES\ProvPurTypes\feature.xml	ProvPurTypes\feature.xml
 TEMPLATE\FEATURES\ProvPurTypes\types.xml	ProvPurTypes\types.xml
+;*** ProvPurSitePages
+TEMPLATE\FEATURES\ProvPurSitePages\feature.xml	ProvPurSitePages\feature.xml
+TEMPLATE\FEATURES\ProvPurSitePages\elements.xml	ProvPurSitePages\elements.xml
+TEMPLATE\FEATURES\ProvPurSitePages\PageTemplates\Page01.aspx	ProvPurSitePages\PageTemplates\Page01.aspx
 ;*** dlls
 bin\Debug\ProvPur.dll	ProvPur.dll
 ;*** Languages
 RESOURCES\ProvPur.resx	Resources\ProvPur.resx
 RESOURCES\ProvPur.da-dk.resx	Resources\ProvPur.da-dk.resx
+;*** UserControls
+TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl1.ascx	TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl1.ascx
+TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl2.ascx	TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl2.ascx
 ;*** <the end>

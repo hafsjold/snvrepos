@@ -1,0 +1,8 @@
+﻿<Elements xmlns="http://schemas.microsoft.com/sharepoint/">
+
+  <Module Path="PageTemplates" Url="ProvPur" >
+    <!-- provision standard pages -->
+    <File Url="Page01.aspx" Name="Page01.aspx" Type="Ghostable" />
+  </Module>
+  
+</Elements>

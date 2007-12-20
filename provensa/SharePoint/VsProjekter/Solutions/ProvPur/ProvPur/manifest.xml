@@ -5,6 +5,7 @@
     <FeatureManifest Location="ProvPurFields\feature.xml" />
     <FeatureManifest Location="ProvPurTypes\feature.xml" />
     <FeatureManifest Location="PersonList\Feature.xml" />
+    <FeatureManifest Location="ProvPurSitePages\feature.xml" />
   </FeatureManifests>
 
   <Assemblies>
@@ -24,6 +25,7 @@
   <RootFiles>
     <RootFile Location="Resources\ProvPur.resx"/>
     <RootFile Location="Resources\ProvPur.da-dk.resx"/>
+    <RootFile Location="TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl1.ascx"/>
+    <RootFile Location="TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl2.ascx"/>
   </RootFiles>
-
 </Solution>
