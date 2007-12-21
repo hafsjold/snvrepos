@@ -3,6 +3,7 @@
   <Module Path="PageTemplates" Url="ProvPur" >
     <!-- provision standard pages -->
     <File Url="Page01.aspx" Name="Page01.aspx" Type="Ghostable" />
+    <File Url="Page02.aspx" Name="Page02.aspx" Type="Ghostable" />
   </Module>
   
 </Elements>

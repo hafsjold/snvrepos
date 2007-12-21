@@ -13,40 +13,30 @@
 <h4>Add New Customer</h4>
 <table>
   <tr>
-    <td>Name:</td>
-    <td><asp:TextBox ID="txtName" runat="server" /></td>
+    <td class="ms-formlabel">Name:</td>
+    <td Class="ms-formbody"><asp:TextBox ID="txtName" runat="server" /></td>
   </tr>
   <tr>
-    <td>Address:</td>
-    <td><asp:TextBox ID="txtAddress" runat="server" /></td>
+    <td class="ms-formlabel">Address:</td>
+    <td Class="ms-formbody"><asp:TextBox ID="txtAddress" runat="server" /></td>
   </tr>
   <tr>
-    <td>City:</td>
-    <td><asp:TextBox ID="txtCity" runat="server" /></td>
+    <td class="ms-formlabel">City:</td>
+    <td Class="ms-formbody"><asp:TextBox ID="txtCity" runat="server" /></td>
   </tr>
   <tr>
-    <td>
-      State:
-    </td>
-    <td>
-      <asp:TextBox ID="txtState" runat="server" />
-    </td>
+    <td class="ms-formlabel">State:</td>
+    <td Class="ms-formbody"><asp:TextBox ID="txtState" runat="server" /></td>
   </tr>
-
   <tr>
-    <td>
-      Zip:
-    </td>
-    <td>
-      <asp:TextBox ID="txtZip" runat="server" />
-    </td>
+    <td class="ms-formlabel">Zip:</td>
+    <td Class="ms-formbody"><asp:TextBox ID="txtZip" runat="server" /></td>
   </tr>
-
 
 </table>
 
 <p>
-  <asp:Button ID="cmdAddCustomer" runat="server" Text="Add Customer" OnClick="cmdAddCustomer_Click" />
+  <asp:Button ID="cmdAddCustomer" runat="server" Text="Add Customer" OnClick="cmdAddCustomer_Click" CssClass="ms-buttonheightwidth" />
 </p>
 <p>
   <asp:Label ID="lblStatus" runat="server" Text="" />

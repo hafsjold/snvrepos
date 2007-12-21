@@ -27,5 +27,6 @@
     <RootFile Location="Resources\ProvPur.da-dk.resx"/>
     <RootFile Location="TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl1.ascx"/>
     <RootFile Location="TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl2.ascx"/>
+    <RootFile Location="TEMPLATE\CONTROLTEMPLATES\ProvPur\FileViewer.ascx"/>
   </RootFiles>
 </Solution>

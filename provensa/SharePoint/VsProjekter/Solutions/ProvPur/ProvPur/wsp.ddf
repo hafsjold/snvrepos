@@ -22,6 +22,7 @@ TEMPLATE\FEATURES\ProvPurTypes\types.xml	ProvPurTypes\types.xml
 TEMPLATE\FEATURES\ProvPurSitePages\feature.xml	ProvPurSitePages\feature.xml
 TEMPLATE\FEATURES\ProvPurSitePages\elements.xml	ProvPurSitePages\elements.xml
 TEMPLATE\FEATURES\ProvPurSitePages\PageTemplates\Page01.aspx	ProvPurSitePages\PageTemplates\Page01.aspx
+TEMPLATE\FEATURES\ProvPurSitePages\PageTemplates\Page02.aspx	ProvPurSitePages\PageTemplates\Page02.aspx
 ;*** dlls
 bin\Debug\ProvPur.dll	ProvPur.dll
 ;*** Languages
@@ -30,4 +31,5 @@ RESOURCES\ProvPur.da-dk.resx	Resources\ProvPur.da-dk.resx
 ;*** UserControls
 TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl1.ascx	TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl1.ascx
 TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl2.ascx	TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl2.ascx
+TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl2.ascx	TEMPLATE\CONTROLTEMPLATES\ProvPur\FileViewer.ascx
 ;*** <the end>

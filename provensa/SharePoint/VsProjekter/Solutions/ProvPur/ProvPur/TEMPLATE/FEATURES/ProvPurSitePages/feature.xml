@@ -8,6 +8,7 @@
           xmlns="http://schemas.microsoft.com/sharepoint/">
   <ElementManifests>
       <ElementManifest Location="elements.xml"/>
-      <ElementFile Location="PageTemplates\Page01.aspx" />
+    <ElementFile Location="PageTemplates\Page01.aspx" />
+    <ElementFile Location="PageTemplates\Page02.aspx" />
   </ElementManifests>
 </Feature>

@@ -63,6 +63,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="manifest.xml" />
+    <Content Include="TEMPLATE\CONTROLTEMPLATES\ProvPur\FileViewer.ascx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
     <Content Include="TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl1.ascx" />
     <Content Include="TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl2.ascx" />
     <Content Include="TEMPLATE\FEATURES\PersonList\Feature.xml" />
@@ -73,6 +76,9 @@
     <Content Include="TEMPLATE\FEATURES\ProvPurSitePages\elements.xml" />
     <Content Include="TEMPLATE\FEATURES\ProvPurSitePages\feature.xml" />
     <Content Include="TEMPLATE\FEATURES\ProvPurSitePages\PageTemplates\Page01.aspx">
+      <SubType>ASPXCodeBehind</SubType>
+    </Content>
+    <Content Include="TEMPLATE\FEATURES\ProvPurSitePages\PageTemplates\Page02.aspx">
       <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Content Include="TEMPLATE\FEATURES\ProvPurTypes\feature.xml" />
