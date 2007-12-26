@@ -21,11 +21,24 @@ namespace ListMenuSample
         private DataView oView;
         private SPSite siteCollection = SPContext.Current.Site;
         private SPWeb site = SPContext.Current.Web;
-        SPDataSource test;
+        SPDataSource dsSharePoint;
         SPNavigationManager test2;
+        SPDataSourceView myView;
 
         private void PopulateDataset()
         {
+
+            dsSharePoint = new SPDataSource();
+            dsSharePoint.SelectCommand = "<View></View>";
+            dsSharePoint.DataSourceMode = SPDataSourceMode.List;
+            dsSharePoint.UseInternalName = true;
+            dsSharePoint.ID = "spdatasource1";
+            dsSharePoint.SelectParameters.Add("Name", "ListID");
+            dsSharePoint.SelectParameters.Add("DefaultValue", "17B3F9BC-5B07-431D-A876-5055040AD4E1");
+            dsSharePoint.EnableViewState = false;
+            SPList mylist = dsSharePoint.List;
+       
+
             oDataset = new pvGridView.TVData();
             oDataset.Presenters.AddPresentersRow(1, "Jeremy Paxman", "Newsnight");
             oDataset.Presenters.AddPresentersRow(2, "Kirsty Wark", "Newsnight");
@@ -44,7 +57,8 @@ namespace ListMenuSample
             oView = new DataView(oDataset.Presenters);
 
             oGrid = new SPGridView();
-            oGrid.DataSource = oView;
+            //oGrid.DataSource = oView;
+            oGrid.DataSource = dsSharePoint;
             oGrid.AutoGenerateColumns = false;
             oGrid.AllowSorting = true;
             oGrid.Sorting += new GridViewSortEventHandler(oGrid_Sorting);
