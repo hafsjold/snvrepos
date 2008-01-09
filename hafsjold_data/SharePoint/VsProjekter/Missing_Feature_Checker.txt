@@ -8,3 +8,7 @@ SELECT * FROM Features WHERE   FeatureId IN (
 'be6230b8-1c03-471b-b2ba-64fbf63126f4',
 '3e0b9ebf-2bce-4c12-9329-76fc0043c59f'
 )
+
+SELECT * FROM Features WHERE   FeatureId IN (
+'f7934709-cd20-4e5a-a56d-06e2b6451ef4'
+)
