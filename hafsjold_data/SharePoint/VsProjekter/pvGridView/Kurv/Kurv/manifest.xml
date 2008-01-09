@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Solution SolutionId="8B7C72D1-6A81-4ce5-A18C-B1D78A8C5033"
+	xmlns="http://schemas.microsoft.com/sharepoint/" 
+  ResetWebServer="TRUE" 
+  DeploymentServerType="WebFrontEnd" >
+
+  <Assemblies>
+    <Assembly Location="Kurv.dll" DeploymentTarget="GlobalAssemblyCache">
+      <SafeControls>
+        <SafeControl Assembly="Kurv, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9f4da00116c38ec5" Namespace="CustomApplicationPages" TypeName="*" Safe="True" />
+       </SafeControls>
+    </Assembly>
+
+    <Assembly Location="spListDB.dll" DeploymentTarget="GlobalAssemblyCache">
+      <SafeControls>
+        <SafeControl Assembly="spListDB, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9f4da00116c38ec5" Namespace="spListDB" TypeName="*" Safe="True" />
+      </SafeControls>
+    </Assembly>
+
+    <Assembly Location="spListDB.dll" DeploymentTarget="WebApplication">
+    </Assembly>
+   
+  </Assemblies>
+  
+  <RootFiles>
+    <RootFile Location="TEMPLATE\LAYOUTS\pv\Kurv.aspx"/>
+  </RootFiles>
+</Solution>
