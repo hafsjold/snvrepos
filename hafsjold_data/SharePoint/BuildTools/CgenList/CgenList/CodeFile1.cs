@@ -11,6 +11,9 @@ using System.Xml.Serialization;
 
 class genListMain2
 {
+    //
+    // GenerateLIST
+    //
     public void GenerateLIST()
     {
         const string PROJECT_DIR = @"C:\_Provinsa\ProvPur\ProvPur\";
@@ -95,6 +98,9 @@ class genListMain2
     }
 
 
+    //
+    // OpenDataSet
+    //
     private System.Data.DataSet OpenDataSet(string ListName)
     {
         System.Xml.Serialization.XmlSerializer ser = null;
@@ -122,7 +128,13 @@ class genListMain2
         return ds;
     }
 
-    private System.Xml.XmlElement createDataElement(ref System.Xml.XmlDocument pdoc, string pname, string pvalue, string pcomment)
+    //
+    //createDataElement
+    //
+    private System.Xml.XmlElement createDataElement(
+        ref System.Xml.XmlDocument pdoc, 
+        string pname, string pvalue, 
+        string pcomment)
     {
 
         System.Xml.XmlElement data = pdoc.CreateElement("data");
@@ -154,9 +166,16 @@ class genListMain2
         return data;
     }
 
-
-
-    private System.Xml.XmlElement createListElement(ref System.Xml.XmlDocument pdoc, string pname, string pcore, string[] ptypes, ref DataTable ptypestable, ref DataTable pfieldstable)
+    //
+    //createListElement
+    //
+    private System.Xml.XmlElement createListElement(
+        ref System.Xml.XmlDocument pdoc, 
+        string pname, 
+        string pcore, 
+        string[] ptypes, 
+        ref DataTable ptypestable, 
+        ref DataTable pfieldstable)
     {
 
         string pid = null;
@@ -164,9 +183,9 @@ class genListMain2
         string[] pfields = null;
         //'???? 
 
-        //' 
-        //' Insert ContentTypeRef 
-        //' 
+        // 
+        // Insert ContentTypeRef 
+        // 
         System.Xml.XmlNode contenttypes = pdoc.SelectSingleNode("//List/MetaData/ContentTypes");
         foreach (DataRow Type_row in ptypestable.Rows)
         {
@@ -221,9 +240,9 @@ class genListMain2
             }
         }
 
-        //' 
-        //' Insert FieldsRef in Fields 
-        //' 
+        // 
+        // Insert FieldsRef in Fields 
+        // 
         System.Xml.XmlNode fields = pdoc.SelectSingleNode("//List/MetaData/Fields");
         foreach (DataRow Type_row in ptypestable.Rows)
         {
@@ -260,9 +279,9 @@ class genListMain2
             }
         }
 
-        //' 
-        //' Insert FieldsRef in ViewFields 
-        //' 
+        // 
+        // Insert FieldsRef in ViewFields 
+        // 
         System.Xml.XmlNode viewfields = pdoc.SelectSingleNode("//List/MetaData/Views/View[@BaseViewID=\"1\"]/ViewFields");
         foreach (DataRow Type_row in ptypestable.Rows)
         {
