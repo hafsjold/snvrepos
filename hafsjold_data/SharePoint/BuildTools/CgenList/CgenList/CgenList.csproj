@@ -37,7 +37,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodeFile1.cs" />
+    <Compile Include="GenerateLIST.cs" />
     <Compile Include="genListMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

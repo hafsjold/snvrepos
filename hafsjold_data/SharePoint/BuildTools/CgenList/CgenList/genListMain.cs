@@ -5,17 +5,18 @@ using System.Xml;
 using System.Xml.Schema;
 using System.Diagnostics;
 
-class genListMain
+partial class genListMain
 {
     private static string LISTNAME;
-    private static string FIND_DIR0;
-    private static string REPLACE_DIR0;
+    private static string SOURCE_TEMPLATE_DIR;
+    private static string TARGET_DIR;
     private static string PROJECT_DIR;
     private static string PROJECT_FILE;
-    private static string TEMP_NAME;
-    private static string PROJ_NAME;
+    private static string SOURCE_TEMPLATE_NAME;
+    private static string TARGET_TEMPLATE_NAME;
     private static string FIND_DIR;
     private static string REPLACE_DIR;
+    private static string SCHEMA_FILE;
     private static System.Collections.Specialized.StringCollection excludedExtensions;
     private static System.Collections.Specialized.StringCollection ProjectFileList;
 
@@ -24,24 +25,20 @@ class genListMain
         InitParams(args);
         InitCollections();
 
-        TEMP_NAME = "#NAME#List";
-        PROJ_NAME = FolderPathSubstitute(TEMP_NAME, LISTNAME, "xx", "xx", PROJECT_DIR);
-        FIND_DIR = FIND_DIR0 + TEMP_NAME;
-        REPLACE_DIR = REPLACE_DIR0 + PROJ_NAME;
-
-        CopyProjectFolder(FIND_DIR, LISTNAME, FIND_DIR, REPLACE_DIR, PROJECT_DIR);
+        CopyProjectFolder(FIND_DIR);
         UpdateProjectFile(PROJECT_FILE);
+        GenerateLIST();
     }
 
     private static void InitParams(string[] args)
     {
         string ParmName = "Empty";
         LISTNAME = "Empty";
-        FIND_DIR0 = "Empty";
-        REPLACE_DIR0 = "Empty";
+        SOURCE_TEMPLATE_DIR = "Empty";
+        TARGET_DIR = "Empty";
         PROJECT_DIR = "Empty";
         PROJECT_FILE = "Empty";
-        
+
         for (int i = 0; i < args.Length; i++)
         {
             if (args[i].StartsWith("-"))
@@ -60,27 +57,6 @@ class genListMain
                             LISTNAME += " " + args[i];
                         break;
 
-                    case "-FIND_DIR0":
-                        if (FIND_DIR0 == "Empty")
-                            FIND_DIR0 = args[i];
-                        else
-                            FIND_DIR0 += " " + args[i];
-                        break;
-
-                    case "-REPLACE_DIR0":
-                        if (REPLACE_DIR0 == "Empty")
-                            REPLACE_DIR0 = args[i];
-                        else
-                            REPLACE_DIR0 += " " + args[i];
-                        break;
-
-                    case "-PROJECT_DIR":
-                        if (PROJECT_DIR == "Empty")
-                            PROJECT_DIR = args[i];
-                        else
-                            PROJECT_DIR += " " + args[i];
-                        break;
-
                     case "-PROJECT_FILE":
                         if (PROJECT_FILE == "Empty")
                             PROJECT_FILE = args[i];
@@ -88,13 +64,26 @@ class genListMain
                             PROJECT_FILE += " " + args[i];
                         break;
 
+                    case "-SOURCE_TEMPLATE_DIR":
+                        if (SOURCE_TEMPLATE_DIR == "Empty")
+                            SOURCE_TEMPLATE_DIR = args[i];
+                        else
+                            SOURCE_TEMPLATE_DIR += " " + args[i];
+                        break;
+
+                    case "-TARGET_DIR":
+                        if (TARGET_DIR == "Empty")
+                            TARGET_DIR = args[i];
+                        else
+                            TARGET_DIR += " " + args[i];
+                        break;
+
                     default:
                         Console.WriteLine("Default:");
-                        Console.WriteLine(@"-LISTNAME     default: Test");
-                        Console.WriteLine(@"-FIND_DIR0    default: C:\_Provinsa\TEMPLATE\FEATURES\");
-                        Console.WriteLine(@"-REPLACE_DIR0 default: C:\_Provinsa\ProvPur\ProvPur\TEMPLATE\FEATURES\");
-                        Console.WriteLine(@"-PROJECT_DIR  default: C:\_Provinsa\ProvPur\ProvPur\");
-                        Console.WriteLine(@"-PROJECT_FILE default: C:\_Provinsa\ProvPur\ProvPur\ProvPur.csproj");
+                        Console.WriteLine(@"-LISTNAME               default: Test");
+                        Console.WriteLine(@"-PROJECT_FILE           default: C:\_Provinsa\ProvPur\ProvPur\ProvPur.csproj");
+                        Console.WriteLine(@"-SOURCE_TEMPLATE_DIR    default: C:\_Provinsa\TEMPLATE\FEATURES\");
+                        Console.WriteLine(@"-TARGET_DIR             default: C:\_Provinsa\ProvPur\ProvPur\TEMPLATE\FEATURES\");
                         throw new Exception("The Param is not found.");
                 }
             }
@@ -103,16 +92,39 @@ class genListMain
         //Defaults
         if (LISTNAME == "Empty")
             LISTNAME = "Test";
-        if (FIND_DIR0 == "Empty")
-            FIND_DIR0 = @"C:\_Provinsa\TEMPLATE\FEATURES\";
-        if (REPLACE_DIR0 == "Empty")
-            REPLACE_DIR0 = @"C:\_Provinsa\ProvPur\ProvPur\TEMPLATE\FEATURES\";
-        if (PROJECT_DIR == "Empty")
-            PROJECT_DIR = @"C:\_Provinsa\ProvPur\ProvPur\";
         if (PROJECT_FILE == "Empty")
             PROJECT_FILE = @"C:\_Provinsa\ProvPur\ProvPur\ProvPur.csproj";
+        if (SOURCE_TEMPLATE_DIR == "Empty")
+            SOURCE_TEMPLATE_DIR = @"C:\_Provinsa\TEMPLATE\FEATURES\";
+        if (TARGET_DIR == "Empty")
+            TARGET_DIR = @"C:\_Provinsa\ProvPur\ProvPur\TEMPLATE\FEATURES\";
+
+        PROJECT_DIR = System.IO.Path.GetDirectoryName(PROJECT_FILE) + @"\";
+        SOURCE_TEMPLATE_NAME = "#NAME#List";
+        TARGET_TEMPLATE_NAME = Name_Substitute(SOURCE_TEMPLATE_NAME);
+        FIND_DIR = SOURCE_TEMPLATE_DIR + SOURCE_TEMPLATE_NAME;
+        REPLACE_DIR = TARGET_DIR + TARGET_TEMPLATE_NAME;
     }
 
+
+    private static string Name_Substitute(string s)
+    {
+        string s1 = s.Replace("#NAME#", LISTNAME);
+        return s1;
+    }
+    private static string FolderPath_Substitute(string s)
+    {
+        string s1 = s.Replace(FIND_DIR, REPLACE_DIR);
+        string s2 = s1.Replace("#NAME#", LISTNAME);
+        return s2;
+    }
+    private static string ProjectPath_Substitute(string s)
+    {
+        string s1 = s.Replace(FIND_DIR, REPLACE_DIR);
+        string s2 = s1.Replace("#NAME#", LISTNAME);
+        string s3 = s2.Replace(PROJECT_DIR, "");
+        return s3;
+    }
 
     private static void InitCollections()
     {
@@ -161,6 +173,12 @@ class genListMain
         System.Xml.XmlElement ItemGroup = docPROJECT.CreateElement("ItemGroup");
         foreach (string strPath in ProjectFileList)
         {
+            string strFilename = System.IO.Path.GetFileName(strPath);
+            strFilename.ToLower();
+            if (strFilename == "schema.xml")
+            {
+                SCHEMA_FILE = PROJECT_DIR + strPath;
+            }
             System.Xml.XmlElement Content = docPROJECT.CreateElement("Content");
             Content.SetAttribute("Include", strPath);
             ItemGroup.AppendChild(Content);
@@ -177,40 +195,22 @@ class genListMain
 
     }
 
-    private static string FolderPathSubstitute(string s, string LISTNAME, string FIND_DIR, string REPLACE_DIR, string PROJECT_DIR)
+    private static void CopyProjectFolder(string currentPath)
     {
-        string s1 = s.Replace(FIND_DIR, REPLACE_DIR);
-        string s2 = s1.Replace("#NAME#", LISTNAME);
-        return s2;
-    }
-    private static string ProjectPathSubstitute(string s, string LISTNAME, string FIND_DIR, string REPLACE_DIR, string PROJECT_DIR)
-    {
-        string s1 = s.Replace(FIND_DIR, REPLACE_DIR);
-        string s2 = s1.Replace("#NAME#", LISTNAME);
-        string s3 = s2.Replace(PROJECT_DIR, "");
-        return s3;
-    }
-
-
-    private static void CopyProjectFolder(string currentPath, string LISTNAME, string FIND_DIR, string REPLACE_DIR, string PROJECT_DIR)
-    {
-        string[] stFolders;
-        string[] stFiles;
-
-        stFolders = System.IO.Directory.GetDirectories(currentPath);
-        stFiles = System.IO.Directory.GetFiles(currentPath);
+        string[] stFolders = System.IO.Directory.GetDirectories(currentPath);
+        string[] stFiles = System.IO.Directory.GetFiles(currentPath);
 
         // Examine all the files within the folder. 
         foreach (string stFile in stFiles)
         {
             if ((!IsFileExcluded(stFile)))
             {
-                string stToPath = FolderPathSubstitute(stFile, LISTNAME, FIND_DIR, REPLACE_DIR, PROJECT_DIR);
+                string stToPath = FolderPath_Substitute(stFile);
                 try
                 {
-                    AddFolder2Folder(stToPath);
+                    AddFolder2Folder(stToPath, true);
                     System.IO.File.Copy(stFile, stToPath);
-                    ProjectFileList.Add(ProjectPathSubstitute(stFile, LISTNAME, FIND_DIR, REPLACE_DIR, PROJECT_DIR));
+                    ProjectFileList.Add(ProjectPath_Substitute(stFile));
                 }
                 catch
                 {
@@ -244,7 +244,7 @@ class genListMain
         {
             if ((!IsFileExcluded(stFolder)))
             {
-                CopyProjectFolder(stFolder, LISTNAME, FIND_DIR, REPLACE_DIR, PROJECT_DIR);
+                CopyProjectFolder(stFolder);
             }
         }
     }
@@ -279,12 +279,17 @@ class genListMain
         }
     }
 
-    private static void AddFolder2Folder(string ProjectPath)
+    private static void AddFolder2Folder(string ProjectPath, Boolean bFile)
     {
         string[] folders = Regex.Split(ProjectPath, @"\\");
         string stPath = "";
+        int iLops;
+        if (bFile)
+            iLops = folders.Length - 2;
+        else
+            iLops = folders.Length - 1;
 
-        for (int i = 0; i <= folders.Length - 2; i++)
+        for (int i = 0; i <= iLops; i++)
         {
             if (stPath.Length > 0)
             {

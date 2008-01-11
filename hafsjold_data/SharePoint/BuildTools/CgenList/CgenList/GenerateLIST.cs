@@ -9,16 +9,14 @@ using Microsoft.SharePoint;
 using System.IO;
 using System.Xml.Serialization;
 
-class genListMain2
+partial class genListMain
 {
     //
     // GenerateLIST
     //
-    public void GenerateLIST()
+    private static void GenerateLIST()
     {
-        const string PROJECT_DIR = @"C:\_Provinsa\ProvPur\ProvPur\";
         const string COREFILE = "ProvPur";
-        string FILENAME_LIST = PROJECT_DIR + @"TEMPLATE\FEATURES\PersonList\PersonList\schema.xml";
         string FILENAME_DK = PROJECT_DIR + @"Resources\" + COREFILE + ".da-dk.resx";
         string FILENAME_UK = PROJECT_DIR + @"Resources\" + COREFILE + ".resx";
 
@@ -26,7 +24,7 @@ class genListMain2
         StreamReader myReader;
         StreamWriter myWriter;
 
-        myStream = new FileStream(FILENAME_LIST, FileMode.Open);
+        myStream = new FileStream(SCHEMA_FILE, FileMode.Open);
         myReader = new StreamReader(myStream);
         string XMLFileLISTtext = myReader.ReadToEnd();
         myReader.Close();
@@ -63,22 +61,26 @@ class genListMain2
         foreach (DataRow List_row in List_rows.Rows)
         {
 
-            int List_Id = (int)List_row["ows_ID"];
+
+            int List_Id = int.Parse((string)List_row["ows_ID"]);
             string List_SysName = (string)List_row["ows_Title"];
             string[] List_Types = Regex.Split((string)List_row["ows_BasedOn"], ";#");
             string List_DisplayNameDK = (string)List_row["ows_DisplayNameDK"];
             string List_DisplayNameUK = (string)List_row["ows_DisplayNameUK"];
             string List_Comment = (string)List_row["ows_Comment"];
 
-            System.Xml.XmlElement dataLIST = createListElement(ref docLIST, List_SysName, COREFILE, List_Types, ref Type_rows, ref Field_rows);
-            System.Xml.XmlElement dataDK = createDataElement(ref docDK, List_SysName, List_DisplayNameDK, List_Comment);
-            System.Xml.XmlElement dataUK = createDataElement(ref docUK, List_SysName, List_DisplayNameDK, List_Comment);
-
+            if (List_SysName == LISTNAME)
+            {
+                createListElement(ref docLIST, List_SysName, COREFILE, List_Types, ref Type_rows, ref Field_rows);
+                createDataElement(ref docDK, List_SysName, List_DisplayNameDK, List_Comment);
+                createDataElement(ref docUK, List_SysName, List_DisplayNameDK, List_Comment);
+                break;
+            }
         }
 
         strXML = Regex.Replace(docLIST.OuterXml, "<Elements>", "<Elements xmlns=\"http://schemas.microsoft.com/sharepoint/\">");
 
-        myStream = new FileStream(FILENAME_LIST, FileMode.Truncate);
+        myStream = new FileStream(SCHEMA_FILE, FileMode.Truncate);
         myWriter = new StreamWriter(myStream);
         myWriter.Write(strXML);
         myWriter.Close();
@@ -101,7 +103,7 @@ class genListMain2
     //
     // OpenDataSet
     //
-    private System.Data.DataSet OpenDataSet(string ListName)
+    private static System.Data.DataSet OpenDataSet(string ListName)
     {
         System.Xml.Serialization.XmlSerializer ser = null;
         FileStream reader;
@@ -131,7 +133,7 @@ class genListMain2
     //
     //createDataElement
     //
-    private System.Xml.XmlElement createDataElement(
+    private static void createDataElement(
         ref System.Xml.XmlDocument pdoc, 
         string pname, string pvalue, 
         string pcomment)
@@ -162,14 +164,12 @@ class genListMain2
         {
             root.ReplaceChild(data, old_data);
         }
-
-        return data;
     }
 
     //
     //createListElement
     //
-    private System.Xml.XmlElement createListElement(
+    private static void createListElement(
         ref System.Xml.XmlDocument pdoc, 
         string pname, 
         string pcore, 
@@ -178,18 +178,13 @@ class genListMain2
         ref DataTable pfieldstable)
     {
 
-        string pid = null;
-        //'???? 
-        string[] pfields = null;
-        //'???? 
-
         // 
         // Insert ContentTypeRef 
         // 
         System.Xml.XmlNode contenttypes = pdoc.SelectSingleNode("//List/MetaData/ContentTypes");
         foreach (DataRow Type_row in ptypestable.Rows)
         {
-            int Type_Id = (int)Type_row["ows_ID"];
+            int Type_Id = int.Parse((string)Type_row["ows_ID"]);
             for (int i = 0; i <= ptypes.Length - 1; i += 2)
             {
                 if (Type_Id == int.Parse(ptypes[i]))
@@ -246,7 +241,7 @@ class genListMain2
         System.Xml.XmlNode fields = pdoc.SelectSingleNode("//List/MetaData/Fields");
         foreach (DataRow Type_row in ptypestable.Rows)
         {
-            int Type_Id = (int)Type_row["ows_ID"];
+            int Type_Id = int.Parse((string)Type_row["ows_ID"]);
             for (int i = 0; i <= ptypes.Length - 1; i += 2)
             {
                 if (Type_Id == int.Parse(ptypes[i]))
@@ -254,7 +249,7 @@ class genListMain2
                     string[] Type_Fields = Regex.Split((string)Type_row["ows_Felter"], ";#");
                     foreach (DataRow Field_row in pfieldstable.Rows)
                     {
-                        int Field_Id = (int)Field_row["ows_ID"];
+                        int Field_Id = int.Parse((string)Field_row["ows_ID"]);
                         for (int j = 0; j <= Type_Fields.Length - 1; j += 2)
                         {
                             if (Field_Id == int.Parse(Type_Fields[j]))
@@ -285,7 +280,7 @@ class genListMain2
         System.Xml.XmlNode viewfields = pdoc.SelectSingleNode("//List/MetaData/Views/View[@BaseViewID=\"1\"]/ViewFields");
         foreach (DataRow Type_row in ptypestable.Rows)
         {
-            int Type_Id = (int)Type_row["ows_ID"];
+            int Type_Id = int.Parse((string)Type_row["ows_ID"]);
             for (int i = 0; i <= ptypes.Length - 1; i += 2)
             {
                 if (Type_Id == int.Parse(ptypes[i]))
@@ -293,7 +288,7 @@ class genListMain2
                     string[] Type_Fields = Regex.Split((string)Type_row["ows_Felter"], ";#");
                     foreach (DataRow Field_row in pfieldstable.Rows)
                     {
-                        int Field_Id = (int)Field_row["ows_ID"];
+                        int Field_Id = int.Parse((string)Field_row["ows_ID"]);
                         for (int j = 0; j <= Type_Fields.Length - 1; j += 2)
                         {
                             if (Field_Id == int.Parse(Type_Fields[j]))
@@ -317,54 +312,5 @@ class genListMain2
                 }
             }
         }
-
-        System.Xml.XmlElement contenttype = pdoc.CreateElement("ContentType");
-        contenttype.SetAttribute("ID", pid);
-        contenttype.SetAttribute("Name", pname);
-        contenttype.SetAttribute("Group", "$Resources:" + pcore + ",TypesGroupName;");
-        contenttype.SetAttribute("Description", "$Resources:" + pcore + "," + pname + ";");
-        contenttype.SetAttribute("Version", "0");
-
-        System.Xml.XmlElement fieldrefs = pdoc.CreateElement("FieldRefs");
-        contenttype.AppendChild(fieldrefs);
-
-
-        foreach (DataRow Field_row in pfieldstable.Rows)
-        {
-            int Field_Id = (int)Field_row["ows_ID"];
-            for (int i = 0; i <= pfields.Length - 1; i += 2)
-            {
-                if (Field_Id == int.Parse(pfields[i]))
-                {
-                    string Field_SysName = (string)Field_row["ows_Title"];
-                    string Field_KolonneType = (string)Field_row["ows_KolonneType"];
-                    string Field_DisplayNameDK = (string)Field_row["ows_DisplayNameDK"];
-                    string Field_DisplayNameUK = (string)Field_row["ows_DisplayNameUK"];
-                    string Field_Comment = (string)Field_row["ows_FieldName"];
-                    string Guid = (string)Field_row["ows_GUID0"];
-
-                    System.Xml.XmlElement fieldref = pdoc.CreateElement("FieldRef");
-                    fieldref.SetAttribute("ID", Guid);
-                    fieldref.SetAttribute("Name", Field_SysName);
-                    fieldrefs.AppendChild(fieldref);
-                    break; // TODO: might not be correct. Was : Exit For 
-                }
-            }
-        }
-
-        System.Xml.XmlNode elements = pdoc.SelectSingleNode("//Elements");
-        string filter = "//ContentType[@ID=\"" + pid + "\"]";
-        System.Xml.XmlNode old_contenttype = elements.SelectSingleNode(filter);
-
-        if (old_contenttype == null)
-        {
-            elements.AppendChild(contenttype);
-        }
-        else
-        {
-            elements.ReplaceChild(contenttype, old_contenttype);
-        }
-
-        return contenttype;
     }
 }
