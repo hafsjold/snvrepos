@@ -17,6 +17,12 @@ partial class genListMain
     private static string FIND_DIR;
     private static string REPLACE_DIR;
     private static string SCHEMA_FILE;
+    private static string MANIFEST_FILE;
+    private static string MANIFEST_ROOT;
+    private static string DFF_FILE;
+    private static string DFF_ROOT;
+    private static string DFF_FROM_ROOT;
+    private static string DFF_TO_ROOT;
     private static System.Collections.Specialized.StringCollection excludedExtensions;
     private static System.Collections.Specialized.StringCollection ProjectFileList;
 
@@ -24,11 +30,37 @@ partial class genListMain
     {
         InitParams(args);
         InitCollections();
-
         CopyProjectFolder(FIND_DIR);
-        UpdateProjectFile(PROJECT_FILE);
+        UpdateProjectFile();
+        UpdateManifestFile();
+        UpdateDFFFile();
         GenerateLIST();
     }
+
+    private static void testProjectUpdate()
+    {
+        string strPath = @"TEMPLATE\FEATURES\PersonList\PersonList\schema2.xml"; 
+        FileStream myStream = new FileStream(PROJECT_FILE, FileMode.Open);
+        StreamReader myReader = new StreamReader(myStream);
+        string XMLFileLISTtext = myReader.ReadToEnd();
+        myReader.Close();
+        myStream.Close();
+
+        System.Xml.XmlDocument docPROJECT = new System.Xml.XmlDocument();
+        string strXML = Regex.Replace(XMLFileLISTtext, "xmlns=\"[^\"]*\"", "");
+        docPROJECT.LoadXml(strXML);
+
+        AddProjectContent(docPROJECT, strPath);
+
+        strXML = Regex.Replace(docPROJECT.OuterXml, "<Project DefaultTargets=\"Build\"", "<Project DefaultTargets=\"Build\" xmlns=\"http://schemas.microsoft.com/developer/msbuild/2003\" ");
+
+        //myStream = new FileStream(PROJECT_FILE, FileMode.Truncate);
+        //StreamWriter myWriter = new StreamWriter(myStream);
+        //myWriter.Write(strXML);
+        //myWriter.Close();
+        //myStream.Close();
+    }
+
 
     private static void InitParams(string[] args)
     {
@@ -104,7 +136,12 @@ partial class genListMain
         TARGET_TEMPLATE_NAME = Name_Substitute(SOURCE_TEMPLATE_NAME);
         FIND_DIR = SOURCE_TEMPLATE_DIR + SOURCE_TEMPLATE_NAME;
         REPLACE_DIR = TARGET_DIR + TARGET_TEMPLATE_NAME;
-    }
+        MANIFEST_FILE = PROJECT_DIR + "manifest.xml";
+        MANIFEST_ROOT = TARGET_DIR;
+        DFF_FILE = PROJECT_DIR + "wsp.ddf";
+        DFF_FROM_ROOT = PROJECT_DIR;
+        DFF_TO_ROOT = TARGET_DIR;
+   }
 
 
     private static string Name_Substitute(string s)
@@ -155,10 +192,9 @@ partial class genListMain
         excludedExtensions.Add("_svn");
     }
 
-    private static void UpdateProjectFile(string ProjectFile)
+    private static void UpdateProjectFile()
     {
-
-        FileStream myStream = new FileStream(ProjectFile, FileMode.Open);
+        FileStream myStream = new FileStream(PROJECT_FILE, FileMode.Open);
         StreamReader myReader = new StreamReader(myStream);
         string XMLFileLISTtext = myReader.ReadToEnd();
         myReader.Close();
@@ -168,26 +204,21 @@ partial class genListMain
         string strXML = Regex.Replace(XMLFileLISTtext, "xmlns=\"[^\"]*\"", "");
         docPROJECT.LoadXml(strXML);
 
-        System.Xml.XmlNode Project = docPROJECT.FirstChild;
-
-        System.Xml.XmlElement ItemGroup = docPROJECT.CreateElement("ItemGroup");
         foreach (string strPath in ProjectFileList)
         {
+            AddProjectContent(docPROJECT, strPath);
+            
             string strFilename = System.IO.Path.GetFileName(strPath);
             strFilename.ToLower();
             if (strFilename == "schema.xml")
             {
                 SCHEMA_FILE = PROJECT_DIR + strPath;
             }
-            System.Xml.XmlElement Content = docPROJECT.CreateElement("Content");
-            Content.SetAttribute("Include", strPath);
-            ItemGroup.AppendChild(Content);
         }
-        Project.AppendChild(ItemGroup);
 
         strXML = Regex.Replace(docPROJECT.OuterXml, "<Project DefaultTargets=\"Build\"", "<Project DefaultTargets=\"Build\" xmlns=\"http://schemas.microsoft.com/developer/msbuild/2003\" ");
 
-        myStream = new FileStream(ProjectFile, FileMode.Truncate);
+        myStream = new FileStream(PROJECT_FILE, FileMode.Truncate);
         StreamWriter myWriter = new StreamWriter(myStream);
         myWriter.Write(strXML);
         myWriter.Close();
@@ -195,6 +226,111 @@ partial class genListMain
 
     }
 
+    private static void AddProjectContent(XmlDocument docPROJECT, string strPath)
+    {
+        string filter = @"//Project/ItemGroup/Content[@Include=""" + strPath + @"""]";
+        System.Xml.XmlNode field = docPROJECT.SelectSingleNode(filter);
+        if (field == null) {
+            string filter2 = @"//Project/ItemGroup";
+            System.Xml.XmlNode ItemGroup = docPROJECT.SelectSingleNode(filter2);
+            if (ItemGroup != null)
+            {
+                System.Xml.XmlElement Content = docPROJECT.CreateElement("Content");
+                Content.SetAttribute("Include", strPath);
+                ItemGroup.AppendChild(Content);
+            }
+        }
+    }
+
+    private static void UpdateManifestFile()
+    {
+        FileStream myStream = new FileStream(MANIFEST_FILE, FileMode.Open);
+        StreamReader myReader = new StreamReader(myStream);
+        string XMLFileLISTtext = myReader.ReadToEnd();
+        myReader.Close();
+        myStream.Close();
+
+        System.Xml.XmlDocument docMANIFEST = new System.Xml.XmlDocument();
+        string strXML = Regex.Replace(XMLFileLISTtext, "xmlns=\"[^\"]*\"", "");
+        docMANIFEST.LoadXml(strXML);
+
+
+        foreach (string strPath in ProjectFileList)
+        {
+            string strManifestPath = strPath.Replace("TEMPLATE\\FEATURES\\", "");
+            string strFilename = System.IO.Path.GetFileName(strManifestPath).ToLower();
+            if (strFilename == "feature.xml")
+            {
+                AddManifestContent(docMANIFEST, strManifestPath);
+            }
+        }
+        //<Solution SolutionId="24493869-2DA2-49b5-AA30-67FE39550F1C"xmlns="http://schemas.microsoft.com/sharepoint/">
+        strXML = Regex.Replace(docMANIFEST.OuterXml, "<Solution", "<Solution xmlns=\"http://schemas.microsoft.com/sharepoint/\" ");
+
+        myStream = new FileStream(MANIFEST_FILE, FileMode.Truncate);
+        StreamWriter myWriter = new StreamWriter(myStream);
+        myWriter.Write(strXML);
+        myWriter.Close();
+        myStream.Close();
+
+    }
+
+    private static void UpdateDFFFile()
+    {
+        FileStream myStream = new FileStream(DFF_FILE, FileMode.Open);
+        StreamReader myReader = new StreamReader(myStream);
+        System.Collections.Specialized.StringCollection DFFFiletext = new System.Collections.Specialized.StringCollection();
+        while (!myReader.EndOfStream)
+            DFFFiletext.Add(myReader.ReadLine());
+        myReader.Close();
+        myStream.Close();
+
+        foreach (string strPath in ProjectFileList)
+            AddDFFContent(DFFFiletext, strPath);
+
+        myStream = new FileStream(DFF_FILE, FileMode.Truncate);
+        StreamWriter myWriter = new StreamWriter(myStream);
+        foreach (string s in DFFFiletext)
+            myWriter.WriteLine(s);
+        myWriter.Close();
+        myStream.Close();
+
+    }
+
+    private static void AddDFFContent(System.Collections.Specialized.StringCollection DFFFiletext, string strPath)
+    {
+        Boolean bFound = false;
+        foreach (string s in DFFFiletext)
+            if (s.Contains(strPath)){
+                bFound = true;
+                break;
+            }
+        if (bFound){
+        
+        } 
+        else {
+            DFFFiletext.Add(strPath + "\t" + strPath.Replace("TEMPLATE\\FEATURES\\", ""));
+        }
+    }
+    
+    private static void AddManifestContent(XmlDocument docMANIFEST, string strManifestPath)
+    {
+        //manifest-root: TARGET_DIR
+        string filter = @"//Solution/FeatureManifests/FeatureManifest[@Location=""" + strManifestPath + @"""]";
+        System.Xml.XmlNode field = docMANIFEST.SelectSingleNode(filter);
+        if (field == null)
+        {
+            string filter2 = @"//Solution/FeatureManifests";
+            System.Xml.XmlNode FeatureManifests = docMANIFEST.SelectSingleNode(filter2);
+            if (FeatureManifests != null)
+            {
+                System.Xml.XmlElement FeatureManifest = docMANIFEST.CreateElement("FeatureManifest");
+                FeatureManifest.SetAttribute("Location", strManifestPath);
+                FeatureManifests.AppendChild(FeatureManifest);
+            }
+        }
+    }
+    
     private static void CopyProjectFolder(string currentPath)
     {
         string[] stFolders = System.IO.Directory.GetDirectories(currentPath);
@@ -209,7 +345,7 @@ partial class genListMain
                 try
                 {
                     AddFolder2Folder(stToPath, true);
-                    System.IO.File.Copy(stFile, stToPath);
+                    System.IO.File.Copy(stFile, stToPath,true);
                     ProjectFileList.Add(ProjectPath_Substitute(stFile));
                 }
                 catch
