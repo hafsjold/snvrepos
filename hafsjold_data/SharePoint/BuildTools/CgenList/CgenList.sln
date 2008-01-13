@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsaveDataset", "CsaveDatase
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wssGetList", "..\..\_Udvikl\wssGetList\wssGetList\wssGetList.csproj", "{C67FB0E3-B951-41AD-883F-6216FD4A251B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerateColumns", "GenerateColumns\GenerateColumns.csproj", "{A976B19C-51F4-4936-8F76-9F03C21EEA00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerateTypes", "GenerateTypes\GenerateTypes.csproj", "{2327B8B4-78C0-45E6-AAA7-7931F75CC285}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +29,14 @@ Global
 		{C67FB0E3-B951-41AD-883F-6216FD4A251B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C67FB0E3-B951-41AD-883F-6216FD4A251B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C67FB0E3-B951-41AD-883F-6216FD4A251B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A976B19C-51F4-4936-8F76-9F03C21EEA00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A976B19C-51F4-4936-8F76-9F03C21EEA00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A976B19C-51F4-4936-8F76-9F03C21EEA00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A976B19C-51F4-4936-8F76-9F03C21EEA00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2327B8B4-78C0-45E6-AAA7-7931F75CC285}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2327B8B4-78C0-45E6-AAA7-7931F75CC285}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2327B8B4-78C0-45E6-AAA7-7931F75CC285}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2327B8B4-78C0-45E6-AAA7-7931F75CC285}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,7 +5,6 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Schema;
 using Microsoft.SharePoint;
-//using wssGetList;
 using System.IO;
 using System.Xml.Serialization;
 
