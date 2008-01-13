@@ -33,3 +33,6 @@ TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl1.ascx	TEMPLATE\CONTROLTEMPLATES\Pr
 TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl2.ascx	TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl2.ascx
 TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl2.ascx	TEMPLATE\CONTROLTEMPLATES\ProvPur\FileViewer.ascx
 ;*** <the end>
+TEMPLATE\FEATURES\TestListe1List\Feature.xml	TestListe1List\Feature.xml
+TEMPLATE\FEATURES\TestListe1List\TestListe1List\schema.xml	TestListe1List\TestListe1List\schema.xml
+TEMPLATE\FEATURES\TestListe1List\ListTemplates\TestListe1List.xml	TestListe1List\ListTemplates\TestListe1List.xml

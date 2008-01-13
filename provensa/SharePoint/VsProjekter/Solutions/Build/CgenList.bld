@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<project version='6'>
+	<steps type='0'>
+		<step action='Group'>
+			<name>Project steps</name>
+		</step>
+		<step action='Run Program'>
+			<ShowCmd type='11'>-1</ShowCmd>
+			<command>C:\_BuildTools\CgenList\CgenList\bin\Debug\CgenList.exe -listname TestListe1</command>
+			<indent type='3'>1</indent>
+			<name>CgenList -listname TestListe1</name>
+			<outputfrom type='3'>1</outputfrom>
+			<startin>C:\_BuildTools\CgenList\CgenList\bin\Debug</startin>
+		</step>
+		<step action='Make VS 2005'>
+			<Attr type='11'>-1</Attr>
+			<FileVer type='11'>-1</FileVer>
+			<Filename>C:\_Provinsa\ProvPur\ProvPur\ProvPur.csproj</Filename>
+			<indent type='3'>1</indent>
+			<name>Make VS 2005</name>
+		</step></steps>
+</project>
