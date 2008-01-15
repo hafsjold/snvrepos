@@ -25,7 +25,6 @@ partial class genListMain
     private static string DFF_FROM_ROOT;
     private static string DFF_TO_ROOT;
     private static string FEATURE_FILE;
-
     private static System.Collections.Specialized.StringCollection excludedExtensions;
     private static System.Collections.Specialized.StringCollection ProjectFileList;
 
@@ -123,18 +122,19 @@ partial class genListMain
         DFF_TO_ROOT = TARGET_DIR;
     }
 
-
     private static string Name_Substitute(string s)
     {
         string s1 = s.Replace("#NAME#", LISTNAME);
         return s1;
     }
+    
     private static string FolderPath_Substitute(string s)
     {
         string s1 = s.Replace(FIND_DIR, REPLACE_DIR);
         string s2 = s1.Replace("#NAME#", LISTNAME);
         return s2;
     }
+    
     private static string ProjectPath_Substitute(string s)
     {
         string s1 = s.Replace(FIND_DIR, REPLACE_DIR);
@@ -393,6 +393,9 @@ partial class genListMain
                     {
                         System.Xml.XmlNode ListTemplate = docELEMENTMANIFEST.SelectSingleNode("//Elements/ListTemplate");
                         ListTemplate.Attributes["Type"].Value = List_TypeIdentifier;
+
+                        System.Xml.XmlNode ListInstance = docELEMENTMANIFEST.SelectSingleNode("//Elements/ListInstance");
+                        ListInstance.Attributes["TemplateType"].Value = List_TypeIdentifier;
                         break;
                     }
                 }
@@ -408,6 +411,7 @@ partial class genListMain
         }
 
     }
+    
     private static void CopyProjectFolder(string currentPath)
     {
         string[] stFolders = System.IO.Directory.GetDirectories(currentPath);
