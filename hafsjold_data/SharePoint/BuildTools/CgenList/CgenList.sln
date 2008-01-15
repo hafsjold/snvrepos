@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerateColumns", "Generate
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenerateTypes", "GenerateTypes\GenerateTypes.csproj", "{2327B8B4-78C0-45E6-AAA7-7931F75CC285}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateGUID", "UpdateGUID\UpdateGUID.csproj", "{1594525C-F945-4128-8350-DAE1BA8D48F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{2327B8B4-78C0-45E6-AAA7-7931F75CC285}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2327B8B4-78C0-45E6-AAA7-7931F75CC285}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2327B8B4-78C0-45E6-AAA7-7931F75CC285}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1594525C-F945-4128-8350-DAE1BA8D48F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1594525C-F945-4128-8350-DAE1BA8D48F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1594525C-F945-4128-8350-DAE1BA8D48F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1594525C-F945-4128-8350-DAE1BA8D48F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

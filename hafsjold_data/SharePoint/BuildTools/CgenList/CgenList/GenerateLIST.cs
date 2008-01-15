@@ -227,15 +227,29 @@ partial class genListMain
                     System.Xml.XmlElement contenttyperef = pdoc.CreateElement("ContentTypeRef");
                     System.Xml.XmlComment contenttypescomment = pdoc.CreateComment(Type_SysName);
                     contenttyperef.SetAttribute("ID", ContentTypeID);
-                    contenttypes.AppendChild(contenttypescomment);
-                    contenttypes.AppendChild(contenttyperef);
-                    break; // TODO: might not be correct. Was : Exit For 
+
+                    System.Xml.XmlNode ContentTypeRef0x01 = pdoc.SelectSingleNode("//List/MetaData/ContentTypes/ContentTypeRef[@ID=\"0x01\"]");
+                    if (ContentTypeRef0x01 == null)
+                    {
+                        System.Xml.XmlNode lastContentTypeRef = contenttypes.AppendChild(contenttyperef);
+                        contenttypes.InsertBefore(contenttypescomment, lastContentTypeRef);
+                   }
+                    else {
+                        System.Xml.XmlNode Folder = pdoc.SelectSingleNode("//List/MetaData/ContentTypes/ContentTypeRef[@ID=\"0x01\"]/Folder");
+                        if (Folder != null) {
+                            System.Xml.XmlNode copyFolder = Folder.CloneNode(true);
+                            contenttyperef.AppendChild(copyFolder);
+                        }
+                        contenttypes.InsertBefore(contenttypescomment, ContentTypeRef0x01);
+                        contenttypes.ReplaceChild(contenttyperef, ContentTypeRef0x01);
+                    }
+                    break; 
                 }
             }
         }
 
         // 
-        // Insert FieldsRef in Fields 
+        // Insert Field in Fields 
         // 
         System.Xml.XmlNode fields = pdoc.SelectSingleNode("//List/MetaData/Fields");
         foreach (DataRow Type_row in ptypestable.Rows)
@@ -260,9 +274,63 @@ partial class genListMain
                                 string Field_Comment = (string)Field_row["ows_FieldName"];
                                 string Guid = (string)Field_row["ows_GUID0"];
 
-                                System.Xml.XmlElement fieldref = pdoc.CreateElement("FieldRef");
-                                fieldref.SetAttribute("ID", Guid);
+                                System.Xml.XmlElement fieldref = pdoc.CreateElement("Field");
                                 fieldref.SetAttribute("Name", Field_SysName);
+                                fieldref.SetAttribute("ID", Guid);
+                                fieldref.SetAttribute("DisplayName", "$Resources:" + pcore + "," + Field_SysName + ";"); 
+
+                                switch (Field_KolonneType)
+                                {
+                                    case "Text":
+                                        fieldref.SetAttribute("Type", "Text");
+                                        fieldref.SetAttribute("MaxLength", "255");
+                                        break;
+
+                                    case "Note":
+                                        fieldref.SetAttribute("Type", "Note");
+                                        fieldref.SetAttribute("NumLines", "3");
+                                        fieldref.SetAttribute("RichText", "TRUE");
+                                        break;
+
+                                    case "Choice":
+                                        fieldref.SetAttribute("Type", "Choice");
+                                        break;
+
+                                    case "Number":
+                                        fieldref.SetAttribute("Type", "Number");
+                                        fieldref.SetAttribute("Decimals", "0");
+                                        break;
+
+                                    case "Percentage":
+                                        fieldref.SetAttribute("Type", "Number");
+                                        fieldref.SetAttribute("Percentage", "TRUE");
+                                        fieldref.SetAttribute("Min", "0");
+                                        fieldref.SetAttribute("Max", "1");
+                                        break;
+
+                                    case "Currency":
+                                        fieldref.SetAttribute("Type", "Currency");
+                                        fieldref.SetAttribute("Decimals", "2");
+                                        break;
+
+                                    case "DateOnly":
+                                        fieldref.SetAttribute("Type", "DateTime");
+                                        fieldref.SetAttribute("Format", "DateOnly");
+                                        break;
+
+                                    case "DateTime":
+                                        fieldref.SetAttribute("Type", "DateTime");
+                                        break;
+
+                                    case "Boolean":
+                                        fieldref.SetAttribute("Type", "Boolean");
+                                        break;
+
+                                    default:
+                                        break;
+
+                                } 
+
                                 fields.AppendChild(fieldref);
                                 break; // TODO: might not be correct. Was : Exit For 
                             }

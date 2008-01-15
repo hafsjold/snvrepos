@@ -14,6 +14,7 @@ namespace GenerateTypes
     {
         static void Main(string[] args)
         {
+            GenerateTypes();
         }
 
         private static void GenerateTypes()
@@ -106,28 +107,24 @@ namespace GenerateTypes
             }
 
             strXML = Regex.Replace(docTYPES.OuterXml, "<Elements>", "<Elements xmlns=\"http://schemas.microsoft.com/sharepoint/\">");
-/*
-            EditPoint starteditPntTYPES = XMLFileTYPES.StartPoint.CreateEditPoint();
-            EditPoint endeditPntTYPES = XMLFileTYPES.StartPoint.CreateEditPoint;
-            starteditPntTYPES.StartOfDocument();
-            endeditPntTYPES.EndOfDocument();
-            starteditPntTYPES.Delete(endeditPntTYPES);
-            starteditPntTYPES.Insert(strXML);
 
-            EditPoint starteditPntDK = XMLFileDK.StartPoint.CreateEditPoint();
-            EditPoint endeditPntDK = XMLFileDK.StartPoint.CreateEditPoint;
-            starteditPntDK.StartOfDocument();
-            endeditPntDK.EndOfDocument();
-            starteditPntDK.Delete(endeditPntDK);
-            starteditPntDK.Insert(docDK.OuterXml);
+            myStream = new FileStream(FILENAME_TYPES, FileMode.Truncate);
+            myWriter = new StreamWriter(myStream);
+            myWriter.Write(strXML);
+            myWriter.Close();
+            myStream.Close();
 
-            EditPoint starteditPntUK = XMLFileUK.StartPoint.CreateEditPoint();
-            EditPoint endeditPntUK = XMLFileUK.StartPoint.CreateEditPoint;
-            starteditPntUK.StartOfDocument();
-            endeditPntUK.EndOfDocument();
-            starteditPntUK.Delete(endeditPntUK);
-            starteditPntUK.Insert(docUK.OuterXml);
-*/
+            myStream = new FileStream(FILENAME_DK, FileMode.Truncate);
+            myWriter = new StreamWriter(myStream);
+            myWriter.Write(docDK.OuterXml);
+            myWriter.Close();
+            myStream.Close();
+
+            myStream = new FileStream(FILENAME_UK, FileMode.Truncate);
+            myWriter = new StreamWriter(myStream);
+            myWriter.Write(docUK.OuterXml);
+            myWriter.Close();
+            myStream.Close();
         }
 
 
