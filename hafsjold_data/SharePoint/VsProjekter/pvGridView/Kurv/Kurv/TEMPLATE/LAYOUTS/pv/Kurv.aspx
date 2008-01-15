@@ -11,7 +11,8 @@
 <%@ Import Namespace="spListDB"  %>
 
 <asp:Content ID="Main" ContentPlaceHolderID="PlaceHolderMain" runat="server">
-    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" TypeName="spListDB.spListDB" SelectMethod="GetLists" ></asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" TypeName="spListDB.spListDB" SelectMethod="GetLists" >
+    </asp:ObjectDataSource>
     
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ObjectDataSource1">
         <Columns>
@@ -19,4 +20,5 @@
             <asp:BoundField DataField="Title" HeaderText="Title" />
         </Columns>
     </asp:GridView>
+    
 </asp:Content>
