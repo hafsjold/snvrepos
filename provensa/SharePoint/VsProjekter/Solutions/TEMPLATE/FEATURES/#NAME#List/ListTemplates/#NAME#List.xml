@@ -2,7 +2,7 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
     <ListTemplate
         Name="#NAME#list"
-        Type="100"
+        Type="10000"
         BaseType="0"
         OnQuickLaunch="TRUE"
         SecurityBits="11"
