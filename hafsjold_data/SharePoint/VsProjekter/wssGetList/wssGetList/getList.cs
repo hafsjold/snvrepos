@@ -46,19 +46,39 @@ namespace wssGetList
             System.Xml.XmlNode listQuery = doc.SelectSingleNode("//Query");
             System.Xml.XmlNode listViewFields = doc.SelectSingleNode("//ViewFields");
             System.Xml.XmlNode listQueryOptions = doc.SelectSingleNode("//QueryOptions");
+            string RowLimit = "500";
 
-            System.Xml.XmlNode items = ls.GetListItems(ListName, string.Empty, listQuery, listViewFields, string.Empty, listQueryOptions, ListWebId);
+            System.Xml.XmlNode items = ls.GetListItems(ListName, string.Empty, listQuery, listViewFields, RowLimit, listQueryOptions, ListWebId);
             
             DataSet dsItems = new DataSet();
             dsItems.ReadXml(new System.IO.StringReader("<?xml version='1.0' ?>" + items.InnerXml));
 
-            DataTable rows = dsItems.Tables["row"];
-            DataRow row = rows.Rows[1];
-            object RowTitle = row["ows_Title"];
+            //DataTable rows = dsItems.Tables["row"];
+            //DataRow row = rows.Rows[1];
+            //object RowTitle = row["ows_Title"];
 
             return dsItems;
         }
+
+        public string getListName (string ListTitle){
+            XmlNode lists = ls.GetListCollection();
+            DataSet dsLists = new DataSet();
+            dsLists.ReadXml(new System.IO.StringReader("<?xml version='1.0' ?>" + lists.OuterXml));
+            foreach (DataRow l in dsLists.Tables["List"].Rows)
+            {
+                if (((string)l["Title"]) == ListTitle)
+                {
+                    return (string)l["Name"];
+                }
+            }
+            return null;
+        }
         
+        public System.Xml.XmlNode updateListData(string listName, System.Xml.XmlNode updates)
+        {
+            return ls.UpdateListItems(listName, updates);
+        }
+
         public void test() { 
             System.Xml.XmlDocument doc2 = new System.Xml.XmlDocument();
             string xmlString = "<Batch OnError='Continue' ListVersion='1'>";
