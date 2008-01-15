@@ -9,7 +9,7 @@
     DefaultResourceFile="core"
     xmlns="http://schemas.microsoft.com/sharepoint/">
     <ElementManifests>
-        <ElementManifest Location="ListTemplates\#NAME#List.xml" />
+        <ElementManifest Location="ListTemplates\elementManifest.xml" />
 		<ElementFile Location="#NAME#List\schema.xml" />
    </ElementManifests>
 </Feature>
