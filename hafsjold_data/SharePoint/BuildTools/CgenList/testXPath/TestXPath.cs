@@ -18,7 +18,7 @@ namespace testXPath
 
         static void Main(string[] args)
         {
-            Test1();
+            Test2();
         }
 
         private static void Test1()
@@ -61,16 +61,16 @@ namespace testXPath
             myReader.Close();
             myStream.Close();
 
-            //string strXML = strXMLFile;
-            string strXML = Regex.Replace(strXMLFile, "xmlns=\"[^\"]*\"", "");
+            string strXML = strXMLFile;
+            //string strXML = Regex.Replace(strXMLFile, "xmlns=\"[^\"]*\"", "");
             System.Xml.XmlDocument docTEST = new System.Xml.XmlDocument();
             docTEST.LoadXml(strXML);
 
             XmlNamespaceManager nsMgr = new XmlNamespaceManager(docTEST.NameTable);
-            nsMgr.AddNamespace(string.Empty, "http://schemas.microsoft.com/sharepoint/");
-           
+            nsMgr.AddNamespace("mha", "http://schemas.microsoft.com/sharepoint/");
 
-            System.Xml.XmlNode node1 = docTEST.SelectSingleNode("//Elements/Field[@Name=\"deltelno\"]", nsMgr);
+
+            System.Xml.XmlNode node1 = docTEST.SelectSingleNode("//mha:Elements/mha:Field[@Name=\"deltelno\"]", nsMgr);
 
             System.Xml.XmlNode node2 = docTEST.SelectSingleNode("//XmlDocuments/XmlDocument", nsMgr);
 
