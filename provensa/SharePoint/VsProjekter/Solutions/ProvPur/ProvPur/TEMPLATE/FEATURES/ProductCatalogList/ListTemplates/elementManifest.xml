@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Elements xmlns="http://schemas.microsoft.com/sharepoint/" >
+  <ListTemplate Name="ProductCataloglist" Type="10001" BaseType="0" OnQuickLaunch="TRUE" SecurityBits="11" Sequence="410" DisplayName="ProductCataloglist" Description="ProductCataloglist" Image="/_layouts/images/itgen.gif" />
+  <ListInstance TemplateType="10001" Id="ProductCatalog" Description="" OnQuickLaunch="True" Title="ProductCatalog" Url="ProductCatalog"></ListInstance>
+</Elements>
