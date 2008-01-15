@@ -10,7 +10,7 @@ using System.Xml.Serialization;
 
 namespace GenerateTypes
 {
-    class Program
+    partial class genTypeMain
     {
         static void Main(string[] args)
         {
