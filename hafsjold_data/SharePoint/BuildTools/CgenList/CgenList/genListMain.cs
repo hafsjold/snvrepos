@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Data;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Schema;
@@ -23,6 +24,8 @@ partial class genListMain
     private static string DFF_ROOT;
     private static string DFF_FROM_ROOT;
     private static string DFF_TO_ROOT;
+    private static string FEATURE_FILE;
+
     private static System.Collections.Specialized.StringCollection excludedExtensions;
     private static System.Collections.Specialized.StringCollection ProjectFileList;
 
@@ -34,33 +37,10 @@ partial class genListMain
         UpdateProjectFile();
         UpdateManifestFile();
         UpdateDFFFile();
+        UpdateFeatureFile();
+        UpdateelementManifest();
         GenerateLIST();
     }
-
-    private static void testProjectUpdate()
-    {
-        string strPath = @"TEMPLATE\FEATURES\PersonList\PersonList\schema2.xml"; 
-        FileStream myStream = new FileStream(PROJECT_FILE, FileMode.Open);
-        StreamReader myReader = new StreamReader(myStream);
-        string XMLFileLISTtext = myReader.ReadToEnd();
-        myReader.Close();
-        myStream.Close();
-
-        System.Xml.XmlDocument docPROJECT = new System.Xml.XmlDocument();
-        string strXML = Regex.Replace(XMLFileLISTtext, "xmlns=\"[^\"]*\"", "");
-        docPROJECT.LoadXml(strXML);
-
-        AddProjectContent(docPROJECT, strPath);
-
-        strXML = Regex.Replace(docPROJECT.OuterXml, "<Project DefaultTargets=\"Build\"", "<Project DefaultTargets=\"Build\" xmlns=\"http://schemas.microsoft.com/developer/msbuild/2003\" ");
-
-        //myStream = new FileStream(PROJECT_FILE, FileMode.Truncate);
-        //StreamWriter myWriter = new StreamWriter(myStream);
-        //myWriter.Write(strXML);
-        //myWriter.Close();
-        //myStream.Close();
-    }
-
 
     private static void InitParams(string[] args)
     {
@@ -141,7 +121,7 @@ partial class genListMain
         DFF_FILE = PROJECT_DIR + "wsp.ddf";
         DFF_FROM_ROOT = PROJECT_DIR;
         DFF_TO_ROOT = TARGET_DIR;
-   }
+    }
 
 
     private static string Name_Substitute(string s)
@@ -207,7 +187,7 @@ partial class genListMain
         foreach (string strPath in ProjectFileList)
         {
             AddProjectContent(docPROJECT, strPath);
-            
+
             string strFilename = System.IO.Path.GetFileName(strPath);
             strFilename.ToLower();
             if (strFilename == "schema.xml")
@@ -230,7 +210,8 @@ partial class genListMain
     {
         string filter = @"//Project/ItemGroup/Content[@Include=""" + strPath + @"""]";
         System.Xml.XmlNode field = docPROJECT.SelectSingleNode(filter);
-        if (field == null) {
+        if (field == null)
+        {
             string filter2 = @"//Project/ItemGroup";
             System.Xml.XmlNode ItemGroup = docPROJECT.SelectSingleNode(filter2);
             if (ItemGroup != null)
@@ -301,18 +282,21 @@ partial class genListMain
     {
         Boolean bFound = false;
         foreach (string s in DFFFiletext)
-            if (s.Contains(strPath)){
+            if (s.Contains(strPath))
+            {
                 bFound = true;
                 break;
             }
-        if (bFound){
-        
-        } 
-        else {
+        if (bFound)
+        {
+
+        }
+        else
+        {
             DFFFiletext.Add(strPath + "\t" + strPath.Replace("TEMPLATE\\FEATURES\\", ""));
         }
     }
-    
+
     private static void AddManifestContent(XmlDocument docMANIFEST, string strManifestPath)
     {
         //manifest-root: TARGET_DIR
@@ -330,7 +314,100 @@ partial class genListMain
             }
         }
     }
-    
+
+    private static void UpdateFeatureFile()
+    {
+        foreach (string strPath in ProjectFileList)
+        {
+            string strFullPath = PROJECT_DIR + strPath;
+            string strFilename = System.IO.Path.GetFileName(strFullPath).ToLower();
+            if (strFilename == "feature.xml")
+            {
+                FileStream myStream = new FileStream(strFullPath, FileMode.Open);
+                StreamReader myReader = new StreamReader(myStream);
+                string XMLFileLISTtext = myReader.ReadToEnd();
+                myReader.Close();
+                myStream.Close();
+
+                System.Xml.XmlDocument docFEATURE = new System.Xml.XmlDocument();
+                string strXML = Regex.Replace(XMLFileLISTtext, "xmlns=\"[^\"]*\"", "");
+                docFEATURE.LoadXml(strXML);
+
+                System.Data.DataSet dsListItems = OpenDataSet("ProPurList");
+                DataTable List_rows = dsListItems.Tables["row"];
+
+                foreach (DataRow List_row in List_rows.Rows)
+                {
+                    string List_SysName = (string)List_row["ows_Title"];
+                    string List_FeatureGUID = (string)List_row["ows_FeatureGUID"];
+                    string List_TypeIdentifier = (string)List_row["ows_TypeIdentifier"];
+
+                    if (List_SysName == LISTNAME)
+                    {
+                        System.Xml.XmlNode Feature = docFEATURE.SelectSingleNode("//Feature");
+                        Feature.Attributes["Id"].Value = List_FeatureGUID;
+                        break;
+                    }
+                }
+                //<Feature Id="24493869-2DA2-49b5-AA30-67FE39550F1C" xmlns="http://schemas.microsoft.com/sharepoint/">
+                strXML = Regex.Replace(docFEATURE.OuterXml, "<Feature", "<Feature xmlns=\"http://schemas.microsoft.com/sharepoint/\" ");
+
+                myStream = new FileStream(strFullPath, FileMode.Truncate);
+                StreamWriter myWriter = new StreamWriter(myStream);
+                myWriter.Write(strXML);
+                myWriter.Close();
+                myStream.Close();
+            }
+        }
+
+    }
+
+    private static void UpdateelementManifest()
+    {
+        foreach (string strPath in ProjectFileList)
+        {
+            string strFullPath = PROJECT_DIR + strPath;
+            string strFilename = System.IO.Path.GetFileName(strFullPath).ToLower();
+            if (strFilename == "elementmanifest.xml")
+            {
+                FileStream myStream = new FileStream(strFullPath, FileMode.Open);
+                StreamReader myReader = new StreamReader(myStream);
+                string XMLFileLISTtext = myReader.ReadToEnd();
+                myReader.Close();
+                myStream.Close();
+
+                System.Xml.XmlDocument docELEMENTMANIFEST = new System.Xml.XmlDocument();
+                string strXML = Regex.Replace(XMLFileLISTtext, "xmlns=\"[^\"]*\"", "");
+                docELEMENTMANIFEST.LoadXml(strXML);
+
+                System.Data.DataSet dsListItems = OpenDataSet("ProPurList");
+                DataTable List_rows = dsListItems.Tables["row"];
+
+                foreach (DataRow List_row in List_rows.Rows)
+                {
+                    string List_SysName = (string)List_row["ows_Title"];
+                    string List_FeatureGUID = (string)List_row["ows_FeatureGUID"];
+                    string List_TypeIdentifier = (string)List_row["ows_TypeIdentifier"];
+
+                    if (List_SysName == LISTNAME)
+                    {
+                        System.Xml.XmlNode ListTemplate = docELEMENTMANIFEST.SelectSingleNode("//Elements/ListTemplate");
+                        ListTemplate.Attributes["Type"].Value = List_TypeIdentifier;
+                        break;
+                    }
+                }
+                //<Feature Id="24493869-2DA2-49b5-AA30-67FE39550F1C" xmlns="http://schemas.microsoft.com/sharepoint/">
+                strXML = Regex.Replace(docELEMENTMANIFEST.OuterXml, "<Elements", "<Elements xmlns=\"http://schemas.microsoft.com/sharepoint/\" ");
+
+                myStream = new FileStream(strFullPath, FileMode.Truncate);
+                StreamWriter myWriter = new StreamWriter(myStream);
+                myWriter.Write(strXML);
+                myWriter.Close();
+                myStream.Close();
+            }
+        }
+
+    }
     private static void CopyProjectFolder(string currentPath)
     {
         string[] stFolders = System.IO.Directory.GetDirectories(currentPath);
@@ -345,7 +422,7 @@ partial class genListMain
                 try
                 {
                     AddFolder2Folder(stToPath, true);
-                    System.IO.File.Copy(stFile, stToPath,true);
+                    System.IO.File.Copy(stFile, stToPath, true);
                     ProjectFileList.Add(ProjectPath_Substitute(stFile));
                 }
                 catch
@@ -361,13 +438,15 @@ partial class genListMain
 
                 string s1 = tmpFiletextSel.Replace("#NAME#", LISTNAME);
 
-                Guid myGuid = System.Guid.NewGuid();
+                /*
+                 * Guid myGuid = System.Guid.NewGuid();
                 string stMyGuid = myGuid.ToString();
                 string s = s1.Replace("#GUID-FEATURE#", stMyGuid);
+                */
 
                 myStream = new FileStream(stToPath, FileMode.Truncate);
                 StreamWriter myWriter = new StreamWriter(myStream);
-                myWriter.Write(s);
+                myWriter.Write(s1);
                 myWriter.Close();
                 myStream.Close();
 

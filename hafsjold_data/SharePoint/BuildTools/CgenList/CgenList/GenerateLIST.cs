@@ -126,6 +126,7 @@ partial class genListMain
         ser = new System.Xml.Serialization.XmlSerializer(ds.GetType());
         reader = new FileStream(FileName, FileMode.Open);
         ds = (System.Data.DataSet)ser.Deserialize(reader);
+        reader.Close();
         return ds;
     }
 
