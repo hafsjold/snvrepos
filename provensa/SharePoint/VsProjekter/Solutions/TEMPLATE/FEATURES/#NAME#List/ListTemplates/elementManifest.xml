@@ -10,4 +10,14 @@
         DisplayName="#NAME#list"
         Description="#NAME#list"
         Image="/_layouts/images/itgen.gif"/>
+  
+  <ListInstance
+		TemplateType="10000"
+		Id="#NAME#"
+		Description=""	  
+		OnQuickLaunch="True"
+		Title="#NAME#"    
+		Url="#NAME#">
+ 
+  </ListInstance>
 </Elements>
