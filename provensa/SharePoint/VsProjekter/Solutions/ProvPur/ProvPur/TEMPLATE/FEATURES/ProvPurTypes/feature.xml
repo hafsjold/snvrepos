@@ -3,8 +3,9 @@
   Id="FBA83C9F-F63F-41eb-8C7E-EA39D9EDFC0A"
   Description=""
   Version="1.0.0.0"
-  Scope="Site"
+  Scope="Site"   
   Hidden="FALSE"
+  ActivateOnDefault="TRUE"
   DefaultResourceFile="core"
   xmlns="http://schemas.microsoft.com/sharepoint/" >
 

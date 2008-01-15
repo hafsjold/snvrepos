@@ -8,10 +8,6 @@
 .Set DiskDirectory1=bin\Debug
 
 manifest.xml manifest.xml
-;*** PersonList
-TEMPLATE\FEATURES\PersonList\Feature.xml	PersonList\Feature.xml
-TEMPLATE\FEATURES\PersonList\ListTemplates\PersonList.xml	PersonList\ListTemplates\PersonList.xml
-TEMPLATE\FEATURES\PersonList\PersonList\schema.xml	PersonList\PersonList\schema.xml
 ;*** ProvPurFields
 TEMPLATE\FEATURES\ProvPurFields\feature.xml	ProvPurFields\feature.xml
 TEMPLATE\FEATURES\ProvPurFields\fields.xml	ProvPurFields\fields.xml
@@ -33,6 +29,6 @@ TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl1.ascx	TEMPLATE\CONTROLTEMPLATES\Pr
 TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl2.ascx	TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl2.ascx
 TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl2.ascx	TEMPLATE\CONTROLTEMPLATES\ProvPur\FileViewer.ascx
 ;*** <the end>
-TEMPLATE\FEATURES\TestListe1List\Feature.xml	TestListe1List\Feature.xml
-TEMPLATE\FEATURES\TestListe1List\TestListe1List\schema.xml	TestListe1List\TestListe1List\schema.xml
-TEMPLATE\FEATURES\TestListe1List\ListTemplates\TestListe1List.xml	TestListe1List\ListTemplates\TestListe1List.xml
+TEMPLATE\FEATURES\ProductCatalogList\Feature.xml	ProductCatalogList\Feature.xml
+TEMPLATE\FEATURES\ProductCatalogList\ProductCatalogList\schema.xml	ProductCatalogList\ProductCatalogList\schema.xml
+TEMPLATE\FEATURES\ProductCatalogList\ListTemplates\elementManifest.xml	ProductCatalogList\ListTemplates\elementManifest.xml

@@ -1,87 +1,180 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
-  <Field ID="{65AF5428-40CE-4BCD-9E10-FFCAE4DB43AC}" Name="pono" DisplayName="$Resources:ProvPur,pono;" Type="Number" Decimals="0" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{E397793F-4A86-44E8-BD45-FB32592A2931}" Name="purcom" DisplayName="$Resources:ProvPur,purcom;" Type="Note" NumLines="3" RichText="TRUE" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{819E5745-5AD9-4FA5-B627-6E9208AA8835}" Name="proorderdate" DisplayName="$Resources:ProvPur,proorderdate;" Type="DateTime" Format="DateOnly" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{D8795AC1-83AB-4DD6-B166-074D1075DB50}" Name="proqty" DisplayName="$Resources:ProvPur,proqty;" Type="Number" Decimals="0" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{B6802052-F67A-4266-8511-0631E61B2CB2}" Name="proedt" DisplayName="$Resources:ProvPur,proedt;" Type="DateTime" Format="DateOnly" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{35573249-5626-4523-9D3E-800C5A3078B8}" Name="propotime" DisplayName="$Resources:ProvPur,propotime;" Type="DateTime" Format="DateOnly" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{464247E4-A1E7-41EA-86F2-EE17CA0D7891}" Name="proactualdate" DisplayName="$Resources:ProvPur,proactualdate;" Type="DateTime" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{B68F435D-7B7A-41E6-A349-6AF9BDA238F0}" Name="procom" DisplayName="$Resources:ProvPur,procom;" Type="Note" NumLines="3" RichText="TRUE" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{64821AD0-4138-4207-8AE1-C8581610BAB1}" Name="prototalprice" DisplayName="$Resources:ProvPur,prototalprice;" Type="Currency" Decimals="2" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{688A7109-1122-43E4-9505-3684CD1A23AF}" Name="clacomname" DisplayName="$Resources:ProvPur,clacomname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{E51D48F3-9CF9-401A-BA1A-461228C28DCD}" Name="clafirstname" DisplayName="$Resources:ProvPur,clafirstname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{C5E2C6E4-21D4-4E67-AB76-E77672EC1160}" Name="clasurname" DisplayName="$Resources:ProvPur,clasurname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{18964A6F-1234-460A-966F-D26D4B8D5C2D}" Name="claaddress" DisplayName="$Resources:ProvPur,claaddress;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{CAA14690-D7FB-43D1-9DB9-060BFF70AB69}" Name="clapostalcode" DisplayName="$Resources:ProvPur,clapostalcode;" Type="Number" Decimals="0" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{F9084022-3BFD-4B29-BF5D-DF87E8D49A52}" Name="clapostaldis" DisplayName="$Resources:ProvPur,clapostaldis;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{5BBD797E-28E6-4BB2-9C21-96F19F81A223}" Name="clacity" DisplayName="$Resources:ProvPur,clacity;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{52610151-0DA3-483C-975E-E1568E9646E8}" Name="clatelno" DisplayName="$Resources:ProvPur,clatelno;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{D734989A-8BAC-4019-92AD-F212B5E14A3E}" Name="cladirecttno" DisplayName="$Resources:ProvPur,cladirecttno;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{B29D9632-9376-4FE5-811A-E00A299C7065}" Name="clamobilno" DisplayName="$Resources:ProvPur,clamobilno;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{4CD5FBA9-F886-4B67-B11A-C5BDB7831636}" Name="clamail" DisplayName="$Resources:ProvPur,clamail;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{E8105AF7-323F-4CD4-ACD3-3E93667183BE}" Name="supcomname" DisplayName="$Resources:ProvPur,supcomname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{1D59E2E1-4FEF-4122-B54D-C74620ABD646}" Name="supfirstname" DisplayName="$Resources:ProvPur,supfirstname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{3DC9AAD6-AD08-4EA0-BB28-5395D0FF307E}" Name="supsurname" DisplayName="$Resources:ProvPur,supsurname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{5A0A960B-78CD-4553-837B-A79A5D2C6242}" Name="supaddress" DisplayName="$Resources:ProvPur,supaddress;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{FBF7CBE6-77A3-40EA-8BE0-E7B225C95C8D}" Name="suppostalcode" DisplayName="$Resources:ProvPur,suppostalcode;" Type="Number" Decimals="0" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{91798B67-3E7A-49B4-9190-D1CE93801E9C}" Name="suppostaldis" DisplayName="$Resources:ProvPur,suppostaldis;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{B559E72D-C8C2-41D1-9FEC-FB210801A7EC}" Name="supcity" DisplayName="$Resources:ProvPur,supcity;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{58B7FAE9-0615-43F3-B139-E98FF21C3ED0}" Name="suptelno" DisplayName="$Resources:ProvPur,suptelno;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{276BF4A9-E5A0-4A19-A679-502E1EC0F068}" Name="selname" DisplayName="$Resources:ProvPur,selname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{FA2808B4-6227-455B-A4CA-D615C02896CB}" Name="seldirecttno" DisplayName="$Resources:ProvPur,seldirecttno;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{D7A7A976-71FC-46F3-A52B-F0264D349429}" Name="selmobilno" DisplayName="$Resources:ProvPur,selmobilno;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{0145FABE-85B4-4632-824F-7A625202393B}" Name="selmail" DisplayName="$Resources:ProvPur,selmail;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{3127A395-85DE-415B-BED8-710A25325C76}" Name="buycomname" DisplayName="$Resources:ProvPur,buycomname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{B4D6EE6B-62DB-49A9-8D47-C455450761E6}" Name="buyfirstname" DisplayName="$Resources:ProvPur,buyfirstname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{E77A6733-6DB4-4AB9-BD54-AFE5CA8B0ED4}" Name="buysurname" DisplayName="$Resources:ProvPur,buysurname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{B97BBD79-F85A-4FAC-A7A4-2B7B67661EE0}" Name="buyaddress" DisplayName="$Resources:ProvPur,buyaddress;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{7A7F9EAA-5D8C-42F5-8DD1-A88C8E227962}" Name="buypostalcode" DisplayName="$Resources:ProvPur,buypostalcode;" Type="Number" Decimals="0" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{9DEC1C8A-D333-4B91-B5D6-A595246A97DD}" Name="buypostaldis" DisplayName="$Resources:ProvPur,buypostaldis;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{96F8A0BA-E10E-4594-93E3-CE1D6747C928}" Name="buycity" DisplayName="$Resources:ProvPur,buycity;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{6E276353-B431-4D1B-A895-BCF613F13385}" Name="buytelno" DisplayName="$Resources:ProvPur,buytelno;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{95090A5E-18B2-435D-97E2-D5F297296386}" Name="buydirecttno" DisplayName="$Resources:ProvPur,buydirecttno;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{582C4AA3-708E-47AF-AAA0-CD451DCF8529}" Name="buymobilno" DisplayName="$Resources:ProvPur,buymobilno;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{0FC3D6A3-7CD1-4180-A2D6-C0F495C353E3}" Name="buymail" DisplayName="$Resources:ProvPur,buymail;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{84A23706-009F-4742-8BAB-DF8DEE938CD3}" Name="prodname" DisplayName="$Resources:ProvPur,prodname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{F6F7A34E-CF86-455B-B068-C8C16FD2F51B}" Name="proditemno" DisplayName="$Resources:ProvPur,proditemno;" Type="Number" Decimals="0" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{0117021D-188D-421A-854A-1789D9E8ED23}" Name="prodalias" DisplayName="$Resources:ProvPur,prodalias;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{2ACE45DC-F2EC-4A0D-909F-8109C0BFD2D3}" Name="proddesc" DisplayName="$Resources:ProvPur,proddesc;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{9F4BAE9A-F50F-4029-BB87-488813DDBB38}" Name="produnitdesc" DisplayName="$Resources:ProvPur,produnitdesc;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{54369F04-3996-46E3-B8B8-55AACA96C229}" Name="prodsupname" DisplayName="$Resources:ProvPur,prodsupname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{1BEB63AA-E218-4575-AB48-932BCD7B517F}" Name="prodgrossprice" DisplayName="$Resources:ProvPur,prodgrossprice;" Type="Currency" Decimals="2" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{E972D51E-7561-431D-AFCD-D8E9D118F8D1}" Name="proddiscountpct" DisplayName="$Resources:ProvPur,proddiscountpct;" Type="Number" Percentage="TRUE" Min="0" Max="1" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{658D6540-1DA7-49E2-9513-E5CFDB4E07EB}" Name="prodnetprice" DisplayName="$Resources:ProvPur,prodnetprice;" Type="Currency" Decimals="2" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{1A092111-8512-4CFE-BEAD-214E5A9C64AE}" Name="prodpurpractice" DisplayName="$Resources:ProvPur,prodpurpractice;" Type="Note" NumLines="3" RichText="TRUE" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{3CC492E0-3BFA-46F3-B92E-E864721D9CD7}" Name="proddeltime" DisplayName="$Resources:ProvPur,proddeltime;" Type="Number" Decimals="0" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{E46FCD7F-0D2F-4261-8068-582C5EED599D}" Name="prodoptfield" DisplayName="$Resources:ProvPur,prodoptfield;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{C7394074-2DE0-4BD3-9427-DB6A6E551C3F}" Name="delcomname" DisplayName="$Resources:ProvPur,delcomname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{5DDB5ED1-0674-45E2-A611-A03D770EAC84}" Name="delfirstname" DisplayName="$Resources:ProvPur,delfirstname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{E7730EDD-23B0-4BC8-A2C7-56CFCF532A22}" Name="delsurname" DisplayName="$Resources:ProvPur,delsurname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{8C280F62-EAD3-4ECF-924A-1BC6A72D3D4C}" Name="deladdress" DisplayName="$Resources:ProvPur,deladdress;" Type="Number" Decimals="0" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{DB328028-FD48-4B91-9FE1-0E13C523ADDC}" Name="delpostalcode" DisplayName="$Resources:ProvPur,delpostalcode;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{349AEB73-EA5D-487D-9174-333E517907CE}" Name="delpostaldis" DisplayName="$Resources:ProvPur,delpostaldis;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{DC62CB10-4D7E-4B1C-94A8-AD7F083EE31C}" Name="delcity" DisplayName="$Resources:ProvPur,delcity;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{C3319F8A-9B84-4A00-ADDE-F26AEBF5F922}" Name="deltelno" DisplayName="$Resources:ProvPur,deltelno;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{0CF9DA69-84CC-4286-B67C-497BF965209B}" Name="delmobilno" DisplayName="$Resources:ProvPur,delmobilno;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{233A61D7-BFF4-478E-B9D1-525C1BA27835}" Name="docname" DisplayName="$Resources:ProvPur,docname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{E4AB9099-A3B8-4F38-BABC-91CA2A1CC20E}" Name="docregard" DisplayName="$Resources:ProvPur,docregard;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{F162F836-0270-4CF6-AF05-75BFF632515D}" Name="docattention" DisplayName="$Resources:ProvPur,docattention;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{387C4055-0683-40CE-90F8-A3756C117468}" Name="docwriter" DisplayName="$Resources:ProvPur,docwriter;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{932756E0-5AE2-4389-816D-0B3E1D3B9F78}" Name="docsetupdate" DisplayName="$Resources:ProvPur,docsetupdate;" Type="DateTime" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{3D39474A-CAAB-4EF8-B73A-1C1D4EDEB56D}" Name="dnotefilename" DisplayName="$Resources:ProvPur,dnotefilename;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{8546DE16-A7AC-4CE2-A6B1-771AFC1C7B9F}" Name="dnoteregard" DisplayName="$Resources:ProvPur,dnoteregard;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{36CB3948-E042-40BA-8DDD-0C49475A37F4}" Name="dnoteattention" DisplayName="$Resources:ProvPur,dnoteattention;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{2DBC7B7A-30C4-405B-951C-997BAF25F1A2}" Name="dnotewriter" DisplayName="$Resources:ProvPur,dnotewriter;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{377ED501-23C2-4FAA-9A5F-AF94EF5AC935}" Name="dnotesetupdate" DisplayName="$Resources:ProvPur,dnotesetupdate;" Type="DateTime" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{727B6E40-1850-48EC-83CE-F4AFD6103D2E}" Name="invfilename" DisplayName="$Resources:ProvPur,invfilename;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{D1A7A956-7BAE-4005-953A-939CF0D4E111}" Name="invregard" DisplayName="$Resources:ProvPur,invregard;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{BE433D67-2001-478D-9FAB-5B014406C049}" Name="invattention" DisplayName="$Resources:ProvPur,invattention;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{38F08FB8-11DF-4533-98C0-786A933C94EB}" Name="invwriter" DisplayName="$Resources:ProvPur,invwriter;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{F9CCA430-3507-4811-A7AD-42583C9CE40D}" Name="invsetupdate" DisplayName="$Resources:ProvPur,invsetupdate;" Type="DateTime" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{F4B34B82-A6BE-4706-8FE8-A224313661AC}" Name="mailpriority" DisplayName="$Resources:ProvPur,mailpriority;" Type="Number" Decimals="0" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{7D5F8685-67AF-4E2D-B3D8-A943A27B2E40}" Name="mailattach" DisplayName="$Resources:ProvPur,mailattach;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{AD09A349-8F04-413A-B677-E841E30F9B34}" Name="mailfrom" DisplayName="$Resources:ProvPur,mailfrom;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{A4AEAC83-95EF-43BD-AC2A-E4E54EAEF843}" Name="mailsubject" DisplayName="$Resources:ProvPur,mailsubject;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
-  <Field ID="{9A4B1928-F225-4FD9-8895-A125056E5EC5}" Name="mailreceivedate" DisplayName="$Resources:ProvPur,mailreceivedate;" Type="DateTime" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{2C09020B-1898-40AD-9081-E14EC1494EEE}" Name="Orderstatus" DisplayName="$Resources:ProvPur,Orderstatus;" Type="Number" Decimals="0" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{10ED68DC-1C57-4147-A578-4F85C608DB11}" Name="prodcatgro" DisplayName="$Resources:ProvPur,prodcatgro;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{C6EED272-263C-455E-A579-0FA575F46D12}" Name="prodpicture4" DisplayName="$Resources:ProvPur,prodpicture4;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{022C4BF6-BE08-40AC-B86C-23E81858118A}" Name="prodpicture3" DisplayName="$Resources:ProvPur,prodpicture3;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{B2839AFA-DE1C-42F6-89CB-816909AC7C1B}" Name="prodpicture2" DisplayName="$Resources:ProvPur,prodpicture2;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{3963BC70-F9B4-43FD-9698-3806A6E9BD57}" Name="prodpicture1" DisplayName="$Resources:ProvPur,prodpicture1;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{C137E392-38D9-41CD-BA87-01B2B06703E9}" Name="deltelno" DisplayName="$Resources:ProvPur,deltelno;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{5CC9BD47-569C-4DD8-9244-AFA9CF361A7D}" Name="conordersetupdate" DisplayName="$Resources:ProvPur,conordersetupdate;" Type="DateTime" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{615CEEBE-08D5-41DB-A79A-AECB04537D12}" Name="conorderwriter" DisplayName="$Resources:ProvPur,conorderwriter;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{EBD03142-3DA9-4489-803B-7EE2BA6BC7D1}" Name="conorderattention" DisplayName="$Resources:ProvPur,conorderattention;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{70CD1E0D-FBFF-4106-953A-BC2A1C1CF380}" Name="conorderregard" DisplayName="$Resources:ProvPur,conorderregard;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{99F62808-A6FC-459C-8591-C7C7AA6EA116}" Name="conorderfilename" DisplayName="$Resources:ProvPur,conorderfilename;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{EEAEA086-BAD2-400A-B358-CBD6F43AB78F}" Name="actstatus" DisplayName="$Resources:ProvPur,actstatus;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{F358DA40-98F2-4530-A293-C8F08C0AE7EB}" Name="actsetupdate" DisplayName="$Resources:ProvPur,actsetupdate;" Type="DateTime" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{FA92A4E1-C967-496A-A9C1-5B1D064A2033}" Name="actwriter" DisplayName="$Resources:ProvPur,actwriter;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{5DEBE33A-D172-49CB-B6CC-C4900CC15EDF}" Name="actattention" DisplayName="$Resources:ProvPur,actattention;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{3C6269F0-978C-455E-A0CC-B851C7275ACC}" Name="actsubject" DisplayName="$Resources:ProvPur,actsubject;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{36BD3725-037A-47B5-A919-82E82837A486}" Name="actfilename" DisplayName="$Resources:ProvPur,actfilename;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{17EC6C85-DE61-4D5B-90A4-2267C5DE3FB7}" Name="acttype" DisplayName="$Resources:ProvPur,acttype;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{EFC05282-5B19-44DD-9A3E-A630DC644C93}" Name="newsfpl" DisplayName="$Resources:ProvPur,newsfpl;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{B0620FF4-B058-4A0D-BC9B-5677787C8FE2}" Name="newsfps" DisplayName="$Resources:ProvPur,newsfps;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{C94EF0FE-7AB2-49D0-95D6-400B671C24D2}" Name="newstext" DisplayName="$Resources:ProvPur,newstext;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{1D6B79D0-D570-43A3-A039-2031C5E0EE45}" Name="newsstatus" DisplayName="$Resources:ProvPur,newsstatus;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{62612226-0E65-4AA2-9869-FC68C40FB89F}" Name="newsapprovedate" DisplayName="$Resources:ProvPur,newsapprovedate;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{EB3FBC01-87F2-4A6B-9BC9-08571E7566C3}" Name="newsapproveperson" DisplayName="$Resources:ProvPur,newsapproveperson;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{A178178F-4A2B-4F47-88B0-93C7E31489A9}" Name="newssetupdate" DisplayName="$Resources:ProvPur,newssetupdate;" Type="DateTime" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{DB9BB0E0-21BF-4F14-877F-EA8EA37E15B7}" Name="newswriter" DisplayName="$Resources:ProvPur,newswriter;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{C1F8A847-4630-4B56-BA1D-3A2D497C0761}" Name="newsheadline" DisplayName="$Resources:ProvPur,newsheadline;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{486315D3-3653-4744-9E9D-82B6B5078889}" Name="polheadline" DisplayName="$Resources:ProvPur,polheadline;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{5B062955-5D49-4078-AC07-0195B979FDED}" Name="polwriter" DisplayName="$Resources:ProvPur,polwriter;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{81B704C3-8725-41EF-B429-6A72501C17FC}" Name="polsetupdate" DisplayName="$Resources:ProvPur,polsetupdate;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{1EEE8775-C899-4F20-88E4-D2CBF4B00F2C}" Name="polapproveperson" DisplayName="$Resources:ProvPur,polapproveperson;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{FCE2242A-8491-4740-B693-22F10D5F64D0}" Name="polapprovedate" DisplayName="$Resources:ProvPur,polapprovedate;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{34927BDB-9844-40D9-A271-771D24D3B1AF}" Name="polstatus" DisplayName="$Resources:ProvPur,polstatus;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{FB5B64AB-6FA2-4137-8D8F-B20224105085}" Name="polupdatedate" DisplayName="$Resources:ProvPur,polupdatedate;" Type="DateTime" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{9C25EAB7-0243-499F-8C73-DBCFE2C6E764}" Name="poltext" DisplayName="$Resources:ProvPur,poltext;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{4E779AC7-A6D1-4574-82C6-C739C408A0C0}" Name="catfilename" DisplayName="$Resources:ProvPur,catfilename;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{A41E7A6D-A411-4125-88AC-3ABFF6CBB89F}" Name="catrecdate" DisplayName="$Resources:ProvPur,catrecdate;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{8CEE4A31-AC71-4C61-8888-18C40D559A1B}" Name="catsupplier" DisplayName="$Resources:ProvPur,catsupplier;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{0C6B79FA-7CD7-4198-AFD3-78C5437C0EFE}" Name="catapproveperson" DisplayName="$Resources:ProvPur,catapproveperson;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{AEE6A3C0-5A1A-4AD7-96D9-810A2789680C}" Name="catapprovedate" DisplayName="$Resources:ProvPur,catapprovedate;" Type="DateTime" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{04B3069D-624C-4301-ACF6-C0142839F4AF}" Name="clafirstname" DisplayName="$Resources:ProvPur,clafirstname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{2F6D312F-D39C-4C5E-86E0-5407204D855B}" Name="clasurname" DisplayName="$Resources:ProvPur,clasurname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{96D9B38B-4C07-4AF8-B744-653A5CC49B60}" Name="clainitial" DisplayName="$Resources:ProvPur,clainitial;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{65154506-9F4C-49C5-8F5D-04D3A2EEB333}" Name="claempno" DisplayName="$Resources:ProvPur,claempno;" Type="Number" Decimals="0" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{0052EDDB-6A1B-4D0E-8124-2ADA18459CBE}" Name="clatitle" DisplayName="$Resources:ProvPur,clatitle;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{332B1351-3083-4C15-B824-A35240E0F9D2}" Name="claroomno" DisplayName="$Resources:ProvPur,claroomno;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{B21372FD-8257-40DB-BECB-F9B5FD6B046A}" Name="clalocalno" DisplayName="$Resources:ProvPur,clalocalno;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{8110DD22-12F1-4A14-9460-1622605B90DD}" Name="cladirecttno" DisplayName="$Resources:ProvPur,cladirecttno;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{E151D745-024E-4CA6-86AB-9EF3A1FA9CDF}" Name="clamobilno" DisplayName="$Resources:ProvPur,clamobilno;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{3D6A80C2-F340-4001-89E5-C9FC9C4F08C8}" Name="clamail" DisplayName="$Resources:ProvPur,clamail;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{DD9695F2-26AD-4809-BCD2-ABAF8FBFB757}" Name="clamanagername" DisplayName="$Resources:ProvPur,clamanagername;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{E151D87A-6DC6-4124-9EB6-6E1BD8A5DACA}" Name="clamangerinitial" DisplayName="$Resources:ProvPur,clamangerinitial;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{8D609AAC-AC2A-4279-B0CE-32BF870244B9}" Name="glaempres" DisplayName="$Resources:ProvPur,glaempres;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{3773BDA9-F4FD-4926-A0A5-E088782D2B8F}" Name="clacomname" DisplayName="$Resources:ProvPur,clacomname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{969AA141-3F66-42CC-A3E3-4B2903416121}" Name="cladepartment" DisplayName="$Resources:ProvPur,cladepartment;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{8CEDDDC0-5B87-4486-B303-14B6C885FB06}" Name="claaddress" DisplayName="$Resources:ProvPur,claaddress;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{12EF0D92-E050-4164-A6FC-F3E6728905D0}" Name="calpostalcode" DisplayName="$Resources:ProvPur,calpostalcode;" Type="Number" Decimals="0" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{FBEC2752-CB22-42B3-92FF-DB0B34863DB2}" Name="clapostaldis" DisplayName="$Resources:ProvPur,clapostaldis;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{2BCE8B80-1C14-424F-8E42-E05992BF3450}" Name="clacity" DisplayName="$Resources:ProvPur,clacity;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{3CD3CD20-7D77-44DB-8B3C-B1DD995C2684}" Name="clauserprofile" DisplayName="$Resources:ProvPur,clauserprofile;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{430DB327-A325-40FC-A749-E20C33CEE764}" Name="clavipstatus" DisplayName="$Resources:ProvPur,clavipstatus;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{1973B9B8-2C57-4A45-91B5-007CE776D5BD}" Name="clalogin" DisplayName="$Resources:ProvPur,clalogin;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{9495DECF-EFC5-408E-9BD2-DF5515C273F7}" Name="clapassword" DisplayName="$Resources:ProvPur,clapassword;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{E6E1F8E8-368F-45DF-BCF2-B9EB282BD64E}" Name="clacomment" DisplayName="$Resources:ProvPur,clacomment;" Type="Note" NumLines="3" RichText="TRUE" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{EA616EBA-6E76-4C1B-8DE9-52A416AB6855}" Name="claacttype" DisplayName="$Resources:ProvPur,claacttype;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{F7F5A8F8-D68F-4C2C-8B81-97672D202ABF}" Name="claactfilename" DisplayName="$Resources:ProvPur,claactfilename;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{99A576EF-09F9-4868-9DA4-59D3ADF4FFBA}" Name="claactsubject" DisplayName="$Resources:ProvPur,claactsubject;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{003F31A1-5213-493F-82E5-AB08ABF2868F}" Name="claactattention" DisplayName="$Resources:ProvPur,claactattention;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{8BFB44E4-CB65-4865-88F4-8B77764B615F}" Name="claactwriter" DisplayName="$Resources:ProvPur,claactwriter;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{918428E1-9DC6-45B5-8C78-340D0D7B393F}" Name="claactsetupdate" DisplayName="$Resources:ProvPur,claactsetupdate;" Type="DateTime" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{D32689F4-4597-4BCE-9CBC-1D67EECC5E19}" Name="claactstatus" DisplayName="$Resources:ProvPur,claactstatus;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{5AF0FB26-17FD-4359-9994-0F0DA22ECD8C}" Name="supfirstname" DisplayName="$Resources:ProvPur,supfirstname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{83219E69-A767-46AA-82DB-D87C90430BCC}" Name="supsurname" DisplayName="$Resources:ProvPur,supsurname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{3887AB63-C023-4C96-825A-EB5F90B12A68}" Name="supinitial" DisplayName="$Resources:ProvPur,supinitial;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{9E161465-FA69-4F25-8DFC-7CC3746094AC}" Name="suptitle" DisplayName="$Resources:ProvPur,suptitle;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{55D298E2-F5F5-47BF-922A-638FAA99F6C8}" Name="supdirecttno" DisplayName="$Resources:ProvPur,supdirecttno;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{A97351F7-7B0A-492B-AD55-C21646AD3F6F}" Name="supmobilno" DisplayName="$Resources:ProvPur,supmobilno;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{C5E3A9B9-0A16-4FC4-AAD7-2AE0245B6C56}" Name="supmail" DisplayName="$Resources:ProvPur,supmail;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{450767CA-45A1-4D05-B1FE-D58B5439D89A}" Name="supcomname" DisplayName="$Resources:ProvPur,supcomname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{DAB0CDF1-9870-4489-A4DB-33556CA39FFD}" Name="supdepartment" DisplayName="$Resources:ProvPur,supdepartment;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{D3FD3F5B-32D4-4E6E-9DCC-0A11F970D629}" Name="supaddress" DisplayName="$Resources:ProvPur,supaddress;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{E1D3FB84-3A0A-4FE4-9512-4C06522886DC}" Name="suppostalcode" DisplayName="$Resources:ProvPur,suppostalcode;" Type="Number" Decimals="0" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{18776AD7-BCB6-409D-A57C-EAFE93C5107D}" Name="suppostaldis" DisplayName="$Resources:ProvPur,suppostaldis;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{5D3A944F-5C84-4B7A-8B03-6DA12CCC9AE9}" Name="supcity" DisplayName="$Resources:ProvPur,supcity;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{53BDE162-A99B-479A-A2C0-3A3F47C52855}" Name="suptelno" DisplayName="$Resources:ProvPur,suptelno;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{0BC3B6CC-5044-49ED-B75E-BA71695F97F7}" Name="supuserprofile" DisplayName="$Resources:ProvPur,supuserprofile;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{74AB80DD-A155-44AE-B7DD-E838ADE136A7}" Name="supclalogin" DisplayName="$Resources:ProvPur,supclalogin;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{15FD701E-2340-4191-BE85-A9708A6F3D84}" Name="suppassword" DisplayName="$Resources:ProvPur,suppassword;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{FD1C80C5-6FEA-4C05-97E9-64487C410864}" Name="supcomment" DisplayName="$Resources:ProvPur,supcomment;" Type="Note" NumLines="3" RichText="TRUE" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{335E597E-00F3-4B71-A740-B41B94A9F174}" Name="supacttype" DisplayName="$Resources:ProvPur,supacttype;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{084B4783-4890-4DE8-9101-9B3ADF03520B}" Name="supactfilename" DisplayName="$Resources:ProvPur,supactfilename;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{B86FFBB6-178A-4DA9-8003-F92C17FE2D34}" Name="supactsubject" DisplayName="$Resources:ProvPur,supactsubject;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{74B310EF-3840-4A44-B883-B2E0AAC74BD8}" Name="supactattention" DisplayName="$Resources:ProvPur,supactattention;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{8EA177F3-B447-4787-8E76-D00950359C83}" Name="supactwriter" DisplayName="$Resources:ProvPur,supactwriter;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{512915CD-8833-4A61-83A3-0F6666B679CB}" Name="supactsetupdate" DisplayName="$Resources:ProvPur,supactsetupdate;" Type="DateTime" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{A09176B1-52E4-44BC-8FCF-37BBD970DC31}" Name="supactstatus" DisplayName="$Resources:ProvPur,supactstatus;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{24D368ED-E0FC-4467-9DBD-72D34985D40A}" Name="Procat" DisplayName="$Resources:ProvPur,Procat;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{F4AB01A6-3D35-4793-AE7B-8F03A885F951}" Name="Progroup" DisplayName="$Resources:ProvPur,Progroup;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{4539CE8F-57C4-4AB2-AC66-A07F7AE200B9}" Name="prodname" DisplayName="$Resources:ProvPur,prodname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{F86C75DB-517A-4D87-A6D2-DFBBF1EC480B}" Name="proditemno" DisplayName="$Resources:ProvPur,proditemno;" Type="Number" Decimals="0" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{811B4CFF-1A59-4997-8839-3E798C3F09FA}" Name="prodalias" DisplayName="$Resources:ProvPur,prodalias;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{3B9C41D4-C999-4F8B-AA37-85F8AB6EFFB4}" Name="prodsupname" DisplayName="$Resources:ProvPur,prodsupname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{391BA2E9-828B-4929-9F59-3E1B2A60FA8C}" Name="proddesc" DisplayName="$Resources:ProvPur,proddesc;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{CC9E2B8B-E829-48BB-A07C-760DF571D7D6}" Name="prodpurpractice" DisplayName="$Resources:ProvPur,prodpurpractice;" Type="Note" NumLines="3" RichText="TRUE" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{74093312-C3B0-413A-AA8C-45103E04C789}" Name="produnitdesc" DisplayName="$Resources:ProvPur,produnitdesc;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{6410FED2-19F7-4EAF-A1C7-5745AC5B9D8F}" Name="prodgrossprice" DisplayName="$Resources:ProvPur,prodgrossprice;" Type="Currency" Decimals="2" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{1BEB17E9-16B1-4DC8-8DF3-C4EE33AB52E5}" Name="proddiscountpct" DisplayName="$Resources:ProvPur,proddiscountpct;" Type="Number" Percentage="TRUE" Min="0" Max="1" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{1487B79E-8CA1-400C-93E3-AC4F69519910}" Name="prodnetprice" DisplayName="$Resources:ProvPur,prodnetprice;" Type="Currency" Decimals="2" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{A23F5501-EF3A-4550-9072-8F7D3AA89653}" Name="proreadwriter" DisplayName="$Resources:ProvPur,proreadwriter;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{1558EDC7-CD87-42BA-8713-C29F622B03D5}" Name="promessagegoodsrecieve" DisplayName="$Resources:ProvPur,promessagegoodsrecieve;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{F0B79823-BD42-4AF9-9E71-4520A93753E4}" Name="approveflow" DisplayName="$Resources:ProvPur,approveflow;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{9BB871D1-5198-415F-B549-2F26EAAB8C3F}" Name="proddeltime" DisplayName="$Resources:ProvPur,proddeltime;" Type="Number" Decimals="0" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{0DB7272A-31CB-4022-83AF-FFE8615BDCB2}" Name="prodoptfield1" DisplayName="$Resources:ProvPur,prodoptfield1;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{923D06EA-559C-4EBF-9085-A7A1FD870AE0}" Name="prodoptfield2" DisplayName="$Resources:ProvPur,prodoptfield2;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{7B52FECD-1FD3-4D41-AAEF-A7CE43CDEFFD}" Name="prodoptfield3" DisplayName="$Resources:ProvPur,prodoptfield3;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{607A6112-419C-41E3-A0E3-CA16B09537E3}" Name="prodoptfield4" DisplayName="$Resources:ProvPur,prodoptfield4;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{EADC511F-233E-4342-8733-29674531F82F}" Name="prodoptfield5" DisplayName="$Resources:ProvPur,prodoptfield5;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{DF2B54ED-0377-47F1-814E-B4273881E8F8}" Name="prodoptfield6" DisplayName="$Resources:ProvPur,prodoptfield6;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{B80E1F11-A029-4ECE-87C0-63B8FC4604A4}" Name="prodoptfield7" DisplayName="$Resources:ProvPur,prodoptfield7;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{394D8175-04DF-48A0-87E1-2B1CD8467BEC}" Name="prodoptfieldxx" DisplayName="$Resources:ProvPur,prodoptfieldxx;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{D0500EAC-8FFC-49F7-A8DC-EBE2A57C833F}" Name="proupdatedate" DisplayName="$Resources:ProvPur,proupdatedate;" Type="DateTime" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{1FFC326B-D84D-4B77-A76C-A980B703243D}" Name="proupdateperson" DisplayName="$Resources:ProvPur,proupdateperson;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{120C80D4-BA52-47F4-8A80-FDE9A419CCC8}" Name="proapproveupdatedate" DisplayName="$Resources:ProvPur,proapproveupdatedate;" Type="DateTime" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{534C7E35-49B5-437B-9EDC-AF9EB574C40A}" Name="proapproveupdateperson" DisplayName="$Resources:ProvPur,proapproveupdateperson;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{A8571362-EDD0-43C3-A8E3-E46DF5A672A1}" Name="Suppliername" DisplayName="$Resources:ProvPur,Suppliername;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{040D037C-2DDA-4F00-9057-A95848BCDB18}" Name="Progrouplevelx" DisplayName="$Resources:ProvPur,Progrouplevelx;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{DA7948EB-1C5B-44EA-8A0D-68319DA560F0}" Name="doptfield1" DisplayName="$Resources:ProvPur,doptfield1;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{AD08BE3E-FC8E-4015-84AB-F36BDAA53022}" Name="doptfield2" DisplayName="$Resources:ProvPur,doptfield2;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{D81C9098-8911-4EF8-B614-2692E8AEF759}" Name="doptfieldx" DisplayName="$Resources:ProvPur,doptfieldx;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{D33B3DAC-113E-4E36-8124-5D07AA9D4AFA}" Name="Userprofile" DisplayName="$Resources:ProvPur,Userprofile;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{1269B617-B302-4F89-988C-82A03FFF1714}" Name="sharedmailboxpro" DisplayName="$Resources:ProvPur,sharedmailboxpro;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{7E924FAD-3FEC-4D25-8ADB-B5BF0A4FB00B}" Name="sharedmailboxgoodsrecieve" DisplayName="$Resources:ProvPur,sharedmailboxgoodsrecieve;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{1B727862-5CB8-4E10-B360-F16583EE8213}" Name="pono" DisplayName="$Resources:ProvPur,pono;" Type="Number" Decimals="0" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{70A196C6-FDFE-4E85-98E5-B382F9EB7835}" Name="orderconcern" DisplayName="$Resources:ProvPur,orderconcern;" Type="Note" NumLines="3" RichText="TRUE" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{8C7D7CD6-2420-440A-A712-BEC472553BF5}" Name="proorderdate" DisplayName="$Resources:ProvPur,proorderdate;" Type="DateTime" Format="DateOnly" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{333AD77B-29D1-476C-BC64-0B53A1E8FC0A}" Name="proqty" DisplayName="$Resources:ProvPur,proqty;" Type="Number" Decimals="0" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{B8AE4AA1-1A27-4455-B756-1AA33B723A0F}" Name="proedt" DisplayName="$Resources:ProvPur,proedt;" Type="DateTime" Format="DateOnly" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{6F17ADE7-FB52-4E5E-A4C6-1B8E17FAE9F2}" Name="propotime" DisplayName="$Resources:ProvPur,propotime;" Type="DateTime" Format="DateOnly" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{86CFF3AB-FA50-4A26-A606-E5B4B60FCF00}" Name="proactualdate" DisplayName="$Resources:ProvPur,proactualdate;" Type="DateTime" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{71897E30-3C1A-4516-B633-660B32101091}" Name="procom" DisplayName="$Resources:ProvPur,procom;" Type="Note" NumLines="3" RichText="TRUE" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{F2FC8918-4606-4C02-B938-58DE8E70DD7C}" Name="prototalprice" DisplayName="$Resources:ProvPur,prototalprice;" Type="Currency" Decimals="2" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{E1043064-12BD-4FCE-AD69-FE94449A4201}" Name="clapostalcode" DisplayName="$Resources:ProvPur,clapostalcode;" Type="Number" Decimals="0" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{DEDCB939-0233-46B2-B33A-DD128E53BA63}" Name="clatelno" DisplayName="$Resources:ProvPur,clatelno;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{DA0C0CA1-FFA1-4CE0-A54B-4183000E3CAD}" Name="selname" DisplayName="$Resources:ProvPur,selname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{9D6AF1D0-444C-4E7D-AA91-72F264EC8603}" Name="seldirecttno" DisplayName="$Resources:ProvPur,seldirecttno;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{ED691FC5-C5FE-46CE-85E3-3139E353016A}" Name="selmobilno" DisplayName="$Resources:ProvPur,selmobilno;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{6E7CF37B-0A61-4421-8E50-FC348ED54CE3}" Name="selmail" DisplayName="$Resources:ProvPur,selmail;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{18CEB85E-1FD1-4691-98C3-29B5C017F774}" Name="buycomname" DisplayName="$Resources:ProvPur,buycomname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{067876E5-F4CF-4625-B879-4EE49DFED81D}" Name="buyfirstname" DisplayName="$Resources:ProvPur,buyfirstname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{57618DE7-1ACF-44E5-8E42-5DDDD647A4A2}" Name="buysurname" DisplayName="$Resources:ProvPur,buysurname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{3869842F-4078-49B1-A318-D46ED9AFF9E4}" Name="buyaddress" DisplayName="$Resources:ProvPur,buyaddress;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{E442DE9B-BFEC-45B9-AFEB-A31EBC021451}" Name="buypostalcode" DisplayName="$Resources:ProvPur,buypostalcode;" Type="Number" Decimals="0" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{DCCDE712-0E81-4D98-B804-74044C89A933}" Name="buypostaldis" DisplayName="$Resources:ProvPur,buypostaldis;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{79BDBEA5-8112-4E54-A8DC-EF2A72835809}" Name="buycity" DisplayName="$Resources:ProvPur,buycity;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{701C55ED-75FB-4B0D-8BAF-2319013CB12D}" Name="buytelno" DisplayName="$Resources:ProvPur,buytelno;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{AC162B0B-3859-4B79-92E5-8451EFAABAAA}" Name="buydirecttno" DisplayName="$Resources:ProvPur,buydirecttno;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{30340D3B-318D-434D-9DDF-40FFF082068A}" Name="buymobilno" DisplayName="$Resources:ProvPur,buymobilno;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{30DAB187-002D-4ADF-B470-2DA85291F812}" Name="buymail" DisplayName="$Resources:ProvPur,buymail;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{46636776-6D4D-4B77-9AE5-E22AC98BC3B7}" Name="prodoptfield" DisplayName="$Resources:ProvPur,prodoptfield;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{35EB4C43-53AB-4317-AFFB-DF3A9EC3F69C}" Name="delcomname" DisplayName="$Resources:ProvPur,delcomname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{878F4EBD-EBD8-4BFF-AE13-D762F08421A8}" Name="delattname" DisplayName="$Resources:ProvPur,delattname;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{5388DD20-2C83-4187-A082-1CB478D22B11}" Name="deladdress" DisplayName="$Resources:ProvPur,deladdress;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{4CFC3D76-85E4-45F4-9B26-3516A4A2EB54}" Name="delpostalcode" DisplayName="$Resources:ProvPur,delpostalcode;" Type="Number" Decimals="0" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{01D5C312-1A3E-492B-9551-DF6233CC16EA}" Name="delpostaldis" DisplayName="$Resources:ProvPur,delpostaldis;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{A9567060-D31F-44F2-ACD4-AE36302474C2}" Name="delcity" DisplayName="$Resources:ProvPur,delcity;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{D3B9E7A8-4CA9-4B87-8BD3-412EDA7872DE}" Name="delmobilno" DisplayName="$Resources:ProvPur,delmobilno;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{DEC69292-45DD-4178-A109-D21DD87EC8C7}" Name="dnotefilename" DisplayName="$Resources:ProvPur,dnotefilename;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{6DD3BFA7-9996-4F54-B1FD-FE2495414AD5}" Name="dnoteregard" DisplayName="$Resources:ProvPur,dnoteregard;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{C50EF5AE-9C66-49EC-9354-CC65D1659E25}" Name="dnoteattention" DisplayName="$Resources:ProvPur,dnoteattention;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{A30EFC16-5465-48AD-93C3-79F921D0BE6A}" Name="dnotewriter" DisplayName="$Resources:ProvPur,dnotewriter;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{81044EE5-244F-47B6-A121-50156AF1E1F2}" Name="dnotesetupdate" DisplayName="$Resources:ProvPur,dnotesetupdate;" Type="DateTime" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{DF71599D-9847-468F-9ED2-E901593F1916}" Name="invfilename" DisplayName="$Resources:ProvPur,invfilename;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{B93DAF29-6C5D-40B9-A25E-2BB23A3765B5}" Name="invregard" DisplayName="$Resources:ProvPur,invregard;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{D0D7BF8D-20A6-472C-B61F-9AD39746DE0E}" Name="invattention" DisplayName="$Resources:ProvPur,invattention;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{73AD8CDA-6FFB-440C-80E8-A62DD577A5A7}" Name="invwriter" DisplayName="$Resources:ProvPur,invwriter;" Type="Text" MaxLength="255" Group="$Resources:ProvPur,FieldsGroupName;" />
+  <Field ID="{3F3840D2-AF76-46C2-B6B1-0D95EB40D3E9}" Name="invsetupdate" DisplayName="$Resources:ProvPur,invsetupdate;" Type="DateTime" Group="$Resources:ProvPur,FieldsGroupName;" />
 </Elements>
