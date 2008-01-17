@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DataSet>
+  <xs:schema id="NewDataSet" targetNamespace="urn:schemas-microsoft-com:rowset" xmlns:mstns="urn:schemas-microsoft-com:rowset" xmlns="urn:schemas-microsoft-com:rowset" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified" xmlns:app1="#RowsetSchema">
+    <xs:import namespace="#RowsetSchema" />
+    <xs:element name="data" msdata:Prefix="rs">
+      <xs:complexType>
+        <xs:sequence>
+          <xs:element ref="app1:row" />
+        </xs:sequence>
+        <xs:attribute name="ItemCount" form="unqualified" type="xs:string" />
+      </xs:complexType>
+    </xs:element>
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msdata:Prefix="rs">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="data" />
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <xs:schema targetNamespace="#RowsetSchema" xmlns:mstns="urn:schemas-microsoft-com:rowset" xmlns="#RowsetSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified" xmlns:app1="#RowsetSchema">
+    <xs:import namespace="urn:schemas-microsoft-com:rowset" />
+    <xs:element name="row" msdata:Prefix="z">
+      <xs:complexType>
+        <xs:attribute name="ows_ContentTypeId" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_Title" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_TypeName" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_Kolonne" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_LinkTitleNoMenu" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_LinkTitle" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_SkalUdfyldes" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_ID" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_ContentType" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_Modified" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_Created" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_Author" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_Editor" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_owshiddenversion" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_WorkflowVersion" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows__UIVersion" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows__UIVersionString" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_Attachments" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows__ModerationStatus" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_SelectTitle" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_Order" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_GUID" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_FileRef" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_FileDirRef" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_Last_x0020_Modified" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_Created_x0020_Date" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_FSObjType" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_PermMask" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_FileLeafRef" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_UniqueId" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_ProgId" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_ScopeId" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows__EditMenuTableStart" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows__EditMenuTableEnd" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_LinkFilenameNoMenu" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_LinkFilename" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_ServerUrl" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_EncodedAbsUrl" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_BaseName" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows_MetaInfo" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows__Level" form="unqualified" type="xs:string" />
+        <xs:attribute name="ows__IsCurrentVersion" form="unqualified" type="xs:string" />
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <diffgr:diffgram xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:diffgr="urn:schemas-microsoft-com:xml-diffgram-v1">
+    <rs:NewDataSet xmlns:rs="urn:schemas-microsoft-com:rowset">
+      <rs:data diffgr:id="data1" msdata:rowOrder="0" diffgr:hasChanges="inserted" msdata:hiddendata_Id="0" ItemCount="3">
+        <z:row diffgr:id="row1" msdata:rowOrder="0" diffgr:hasChanges="inserted" ows_ContentTypeId="0x0100E7D47B7A8650C546AF63E72AF10309E3" ows_Title="01" ows_TypeName="9;#Produktoplysninger" ows_Kolonne="202;#proddeltime" ows_LinkTitleNoMenu="01" ows_LinkTitle="01" ows_SkalUdfyldes="1" ows_ID="1" ows_ContentType="Element" ows_Modified="2008-01-17 16:42:35" ows_Created="2008-01-17 15:45:21" ows_Author="1;#HD16\Administrator" ows_Editor="1;#HD16\Administrator" ows_owshiddenversion="7" ows_WorkflowVersion="1" ows__UIVersion="512" ows__UIVersionString="1.0" ows_Attachments="0" ows__ModerationStatus="0" ows_SelectTitle="1" ows_Order="100.000000000000" ows_GUID="{43CD3035-C902-44F7-804F-F4AAFD2DAE9F}" ows_FileRef="1;#Lists/ProPurTypeColumn/1_.000" ows_FileDirRef="1;#Lists/ProPurTypeColumn" ows_Last_x0020_Modified="1;#2008-01-17 15:45:21" ows_Created_x0020_Date="1;#2008-01-17 15:45:21" ows_FSObjType="1;#0" ows_PermMask="0x7fffffffffffffff" ows_FileLeafRef="1;#1_.000" ows_UniqueId="1;#{8B1D86A7-7545-4CDA-9F9B-FBB6C01E0AC1}" ows_ProgId="1;#" ows_ScopeId="1;#{A9697012-9CB2-4F31-B185-8555E03B8040}" ows__EditMenuTableStart="1_.000" ows__EditMenuTableEnd="1" ows_LinkFilenameNoMenu="1_.000" ows_LinkFilename="1_.000" ows_ServerUrl="/Lists/ProPurTypeColumn/1_.000" ows_EncodedAbsUrl="http://hd16.hafsjold.dk/Lists/ProPurTypeColumn/1_.000" ows_BaseName="1_" ows_MetaInfo="1;#" ows__Level="1" ows__IsCurrentVersion="1" msdata:hiddendata_Id="0" xmlns:z="#RowsetSchema" />
+        <z:row diffgr:id="row2" msdata:rowOrder="1" diffgr:hasChanges="inserted" ows_ContentTypeId="0x0100E7D47B7A8650C546AF63E72AF10309E3" ows_Title="02" ows_TypeName="9;#Produktoplysninger" ows_Kolonne="101;#actsubject" ows_LinkTitleNoMenu="02" ows_LinkTitle="02" ows_SkalUdfyldes="1" ows_ID="2" ows_ContentType="Element" ows_Modified="2008-01-17 16:17:34" ows_Created="2008-01-17 15:54:12" ows_Author="1;#HD16\Administrator" ows_Editor="1;#HD16\Administrator" ows_owshiddenversion="4" ows_WorkflowVersion="1" ows__UIVersion="512" ows__UIVersionString="1.0" ows_Attachments="0" ows__ModerationStatus="0" ows_SelectTitle="2" ows_Order="200.000000000000" ows_GUID="{35EC5CDE-C558-40D6-B224-600259EA50CC}" ows_FileRef="2;#Lists/ProPurTypeColumn/2_.000" ows_FileDirRef="2;#Lists/ProPurTypeColumn" ows_Last_x0020_Modified="2;#2008-01-17 15:54:12" ows_Created_x0020_Date="2;#2008-01-17 15:54:12" ows_FSObjType="2;#0" ows_PermMask="0x7fffffffffffffff" ows_FileLeafRef="2;#2_.000" ows_UniqueId="2;#{DAA369C9-1C88-40E6-91EB-D2467C212AE6}" ows_ProgId="2;#" ows_ScopeId="2;#{A9697012-9CB2-4F31-B185-8555E03B8040}" ows__EditMenuTableStart="2_.000" ows__EditMenuTableEnd="2" ows_LinkFilenameNoMenu="2_.000" ows_LinkFilename="2_.000" ows_ServerUrl="/Lists/ProPurTypeColumn/2_.000" ows_EncodedAbsUrl="http://hd16.hafsjold.dk/Lists/ProPurTypeColumn/2_.000" ows_BaseName="2_" ows_MetaInfo="2;#" ows__Level="1" ows__IsCurrentVersion="1" msdata:hiddendata_Id="0" xmlns:z="#RowsetSchema" />
+        <z:row diffgr:id="row3" msdata:rowOrder="2" diffgr:hasChanges="inserted" ows_ContentTypeId="0x0100E7D47B7A8650C546AF63E72AF10309E3" ows_Title="03" ows_TypeName="9;#Produktoplysninger" ows_Kolonne="239;#clapostalcode" ows_LinkTitleNoMenu="03" ows_LinkTitle="03" ows_SkalUdfyldes="1" ows_ID="3" ows_ContentType="Element" ows_Modified="2008-01-17 16:28:33" ows_Created="2008-01-17 15:55:03" ows_Author="1;#HD16\Administrator" ows_Editor="1;#HD16\Administrator" ows_owshiddenversion="6" ows_WorkflowVersion="1" ows__UIVersion="512" ows__UIVersionString="1.0" ows_Attachments="0" ows__ModerationStatus="0" ows_SelectTitle="3" ows_Order="300.000000000000" ows_GUID="{39733D2D-2BBD-417F-B78A-3FFBACEA7C17}" ows_FileRef="3;#Lists/ProPurTypeColumn/3_.000" ows_FileDirRef="3;#Lists/ProPurTypeColumn" ows_Last_x0020_Modified="3;#2008-01-17 15:55:03" ows_Created_x0020_Date="3;#2008-01-17 15:55:03" ows_FSObjType="3;#0" ows_PermMask="0x7fffffffffffffff" ows_FileLeafRef="3;#3_.000" ows_UniqueId="3;#{5CEB7A3C-3937-4CD7-80B2-4B9C388B3CE3}" ows_ProgId="3;#" ows_ScopeId="3;#{A9697012-9CB2-4F31-B185-8555E03B8040}" ows__EditMenuTableStart="3_.000" ows__EditMenuTableEnd="3" ows_LinkFilenameNoMenu="3_.000" ows_LinkFilename="3_.000" ows_ServerUrl="/Lists/ProPurTypeColumn/3_.000" ows_EncodedAbsUrl="http://hd16.hafsjold.dk/Lists/ProPurTypeColumn/3_.000" ows_BaseName="3_" ows_MetaInfo="3;#" ows__Level="1" ows__IsCurrentVersion="1" msdata:hiddendata_Id="0" xmlns:z="#RowsetSchema" />
+      </rs:data>
+    </rs:NewDataSet>
+  </diffgr:diffgram>
+</DataSet>
