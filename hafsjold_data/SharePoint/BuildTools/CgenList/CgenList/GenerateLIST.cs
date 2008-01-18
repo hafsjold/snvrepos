@@ -30,6 +30,7 @@ partial class genListMain
         myStream.Close();
         string strXML = Regex.Replace(XMLFileLISTtext, "xmlns=\"[^\"]*\"", "");
         System.Xml.XmlDocument docLIST = new System.Xml.XmlDocument();
+        docLIST.PreserveWhitespace = true;
         docLIST.LoadXml(strXML);
 
 

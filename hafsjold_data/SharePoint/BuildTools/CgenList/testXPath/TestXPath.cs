@@ -7,6 +7,7 @@ using System.Xml.Schema;
 using Microsoft.SharePoint;
 using System.IO;
 using System.Xml.Serialization;
+using pvMetadata;
 
 
 namespace testXPath
@@ -18,22 +19,18 @@ namespace testXPath
 
         static void Main(string[] args)
         {
-            Test2();
+            Metadata myMetadata1 = new Metadata();
+            listtemplate test1 = myMetadata1.listtemplates.getAllListtemplates[1];
+            object test2 = test1.ListtemplateContenttypes;
+            object test3 = test1.ListtemplateColumns;
+            //Test2();
         }
 
         private static void Test1()
         {
-            string strFullPath = TESTFILEPATH1;
-            string strFilename = System.IO.Path.GetFileName(strFullPath).ToLower();
-            FileStream myStream = new FileStream(strFullPath, FileMode.Open);
-            StreamReader myReader = new StreamReader(myStream);
-            string strXMLFile = myReader.ReadToEnd();
-            myReader.Close();
-            myStream.Close();
-
-            string strXML = strXMLFile;
             System.Xml.XmlDocument docTEST = new System.Xml.XmlDocument();
-            docTEST.LoadXml(strXML);
+            docTEST.PreserveWhitespace = true;
+            docTEST.Load(TESTFILEPATH1);
             XmlNamespaceManager nsMgr = new XmlNamespaceManager(docTEST.NameTable);
             nsMgr.AddNamespace("spe", "http://schemas.microsoft.com/sharepoint/events");
 
@@ -41,48 +38,29 @@ namespace testXPath
 
             System.Xml.XmlNode node2 = docTEST.SelectSingleNode("//XmlDocuments/XmlDocument", nsMgr);
 
-            strXML = docTEST.OuterXml;
-
-            /*
-            myStream = new FileStream(strFullPath, FileMode.Truncate);
-            StreamWriter myWriter = new StreamWriter(myStream);
-            myWriter.Write(strXML);
-            myWriter.Close();
-            myStream.Close();
-            */
+            //docTEST.Save(TESTFILEPATH1);
         }
+
         private static void Test2()
         {
-            string strFullPath = TESTFILEPATH2;
-            string strFilename = System.IO.Path.GetFileName(strFullPath).ToLower();
-            FileStream myStream = new FileStream(strFullPath, FileMode.Open);
-            StreamReader myReader = new StreamReader(myStream);
-            string strXMLFile = myReader.ReadToEnd();
-            myReader.Close();
-            myStream.Close();
+            XmlNamespaceManager nsMgr1 = new XmlNamespaceManager(new NameTable());
+            nsMgr1.AddNamespace("mha", "http://schemas.microsoft.com/sharepoint/");
+            foreach (string pf in nsMgr1)
+            {
+                string ns = nsMgr1.LookupNamespace(pf);
+            }
 
-            string strXML = strXMLFile;
-            //string strXML = Regex.Replace(strXMLFile, "xmlns=\"[^\"]*\"", "");
             System.Xml.XmlDocument docTEST = new System.Xml.XmlDocument();
-            docTEST.LoadXml(strXML);
-
+            docTEST.PreserveWhitespace = true;
+            docTEST.Load(TESTFILEPATH2);
             XmlNamespaceManager nsMgr = new XmlNamespaceManager(docTEST.NameTable);
             nsMgr.AddNamespace("mha", "http://schemas.microsoft.com/sharepoint/");
-
 
             System.Xml.XmlNode node1 = docTEST.SelectSingleNode("//mha:Elements/mha:Field[@Name=\"deltelno\"]", nsMgr);
 
             System.Xml.XmlNode node2 = docTEST.SelectSingleNode("//XmlDocuments/XmlDocument", nsMgr);
 
-            strXML = docTEST.OuterXml;
-
-            /*
-            myStream = new FileStream(strFullPath, FileMode.Truncate);
-            StreamWriter myWriter = new StreamWriter(myStream);
-            myWriter.Write(strXML);
-            myWriter.Close();
-            myStream.Close();
-            */
+            //docTEST.Save(TESTFILEPATH2);
         }
 
     }

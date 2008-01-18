@@ -4,11 +4,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.50727</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{97563844-BCE5-4F18-B6F1-DDF6E7A85FAD}</ProjectGuid>
+    <ProjectGuid>{1594525C-F945-4128-8350-DAE1BA8D48F2}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>testXPath</RootNamespace>
-    <AssemblyName>testXPath</AssemblyName>
+    <RootNamespace>UpdateGUID</RootNamespace>
+    <AssemblyName>UpdateGUID</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,22 +28,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.SharePoint, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Program Files\Common Files\Microsoft Shared\Web Server Extensions\12\ISAPI\Microsoft.SharePoint.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TestXPath.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\pvMetadata\pvMetadata.csproj">
-      <Project>{B919A8E3-BA95-4291-A123-7E3F65618786}</Project>
-      <Name>pvMetadata</Name>
+    <ProjectReference Include="..\..\..\_Udvikl\wssGetList\wssGetList\wssGetList.csproj">
+      <Project>{C67FB0E3-B951-41AD-883F-6216FD4A251B}</Project>
+      <Name>wssGetList</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
