@@ -25,6 +25,18 @@ namespace pvMetadata
             }
         }
 
+        //Get ListTemplate by name
+        public listtemplate getListtemplate(string templateName)
+        {
+            if (_listtemplates == null) init();
+            if (_listtemplates_name.ContainsKey(templateName))
+            {
+                int key = _listtemplates_name[templateName];
+                return _listtemplates[key];
+            }
+            return null;
+        }
+
         private void init()
         {
             DataTable tbl = pvMetadata.MetaUtilities.OpenDataSet("ProPurList").Tables["row"];

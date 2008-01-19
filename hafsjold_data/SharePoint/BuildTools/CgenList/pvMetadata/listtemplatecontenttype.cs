@@ -40,7 +40,7 @@ namespace pvMetadata
 
     public class ListtemplateContenttype
     {
-        private contenttype _typ;
+        private contenttype _contenttype;
         private int _id;
         private string _Seqnr;
         private int _ListNavn_id;
@@ -51,7 +51,7 @@ namespace pvMetadata
 
         public ListtemplateContenttype(DataRow row)
         {
-            _typ = null;
+            _contenttype = null;
             _id = int.Parse((string)row["ows_ID"]);
             _Seqnr = (string)row["ows_Title"];
             string[] ID_ListNavn = Regex.Split((string)row["ows_ListName"], ";#");
@@ -60,10 +60,10 @@ namespace pvMetadata
             _TypeNavn_id = int.Parse((string)ID_TypeName[0]);
         }
 
-        private void init()
+        private void init_contenttype()
         {
             contenttypeCollection wcontenttypeCollection = new contenttypeCollection();
-            contenttype _typ = wcontenttypeCollection.getContenttype(_TypeNavn_id);
+            _contenttype = wcontenttypeCollection.getContenttype(_TypeNavn_id);
         }
 
         public int id
@@ -94,8 +94,8 @@ namespace pvMetadata
         {
             get
             {
-                if (_typ == null) init();
-                return _typ.SysName;
+                if (_contenttype == null) init_contenttype();
+                return _contenttype.SysName;
             }
         }
 
@@ -103,8 +103,8 @@ namespace pvMetadata
         {
             get
             {
-                if (_typ == null) init();
-                return _typ.BasedOn;
+                if (_contenttype == null) init_contenttype();
+                return _contenttype.BasedOn;
             }
         }
 
@@ -112,8 +112,8 @@ namespace pvMetadata
         {
             get
             {
-                if (_typ == null) init();
-                return _typ.DisplayNameDK;
+                if (_contenttype == null) init_contenttype();
+                return _contenttype.DisplayNameDK;
             }
         }
 
@@ -121,8 +121,8 @@ namespace pvMetadata
         {
             get
             {
-                if (_typ == null) init();
-                return _typ.DisplayNameUK;
+                if (_contenttype == null) init_contenttype();
+                return _contenttype.DisplayNameUK;
             }
         }
 
@@ -130,8 +130,8 @@ namespace pvMetadata
         {
             get
             {
-                if (_typ == null) init();
-                return _typ.Comment;
+                if (_contenttype == null) init_contenttype();
+                return _contenttype.Comment;
             }
         }
 
@@ -139,8 +139,8 @@ namespace pvMetadata
         {
             get
             {
-                if (_typ == null) init();
-                return _typ.typeGUID;
+                if (_contenttype == null) init_contenttype();
+                return _contenttype.typeGUID;
             }
         }
 
@@ -148,8 +148,8 @@ namespace pvMetadata
         {
             get
             {
-                if (_typ == null) init();
-                return _typ.SysType;
+                if (_contenttype == null) init_contenttype();
+                return _contenttype.SysType;
             }
         }
     }

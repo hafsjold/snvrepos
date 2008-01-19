@@ -52,15 +52,12 @@ partial class genListMain
         System.Xml.XmlDocument docUK = new System.Xml.XmlDocument();
         docUK.LoadXml(XMLFileUKtext);
 
-        foreach (listtemplate list in model.listtemplates.getAllListtemplates.Values)
+        listtemplate list = model.listtemplates.getListtemplate(LISTNAME);
+        if (list != null)
         {
-            if (list.SysName == LISTNAME)
-            {
-                createListElement(ref docLIST, list.SysName, COREFILE, list.ListtemplateContenttypes, list.ListtemplateColumns);
-                createDataElement(ref docDK, list.SysName, list.DisplayNameDK, list.Comment);
-                createDataElement(ref docUK, list.SysName, list.DisplayNameUK, list.Comment);
-                break;
-            }
+            createListElement(ref docLIST, list.SysName, COREFILE, list.ListtemplateContenttypes, list.ListtemplateColumns);
+            createDataElement(ref docDK, list.SysName, list.DisplayNameDK, list.Comment);
+            createDataElement(ref docUK, list.SysName, list.DisplayNameUK, list.Comment);
         }
 
         strXML = Regex.Replace(docLIST.OuterXml, "<Elements>", "<Elements xmlns=\"http://schemas.microsoft.com/sharepoint/\">");

@@ -97,7 +97,7 @@ namespace pvMetadata
         {
             ContenttypeColumnCollection wContenttypeColumnCollection = new ContenttypeColumnCollection();
             int key = _TypeNavn_id * 10000 + _Kolonne_id;
-            ContenttypeColumn _col = wContenttypeColumnCollection.getAllContenttypeColumns[key];
+            _col = wContenttypeColumnCollection.getAllContenttypeColumns[key];
         }
 
         public int Kolonne_id

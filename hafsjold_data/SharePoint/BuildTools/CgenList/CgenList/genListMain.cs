@@ -337,15 +337,13 @@ partial class genListMain
                 string strXML = Regex.Replace(XMLFileLISTtext, "xmlns=\"[^\"]*\"", "");
                 docFEATURE.LoadXml(strXML);
 
-                foreach (listtemplate list in model.listtemplates.getAllListtemplates.Values)
+                listtemplate list = model.listtemplates.getListtemplate(LISTNAME);
+                if (list != null)
                 {
-                    if (list.SysName == LISTNAME)
-                    {
-                        System.Xml.XmlNode Feature = docFEATURE.SelectSingleNode("//Feature");
-                        Feature.Attributes["Id"].Value = list.FeatureGUID;
-                        break;
-                    }
+                    System.Xml.XmlNode Feature = docFEATURE.SelectSingleNode("//Feature");
+                    Feature.Attributes["Id"].Value = list.FeatureGUID;
                 }
+
                 //<Feature Id="24493869-2DA2-49b5-AA30-67FE39550F1C" xmlns="http://schemas.microsoft.com/sharepoint/">
                 strXML = Regex.Replace(docFEATURE.OuterXml, "<Feature", "<Feature xmlns=\"http://schemas.microsoft.com/sharepoint/\" ");
 
@@ -377,17 +375,14 @@ partial class genListMain
                 string strXML = Regex.Replace(XMLFileLISTtext, "xmlns=\"[^\"]*\"", "");
                 docELEMENTMANIFEST.LoadXml(strXML);
 
-                foreach (listtemplate list in model.listtemplates.getAllListtemplates.Values)
+                listtemplate list = model.listtemplates.getListtemplate(LISTNAME);
+                if (list != null)
                 {
-                    if (list.SysName == LISTNAME)
-                    {
-                        System.Xml.XmlNode ListTemplate = docELEMENTMANIFEST.SelectSingleNode("//Elements/ListTemplate");
-                        ListTemplate.Attributes["Type"].Value = list.TypeIdentifier;
+                    System.Xml.XmlNode ListTemplate = docELEMENTMANIFEST.SelectSingleNode("//Elements/ListTemplate");
+                    ListTemplate.Attributes["Type"].Value = list.TypeIdentifier;
 
-                        System.Xml.XmlNode ListInstance = docELEMENTMANIFEST.SelectSingleNode("//Elements/ListInstance");
-                        ListInstance.Attributes["TemplateType"].Value = list.TypeIdentifier;
-                        break;
-                    }
+                    System.Xml.XmlNode ListInstance = docELEMENTMANIFEST.SelectSingleNode("//Elements/ListInstance");
+                    ListInstance.Attributes["TemplateType"].Value = list.TypeIdentifier;
                 }
                 //<Feature Id="24493869-2DA2-49b5-AA30-67FE39550F1C" xmlns="http://schemas.microsoft.com/sharepoint/">
                 strXML = Regex.Replace(docELEMENTMANIFEST.OuterXml, "<Elements", "<Elements xmlns=\"http://schemas.microsoft.com/sharepoint/\" ");
