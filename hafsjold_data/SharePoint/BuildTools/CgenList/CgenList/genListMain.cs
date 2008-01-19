@@ -5,6 +5,7 @@ using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Schema;
 using System.Diagnostics;
+using pvMetadata;
 
 partial class genListMain
 {
@@ -27,6 +28,8 @@ partial class genListMain
     private static string FEATURE_FILE;
     private static System.Collections.Specialized.StringCollection excludedExtensions;
     private static System.Collections.Specialized.StringCollection ProjectFileList;
+    static Metadata model;
+
 
     static void Main(string[] args)
     {
@@ -120,6 +123,7 @@ partial class genListMain
         DFF_FILE = PROJECT_DIR + "wsp.ddf";
         DFF_FROM_ROOT = PROJECT_DIR;
         DFF_TO_ROOT = TARGET_DIR;
+        model = new Metadata();
     }
 
     private static string Name_Substitute(string s)
@@ -127,14 +131,14 @@ partial class genListMain
         string s1 = s.Replace("#NAME#", LISTNAME);
         return s1;
     }
-    
+
     private static string FolderPath_Substitute(string s)
     {
         string s1 = s.Replace(FIND_DIR, REPLACE_DIR);
         string s2 = s1.Replace("#NAME#", LISTNAME);
         return s2;
     }
-    
+
     private static string ProjectPath_Substitute(string s)
     {
         string s1 = s.Replace(FIND_DIR, REPLACE_DIR);
@@ -333,19 +337,12 @@ partial class genListMain
                 string strXML = Regex.Replace(XMLFileLISTtext, "xmlns=\"[^\"]*\"", "");
                 docFEATURE.LoadXml(strXML);
 
-                System.Data.DataSet dsListItems = OpenDataSet("ProPurList");
-                DataTable List_rows = dsListItems.Tables["row"];
-
-                foreach (DataRow List_row in List_rows.Rows)
+                foreach (listtemplate list in model.listtemplates.getAllListtemplates.Values)
                 {
-                    string List_SysName = (string)List_row["ows_Title"];
-                    string List_FeatureGUID = (string)List_row["ows_FeatureGUID"];
-                    string List_TypeIdentifier = (string)List_row["ows_TypeIdentifier"];
-
-                    if (List_SysName == LISTNAME)
+                    if (list.SysName == LISTNAME)
                     {
                         System.Xml.XmlNode Feature = docFEATURE.SelectSingleNode("//Feature");
-                        Feature.Attributes["Id"].Value = List_FeatureGUID;
+                        Feature.Attributes["Id"].Value = list.FeatureGUID;
                         break;
                     }
                 }
@@ -380,22 +377,15 @@ partial class genListMain
                 string strXML = Regex.Replace(XMLFileLISTtext, "xmlns=\"[^\"]*\"", "");
                 docELEMENTMANIFEST.LoadXml(strXML);
 
-                System.Data.DataSet dsListItems = OpenDataSet("ProPurList");
-                DataTable List_rows = dsListItems.Tables["row"];
-
-                foreach (DataRow List_row in List_rows.Rows)
+                foreach (listtemplate list in model.listtemplates.getAllListtemplates.Values)
                 {
-                    string List_SysName = (string)List_row["ows_Title"];
-                    string List_FeatureGUID = (string)List_row["ows_FeatureGUID"];
-                    string List_TypeIdentifier = (string)List_row["ows_TypeIdentifier"];
-
-                    if (List_SysName == LISTNAME)
+                    if (list.SysName == LISTNAME)
                     {
                         System.Xml.XmlNode ListTemplate = docELEMENTMANIFEST.SelectSingleNode("//Elements/ListTemplate");
-                        ListTemplate.Attributes["Type"].Value = List_TypeIdentifier;
+                        ListTemplate.Attributes["Type"].Value = list.TypeIdentifier;
 
                         System.Xml.XmlNode ListInstance = docELEMENTMANIFEST.SelectSingleNode("//Elements/ListInstance");
-                        ListInstance.Attributes["TemplateType"].Value = List_TypeIdentifier;
+                        ListInstance.Attributes["TemplateType"].Value = list.TypeIdentifier;
                         break;
                     }
                 }
@@ -411,7 +401,7 @@ partial class genListMain
         }
 
     }
-    
+
     private static void CopyProjectFolder(string currentPath)
     {
         string[] stFolders = System.IO.Directory.GetDirectories(currentPath);

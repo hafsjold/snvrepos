@@ -7,13 +7,16 @@ using System.Xml.Schema;
 using Microsoft.SharePoint;
 using System.IO;
 using System.Xml.Serialization;
+using pvMetadata;
 
 namespace GenerateColumns
 {
     class Program
     {
+        static Metadata model;
         static void Main(string[] args)
         {
+            model = new Metadata();
             GenerateColumns();
 
         }
@@ -55,22 +58,11 @@ namespace GenerateColumns
             System.Xml.XmlDocument docUK = new System.Xml.XmlDocument();
             docUK.LoadXml(XMLFileUKtext);
 
-            System.Data.DataSet dsItems = OpenDataSet("ProPurColumn");
-            DataTable rows = dsItems.Tables["row"];
-
-            foreach (DataRow row in rows.Rows)
+            foreach (column col in model.columns.getAllColumns.Values)
             {
-                int Id = int.Parse((string)row["ows_ID"]);
-                string SysName = (string)row["ows_Title"];
-                string KolonneType = (string)row["ows_KolonneType"];
-                string DisplayNameDK = (string)row["ows_DisplayNameDK"];
-                string DisplayNameUK = (string)row["ows_DisplayNameUK"];
-                string FieldComment = (string)row["ows_FieldName"];
-                string Guid = (string)row["ows_GUID0"];
-
-                createFieldElement(ref docFIELDS, Guid, SysName, COREFILE, KolonneType);
-                createDataElement(ref docDK, SysName, DisplayNameDK, FieldComment);
-                createDataElement(ref docUK, SysName, DisplayNameUK, FieldComment);
+                createFieldElement(ref docFIELDS, col.colGUID, col.SysName, COREFILE, col.KolonneType);
+                createDataElement(ref docDK, col.SysName, col.DisplayNameDK, col.Comment);
+                createDataElement(ref docUK, col.SysName, col.DisplayNameUK, col.Comment);
             }
 
             strXML = Regex.Replace(docFIELDS.OuterXml, "<Elements>", "<Elements xmlns=\"http://schemas.microsoft.com/sharepoint/\">");
@@ -197,36 +189,6 @@ namespace GenerateColumns
             {
                 root.ReplaceChild(data, old_data);
             }
-        }
-
-        //
-        // OpenDataSet
-        //
-        private static System.Data.DataSet OpenDataSet(string ListName)
-        {
-            System.Xml.Serialization.XmlSerializer ser = null;
-            FileStream reader;
-            string FileName = null;
-
-            switch (ListName)
-            {
-                case "ProPurList":
-                    FileName = @"C:\_Provinsa\DATASET\dsListItems.xml";
-                    break;
-                case "ProPurType":
-                    FileName = @"C:\_Provinsa\DATASET\dsTypeItems.xml";
-                    break;
-                case "ProPurColumn":
-                    FileName = @"C:\_Provinsa\DATASET\dsFieldItems.xml";
-                    break;
-
-            }
-
-            System.Data.DataSet ds = new System.Data.DataSet();
-            ser = new System.Xml.Serialization.XmlSerializer(ds.GetType());
-            reader = new FileStream(FileName, FileMode.Open);
-            ds = (System.Data.DataSet)ser.Deserialize(reader);
-            return ds;
         }
     }
 }

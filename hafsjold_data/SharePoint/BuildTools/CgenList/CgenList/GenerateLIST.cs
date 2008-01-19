@@ -7,6 +7,7 @@ using System.Xml.Schema;
 using Microsoft.SharePoint;
 using System.IO;
 using System.Xml.Serialization;
+using pvMetadata;
 
 partial class genListMain
 {
@@ -51,29 +52,13 @@ partial class genListMain
         System.Xml.XmlDocument docUK = new System.Xml.XmlDocument();
         docUK.LoadXml(XMLFileUKtext);
 
-        System.Data.DataSet dsListItems = OpenDataSet("ProPurList");
-        DataTable List_rows = dsListItems.Tables["row"];
-        System.Data.DataSet dsTypeItems = OpenDataSet("ProPurType");
-        DataTable Type_rows = dsTypeItems.Tables["row"];
-        System.Data.DataSet dsFieldItems = OpenDataSet("ProPurColumn");
-        DataTable Field_rows = dsFieldItems.Tables["row"];
-
-        foreach (DataRow List_row in List_rows.Rows)
+        foreach (listtemplate list in model.listtemplates.getAllListtemplates.Values)
         {
-
-
-            int List_Id = int.Parse((string)List_row["ows_ID"]);
-            string List_SysName = (string)List_row["ows_Title"];
-            string[] List_Types = Regex.Split((string)List_row["ows_BasedOn"], ";#");
-            string List_DisplayNameDK = (string)List_row["ows_DisplayNameDK"];
-            string List_DisplayNameUK = (string)List_row["ows_DisplayNameUK"];
-            string List_Comment = (string)List_row["ows_Comment"];
-
-            if (List_SysName == LISTNAME)
+            if (list.SysName == LISTNAME)
             {
-                createListElement(ref docLIST, List_SysName, COREFILE, List_Types, ref Type_rows, ref Field_rows);
-                createDataElement(ref docDK, List_SysName, List_DisplayNameDK, List_Comment);
-                createDataElement(ref docUK, List_SysName, List_DisplayNameDK, List_Comment);
+                createListElement(ref docLIST, list.SysName, COREFILE, list.ListtemplateContenttypes, list.ListtemplateColumns);
+                createDataElement(ref docDK, list.SysName, list.DisplayNameDK, list.Comment);
+                createDataElement(ref docUK, list.SysName, list.DisplayNameUK, list.Comment);
                 break;
             }
         }
@@ -101,42 +86,11 @@ partial class genListMain
 
 
     //
-    // OpenDataSet
-    //
-    private static System.Data.DataSet OpenDataSet(string ListName)
-    {
-        System.Xml.Serialization.XmlSerializer ser = null;
-        FileStream reader;
-        string FileName = null;
-
-        switch (ListName)
-        {
-            case "ProPurList":
-                FileName = @"C:\_Provinsa\DATASET\dsListItems.xml";
-                break;
-            case "ProPurType":
-                FileName = @"C:\_Provinsa\DATASET\dsTypeItems.xml";
-                break;
-            case "ProPurColumn":
-                FileName = @"C:\_Provinsa\DATASET\dsFieldItems.xml";
-                break;
-
-        }
-
-        System.Data.DataSet ds = new System.Data.DataSet();
-        ser = new System.Xml.Serialization.XmlSerializer(ds.GetType());
-        reader = new FileStream(FileName, FileMode.Open);
-        ds = (System.Data.DataSet)ser.Deserialize(reader);
-        reader.Close();
-        return ds;
-    }
-
-    //
     //createDataElement
     //
     private static void createDataElement(
-        ref System.Xml.XmlDocument pdoc, 
-        string pname, string pvalue, 
+        ref System.Xml.XmlDocument pdoc,
+        string pname, string pvalue,
         string pcomment)
     {
 
@@ -171,215 +125,149 @@ partial class genListMain
     //createListElement
     //
     private static void createListElement(
-        ref System.Xml.XmlDocument pdoc, 
-        string pname, 
-        string pcore, 
-        string[] ptypes, 
-        ref DataTable ptypestable, 
-        ref DataTable pfieldstable)
+        ref System.Xml.XmlDocument pdoc,
+        string pname,
+        string pcore,
+        System.Collections.Generic.List<pvMetadata.ListtemplateContenttype> ptypestable,
+        System.Collections.Generic.List<pvMetadata.ListtemplateColumn> pfieldstable)
     {
+
 
         // 
         // Insert ContentTypeRef 
         // 
         System.Xml.XmlNode contenttypes = pdoc.SelectSingleNode("//List/MetaData/ContentTypes");
-        foreach (DataRow Type_row in ptypestable.Rows)
+        foreach (ListtemplateContenttype typ in ptypestable)
         {
-            int Type_Id = int.Parse((string)Type_row["ows_ID"]);
-            for (int i = 0; i <= ptypes.Length - 1; i += 2)
+            string ContentTypeID;
+            switch (typ.BasedOn)
             {
-                if (Type_Id == int.Parse(ptypes[i]))
+                case "Element":
+                    ContentTypeID = "0x01" + "00" + typ.typeGUID;
+                    break;
+                case "Annoncering":
+                    ContentTypeID = "0x0104" + "00" + typ.typeGUID;
+                    break;
+                case "Hyperlink":
+                    ContentTypeID = "0x0105" + "00" + typ.typeGUID;
+                    break;
+                case "'Kontaktperson":
+                    ContentTypeID = "0x0106" + "00" + typ.typeGUID;
+                    break;
+                case "'Meddelelse":
+                    ContentTypeID = "0x0107" + "00" + typ.typeGUID;
+                    break;
+                case "'Opgave":
+                    ContentTypeID = "0x0108" + "00" + typ.typeGUID;
+                    break;
+                case "'Problem":
+                    ContentTypeID = "0x0103" + "00" + typ.typeGUID;
+                    break;
+                default:
+                    ContentTypeID = "Error" + "00" + typ.typeGUID;
+                    break;
+            }
+
+            System.Xml.XmlElement contenttyperef = pdoc.CreateElement("ContentTypeRef");
+            System.Xml.XmlComment contenttypescomment = pdoc.CreateComment(typ.SysName);
+            contenttyperef.SetAttribute("ID", ContentTypeID);
+
+            System.Xml.XmlNode ContentTypeRef0x01 = pdoc.SelectSingleNode("//List/MetaData/ContentTypes/ContentTypeRef[@ID=\"0x01\"]");
+            if (ContentTypeRef0x01 == null)
+            {
+                System.Xml.XmlNode lastContentTypeRef = contenttypes.AppendChild(contenttyperef);
+                contenttypes.InsertBefore(contenttypescomment, lastContentTypeRef);
+            }
+            else
+            {
+                System.Xml.XmlNode Folder = pdoc.SelectSingleNode("//List/MetaData/ContentTypes/ContentTypeRef[@ID=\"0x01\"]/Folder");
+                if (Folder != null)
                 {
-                    string Type_SysName = (string)Type_row["ows_Title"];
-                    string[] Type_Fields = Regex.Split((string)Type_row["ows_Felter"], ";#");
-                    string Type_BasedOn = (string)Type_row["ows_BasedOn"];
-                    string Type_DisplayNameDK = (string)Type_row["ows_DisplayNameDK"];
-                    string Type_DisplayNameUK = (string)Type_row["ows_DisplayNameUK"];
-                    string Type_Comment = (string)Type_row["ows_Comment"];
-                    string Type_Guid = (string)Type_row["ows_Type_GUID"];
-                    string ContentTypeID;
-                    switch (Type_BasedOn)
-                    {
-                        case "Element":
-                            ContentTypeID = "0x01" + "00" + Type_Guid;
-                            break;
-                        case "Annoncering":
-                            ContentTypeID = "0x0104" + "00" + Type_Guid;
-                            break;
-                        case "Hyperlink":
-                            ContentTypeID = "0x0105" + "00" + Type_Guid;
-                            break;
-                        case "'Kontaktperson":
-                            ContentTypeID = "0x0106" + "00" + Type_Guid;
-                            break;
-                        case "'Meddelelse":
-                            ContentTypeID = "0x0107" + "00" + Type_Guid;
-                            break;
-                        case "'Opgave":
-                            ContentTypeID = "0x0108" + "00" + Type_Guid;
-                            break;
-                        case "'Problem":
-                            ContentTypeID = "0x0103" + "00" + Type_Guid;
-                            break;
-                        default:
-                            ContentTypeID = "Error" + "00" + Type_Guid;
-                            break;
-                    }
-
-                    System.Xml.XmlElement contenttyperef = pdoc.CreateElement("ContentTypeRef");
-                    System.Xml.XmlComment contenttypescomment = pdoc.CreateComment(Type_SysName);
-                    contenttyperef.SetAttribute("ID", ContentTypeID);
-
-                    System.Xml.XmlNode ContentTypeRef0x01 = pdoc.SelectSingleNode("//List/MetaData/ContentTypes/ContentTypeRef[@ID=\"0x01\"]");
-                    if (ContentTypeRef0x01 == null)
-                    {
-                        System.Xml.XmlNode lastContentTypeRef = contenttypes.AppendChild(contenttyperef);
-                        contenttypes.InsertBefore(contenttypescomment, lastContentTypeRef);
-                   }
-                    else {
-                        System.Xml.XmlNode Folder = pdoc.SelectSingleNode("//List/MetaData/ContentTypes/ContentTypeRef[@ID=\"0x01\"]/Folder");
-                        if (Folder != null) {
-                            System.Xml.XmlNode copyFolder = Folder.CloneNode(true);
-                            contenttyperef.AppendChild(copyFolder);
-                        }
-                        contenttypes.InsertBefore(contenttypescomment, ContentTypeRef0x01);
-                        contenttypes.ReplaceChild(contenttyperef, ContentTypeRef0x01);
-                    }
-                    break; 
+                    System.Xml.XmlNode copyFolder = Folder.CloneNode(true);
+                    contenttyperef.AppendChild(copyFolder);
                 }
+                contenttypes.InsertBefore(contenttypescomment, ContentTypeRef0x01);
+                contenttypes.ReplaceChild(contenttyperef, ContentTypeRef0x01);
             }
         }
+
 
         // 
         // Insert Field in Fields 
         // 
         System.Xml.XmlNode fields = pdoc.SelectSingleNode("//List/MetaData/Fields");
-        foreach (DataRow Type_row in ptypestable.Rows)
+        foreach (ListtemplateColumn col in pfieldstable)
         {
-            int Type_Id = int.Parse((string)Type_row["ows_ID"]);
-            for (int i = 0; i <= ptypes.Length - 1; i += 2)
+            System.Xml.XmlElement fieldref = pdoc.CreateElement("Field");
+            fieldref.SetAttribute("Name", col.SysName);
+            fieldref.SetAttribute("ID", col.colGUID);
+            fieldref.SetAttribute("DisplayName", "$Resources:" + pcore + "," + col.SysName + ";");
+
+            switch (col.KolonneType)
             {
-                if (Type_Id == int.Parse(ptypes[i]))
-                {
-                    string[] Type_Fields = Regex.Split((string)Type_row["ows_Felter"], ";#");
-                    foreach (DataRow Field_row in pfieldstable.Rows)
-                    {
-                        int Field_Id = int.Parse((string)Field_row["ows_ID"]);
-                        for (int j = 0; j <= Type_Fields.Length - 1; j += 2)
-                        {
-                            if (Field_Id == int.Parse(Type_Fields[j]))
-                            {
-                                string Field_SysName = (string)Field_row["ows_Title"];
-                                string Field_KolonneType = (string)Field_row["ows_KolonneType"];
-                                string Field_DisplayNameDK = (string)Field_row["ows_DisplayNameDK"];
-                                string Field_DisplayNameUK = (string)Field_row["ows_DisplayNameUK"];
-                                string Field_Comment = (string)Field_row["ows_FieldName"];
-                                string Guid = (string)Field_row["ows_GUID0"];
+                case "Text":
+                    fieldref.SetAttribute("Type", "Text");
+                    fieldref.SetAttribute("MaxLength", "255");
+                    break;
 
-                                System.Xml.XmlElement fieldref = pdoc.CreateElement("Field");
-                                fieldref.SetAttribute("Name", Field_SysName);
-                                fieldref.SetAttribute("ID", Guid);
-                                fieldref.SetAttribute("DisplayName", "$Resources:" + pcore + "," + Field_SysName + ";"); 
+                case "Note":
+                    fieldref.SetAttribute("Type", "Note");
+                    fieldref.SetAttribute("NumLines", "3");
+                    fieldref.SetAttribute("RichText", "TRUE");
+                    break;
 
-                                switch (Field_KolonneType)
-                                {
-                                    case "Text":
-                                        fieldref.SetAttribute("Type", "Text");
-                                        fieldref.SetAttribute("MaxLength", "255");
-                                        break;
+                case "Choice":
+                    fieldref.SetAttribute("Type", "Choice");
+                    break;
 
-                                    case "Note":
-                                        fieldref.SetAttribute("Type", "Note");
-                                        fieldref.SetAttribute("NumLines", "3");
-                                        fieldref.SetAttribute("RichText", "TRUE");
-                                        break;
+                case "Number":
+                    fieldref.SetAttribute("Type", "Number");
+                    fieldref.SetAttribute("Decimals", "0");
+                    break;
 
-                                    case "Choice":
-                                        fieldref.SetAttribute("Type", "Choice");
-                                        break;
+                case "Percentage":
+                    fieldref.SetAttribute("Type", "Number");
+                    fieldref.SetAttribute("Percentage", "TRUE");
+                    fieldref.SetAttribute("Min", "0");
+                    fieldref.SetAttribute("Max", "1");
+                    break;
 
-                                    case "Number":
-                                        fieldref.SetAttribute("Type", "Number");
-                                        fieldref.SetAttribute("Decimals", "0");
-                                        break;
+                case "Currency":
+                    fieldref.SetAttribute("Type", "Currency");
+                    fieldref.SetAttribute("Decimals", "2");
+                    break;
 
-                                    case "Percentage":
-                                        fieldref.SetAttribute("Type", "Number");
-                                        fieldref.SetAttribute("Percentage", "TRUE");
-                                        fieldref.SetAttribute("Min", "0");
-                                        fieldref.SetAttribute("Max", "1");
-                                        break;
+                case "DateOnly":
+                    fieldref.SetAttribute("Type", "DateTime");
+                    fieldref.SetAttribute("Format", "DateOnly");
+                    break;
 
-                                    case "Currency":
-                                        fieldref.SetAttribute("Type", "Currency");
-                                        fieldref.SetAttribute("Decimals", "2");
-                                        break;
+                case "DateTime":
+                    fieldref.SetAttribute("Type", "DateTime");
+                    break;
 
-                                    case "DateOnly":
-                                        fieldref.SetAttribute("Type", "DateTime");
-                                        fieldref.SetAttribute("Format", "DateOnly");
-                                        break;
+                case "Boolean":
+                    fieldref.SetAttribute("Type", "Boolean");
+                    break;
 
-                                    case "DateTime":
-                                        fieldref.SetAttribute("Type", "DateTime");
-                                        break;
+                default:
+                    break;
 
-                                    case "Boolean":
-                                        fieldref.SetAttribute("Type", "Boolean");
-                                        break;
-
-                                    default:
-                                        break;
-
-                                } 
-
-                                fields.AppendChild(fieldref);
-                                break; // TODO: might not be correct. Was : Exit For 
-                            }
-                        }
-                    }
-                    break; // TODO: might not be correct. Was : Exit For 
-                }
             }
+
+            fields.AppendChild(fieldref);
         }
 
         // 
         // Insert FieldsRef in ViewFields 
         // 
         System.Xml.XmlNode viewfields = pdoc.SelectSingleNode("//List/MetaData/Views/View[@BaseViewID=\"1\"]/ViewFields");
-        foreach (DataRow Type_row in ptypestable.Rows)
+        foreach (ListtemplateColumn col in pfieldstable)
         {
-            int Type_Id = int.Parse((string)Type_row["ows_ID"]);
-            for (int i = 0; i <= ptypes.Length - 1; i += 2)
-            {
-                if (Type_Id == int.Parse(ptypes[i]))
-                {
-                    string[] Type_Fields = Regex.Split((string)Type_row["ows_Felter"], ";#");
-                    foreach (DataRow Field_row in pfieldstable.Rows)
-                    {
-                        int Field_Id = int.Parse((string)Field_row["ows_ID"]);
-                        for (int j = 0; j <= Type_Fields.Length - 1; j += 2)
-                        {
-                            if (Field_Id == int.Parse(Type_Fields[j]))
-                            {
-                                string Field_SysName = (string)Field_row["ows_Title"];
-                                string Field_KolonneType = (string)Field_row["ows_KolonneType"];
-                                string Field_DisplayNameDK = (string)Field_row["ows_DisplayNameDK"];
-                                string Field_DisplayNameUK = (string)Field_row["ows_DisplayNameUK"];
-                                string Field_Comment = (string)Field_row["ows_FieldName"];
-                                string Guid = (string)Field_row["ows_GUID0"];
-
-                                System.Xml.XmlElement fieldref = pdoc.CreateElement("FieldRef");
-                                fieldref.SetAttribute("ID", Guid);
-                                fieldref.SetAttribute("Name", Field_SysName);
-                                viewfields.AppendChild(fieldref);
-                                break; // TODO: might not be correct. Was : Exit For 
-                            }
-                        }
-                    }
-                    break; // TODO: might not be correct. Was : Exit For 
-                }
-            }
+            System.Xml.XmlElement fieldref = pdoc.CreateElement("FieldRef");
+            fieldref.SetAttribute("ID", col.colGUID);
+            fieldref.SetAttribute("Name", col.SysName);
+            viewfields.AppendChild(fieldref);
         }
     }
 }

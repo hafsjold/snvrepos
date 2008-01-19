@@ -41,6 +41,12 @@
     <Compile Include="genListMain.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\pvMetadata\pvMetadata.csproj">
+      <Project>{B919A8E3-BA95-4291-A123-7E3F65618786}</Project>
+      <Name>pvMetadata</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

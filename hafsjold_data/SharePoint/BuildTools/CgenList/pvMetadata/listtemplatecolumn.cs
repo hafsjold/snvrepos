@@ -48,6 +48,7 @@ namespace pvMetadata
     public class ListtemplateColumn
     {
         private static Dictionary<int, ListtemplateColumn> _ListtemplateColumns;
+        private ContenttypeColumn _col;
         private int _Kolonne_id;
         private int _ListNavn_id;
         private int _TypeNavn_id;
@@ -57,12 +58,13 @@ namespace pvMetadata
         public ListtemplateColumn(int PListNavn_id, ContenttypeColumn Pcol)
         {
             _ListtemplateColumns = null;
+            _col = null;
             _ListNavn_id = PListNavn_id;
             _TypeNavn_id = Pcol.TypeName_id;
             _Kolonne_id = Pcol.Kolonne_id;
         }
 
-        private void init()
+        private void init_columns()
         {
             ListtemplateColumnCollection MASTERlistcolumns = new ListtemplateColumnCollection();
             _ListtemplateColumns = new Dictionary<int, ListtemplateColumn>();
@@ -84,9 +86,18 @@ namespace pvMetadata
         {
             get
             {
-                if (_ListtemplateColumns == null) init();
+                if (_ListtemplateColumns == null) init_columns();
                 return _ListtemplateColumns;
             }
+        }
+
+
+
+        private void init()
+        {
+            ContenttypeColumnCollection wContenttypeColumnCollection = new ContenttypeColumnCollection();
+            int key = _TypeNavn_id * 10000 + _Kolonne_id;
+            ContenttypeColumn _col = wContenttypeColumnCollection.getAllContenttypeColumns[key];
         }
 
         public int Kolonne_id
@@ -107,6 +118,85 @@ namespace pvMetadata
             set { _TypeNavn_id = value; }
         }
 
+        public string Seqnr
+        {
+            get
+            {
+                if (_col == null) init();
+                return _col.Seqnr;
+            }
+        }
+
+        public string DisplayNameDK
+        {
+            get
+            {
+                if (_col == null) init();
+                return _col.DisplayNameDK;
+            }
+        }
+
+        public string DisplayNameUK
+        {
+            get
+            {
+                if (_col == null) init();
+                return _col.DisplayNameUK;
+            }
+        }
+
+        public Boolean SkalUdfyldes
+        {
+            get
+            {
+                if (_col == null) init();
+                return _col.SkalUdfyldes;
+            }
+        }
+
+        public string SysName
+        {
+            get
+            {
+                if (_col == null) init();
+                return _col.SysName;
+            }
+        }
+
+        public string KolonneType
+        {
+            get
+            {
+                if (_col == null) init();
+                return _col.KolonneType;
+            }
+        }
+        public string Comment
+        {
+            get
+            {
+                if (_col == null) init();
+                return _col.Comment;
+            }
+        }
+
+        public string colGUID
+        {
+            get
+            {
+                if (_col == null) init();
+                return _col.colGUID;
+            }
+        }
+
+        public Boolean SysCol
+        {
+            get
+            {
+                if (_col == null) init();
+                return _col.SysCol;
+            }
+        }
     }
 }
 
