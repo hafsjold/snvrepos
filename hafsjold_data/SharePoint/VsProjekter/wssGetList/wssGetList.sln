@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wssGetList", "wssGetList\wssGetList.csproj", "{C67FB0E3-B951-41AD-883F-6216FD4A251B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testwssGEtList", "testwssGEtList\testwssGEtList.csproj", "{19FDCF4A-C802-4DB6-A4B5-EA205A003AA9}"
