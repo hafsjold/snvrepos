@@ -60,9 +60,12 @@ namespace GenerateColumns
 
             foreach (column col in model.columns.getAllColumns.Values)
             {
-                createFieldElement(ref docFIELDS, col.colGUID, col.SysName, COREFILE, col.KolonneType);
-                createDataElement(ref docDK, col.SysName, col.DisplayNameDK, col.Comment);
-                createDataElement(ref docUK, col.SysName, col.DisplayNameUK, col.Comment);
+                if (!col.SysCol)
+                {
+                    createFieldElement(ref docFIELDS, col.colGUID, col.SysName, COREFILE, col.KolonneType);
+                    createDataElement(ref docDK, col.SysName, col.DisplayNameDK, col.Comment);
+                    createDataElement(ref docUK, col.SysName, col.DisplayNameUK, col.Comment);
+                }
             }
 
             strXML = Regex.Replace(docFIELDS.OuterXml, "<Elements>", "<Elements xmlns=\"http://schemas.microsoft.com/sharepoint/\">");
@@ -86,80 +89,83 @@ namespace GenerateColumns
             myStream.Close();
         }
 
-        
-        private static void createFieldElement(ref System.Xml.XmlDocument pdoc, string pid, string pname, string pcore, string KolonneType) 
-        { 
-    
-            System.Xml.XmlElement field = pdoc.CreateElement("Field"); 
-            field.SetAttribute("ID", pid); 
-            field.SetAttribute("Name", pname); 
-            field.SetAttribute("DisplayName", "$Resources:" + pcore + "," + pname + ";"); 
-    
-            switch (KolonneType) { 
-                case "Text": 
-                    field.SetAttribute("Type", "Text"); 
-                    field.SetAttribute("MaxLength", "255"); 
-                    break; 
-        
-                case "Note": 
-                    field.SetAttribute("Type", "Note"); 
-                    field.SetAttribute("NumLines", "3"); 
-                    field.SetAttribute("RichText", "TRUE"); 
-                    break; 
-        
-                case "Choice": 
-                    field.SetAttribute("Type", "Choice"); 
-                    break; 
-        
-                case "Number": 
-                    field.SetAttribute("Type", "Number"); 
-                    field.SetAttribute("Decimals", "0"); 
-                    break; 
-        
-                case "Percentage": 
-                    field.SetAttribute("Type", "Number"); 
-                    field.SetAttribute("Percentage", "TRUE"); 
-                    field.SetAttribute("Min", "0"); 
-                    field.SetAttribute("Max", "1"); 
-                    break; 
-        
-                case "Currency": 
-                    field.SetAttribute("Type", "Currency"); 
-                    field.SetAttribute("Decimals", "2"); 
-                    break; 
-        
-                case "DateOnly": 
-                    field.SetAttribute("Type", "DateTime"); 
-                    field.SetAttribute("Format", "DateOnly"); 
-                    break; 
-        
-                case "DateTime": 
-                    field.SetAttribute("Type", "DateTime"); 
-                    break; 
-        
-                case "Boolean": 
-                    field.SetAttribute("Type", "Boolean"); 
-                    break; 
-        
-                default: 
-                    break; 
-        
-            } 
-    
-            field.SetAttribute("Group", "$Resources:" + pcore + ",FieldsGroupName;"); 
-    
-            System.Xml.XmlNode elements = pdoc.SelectSingleNode("//Elements"); 
-            string filter = "//Field[@ID=\"" + pid + "\"]"; 
-            System.Xml.XmlNode old_field = elements.SelectSingleNode(filter); 
-    
-            if (old_field == null) { 
-                elements.AppendChild(field); 
-            } 
-            else { 
-                elements.ReplaceChild(field, old_field); 
-            } 
-        } 
-        
+
+        private static void createFieldElement(ref System.Xml.XmlDocument pdoc, string pid, string pname, string pcore, string KolonneType)
+        {
+
+            System.Xml.XmlElement field = pdoc.CreateElement("Field");
+            field.SetAttribute("ID", pid);
+            field.SetAttribute("Name", pname);
+            field.SetAttribute("DisplayName", "$Resources:" + pcore + "," + pname + ";");
+
+            switch (KolonneType)
+            {
+                case "Text":
+                    field.SetAttribute("Type", "Text");
+                    field.SetAttribute("MaxLength", "255");
+                    break;
+
+                case "Note":
+                    field.SetAttribute("Type", "Note");
+                    field.SetAttribute("NumLines", "3");
+                    field.SetAttribute("RichText", "TRUE");
+                    break;
+
+                case "Choice":
+                    field.SetAttribute("Type", "Choice");
+                    break;
+
+                case "Number":
+                    field.SetAttribute("Type", "Number");
+                    field.SetAttribute("Decimals", "0");
+                    break;
+
+                case "Percentage":
+                    field.SetAttribute("Type", "Number");
+                    field.SetAttribute("Percentage", "TRUE");
+                    field.SetAttribute("Min", "0");
+                    field.SetAttribute("Max", "1");
+                    break;
+
+                case "Currency":
+                    field.SetAttribute("Type", "Currency");
+                    field.SetAttribute("Decimals", "2");
+                    break;
+
+                case "DateOnly":
+                    field.SetAttribute("Type", "DateTime");
+                    field.SetAttribute("Format", "DateOnly");
+                    break;
+
+                case "DateTime":
+                    field.SetAttribute("Type", "DateTime");
+                    break;
+
+                case "Boolean":
+                    field.SetAttribute("Type", "Boolean");
+                    break;
+
+                default:
+                    break;
+
+            }
+
+            field.SetAttribute("Group", "$Resources:" + pcore + ",FieldsGroupName;");
+
+            System.Xml.XmlNode elements = pdoc.SelectSingleNode("//Elements");
+            string filter = "//Field[@ID=\"" + pid + "\"]";
+            System.Xml.XmlNode old_field = elements.SelectSingleNode(filter);
+
+            if (old_field == null)
+            {
+                elements.AppendChild(field);
+            }
+            else
+            {
+                elements.ReplaceChild(field, old_field);
+            }
+        }
+
 
         private static void createDataElement(ref System.Xml.XmlDocument pdoc, string pname, string pvalue, string pcomment)
         {

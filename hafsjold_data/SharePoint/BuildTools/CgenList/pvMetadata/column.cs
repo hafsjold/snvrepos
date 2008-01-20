@@ -83,7 +83,11 @@ namespace pvMetadata
             _colGUID = (string)row["ows_GUID0"];
             try
             {
-                _SysCol = (Boolean)row["ows_SysCol"];
+                if ((string)row["ows_SysCol"] == "1")
+                {
+                    _SysCol = true;
+                }
+                else _SysCol = false;
             }
             catch
             {

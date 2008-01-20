@@ -189,67 +189,76 @@ partial class genListMain
         }
 
 
+        System.Collections.Generic.SortedDictionary<string, ListtemplateColumn> scol = new System.Collections.Generic.SortedDictionary<string, ListtemplateColumn>();
+        foreach (ListtemplateColumn col in pfieldstable)
+        {
+            scol.Add(col.Seqnr, col);
+        }
+
         // 
         // Insert Field in Fields 
         // 
         System.Xml.XmlNode fields = pdoc.SelectSingleNode("//List/MetaData/Fields");
-        foreach (ListtemplateColumn col in pfieldstable)
+        foreach (ListtemplateColumn col in scol.Values)
         {
             System.Xml.XmlElement fieldref = pdoc.CreateElement("Field");
             fieldref.SetAttribute("Name", col.SysName);
             fieldref.SetAttribute("ID", col.colGUID);
-            fieldref.SetAttribute("DisplayName", "$Resources:" + pcore + "," + col.SysName + ";");
 
-            switch (col.KolonneType)
+            if (!col.SysCol)
             {
-                case "Text":
-                    fieldref.SetAttribute("Type", "Text");
-                    fieldref.SetAttribute("MaxLength", "255");
-                    break;
+                fieldref.SetAttribute("DisplayName", "$Resources:" + pcore + "," + col.SysName + ";");
+                switch (col.KolonneType)
+                {
+                    case "Text":
+                        fieldref.SetAttribute("Type", "Text");
+                        fieldref.SetAttribute("MaxLength", "255");
+                        break;
 
-                case "Note":
-                    fieldref.SetAttribute("Type", "Note");
-                    fieldref.SetAttribute("NumLines", "3");
-                    fieldref.SetAttribute("RichText", "TRUE");
-                    break;
+                    case "Note":
+                        fieldref.SetAttribute("Type", "Note");
+                        fieldref.SetAttribute("NumLines", "3");
+                        fieldref.SetAttribute("RichText", "TRUE");
+                        break;
 
-                case "Choice":
-                    fieldref.SetAttribute("Type", "Choice");
-                    break;
+                    case "Choice":
+                        fieldref.SetAttribute("Type", "Choice");
+                        break;
 
-                case "Number":
-                    fieldref.SetAttribute("Type", "Number");
-                    fieldref.SetAttribute("Decimals", "0");
-                    break;
+                    case "Number":
+                        fieldref.SetAttribute("Type", "Number");
+                        fieldref.SetAttribute("Decimals", "0");
+                        break;
 
-                case "Percentage":
-                    fieldref.SetAttribute("Type", "Number");
-                    fieldref.SetAttribute("Percentage", "TRUE");
-                    fieldref.SetAttribute("Min", "0");
-                    fieldref.SetAttribute("Max", "1");
-                    break;
+                    case "Percentage":
+                        fieldref.SetAttribute("Type", "Number");
+                        fieldref.SetAttribute("Percentage", "TRUE");
+                        fieldref.SetAttribute("Min", "0");
+                        fieldref.SetAttribute("Max", "1");
+                        break;
 
-                case "Currency":
-                    fieldref.SetAttribute("Type", "Currency");
-                    fieldref.SetAttribute("Decimals", "2");
-                    break;
+                    case "Currency":
+                        fieldref.SetAttribute("Type", "Currency");
+                        fieldref.SetAttribute("Decimals", "2");
+                        break;
 
-                case "DateOnly":
-                    fieldref.SetAttribute("Type", "DateTime");
-                    fieldref.SetAttribute("Format", "DateOnly");
-                    break;
+                    case "DateOnly":
+                        fieldref.SetAttribute("Type", "DateTime");
+                        fieldref.SetAttribute("Format", "DateOnly");
+                        break;
 
-                case "DateTime":
-                    fieldref.SetAttribute("Type", "DateTime");
-                    break;
+                    case "DateTime":
+                        fieldref.SetAttribute("Type", "DateTime");
+                        break;
 
-                case "Boolean":
-                    fieldref.SetAttribute("Type", "Boolean");
-                    break;
+                    case "Boolean":
+                        fieldref.SetAttribute("Type", "Boolean");
+                        break;
 
-                default:
-                    break;
+                    default:
+                        break;
 
+                }
             }
 
             fields.AppendChild(fieldref);
@@ -259,7 +268,7 @@ partial class genListMain
         // Insert FieldsRef in ViewFields 
         // 
         System.Xml.XmlNode viewfields = pdoc.SelectSingleNode("//List/MetaData/Views/View[@BaseViewID=\"1\"]/ViewFields");
-        foreach (ListtemplateColumn col in pfieldstable)
+        foreach (ListtemplateColumn col in scol.Values)
         {
             System.Xml.XmlElement fieldref = pdoc.CreateElement("FieldRef");
             fieldref.SetAttribute("ID", col.colGUID);

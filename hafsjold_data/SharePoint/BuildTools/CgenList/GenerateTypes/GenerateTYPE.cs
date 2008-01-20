@@ -120,12 +120,21 @@ namespace GenerateTypes
             System.Xml.XmlElement fieldrefs = pdoc.CreateElement("FieldRefs");
             contenttype.AppendChild(fieldrefs);
 
+            System.Collections.Generic.SortedDictionary<string, ContenttypeColumn> scol = new System.Collections.Generic.SortedDictionary<string, ContenttypeColumn>();
             foreach (ContenttypeColumn col in pfieldstable.Values)
             {
-                System.Xml.XmlElement fieldref = pdoc.CreateElement("FieldRef");
-                fieldref.SetAttribute("ID", col.colGUID);
-                fieldref.SetAttribute("Name", col.SysName);
-                fieldrefs.AppendChild(fieldref);
+                scol.Add(col.Seqnr, col);
+            }
+
+            foreach (ContenttypeColumn col in scol.Values)
+            {
+                if (!col.SysCol)
+                {
+                    System.Xml.XmlElement fieldref = pdoc.CreateElement("FieldRef");
+                    fieldref.SetAttribute("ID", col.colGUID);
+                    fieldref.SetAttribute("Name", col.SysName);
+                    fieldrefs.AppendChild(fieldref);
+                }
             }
 
             System.Xml.XmlNode elements = pdoc.SelectSingleNode("//Elements");
