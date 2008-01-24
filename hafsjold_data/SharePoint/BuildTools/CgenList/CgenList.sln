@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wssGetList", "..\..\_Udvikl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateGUID", "UpdateGUID\UpdateGUID.csproj", "{1594525C-F945-4128-8350-DAE1BA8D48F2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "testwssGEtList", "..\..\_Udvikl\wssGetList\testwssGEtList\testwssGEtList.csproj", "{19FDCF4A-C802-4DB6-A4B5-EA205A003AA9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{1594525C-F945-4128-8350-DAE1BA8D48F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1594525C-F945-4128-8350-DAE1BA8D48F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1594525C-F945-4128-8350-DAE1BA8D48F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19FDCF4A-C802-4DB6-A4B5-EA205A003AA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19FDCF4A-C802-4DB6-A4B5-EA205A003AA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19FDCF4A-C802-4DB6-A4B5-EA205A003AA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19FDCF4A-C802-4DB6-A4B5-EA205A003AA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

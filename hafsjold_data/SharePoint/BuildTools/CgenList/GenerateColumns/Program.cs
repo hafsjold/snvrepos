@@ -13,6 +13,7 @@ namespace GenerateColumns
 {
     class Program
     {
+
         static Metadata model;
         static void Main(string[] args)
         {

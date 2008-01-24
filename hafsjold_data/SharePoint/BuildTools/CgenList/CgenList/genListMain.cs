@@ -44,6 +44,7 @@ partial class genListMain
         GenerateLIST();
     }
 
+    
     private static void InitParams(string[] args)
     {
         string ParmName = "Empty";
