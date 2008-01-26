@@ -23,19 +23,19 @@ namespace pvMetadata
             switch (ListName)
             {
                 case "ProPurList":
-                    FileName = @"C:\_Provinsa\DATASET\dsListItems.xml";
+                    FileName = Metadata.DATASET_PATH + @"dsListItems.xml";
                     break;
                 case "ProPurListType":
-                    FileName = @"C:\_Provinsa\DATASET\dsListTypeItems.xml";
+                    FileName = Metadata.DATASET_PATH + @"dsListTypeItems.xml";
                     break;
                 case "ProPurType":
-                    FileName = @"C:\_Provinsa\DATASET\dsTypeItems.xml";
+                    FileName = Metadata.DATASET_PATH + @"dsTypeItems.xml";
                     break;
                 case "ProPurTypeColumn":
-                    FileName = @"C:\_Provinsa\DATASET\dsTypeColumnItems.xml";
+                    FileName = Metadata.DATASET_PATH + @"dsTypeColumnItems.xml";
                     break;
                 case "ProPurColumn":
-                    FileName = @"C:\_Provinsa\DATASET\dsFieldItems.xml";
+                    FileName = Metadata.DATASET_PATH + @"dsFieldItems.xml";
                     break;
 
             }

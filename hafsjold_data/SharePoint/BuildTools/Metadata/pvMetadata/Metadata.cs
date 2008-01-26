@@ -6,6 +6,7 @@ namespace pvMetadata
 {
     public class Metadata
     {
+        static public string DATASET_PATH; 
         private listtemplateCollection _listtemplates;
         private ListtemplateContenttypeCollection _ListtemplateContenttypes;
         private contenttypeCollection _contenttypes;
@@ -14,6 +15,17 @@ namespace pvMetadata
         private ListtemplateColumnCollection _ListtemplateColumns;
 
         public Metadata() {
+            DATASET_PATH = @"C:\_Provinsa\DATASET\";
+            MetadataInit();
+        }
+
+        public Metadata(string SVNRootPath)
+        {
+            DATASET_PATH = SVNRootPath + @"DATASET\";
+            MetadataInit();
+        }
+
+        public void MetadataInit() {
             _columns = new columnCollection();
             _contenttypes = new contenttypeCollection();
             _listtemplates = new listtemplateCollection();
