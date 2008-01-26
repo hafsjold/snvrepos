@@ -77,6 +77,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="genList.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="genList.xsx">
+      <DependentUpon>genList.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
