@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SharePointPropertySchema" targetNamespace="http://www.hafsjold.dk/schema/hafsjold.xsd" elementFormDefault="qualified" xmlns="http://www.hafsjold.dk/schema/hafsjold.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="hafsjold" type="hafsjold" />
+  <xs:complexType name="hafsjold">
+    <xs:all>
+      <xs:element name="propertySets" type="propertySets" minOccurs="1" maxOccurs="1"></xs:element>
+    </xs:all>
+  </xs:complexType>
+  <xs:complexType name="propertySets">
+    <xs:sequence>
+      <xs:element name="propertySet" type="propertySet" minOccurs="0" maxOccurs="unbounded" />
+    </xs:sequence>
+    <xs:attribute name="ProjectPath" type="xs:string" use="required" />
+    <xs:attribute name="ProjectName" type="xs:string" use="required" />
+    <xs:attribute name="SVNRootPath" type="xs:string" use="required" />
+  </xs:complexType>
+  <xs:complexType name="propertySet">
+    <xs:sequence minOccurs="0">
+      <xs:element maxOccurs="unbounded" name="property" type="property" />
+    </xs:sequence>
+    <xs:attribute name="ProgPath" type="xs:string" use="required" />
+    <xs:attribute name="ProgName" type="xs:string" use="required" />
+  </xs:complexType>
+  <xs:complexType name="property" mixed="true">
+    <xs:attribute name="name" type="xs:string" use="required" />
+    <xs:attribute name="value" type="xs:string" use="required" />
+    <xs:attribute name="absolutPath" type="xs:string" use="optional" />
+  </xs:complexType>
+</xs:schema>
