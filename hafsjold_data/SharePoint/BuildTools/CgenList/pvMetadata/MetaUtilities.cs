@@ -55,6 +55,51 @@ namespace pvMetadata
             return tbl.Rows;
             
         }
-
+        
+        public static string GetCType(string SPType)
+        {
+            string CType = "unknown";
+            switch (SPType)
+            {
+                case "Text":
+                    CType = @"string";
+                    break;
+                case "Note":
+                    CType = @"string";
+                    break;
+                case "Choice":
+                    CType = @"?Choice";
+                    break;
+                case "Number":
+                    CType = @"int";
+                    break;
+                case "Percentage":
+                    CType = @"Decimal";
+                    break;
+                case "Currency":
+                    CType = @"Decimal";
+                    break;
+                case "DateTime":
+                    CType = @"DateTime";
+                    break;
+                case "DateOnly":
+                    CType = @"DateTime";
+                    break;
+                case "Boolean":
+                    CType = @"Boolean";
+                    break;
+                case "Picture":
+                    CType = @"?Picture";
+                    break;
+                case "Hyperlink":
+                    CType = @"?Hyperlink";
+                    break;
+                case "Counter":
+                    CType = @"int";
+                    break;
+            }
+           
+            return CType;
+        }
     }
 }

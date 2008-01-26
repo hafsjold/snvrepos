@@ -14,14 +14,28 @@ namespace pvMetadata
         private ListtemplateColumnCollection _ListtemplateColumns;
 
         public Metadata() {
-            _listtemplates = new listtemplateCollection();
-            _ListtemplateContenttypes = new ListtemplateContenttypeCollection();
-            _contenttypes = new contenttypeCollection();
-            _ContenttypeColumns = new ContenttypeColumnCollection();
             _columns = new columnCollection();
+            _contenttypes = new contenttypeCollection();
+            _listtemplates = new listtemplateCollection();
+            _ContenttypeColumns = new ContenttypeColumnCollection();
+            _ListtemplateContenttypes = new ListtemplateContenttypeCollection();
             _ListtemplateColumns = new ListtemplateColumnCollection();
         }
-        
+
+        public System.Collections.Generic.SortedDictionary<string, ListtemplateColumn> ListtemplateColumnsSort(string ListName)
+        {
+            System.Collections.Generic.SortedDictionary<string, ListtemplateColumn> scol = new System.Collections.Generic.SortedDictionary<string, ListtemplateColumn>();
+            listtemplate list = this.listtemplates.getListtemplate(ListName);
+            if (list != null)
+            {
+                foreach (ListtemplateColumn col in list.ListtemplateColumns)
+                {
+                    scol.Add(col.Seqnr, col);
+                }
+            }
+            return scol;
+        }
+
         public listtemplateCollection listtemplates
         {
             get { return _listtemplates; }

@@ -15,6 +15,8 @@ namespace GenerateColumns
     {
 
         static Metadata model;
+        static XmlNamespaceManager nsMgr;
+        static string ns; 
         static void Main(string[] args)
         {
             model = new Metadata();
@@ -34,14 +36,13 @@ namespace GenerateColumns
             StreamReader myReader;
             StreamWriter myWriter;
 
-            myStream = new FileStream(FILENAME_FIELDS, FileMode.Open);
-            myReader = new StreamReader(myStream);
-            string XMLFileFIELDStext = myReader.ReadToEnd();
-            myReader.Close();
-            myStream.Close();
-            string strXML = Regex.Replace(XMLFileFIELDStext, "xmlns=\"[^\"]*\"", "");
+            string strXML = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Elements xmlns=\"http://schemas.microsoft.com/sharepoint/\"></Elements>";
             System.Xml.XmlDocument docFIELDS = new System.Xml.XmlDocument();
             docFIELDS.LoadXml(strXML);
+            ns = "http://schemas.microsoft.com/sharepoint/";
+            nsMgr = new XmlNamespaceManager(docFIELDS.NameTable);
+            nsMgr.AddNamespace("mha", "http://schemas.microsoft.com/sharepoint/");
+
 
             myStream = new FileStream(FILENAME_DK, FileMode.Open);
             myReader = new StreamReader(myStream);
@@ -69,7 +70,7 @@ namespace GenerateColumns
                 }
             }
 
-            strXML = Regex.Replace(docFIELDS.OuterXml, "<Elements>", "<Elements xmlns=\"http://schemas.microsoft.com/sharepoint/\">");
+            strXML = docFIELDS.OuterXml;
 
             myStream = new FileStream(FILENAME_FIELDS, FileMode.Truncate);
             myWriter = new StreamWriter(myStream);
@@ -94,7 +95,7 @@ namespace GenerateColumns
         private static void createFieldElement(ref System.Xml.XmlDocument pdoc, string pid, string pname, string pcore, string KolonneType)
         {
 
-            System.Xml.XmlElement field = pdoc.CreateElement("Field");
+            System.Xml.XmlElement field = pdoc.CreateElement("", "Field", ns);
             field.SetAttribute("ID", pid);
             field.SetAttribute("Name", pname);
             field.SetAttribute("DisplayName", "$Resources:" + pcore + "," + pname + ";");
@@ -153,9 +154,9 @@ namespace GenerateColumns
 
             field.SetAttribute("Group", "$Resources:" + pcore + ",FieldsGroupName;");
 
-            System.Xml.XmlNode elements = pdoc.SelectSingleNode("//Elements");
-            string filter = "//Field[@ID=\"" + pid + "\"]";
-            System.Xml.XmlNode old_field = elements.SelectSingleNode(filter);
+            System.Xml.XmlNode elements = pdoc.SelectSingleNode("//mha:Elements", nsMgr);
+            string filter = "//mha:Field[@ID=\"" + pid + "\"]";
+            System.Xml.XmlNode old_field = elements.SelectSingleNode(filter, nsMgr);
 
             if (old_field == null)
             {

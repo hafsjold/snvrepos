@@ -143,5 +143,10 @@ namespace pvMetadata
             set { _SysCol = value; }
         }
 
+        public string CType
+        {
+            get { return MetaUtilities.GetCType(_KolonneType); }
+        }
+
     }
 }

@@ -11,6 +11,9 @@ using pvMetadata;
 
 partial class genListMain
 {
+    static XmlNamespaceManager nsMgr;
+    static string ns;
+
     //
     // GenerateLIST
     //
@@ -26,13 +29,16 @@ partial class genListMain
 
         myStream = new FileStream(SCHEMA_FILE, FileMode.Open);
         myReader = new StreamReader(myStream);
-        string XMLFileLISTtext = myReader.ReadToEnd();
+        string strXML = myReader.ReadToEnd();
         myReader.Close();
         myStream.Close();
-        string strXML = Regex.Replace(XMLFileLISTtext, "xmlns=\"[^\"]*\"", "");
         System.Xml.XmlDocument docLIST = new System.Xml.XmlDocument();
         docLIST.PreserveWhitespace = true;
         docLIST.LoadXml(strXML);
+        ns = "http://schemas.microsoft.com/sharepoint/";
+        nsMgr = new XmlNamespaceManager(docLIST.NameTable);
+        nsMgr.AddNamespace("mha", "http://schemas.microsoft.com/sharepoint/");
+
 
 
         myStream = new FileStream(FILENAME_DK, FileMode.Open);
@@ -60,7 +66,7 @@ partial class genListMain
             createDataElement(ref docUK, list.SysName, list.DisplayNameUK, list.Comment);
         }
 
-        strXML = Regex.Replace(docLIST.OuterXml, "<Elements>", "<Elements xmlns=\"http://schemas.microsoft.com/sharepoint/\">");
+        strXML = docLIST.OuterXml;
 
         myStream = new FileStream(SCHEMA_FILE, FileMode.Truncate);
         myWriter = new StreamWriter(myStream);
@@ -133,7 +139,7 @@ partial class genListMain
         // 
         // Insert ContentTypeRef 
         // 
-        System.Xml.XmlNode contenttypes = pdoc.SelectSingleNode("//List/MetaData/ContentTypes");
+        System.Xml.XmlNode contenttypes = pdoc.SelectSingleNode("//mha:List/mha:MetaData/mha:ContentTypes", nsMgr);
         foreach (ListtemplateContenttype typ in ptypestable)
         {
             string ContentTypeID;
@@ -165,11 +171,11 @@ partial class genListMain
                     break;
             }
 
-            System.Xml.XmlElement contenttyperef = pdoc.CreateElement("ContentTypeRef");
+            System.Xml.XmlElement contenttyperef = pdoc.CreateElement("", "ContentTypeRef", ns);
             System.Xml.XmlComment contenttypescomment = pdoc.CreateComment(typ.SysName);
             contenttyperef.SetAttribute("ID", ContentTypeID);
 
-            System.Xml.XmlNode ContentTypeRef0x01 = pdoc.SelectSingleNode("//List/MetaData/ContentTypes/ContentTypeRef[@ID=\"0x01\"]");
+            System.Xml.XmlNode ContentTypeRef0x01 = pdoc.SelectSingleNode("//mha:List/mha:MetaData/mha:ContentTypes/mha:ContentTypeRef[@ID=\"0x01\"]", nsMgr);
             if (ContentTypeRef0x01 == null)
             {
                 System.Xml.XmlNode lastContentTypeRef = contenttypes.AppendChild(contenttyperef);
@@ -177,7 +183,7 @@ partial class genListMain
             }
             else
             {
-                System.Xml.XmlNode Folder = pdoc.SelectSingleNode("//List/MetaData/ContentTypes/ContentTypeRef[@ID=\"0x01\"]/Folder");
+                System.Xml.XmlNode Folder = pdoc.SelectSingleNode("//mha:List/mha:MetaData/mha:ContentTypes/mha:ContentTypeRef[@ID=\"0x01\"]/mha:Folder", nsMgr);
                 if (Folder != null)
                 {
                     System.Xml.XmlNode copyFolder = Folder.CloneNode(true);
@@ -198,21 +204,20 @@ partial class genListMain
         // 
         // Insert Field in Fields 
         // 
-        System.Xml.XmlNode fields = pdoc.SelectSingleNode("//List/MetaData/Fields");
+        System.Xml.XmlNode fields = pdoc.SelectSingleNode("//mha:List/mha:MetaData/mha:Fields", nsMgr);
         foreach (ListtemplateColumn col in scol.Values)
         {
-            System.Xml.XmlElement fieldref = pdoc.CreateElement("Field");
-            fieldref.SetAttribute("Name", col.SysName);
-            fieldref.SetAttribute("ID", col.colGUID);
-
             if (!col.SysCol)
             {
+                System.Xml.XmlElement fieldref = pdoc.CreateElement("", "Field", ns);
+                fieldref.SetAttribute("Name", col.SysName);
+                fieldref.SetAttribute("ID", col.colGUID);
+
                 fieldref.SetAttribute("DisplayName", "$Resources:" + pcore + "," + col.SysName + ";");
                 switch (col.KolonneType)
                 {
                     case "Text":
                         fieldref.SetAttribute("Type", "Text");
-                        fieldref.SetAttribute("MaxLength", "255");
                         break;
 
                     case "Note":
@@ -255,25 +260,40 @@ partial class genListMain
                         fieldref.SetAttribute("Type", "Boolean");
                         break;
 
+                    case "Counter":
+                        fieldref.SetAttribute("Type", "Counter");
+                        break;
+
+                    case "Picture":
+                        fieldref.SetAttribute("Type", "Picture");
+                        break;
+                    case "Hyperlink":
+                        fieldref.SetAttribute("Type", "Hyperlink");
+                        break;
+
                     default:
                         break;
 
                 }
-            }
 
-            fields.AppendChild(fieldref);
+                fields.AppendChild(fieldref);
+            }
         }
+
 
         // 
         // Insert FieldsRef in ViewFields 
         // 
-        System.Xml.XmlNode viewfields = pdoc.SelectSingleNode("//List/MetaData/Views/View[@BaseViewID=\"1\"]/ViewFields");
+        System.Xml.XmlNode viewfields = pdoc.SelectSingleNode("//mha:List/mha:MetaData/mha:Views/mha:View[@BaseViewID=\"1\"]/mha:ViewFields", nsMgr);
         foreach (ListtemplateColumn col in scol.Values)
         {
-            System.Xml.XmlElement fieldref = pdoc.CreateElement("FieldRef");
-            fieldref.SetAttribute("ID", col.colGUID);
-            fieldref.SetAttribute("Name", col.SysName);
-            viewfields.AppendChild(fieldref);
+            if (!col.SysCol)
+            {
+                System.Xml.XmlElement fieldref = pdoc.CreateElement("", "FieldRef", ns);
+                fieldref.SetAttribute("ID", col.colGUID);
+                fieldref.SetAttribute("Name", col.SysName);
+                viewfields.AppendChild(fieldref);
+            }
         }
     }
 }

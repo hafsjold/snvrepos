@@ -13,6 +13,8 @@ namespace GenerateTypes
 {
     partial class genTypeMain
     {
+        static XmlNamespaceManager nsMgr;
+        static string ns;
         private static void GenerateTypes()
         {
             const string PROJECT_DIR = @"C:\_Provinsa\ProvPur\ProvPur\";
@@ -25,14 +27,13 @@ namespace GenerateTypes
             StreamReader myReader;
             StreamWriter myWriter;
 
-            myStream = new FileStream(FILENAME_TYPES, FileMode.Open);
-            myReader = new StreamReader(myStream);
-            string XMLFileTYPEStext = myReader.ReadToEnd();
-            myReader.Close();
-            myStream.Close();
-            string strXML = Regex.Replace(XMLFileTYPEStext, "xmlns=\"[^\"]*\"", "");
+            string strXML = "<?xml version=\"1.0\" encoding=\"utf-8\"?><Elements xmlns=\"http://schemas.microsoft.com/sharepoint/\"></Elements>";
             System.Xml.XmlDocument docTYPES = new System.Xml.XmlDocument();
             docTYPES.LoadXml(strXML);
+            ns = "http://schemas.microsoft.com/sharepoint/";
+            nsMgr = new XmlNamespaceManager(docTYPES.NameTable);
+            nsMgr.AddNamespace("mha", "http://schemas.microsoft.com/sharepoint/");
+
 
             myStream = new FileStream(FILENAME_DK, FileMode.Open);
             myReader = new StreamReader(myStream);
@@ -86,7 +87,7 @@ namespace GenerateTypes
 
             }
 
-            strXML = Regex.Replace(docTYPES.OuterXml, "<Elements>", "<Elements xmlns=\"http://schemas.microsoft.com/sharepoint/\">");
+            strXML = docTYPES.OuterXml;
 
             myStream = new FileStream(FILENAME_TYPES, FileMode.Truncate);
             myWriter = new StreamWriter(myStream);
@@ -110,14 +111,14 @@ namespace GenerateTypes
         private static void createTypeElement(ref System.Xml.XmlDocument pdoc, string pid, string pname, string pcore, System.Collections.Generic.Dictionary<int, ContenttypeColumn> pfieldstable)
         {
 
-            System.Xml.XmlElement contenttype = pdoc.CreateElement("ContentType");
+            System.Xml.XmlElement contenttype = pdoc.CreateElement("", "ContentType", ns);
             contenttype.SetAttribute("ID", pid);
             contenttype.SetAttribute("Name", pname);
             contenttype.SetAttribute("Group", "$Resources:" + pcore + ",TypesGroupName;");
             contenttype.SetAttribute("Description", "$Resources:" + pcore + "," + pname + ";");
             contenttype.SetAttribute("Version", "0");
 
-            System.Xml.XmlElement fieldrefs = pdoc.CreateElement("FieldRefs");
+            System.Xml.XmlElement fieldrefs = pdoc.CreateElement("", "FieldRefs", ns);
             contenttype.AppendChild(fieldrefs);
 
             System.Collections.Generic.SortedDictionary<string, ContenttypeColumn> scol = new System.Collections.Generic.SortedDictionary<string, ContenttypeColumn>();
@@ -130,16 +131,16 @@ namespace GenerateTypes
             {
                 if (!col.SysCol)
                 {
-                    System.Xml.XmlElement fieldref = pdoc.CreateElement("FieldRef");
+                    System.Xml.XmlElement fieldref = pdoc.CreateElement("", "FieldRef", ns);
                     fieldref.SetAttribute("ID", col.colGUID);
                     fieldref.SetAttribute("Name", col.SysName);
                     fieldrefs.AppendChild(fieldref);
                 }
             }
 
-            System.Xml.XmlNode elements = pdoc.SelectSingleNode("//Elements");
-            string filter = "//ContentType[@ID=\"" + pid + "\"]";
-            System.Xml.XmlNode old_contenttype = elements.SelectSingleNode(filter);
+            System.Xml.XmlNode elements = pdoc.SelectSingleNode("//mha:Elements", nsMgr);
+            string filter = "//mha:ContentType[@ID=\"" + pid + "\"]";
+            System.Xml.XmlNode old_contenttype = elements.SelectSingleNode(filter, nsMgr);
 
             if (old_contenttype == null)
             {

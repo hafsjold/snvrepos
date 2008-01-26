@@ -57,8 +57,8 @@ namespace pvMetadata
 
     public class listtemplate
     {
-        private static List<ListtemplateContenttype> _ListtemplateContenttypes;
-        private static List<ListtemplateColumn> _ListtemplateColumns;
+        private List<ListtemplateContenttype> _ListtemplateContenttypes;
+        private List<ListtemplateColumn> _ListtemplateColumns;
         private int _id;
         private string _SysName;
         private string _DisplayNameDK;
@@ -73,6 +73,7 @@ namespace pvMetadata
         public listtemplate(DataRow row)
         {
             _ListtemplateContenttypes = null;
+            _ListtemplateColumns = null;
             _id = int.Parse((string)row["ows_ID"]);
             _SysName = (string)row["ows_Title"];
             _DisplayNameDK = (string)row["ows_DisplayNameDK"];

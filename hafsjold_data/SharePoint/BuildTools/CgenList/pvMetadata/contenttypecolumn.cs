@@ -183,6 +183,16 @@ namespace pvMetadata
                 return _col.SysCol;
             }
         }
+
+        public string CType
+        {
+            get
+            {
+                if (_col == null) init();
+                return _col.CType;
+            }
+        }
+
     }
 }
 

@@ -8,6 +8,7 @@ using Microsoft.SharePoint;
 using System.IO;
 using System.Xml.Serialization;
 using pvMetadata;
+using System.Collections.Generic;
 
 
 namespace testXPath
@@ -20,11 +21,12 @@ namespace testXPath
 
         static void Main(string[] args)
         {
-            //Metadata myMetadata1 = new Metadata();
-            //listtemplate test1 = myMetadata1.listtemplates.getAllListtemplates[1];
-            //object test2 = test1.ListtemplateContenttypes;
-            //object test3 = test1.ListtemplateColumns;
-            Test3();
+            Metadata myMetadata1 = new Metadata();
+            System.Collections.Generic.SortedDictionary<string, ListtemplateColumn> sd;
+            sd = myMetadata1.ListtemplateColumnsSort("ProductCatalog");
+            sd = myMetadata1.ListtemplateColumnsSort("Rekvirent");
+
+            //Test3();
         }
 
         private static void Test1()

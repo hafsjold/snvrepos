@@ -7,8 +7,10 @@ using System.Xml.Schema;
 using System.Diagnostics;
 using pvMetadata;
 
+
 partial class genListMain
 {
+    private static string GEN_XML;
     private static string LISTNAME;
     private static string SOURCE_TEMPLATE_DIR;
     private static string TARGET_DIR;
@@ -30,6 +32,9 @@ partial class genListMain
     private static System.Collections.Specialized.StringCollection ProjectFileList;
     static Metadata model;
 
+    private static bool isValid = true;      // If a validation error occurs,
+    // set this flag to false in the
+    // validation event handler. 
 
     static void Main(string[] args)
     {
@@ -44,7 +49,7 @@ partial class genListMain
         GenerateLIST();
     }
 
-    
+
     private static void InitParams(string[] args)
     {
         string ParmName = "Empty";
@@ -53,6 +58,7 @@ partial class genListMain
         TARGET_DIR = "Empty";
         PROJECT_DIR = "Empty";
         PROJECT_FILE = "Empty";
+        GEN_XML = "Empty";
 
         for (int i = 0; i < args.Length; i++)
         {
@@ -65,6 +71,13 @@ partial class genListMain
             {
                 switch (ParmName)
                 {
+                    case "-GEN_XML":
+                        if (GEN_XML == "Empty")
+                            GEN_XML = args[i];
+                        else
+                            GEN_XML += " " + args[i];
+                        break;
+
                     case "-LISTNAME":
                         if (LISTNAME == "Empty")
                             LISTNAME = args[i];
@@ -94,6 +107,7 @@ partial class genListMain
                         break;
 
                     default:
+                        Console.WriteLine(@"-GEN_XML                default: C:\_BuildTools\CgenList\CgenList\genList.xml");
                         Console.WriteLine("Default:");
                         Console.WriteLine(@"-LISTNAME               default: Test");
                         Console.WriteLine(@"-PROJECT_FILE           default: C:\_Provinsa\ProvPur\ProvPur\ProvPur.csproj");
@@ -105,6 +119,68 @@ partial class genListMain
         }
 
         //Defaults
+        if (GEN_XML == "Empty")
+            GEN_XML = @"C:\_BuildTools\CgenList\CgenList\genList.xml";
+
+        System.Xml.XmlDocument docGEN_XML = null;
+        {
+            isValid = true;
+            XmlSchemaCollection myschemacoll = new XmlSchemaCollection();
+            XmlValidatingReader vr;
+            FileStream stream;
+            try
+            {
+                stream = new FileStream(GEN_XML, FileMode.Open);
+                //Load the XmlValidatingReader.
+                vr = new XmlValidatingReader(stream, XmlNodeType.Element, null);
+
+                //Add the schemas to the XmlSchemaCollection object.
+                myschemacoll.Add("http://www.hafsjold.dk/schema/hafsjold.xsd", @"C:\_BuildTools\CgenList\CgenList\hafsjold.xsd");
+                vr.Schemas.Add(myschemacoll);
+                vr.ValidationType = ValidationType.Schema;
+                vr.ValidationEventHandler += new ValidationEventHandler(ShowCompileErrors);
+
+                while (vr.Read())
+                {
+                }
+                Console.WriteLine("Validation completed");
+                docGEN_XML = new System.Xml.XmlDocument();
+                stream.Position = 0;
+                docGEN_XML.Load(stream);
+            }
+           catch 
+            {
+            }
+            finally
+            {
+                //Clean up.
+                vr = null;
+                myschemacoll = null;
+                stream = null;
+            }
+        }
+
+        {
+
+            string ns = "http://www.hafsjold.dk/schema/hafsjold.xsd";
+            XmlNamespaceManager nsMgr = new XmlNamespaceManager(docGEN_XML.NameTable);
+            nsMgr.AddNamespace("mha", ns);
+
+            System.Xml.XmlNode propertySets = docGEN_XML.SelectSingleNode("//mha:hafsjold/mha:propertySets", nsMgr);
+            string SVNRootPath = propertySets.Attributes["SVNRootPath"].Value;
+            string ProjectPath = propertySets.Attributes["ProjectPath"].Value;
+            string ProjectName = propertySets.Attributes["ProjectName"].Value;
+            PROJECT_FILE = SVNRootPath + ProjectPath + ProjectName;
+            System.Xml.XmlNode propertySet = docGEN_XML.SelectSingleNode("//mha:hafsjold/mha:propertySets/mha:propertySet", nsMgr);
+            string ProgPath = propertySet.Attributes["ProgPath"].Value;
+            string ProgName = propertySet.Attributes["ProgName"].Value;
+            System.Xml.XmlNode pLISTNAME = docGEN_XML.SelectSingleNode("//mha:hafsjold/mha:propertySets/mha:propertySet/mha:property[@name=\"LISTNAME\"]", nsMgr);
+            LISTNAME = pLISTNAME.Attributes["value"].Value;
+            System.Xml.XmlNode pSOURCE_TEMPLATE_DIR = docGEN_XML.SelectSingleNode("//mha:hafsjold/mha:propertySets/mha:propertySet/mha:property[@name=\"SOURCE_TEMPLATE_DIR\"]", nsMgr);
+            SOURCE_TEMPLATE_DIR = SVNRootPath + pSOURCE_TEMPLATE_DIR.Attributes["value"].Value;
+            System.Xml.XmlNode pTARGET_DIR = docGEN_XML.SelectSingleNode("//mha:hafsjold/mha:propertySets/mha:propertySet/mha:property[@name=\"TARGET_DIR\"]", nsMgr);
+            TARGET_DIR = SVNRootPath + pTARGET_DIR.Attributes["value"].Value;
+        }
         if (LISTNAME == "Empty")
             LISTNAME = "Test";
         if (PROJECT_FILE == "Empty")
@@ -126,6 +202,14 @@ partial class genListMain
         DFF_TO_ROOT = TARGET_DIR;
         model = new Metadata();
     }
+
+    public static void ShowCompileErrors(object sender, ValidationEventArgs args)
+    {
+        isValid = false;
+        Console.WriteLine("Validation Error: {0}", args.Message);
+    }
+
+
 
     private static string Name_Substitute(string s)
     {
@@ -179,19 +263,22 @@ partial class genListMain
 
     private static void UpdateProjectFile()
     {
+
         FileStream myStream = new FileStream(PROJECT_FILE, FileMode.Open);
         StreamReader myReader = new StreamReader(myStream);
-        string XMLFileLISTtext = myReader.ReadToEnd();
+        string strXML = myReader.ReadToEnd();
         myReader.Close();
         myStream.Close();
 
         System.Xml.XmlDocument docPROJECT = new System.Xml.XmlDocument();
-        string strXML = Regex.Replace(XMLFileLISTtext, "xmlns=\"[^\"]*\"", "");
         docPROJECT.LoadXml(strXML);
+        string ns = "http://schemas.microsoft.com/developer/msbuild/2003";
+        XmlNamespaceManager nsMgr = new XmlNamespaceManager(docPROJECT.NameTable);
+        nsMgr.AddNamespace("mha", ns);
 
         foreach (string strPath in ProjectFileList)
         {
-            AddProjectContent(docPROJECT, strPath);
+            AddProjectContent(docPROJECT, strPath, nsMgr, ns);
 
             string strFilename = System.IO.Path.GetFileName(strPath);
             strFilename.ToLower();
@@ -201,7 +288,7 @@ partial class genListMain
             }
         }
 
-        strXML = Regex.Replace(docPROJECT.OuterXml, "<Project DefaultTargets=\"Build\"", "<Project DefaultTargets=\"Build\" xmlns=\"http://schemas.microsoft.com/developer/msbuild/2003\" ");
+        strXML = docPROJECT.OuterXml;
 
         myStream = new FileStream(PROJECT_FILE, FileMode.Truncate);
         StreamWriter myWriter = new StreamWriter(myStream);
@@ -211,17 +298,17 @@ partial class genListMain
 
     }
 
-    private static void AddProjectContent(XmlDocument docPROJECT, string strPath)
+    private static void AddProjectContent(XmlDocument docPROJECT, string strPath, XmlNamespaceManager nsMgr, string ns)
     {
-        string filter = @"//Project/ItemGroup/Content[@Include=""" + strPath + @"""]";
-        System.Xml.XmlNode field = docPROJECT.SelectSingleNode(filter);
+        string filter = @"//mha:Project/mha:ItemGroup/mha:Content[@Include=""" + strPath + @"""]";
+        System.Xml.XmlNode field = docPROJECT.SelectSingleNode(filter, nsMgr);
         if (field == null)
         {
-            string filter2 = @"//Project/ItemGroup";
-            System.Xml.XmlNode ItemGroup = docPROJECT.SelectSingleNode(filter2);
+            string filter2 = @"//mha:Project/mha:ItemGroup";
+            System.Xml.XmlNode ItemGroup = docPROJECT.SelectSingleNode(filter2, nsMgr);
             if (ItemGroup != null)
             {
-                System.Xml.XmlElement Content = docPROJECT.CreateElement("Content");
+                System.Xml.XmlElement Content = docPROJECT.CreateElement("", "Content", ns);
                 Content.SetAttribute("Include", strPath);
                 ItemGroup.AppendChild(Content);
             }
@@ -232,14 +319,15 @@ partial class genListMain
     {
         FileStream myStream = new FileStream(MANIFEST_FILE, FileMode.Open);
         StreamReader myReader = new StreamReader(myStream);
-        string XMLFileLISTtext = myReader.ReadToEnd();
+        string strXML = myReader.ReadToEnd();
         myReader.Close();
         myStream.Close();
 
         System.Xml.XmlDocument docMANIFEST = new System.Xml.XmlDocument();
-        string strXML = Regex.Replace(XMLFileLISTtext, "xmlns=\"[^\"]*\"", "");
         docMANIFEST.LoadXml(strXML);
-
+        string ns = "http://schemas.microsoft.com/sharepoint/";
+        XmlNamespaceManager nsMgr = new XmlNamespaceManager(docMANIFEST.NameTable);
+        nsMgr.AddNamespace("mha", ns);
 
         foreach (string strPath in ProjectFileList)
         {
@@ -247,11 +335,10 @@ partial class genListMain
             string strFilename = System.IO.Path.GetFileName(strManifestPath).ToLower();
             if (strFilename == "feature.xml")
             {
-                AddManifestContent(docMANIFEST, strManifestPath);
+                AddManifestContent(docMANIFEST, strManifestPath, nsMgr, ns);
             }
         }
-        //<Solution SolutionId="24493869-2DA2-49b5-AA30-67FE39550F1C"xmlns="http://schemas.microsoft.com/sharepoint/">
-        strXML = Regex.Replace(docMANIFEST.OuterXml, "<Solution", "<Solution xmlns=\"http://schemas.microsoft.com/sharepoint/\" ");
+        strXML = docMANIFEST.OuterXml;
 
         myStream = new FileStream(MANIFEST_FILE, FileMode.Truncate);
         StreamWriter myWriter = new StreamWriter(myStream);
@@ -259,6 +346,24 @@ partial class genListMain
         myWriter.Close();
         myStream.Close();
 
+    }
+
+    private static void AddManifestContent(XmlDocument docMANIFEST, string strManifestPath, XmlNamespaceManager nsMgr, string ns)
+    {
+        //manifest-root: TARGET_DIR
+        string filter = @"//mha:Solution/mha:FeatureManifests/mha:FeatureManifest[@Location=""" + strManifestPath + @"""]";
+        System.Xml.XmlNode field = docMANIFEST.SelectSingleNode(filter, nsMgr);
+        if (field == null)
+        {
+            string filter2 = @"//mha:Solution/mha:FeatureManifests";
+            System.Xml.XmlNode FeatureManifests = docMANIFEST.SelectSingleNode(filter2, nsMgr);
+            if (FeatureManifests != null)
+            {
+                System.Xml.XmlElement FeatureManifest = docMANIFEST.CreateElement("", "FeatureManifest", ns);
+                FeatureManifest.SetAttribute("Location", strManifestPath);
+                FeatureManifests.AppendChild(FeatureManifest);
+            }
+        }
     }
 
     private static void UpdateDFFFile()
@@ -302,24 +407,6 @@ partial class genListMain
         }
     }
 
-    private static void AddManifestContent(XmlDocument docMANIFEST, string strManifestPath)
-    {
-        //manifest-root: TARGET_DIR
-        string filter = @"//Solution/FeatureManifests/FeatureManifest[@Location=""" + strManifestPath + @"""]";
-        System.Xml.XmlNode field = docMANIFEST.SelectSingleNode(filter);
-        if (field == null)
-        {
-            string filter2 = @"//Solution/FeatureManifests";
-            System.Xml.XmlNode FeatureManifests = docMANIFEST.SelectSingleNode(filter2);
-            if (FeatureManifests != null)
-            {
-                System.Xml.XmlElement FeatureManifest = docMANIFEST.CreateElement("FeatureManifest");
-                FeatureManifest.SetAttribute("Location", strManifestPath);
-                FeatureManifests.AppendChild(FeatureManifest);
-            }
-        }
-    }
-
     private static void UpdateFeatureFile()
     {
         foreach (string strPath in ProjectFileList)
@@ -330,23 +417,24 @@ partial class genListMain
             {
                 FileStream myStream = new FileStream(strFullPath, FileMode.Open);
                 StreamReader myReader = new StreamReader(myStream);
-                string XMLFileLISTtext = myReader.ReadToEnd();
+                string strXML = myReader.ReadToEnd();
                 myReader.Close();
                 myStream.Close();
 
                 System.Xml.XmlDocument docFEATURE = new System.Xml.XmlDocument();
-                string strXML = Regex.Replace(XMLFileLISTtext, "xmlns=\"[^\"]*\"", "");
                 docFEATURE.LoadXml(strXML);
+                string ns = "http://schemas.microsoft.com/sharepoint/";
+                XmlNamespaceManager nsMgr = new XmlNamespaceManager(docFEATURE.NameTable);
+                nsMgr.AddNamespace("mha", ns);
 
                 listtemplate list = model.listtemplates.getListtemplate(LISTNAME);
                 if (list != null)
                 {
-                    System.Xml.XmlNode Feature = docFEATURE.SelectSingleNode("//Feature");
+                    System.Xml.XmlNode Feature = docFEATURE.SelectSingleNode("//mha:Feature", nsMgr);
                     Feature.Attributes["Id"].Value = list.FeatureGUID;
                 }
 
-                //<Feature Id="24493869-2DA2-49b5-AA30-67FE39550F1C" xmlns="http://schemas.microsoft.com/sharepoint/">
-                strXML = Regex.Replace(docFEATURE.OuterXml, "<Feature", "<Feature xmlns=\"http://schemas.microsoft.com/sharepoint/\" ");
+                strXML = docFEATURE.OuterXml;
 
                 myStream = new FileStream(strFullPath, FileMode.Truncate);
                 StreamWriter myWriter = new StreamWriter(myStream);
@@ -368,25 +456,26 @@ partial class genListMain
             {
                 FileStream myStream = new FileStream(strFullPath, FileMode.Open);
                 StreamReader myReader = new StreamReader(myStream);
-                string XMLFileLISTtext = myReader.ReadToEnd();
+                string strXML = myReader.ReadToEnd();
                 myReader.Close();
                 myStream.Close();
 
                 System.Xml.XmlDocument docELEMENTMANIFEST = new System.Xml.XmlDocument();
-                string strXML = Regex.Replace(XMLFileLISTtext, "xmlns=\"[^\"]*\"", "");
                 docELEMENTMANIFEST.LoadXml(strXML);
+                string ns = "http://schemas.microsoft.com/sharepoint/";
+                XmlNamespaceManager nsMgr = new XmlNamespaceManager(docELEMENTMANIFEST.NameTable);
+                nsMgr.AddNamespace("mha", ns);
 
                 listtemplate list = model.listtemplates.getListtemplate(LISTNAME);
                 if (list != null)
                 {
-                    System.Xml.XmlNode ListTemplate = docELEMENTMANIFEST.SelectSingleNode("//Elements/ListTemplate");
+                    System.Xml.XmlNode ListTemplate = docELEMENTMANIFEST.SelectSingleNode("//mha:Elements/mha:ListTemplate", nsMgr);
                     ListTemplate.Attributes["Type"].Value = list.TypeIdentifier;
 
-                    System.Xml.XmlNode ListInstance = docELEMENTMANIFEST.SelectSingleNode("//Elements/ListInstance");
+                    System.Xml.XmlNode ListInstance = docELEMENTMANIFEST.SelectSingleNode("//mha:Elements/mha:ListInstance", nsMgr);
                     ListInstance.Attributes["TemplateType"].Value = list.TypeIdentifier;
                 }
-                //<Feature Id="24493869-2DA2-49b5-AA30-67FE39550F1C" xmlns="http://schemas.microsoft.com/sharepoint/">
-                strXML = Regex.Replace(docELEMENTMANIFEST.OuterXml, "<Elements", "<Elements xmlns=\"http://schemas.microsoft.com/sharepoint/\" ");
+                strXML = docELEMENTMANIFEST.OuterXml;
 
                 myStream = new FileStream(strFullPath, FileMode.Truncate);
                 StreamWriter myWriter = new StreamWriter(myStream);

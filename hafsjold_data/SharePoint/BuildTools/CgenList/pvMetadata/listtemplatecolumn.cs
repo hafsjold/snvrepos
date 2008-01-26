@@ -29,16 +29,20 @@ namespace pvMetadata
         {
             _ListtemplateColumns = new List<ListtemplateColumn>();
             listtemplateCollection wlisttemplates = new listtemplateCollection();
+            ListtemplateContenttypeCollection ListtemplateContenttypes = new ListtemplateContenttypeCollection();
             foreach (listtemplate wlisttemplate in wlisttemplates.getAllListtemplates.Values)
             {
-                foreach (ListtemplateContenttype wListtemplateContenttype in wlisttemplate.ListtemplateContenttypes)
+                foreach (ListtemplateContenttype wListtemplateContenttype in ListtemplateContenttypes.getAllListtemplateContenttypes.Values)
                 {
-                    contenttypeCollection wcontenttypes = new contenttypeCollection();
-                    contenttype wcontenttype = wcontenttypes.getContenttype(wListtemplateContenttype.TypeNavn_id);
-                    foreach (ContenttypeColumn wContenttypeColumn in wcontenttype.ContenttypeColumns.Values)
+                    if (wListtemplateContenttype.ListNavn_id == wlisttemplate.id)
                     {
-                        ListtemplateColumn wListtemplateColumn = new ListtemplateColumn(wlisttemplate.id, wContenttypeColumn);
-                        _ListtemplateColumns.Add(wListtemplateColumn);
+                        contenttypeCollection wcontenttypes = new contenttypeCollection();
+                        contenttype wcontenttype = wcontenttypes.getContenttype(wListtemplateContenttype.TypeNavn_id);
+                        foreach (ContenttypeColumn wContenttypeColumn in wcontenttype.ContenttypeColumns.Values)
+                        {
+                            ListtemplateColumn wListtemplateColumn = new ListtemplateColumn(wlisttemplate.id, wContenttypeColumn);
+                            _ListtemplateColumns.Add(wListtemplateColumn);
+                        }
                     }
                 }
             }
@@ -47,7 +51,7 @@ namespace pvMetadata
 
     public class ListtemplateColumn
     {
-        private static Dictionary<int, ListtemplateColumn> _ListtemplateColumns;
+        private Dictionary<int, ListtemplateColumn> _ListtemplateColumns;
         private ContenttypeColumn _col;
         private int _Kolonne_id;
         private int _ListNavn_id;
@@ -197,6 +201,16 @@ namespace pvMetadata
                 return _col.SysCol;
             }
         }
+        
+        public string CType
+        {
+            get
+            {
+                if (_col == null) init();
+                return _col.CType;
+            }
+        }
+
     }
 }
 
