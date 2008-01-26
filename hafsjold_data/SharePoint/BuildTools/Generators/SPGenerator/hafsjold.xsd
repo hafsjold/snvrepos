@@ -18,6 +18,7 @@
     <xs:sequence minOccurs="0">
       <xs:element maxOccurs="unbounded" name="property" type="property" />
     </xs:sequence>
+    <xs:attribute name="Function" type="xs:string" use="required" />
     <xs:attribute name="ProgPath" type="xs:string" use="required" />
     <xs:attribute name="ProgName" type="xs:string" use="required" />
   </xs:complexType>

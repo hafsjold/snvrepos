@@ -38,9 +38,9 @@ class GenerateList
     static string s_ns;
 
 
-    public static void MainGenerateList(string[] args)
+    public static void MainGenerateList(MemoryStream sXML)
     {
-        InitParams(args);
+        InitParams(sXML);
         InitCollections();
         CopyProjectFolder(FIND_DIR);
         UpdateProjectFile();
@@ -51,9 +51,8 @@ class GenerateList
         GenerateLIST();
     }
 
-    private static void InitParams(string[] args)
+    private static void InitParams(MemoryStream sXML)
     {
-        string ParmName = "Empty";
         LISTNAME = "Empty";
         SOURCE_TEMPLATE_DIR = "Empty";
         TARGET_DIR = "Empty";
@@ -61,82 +60,20 @@ class GenerateList
         PROJECT_FILE = "Empty";
         GEN_XML = "Empty";
 
-        for (int i = 0; i < args.Length; i++)
-        {
-            if (args[i].StartsWith("-"))
-            {
-                ParmName = args[i];
-                ParmName = ParmName.ToUpper();
-            }
-            else
-            {
-                switch (ParmName)
-                {
-                    case "-GEN_XML":
-                        if (GEN_XML == "Empty")
-                            GEN_XML = args[i];
-                        else
-                            GEN_XML += " " + args[i];
-                        break;
-
-                    case "-LISTNAME":
-                        if (LISTNAME == "Empty")
-                            LISTNAME = args[i];
-                        else
-                            LISTNAME += " " + args[i];
-                        break;
-
-                    case "-PROJECT_FILE":
-                        if (PROJECT_FILE == "Empty")
-                            PROJECT_FILE = args[i];
-                        else
-                            PROJECT_FILE += " " + args[i];
-                        break;
-
-                    case "-SOURCE_TEMPLATE_DIR":
-                        if (SOURCE_TEMPLATE_DIR == "Empty")
-                            SOURCE_TEMPLATE_DIR = args[i];
-                        else
-                            SOURCE_TEMPLATE_DIR += " " + args[i];
-                        break;
-
-                    case "-TARGET_DIR":
-                        if (TARGET_DIR == "Empty")
-                            TARGET_DIR = args[i];
-                        else
-                            TARGET_DIR += " " + args[i];
-                        break;
-
-                    default:
-                        Console.WriteLine(@"-GEN_XML                default: C:\_BuildTools\CgenList\CgenList\genList.xml");
-                        Console.WriteLine("Default:");
-                        Console.WriteLine(@"-LISTNAME               default: Test");
-                        Console.WriteLine(@"-PROJECT_FILE           default: C:\_Provinsa\ProvPur\ProvPur\ProvPur.csproj");
-                        Console.WriteLine(@"-SOURCE_TEMPLATE_DIR    default: C:\_Provinsa\TEMPLATE\FEATURES\");
-                        Console.WriteLine(@"-TARGET_DIR             default: C:\_Provinsa\ProvPur\ProvPur\TEMPLATE\FEATURES\");
-                        throw new Exception("The Param is not found.");
-                }
-            }
-        }
-
-        //Defaults
-        if (GEN_XML == "Empty")
-            GEN_XML = @"C:\_BuildTools\CgenList\CgenList\genList.xml";
-
         System.Xml.XmlDocument docGEN_XML = null;
         {
+            sXML.Position = 0;
             isGEN_XMLValid = true;
             XmlSchemaCollection myschemacoll = new XmlSchemaCollection();
             XmlValidatingReader vr;
-            FileStream stream;
+
             try
             {
-                stream = new FileStream(GEN_XML, FileMode.Open);
                 //Load the XmlValidatingReader.
-                vr = new XmlValidatingReader(stream, XmlNodeType.Element, null);
+                vr = new XmlValidatingReader(sXML, XmlNodeType.Element, null);
 
                 //Add the schemas to the XmlSchemaCollection object.
-                myschemacoll.Add("http://www.hafsjold.dk/schema/hafsjold.xsd", @"C:\_BuildTools\CgenList\CgenList\hafsjold.xsd");
+                myschemacoll.Add("http://www.hafsjold.dk/schema/hafsjold.xsd", @"C:\_BuildTools\Generators\SPGenerator\hafsjold.xsd");
                 vr.Schemas.Add(myschemacoll);
                 vr.ValidationType = ValidationType.Schema;
                 vr.ValidationEventHandler += new ValidationEventHandler(ShowCompileErrors);
@@ -146,8 +83,8 @@ class GenerateList
                 }
                 Console.WriteLine("Validation completed");
                 docGEN_XML = new System.Xml.XmlDocument();
-                stream.Position = 0;
-                docGEN_XML.Load(stream);
+                sXML.Position = 0;
+                docGEN_XML.Load(sXML);
             }
             catch
             {
@@ -157,30 +94,29 @@ class GenerateList
                 //Clean up.
                 vr = null;
                 myschemacoll = null;
-                stream = null;
+                sXML = null;
             }
         }
 
-        {
-            string l_ns = "http://www.hafsjold.dk/schema/hafsjold.xsd";
-            XmlNamespaceManager l_nsMgr = new XmlNamespaceManager(docGEN_XML.NameTable);
-            l_nsMgr.AddNamespace("mha", l_ns);
+        string l_ns = "http://www.hafsjold.dk/schema/hafsjold.xsd";
+        XmlNamespaceManager l_nsMgr = new XmlNamespaceManager(docGEN_XML.NameTable);
+        l_nsMgr.AddNamespace("mha", l_ns);
 
-            System.Xml.XmlNode propertySets = docGEN_XML.SelectSingleNode("//mha:hafsjold/mha:propertySets", l_nsMgr);
-            string SVNRootPath = propertySets.Attributes["SVNRootPath"].Value;
-            string ProjectPath = propertySets.Attributes["ProjectPath"].Value;
-            string ProjectName = propertySets.Attributes["ProjectName"].Value;
-            PROJECT_FILE = SVNRootPath + ProjectPath + ProjectName;
-            System.Xml.XmlNode propertySet = docGEN_XML.SelectSingleNode("//mha:hafsjold/mha:propertySets/mha:propertySet", l_nsMgr);
-            string ProgPath = propertySet.Attributes["ProgPath"].Value;
-            string ProgName = propertySet.Attributes["ProgName"].Value;
-            System.Xml.XmlNode pLISTNAME = docGEN_XML.SelectSingleNode("//mha:hafsjold/mha:propertySets/mha:propertySet/mha:property[@name=\"LISTNAME\"]", l_nsMgr);
-            LISTNAME = pLISTNAME.Attributes["value"].Value;
-            System.Xml.XmlNode pSOURCE_TEMPLATE_DIR = docGEN_XML.SelectSingleNode("//mha:hafsjold/mha:propertySets/mha:propertySet/mha:property[@name=\"SOURCE_TEMPLATE_DIR\"]", l_nsMgr);
-            SOURCE_TEMPLATE_DIR = SVNRootPath + pSOURCE_TEMPLATE_DIR.Attributes["value"].Value;
-            System.Xml.XmlNode pTARGET_DIR = docGEN_XML.SelectSingleNode("//mha:hafsjold/mha:propertySets/mha:propertySet/mha:property[@name=\"TARGET_DIR\"]", l_nsMgr);
-            TARGET_DIR = SVNRootPath + pTARGET_DIR.Attributes["value"].Value;
-        }
+        System.Xml.XmlNode propertySets = docGEN_XML.SelectSingleNode("//mha:hafsjold/mha:propertySets", l_nsMgr);
+        string SVNRootPath = propertySets.Attributes["SVNRootPath"].Value;
+        string ProjectPath = propertySets.Attributes["ProjectPath"].Value;
+        string ProjectName = propertySets.Attributes["ProjectName"].Value;
+        PROJECT_FILE = SVNRootPath + ProjectPath + ProjectName;
+        System.Xml.XmlNode propertySet = docGEN_XML.SelectSingleNode("//mha:hafsjold/mha:propertySets/mha:propertySet", l_nsMgr);
+        string ProgPath = propertySet.Attributes["ProgPath"].Value;
+        string ProgName = propertySet.Attributes["ProgName"].Value;
+        System.Xml.XmlNode pLISTNAME = docGEN_XML.SelectSingleNode("//mha:hafsjold/mha:propertySets/mha:propertySet/mha:property[@name=\"LISTNAME\"]", l_nsMgr);
+        LISTNAME = pLISTNAME.Attributes["value"].Value;
+        System.Xml.XmlNode pSOURCE_TEMPLATE_DIR = docGEN_XML.SelectSingleNode("//mha:hafsjold/mha:propertySets/mha:propertySet/mha:property[@name=\"SOURCE_TEMPLATE_DIR\"]", l_nsMgr);
+        SOURCE_TEMPLATE_DIR = SVNRootPath + pSOURCE_TEMPLATE_DIR.Attributes["value"].Value;
+        System.Xml.XmlNode pTARGET_DIR = docGEN_XML.SelectSingleNode("//mha:hafsjold/mha:propertySets/mha:propertySet/mha:property[@name=\"TARGET_DIR\"]", l_nsMgr);
+        TARGET_DIR = SVNRootPath + pTARGET_DIR.Attributes["value"].Value;
+
         if (LISTNAME == "Empty")
             LISTNAME = "Test";
         if (PROJECT_FILE == "Empty")
@@ -200,7 +136,7 @@ class GenerateList
         DFF_FILE = PROJECT_DIR + "wsp.ddf";
         DFF_FROM_ROOT = PROJECT_DIR;
         DFF_TO_ROOT = TARGET_DIR;
-        model = new Metadata();
+        model = new Metadata(SVNRootPath);
     }
 
     public static void ShowCompileErrors(object sender, ValidationEventArgs args)
@@ -208,7 +144,7 @@ class GenerateList
         isGEN_XMLValid = false;
         Console.WriteLine("Validation Error: {0}", args.Message);
     }
- 
+
     //
     // GenerateLIST
     //

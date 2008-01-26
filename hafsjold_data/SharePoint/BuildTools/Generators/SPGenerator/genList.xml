@@ -1,7 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <hafsjold xmlns="http://www.hafsjold.dk/schema/hafsjold.xsd">
   <propertySets SVNRootPath="C:\_Provinsa\" ProjectPath="ProvPur\ProvPur\" ProjectName="ProvPur.csproj">
-    <propertySet ProgPath="C:\_BuildTools\CgenList\CgenList\bin\Debug\" ProgName="CgenList.exe">
+    <propertySet  Function="SaveMetadata" ProgPath="C:\_BuildTools\CgenList\CgenList\bin\Debug\" ProgName="CgenList.exe" />
+    <propertySet  Function="Column" ProgPath="C:\_BuildTools\CgenList\CgenList\bin\Debug\" ProgName="CgenList.exe" />
+    <propertySet  Function="Type" ProgPath="C:\_BuildTools\CgenList\CgenList\bin\Debug\" ProgName="CgenList.exe" />
+    <propertySet  Function="List" ProgPath="C:\_BuildTools\CgenList\CgenList\bin\Debug\" ProgName="CgenList.exe">
+      <property name="LISTNAME" value="ProductCatalog" />
+      <property name="SOURCE_TEMPLATE_DIR" value="TEMPLATE\FEATURES\" />
+      <property name="TARGET_DIR" value="ProvPur\ProvPur\TEMPLATE\FEATURES\" />
+    </propertySet>
+    <propertySet  Function="List" ProgPath="C:\_BuildTools\CgenList\CgenList\bin\Debug\" ProgName="CgenList.exe">
       <property name="LISTNAME" value="Rekvirent" />
       <property name="SOURCE_TEMPLATE_DIR" value="TEMPLATE\FEATURES\" />
       <property name="TARGET_DIR" value="ProvPur\ProvPur\TEMPLATE\FEATURES\" />

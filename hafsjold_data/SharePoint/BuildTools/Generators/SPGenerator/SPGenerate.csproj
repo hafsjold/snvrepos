@@ -63,9 +63,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="hafsjold.xsd" />
-    <None Include="hafsjold.xsx">
-      <DependentUpon>hafsjold.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="genList.xml" />

@@ -13,26 +13,95 @@ using pvMetadata;
 
 class GenerateColumns
 {
+    private static string DATASET_PATH = null;
+    private static bool isGEN_XMLValid = true;
+
+    private static string PROJECT_DIR;
+    private static string COREFILE;
+    private static string FILENAME_FIELDS;
+    private static string FILENAME_DK;
+    private static string FILENAME_UK;
+
 
     static Metadata model;
     static XmlNamespaceManager nsMgr;
     static string ns;
 
-    public static void MainGenerateColumns(string[] args)
+    public static void MainGenerateColumns(MemoryStream sXML)
     {
-        model = new Metadata();
+        InitParams(sXML);
         Generate();
 
     }
 
+    private static void InitParams(MemoryStream sXML)
+    {
+
+        System.Xml.XmlDocument docGEN_XML = null;
+        {
+            sXML.Position = 0;
+            isGEN_XMLValid = true;
+            XmlSchemaCollection myschemacoll = new XmlSchemaCollection();
+            XmlValidatingReader vr;
+
+            try
+            {
+                //Load the XmlValidatingReader.
+                vr = new XmlValidatingReader(sXML, XmlNodeType.Element, null);
+
+                //Add the schemas to the XmlSchemaCollection object.
+                myschemacoll.Add("http://www.hafsjold.dk/schema/hafsjold.xsd", @"C:\_BuildTools\Generators\SPGenerator\hafsjold.xsd");
+                vr.Schemas.Add(myschemacoll);
+                vr.ValidationType = ValidationType.Schema;
+                vr.ValidationEventHandler += new ValidationEventHandler(ShowCompileErrors);
+
+                while (vr.Read())
+                {
+                }
+                Console.WriteLine("Validation completed");
+                docGEN_XML = new System.Xml.XmlDocument();
+                sXML.Position = 0;
+                docGEN_XML.Load(sXML);
+            }
+            catch
+            {
+            }
+            finally
+            {
+                //Clean up.
+                vr = null;
+                myschemacoll = null;
+                sXML = null;
+            }
+        }
+
+        {
+            string l_ns = "http://www.hafsjold.dk/schema/hafsjold.xsd";
+            XmlNamespaceManager l_nsMgr = new XmlNamespaceManager(docGEN_XML.NameTable);
+            l_nsMgr.AddNamespace("mha", l_ns);
+
+            System.Xml.XmlNode propertySets = docGEN_XML.SelectSingleNode("//mha:hafsjold/mha:propertySets", l_nsMgr);
+            string SVNRootPath = propertySets.Attributes["SVNRootPath"].Value;
+            string ProjectPath = propertySets.Attributes["ProjectPath"].Value;
+            string ProjectName = propertySets.Attributes["ProjectName"].Value;
+            PROJECT_DIR = SVNRootPath + ProjectPath;
+            model = new Metadata(SVNRootPath);
+            COREFILE = "ProvPur";
+            FILENAME_FIELDS = PROJECT_DIR + @"TEMPLATE\FEATURES\ProvPurFields\fields.xml";
+            FILENAME_DK = PROJECT_DIR + @"Resources\" + COREFILE + ".da-dk.resx";
+            FILENAME_UK = PROJECT_DIR + @"Resources\" + COREFILE + ".resx";
+
+        }
+    }
+
+    public static void ShowCompileErrors(object sender, ValidationEventArgs args)
+    {
+        isGEN_XMLValid = false;
+        Console.WriteLine("Validation Error: {0}", args.Message);
+    }
+
     private static void Generate()
     {
-        const string PROJECT_DIR = @"C:\_Provinsa\ProvPur\ProvPur\";
-        const string COREFILE = "ProvPur";
-        const string FILENAME_FIELDS = PROJECT_DIR + @"TEMPLATE\FEATURES\ProvPurFields\fields.xml";
-        const string FILENAME_DK = PROJECT_DIR + @"Resources\" + COREFILE + ".da-dk.resx";
-        const string FILENAME_UK = PROJECT_DIR + @"Resources\" + COREFILE + ".resx";
-
         FileStream myStream;
         StreamReader myReader;
         StreamWriter myWriter;
@@ -200,3 +269,4 @@ class GenerateColumns
         }
     }
 }
+
