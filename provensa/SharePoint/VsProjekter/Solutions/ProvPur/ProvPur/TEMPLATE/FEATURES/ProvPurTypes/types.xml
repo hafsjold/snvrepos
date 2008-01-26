@@ -2,8 +2,8 @@
 <Elements xmlns="http://schemas.microsoft.com/sharepoint/">
   <ContentType ID="0x0100059F8EAB132049A5906F77AF89A668BC" Name="Produktoplysninger" Group="$Resources:ProvPur,TypesGroupName;" Description="$Resources:ProvPur,Produktoplysninger;" Version="0">
     <FieldRefs>
-      <FieldRef ID="{F4AB01A6-3D35-4793-AE7B-8F03A885F951}" Name="Progroup" />
       <FieldRef ID="{24D368ED-E0FC-4467-9DBD-72D34985D40A}" Name="Procat" />
+      <FieldRef ID="{F4AB01A6-3D35-4793-AE7B-8F03A885F951}" Name="Progroup" />
       <FieldRef ID="{534C7E35-49B5-437B-9EDC-AF9EB574C40A}" Name="proapproveupdateperson" />
       <FieldRef ID="{D0500EAC-8FFC-49F7-A8DC-EBE2A57C833F}" Name="proupdatedate" />
       <FieldRef ID="{1FFC326B-D84D-4B77-A76C-A980B703243D}" Name="proupdateperson" />
@@ -39,8 +39,8 @@
   </ContentType>
   <ContentType ID="0x0100D06B5761E1DF4E09BC883BE2E93968D1" Name="RekvirentType" Group="$Resources:ProvPur,TypesGroupName;" Description="$Resources:ProvPur,RekvirentType;" Version="0">
     <FieldRefs>
-      <FieldRef ID="{F4AB01A6-3D35-4793-AE7B-8F03A885F951}" Name="Progroup" />
       <FieldRef ID="{24D368ED-E0FC-4467-9DBD-72D34985D40A}" Name="Procat" />
+      <FieldRef ID="{F4AB01A6-3D35-4793-AE7B-8F03A885F951}" Name="Progroup" />
       <FieldRef ID="{534C7E35-49B5-437B-9EDC-AF9EB574C40A}" Name="proapproveupdateperson" />
       <FieldRef ID="{D0500EAC-8FFC-49F7-A8DC-EBE2A57C833F}" Name="proupdatedate" />
       <FieldRef ID="{1FFC326B-D84D-4B77-A76C-A980B703243D}" Name="proupdateperson" />

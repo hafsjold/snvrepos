@@ -32,3 +32,6 @@ TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl2.ascx	TEMPLATE\CONTROLTEMPLATES\Pr
 TEMPLATE\FEATURES\ProductCatalogList\Feature.xml	ProductCatalogList\Feature.xml
 TEMPLATE\FEATURES\ProductCatalogList\ProductCatalogList\schema.xml	ProductCatalogList\ProductCatalogList\schema.xml
 TEMPLATE\FEATURES\ProductCatalogList\ListTemplates\elementManifest.xml	ProductCatalogList\ListTemplates\elementManifest.xml
+TEMPLATE\FEATURES\RekvirentList\Feature.xml	RekvirentList\Feature.xml
+TEMPLATE\FEATURES\RekvirentList\RekvirentList\schema.xml	RekvirentList\RekvirentList\schema.xml
+TEMPLATE\FEATURES\RekvirentList\ListTemplates\elementManifest.xml	RekvirentList\ListTemplates\elementManifest.xml
