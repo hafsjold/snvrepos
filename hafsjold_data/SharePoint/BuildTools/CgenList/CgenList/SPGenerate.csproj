@@ -7,8 +7,8 @@
     <ProjectGuid>{444D2772-AFCD-423E-B025-986F2B4D70E7}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CgenList</RootNamespace>
-    <AssemblyName>CgenList</AssemblyName>
+    <RootNamespace>SPGenerate</RootNamespace>
+    <AssemblyName>SPGenerate</AssemblyName>
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>2.0</OldToolsVersion>
@@ -46,11 +46,18 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GenerateLIST.cs" />
-    <Compile Include="genListMain.cs" />
+    <Compile Include="SPGenerate.cs" />
+    <Compile Include="GenerateColumns.cs" />
+    <Compile Include="GenerateList.cs" />
+    <Compile Include="GenerateMetadata.cs" />
+    <Compile Include="GenerateTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\_Udvikl\wssGetList\wssGetList\wssGetList.csproj">
+      <Project>{C67FB0E3-B951-41AD-883F-6216FD4A251B}</Project>
+      <Name>wssGetList</Name>
+    </ProjectReference>
     <ProjectReference Include="..\pvMetadata\pvMetadata.csproj">
       <Project>{B919A8E3-BA95-4291-A123-7E3F65618786}</Project>
       <Name>pvMetadata</Name>

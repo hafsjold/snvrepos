@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("CgenList")]
+[assembly: AssemblyTitle("SPGererate")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Hafsjold Data ApS")]
-[assembly: AssemblyProduct("CgenList")]
+[assembly: AssemblyProduct("SPGenerate")]
 [assembly: AssemblyCopyright("Copyright © Hafsjold Data ApS 2008")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
