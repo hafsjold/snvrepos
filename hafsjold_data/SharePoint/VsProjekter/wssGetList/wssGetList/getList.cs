@@ -6,6 +6,9 @@ using Microsoft.SharePoint;
 using Microsoft.SharePoint.Navigation;
 using System.Data;
 using System.Xml;
+using System.Xml.Linq;
+using System.Linq;
+
 
 namespace wssGetList
 {
@@ -25,9 +28,29 @@ namespace wssGetList
 
         public DataSet getListData(string ListTitle)
         {
+            {
+                XElement root = XElement.Parse(ls.GetListCollection().OuterXml);
+                IEnumerable<XElement> ListsList =
+                    from el in root.Elements()
+                    where el.Attribute("Title").Value != ListTitle
+                    select new XElement("List",
+                              new XAttribute("Desc", el.Attribute("Title").Value),
+                              new XAttribute("Name", el.Attribute("Name").Value),
+                              new XAttribute("WebId", el.Attribute("WebId").Value));
+                
+                foreach (XElement el in ListsList){
+                    Console.WriteLine(el);
+                    var Name = el.Attribute("Name").Value;
+                    var WebId = el.Attribute("WebId").Value;
+                    var Desc = el.Attribute("Desc").Value;
+
+                }
+            }
+            
             XmlNode lists = ls.GetListCollection();
+
             DataSet dsLists = new DataSet();
-            dsLists.ReadXml(new System.IO.StringReader("<?xml version='1.0' ?>" + lists.OuterXml));
+            dsLists.ReadXml(new System.IO.StringReader("<?xml version='1.0' encoding='utf-8'?>" + lists.OuterXml));
             string ListName = null;
             string ListWebId = null;
             foreach (DataRow l in dsLists.Tables["List"].Rows)
@@ -49,9 +72,9 @@ namespace wssGetList
             string RowLimit = "500";
 
             System.Xml.XmlNode items = ls.GetListItems(ListName, string.Empty, listQuery, listViewFields, RowLimit, listQueryOptions, ListWebId);
-            
+
             DataSet dsItems = new DataSet();
-            dsItems.ReadXml(new System.IO.StringReader("<?xml version='1.0' ?>" + items.InnerXml));
+            dsItems.ReadXml(new System.IO.StringReader("<?xml version='1.0' encoding='utf-8'?>" + items.InnerXml));
 
             //DataTable rows = dsItems.Tables["row"];
             //DataRow row = rows.Rows[1];
@@ -63,7 +86,7 @@ namespace wssGetList
         public string getListName (string ListTitle){
             XmlNode lists = ls.GetListCollection();
             DataSet dsLists = new DataSet();
-            dsLists.ReadXml(new System.IO.StringReader("<?xml version='1.0' ?>" + lists.OuterXml));
+            dsLists.ReadXml(new System.IO.StringReader("<?xml version='1.0' encoding='utf-8'?>" + lists.OuterXml));
             foreach (DataRow l in dsLists.Tables["List"].Rows)
             {
                 if (((string)l["Title"]) == ListTitle)
