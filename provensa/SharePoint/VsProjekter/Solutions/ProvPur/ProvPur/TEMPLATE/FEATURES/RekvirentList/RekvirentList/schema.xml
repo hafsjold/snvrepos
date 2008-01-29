@@ -1,0 +1,2157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<List xmlns:ows="Microsoft SharePoint" xmlns="http://schemas.microsoft.com/sharepoint/" Title="RekvirentList" FolderCreation="FALSE" AllowMultipleContentTypes="TRUE" EnableContentTypes="TRUE" Direction="$Resources:Direction;" Url="Lists/RekvirentList" BaseType="0">
+  <MetaData>
+    <ContentTypes>
+      <!--RekvirentType--><ContentTypeRef ID="0x0100D06B5761E1DF4E09BC883BE2E93968D1"><Folder TargetName="RekvirentList" /></ContentTypeRef>
+      <ContentTypeRef ID="0x0120" />
+    </ContentTypes>
+    <Fields>
+    <Field Name="claacttype" ID="{EA616EBA-6E76-4C1B-8DE9-52A416AB6855}" DisplayName="$Resources:ProvPur,claacttype;" Type="Text" /><Field Name="claactsubject" ID="{99A576EF-09F9-4868-9DA4-59D3ADF4FFBA}" DisplayName="$Resources:ProvPur,claactsubject;" Type="Text" /><Field Name="claactfilename" ID="{F7F5A8F8-D68F-4C2C-8B81-97672D202ABF}" DisplayName="$Resources:ProvPur,claactfilename;" Type="Text" /><Field Name="claactattention" ID="{003F31A1-5213-493F-82E5-AB08ABF2868F}" DisplayName="$Resources:ProvPur,claactattention;" Type="Text" /><Field Name="claactwriter" ID="{8BFB44E4-CB65-4865-88F4-8B77764B615F}" DisplayName="$Resources:ProvPur,claactwriter;" Type="Text" /><Field Name="claactsetupdate" ID="{918428E1-9DC6-45B5-8C78-340D0D7B393F}" DisplayName="$Resources:ProvPur,claactsetupdate;" Type="DateTime" /><Field Name="claactstatus" ID="{D32689F4-4597-4BCE-9CBC-1D67EECC5E19}" DisplayName="$Resources:ProvPur,claactstatus;" Type="Text" /><Field Name="clacomment" ID="{E6E1F8E8-368F-45DF-BCF2-B9EB282BD64E}" DisplayName="$Resources:ProvPur,clacomment;" Type="Note" NumLines="3" RichText="TRUE" /><Field Name="clauserprofile" ID="{3CD3CD20-7D77-44DB-8B3C-B1DD995C2684}" DisplayName="$Resources:ProvPur,clauserprofile;" Type="Text" /><Field Name="clalogin" ID="{1973B9B8-2C57-4A45-91B5-007CE776D5BD}" DisplayName="$Resources:ProvPur,clalogin;" Type="Text" /><Field Name="clapassword" ID="{9495DECF-EFC5-408E-9BD2-DF5515C273F7}" DisplayName="$Resources:ProvPur,clapassword;" Type="Text" /><Field Name="clavipstatus" ID="{430DB327-A325-40FC-A749-E20C33CEE764}" DisplayName="$Resources:ProvPur,clavipstatus;" Type="Text" /><Field Name="claaddress" ID="{8CEDDDC0-5B87-4486-B303-14B6C885FB06}" DisplayName="$Resources:ProvPur,claaddress;" Type="Text" /><Field Name="cladepartment" ID="{969AA141-3F66-42CC-A3E3-4B2903416121}" DisplayName="$Resources:ProvPur,cladepartment;" Type="Text" /><Field Name="clacity" ID="{2BCE8B80-1C14-424F-8E42-E05992BF3450}" DisplayName="$Resources:ProvPur,clacity;" Type="Text" /><Field Name="clacomname" ID="{3773BDA9-F4FD-4926-A0A5-E088782D2B8F}" DisplayName="$Resources:ProvPur,clacomname;" Type="Text" /><Field Name="clapostaldis" ID="{FBEC2752-CB22-42B3-92FF-DB0B34863DB2}" DisplayName="$Resources:ProvPur,clapostaldis;" Type="Text" /><Field Name="clapostalcode" ID="{E1043064-12BD-4FCE-AD69-FE94449A4201}" DisplayName="$Resources:ProvPur,clapostalcode;" Type="Number" Decimals="0" /><Field Name="glaempres" ID="{8D609AAC-AC2A-4279-B0CE-32BF870244B9}" DisplayName="$Resources:ProvPur,glaempres;" Type="Text" /><Field Name="cladirecttno" ID="{8110DD22-12F1-4A14-9460-1622605B90DD}" DisplayName="$Resources:ProvPur,cladirecttno;" Type="Text" /><Field Name="clasurname" ID="{2F6D312F-D39C-4C5E-86E0-5407204D855B}" DisplayName="$Resources:ProvPur,clasurname;" Type="Text" /><Field Name="clamail" ID="{3D6A80C2-F340-4001-89E5-C9FC9C4F08C8}" DisplayName="$Resources:ProvPur,clamail;" Type="Text" /><Field Name="clafirstname" ID="{04B3069D-624C-4301-ACF6-C0142839F4AF}" DisplayName="$Resources:ProvPur,clafirstname;" Type="Text" /><Field Name="clainitial" ID="{96D9B38B-4C07-4AF8-B744-653A5CC49B60}" DisplayName="$Resources:ProvPur,clainitial;" Type="Text" /><Field Name="clamangerinitial" ID="{E151D87A-6DC6-4124-9EB6-6E1BD8A5DACA}" DisplayName="$Resources:ProvPur,clamangerinitial;" Type="Text" /><Field Name="claempno" ID="{65154506-9F4C-49C5-8F5D-04D3A2EEB333}" DisplayName="$Resources:ProvPur,claempno;" Type="Number" Decimals="0" /><Field Name="clamanagername" ID="{DD9695F2-26AD-4809-BCD2-ABAF8FBFB757}" DisplayName="$Resources:ProvPur,clamanagername;" Type="Text" /><Field Name="clamobilno" ID="{E151D745-024E-4CA6-86AB-9EF3A1FA9CDF}" DisplayName="$Resources:ProvPur,clamobilno;" Type="Text" /><Field Name="clalocalno" ID="{B21372FD-8257-40DB-BECB-F9B5FD6B046A}" DisplayName="$Resources:ProvPur,clalocalno;" Type="Text" /><Field Name="clatitle" ID="{0052EDDB-6A1B-4D0E-8124-2ADA18459CBE}" DisplayName="$Resources:ProvPur,clatitle;" Type="Text" /><Field Name="claroomno" ID="{332B1351-3083-4C15-B824-A35240E0F9D2}" DisplayName="$Resources:ProvPur,claroomno;" Type="Text" /></Fields>
+    <Views>
+      <View BaseViewID="0" Type="HTML">
+        <GroupByHeader><HTML><![CDATA[<TBODY id="titl]]></HTML>
+          <GetVar Name="GroupByLevelString" /><HTML><![CDATA[" groupString="]]></HTML>
+          <GetVar Name="GroupByValueString" /><HTML><![CDATA["><TR><TD colspan="100"]]></HTML>
+          <Switch>
+            <Expr>
+              <GetVar Name="GroupByIndent" />
+            </Expr>
+            <Case Value="0"><HTML><![CDATA[ class="ms-gb" ]]></HTML>
+            </Case>
+            <Default><HTML><![CDATA[ class="ms-gb2" ]]></HTML>
+            </Default>
+          </Switch><HTML><![CDATA[ nowrap><img src="/_layouts/images/blank.gif" alt="" height=1 width=]]></HTML>
+          <GetVar Name="GroupByIndent" /><HTML><![CDATA[><a href="javascript:" onclick="javascript:ExpCollGroup(']]></HTML>
+          <GetVar Name="GroupByLevelString" /><HTML><![CDATA[','img_]]></HTML>
+          <GetVar Name="GroupByLevelString" /><HTML><![CDATA[');return false;"><img id="img_]]></HTML>
+          <GetVar Name="GroupByLevelString" /><HTML><![CDATA[" src="/_layouts/images/minus.gif" alt="]]></HTML><HTML>$Resources:groupExpColl;</HTML><HTML><![CDATA[" border="0"></a>&nbsp;]]></HTML><HTML><![CDATA[<a href="javascript:" onclick="javascript:ExpCollGroup(']]></HTML>
+          <GetVar Name="GroupByLevelString" /><HTML><![CDATA[','img_]]></HTML>
+          <GetVar Name="GroupByLevelString" /><HTML><![CDATA[');return false;">]]></HTML>
+          <GetVar Name="GroupByField" HTMLEncode="TRUE" /><HTML><![CDATA[</a> :&nbsp;]]></HTML>
+          <GetVar Name="GroupByValue" /><HTML><![CDATA[</TD></TR></TBODY>]]></HTML>
+        </GroupByHeader>
+        <GroupByFooter>
+          <Switch>
+            <Expr>
+              <GetVar Name="GroupByIndent" />
+            </Expr>
+            <Case Value="0"><HTML><![CDATA[<TBODY id="foot]]></HTML>
+              <GetVar Name="GroupByLevelString" /><HTML><![CDATA[_"></TBODY>]]></HTML>
+            </Case>
+            <Default />
+          </Switch>
+          <Switch>
+            <Expr>
+              <GetVar Name="GroupByCollapse" />
+            </Expr>
+            <Case Value="TRUE"><HTML><![CDATA[<SCRIPT>ExpCollGroup(']]></HTML>
+              <GetVar Name="GroupByLevelString" /><HTML><![CDATA[','img_]]></HTML>
+              <GetVar Name="GroupByLevelString" /><HTML><![CDATA[');</SCRIPT>]]></HTML>
+            </Case>
+            <Default />
+          </Switch>
+        </GroupByFooter>
+        <ViewHeader><HTML><![CDATA[<TABLE width="100%" cellspacing=0 cellpadding=0 border=0>]]></HTML><HTML><![CDATA[<SCRIPT>
+ctx = new ContextInfo();
+ctx.listBaseType = ]]></HTML>
+          <ListProperty Select="BaseType" /><HTML><![CDATA[;
+ctx.listTemplate = ]]></HTML>
+          <ListProperty Select="ServerTemplate" /><HTML><![CDATA[;
+ctx.listName = ]]></HTML>
+          <ScriptQuote>
+            <List />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.view = ]]></HTML>
+          <ScriptQuote>
+            <GetVar Name="View" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.listUrlDir = ]]></HTML>
+          <ScriptQuote>
+            <ListUrlDir ServerRel="TRUE" URLEncodeAsURL="TRUE" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.HttpPath = ]]></HTML>
+          <ScriptQuote>
+            <HttpPath ServerRel="TRUE" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.HttpRoot = ]]></HTML>
+          <ScriptQuote>
+            <HttpVDir />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.imagesPath = ]]></HTML>
+          <ScriptQuote>/_layouts/images/</ScriptQuote><HTML><![CDATA[;
+ctx.PortalUrl = ]]></HTML>
+          <ScriptQuote>
+            <ProjectProperty Select="PortalUrl" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.SendToLocationName = ]]></HTML>
+          <ScriptQuote>
+            <ListProperty Select="SendToLocationName" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.SendToLocationUrl = ]]></HTML>
+          <ScriptQuote>
+            <ListProperty Select="SendToLocationUrl" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.RecycleBinEnabled = ]]></HTML>
+          <ProjectProperty Select="RecycleBinEnabled" /><HTML><![CDATA[;
+ctx.OfficialFileName = ]]></HTML>
+          <ScriptQuote>
+            <ServerProperty Select="OfficialFileName" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.WriteSecurity = ]]></HTML>
+          <ScriptQuote>
+            <ListProperty Select="WriteSecurity" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.SiteTitle = ]]></HTML>
+          <ScriptQuote>
+            <ProjectProperty Select="Title" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.ListTitle = ]]></HTML>
+          <ScriptQuote>
+            <ListProperty Select="Title" />
+          </ScriptQuote><HTML><![CDATA[;
+if (ctx.PortalUrl == "") ctx.PortalUrl = null;
+ctx.displayFormUrl = ]]></HTML>
+          <ScriptQuote>
+            <URL Cmd="DISPLAY" NoID="TRUE" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.editFormUrl = ]]></HTML>
+          <ScriptQuote>
+            <URL Cmd="EDIT" NoID="TRUE" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.isWebEditorPreview = ]]></HTML>
+          <Switch>
+            <Expr>
+              <GetVar Name="WebEditorPreview" />
+            </Expr>
+            <Case Value="TRUE">1</Case>
+            <Default>0</Default>
+          </Switch><HTML><![CDATA[;
+ctx.ctxId = ]]></HTML>
+          <Counter Type="View" /><HTML><![CDATA[;
+g_ViewIdToViewCounterMap[ ]]></HTML>
+          <ScriptQuote>
+            <GetVar Name="View" />
+          </ScriptQuote><HTML><![CDATA[ ]= ]]></HTML>
+          <Counter Type="View" /><HTML><![CDATA[;
+ctx.CurrentUserId = ]]></HTML>
+          <UserID AllowAnonymous="TRUE" /><HTML><![CDATA[;
+]]></HTML>
+          <Switch>
+            <Expr>
+              <ListProperty Select="ModeratedList" />
+            </Expr>
+            <Case Value="1">
+ctx.isModerated = true;
+</Case>
+          </Switch>
+          <Switch>
+            <Expr>
+              <ListProperty Select="ForceCheckout" />
+            </Expr>
+            <Case Value="1">
+ctx.isForceCheckout = true;
+</Case>
+          </Switch>
+          <Switch>
+            <Expr>
+              <ListProperty Select="EnableMinorVersions" />
+            </Expr>
+            <Case Value="1">
+ctx.EnableMinorVersions = true;
+</Case>
+          </Switch>
+          <Switch>
+            <Expr>
+              <ListProperty Select="VersioningEnabled" />
+            </Expr>
+            <Case Value="1">
+ctx.verEnabled = 1;
+</Case>
+          </Switch>
+          <Switch>
+            <Expr>
+              <GetVar Name="RecursiveView" />
+            </Expr>
+            <Case Value="1">
+ctx.recursiveView = true;
+</Case>
+          </Switch>
+          <Switch>
+            <Expr>
+              <ListProperty Select="WorkflowsAssociated" />
+            </Expr>
+            <Case Value="1">
+ctx.WorkflowsAssociated = true;
+</Case>
+          </Switch>
+          <Switch>
+            <Expr>
+              <ListProperty Select="EnableContentTypes" />
+            </Expr>
+            <Case Value="1">
+ctx.ContentTypesEnabled = true;
+</Case>
+          </Switch><HTML><![CDATA[ 
+ctx]]></HTML>
+          <Counter Type="View" /><HTML><![CDATA[ = ctx;
+</SCRIPT>]]></HTML>
+          <Switch>
+            <Expr>
+              <ListProperty Select="Direction" />
+            </Expr>
+            <Case Value="ltr"><HTML><![CDATA[<SCRIPT>FixTextAlignForBidi("left");</SCRIPT>]]></HTML>
+            </Case>
+            <Case Value="rtl"><HTML><![CDATA[<SCRIPT>FixTextAlignForBidi("right");</SCRIPT>]]></HTML>
+            </Case>
+          </Switch><HTML><![CDATA[<tr><td>]]></HTML><HTML><![CDATA[<TABLE ID="]]></HTML>
+          <WebQueryInfo /><HTML><![CDATA[" width="100%" class="ms-summarystandardbody" border=0 cellspacing=0 cellpadding=1 dir="]]></HTML>
+          <ListProperty Select="Direction" HTMLEncode="TRUE" /><HTML><![CDATA[" summary="]]></HTML>
+          <ListProperty Select="Title" HTMLEncode="TRUE" /><HTML><![CDATA["><TR class="ms-viewheadertr" VALIGN=TOP>]]></HTML><HTML><![CDATA[<IFRAME src="javascript:false;" id="FilterIframe]]></HTML>
+          <Counter Type="View" /><HTML><![CDATA[" name="FilterIframe]]></HTML>
+          <Counter Type="View" /><HTML><![CDATA[" style="display:none" height="0" width="0" title="]]></HTML><HTML>$Resources:filterIFrameTitle;</HTML><HTML><![CDATA[" FilterLink="]]></HTML>
+          <FilterLink HTMLEncode="TRUE" Paged="FALSE" /><HTML><![CDATA["></IFRAME>]]></HTML>
+          <Fields>
+            <Switch>
+              <Expr>
+                <Property Select="Name" />
+              </Expr>
+              <Case Value="Attachments"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh-icon">]]></HTML>
+                <IfEqual>
+                  <Expr1>
+                    <GetVar Name="Plain" />
+                  </Expr1>
+                  <Expr2>TRUE</Expr2>
+                  <Then>
+                    <Field />
+                  </Then>
+                  <Else><HTML><![CDATA[<div style="width:100%;position:relative;left:0;top:0;"><TABLE style="width:100%;" Sortable="]]></HTML>
+                    <Property Select="Sortable" HTMLEncode="TRUE" /><HTML><![CDATA[" SortDisable="]]></HTML>
+                    <GetVar Name="SortDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" FilterDisable="]]></HTML>
+                    <GetVar Name="FilterDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" Filterable="]]></HTML>
+                    <Property Select="Filterable" HTMLEncode="TRUE" /><HTML><![CDATA[" Name="]]></HTML>
+                    <Property Select="Name" HTMLEncode="TRUE" /><HTML><![CDATA[" CtxNum="]]></HTML>
+                    <Counter Type="View" /><HTML><![CDATA[" DisplayName="]]></HTML>
+                    <Property Select="DisplayName" HTMLEncode="TRUE" /><HTML><![CDATA[" FieldType="]]></HTML>
+                    <Property Select="Type" HTMLEncode="TRUE" /><HTML><![CDATA[" ResultType="]]></HTML>
+                    <Property Select="ResultType" HTMLEncode="TRUE" /><HTML><![CDATA[" SortFields="]]></HTML>
+                    <FieldSortParams HTMLEncode="TRUE" /><HTML><![CDATA[" height="100%" cellspacing=1 cellpadding=0 class="ms-unselectedtitle" onmouseover="OnMouseOverFilter(this)"><TR><TD width="100%" Class="ms-vb" nowrap>]]></HTML>
+                    <Field /><HTML><![CDATA[</TD>]]></HTML>
+                    <Switch>
+                      <Expr>
+                        <ListProperty Select="Direction" />
+                      </Expr>
+                      <Case Value="rtl"><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                      </Case>
+                      <Default><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                      </Default>
+                    </Switch><HTML><![CDATA[</TR></TABLE></div>]]></HTML>
+                  </Else>
+                </IfEqual><HTML><![CDATA[</TH>]]></HTML>
+              </Case>
+              <Default>
+                <Switch>
+                  <Expr>
+                    <Property Select="Type" />
+                  </Expr>
+                  <Case Value="Note"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh2-nograd">]]></HTML>
+                    <Field /><HTML><![CDATA[</TH>]]></HTML>
+                  </Case>
+                  <Default>
+                    <Switch>
+                      <Expr>
+                        <Property Select="Filterable" />
+                      </Expr>
+                      <Case Value="FALSE">
+                        <Switch>
+                          <Expr>
+                            <Property Select="Sortable" />
+                          </Expr>
+                          <Case Value="FALSE">
+                            <Switch>
+                              <Expr>
+                                <Property Select="Name" />
+                              </Expr>
+                              <Case Value="SelectedFlag"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh3-nograd">]]></HTML>
+                                <Field /><HTML><![CDATA[</TH>]]></HTML>
+                              </Case>
+                              <Default>
+                                <Switch>
+                                  <Expr>
+                                    <Property Select="Type" />
+                                    <Property Select="ShowFieldImnHeader" />
+                                    <PresenceEnabled />
+                                  </Expr>
+                                  <Case Value="UserTRUETRUE"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh">]]></HTML>
+                                    <Field /><HTML><![CDATA[</TH>]]></HTML>
+                                  </Case>
+                                  <Case Value="UserMultiTRUETRUE"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh">]]></HTML>
+                                    <Field /><HTML><![CDATA[</TH>]]></HTML>
+                                  </Case>
+                                  <Default><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh2-nograd">]]></HTML>
+                                    <Field /><HTML><![CDATA[</TH>]]></HTML>
+                                  </Default>
+                                </Switch>
+                              </Default>
+                            </Switch>
+                          </Case>
+                          <Default>
+                            <Switch>
+                              <Expr>
+                                <Property Select="SortDisable" />
+                              </Expr>
+                              <Case Value="TRUE"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh2-nograd">]]></HTML>
+                                <Field /><HTML><![CDATA[</TH>]]></HTML>
+                              </Case>
+                              <Default><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh2">]]></HTML>
+                                <IfEqual>
+                                  <Expr1>
+                                    <GetVar Name="Plain" />
+                                  </Expr1>
+                                  <Expr2>TRUE</Expr2>
+                                  <Then>
+                                    <Field />
+                                  </Then>
+                                  <Else><HTML><![CDATA[<div style="width:100%;position:relative;left:0;top:0;"><TABLE style="width:100%;" Sortable="]]></HTML>
+                                    <Property Select="Sortable" HTMLEncode="TRUE" /><HTML><![CDATA[" SortDisable="]]></HTML>
+                                    <GetVar Name="SortDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" FilterDisable="]]></HTML>
+                                    <GetVar Name="FilterDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" Filterable="]]></HTML>
+                                    <Property Select="Filterable" HTMLEncode="TRUE" /><HTML><![CDATA[" Name="]]></HTML>
+                                    <Property Select="Name" HTMLEncode="TRUE" /><HTML><![CDATA[" CtxNum="]]></HTML>
+                                    <Counter Type="View" /><HTML><![CDATA[" DisplayName="]]></HTML>
+                                    <Property Select="DisplayName" HTMLEncode="TRUE" /><HTML><![CDATA[" FieldType="]]></HTML>
+                                    <Property Select="Type" HTMLEncode="TRUE" /><HTML><![CDATA[" ResultType="]]></HTML>
+                                    <Property Select="ResultType" HTMLEncode="TRUE" /><HTML><![CDATA[" SortFields="]]></HTML>
+                                    <FieldSortParams HTMLEncode="TRUE" /><HTML><![CDATA[" height="100%" cellspacing=1 cellpadding=0 class="ms-unselectedtitle" onmouseover="OnMouseOverFilter(this)"><TR><TD width="100%" Class="ms-vb" nowrap>]]></HTML>
+                                    <Field /><HTML><![CDATA[</TD>]]></HTML>
+                                    <Switch>
+                                      <Expr>
+                                        <ListProperty Select="Direction" />
+                                      </Expr>
+                                      <Case Value="rtl"><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                      </Case>
+                                      <Default><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                      </Default>
+                                    </Switch><HTML><![CDATA[</TR></TABLE></div>]]></HTML>
+                                  </Else>
+                                </IfEqual><HTML><![CDATA[</TH>]]></HTML>
+                              </Default>
+                            </Switch>
+                          </Default>
+                        </Switch>
+                      </Case>
+                      <Default>
+                        <Switch>
+                          <Expr>
+                            <Property Select="Type" />
+                            <Property Select="ShowFieldImnHeader" />
+                            <PresenceEnabled />
+                          </Expr>
+                          <Case Value="UserTRUETRUE"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh">]]></HTML>
+                            <IfEqual>
+                              <Expr1>
+                                <GetVar Name="Plain" />
+                              </Expr1>
+                              <Expr2>TRUE</Expr2>
+                              <Then>
+                                <Field />
+                              </Then>
+                              <Else><HTML><![CDATA[<div style="width:100%;position:relative;left:0;top:0;"><TABLE style="width:100%;" Sortable="]]></HTML>
+                                <Property Select="Sortable" HTMLEncode="TRUE" /><HTML><![CDATA[" SortDisable="]]></HTML>
+                                <GetVar Name="SortDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" FilterDisable="]]></HTML>
+                                <GetVar Name="FilterDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" Filterable="]]></HTML>
+                                <Property Select="Filterable" HTMLEncode="TRUE" /><HTML><![CDATA[" Name="]]></HTML>
+                                <Property Select="Name" HTMLEncode="TRUE" /><HTML><![CDATA[" CtxNum="]]></HTML>
+                                <Counter Type="View" /><HTML><![CDATA[" DisplayName="]]></HTML>
+                                <Property Select="DisplayName" HTMLEncode="TRUE" /><HTML><![CDATA[" FieldType="]]></HTML>
+                                <Property Select="Type" HTMLEncode="TRUE" /><HTML><![CDATA[" ResultType="]]></HTML>
+                                <Property Select="ResultType" HTMLEncode="TRUE" /><HTML><![CDATA[" SortFields="]]></HTML>
+                                <FieldSortParams HTMLEncode="TRUE" /><HTML><![CDATA[" height="100%" cellspacing=1 cellpadding=0 class="ms-unselectedtitle" onmouseover="OnMouseOverFilter(this)"><TR><TD width="100%" Class="ms-vb" nowrap>]]></HTML>
+                                <Field /><HTML><![CDATA[</TD>]]></HTML>
+                                <Switch>
+                                  <Expr>
+                                    <ListProperty Select="Direction" />
+                                  </Expr>
+                                  <Case Value="rtl"><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                  </Case>
+                                  <Default><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                  </Default>
+                                </Switch><HTML><![CDATA[</TR></TABLE></div>]]></HTML>
+                              </Else>
+                            </IfEqual><HTML><![CDATA[</TH>]]></HTML>
+                          </Case>
+                          <Case Value="UserMultiTRUETRUE"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh">]]></HTML>
+                            <IfEqual>
+                              <Expr1>
+                                <GetVar Name="Plain" />
+                              </Expr1>
+                              <Expr2>TRUE</Expr2>
+                              <Then>
+                                <Field />
+                              </Then>
+                              <Else><HTML><![CDATA[<div style="width:100%;position:relative;left:0;top:0;"><TABLE style="width:100%;" Sortable="]]></HTML>
+                                <Property Select="Sortable" HTMLEncode="TRUE" /><HTML><![CDATA[" SortDisable="]]></HTML>
+                                <GetVar Name="SortDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" FilterDisable="]]></HTML>
+                                <GetVar Name="FilterDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" Filterable="]]></HTML>
+                                <Property Select="Filterable" HTMLEncode="TRUE" /><HTML><![CDATA[" Name="]]></HTML>
+                                <Property Select="Name" HTMLEncode="TRUE" /><HTML><![CDATA[" CtxNum="]]></HTML>
+                                <Counter Type="View" /><HTML><![CDATA[" DisplayName="]]></HTML>
+                                <Property Select="DisplayName" HTMLEncode="TRUE" /><HTML><![CDATA[" FieldType="]]></HTML>
+                                <Property Select="Type" HTMLEncode="TRUE" /><HTML><![CDATA[" ResultType="]]></HTML>
+                                <Property Select="ResultType" HTMLEncode="TRUE" /><HTML><![CDATA[" SortFields="]]></HTML>
+                                <FieldSortParams HTMLEncode="TRUE" /><HTML><![CDATA[" height="100%" cellspacing=1 cellpadding=0 class="ms-unselectedtitle" onmouseover="OnMouseOverFilter(this)"><TR><TD width="100%" Class="ms-vb" nowrap>]]></HTML>
+                                <Field /><HTML><![CDATA[</TD>]]></HTML>
+                                <Switch>
+                                  <Expr>
+                                    <ListProperty Select="Direction" />
+                                  </Expr>
+                                  <Case Value="rtl"><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                  </Case>
+                                  <Default><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                  </Default>
+                                </Switch><HTML><![CDATA[</TR></TABLE></div>]]></HTML>
+                              </Else>
+                            </IfEqual><HTML><![CDATA[</TH>]]></HTML>
+                          </Case>
+                          <Default>
+                            <Switch>
+                              <Expr>
+                                <Property Select="HeaderImage" />
+                              </Expr>
+                              <Case Value=""><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh2">]]></HTML>
+                                <IfEqual>
+                                  <Expr1>
+                                    <GetVar Name="Plain" />
+                                  </Expr1>
+                                  <Expr2>TRUE</Expr2>
+                                  <Then>
+                                    <Field />
+                                  </Then>
+                                  <Else><HTML><![CDATA[<div style="width:100%;position:relative;left:0;top:0;"><TABLE style="width:100%;" Sortable="]]></HTML>
+                                    <Property Select="Sortable" HTMLEncode="TRUE" /><HTML><![CDATA[" SortDisable="]]></HTML>
+                                    <GetVar Name="SortDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" FilterDisable="]]></HTML>
+                                    <GetVar Name="FilterDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" Filterable="]]></HTML>
+                                    <Property Select="Filterable" HTMLEncode="TRUE" /><HTML><![CDATA[" Name="]]></HTML>
+                                    <Property Select="Name" HTMLEncode="TRUE" /><HTML><![CDATA[" CtxNum="]]></HTML>
+                                    <Counter Type="View" /><HTML><![CDATA[" DisplayName="]]></HTML>
+                                    <Property Select="DisplayName" HTMLEncode="TRUE" /><HTML><![CDATA[" FieldType="]]></HTML>
+                                    <Property Select="Type" HTMLEncode="TRUE" /><HTML><![CDATA[" ResultType="]]></HTML>
+                                    <Property Select="ResultType" HTMLEncode="TRUE" /><HTML><![CDATA[" SortFields="]]></HTML>
+                                    <FieldSortParams HTMLEncode="TRUE" /><HTML><![CDATA[" height="100%" cellspacing=1 cellpadding=0 class="ms-unselectedtitle" onmouseover="OnMouseOverFilter(this)"><TR><TD width="100%" Class="ms-vb" nowrap>]]></HTML>
+                                    <Field /><HTML><![CDATA[</TD>]]></HTML>
+                                    <Switch>
+                                      <Expr>
+                                        <ListProperty Select="Direction" />
+                                      </Expr>
+                                      <Case Value="rtl"><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                      </Case>
+                                      <Default><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                      </Default>
+                                    </Switch><HTML><![CDATA[</TR></TABLE></div>]]></HTML>
+                                  </Else>
+                                </IfEqual><HTML><![CDATA[</TH>]]></HTML>
+                              </Case>
+                              <Default><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh-icon">]]></HTML>
+                                <IfEqual>
+                                  <Expr1>
+                                    <GetVar Name="Plain" />
+                                  </Expr1>
+                                  <Expr2>TRUE</Expr2>
+                                  <Then>
+                                    <Field />
+                                  </Then>
+                                  <Else><HTML><![CDATA[<div style="width:100%;position:relative;left:0;top:0;"><TABLE style="width:100%;" Sortable="]]></HTML>
+                                    <Property Select="Sortable" HTMLEncode="TRUE" /><HTML><![CDATA[" SortDisable="]]></HTML>
+                                    <GetVar Name="SortDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" FilterDisable="]]></HTML>
+                                    <GetVar Name="FilterDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" Filterable="]]></HTML>
+                                    <Property Select="Filterable" HTMLEncode="TRUE" /><HTML><![CDATA[" Name="]]></HTML>
+                                    <Property Select="Name" HTMLEncode="TRUE" /><HTML><![CDATA[" CtxNum="]]></HTML>
+                                    <Counter Type="View" /><HTML><![CDATA[" DisplayName="]]></HTML>
+                                    <Property Select="DisplayName" HTMLEncode="TRUE" /><HTML><![CDATA[" FieldType="]]></HTML>
+                                    <Property Select="Type" HTMLEncode="TRUE" /><HTML><![CDATA[" ResultType="]]></HTML>
+                                    <Property Select="ResultType" HTMLEncode="TRUE" /><HTML><![CDATA[" SortFields="]]></HTML>
+                                    <FieldSortParams HTMLEncode="TRUE" /><HTML><![CDATA[" height="100%" cellspacing=1 cellpadding=0 class="ms-unselectedtitle" onmouseover="OnMouseOverFilter(this)"><TR><TD width="100%" Class="ms-vb" nowrap>]]></HTML>
+                                    <Field /><HTML><![CDATA[</TD>]]></HTML>
+                                    <Switch>
+                                      <Expr>
+                                        <ListProperty Select="Direction" />
+                                      </Expr>
+                                      <Case Value="rtl"><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                      </Case>
+                                      <Default><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                      </Default>
+                                    </Switch><HTML><![CDATA[</TR></TABLE></div>]]></HTML>
+                                  </Else>
+                                </IfEqual><HTML><![CDATA[</TH>]]></HTML>
+                              </Default>
+                            </Switch>
+                          </Default>
+                        </Switch>
+                      </Default>
+                    </Switch>
+                  </Default>
+                </Switch>
+              </Default>
+            </Switch>
+          </Fields><HTML><![CDATA[</TR>]]></HTML>
+        </ViewHeader>
+        <ViewBody><HTML><![CDATA[<TR class="]]></HTML>
+          <GetVar Name="AlternateStyle" /><HTML><![CDATA[">]]></HTML>
+          <IfEqual>
+            <Expr1>
+              <GetVar Name="AlternateStyle" />
+            </Expr1>
+            <Expr2>ms-alternating</Expr2>
+            <Then>
+              <SetVar Scope="Request" Name="AlternateStyle">
+              </SetVar>
+            </Then>
+            <Else>
+              <SetVar Scope="Request" Name="AlternateStyle">ms-alternating</SetVar>
+            </Else>
+          </IfEqual>
+          <Fields><HTML><![CDATA[<TD Class="]]></HTML>
+            <FieldSwitch>
+              <Expr>
+                <Property Select="ClassInfo" />
+              </Expr>
+              <Case Value="Menu"><HTML><![CDATA[ms-vb-title" height="100%]]></HTML>
+              </Case>
+              <Case Value="Icon">ms-vb-icon</Case>
+              <Default>
+                <FieldSwitch>
+                  <Expr>
+                    <Property Select="Type" />
+                    <PresenceEnabled />
+                  </Expr>
+                  <Case Value="UserTRUE">ms-vb-user</Case>
+                  <Case Value="UserMultiTRUE">ms-vb-user</Case>
+                  <Default>ms-vb2</Default>
+                </FieldSwitch>
+              </Default>
+            </FieldSwitch><HTML><![CDATA[">]]></HTML>
+            <Field /><HTML><![CDATA[</TD>]]></HTML>
+          </Fields><HTML><![CDATA[</TR>]]></HTML>
+        </ViewBody>
+        <ViewFooter><HTML><![CDATA[</TABLE>]]></HTML><HTML><![CDATA[</td></tr></table>]]></HTML>
+        </ViewFooter>
+        <RowLimitExceeded><HTML><![CDATA[
+        <TABLE class="ms-summarystandardbody" width="100%" border=0><TR><TD Class="ms-vb"><a href="]]></HTML>
+          <ListProperty Select="DefaultViewUrl" /><HTML><![CDATA[" ID=onetidMore>]]></HTML><HTML>$Resources:core,moreItemsParen;</HTML><HTML><![CDATA[</a></TD></TR>
+        <tr><td height="8"><img src="]]></HTML>
+          <HttpVDir /><HTML><![CDATA[/_layouts/images/blank.gif" width="1" height="8" alt="">
+        </td></tr>
+        </TABLE>]]></HTML>
+        </RowLimitExceeded>
+        <ViewEmpty><HTML><![CDATA[<SCRIPT>
+ctx = new ContextInfo();
+ctx.listBaseType = ]]></HTML>
+          <ListProperty Select="BaseType" /><HTML><![CDATA[;
+ctx.listTemplate = ]]></HTML>
+          <ListProperty Select="ServerTemplate" /><HTML><![CDATA[;
+ctx.listName = ]]></HTML>
+          <ScriptQuote>
+            <List />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.view = ]]></HTML>
+          <ScriptQuote>
+            <GetVar Name="View" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.listUrlDir = ]]></HTML>
+          <ScriptQuote>
+            <ListUrlDir ServerRel="TRUE" URLEncodeAsURL="TRUE" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.HttpPath = ]]></HTML>
+          <ScriptQuote>
+            <HttpPath ServerRel="TRUE" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.HttpRoot = ]]></HTML>
+          <ScriptQuote>
+            <HttpVDir />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.imagesPath = ]]></HTML>
+          <ScriptQuote>/_layouts/images/</ScriptQuote><HTML><![CDATA[;
+ctx.PortalUrl = ]]></HTML>
+          <ScriptQuote>
+            <ProjectProperty Select="PortalUrl" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.SendToLocationName = ]]></HTML>
+          <ScriptQuote>
+            <ListProperty Select="SendToLocationName" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.SendToLocationUrl = ]]></HTML>
+          <ScriptQuote>
+            <ListProperty Select="SendToLocationUrl" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.RecycleBinEnabled = ]]></HTML>
+          <ProjectProperty Select="RecycleBinEnabled" /><HTML><![CDATA[;
+ctx.OfficialFileName = ]]></HTML>
+          <ScriptQuote>
+            <ServerProperty Select="OfficialFileName" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.WriteSecurity = ]]></HTML>
+          <ScriptQuote>
+            <ListProperty Select="WriteSecurity" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.SiteTitle = ]]></HTML>
+          <ScriptQuote>
+            <ProjectProperty Select="Title" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.ListTitle = ]]></HTML>
+          <ScriptQuote>
+            <ListProperty Select="Title" />
+          </ScriptQuote><HTML><![CDATA[;
+if (ctx.PortalUrl == "") ctx.PortalUrl = null;
+ctx.displayFormUrl = ]]></HTML>
+          <ScriptQuote>
+            <URL Cmd="DISPLAY" NoID="TRUE" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.editFormUrl = ]]></HTML>
+          <ScriptQuote>
+            <URL Cmd="EDIT" NoID="TRUE" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.isWebEditorPreview = ]]></HTML>
+          <Switch>
+            <Expr>
+              <GetVar Name="WebEditorPreview" />
+            </Expr>
+            <Case Value="TRUE">1</Case>
+            <Default>0</Default>
+          </Switch><HTML><![CDATA[;
+ctx.ctxId = ]]></HTML>
+          <Counter Type="View" /><HTML><![CDATA[;
+g_ViewIdToViewCounterMap[ ]]></HTML>
+          <ScriptQuote>
+            <GetVar Name="View" />
+          </ScriptQuote><HTML><![CDATA[ ]= ]]></HTML>
+          <Counter Type="View" /><HTML><![CDATA[;
+ctx.CurrentUserId = ]]></HTML>
+          <UserID AllowAnonymous="TRUE" /><HTML><![CDATA[;
+]]></HTML>
+          <Switch>
+            <Expr>
+              <ListProperty Select="ModeratedList" />
+            </Expr>
+            <Case Value="1">
+ctx.isModerated = true;
+</Case>
+          </Switch>
+          <Switch>
+            <Expr>
+              <ListProperty Select="ForceCheckout" />
+            </Expr>
+            <Case Value="1">
+ctx.isForceCheckout = true;
+</Case>
+          </Switch>
+          <Switch>
+            <Expr>
+              <ListProperty Select="EnableMinorVersions" />
+            </Expr>
+            <Case Value="1">
+ctx.EnableMinorVersions = true;
+</Case>
+          </Switch>
+          <Switch>
+            <Expr>
+              <ListProperty Select="VersioningEnabled" />
+            </Expr>
+            <Case Value="1">
+ctx.verEnabled = 1;
+</Case>
+          </Switch>
+          <Switch>
+            <Expr>
+              <GetVar Name="RecursiveView" />
+            </Expr>
+            <Case Value="1">
+ctx.recursiveView = true;
+</Case>
+          </Switch>
+          <Switch>
+            <Expr>
+              <ListProperty Select="WorkflowsAssociated" />
+            </Expr>
+            <Case Value="1">
+ctx.WorkflowsAssociated = true;
+</Case>
+          </Switch>
+          <Switch>
+            <Expr>
+              <ListProperty Select="EnableContentTypes" />
+            </Expr>
+            <Case Value="1">
+ctx.ContentTypesEnabled = true;
+</Case>
+          </Switch><HTML><![CDATA[ 
+ctx]]></HTML>
+          <Counter Type="View" /><HTML><![CDATA[ = ctx;
+</SCRIPT>]]></HTML>
+          <Switch>
+            <Expr>
+              <ListProperty Select="Direction" />
+            </Expr>
+            <Case Value="ltr"><HTML><![CDATA[<SCRIPT>FixTextAlignForBidi("left");</SCRIPT>]]></HTML>
+            </Case>
+            <Case Value="rtl"><HTML><![CDATA[<SCRIPT>FixTextAlignForBidi("right");</SCRIPT>]]></HTML>
+            </Case>
+          </Switch><HTML><![CDATA[<TABLE width="100%" class="ms-listviewtable" cellspacing=0 cellpadding=0 border=0 dir="]]></HTML>
+          <ListProperty Select="Direction" HTMLEncode="TRUE" /><HTML><![CDATA["><tr><td>]]></HTML><HTML><![CDATA[<TABLE ID=onetidDoclibViewTbl0 width="100%" cellpadding=0 cellspacing=0 Summary="]]></HTML>
+          <ListProperty Select="Title" HTMLEncode="TRUE" /><HTML><![CDATA[" ]]></HTML><HTML><![CDATA[border=0><TR class="ms-viewheadertr">]]></HTML><HTML><![CDATA[<IFRAME src="javascript:false;" id="FilterIframe]]></HTML>
+          <Counter Type="View" /><HTML><![CDATA[" name="FilterIframe]]></HTML>
+          <Counter Type="View" /><HTML><![CDATA[" style="display:none" height="0" width="0" title="]]></HTML><HTML>$Resources:filterIFrameTitle;</HTML><HTML><![CDATA[" FilterLink="]]></HTML>
+          <FilterLink HTMLEncode="TRUE" Paged="FALSE" /><HTML><![CDATA["></IFRAME>]]></HTML>
+          <Fields>
+            <Switch>
+              <Expr>
+                <Property Select="Name" />
+              </Expr>
+              <Case Value="Attachments"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh-icon">]]></HTML>
+                <IfEqual>
+                  <Expr1>
+                    <GetVar Name="Plain" />
+                  </Expr1>
+                  <Expr2>TRUE</Expr2>
+                  <Then>
+                    <Field />
+                  </Then>
+                  <Else><HTML><![CDATA[<div style="width:100%;position:relative;left:0;top:0;"><TABLE style="width:100%;" Sortable="]]></HTML>
+                    <Property Select="Sortable" HTMLEncode="TRUE" /><HTML><![CDATA[" SortDisable="]]></HTML>
+                    <GetVar Name="SortDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" FilterDisable="]]></HTML>
+                    <GetVar Name="FilterDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" Filterable="]]></HTML>
+                    <Property Select="Filterable" HTMLEncode="TRUE" /><HTML><![CDATA[" Name="]]></HTML>
+                    <Property Select="Name" HTMLEncode="TRUE" /><HTML><![CDATA[" CtxNum="]]></HTML>
+                    <Counter Type="View" /><HTML><![CDATA[" DisplayName="]]></HTML>
+                    <Property Select="DisplayName" HTMLEncode="TRUE" /><HTML><![CDATA[" FieldType="]]></HTML>
+                    <Property Select="Type" HTMLEncode="TRUE" /><HTML><![CDATA[" ResultType="]]></HTML>
+                    <Property Select="ResultType" HTMLEncode="TRUE" /><HTML><![CDATA[" SortFields="]]></HTML>
+                    <FieldSortParams HTMLEncode="TRUE" /><HTML><![CDATA[" height="100%" cellspacing=1 cellpadding=0 class="ms-unselectedtitle" onmouseover="OnMouseOverFilter(this)"><TR><TD width="100%" Class="ms-vb" nowrap>]]></HTML>
+                    <Field /><HTML><![CDATA[</TD>]]></HTML>
+                    <Switch>
+                      <Expr>
+                        <ListProperty Select="Direction" />
+                      </Expr>
+                      <Case Value="rtl"><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                      </Case>
+                      <Default><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                      </Default>
+                    </Switch><HTML><![CDATA[</TR></TABLE></div>]]></HTML>
+                  </Else>
+                </IfEqual><HTML><![CDATA[</TH>]]></HTML>
+              </Case>
+              <Default>
+                <Switch>
+                  <Expr>
+                    <Property Select="Type" />
+                  </Expr>
+                  <Case Value="Note"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh2-nograd">]]></HTML>
+                    <Field /><HTML><![CDATA[</TH>]]></HTML>
+                  </Case>
+                  <Default>
+                    <Switch>
+                      <Expr>
+                        <Property Select="Filterable" />
+                      </Expr>
+                      <Case Value="FALSE">
+                        <Switch>
+                          <Expr>
+                            <Property Select="Sortable" />
+                          </Expr>
+                          <Case Value="FALSE">
+                            <Switch>
+                              <Expr>
+                                <Property Select="Name" />
+                              </Expr>
+                              <Case Value="SelectedFlag"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh3-nograd">]]></HTML>
+                                <Field /><HTML><![CDATA[</TH>]]></HTML>
+                              </Case>
+                              <Default>
+                                <Switch>
+                                  <Expr>
+                                    <Property Select="Type" />
+                                    <Property Select="ShowFieldImnHeader" />
+                                    <PresenceEnabled />
+                                  </Expr>
+                                  <Case Value="UserTRUETRUE"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh">]]></HTML>
+                                    <Field /><HTML><![CDATA[</TH>]]></HTML>
+                                  </Case>
+                                  <Case Value="UserMultiTRUETRUE"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh">]]></HTML>
+                                    <Field /><HTML><![CDATA[</TH>]]></HTML>
+                                  </Case>
+                                  <Default><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh2-nograd">]]></HTML>
+                                    <Field /><HTML><![CDATA[</TH>]]></HTML>
+                                  </Default>
+                                </Switch>
+                              </Default>
+                            </Switch>
+                          </Case>
+                          <Default>
+                            <Switch>
+                              <Expr>
+                                <Property Select="SortDisable" />
+                              </Expr>
+                              <Case Value="TRUE"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh2-nograd">]]></HTML>
+                                <Field /><HTML><![CDATA[</TH>]]></HTML>
+                              </Case>
+                              <Default><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh2">]]></HTML>
+                                <IfEqual>
+                                  <Expr1>
+                                    <GetVar Name="Plain" />
+                                  </Expr1>
+                                  <Expr2>TRUE</Expr2>
+                                  <Then>
+                                    <Field />
+                                  </Then>
+                                  <Else><HTML><![CDATA[<div style="width:100%;position:relative;left:0;top:0;"><TABLE style="width:100%;" Sortable="]]></HTML>
+                                    <Property Select="Sortable" HTMLEncode="TRUE" /><HTML><![CDATA[" SortDisable="]]></HTML>
+                                    <GetVar Name="SortDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" FilterDisable="]]></HTML>
+                                    <GetVar Name="FilterDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" Filterable="]]></HTML>
+                                    <Property Select="Filterable" HTMLEncode="TRUE" /><HTML><![CDATA[" Name="]]></HTML>
+                                    <Property Select="Name" HTMLEncode="TRUE" /><HTML><![CDATA[" CtxNum="]]></HTML>
+                                    <Counter Type="View" /><HTML><![CDATA[" DisplayName="]]></HTML>
+                                    <Property Select="DisplayName" HTMLEncode="TRUE" /><HTML><![CDATA[" FieldType="]]></HTML>
+                                    <Property Select="Type" HTMLEncode="TRUE" /><HTML><![CDATA[" ResultType="]]></HTML>
+                                    <Property Select="ResultType" HTMLEncode="TRUE" /><HTML><![CDATA[" SortFields="]]></HTML>
+                                    <FieldSortParams HTMLEncode="TRUE" /><HTML><![CDATA[" height="100%" cellspacing=1 cellpadding=0 class="ms-unselectedtitle" onmouseover="OnMouseOverFilter(this)"><TR><TD width="100%" Class="ms-vb" nowrap>]]></HTML>
+                                    <Field /><HTML><![CDATA[</TD>]]></HTML>
+                                    <Switch>
+                                      <Expr>
+                                        <ListProperty Select="Direction" />
+                                      </Expr>
+                                      <Case Value="rtl"><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                      </Case>
+                                      <Default><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                      </Default>
+                                    </Switch><HTML><![CDATA[</TR></TABLE></div>]]></HTML>
+                                  </Else>
+                                </IfEqual><HTML><![CDATA[</TH>]]></HTML>
+                              </Default>
+                            </Switch>
+                          </Default>
+                        </Switch>
+                      </Case>
+                      <Default>
+                        <Switch>
+                          <Expr>
+                            <Property Select="Type" />
+                            <Property Select="ShowFieldImnHeader" />
+                            <PresenceEnabled />
+                          </Expr>
+                          <Case Value="UserTRUETRUE"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh">]]></HTML>
+                            <IfEqual>
+                              <Expr1>
+                                <GetVar Name="Plain" />
+                              </Expr1>
+                              <Expr2>TRUE</Expr2>
+                              <Then>
+                                <Field />
+                              </Then>
+                              <Else><HTML><![CDATA[<div style="width:100%;position:relative;left:0;top:0;"><TABLE style="width:100%;" Sortable="]]></HTML>
+                                <Property Select="Sortable" HTMLEncode="TRUE" /><HTML><![CDATA[" SortDisable="]]></HTML>
+                                <GetVar Name="SortDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" FilterDisable="]]></HTML>
+                                <GetVar Name="FilterDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" Filterable="]]></HTML>
+                                <Property Select="Filterable" HTMLEncode="TRUE" /><HTML><![CDATA[" Name="]]></HTML>
+                                <Property Select="Name" HTMLEncode="TRUE" /><HTML><![CDATA[" CtxNum="]]></HTML>
+                                <Counter Type="View" /><HTML><![CDATA[" DisplayName="]]></HTML>
+                                <Property Select="DisplayName" HTMLEncode="TRUE" /><HTML><![CDATA[" FieldType="]]></HTML>
+                                <Property Select="Type" HTMLEncode="TRUE" /><HTML><![CDATA[" ResultType="]]></HTML>
+                                <Property Select="ResultType" HTMLEncode="TRUE" /><HTML><![CDATA[" SortFields="]]></HTML>
+                                <FieldSortParams HTMLEncode="TRUE" /><HTML><![CDATA[" height="100%" cellspacing=1 cellpadding=0 class="ms-unselectedtitle" onmouseover="OnMouseOverFilter(this)"><TR><TD width="100%" Class="ms-vb" nowrap>]]></HTML>
+                                <Field /><HTML><![CDATA[</TD>]]></HTML>
+                                <Switch>
+                                  <Expr>
+                                    <ListProperty Select="Direction" />
+                                  </Expr>
+                                  <Case Value="rtl"><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                  </Case>
+                                  <Default><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                  </Default>
+                                </Switch><HTML><![CDATA[</TR></TABLE></div>]]></HTML>
+                              </Else>
+                            </IfEqual><HTML><![CDATA[</TH>]]></HTML>
+                          </Case>
+                          <Case Value="UserMultiTRUETRUE"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh">]]></HTML>
+                            <IfEqual>
+                              <Expr1>
+                                <GetVar Name="Plain" />
+                              </Expr1>
+                              <Expr2>TRUE</Expr2>
+                              <Then>
+                                <Field />
+                              </Then>
+                              <Else><HTML><![CDATA[<div style="width:100%;position:relative;left:0;top:0;"><TABLE style="width:100%;" Sortable="]]></HTML>
+                                <Property Select="Sortable" HTMLEncode="TRUE" /><HTML><![CDATA[" SortDisable="]]></HTML>
+                                <GetVar Name="SortDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" FilterDisable="]]></HTML>
+                                <GetVar Name="FilterDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" Filterable="]]></HTML>
+                                <Property Select="Filterable" HTMLEncode="TRUE" /><HTML><![CDATA[" Name="]]></HTML>
+                                <Property Select="Name" HTMLEncode="TRUE" /><HTML><![CDATA[" CtxNum="]]></HTML>
+                                <Counter Type="View" /><HTML><![CDATA[" DisplayName="]]></HTML>
+                                <Property Select="DisplayName" HTMLEncode="TRUE" /><HTML><![CDATA[" FieldType="]]></HTML>
+                                <Property Select="Type" HTMLEncode="TRUE" /><HTML><![CDATA[" ResultType="]]></HTML>
+                                <Property Select="ResultType" HTMLEncode="TRUE" /><HTML><![CDATA[" SortFields="]]></HTML>
+                                <FieldSortParams HTMLEncode="TRUE" /><HTML><![CDATA[" height="100%" cellspacing=1 cellpadding=0 class="ms-unselectedtitle" onmouseover="OnMouseOverFilter(this)"><TR><TD width="100%" Class="ms-vb" nowrap>]]></HTML>
+                                <Field /><HTML><![CDATA[</TD>]]></HTML>
+                                <Switch>
+                                  <Expr>
+                                    <ListProperty Select="Direction" />
+                                  </Expr>
+                                  <Case Value="rtl"><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                  </Case>
+                                  <Default><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                  </Default>
+                                </Switch><HTML><![CDATA[</TR></TABLE></div>]]></HTML>
+                              </Else>
+                            </IfEqual><HTML><![CDATA[</TH>]]></HTML>
+                          </Case>
+                          <Default>
+                            <Switch>
+                              <Expr>
+                                <Property Select="HeaderImage" />
+                              </Expr>
+                              <Case Value=""><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh2">]]></HTML>
+                                <IfEqual>
+                                  <Expr1>
+                                    <GetVar Name="Plain" />
+                                  </Expr1>
+                                  <Expr2>TRUE</Expr2>
+                                  <Then>
+                                    <Field />
+                                  </Then>
+                                  <Else><HTML><![CDATA[<div style="width:100%;position:relative;left:0;top:0;"><TABLE style="width:100%;" Sortable="]]></HTML>
+                                    <Property Select="Sortable" HTMLEncode="TRUE" /><HTML><![CDATA[" SortDisable="]]></HTML>
+                                    <GetVar Name="SortDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" FilterDisable="]]></HTML>
+                                    <GetVar Name="FilterDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" Filterable="]]></HTML>
+                                    <Property Select="Filterable" HTMLEncode="TRUE" /><HTML><![CDATA[" Name="]]></HTML>
+                                    <Property Select="Name" HTMLEncode="TRUE" /><HTML><![CDATA[" CtxNum="]]></HTML>
+                                    <Counter Type="View" /><HTML><![CDATA[" DisplayName="]]></HTML>
+                                    <Property Select="DisplayName" HTMLEncode="TRUE" /><HTML><![CDATA[" FieldType="]]></HTML>
+                                    <Property Select="Type" HTMLEncode="TRUE" /><HTML><![CDATA[" ResultType="]]></HTML>
+                                    <Property Select="ResultType" HTMLEncode="TRUE" /><HTML><![CDATA[" SortFields="]]></HTML>
+                                    <FieldSortParams HTMLEncode="TRUE" /><HTML><![CDATA[" height="100%" cellspacing=1 cellpadding=0 class="ms-unselectedtitle" onmouseover="OnMouseOverFilter(this)"><TR><TD width="100%" Class="ms-vb" nowrap>]]></HTML>
+                                    <Field /><HTML><![CDATA[</TD>]]></HTML>
+                                    <Switch>
+                                      <Expr>
+                                        <ListProperty Select="Direction" />
+                                      </Expr>
+                                      <Case Value="rtl"><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                      </Case>
+                                      <Default><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                      </Default>
+                                    </Switch><HTML><![CDATA[</TR></TABLE></div>]]></HTML>
+                                  </Else>
+                                </IfEqual><HTML><![CDATA[</TH>]]></HTML>
+                              </Case>
+                              <Default><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh-icon">]]></HTML>
+                                <IfEqual>
+                                  <Expr1>
+                                    <GetVar Name="Plain" />
+                                  </Expr1>
+                                  <Expr2>TRUE</Expr2>
+                                  <Then>
+                                    <Field />
+                                  </Then>
+                                  <Else><HTML><![CDATA[<div style="width:100%;position:relative;left:0;top:0;"><TABLE style="width:100%;" Sortable="]]></HTML>
+                                    <Property Select="Sortable" HTMLEncode="TRUE" /><HTML><![CDATA[" SortDisable="]]></HTML>
+                                    <GetVar Name="SortDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" FilterDisable="]]></HTML>
+                                    <GetVar Name="FilterDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" Filterable="]]></HTML>
+                                    <Property Select="Filterable" HTMLEncode="TRUE" /><HTML><![CDATA[" Name="]]></HTML>
+                                    <Property Select="Name" HTMLEncode="TRUE" /><HTML><![CDATA[" CtxNum="]]></HTML>
+                                    <Counter Type="View" /><HTML><![CDATA[" DisplayName="]]></HTML>
+                                    <Property Select="DisplayName" HTMLEncode="TRUE" /><HTML><![CDATA[" FieldType="]]></HTML>
+                                    <Property Select="Type" HTMLEncode="TRUE" /><HTML><![CDATA[" ResultType="]]></HTML>
+                                    <Property Select="ResultType" HTMLEncode="TRUE" /><HTML><![CDATA[" SortFields="]]></HTML>
+                                    <FieldSortParams HTMLEncode="TRUE" /><HTML><![CDATA[" height="100%" cellspacing=1 cellpadding=0 class="ms-unselectedtitle" onmouseover="OnMouseOverFilter(this)"><TR><TD width="100%" Class="ms-vb" nowrap>]]></HTML>
+                                    <Field /><HTML><![CDATA[</TD>]]></HTML>
+                                    <Switch>
+                                      <Expr>
+                                        <ListProperty Select="Direction" />
+                                      </Expr>
+                                      <Case Value="rtl"><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                      </Case>
+                                      <Default><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                      </Default>
+                                    </Switch><HTML><![CDATA[</TR></TABLE></div>]]></HTML>
+                                  </Else>
+                                </IfEqual><HTML><![CDATA[</TH>]]></HTML>
+                              </Default>
+                            </Switch>
+                          </Default>
+                        </Switch>
+                      </Default>
+                    </Switch>
+                  </Default>
+                </Switch>
+              </Default>
+            </Switch>
+          </Fields><HTML><![CDATA[</TR>]]></HTML><HTML><![CDATA[</TABLE>]]></HTML><HTML><![CDATA[</td></tr>]]></HTML><HTML><![CDATA[<tr><td>]]></HTML><HTML><![CDATA[<TABLE ]]></HTML><HTML><![CDATA[ class="ms-summarycustombody" cellpadding=0 cellspacing=0  ]]></HTML><HTML><![CDATA[ border=0><TR>]]></HTML><HTML><![CDATA[<TD Class="ms-vb"> ]]></HTML><HTML>$ResourcesNoEncode:core,noXinviewofY_LIST;</HTML>
+          <IfHasRights>
+            <RightsChoices>
+              <RightsGroup PermAddListItems="required" />
+            </RightsChoices>
+            <Then><HTML> $Resources:core,noXinviewofY_ONET_HOME;</HTML>
+            </Then>
+          </IfHasRights><HTML><![CDATA[</TD>]]></HTML><HTML><![CDATA[</tr><tr><td height="5"><img src="/_layouts/images/blank.gif" width="1" height="5" alt=""></td></tr></table>]]></HTML><HTML><![CDATA[</td></tr></TABLE>]]></HTML>
+        </ViewEmpty>
+        <Toolbar Position="After" Type="Freeform">
+          <IfHasRights>
+            <RightsChoices>
+              <RightsGroup PermAddListItems="required" />
+            </RightsChoices>
+            <Then><HTML><![CDATA[ <table width=100% cellpadding=0 cellspacing=0 border=0 > <tr> <td colspan="2" class="ms-partline"><IMG SRC="/_layouts/images/blank.gif" width=1 height=1 alt=""></td> </tr> <tr> <td class="ms-addnew" style="padding-bottom: 3px"> <img src="/_layouts/images/rect.gif" alt="">&nbsp;<a class="ms-addnew" ID="idAddNewItem" href="]]></HTML>
+              <URL Cmd="New" /><HTML><![CDATA[" ONCLICK="javascript:NewItem(']]></HTML>
+              <URL Cmd="New" /><HTML><![CDATA[', true);javascript:return false;" target="_self">]]></HTML><HTML><!-- _locID_text="onetid6" _locComment="{StringCategory=HTX}" -->$Resources:core,addnewitem;</HTML><HTML><![CDATA[</a> </td> </tr> <tr><td><IMG SRC="/_layouts/images/blank.gif" width=1 height=5 alt=""></td></tr> </table>]]></HTML>
+            </Then>
+          </IfHasRights>
+        </Toolbar>
+        <RowLimit>20</RowLimit>
+        <ViewFields>
+          <FieldRef Name="LinkTitleNoMenu">
+          </FieldRef>
+        </ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="Modified" Ascending="FALSE">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+      </View>
+      <View BaseViewID="1" Type="HTML" WebPartZoneID="Main" DisplayName="$Resources:core,objectiv_schema_mwsidcamlidC24;" DefaultView="TRUE" SetupPath="pages\viewpage.aspx" ImageUrl="/_layouts/images/generic.png" Url="AllItems.aspx"><!-- _locID@DisplayName="camlidCu2" _locComment=" " -->
+        <GroupByHeader><HTML><![CDATA[<TBODY id="titl]]></HTML>
+          <GetVar Name="GroupByLevelString" /><HTML><![CDATA[" groupString="]]></HTML>
+          <GetVar Name="GroupByValueString" /><HTML><![CDATA["><TR><TD colspan="100"]]></HTML>
+          <Switch>
+            <Expr>
+              <GetVar Name="GroupByIndent" />
+            </Expr>
+            <Case Value="0"><HTML><![CDATA[ class="ms-gb" ]]></HTML>
+            </Case>
+            <Default><HTML><![CDATA[ class="ms-gb2" ]]></HTML>
+            </Default>
+          </Switch><HTML><![CDATA[ nowrap><img src="/_layouts/images/blank.gif" alt="" height=1 width=]]></HTML>
+          <GetVar Name="GroupByIndent" /><HTML><![CDATA[><a href="javascript:" onclick="javascript:ExpCollGroup(']]></HTML>
+          <GetVar Name="GroupByLevelString" /><HTML><![CDATA[','img_]]></HTML>
+          <GetVar Name="GroupByLevelString" /><HTML><![CDATA[');return false;"><img id="img_]]></HTML>
+          <GetVar Name="GroupByLevelString" /><HTML><![CDATA[" src="/_layouts/images/minus.gif" alt="]]></HTML><HTML>$Resources:groupExpColl;</HTML><HTML><![CDATA[" border="0"></a>&nbsp;]]></HTML><HTML><![CDATA[<a href="javascript:" onclick="javascript:ExpCollGroup(']]></HTML>
+          <GetVar Name="GroupByLevelString" /><HTML><![CDATA[','img_]]></HTML>
+          <GetVar Name="GroupByLevelString" /><HTML><![CDATA[');return false;">]]></HTML>
+          <GetVar Name="GroupByField" HTMLEncode="TRUE" /><HTML><![CDATA[</a> :&nbsp;]]></HTML>
+          <GetVar Name="GroupByValue" /><HTML><![CDATA[</TD></TR></TBODY>]]></HTML>
+        </GroupByHeader>
+        <GroupByFooter>
+          <Switch>
+            <Expr>
+              <GetVar Name="GroupByIndent" />
+            </Expr>
+            <Case Value="0"><HTML><![CDATA[<TBODY id="foot]]></HTML>
+              <GetVar Name="GroupByLevelString" /><HTML><![CDATA[_"></TBODY>]]></HTML>
+            </Case>
+            <Default />
+          </Switch>
+          <Switch>
+            <Expr>
+              <GetVar Name="GroupByCollapse" />
+            </Expr>
+            <Case Value="TRUE"><HTML><![CDATA[<SCRIPT>ExpCollGroup(']]></HTML>
+              <GetVar Name="GroupByLevelString" /><HTML><![CDATA[','img_]]></HTML>
+              <GetVar Name="GroupByLevelString" /><HTML><![CDATA[');</SCRIPT>]]></HTML>
+            </Case>
+            <Default />
+          </Switch>
+        </GroupByFooter>
+        <ViewHeader><HTML><![CDATA[<TABLE width="100%" cellspacing=0 cellpadding=0 border=0>]]></HTML><HTML><![CDATA[<SCRIPT>
+ctx = new ContextInfo();
+ctx.listBaseType = ]]></HTML>
+          <ListProperty Select="BaseType" /><HTML><![CDATA[;
+ctx.listTemplate = ]]></HTML>
+          <ListProperty Select="ServerTemplate" /><HTML><![CDATA[;
+ctx.listName = ]]></HTML>
+          <ScriptQuote>
+            <List />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.view = ]]></HTML>
+          <ScriptQuote>
+            <GetVar Name="View" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.listUrlDir = ]]></HTML>
+          <ScriptQuote>
+            <ListUrlDir ServerRel="TRUE" URLEncodeAsURL="TRUE" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.HttpPath = ]]></HTML>
+          <ScriptQuote>
+            <HttpPath ServerRel="TRUE" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.HttpRoot = ]]></HTML>
+          <ScriptQuote>
+            <HttpVDir />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.imagesPath = ]]></HTML>
+          <ScriptQuote>/_layouts/images/</ScriptQuote><HTML><![CDATA[;
+ctx.PortalUrl = ]]></HTML>
+          <ScriptQuote>
+            <ProjectProperty Select="PortalUrl" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.SendToLocationName = ]]></HTML>
+          <ScriptQuote>
+            <ListProperty Select="SendToLocationName" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.SendToLocationUrl = ]]></HTML>
+          <ScriptQuote>
+            <ListProperty Select="SendToLocationUrl" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.RecycleBinEnabled = ]]></HTML>
+          <ProjectProperty Select="RecycleBinEnabled" /><HTML><![CDATA[;
+ctx.OfficialFileName = ]]></HTML>
+          <ScriptQuote>
+            <ServerProperty Select="OfficialFileName" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.WriteSecurity = ]]></HTML>
+          <ScriptQuote>
+            <ListProperty Select="WriteSecurity" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.SiteTitle = ]]></HTML>
+          <ScriptQuote>
+            <ProjectProperty Select="Title" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.ListTitle = ]]></HTML>
+          <ScriptQuote>
+            <ListProperty Select="Title" />
+          </ScriptQuote><HTML><![CDATA[;
+if (ctx.PortalUrl == "") ctx.PortalUrl = null;
+ctx.displayFormUrl = ]]></HTML>
+          <ScriptQuote>
+            <URL Cmd="DISPLAY" NoID="TRUE" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.editFormUrl = ]]></HTML>
+          <ScriptQuote>
+            <URL Cmd="EDIT" NoID="TRUE" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.isWebEditorPreview = ]]></HTML>
+          <Switch>
+            <Expr>
+              <GetVar Name="WebEditorPreview" />
+            </Expr>
+            <Case Value="TRUE">1</Case>
+            <Default>0</Default>
+          </Switch><HTML><![CDATA[;
+ctx.ctxId = ]]></HTML>
+          <Counter Type="View" /><HTML><![CDATA[;
+g_ViewIdToViewCounterMap[ ]]></HTML>
+          <ScriptQuote>
+            <GetVar Name="View" />
+          </ScriptQuote><HTML><![CDATA[ ]= ]]></HTML>
+          <Counter Type="View" /><HTML><![CDATA[;
+ctx.CurrentUserId = ]]></HTML>
+          <UserID AllowAnonymous="TRUE" /><HTML><![CDATA[;
+]]></HTML>
+          <Switch>
+            <Expr>
+              <ListProperty Select="ModeratedList" />
+            </Expr>
+            <Case Value="1">
+ctx.isModerated = true;
+</Case>
+          </Switch>
+          <Switch>
+            <Expr>
+              <ListProperty Select="ForceCheckout" />
+            </Expr>
+            <Case Value="1">
+ctx.isForceCheckout = true;
+</Case>
+          </Switch>
+          <Switch>
+            <Expr>
+              <ListProperty Select="EnableMinorVersions" />
+            </Expr>
+            <Case Value="1">
+ctx.EnableMinorVersions = true;
+</Case>
+          </Switch>
+          <Switch>
+            <Expr>
+              <ListProperty Select="VersioningEnabled" />
+            </Expr>
+            <Case Value="1">
+ctx.verEnabled = 1;
+</Case>
+          </Switch>
+          <Switch>
+            <Expr>
+              <GetVar Name="RecursiveView" />
+            </Expr>
+            <Case Value="1">
+ctx.recursiveView = true;
+</Case>
+          </Switch>
+          <Switch>
+            <Expr>
+              <ListProperty Select="WorkflowsAssociated" />
+            </Expr>
+            <Case Value="1">
+ctx.WorkflowsAssociated = true;
+</Case>
+          </Switch>
+          <Switch>
+            <Expr>
+              <ListProperty Select="EnableContentTypes" />
+            </Expr>
+            <Case Value="1">
+ctx.ContentTypesEnabled = true;
+</Case>
+          </Switch><HTML><![CDATA[ 
+ctx]]></HTML>
+          <Counter Type="View" /><HTML><![CDATA[ = ctx;
+</SCRIPT>]]></HTML>
+          <Switch>
+            <Expr>
+              <ListProperty Select="Direction" />
+            </Expr>
+            <Case Value="ltr"><HTML><![CDATA[<SCRIPT>FixTextAlignForBidi("left");</SCRIPT>]]></HTML>
+            </Case>
+            <Case Value="rtl"><HTML><![CDATA[<SCRIPT>FixTextAlignForBidi("right");</SCRIPT>]]></HTML>
+            </Case>
+          </Switch><HTML><![CDATA[<tr><td>]]></HTML><HTML><![CDATA[<TABLE ID="]]></HTML>
+          <WebQueryInfo /><HTML><![CDATA[" width="100%" class="]]></HTML><HTML><![CDATA[ms-listviewtable]]></HTML><HTML><![CDATA[" border=0 cellspacing=0 cellpadding=1 dir="]]></HTML>
+          <ListProperty Select="Direction" HTMLEncode="TRUE" /><HTML><![CDATA[" summary="]]></HTML>
+          <ListProperty Select="Title" HTMLEncode="TRUE" /><HTML><![CDATA["><TR class="ms-viewheadertr" VALIGN=TOP>]]></HTML><HTML><![CDATA[<IFRAME src="javascript:false;" id="FilterIframe]]></HTML>
+          <Counter Type="View" /><HTML><![CDATA[" name="FilterIframe]]></HTML>
+          <Counter Type="View" /><HTML><![CDATA[" style="display:none" height="0" width="0" title="]]></HTML><HTML>$Resources:filterIFrameTitle;</HTML><HTML><![CDATA[" FilterLink="]]></HTML>
+          <FilterLink HTMLEncode="TRUE" Paged="FALSE" /><HTML><![CDATA["></IFRAME>]]></HTML>
+          <Fields>
+            <Switch>
+              <Expr>
+                <Property Select="Name" />
+              </Expr>
+              <Case Value="Attachments"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh-icon">]]></HTML>
+                <IfEqual>
+                  <Expr1>
+                    <GetVar Name="Plain" />
+                  </Expr1>
+                  <Expr2>TRUE</Expr2>
+                  <Then>
+                    <Field />
+                  </Then>
+                  <Else><HTML><![CDATA[<div style="width:100%;position:relative;left:0;top:0;"><TABLE style="width:100%;" Sortable="]]></HTML>
+                    <Property Select="Sortable" HTMLEncode="TRUE" /><HTML><![CDATA[" SortDisable="]]></HTML>
+                    <GetVar Name="SortDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" FilterDisable="]]></HTML>
+                    <GetVar Name="FilterDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" Filterable="]]></HTML>
+                    <Property Select="Filterable" HTMLEncode="TRUE" /><HTML><![CDATA[" Name="]]></HTML>
+                    <Property Select="Name" HTMLEncode="TRUE" /><HTML><![CDATA[" CtxNum="]]></HTML>
+                    <Counter Type="View" /><HTML><![CDATA[" DisplayName="]]></HTML>
+                    <Property Select="DisplayName" HTMLEncode="TRUE" /><HTML><![CDATA[" FieldType="]]></HTML>
+                    <Property Select="Type" HTMLEncode="TRUE" /><HTML><![CDATA[" ResultType="]]></HTML>
+                    <Property Select="ResultType" HTMLEncode="TRUE" /><HTML><![CDATA[" SortFields="]]></HTML>
+                    <FieldSortParams HTMLEncode="TRUE" /><HTML><![CDATA[" height="100%" cellspacing=1 cellpadding=0 class="ms-unselectedtitle" onmouseover="OnMouseOverFilter(this)"><TR><TD width="100%" Class="ms-vb" nowrap>]]></HTML>
+                    <Field /><HTML><![CDATA[</TD>]]></HTML>
+                    <Switch>
+                      <Expr>
+                        <ListProperty Select="Direction" />
+                      </Expr>
+                      <Case Value="rtl"><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                      </Case>
+                      <Default><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                      </Default>
+                    </Switch><HTML><![CDATA[</TR></TABLE></div>]]></HTML>
+                  </Else>
+                </IfEqual><HTML><![CDATA[</TH>]]></HTML>
+              </Case>
+              <Default>
+                <Switch>
+                  <Expr>
+                    <Property Select="Type" />
+                  </Expr>
+                  <Case Value="Note"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh2-nograd">]]></HTML>
+                    <Field /><HTML><![CDATA[</TH>]]></HTML>
+                  </Case>
+                  <Default>
+                    <Switch>
+                      <Expr>
+                        <Property Select="Filterable" />
+                      </Expr>
+                      <Case Value="FALSE">
+                        <Switch>
+                          <Expr>
+                            <Property Select="Sortable" />
+                          </Expr>
+                          <Case Value="FALSE">
+                            <Switch>
+                              <Expr>
+                                <Property Select="Name" />
+                              </Expr>
+                              <Case Value="SelectedFlag"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh3-nograd">]]></HTML>
+                                <Field /><HTML><![CDATA[</TH>]]></HTML>
+                              </Case>
+                              <Default>
+                                <Switch>
+                                  <Expr>
+                                    <Property Select="Type" />
+                                    <Property Select="ShowFieldImnHeader" />
+                                    <PresenceEnabled />
+                                  </Expr>
+                                  <Case Value="UserTRUETRUE"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh">]]></HTML>
+                                    <Field /><HTML><![CDATA[</TH>]]></HTML>
+                                  </Case>
+                                  <Case Value="UserMultiTRUETRUE"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh">]]></HTML>
+                                    <Field /><HTML><![CDATA[</TH>]]></HTML>
+                                  </Case>
+                                  <Default><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh2-nograd">]]></HTML>
+                                    <Field /><HTML><![CDATA[</TH>]]></HTML>
+                                  </Default>
+                                </Switch>
+                              </Default>
+                            </Switch>
+                          </Case>
+                          <Default>
+                            <Switch>
+                              <Expr>
+                                <Property Select="SortDisable" />
+                              </Expr>
+                              <Case Value="TRUE"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh2-nograd">]]></HTML>
+                                <Field /><HTML><![CDATA[</TH>]]></HTML>
+                              </Case>
+                              <Default><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh2">]]></HTML>
+                                <IfEqual>
+                                  <Expr1>
+                                    <GetVar Name="Plain" />
+                                  </Expr1>
+                                  <Expr2>TRUE</Expr2>
+                                  <Then>
+                                    <Field />
+                                  </Then>
+                                  <Else><HTML><![CDATA[<div style="width:100%;position:relative;left:0;top:0;"><TABLE style="width:100%;" Sortable="]]></HTML>
+                                    <Property Select="Sortable" HTMLEncode="TRUE" /><HTML><![CDATA[" SortDisable="]]></HTML>
+                                    <GetVar Name="SortDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" FilterDisable="]]></HTML>
+                                    <GetVar Name="FilterDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" Filterable="]]></HTML>
+                                    <Property Select="Filterable" HTMLEncode="TRUE" /><HTML><![CDATA[" Name="]]></HTML>
+                                    <Property Select="Name" HTMLEncode="TRUE" /><HTML><![CDATA[" CtxNum="]]></HTML>
+                                    <Counter Type="View" /><HTML><![CDATA[" DisplayName="]]></HTML>
+                                    <Property Select="DisplayName" HTMLEncode="TRUE" /><HTML><![CDATA[" FieldType="]]></HTML>
+                                    <Property Select="Type" HTMLEncode="TRUE" /><HTML><![CDATA[" ResultType="]]></HTML>
+                                    <Property Select="ResultType" HTMLEncode="TRUE" /><HTML><![CDATA[" SortFields="]]></HTML>
+                                    <FieldSortParams HTMLEncode="TRUE" /><HTML><![CDATA[" height="100%" cellspacing=1 cellpadding=0 class="ms-unselectedtitle" onmouseover="OnMouseOverFilter(this)"><TR><TD width="100%" Class="ms-vb" nowrap>]]></HTML>
+                                    <Field /><HTML><![CDATA[</TD>]]></HTML>
+                                    <Switch>
+                                      <Expr>
+                                        <ListProperty Select="Direction" />
+                                      </Expr>
+                                      <Case Value="rtl"><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                      </Case>
+                                      <Default><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                      </Default>
+                                    </Switch><HTML><![CDATA[</TR></TABLE></div>]]></HTML>
+                                  </Else>
+                                </IfEqual><HTML><![CDATA[</TH>]]></HTML>
+                              </Default>
+                            </Switch>
+                          </Default>
+                        </Switch>
+                      </Case>
+                      <Default>
+                        <Switch>
+                          <Expr>
+                            <Property Select="Type" />
+                            <Property Select="ShowFieldImnHeader" />
+                            <PresenceEnabled />
+                          </Expr>
+                          <Case Value="UserTRUETRUE"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh">]]></HTML>
+                            <IfEqual>
+                              <Expr1>
+                                <GetVar Name="Plain" />
+                              </Expr1>
+                              <Expr2>TRUE</Expr2>
+                              <Then>
+                                <Field />
+                              </Then>
+                              <Else><HTML><![CDATA[<div style="width:100%;position:relative;left:0;top:0;"><TABLE style="width:100%;" Sortable="]]></HTML>
+                                <Property Select="Sortable" HTMLEncode="TRUE" /><HTML><![CDATA[" SortDisable="]]></HTML>
+                                <GetVar Name="SortDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" FilterDisable="]]></HTML>
+                                <GetVar Name="FilterDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" Filterable="]]></HTML>
+                                <Property Select="Filterable" HTMLEncode="TRUE" /><HTML><![CDATA[" Name="]]></HTML>
+                                <Property Select="Name" HTMLEncode="TRUE" /><HTML><![CDATA[" CtxNum="]]></HTML>
+                                <Counter Type="View" /><HTML><![CDATA[" DisplayName="]]></HTML>
+                                <Property Select="DisplayName" HTMLEncode="TRUE" /><HTML><![CDATA[" FieldType="]]></HTML>
+                                <Property Select="Type" HTMLEncode="TRUE" /><HTML><![CDATA[" ResultType="]]></HTML>
+                                <Property Select="ResultType" HTMLEncode="TRUE" /><HTML><![CDATA[" SortFields="]]></HTML>
+                                <FieldSortParams HTMLEncode="TRUE" /><HTML><![CDATA[" height="100%" cellspacing=1 cellpadding=0 class="ms-unselectedtitle" onmouseover="OnMouseOverFilter(this)"><TR><TD width="100%" Class="ms-vb" nowrap>]]></HTML>
+                                <Field /><HTML><![CDATA[</TD>]]></HTML>
+                                <Switch>
+                                  <Expr>
+                                    <ListProperty Select="Direction" />
+                                  </Expr>
+                                  <Case Value="rtl"><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                  </Case>
+                                  <Default><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                  </Default>
+                                </Switch><HTML><![CDATA[</TR></TABLE></div>]]></HTML>
+                              </Else>
+                            </IfEqual><HTML><![CDATA[</TH>]]></HTML>
+                          </Case>
+                          <Case Value="UserMultiTRUETRUE"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh">]]></HTML>
+                            <IfEqual>
+                              <Expr1>
+                                <GetVar Name="Plain" />
+                              </Expr1>
+                              <Expr2>TRUE</Expr2>
+                              <Then>
+                                <Field />
+                              </Then>
+                              <Else><HTML><![CDATA[<div style="width:100%;position:relative;left:0;top:0;"><TABLE style="width:100%;" Sortable="]]></HTML>
+                                <Property Select="Sortable" HTMLEncode="TRUE" /><HTML><![CDATA[" SortDisable="]]></HTML>
+                                <GetVar Name="SortDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" FilterDisable="]]></HTML>
+                                <GetVar Name="FilterDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" Filterable="]]></HTML>
+                                <Property Select="Filterable" HTMLEncode="TRUE" /><HTML><![CDATA[" Name="]]></HTML>
+                                <Property Select="Name" HTMLEncode="TRUE" /><HTML><![CDATA[" CtxNum="]]></HTML>
+                                <Counter Type="View" /><HTML><![CDATA[" DisplayName="]]></HTML>
+                                <Property Select="DisplayName" HTMLEncode="TRUE" /><HTML><![CDATA[" FieldType="]]></HTML>
+                                <Property Select="Type" HTMLEncode="TRUE" /><HTML><![CDATA[" ResultType="]]></HTML>
+                                <Property Select="ResultType" HTMLEncode="TRUE" /><HTML><![CDATA[" SortFields="]]></HTML>
+                                <FieldSortParams HTMLEncode="TRUE" /><HTML><![CDATA[" height="100%" cellspacing=1 cellpadding=0 class="ms-unselectedtitle" onmouseover="OnMouseOverFilter(this)"><TR><TD width="100%" Class="ms-vb" nowrap>]]></HTML>
+                                <Field /><HTML><![CDATA[</TD>]]></HTML>
+                                <Switch>
+                                  <Expr>
+                                    <ListProperty Select="Direction" />
+                                  </Expr>
+                                  <Case Value="rtl"><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                  </Case>
+                                  <Default><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                  </Default>
+                                </Switch><HTML><![CDATA[</TR></TABLE></div>]]></HTML>
+                              </Else>
+                            </IfEqual><HTML><![CDATA[</TH>]]></HTML>
+                          </Case>
+                          <Default>
+                            <Switch>
+                              <Expr>
+                                <Property Select="HeaderImage" />
+                              </Expr>
+                              <Case Value=""><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh2">]]></HTML>
+                                <IfEqual>
+                                  <Expr1>
+                                    <GetVar Name="Plain" />
+                                  </Expr1>
+                                  <Expr2>TRUE</Expr2>
+                                  <Then>
+                                    <Field />
+                                  </Then>
+                                  <Else><HTML><![CDATA[<div style="width:100%;position:relative;left:0;top:0;"><TABLE style="width:100%;" Sortable="]]></HTML>
+                                    <Property Select="Sortable" HTMLEncode="TRUE" /><HTML><![CDATA[" SortDisable="]]></HTML>
+                                    <GetVar Name="SortDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" FilterDisable="]]></HTML>
+                                    <GetVar Name="FilterDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" Filterable="]]></HTML>
+                                    <Property Select="Filterable" HTMLEncode="TRUE" /><HTML><![CDATA[" Name="]]></HTML>
+                                    <Property Select="Name" HTMLEncode="TRUE" /><HTML><![CDATA[" CtxNum="]]></HTML>
+                                    <Counter Type="View" /><HTML><![CDATA[" DisplayName="]]></HTML>
+                                    <Property Select="DisplayName" HTMLEncode="TRUE" /><HTML><![CDATA[" FieldType="]]></HTML>
+                                    <Property Select="Type" HTMLEncode="TRUE" /><HTML><![CDATA[" ResultType="]]></HTML>
+                                    <Property Select="ResultType" HTMLEncode="TRUE" /><HTML><![CDATA[" SortFields="]]></HTML>
+                                    <FieldSortParams HTMLEncode="TRUE" /><HTML><![CDATA[" height="100%" cellspacing=1 cellpadding=0 class="ms-unselectedtitle" onmouseover="OnMouseOverFilter(this)"><TR><TD width="100%" Class="ms-vb" nowrap>]]></HTML>
+                                    <Field /><HTML><![CDATA[</TD>]]></HTML>
+                                    <Switch>
+                                      <Expr>
+                                        <ListProperty Select="Direction" />
+                                      </Expr>
+                                      <Case Value="rtl"><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                      </Case>
+                                      <Default><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                      </Default>
+                                    </Switch><HTML><![CDATA[</TR></TABLE></div>]]></HTML>
+                                  </Else>
+                                </IfEqual><HTML><![CDATA[</TH>]]></HTML>
+                              </Case>
+                              <Default><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh-icon">]]></HTML>
+                                <IfEqual>
+                                  <Expr1>
+                                    <GetVar Name="Plain" />
+                                  </Expr1>
+                                  <Expr2>TRUE</Expr2>
+                                  <Then>
+                                    <Field />
+                                  </Then>
+                                  <Else><HTML><![CDATA[<div style="width:100%;position:relative;left:0;top:0;"><TABLE style="width:100%;" Sortable="]]></HTML>
+                                    <Property Select="Sortable" HTMLEncode="TRUE" /><HTML><![CDATA[" SortDisable="]]></HTML>
+                                    <GetVar Name="SortDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" FilterDisable="]]></HTML>
+                                    <GetVar Name="FilterDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" Filterable="]]></HTML>
+                                    <Property Select="Filterable" HTMLEncode="TRUE" /><HTML><![CDATA[" Name="]]></HTML>
+                                    <Property Select="Name" HTMLEncode="TRUE" /><HTML><![CDATA[" CtxNum="]]></HTML>
+                                    <Counter Type="View" /><HTML><![CDATA[" DisplayName="]]></HTML>
+                                    <Property Select="DisplayName" HTMLEncode="TRUE" /><HTML><![CDATA[" FieldType="]]></HTML>
+                                    <Property Select="Type" HTMLEncode="TRUE" /><HTML><![CDATA[" ResultType="]]></HTML>
+                                    <Property Select="ResultType" HTMLEncode="TRUE" /><HTML><![CDATA[" SortFields="]]></HTML>
+                                    <FieldSortParams HTMLEncode="TRUE" /><HTML><![CDATA[" height="100%" cellspacing=1 cellpadding=0 class="ms-unselectedtitle" onmouseover="OnMouseOverFilter(this)"><TR><TD width="100%" Class="ms-vb" nowrap>]]></HTML>
+                                    <Field /><HTML><![CDATA[</TD>]]></HTML>
+                                    <Switch>
+                                      <Expr>
+                                        <ListProperty Select="Direction" />
+                                      </Expr>
+                                      <Case Value="rtl"><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                      </Case>
+                                      <Default><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                      </Default>
+                                    </Switch><HTML><![CDATA[</TR></TABLE></div>]]></HTML>
+                                  </Else>
+                                </IfEqual><HTML><![CDATA[</TH>]]></HTML>
+                              </Default>
+                            </Switch>
+                          </Default>
+                        </Switch>
+                      </Default>
+                    </Switch>
+                  </Default>
+                </Switch>
+              </Default>
+            </Switch>
+          </Fields><HTML><![CDATA[</TR>]]></HTML>
+        </ViewHeader>
+        <ViewBody><HTML><![CDATA[<TR class="]]></HTML>
+          <GetVar Name="AlternateStyle" /><HTML><![CDATA[">]]></HTML>
+          <IfEqual>
+            <Expr1>
+              <GetVar Name="AlternateStyle" />
+            </Expr1>
+            <Expr2>ms-alternating</Expr2>
+            <Then>
+              <SetVar Scope="Request" Name="AlternateStyle">
+              </SetVar>
+            </Then>
+            <Else>
+              <SetVar Scope="Request" Name="AlternateStyle">ms-alternating</SetVar>
+            </Else>
+          </IfEqual>
+          <Fields><HTML><![CDATA[<TD Class="]]></HTML>
+            <FieldSwitch>
+              <Expr>
+                <Property Select="ClassInfo" />
+              </Expr>
+              <Case Value="Menu"><HTML><![CDATA[ms-vb-title" height="100%]]></HTML>
+              </Case>
+              <Case Value="Icon">ms-vb-icon</Case>
+              <Default>
+                <FieldSwitch>
+                  <Expr>
+                    <Property Select="Type" />
+                    <PresenceEnabled />
+                  </Expr>
+                  <Case Value="UserTRUE">ms-vb-user</Case>
+                  <Case Value="UserMultiTRUE">ms-vb-user</Case>
+                  <Default>ms-vb2</Default>
+                </FieldSwitch>
+              </Default>
+            </FieldSwitch><HTML><![CDATA[">]]></HTML>
+            <Field /><HTML><![CDATA[</TD>]]></HTML>
+          </Fields><HTML><![CDATA[</TR>]]></HTML>
+        </ViewBody>
+        <ViewFooter><HTML><![CDATA[</TABLE>]]></HTML>
+          <IfEqual>
+            <Expr1>
+              <GetVar Name="SearchString" />
+            </Expr1>
+            <Expr2>
+            </Expr2>
+            <Then>
+            </Then>
+            <Else><HTML><![CDATA[<TABLE width="100%" border=0><TR><TD class="ms-descriptiontext">$Resources:core,searchWait;</TD></TR></TABLE>]]></HTML>
+            </Else>
+          </IfEqual><HTML><![CDATA[</td></tr></table>]]></HTML>
+        </ViewFooter>
+        <PagedRowset><HTML><![CDATA[<TABLE width="100%" border=0 cellpadding=0 cellspacing=0 class="ms-bottompaging">
+<TR><TD class="ms-bottompagingline1"><IMG SRC="/_layouts/images/blank.gif" width=1 height=1 alt=""></TD></TR>
+<TR><TD class="ms-bottompagingline2"><IMG SRC="/_layouts/images/blank.gif" width=1 height=1 alt=""></TD></TR>
+<TR><TD align=center Class="ms-vb" id="bottomPagingCell]]></HTML>
+          <GetVar Name="WPQ" /><HTML><![CDATA["><table>]]></HTML>
+          <Switch>
+            <Expr>
+              <GetVar Name="PrevPageData" />
+            </Expr>
+            <Case Value="" />
+            <Default><HTML><![CDATA[<td><A HREF="javascript:" OnClick='javascript:SubmitFormPost("]]></HTML>
+              <ScriptQuote NotAddingQuote="TRUE">
+                <PageUrl /><HTML>?</HTML>
+                <GetVar Name="PrevPageData" />
+              </ScriptQuote><HTML><![CDATA[");javascript:return false;'>]]></HTML><HTML><![CDATA[<img src="/_layouts/[%=System.Threading.Thread.CurrentThread.CurrentUICulture.LCID%]/images/prev.gif" border=0 alt="]]><![CDATA[$Resources:core,idPrevious;]]><![CDATA["></A></td>]]></HTML>
+            </Default>
+          </Switch><HTML><![CDATA[<td nowrap class="ms-paging">]]></HTML>
+          <GetVar Name="PageFirstRow" HTMLEncode="TRUE" /><HTML><![CDATA[&nbsp;]]></HTML><HTML>-</HTML><HTML><![CDATA[&nbsp;]]></HTML>
+          <GetVar Name="PageLastRow" HTMLEncode="TRUE" /><HTML><![CDATA[</td>]]></HTML>
+          <Switch>
+            <Expr>
+              <GetVar Name="NextPageData" />
+            </Expr>
+            <Case Value="" />
+            <Default><HTML><![CDATA[<td> 
+            <A HREF="javascript:" OnClick='javascript:SubmitFormPost("]]></HTML>
+              <ScriptQuote NotAddingQuote="TRUE">
+                <PageUrl /><HTML>?</HTML>
+                <GetVar Name="NextPageData" />
+              </ScriptQuote><HTML><![CDATA[");javascript:return false;'>]]></HTML><HTML><![CDATA[<img src="/_layouts/[%=System.Threading.Thread.CurrentThread.CurrentUICulture.LCID%]/images/next.gif" border=0 alt="]]><![CDATA[$Resources:core,idNext;]]><![CDATA["></A></td>]]></HTML>
+            </Default>
+          </Switch><HTML><![CDATA[</tr></table></TD></TR>
+<TR><TD class="ms-bottompagingline3"><IMG SRC="/_layouts/images/blank.gif" width=1 height=1 alt=""></TD></TR>
+</TABLE>]]></HTML><HTML><![CDATA[
+<script>
+  var topPagingCell = document.getElementById("topPagingCell]]></HTML>
+          <GetVar Name="WPQ" /><HTML><![CDATA[");
+  var bottomPagingCell = document.getElementById("bottomPagingCell]]></HTML>
+          <GetVar Name="WPQ" /><HTML><![CDATA[");
+  if (topPagingCell != null && bottomPagingCell != null)
+  {
+    topPagingCell.innerHTML = bottomPagingCell.innerHTML;
+  }
+</script>
+]]></HTML>
+        </PagedRowset>
+        <PagedClientCallbackRowset><HTML><![CDATA[<TR><TD></TD><TD align=left Class="ms-vb">]]></HTML>
+          <Switch>
+            <Expr>
+              <GetVar Name="NextPageData" />
+            </Expr>
+            <Case Value="" />
+            <Default><HTML><![CDATA[&nbsp;<A HREF="]]></HTML>
+              <PageUrl HTMLEncode="TRUE" /><HTML>?</HTML>
+              <GetVar Name="NextPageData" HTMLEncode="TRUE" /><HTML><![CDATA[" OnClick='javascript:SubmitFormPost("]]></HTML>
+              <ScriptQuote NotAddingQuote="TRUE">
+                <PageUrl /><HTML>?</HTML>
+                <GetVar Name="NextPageData" />
+              </ScriptQuote><HTML><![CDATA[");javascript:return false;'>]]></HTML><HTML><![CDATA[$Resources:core,groupMore;]]></HTML><HTML><![CDATA[</A>&nbsp;]]></HTML>
+            </Default>
+          </Switch><HTML><![CDATA[</TD></TR>]]></HTML>
+        </PagedClientCallbackRowset>
+        <PagedRecurrenceRowset><HTML><![CDATA[<TABLE width="100%" border=0><TR><TD  nowrap Class="ms-vb">]]></HTML>
+          <Switch>
+            <Expr>
+              <GetVar Name="PrevPageData" />
+            </Expr>
+            <Case Value="" />
+            <Default><HTML><![CDATA[&nbsp;<A id=onetidPrev HREF=
+                "javascript:" OnClick='javascript:SubmitFormPost("]]></HTML>
+              <ScriptQuote NotAddingQuote="TRUE">
+                <PageUrl /><HTML>?</HTML>
+                <GetVar Name="PrevPageData" />
+              </ScriptQuote><HTML><![CDATA[");javascript:return false;'
+                ><img src="/_layouts/[%=System.Threading.Thread.CurrentThread.CurrentUICulture.LCID%]/images/prev.gif" border=0 alt="]]><![CDATA[$Resources:core,idPrevious;]]><![CDATA["></A>
+                <A HREF=
+                "javascript:" OnClick='javascript:SubmitFormPost("]]></HTML>
+              <ScriptQuote NotAddingQuote="TRUE">
+                <PageUrl /><HTML>?</HTML>
+                <GetVar Name="PrevPageData" />
+              </ScriptQuote><HTML><![CDATA[");javascript:return false;'
+                >]]></HTML><HTML>$Resources:core,idPrevious;</HTML><HTML><![CDATA[</A>]]></HTML>
+            </Default>
+          </Switch><HTML><![CDATA[</TD><TD align="$Resources:core,align-right;" nowrap Class="ms-vb">]]></HTML><HTML></HTML>
+          <Switch>
+            <Expr>
+              <GetVar Name="NextPageData" />
+            </Expr>
+            <Case Value="" />
+            <Default><HTML><![CDATA[<A HREF=
+                "javascript:" OnClick='javascript:SubmitFormPost("]]></HTML>
+              <ScriptQuote NotAddingQuote="TRUE">
+                <PageUrl /><HTML>?</HTML>
+                <GetVar Name="NextPageData" />
+              </ScriptQuote><HTML><![CDATA[");javascript:return false;'
+            >]]></HTML><HTML>$Resources:core,idNext;</HTML><HTML><![CDATA[</A>
+            <A id=onetidNext HREF=
+                "javascript:" OnClick='javascript:SubmitFormPost("]]></HTML>
+              <ScriptQuote NotAddingQuote="TRUE">
+                <PageUrl /><HTML>?</HTML>
+                <GetVar Name="NextPageData" />
+              </ScriptQuote><HTML><![CDATA[");javascript:return false;'
+                ><img src="/_layouts/[%=System.Threading.Thread.CurrentThread.CurrentUICulture.LCID%]/images/next.gif" border=0 alt="]]><![CDATA[$Resources:core,idNext;]]><![CDATA["></A>&nbsp;]]></HTML>
+            </Default>
+          </Switch><HTML><![CDATA[</TD></TR></TABLE>]]></HTML>
+        </PagedRecurrenceRowset>
+        <RowLimit Paged="TRUE">100</RowLimit>
+        <ViewEmpty><HTML><![CDATA[<SCRIPT>
+ctx = new ContextInfo();
+ctx.listBaseType = ]]></HTML>
+          <ListProperty Select="BaseType" /><HTML><![CDATA[;
+ctx.listTemplate = ]]></HTML>
+          <ListProperty Select="ServerTemplate" /><HTML><![CDATA[;
+ctx.listName = ]]></HTML>
+          <ScriptQuote>
+            <List />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.view = ]]></HTML>
+          <ScriptQuote>
+            <GetVar Name="View" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.listUrlDir = ]]></HTML>
+          <ScriptQuote>
+            <ListUrlDir ServerRel="TRUE" URLEncodeAsURL="TRUE" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.HttpPath = ]]></HTML>
+          <ScriptQuote>
+            <HttpPath ServerRel="TRUE" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.HttpRoot = ]]></HTML>
+          <ScriptQuote>
+            <HttpVDir />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.imagesPath = ]]></HTML>
+          <ScriptQuote>/_layouts/images/</ScriptQuote><HTML><![CDATA[;
+ctx.PortalUrl = ]]></HTML>
+          <ScriptQuote>
+            <ProjectProperty Select="PortalUrl" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.SendToLocationName = ]]></HTML>
+          <ScriptQuote>
+            <ListProperty Select="SendToLocationName" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.SendToLocationUrl = ]]></HTML>
+          <ScriptQuote>
+            <ListProperty Select="SendToLocationUrl" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.RecycleBinEnabled = ]]></HTML>
+          <ProjectProperty Select="RecycleBinEnabled" /><HTML><![CDATA[;
+ctx.OfficialFileName = ]]></HTML>
+          <ScriptQuote>
+            <ServerProperty Select="OfficialFileName" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.WriteSecurity = ]]></HTML>
+          <ScriptQuote>
+            <ListProperty Select="WriteSecurity" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.SiteTitle = ]]></HTML>
+          <ScriptQuote>
+            <ProjectProperty Select="Title" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.ListTitle = ]]></HTML>
+          <ScriptQuote>
+            <ListProperty Select="Title" />
+          </ScriptQuote><HTML><![CDATA[;
+if (ctx.PortalUrl == "") ctx.PortalUrl = null;
+ctx.displayFormUrl = ]]></HTML>
+          <ScriptQuote>
+            <URL Cmd="DISPLAY" NoID="TRUE" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.editFormUrl = ]]></HTML>
+          <ScriptQuote>
+            <URL Cmd="EDIT" NoID="TRUE" />
+          </ScriptQuote><HTML><![CDATA[;
+ctx.isWebEditorPreview = ]]></HTML>
+          <Switch>
+            <Expr>
+              <GetVar Name="WebEditorPreview" />
+            </Expr>
+            <Case Value="TRUE">1</Case>
+            <Default>0</Default>
+          </Switch><HTML><![CDATA[;
+ctx.ctxId = ]]></HTML>
+          <Counter Type="View" /><HTML><![CDATA[;
+g_ViewIdToViewCounterMap[ ]]></HTML>
+          <ScriptQuote>
+            <GetVar Name="View" />
+          </ScriptQuote><HTML><![CDATA[ ]= ]]></HTML>
+          <Counter Type="View" /><HTML><![CDATA[;
+ctx.CurrentUserId = ]]></HTML>
+          <UserID AllowAnonymous="TRUE" /><HTML><![CDATA[;
+]]></HTML>
+          <Switch>
+            <Expr>
+              <ListProperty Select="ModeratedList" />
+            </Expr>
+            <Case Value="1">
+ctx.isModerated = true;
+</Case>
+          </Switch>
+          <Switch>
+            <Expr>
+              <ListProperty Select="ForceCheckout" />
+            </Expr>
+            <Case Value="1">
+ctx.isForceCheckout = true;
+</Case>
+          </Switch>
+          <Switch>
+            <Expr>
+              <ListProperty Select="EnableMinorVersions" />
+            </Expr>
+            <Case Value="1">
+ctx.EnableMinorVersions = true;
+</Case>
+          </Switch>
+          <Switch>
+            <Expr>
+              <ListProperty Select="VersioningEnabled" />
+            </Expr>
+            <Case Value="1">
+ctx.verEnabled = 1;
+</Case>
+          </Switch>
+          <Switch>
+            <Expr>
+              <GetVar Name="RecursiveView" />
+            </Expr>
+            <Case Value="1">
+ctx.recursiveView = true;
+</Case>
+          </Switch>
+          <Switch>
+            <Expr>
+              <ListProperty Select="WorkflowsAssociated" />
+            </Expr>
+            <Case Value="1">
+ctx.WorkflowsAssociated = true;
+</Case>
+          </Switch>
+          <Switch>
+            <Expr>
+              <ListProperty Select="EnableContentTypes" />
+            </Expr>
+            <Case Value="1">
+ctx.ContentTypesEnabled = true;
+</Case>
+          </Switch><HTML><![CDATA[ 
+ctx]]></HTML>
+          <Counter Type="View" /><HTML><![CDATA[ = ctx;
+</SCRIPT>]]></HTML>
+          <Switch>
+            <Expr>
+              <ListProperty Select="Direction" />
+            </Expr>
+            <Case Value="ltr"><HTML><![CDATA[<SCRIPT>FixTextAlignForBidi("left");</SCRIPT>]]></HTML>
+            </Case>
+            <Case Value="rtl"><HTML><![CDATA[<SCRIPT>FixTextAlignForBidi("right");</SCRIPT>]]></HTML>
+            </Case>
+          </Switch><HTML><![CDATA[<TABLE width="100%" class="ms-listviewtable" cellspacing=0 cellpadding=0 border=0 dir="]]></HTML>
+          <ListProperty Select="Direction" HTMLEncode="TRUE" /><HTML><![CDATA["><tr><td>]]></HTML><HTML><![CDATA[<TABLE ID=onetidDoclibViewTbl0 width="100%" cellpadding=0 cellspacing=0 Summary="]]></HTML>
+          <ListProperty Select="Title" HTMLEncode="TRUE" /><HTML><![CDATA[" ]]></HTML><HTML><![CDATA[border=0><TR class="ms-viewheadertr">]]></HTML><HTML><![CDATA[<IFRAME src="javascript:false;" id="FilterIframe]]></HTML>
+          <Counter Type="View" /><HTML><![CDATA[" name="FilterIframe]]></HTML>
+          <Counter Type="View" /><HTML><![CDATA[" style="display:none" height="0" width="0" title="]]></HTML><HTML>$Resources:filterIFrameTitle;</HTML><HTML><![CDATA[" FilterLink="]]></HTML>
+          <FilterLink HTMLEncode="TRUE" Paged="FALSE" /><HTML><![CDATA["></IFRAME>]]></HTML>
+          <Fields>
+            <Switch>
+              <Expr>
+                <Property Select="Name" />
+              </Expr>
+              <Case Value="Attachments"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh-icon">]]></HTML>
+                <IfEqual>
+                  <Expr1>
+                    <GetVar Name="Plain" />
+                  </Expr1>
+                  <Expr2>TRUE</Expr2>
+                  <Then>
+                    <Field />
+                  </Then>
+                  <Else><HTML><![CDATA[<div style="width:100%;position:relative;left:0;top:0;"><TABLE style="width:100%;" Sortable="]]></HTML>
+                    <Property Select="Sortable" HTMLEncode="TRUE" /><HTML><![CDATA[" SortDisable="]]></HTML>
+                    <GetVar Name="SortDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" FilterDisable="]]></HTML>
+                    <GetVar Name="FilterDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" Filterable="]]></HTML>
+                    <Property Select="Filterable" HTMLEncode="TRUE" /><HTML><![CDATA[" Name="]]></HTML>
+                    <Property Select="Name" HTMLEncode="TRUE" /><HTML><![CDATA[" CtxNum="]]></HTML>
+                    <Counter Type="View" /><HTML><![CDATA[" DisplayName="]]></HTML>
+                    <Property Select="DisplayName" HTMLEncode="TRUE" /><HTML><![CDATA[" FieldType="]]></HTML>
+                    <Property Select="Type" HTMLEncode="TRUE" /><HTML><![CDATA[" ResultType="]]></HTML>
+                    <Property Select="ResultType" HTMLEncode="TRUE" /><HTML><![CDATA[" SortFields="]]></HTML>
+                    <FieldSortParams HTMLEncode="TRUE" /><HTML><![CDATA[" height="100%" cellspacing=1 cellpadding=0 class="ms-unselectedtitle" onmouseover="OnMouseOverFilter(this)"><TR><TD width="100%" Class="ms-vb" nowrap>]]></HTML>
+                    <Field /><HTML><![CDATA[</TD>]]></HTML>
+                    <Switch>
+                      <Expr>
+                        <ListProperty Select="Direction" />
+                      </Expr>
+                      <Case Value="rtl"><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                      </Case>
+                      <Default><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                      </Default>
+                    </Switch><HTML><![CDATA[</TR></TABLE></div>]]></HTML>
+                  </Else>
+                </IfEqual><HTML><![CDATA[</TH>]]></HTML>
+              </Case>
+              <Default>
+                <Switch>
+                  <Expr>
+                    <Property Select="Type" />
+                  </Expr>
+                  <Case Value="Note"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh2-nograd">]]></HTML>
+                    <Field /><HTML><![CDATA[</TH>]]></HTML>
+                  </Case>
+                  <Default>
+                    <Switch>
+                      <Expr>
+                        <Property Select="Filterable" />
+                      </Expr>
+                      <Case Value="FALSE">
+                        <Switch>
+                          <Expr>
+                            <Property Select="Sortable" />
+                          </Expr>
+                          <Case Value="FALSE">
+                            <Switch>
+                              <Expr>
+                                <Property Select="Name" />
+                              </Expr>
+                              <Case Value="SelectedFlag"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh3-nograd">]]></HTML>
+                                <Field /><HTML><![CDATA[</TH>]]></HTML>
+                              </Case>
+                              <Default>
+                                <Switch>
+                                  <Expr>
+                                    <Property Select="Type" />
+                                    <Property Select="ShowFieldImnHeader" />
+                                    <PresenceEnabled />
+                                  </Expr>
+                                  <Case Value="UserTRUETRUE"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh">]]></HTML>
+                                    <Field /><HTML><![CDATA[</TH>]]></HTML>
+                                  </Case>
+                                  <Case Value="UserMultiTRUETRUE"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh">]]></HTML>
+                                    <Field /><HTML><![CDATA[</TH>]]></HTML>
+                                  </Case>
+                                  <Default><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh2-nograd">]]></HTML>
+                                    <Field /><HTML><![CDATA[</TH>]]></HTML>
+                                  </Default>
+                                </Switch>
+                              </Default>
+                            </Switch>
+                          </Case>
+                          <Default>
+                            <Switch>
+                              <Expr>
+                                <Property Select="SortDisable" />
+                              </Expr>
+                              <Case Value="TRUE"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh2-nograd">]]></HTML>
+                                <Field /><HTML><![CDATA[</TH>]]></HTML>
+                              </Case>
+                              <Default><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh2">]]></HTML>
+                                <IfEqual>
+                                  <Expr1>
+                                    <GetVar Name="Plain" />
+                                  </Expr1>
+                                  <Expr2>TRUE</Expr2>
+                                  <Then>
+                                    <Field />
+                                  </Then>
+                                  <Else><HTML><![CDATA[<div style="width:100%;position:relative;left:0;top:0;"><TABLE style="width:100%;" Sortable="]]></HTML>
+                                    <Property Select="Sortable" HTMLEncode="TRUE" /><HTML><![CDATA[" SortDisable="]]></HTML>
+                                    <GetVar Name="SortDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" FilterDisable="]]></HTML>
+                                    <GetVar Name="FilterDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" Filterable="]]></HTML>
+                                    <Property Select="Filterable" HTMLEncode="TRUE" /><HTML><![CDATA[" Name="]]></HTML>
+                                    <Property Select="Name" HTMLEncode="TRUE" /><HTML><![CDATA[" CtxNum="]]></HTML>
+                                    <Counter Type="View" /><HTML><![CDATA[" DisplayName="]]></HTML>
+                                    <Property Select="DisplayName" HTMLEncode="TRUE" /><HTML><![CDATA[" FieldType="]]></HTML>
+                                    <Property Select="Type" HTMLEncode="TRUE" /><HTML><![CDATA[" ResultType="]]></HTML>
+                                    <Property Select="ResultType" HTMLEncode="TRUE" /><HTML><![CDATA[" SortFields="]]></HTML>
+                                    <FieldSortParams HTMLEncode="TRUE" /><HTML><![CDATA[" height="100%" cellspacing=1 cellpadding=0 class="ms-unselectedtitle" onmouseover="OnMouseOverFilter(this)"><TR><TD width="100%" Class="ms-vb" nowrap>]]></HTML>
+                                    <Field /><HTML><![CDATA[</TD>]]></HTML>
+                                    <Switch>
+                                      <Expr>
+                                        <ListProperty Select="Direction" />
+                                      </Expr>
+                                      <Case Value="rtl"><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                      </Case>
+                                      <Default><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                      </Default>
+                                    </Switch><HTML><![CDATA[</TR></TABLE></div>]]></HTML>
+                                  </Else>
+                                </IfEqual><HTML><![CDATA[</TH>]]></HTML>
+                              </Default>
+                            </Switch>
+                          </Default>
+                        </Switch>
+                      </Case>
+                      <Default>
+                        <Switch>
+                          <Expr>
+                            <Property Select="Type" />
+                            <Property Select="ShowFieldImnHeader" />
+                            <PresenceEnabled />
+                          </Expr>
+                          <Case Value="UserTRUETRUE"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh">]]></HTML>
+                            <IfEqual>
+                              <Expr1>
+                                <GetVar Name="Plain" />
+                              </Expr1>
+                              <Expr2>TRUE</Expr2>
+                              <Then>
+                                <Field />
+                              </Then>
+                              <Else><HTML><![CDATA[<div style="width:100%;position:relative;left:0;top:0;"><TABLE style="width:100%;" Sortable="]]></HTML>
+                                <Property Select="Sortable" HTMLEncode="TRUE" /><HTML><![CDATA[" SortDisable="]]></HTML>
+                                <GetVar Name="SortDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" FilterDisable="]]></HTML>
+                                <GetVar Name="FilterDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" Filterable="]]></HTML>
+                                <Property Select="Filterable" HTMLEncode="TRUE" /><HTML><![CDATA[" Name="]]></HTML>
+                                <Property Select="Name" HTMLEncode="TRUE" /><HTML><![CDATA[" CtxNum="]]></HTML>
+                                <Counter Type="View" /><HTML><![CDATA[" DisplayName="]]></HTML>
+                                <Property Select="DisplayName" HTMLEncode="TRUE" /><HTML><![CDATA[" FieldType="]]></HTML>
+                                <Property Select="Type" HTMLEncode="TRUE" /><HTML><![CDATA[" ResultType="]]></HTML>
+                                <Property Select="ResultType" HTMLEncode="TRUE" /><HTML><![CDATA[" SortFields="]]></HTML>
+                                <FieldSortParams HTMLEncode="TRUE" /><HTML><![CDATA[" height="100%" cellspacing=1 cellpadding=0 class="ms-unselectedtitle" onmouseover="OnMouseOverFilter(this)"><TR><TD width="100%" Class="ms-vb" nowrap>]]></HTML>
+                                <Field /><HTML><![CDATA[</TD>]]></HTML>
+                                <Switch>
+                                  <Expr>
+                                    <ListProperty Select="Direction" />
+                                  </Expr>
+                                  <Case Value="rtl"><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                  </Case>
+                                  <Default><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                  </Default>
+                                </Switch><HTML><![CDATA[</TR></TABLE></div>]]></HTML>
+                              </Else>
+                            </IfEqual><HTML><![CDATA[</TH>]]></HTML>
+                          </Case>
+                          <Case Value="UserMultiTRUETRUE"><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh">]]></HTML>
+                            <IfEqual>
+                              <Expr1>
+                                <GetVar Name="Plain" />
+                              </Expr1>
+                              <Expr2>TRUE</Expr2>
+                              <Then>
+                                <Field />
+                              </Then>
+                              <Else><HTML><![CDATA[<div style="width:100%;position:relative;left:0;top:0;"><TABLE style="width:100%;" Sortable="]]></HTML>
+                                <Property Select="Sortable" HTMLEncode="TRUE" /><HTML><![CDATA[" SortDisable="]]></HTML>
+                                <GetVar Name="SortDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" FilterDisable="]]></HTML>
+                                <GetVar Name="FilterDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" Filterable="]]></HTML>
+                                <Property Select="Filterable" HTMLEncode="TRUE" /><HTML><![CDATA[" Name="]]></HTML>
+                                <Property Select="Name" HTMLEncode="TRUE" /><HTML><![CDATA[" CtxNum="]]></HTML>
+                                <Counter Type="View" /><HTML><![CDATA[" DisplayName="]]></HTML>
+                                <Property Select="DisplayName" HTMLEncode="TRUE" /><HTML><![CDATA[" FieldType="]]></HTML>
+                                <Property Select="Type" HTMLEncode="TRUE" /><HTML><![CDATA[" ResultType="]]></HTML>
+                                <Property Select="ResultType" HTMLEncode="TRUE" /><HTML><![CDATA[" SortFields="]]></HTML>
+                                <FieldSortParams HTMLEncode="TRUE" /><HTML><![CDATA[" height="100%" cellspacing=1 cellpadding=0 class="ms-unselectedtitle" onmouseover="OnMouseOverFilter(this)"><TR><TD width="100%" Class="ms-vb" nowrap>]]></HTML>
+                                <Field /><HTML><![CDATA[</TD>]]></HTML>
+                                <Switch>
+                                  <Expr>
+                                    <ListProperty Select="Direction" />
+                                  </Expr>
+                                  <Case Value="rtl"><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                  </Case>
+                                  <Default><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                  </Default>
+                                </Switch><HTML><![CDATA[</TR></TABLE></div>]]></HTML>
+                              </Else>
+                            </IfEqual><HTML><![CDATA[</TH>]]></HTML>
+                          </Case>
+                          <Default>
+                            <Switch>
+                              <Expr>
+                                <Property Select="HeaderImage" />
+                              </Expr>
+                              <Case Value=""><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh2">]]></HTML>
+                                <IfEqual>
+                                  <Expr1>
+                                    <GetVar Name="Plain" />
+                                  </Expr1>
+                                  <Expr2>TRUE</Expr2>
+                                  <Then>
+                                    <Field />
+                                  </Then>
+                                  <Else><HTML><![CDATA[<div style="width:100%;position:relative;left:0;top:0;"><TABLE style="width:100%;" Sortable="]]></HTML>
+                                    <Property Select="Sortable" HTMLEncode="TRUE" /><HTML><![CDATA[" SortDisable="]]></HTML>
+                                    <GetVar Name="SortDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" FilterDisable="]]></HTML>
+                                    <GetVar Name="FilterDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" Filterable="]]></HTML>
+                                    <Property Select="Filterable" HTMLEncode="TRUE" /><HTML><![CDATA[" Name="]]></HTML>
+                                    <Property Select="Name" HTMLEncode="TRUE" /><HTML><![CDATA[" CtxNum="]]></HTML>
+                                    <Counter Type="View" /><HTML><![CDATA[" DisplayName="]]></HTML>
+                                    <Property Select="DisplayName" HTMLEncode="TRUE" /><HTML><![CDATA[" FieldType="]]></HTML>
+                                    <Property Select="Type" HTMLEncode="TRUE" /><HTML><![CDATA[" ResultType="]]></HTML>
+                                    <Property Select="ResultType" HTMLEncode="TRUE" /><HTML><![CDATA[" SortFields="]]></HTML>
+                                    <FieldSortParams HTMLEncode="TRUE" /><HTML><![CDATA[" height="100%" cellspacing=1 cellpadding=0 class="ms-unselectedtitle" onmouseover="OnMouseOverFilter(this)"><TR><TD width="100%" Class="ms-vb" nowrap>]]></HTML>
+                                    <Field /><HTML><![CDATA[</TD>]]></HTML>
+                                    <Switch>
+                                      <Expr>
+                                        <ListProperty Select="Direction" />
+                                      </Expr>
+                                      <Case Value="rtl"><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                      </Case>
+                                      <Default><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                      </Default>
+                                    </Switch><HTML><![CDATA[</TR></TABLE></div>]]></HTML>
+                                  </Else>
+                                </IfEqual><HTML><![CDATA[</TH>]]></HTML>
+                              </Case>
+                              <Default><HTML><![CDATA[<TH nowrap scope="col" class="ms-vh-icon">]]></HTML>
+                                <IfEqual>
+                                  <Expr1>
+                                    <GetVar Name="Plain" />
+                                  </Expr1>
+                                  <Expr2>TRUE</Expr2>
+                                  <Then>
+                                    <Field />
+                                  </Then>
+                                  <Else><HTML><![CDATA[<div style="width:100%;position:relative;left:0;top:0;"><TABLE style="width:100%;" Sortable="]]></HTML>
+                                    <Property Select="Sortable" HTMLEncode="TRUE" /><HTML><![CDATA[" SortDisable="]]></HTML>
+                                    <GetVar Name="SortDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" FilterDisable="]]></HTML>
+                                    <GetVar Name="FilterDisable" HTMLEncode="TRUE" /><HTML><![CDATA[" Filterable="]]></HTML>
+                                    <Property Select="Filterable" HTMLEncode="TRUE" /><HTML><![CDATA[" Name="]]></HTML>
+                                    <Property Select="Name" HTMLEncode="TRUE" /><HTML><![CDATA[" CtxNum="]]></HTML>
+                                    <Counter Type="View" /><HTML><![CDATA[" DisplayName="]]></HTML>
+                                    <Property Select="DisplayName" HTMLEncode="TRUE" /><HTML><![CDATA[" FieldType="]]></HTML>
+                                    <Property Select="Type" HTMLEncode="TRUE" /><HTML><![CDATA[" ResultType="]]></HTML>
+                                    <Property Select="ResultType" HTMLEncode="TRUE" /><HTML><![CDATA[" SortFields="]]></HTML>
+                                    <FieldSortParams HTMLEncode="TRUE" /><HTML><![CDATA[" height="100%" cellspacing=1 cellpadding=0 class="ms-unselectedtitle" onmouseover="OnMouseOverFilter(this)"><TR><TD width="100%" Class="ms-vb" nowrap>]]></HTML>
+                                    <Field /><HTML><![CDATA[</TD>]]></HTML>
+                                    <Switch>
+                                      <Expr>
+                                        <ListProperty Select="Direction" />
+                                      </Expr>
+                                      <Case Value="rtl"><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                      </Case>
+                                      <Default><HTML><![CDATA[<TD style="position:absolute;"><IMG src="/_layouts/images/blank.gif" width=13px style="visibility: hidden" alt=""></TD>]]></HTML>
+                                      </Default>
+                                    </Switch><HTML><![CDATA[</TR></TABLE></div>]]></HTML>
+                                  </Else>
+                                </IfEqual><HTML><![CDATA[</TH>]]></HTML>
+                              </Default>
+                            </Switch>
+                          </Default>
+                        </Switch>
+                      </Default>
+                    </Switch>
+                  </Default>
+                </Switch>
+              </Default>
+            </Switch>
+          </Fields><HTML><![CDATA[</TR>]]></HTML><HTML><![CDATA[</TABLE>]]></HTML><HTML><![CDATA[</td></tr>]]></HTML><HTML><![CDATA[<tr><td>]]></HTML><HTML><![CDATA[<TABLE ]]></HTML><HTML><![CDATA[ width=100% ]]></HTML><HTML><![CDATA[ border=0><TR>]]></HTML>
+          <IfEqual>
+            <Expr1>
+              <GetVar Name="SearchString" />
+            </Expr1>
+            <Expr2>
+            </Expr2>
+            <Then><HTML><![CDATA[<TD Class="ms-vb"> ]]></HTML><HTML>$ResourcesNoEncode:core,noXinviewofY_LIST;</HTML>
+              <IfHasRights>
+                <RightsChoices>
+                  <RightsGroup PermAddListItems="required" />
+                </RightsChoices>
+                <Then><HTML> $Resources:core,noXinviewofY_DEFAULT;</HTML>
+                </Then>
+              </IfHasRights><HTML><![CDATA[</TD>]]></HTML>
+            </Then>
+            <Else><HTML><![CDATA[<TD class="ms-vb"><B>]]></HTML><HTML>$Resources:core,norecordsmatchquery;</HTML><HTML><![CDATA[</B></TD>]]></HTML>
+              <IfEqual>
+                <Expr1>
+                  <GetVar Name="ErrorText" />
+                </Expr1>
+                <Expr2>TRUE</Expr2>
+                <Then><HTML><!-- _locID_CDATA="MyCdataID,HTML" --><![CDATA[<TR><TD class="ms-descriptiontext">$Resources:core,see_searchtips_forhelpcreatequery_START;
+                    <A HREF="javascript:HelpWindowKey('search_tips')">$Resources:core,see_searchtips_forhelpcreatequery_END;
+                    </A>$Resources:core,see_searchtips_forhelpcreatequery_END2;</TD></TR><TR>]]></HTML>
+                </Then>
+                <Else><HTML><![CDATA[<TR><TD class="ms-descriptiontext">$Resources:core,searchWait;</TD></TR><TR>]]></HTML>
+                </Else>
+              </IfEqual>
+            </Else>
+          </IfEqual><HTML><![CDATA[</TR></TABLE>]]></HTML><HTML><![CDATA[</td></tr></TABLE>]]></HTML>
+        </ViewEmpty>
+        <Toolbar Type="Standard" />
+        <ViewFields>
+          <FieldRef Name="Attachments">
+          </FieldRef>
+          <FieldRef Name="LinkTitle">
+          </FieldRef>
+        <FieldRef ID="{EA616EBA-6E76-4C1B-8DE9-52A416AB6855}" Name="claacttype" /><FieldRef ID="{99A576EF-09F9-4868-9DA4-59D3ADF4FFBA}" Name="claactsubject" /><FieldRef ID="{F7F5A8F8-D68F-4C2C-8B81-97672D202ABF}" Name="claactfilename" /><FieldRef ID="{003F31A1-5213-493F-82E5-AB08ABF2868F}" Name="claactattention" /><FieldRef ID="{8BFB44E4-CB65-4865-88F4-8B77764B615F}" Name="claactwriter" /><FieldRef ID="{918428E1-9DC6-45B5-8C78-340D0D7B393F}" Name="claactsetupdate" /><FieldRef ID="{D32689F4-4597-4BCE-9CBC-1D67EECC5E19}" Name="claactstatus" /><FieldRef ID="{E6E1F8E8-368F-45DF-BCF2-B9EB282BD64E}" Name="clacomment" /><FieldRef ID="{3CD3CD20-7D77-44DB-8B3C-B1DD995C2684}" Name="clauserprofile" /><FieldRef ID="{1973B9B8-2C57-4A45-91B5-007CE776D5BD}" Name="clalogin" /><FieldRef ID="{9495DECF-EFC5-408E-9BD2-DF5515C273F7}" Name="clapassword" /><FieldRef ID="{430DB327-A325-40FC-A749-E20C33CEE764}" Name="clavipstatus" /><FieldRef ID="{8CEDDDC0-5B87-4486-B303-14B6C885FB06}" Name="claaddress" /><FieldRef ID="{969AA141-3F66-42CC-A3E3-4B2903416121}" Name="cladepartment" /><FieldRef ID="{2BCE8B80-1C14-424F-8E42-E05992BF3450}" Name="clacity" /><FieldRef ID="{3773BDA9-F4FD-4926-A0A5-E088782D2B8F}" Name="clacomname" /><FieldRef ID="{FBEC2752-CB22-42B3-92FF-DB0B34863DB2}" Name="clapostaldis" /><FieldRef ID="{E1043064-12BD-4FCE-AD69-FE94449A4201}" Name="clapostalcode" /><FieldRef ID="{8D609AAC-AC2A-4279-B0CE-32BF870244B9}" Name="glaempres" /><FieldRef ID="{8110DD22-12F1-4A14-9460-1622605B90DD}" Name="cladirecttno" /><FieldRef ID="{2F6D312F-D39C-4C5E-86E0-5407204D855B}" Name="clasurname" /><FieldRef ID="{3D6A80C2-F340-4001-89E5-C9FC9C4F08C8}" Name="clamail" /><FieldRef ID="{04B3069D-624C-4301-ACF6-C0142839F4AF}" Name="clafirstname" /><FieldRef ID="{96D9B38B-4C07-4AF8-B744-653A5CC49B60}" Name="clainitial" /><FieldRef ID="{E151D87A-6DC6-4124-9EB6-6E1BD8A5DACA}" Name="clamangerinitial" /><FieldRef ID="{65154506-9F4C-49C5-8F5D-04D3A2EEB333}" Name="claempno" /><FieldRef ID="{DD9695F2-26AD-4809-BCD2-ABAF8FBFB757}" Name="clamanagername" /><FieldRef ID="{E151D745-024E-4CA6-86AB-9EF3A1FA9CDF}" Name="clamobilno" /><FieldRef ID="{B21372FD-8257-40DB-BECB-F9B5FD6B046A}" Name="clalocalno" /><FieldRef ID="{0052EDDB-6A1B-4D0E-8124-2ADA18459CBE}" Name="clatitle" /><FieldRef ID="{332B1351-3083-4C15-B824-A35240E0F9D2}" Name="claroomno" /></ViewFields>
+        <Query>
+          <OrderBy>
+            <FieldRef Name="ID">
+            </FieldRef>
+          </OrderBy>
+        </Query>
+      </View>
+    </Views>
+    <Forms>
+      <Form Type="DisplayForm" Url="DispForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="EditForm" Url="EditForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+      <Form Type="NewForm" Url="NewForm.aspx" SetupPath="pages\form.aspx" WebPartZoneID="Main" />
+    </Forms>
+	<DefaultDescription>
+        RekvirentList
+    </DefaultDescription>
+  </MetaData>
+</List>
