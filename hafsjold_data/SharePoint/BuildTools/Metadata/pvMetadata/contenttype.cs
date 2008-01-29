@@ -53,7 +53,7 @@ namespace pvMetadata
 
     public class contenttype
     {
-        private static Dictionary<int, ContenttypeColumn> _ContenttypeColumns;
+        private Dictionary<int, ContenttypeColumn> _ContenttypeColumns;
         private int _id;
         private string _SysName;
         private string _BasedOn;

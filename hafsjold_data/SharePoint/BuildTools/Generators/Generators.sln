@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPGenerate", "SPGenerator\SPGenerate.csproj", "{444D2772-AFCD-423E-B025-986F2B4D70E7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pvMetadata", "..\Metadata\pvMetadata\pvMetadata.csproj", "{B919A8E3-BA95-4291-A123-7E3F65618786}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{444D2772-AFCD-423E-B025-986F2B4D70E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{444D2772-AFCD-423E-B025-986F2B4D70E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{444D2772-AFCD-423E-B025-986F2B4D70E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B919A8E3-BA95-4291-A123-7E3F65618786}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B919A8E3-BA95-4291-A123-7E3F65618786}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B919A8E3-BA95-4291-A123-7E3F65618786}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B919A8E3-BA95-4291-A123-7E3F65618786}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
