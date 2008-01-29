@@ -19,5 +19,17 @@
 			<indent type='3'>1</indent>
 			<name>Make VS 2005</name>
 		</step>
-	</steps>
+		<step action='Write XML'>
+			<All type='11'>-1</All>
+			<Attribute>[SVNRootPath]</Attribute>
+			<Filename>C:\_BuildTools\Generators\SPGenerator\genList.xml</Filename>
+			<ForceXPath type='11'>0</ForceXPath>
+			<NSAlias array='0'>mha</NSAlias>
+			<NSURI array='0'>http://www.hafsjold.dk/schema/hafsjold.xsd</NSURI>
+			<ProhibitDTD type='11'>-1</ProhibitDTD>
+			<Text>C:\TestDir_Provinsa\</Text>
+			<XPath>//mha:hafsjold/mha:propertySets</XPath>
+			<indent type='3'>1</indent>
+			<name>Write XML</name>
+		</step></steps>
 </project>
