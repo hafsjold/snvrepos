@@ -32,5 +32,15 @@ namespace ProvPur.Properties {
                 return ((string)(this["ProvPur_wsshost_Lists"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://hd19/_vti_bin/Lists.asmx")]
+        public string ProvPur_wsshost1_Lists {
+            get {
+                return ((string)(this["ProvPur_wsshost1_Lists"]));
+            }
+        }
     }
 }
