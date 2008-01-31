@@ -9,13 +9,14 @@
         Sequence="410"
         DisplayName="#NAME#list"
         Description="#NAME#list"
+        FolderCreation="TRUE"
         Image="/_layouts/images/itgen.gif"/>
   
   <ListInstance
 		TemplateType="10000"
 		Id="#NAME#"
 		Description=""	  
-		OnQuickLaunch="True"
+		OnQuickLaunch="TRUE"
 		Title="#NAME#"    
 		Url="#NAME#">
  

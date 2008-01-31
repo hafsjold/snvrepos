@@ -12,7 +12,7 @@
     <FeatureManifest Location="BuyPoliticsList\Feature.xml" />
     <FeatureManifest Location="UpdateProdCatList\Feature.xml" />
   </FeatureManifests>
-  
+
   <Assemblies>
     <Assembly Location="ProvPur.dll" DeploymentTarget="GlobalAssemblyCache" >
       <SafeControls>
@@ -22,7 +22,7 @@
     <Assembly Location="ProvPur.dll" DeploymentTarget="WebApplication">
     </Assembly>
   </Assemblies>
-  
+
   <RootFiles>
     <RootFile Location="Resources\ProvPur.resx" />
     <RootFile Location="Resources\ProvPur.da-dk.resx" />

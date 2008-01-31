@@ -1,1 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?><Feature Id="9DD93DD0-960D-41c0-82B7-C8528A252D35" Title="ProductCatalogList" Description="" Version="1.0.0.0" Scope="Site" Hidden="FALSE" ActivateOnDefault="TRUE" DefaultResourceFile="core" xmlns="http://schemas.microsoft.com/sharepoint/"><ElementManifests><ElementManifest Location="ListTemplates\elementManifest.xml" /><ElementFile Location="ProductCatalogList\schema.xml" /></ElementManifests></Feature>
+<?xml version="1.0" encoding="utf-8"?>
+<Feature Id="9DD93DD0-960D-41c0-82B7-C8528A252D35" Title="ProductCatalogList" Description="" Version="1.0.0.0" Scope="Site" Hidden="FALSE" ActivateOnDefault="TRUE" DefaultResourceFile="core" xmlns="http://schemas.microsoft.com/sharepoint/">
+  <ElementManifests>
+    <ElementManifest Location="ListTemplates\elementManifest.xml" />
+    <ElementFile Location="ProductCatalogList\schema.xml" />
+  </ElementManifests>
+</Feature>
