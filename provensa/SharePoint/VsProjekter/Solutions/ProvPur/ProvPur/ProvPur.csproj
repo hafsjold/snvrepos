@@ -79,7 +79,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProvPur.resx</DependentUpon>
     </Compile>
-    <Compile Include="Web References\wsshost1\Reference.cs">
+    <Compile Include="Web References\wsshost\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
@@ -94,7 +94,7 @@
     <None Include="Install.bat" />
     <None Include="Package.cmd" />
     <None Include="Properties\Temporary.snk" />
-    <None Include="Web References\wsshost1\Lists.wsdl" />
+    <None Include="Web References\wsshost\Lists.wsdl" />
     <None Include="wsp.ddf" />
   </ItemGroup>
   <ItemGroup>
@@ -120,8 +120,8 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Web References\wsshost1\Lists.disco" />
-    <None Include="Web References\wsshost1\Reference.map">
+    <None Include="Web References\wsshost\Lists.disco" />
+    <None Include="Web References\wsshost\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -142,14 +142,14 @@
   <ItemGroup>
     <WebReferenceUrl Include="http://localhost/_vti_bin/Lists.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
-      <RelPath>Web References\wsshost1\</RelPath>
+      <RelPath>Web References\wsshost\</RelPath>
       <UpdateFromURL>http://localhost/_vti_bin/Lists.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>ProvPur_wsshost1_Lists</CachedSettingsPropName>
+      <CachedSettingsPropName>ProvPur_wsshost_Lists</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
