@@ -1,22 +1,3 @@
-<%-- 
-Name:
-Author: Hogens Hafsjold 
-Description: 
---%>
-<%@ CodeTemplate Language="C#" TargetLanguage="C#" Src="" Inherits="" Debug="False" Description="Template description here." ResponseEncoding="ISO-8859-1" %>
-<%@ Property Name="ListName" Type="System.String" Default="" Optional="False" Category="Strings" Description="SharePoint List Name." %>
-<%@ Assembly Name="pvMetadata" %>
-<%@ Import Namespace="pvMetadata" %>
-
-<script runat="template">
-Metadata model;
-
-protected override void OnInit(){
-    model = new Metadata(@"C:\_Provinsa\");
-//ProductCatalog
-//Rekvirent
-}
-</script>
 
 using System;
 using System.Collections.Generic;
@@ -34,28 +15,107 @@ using System.Reflection;
 
 namespace provpur
 {
-    public class <%= ListName %>Data
+    public class BuyPoliticsData
     {
         public PropertyInfo[] GetProperties() { return this.GetType().GetProperties(); }
 
-<% foreach (ListtemplateColumn col in (model.ListtemplateColumnsSort(ListName)).Values){ %>
-        //<%= col.DisplayNameDK %>  
-        //<%= col.Comment %>  
-        private <%= col.CType %> _<%= col.SysName %>;
-        public <%= col.CType %> <%= col.SysName %>
+        //ID  
+        //System ID Field  
+        private int _ID;
+        public int ID
         {
-            get { return _<%= col.SysName %>; }
-            set { _<%= col.SysName %> = value; }
+            get { return _ID; }
+            set { _ID = value; }
         }
 
-<%}%>
+        //Titel  
+        //System Title Field  
+        private string _Title;
+        public string Title
+        {
+            get { return _Title; }
+            set { _Title = value; }
+        }
+
+        //Politik  
+        //Indkøbspolitikker: Politik - overskrift  
+        private string _polheadline;
+        public string polheadline
+        {
+            get { return _polheadline; }
+            set { _polheadline = value; }
+        }
+
+        //Oprettet af   
+        //Indkøbspolitikker: Oprettet af   
+        private string _polwriter;
+        public string polwriter
+        {
+            get { return _polwriter; }
+            set { _polwriter = value; }
+        }
+
+        //Oprettet den  
+        //Indkøbspolitikker: Oprettet den  
+        private string _polsetupdate;
+        public string polsetupdate
+        {
+            get { return _polsetupdate; }
+            set { _polsetupdate = value; }
+        }
+
+        //Godkendt af  
+        //Indkøbspolitikker: Godkendt af  
+        private string _polapproveperson;
+        public string polapproveperson
+        {
+            get { return _polapproveperson; }
+            set { _polapproveperson = value; }
+        }
+
+        //Godkendt den  
+        //Indkøbspolitikker: Godkendt den  
+        private string _polapprovedate;
+        public string polapprovedate
+        {
+            get { return _polapprovedate; }
+            set { _polapprovedate = value; }
+        }
+
+        //Status  
+        //Indkøbspolitikker: Status  
+        private string _polstatus;
+        public string polstatus
+        {
+            get { return _polstatus; }
+            set { _polstatus = value; }
+        }
+
+        //Tekst  
+        //Indkøbspolitikker: Tekst  
+        private string _poltext;
+        public string poltext
+        {
+            get { return _poltext; }
+            set { _poltext = value; }
+        }
+
+        //Dato for ajourføring  
+        //Indkøbspolitikker: Dato for ajourføring  
+        private DateTime _polupdatedate;
+        public DateTime polupdatedate
+        {
+            get { return _polupdatedate; }
+            set { _polupdatedate = value; }
+        }
+
     }
 
-    public class sp<%= ListName %>ListDB
+    public class spBuyPoliticsListDB
     {
         private ProvPur.wsshost.Lists ls;
 
-        public sp<%= ListName %>ListDB() { }
+        public spBuyPoliticsListDB() { }
 
         private void wsslogin(string url, string login, string password, string domain)
         {
@@ -65,7 +125,7 @@ namespace provpur
             ls.Credentials = new System.Net.NetworkCredential(login, password, domain);
         }
 
-        public List<<%= ListName %>Data> GetLists5()
+        public List<BuyPoliticsData> GetLists5()
         {
 
             wsslogin("http://hd16.hafsjold.dk", "administrator", "m733", "hd16");
@@ -101,11 +161,11 @@ namespace provpur
 
             XmlNode items = ls.GetListItems(ListName, string.Empty, listQuery, listViewFields, RowLimit, listQueryOptions, ListWebId);
 
-            List<<%= ListName %>Data> _rows = GetDataList(items);
+            List<BuyPoliticsData> _rows = GetDataList(items);
             return _rows;
         }
 
-        private List<<%= ListName %>Data> GetDataList(XmlNode items)
+        private List<BuyPoliticsData> GetDataList(XmlNode items)
         {
             XmlDocument docItems = new XmlDocument();
             docItems.LoadXml("<?xml version='1.0' ?>" + items.OuterXml);
@@ -118,10 +178,10 @@ namespace provpur
 
             XmlNodeList nodelist = docItems.SelectNodes("//mha:listitems/rs:data/z:row", nsMgr);
 
-            List<<%= ListName %>Data> _rows = new List<<%= ListName %>Data>();
+            List<BuyPoliticsData> _rows = new List<BuyPoliticsData>();
             foreach (XmlNode datanode in nodelist)
             {
-                <%= ListName %>Data _row = new <%= ListName %>Data();
+                BuyPoliticsData _row = new BuyPoliticsData();
                 foreach (PropertyInfo pi in _row.GetProperties())
                 {
                     string _field = "ows_" + pi.Name;
@@ -163,13 +223,13 @@ namespace provpur
             return _rows;
         }
 
-        private List<<%= ListName %>Data> FillDataList(SPListItemCollection collListItems)
+        private List<BuyPoliticsData> FillDataList(SPListItemCollection collListItems)
         {
-            List<<%= ListName %>Data> _rows = new List<<%= ListName %>Data>();
+            List<BuyPoliticsData> _rows = new List<BuyPoliticsData>();
             foreach (SPListItem oListItem in collListItems)
             {
 
-                <%= ListName %>Data _row = new <%= ListName %>Data();
+                BuyPoliticsData _row = new BuyPoliticsData();
                 foreach (PropertyInfo pi in _row.GetProperties())
                 {
                     string _field = pi.Name;
@@ -197,7 +257,7 @@ namespace provpur
             return _rows;
         }
 
-        public List<<%= ListName %>Data> GetLists()
+        public List<BuyPoliticsData> GetLists()
         {
             SPWeb oWebsite = SPContext.Current.Web;
             SPList oList = oWebsite.Lists["Opgaver"];
@@ -207,12 +267,12 @@ namespace provpur
             int intIndex = 1;
 
             SPListItemCollection collListItems = oList.GetItems(oQuery);
-            List<<%= ListName %>Data> _rows = FillDataList(collListItems);
+            List<BuyPoliticsData> _rows = FillDataList(collListItems);
 
             return _rows;
         }
 
-        public List<<%= ListName %>Data> GetListsOld()
+        public List<BuyPoliticsData> GetListsOld()
         {
 
             SPDataSource ds = new SPDataSource();
@@ -235,7 +295,7 @@ namespace provpur
 
 
             SPDataSourceView dsw;
-            List<<%= ListName %>Data> dt = new List<<%= ListName %>Data>();
+            List<BuyPoliticsData> dt = new List<BuyPoliticsData>();
             dsw = ds.GetView();
 
             SPList xlist = dsw.List;
@@ -262,7 +322,7 @@ namespace provpur
                 SPListItem oListItem = (SPListItem)Result.ResultItem;
                 //SPField myField = xitem.Fields[new Guid("{FE7E79DD-DD68-438e-A960-E3686025D44B}")];
 
-                <%= ListName %>Data r = new <%= ListName %>Data();
+                BuyPoliticsData r = new BuyPoliticsData();
                 foreach (SPField ofield in oListItem.Fields)
                 {
                     string tekst;

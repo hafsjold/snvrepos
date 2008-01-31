@@ -7,5 +7,23 @@
     <propertySet output="Rekvirent.cs" template="spListDB.cst">
       <property name="ListName">Rekvirent</property>
     </propertySet>
+    <propertySet output="Cart.cs" template="spListDB.cst">
+      <property name="ListName">Cart</property>
+    </propertySet>
+    <propertySet output="OrderCase.cs" template="spListDB.cst">
+      <property name="ListName">OrderCase</property>
+    </propertySet>
+    <propertySet output="Supplier.cs" template="spListDB.cst">
+      <property name="ListName">Supplier</property>
+    </propertySet>
+    <propertySet output="News.cs" template="spListDB.cst">
+      <property name="ListName">News</property>
+    </propertySet>
+    <propertySet output="BuyPolitics.cs" template="spListDB.cst">
+      <property name="ListName">BuyPolitics</property>
+    </propertySet>
+    <propertySet output="UpdateProdCat.cs" template="spListDB.cst">
+      <property name="ListName">UpdateProdCat</property>
+    </propertySet>
   </propertySets>
 </codeSmith>

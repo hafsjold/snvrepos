@@ -1,22 +1,3 @@
-<%-- 
-Name:
-Author: Hogens Hafsjold 
-Description: 
---%>
-<%@ CodeTemplate Language="C#" TargetLanguage="C#" Src="" Inherits="" Debug="False" Description="Template description here." ResponseEncoding="ISO-8859-1" %>
-<%@ Property Name="ListName" Type="System.String" Default="" Optional="False" Category="Strings" Description="SharePoint List Name." %>
-<%@ Assembly Name="pvMetadata" %>
-<%@ Import Namespace="pvMetadata" %>
-
-<script runat="template">
-Metadata model;
-
-protected override void OnInit(){
-    model = new Metadata(@"C:\_Provinsa\");
-//ProductCatalog
-//Rekvirent
-}
-</script>
 
 using System;
 using System.Collections.Generic;
@@ -34,28 +15,260 @@ using System.Reflection;
 
 namespace provpur
 {
-    public class <%= ListName %>Data
+    public class SupplierData
     {
         public PropertyInfo[] GetProperties() { return this.GetType().GetProperties(); }
 
-<% foreach (ListtemplateColumn col in (model.ListtemplateColumnsSort(ListName)).Values){ %>
-        //<%= col.DisplayNameDK %>  
-        //<%= col.Comment %>  
-        private <%= col.CType %> _<%= col.SysName %>;
-        public <%= col.CType %> <%= col.SysName %>
+        //ID  
+        //System ID Field  
+        private int _ID;
+        public int ID
         {
-            get { return _<%= col.SysName %>; }
-            set { _<%= col.SysName %> = value; }
+            get { return _ID; }
+            set { _ID = value; }
         }
 
-<%}%>
+        //Titel  
+        //System Title Field  
+        private string _Title;
+        public string Title
+        {
+            get { return _Title; }
+            set { _Title = value; }
+        }
+
+        //Fornavn  
+        //Leverandør/Kontaktoplysninger: Fornavn  
+        private string _supfirstname;
+        public string supfirstname
+        {
+            get { return _supfirstname; }
+            set { _supfirstname = value; }
+        }
+
+        //Efternavn  
+        //Leverandør/Kontaktoplysninger: Efternavn  
+        private string _supsurname;
+        public string supsurname
+        {
+            get { return _supsurname; }
+            set { _supsurname = value; }
+        }
+
+        //Initialer  
+        //Leverandør/Kontaktoplysninger: Initialer  
+        private string _supinitial;
+        public string supinitial
+        {
+            get { return _supinitial; }
+            set { _supinitial = value; }
+        }
+
+        //Titel  
+        //Leverandør/Kontaktoplysninger: Titel  
+        private string _suptitle;
+        public string suptitle
+        {
+            get { return _suptitle; }
+            set { _suptitle = value; }
+        }
+
+        //Direkte telefon-nr.  
+        //Leverandør/Kontaktoplysninger: Direkte telefon-nr.  
+        private string _supdirecttno;
+        public string supdirecttno
+        {
+            get { return _supdirecttno; }
+            set { _supdirecttno = value; }
+        }
+
+        //Mobil-nr.  
+        //Leverandør/Kontaktoplysninger: Mobil-nr.  
+        private string _supmobilno;
+        public string supmobilno
+        {
+            get { return _supmobilno; }
+            set { _supmobilno = value; }
+        }
+
+        //E-mail  
+        //Leverandør/Kontaktoplysninger: E-mail  
+        private string _supmail;
+        public string supmail
+        {
+            get { return _supmail; }
+            set { _supmail = value; }
+        }
+
+        //Firmanavn  
+        //Leverandør/Firmaoplysninger: Firmanavn  
+        private string _supcomname;
+        public string supcomname
+        {
+            get { return _supcomname; }
+            set { _supcomname = value; }
+        }
+
+        //Afdeling  
+        //Leverandør/Firmaoplysninger: Afdeling  
+        private string _supdepartment;
+        public string supdepartment
+        {
+            get { return _supdepartment; }
+            set { _supdepartment = value; }
+        }
+
+        //Adresse  
+        //Leverandør/Firmaoplysninger: Adresse  
+        private string _supaddress;
+        public string supaddress
+        {
+            get { return _supaddress; }
+            set { _supaddress = value; }
+        }
+
+        //Postnr.  
+        //Leverandør/Firmaoplysninger: Postnr.  
+        private int _suppostalcode;
+        public int suppostalcode
+        {
+            get { return _suppostalcode; }
+            set { _suppostalcode = value; }
+        }
+
+        //Postnr. /postdistrikt  
+        //Leverandør/Firmaoplysninger: Postdistrikt  
+        private string _suppostaldis;
+        public string suppostaldis
+        {
+            get { return _suppostaldis; }
+            set { _suppostaldis = value; }
+        }
+
+        //By  
+        //Leverandør/Firmaoplysninger: By  
+        private string _supcity;
+        public string supcity
+        {
+            get { return _supcity; }
+            set { _supcity = value; }
+        }
+
+        //Telefonnr.  
+        //Leverandør/Firmaoplysninger: Telefonnr.  
+        private string _suptelno;
+        public string suptelno
+        {
+            get { return _suptelno; }
+            set { _suptelno = value; }
+        }
+
+        //Brugerprofil  
+        //Leverandør/Diverse: Brugerprofil  
+        private string _supuserprofile;
+        public string supuserprofile
+        {
+            get { return _supuserprofile; }
+            set { _supuserprofile = value; }
+        }
+
+        //Login  
+        //Leverandør/Diverse: Login  
+        private string _suplogin;
+        public string suplogin
+        {
+            get { return _suplogin; }
+            set { _suplogin = value; }
+        }
+
+        //Password  
+        //Leverandør/Diverse: Password  
+        private string _suppassword;
+        public string suppassword
+        {
+            get { return _suppassword; }
+            set { _suppassword = value; }
+        }
+
+        //Bemærkninger   
+        //Leverandør/Diverse: Bemærkninger   
+        private string _supcomment;
+        public string supcomment
+        {
+            get { return _supcomment; }
+            set { _supcomment = value; }
+        }
+
+        //Aktivitetstype  
+        //Leverandør/Aktiviteter: Aktivitetstype  
+        private string _supacttype;
+        public string supacttype
+        {
+            get { return _supacttype; }
+            set { _supacttype = value; }
+        }
+
+        //Filnavn  
+        //Leverandør/Aktiviteter: Filnavn  
+        private string _supactfilename;
+        public string supactfilename
+        {
+            get { return _supactfilename; }
+            set { _supactfilename = value; }
+        }
+
+        //Emne  
+        //Leverandør/Aktiviteter: Emne  
+        private string _supactsubject;
+        public string supactsubject
+        {
+            get { return _supactsubject; }
+            set { _supactsubject = value; }
+        }
+
+        //Til  
+        //Leverandør/Aktiviteter: Hvem dokumentet er til  
+        private string _supactattention;
+        public string supactattention
+        {
+            get { return _supactattention; }
+            set { _supactattention = value; }
+        }
+
+        //Oprettet af    
+        //Leverandør/Aktiviteter: Oprettet af    
+        private string _supactwriter;
+        public string supactwriter
+        {
+            get { return _supactwriter; }
+            set { _supactwriter = value; }
+        }
+
+        //Oprettet dato  
+        //Leverandør/Aktiviteter: Oprettet dato  
+        private DateTime _supactsetupdate;
+        public DateTime supactsetupdate
+        {
+            get { return _supactsetupdate; }
+            set { _supactsetupdate = value; }
+        }
+
+        //Status  
+        //Leverandør/Aktiviteter: Status  
+        private string _supactstatus;
+        public string supactstatus
+        {
+            get { return _supactstatus; }
+            set { _supactstatus = value; }
+        }
+
     }
 
-    public class sp<%= ListName %>ListDB
+    public class spSupplierListDB
     {
         private ProvPur.wsshost.Lists ls;
 
-        public sp<%= ListName %>ListDB() { }
+        public spSupplierListDB() { }
 
         private void wsslogin(string url, string login, string password, string domain)
         {
@@ -65,7 +278,7 @@ namespace provpur
             ls.Credentials = new System.Net.NetworkCredential(login, password, domain);
         }
 
-        public List<<%= ListName %>Data> GetLists5()
+        public List<SupplierData> GetLists5()
         {
 
             wsslogin("http://hd16.hafsjold.dk", "administrator", "m733", "hd16");
@@ -101,11 +314,11 @@ namespace provpur
 
             XmlNode items = ls.GetListItems(ListName, string.Empty, listQuery, listViewFields, RowLimit, listQueryOptions, ListWebId);
 
-            List<<%= ListName %>Data> _rows = GetDataList(items);
+            List<SupplierData> _rows = GetDataList(items);
             return _rows;
         }
 
-        private List<<%= ListName %>Data> GetDataList(XmlNode items)
+        private List<SupplierData> GetDataList(XmlNode items)
         {
             XmlDocument docItems = new XmlDocument();
             docItems.LoadXml("<?xml version='1.0' ?>" + items.OuterXml);
@@ -118,10 +331,10 @@ namespace provpur
 
             XmlNodeList nodelist = docItems.SelectNodes("//mha:listitems/rs:data/z:row", nsMgr);
 
-            List<<%= ListName %>Data> _rows = new List<<%= ListName %>Data>();
+            List<SupplierData> _rows = new List<SupplierData>();
             foreach (XmlNode datanode in nodelist)
             {
-                <%= ListName %>Data _row = new <%= ListName %>Data();
+                SupplierData _row = new SupplierData();
                 foreach (PropertyInfo pi in _row.GetProperties())
                 {
                     string _field = "ows_" + pi.Name;
@@ -163,13 +376,13 @@ namespace provpur
             return _rows;
         }
 
-        private List<<%= ListName %>Data> FillDataList(SPListItemCollection collListItems)
+        private List<SupplierData> FillDataList(SPListItemCollection collListItems)
         {
-            List<<%= ListName %>Data> _rows = new List<<%= ListName %>Data>();
+            List<SupplierData> _rows = new List<SupplierData>();
             foreach (SPListItem oListItem in collListItems)
             {
 
-                <%= ListName %>Data _row = new <%= ListName %>Data();
+                SupplierData _row = new SupplierData();
                 foreach (PropertyInfo pi in _row.GetProperties())
                 {
                     string _field = pi.Name;
@@ -197,7 +410,7 @@ namespace provpur
             return _rows;
         }
 
-        public List<<%= ListName %>Data> GetLists()
+        public List<SupplierData> GetLists()
         {
             SPWeb oWebsite = SPContext.Current.Web;
             SPList oList = oWebsite.Lists["Opgaver"];
@@ -207,12 +420,12 @@ namespace provpur
             int intIndex = 1;
 
             SPListItemCollection collListItems = oList.GetItems(oQuery);
-            List<<%= ListName %>Data> _rows = FillDataList(collListItems);
+            List<SupplierData> _rows = FillDataList(collListItems);
 
             return _rows;
         }
 
-        public List<<%= ListName %>Data> GetListsOld()
+        public List<SupplierData> GetListsOld()
         {
 
             SPDataSource ds = new SPDataSource();
@@ -235,7 +448,7 @@ namespace provpur
 
 
             SPDataSourceView dsw;
-            List<<%= ListName %>Data> dt = new List<<%= ListName %>Data>();
+            List<SupplierData> dt = new List<SupplierData>();
             dsw = ds.GetView();
 
             SPList xlist = dsw.List;
@@ -262,7 +475,7 @@ namespace provpur
                 SPListItem oListItem = (SPListItem)Result.ResultItem;
                 //SPField myField = xitem.Fields[new Guid("{FE7E79DD-DD68-438e-A960-E3686025D44B}")];
 
-                <%= ListName %>Data r = new <%= ListName %>Data();
+                SupplierData r = new SupplierData();
                 foreach (SPField ofield in oListItem.Fields)
                 {
                     string tekst;

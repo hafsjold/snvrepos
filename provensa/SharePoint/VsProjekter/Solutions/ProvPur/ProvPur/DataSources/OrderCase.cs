@@ -1,22 +1,3 @@
-<%-- 
-Name:
-Author: Hogens Hafsjold 
-Description: 
---%>
-<%@ CodeTemplate Language="C#" TargetLanguage="C#" Src="" Inherits="" Debug="False" Description="Template description here." ResponseEncoding="ISO-8859-1" %>
-<%@ Property Name="ListName" Type="System.String" Default="" Optional="False" Category="Strings" Description="SharePoint List Name." %>
-<%@ Assembly Name="pvMetadata" %>
-<%@ Import Namespace="pvMetadata" %>
-
-<script runat="template">
-Metadata model;
-
-protected override void OnInit(){
-    model = new Metadata(@"C:\_Provinsa\");
-//ProductCatalog
-//Rekvirent
-}
-</script>
 
 using System;
 using System.Collections.Generic;
@@ -34,28 +15,260 @@ using System.Reflection;
 
 namespace provpur
 {
-    public class <%= ListName %>Data
+    public class OrderCaseData
     {
         public PropertyInfo[] GetProperties() { return this.GetType().GetProperties(); }
 
-<% foreach (ListtemplateColumn col in (model.ListtemplateColumnsSort(ListName)).Values){ %>
-        //<%= col.DisplayNameDK %>  
-        //<%= col.Comment %>  
-        private <%= col.CType %> _<%= col.SysName %>;
-        public <%= col.CType %> <%= col.SysName %>
+        //ID  
+        //System ID Field  
+        private int _ID;
+        public int ID
         {
-            get { return _<%= col.SysName %>; }
-            set { _<%= col.SysName %> = value; }
+            get { return _ID; }
+            set { _ID = value; }
         }
 
-<%}%>
+        //Titel  
+        //System Title Field  
+        private string _Title;
+        public string Title
+        {
+            get { return _Title; }
+            set { _Title = value; }
+        }
+
+        //Sagsnummer  
+        //Indkøbssag:  Sagsnummer  
+        private int _pono;
+        public int pono
+        {
+            get { return _pono; }
+            set { _pono = value; }
+        }
+
+        //Ordreen vedrører køb af  
+        //Indkøbssag:  Orderen vedrører køb af  
+        private string _orderconcern;
+        public string orderconcern
+        {
+            get { return _orderconcern; }
+            set { _orderconcern = value; }
+        }
+
+        //Status på indkøbssag  
+        //Indkøbssag:  Status på indkøbssag  
+        private int _Orderstatus;
+        public int Orderstatus
+        {
+            get { return _Orderstatus; }
+            set { _Orderstatus = value; }
+        }
+
+        //Aktivitetstype  
+        //Indkøbssag/Aktiviteter: Aktivitetstype  
+        private string _acttype;
+        public string acttype
+        {
+            get { return _acttype; }
+            set { _acttype = value; }
+        }
+
+        //Filnavn  
+        //Indkøbssag/Aktiviteter: Filnavn  
+        private string _actfilename;
+        public string actfilename
+        {
+            get { return _actfilename; }
+            set { _actfilename = value; }
+        }
+
+        //Emne  
+        //Indkøbssag/Aktiviteter: Emne  
+        private string _actsubject;
+        public string actsubject
+        {
+            get { return _actsubject; }
+            set { _actsubject = value; }
+        }
+
+        //Til  
+        //Indkøbssag/Aktiviteter: Til (person)  
+        private string _actattention;
+        public string actattention
+        {
+            get { return _actattention; }
+            set { _actattention = value; }
+        }
+
+        //Oprettet af    
+        //Indkøbssag/Aktiviteter: Oprettet af  
+        private string _actwriter;
+        public string actwriter
+        {
+            get { return _actwriter; }
+            set { _actwriter = value; }
+        }
+
+        //Oprettet dato  
+        //Indkøbssag/Aktiviteter: Oprettet dato  
+        private DateTime _actsetupdate;
+        public DateTime actsetupdate
+        {
+            get { return _actsetupdate; }
+            set { _actsetupdate = value; }
+        }
+
+        //Status  
+        //Indkøbssag/Aktiviteter: Status  
+        private string _actstatus;
+        public string actstatus
+        {
+            get { return _actstatus; }
+            set { _actstatus = value; }
+        }
+
+        //Filnavn  
+        //Indkøbssag/Ordrebekræftelse: Filnavn  
+        private string _conorderfilename;
+        public string conorderfilename
+        {
+            get { return _conorderfilename; }
+            set { _conorderfilename = value; }
+        }
+
+        //Vedrørende  
+        //Indkøbssag/Ordrebekræftelse: Vedrørende  
+        private string _conorderregard;
+        public string conorderregard
+        {
+            get { return _conorderregard; }
+            set { _conorderregard = value; }
+        }
+
+        //Til  
+        //Indkøbssag/Ordrebekræftelse: Til (person)  
+        private string _conorderattention;
+        public string conorderattention
+        {
+            get { return _conorderattention; }
+            set { _conorderattention = value; }
+        }
+
+        //Oprettet af    
+        //Indkøbssag/Ordrebekræftelse: Oprettet af    
+        private string _conorderwriter;
+        public string conorderwriter
+        {
+            get { return _conorderwriter; }
+            set { _conorderwriter = value; }
+        }
+
+        //Oprettet dato  
+        //Indkøbssag/Ordrebekræftelse: Oprettet dato  
+        private DateTime _conordersetupdate;
+        public DateTime conordersetupdate
+        {
+            get { return _conordersetupdate; }
+            set { _conordersetupdate = value; }
+        }
+
+        //Filnavn  
+        //Indkøbssag/Følgeseddel:  Filnavn  
+        private string _dnotefilename;
+        public string dnotefilename
+        {
+            get { return _dnotefilename; }
+            set { _dnotefilename = value; }
+        }
+
+        //Vedrørende  
+        //Indkøbssag/Følgeseddel:  Vedrørende  
+        private string _dnoteregard;
+        public string dnoteregard
+        {
+            get { return _dnoteregard; }
+            set { _dnoteregard = value; }
+        }
+
+        //Til  
+        //Indkøbssag/Følgeseddel:  Eventuelt hvem dokumentet er til  
+        private string _dnoteattention;
+        public string dnoteattention
+        {
+            get { return _dnoteattention; }
+            set { _dnoteattention = value; }
+        }
+
+        //Oprettet af    
+        //Indkøbssag/Følgeseddel:  Oprettet af    
+        private string _dnotewriter;
+        public string dnotewriter
+        {
+            get { return _dnotewriter; }
+            set { _dnotewriter = value; }
+        }
+
+        //Oprettet dato  
+        //Indkøbssag/Følgeseddel:  Oprettet dato  
+        private DateTime _dnotesetupdate;
+        public DateTime dnotesetupdate
+        {
+            get { return _dnotesetupdate; }
+            set { _dnotesetupdate = value; }
+        }
+
+        //Filnavn  
+        //Indkøbssag/Faktura:  Filnavn  
+        private string _invfilename;
+        public string invfilename
+        {
+            get { return _invfilename; }
+            set { _invfilename = value; }
+        }
+
+        //Vedrørende  
+        //Indkøbssag/Faktura:  Vedrørende  
+        private string _invregard;
+        public string invregard
+        {
+            get { return _invregard; }
+            set { _invregard = value; }
+        }
+
+        //Til  
+        //Indkøbssag/Faktura:  Eventuelt hvem dokumentet er til  
+        private string _invattention;
+        public string invattention
+        {
+            get { return _invattention; }
+            set { _invattention = value; }
+        }
+
+        //Oprettet af    
+        //Indkøbssag/Faktura:  Oprettet af    
+        private string _invwriter;
+        public string invwriter
+        {
+            get { return _invwriter; }
+            set { _invwriter = value; }
+        }
+
+        //Oprettet dato  
+        //Indkøbssag/Faktura:  Oprettet dato  
+        private DateTime _invsetupdate;
+        public DateTime invsetupdate
+        {
+            get { return _invsetupdate; }
+            set { _invsetupdate = value; }
+        }
+
     }
 
-    public class sp<%= ListName %>ListDB
+    public class spOrderCaseListDB
     {
         private ProvPur.wsshost.Lists ls;
 
-        public sp<%= ListName %>ListDB() { }
+        public spOrderCaseListDB() { }
 
         private void wsslogin(string url, string login, string password, string domain)
         {
@@ -65,7 +278,7 @@ namespace provpur
             ls.Credentials = new System.Net.NetworkCredential(login, password, domain);
         }
 
-        public List<<%= ListName %>Data> GetLists5()
+        public List<OrderCaseData> GetLists5()
         {
 
             wsslogin("http://hd16.hafsjold.dk", "administrator", "m733", "hd16");
@@ -101,11 +314,11 @@ namespace provpur
 
             XmlNode items = ls.GetListItems(ListName, string.Empty, listQuery, listViewFields, RowLimit, listQueryOptions, ListWebId);
 
-            List<<%= ListName %>Data> _rows = GetDataList(items);
+            List<OrderCaseData> _rows = GetDataList(items);
             return _rows;
         }
 
-        private List<<%= ListName %>Data> GetDataList(XmlNode items)
+        private List<OrderCaseData> GetDataList(XmlNode items)
         {
             XmlDocument docItems = new XmlDocument();
             docItems.LoadXml("<?xml version='1.0' ?>" + items.OuterXml);
@@ -118,10 +331,10 @@ namespace provpur
 
             XmlNodeList nodelist = docItems.SelectNodes("//mha:listitems/rs:data/z:row", nsMgr);
 
-            List<<%= ListName %>Data> _rows = new List<<%= ListName %>Data>();
+            List<OrderCaseData> _rows = new List<OrderCaseData>();
             foreach (XmlNode datanode in nodelist)
             {
-                <%= ListName %>Data _row = new <%= ListName %>Data();
+                OrderCaseData _row = new OrderCaseData();
                 foreach (PropertyInfo pi in _row.GetProperties())
                 {
                     string _field = "ows_" + pi.Name;
@@ -163,13 +376,13 @@ namespace provpur
             return _rows;
         }
 
-        private List<<%= ListName %>Data> FillDataList(SPListItemCollection collListItems)
+        private List<OrderCaseData> FillDataList(SPListItemCollection collListItems)
         {
-            List<<%= ListName %>Data> _rows = new List<<%= ListName %>Data>();
+            List<OrderCaseData> _rows = new List<OrderCaseData>();
             foreach (SPListItem oListItem in collListItems)
             {
 
-                <%= ListName %>Data _row = new <%= ListName %>Data();
+                OrderCaseData _row = new OrderCaseData();
                 foreach (PropertyInfo pi in _row.GetProperties())
                 {
                     string _field = pi.Name;
@@ -197,7 +410,7 @@ namespace provpur
             return _rows;
         }
 
-        public List<<%= ListName %>Data> GetLists()
+        public List<OrderCaseData> GetLists()
         {
             SPWeb oWebsite = SPContext.Current.Web;
             SPList oList = oWebsite.Lists["Opgaver"];
@@ -207,12 +420,12 @@ namespace provpur
             int intIndex = 1;
 
             SPListItemCollection collListItems = oList.GetItems(oQuery);
-            List<<%= ListName %>Data> _rows = FillDataList(collListItems);
+            List<OrderCaseData> _rows = FillDataList(collListItems);
 
             return _rows;
         }
 
-        public List<<%= ListName %>Data> GetListsOld()
+        public List<OrderCaseData> GetListsOld()
         {
 
             SPDataSource ds = new SPDataSource();
@@ -235,7 +448,7 @@ namespace provpur
 
 
             SPDataSourceView dsw;
-            List<<%= ListName %>Data> dt = new List<<%= ListName %>Data>();
+            List<OrderCaseData> dt = new List<OrderCaseData>();
             dsw = ds.GetView();
 
             SPList xlist = dsw.List;
@@ -262,7 +475,7 @@ namespace provpur
                 SPListItem oListItem = (SPListItem)Result.ResultItem;
                 //SPField myField = xitem.Fields[new Guid("{FE7E79DD-DD68-438e-A960-E3686025D44B}")];
 
-                <%= ListName %>Data r = new <%= ListName %>Data();
+                OrderCaseData r = new OrderCaseData();
                 foreach (SPField ofield in oListItem.Fields)
                 {
                     string tekst;

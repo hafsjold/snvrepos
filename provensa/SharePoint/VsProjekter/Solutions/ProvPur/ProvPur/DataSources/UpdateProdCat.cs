@@ -1,22 +1,3 @@
-<%-- 
-Name:
-Author: Hogens Hafsjold 
-Description: 
---%>
-<%@ CodeTemplate Language="C#" TargetLanguage="C#" Src="" Inherits="" Debug="False" Description="Template description here." ResponseEncoding="ISO-8859-1" %>
-<%@ Property Name="ListName" Type="System.String" Default="" Optional="False" Category="Strings" Description="SharePoint List Name." %>
-<%@ Assembly Name="pvMetadata" %>
-<%@ Import Namespace="pvMetadata" %>
-
-<script runat="template">
-Metadata model;
-
-protected override void OnInit(){
-    model = new Metadata(@"C:\_Provinsa\");
-//ProductCatalog
-//Rekvirent
-}
-</script>
 
 using System;
 using System.Collections.Generic;
@@ -34,28 +15,80 @@ using System.Reflection;
 
 namespace provpur
 {
-    public class <%= ListName %>Data
+    public class UpdateProdCatData
     {
         public PropertyInfo[] GetProperties() { return this.GetType().GetProperties(); }
 
-<% foreach (ListtemplateColumn col in (model.ListtemplateColumnsSort(ListName)).Values){ %>
-        //<%= col.DisplayNameDK %>  
-        //<%= col.Comment %>  
-        private <%= col.CType %> _<%= col.SysName %>;
-        public <%= col.CType %> <%= col.SysName %>
+        //ID  
+        //System ID Field  
+        private int _ID;
+        public int ID
         {
-            get { return _<%= col.SysName %>; }
-            set { _<%= col.SysName %> = value; }
+            get { return _ID; }
+            set { _ID = value; }
         }
 
-<%}%>
+        //Titel  
+        //System Title Field  
+        private string _Title;
+        public string Title
+        {
+            get { return _Title; }
+            set { _Title = value; }
+        }
+
+        //Filnavn  
+        //Opdatering af katalogfil: Filnavn  
+        private string _catfilename;
+        public string catfilename
+        {
+            get { return _catfilename; }
+            set { _catfilename = value; }
+        }
+
+        //Modtaget den  
+        //Opdatering af katalogfil: Modtaget den  
+        private string _catrecdate;
+        public string catrecdate
+        {
+            get { return _catrecdate; }
+            set { _catrecdate = value; }
+        }
+
+        //Leverandør  
+        //Opdatering af katalogfil: Leverandør  
+        private string _catsupplier;
+        public string catsupplier
+        {
+            get { return _catsupplier; }
+            set { _catsupplier = value; }
+        }
+
+        //Godkendt af  
+        //Opdatering af katalogfil: Godkendt af  
+        private string _catapproveperson;
+        public string catapproveperson
+        {
+            get { return _catapproveperson; }
+            set { _catapproveperson = value; }
+        }
+
+        //Godkendt den  
+        //Opdatering af katalogfil: Godkendt den  
+        private DateTime _catapprovedate;
+        public DateTime catapprovedate
+        {
+            get { return _catapprovedate; }
+            set { _catapprovedate = value; }
+        }
+
     }
 
-    public class sp<%= ListName %>ListDB
+    public class spUpdateProdCatListDB
     {
         private ProvPur.wsshost.Lists ls;
 
-        public sp<%= ListName %>ListDB() { }
+        public spUpdateProdCatListDB() { }
 
         private void wsslogin(string url, string login, string password, string domain)
         {
@@ -65,7 +98,7 @@ namespace provpur
             ls.Credentials = new System.Net.NetworkCredential(login, password, domain);
         }
 
-        public List<<%= ListName %>Data> GetLists5()
+        public List<UpdateProdCatData> GetLists5()
         {
 
             wsslogin("http://hd16.hafsjold.dk", "administrator", "m733", "hd16");
@@ -101,11 +134,11 @@ namespace provpur
 
             XmlNode items = ls.GetListItems(ListName, string.Empty, listQuery, listViewFields, RowLimit, listQueryOptions, ListWebId);
 
-            List<<%= ListName %>Data> _rows = GetDataList(items);
+            List<UpdateProdCatData> _rows = GetDataList(items);
             return _rows;
         }
 
-        private List<<%= ListName %>Data> GetDataList(XmlNode items)
+        private List<UpdateProdCatData> GetDataList(XmlNode items)
         {
             XmlDocument docItems = new XmlDocument();
             docItems.LoadXml("<?xml version='1.0' ?>" + items.OuterXml);
@@ -118,10 +151,10 @@ namespace provpur
 
             XmlNodeList nodelist = docItems.SelectNodes("//mha:listitems/rs:data/z:row", nsMgr);
 
-            List<<%= ListName %>Data> _rows = new List<<%= ListName %>Data>();
+            List<UpdateProdCatData> _rows = new List<UpdateProdCatData>();
             foreach (XmlNode datanode in nodelist)
             {
-                <%= ListName %>Data _row = new <%= ListName %>Data();
+                UpdateProdCatData _row = new UpdateProdCatData();
                 foreach (PropertyInfo pi in _row.GetProperties())
                 {
                     string _field = "ows_" + pi.Name;
@@ -163,13 +196,13 @@ namespace provpur
             return _rows;
         }
 
-        private List<<%= ListName %>Data> FillDataList(SPListItemCollection collListItems)
+        private List<UpdateProdCatData> FillDataList(SPListItemCollection collListItems)
         {
-            List<<%= ListName %>Data> _rows = new List<<%= ListName %>Data>();
+            List<UpdateProdCatData> _rows = new List<UpdateProdCatData>();
             foreach (SPListItem oListItem in collListItems)
             {
 
-                <%= ListName %>Data _row = new <%= ListName %>Data();
+                UpdateProdCatData _row = new UpdateProdCatData();
                 foreach (PropertyInfo pi in _row.GetProperties())
                 {
                     string _field = pi.Name;
@@ -197,7 +230,7 @@ namespace provpur
             return _rows;
         }
 
-        public List<<%= ListName %>Data> GetLists()
+        public List<UpdateProdCatData> GetLists()
         {
             SPWeb oWebsite = SPContext.Current.Web;
             SPList oList = oWebsite.Lists["Opgaver"];
@@ -207,12 +240,12 @@ namespace provpur
             int intIndex = 1;
 
             SPListItemCollection collListItems = oList.GetItems(oQuery);
-            List<<%= ListName %>Data> _rows = FillDataList(collListItems);
+            List<UpdateProdCatData> _rows = FillDataList(collListItems);
 
             return _rows;
         }
 
-        public List<<%= ListName %>Data> GetListsOld()
+        public List<UpdateProdCatData> GetListsOld()
         {
 
             SPDataSource ds = new SPDataSource();
@@ -235,7 +268,7 @@ namespace provpur
 
 
             SPDataSourceView dsw;
-            List<<%= ListName %>Data> dt = new List<<%= ListName %>Data>();
+            List<UpdateProdCatData> dt = new List<UpdateProdCatData>();
             dsw = ds.GetView();
 
             SPList xlist = dsw.List;
@@ -262,7 +295,7 @@ namespace provpur
                 SPListItem oListItem = (SPListItem)Result.ResultItem;
                 //SPField myField = xitem.Fields[new Guid("{FE7E79DD-DD68-438e-A960-E3686025D44B}")];
 
-                <%= ListName %>Data r = new <%= ListName %>Data();
+                UpdateProdCatData r = new UpdateProdCatData();
                 foreach (SPField ofield in oListItem.Fields)
                 {
                     string tekst;

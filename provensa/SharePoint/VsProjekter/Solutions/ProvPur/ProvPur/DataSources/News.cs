@@ -1,22 +1,3 @@
-<%-- 
-Name:
-Author: Hogens Hafsjold 
-Description: 
---%>
-<%@ CodeTemplate Language="C#" TargetLanguage="C#" Src="" Inherits="" Debug="False" Description="Template description here." ResponseEncoding="ISO-8859-1" %>
-<%@ Property Name="ListName" Type="System.String" Default="" Optional="False" Category="Strings" Description="SharePoint List Name." %>
-<%@ Assembly Name="pvMetadata" %>
-<%@ Import Namespace="pvMetadata" %>
-
-<script runat="template">
-Metadata model;
-
-protected override void OnInit(){
-    model = new Metadata(@"C:\_Provinsa\");
-//ProductCatalog
-//Rekvirent
-}
-</script>
 
 using System;
 using System.Collections.Generic;
@@ -34,28 +15,116 @@ using System.Reflection;
 
 namespace provpur
 {
-    public class <%= ListName %>Data
+    public class NewsData
     {
         public PropertyInfo[] GetProperties() { return this.GetType().GetProperties(); }
 
-<% foreach (ListtemplateColumn col in (model.ListtemplateColumnsSort(ListName)).Values){ %>
-        //<%= col.DisplayNameDK %>  
-        //<%= col.Comment %>  
-        private <%= col.CType %> _<%= col.SysName %>;
-        public <%= col.CType %> <%= col.SysName %>
+        //ID  
+        //System ID Field  
+        private int _ID;
+        public int ID
         {
-            get { return _<%= col.SysName %>; }
-            set { _<%= col.SysName %> = value; }
+            get { return _ID; }
+            set { _ID = value; }
         }
 
-<%}%>
+        //Titel  
+        //System Title Field  
+        private string _Title;
+        public string Title
+        {
+            get { return _Title; }
+            set { _Title = value; }
+        }
+
+        //Lille tekst til forside  
+        //Nyheder/Tekst til forside: Tekst til forside (lille)  
+        private string _newsfps;
+        public string newsfps
+        {
+            get { return _newsfps; }
+            set { _newsfps = value; }
+        }
+
+        //Stor tekst til forside  
+        //Nyheder/Tekst til forside: Tekst til forside (stor)  
+        private string _newsfpl;
+        public string newsfpl
+        {
+            get { return _newsfpl; }
+            set { _newsfpl = value; }
+        }
+
+        //Overskrift  
+        //Nyheder/Nyhedsartikler: Overskrift  
+        private string _newsheadline;
+        public string newsheadline
+        {
+            get { return _newsheadline; }
+            set { _newsheadline = value; }
+        }
+
+        //Oprettet af   
+        //Nyheder/Nyhedsartikler: Oprettet af   
+        private string _newswriter;
+        public string newswriter
+        {
+            get { return _newswriter; }
+            set { _newswriter = value; }
+        }
+
+        //Oprettet den  
+        //Nyheder/Nyhedsartikler: Oprettet den  
+        private DateTime _newssetupdate;
+        public DateTime newssetupdate
+        {
+            get { return _newssetupdate; }
+            set { _newssetupdate = value; }
+        }
+
+        //Gondkent af  
+        //Nyheder/Nyhedsartikler: Gondkent af  
+        private string _newsapproveperson;
+        public string newsapproveperson
+        {
+            get { return _newsapproveperson; }
+            set { _newsapproveperson = value; }
+        }
+
+        //Godkenft den  
+        //Nyheder/Nyhedsartikler: Godkenft den  
+        private string _newsapprovedate;
+        public string newsapprovedate
+        {
+            get { return _newsapprovedate; }
+            set { _newsapprovedate = value; }
+        }
+
+        //Status  
+        //Nyheder/Nyhedsartikler: Status  
+        private string _newsstatus;
+        public string newsstatus
+        {
+            get { return _newsstatus; }
+            set { _newsstatus = value; }
+        }
+
+        //Tekst  
+        //Nyheder/Nyhedsartikler: Tekst  
+        private string _newstext;
+        public string newstext
+        {
+            get { return _newstext; }
+            set { _newstext = value; }
+        }
+
     }
 
-    public class sp<%= ListName %>ListDB
+    public class spNewsListDB
     {
         private ProvPur.wsshost.Lists ls;
 
-        public sp<%= ListName %>ListDB() { }
+        public spNewsListDB() { }
 
         private void wsslogin(string url, string login, string password, string domain)
         {
@@ -65,7 +134,7 @@ namespace provpur
             ls.Credentials = new System.Net.NetworkCredential(login, password, domain);
         }
 
-        public List<<%= ListName %>Data> GetLists5()
+        public List<NewsData> GetLists5()
         {
 
             wsslogin("http://hd16.hafsjold.dk", "administrator", "m733", "hd16");
@@ -101,11 +170,11 @@ namespace provpur
 
             XmlNode items = ls.GetListItems(ListName, string.Empty, listQuery, listViewFields, RowLimit, listQueryOptions, ListWebId);
 
-            List<<%= ListName %>Data> _rows = GetDataList(items);
+            List<NewsData> _rows = GetDataList(items);
             return _rows;
         }
 
-        private List<<%= ListName %>Data> GetDataList(XmlNode items)
+        private List<NewsData> GetDataList(XmlNode items)
         {
             XmlDocument docItems = new XmlDocument();
             docItems.LoadXml("<?xml version='1.0' ?>" + items.OuterXml);
@@ -118,10 +187,10 @@ namespace provpur
 
             XmlNodeList nodelist = docItems.SelectNodes("//mha:listitems/rs:data/z:row", nsMgr);
 
-            List<<%= ListName %>Data> _rows = new List<<%= ListName %>Data>();
+            List<NewsData> _rows = new List<NewsData>();
             foreach (XmlNode datanode in nodelist)
             {
-                <%= ListName %>Data _row = new <%= ListName %>Data();
+                NewsData _row = new NewsData();
                 foreach (PropertyInfo pi in _row.GetProperties())
                 {
                     string _field = "ows_" + pi.Name;
@@ -163,13 +232,13 @@ namespace provpur
             return _rows;
         }
 
-        private List<<%= ListName %>Data> FillDataList(SPListItemCollection collListItems)
+        private List<NewsData> FillDataList(SPListItemCollection collListItems)
         {
-            List<<%= ListName %>Data> _rows = new List<<%= ListName %>Data>();
+            List<NewsData> _rows = new List<NewsData>();
             foreach (SPListItem oListItem in collListItems)
             {
 
-                <%= ListName %>Data _row = new <%= ListName %>Data();
+                NewsData _row = new NewsData();
                 foreach (PropertyInfo pi in _row.GetProperties())
                 {
                     string _field = pi.Name;
@@ -197,7 +266,7 @@ namespace provpur
             return _rows;
         }
 
-        public List<<%= ListName %>Data> GetLists()
+        public List<NewsData> GetLists()
         {
             SPWeb oWebsite = SPContext.Current.Web;
             SPList oList = oWebsite.Lists["Opgaver"];
@@ -207,12 +276,12 @@ namespace provpur
             int intIndex = 1;
 
             SPListItemCollection collListItems = oList.GetItems(oQuery);
-            List<<%= ListName %>Data> _rows = FillDataList(collListItems);
+            List<NewsData> _rows = FillDataList(collListItems);
 
             return _rows;
         }
 
-        public List<<%= ListName %>Data> GetListsOld()
+        public List<NewsData> GetListsOld()
         {
 
             SPDataSource ds = new SPDataSource();
@@ -235,7 +304,7 @@ namespace provpur
 
 
             SPDataSourceView dsw;
-            List<<%= ListName %>Data> dt = new List<<%= ListName %>Data>();
+            List<NewsData> dt = new List<NewsData>();
             dsw = ds.GetView();
 
             SPList xlist = dsw.List;
@@ -262,7 +331,7 @@ namespace provpur
                 SPListItem oListItem = (SPListItem)Result.ResultItem;
                 //SPField myField = xitem.Fields[new Guid("{FE7E79DD-DD68-438e-A960-E3686025D44B}")];
 
-                <%= ListName %>Data r = new <%= ListName %>Data();
+                NewsData r = new NewsData();
                 foreach (SPField ofield in oListItem.Fields)
                 {
                     string tekst;

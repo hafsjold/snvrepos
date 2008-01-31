@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -65,8 +65,14 @@
     <Content Include="TEMPLATE\FEATURES\UpdateProdCatList\ListTemplates\elementManifest.xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSources\BuyPolitics.cs" />
+    <Compile Include="DataSources\Cart.cs" />
+    <Compile Include="DataSources\News.cs" />
+    <Compile Include="DataSources\OrderCase.cs" />
     <Compile Include="DataSources\ProductCatalog.cs" />
     <Compile Include="DataSources\Rekvirent.cs" />
+    <Compile Include="DataSources\Supplier.cs" />
+    <Compile Include="DataSources\UpdateProdCat.cs" />
     <Compile Include="FeatureRecievers\FeatureReceiver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -86,7 +92,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="DataSources\spListDB.csp" />
+    <Generate Include="DataSources\spListDB.csp" />
     <None Include="DataSources\spListDB.cst" />
     <None Include="DeployOnly.cmd" />
     <None Include="DeployRemove.cmd" />
