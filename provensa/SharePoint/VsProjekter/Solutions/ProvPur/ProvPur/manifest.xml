@@ -1,10 +1,33 @@
-<Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="24493869-2DA2-49b5-AA30-67FE39550F1C"><FeatureManifests><FeatureManifest Location="ProvPurFields\feature.xml" /><FeatureManifest Location="ProvPurTypes\feature.xml" /><FeatureManifest Location="ProvPurSitePages\feature.xml" /><FeatureManifest Location="ProductCatalogList\Feature.xml" /><FeatureManifest Location="RekvirentList\Feature.xml" /><FeatureManifest Location="CartList\Feature.xml" /><FeatureManifest Location="OrderCaseList\Feature.xml" /><FeatureManifest Location="SupplierList\Feature.xml" /><FeatureManifest Location="NewsList\Feature.xml" /><FeatureManifest Location="BuyPoliticsList\Feature.xml" /><FeatureManifest Location="UpdateProdCatList\Feature.xml" /></FeatureManifests><Assemblies><Assembly Location="ProvPur.dll" DeploymentTarget="GlobalAssemblyCache" /><!--  
+<Solution xmlns="http://schemas.microsoft.com/sharepoint/" SolutionId="24493869-2DA2-49b5-AA30-67FE39550F1C">
+  <FeatureManifests>
+    <FeatureManifest Location="ProvPurFields\feature.xml" />
+    <FeatureManifest Location="ProvPurTypes\feature.xml" />
+    <FeatureManifest Location="ProvPurSitePages\feature.xml" />
+    <FeatureManifest Location="ProductCatalogList\Feature.xml" />
+    <FeatureManifest Location="RekvirentList\Feature.xml" />
+    <FeatureManifest Location="CartList\Feature.xml" />
+    <FeatureManifest Location="OrderCaseList\Feature.xml" />
+    <FeatureManifest Location="SupplierList\Feature.xml" />
+    <FeatureManifest Location="NewsList\Feature.xml" />
+    <FeatureManifest Location="BuyPoliticsList\Feature.xml" />
+    <FeatureManifest Location="UpdateProdCatList\Feature.xml" />
+  </FeatureManifests>
+  
+  <Assemblies>
+    <Assembly Location="ProvPur.dll" DeploymentTarget="GlobalAssemblyCache" >
       <SafeControls>
-        <SafeControl Assembly="PvsPur, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9f4da00116c38ec5" Namespace="PvsPur" TypeName="ProvPurProductTypeListEventReceiver" Safe="True" />
-        <SafeControl Assembly="PvsPur, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9f4da00116c38ec5" Namespace="PvsPur" TypeName="ProvPurPurOrderTypeListEventReceiver" Safe="True" />
-        <SafeControl Assembly="PvsPur, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9f4da00116c38ec5" Namespace="PvsPur" TypeName="ProvPurPurOrderTypeItemEventReceiver" Safe="True" />
-        <SafeControl Assembly="PvsPur, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9f4da00116c38ec5" Namespace="PvsPur" TypeName="ProvPurProductTypeItemEventReceiver" Safe="True" />
-        <SafeControl Assembly="PvsPur, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9f4da00116c38ec5" Namespace="PvsPur" TypeName="FeatureReceiver" Safe="True" />
+        <SafeControl Assembly="ProvPur, Version=1.0.0.0, Culture=neutral, PublicKeyToken=9f4da00116c38ec5" Namespace="ProvPur" TypeName="*" Safe="True" />
       </SafeControls>
     </Assembly>
---></Assemblies><RootFiles><RootFile Location="Resources\ProvPur.resx" /><RootFile Location="Resources\ProvPur.da-dk.resx" /><RootFile Location="TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl1.ascx" /><RootFile Location="TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl2.ascx" /><RootFile Location="TEMPLATE\CONTROLTEMPLATES\ProvPur\FileViewer.ascx" /></RootFiles></Solution>
+    <Assembly Location="ProvPur.dll" DeploymentTarget="WebApplication">
+    </Assembly>
+  </Assemblies>
+  
+  <RootFiles>
+    <RootFile Location="Resources\ProvPur.resx" />
+    <RootFile Location="Resources\ProvPur.da-dk.resx" />
+    <RootFile Location="TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl1.ascx" />
+    <RootFile Location="TEMPLATE\CONTROLTEMPLATES\ProvPur\UserControl2.ascx" />
+    <RootFile Location="TEMPLATE\CONTROLTEMPLATES\ProvPur\FileViewer.ascx" />
+  </RootFiles>
+</Solution>

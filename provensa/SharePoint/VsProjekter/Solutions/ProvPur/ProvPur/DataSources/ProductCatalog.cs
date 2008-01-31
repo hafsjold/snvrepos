@@ -13,7 +13,7 @@ using System.Xml;
 using System.Reflection;
 
 
-namespace provpur
+namespace ProvPur
 {
     public class ProductCatalogData
     {
@@ -338,13 +338,13 @@ namespace provpur
 
     public class spProductCatalogListDB
     {
-        private ProvPur.wsshost.Lists ls;
+        private wsshost.Lists ls;
 
         public spProductCatalogListDB() { }
 
         private void wsslogin(string url, string login, string password, string domain)
         {
-            ls = new ProvPur.wsshost.Lists();
+            ls = new wsshost.Lists();
             ls.Url = url + @"/_vti_bin/lists.asmx";
             ls.PreAuthenticate = true;
             ls.Credentials = new System.Net.NetworkCredential(login, password, domain);
