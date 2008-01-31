@@ -1,0 +1,188 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup>
+    <SharedTaskDir>C:\_BuildTools\Generators\SPGenerateWithMSBuils\bin\Debug</SharedTaskDir>
+  </PropertyGroup>
+
+  <UsingTask AssemblyFile="$(SharedTaskDir)\SPGenerateWithMSBuils.dll" TaskName="GenMetadata"/>
+  <UsingTask AssemblyFile="$(SharedTaskDir)\SPGenerateWithMSBuils.dll" TaskName="GenColumns"/>
+  <UsingTask AssemblyFile="$(SharedTaskDir)\SPGenerateWithMSBuils.dll" TaskName="GenTypes"/>
+  <UsingTask AssemblyFile="$(SharedTaskDir)\SPGenerateWithMSBuils.dll" TaskName="GenList"/>
+
+  <PropertyGroup>
+    <SVNRootPath>C:\_Provinsa\</SVNRootPath>
+    <COREFILE>ProvPur</COREFILE>
+    <FILENAME_DK>$(SVNRootPath)ProvPur\ProvPur\Resources\ProvPur.da-dk.resx</FILENAME_DK>
+    <FILENAME_UK>$(SVNRootPath)ProvPur\ProvPur\Resources\ProvPur.resx</FILENAME_UK>
+  </PropertyGroup>
+  
+  <PropertyGroup>
+    <BuildDependsOn>
+      ProductCatalog;
+      Cart;
+      OrderCase;
+      Supplier;
+      Rekvirent;
+      News;
+      BuyPolitics;
+      UpdateProdCat
+    </BuildDependsOn>
+  </PropertyGroup>
+
+  <Target
+    Name="Build"
+    DependsOnTargets="$(BuildDependsOn)"
+  />
+
+
+  <Target Name="metadata" >
+    <GenMetadata
+        SVNRootPath="$(SVNRootPath)" >
+    </GenMetadata>
+    <Message Text="My Project GenMetadata" Importance="High"/>
+  </Target>
+
+  <Target Name="fields"  DependsOnTargets="metadata">
+    <GenColumns
+        SVNRootPath="$(SVNRootPath)"
+        FILENAME_FIELDS="$(SVNRootPath)ProvPur\ProvPur\TEMPLATE\FEATURES\ProvPurFields\fields.xml"
+        COREFILE="$(COREFILE)"
+        FILENAME_DK="$(FILENAME_DK)"
+        FILENAME_UK="$(FILENAME_UK)"
+        >
+    </GenColumns>
+    <Message Text="My Project fields" Importance="High"/>
+  </Target>
+
+  <Target Name="types"  DependsOnTargets="fields">
+    <GenTypes
+        SVNRootPath="$(SVNRootPath)"
+        FILENAME_TYPES="$(SVNRootPath)ProvPur\ProvPur\TEMPLATE\FEATURES\ProvPurTypes\types.xml"
+        COREFILE="$(COREFILE)"
+        FILENAME_DK="$(FILENAME_DK)"
+        FILENAME_UK="$(FILENAME_UK)"
+        >
+    </GenTypes>
+    <Message Text="My Project types" Importance="High"/>
+  </Target>
+
+  <Target Name="ProductCatalog" DependsOnTargets="types">
+    <GenList
+        LISTNAME="ProductCatalog"
+        SVNRootPath="$(SVNRootPath)"
+        COREFILE="$(COREFILE)"
+        FILENAME_DK="$(FILENAME_DK)"
+        FILENAME_UK="$(FILENAME_UK)"
+        SOURCE_TEMPLATE_DIR="$(SVNRootPath)TEMPLATE\FEATURES\"
+        TARGET_DIR="$(SVNRootPath)ProvPur\ProvPur\TEMPLATE\FEATURES\"
+        PROJECT_FILE="$(SVNRootPath)ProvPur\ProvPur\ProvPur.csproj"
+        >
+    </GenList>
+    <Message Text="My Project ProductCatalog" Importance="High"/>
+  </Target>
+
+    <Target Name="Cart" DependsOnTargets="types">
+      <GenList
+          LISTNAME="Cart"
+          SVNRootPath="$(SVNRootPath)"
+          COREFILE="$(COREFILE)"
+          FILENAME_DK="$(FILENAME_DK)"
+          FILENAME_UK="$(FILENAME_UK)"
+          SOURCE_TEMPLATE_DIR="$(SVNRootPath)TEMPLATE\FEATURES\"
+          TARGET_DIR="$(SVNRootPath)ProvPur\ProvPur\TEMPLATE\FEATURES\"
+          PROJECT_FILE="$(SVNRootPath)ProvPur\ProvPur\ProvPur.csproj"
+        >
+      </GenList>
+      <Message Text="My Project Cart" Importance="High"/>
+    </Target>
+
+  <Target Name="OrderCase" DependsOnTargets="types">
+    <GenList
+        LISTNAME="OrderCase"
+        SVNRootPath="$(SVNRootPath)"
+        COREFILE="$(COREFILE)"
+        FILENAME_DK="$(FILENAME_DK)"
+        FILENAME_UK="$(FILENAME_UK)"
+        SOURCE_TEMPLATE_DIR="$(SVNRootPath)TEMPLATE\FEATURES\"
+        TARGET_DIR="$(SVNRootPath)ProvPur\ProvPur\TEMPLATE\FEATURES\"
+        PROJECT_FILE="$(SVNRootPath)ProvPur\ProvPur\ProvPur.csproj"
+        >
+    </GenList>
+    <Message Text="My Project OrderCase" Importance="High"/>
+  </Target>
+
+  <Target Name="Supplier" DependsOnTargets="types">
+    <GenList
+        LISTNAME="Supplier"
+        SVNRootPath="$(SVNRootPath)"
+        COREFILE="$(COREFILE)"
+        FILENAME_DK="$(FILENAME_DK)"
+        FILENAME_UK="$(FILENAME_UK)"
+        SOURCE_TEMPLATE_DIR="$(SVNRootPath)TEMPLATE\FEATURES\"
+        TARGET_DIR="$(SVNRootPath)ProvPur\ProvPur\TEMPLATE\FEATURES\"
+        PROJECT_FILE="$(SVNRootPath)ProvPur\ProvPur\ProvPur.csproj"
+        >
+    </GenList>
+    <Message Text="My Project Supplier" Importance="High"/>
+  </Target>
+
+  <Target Name="Rekvirent" DependsOnTargets="types">
+    <GenList
+        LISTNAME="Rekvirent"
+        SVNRootPath="$(SVNRootPath)"
+        COREFILE="$(COREFILE)"
+        FILENAME_DK="$(FILENAME_DK)"
+        FILENAME_UK="$(FILENAME_UK)"
+        SOURCE_TEMPLATE_DIR="$(SVNRootPath)TEMPLATE\FEATURES\"
+        TARGET_DIR="$(SVNRootPath)ProvPur\ProvPur\TEMPLATE\FEATURES\"
+        PROJECT_FILE="$(SVNRootPath)ProvPur\ProvPur\ProvPur.csproj"
+        >
+    </GenList>
+    <Message Text="My Project Rekvirent" Importance="High"/>
+  </Target>
+
+  <Target Name="News" DependsOnTargets="types">
+    <GenList
+        LISTNAME="News"
+        SVNRootPath="$(SVNRootPath)"
+        COREFILE="$(COREFILE)"
+        FILENAME_DK="$(FILENAME_DK)"
+        FILENAME_UK="$(FILENAME_UK)"
+        SOURCE_TEMPLATE_DIR="$(SVNRootPath)TEMPLATE\FEATURES\"
+        TARGET_DIR="$(SVNRootPath)ProvPur\ProvPur\TEMPLATE\FEATURES\"
+        PROJECT_FILE="$(SVNRootPath)ProvPur\ProvPur\ProvPur.csproj"
+        >
+    </GenList>
+    <Message Text="My Project News" Importance="High"/>
+  </Target>
+
+  <Target Name="BuyPolitics" DependsOnTargets="types">
+    <GenList
+        LISTNAME="BuyPolitics"
+        SVNRootPath="$(SVNRootPath)"
+        COREFILE="$(COREFILE)"
+        FILENAME_DK="$(FILENAME_DK)"
+        FILENAME_UK="$(FILENAME_UK)"
+        SOURCE_TEMPLATE_DIR="$(SVNRootPath)TEMPLATE\FEATURES\"
+        TARGET_DIR="$(SVNRootPath)ProvPur\ProvPur\TEMPLATE\FEATURES\"
+        PROJECT_FILE="$(SVNRootPath)ProvPur\ProvPur\ProvPur.csproj"
+        >
+    </GenList>
+    <Message Text="My Project BuyPolitics" Importance="High"/>
+  </Target>
+
+  <Target Name="UpdateProdCat" DependsOnTargets="types">
+    <GenList
+        LISTNAME="UpdateProdCat"
+        SVNRootPath="$(SVNRootPath)"
+        COREFILE="$(COREFILE)"
+        FILENAME_DK="$(FILENAME_DK)"
+        FILENAME_UK="$(FILENAME_UK)"
+        SOURCE_TEMPLATE_DIR="$(SVNRootPath)TEMPLATE\FEATURES\"
+        TARGET_DIR="$(SVNRootPath)ProvPur\ProvPur\TEMPLATE\FEATURES\"
+        PROJECT_FILE="$(SVNRootPath)ProvPur\ProvPur\ProvPur.csproj"
+        >
+    </GenList>
+    <Message Text="My Project UpdateProdCat" Importance="High"/>
+  </Target>
+</Project>
