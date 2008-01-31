@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<codeSmith xmlns="http://www.codesmithtools.com/schema/csp.xsd">
+  <propertySets>
+    <propertySet output="ProductCatalog.cs" template="spListDB.cst">
+      <property name="ListName">ProductCatalog</property>
+    </propertySet>
+    <propertySet output="Rekvirent.cs" template="spListDB.cst">
+      <property name="ListName">Rekvirent</property>
+    </propertySet>
+  </propertySets>
+</codeSmith>
