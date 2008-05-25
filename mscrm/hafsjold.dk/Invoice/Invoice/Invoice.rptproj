@@ -4,8 +4,8 @@
   <DataSources />
   <Reports>
     <ProjectItem>
-      <Name>Report1.rdl</Name>
-      <FullPath>Report1.rdl</FullPath>
+      <Name>Invoice Sub-Report.rdl</Name>
+      <FullPath>Invoice Sub-Report.rdl</FullPath>
     </ProjectItem>
   </Reports>
   <Configurations>
