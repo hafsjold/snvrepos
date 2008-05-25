@@ -2743,7 +2743,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                         <PaddingBottom>2pt</PaddingBottom>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value>=Fields!A_City.Value+", "+Fields!A_State.Value+" "+Fields!A_Zip.Value</Value>
+                      <Value>=Fields!A_Zip.Value+" "+Fields!A_City.Value</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
