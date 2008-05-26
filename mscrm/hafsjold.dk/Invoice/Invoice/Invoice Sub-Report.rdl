@@ -828,7 +828,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                   </ReportItems>
                 </TableCell>
               </TableCells>
-              <Height>0.25in</Height>
+              <Height>0.1875in</Height>
             </TableRow>
             <TableRow>
               <Visibility>
@@ -849,7 +849,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                   </ReportItems>
                 </TableCell>
               </TableCells>
-              <Height>0.25in</Height>
+              <Height>0.1875in</Height>
             </TableRow>
             <TableRow>
               <Visibility>
@@ -870,7 +870,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                   </ReportItems>
                 </TableCell>
               </TableCells>
-              <Height>0.25in</Height>
+              <Height>0.1875in</Height>
             </TableRow>
             <TableRow>
               <Visibility>
@@ -891,7 +891,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                   </ReportItems>
                 </TableCell>
               </TableCells>
-              <Height>0.25in</Height>
+              <Height>0.1875in</Height>
             </TableRow>
             <TableRow>
               <Visibility>
@@ -912,7 +912,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                   </ReportItems>
                 </TableCell>
               </TableCells>
-              <Height>0.25in</Height>
+              <Height>0.1875in</Height>
             </TableRow>
             <TableRow>
               <Visibility>
@@ -932,7 +932,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                   </ReportItems>
                 </TableCell>
               </TableCells>
-              <Height>0.25in</Height>
+              <Height>0.1875in</Height>
             </TableRow>
           </TableRows>
         </Details>
@@ -946,7 +946,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
             <Width>3.61458in</Width>
           </TableColumn>
         </TableColumns>
-        <Height>1.5in</Height>
+        <Height>1.125in</Height>
         <Left>3.625in</Left>
       </Table>
       <Textbox Name="textbox53">
