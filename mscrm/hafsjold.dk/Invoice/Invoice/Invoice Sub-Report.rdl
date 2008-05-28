@@ -729,7 +729,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
     </DataSet>
   </DataSets>
   <Code />
-  <Width>18.58458cm</Width>
+  <Width>18.58459cm</Width>
   <Body>
     <ReportItems>
       <Image Name="image3">
@@ -742,34 +742,17 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
         <Height>1.5873cm</Height>
         <Value>hafsjold_data_logo</Value>
       </Image>
-      <Table Name="table4">
+      <Table Name="tblShipTo">
         <ZIndex>8</ZIndex>
         <DataElementOutput>Output</DataElementOutput>
         <DataSetName>DataSet1</DataSetName>
-        <Top>3.375in</Top>
+        <Visibility>
+          <Hidden>=IsNothing(Fields!shipto_line1.Value) And IsNothing(Fields!shipto_line2.Value) And IsNothing(Fields!shipto_line3.Value) And IsNothing(Fields!shipto_postalcode.Value) And IsNothing(Fields!shipto_city.Value)</Hidden>
+        </Visibility>
+        <Top>8cm</Top>
         <Width>3.59375in</Width>
         <Details>
           <TableRows>
-            <TableRow>
-              <Visibility>
-                <Hidden>=IsNothing(Fields!shipto_name.Value)</Hidden>
-              </Visibility>
-              <TableCells>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox14">
-                      <Style>
-                        <FontFamily>tahoma</FontFamily>
-                      </Style>
-                      <ZIndex>4</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>=Fields!shipto_name.Value</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-              </TableCells>
-              <Height>0.16667in</Height>
-            </TableRow>
             <TableRow>
               <Visibility>
                 <Hidden>=IsNothing(Fields!shipto_line1.Value)</Hidden>
@@ -778,9 +761,6 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                 <TableCell>
                   <ReportItems>
                     <Textbox Name="textbox21">
-                      <Style>
-                        <FontFamily>tahoma</FontFamily>
-                      </Style>
                       <ZIndex>3</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>=Fields!shipto_line1.Value</Value>
@@ -798,9 +778,6 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                 <TableCell>
                   <ReportItems>
                     <Textbox Name="textbox38">
-                      <Style>
-                        <FontFamily>tahoma</FontFamily>
-                      </Style>
                       <ZIndex>2</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>=Fields!shipto_line2.Value</Value>
@@ -818,9 +795,6 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                 <TableCell>
                   <ReportItems>
                     <Textbox Name="textbox43">
-                      <Style>
-                        <FontFamily>tahoma</FontFamily>
-                      </Style>
                       <ZIndex>1</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>=Fields!shipto_line3.Value</Value>
@@ -838,9 +812,6 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                 <TableCell>
                   <ReportItems>
                     <Textbox Name="textbox45">
-                      <Style>
-                        <FontFamily>tahoma</FontFamily>
-                      </Style>
                       <CanGrow>true</CanGrow>
                       <Value>=Fields!shipto_postalcode.Value+" "+Fields!shipto_city.Value</Value>
                     </Textbox>
@@ -852,8 +823,6 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
           </TableRows>
         </Details>
         <Style>
-          <FontFamily>tahoma</FontFamily>
-          <FontSize>8pt</FontSize>
           <TextAlign>Left</TextAlign>
         </Style>
         <Header>
@@ -867,7 +836,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                       <Style>
                         <FontWeight>700</FontWeight>
                       </Style>
-                      <ZIndex>5</ZIndex>
+                      <ZIndex>4</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>Leveringsadresse</Value>
                     </Textbox>
@@ -883,7 +852,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
             <Width>3.59375in</Width>
           </TableColumn>
         </TableColumns>
-        <Height>1.00002in</Height>
+        <Height>0.83335in</Height>
       </Table>
       <Table Name="table7">
         <ZIndex>7</ZIndex>
@@ -2400,7 +2369,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
         <Visibility>
           <Hidden>=(Fields!customeridtype.Value=1)</Hidden>
         </Visibility>
-        <Top>1.34375in</Top>
+        <Top>3.36cm</Top>
         <Width>3.59375in</Width>
         <Details>
           <TableRows>
