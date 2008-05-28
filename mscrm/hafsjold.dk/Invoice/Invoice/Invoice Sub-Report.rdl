@@ -729,7 +729,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
     </DataSet>
   </DataSets>
   <Code />
-  <Width>18.49207cm</Width>
+  <Width>18.58458cm</Width>
   <Body>
     <ReportItems>
       <Image Name="image3">
@@ -737,39 +737,19 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
         <Width>4.65608cm</Width>
         <Source>Embedded</Source>
         <Style />
-        <ZIndex>11</ZIndex>
+        <ZIndex>9</ZIndex>
         <Left>13cm</Left>
         <Height>1.5873cm</Height>
         <Value>hafsjold_data_logo</Value>
       </Image>
       <Table Name="table4">
-        <ZIndex>10</ZIndex>
+        <ZIndex>8</ZIndex>
         <DataElementOutput>Output</DataElementOutput>
         <DataSetName>DataSet1</DataSetName>
-        <Top>7.0625in</Top>
+        <Top>3.375in</Top>
         <Width>3.59375in</Width>
         <Details>
           <TableRows>
-            <TableRow>
-              <TableCells>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox28">
-                      <Style>
-                        <BackgroundColor>LightCyan</BackgroundColor>
-                        <FontFamily>tahoma</FontFamily>
-                        <FontSize>8pt</FontSize>
-                        <FontWeight>700</FontWeight>
-                      </Style>
-                      <ZIndex>5</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>Lever til:</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-              </TableCells>
-              <Height>0.25in</Height>
-            </TableRow>
             <TableRow>
               <Visibility>
                 <Hidden>=IsNothing(Fields!shipto_name.Value)</Hidden>
@@ -780,7 +760,6 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                     <Textbox Name="textbox14">
                       <Style>
                         <FontFamily>tahoma</FontFamily>
-                        <FontSize>8pt</FontSize>
                       </Style>
                       <ZIndex>4</ZIndex>
                       <CanGrow>true</CanGrow>
@@ -789,7 +768,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                   </ReportItems>
                 </TableCell>
               </TableCells>
-              <Height>0.25in</Height>
+              <Height>0.16667in</Height>
             </TableRow>
             <TableRow>
               <Visibility>
@@ -801,7 +780,6 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                     <Textbox Name="textbox21">
                       <Style>
                         <FontFamily>tahoma</FontFamily>
-                        <FontSize>8pt</FontSize>
                       </Style>
                       <ZIndex>3</ZIndex>
                       <CanGrow>true</CanGrow>
@@ -810,7 +788,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                   </ReportItems>
                 </TableCell>
               </TableCells>
-              <Height>0.25in</Height>
+              <Height>0.16667in</Height>
             </TableRow>
             <TableRow>
               <Visibility>
@@ -822,7 +800,6 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                     <Textbox Name="textbox38">
                       <Style>
                         <FontFamily>tahoma</FontFamily>
-                        <FontSize>8pt</FontSize>
                       </Style>
                       <ZIndex>2</ZIndex>
                       <CanGrow>true</CanGrow>
@@ -831,7 +808,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                   </ReportItems>
                 </TableCell>
               </TableCells>
-              <Height>0.25in</Height>
+              <Height>0.16667in</Height>
             </TableRow>
             <TableRow>
               <Visibility>
@@ -843,7 +820,6 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                     <Textbox Name="textbox43">
                       <Style>
                         <FontFamily>tahoma</FontFamily>
-                        <FontSize>8pt</FontSize>
                       </Style>
                       <ZIndex>1</ZIndex>
                       <CanGrow>true</CanGrow>
@@ -852,7 +828,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                   </ReportItems>
                 </TableCell>
               </TableCells>
-              <Height>0.25in</Height>
+              <Height>0.16667in</Height>
             </TableRow>
             <TableRow>
               <Visibility>
@@ -864,7 +840,6 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                     <Textbox Name="textbox45">
                       <Style>
                         <FontFamily>tahoma</FontFamily>
-                        <FontSize>8pt</FontSize>
                       </Style>
                       <CanGrow>true</CanGrow>
                       <Value>=Fields!shipto_postalcode.Value+" "+Fields!shipto_city.Value</Value>
@@ -872,7 +847,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                   </ReportItems>
                 </TableCell>
               </TableCells>
-              <Height>0.25in</Height>
+              <Height>0.16667in</Height>
             </TableRow>
           </TableRows>
         </Details>
@@ -881,18 +856,40 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
           <FontSize>8pt</FontSize>
           <TextAlign>Left</TextAlign>
         </Style>
+        <Header>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox5">
+                      <rd:DefaultName>textbox5</rd:DefaultName>
+                      <Style>
+                        <FontWeight>700</FontWeight>
+                      </Style>
+                      <ZIndex>5</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Leveringsadresse</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.42329cm</Height>
+            </TableRow>
+          </TableRows>
+        </Header>
         <TableColumns>
           <TableColumn>
             <Width>3.59375in</Width>
           </TableColumn>
         </TableColumns>
-        <Height>1.5in</Height>
+        <Height>1.00002in</Height>
       </Table>
       <Table Name="table7">
-        <ZIndex>9</ZIndex>
+        <ZIndex>7</ZIndex>
         <DataElementOutput>Output</DataElementOutput>
         <DataSetName>DataSet1</DataSetName>
-        <Top>7.0625in</Top>
+        <Top>7.09375in</Top>
         <Width>3.61458in</Width>
         <Details>
           <TableRows>
@@ -1033,32 +1030,12 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
           </TableColumn>
         </TableColumns>
         <Height>72.00144pt</Height>
-        <Left>3.625in</Left>
       </Table>
-      <Textbox Name="textbox53">
-        <Top>6.78125in</Top>
-        <Width>7.25in</Width>
-        <Style>
-          <Color>White</Color>
-          <BackgroundColor>#2e456e</BackgroundColor>
-          <FontFamily>tahoma</FontFamily>
-          <FontWeight>700</FontWeight>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-        <ZIndex>8</ZIndex>
-        <CanGrow>true</CanGrow>
-        <Height>0.25in</Height>
-        <Value>Forsendelsesoplysninger</Value>
-      </Textbox>
       <Table Name="tblFromInfo">
-        <ZIndex>7</ZIndex>
+        <ZIndex>6</ZIndex>
         <DataElementOutput>Output</DataElementOutput>
         <DataSetName>DataSet1</DataSetName>
-        <Top>4.09375in</Top>
-        <Width>9.2195cm</Width>
+        <Top>7.09375in</Top>
         <Details>
           <TableRows>
             <TableRow>
@@ -1230,13 +1207,15 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
           </TableColumn>
         </TableColumns>
         <Height>95.99904pt</Height>
+        <Left>9.36508cm</Left>
       </Table>
       <Table Name="table2">
-        <ZIndex>6</ZIndex>
+        <ZIndex>5</ZIndex>
         <DataElementOutput>Output</DataElementOutput>
         <DataSetName>DataSet1</DataSetName>
         <KeepTogether>true</KeepTogether>
         <Top>9.375in</Top>
+        <Width>5.71429cm</Width>
         <Header>
           <TableRows>
             <TableRow>
@@ -1545,25 +1524,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
       </Table>
       <Textbox Name="textbox15">
         <Top>8.625in</Top>
-        <Style>
-          <Color>White</Color>
-          <BackgroundColor>#2e456e</BackgroundColor>
-          <FontFamily>tahoma</FontFamily>
-          <FontWeight>700</FontWeight>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-        <ZIndex>5</ZIndex>
-        <CanGrow>true</CanGrow>
-        <Left>0.07937cm</Left>
-        <Height>0.25in</Height>
-        <Value>Detaljer</Value>
-      </Textbox>
-      <Textbox Name="textbox46">
-        <Top>5.6875in</Top>
-        <Width>7.25in</Width>
+        <Width>18.4127cm</Width>
         <Style>
           <Color>White</Color>
           <BackgroundColor>#2e456e</BackgroundColor>
@@ -1576,8 +1537,9 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
         </Style>
         <ZIndex>4</ZIndex>
         <CanGrow>true</CanGrow>
+        <Left>0.07937cm</Left>
         <Height>0.25in</Height>
-        <Value>Oversigt</Value>
+        <Value>Detaljer</Value>
       </Textbox>
       <Table Name="table3">
         <ZIndex>3</ZIndex>
@@ -1848,6 +1810,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
         <DataElementOutput>Output</DataElementOutput>
         <DataSetName>QuoteDetail</DataSetName>
         <Top>8.875in</Top>
+        <Width>18.4127cm</Width>
         <Details>
           <TableRows>
             <TableRow>
@@ -2437,7 +2400,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
         <Visibility>
           <Hidden>=(Fields!customeridtype.Value=1)</Hidden>
         </Visibility>
-        <Top>2.59375in</Top>
+        <Top>1.34375in</Top>
         <Width>3.59375in</Width>
         <Details>
           <TableRows>
@@ -2450,9 +2413,6 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                       <Action>
                         <Hyperlink>=IIF(IsNothing(Parameters!CRM_URL.Value),system.dbnull.value,Parameters!CRM_URL.Value+"?ID={"+Fields!customerid.Value.ToString()+"}&amp;OTC=2")</Hyperlink>
                       </Action>
-                      <Style>
-                        <FontSize>8pt</FontSize>
-                      </Style>
                       <ZIndex>4</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>=Fields!C_FullName.Value</Value>
@@ -2460,7 +2420,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                   </ReportItems>
                 </TableCell>
               </TableCells>
-              <Height>0.18368in</Height>
+              <Height>0.16667in</Height>
             </TableRow>
             <TableRow>
               <Visibility>
@@ -2471,9 +2431,6 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                   <ReportItems>
                     <Textbox Name="C_Line1">
                       <rd:DefaultName>C_Line1</rd:DefaultName>
-                      <Style>
-                        <FontSize>8pt</FontSize>
-                      </Style>
                       <ZIndex>3</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>=Fields!C_Line1.Value</Value>
@@ -2481,7 +2438,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                   </ReportItems>
                 </TableCell>
               </TableCells>
-              <Height>0.16326in</Height>
+              <Height>0.16667in</Height>
             </TableRow>
             <TableRow>
               <Visibility>
@@ -2492,9 +2449,6 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                   <ReportItems>
                     <Textbox Name="C_Line2">
                       <rd:DefaultName>C_Line2</rd:DefaultName>
-                      <Style>
-                        <FontSize>8pt</FontSize>
-                      </Style>
                       <ZIndex>2</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>=Fields!C_Line2.Value</Value>
@@ -2502,7 +2456,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                   </ReportItems>
                 </TableCell>
               </TableCells>
-              <Height>0.16326in</Height>
+              <Height>0.16667in</Height>
             </TableRow>
             <TableRow>
               <Visibility>
@@ -2513,9 +2467,6 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                   <ReportItems>
                     <Textbox Name="C_Line3">
                       <rd:DefaultName>C_Line3</rd:DefaultName>
-                      <Style>
-                        <FontSize>8pt</FontSize>
-                      </Style>
                       <ZIndex>1</ZIndex>
                       <CanGrow>true</CanGrow>
                       <Value>=Fields!C_Line3.Value</Value>
@@ -2523,7 +2474,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                   </ReportItems>
                 </TableCell>
               </TableCells>
-              <Height>0.16326in</Height>
+              <Height>0.16667in</Height>
             </TableRow>
             <TableRow>
               <Visibility>
@@ -2534,16 +2485,13 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                   <ReportItems>
                     <Textbox Name="textbox33">
                       <rd:DefaultName>textbox33</rd:DefaultName>
-                      <Style>
-                        <FontSize>8pt</FontSize>
-                      </Style>
                       <CanGrow>true</CanGrow>
                       <Value>=Fields!C_Zip.Value+" "+Fields!C_City.Value</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
               </TableCells>
-              <Height>0.16326in</Height>
+              <Height>0.16667in</Height>
             </TableRow>
           </TableRows>
         </Details>
@@ -2556,18 +2504,16 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                     <Textbox Name="textbox19">
                       <rd:DefaultName>textbox19</rd:DefaultName>
                       <Style>
-                        <BackgroundColor>LightCyan</BackgroundColor>
-                        <FontSize>8pt</FontSize>
-                        <FontWeight>700</FontWeight>
+                        <FontSize>7pt</FontSize>
                       </Style>
                       <ZIndex>5</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value>Til:</Value>
+                      <Value>Hafsjold Data ApS, Nørremarken 31, DK-3060 Espergærde</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
               </TableCells>
-              <Height>0.16326in</Height>
+              <Height>0.125in</Height>
             </TableRow>
           </TableRows>
           <RepeatOnNewPage>true</RepeatOnNewPage>
@@ -2577,7 +2523,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
             <Width>3.59375in</Width>
           </TableColumn>
         </TableColumns>
-        <Height>71.99856pt</Height>
+        <Height>69.0012pt</Height>
       </Table>
       <Table Name="tblToAcctInfo">
         <DataElementOutput>Output</DataElementOutput>
@@ -2684,7 +2630,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                     <Textbox Name="textbox13">
                       <rd:DefaultName>textbox13</rd:DefaultName>
                       <Style>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>7pt</FontSize>
                       </Style>
                       <ZIndex>5</ZIndex>
                       <CanGrow>true</CanGrow>
@@ -2702,7 +2648,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
             <Width>3.59375in</Width>
           </TableColumn>
         </TableColumns>
-        <Height>68.99999pt</Height>
+        <Height>69.0012pt</Height>
       </Table>
     </ReportItems>
     <Height>27.30159cm</Height>
