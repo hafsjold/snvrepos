@@ -10,7 +10,7 @@
       </ConnectionProperties>
     </DataSource>
   </DataSources>
-  <InteractiveHeight>11in</InteractiveHeight>
+  <InteractiveHeight>27.7cm</InteractiveHeight>
   <ReportParameters>
     <ReportParameter Name="CRM_FilterText">
       <DataType>String</DataType>
@@ -114,7 +114,7 @@
     </ReportParameter>
   </ReportParameters>
   <rd:DrawGrid>true</rd:DrawGrid>
-  <InteractiveWidth>8.5in</InteractiveWidth>
+  <InteractiveWidth>21cm</InteractiveWidth>
   <rd:GridSpacing>0.03125in</rd:GridSpacing>
   <rd:SnapToGrid>true</rd:SnapToGrid>
   <RightMargin>0.5in</RightMargin>
@@ -364,14 +364,14 @@ WHERE     (systemuserid = dbo.fn_FindUserGuid())</CommandText>
     <PrintOnFirstPage>true</PrintOnFirstPage>
     <ReportItems>
       <Line Name="line1">
-        <Width>17.93651cm</Width>
+        <Width>18.4127cm</Width>
         <Style>
           <BorderStyle>
             <Default>Solid</Default>
           </BorderStyle>
         </Style>
         <ZIndex>4</ZIndex>
-        <Left>0.63492cm</Left>
+        <Left>0.07937cm</Left>
         <Height>0cm</Height>
       </Line>
       <Textbox Name="textbox4">
@@ -386,7 +386,7 @@ WHERE     (systemuserid = dbo.fn_FindUserGuid())</CommandText>
         </Style>
         <ZIndex>3</ZIndex>
         <CanGrow>true</CanGrow>
-        <Left>11.8254cm</Left>
+        <Left>11.34921cm</Left>
         <Value>Danske Bank
 Konto nummer  3183-3170154738
 IBAN DK2330003170154738
@@ -405,7 +405,7 @@ IBAN DK2330003170154738
         </Style>
         <ZIndex>2</ZIndex>
         <CanGrow>true</CanGrow>
-        <Left>8.01587cm</Left>
+        <Left>7.53968cm</Left>
         <Value>Retur adresse:
 Hafsjold Data ApS
 Nørremarken 31
@@ -424,7 +424,7 @@ Nørremarken 31
         </Style>
         <ZIndex>1</ZIndex>
         <CanGrow>true</CanGrow>
-        <Left>4.36508cm</Left>
+        <Left>3.88889cm</Left>
         <Value>Tel (+45) 49170544
 Fax (+45) 49170577
 Mail mha@hafsjold.dk
@@ -436,13 +436,12 @@ Mail mha@hafsjold.dk
         <Width>3.09524cm</Width>
         <Style>
           <FontSize>7pt</FontSize>
-          <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
         <CanGrow>true</CanGrow>
-        <Left>0.55556cm</Left>
+        <Left>0.07937cm</Left>
         <Value>Hafsjold Data ApS
 Nørremarken 31
 3060 Espergærde

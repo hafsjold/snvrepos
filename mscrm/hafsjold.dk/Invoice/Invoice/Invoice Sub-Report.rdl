@@ -10,7 +10,7 @@
       </ConnectionProperties>
     </DataSource>
   </DataSources>
-  <InteractiveHeight>11in</InteractiveHeight>
+  <InteractiveHeight>29.7cm</InteractiveHeight>
   <ReportParameters>
     <ReportParameter Name="CRM_FilterText">
       <DataType>String</DataType>
@@ -160,7 +160,7 @@
     </ReportParameter>
   </ReportParameters>
   <rd:DrawGrid>true</rd:DrawGrid>
-  <InteractiveWidth>8.5in</InteractiveWidth>
+  <InteractiveWidth>21cm</InteractiveWidth>
   <rd:GridSpacing>0.03125in</rd:GridSpacing>
   <rd:SnapToGrid>true</rd:SnapToGrid>
   <RightMargin>0.5in</RightMargin>
