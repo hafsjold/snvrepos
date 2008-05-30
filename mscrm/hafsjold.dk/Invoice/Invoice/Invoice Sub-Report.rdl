@@ -732,18 +732,191 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
   <Width>18.58459cm</Width>
   <Body>
     <ReportItems>
+      <Table Name="tblFaktura">
+        <ZIndex>6</ZIndex>
+        <DataSetName>DataSet1</DataSetName>
+        <Top>3.36cm</Top>
+        <Width>7.93651cm</Width>
+        <Details>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox28">
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <Calendar>Gregorian</Calendar>
+                      </Style>
+                      <ZIndex>5</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Faktura-id:</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox41">
+                      <Action>
+                        <Hyperlink>=IIF(IsNothing(Parameters!CRM_URL.Value),system.dbnull.value,Parameters!CRM_URL.Value+"?ID={"+Fields!invoiceid.Value.ToString()+"}&amp;OTC=1090")</Hyperlink>
+                      </Action>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
+                        <Calendar>Gregorian</Calendar>
+                      </Style>
+                      <ZIndex>4</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Fields!invoicenumber.Value</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.16667in</Height>
+            </TableRow>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox57">
+                      <Style>
+                        <PaddingLeft>2pt</PaddingLeft>
+                      </Style>
+                      <ZIndex>3</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Dato:</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox42">
+                      <Style>
+                        <Format>=First(Fields!DateFormat.Value, "DSNumandCurrency")</Format>
+                        <TextAlign>Left</TextAlign>
+                        <Calendar>=Parameters!CRM_CalendarType.Value</Calendar>
+                      </Style>
+                      <ZIndex>2</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>=Today()</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.16667in</Height>
+            </TableRow>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox53">
+                      <rd:DefaultName>textbox53</rd:DefaultName>
+                      <ZIndex>1</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox55">
+                      <rd:DefaultName>textbox55</rd:DefaultName>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
+                      </Style>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>0.16667in</Height>
+            </TableRow>
+          </TableRows>
+        </Details>
+        <Style>
+          <BorderStyle>
+            <Left>Solid</Left>
+            <Right>Solid</Right>
+            <Top>Solid</Top>
+            <Bottom>Solid</Bottom>
+          </BorderStyle>
+        </Style>
+        <Header>
+          <TableRows>
+            <TableRow>
+              <TableCells>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox10">
+                      <rd:DefaultName>textbox10</rd:DefaultName>
+                      <Style>
+                        <BackgroundColor>Gainsboro</BackgroundColor>
+                        <BorderStyle>
+                          <Left>None</Left>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <FontSize>12pt</FontSize>
+                        <FontWeight>700</FontWeight>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>7</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value>Faktura</Value>
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+                <TableCell>
+                  <ReportItems>
+                    <Textbox Name="textbox14">
+                      <rd:DefaultName>textbox14</rd:DefaultName>
+                      <Style>
+                        <BackgroundColor>Gainsboro</BackgroundColor>
+                        <BorderStyle>
+                          <Left>None</Left>
+                          <Bottom>Solid</Bottom>
+                        </BorderStyle>
+                        <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingRight>2pt</PaddingRight>
+                        <PaddingTop>2pt</PaddingTop>
+                        <PaddingBottom>2pt</PaddingBottom>
+                      </Style>
+                      <ZIndex>6</ZIndex>
+                      <CanGrow>true</CanGrow>
+                      <Value />
+                    </Textbox>
+                  </ReportItems>
+                </TableCell>
+              </TableCells>
+              <Height>18pt</Height>
+            </TableRow>
+          </TableRows>
+        </Header>
+        <TableColumns>
+          <TableColumn>
+            <Width>3.33333cm</Width>
+          </TableColumn>
+          <TableColumn>
+            <Width>4.60317cm</Width>
+          </TableColumn>
+        </TableColumns>
+        <Height>1.90479cm</Height>
+        <Left>9.52381cm</Left>
+      </Table>
       <Image Name="image3">
         <Sizing>AutoSize</Sizing>
         <Width>4.65608cm</Width>
         <Source>Embedded</Source>
         <Style />
-        <ZIndex>9</ZIndex>
+        <ZIndex>5</ZIndex>
         <Left>13cm</Left>
         <Height>1.5873cm</Height>
         <Value>hafsjold_data_logo</Value>
       </Image>
       <Table Name="tblShipTo">
-        <ZIndex>8</ZIndex>
+        <ZIndex>4</ZIndex>
         <DataElementOutput>Output</DataElementOutput>
         <DataSetName>DataSet1</DataSetName>
         <Visibility>
@@ -854,336 +1027,12 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
         </TableColumns>
         <Height>0.83335in</Height>
       </Table>
-      <Table Name="table7">
-        <ZIndex>7</ZIndex>
-        <DataElementOutput>Output</DataElementOutput>
-        <DataSetName>DataSet1</DataSetName>
-        <Top>7.09375in</Top>
-        <Width>3.61458in</Width>
-        <Details>
-          <TableRows>
-            <TableRow>
-              <TableCells>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox54">
-                      <Style>
-                        <BackgroundColor>LightCyan</BackgroundColor>
-                        <FontFamily>tahoma</FontFamily>
-                        <FontSize>8pt</FontSize>
-                        <FontWeight>700</FontWeight>
-                      </Style>
-                      <ZIndex>5</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>Faktura til:</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-              </TableCells>
-              <Height>0.16667in</Height>
-            </TableRow>
-            <TableRow>
-              <Visibility>
-                <Hidden>=IsNothing(Fields!billto_name.Value)</Hidden>
-              </Visibility>
-              <TableCells>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox47">
-                      <Style>
-                        <FontFamily>tahoma</FontFamily>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                      <ZIndex>4</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>=Fields!billto_name.Value</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-              </TableCells>
-              <Height>0.16667in</Height>
-            </TableRow>
-            <TableRow>
-              <Visibility>
-                <Hidden>=IsNothing(Fields!billto_line1.Value)</Hidden>
-              </Visibility>
-              <TableCells>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox49">
-                      <Style>
-                        <FontFamily>tahoma</FontFamily>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                      <ZIndex>3</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>=Fields!billto_line1.Value</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-              </TableCells>
-              <Height>0.16667in</Height>
-            </TableRow>
-            <TableRow>
-              <Visibility>
-                <Hidden>=IsNothing(Fields!billto_line2.Value)</Hidden>
-              </Visibility>
-              <TableCells>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox50">
-                      <Style>
-                        <FontFamily>tahoma</FontFamily>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                      <ZIndex>2</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>=Fields!billto_line2.Value</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-              </TableCells>
-              <Height>0.16667in</Height>
-            </TableRow>
-            <TableRow>
-              <Visibility>
-                <Hidden>=IsNothing(Fields!billto_line3.Value)</Hidden>
-              </Visibility>
-              <TableCells>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox51">
-                      <Style>
-                        <FontFamily>tahoma</FontFamily>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                      <ZIndex>1</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>=Fields!billto_line3.Value</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-              </TableCells>
-              <Height>0.16667in</Height>
-            </TableRow>
-            <TableRow>
-              <Visibility>
-                <Hidden>=IsNothing(Fields!billto_city.Value)</Hidden>
-              </Visibility>
-              <TableCells>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox52">
-                      <Style>
-                        <FontFamily>tahoma</FontFamily>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                      <CanGrow>true</CanGrow>
-                      <Value>=Fields!billto_postalcode.Value+" "+Fields!billto_city.Value</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-              </TableCells>
-              <Height>0.16667in</Height>
-            </TableRow>
-          </TableRows>
-        </Details>
-        <Style>
-          <FontFamily>tahoma</FontFamily>
-          <FontSize>8pt</FontSize>
-          <TextAlign>Left</TextAlign>
-        </Style>
-        <TableColumns>
-          <TableColumn>
-            <Width>3.61458in</Width>
-          </TableColumn>
-        </TableColumns>
-        <Height>72.00144pt</Height>
-      </Table>
-      <Table Name="tblFromInfo">
-        <ZIndex>6</ZIndex>
-        <DataElementOutput>Output</DataElementOutput>
-        <DataSetName>DataSet1</DataSetName>
-        <Top>7.09375in</Top>
-        <Details>
-          <TableRows>
-            <TableRow>
-              <TableCells>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox9">
-                      <Style>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                      <ZIndex>6</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>=Fields!O_FullName.Value</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-              </TableCells>
-              <Height>0.18462in</Height>
-            </TableRow>
-            <TableRow>
-              <Visibility>
-                <Hidden>=IsNothing(Fields!O_Line1.Value)</Hidden>
-              </Visibility>
-              <TableCells>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox26">
-                      <Style>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                      <ZIndex>5</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>=Fields!O_Line1.Value</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-              </TableCells>
-              <Height>0.1641in</Height>
-            </TableRow>
-            <TableRow>
-              <Visibility>
-                <Hidden>=IsNothing(Fields!O_Line2.Value)</Hidden>
-              </Visibility>
-              <TableCells>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox32">
-                      <Style>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                      <ZIndex>4</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>=Fields!O_Line2.Value</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-              </TableCells>
-              <Height>0.1641in</Height>
-            </TableRow>
-            <TableRow>
-              <Visibility>
-                <Hidden>=IsNothing(Fields!O_Line3.Value)</Hidden>
-              </Visibility>
-              <TableCells>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox35">
-                      <Style>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                      <ZIndex>3</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>=Fields!O_Line3.Value</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-              </TableCells>
-              <Height>0.1641in</Height>
-            </TableRow>
-            <TableRow>
-              <Visibility>
-                <Hidden>=IsNothing(Fields!O_City.Value)</Hidden>
-              </Visibility>
-              <TableCells>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox36">
-                      <Style>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                      <ZIndex>2</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>=Fields!O_Zip.Value+" "+Fields!O_City.Value</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-              </TableCells>
-              <Height>0.1641in</Height>
-            </TableRow>
-            <TableRow>
-              <Visibility>
-                <Hidden>=IsNothing(Fields!O_EMail.Value)</Hidden>
-              </Visibility>
-              <TableCells>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="O_EMail">
-                      <rd:DefaultName>O_EMail</rd:DefaultName>
-                      <Style>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                      <ZIndex>1</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>="E-mail"&amp;": "+Fields!O_EMail.Value</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-              </TableCells>
-              <Height>0.1641in</Height>
-            </TableRow>
-            <TableRow>
-              <Visibility>
-                <Hidden>=IsNothing(Fields!O_Phone.Value)</Hidden>
-              </Visibility>
-              <TableCells>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="O_Phone">
-                      <rd:DefaultName>O_Phone</rd:DefaultName>
-                      <Style>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                      <CanGrow>true</CanGrow>
-                      <Value>="Telefon"&amp;": "+Fields!O_Phone.Value</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-              </TableCells>
-              <Height>0.1641in</Height>
-            </TableRow>
-          </TableRows>
-        </Details>
-        <Header>
-          <TableRows>
-            <TableRow>
-              <TableCells>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox40">
-                      <Style>
-                        <BackgroundColor>LightCyan</BackgroundColor>
-                        <FontSize>8pt</FontSize>
-                        <FontWeight>700</FontWeight>
-                      </Style>
-                      <ZIndex>7</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>Fra:</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-              </TableCells>
-              <Height>0.1641in</Height>
-            </TableRow>
-          </TableRows>
-        </Header>
-        <TableColumns>
-          <TableColumn>
-            <Width>3.63018in</Width>
-          </TableColumn>
-        </TableColumns>
-        <Height>95.99904pt</Height>
-        <Left>9.36508cm</Left>
-      </Table>
       <Table Name="table2">
-        <ZIndex>5</ZIndex>
+        <ZIndex>3</ZIndex>
         <DataElementOutput>Output</DataElementOutput>
         <DataSetName>DataSet1</DataSetName>
         <KeepTogether>true</KeepTogether>
-        <Top>9.375in</Top>
+        <Top>5in</Top>
         <Width>5.71429cm</Width>
         <Header>
           <TableRows>
@@ -1491,294 +1340,11 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
         <Height>3.1746cm</Height>
         <Left>5.03125in</Left>
       </Table>
-      <Textbox Name="textbox15">
-        <Top>8.625in</Top>
-        <Width>18.4127cm</Width>
-        <Style>
-          <Color>White</Color>
-          <BackgroundColor>#2e456e</BackgroundColor>
-          <FontFamily>tahoma</FontFamily>
-          <FontWeight>700</FontWeight>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-        <ZIndex>4</ZIndex>
-        <CanGrow>true</CanGrow>
-        <Left>0.07937cm</Left>
-        <Height>0.25in</Height>
-        <Value>Detaljer</Value>
-      </Textbox>
-      <Table Name="table3">
-        <ZIndex>3</ZIndex>
-        <DataElementOutput>Output</DataElementOutput>
-        <DataSetName>DataSet1</DataSetName>
-        <Top>6in</Top>
-        <Width>7.25in</Width>
-        <Details>
-          <TableRows>
-            <TableRow>
-              <TableCells>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="totallineitemamount">
-                      <rd:DefaultName>totallineitemamount</rd:DefaultName>
-                      <Style>
-                        <FontFamily>tahoma</FontFamily>
-                        <FontSize>8pt</FontSize>
-                        <TextAlign>Left</TextAlign>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                      <ZIndex>11</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>Samlet beløb:</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox44">
-                      <rd:DefaultName>textbox44</rd:DefaultName>
-                      <Style>
-                        <FontFamily>tahoma</FontFamily>
-                        <FontSize>8pt</FontSize>
-                        <FontWeight>700</FontWeight>
-                        <Format>=Fields!crm_moneyformatstring.Value</Format>
-                        <TextAlign>Left</TextAlign>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                      <ZIndex>10</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>=Format(Fields!totalamount.Value, Fields!crm_moneyformatstring.Value)</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="quotenumber">
-                      <Style>
-                        <FontSize>8pt</FontSize>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                      <ZIndex>9</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>Faktura-id:</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox12">
-                      <rd:DefaultName>textbox12</rd:DefaultName>
-                      <Action>
-                        <Hyperlink>=IIF(IsNothing(Parameters!CRM_URL.Value),system.dbnull.value,Parameters!CRM_URL.Value+"?ID={"+Fields!invoiceid.Value.ToString()+"}&amp;OTC=1090")</Hyperlink>
-                      </Action>
-                      <Style>
-                        <FontSize>8pt</FontSize>
-                        <TextAlign>Left</TextAlign>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                      <ZIndex>8</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>=Fields!invoicenumber.Value</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-              </TableCells>
-              <Height>0.25in</Height>
-            </TableRow>
-            <TableRow>
-              <TableCells>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="shippingmethodcodename">
-                      <rd:DefaultName>shippingmethodcodename</rd:DefaultName>
-                      <Style>
-                        <FontFamily>tahoma</FontFamily>
-                        <FontSize>8pt</FontSize>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                      <ZIndex>7</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>Forsendelsesmåde:</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox48">
-                      <rd:DefaultName>textbox48</rd:DefaultName>
-                      <Style>
-                        <FontFamily>tahoma</FontFamily>
-                        <FontSize>8pt</FontSize>
-                        <TextAlign>Left</TextAlign>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                      <ZIndex>6</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>=Fields!shippingmethodcodename.Value</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox34">
-                      <rd:DefaultName>textbox34</rd:DefaultName>
-                      <Style>
-                        <FontSize>8pt</FontSize>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                      <ZIndex>5</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>Dato:</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox37">
-                      <rd:DefaultName>textbox37</rd:DefaultName>
-                      <Style>
-                        <FontSize>8pt</FontSize>
-                        <Format>=First(Fields!DateFormat.Value, "DSNumandCurrency")</Format>
-                        <TextAlign>Left</TextAlign>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                        <Calendar>=Parameters!CRM_CalendarType.Value</Calendar>
-                      </Style>
-                      <ZIndex>4</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>=Today()</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-              </TableCells>
-              <Height>0.25in</Height>
-            </TableRow>
-            <TableRow>
-              <TableCells>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="paymenttermscodename">
-                      <rd:DefaultName>paymenttermscodename</rd:DefaultName>
-                      <Style>
-                        <FontFamily>tahoma</FontFamily>
-                        <FontSize>8pt</FontSize>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                      <ZIndex>3</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>Betalingsbetingelser:</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox56">
-                      <rd:DefaultName>textbox56</rd:DefaultName>
-                      <Style>
-                        <FontFamily>tahoma</FontFamily>
-                        <FontSize>8pt</FontSize>
-                        <TextAlign>Left</TextAlign>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                      <ZIndex>2</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value>=Fields!paymenttermscodename.Value</Value>
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox39">
-                      <rd:DefaultName>textbox39</rd:DefaultName>
-                      <Style>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                      <ZIndex>1</ZIndex>
-                      <CanGrow>true</CanGrow>
-                      <Value />
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-                <TableCell>
-                  <ReportItems>
-                    <Textbox Name="textbox63">
-                      <rd:DefaultName>textbox63</rd:DefaultName>
-                      <Style>
-                        <PaddingLeft>2pt</PaddingLeft>
-                        <PaddingRight>2pt</PaddingRight>
-                        <PaddingTop>2pt</PaddingTop>
-                        <PaddingBottom>2pt</PaddingBottom>
-                      </Style>
-                      <CanGrow>true</CanGrow>
-                      <Value />
-                    </Textbox>
-                  </ReportItems>
-                </TableCell>
-              </TableCells>
-              <Height>0.25in</Height>
-            </TableRow>
-          </TableRows>
-        </Details>
-        <Style>
-          <FontFamily>tahoma</FontFamily>
-          <FontSize>8pt</FontSize>
-        </Style>
-        <TableColumns>
-          <TableColumn>
-            <Width>1.5in</Width>
-          </TableColumn>
-          <TableColumn>
-            <Width>2.125in</Width>
-          </TableColumn>
-          <TableColumn>
-            <Width>1.5in</Width>
-          </TableColumn>
-          <TableColumn>
-            <Width>2.125in</Width>
-          </TableColumn>
-        </TableColumns>
-        <Height>0.75in</Height>
-      </Table>
       <Table Name="TblDtl0">
         <ZIndex>2</ZIndex>
         <DataElementOutput>Output</DataElementOutput>
         <DataSetName>QuoteDetail</DataSetName>
-        <Top>8.875in</Top>
+        <Top>4.5in</Top>
         <Width>18.4127cm</Width>
         <Details>
           <TableRows>
