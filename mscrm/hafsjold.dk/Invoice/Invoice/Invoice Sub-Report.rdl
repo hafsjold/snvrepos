@@ -654,14 +654,14 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
     </DataSet>
   </DataSets>
   <Code />
-  <Width>18.27039cm</Width>
+  <Width>18.27044cm</Width>
   <Body>
     <ReportItems>
       <Table Name="tblFaktura">
         <ZIndex>5</ZIndex>
         <DataSetName>DataSet1</DataSetName>
         <Top>0.07937cm</Top>
-        <Width>8.96826cm</Width>
+        <Width>8.56826cm</Width>
         <Details>
           <TableRows>
             <TableRow>
@@ -827,14 +827,14 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
         </Header>
         <TableColumns>
           <TableColumn>
-            <Width>3.68838cm</Width>
+            <Width>3.52387cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>5.27988cm</Width>
+            <Width>5.04439cm</Width>
           </TableColumn>
         </TableColumns>
         <Height>2.32804cm</Height>
-        <Left>9.28571cm</Left>
+        <Left>9.68571cm</Left>
       </Table>
       <Table Name="tblShipTo">
         <ZIndex>4</ZIndex>
@@ -947,6 +947,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
           </TableColumn>
         </TableColumns>
         <Height>0.83335in</Height>
+        <Left>0.4cm</Left>
       </Table>
       <Table Name="table2">
         <ZIndex>3</ZIndex>
@@ -954,7 +955,6 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
         <DataSetName>DataSet1</DataSetName>
         <KeepTogether>true</KeepTogether>
         <Top>3.70825in</Top>
-        <Width>5.63492cm</Width>
         <Header>
           <TableRows>
             <TableRow>
@@ -1242,14 +1242,14 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
         </Header>
         <TableColumns>
           <TableColumn>
-            <Width>1.47917in</Width>
+            <Width>1.49357in</Width>
           </TableColumn>
           <TableColumn>
-            <Width>0.73958in</Width>
+            <Width>0.74678in</Width>
           </TableColumn>
         </TableColumns>
         <Height>3.1746cm</Height>
-        <Left>4.96875in</Left>
+        <Left>4.95364in</Left>
       </Table>
       <Table Name="TblDtl0">
         <ZIndex>2</ZIndex>
@@ -1952,6 +1952,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
           </TableColumn>
         </TableColumns>
         <Height>69.0012pt</Height>
+        <Left>0.4cm</Left>
       </Table>
       <Table Name="tblToAcctInfo">
         <DataElementOutput>Output</DataElementOutput>
@@ -2077,6 +2078,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
           </TableColumn>
         </TableColumns>
         <Height>69.0012pt</Height>
+        <Left>0.4cm</Left>
       </Table>
     </ReportItems>
     <Height>12.69841cm</Height>
