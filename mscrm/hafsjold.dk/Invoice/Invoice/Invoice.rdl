@@ -215,6 +215,7 @@ R2mzC4Bz4iVZmdojwT8/ZgNuoFrjf15+IK7x3MNcxMHDmuX8OrNDKMMYU+cP7xh1uBp4AP0o6TSyxz5q
 FjyH7h1LTlVM0VSzU8QPS9ll3Po7JihVX1na0rl9t4Hnb5TQ9sw6pgrcCd13IuwM1GfMzG+4D8arak6ivnMJoUnVILyBbcL+XVWH5OB76gfrNJE5ql7jZy6ORQtS8IdCHVpmHnKDkFn3KPsskwjZQZLFzKnXRvMjpQuqT9j9zMxDNZ0D6Q50q+uWccZ/wDMzKw+RjxwhiSmsBvHxS4436LtO9yLo8hyPe3xjEo67IfOUEtFVqPFZvuFsISBtjITwg6I9KkZayT5zGaOB1EpYrbz3q4R3nq1K+/KwDnSsXeIvmLcqv6shlUaJF+HV7qWDAqXdEktz3rGnxHGIGrVHZvOZfk766Avx+iNVSYicC/eQhi4/Zw65gH1Y+zmrQxhMtfhMs9IP6eEpcFaUfFXg7eOJ7FJ001rkA+aZE6e08zrW0fIwNsXnYeGywUvJ5HWyxls3w/d/QqerEbHw8AnHBdCGfjAOCU2OeFN48TAJ7xpnBj4hDeNEwOf8Kbxf3K1b6SK7uBWAAAAAElFTkSuQmCC</ImageData>
     </EmbeddedImage>
   </EmbeddedImages>
+  <PageWidth>21cm</PageWidth>
   <DataSets>
     <DataSet Name="DataSet1">
       <Fields>
@@ -376,7 +377,7 @@ WHERE     (systemuserid = dbo.fn_FindUserGuid())</CommandText>
       </Line>
       <Textbox Name="textbox4">
         <Top>0.07937cm</Top>
-        <Width>5.71429cm</Width>
+        <Width>4.04762cm</Width>
         <Style>
           <FontSize>7pt</FontSize>
           <PaddingLeft>2pt</PaddingLeft>
@@ -386,7 +387,8 @@ WHERE     (systemuserid = dbo.fn_FindUserGuid())</CommandText>
         </Style>
         <ZIndex>3</ZIndex>
         <CanGrow>true</CanGrow>
-        <Left>11.34921cm</Left>
+        <Left>10.31746cm</Left>
+        <Height>1.3492cm</Height>
         <Value>Danske Bank
 Konto nummer  3183-3170154738
 IBAN DK2330003170154738
@@ -395,7 +397,7 @@ IBAN DK2330003170154738
       </Textbox>
       <Textbox Name="textbox3">
         <Top>0.07937cm</Top>
-        <Width>3.57143cm</Width>
+        <Width>2.46032cm</Width>
         <Style>
           <FontSize>7pt</FontSize>
           <PaddingLeft>2pt</PaddingLeft>
@@ -405,7 +407,7 @@ IBAN DK2330003170154738
         </Style>
         <ZIndex>2</ZIndex>
         <CanGrow>true</CanGrow>
-        <Left>7.53968cm</Left>
+        <Left>6.66667cm</Left>
         <Value>Retur adresse:
 Hafsjold Data ApS
 Nørremarken 31
@@ -414,7 +416,7 @@ Nørremarken 31
       </Textbox>
       <Textbox Name="textbox2">
         <Top>0.07937cm</Top>
-        <Width>3.4127cm</Width>
+        <Width>2.77778cm</Width>
         <Style>
           <FontSize>7pt</FontSize>
           <PaddingLeft>2pt</PaddingLeft>
@@ -424,7 +426,8 @@ Nørremarken 31
         </Style>
         <ZIndex>1</ZIndex>
         <CanGrow>true</CanGrow>
-        <Left>3.88889cm</Left>
+        <Left>3.09524cm</Left>
+        <Height>1.3492cm</Height>
         <Value>Tel (+45) 49170544
 Fax (+45) 49170577
 Mail mha@hafsjold.dk
@@ -433,7 +436,7 @@ Mail mha@hafsjold.dk
       <Textbox Name="textbox1">
         <rd:DefaultName>textbox1</rd:DefaultName>
         <Top>0.07937cm</Top>
-        <Width>3.09524cm</Width>
+        <Width>2.30158cm</Width>
         <Style>
           <FontSize>7pt</FontSize>
           <PaddingRight>2pt</PaddingRight>
@@ -442,14 +445,16 @@ Mail mha@hafsjold.dk
         </Style>
         <CanGrow>true</CanGrow>
         <Left>0.07937cm</Left>
+        <Height>1.3492cm</Height>
         <Value>Hafsjold Data ApS
 Nørremarken 31
 3060 Espergærde
 </Value>
       </Textbox>
     </ReportItems>
-    <Height>0.5625in</Height>
+    <Height>0.59375in</Height>
     <PrintOnLastPage>true</PrintOnLastPage>
   </PageFooter>
   <TopMargin>0.5in</TopMargin>
+  <PageHeight>29.7cm</PageHeight>
 </Report>
