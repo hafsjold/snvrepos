@@ -654,7 +654,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
     </DataSet>
   </DataSets>
   <Code />
-  <Width>18.27044cm</Width>
+  <Width>18.45081cm</Width>
   <Body>
     <ReportItems>
       <Table Name="tblFaktura">
@@ -955,6 +955,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
         <DataSetName>DataSet1</DataSetName>
         <KeepTogether>true</KeepTogether>
         <Top>3.70825in</Top>
+        <Width>5.6257cm</Width>
         <Header>
           <TableRows>
             <TableRow>
@@ -1242,20 +1243,21 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
         </Header>
         <TableColumns>
           <TableColumn>
-            <Width>1.49357in</Width>
+            <Width>1.46834in</Width>
           </TableColumn>
           <TableColumn>
             <Width>0.74678in</Width>
           </TableColumn>
         </TableColumns>
         <Height>3.1746cm</Height>
-        <Left>4.95364in</Left>
+        <Left>4.98in</Left>
       </Table>
       <Table Name="TblDtl0">
         <ZIndex>2</ZIndex>
         <DataElementOutput>Output</DataElementOutput>
         <DataSetName>QuoteDetail</DataSetName>
         <Top>3.20825in</Top>
+        <Width>18.27043cm</Width>
         <Details>
           <TableRows>
             <TableRow>
@@ -1828,7 +1830,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
         <Visibility>
           <Hidden>=(Fields!customeridtype.Value=1)</Hidden>
         </Visibility>
-        <Top>0.07937cm</Top>
+        <Top>0.07937in</Top>
         <Width>3.59375in</Width>
         <Details>
           <TableRows>
@@ -1960,7 +1962,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
         <Visibility>
           <Hidden>=(Fields!customeridtype.Value=2)</Hidden>
         </Visibility>
-        <Top>0.052in</Top>
+        <Top>0.07937in</Top>
         <Width>3.59375in</Width>
         <Details>
           <TableRows>
