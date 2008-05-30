@@ -165,6 +165,21 @@
   <rd:SnapToGrid>true</rd:SnapToGrid>
   <RightMargin>0.5in</RightMargin>
   <LeftMargin>0.5in</LeftMargin>
+  <PageHeader>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <ReportItems>
+      <Image Name="image3">
+        <Sizing>AutoSize</Sizing>
+        <Width>4.65608cm</Width>
+        <Source>Embedded</Source>
+        <Style />
+        <Left>12.93651cm</Left>
+        <Value>hafsjold_data_logo</Value>
+      </Image>
+    </ReportItems>
+    <Height>1.5873cm</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+  </PageHeader>
   <BottomMargin>0.5in</BottomMargin>
   <rd:ReportID>9001b3e4-a23b-44d7-bb1e-8ef5de5f94f3</rd:ReportID>
   <EmbeddedImages>
@@ -733,9 +748,9 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
   <Body>
     <ReportItems>
       <Table Name="tblFaktura">
-        <ZIndex>6</ZIndex>
+        <ZIndex>5</ZIndex>
         <DataSetName>DataSet1</DataSetName>
-        <Top>3.36cm</Top>
+        <Top>0.07937cm</Top>
         <Width>9.20635cm</Width>
         <Details>
           <TableRows>
@@ -747,7 +762,6 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                       <Style>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingTop>2pt</PaddingTop>
-                        <WritingMode>tb-rl</WritingMode>
                         <Calendar>Gregorian</Calendar>
                       </Style>
                       <ZIndex>5</ZIndex>
@@ -765,7 +779,6 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                       <Style>
                         <TextAlign>Left</TextAlign>
                         <PaddingTop>2pt</PaddingTop>
-                        <WritingMode>tb-rl</WritingMode>
                         <Calendar>Gregorian</Calendar>
                       </Style>
                       <ZIndex>4</ZIndex>
@@ -897,6 +910,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
               <Height>18pt</Height>
             </TableRow>
           </TableRows>
+          <RepeatOnNewPage>true</RepeatOnNewPage>
         </Header>
         <TableColumns>
           <TableColumn>
@@ -909,16 +923,6 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
         <Height>2.32804cm</Height>
         <Left>9.28571cm</Left>
       </Table>
-      <Image Name="image3">
-        <Sizing>AutoSize</Sizing>
-        <Width>4.65608cm</Width>
-        <Source>Embedded</Source>
-        <Style />
-        <ZIndex>5</ZIndex>
-        <Left>13cm</Left>
-        <Height>1.5873cm</Height>
-        <Value>hafsjold_data_logo</Value>
-      </Image>
       <Table Name="tblShipTo">
         <ZIndex>4</ZIndex>
         <DataElementOutput>Output</DataElementOutput>
@@ -926,7 +930,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
         <Visibility>
           <Hidden>=IsNothing(Fields!shipto_line1.Value) And IsNothing(Fields!shipto_line2.Value) And IsNothing(Fields!shipto_line3.Value) And IsNothing(Fields!shipto_postalcode.Value) And IsNothing(Fields!shipto_city.Value)</Hidden>
         </Visibility>
-        <Top>8cm</Top>
+        <Top>4.71937cm</Top>
         <Width>3.59375in</Width>
         <Details>
           <TableRows>
@@ -1036,7 +1040,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
         <DataElementOutput>Output</DataElementOutput>
         <DataSetName>DataSet1</DataSetName>
         <KeepTogether>true</KeepTogether>
-        <Top>5in</Top>
+        <Top>3.70825in</Top>
         <Width>5.71429cm</Width>
         <Header>
           <TableRows>
@@ -1348,7 +1352,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
         <ZIndex>2</ZIndex>
         <DataElementOutput>Output</DataElementOutput>
         <DataSetName>QuoteDetail</DataSetName>
-        <Top>4.5in</Top>
+        <Top>3.20825in</Top>
         <Width>18.4127cm</Width>
         <Details>
           <TableRows>
@@ -1939,7 +1943,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
         <Visibility>
           <Hidden>=(Fields!customeridtype.Value=1)</Hidden>
         </Visibility>
-        <Top>3.36cm</Top>
+        <Top>0.07937cm</Top>
         <Width>3.59375in</Width>
         <Details>
           <TableRows>
@@ -2070,7 +2074,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
         <Visibility>
           <Hidden>=(Fields!customeridtype.Value=2)</Hidden>
         </Visibility>
-        <Top>1.34375in</Top>
+        <Top>0.052in</Top>
         <Width>3.59375in</Width>
         <Details>
           <TableRows>
@@ -2190,7 +2194,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
         <Height>69.0012pt</Height>
       </Table>
     </ReportItems>
-    <Height>27.30159cm</Height>
+    <Height>25.87302cm</Height>
   </Body>
   <CustomProperties>
     <CustomProperty>
@@ -2199,5 +2203,29 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
     </CustomProperty>
   </CustomProperties>
   <Language>=Parameters!CRM_NumberLanguageCode.Value</Language>
+  <PageFooter>
+    <PrintOnFirstPage>true</PrintOnFirstPage>
+    <ReportItems>
+      <Textbox Name="textbox9">
+        <rd:DefaultName>textbox9</rd:DefaultName>
+        <Top>0.2381cm</Top>
+        <Width>2.53968cm</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Left>0.55556cm</Left>
+        <Height>1.5873cm</Height>
+        <Value>Footer
+fffffffff
+xxxxx</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>3.01587cm</Height>
+    <PrintOnLastPage>true</PrintOnLastPage>
+  </PageFooter>
   <TopMargin>0.5in</TopMargin>
 </Report>
