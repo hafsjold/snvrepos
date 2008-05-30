@@ -323,7 +323,7 @@ WHERE     (systemuserid = dbo.fn_FindUserGuid())</CommandText>
   </DataSets>
   <Author> MSFT</Author>
   <Code />
-  <Width>7.46875in</Width>
+  <Width>7.28437in</Width>
   <Body>
     <ReportItems>
       <List Name="list1">
@@ -365,7 +365,7 @@ WHERE     (systemuserid = dbo.fn_FindUserGuid())</CommandText>
     <PrintOnFirstPage>true</PrintOnFirstPage>
     <ReportItems>
       <Line Name="line1">
-        <Width>18.4127cm</Width>
+        <Width>18.19063cm</Width>
         <Style>
           <BorderStyle>
             <Default>Solid</Default>
