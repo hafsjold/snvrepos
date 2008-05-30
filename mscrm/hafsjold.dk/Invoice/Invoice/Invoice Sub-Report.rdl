@@ -729,14 +729,14 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
     </DataSet>
   </DataSets>
   <Code />
-  <Width>18.58459cm</Width>
+  <Width>18.57143cm</Width>
   <Body>
     <ReportItems>
       <Table Name="tblFaktura">
         <ZIndex>6</ZIndex>
         <DataSetName>DataSet1</DataSetName>
         <Top>3.36cm</Top>
-        <Width>7.93651cm</Width>
+        <Width>9.20635cm</Width>
         <Details>
           <TableRows>
             <TableRow>
@@ -746,6 +746,8 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                     <Textbox Name="textbox28">
                       <Style>
                         <PaddingLeft>2pt</PaddingLeft>
+                        <PaddingTop>2pt</PaddingTop>
+                        <WritingMode>tb-rl</WritingMode>
                         <Calendar>Gregorian</Calendar>
                       </Style>
                       <ZIndex>5</ZIndex>
@@ -762,6 +764,8 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                       </Action>
                       <Style>
                         <TextAlign>Left</TextAlign>
+                        <PaddingTop>2pt</PaddingTop>
+                        <WritingMode>tb-rl</WritingMode>
                         <Calendar>Gregorian</Calendar>
                       </Style>
                       <ZIndex>4</ZIndex>
@@ -771,7 +775,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                   </ReportItems>
                 </TableCell>
               </TableCells>
-              <Height>0.16667in</Height>
+              <Height>16pt</Height>
             </TableRow>
             <TableRow>
               <TableCells>
@@ -802,7 +806,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                   </ReportItems>
                 </TableCell>
               </TableCells>
-              <Height>0.16667in</Height>
+              <Height>16pt</Height>
             </TableRow>
             <TableRow>
               <TableCells>
@@ -812,7 +816,7 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                       <rd:DefaultName>textbox53</rd:DefaultName>
                       <ZIndex>1</ZIndex>
                       <CanGrow>true</CanGrow>
-                      <Value />
+                      <Value>Hafsjold Data CVR-nr.</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
@@ -824,12 +828,12 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                         <TextAlign>Left</TextAlign>
                       </Style>
                       <CanGrow>true</CanGrow>
-                      <Value />
+                      <Value>DK75882017</Value>
                     </Textbox>
                   </ReportItems>
                 </TableCell>
               </TableCells>
-              <Height>0.16667in</Height>
+              <Height>16pt</Height>
             </TableRow>
           </TableRows>
         </Details>
@@ -896,14 +900,14 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
         </Header>
         <TableColumns>
           <TableColumn>
-            <Width>3.33333cm</Width>
+            <Width>3.7863cm</Width>
           </TableColumn>
           <TableColumn>
-            <Width>4.60317cm</Width>
+            <Width>5.42005cm</Width>
           </TableColumn>
         </TableColumns>
-        <Height>1.90479cm</Height>
-        <Left>9.52381cm</Left>
+        <Height>2.32804cm</Height>
+        <Left>9.28571cm</Left>
       </Table>
       <Image Name="image3">
         <Sizing>AutoSize</Sizing>
