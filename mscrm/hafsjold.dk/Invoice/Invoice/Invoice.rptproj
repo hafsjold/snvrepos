@@ -7,6 +7,10 @@
       <Name>Invoice Sub-Report.rdl</Name>
       <FullPath>Invoice Sub-Report.rdl</FullPath>
     </ProjectItem>
+    <ProjectItem>
+      <Name>Invoice.rdl</Name>
+      <FullPath>Invoice.rdl</FullPath>
+    </ProjectItem>
   </Reports>
   <Configurations>
     <Configuration>
