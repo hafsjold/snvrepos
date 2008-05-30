@@ -128,10 +128,11 @@
         <Source>Embedded</Source>
         <Style />
         <Left>12.93651cm</Left>
+        <Height>1.5873cm</Height>
         <Value>hafsjold_data_logo</Value>
       </Image>
     </ReportItems>
-    <Height>1.5873cm</Height>
+    <Height>2.69841cm</Height>
     <PrintOnLastPage>true</PrintOnLastPage>
   </PageHeader>
   <BottomMargin>0.5in</BottomMargin>
@@ -362,15 +363,60 @@ WHERE     (systemuserid = dbo.fn_FindUserGuid())</CommandText>
   <PageFooter>
     <PrintOnFirstPage>true</PrintOnFirstPage>
     <ReportItems>
-      <Textbox Name="txtUserIDLabel">
-        <Top>0.01563in</Top>
-        <Width>2.5625in</Width>
+      <Line Name="line1">
+        <Width>17.93651cm</Width>
         <Style>
-          <Color>#666666</Color>
-          <FontFamily>tahoma</FontFamily>
-          <FontSize>8pt</FontSize>
-          <FontWeight>700</FontWeight>
-          <TextAlign>Center</TextAlign>
+          <BorderStyle>
+            <Default>Solid</Default>
+          </BorderStyle>
+        </Style>
+        <ZIndex>4</ZIndex>
+        <Left>0.63492cm</Left>
+        <Height>0cm</Height>
+      </Line>
+      <Textbox Name="textbox4">
+        <Top>0.07937cm</Top>
+        <Width>5.71429cm</Width>
+        <Style>
+          <FontSize>7pt</FontSize>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>3</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>11.8254cm</Left>
+        <Value>Danske Bank
+Konto nummer  3183-3170154738
+IBAN DK2330003170154738
+
+</Value>
+      </Textbox>
+      <Textbox Name="textbox3">
+        <Top>0.07937cm</Top>
+        <Width>3.57143cm</Width>
+        <Style>
+          <FontSize>7pt</FontSize>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>2</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>8.01587cm</Left>
+        <Value>Retur adresse:
+Hafsjold Data ApS
+Nørremarken 31
+3060 Espergærde
+</Value>
+      </Textbox>
+      <Textbox Name="textbox2">
+        <Top>0.07937cm</Top>
+        <Width>3.4127cm</Width>
+        <Style>
+          <FontSize>7pt</FontSize>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
@@ -378,36 +424,33 @@ WHERE     (systemuserid = dbo.fn_FindUserGuid())</CommandText>
         </Style>
         <ZIndex>1</ZIndex>
         <CanGrow>true</CanGrow>
-        <Left>2.0625in</Left>
-        <Height>0.21875in</Height>
-        <Value>="Forberedt af: " &amp; Parameters!CRM_FullName.Value</Value>
+        <Left>4.36508cm</Left>
+        <Value>Tel (+45) 49170544
+Fax (+45) 49170577
+Mail mha@hafsjold.dk
+</Value>
       </Textbox>
-      <Textbox Name="txtExecutionDateTimeLabel">
-        <Top>0.01563in</Top>
-        <Width>1.84375in</Width>
+      <Textbox Name="textbox1">
+        <rd:DefaultName>textbox1</rd:DefaultName>
+        <Top>0.07937cm</Top>
+        <Width>3.09524cm</Width>
         <Style>
-          <Color>#666666</Color>
-          <FontFamily>tahoma</FontFamily>
-          <FontSize>8pt</FontSize>
-          <FontWeight>700</FontWeight>
-          <Format>=Parameters!CRM_FormatDate.Value + " " + Parameters!CRM_FormatTime.Value</Format>
-          <TextAlign>Left</TextAlign>
+          <FontSize>7pt</FontSize>
           <PaddingLeft>2pt</PaddingLeft>
           <PaddingRight>2pt</PaddingRight>
           <PaddingTop>2pt</PaddingTop>
           <PaddingBottom>2pt</PaddingBottom>
-          <Calendar>=Parameters!CRM_CalendarType.Value</Calendar>
         </Style>
         <CanGrow>true</CanGrow>
-        <Height>0.21875in</Height>
-        <Value>=Now()</Value>
+        <Left>0.55556cm</Left>
+        <Value>Hafsjold Data ApS
+Nørremarken 31
+3060 Espergærde
+</Value>
       </Textbox>
     </ReportItems>
-    <Height>0.25in</Height>
+    <Height>0.5625in</Height>
     <PrintOnLastPage>true</PrintOnLastPage>
-    <Style>
-      <BackgroundColor>#deddcf</BackgroundColor>
-    </Style>
   </PageFooter>
   <TopMargin>0.5in</TopMargin>
 </Report>
