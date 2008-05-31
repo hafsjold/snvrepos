@@ -825,7 +825,6 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                   <Height>18pt</Height>
                 </TableRow>
               </TableRows>
-              <RepeatOnNewPage>true</RepeatOnNewPage>
             </Header>
             <TableColumns>
               <TableColumn>
@@ -960,7 +959,6 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
                   <Height>0.125in</Height>
                 </TableRow>
               </TableRows>
-              <RepeatOnNewPage>true</RepeatOnNewPage>
             </Header>
             <TableColumns>
               <TableColumn>
@@ -1215,7 +1213,6 @@ WHERE     (FilteredInvoiceDetail.invoiceid = @CRM_QuoteId)</CommandText>
           <GroupExpressions>
             <GroupExpression>=Fields!invoicenumber.Value</GroupExpression>
           </GroupExpressions>
-          <PageBreakAtStart>true</PageBreakAtStart>
         </Grouping>
         <Height>7.06349cm</Height>
       </List>
