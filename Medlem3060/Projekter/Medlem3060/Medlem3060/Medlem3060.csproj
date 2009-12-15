@@ -8,7 +8,7 @@
     <ProjectGuid>{8CCA55A9-515D-4149-A500-78F3923C92D0}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Medlem3060</RootNamespace>
+    <RootNamespace>nsPuls3060</RootNamespace>
     <AssemblyName>Medlem3060</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -51,6 +51,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsPbs.cs" />
+    <Compile Include="dbData3060.cs">
+      <DependentUpon>dbData3060.dbml</DependentUpon>
+    </Compile>
     <Compile Include="dbData3060.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -64,9 +68,13 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="app.config" />
     <None Include="dbData3060.dbml.layout">
       <DependentUpon>dbData3060.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -75,6 +83,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="dbData3060.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>

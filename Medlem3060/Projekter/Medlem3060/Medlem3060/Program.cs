@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Medlem3060
+namespace nsPuls3060
 {
     static class Program
     {

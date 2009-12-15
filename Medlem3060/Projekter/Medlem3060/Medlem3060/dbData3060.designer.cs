@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Medlem3060
+namespace nsPuls3060
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
