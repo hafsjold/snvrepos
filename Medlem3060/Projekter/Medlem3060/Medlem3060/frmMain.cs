@@ -24,5 +24,11 @@ namespace nsPuls3060
         {
             dbData3060.SubmitChanges();
         }
+
+        private void Test_Click(object sender, EventArgs e)
+        {
+            clsPbs Test = new clsPbs();
+            Test.faktura_601_action(1);
+        }
     }
 }

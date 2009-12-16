@@ -14,18 +14,19 @@ namespace nsPuls3060
     {
         private struct lintype
         {
-            string advistekst;
-            double advisbelob;
+            //string advistekst;
+            //double advisbelob;
         }
 
         private struct infolintype
         {
-            long getinfotekst;
-        }        
-        
+            //long getinfotekst;
+        }
+
         private DbData3060 dbData3060;
-        
-        public clsPbs() {
+
+        public clsPbs()
+        {
             dbData3060 = new DbData3060(@"C:\Documents and Settings\mha\Dokumenter\Medlem3060\Databaser\SQLCompact\dbData3060.sdf");
         }
 
@@ -53,9 +54,9 @@ namespace nsPuls3060
 
             //Den query skal ændres til en union !!!!!!!!!!!!
             var MedlemLogs = from c in dbData3060.TblMedlemLog
-                              where c.Nr == pNr && c.Logdato <= pDate
-                              orderby c.Logdato descending
-                              select c;
+                             where c.Nr == pNr && c.Logdato <= pDate
+                             orderby c.Logdato descending
+                             select c;
 
             foreach (var MedlemLog in MedlemLogs)
             {
@@ -298,7 +299,7 @@ namespace nsPuls3060
             return rec;
         }
 
-        private string write042(string sektionnr, string pbsnr, string transkode, string debgrpnr, string medlemsnr, long aftalenr, System.DateTime betaldato, long fortegn, long belob, long faknr)
+        private string write042(string sektionnr, string pbsnr, string transkode, string debgrpnr, string medlemsnr, int aftalenr, System.DateTime betaldato, int fortegn, int belob, int faknr)
         {
             string rec = null;
 
@@ -459,7 +460,7 @@ namespace nsPuls3060
             return rec;
         }
 
-        private string write092(string pbsnr, string sektionnr, string debgrpnr, string antal1, long belob1, long antal2, long antal3)
+        private string write092(string pbsnr, string sektionnr, string debgrpnr, int antal1, int belob1, int antal2, int antal3)
         {
 
             string rec = null;
@@ -523,429 +524,377 @@ namespace nsPuls3060
             string Val = oVal.ToString();
             return Val.PadRight(Length, PadChar);
         }
-        //************************************************************************************************
-        //************************************************************************************************
-        //************************************************************************************************
-        //************************************************************************************************
-        public void faktura_601_action(long lobnr) {
-        string rec;
-        lintype lin;
-        infolintype infolin;
-        long recnr;
-        string command;
-        int fortegn;
-        bool selector;
-        long wleveranceid;
-        long wpbsforsendelseid;
-        long wpbsfilesid;
-        long seq;
-        string stSql;
-        //ADODB.Recordset rst;
-        //ADODB.Recordset rstdeb;
-        //ADODB.Recordset rsttil;
-        //ADODB.Recordset rstkrd;
-        //ADODB.Recordset rstfile;
-        string vatTilPBSFileNavn;
-        // -- Betalingsoplysninger
-        string h_linie;
-        // -- Tekst til hovedlinie på advis
-        long belobint;
-        string advistekst;
-        long advisbelob;
-        // -- Tællere
-        long antal042;
-        // -- Antal 042: Antal foranstående 042 records
-        long belob042;
-        // -- Beløb: Nettobeløb i 042 records
-        long antal052;
-        // -- Antal 052: Antal foranstående 052 records
-        long antal022;
-        // -- Antal 022: Antal foranstående 022 records
-        long antalsek;
-        // -- Antal sektioner i leverancen
-        long antal042tot;
-        // -- Antal 042: Antal foranstående 042 records
-        long belob042tot;
-        // -- Beløb: Nettobeløb i 042 records
-        long antal052tot;
-        // -- Antal 052: Antal foranstående 052 records
-        long antal022tot;
-        // -- Antal 022: Antal foranstående 022 records
-        // TODO: On Error GoTo Warning!!!: The statement is not translatable 
-        // --lobnr = 275 '--debug
-        h_linie = "LØBEKLUBBEN PULS 3060";
-        seq = 0;
-        antal042 = 0;
-        belob042 = 0;
-        antal052 = 0;
-        antal022 = 0;
-        antalsek = 0;
-        antal042tot = 0;
-        belob042tot = 0;
-        antal052tot = 0;
-        antal022tot = 0;
-/*
-        stSql = ("Select count(id) as antal from tbltilpbs where id = " + (lobnr + ";"));
-        rst = CurrentProject.Connection.Execute(stSql);
-        if (rst) {
-            Antal = 0;
-            Err.Raise;
-            101;
-            ("Der er ingen PBS forsendelse for id: " + lobnr);
-            stSql = ("Select count(id) as antal from tbltilpbs where id = " 
-                        + (lobnr + " and pbsforsendelseid is not null;"));
-            rst = CurrentProject.Connection.Execute(stSql);
-            if (rst) {
-                Antal = 1;
-                Err.Raise;
-                102;
-                ("Pbsforsendelse for id: " 
-                            + (lobnr + " er allerede sendt"));
-                stSql = ("Select count(id) as antal from tblfak where tilpbsid = " 
-                            + (lobnr + ";"));
-                rst = CurrentProject.Connection.Execute(stSql);
-                if (rst) {
-                    Antal = 0;
-                    Err.Raise;
-                    103;
-                    ("Der er ingen pbs transaktioner for tilpbsid: " 
-                                + (lobnr + ";"));
-                    stSql = ("SELECT udtrukket, bilagdato, delsystem, leverancetype FROM tbltilpbs WHERE id = " + lobnr);
-                    rsttil = new ADODB.Recordset();
-                    rsttil.Open;
-                    stSql;
-                    CurrentProject.Connection;
-                    adOpenDynamic;
-                    adLockOptimistic;
-                    if (IsNull(rsttil, udtrukket)) {
-                        rsttil;
-                    }
-                    udtrukket = Now;
-                    if (IsNull(rsttil, bilagdato)) {
-                        rsttil;
-                    }
-                    bilagdato = rsttil;
-                    udtrukket;
-                    if (IsNull(rsttil, delsystem)) {
-                        rsttil;
-                    }
-                    delsystem = "BS1";
-                    if (IsNull(rsttil, leverancetype)) {
-                        rsttil;
-                    }
-                    leverancetype = "";
-                    rsttil.Update;
-                    wpbsforsendelseid = nextval("tblpbsforsendelse_id_seq");
-                    wleveranceid = nextval("leveranceid");
-                    stSql = ("INSERT INTO tblpbsforsendelse (id, delsystem, leverancetype, oprettetaf, oprettet, leveranceid) " + ("values(" 
-                                + (wpbsforsendelseid + (", \"" + rsttil))));
-                    (delsystem + ("\", \"" + rsttil));
-                    (leverancetype + ("\", \"Fak\", #" 
-                                + (format(Now(), "mm-dd-yyyy hh:mm:ss") + ("#, " 
-                                + (wleveranceid + ");")))));
-                    CurrentProject.Connection.Execute;
-                    stSql;
-                    wpbsfilesid = nextval("tblpbsfiles_id_seq");
-                    stSql = ("INSERT INTO tblpbsfiles (id, pbsforsendelseid ) values(" 
-                                + (wpbsfilesid + (", " 
-                                + (wpbsforsendelseid + ");"))));
-                    CurrentProject.Connection.Execute;
-                    stSql;
-                    stSql = "SELECT r.rid, r.Navn, r.Start, r.Slut, r.Placering, r.Eksportmappe, r.TilPBS, r.FraPBS FROM tblAktivt" +
-                    "Regnskab AS a INNER JOIN tblRegnskab AS r ON a.rid = r.rid;";
-                    rst = CurrentProject.Connection.Execute(stSql);
-                    if (!rst.eof) {
-                        vatTilPBSFileNavn = rst;
-                        (TilPBS + ("PBS" 
-                                    + (wleveranceid + ".lst")));
-                    }
-                    stSql = ("SELECT datalevnr, datalevnavn, pbsnr, sektionnr, debgrpnr, regnr, kontonr, transkodebetaling, delsyst" +
-                    "em FROM tblkreditor WHERE delsystem = \"" + rsttil);
-                    (delsystem + "\";");
-                    rstkrd = CurrentProject.Connection.Execute(stSql);
-                    stSql = "select * from tblpbsfile;";
-                    rstfile = new ADODB.Recordset();
-                    rstfile.Open;
-                    stSql;
-                    CurrentProject.Connection;
-                    adOpenDynamic;
-                    adLockOptimistic;
-                    // -- Leverance Start - 0601 Betalingsoplysninger
-                    // - rstkrd!datalevnr - Dataleverandørnr.: Dataleverandørens SE-nummer
-                    // - rsttil!delsystem - Delsystem:  Dataleverandør delsystem
-                    // - "0601"           - Leverancetype: 0601 (Betalingsoplysninger)
-                    // - wleveranceid     - Leveranceidentifikation: Løbenummer efter eget valg
-                    // - rsttil!udtrukket - Dato: 000000 eller leverancens dannelsesdato
-                    rec = write002(IfNull(rstkrd, datalevnr), IfNull(rsttil, delsystem), "0601", wleveranceid, IfNull(rsttil, udtrukket));
-                    seq = (seq + 1);
-                    rstfile.AddNew;
-                    rstfile;
-                    pbsfilesid = wpbsfilesid;
-                    rstfile;
-                    seqnr = seq;
-                    rstfile;
-                    Data = rec;
-                    rstfile.Update;
-                    // -- Sektion start  sektion 0112/0117
-                    // -  rstkrd!pbsnr       - PBS-nr.: Kreditors PBS-nummer
-                    // -  rstkrd!sektionnr   - Sektionsnr.: 0112/0117 (Betalinger med lang advistekst)
-                    // -  rstkrd!debgrpnr    - Debitorgruppenr.: Debitorgruppenummer
-                    // -  rstkrd!datalevnavn - Leveranceidentifikation: Brugers identifikation hos dataleverandør
-                    // -  rsttil!udtrukket   - Dato: 000000 eller leverancens dannelsesdato
-                    // -  rstkrd!regnr       - Reg.nr.: Overførselsregistreringsnummer
-                    // -  rstkrd!kontonr     - Kontonr.: Overførselskontonummer
-                    // -  h_linie            - H-linie: Tekst til hovedlinie på advis
-                    rec = write012(IfNull(rstkrd, pbsnr), IfNull(rstkrd, sektionnr), IfNull(rstkrd, debgrpnr), IfNull(rstkrd, datalevnavn), IfNull(rsttil, udtrukket), IfNull(rstkrd, regnr), IfNull(rstkrd, kontonr), h_linie);
-                    seq = (seq + 1);
-                    rstfile.AddNew;
-                    rstfile;
-                    pbsfilesid = wpbsfilesid;
-                    rstfile;
-                    seqnr = seq;
-                    rstfile;
-                    Data = rec;
-                    rstfile.Update;
-                    antalsek = (antalsek + 1);
-                    stSql = ("SELECT " + ("f.id AS id, " + ("m.Nr, " + ("m.Kundenr AS kundenr, " + ("m.Navn1 AS navn, " + ("m.Adresse1 AS adresse, " + ("m.Postnr AS postnr, " + ("f.faknr AS faknr, " + ("f.betalingsdato AS betalingsdato, " + ("f.infotekst, " + ("f.tilpbsid, " + ("f.advistekst, " + ("f.advisbelob AS belob " + ("FROM tblfak AS f " + ("LEFT JOIN qryPBSKunde AS m ON f.Nr = m.Nr " + ("WHERE (((f.Nr) Is Not Null) " + ("AND ((f.tilpbsid)= " 
-                                + (lobnr + (")) " + "ORDER BY f.Nr;")))))))))))))))))));
-                    rstdeb = CurrentProject.Connection.Execute(stSql);
-                    while (!rstdeb.eof) {
-                        // -- Debitornavn
-                        // - rstkrd!sektionnr -
-                        // - rstkrd!pbsnr     - PBS-nr.: Kreditors PBS-nummer
-                        // - "0240"           - Transkode: 0240 (Navn/adresse på debitor)
-                        // - 1                - Recordnr.: 001
-                        // - rstkrd!debgrpnr  - Debitorgruppenr.: Debitorgruppenummer
-                        // - rstdeb!kundenr   - Kundenr.: Debitors kundenummer hos kreditor
-                        // - 0                - Aftalenr.: 000000000 eller 999999999
-                        // - rstdeb!navn      - Navn: Debitors navn
-                        rec = write022(IfNull(rstkrd, sektionnr), IfNull(rstkrd, pbsnr), "0240", 1, IfNull(rstkrd, debgrpnr), IfNull(rstdeb, kundenr), 0, IfNull(rstdeb, Navn));
-                        antal022 = (antal022 + 1);
-                        antal022tot = (antal022tot + 1);
-                        seq = (seq + 1);
-                        rstfile.AddNew;
-                        rstfile;
-                        pbsfilesid = wpbsfilesid;
-                        rstfile;
-                        seqnr = seq;
-                        rstfile;
-                        Data = rec;
-                        rstfile.Update;
-                        // -- Debitoradresse 1/adresse 2
-                        // - rstkrd!sektionnr -
-                        // - rstkrd!pbsnr     - PBS-nr.: Kreditors PBS-nummer
-                        // - "0240"           - Transkode: 0240 (Navn/adresse på debitor)
-                        // - 2                - Recordnr.: 002
-                        // - rstkrd!debgrpnr  - Debitorgruppenr.: Debitorgruppenummer
-                        // - rstdeb!kundenr   - Kundenr.: Debitors kundenummer hos kreditor
-                        // - 0                - Aftalenr.: 000000000 eller 999999999
-                        // - rstdeb!adresse   - Adresse 1: Adresselinie 1
-                        rec = write022(IfNull(rstkrd, sektionnr), IfNull(rstkrd, pbsnr), "0240", 2, IfNull(rstkrd, debgrpnr), IfNull(rstdeb, kundenr), 0, IfNull(rstdeb, Adresse));
-                        antal022 = (antal022 + 1);
-                        antal022tot = (antal022tot + 1);
-                        seq = (seq + 1);
-                        rstfile.AddNew;
-                        rstfile;
-                        pbsfilesid = wpbsfilesid;
-                        rstfile;
-                        seqnr = seq;
-                        rstfile;
-                        Data = rec;
-                        rstfile.Update;
-                        // -- Debitorpostnummer
-                        // - rstkrd!sektionnr -
-                        // - rstkrd!pbsnr     - PBS-nr.: Kreditors PBS-nummer
-                        // - "0240"           - Transkode: 0240 (Navn/adresse på debitor)
-                        // - 3                - Recordnr.: 003
-                        // - rstkrd!debgrpnr  - Debitorgruppenr.: Debitorgruppenummer
-                        // - rstdeb!kundenr   - Kundenr.: Debitors kundenummer hos kreditor
-                        // - 0                - Aftalenr.: 000000000 eller 999999999
-                        // - rstdeb!postnr    - Postnr.: Postnummer
-                        rec = write022(IfNull(rstkrd, sektionnr), IfNull(rstkrd, pbsnr), "0240", 9, IfNull(rstkrd, debgrpnr), IfNull(rstdeb, kundenr), 0, IfNull(rstdeb, Postnr));
-                        antal022 = (antal022 + 1);
-                        antal022tot = (antal022tot + 1);
-                        seq = (seq + 1);
-                        rstfile.AddNew;
-                        rstfile;
-                        pbsfilesid = wpbsfilesid;
-                        rstfile;
-                        seqnr = seq;
-                        rstfile;
-                        Data = rec;
-                        rstfile.Update;
-                        // -- Forfald betaling
-                        if (rstdeb) {
-                            (belob > 0);
-                            fortegn = 1;
-                            // -- Fortegnskode: 1 = træk
-                            belobint = rstdeb;
-                            (belob * 100);
-                            belob042 = (belob042 + belobint);
-                            belob042tot = (belob042tot + belobint);
-                        }
-                        else if (rstdeb) {
-                            (belob < 0);
-                            fortegn = 2;
-                            // -- Fortegnskode: 2 = indsættelse
-                            belobint = rstdeb;
-                            (belob * -100);
-                            belob042 = (belob042 - belobint);
-                            belob042tot = (belob042tot - belobint);
-                        }
-                        else {
-                            fortegn = 0;
-                            // -- Fortegnskode: 0 = 0-beløb
-                            belobint = 0;
-                        }
-                        // - rstkrd!sektionnr         -
-                        // - rstkrd!pbsnr             - PBS-nr.: Kreditors PBS-nummer
-                        // - rstkrd!transkodebetaling - Transkode: 0280/0285 (Betaling)
-                        // - rstkrd!debgrpnr          - Debitorgruppenr.: Debitorgruppenummer
-                        // - rstdeb!kundenr           - Kundenr.: Debitors kundenummer hos kreditor
-                        // - 0                        - Aftalenr.: 000000000 eller 999999999
-                        // - rstdeb!betalingsdato     -
-                        // - fortegn                  -
-                        // - belobint                 - Beløb: Beløb i øre uden fortegn
-                        // - rstdeb!faknr             - faknr: Information vedrørende betalingen.
-                        rec = write042(IfNull(rstkrd, sektionnr), IfNull(rstkrd, pbsnr), IfNull(rstkrd, transkodebetaling), IfNull(rstkrd, debgrpnr), IfNull(rstdeb, kundenr), 0, IfNull(rstdeb, betalingsdato), fortegn, belobint, IfNull(rstdeb, faknr));
-                        antal042 = (antal042 + 1);
-                        antal042tot = (antal042tot + 1);
-                        seq = (seq + 1);
-                        rstfile.AddNew;
-                        rstfile;
-                        pbsfilesid = wpbsfilesid;
-                        rstfile;
-                        seqnr = seq;
-                        rstfile;
-                        Data = rec;
-                        rstfile.Update;
-                        string[] arradvis;
-                        int n;
-                        arradvis = Split(rstdeb, advistekst, "\r\n", ,, vbBinaryCompare);
-                        recnr = 0;
-                        for (n = LBound(arradvis); (n <= UBound(arradvis)); n++) {
-                            switch (n) {
-                                case LBound(arradvis):
-                                    recnr = (recnr + 1);
-                                    advistekst = arradvis[n];
-                                    advisbelob = IfNull(rstdeb, belob);
-                                    break;
-                                default:
-                                    recnr = (recnr + 1);
-                                    advistekst = arradvis[n];
-                                    advisbelob = 0;
-                                    break;
-                            }
-                            // -- Tekst til advis
-                            antal052 = (antal052 + 1);
-                            antal052tot = (antal052tot + 1);
-                            selector = true;
-                            rec = write052(IfNull(rstkrd, sektionnr), IfNull(rstkrd, pbsnr), "0241", recnr, IfNull(rstkrd, debgrpnr), IfNull(rstdeb, kundenr), 0, advistekst, advisbelob, "", 0);
-                            seq = (seq + 1);
-                            rstfile.AddNew;
-                            rstfile;
-                            pbsfilesid = wpbsfilesid;
-                            rstfile;
-                            seqnr = seq;
-                            rstfile;
-                            Data = rec;
-                            rstfile.Update;
-                        }
-                        // '  FOR infolin IN SELECT * FROM pbs.getinfotekst(rstdeb!id, rstdeb!infotekstid)
-                        // '  LOOP  '--pbs.getinfotekst
-                        // '    recnr = recnr + 1
-                        // '    '-- Tekst til advis
-                        // '    antal052 = antal052 + 1
-                        // '    antal052tot = antal052tot + 1
-                        // '    selector = True
-                        // '
-                        // '    '- rstkrd!sektionnr     -
-                        // '    '- rstkrd!pbsnr         - PBS-nr.: Kreditors PBS-nummer
-                        // '    '- "0241"               - Transkode: 0241 (Tekstlinie)
-                        // '    '- recnr                - Recordnr.: 001-999
-                        // '    '- rstkrd!debgrpnr      - Debitorgruppenr.: Debitorgruppenummer
-                        // '    '- rstdeb!kundenr       - Kundenr.: Debitors kundenummer hos kreditor
-                        // '    '- 0                    - Aftalenr.: 000000000 eller 999999999
-                        // '    '- infolin.getinfotekst - Advistekst 1: Tekstlinie på advis
-                        // '    '- 0.0                  - Advisbeløb 1: Beløb på advis
-                        // '    '- ""                   - Advistekst 2: Tekstlinie på advis
-                        // '    '- 0.0                  - Advisbeløb 2: Beløb på advis
-                        // '    rec = write052(IfNull(rstkrd!sektionnr), _
-                        // '              IfNull(rstkrd!pbsnr), _
-                        // '              "0241", _
-                        // '              recnr, _
-                        // '              IfNull(rstkrd!debgrpnr), _
-                        // '              IfNull(rstdeb!kundenr), _
-                        // '              0, _
-                        // '              IfNull(infolin.getinfotekst), _
-                        // '              0, _
-                        // '              "", _
-                        // '              0)
-                        // '    seq = seq + 1
-                        // '    rstfile.AddNew
-                        // '    rstfile!pbsfilesid = wpbsfilesid
-                        // '    rstfile!Seqnr = seq
-                        // '    rstfile!data = rec
-                        // '    rstfile.Update
-                        // '    ts.WriteLine rec
-                        // '  END LOOP  '--pbs.getinfotekst
-                        rstdeb.MoveNext;
-                    }
-                    // --rstdeb
-                    // -- Sektion slut - sektion 0112/117
-                    // - rstkrd!pbsnr     - PBS-nr.: Kreditors PBS-nummer
-                    // - rstkrd!sektionnr - Sektionsnr.: 0112/0117 (Betalinger)
-                    // - rstkrd!debgrpnr  - Debitorgruppenr.: Debitorgruppenummer
-                    // - antal042         - Antal 042: Antal foranstående 042 records
-                    // - belob042         - Beløb: Nettobeløb i 042 records
-                    // - antal052         - Antal 052: Antal foranstående 052 records
-                    // - antal022         - Antal 022: Antal foranstående 022 records
-                    rec = write092(IfNull(rstkrd, pbsnr), IfNull(rstkrd, sektionnr), IfNull(rstkrd, debgrpnr), antal042, belob042, antal052, antal022);
-                    seq = (seq + 1);
-                    rstfile.AddNew;
-                    rstfile!pbsfilesid = wpbsfilesid;
-                    rstfile!seqnr = seq;
-                    rstfile!Data = rec;
-                    rstfile.Update;
-                    // -- Leverance slut  - 0601 Betalingsoplysninger
-                    // - rstkrd!datalevnr - Dataleverandørnr.: Dataleverandørens SE-nummer
-                    // - rstkrd!delsystem - Delsystem:  Dataleverandør delsystem
-                    // - "0601"           - Leverancetype: 0601 (Betalingsoplysninger)
-                    // - antalsek         - Antal sektioner: Antal sektioner i leverancen
-                    // - antal042tot      - Antal 042: Antal foranstående 042 records
-                    // - belob042tot      - Beløb: Nettobeløb i 042 records
-                    // - antal052tot      - Antal 052: Antal foranstående 052 records
-                    // - antal022tot      - Antal 022: Antal foranstående 022 records
-                    rec = write992(IfNull(rstkrd, datalevnr), IfNull(rstkrd, delsystem), "0601", antalsek, antal042tot, belob042tot, antal052tot, antal022tot);
-                    seq = (seq + 1);
-                    rstfile.AddNew;
-                    rstfile;
-                    pbsfilesid = wpbsfilesid;
-                    rstfile;
-                    seqnr = seq;
-                    rstfile;
-                    Data = rec;
-                    rstfile.Update;
-                    stSql = ("UPDATE tbltilpbs SET " + ("udtrukket = #" 
-                                + (format(rsttil, udtrukket, "mm-dd-yyyy") + ("#, " + ("pbsforsendelseid = " 
-                                + (wpbsforsendelseid + (", " + ("leverancespecifikation = " 
-                                + (wleveranceid + (" " + ("WHERE id = " 
-                                + (lobnr + ";"))))))))))));
-                    CurrentProject.Connection.Execute;
-                    stSql;
-                Exit_faktura_601_action:
-                    // TODO: Exit Function: Warning!!! Need to return the value
-                    return;
-                Err_faktura_601_action:
-                    MsgBox;
-                    ("Fejl nr " 
-                                + (Err.Number + ("\r\n" + ("\r\n" + Err.Description))));
-                    vbCritical;
-                    Exit_faktura_601_action;
+
+        public int nextval(string nrserienavn)
+        {
+            try
+            {
+                var rst = (from c in dbData3060.Tblnrserie
+                           where c.Nrserienavn == nrserienavn
+                           select c).First();
+
+                if (rst.Sidstbrugtenr != null)
+                {
+                    rst.Sidstbrugtenr += 1;
+                    return rst.Sidstbrugtenr.Value;
+                }
+                else
+                {
+                    rst.Sidstbrugtenr = 0;
+                    return rst.Sidstbrugtenr.Value;
                 }
             }
+            catch (System.InvalidOperationException)
+            {
+                Tblnrserie rec_nrserie = new Tblnrserie
+                {
+                    Nrserienavn = nrserienavn,
+                    Sidstbrugtenr = 0
+                };
+                dbData3060.Tblnrserie.InsertOnSubmit(rec_nrserie);
+                return 0;
+            }
         }
-    */}
+        public object IfNull(object value)
+        {
+            var NullValue = "";
+            if (value == null)
+            {
+                return NullValue;
+            }
+            else
+            {
+                return value;
+            }
+        }
+
+
+        //************************************************************************************************
+        //************************************************************************************************
+        //************************************************************************************************
+        //************************************************************************************************
+        public void faktura_601_action(int lobnr)
+        {
+            string rec;
+            //lintype lin;
+            //infolintype infolin;
+            int recnr;
+            int fortegn;
+            int wleveranceid;
+            int seq;
+            // -- Betalingsoplysninger
+            string h_linie;
+            // -- Tekst til hovedlinie på advis
+            int belobint;
+            string advistekst;
+            int advisbelob;
+            // -- Tællere
+            int antal042;
+            // -- Antal 042: Antal foranstående 042 records
+            int belob042;
+            // -- Beløb: Nettobeløb i 042 records
+            int antal052;
+            // -- Antal 052: Antal foranstående 052 records
+            int antal022;
+            // -- Antal 022: Antal foranstående 022 records
+            int antalsek;
+            // -- Antal sektioner i leverancen
+            int antal042tot;
+            // -- Antal 042: Antal foranstående 042 records
+            int belob042tot;
+            // -- Beløb: Nettobeløb i 042 records
+            int antal052tot;
+            // -- Antal 052: Antal foranstående 052 records
+            int antal022tot;
+            // -- Antal 022: Antal foranstående 022 records
+            // TODO: On Error GoTo Warning!!!: The statement is not translatable 
+            // --lobnr = 275 '--debug
+            h_linie = "LØBEKLUBBEN PULS 3060";
+            seq = 0;
+            antal042 = 0;
+            belob042 = 0;
+            antal052 = 0;
+            antal022 = 0;
+            antalsek = 0;
+            antal042tot = 0;
+            belob042tot = 0;
+            antal052tot = 0;
+            antal022tot = 0;
+
+            {
+                var rst = from c in dbData3060.Tbltilpbs
+                          where c.Id == lobnr
+                          select c;
+                if (rst.Count() == 0) { throw new Exception("101 - Der er ingen PBS forsendelse for id: " + lobnr); }
+            }
+            {
+                var rst = from c in dbData3060.Tbltilpbs
+                          where c.Id == lobnr && c.Pbsforsendelseid != null
+                          select c;
+                if (rst.Count() > 0) { throw new Exception("102 - Pbsforsendelse for id: " + lobnr + " er allerede sendt"); }
+            }
+            {
+                var rst = from c in dbData3060.Tblfak
+                          where c.Tilpbsid == lobnr
+                          select c;
+                // if (rst.Count() == 0) { throw new Exception("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr); }
+                // næste linie skal fjernes efter test
+                if (rst.Count() != 0) { throw new Exception("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr); }
+            }
+
+            var rsttil = (from c in dbData3060.Tbltilpbs
+                          where c.Id == lobnr
+                          select c).First();
+            if (rsttil.Udtrukket == null) { rsttil.Udtrukket = DateTime.Now; }
+            if (rsttil.Bilagdato == null) { rsttil.Bilagdato = rsttil.Udtrukket; }
+            if (rsttil.Delsystem == null) { rsttil.Delsystem = "BS1"; }
+            if (rsttil.Leverancetype == null) { rsttil.Leverancetype = ""; }
+            dbData3060.SubmitChanges();
+
+            wleveranceid = nextval("leveranceid");
+
+            Tblpbsforsendelse rec_pbsforsendelse = new Tblpbsforsendelse
+            {
+                Delsystem = rsttil.Delsystem,
+                Leverancetype = rsttil.Leverancetype,
+                Oprettetaf = "Fak",
+                Oprettet = DateTime.Now,
+                Leveranceid = wleveranceid
+            };
+            dbData3060.Tblpbsforsendelse.InsertOnSubmit(rec_pbsforsendelse);
+
+            Tblpbsfiles rec_pbsfiles = new Tblpbsfiles();
+            rec_pbsforsendelse.Tblpbsfiles.Add(rec_pbsfiles);
+
+            var rstkrd = (from c in dbData3060.Tblkreditor
+                          where c.Delsystem == rsttil.Delsystem
+                          select c).First();
+
+
+            // -- Leverance Start - 0601 Betalingsoplysninger
+            // - rstkrd.Datalevnr - Dataleverandørnr.: Dataleverandørens SE-nummer
+            // - rsttil.Delsystem - Delsystem:  Dataleverandør delsystem
+            // - "0601"           - Leverancetype: 0601 (Betalingsoplysninger)
+            // - wleveranceid     - Leveranceidentifikation: Løbenummer efter eget valg
+            // - rsttil!udtrukket - Dato: 000000 eller leverancens dannelsesdato
+            rec = write002(rstkrd.Datalevnr, rsttil.Delsystem, "0601", wleveranceid.ToString(), (DateTime)rsttil.Udtrukket);
+            Tblpbsfile rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
+            rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+
+            // -- Sektion start - sektion 0112/0117
+            // -  rstkrd.Pbsnr       - PBS-nr.: Kreditors PBS-nummer
+            // -  rstkrd.Sektionnr   - Sektionsnr.: 0112/0117 (Betalinger med lang advistekst)
+            // -  rstkrd.Debgrpnr    - Debitorgruppenr.: Debitorgruppenummer
+            // -  rstkrd.Datalevnavn - Leveranceidentifikation: Brugers identifikation hos dataleverandør
+            // -  rsttil.Udtrukket   - Dato: 000000 eller leverancens dannelsesdato
+            // -  rstkrd.Regnr       - Reg.nr.: Overførselsregistreringsnummer
+            // -  rstkrd.Kontonr     - Kontonr.: Overførselskontonummer
+            // -  h_linie            - H-linie: Tekst til hovedlinie på advis
+            rec = write012(rstkrd.Pbsnr, rstkrd.Sektionnr, rstkrd.Debgrpnr, rstkrd.Datalevnavn, (DateTime)rsttil.Udtrukket, rstkrd.Regnr, rstkrd.Kontonr, h_linie);
+            rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
+            rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+            antalsek++;
+            var rstdebs = from f in dbData3060.Tblfak
+                          where f.Tilpbsid == lobnr && f.Nr != null
+                          join m in dbData3060.TblMedlem on f.Nr equals m.Nr
+                          orderby f.Nr
+                          select new
+                          {
+                              f.Id,
+                              m.Nr,
+                              Kundenr = 32001610000000 + m.Nr,
+                              m.Navn,
+                              m.Adresse,
+                              m.Postnr,
+                              f.Faknr,
+                              f.Betalingsdato,
+                              f.Infotekst,
+                              f.Tilpbsid,
+                              f.Advistekst,
+                              belob = f.Advisbelob
+                          };
+            foreach (var rstdeb in rstdebs)
+            {
+                // -- Debitornavn
+                // - rstkrd.Sektionnr -
+                // - rstkrd.Pbsnr     - PBS-nr.: Kreditors PBS-nummer
+                // - "0240"           - Transkode: 0240 (Navn/adresse på debitor)
+                // - 1                - Recordnr.: 001
+                // - rstkrd.Debgrpnr  - Debitorgruppenr.: Debitorgruppenummer
+                // - rstdeb.Kundenr   - Kundenr.: Debitors kundenummer hos kreditor
+                // - 0                - Aftalenr.: 000000000 eller 999999999
+                // - rstdeb.Navn      - Navn: Debitors navn
+                rec = write022(rstkrd.Sektionnr, rstkrd.Pbsnr, "0240", 1, rstkrd.Debgrpnr, rstdeb.Kundenr.ToString(), 0, rstdeb.Navn);
+                antal022++;
+                antal022tot++;
+                rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
+                rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+
+                // -- Debitoradresse 1/adresse 2
+                // - rstkrd.Sektionnr -
+                // - rstkrd.Pbsnr     - PBS-nr.: Kreditors PBS-nummer
+                // - "0240"           - Transkode: 0240 (Navn/adresse på debitor)
+                // - 2                - Recordnr.: 002
+                // - rstkrd.Debgrpnr  - Debitorgruppenr.: Debitorgruppenummer
+                // - rstdeb.Kundenr   - Kundenr.: Debitors kundenummer hos kreditor
+                // - 0                - Aftalenr.: 000000000 eller 999999999
+                // - rstdeb.Adresse   - Adresse 1: Adresselinie 1
+                rec = write022(rstkrd.Sektionnr, rstkrd.Pbsnr, "0240", 2, rstkrd.Debgrpnr, rstdeb.Kundenr.ToString(), 0, rstdeb.Adresse);
+                antal022++;
+                antal022tot++;
+                rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
+                rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+
+                // -- Debitorpostnummer
+                // - rstkrd.Sektionnr -
+                // - rstkrd.Pbsnr     - PBS-nr.: Kreditors PBS-nummer
+                // - "0240"           - Transkode: 0240 (Navn/adresse på debitor)
+                // - 3                - Recordnr.: 003
+                // - rstkrd.Debgrpnr  - Debitorgruppenr.: Debitorgruppenummer
+                // - rstdeb.Kundenr   - Kundenr.: Debitors kundenummer hos kreditor
+                // - 0                - Aftalenr.: 000000000 eller 999999999
+                // - rstdeb.Postnr    - Postnr.: Postnummer
+                rec = write022(rstkrd.Sektionnr, rstkrd.Pbsnr, "0240", 9, rstkrd.Debgrpnr, rstdeb.Kundenr.ToString(), 0, rstdeb.Postnr.ToString());
+                antal022++;
+                antal022tot++;
+                rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
+                rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+
+                // -- Forfald betaling
+                if (rstdeb.belob > 0)
+                {
+                    fortegn = 1;
+                    // -- Fortegnskode: 1 = træk
+                    belobint = ((int)rstdeb.belob) * 100;
+                    belob042 += belobint;
+                    belob042tot += belobint;
+                }
+                else if (rstdeb.belob < 0)
+                {
+                    fortegn = 2;
+                    // -- Fortegnskode: 2 = indsættelse
+                    belobint = ((int)rstdeb.belob) * (-100);
+                    belob042 -= belobint;
+                    belob042tot -= belobint;
+                }
+                else
+                {
+                    fortegn = 0;  // -- Fortegnskode: 0 = 0-beløb
+                    belobint = 0;
+                }
+                // - rstkrd.Sektionnr         -
+                // - rstkrd.Pbsnr             - PBS-nr.: Kreditors PBS-nummer
+                // - rstkrd.Transkodebetaling - Transkode: 0280/0285 (Betaling)
+                // - rstkrd.Debgrpnr          - Debitorgruppenr.: Debitorgruppenummer
+                // - rstdeb.Kundenr           - Kundenr.: Debitors kundenummer hos kreditor
+                // - 0                        - Aftalenr.: 000000000 eller 999999999
+                // - rstdeb.Betalingsdato     -
+                // - fortegn                  -
+                // - belobint                 - Beløb: Beløb i øre uden fortegn
+                // - rstdeb.Faknr             - faknr: Information vedrørende betalingen.
+                rec = write042(rstkrd.Sektionnr, rstkrd.Pbsnr, rstkrd.Transkodebetaling, rstkrd.Debgrpnr, rstdeb.Kundenr.ToString(), 0, (DateTime)rstdeb.Betalingsdato, fortegn, belobint, (int)rstdeb.Faknr);
+                antal042++;
+                antal042tot++;
+                rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
+                rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+
+                string[] arradvis;
+                int n;
+                string[] splitchars = { "\r\n" };
+                arradvis = rstdeb.Advistekst.Split(splitchars, StringSplitOptions.None);
+                recnr = 0;
+                for (n = arradvis.GetLowerBound(0); n <= arradvis.GetUpperBound(0); n++)
+                {
+                    if (n == arradvis.GetLowerBound(0))
+                    {
+                        recnr++;
+                        advistekst = arradvis[n];
+                        advisbelob = (int)rstdeb.belob;
+                    }
+                    else
+                    {
+                        recnr++;
+                        advistekst = arradvis[n];
+                        advisbelob = 0;
+                    }
+
+                    // -- Tekst til advis
+                    antal052++;
+                    antal052tot++;
+                    rec = write052(rstkrd.Sektionnr, rstkrd.Pbsnr, "0241", recnr, rstkrd.Debgrpnr, rstdeb.Kundenr.ToString(), 0, advistekst, advisbelob, "", 0);
+                    rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
+                    rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+                }
+                // '  FOR infolin IN SELECT * FROM pbs.getinfotekst(rstdeb!id, rstdeb!infotekstid)
+                // '  LOOP  '--pbs.getinfotekst
+                // '    recnr = recnr + 1
+                // '    '-- Tekst til advis
+                // '    antal052 = antal052 + 1
+                // '    antal052tot = antal052tot + 1
+                // '    selector = True
+                // '
+                // '    '- rstkrd!sektionnr     -
+                // '    '- rstkrd!pbsnr         - PBS-nr.: Kreditors PBS-nummer
+                // '    '- "0241"               - Transkode: 0241 (Tekstlinie)
+                // '    '- recnr                - Recordnr.: 001-999
+                // '    '- rstkrd!debgrpnr      - Debitorgruppenr.: Debitorgruppenummer
+                // '    '- rstdeb!kundenr       - Kundenr.: Debitors kundenummer hos kreditor
+                // '    '- 0                    - Aftalenr.: 000000000 eller 999999999
+                // '    '- infolin.getinfotekst - Advistekst 1: Tekstlinie på advis
+                // '    '- 0.0                  - Advisbeløb 1: Beløb på advis
+                // '    '- ""                   - Advistekst 2: Tekstlinie på advis
+                // '    '- 0.0                  - Advisbeløb 2: Beløb på advis
+                // '    rec = write052(IfNull(rstkrd!sektionnr), _
+                // '              IfNull(rstkrd!pbsnr), _
+                // '              "0241", _
+                // '              recnr, _
+                // '              IfNull(rstkrd!debgrpnr), _
+                // '              IfNull(rstdeb!kundenr), _
+                // '              0, _
+                // '              IfNull(infolin.getinfotekst), _
+                // '              0, _
+                // '              "", _
+                // '              0)
+                // '    seq = seq + 1
+                // '    rstfile.AddNew
+                // '    rstfile!pbsfilesid = wpbsfilesid
+                // '    rstfile!Seqnr = seq
+                // '    rstfile!data = rec
+                // '    rstfile.Update
+                // '    ts.WriteLine rec
+                // '  END LOOP  '--pbs.getinfotekst
+
+            } // -- End rstdebs
+            
+            // -- Sektion slut - sektion 0112/117
+            // - rstkrd!pbsnr     - PBS-nr.: Kreditors PBS-nummer
+            // - rstkrd!sektionnr - Sektionsnr.: 0112/0117 (Betalinger)
+            // - rstkrd!debgrpnr  - Debitorgruppenr.: Debitorgruppenummer
+            // - antal042         - Antal 042: Antal foranstående 042 records
+            // - belob042         - Beløb: Nettobeløb i 042 records
+            // - antal052         - Antal 052: Antal foranstående 052 records
+            // - antal022         - Antal 022: Antal foranstående 022 records
+            rec = write092(rstkrd.Pbsnr, rstkrd.Sektionnr, rstkrd.Debgrpnr, antal042, belob042, antal052, antal022);
+            rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
+            rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+            
+            // -- Leverance slut  - 0601 Betalingsoplysninger
+            // - rstkrd.Datalevnr - Dataleverandørnr.: Dataleverandørens SE-nummer
+            // - rstkrd.Delsystem - Delsystem:  Dataleverandør delsystem
+            // - "0601"           - Leverancetype: 0601 (Betalingsoplysninger)
+            // - antalsek         - Antal sektioner: Antal sektioner i leverancen
+            // - antal042tot      - Antal 042: Antal foranstående 042 records
+            // - belob042tot      - Beløb: Nettobeløb i 042 records
+            // - antal052tot      - Antal 052: Antal foranstående 052 records
+            // - antal022tot      - Antal 022: Antal foranstående 022 records
+            rec = write992(rstkrd.Datalevnr, rstkrd.Delsystem, "0601", antalsek, antal042tot, belob042tot, antal052tot, antal022tot);
+            rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
+            rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+
+            rsttil.Udtrukket = DateTime.Now;
+            rsttil.Leverancespecifikation = wleveranceid.ToString();
+            dbData3060.SubmitChanges();
+        }
 
 
     }
