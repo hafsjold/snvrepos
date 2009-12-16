@@ -896,6 +896,116 @@ namespace nsPuls3060
             dbData3060.SubmitChanges();
         }
 
+    public int kontingent_fakturer_bs1() {
+        int lobnr;
+        string wadvistekst;
+        int wantalfakturaer;
+        int wpbsfilesid;
+        wantalfakturaer = 0;
 
+        Tbltilpbs rec_tilpbs = new Tbltilpbs
+        {
+            Delsystem = "BS1",
+            Leverancetype = "0601",
+            Udtrukket = DateTime.Now
+        };
+        dbData3060.Tbltilpbs.InsertOnSubmit(rec_tilpbs);
+/*    
+
+        var rstdebs = from m in dbData3060.TblMedlem
+                      where f.Tilpbsid == lobnr && f.Nr != null
+                      join m in dbData3060.TblMedlem on f.Nr equals m.Nr
+                      orderby f.Nr
+                      select new
+                      {
+                          f.Id,
+                          m.Nr,
+                          Kundenr = 32001610000000 + m.Nr,
+                          m.Navn,
+                          m.Adresse,
+                          m.Postnr,
+                          f.Faknr,
+                          f.Betalingsdato,
+                          f.Infotekst,
+                          f.Tilpbsid,
+                          f.Advistekst,
+                          belob = f.Advisbelob
+                      };
+
+        stSql = "SELECT m.Nr, m.Navn, h.betalingsdato, l.advisbelob, l.fradato, h.tildato FROM tblMedlem AS m 
+        RIGHT JOIN (tempKontforslag AS h 
+        LEFT JOIN tempKontforslaglinie AS l ON h.id = l.Kontforslagid) ON m.Nr = l.Nr;";
+        rstmedlem = CurrentProject.Connection.Execute(stSql);
+      
+        
+      
+        stSql = "SELECT * FROM tblfak;";
+        rstfak = new ADODB.Recordset();
+        rstfak.Open;
+        stSql;
+        CurrentProject.Connection;
+        adOpenDynamic;
+        adLockOptimistic;
+        while (!rstmedlem.eof) {
+            rstfak.AddNew;
+            rstfak;
+            id = nextval("tblfak_id_seq");
+            rstfak;
+            tilpbsid = lobnr;
+            rstfak;
+            betalingsdato = rstmedlem;
+            betalingsdato;
+            rstfak;
+            Nr = rstmedlem;
+            Nr;
+            rstfak;
+            faknr = nextval("faknr");
+            wadvistekst = "Puls 3060 Medlemskontingent";
+            wadvistekst = (wadvistekst + ("\r\n" + ("  for " + rstmedlem)));
+            Navn;
+            wadvistekst = (wadvistekst + ("\r\n" + ("  perioden fra " 
+                        + (format(rstmedlem, fradato, "yyyy-mm-dd") + (" til " + format(rstmedlem, tildato, "yyyy-mm-dd"))))));
+            wadvistekst = (wadvistekst + ("\r\n" + "Besøg Puls 3060\"s hjemmeside på www.puls3060.dk"));
+            rstfak;
+            advistekst = wadvistekst;
+            rstfak;
+            advisbelob = rstmedlem;
+            advisbelob;
+            rstfak;
+            infotekst = 0;
+            rstfak;
+            bogfkonto = 1800;
+            rstfak;
+            vnr = 1;
+            rstfak;
+            fradato = rstmedlem;
+            fradato;
+            rstfak;
+            tildato = rstmedlem;
+            tildato;
+            rstfak.Update;
+            wantalfakturaer = (wantalfakturaer + 1);
+            rstmedlem.MoveNext;
+        }
+        rstfak.Close;
+        rstmedlem.Close;
+        // 'If (wantalfakturaer > 0) Then
+        // '  Call faktura_601_action(lobnr)
+        // 'End If
+        kontingent_fakturer_bs1 = wantalfakturaer;
+    Exit_kontingent_fakturer_bs1:
+        // TODO: Exit Function: Warning!!! Need to return the value
+        return;
+    Err_kontingent_fakturer_bs1:
+        MsgBox;
+        ("Fejl nr " 
+                    + (Err.Number + ("\r\n" + ("\r\n" + Err.Description))));
+        vbCritical;
+        Exit_kontingent_fakturer_bs1;
+   
+ */
+        return 0;
+
+    }
     }
 }
