@@ -102,6 +102,12 @@ namespace nsPuls3060
     partial void InsertTempKartotek(TempKartotek instance);
     partial void UpdateTempKartotek(TempKartotek instance);
     partial void DeleteTempKartotek(TempKartotek instance);
+    partial void InsertTempKontforslag(TempKontforslag instance);
+    partial void UpdateTempKontforslag(TempKontforslag instance);
+    partial void DeleteTempKontforslag(TempKontforslag instance);
+    partial void InsertTempKontforslaglinie(TempKontforslaglinie instance);
+    partial void UpdateTempKontforslaglinie(TempKontforslaglinie instance);
+    partial void DeleteTempKontforslaglinie(TempKontforslaglinie instance);
     partial void InsertTempKortnr(TempKortnr instance);
     partial void UpdateTempKortnr(TempKortnr instance);
     partial void DeleteTempKortnr(TempKortnr instance);
@@ -323,6 +329,22 @@ namespace nsPuls3060
 			get
 			{
 				return this.GetTable<TempKartotek>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TempKontforslag> TempKontforslag
+		{
+			get
+			{
+				return this.GetTable<TempKontforslag>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TempKontforslaglinie> TempKontforslaglinie
+		{
+			get
+			{
+				return this.GetTable<TempKontforslaglinie>();
 			}
 		}
 		
@@ -957,6 +979,8 @@ namespace nsPuls3060
 		
 		private string _Akt_tekst;
 		
+		private EntitySet<TblMedlemLog> _TblMedlemLog;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -969,6 +993,7 @@ namespace nsPuls3060
 		
 		public TblAktivitet()
 		{
+			this._TblMedlemLog = new EntitySet<TblMedlemLog>(new Action<TblMedlemLog>(this.attach_TblMedlemLog), new Action<TblMedlemLog>(this.detach_TblMedlemLog));
 			OnCreated();
 		}
 		
@@ -1012,6 +1037,19 @@ namespace nsPuls3060
 			}
 		}
 		
+		[Association(Name="TblAktivitet_TblMedlemLog", Storage="_TblMedlemLog", ThisKey="Id", OtherKey="Akt_id")]
+		public EntitySet<TblMedlemLog> TblMedlemLog
+		{
+			get
+			{
+				return this._TblMedlemLog;
+			}
+			set
+			{
+				this._TblMedlemLog.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1030,6 +1068,18 @@ namespace nsPuls3060
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_TblMedlemLog(TblMedlemLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.TblAktivitet = this;
+		}
+		
+		private void detach_TblMedlemLog(TblMedlemLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.TblAktivitet = null;
 		}
 	}
 	
@@ -3529,6 +3579,8 @@ namespace nsPuls3060
 		
 		private EntityRef<TblMedlem> _TblMedlem;
 		
+		private EntityRef<TblAktivitet> _TblAktivitet;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -3548,6 +3600,7 @@ namespace nsPuls3060
 		public TblMedlemLog()
 		{
 			this._TblMedlem = default(EntityRef<TblMedlem>);
+			this._TblAktivitet = default(EntityRef<TblAktivitet>);
 			OnCreated();
 		}
 		
@@ -3685,6 +3738,40 @@ namespace nsPuls3060
 						this._Nr = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("TblMedlem");
+				}
+			}
+		}
+		
+		[Association(Name="TblAktivitet_TblMedlemLog", Storage="_TblAktivitet", ThisKey="Akt_id", OtherKey="Id", IsForeignKey=true)]
+		public TblAktivitet TblAktivitet
+		{
+			get
+			{
+				return this._TblAktivitet.Entity;
+			}
+			set
+			{
+				TblAktivitet previousValue = this._TblAktivitet.Entity;
+				if (((previousValue != value) 
+							|| (this._TblAktivitet.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TblAktivitet.Entity = null;
+						previousValue.TblMedlemLog.Remove(this);
+					}
+					this._TblAktivitet.Entity = value;
+					if ((value != null))
+					{
+						value.TblMedlemLog.Add(this);
+						this._Akt_id = value.Id;
+					}
+					else
+					{
+						this._Akt_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("TblAktivitet");
 				}
 			}
 		}
@@ -6023,6 +6110,343 @@ namespace nsPuls3060
 					this._Debnr = value;
 					this.SendPropertyChanged("Debnr");
 					this.OnDebnrChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="tempKontforslag")]
+	public partial class TempKontforslag : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.DateTime _Betalingsdato;
+		
+		private System.DateTime _Tildato;
+		
+		private EntitySet<TempKontforslaglinie> _TempKontforslaglinie;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnBetalingsdatoChanging(System.DateTime value);
+    partial void OnBetalingsdatoChanged();
+    partial void OnTildatoChanging(System.DateTime value);
+    partial void OnTildatoChanged();
+    #endregion
+		
+		public TempKontforslag()
+		{
+			this._TempKontforslaglinie = new EntitySet<TempKontforslaglinie>(new Action<TempKontforslaglinie>(this.attach_TempKontforslaglinie), new Action<TempKontforslaglinie>(this.detach_TempKontforslaglinie));
+			OnCreated();
+		}
+		
+		[Column(Name="id", Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Name="betalingsdato", Storage="_Betalingsdato", DbType="DateTime NOT NULL")]
+		public System.DateTime Betalingsdato
+		{
+			get
+			{
+				return this._Betalingsdato;
+			}
+			set
+			{
+				if ((this._Betalingsdato != value))
+				{
+					this.OnBetalingsdatoChanging(value);
+					this.SendPropertyChanging();
+					this._Betalingsdato = value;
+					this.SendPropertyChanged("Betalingsdato");
+					this.OnBetalingsdatoChanged();
+				}
+			}
+		}
+		
+		[Column(Name="tildato", Storage="_Tildato", DbType="DateTime NOT NULL")]
+		public System.DateTime Tildato
+		{
+			get
+			{
+				return this._Tildato;
+			}
+			set
+			{
+				if ((this._Tildato != value))
+				{
+					this.OnTildatoChanging(value);
+					this.SendPropertyChanging();
+					this._Tildato = value;
+					this.SendPropertyChanged("Tildato");
+					this.OnTildatoChanged();
+				}
+			}
+		}
+		
+		[Association(Name="TempKontforslag_TempKontforslaglinie", Storage="_TempKontforslaglinie", ThisKey="Id", OtherKey="Kontforslagid")]
+		public EntitySet<TempKontforslaglinie> TempKontforslaglinie
+		{
+			get
+			{
+				return this._TempKontforslaglinie;
+			}
+			set
+			{
+				this._TempKontforslaglinie.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_TempKontforslaglinie(TempKontforslaglinie entity)
+		{
+			this.SendPropertyChanging();
+			entity.TempKontforslag = this;
+		}
+		
+		private void detach_TempKontforslaglinie(TempKontforslaglinie entity)
+		{
+			this.SendPropertyChanging();
+			entity.TempKontforslag = null;
+		}
+	}
+	
+	[Table(Name="tempKontforslaglinie")]
+	public partial class TempKontforslaglinie : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _Nr;
+		
+		private int _Kontforslagid;
+		
+		private System.DateTime _Fradato;
+		
+		private decimal _Advisbelob;
+		
+		private EntityRef<TempKontforslag> _TempKontforslag;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnNrChanging(int value);
+    partial void OnNrChanged();
+    partial void OnKontforslagidChanging(int value);
+    partial void OnKontforslagidChanged();
+    partial void OnFradatoChanging(System.DateTime value);
+    partial void OnFradatoChanged();
+    partial void OnAdvisbelobChanging(decimal value);
+    partial void OnAdvisbelobChanged();
+    #endregion
+		
+		public TempKontforslaglinie()
+		{
+			this._TempKontforslag = default(EntityRef<TempKontforslag>);
+			OnCreated();
+		}
+		
+		[Column(Name="id", Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Nr", DbType="Int NOT NULL")]
+		public int Nr
+		{
+			get
+			{
+				return this._Nr;
+			}
+			set
+			{
+				if ((this._Nr != value))
+				{
+					this.OnNrChanging(value);
+					this.SendPropertyChanging();
+					this._Nr = value;
+					this.SendPropertyChanged("Nr");
+					this.OnNrChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Kontforslagid", DbType="Int NOT NULL")]
+		public int Kontforslagid
+		{
+			get
+			{
+				return this._Kontforslagid;
+			}
+			set
+			{
+				if ((this._Kontforslagid != value))
+				{
+					if (this._TempKontforslag.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnKontforslagidChanging(value);
+					this.SendPropertyChanging();
+					this._Kontforslagid = value;
+					this.SendPropertyChanged("Kontforslagid");
+					this.OnKontforslagidChanged();
+				}
+			}
+		}
+		
+		[Column(Name="fradato", Storage="_Fradato", DbType="DateTime NOT NULL")]
+		public System.DateTime Fradato
+		{
+			get
+			{
+				return this._Fradato;
+			}
+			set
+			{
+				if ((this._Fradato != value))
+				{
+					this.OnFradatoChanging(value);
+					this.SendPropertyChanging();
+					this._Fradato = value;
+					this.SendPropertyChanged("Fradato");
+					this.OnFradatoChanged();
+				}
+			}
+		}
+		
+		[Column(Name="advisbelob", Storage="_Advisbelob", DbType="Decimal(18,2) NOT NULL")]
+		public decimal Advisbelob
+		{
+			get
+			{
+				return this._Advisbelob;
+			}
+			set
+			{
+				if ((this._Advisbelob != value))
+				{
+					this.OnAdvisbelobChanging(value);
+					this.SendPropertyChanging();
+					this._Advisbelob = value;
+					this.SendPropertyChanged("Advisbelob");
+					this.OnAdvisbelobChanged();
+				}
+			}
+		}
+		
+		[Association(Name="TempKontforslag_TempKontforslaglinie", Storage="_TempKontforslag", ThisKey="Kontforslagid", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true)]
+		public TempKontforslag TempKontforslag
+		{
+			get
+			{
+				return this._TempKontforslag.Entity;
+			}
+			set
+			{
+				TempKontforslag previousValue = this._TempKontforslag.Entity;
+				if (((previousValue != value) 
+							|| (this._TempKontforslag.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TempKontforslag.Entity = null;
+						previousValue.TempKontforslaglinie.Remove(this);
+					}
+					this._TempKontforslag.Entity = value;
+					if ((value != null))
+					{
+						value.TempKontforslaglinie.Add(this);
+						this._Kontforslagid = value.Id;
+					}
+					else
+					{
+						this._Kontforslagid = default(int);
+					}
+					this.SendPropertyChanged("TempKontforslag");
 				}
 			}
 		}
