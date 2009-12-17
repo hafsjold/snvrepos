@@ -10,14 +10,14 @@ namespace nsPuls3060
 {
     class clsPbs
     {
-        private DbData3060 dbData3060;
+        private DbData3060 m_dbData3060;
 
         private clsPbs()
         {
         }
         public clsPbs(DbData3060 pdbData3060)
         {
-            dbData3060 = pdbData3060;
+            m_dbData3060 = pdbData3060;
         }
 
         public Boolean erMedlem(short pNr) { return erMedlem(pNr, DateTime.Now); }
@@ -43,7 +43,7 @@ namespace nsPuls3060
             var b50 = false; // Udmeldelses dato fundet
 
             //Den query skal ændres til en union !!!!!!!!!!!!
-            var MedlemLogs = from c in dbData3060.TblMedlemLog
+            var MedlemLogs = from c in m_dbData3060.TblMedlemLog
                              where c.Nr == pNr && c.Logdato <= pDate
                              orderby c.Logdato descending
                              select c;

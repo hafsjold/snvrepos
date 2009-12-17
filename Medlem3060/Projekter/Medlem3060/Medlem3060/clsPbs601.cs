@@ -29,14 +29,14 @@ namespace nsPuls3060
     class clsPbs601
     {
 
-        private DbData3060 dbData3060;
+        private DbData3060 m_dbData3060;
 
         private clsPbs601()
         {
         }
         public clsPbs601(DbData3060 pdbData3060)
         {
-            dbData3060 = pdbData3060;
+            m_dbData3060 = pdbData3060;
         }
         
         public int kontingent_fakturer_bs1()
@@ -52,12 +52,12 @@ namespace nsPuls3060
                 Leverancetype = "0601",
                 Udtrukket = DateTime.Now
             };
-            dbData3060.Tbltilpbs.InsertOnSubmit(rec_tilpbs);
+            m_dbData3060.Tbltilpbs.InsertOnSubmit(rec_tilpbs);
             lobnr = rec_tilpbs.Id;
 
-            var rstmedlems = from h in dbData3060.TempKontforslag
-                             join l in dbData3060.TempKontforslaglinie on h.Id equals l.Kontforslagid
-                             join m in dbData3060.TblMedlem on l.Nr equals m.Nr
+            var rstmedlems = from h in m_dbData3060.TempKontforslag
+                             join l in m_dbData3060.TempKontforslaglinie on h.Id equals l.Kontforslagid
+                             join m in m_dbData3060.TblMedlem on l.Nr equals m.Nr
                              select new
                              {
                                  m.Nr,
@@ -79,7 +79,7 @@ namespace nsPuls3060
                 {
                     Betalingsdato = rstmedlem.Betalingsdato,
                     Nr = rstmedlem.Nr,
-                    Faknr = clsPbs.nextval("faknr", dbData3060),
+                    Faknr = clsPbs.nextval("faknr", m_dbData3060),
                     Advistekst = wadvistekst,
                     Advisbelob = rstmedlem.Advisbelob,
                     Infotekst = 0,
@@ -91,7 +91,7 @@ namespace nsPuls3060
                 rec_tilpbs.Tblfak.Add(rec_fak);
                 wantalfakturaer++;
             }
-            dbData3060.SubmitChanges();
+            m_dbData3060.SubmitChanges();
 
             if (wantalfakturaer > 0) { faktura_601_action(lobnr); }
             return wantalfakturaer;
@@ -146,19 +146,19 @@ namespace nsPuls3060
             antal022tot = 0;
 
             {
-                var antal = (from c in dbData3060.Tbltilpbs
+                var antal = (from c in m_dbData3060.Tbltilpbs
                              where c.Id == lobnr
                              select c).Count();
                 if (antal == 0) { throw new Exception("101 - Der er ingen PBS forsendelse for id: " + lobnr); }
             }
             {
-                var antal = (from c in dbData3060.Tbltilpbs
+                var antal = (from c in m_dbData3060.Tbltilpbs
                              where c.Id == lobnr && c.Pbsforsendelseid != null
                              select c).Count();
                 if (antal > 0) { throw new Exception("102 - Pbsforsendelse for id: " + lobnr + " er allerede sendt"); }
             }
             {
-                var antal = (from c in dbData3060.Tblfak
+                var antal = (from c in m_dbData3060.Tblfak
                              where c.Tilpbsid == lobnr
                              select c).Count();
                 // if (antal == 0) { throw new Exception("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr); }
@@ -166,16 +166,16 @@ namespace nsPuls3060
                 if (antal != 0) { throw new Exception("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr); }
             }
 
-            var rsttil = (from c in dbData3060.Tbltilpbs
+            var rsttil = (from c in m_dbData3060.Tbltilpbs
                           where c.Id == lobnr
                           select c).First();
             if (rsttil.Udtrukket == null) { rsttil.Udtrukket = DateTime.Now; }
             if (rsttil.Bilagdato == null) { rsttil.Bilagdato = rsttil.Udtrukket; }
             if (rsttil.Delsystem == null) { rsttil.Delsystem = "BS1"; }
             if (rsttil.Leverancetype == null) { rsttil.Leverancetype = ""; }
-            dbData3060.SubmitChanges();
+            m_dbData3060.SubmitChanges();
 
-            wleveranceid = clsPbs.nextval("leveranceid", dbData3060);
+            wleveranceid = clsPbs.nextval("leveranceid", m_dbData3060);
 
             Tblpbsforsendelse rec_pbsforsendelse = new Tblpbsforsendelse
             {
@@ -185,12 +185,12 @@ namespace nsPuls3060
                 Oprettet = DateTime.Now,
                 Leveranceid = wleveranceid
             };
-            dbData3060.Tblpbsforsendelse.InsertOnSubmit(rec_pbsforsendelse);
+            m_dbData3060.Tblpbsforsendelse.InsertOnSubmit(rec_pbsforsendelse);
 
             Tblpbsfiles rec_pbsfiles = new Tblpbsfiles();
             rec_pbsforsendelse.Tblpbsfiles.Add(rec_pbsfiles);
 
-            var rstkrd = (from c in dbData3060.Tblkreditor
+            var rstkrd = (from c in m_dbData3060.Tblkreditor
                           where c.Delsystem == rsttil.Delsystem
                           select c).First();
 
@@ -218,9 +218,9 @@ namespace nsPuls3060
             rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
             rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
             antalsek++;
-            var rstdebs = from f in dbData3060.Tblfak
+            var rstdebs = from f in m_dbData3060.Tblfak
                           where f.Tilpbsid == lobnr && f.Nr != null
-                          join m in dbData3060.TblMedlem on f.Nr equals m.Nr
+                          join m in m_dbData3060.TblMedlem on f.Nr equals m.Nr
                           orderby f.Nr
                           select new
                           {
@@ -417,7 +417,7 @@ namespace nsPuls3060
 
             rsttil.Udtrukket = DateTime.Now;
             rsttil.Leverancespecifikation = wleveranceid.ToString();
-            dbData3060.SubmitChanges();
+            m_dbData3060.SubmitChanges();
         }
 
 
