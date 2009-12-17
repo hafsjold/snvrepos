@@ -60,17 +60,17 @@ namespace nsPuls3060
                 };
                 m_dbData3060.Tblpbsnetdir.InsertOnSubmit(rec);
             }
-
-            var qry_pbsnetdir = from t1 in m_dbData3060.Tblpbsnetdir
-                                join t2 in m_dbData3060.Tblpbsfiles
-                                    on new { t1.Filename, t1.Path } equals new { t2.Filename, t2.Path } into details
-                                from t2 in details
-                                where t2.Path == null && t2.Filename == null
-                                select t1;
-
-            if (qry_pbsnetdir.Count() > 0)
+            m_dbData3060.SubmitChanges();
+            var leftqry_pbsnetdir = from t1 in m_dbData3060.Tblpbsnetdir
+                join t2 in m_dbData3060.Tblpbsfiles on new { t1.Path, t1.Filename } equals new { t2.Path, t2.Filename } into details
+                from t2 in details.DefaultIfEmpty()
+                where t2.Path == null && t2.Filename == null
+                select t1;
+            
+            int xantal = leftqry_pbsnetdir.Count();
+            if (leftqry_pbsnetdir.Count() > 0)
             {
-                foreach (var rec_pbsnetdir in qry_pbsnetdir)
+                foreach (var rec_pbsnetdir in leftqry_pbsnetdir)
                 {
                     Tblpbsfiles m_rec_pbsfiles = new Tblpbsfiles
                    {
@@ -104,6 +104,7 @@ namespace nsPuls3060
                         }
                     }
                     m_rec_pbsfiles.Transmittime = DateTime.Now;
+                    m_dbData3060.SubmitChanges();
                 }
             }
             return true;

@@ -31,7 +31,8 @@ namespace nsPuls3060
             clsPbs601 objPbs601 = new clsPbs601(m_dbData3060);
             //objPbs601.faktura_601_action(1);
             clsPbs602 objPbs602 = new clsPbs602(m_dbData3060);
-            objPbs602.TestRead042();
+            //objPbs602.TestRead042();
+            objPbs602.ReadFraPbsFile();
         }
     }
 }
