@@ -27,9 +27,11 @@ namespace nsPuls3060
 
         private void Test_Click(object sender, EventArgs e)
         {
-            clsPbs Test = new clsPbs();
-            //Test.faktura_601_action(1);
-            Test.TestRead042();
+            clsPbs objPbs = new clsPbs(dbData3060);
+            clsPbs601 objPbs601 = new clsPbs601(dbData3060);
+            //objPbs601.faktura_601_action(1);
+            clsPbs602 objPbs602 = new clsPbs602(dbData3060);
+            objPbs602.TestRead042();
         }
     }
 }
