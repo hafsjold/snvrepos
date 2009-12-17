@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace nsPuls3060
 {
@@ -15,6 +16,7 @@ namespace nsPuls3060
         private DbData3060 m_dbData3060;
         private Tblpbsforsendelse m_rec_pbsforsendelse;
         private Tblpbsfiles m_rec_pbsfiles;
+        private Tblpbsfile m_rec_pbsfile;
         private Tblfrapbs m_rec_frapbs;
         private Tblbet m_rec_bet;
         private Tblbetlin m_rec_betlin;
@@ -25,6 +27,86 @@ namespace nsPuls3060
         public clsPbs602(DbData3060 pdbData3060)
         {
             m_dbData3060 = pdbData3060;
+        }
+
+        public bool ReadFraPbsFile()
+        {
+            string FraPBSFolderPath;
+            DirectoryInfo fld;
+            FileStream ts;
+            string ln;
+
+            var rec_regnskab = (from r in m_dbData3060.TblRegnskab
+                                join a in m_dbData3060.TblAktivtRegnskab on r.Rid equals a.Rid
+                                select r).First();
+
+            FraPBSFolderPath = rec_regnskab.FraPBS;
+
+            var delete_pbsnetdir = from d in m_dbData3060.Tblpbsnetdir select d;
+            m_dbData3060.Tblpbsnetdir.DeleteAllOnSubmit(delete_pbsnetdir);
+            m_dbData3060.SubmitChanges();
+
+            fld = new DirectoryInfo(FraPBSFolderPath);
+            foreach (FileInfo f in fld.GetFiles())
+            {
+                Tblpbsnetdir rec = new Tblpbsnetdir
+                {
+                    Type = 8,
+                    Path = f.Directory.Name,
+                    Filename = f.Name,
+                    Size = (int)f.Length,
+                    Atime = f.LastAccessTime,
+                    Mtime = f.LastWriteTime
+                };
+                m_dbData3060.Tblpbsnetdir.InsertOnSubmit(rec);
+            }
+
+            var qry_pbsnetdir = from t1 in m_dbData3060.Tblpbsnetdir
+                                join t2 in m_dbData3060.Tblpbsfiles
+                                    on new { t1.Filename, t1.Path } equals new { t2.Filename, t2.Path } into details
+                                from t2 in details
+                                where t2.Path == null && t2.Filename == null
+                                select t1;
+
+            if (qry_pbsnetdir.Count() > 0)
+            {
+                foreach (var rec_pbsnetdir in qry_pbsnetdir)
+                {
+                    Tblpbsfiles m_rec_pbsfiles = new Tblpbsfiles
+                   {
+                       Type = rec_pbsnetdir.Type,
+                       Path = rec_pbsnetdir.Path,
+                       Filename = rec_pbsnetdir.Filename,
+                       Size = rec_pbsnetdir.Size,
+                       Atime = rec_pbsnetdir.Atime,
+                       Mtime = rec_pbsnetdir.Mtime,
+                       Perm = rec_pbsnetdir.Perm,
+                       Uid = rec_pbsnetdir.Uid,
+                       Gid = rec_pbsnetdir.Gid
+                   };
+                    m_dbData3060.Tblpbsfiles.InsertOnSubmit(m_rec_pbsfiles);
+
+                    string varFromFile = FraPBSFolderPath + rec_pbsnetdir.Filename;
+                    int seqnr = 0;
+                    ts = new FileStream(varFromFile, FileMode.Open, FileAccess.Read, FileShare.None);
+                    ln = null;
+                    using (StreamReader sr = new StreamReader(ts, Encoding.Default))
+                    {
+                        while ((ln = sr.ReadLine()) != null)
+                        {
+                            if (((seqnr == 0) && !(ln.Substring(0, 6) == "PBCNET")) || (seqnr > 0)) { seqnr++; }
+                            m_rec_pbsfile = new Tblpbsfile
+                            {
+                                Seqnr = seqnr,
+                                Data = ln
+                            };
+                            m_rec_pbsfiles.Tblpbsfile.Add(m_rec_pbsfile);
+                        }
+                    }
+                    m_rec_pbsfiles.Transmittime = DateTime.Now;
+                }
+            }
+            return true;
         }
 
         public void TestRead042()
@@ -255,7 +337,7 @@ namespace nsPuls3060
                 }  // slut rstpbsfile
 
                 // -- Update indbetalingsbelob
-                foreach (Tblbet rec_bet in m_rec_frapbs.Tblbet) 
+                foreach (Tblbet rec_bet in m_rec_frapbs.Tblbet)
                 {
                     var SumIndbetalingsbelob = (
                         from c in rec_bet.Tblbetlin
@@ -267,7 +349,7 @@ namespace nsPuls3060
                 }
 
             }  // slut rstpbsfiles
-            
+
             return wfilescount;
         }
 
@@ -288,7 +370,7 @@ namespace nsPuls3060
                 Pbssektionnr = sektion,
                 Pbstranskode = transkode
             };
-            
+
             // --  debitorkonto
             if ((sektion == "0211"))
             {
@@ -305,7 +387,7 @@ namespace nsPuls3060
                 m_rec_betlin.Nr = null;
                 m_rec_betlin.Debitorkonto = null;
             }
-            
+
             // --  aftalenr
             if ((sektion == "0211"))
             {
@@ -315,7 +397,7 @@ namespace nsPuls3060
             {
                 m_rec_betlin.Aftalenr = null;
             }
-            
+
             // --  pbskortart
             if ((sektion == "0215"))
             {
@@ -325,7 +407,7 @@ namespace nsPuls3060
             {
                 m_rec_betlin.Pbskortart = null;
             }
-            
+
             // --  pbsgebyrbelob
             if ((sektion == "0215"))
             {
@@ -349,7 +431,7 @@ namespace nsPuls3060
             {
                 m_rec_betlin.Pbsgebyrbelob = 0;
             }
-            
+
             // --  betalingsdato
             if ((sektion == "0211"))
             {
@@ -381,7 +463,7 @@ namespace nsPuls3060
             {
                 m_rec_betlin.Betalingsdato = null;
             }
-            
+
             // --  belob
             if ((sektion == "0211"))
             {
@@ -427,7 +509,7 @@ namespace nsPuls3060
             {
                 m_rec_betlin.Belob = null;
             }
-            
+
             // --  faknr
             if ((sektion == "0211"))
             {
@@ -441,7 +523,7 @@ namespace nsPuls3060
             {
                 m_rec_betlin.Faknr = null;
             }
-            
+
             // --  pbsarkivnr
             if ((sektion == "0215"))
             {
@@ -451,7 +533,7 @@ namespace nsPuls3060
             {
                 m_rec_betlin.Pbsarkivnr = null;
             }
-            
+
             // --  indbetalingsdato
             if ((rec.Substring(103, 6) != "000000"))
             {
@@ -463,7 +545,7 @@ namespace nsPuls3060
             {
                 m_rec_betlin.Indbetalingsdato = null;
             }
-            
+
             // --  bogforingsdato
             if ((rec.Substring(109, 6) != "000000"))
             {
@@ -475,7 +557,7 @@ namespace nsPuls3060
             {
                 m_rec_betlin.Bogforingsdato = null;
             }
-            
+
             // --  indbetalingsbelob
             if ((sektion == "0211"))
             {
@@ -522,7 +604,7 @@ namespace nsPuls3060
                 m_rec_betlin.Indbetalingsbelob = null;
             }
 
-            
+
             // Find or Create tblber record
             try
             {
