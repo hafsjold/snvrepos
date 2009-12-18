@@ -61,11 +61,11 @@ namespace nsPuls3060
                 m_dbData3060.Tblpbsnetdir.InsertOnSubmit(rec);
             }
             m_dbData3060.SubmitChanges();
-            var leftqry_pbsnetdir = from t1 in m_dbData3060.Tblpbsnetdir
-                join t2 in m_dbData3060.Tblpbsfiles on new { t1.Path, t1.Filename } equals new { t2.Path, t2.Filename } into details
-                from t2 in details.DefaultIfEmpty()
-                where t2.Path == null && t2.Filename == null
-                select t1;
+            var leftqry_pbsnetdir = from h in m_dbData3060.Tblpbsnetdir
+                join d1 in m_dbData3060.Tblpbsfiles on new { h.Path, h.Filename } equals new { d1.Path, d1.Filename } into details
+                from d1 in details.DefaultIfEmpty()
+                where d1.Path == null && d1.Filename == null
+                select h;
             
             int xantal = leftqry_pbsnetdir.Count();
             if (leftqry_pbsnetdir.Count() > 0)

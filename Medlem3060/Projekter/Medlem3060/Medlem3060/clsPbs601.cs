@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace nsPuls3060
 {
@@ -19,7 +20,7 @@ namespace nsPuls3060
     {
         //long getinfotekst;
     }
-    
+
     public enum datefmtType
     {
         fdmmddyyyy = 0,
@@ -37,6 +38,95 @@ namespace nsPuls3060
         public clsPbs601(DbData3060 pdbData3060)
         {
             m_dbData3060 = pdbData3060;
+        }
+
+        public bool WriteTilPbsFile(int lobnr)
+        {
+            string TilPBSFolderPath;
+            string TilPBSFilename;
+            string varToFile;
+            FileInfo f;
+            FileStream ts;
+            //Dim fs As FileSystemObject
+            //Dim ts As TextStream
+            //Dim fld As folder
+            //Dim f As file
+
+
+            var rec_regnskab = (from r in m_dbData3060.TblRegnskab
+                                join a in m_dbData3060.TblAktivtRegnskab on r.Rid equals a.Rid
+                                select r).First();
+            TilPBSFolderPath = rec_regnskab.TilPBS;
+
+            var qry = from h in m_dbData3060.Tblpbsforsendelse
+                      join d1 in m_dbData3060.Tblpbsfiles on h.Id equals d1.Pbsforsendelseid into details1
+                      from d1 in details1.DefaultIfEmpty()
+                      join d2 in m_dbData3060.Tbltilpbs on h.Id equals d2.Pbsforsendelseid into details2
+                      from d2 in details2.DefaultIfEmpty()
+                      where d2.Id == lobnr && d1.Id != null && d2.Id == null
+                      select new
+                      {
+                          tilpbsid = d2.Id,
+                          d2.Leverancespecifikation,
+                          d2.Delsystem,
+                          d2.Leverancetype,
+                          d2.Bilagdato,
+                          d2.Pbsforsendelseid,
+                          d2.Udtrukket,
+                          pbsfilesid = d1.Id
+                      };
+
+
+            if (lobnr == 0)
+            {
+                qry = from h in m_dbData3060.Tblpbsforsendelse
+                      join d1 in m_dbData3060.Tblpbsfiles on h.Id equals d1.Pbsforsendelseid into details1
+                      from d1 in details1.DefaultIfEmpty()
+                      join d2 in m_dbData3060.Tbltilpbs on h.Id equals d2.Pbsforsendelseid into details2
+                      from d2 in details2.DefaultIfEmpty()
+                      where d1.Id != null && d2.Id == null
+                      select new
+                      {
+                          tilpbsid = d2.Id,
+                          d2.Leverancespecifikation,
+                          d2.Delsystem,
+                          d2.Leverancetype,
+                          d2.Bilagdato,
+                          d2.Pbsforsendelseid,
+                          d2.Udtrukket,
+                          pbsfilesid = d1.Id
+                      };
+            }
+            foreach (var rsttilpbs in qry)
+            {
+                var qry2 = from h in m_dbData3060.Tblpbsfiles
+                           where h.Id  == rsttilpbs.pbsfilesid
+                           select h;
+                if (qry2.Count() > 0)
+                {
+                    var qry3 = from h in qry2.First().Tblpbsfile
+                               orderby h.Seqnr
+                               select h;
+                    TilPBSFilename = "PBS" + rsttilpbs.Leverancespecifikation + ".lst";
+                    varToFile = TilPBSFolderPath + TilPBSFilename;
+                    ts = new FileStream(varToFile, FileMode.CreateNew, FileAccess.Write, FileShare.None);
+                    using (StreamWriter sr = new StreamWriter(ts, Encoding.Default))
+                    {
+                        foreach (var rec_pbsfile in qry3)
+                        {
+                            sr.WriteLine(rec_pbsfile.Data);
+                        }
+                    }
+                    f = new FileInfo(varToFile);
+                    qry2.First().Type = 8;
+                    qry2.First().Path = f.Directory.Name;
+                    qry2.First().Filename = f.Name;
+                    qry2.First().Size = (int)f.Length;
+                    qry2.First().Atime = f.LastAccessTime;
+                    qry2.First().Mtime = f.LastWriteTime;
+                }
+            }
+        return true;
         }
         
         public int kontingent_fakturer_bs1()
