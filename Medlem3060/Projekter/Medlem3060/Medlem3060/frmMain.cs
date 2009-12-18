@@ -33,7 +33,8 @@ namespace nsPuls3060
             //objPbs601.faktura_601_action(1);
             //objPbs602.TestRead042();
             //objPbs602.ReadFraPbsFile();
-            objPbs601.WriteTilPbsFile(615);
+            //objPbs601.WriteTilPbsFile(615);
+            objPbs.ReadRegnskaber();
         }
     }
 }

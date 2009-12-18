@@ -6,11 +6,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Microsoft.Win32;
+using System.IO;
 namespace nsPuls3060
 {
     class clsPbs
     {
         private DbData3060 m_dbData3060;
+        private TblRegnskab m_rec_Regnskab;
 
         private clsPbs()
         {
@@ -197,5 +200,210 @@ namespace nsPuls3060
             }
         }
 
+        public bool ReadRegnskaber()
+        {
+            string RegnskabId;
+            string RegnskabMappe;
+            string line;
+            FileStream ts;
+
+            string Eksportmappe = (string)Registry.CurrentUser.OpenSubKey(@"SOFTWARE\STONE'S SOFTWARE\SUMMAPRO\START").GetValue("Eksportmappe");
+            string Datamappe = (string)Registry.CurrentUser.OpenSubKey(@"SOFTWARE\STONE'S SOFTWARE\SUMMAPRO\START").GetValue("Datamappe");
+            DirectoryInfo dir = new DirectoryInfo(Datamappe);
+            foreach (var sub_dir in dir.GetDirectories())
+            {
+                switch (sub_dir.Name.ToUpper())
+                {
+                    case "BRUGERDATA":
+                    case "FORMULARER":
+                    case "-2":
+                    case "-1":
+                    case "0":
+                        break;
+
+                    default:
+                        //do somthing here
+                        RegnskabId = sub_dir.Name;
+
+                        try
+                        {
+                            m_rec_Regnskab =
+                                (from d in m_dbData3060.TblRegnskab
+                                 where d.Rid.ToString() == RegnskabId
+                                 select d).First();
+
+                        }
+                        catch (System.InvalidOperationException)
+                        {
+                            m_rec_Regnskab = new TblRegnskab
+                            {
+                                Rid = int.Parse(RegnskabId)
+                            };
+                            m_dbData3060.TblRegnskab.InsertOnSubmit(m_rec_Regnskab);
+                            m_dbData3060.SubmitChanges();
+                        }
+                        RegnskabMappe = Datamappe + sub_dir.Name + @"\";
+                        m_rec_Regnskab.Placering = RegnskabMappe;
+
+                        m_rec_Regnskab.Eksportmappe = Eksportmappe + @"\";
+
+                        if (m_rec_Regnskab.FraPBS == null)
+                        {
+                            DirectoryInfo infoEksportmappe = new DirectoryInfo(m_rec_Regnskab.Eksportmappe);
+                            if (infoEksportmappe.Exists)
+                            {
+                                m_rec_Regnskab.FraPBS = Eksportmappe + @"\FraPBS\";
+                                DirectoryInfo infoFraPBS = new DirectoryInfo(m_rec_Regnskab.FraPBS);
+                                if (!infoFraPBS.Exists)
+                                {
+                                    infoFraPBS.Create();
+                                }
+                            }
+                        }
+
+                        if (m_rec_Regnskab.TilPBS == null)
+                        {
+                            DirectoryInfo infoEksportmappe = new DirectoryInfo(m_rec_Regnskab.Eksportmappe);
+                            if (infoEksportmappe.Exists)
+                            {
+                                m_rec_Regnskab.TilPBS = Eksportmappe + @"\TilPBS\";
+                                DirectoryInfo infoTilPBS = new DirectoryInfo(m_rec_Regnskab.TilPBS);
+                                if (!infoTilPBS.Exists)
+                                {
+                                    infoTilPBS.Create();
+                                }
+                            }
+                        }
+                        string[] files = new string[2];
+                        files[0] = RegnskabMappe + "regnskab.dat";
+                        files[1] = RegnskabMappe + "status.dat";
+
+                        foreach (var file in files)
+                        {
+                            ts = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.None);
+                            using (StreamReader sr = new StreamReader(ts, Encoding.Default))
+                            {
+                                while ((line = sr.ReadLine()) != null)
+                                {
+                                    if (line.Length > 0)
+                                    {
+                                        string[] X = line.Split('=');
+                                        switch (X[0])
+                                        {
+                                            case "Navn":
+                                                m_rec_Regnskab.Navn = X[1];
+                                                break;
+                                            case "Oprettet":
+                                                //m_rec_Regnskab.Oprettet = DateTime.Parse(X[1]);
+                                                break;
+                                            case "Start":
+                                                string datxx = gregCal(int.Parse(X[1]));
+                                                m_rec_Regnskab.Start = DateTime.Parse(X[1]);
+                                                break;
+                                            case "Slut":
+                                                //m_rec_Regnskab.Slut = DateTime.Parse(X[1]);
+                                                break;
+                                            case "DatoLaas":
+                                                //m_rec_Regnskab.DatoLaas = DateTime.Parse(X[1]);
+                                                break;
+                                            case "Firmanavn":
+                                                m_rec_Regnskab.Firmanavn = X[1];
+                                                break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        break;
+                }
+            }
+            return true;
+        }
+
+        public static String gregCal(int aljulian)
+        {
+            int llnumqc;
+            long llnumq;
+            long llnumc;
+            long llcent = 36524;
+            long llquad = 1461;
+            int liyear = 0, limonth = 0, liday = 0;
+            int[] liDaysInMonth = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 
+			 30, 31 };
+            String x, y, z, q;
+            try
+            {
+                llnumqc = aljulian / 146097; // 4 centuries 
+                liyear = llnumqc * 400;
+                aljulian -= (146097 * llnumqc);
+                llnumc = 0;
+                if (aljulian > (llcent + 1))
+                {
+                    aljulian -= (int)llcent + 1;
+                    liyear += 100;
+                    llnumc = aljulian / llcent;
+                    liyear += (int)(llnumc * 100);
+                    aljulian = (int)(aljulian - llnumc * llcent);
+                    llnumc++;
+                }
+                if ((llnumc > 0) && (aljulian > (llquad - 1)))
+                {
+                    aljulian = (int)(aljulian - (llquad - 1));
+                    liyear += 4;
+                }
+
+                llnumq = aljulian / llquad;
+                liyear += (int)llnumq * 4;
+                aljulian = (int)(aljulian - (llnumq * llquad));
+                DateTime calendar = DateTime.Now;
+                int iYear = calendar.Year;
+                DateTime cal1 = new DateTime(iYear, 04, 12);
+                if (DateTime.IsLeapYear(cal1.Year))
+                {
+                    if (aljulian >= 366)
+                    {
+                        aljulian -= 366;
+                        liyear++;
+                    }
+                    else if (aljulian == 59)
+                    {
+                        limonth = 2;
+                        liday = 29;
+                    }
+                    x = liyear.ToString();
+                    y = limonth.ToString();
+                    z = liday.ToString();
+                    q = " " + x + y + z;
+                    return q;
+                }
+                else if (aljulian > 59)
+                    aljulian--;
+                while (aljulian >= 365)
+                {
+                    aljulian -= 365;
+                    liyear++;
+                }
+                limonth = 0;
+                while (liDaysInMonth[limonth + 1] <= aljulian)
+                {
+                    aljulian -= liDaysInMonth[limonth + 1];
+                    limonth++;
+                }
+                limonth++;
+                liday = aljulian + 1;
+                x = liyear.ToString();
+                y = limonth.ToString();
+                z = liday.ToString();
+                q = x + y + z;
+                return q;
+            }
+            catch (Exception ex)
+            {
+                //Trace.Write("ERROR  :" + ex.Message); 
+                throw ex;
+            }
+        }
     }
+
+
 }
