@@ -16,7 +16,7 @@ namespace nsPuls3060
         public frmMain()
         {
             InitializeComponent();
-            m_dbData3060 = new DbData3060(@"C:\Documents and Settings\mha\Dokumenter\Medlem3060\Databaser\SQLCompact\dbData3060.sdf");
+            m_dbData3060 = new DbData3060(global::nsPuls3060.Properties.Settings.Default.DataBasePath);
 
         }
 
@@ -34,9 +34,10 @@ namespace nsPuls3060
             //objPbs602.TestRead042();
             //objPbs602.ReadFraPbsFile();
             //objPbs601.WriteTilPbsFile(615);
-            objPbs.ReadRegnskaber();
-            DateTime dt = new DateTime(2009, 10, 31);
-            double ssdate = clsUtil.SummaDateTime2Serial(dt);
+            //objPbs.ReadRegnskaber();
+            objPbs.SetAktivRegnskaber();
+            //DateTime dt = new DateTime(2009, 10, 31);
+            //double ssdate = clsUtil.SummaDateTime2Serial(dt);
             //double testdaynr = objPbs.GregorianDate2JulianDayNumber(dt);
             //DateTime testdate = objPbs.JulianDayNumber2GregorianDate(testdaynr);
         }

@@ -8,5 +8,8 @@
     <Setting Name="BetalingsFristiDageNyeMedlemmer" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">61</Value>
     </Setting>
+    <Setting Name="DataBasePath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Documents and Settings\mha\Dokumenter\Medlem3060\Databaser\SQLCompact\dbData3060.sdf</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
