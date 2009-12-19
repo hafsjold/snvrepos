@@ -54,6 +54,7 @@
     <Compile Include="clsPbs.cs" />
     <Compile Include="clsPbs601.cs" />
     <Compile Include="clsPbs602.cs" />
+    <Compile Include="clsUtil.cs" />
     <Compile Include="dbData3060.cs">
       <DependentUpon>dbData3060.dbml</DependentUpon>
     </Compile>

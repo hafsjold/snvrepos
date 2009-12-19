@@ -294,17 +294,16 @@ namespace nsPuls3060
                                                 m_rec_Regnskab.Navn = X[1];
                                                 break;
                                             case "Oprettet":
-                                                //m_rec_Regnskab.Oprettet = DateTime.Parse(X[1]);
+                                                m_rec_Regnskab.Oprettet = clsUtil.MSSerial2DateTime(double.Parse(X[1]));
                                                 break;
                                             case "Start":
-                                                string datxx = gregCal(int.Parse(X[1]));
-                                                m_rec_Regnskab.Start = DateTime.Parse(X[1]);
+                                                m_rec_Regnskab.Start = clsUtil.MSSerial2DateTime(double.Parse(X[1]));
                                                 break;
                                             case "Slut":
-                                                //m_rec_Regnskab.Slut = DateTime.Parse(X[1]);
+                                                m_rec_Regnskab.Slut = clsUtil.MSSerial2DateTime(double.Parse(X[1]));
                                                 break;
                                             case "DatoLaas":
-                                                //m_rec_Regnskab.DatoLaas = DateTime.Parse(X[1]);
+                                                m_rec_Regnskab.DatoLaas = clsUtil.MSSerial2DateTime(double.Parse(X[1]));
                                                 break;
                                             case "Firmanavn":
                                                 m_rec_Regnskab.Firmanavn = X[1];
@@ -318,90 +317,6 @@ namespace nsPuls3060
                 }
             }
             return true;
-        }
-
-        public static String gregCal(int aljulian)
-        {
-            int llnumqc;
-            long llnumq;
-            long llnumc;
-            long llcent = 36524;
-            long llquad = 1461;
-            int liyear = 0, limonth = 0, liday = 0;
-            int[] liDaysInMonth = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 
-			 30, 31 };
-            String x, y, z, q;
-            try
-            {
-                llnumqc = aljulian / 146097; // 4 centuries 
-                liyear = llnumqc * 400;
-                aljulian -= (146097 * llnumqc);
-                llnumc = 0;
-                if (aljulian > (llcent + 1))
-                {
-                    aljulian -= (int)llcent + 1;
-                    liyear += 100;
-                    llnumc = aljulian / llcent;
-                    liyear += (int)(llnumc * 100);
-                    aljulian = (int)(aljulian - llnumc * llcent);
-                    llnumc++;
-                }
-                if ((llnumc > 0) && (aljulian > (llquad - 1)))
-                {
-                    aljulian = (int)(aljulian - (llquad - 1));
-                    liyear += 4;
-                }
-
-                llnumq = aljulian / llquad;
-                liyear += (int)llnumq * 4;
-                aljulian = (int)(aljulian - (llnumq * llquad));
-                DateTime calendar = DateTime.Now;
-                int iYear = calendar.Year;
-                DateTime cal1 = new DateTime(iYear, 04, 12);
-                if (DateTime.IsLeapYear(cal1.Year))
-                {
-                    if (aljulian >= 366)
-                    {
-                        aljulian -= 366;
-                        liyear++;
-                    }
-                    else if (aljulian == 59)
-                    {
-                        limonth = 2;
-                        liday = 29;
-                    }
-                    x = liyear.ToString();
-                    y = limonth.ToString();
-                    z = liday.ToString();
-                    q = " " + x + y + z;
-                    return q;
-                }
-                else if (aljulian > 59)
-                    aljulian--;
-                while (aljulian >= 365)
-                {
-                    aljulian -= 365;
-                    liyear++;
-                }
-                limonth = 0;
-                while (liDaysInMonth[limonth + 1] <= aljulian)
-                {
-                    aljulian -= liDaysInMonth[limonth + 1];
-                    limonth++;
-                }
-                limonth++;
-                liday = aljulian + 1;
-                x = liyear.ToString();
-                y = limonth.ToString();
-                z = liday.ToString();
-                q = x + y + z;
-                return q;
-            }
-            catch (Exception ex)
-            {
-                //Trace.Write("ERROR  :" + ex.Message); 
-                throw ex;
-            }
         }
     }
 
