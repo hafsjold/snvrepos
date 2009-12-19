@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.VisualBasic;
+
 
 namespace nsPuls3060
 {
@@ -10,9 +12,27 @@ namespace nsPuls3060
         const double J_correction_01_01_4712BC = 1721119.5;
         const double J_correction_01_01_1900 = -693899;
 
-        public static double SummaDateTime2Serial(DateTime dt)
+        public static int SummaDateTime2Serial(DateTime dt)
         {
-            return GregorianDate2JulianDayNumber(dt, J_correction_01_01_4712BC);
+            double sumStartDate = 1088647360;
+            DateTime MSStartDate = new DateTime(2009, 1, 1);
+            double days = (double)DateAndTime.DateDiff("d", MSStartDate, dt, FirstDayOfWeek.Monday, FirstWeekOfYear.FirstFourDays);
+            return (int)(sumStartDate + days * 32);
+        }
+
+        public static DateTime SummaSerial2DateTime(double J)
+        {
+            double sumStartDate = 1088647360;
+            DateTime MSStartDate = new DateTime(2009, 1, 1);
+            double days = (J - sumStartDate) / 32;
+            if (days > -7000)
+            {
+                return MSStartDate.AddDays(days);
+            }
+            else
+            {
+                return new DateTime(1900, 1, 1);
+            }
         }
 
         public static double MSDateTime2Serial(DateTime dt)
