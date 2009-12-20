@@ -12,6 +12,7 @@ namespace nsPuls3060
     public partial class frmMain : Form
     {
         private DbData3060 m_dbData3060;
+        private frmMedlemmer m_frmMedlemmer;
         
         public frmMain()
         {
@@ -26,7 +27,14 @@ namespace nsPuls3060
             m_dbData3060.SubmitChanges();
         }
 
-        public void Test_Click(object sender, EventArgs e)
+
+        private void medlemmerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            m_frmMedlemmer = new frmMedlemmer(m_dbData3060);
+            m_frmMedlemmer.Show();
+        }
+
+        private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
             clsPbs objPbs = new clsPbs(m_dbData3060);
             clsPbs601 objPbs601 = new clsPbs601(m_dbData3060);
@@ -54,8 +62,6 @@ namespace nsPuls3060
             {
                 var medlem = mx;
             }
-        
-        
         }
     }
 }
