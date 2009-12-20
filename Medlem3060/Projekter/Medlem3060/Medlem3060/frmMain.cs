@@ -35,11 +35,13 @@ namespace nsPuls3060
             //objPbs602.ReadFraPbsFile();
             //objPbs601.WriteTilPbsFile(615);
             //objPbs.ReadRegnskaber();
-            objPbs.SetAktivRegnskaber();
+            //objPbs.SetAktivRegnskaber();
             //DateTime dt = new DateTime(2009, 10, 31);
             //double ssdate = clsUtil.SummaDateTime2Serial(dt);
             //double testdaynr = objPbs.GregorianDate2JulianDayNumber(dt);
             //DateTime testdate = objPbs.JulianDayNumber2GregorianDate(testdaynr);
+            KarStatus myKarStatus = new KarStatus(m_dbData3060);
+            myKarStatus.save();
         }
     }
 }

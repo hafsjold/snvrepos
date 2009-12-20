@@ -52,6 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsCsv.cs" />
+    <Compile Include="clsMedlem.cs" />
+    <Compile Include="clsMedlemmer.cs" />
     <Compile Include="clsPbs.cs" />
     <Compile Include="clsPbs601.cs" />
     <Compile Include="clsPbs602.cs" />
@@ -64,6 +67,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbData3060.dbml</DependentUpon>
     </Compile>
+    <Compile Include="dicMedlem.cs" />
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +75,7 @@
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="clsRegistry.cs" />
+    <Compile Include="karStatus.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="app.config" />
