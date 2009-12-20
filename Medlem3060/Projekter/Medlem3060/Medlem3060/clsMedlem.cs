@@ -164,11 +164,11 @@ namespace nsPuls3060
             {
 
                 case "2":
-                    m_Csv.value_new = Navn + "Nyt";
+                    m_Csv.value_new = Navn;
                     break;
 
                 case "3,1":
-                    m_Csv.value_new = Adresse + "Nyt";
+                    m_Csv.value_new = Adresse;
                     break;
 
                 case "4":

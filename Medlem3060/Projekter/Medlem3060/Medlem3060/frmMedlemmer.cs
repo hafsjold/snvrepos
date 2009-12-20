@@ -23,38 +23,52 @@ namespace nsPuls3060
 
         private void frmMedlemmer_Load(object sender, EventArgs e)
         {
-            //var qry_medlemmer =
-               //from k in m_dbData3060.TblMedlem
-               //from k in m_objMedlemmer
-               //where k.Postnr < 3000
-               //select k;
-            //join m in m_dbData3060.TblMedlem on k.Nr equals m.Nr
-            //where m.FodtDato > DateTime.Parse("1980-01-01")
-            //select new { k.Nr, k.Navn, k.Kaldenavn, k.Adresse, k.Postnr, k.Bynavn, k.Email, k.Telefon, m.Knr, m.Kon, m.FodtDato };
-
-            //var antal = qry_medlemmer.Count();
-            clsMedlem rec_med = new clsMedlem { 
-                Nr = 501,
-                Navn = "Andreas Hafsjold",
-                Kaldenavn = "Andreas",
-                Adresse = "Nørremarken 31",
-                Postnr = "3060",
-                Bynavn = "Espergærde",
-                Email = "and@hafsjold.dk",
-                Telefon = "4913 3540"
-            };
-            m_objMedlemmer.Add(rec_med);
-            this.dataGridView1.DataSource = m_objMedlemmer;
-            this.dataGridView1.AutoGenerateColumns = true;
-            this.dataGridView1.AutoSize = true;
+            var qry_medlemmer =
+                from k in m_objMedlemmer
+                join m in m_dbData3060.TblMedlem on k.Nr equals m.Nr
+                select new { k.Nr, k.Navn, k.Kaldenavn, k.Adresse, k.Postnr, k.Bynavn, k.Email, k.Telefon, m.Knr, m.Kon, m.FodtDato };
+            var antal = qry_medlemmer.Count();
+            foreach (var m in qry_medlemmer) 
+            {
+                DataRow MyRow = this.dsMedlem.Kartotek.Rows.Add(m.Nr, m.Navn, m.Kaldenavn, m.Adresse, m.Postnr, m.Bynavn, m.Telefon, m.Email, m.Knr, m.Kon, m.FodtDato);
+                MyRow.AcceptChanges();
+            }
             this.dataGridView1.AutoResizeColumns();
-            this.dataGridView1.AllowUserToAddRows = true;
-
         }
 
         private void frmMedlemmer_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            foreach (nsPuls3060.dsMedlem.KartotekRow m in this.dsMedlem.Kartotek.Rows)
+            {
+                switch (m.RowState)
+                {
+                    case DataRowState.Added:
+                        break;
+                    case DataRowState.Deleted:
+                        break;
+                    case DataRowState.Modified:
+                        int Nr_Key = m.Nr;
+                        var k_rec = (from k in m_objMedlemmer
+                                     where k.Nr == Nr_Key
+                                     select k).First();
+                        k_rec.Navn = m.Navn;
+                        k_rec.Kaldenavn = m.Kaldenavn;
+                        k_rec.Adresse = m.Adresse;
+                        k_rec.Postnr = m.Postnr;
+                        k_rec.Bynavn = m.Bynavn;
+                        k_rec.Telefon = m.Telefon;
+                        k_rec.Email = m.Email;
+                        m_objMedlemmer.Update(Nr_Key);
+                        var m_rec = (from k in m_dbData3060.TblMedlem
+                                     where k.Nr == Nr_Key
+                                     select k).First();
+                        m_rec.Knr = m.Knr;
+                        m_rec.Kon = m.Kon;
+                        m_rec.FodtDato = m.FodtDato;
+                        break;
+                }
+            }
+            m_objMedlemmer.Save();
         }
     }
 }

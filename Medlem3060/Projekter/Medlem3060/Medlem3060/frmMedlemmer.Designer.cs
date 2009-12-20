@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dsMedlem = new nsPuls3060.dsMedlem();
-            this.kartotekBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.nrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.navnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kaldenavnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,9 +41,11 @@
             this.knrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.konDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fodtDatoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kartotekBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dsMedlem = new nsPuls3060.dsMedlem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsMedlem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kartotekBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsMedlem)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -72,16 +72,6 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(749, 488);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // dsMedlem
-            // 
-            this.dsMedlem.DataSetName = "dsMedlem";
-            this.dsMedlem.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // kartotekBindingSource
-            // 
-            this.kartotekBindingSource.DataMember = "Kartotek";
-            this.kartotekBindingSource.DataSource = this.dsMedlem;
             // 
             // nrDataGridViewTextBoxColumn
             // 
@@ -149,6 +139,16 @@
             this.fodtDatoDataGridViewTextBoxColumn.HeaderText = "FodtDato";
             this.fodtDatoDataGridViewTextBoxColumn.Name = "fodtDatoDataGridViewTextBoxColumn";
             // 
+            // kartotekBindingSource
+            // 
+            this.kartotekBindingSource.DataMember = "Kartotek";
+            this.kartotekBindingSource.DataSource = this.dsMedlem;
+            // 
+            // dsMedlem
+            // 
+            this.dsMedlem.DataSetName = "dsMedlem";
+            this.dsMedlem.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // frmMedlemmer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -160,8 +160,8 @@
             this.Load += new System.EventHandler(this.frmMedlemmer_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMedlemmer_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dsMedlem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.kartotekBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dsMedlem)).EndInit();
             this.ResumeLayout(false);
 
         }
