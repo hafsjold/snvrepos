@@ -178,7 +178,7 @@ namespace nsPuls3060
                 case "5":
                     m_Csv.value_new = Bynavn;
                     break;
-                
+
                 case "8":
                     m_Csv.value_new = Kaldenavn;
                     break;
@@ -204,18 +204,19 @@ namespace nsPuls3060
             {
                 string part1, part3;
                 int n_delta = m_Csv.value_new.Length - m_Csv.value.Length;
-                part1 = m_Csv.ln_raw.Substring(0, m_Csv.comma_start +1 );
+                part1 = m_Csv.ln_raw.Substring(0, m_Csv.comma_start + 1);
                 part3 = m_Csv.ln_raw.Substring(m_Csv.comma_end);
                 m_Csv.ln_updated = part1 + quote(m_Csv.value_new, m_Csv.niveau) + part3;
-                
+
                 m_Csv.ln = part1 + quote(m_Csv.value_new, m_Csv.niveau) + part3;
                 m_Csv.n += n_delta;
                 m_Csv.fld_end += n_delta;
                 m_Csv.comma_end += n_delta;
-                if (m_Csv.niveau > 0)
-                {
-                    m_Csv.stack[m_Csv.niveau - 1].value_new = m_Csv.ln_updated;
-                }
+            }
+            
+            if (m_Csv.niveau > 0)
+            {
+                m_Csv.stack[m_Csv.niveau - 1].value_new = m_Csv.ln_raw;
             }
         }
 
@@ -394,7 +395,7 @@ namespace nsPuls3060
                                 Csv.n += 2;
                                 stat = ParseStatus.fdParserOutsideField;
                                 break;
-                            
+
                             #region Found chars
                             default:
                                 switch (Csv.ln.Substring(Csv.n, 1))
@@ -504,7 +505,7 @@ namespace nsPuls3060
                 }
             }
         }
-        
+
         private string quote(string val, int niveau)
         {
             string s;
