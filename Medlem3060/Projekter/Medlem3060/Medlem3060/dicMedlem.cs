@@ -65,8 +65,8 @@ namespace nsPuls3060
             this.Add(new clsField(0, "Ex4", "", 0, 28, 0, "", "", false));
             this.Add(new clsField(1, "Nr", "Nr", 1, 1, 0, "0", "SumNr", false));
             this.Add(new clsField(2, "Adresse 1", "Adresse", 4, 3, 1, "", "", false));
-            this.Add(new clsField(3, "Postnr", "Postnr", 5, 4, 0, "", "", false));
-            this.Add(new clsField(4, "By", "Bynavn", 6, 5, 0, "", "", false));
+            this.Add(new clsField(3, "Postnr", "Postnr", 5, 4, 0, "0000", "Const", false));
+            this.Add(new clsField(4, "By", "Bynavn", 6, 5, 0, "By_Skal_udfyldes", "Const", false));
             this.Add(new clsField(5, "Land", "", 0, 6, 0, "", "", false));
             this.Add(new clsField(6, "Kontaktperson", "", 0, 7, 0, "", "", false));
             this.Add(new clsField(7, "Køn", "Kon", 10, 0, 0, "", "", false));
@@ -91,10 +91,10 @@ namespace nsPuls3060
             this.Add(new clsField(26, "Debitor salg", "", 0, 26, 0, "", "", false));
             this.Add(new clsField(27, "Kreditor Køb", "", 0, 27, 0, "", "", false));
             this.Add(new clsField(28, "Ex1", "Kaldenavn", 3, 8, 0, "", "", false));
-            this.Add(new clsField(29, "Navn", "Navn", 2, 2, 0, "", "", false));
+            this.Add(new clsField(29, "Navn", "Navn", 2, 2, 0, "Navn_Skal_udfyldes", "Const", false));
             this.Add(new clsField(30, "Ex2", "", 0, 15, 0, "", "", false));
             this.Add(new clsField(31, "Ex3", "", 0, 19, 0, "", "", false));
-            this.Add(new clsField(32, "Adresse", "", 0, 3, 0, "", "", true));
+            this.Add(new clsField(32, "Adresse", "", 0, 3, 0, "Adresse_Skal_udfyldes", "Const", true));
             this.Add(new clsField(33, "Leveringsadresse", "", 0, 18, 0, "", "", true));
             this.Add(new clsField(34, "Noter", "", 0, 17, 0, "", "", true));
 
@@ -107,6 +107,35 @@ namespace nsPuls3060
                     m_nr_subnr.Add(key, f.id);
                 }
             }
+        }
+
+        public string NewMedlemCsvString(int pNr)
+        {
+            string s = "";
+            var fields = from d in this
+                         where d.sumNumber > 0 && d.sumSubNumber == 0
+                         orderby d.sumNumber
+                         select d;
+            foreach (var f in fields)
+            {
+                if (s.Length > 0) s += ",";
+                switch (f.NewType)
+                {
+                    case "SumNr":
+                        var val = int.Parse(f.NewValue) + pNr;
+                        s += val.ToString();
+                        break;
+
+                    case "Const":
+                        s += f.NewValue;
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+
+            return s;
         }
 
         public Boolean multifld(string p_key)
@@ -137,6 +166,7 @@ namespace nsPuls3060
             }
 
         }
+
     }
 }
 

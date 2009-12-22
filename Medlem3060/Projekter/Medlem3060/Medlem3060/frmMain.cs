@@ -52,16 +52,29 @@ namespace nsPuls3060
             //DateTime testdate = objPbs.JulianDayNumber2GregorianDate(testdaynr);
             //KarStatus myKarStatus = new KarStatus(m_dbData3060);
             //myKarStatus.save();
-            var qry_medlemmer = from k in objMedlemmer
-                                join m in m_dbData3060.TblMedlem on k.Nr equals m.Nr
-                                where m.FodtDato > DateTime.Parse("1980-01-01")
-                                select new { k.Nr, k.Navn, k.Kaldenavn, k.Adresse, k.Postnr, k.Bynavn, k.Email, k.Telefon, m.Knr, m.Kon, m.FodtDato };
-
-            var antal = qry_medlemmer.Count();
-            foreach (var mx in qry_medlemmer) 
+            //var qry_medlemmer = from k in objMedlemmer
+            //                    join m in m_dbData3060.TblMedlem on k.Nr equals m.Nr
+            //                    where m.FodtDato > DateTime.Parse("1980-01-01")
+            //                    select new { k.Nr, k.Navn, k.Kaldenavn, k.Adresse, k.Postnr, k.Bynavn, k.Email, k.Telefon, m.Knr, m.Kon, m.FodtDato };
+            //
+            //var antal = qry_medlemmer.Count();
+            //foreach (var mx in qry_medlemmer) 
+            //{
+            //    var medlem = mx;
+            //}
+            clsMedlem nytmedlem = new clsMedlem() 
             {
-                var medlem = mx;
-            }
+                Nr = 483,
+                Navn = "Nyt Medlem",
+                //Kaldenavn = "Nyt",
+                Adresse = "Ny adresse 25",
+                Postnr = "3060",
+                Bynavn = "Espergærde",
+                Telefon = "1234 5432",
+                Email = "dex@dfres.dk"
+            };
+            string nystring = nytmedlem.getNewCvsString();
+
         }
     }
 }

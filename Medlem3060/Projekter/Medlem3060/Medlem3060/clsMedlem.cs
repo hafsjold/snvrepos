@@ -136,6 +136,19 @@ namespace nsPuls3060
             clsCsv.MedlemFieldUpdate -= new nsPuls3060.clsCsv.MedlemFieldUpdateHandler(On_MedlemFieldUpdate);
         }
 
+        public string getNewCvsString()
+        {
+            m_Csv = new clsCsv();
+            m_Csv.ln = clsMedlemmer.dic.NewMedlemCsvString(this.Nr); //Ny tom string
+            m_Csv.todo = CsvToDoType.fdUpdateCsvString;
+
+            clsCsv.MedlemCsvStringUpdate += new nsPuls3060.clsCsv.MedlemFieldUpdateHandler(On_MedlemCsvStringUpdate);
+            ParseCsvString(ref m_Csv);
+            clsCsv.MedlemCsvStringUpdate -= new nsPuls3060.clsCsv.MedlemFieldUpdateHandler(On_MedlemCsvStringUpdate);
+            m_CsvString = m_Csv.ln_raw;
+            return m_CsvString;
+        }
+
         public string getUpdatedCvsString()
         {
             m_Csv = new clsCsv();
@@ -160,34 +173,41 @@ namespace nsPuls3060
             }
             string fieldKey = clsField.buildKey(w_nr, w_subnr);
 
+
             switch (fieldKey)
             {
-
                 case "2":
+                    if (Navn == null) Navn = ""; 
                     m_Csv.value_new = Navn;
                     break;
 
                 case "3,1":
+                    if (Adresse == null) Adresse = "";
                     m_Csv.value_new = Adresse;
                     break;
 
                 case "4":
+                    if (Postnr == null) Postnr = "";
                     m_Csv.value_new = Postnr;
                     break;
 
                 case "5":
+                    if (Bynavn == null) Bynavn = "";
                     m_Csv.value_new = Bynavn;
                     break;
 
                 case "8":
+                    if (Kaldenavn == null) Kaldenavn = "";
                     m_Csv.value_new = Kaldenavn;
                     break;
 
                 case "9":
+                    if (Email == null) Email = "";
                     m_Csv.value_new = Email;
                     break;
 
                 case "13":
+                    if (Adresse == null) Adresse = "";
                     m_Csv.value_new = Telefon;
                     break;
 
@@ -214,7 +234,7 @@ namespace nsPuls3060
                 m_Csv.fld_end += n_delta;
                 m_Csv.comma_end += n_delta;
             }
-            
+
             if (m_Csv.niveau > 0)
             {
                 m_Csv.stack[m_Csv.niveau - 1].value_new = m_Csv.ln_raw;

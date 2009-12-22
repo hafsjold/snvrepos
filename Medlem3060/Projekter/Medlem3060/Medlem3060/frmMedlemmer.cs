@@ -13,7 +13,7 @@ namespace nsPuls3060
     {
         private DbData3060 m_dbData3060;
         private clsMedlemmer m_objMedlemmer;
-        
+
         public frmMedlemmer(DbData3060 pdbData3060)
         {
             InitializeComponent();
@@ -23,48 +23,129 @@ namespace nsPuls3060
 
         private void frmMedlemmer_Load(object sender, EventArgs e)
         {
-            var qry_medlemmer =
-                from k in m_objMedlemmer
-                join m in m_dbData3060.TblMedlem on k.Nr equals m.Nr
-                select new { k.Nr, k.Navn, k.Kaldenavn, k.Adresse, k.Postnr, k.Bynavn, k.Email, k.Telefon, m.Knr, m.Kon, m.FodtDato };
+            open();
+        }
+        
+        private void frmMedlemmer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            save();
+        }
+
+        private void open()
+        {
+            var qry_medlemmer = from h in m_objMedlemmer
+                                join d1 in m_dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
+                                from x in details1.DefaultIfEmpty()
+                                select new
+                                {
+                                    h.Nr,
+                                    h.Navn,
+                                    h.Kaldenavn,
+                                    h.Adresse,
+                                    h.Postnr,
+                                    h.Bynavn,
+                                    h.Telefon,
+                                    h.Email,
+                                    XNr = x == null ? -1 : x.Nr,
+                                    Knr = x == null ? -1 : x.Knr,
+                                    Kon = x == null ? "-1" : x.Kon,
+                                    FodtDato = x == null ? new DateTime(1900, 01, 01) : x.FodtDato
+                                };
+
             var antal = qry_medlemmer.Count();
-            foreach (var m in qry_medlemmer) 
+            foreach (var m in qry_medlemmer)
             {
-                DataRow MyRow = this.dsMedlem.Kartotek.Rows.Add(m.Nr, m.Navn, m.Kaldenavn, m.Adresse, m.Postnr, m.Bynavn, m.Telefon, m.Email, m.Knr, m.Kon, m.FodtDato);
+                DataRow MyRow = null;
+                if (m.XNr == -1)
+                    MyRow = this.dsMedlem.Kartotek.Rows.Add(m.Nr, m.Navn, m.Kaldenavn, m.Adresse, m.Postnr, m.Bynavn, m.Telefon, m.Email);
+                else
+                    MyRow = this.dsMedlem.Kartotek.Rows.Add(m.Nr, m.Navn, m.Kaldenavn, m.Adresse, m.Postnr, m.Bynavn, m.Telefon, m.Email, m.Knr, m.Kon, m.FodtDato);
+
                 MyRow.AcceptChanges();
             }
             this.dataGridView1.AutoResizeColumns();
         }
 
-        private void frmMedlemmer_FormClosing(object sender, FormClosingEventArgs e)
+        private void save()
         {
             foreach (nsPuls3060.dsMedlem.KartotekRow m in this.dsMedlem.Kartotek.Rows)
             {
                 switch (m.RowState)
                 {
                     case DataRowState.Added:
+                        var Nr_Key = m.Nr;
+                        var k_rec = new clsMedlem()
+                        {
+                            Nr = Nr_Key,
+                            Navn = m.Navn
+                        };
+                        if (!m.IsKaldenavnNull()) k_rec.Kaldenavn = m.Kaldenavn;
+                        if (!m.IsAdresseNull()) k_rec.Adresse = m.Adresse;
+                        if (!m.IsPostnrNull()) k_rec.Postnr = m.Postnr;
+                        if (!m.IsBynavnNull()) k_rec.Bynavn = m.Bynavn;
+                        if (!m.IsTelefonNull()) k_rec.Telefon = m.Telefon;
+                        if (!m.IsEmailNull()) k_rec.Email = m.Email;
+                        k_rec.getNewCvsString();
+                        m_objMedlemmer.Add(k_rec);
+
+                        TblMedlem m_rec;
+                        try
+                        {
+                            m_rec = (from k in m_dbData3060.TblMedlem
+                                     where k.Nr == Nr_Key
+                                     select k).First();
+                        }
+                        catch (System.InvalidOperationException)
+                        {
+                            m_rec = new TblMedlem
+                            {
+                                Nr = Nr_Key
+                            };
+                            m_dbData3060.TblMedlem.InsertOnSubmit(m_rec);
+                        }
+                        if (!m.IsKnrNull()) m_rec.Knr = m.Knr;
+                        if (!m.IsKonNull()) m_rec.Kon = m.Kon;
+                        if (!m.IsFodtDatoNull()) m_rec.FodtDato = m.FodtDato;
                         break;
+
                     case DataRowState.Deleted:
                         break;
+
                     case DataRowState.Modified:
-                        int Nr_Key = m.Nr;
-                        var k_rec = (from k in m_objMedlemmer
+                        Nr_Key = m.Nr;
+                        k_rec = (from k in m_objMedlemmer
                                      where k.Nr == Nr_Key
                                      select k).First();
+                        
                         k_rec.Navn = m.Navn;
-                        k_rec.Kaldenavn = m.Kaldenavn;
-                        k_rec.Adresse = m.Adresse;
-                        k_rec.Postnr = m.Postnr;
-                        k_rec.Bynavn = m.Bynavn;
-                        k_rec.Telefon = m.Telefon;
-                        k_rec.Email = m.Email;
+                        if (!m.IsKaldenavnNull()) k_rec.Kaldenavn = m.Kaldenavn;
+                        if (!m.IsAdresseNull()) k_rec.Adresse = m.Adresse;
+                        if (!m.IsPostnrNull()) k_rec.Postnr = m.Postnr;
+                        if (!m.IsBynavnNull()) k_rec.Bynavn = m.Bynavn;
+                        if (!m.IsTelefonNull()) k_rec.Telefon = m.Telefon;
+                        if (!m.IsEmailNull()) k_rec.Email = m.Email;
                         m_objMedlemmer.Update(Nr_Key);
-                        var m_rec = (from k in m_dbData3060.TblMedlem
+
+                        try
+                        {
+                            m_rec = (from k in m_dbData3060.TblMedlem
                                      where k.Nr == Nr_Key
                                      select k).First();
-                        m_rec.Knr = m.Knr;
-                        m_rec.Kon = m.Kon;
-                        m_rec.FodtDato = m.FodtDato;
+                        }
+                        catch (System.InvalidOperationException)
+                        {
+                            m_rec = new TblMedlem
+                            {
+                                Nr = Nr_Key
+                            };
+                            m_dbData3060.TblMedlem.InsertOnSubmit(m_rec);
+                        }
+                        if (!m.IsKnrNull()) m_rec.Knr = m.Knr;
+                        if (!m.IsKonNull()) m_rec.Kon = m.Kon;
+                        if (!m.IsFodtDatoNull()) m_rec.FodtDato = m.FodtDato;
+                        //m_rec.Knr = m.IsKnrNull() ? -1 : m.Knr;
+                        //m_rec.Kon = m.IsKonNull() ? null : m.Kon;
+                        //m_rec.FodtDato = m.IsFodtDatoNull() ? new DateTime(1900, 01, 01) : m.FodtDato;
                         break;
                 }
             }

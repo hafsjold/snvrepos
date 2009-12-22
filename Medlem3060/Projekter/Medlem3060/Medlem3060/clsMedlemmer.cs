@@ -40,6 +40,12 @@ namespace nsPuls3060
             }
         }
 
+        public void AddMedlem(clsMedlem pMedlem) 
+        {
+            string NewCvsString = pMedlem.getNewCvsString();
+            this.Add(pMedlem);
+        }
+
         public void Update(Int32 p_Nr)
         {
             clsMedlem medlem;
