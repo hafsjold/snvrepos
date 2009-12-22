@@ -202,13 +202,14 @@ namespace nsPuls3060
             }
             if (m_Csv.value != m_Csv.value_new)
             {
-                string part1, part3;
-                int n_delta = m_Csv.value_new.Length - m_Csv.value.Length;
-                part1 = m_Csv.ln_raw.Substring(0, m_Csv.comma_start + 1);
-                part3 = m_Csv.ln_raw.Substring(m_Csv.comma_end);
-                m_Csv.ln_updated = part1 + quote(m_Csv.value_new, m_Csv.niveau) + part3;
+                string part1 = m_Csv.ln_raw.Substring(0, m_Csv.comma_start + 1);
+                string part2 = m_Csv.ln_raw.Substring(m_Csv.comma_start + 1, (m_Csv.comma_end - 1) - (m_Csv.comma_start + 1) + 1);
+                string part3 = m_Csv.ln_raw.Substring(m_Csv.comma_end);
+                string part2_new = quote(m_Csv.value_new, m_Csv.niveau);
+                m_Csv.ln_updated = part1 + part2_new + part3;
+                m_Csv.ln = part1 + part2_new + part3;
 
-                m_Csv.ln = part1 + quote(m_Csv.value_new, m_Csv.niveau) + part3;
+                int n_delta = part2_new.Length - part2.Length;
                 m_Csv.n += n_delta;
                 m_Csv.fld_end += n_delta;
                 m_Csv.comma_end += n_delta;
@@ -301,6 +302,25 @@ namespace nsPuls3060
                                 Csv.todoAction();
                                 stat = ParseStatus.fdParserOutsideField;
                                 break;
+
+                            default:
+                                if (Csv.n == Csv.lnLen - 1) // End of line condition
+                                {
+                                    Csv.comma_end = Csv.n + 1;
+                                    Csv.fld_end = Csv.n;
+                                    Csv.nr++;
+                                    Csv.value = Csv.ln.Substring(Csv.fld_start, Csv.fld_end - Csv.fld_start + 1);
+                                    if (Csv.multifld == true)
+                                    {
+                                        Csv.Push();
+                                        ParseCsvString(ref Csv);
+                                        Csv.Pop();
+                                    }
+                                    Csv.todoAction();
+                                    stat = ParseStatus.fdParserOutsideField;
+                                }
+                                break;
+
                         }
                         break;
 

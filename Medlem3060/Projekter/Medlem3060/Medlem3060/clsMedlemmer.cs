@@ -57,7 +57,7 @@ namespace nsPuls3060
 
         public void Save()
         {
-            FileStream fs = new FileStream(m_kartotek_dat, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
+            FileStream fs = new FileStream(m_kartotek_dat, FileMode.Truncate, FileAccess.Write, FileShare.None);
 
             using (StreamWriter sr = new StreamWriter(fs, Encoding.Default))
             {
