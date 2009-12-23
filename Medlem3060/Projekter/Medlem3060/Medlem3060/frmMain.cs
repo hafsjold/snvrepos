@@ -12,7 +12,7 @@ namespace nsPuls3060
     public partial class frmMain : Form
     {
         private DbData3060 m_dbData3060;
-        private frmMedlemmer m_frmMedlemmer;
+        private static frmMedlemmer m_frmMedlemmer;
         
         public frmMain()
         {
@@ -30,8 +30,15 @@ namespace nsPuls3060
 
         private void medlemmerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            m_frmMedlemmer = new frmMedlemmer(m_dbData3060);
-            m_frmMedlemmer.Show();
+            if (m_frmMedlemmer == null)
+            {
+                m_frmMedlemmer = new frmMedlemmer(m_dbData3060);
+                m_frmMedlemmer.Show();
+            }
+            else 
+            {
+                m_frmMedlemmer.Focus();
+            }
         }
 
         private void testToolStripMenuItem_Click(object sender, EventArgs e)

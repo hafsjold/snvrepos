@@ -177,38 +177,31 @@ namespace nsPuls3060
             switch (fieldKey)
             {
                 case "2":
-                    if (Navn == null) Navn = ""; 
-                    m_Csv.value_new = Navn;
+                    m_Csv.value_new = Navn != null ? Navn : "";
                     break;
 
                 case "3,1":
-                    if (Adresse == null) Adresse = "";
-                    m_Csv.value_new = Adresse;
+                    m_Csv.value_new = Adresse != null ? Adresse : "";
                     break;
 
                 case "4":
-                    if (Postnr == null) Postnr = "";
-                    m_Csv.value_new = Postnr;
+                    m_Csv.value_new = Postnr != null ? Postnr : "";
                     break;
 
                 case "5":
-                    if (Bynavn == null) Bynavn = "";
-                    m_Csv.value_new = Bynavn;
+                    m_Csv.value_new = Bynavn != null ? Bynavn : "";
                     break;
 
                 case "8":
-                    if (Kaldenavn == null) Kaldenavn = "";
-                    m_Csv.value_new = Kaldenavn;
+                    m_Csv.value_new = Kaldenavn != null ? Kaldenavn : "";
                     break;
 
                 case "9":
-                    if (Email == null) Email = "";
-                    m_Csv.value_new = Email;
+                    m_Csv.value_new = Email != null ? Email : "";
                     break;
 
                 case "13":
-                    if (Adresse == null) Adresse = "";
-                    m_Csv.value_new = Telefon;
+                    m_Csv.value_new = Telefon != null ? Telefon : "";
                     break;
 
                 case "3":

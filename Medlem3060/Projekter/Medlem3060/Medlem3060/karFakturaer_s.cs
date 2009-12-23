@@ -28,6 +28,30 @@ namespace nsPuls3060
         public int debitornr;
         public int int68;
         public int statenum;
+
+        public ordtype(int p_fakid, DateTime p_dato, DateTime p_forfdato, int p_fakbelob, int p_debitornr)
+        {
+            fakid = p_fakid;
+            dato = clsUtil.SummaDateTime2Serial(p_dato);
+            forfdato = clsUtil.SummaDateTime2Serial(p_forfdato);
+            fakbelob = p_fakbelob;
+            saldo = p_fakbelob;
+            debitornr = p_debitornr;
+
+            faknr = 0;
+            const_1079574528 = 1079574528;
+            valuta = 1263223811;
+            statenum = 0;
+            int8 = 0;
+            int12 = 0;
+            int20 = 0;
+            int28 = 0;
+            int32 = 0;
+            int40 = 0;
+            int48 = 0;
+            int52 = 0;
+            int68 = 0;
+        }
     }
 
 
@@ -123,32 +147,6 @@ namespace nsPuls3060
             }
         }        
         public recFakturaer_s() { }
-        public ordtype OrdInit(int fakid, DateTime dato, DateTime forfdato, int fakbelob, int debitornr)
-        {
-            ordtype Order = new ordtype();
-            Order.fakid = fakid;
-            Order.dato = clsUtil.SummaDateTime2Serial(dato);
-            Order.forfdato = clsUtil.SummaDateTime2Serial(forfdato);
-            Order.fakbelob = fakbelob;
-            Order.saldo = fakbelob;
-            Order.debitornr = debitornr;
-
-            Order.faknr = 0;
-            Order.const_1079574528 = 1079574528;
-            Order.valuta = 1263223811;
-            Order.statenum = 0;
-            Order.int8 = 0;
-            Order.int12 = 0;
-            Order.int20 = 0;
-            Order.int28 = 0;
-            Order.int32 = 0;
-            Order.int40 = 0;
-            Order.int48 = 0;
-            Order.int52 = 0;
-            Order.int68 = 0;
-
-            return Order;
-        }
     }
 
     public class KarFakturaer_s : List<recFakturaer_s>
