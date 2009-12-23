@@ -169,7 +169,7 @@ namespace nsPuls3060
 
         private void open()
         {
-            FileStream bs = new FileStream(m_path, FileMode.Open, FileAccess.Read, FileShare.None);
+            FileStream bs = new FileStream(m_path + "_test", FileMode.Open, FileAccess.Read, FileShare.None);
             ordtype ord;
             recFakturaer_s rec;
             int n = 0;
@@ -186,7 +186,7 @@ namespace nsPuls3060
 
         public void save()
         {
-            FileStream bs = new FileStream(m_path, FileMode.Open, FileAccess.Write, FileShare.None);
+            FileStream bs = new FileStream(m_path + "_test", FileMode.Truncate, FileAccess.Write, FileShare.None);
             using (BinaryWriter bw = new BinaryWriter(bs))
             {
                 var qry_this = from d in this

@@ -88,6 +88,8 @@
     </Compile>
     <Compile Include="karDkkonti.cs" />
     <Compile Include="karFakturaer_s.cs" />
+    <Compile Include="karFakturastr_s.cs" />
+    <Compile Include="karFakturavarer_s.cs" />
     <Compile Include="karKortnr.cs" />
     <Compile Include="karRegnskab.cs" />
     <Compile Include="karStatus.cs" />

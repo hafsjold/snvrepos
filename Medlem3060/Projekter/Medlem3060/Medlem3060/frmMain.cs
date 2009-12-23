@@ -77,6 +77,7 @@ namespace nsPuls3060
             string nystring = nytmedlem.getNewCvsString();
             */
             KarFakturaer_s objFakturaer_s = new KarFakturaer_s(m_dbData3060);
+            objFakturaer_s.save();
         }
     }
 }
