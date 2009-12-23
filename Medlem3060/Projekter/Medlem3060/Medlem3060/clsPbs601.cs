@@ -30,6 +30,7 @@ namespace nsPuls3060
     class clsPbs601
     {
         private DbData3060 m_dbData3060;
+        private clsMedlemmer m_objMedlemmer;
         private Tblpbsfiles m_rec_pbsfiles;
 
         private clsPbs601()
@@ -38,6 +39,7 @@ namespace nsPuls3060
         public clsPbs601(DbData3060 pdbData3060)
         {
             m_dbData3060 = pdbData3060;
+            m_objMedlemmer = new clsMedlemmer(m_dbData3060);
         }
 
         public bool WriteTilPbsFile(int lobnr)
@@ -128,10 +130,11 @@ namespace nsPuls3060
             var rstmedlems = from h in m_dbData3060.TempKontforslag
                              join l in m_dbData3060.TempKontforslaglinie on h.Id equals l.Kontforslagid
                              join m in m_dbData3060.TblMedlem on l.Nr equals m.Nr
+                             join k in m_objMedlemmer on l.Nr equals k.Nr 
                              select new
                              {
                                  m.Nr,
-                                 m.Navn,
+                                 k.Navn,
                                  h.Betalingsdato,
                                  l.Advisbelob,
                                  l.Fradato,
@@ -291,15 +294,16 @@ namespace nsPuls3060
             var rstdebs = from f in m_dbData3060.Tblfak
                           where f.Tilpbsid == lobnr && f.Nr != null
                           join m in m_dbData3060.TblMedlem on f.Nr equals m.Nr
+                          join k in m_objMedlemmer on f.Nr equals k.Nr 
                           orderby f.Nr
                           select new
                           {
                               f.Id,
                               m.Nr,
                               Kundenr = 32001610000000 + m.Nr,
-                              m.Navn,
-                              m.Adresse,
-                              m.Postnr,
+                              k.Navn,
+                              k.Adresse,
+                              k.Postnr,
                               f.Faknr,
                               f.Betalingsdato,
                               f.Infotekst,

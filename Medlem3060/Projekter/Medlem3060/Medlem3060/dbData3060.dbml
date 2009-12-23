@@ -1,35 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="dbData3060" Class="DbData3060" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Table Name="dicMedlem" Member="DicMedlem">
-    <Type Name="DicMedlem">
-      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="onSumma" Member="OnSumma" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="onAccess" Member="OnAccess" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="onFMS_PBS" Member="OnFMS_PBS" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="ConflictPrimary" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="accName" Member="AccName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="accNumber" Member="AccNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="sumNumber" Member="SumNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="sumSubNumber" Member="SumSubNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="pbsNumber" Member="PbsNumber" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="NewValue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="NewType" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="syncMedlem" Member="SyncMedlem">
-    <Type Name="SyncMedlem">
-      <Column Name="Nr" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="crcMedlem" Member="CrcMedlem" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="crcNavn" Member="CrcNavn" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="crcKaldenavn" Member="CrcKaldenavn" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="crcAdresse" Member="CrcAdresse" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="crcPostnr" Member="CrcPostnr" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="crcBynavn" Member="CrcBynavn" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="crcTelefon" Member="CrcTelefon" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="crcEmail" Member="CrcEmail" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="tblAktivitet" Member="TblAktivitet">
     <Type Name="TblAktivitet">
       <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -41,12 +11,6 @@
     <Type Name="TblAktivtRegnskab">
       <Column Name="rid" Member="Rid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="TblAktivtRegnskab_TblRegnskab" Member="TblRegnskab" ThisKey="Rid" OtherKey="Rid" Type="TblRegnskab" Cardinality="One" />
-    </Type>
-  </Table>
-  <Table Name="tblApplication" Member="TblApplication">
-    <Type Name="TblApplication">
-      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(12) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="tblbet" Member="Tblbet">
@@ -146,13 +110,6 @@
   <Table Name="tblMedlem" Member="TblMedlem">
     <Type Name="TblMedlem">
       <Column Name="Nr" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Navn" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
-      <Column Name="Kaldenavn" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
-      <Column Name="Adresse" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
-      <Column Name="Postnr" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Bynavn" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
-      <Column Name="Telefon" Type="System.String" DbType="NVarChar(12)" CanBeNull="true" />
-      <Column Name="Email" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="Knr" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Kon" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
       <Column Name="FodtDato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
@@ -246,14 +203,6 @@
       <Association Name="TblAktivtRegnskab_TblRegnskab" Member="TblAktivtRegnskab" ThisKey="Rid" OtherKey="Rid" Type="TblAktivtRegnskab" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="tblSyncMedlem" Member="TblSyncMedlem">
-    <Type Name="TblSyncMedlem">
-      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Nr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="dicid" Member="Dicid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="crc" Member="Crc" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="tbltilpbs" Member="Tbltilpbs">
     <Type Name="Tbltilpbs">
       <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -266,29 +215,6 @@
       <Column Name="leverancedannelsesdato" Member="Leverancedannelsesdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="Tbltilpbs_Tblfak" Member="Tblfak" ThisKey="Id" OtherKey="Tilpbsid" Type="Tblfak" />
       <Association Name="Tblpbsforsendelse_Tbltilpbs" Member="Tblpbsforsendelse" ThisKey="Pbsforsendelseid" OtherKey="Id" Type="Tblpbsforsendelse" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="tempDkkonti" Member="TempDkkonti">
-    <Type Name="TempDkkonti">
-      <Column Name="Debnr" Type="System.String" DbType="NVarChar(7) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="tempFields" Member="TempFields">
-    <Type Name="TempFields">
-      <Column Name="Nr" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="fldnr" Member="Fldnr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="fldsubnr" Member="Fldsubnr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="value" Member="Value" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="tempKartotek" Member="TempKartotek">
-    <Type Name="TempKartotek">
-      <Column Name="Nr" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="synced" Member="Synced" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="csvFromFile" Member="CsvFromFile" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="csvToFile" Member="CsvToFile" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="tNr" Member="TNr" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
-      <Column Name="Debnr" Type="System.String" DbType="NVarChar(7)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="tempKontforslag" Member="TempKontforslag">
@@ -307,17 +233,6 @@
       <Column Name="fradato" Member="Fradato" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="advisbelob" Member="Advisbelob" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
       <Association Name="TempKontforslag_TempKontforslaglinie" Member="TempKontforslag" ThisKey="Kontforslagid" OtherKey="Id" Type="TempKontforslag" IsForeignKey="true" DeleteOnNull="true" />
-    </Type>
-  </Table>
-  <Table Name="tempKortnr" Member="TempKortnr">
-    <Type Name="TempKortnr">
-      <Column Name="Nr" Type="System.String" DbType="NVarChar(4) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="tempStatus" Member="TempStatus">
-    <Type Name="TempStatus">
-      <Column Name="key" Member="Key" Type="System.String" DbType="NVarChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="value" Member="Value" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
