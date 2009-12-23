@@ -88,6 +88,7 @@
     </Compile>
     <Compile Include="karDkkonti.cs" />
     <Compile Include="karKortnr.cs" />
+    <Compile Include="karRegnskab.cs" />
     <Compile Include="karStatus.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
