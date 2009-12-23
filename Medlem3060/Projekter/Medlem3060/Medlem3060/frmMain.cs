@@ -62,7 +62,8 @@ namespace nsPuls3060
             //{
             //    var medlem = mx;
             //}
-            clsMedlem nytmedlem = new clsMedlem() 
+            /*
+             clsMedlem nytmedlem = new clsMedlem() 
             {
                 Nr = 483,
                 Navn = "Nyt Medlem",
@@ -74,7 +75,8 @@ namespace nsPuls3060
                 Email = "dex@dfres.dk"
             };
             string nystring = nytmedlem.getNewCvsString();
-
+            */
+            KarFakturaer_s objFakturaer_s = new KarFakturaer_s(m_dbData3060);
         }
     }
 }
