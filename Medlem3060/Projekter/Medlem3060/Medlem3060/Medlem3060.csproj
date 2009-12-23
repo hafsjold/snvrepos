@@ -86,6 +86,8 @@
     <Compile Include="frmMedlemmer.Designer.cs">
       <DependentUpon>frmMedlemmer.cs</DependentUpon>
     </Compile>
+    <Compile Include="karDkkonti.cs" />
+    <Compile Include="karKortnr.cs" />
     <Compile Include="karStatus.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

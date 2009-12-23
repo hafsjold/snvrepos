@@ -35,7 +35,8 @@ namespace nsPuls3060
         {
             var qry_medlemmer = from h in m_objMedlemmer
                                 join d1 in m_dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
-                                from x in details1.DefaultIfEmpty()
+                                from x in details1.DefaultIfEmpty(new TblMedlem {Nr = -1,  Knr = -1, Kon = "X", FodtDato = new DateTime(1900,1,1) })
+                                //where x.Nr== -1
                                 select new
                                 {
                                     h.Nr,
