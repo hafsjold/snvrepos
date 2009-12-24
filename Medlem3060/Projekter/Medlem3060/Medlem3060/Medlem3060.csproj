@@ -54,7 +54,7 @@
   <ItemGroup>
     <Compile Include="clsCsv.cs" />
     <Compile Include="clsMedlem.cs" />
-    <Compile Include="clsMedlemmer.cs" />
+    <Compile Include="karMedlemmer.cs" />
     <Compile Include="clsPbs.cs" />
     <Compile Include="clsPbs601.cs" />
     <Compile Include="clsPbs602.cs" />

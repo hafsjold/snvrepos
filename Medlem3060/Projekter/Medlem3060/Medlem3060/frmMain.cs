@@ -11,42 +11,28 @@ namespace nsPuls3060
 {
     public partial class frmMain : Form
     {
-        private DbData3060 m_dbData3060;
-        private static frmMedlemmer m_frmMedlemmer;
-        
         public frmMain()
         {
             InitializeComponent();
-            m_dbData3060 = new DbData3060(global::nsPuls3060.Properties.Settings.Default.DataBasePath);
-          
-
         }
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            m_dbData3060.SubmitChanges();
+            Program.dbData3060.SubmitChanges();
         }
 
 
         private void medlemmerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (m_frmMedlemmer == null)
-            {
-                m_frmMedlemmer = new frmMedlemmer(m_dbData3060);
-                m_frmMedlemmer.Show();
-            }
-            else 
-            {
-                m_frmMedlemmer.Focus();
-            }
+            Program.frmMedlemmer.Focus();
         }
 
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            clsPbs objPbs = new clsPbs(m_dbData3060);
-            clsPbs601 objPbs601 = new clsPbs601(m_dbData3060);
-            clsPbs602 objPbs602 = new clsPbs602(m_dbData3060);
-            clsMedlemmer objMedlemmer = new clsMedlemmer(m_dbData3060);
+            clsPbs objPbs = new clsPbs();
+            clsPbs601 objPbs601 = new clsPbs601();
+            clsPbs602 objPbs602 = new clsPbs602();
+            KarMedlemmer objMedlemmer = new KarMedlemmer();
             //objPbs601.faktura_601_action(1);
             //objPbs602.TestRead042();
             //objPbs602.ReadFraPbsFile();
@@ -57,10 +43,10 @@ namespace nsPuls3060
             //double ssdate = clsUtil.SummaDateTime2Serial(dt);
             //double testdaynr = objPbs.GregorianDate2JulianDayNumber(dt);
             //DateTime testdate = objPbs.JulianDayNumber2GregorianDate(testdaynr);
-            //KarStatus myKarStatus = new KarStatus(m_dbData3060);
+            //KarStatus myKarStatus = new KarStatus();
             //myKarStatus.save();
             //var qry_medlemmer = from k in objMedlemmer
-            //                    join m in m_dbData3060.TblMedlem on k.Nr equals m.Nr
+            //                    join m in Program.dbData3060.TblMedlem on k.Nr equals m.Nr
             //                    where m.FodtDato > DateTime.Parse("1980-01-01")
             //                    select new { k.Nr, k.Navn, k.Kaldenavn, k.Adresse, k.Postnr, k.Bynavn, k.Email, k.Telefon, m.Knr, m.Kon, m.FodtDato };
             //
@@ -83,7 +69,7 @@ namespace nsPuls3060
             };
             string nystring = nytmedlem.getNewCvsString();
             */
-            KarFakturaer_s objFakturaer_s = new KarFakturaer_s(m_dbData3060);
+            KarFakturaer_s objFakturaer_s = new KarFakturaer_s();
             objFakturaer_s.save();
         }
     }

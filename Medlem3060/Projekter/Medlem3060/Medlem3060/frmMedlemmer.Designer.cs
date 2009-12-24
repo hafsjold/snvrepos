@@ -156,7 +156,7 @@
             this.ClientSize = new System.Drawing.Size(749, 488);
             this.Controls.Add(this.dataGridView1);
             this.Name = "frmMedlemmer";
-            this.Text = "frmMedlemmer";
+            this.Text = "Medlemmer";
             this.Load += new System.EventHandler(this.frmMedlemmer_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMedlemmer_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

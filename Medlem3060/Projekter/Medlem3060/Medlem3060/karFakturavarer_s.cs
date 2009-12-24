@@ -19,14 +19,12 @@ public recFakturavarer_s() { }
 
     public class KarFakturavarer_s : List<recFakturavarer_s>
     {
-        private DbData3060 m_dbData3060;
         private string m_path { get; set; }
 
-        public KarFakturavarer_s(DbData3060 pdbData3060)
+        public KarFakturavarer_s()
         {
-            m_dbData3060 = pdbData3060;
-            var rec_regnskab = (from r in m_dbData3060.TblRegnskab
-                                join a in m_dbData3060.TblAktivtRegnskab on r.Rid equals a.Rid
+            var rec_regnskab = (from r in Program.dbData3060.TblRegnskab
+                                join a in Program.dbData3060.TblAktivtRegnskab on r.Rid equals a.Rid
                                 select r).First();
 
             m_path = rec_regnskab.Placering + "fakturavarer_s.dat";

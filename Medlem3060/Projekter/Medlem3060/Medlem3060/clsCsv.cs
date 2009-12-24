@@ -151,7 +151,7 @@ namespace nsPuls3060
             {
                 if (m_niveau == 0)
                 {
-                    return clsMedlemmer.dic.multifld(m_nr);
+                    return Program.dicMedlem.multifld(m_nr);
                 }
                 else
                 {

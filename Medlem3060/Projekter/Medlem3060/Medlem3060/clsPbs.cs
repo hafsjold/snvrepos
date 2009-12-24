@@ -12,16 +12,11 @@ namespace nsPuls3060
 {
     class clsPbs
     {
-        private DbData3060 m_dbData3060;
         private TblRegnskab m_rec_Regnskab;
         private TblAktivtRegnskab m_rec_AktivtRegnskab;
 
-        private clsPbs()
+        public clsPbs()
         {
-        }
-        public clsPbs(DbData3060 pdbData3060)
-        {
-            m_dbData3060 = pdbData3060;
         }
 
         public Boolean erMedlem(short pNr) { return erMedlem(pNr, DateTime.Now); }
@@ -47,7 +42,7 @@ namespace nsPuls3060
             var b50 = false; // Udmeldelses dato fundet
 
             //Den query skal ændres til en union !!!!!!!!!!!!
-            var MedlemLogs = from c in m_dbData3060.TblMedlemLog
+            var MedlemLogs = from c in Program.dbData3060.TblMedlemLog
                              where c.Nr == pNr && c.Logdato <= pDate
                              orderby c.Logdato descending
                              select c;
@@ -170,11 +165,11 @@ namespace nsPuls3060
             }
         }
 
-        public static int nextval(string nrserienavn, DbData3060 pdbData3060)
+        public static int nextval(string nrserienavn)
         {
             try
             {
-                var rst = (from c in pdbData3060.Tblnrserie
+                var rst = (from c in Program.dbData3060.Tblnrserie
                            where c.Nrserienavn == nrserienavn
                            select c).First();
 
@@ -196,7 +191,7 @@ namespace nsPuls3060
                     Nrserienavn = nrserienavn,
                     Sidstbrugtenr = 0
                 };
-                pdbData3060.Tblnrserie.InsertOnSubmit(rec_nrserie);
+                Program.dbData3060.Tblnrserie.InsertOnSubmit(rec_nrserie);
                 return 0;
             }
         }
@@ -229,7 +224,7 @@ namespace nsPuls3060
                         try
                         {
                             m_rec_Regnskab =
-                                (from d in m_dbData3060.TblRegnskab
+                                (from d in Program.dbData3060.TblRegnskab
                                  where d.Rid.ToString() == RegnskabId
                                  select d).First();
 
@@ -240,8 +235,8 @@ namespace nsPuls3060
                             {
                                 Rid = int.Parse(RegnskabId)
                             };
-                            m_dbData3060.TblRegnskab.InsertOnSubmit(m_rec_Regnskab);
-                            m_dbData3060.SubmitChanges();
+                            Program.dbData3060.TblRegnskab.InsertOnSubmit(m_rec_Regnskab);
+                            Program.dbData3060.SubmitChanges();
                         }
                         RegnskabMappe = Datamappe + sub_dir.Name + @"\";
                         m_rec_Regnskab.Placering = RegnskabMappe;
@@ -328,7 +323,7 @@ namespace nsPuls3060
             try
             {
                 m_rec_AktivtRegnskab =
-                    (from d in m_dbData3060.TblAktivtRegnskab
+                    (from d in Program.dbData3060.TblAktivtRegnskab
                      select d).First();
                 m_rec_AktivtRegnskab.Rid = int.Parse(SidsteMappe);
             }
@@ -338,9 +333,9 @@ namespace nsPuls3060
                 {
                     Rid = int.Parse(SidsteMappe)
                 };
-                m_dbData3060.TblAktivtRegnskab.InsertOnSubmit(m_rec_AktivtRegnskab);
+                Program.dbData3060.TblAktivtRegnskab.InsertOnSubmit(m_rec_AktivtRegnskab);
             }
-            m_dbData3060.SubmitChanges();
+            Program.dbData3060.SubmitChanges();
             return true;
         }
     }

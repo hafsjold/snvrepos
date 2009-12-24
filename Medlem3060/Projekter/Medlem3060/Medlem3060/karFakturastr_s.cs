@@ -20,14 +20,12 @@ namespace nsPuls3060
 
     public class KarFakturastr_s : List<recFakturastr_s>
     {
-        private DbData3060 m_dbData3060;
         private string m_path { get; set; }
 
-        public KarFakturastr_s(DbData3060 pdbData3060)
+        public KarFakturastr_s()
         {
-            m_dbData3060 = pdbData3060;
-            var rec_regnskab = (from r in m_dbData3060.TblRegnskab
-                                join a in m_dbData3060.TblAktivtRegnskab on r.Rid equals a.Rid
+            var rec_regnskab = (from r in Program.dbData3060.TblRegnskab
+                                join a in Program.dbData3060.TblAktivtRegnskab on r.Rid equals a.Rid
                                 select r).First();
 
             m_path = rec_regnskab.Placering + "fakturastr_s.dat";

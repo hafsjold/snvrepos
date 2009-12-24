@@ -11,14 +11,9 @@ namespace nsPuls3060
 {
     public partial class frmMedlemmer : Form
     {
-        private DbData3060 m_dbData3060;
-        private clsMedlemmer m_objMedlemmer;
-
-        public frmMedlemmer(DbData3060 pdbData3060)
+        public frmMedlemmer()
         {
             InitializeComponent();
-            m_dbData3060 = pdbData3060;
-            m_objMedlemmer = new clsMedlemmer(m_dbData3060);
         }
 
         private void frmMedlemmer_Load(object sender, EventArgs e)
@@ -33,8 +28,8 @@ namespace nsPuls3060
 
         private void open()
         {
-            var qry_medlemmer = from h in m_objMedlemmer
-                                join d1 in m_dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
+            var qry_medlemmer = from h in Program.KarMedlemmer
+                                join d1 in Program.dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
                                 from x in details1.DefaultIfEmpty(new TblMedlem {Nr = -1,  Knr = -1, Kon = "X", FodtDato = new DateTime(1900,1,1) })
                                 //where x.Nr== -1
                                 select new
@@ -87,12 +82,12 @@ namespace nsPuls3060
                         if (!m.IsTelefonNull()) k_rec.Telefon = m.Telefon;
                         if (!m.IsEmailNull()) k_rec.Email = m.Email;
                         k_rec.getNewCvsString();
-                        m_objMedlemmer.Add(k_rec);
+                        Program.KarMedlemmer.Add(k_rec);
 
                         TblMedlem m_rec;
                         try
                         {
-                            m_rec = (from k in m_dbData3060.TblMedlem
+                            m_rec = (from k in Program.dbData3060.TblMedlem
                                      where k.Nr == Nr_Key
                                      select k).First();
                         }
@@ -102,7 +97,7 @@ namespace nsPuls3060
                             {
                                 Nr = Nr_Key
                             };
-                            m_dbData3060.TblMedlem.InsertOnSubmit(m_rec);
+                            Program.dbData3060.TblMedlem.InsertOnSubmit(m_rec);
                         }
                         if (!m.IsKnrNull()) m_rec.Knr = m.Knr;
                         if (!m.IsKonNull()) m_rec.Kon = m.Kon;
@@ -114,7 +109,7 @@ namespace nsPuls3060
 
                     case DataRowState.Modified:
                         Nr_Key = m.Nr;
-                        k_rec = (from k in m_objMedlemmer
+                        k_rec = (from k in Program.KarMedlemmer
                                      where k.Nr == Nr_Key
                                      select k).First();
                         
@@ -125,11 +120,11 @@ namespace nsPuls3060
                         if (!m.IsBynavnNull()) k_rec.Bynavn = m.Bynavn;
                         if (!m.IsTelefonNull()) k_rec.Telefon = m.Telefon;
                         if (!m.IsEmailNull()) k_rec.Email = m.Email;
-                        m_objMedlemmer.Update(Nr_Key);
+                        Program.KarMedlemmer.Update(Nr_Key);
 
                         try
                         {
-                            m_rec = (from k in m_dbData3060.TblMedlem
+                            m_rec = (from k in Program.dbData3060.TblMedlem
                                      where k.Nr == Nr_Key
                                      select k).First();
                         }
@@ -139,7 +134,7 @@ namespace nsPuls3060
                             {
                                 Nr = Nr_Key
                             };
-                            m_dbData3060.TblMedlem.InsertOnSubmit(m_rec);
+                            Program.dbData3060.TblMedlem.InsertOnSubmit(m_rec);
                         }
                         if (!m.IsKnrNull()) m_rec.Knr = m.Knr;
                         if (!m.IsKonNull()) m_rec.Kon = m.Kon;
@@ -150,7 +145,7 @@ namespace nsPuls3060
                         break;
                 }
             }
-            m_objMedlemmer.Save();
+            Program.KarMedlemmer.Save();
         }
     }
 }

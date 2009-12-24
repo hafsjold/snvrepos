@@ -15,14 +15,12 @@ namespace nsPuls3060
 
     public class KarStatus : List<recStatus>
     {
-        private DbData3060 m_dbData3060;
         private string m_path { get; set; }
 
-        public KarStatus(DbData3060 pdbData3060)
+        public KarStatus()
         {
-            m_dbData3060 = pdbData3060;
-            var rec_regnskab = (from r in m_dbData3060.TblRegnskab
-                                join a in m_dbData3060.TblAktivtRegnskab on r.Rid equals a.Rid
+            var rec_regnskab = (from r in Program.dbData3060.TblRegnskab
+                                join a in Program.dbData3060.TblAktivtRegnskab on r.Rid equals a.Rid
                                 select r).First();
 
             m_path = rec_regnskab.Placering + "status.dat";

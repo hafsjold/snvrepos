@@ -13,7 +13,6 @@ namespace nsPuls3060
 
     class clsPbs602
     {
-        private DbData3060 m_dbData3060;
         private Tblpbsforsendelse m_rec_pbsforsendelse;
         private Tblpbsfiles m_rec_pbsfiles;
         private Tblpbsfile m_rec_pbsfile;
@@ -21,13 +20,10 @@ namespace nsPuls3060
         private Tblbet m_rec_bet;
         private Tblbetlin m_rec_betlin;
 
-        private clsPbs602()
+        public clsPbs602()
         {
         }
-        public clsPbs602(DbData3060 pdbData3060)
-        {
-            m_dbData3060 = pdbData3060;
-        }
+
 
         public bool ReadFraPbsFile()
         {
@@ -36,15 +32,15 @@ namespace nsPuls3060
             FileStream ts;
             string ln;
 
-            var rec_regnskab = (from r in m_dbData3060.TblRegnskab
-                                join a in m_dbData3060.TblAktivtRegnskab on r.Rid equals a.Rid
+            var rec_regnskab = (from r in Program.dbData3060.TblRegnskab
+                                join a in Program.dbData3060.TblAktivtRegnskab on r.Rid equals a.Rid
                                 select r).First();
 
             FraPBSFolderPath = rec_regnskab.FraPBS;
 
-            var delete_pbsnetdir = from d in m_dbData3060.Tblpbsnetdir select d;
-            m_dbData3060.Tblpbsnetdir.DeleteAllOnSubmit(delete_pbsnetdir);
-            m_dbData3060.SubmitChanges();
+            var delete_pbsnetdir = from d in Program.dbData3060.Tblpbsnetdir select d;
+            Program.dbData3060.Tblpbsnetdir.DeleteAllOnSubmit(delete_pbsnetdir);
+            Program.dbData3060.SubmitChanges();
 
             fld = new DirectoryInfo(FraPBSFolderPath);
             foreach (FileInfo f in fld.GetFiles())
@@ -58,11 +54,11 @@ namespace nsPuls3060
                     Atime = f.LastAccessTime,
                     Mtime = f.LastWriteTime
                 };
-                m_dbData3060.Tblpbsnetdir.InsertOnSubmit(rec);
+                Program.dbData3060.Tblpbsnetdir.InsertOnSubmit(rec);
             }
-            m_dbData3060.SubmitChanges();
-            var leftqry_pbsnetdir = from h in m_dbData3060.Tblpbsnetdir
-                join d1 in m_dbData3060.Tblpbsfiles on new { h.Path, h.Filename } equals new { d1.Path, d1.Filename } into details
+            Program.dbData3060.SubmitChanges();
+            var leftqry_pbsnetdir = from h in Program.dbData3060.Tblpbsnetdir
+                                    join d1 in Program.dbData3060.Tblpbsfiles on new { h.Path, h.Filename } equals new { d1.Path, d1.Filename } into details
                 from d1 in details.DefaultIfEmpty()
                 where d1.Path == null && d1.Filename == null
                 select h;
@@ -84,7 +80,7 @@ namespace nsPuls3060
                        Uid = rec_pbsnetdir.Uid,
                        Gid = rec_pbsnetdir.Gid
                    };
-                    m_dbData3060.Tblpbsfiles.InsertOnSubmit(m_rec_pbsfiles);
+                    Program.dbData3060.Tblpbsfiles.InsertOnSubmit(m_rec_pbsfiles);
 
                     string varFromFile = FraPBSFolderPath + rec_pbsnetdir.Filename;
                     int seqnr = 0;
@@ -104,7 +100,7 @@ namespace nsPuls3060
                         }
                     }
                     m_rec_pbsfiles.Transmittime = DateTime.Now;
-                    m_dbData3060.SubmitChanges();
+                    Program.dbData3060.SubmitChanges();
                 }
             }
             return true;
@@ -136,8 +132,8 @@ namespace nsPuls3060
             //  sektion = "0211"
             //  rec = "BS0420398564402360000000100000000001231312345678910120310000000012755000000125                         3112031112030000000012755"
 
-            var qrypbsfiles = from h in m_dbData3060.Tblpbsfiles
-                              join d in m_dbData3060.Tblpbsfile on h.Id equals d.Pbsfilesid
+            var qrypbsfiles = from h in Program.dbData3060.Tblpbsfiles
+                              join d in Program.dbData3060.Tblpbsfile on h.Id equals d.Pbsfilesid
                               where d.Seqnr == 1 && d.Data.Substring(16, 4) == "0602" && d.Data.Substring(0, 2) == "BS"
                               select new
                               {
@@ -157,7 +153,7 @@ namespace nsPuls3060
                 sektion = "";
                 leverancespecifikation = "";
 
-                var qrypbsfile = from d in m_dbData3060.Tblpbsfile
+                var qrypbsfile = from d in Program.dbData3060.Tblpbsfile
                                  where d.Pbsfilesid == wpbsfilesid && d.Seqnr > 0
                                  orderby d.Seqnr
                                  select d;
@@ -182,12 +178,12 @@ namespace nsPuls3060
                         if ((leverancetype == "0602"))
                         {
                             // -- Leverance 0602
-                            var antal = (from c in m_dbData3060.Tblfrapbs
+                            var antal = (from c in Program.dbData3060.Tblfrapbs
                                          where c.Leverancespecifikation == leverancespecifikation
                                          select c).Count();
                             if (antal > 0) { throw new Exception("242 - Leverance med pbsfilesid: " + wpbsfilesid + " og leverancespecifikation: " + leverancespecifikation + " er indlæst tidligere"); }
 
-                            wleveranceid = clsPbs.nextval("leveranceid", m_dbData3060);
+                            wleveranceid = clsPbs.nextval("leveranceid");
                             m_rec_pbsforsendelse = new Tblpbsforsendelse
                             {
                                 Delsystem = "BS1",
@@ -196,7 +192,7 @@ namespace nsPuls3060
                                 Oprettet = DateTime.Now,
                                 Leveranceid = wleveranceid
                             };
-                            m_dbData3060.Tblpbsforsendelse.InsertOnSubmit(m_rec_pbsforsendelse);
+                            Program.dbData3060.Tblpbsforsendelse.InsertOnSubmit(m_rec_pbsforsendelse);
 
                             m_rec_frapbs = new Tblfrapbs
                             {
@@ -208,7 +204,7 @@ namespace nsPuls3060
                             };
                             m_rec_pbsforsendelse.Tblfrapbs.Add(m_rec_frapbs);
 
-                            m_rec_pbsfiles = (from c in m_dbData3060.Tblpbsfiles
+                            m_rec_pbsfiles = (from c in Program.dbData3060.Tblpbsfiles
                                               where c.Id == rstpbsfiles.Id
                                               select c).First();
                             m_rec_pbsforsendelse.Tblpbsfiles.Add(m_rec_pbsfiles);

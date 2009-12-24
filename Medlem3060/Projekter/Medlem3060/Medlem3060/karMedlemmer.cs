@@ -7,18 +7,14 @@ using System.Threading;
 
 namespace nsPuls3060
 {
-    public class clsMedlemmer : List<clsMedlem>
+    public class KarMedlemmer : List<clsMedlem>
     {
-        public static dicMedlem dic = new dicMedlem();
-
         private string m_kartotek_dat;
-        private DbData3060 m_dbData3060;
 
-        public clsMedlemmer(DbData3060 pdbData3060)
+        public KarMedlemmer()
         {
-            m_dbData3060 = pdbData3060;
-            var rec_regnskab = (from r in m_dbData3060.TblRegnskab
-                                join a in m_dbData3060.TblAktivtRegnskab on r.Rid equals a.Rid
+            var rec_regnskab = (from r in Program.dbData3060.TblRegnskab
+                                join a in Program.dbData3060.TblAktivtRegnskab on r.Rid equals a.Rid
                                 select r).First();
 
             m_kartotek_dat = rec_regnskab.Placering + "kartotek.dat";
