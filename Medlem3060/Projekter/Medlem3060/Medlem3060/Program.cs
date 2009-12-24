@@ -56,13 +56,21 @@ namespace nsPuls3060
                 if (m_dbData3060 == null) m_dbData3060 = new DbData3060(global::nsPuls3060.Properties.Settings.Default.DataBasePath);
                 return m_dbData3060;
             }
-        }
+            set 
+            {
+                m_dbData3060 = value;
+            }        
+		}
         public static KarMedlemmer KarMedlemmer
         {
             get
             {
                 if (m_KarMedlemmer == null) m_KarMedlemmer = new KarMedlemmer();
                 return m_KarMedlemmer;
+            }
+            set 
+            {
+                m_KarMedlemmer = value;
             }
         }
         public static dicMedlem dicMedlem
