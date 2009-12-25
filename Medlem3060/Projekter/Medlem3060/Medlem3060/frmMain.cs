@@ -77,10 +77,39 @@ namespace nsPuls3060
 
         private void excelToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            DateTime pReadDate = DateTime.Now;
+            string pSheetName = "Medlem";
+
             Excel.Application oXL;
             Excel._Workbook oWB;
             Excel._Worksheet oSheet;
+            Excel.Window oWindow;
             Excel.Range oRng;
+
+            var rec_regnskab = (from r in Program.dbData3060.TblRegnskab
+                                join a in Program.dbData3060.TblAktivtRegnskab on r.Rid equals a.Rid
+                                select r).First();
+
+            string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xls";
+
+            var MedlemmerAll = from h in Program.karMedlemmer
+                               join d1 in Program.dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
+                               from x in details1.DefaultIfEmpty(new TblMedlem { Nr = -1, Knr = -1, Kon = "X", FodtDato = new DateTime(1900, 1, 1) })
+                               select new clsMedlemAll
+                               {
+                                   Nr = h.Nr,
+                                   Navn = h.Navn,
+                                   Kaldenavn = h.Kaldenavn,
+                                   Adresse = h.Adresse,
+                                   Postnr = h.Postnr,
+                                   Bynavn = h.Bynavn,
+                                   Telefon = h.Telefon,
+                                   Email = h.Email,
+                                   Knr = (int)(x.Knr == null ? -1 : x.Knr),
+                                   Kon = x.Kon == null ? "X" : x.Kon,
+                                   FodtDato = (DateTime)(x.FodtDato == null ? new DateTime(1900, 01, 01) : x.FodtDato)
+                               };
+
 
             using (new ExcelUILanguageHelper())
             {
@@ -93,56 +122,65 @@ namespace nsPuls3060
 
                     oWB = oXL.Workbooks.Add((Missing.Value));
                     oSheet = (Excel._Worksheet)oWB.ActiveSheet;
+                    oWindow = oXL.ActiveWindow;
 
+                    if (pSheetName.Length > 0) oSheet.Name = pSheetName.Substring(0, pSheetName.Length > 34 ? 34 : pSheetName.Length);
+                    int row = 1;
+                    foreach (clsMedlemAll m in MedlemmerAll)
+                    {
+                        row++;
+                        Type objectType = m.GetType();
+                        PropertyInfo[] properties = objectType.GetProperties();
+                        int col = 0;
+                        foreach (PropertyInfo property in properties)
+                        {
+                            col++;
+                            string Name = property.Name;
+                            oSheet.Cells[row, col] = property.GetValue(m, null);
+                            if (row == 2)
+                            {
+                                object[] CustomAttributes = property.GetCustomAttributes(false);
+                                foreach (var att in CustomAttributes)
+                                {
+                                    Type tp = att.GetType();
+                                    if (tp.ToString() == "nsPuls3060.Fieldattr")
+                                    {
+                                        Fieldattr attr = (Fieldattr)att;
+                                        string heading = attr.Heading;
+                                        oSheet.Cells[1, col] = heading;
 
-                    //Add table headers going cell by cell.
-                    oSheet.Cells[1, 1] = "First Name";
-                    oSheet.Cells[1, 2] = "Last Name";
-                    oSheet.Cells[1, 3] = "Full Name";
-                    oSheet.Cells[1, 4] = "Salary";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    oRng = (Excel.Range)oSheet.Rows[1, Missing.Value];
+                    oRng.Font.Name = "Arial";
+                    oRng.Font.Size = 12;
+                    oRng.Font.Strikethrough = false;
+                    oRng.Font.Superscript = false;
+                    oRng.Font.Subscript = false;
+                    oRng.Font.OutlineFont = false;
+                    oRng.Font.Shadow = false;
+                    oRng.Font.Bold = true;
+                    oRng.HorizontalAlignment = Excel.Constants.xlCenter;
+                    oRng.VerticalAlignment = Excel.Constants.xlBottom;
+                    oRng.WrapText = false;
+                    oRng.Orientation = 0;
+                    oRng.AddIndent = false;
+                    oRng.IndentLevel = 0;
+                    oRng.ShrinkToFit = false;
+                    oRng.MergeCells = false;
 
-                    //Format A1:D1 as bold, vertical alignment = center.
-                    oSheet.get_Range("A1", "D1").Font.Bold = true;
-                    oSheet.get_Range("A1", "D1").VerticalAlignment =
-                        Excel.XlVAlign.xlVAlignCenter;
+                    oSheet.Cells.EntireColumn.AutoFit();
+                    
+                    oWindow.SplitRow = 1;
+                    oWindow.SplitColumn = 2;
+                    oWindow.FreezePanes = true;
 
-                    // Create an array to multiple values at once.
-                    string[,] saNames = new string[5, 2];
+                    oSheet.get_Range("A1", Missing.Value).Select();
 
-                    saNames[0, 0] = "John";
-                    saNames[0, 1] = "Smith";
-                    saNames[1, 0] = "Tom";
-                    saNames[1, 1] = "Brown";
-                    saNames[2, 0] = "Sue";
-                    saNames[2, 1] = "Thomas";
-                    saNames[3, 0] = "Jane";
-                    saNames[3, 1] = "Jones";
-                    saNames[4, 0] = "Adam";
-                    saNames[4, 1] = "Johnson";
-
-                    //Fill A2:B6 with an array of values (First and Last Names).
-                    oSheet.get_Range("A2", "B6").Value2 = saNames;
-
-                    //Fill C2:C6 with a relative formula (=A2 & " " & B2).
-                    oRng = oSheet.get_Range("C2", "C6");
-                    oRng.Formula = "=A2 & \" \" & B2";
-
-                    //Fill D2:D6 with a formula(=RAND()*100000) and apply format.
-                    oRng = oSheet.get_Range("D2", "D6");
-                    oRng.Formula = "=RAND()*100000";
-                    oRng.NumberFormat = "$0.00";
-
-                    //AutoFit columns A:D.
-                    oRng = oSheet.get_Range("A1", "D1");
-                    oRng.EntireColumn.AutoFit();
-
-                    //Manipulate a variable number of columns for Quarterly Sales Data.
-                    //DisplayQuarterlySales(oSheet);
-
-                    //Make sure Excel is visible and give the user control
-                    //of Microsoft Excel's lifetime.
-                    oXL.Visible = true;
-                    oXL.UserControl = true;
+                    oWB.SaveAs(SaveAs, Excel.XlFileFormat.xlWorkbookNormal, "", "", false, false, Excel.XlSaveAsAccessMode.xlExclusive, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
 
                 }
                 catch (Exception theException)

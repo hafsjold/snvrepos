@@ -9,6 +9,11 @@ using System.Globalization;
 
 namespace nsPuls3060
 {
+    public class Fieldattr : Attribute
+    {
+        public string Heading { get; set; }
+    }
+
     class ExcelUILanguageHelper : IDisposable
     {
         private CultureInfo m_CurrentCulture;

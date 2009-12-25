@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data.Linq.Mapping;
 
 namespace nsPuls3060
 {
@@ -560,5 +561,30 @@ namespace nsPuls3060
                 }
             }
         }
+    }
+    public class clsMedlemAll
+    {
+        [Fieldattr(Heading="Nr")]
+        public int Nr { get; set; }
+        [Fieldattr(Heading = "Navn")]
+        public string Navn { get; set; }
+        [Fieldattr(Heading = "Kaldenavn")]
+        public string Kaldenavn { get; set; }
+        [Fieldattr(Heading = "Adresse")]
+        public string Adresse { get; set; }
+        [Fieldattr(Heading = "Postnr")]
+        public string Postnr { get; set; }
+        [Fieldattr(Heading = "By")]
+        public string Bynavn { get; set; }
+        [Fieldattr(Heading = "Email")]
+        public string Email { get; set; }
+        [Fieldattr(Heading = "Telefon")]
+        public string Telefon { get; set; }
+        [Fieldattr(Heading = "Kom")]
+        public int Knr { get; set; }
+        [Fieldattr(Heading = "Køn")]
+        public string Kon { get; set; }
+        [Fieldattr(Heading = "Født")]
+        public DateTime FodtDato { get; set; }
     }
 }
