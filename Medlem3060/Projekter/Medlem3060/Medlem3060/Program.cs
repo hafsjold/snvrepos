@@ -10,7 +10,7 @@ namespace nsPuls3060
         private static FrmMedlemmer m_frmMedlemmer;
         private static DbData3060 m_dbData3060;
         private static KarMedlemmer m_KarMedlemmer;
-        private static dicMedlem m_dicMedlem;
+        private static MemMedlemDictionary m_dicMedlem;
         private static KarDkkonti m_KarDkkonti;
         private static KarFakturaer_s m_KarFakturaer_s;
         private static KarFakturastr_s m_KarFakturastr_s;
@@ -73,11 +73,11 @@ namespace nsPuls3060
                 m_KarMedlemmer = value;
             }
         }
-        public static dicMedlem dicMedlem
+        public static MemMedlemDictionary memMedlemDictionary
         {
             get
             {
-                if (m_dicMedlem == null) m_dicMedlem = new dicMedlem();
+                if (m_dicMedlem == null) m_dicMedlem = new MemMedlemDictionary();
                 return m_dicMedlem;
             }
             set 

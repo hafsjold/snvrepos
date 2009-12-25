@@ -151,7 +151,7 @@ namespace nsPuls3060
             {
                 if (m_niveau == 0)
                 {
-                    return Program.dicMedlem.multifld(m_nr);
+                    return Program.memMedlemDictionary.multifld(m_nr);
                 }
                 else
                 {

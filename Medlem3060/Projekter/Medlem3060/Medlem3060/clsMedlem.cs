@@ -139,7 +139,7 @@ namespace nsPuls3060
         public string getNewCvsString()
         {
             m_Csv = new clsCsv();
-            m_Csv.ln = Program.dicMedlem.NewMedlemCsvString(this.Nr); //Ny tom string
+            m_Csv.ln = Program.memMedlemDictionary.NewMedlemCsvString(this.Nr); //Ny tom string
             m_Csv.todo = CsvToDoType.fdUpdateCsvString;
 
             clsCsv.MedlemCsvStringUpdate += new nsPuls3060.clsCsv.MedlemFieldUpdateHandler(On_MedlemCsvStringUpdate);
