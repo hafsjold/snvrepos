@@ -3,10 +3,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.VisualBasic;
+using System.Threading;
+using System.Globalization;
 
 
 namespace nsPuls3060
 {
+    class ExcelUILanguageHelper : IDisposable
+    {
+        private CultureInfo m_CurrentCulture;
+
+        public ExcelUILanguageHelper()
+        {
+            // save current culture and set culture to en-US 
+            m_CurrentCulture = Thread.CurrentThread.CurrentCulture;
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+        }
+
+        #region IDisposable Members
+
+        public void Dispose()
+        {
+            // return to normal culture 
+            Thread.CurrentThread.CurrentCulture = m_CurrentCulture;
+        }
+
+        #endregion
+    } 
+
     public static class clsUtil
     {
         const double J_correction_01_01_4712BC = 1721119.5;
