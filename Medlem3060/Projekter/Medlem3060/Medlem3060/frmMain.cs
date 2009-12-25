@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace nsPuls3060
 {
-    public partial class frmMain : Form
+    public partial class FrmMain : Form
     {
-        public frmMain()
+        public FrmMain()
         {
             InitializeComponent();
         }

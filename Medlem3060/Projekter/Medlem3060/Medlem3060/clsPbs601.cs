@@ -121,7 +121,7 @@ namespace nsPuls3060
             var rstmedlems = from h in Program.dbData3060.TempKontforslag
                              join l in Program.dbData3060.TempKontforslaglinie on h.Id equals l.Kontforslagid
                              join m in Program.dbData3060.TblMedlem on l.Nr equals m.Nr
-                             join k in Program.KarMedlemmer on l.Nr equals k.Nr 
+                             join k in Program.karMedlemmer on l.Nr equals k.Nr 
                              select new
                              {
                                  m.Nr,
@@ -285,7 +285,7 @@ namespace nsPuls3060
             var rstdebs = from f in Program.dbData3060.Tblfak
                           where f.Tilpbsid == lobnr && f.Nr != null
                           join m in Program.dbData3060.TblMedlem on f.Nr equals m.Nr
-                          join k in Program.KarMedlemmer on f.Nr equals k.Nr 
+                          join k in Program.karMedlemmer on f.Nr equals k.Nr 
                           orderby f.Nr
                           select new
                           {

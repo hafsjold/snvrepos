@@ -1,6 +1,6 @@
 ﻿namespace nsPuls3060
 {
-    partial class frmMedlemmer
+    partial class FrmMedlemmer
     {
         /// <summary>
         /// Required designer variable.

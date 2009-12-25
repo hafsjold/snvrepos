@@ -7,7 +7,7 @@ namespace nsPuls3060
 {
     static class Program
     {
-        private static frmMedlemmer m_frmMedlemmer;
+        private static FrmMedlemmer m_frmMedlemmer;
         private static DbData3060 m_dbData3060;
         private static KarMedlemmer m_KarMedlemmer;
         private static dicMedlem m_dicMedlem;
@@ -19,13 +19,13 @@ namespace nsPuls3060
         private static KarRegnskab m_KarRegnskab;
         private static KarStatus m_KarStatus;
 
-        public static frmMedlemmer frmMedlemmer
+        public static FrmMedlemmer frmMedlemmer
         {
             get
             {
                 if (m_frmMedlemmer == null)
                 {
-                    m_frmMedlemmer = new frmMedlemmer();
+                    m_frmMedlemmer = new FrmMedlemmer();
                     Program.frmMedlemmer.Show();
                 }
                 else
@@ -37,7 +37,7 @@ namespace nsPuls3060
                     }
                     catch (ObjectDisposedException)
                     {
-                        m_frmMedlemmer = new frmMedlemmer();
+                        m_frmMedlemmer = new FrmMedlemmer();
                         m_frmMedlemmer.Show();
                     }
                 }
@@ -61,7 +61,7 @@ namespace nsPuls3060
                 m_dbData3060 = value;
             }        
 		}
-        public static KarMedlemmer KarMedlemmer
+        public static KarMedlemmer karMedlemmer
         {
             get
             {
@@ -97,7 +97,7 @@ namespace nsPuls3060
                 m_KarDkkonti = value;
             }
         }
-        public static KarFakturaer_s KarFakturaer_s
+        public static KarFakturaer_s karFakturaer_s
         {
             get
             {
@@ -109,7 +109,7 @@ namespace nsPuls3060
                 m_KarFakturaer_s = value;
             }
         }
-        public static KarFakturastr_s KarFakturastr_s
+        public static KarFakturastr_s karFakturastr_s
         {
             get
             {
@@ -121,7 +121,7 @@ namespace nsPuls3060
                 m_KarFakturastr_s = value;
             }
         }
-        public static KarFakturavarer_s KarFakturavarer_s
+        public static KarFakturavarer_s karFakturavarer_s
         {
             get
             {
@@ -133,7 +133,7 @@ namespace nsPuls3060
                 m_KarFakturavarer_s = value;
             }
         }
-        public static KarKortnr KarKortnr
+        public static KarKortnr karKortnr
         {
             get
             {
@@ -145,7 +145,7 @@ namespace nsPuls3060
                 m_KarKortnr = value;
             }
         }
-        public static KarRegnskab KarRegnskab
+        public static KarRegnskab karRegnskab
         {
             get
             {
@@ -157,7 +157,7 @@ namespace nsPuls3060
                 m_KarRegnskab = value;
             }
         }
-        public static KarStatus KarStatus
+        public static KarStatus karStatus
         {
             get
             {
@@ -178,7 +178,7 @@ namespace nsPuls3060
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
+            Application.Run(new FrmMain());
         }
     }
 }
