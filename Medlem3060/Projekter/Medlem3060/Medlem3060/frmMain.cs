@@ -17,6 +17,32 @@ namespace nsPuls3060
             InitializeComponent();
         }
 
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+            DialogResult res = (new frmSelectRegnskab()).ShowDialog();
+            if (res != DialogResult.OK)
+            {
+                DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
+                    "Medlem 3060", //titleString 
+                    "Du har ikke valgt et regnskab. Medlem 3060 afsluttes.", //bigString 
+                    null, //smallString
+                    null, //leftButton
+                    "OK", //rightButton
+                    null); //iconSet
+                this.Close();
+            }
+            else
+            {
+
+                var rec_regnskab = (from r in Program.dbData3060.TblRegnskab
+                                    join a in Program.dbData3060.TblAktivtRegnskab on r.Rid equals a.Rid
+                                    select r).First();
+
+                this.toolStripStatusLabel1.Text = "Regnskab: " + rec_regnskab.Rid + " " + rec_regnskab.Navn;
+                this.toolStripStatusLabel1.Alignment = ToolStripItemAlignment.Right;
+            }
+        }
+
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             Program.dbData3060.SubmitChanges();
@@ -25,7 +51,7 @@ namespace nsPuls3060
 
         private void medlemmerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Program.frmMedlemmer.MdiParent = this; 
+            Program.frmMedlemmer.MdiParent = this;
             Program.frmMedlemmer.Focus();
         }
 
@@ -34,7 +60,7 @@ namespace nsPuls3060
             Program.frmKreditor.MdiParent = this;
             Program.frmKreditor.Focus();
         }
-        
+
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
             clsPbs objPbs = new clsPbs();
@@ -181,7 +207,7 @@ namespace nsPuls3060
                     oRng.MergeCells = false;
 
                     oSheet.Cells.EntireColumn.AutoFit();
-                    
+
                     oWindow.SplitRow = 1;
                     oWindow.SplitColumn = 2;
                     oWindow.FreezePanes = true;
@@ -203,6 +229,17 @@ namespace nsPuls3060
                 }
             }
         }
+
+        private void toolStripStatusLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void vælgRegnskabToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            (new frmSelectRegnskab()).ShowDialog();
+        }
+
 
     }
 }

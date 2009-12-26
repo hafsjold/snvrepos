@@ -52,6 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BetterDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BetterDialog.designer.cs">
+      <DependentUpon>BetterDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="clsCsv.cs" />
     <Compile Include="clsMedlem.cs" />
     <Compile Include="frmKreditor.cs">
@@ -59,6 +65,12 @@
     </Compile>
     <Compile Include="frmKreditor.Designer.cs">
       <DependentUpon>frmKreditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSelectRegnskab.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSelectRegnskab.Designer.cs">
+      <DependentUpon>frmSelectRegnskab.cs</DependentUpon>
     </Compile>
     <Compile Include="karMedlemmer.cs" />
     <Compile Include="clsPbs.cs" />
@@ -105,6 +117,9 @@
     <None Include="dbData3060.dbml.layout">
       <DependentUpon>dbData3060.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="BetterDialog.resx">
+      <DependentUpon>BetterDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmKreditor.resx">
       <DependentUpon>frmKreditor.cs</DependentUpon>
     </EmbeddedResource>
@@ -113,6 +128,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMedlemmer.resx">
       <DependentUpon>frmMedlemmer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSelectRegnskab.resx">
+      <DependentUpon>frmSelectRegnskab.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

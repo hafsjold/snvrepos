@@ -325,7 +325,15 @@ namespace nsPuls3060
                 m_rec_AktivtRegnskab =
                     (from d in Program.dbData3060.TblAktivtRegnskab
                      select d).First();
-                m_rec_AktivtRegnskab.Rid = int.Parse(SidsteMappe);
+                if (m_rec_AktivtRegnskab.Rid != int.Parse(SidsteMappe))
+                {
+                    Program.dbData3060.TblAktivtRegnskab.DeleteOnSubmit(m_rec_AktivtRegnskab);
+                    m_rec_AktivtRegnskab = new TblAktivtRegnskab
+                    {
+                        Rid = int.Parse(SidsteMappe)
+                    };
+                    Program.dbData3060.TblAktivtRegnskab.InsertOnSubmit(m_rec_AktivtRegnskab);
+                }
             }
             catch (System.InvalidOperationException)
             {
