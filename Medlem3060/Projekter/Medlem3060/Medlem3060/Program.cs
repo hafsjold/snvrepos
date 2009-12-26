@@ -8,6 +8,7 @@ namespace nsPuls3060
     static class Program
     {
         private static FrmMedlemmer m_frmMedlemmer;
+        private static FrmKreditor m_frmKreditor;
         private static DbData3060 m_dbData3060;
         private static KarMedlemmer m_KarMedlemmer;
         private static MemMedlemDictionary m_dicMedlem;
@@ -47,6 +48,36 @@ namespace nsPuls3060
             set
             {
                 m_frmMedlemmer = value;
+            }
+        }
+        public static FrmKreditor frmKreditor
+        {
+            get
+            {
+                if (m_frmKreditor == null)
+                {
+                    m_frmKreditor = new FrmKreditor();
+                    Program.frmKreditor.Show();
+                }
+                else
+                {
+                    try
+                    {
+                        m_frmKreditor.Show();
+
+                    }
+                    catch (ObjectDisposedException)
+                    {
+                        m_frmKreditor = new FrmKreditor();
+                        m_frmKreditor.Show();
+                    }
+                }
+
+                return m_frmKreditor;
+            }
+            set
+            {
+                m_frmKreditor = value;
             }
         }
         public static DbData3060 dbData3060 

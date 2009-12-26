@@ -29,6 +29,12 @@ namespace nsPuls3060
             Program.frmMedlemmer.Focus();
         }
 
+        private void kerditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.frmKreditor.MdiParent = this;
+            Program.frmKreditor.Focus();
+        }
+        
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
             clsPbs objPbs = new clsPbs();
@@ -197,5 +203,6 @@ namespace nsPuls3060
                 }
             }
         }
+
     }
 }

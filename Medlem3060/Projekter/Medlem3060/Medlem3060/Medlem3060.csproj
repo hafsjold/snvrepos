@@ -54,6 +54,12 @@
   <ItemGroup>
     <Compile Include="clsCsv.cs" />
     <Compile Include="clsMedlem.cs" />
+    <Compile Include="frmKreditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKreditor.Designer.cs">
+      <DependentUpon>frmKreditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="karMedlemmer.cs" />
     <Compile Include="clsPbs.cs" />
     <Compile Include="clsPbs601.cs" />
@@ -99,6 +105,9 @@
     <None Include="dbData3060.dbml.layout">
       <DependentUpon>dbData3060.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="frmKreditor.resx">
+      <DependentUpon>frmKreditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -131,6 +140,7 @@
     <None Include="dsMedlem.xss">
       <DependentUpon>dsMedlem.xsd</DependentUpon>
     </None>
+    <None Include="Properties\DataSources\Tblkreditor.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
