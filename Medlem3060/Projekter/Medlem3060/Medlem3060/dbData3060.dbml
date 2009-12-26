@@ -83,16 +83,6 @@
       <Association Name="Tblpbsforsendelse_Tblfrapbs" Member="Tblpbsforsendelse" ThisKey="Pbsforsendelseid" OtherKey="Id" Type="Tblpbsforsendelse" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="tblKontingent" Member="TblKontingent">
-    <Type Name="TblKontingent">
-      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="PBSForsendelses_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Nr" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SFakID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Faknr" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Betalt" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="tblkreditor" Member="Tblkreditor">
     <Type Name="Tblkreditor">
       <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
