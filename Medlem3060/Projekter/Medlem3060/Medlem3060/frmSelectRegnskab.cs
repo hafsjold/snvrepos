@@ -58,7 +58,12 @@ namespace nsPuls3060
                 try
                 {
                     var rec_AktivRegnskab = (from a in Program.dbData3060.TblAktivtRegnskab select a).First();
-                    rec_AktivRegnskab.Rid = int.Parse(key);
+                    Program.dbData3060.TblAktivtRegnskab.DeleteOnSubmit(rec_AktivRegnskab);
+                    rec_AktivRegnskab = new TblAktivtRegnskab
+                    {
+                        Rid = int.Parse(key)
+                    };
+                    Program.dbData3060.TblAktivtRegnskab.InsertOnSubmit(rec_AktivRegnskab);
                 }
                 catch (System.InvalidOperationException)
                 {
@@ -68,6 +73,7 @@ namespace nsPuls3060
                     };
                     Program.dbData3060.TblAktivtRegnskab.InsertOnSubmit(rec_AktivRegnskab);
                 }
+                Program.dbData3060.SubmitChanges();
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();

@@ -212,9 +212,9 @@ namespace nsPuls3060
                 {
                     case "BRUGERDATA":
                     case "FORMULARER":
-                    case "-2":
-                    case "-1":
-                    case "0":
+                    //case "-2":
+                    //case "-1":
+                    //case "0":
                         break;
 
                     default:
@@ -325,7 +325,7 @@ namespace nsPuls3060
                 m_rec_AktivtRegnskab =
                     (from d in Program.dbData3060.TblAktivtRegnskab
                      select d).First();
-                if (m_rec_AktivtRegnskab.Rid != int.Parse(SidsteMappe))
+                //if (m_rec_AktivtRegnskab.Rid != int.Parse(SidsteMappe))
                 {
                     Program.dbData3060.TblAktivtRegnskab.DeleteOnSubmit(m_rec_AktivtRegnskab);
                     m_rec_AktivtRegnskab = new TblAktivtRegnskab
