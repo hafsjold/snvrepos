@@ -176,9 +176,17 @@ namespace nsPuls3060
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmMain());
+            System.Diagnostics.Process[] p = System.Diagnostics.Process.GetProcessesByName("Medlem3060");
+            if (p.Length > 1)
+            {
+                clsUtil.SetForegroundWindow(p[0].MainWindowHandle);
+            }
+            else
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new FrmMain());
+            }
         }
     }
 }

@@ -25,6 +25,7 @@ namespace nsPuls3060
 
         private void medlemmerToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Program.frmMedlemmer.MdiParent = this; 
             Program.frmMedlemmer.Focus();
         }
 
@@ -69,9 +70,10 @@ namespace nsPuls3060
                 Email = "dex@dfres.dk"
             };
             string nystring = nytmedlem.getNewCvsString();
-            */
             KarFakturaer_s objFakturaer_s = new KarFakturaer_s();
             objFakturaer_s.save();
+            */
+            bool running = clsUtil.IsProcessOpen("Summax");
         }
 
 

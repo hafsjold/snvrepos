@@ -5,7 +5,8 @@ using System.Text;
 using Microsoft.VisualBasic;
 using System.Threading;
 using System.Globalization;
-
+using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace nsPuls3060
 {
@@ -41,6 +42,18 @@ namespace nsPuls3060
         const double J_correction_01_01_4712BC = 1721119.5;
         const double J_correction_01_01_1900 = -693899;
 
+        [DllImport("user32.dll")]
+        public static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        public static bool IsProcessOpen(string name)
+        {
+            foreach (Process p in Process.GetProcesses())
+            {
+                if (p.ProcessName.Contains(name)) return true;
+            }
+            return false;
+        }
+        
         public static int SummaDateTime2Serial(DateTime dt)
         {
             double sumStartDate = 1088647360;
