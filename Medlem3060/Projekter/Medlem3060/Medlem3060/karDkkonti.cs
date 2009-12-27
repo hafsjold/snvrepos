@@ -17,7 +17,7 @@ namespace nsPuls3060
 
         public KarDkkonti()
         {
-            var rec_regnskab = Program.getAktivRegnskab();
+            var rec_regnskab = Program.qryAktivRegnskab();
             m_path = rec_regnskab.Placering + "dkkonti.dat";
             open();
         }

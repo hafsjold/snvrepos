@@ -23,7 +23,7 @@ public recFakturavarer_s() { }
 
         public KarFakturavarer_s()
         {
-            var rec_regnskab = Program.getAktivRegnskab();
+            var rec_regnskab = Program.qryAktivRegnskab();
             m_path = rec_regnskab.Placering + "fakturavarer_s.dat";
             open();
         }

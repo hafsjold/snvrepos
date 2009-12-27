@@ -33,7 +33,7 @@ namespace nsPuls3060
             }
             else
             {
-                var rec_regnskab = Program.getAktivRegnskab(); 
+                var rec_regnskab = Program.qryAktivRegnskab(); 
                 this.toolStripStatusLabel1.Text = "Regnskab: " + rec_regnskab.Rid + " " + rec_regnskab.Navn;
                 this.toolStripStatusLabel1.Alignment = ToolStripItemAlignment.Right;
             }
@@ -116,7 +116,7 @@ namespace nsPuls3060
             Excel.Window oWindow;
             Excel.Range oRng;
 
-            var rec_regnskab = Program.getAktivRegnskab(); 
+            var rec_regnskab = Program.qryAktivRegnskab(); 
             string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xls";
 
             var MedlemmerAll = from h in Program.karMedlemmer

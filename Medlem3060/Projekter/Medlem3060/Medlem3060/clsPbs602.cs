@@ -32,17 +32,14 @@ namespace nsPuls3060
             FileStream ts;
             string ln;
 
-            var rec_regnskab = Program.getAktivRegnskab();
+            Program.memPbsnetdir = null; //opret ny memPbsnetdir
+            var rec_regnskab = Program.qryAktivRegnskab();
             FraPBSFolderPath = rec_regnskab.FraPBS;
-
-            var delete_pbsnetdir = from d in Program.dbData3060.Tblpbsnetdir select d;
-            Program.dbData3060.Tblpbsnetdir.DeleteAllOnSubmit(delete_pbsnetdir);
-            Program.dbData3060.SubmitChanges();
 
             fld = new DirectoryInfo(FraPBSFolderPath);
             foreach (FileInfo f in fld.GetFiles())
             {
-                Tblpbsnetdir rec = new Tblpbsnetdir
+                recPbsnetdir rec = new recPbsnetdir
                 {
                     Type = 8,
                     Path = f.Directory.Name,
@@ -51,10 +48,9 @@ namespace nsPuls3060
                     Atime = f.LastAccessTime,
                     Mtime = f.LastWriteTime
                 };
-                Program.dbData3060.Tblpbsnetdir.InsertOnSubmit(rec);
+                Program.memPbsnetdir.Add(rec);
             }
-            Program.dbData3060.SubmitChanges();
-            var leftqry_pbsnetdir = from h in Program.dbData3060.Tblpbsnetdir
+            var leftqry_pbsnetdir = from h in Program.memPbsnetdir
                                     join d1 in Program.dbData3060.Tblpbsfiles on new { h.Path, h.Filename } equals new { d1.Path, d1.Filename } into details
                 from d1 in details.DefaultIfEmpty()
                 where d1.Path == null && d1.Filename == null

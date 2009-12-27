@@ -155,7 +155,7 @@ namespace nsPuls3060
 
         public KarFakturaer_s()
         {
-            var rec_regnskab = Program.getAktivRegnskab();
+            var rec_regnskab = Program.qryAktivRegnskab();
             m_path = rec_regnskab.Placering + "fakturaer_s.dat";
             open();
         }

@@ -20,7 +20,7 @@ namespace nsPuls3060
         private void frmSelectRegnskab_Load(object sender, EventArgs e)
         {
             (new clsPbs()).ReadRegnskaber();
-            var rec_AktivRegnskab = Program.getAktivRegnskab();
+            var rec_AktivRegnskab = Program.qryAktivRegnskab();
             this.Regnskab.Text = rec_AktivRegnskab.Navn;
         }
 

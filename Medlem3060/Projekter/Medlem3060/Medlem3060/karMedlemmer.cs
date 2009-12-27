@@ -13,7 +13,7 @@ namespace nsPuls3060
 
         public KarMedlemmer()
         {
-            var rec_regnskab = Program.getAktivRegnskab();
+            var rec_regnskab = Program.qryAktivRegnskab();
             m_kartotek_dat = rec_regnskab.Placering + "kartotek.dat";
             Open();
         }

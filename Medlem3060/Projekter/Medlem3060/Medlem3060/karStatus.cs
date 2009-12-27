@@ -19,7 +19,7 @@ namespace nsPuls3060
 
         public KarStatus()
         {
-            var rec_regnskab = Program.getAktivRegnskab();
+            var rec_regnskab = Program.qryAktivRegnskab();
             m_path = rec_regnskab.Placering + "status.dat";
             open();
         }

@@ -13,6 +13,7 @@ namespace nsPuls3060
         private static KarMedlemmer m_KarMedlemmer;
         private static MemMedlemDictionary m_dicMedlem;
         private static MemAktivRegnskab m_memAktivRegnskab;
+        private static MemPbsnetdir m_memPbsnetdir;
         private static KarDkkonti m_KarDkkonti;
         private static KarFakturaer_s m_KarFakturaer_s;
         private static KarFakturastr_s m_KarFakturastr_s;
@@ -129,6 +130,18 @@ namespace nsPuls3060
                 m_memAktivRegnskab = value;
             }
         }
+        public static MemPbsnetdir memPbsnetdir
+        {
+            get
+            {
+                if (m_memPbsnetdir == null) m_memPbsnetdir = new MemPbsnetdir();
+                return m_memPbsnetdir;
+            }
+            set
+            {
+                m_memPbsnetdir = value;
+            }
+        }
         public static KarDkkonti karDkkonti
         {
             get
@@ -214,12 +227,13 @@ namespace nsPuls3060
             }
         }
 
-        public static TblRegnskab getAktivRegnskab()
+        public static TblRegnskab qryAktivRegnskab()
         {
             return (from a in Program.memAktivRegnskab
                     join r in Program.dbData3060.TblRegnskab on a.Rid equals r.Rid
                     select r).First();
         }
+        
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

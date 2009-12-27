@@ -60,6 +60,7 @@
     </Compile>
     <Compile Include="clsCsv.cs" />
     <Compile Include="clsMedlem.cs" />
+    <Compile Include="memPbsnetdir.cs" />
     <Compile Include="memAktivRegnskab.cs" />
     <Compile Include="frmKreditor.cs">
       <SubType>Form</SubType>

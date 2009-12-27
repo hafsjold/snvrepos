@@ -41,7 +41,7 @@ namespace nsPuls3060
             FileInfo f;
             FileStream ts;
 
-            var rec_regnskab = Program.getAktivRegnskab();
+            var rec_regnskab = Program.qryAktivRegnskab();
             TilPBSFolderPath = rec_regnskab.TilPBS;
 
             var qry_selectfiles =

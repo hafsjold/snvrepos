@@ -18,7 +18,7 @@ namespace nsPuls3060
 
         public KarKortnr()
         {
-            var rec_regnskab = Program.getAktivRegnskab();
+            var rec_regnskab = Program.qryAktivRegnskab();
             m_path = rec_regnskab.Placering + "kortnr.dat";
             open();
         }
