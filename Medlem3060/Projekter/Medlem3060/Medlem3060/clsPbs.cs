@@ -13,7 +13,6 @@ namespace nsPuls3060
     class clsPbs
     {
         private TblRegnskab m_rec_Regnskab;
-        private TblAktivtRegnskab m_rec_AktivtRegnskab;
 
         public clsPbs()
         {
@@ -315,38 +314,6 @@ namespace nsPuls3060
             return true;
         }
 
-        public bool SetAktivRegnskaber()
-        {
-            ReadRegnskaber();
-            string SidsteMappe = (string)Registry.CurrentUser.OpenSubKey(@"SOFTWARE\STONE'S SOFTWARE\SUMMAPRO\START").GetValue("SidsteMappe");
-
-            try
-            {
-                m_rec_AktivtRegnskab =
-                    (from d in Program.dbData3060.TblAktivtRegnskab
-                     select d).First();
-                //if (m_rec_AktivtRegnskab.Rid != int.Parse(SidsteMappe))
-                {
-                    Program.dbData3060.TblAktivtRegnskab.DeleteOnSubmit(m_rec_AktivtRegnskab);
-                    m_rec_AktivtRegnskab = new TblAktivtRegnskab
-                    {
-                        Rid = int.Parse(SidsteMappe)
-                    };
-                    Program.dbData3060.TblAktivtRegnskab.InsertOnSubmit(m_rec_AktivtRegnskab);
-                }
-            }
-            catch (System.InvalidOperationException)
-            {
-                m_rec_AktivtRegnskab = new TblAktivtRegnskab
-                {
-                    Rid = int.Parse(SidsteMappe)
-                };
-                Program.dbData3060.TblAktivtRegnskab.InsertOnSubmit(m_rec_AktivtRegnskab);
-            }
-            Program.dbData3060.SubmitChanges();
-            return true;
-        }
     }
-
 
 }

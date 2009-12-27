@@ -33,11 +33,7 @@ namespace nsPuls3060
             }
             else
             {
-
-                var rec_regnskab = (from r in Program.dbData3060.TblRegnskab
-                                    join a in Program.dbData3060.TblAktivtRegnskab on r.Rid equals a.Rid
-                                    select r).First();
-
+                var rec_regnskab = Program.getAktivRegnskab(); 
                 this.toolStripStatusLabel1.Text = "Regnskab: " + rec_regnskab.Rid + " " + rec_regnskab.Navn;
                 this.toolStripStatusLabel1.Alignment = ToolStripItemAlignment.Right;
             }
@@ -120,10 +116,7 @@ namespace nsPuls3060
             Excel.Window oWindow;
             Excel.Range oRng;
 
-            var rec_regnskab = (from r in Program.dbData3060.TblRegnskab
-                                join a in Program.dbData3060.TblAktivtRegnskab on r.Rid equals a.Rid
-                                select r).First();
-
+            var rec_regnskab = Program.getAktivRegnskab(); 
             string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xls";
 
             var MedlemmerAll = from h in Program.karMedlemmer

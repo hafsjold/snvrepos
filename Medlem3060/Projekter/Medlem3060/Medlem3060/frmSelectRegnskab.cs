@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Microsoft.Win32;
 
 namespace nsPuls3060
 {
@@ -18,10 +19,8 @@ namespace nsPuls3060
 
         private void frmSelectRegnskab_Load(object sender, EventArgs e)
         {
-            (new clsPbs()).SetAktivRegnskaber();
-            var rec_AktivRegnskab = (from r in Program.dbData3060.TblRegnskab
-                                     join a in Program.dbData3060.TblAktivtRegnskab on r.Rid equals a.Rid
-                                     select r).First();
+            (new clsPbs()).ReadRegnskaber();
+            var rec_AktivRegnskab = Program.getAktivRegnskab();
             this.Regnskab.Text = rec_AktivRegnskab.Navn;
         }
 
@@ -36,8 +35,7 @@ namespace nsPuls3060
             this.cmdOpenRegnskab.Visible = false;
             this.cmdSidstAnventeRegnskab.Visible = false;
             this.Regnskab.Visible = false;
-            var rec_regnskab = (from r in Program.dbData3060.TblRegnskab
-                                select r);
+            var rec_regnskab = (from r in Program.dbData3060.TblRegnskab select r);
             foreach (var r in rec_regnskab)
             {
                 this.listView1.Items.Add(r.Rid.ToString(), r.Navn, 0);
@@ -57,23 +55,17 @@ namespace nsPuls3060
 
                 try
                 {
-                    var rec_AktivRegnskab = (from a in Program.dbData3060.TblAktivtRegnskab select a).First();
-                    Program.dbData3060.TblAktivtRegnskab.DeleteOnSubmit(rec_AktivRegnskab);
-                    rec_AktivRegnskab = new TblAktivtRegnskab
-                    {
-                        Rid = int.Parse(key)
-                    };
-                    Program.dbData3060.TblAktivtRegnskab.InsertOnSubmit(rec_AktivRegnskab);
+                    var rec_AktivRegnskab = (from a in Program.memAktivRegnskab select a).First();
+                    rec_AktivRegnskab.Rid = int.Parse(key);
                 }
                 catch (System.InvalidOperationException)
                 {
-                    TblAktivtRegnskab rec_AktivRegnskab = new TblAktivtRegnskab
+                    recActivRegnskab rec_AktivRegnskab = new recActivRegnskab
                     {
                         Rid = int.Parse(key)
                     };
-                    Program.dbData3060.TblAktivtRegnskab.InsertOnSubmit(rec_AktivRegnskab);
+                    Program.memAktivRegnskab.Add(rec_AktivRegnskab);
                 }
-                Program.dbData3060.SubmitChanges();
 
                 this.DialogResult = DialogResult.OK;
                 this.Close();

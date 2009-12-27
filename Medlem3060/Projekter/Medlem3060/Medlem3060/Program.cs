@@ -12,6 +12,7 @@ namespace nsPuls3060
         private static DbData3060 m_dbData3060;
         private static KarMedlemmer m_KarMedlemmer;
         private static MemMedlemDictionary m_dicMedlem;
+        private static MemAktivRegnskab m_memAktivRegnskab;
         private static KarDkkonti m_KarDkkonti;
         private static KarFakturaer_s m_KarFakturaer_s;
         private static KarFakturastr_s m_KarFakturastr_s;
@@ -80,18 +81,18 @@ namespace nsPuls3060
                 m_frmKreditor = value;
             }
         }
-        public static DbData3060 dbData3060 
+        public static DbData3060 dbData3060
         {
-            get 
+            get
             {
                 if (m_dbData3060 == null) m_dbData3060 = new DbData3060(global::nsPuls3060.Properties.Settings.Default.DataBasePath);
                 return m_dbData3060;
             }
-            set 
+            set
             {
                 m_dbData3060 = value;
-            }        
-		}
+            }
+        }
         public static KarMedlemmer karMedlemmer
         {
             get
@@ -99,7 +100,7 @@ namespace nsPuls3060
                 if (m_KarMedlemmer == null) m_KarMedlemmer = new KarMedlemmer();
                 return m_KarMedlemmer;
             }
-            set 
+            set
             {
                 m_KarMedlemmer = value;
             }
@@ -111,9 +112,21 @@ namespace nsPuls3060
                 if (m_dicMedlem == null) m_dicMedlem = new MemMedlemDictionary();
                 return m_dicMedlem;
             }
-            set 
+            set
             {
                 m_dicMedlem = value;
+            }
+        }
+        public static MemAktivRegnskab memAktivRegnskab
+        {
+            get
+            {
+                if (m_memAktivRegnskab == null) m_memAktivRegnskab = new MemAktivRegnskab();
+                return m_memAktivRegnskab;
+            }
+            set
+            {
+                m_memAktivRegnskab = value;
             }
         }
         public static KarDkkonti karDkkonti
@@ -200,7 +213,13 @@ namespace nsPuls3060
                 m_KarStatus = value;
             }
         }
-						
+
+        public static TblRegnskab getAktivRegnskab()
+        {
+            return (from a in Program.memAktivRegnskab
+                    join r in Program.dbData3060.TblRegnskab on a.Rid equals r.Rid
+                    select r).First();
+        }
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

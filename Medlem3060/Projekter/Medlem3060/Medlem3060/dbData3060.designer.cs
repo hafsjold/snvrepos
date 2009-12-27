@@ -33,9 +33,6 @@ namespace nsPuls3060
     partial void InsertTblAktivitet(TblAktivitet instance);
     partial void UpdateTblAktivitet(TblAktivitet instance);
     partial void DeleteTblAktivitet(TblAktivitet instance);
-    partial void InsertTblAktivtRegnskab(TblAktivtRegnskab instance);
-    partial void UpdateTblAktivtRegnskab(TblAktivtRegnskab instance);
-    partial void DeleteTblAktivtRegnskab(TblAktivtRegnskab instance);
     partial void InsertTblbet(Tblbet instance);
     partial void UpdateTblbet(Tblbet instance);
     partial void DeleteTblbet(Tblbet instance);
@@ -115,14 +112,6 @@ namespace nsPuls3060
 			get
 			{
 				return this.GetTable<TblAktivitet>();
-			}
-		}
-		
-		public System.Data.Linq.Table<TblAktivtRegnskab> TblAktivtRegnskab
-		{
-			get
-			{
-				return this.GetTable<TblAktivtRegnskab>();
 			}
 		}
 		
@@ -366,100 +355,6 @@ namespace nsPuls3060
 		{
 			this.SendPropertyChanging();
 			entity.TblAktivitet = null;
-		}
-	}
-	
-	[Table(Name="tblAktivtRegnskab")]
-	public partial class TblAktivtRegnskab : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Rid;
-		
-		private EntityRef<TblRegnskab> _TblRegnskab;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnRidChanging(int value);
-    partial void OnRidChanged();
-    #endregion
-		
-		public TblAktivtRegnskab()
-		{
-			this._TblRegnskab = default(EntityRef<TblRegnskab>);
-			OnCreated();
-		}
-		
-		[Column(Name="rid", Storage="_Rid", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Rid
-		{
-			get
-			{
-				return this._Rid;
-			}
-			set
-			{
-				if ((this._Rid != value))
-				{
-					this.OnRidChanging(value);
-					this.SendPropertyChanging();
-					this._Rid = value;
-					this.SendPropertyChanged("Rid");
-					this.OnRidChanged();
-				}
-			}
-		}
-		
-		[Association(Name="TblAktivtRegnskab_TblRegnskab", Storage="_TblRegnskab", ThisKey="Rid", OtherKey="Rid", IsUnique=true, IsForeignKey=false)]
-		public TblRegnskab TblRegnskab
-		{
-			get
-			{
-				return this._TblRegnskab.Entity;
-			}
-			set
-			{
-				TblRegnskab previousValue = this._TblRegnskab.Entity;
-				if (((previousValue != value) 
-							|| (this._TblRegnskab.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TblRegnskab.Entity = null;
-						previousValue.TblAktivtRegnskab = null;
-					}
-					this._TblRegnskab.Entity = value;
-					if ((value != null))
-					{
-						value.TblAktivtRegnskab = this;
-					}
-					this.SendPropertyChanged("TblRegnskab");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 	
@@ -3867,8 +3762,6 @@ namespace nsPuls3060
 		
 		private string _FraPBS;
 		
-		private EntityRef<TblAktivtRegnskab> _TblAktivtRegnskab;
-		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -3899,7 +3792,6 @@ namespace nsPuls3060
 		
 		public TblRegnskab()
 		{
-			this._TblAktivtRegnskab = default(EntityRef<TblAktivtRegnskab>);
 			OnCreated();
 		}
 		
@@ -4119,40 +4011,6 @@ namespace nsPuls3060
 					this._FraPBS = value;
 					this.SendPropertyChanged("FraPBS");
 					this.OnFraPBSChanged();
-				}
-			}
-		}
-		
-		[Association(Name="TblAktivtRegnskab_TblRegnskab", Storage="_TblAktivtRegnskab", ThisKey="Rid", OtherKey="Rid", IsForeignKey=true)]
-		public TblAktivtRegnskab TblAktivtRegnskab
-		{
-			get
-			{
-				return this._TblAktivtRegnskab.Entity;
-			}
-			set
-			{
-				TblAktivtRegnskab previousValue = this._TblAktivtRegnskab.Entity;
-				if (((previousValue != value) 
-							|| (this._TblAktivtRegnskab.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._TblAktivtRegnskab.Entity = null;
-						previousValue.TblRegnskab = null;
-					}
-					this._TblAktivtRegnskab.Entity = value;
-					if ((value != null))
-					{
-						value.TblRegnskab = this;
-						this._Rid = value.Rid;
-					}
-					else
-					{
-						this._Rid = default(int);
-					}
-					this.SendPropertyChanged("TblAktivtRegnskab");
 				}
 			}
 		}

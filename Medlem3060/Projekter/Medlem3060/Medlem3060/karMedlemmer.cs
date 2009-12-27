@@ -13,10 +13,7 @@ namespace nsPuls3060
 
         public KarMedlemmer()
         {
-            var rec_regnskab = (from r in Program.dbData3060.TblRegnskab
-                                join a in Program.dbData3060.TblAktivtRegnskab on r.Rid equals a.Rid
-                                select r).First();
-
+            var rec_regnskab = Program.getAktivRegnskab();
             m_kartotek_dat = rec_regnskab.Placering + "kartotek.dat";
             Open();
         }

@@ -32,10 +32,7 @@ namespace nsPuls3060
             FileStream ts;
             string ln;
 
-            var rec_regnskab = (from r in Program.dbData3060.TblRegnskab
-                                join a in Program.dbData3060.TblAktivtRegnskab on r.Rid equals a.Rid
-                                select r).First();
-
+            var rec_regnskab = Program.getAktivRegnskab();
             FraPBSFolderPath = rec_regnskab.FraPBS;
 
             var delete_pbsnetdir = from d in Program.dbData3060.Tblpbsnetdir select d;

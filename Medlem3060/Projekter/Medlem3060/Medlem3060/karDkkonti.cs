@@ -17,10 +17,7 @@ namespace nsPuls3060
 
         public KarDkkonti()
         {
-            var rec_regnskab = (from r in Program.dbData3060.TblRegnskab
-                                join a in Program.dbData3060.TblAktivtRegnskab on r.Rid equals a.Rid
-                                select r).First();
-
+            var rec_regnskab = Program.getAktivRegnskab();
             m_path = rec_regnskab.Placering + "dkkonti.dat";
             open();
         }
