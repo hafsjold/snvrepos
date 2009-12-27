@@ -229,11 +229,23 @@ namespace nsPuls3060
 
         public static TblRegnskab qryAktivRegnskab()
         {
-            return (from a in Program.memAktivRegnskab
-                    join r in Program.dbData3060.TblRegnskab on a.Rid equals r.Rid
-                    select r).First();
+            try
+            {
+                return (from a in Program.memAktivRegnskab
+                        join r in Program.dbData3060.TblRegnskab on a.Rid equals r.Rid
+                        select r).First();
+
+            }
+            catch (System.InvalidOperationException)
+            {
+                return new TblRegnskab
+                {
+                    Rid = 999,
+                    Navn = "Vælg et eksisterende regnskab"
+                };
+            }
         }
-        
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

@@ -138,6 +138,7 @@
             this.Name = "frmSelectRegnskab";
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Medlem 3060 - Vælg regnskab";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.frmSelectRegnskab_Load);

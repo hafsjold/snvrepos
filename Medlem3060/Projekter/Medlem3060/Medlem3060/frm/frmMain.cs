@@ -7,11 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
+using System.IO;
 
 namespace nsPuls3060
 {
     public partial class FrmMain : Form
     {
+        private FileStream m_ts;
+        private string m_path;
+
         public FrmMain()
         {
             InitializeComponent();
@@ -19,6 +23,18 @@ namespace nsPuls3060
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
+            if (clsUtil.IsProcessOpen("Summa"))
+            {
+                DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
+                    "Medlem 3060", //titleString 
+                    "Du skal afslutte SummaSummarum inden du kan starte Medlem 3060.", //bigString 
+                    null, //smallString
+                    null, //leftButton
+                    "OK", //rightButton
+                    global::nsPuls3060.Properties.Resources.Message_info); //iconSet
+                this.Close();
+            }
+
             DialogResult res = (new frmSelectRegnskab()).ShowDialog();
             if (res != DialogResult.OK)
             {
@@ -36,6 +52,8 @@ namespace nsPuls3060
                 var rec_regnskab = Program.qryAktivRegnskab(); 
                 this.toolStripStatusLabel1.Text = "Regnskab: " + rec_regnskab.Rid + " " + rec_regnskab.Navn;
                 this.toolStripStatusLabel1.Alignment = ToolStripItemAlignment.Right;
+                m_path = rec_regnskab.Placering + "kontoplan.dat";
+                m_ts = new FileStream(m_path, FileMode.Open, FileAccess.Read, FileShare.None);
             }
         }
 
@@ -59,10 +77,9 @@ namespace nsPuls3060
 
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            clsPbs objPbs = new clsPbs();
-            clsPbs601 objPbs601 = new clsPbs601();
-            clsPbs602 objPbs602 = new clsPbs602();
-            KarMedlemmer objMedlemmer = new KarMedlemmer();
+            //clsPbs objPbs = new clsPbs();
+            //clsPbs601 objPbs601 = new clsPbs601();
+            //clsPbs602 objPbs602 = new clsPbs602();
             //objPbs601.faktura_601_action(1);
             //objPbs602.TestRead042();
             //objPbs602.ReadFraPbsFile();
@@ -101,7 +118,6 @@ namespace nsPuls3060
             KarFakturaer_s objFakturaer_s = new KarFakturaer_s();
             objFakturaer_s.save();
             */
-            bool running = clsUtil.IsProcessOpen("Summax");
         }
 
 

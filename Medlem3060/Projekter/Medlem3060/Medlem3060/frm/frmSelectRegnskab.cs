@@ -21,6 +21,7 @@ namespace nsPuls3060
         {
             (new clsPbs()).ReadRegnskaber();
             var rec_AktivRegnskab = Program.qryAktivRegnskab();
+            if (rec_AktivRegnskab.Rid == 999) this.cmdSidstAnventeRegnskab.Enabled = false;
             this.Regnskab.Text = rec_AktivRegnskab.Navn;
         }
 

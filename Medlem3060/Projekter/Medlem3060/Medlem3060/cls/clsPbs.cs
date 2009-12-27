@@ -211,9 +211,9 @@ namespace nsPuls3060
                 {
                     case "BRUGERDATA":
                     case "FORMULARER":
-                    //case "-2":
-                    //case "-1":
-                    //case "0":
+                    case "-2":
+                    case "-1":
+                    case "0":
                         break;
 
                     default:
