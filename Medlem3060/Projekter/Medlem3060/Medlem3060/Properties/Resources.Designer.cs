@@ -59,5 +59,12 @@ namespace nsPuls3060.Properties {
                 resourceCulture = value;
             }
         }
+        
+        internal static System.Drawing.Bitmap Message_info {
+            get {
+                object obj = ResourceManager.GetObject("Message_info", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

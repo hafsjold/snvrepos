@@ -28,7 +28,7 @@ namespace nsPuls3060
                     null, //smallString
                     null, //leftButton
                     "OK", //rightButton
-                    null); //iconSet
+                    global::nsPuls3060.Properties.Resources.Message_info); //iconSet
                 this.Close();
             }
             else

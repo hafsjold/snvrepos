@@ -34,17 +34,15 @@
             this.excelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kerditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vælgRegnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.vælgRegnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(860, 24);
@@ -66,35 +64,40 @@
             // medlemmerToolStripMenuItem
             // 
             this.medlemmerToolStripMenuItem.Name = "medlemmerToolStripMenuItem";
-            this.medlemmerToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.medlemmerToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.medlemmerToolStripMenuItem.Text = "Medlemmer";
             this.medlemmerToolStripMenuItem.Click += new System.EventHandler(this.medlemmerToolStripMenuItem_Click);
             // 
             // excelToolStripMenuItem
             // 
             this.excelToolStripMenuItem.Name = "excelToolStripMenuItem";
-            this.excelToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.excelToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.excelToolStripMenuItem.Text = "Excel";
             this.excelToolStripMenuItem.Click += new System.EventHandler(this.excelToolStripMenuItem_Click);
             // 
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.testToolStripMenuItem.Text = "Test";
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
             // 
             // kerditorToolStripMenuItem
             // 
             this.kerditorToolStripMenuItem.Name = "kerditorToolStripMenuItem";
-            this.kerditorToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.kerditorToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.kerditorToolStripMenuItem.Text = "Kerditor";
             this.kerditorToolStripMenuItem.Click += new System.EventHandler(this.kerditorToolStripMenuItem_Click);
             // 
+            // vælgRegnskabToolStripMenuItem
+            // 
+            this.vælgRegnskabToolStripMenuItem.Name = "vælgRegnskabToolStripMenuItem";
+            this.vælgRegnskabToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.vælgRegnskabToolStripMenuItem.Text = "Vælg regnskab";
+            this.vælgRegnskabToolStripMenuItem.Click += new System.EventHandler(this.vælgRegnskabToolStripMenuItem_Click);
+            // 
             // statusStrip1
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 509);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(860, 22);
@@ -107,13 +110,6 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(109, 17);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             this.toolStripStatusLabel1.Click += new System.EventHandler(this.toolStripStatusLabel1_Click);
-            // 
-            // vælgRegnskabToolStripMenuItem
-            // 
-            this.vælgRegnskabToolStripMenuItem.Name = "vælgRegnskabToolStripMenuItem";
-            this.vælgRegnskabToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.vælgRegnskabToolStripMenuItem.Text = "Vælg regnskab";
-            this.vælgRegnskabToolStripMenuItem.Click += new System.EventHandler(this.vælgRegnskabToolStripMenuItem_Click);
             // 
             // FrmMain
             // 

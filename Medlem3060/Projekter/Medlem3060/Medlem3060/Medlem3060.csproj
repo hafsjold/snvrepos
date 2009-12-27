@@ -201,6 +201,9 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\info.png" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="bin\Debug\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
