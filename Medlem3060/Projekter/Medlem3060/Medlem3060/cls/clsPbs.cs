@@ -8,6 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using Microsoft.Win32;
 using System.IO;
+using Microsoft.VisualBasic;
+
 namespace nsPuls3060
 {
     class clsPbs
@@ -207,108 +209,109 @@ namespace nsPuls3060
             DirectoryInfo dir = new DirectoryInfo(Datamappe);
             foreach (var sub_dir in dir.GetDirectories())
             {
-                switch (sub_dir.Name.ToUpper())
+                if (Information.IsNumeric(sub_dir.Name))
                 {
-                    case "BRUGERDATA":
-                    case "FORMULARER":
-                    case "-2":
-                    case "-1":
-                    case "0":
-                        break;
+                    switch (sub_dir.Name.ToUpper())
+                    {
+                        case "-2":
+                        case "-1":
+                        case "0":
+                            break;
 
-                    default:
-                        //do somthing here
-                        RegnskabId = sub_dir.Name;
+                        default:
+                            //do somthing here
+                            RegnskabId = sub_dir.Name;
 
-                        try
-                        {
-                            m_rec_Regnskab =
-                                (from d in Program.dbData3060.TblRegnskab
-                                 where d.Rid.ToString() == RegnskabId
-                                 select d).First();
-
-                        }
-                        catch (System.InvalidOperationException)
-                        {
-                            m_rec_Regnskab = new TblRegnskab
+                            try
                             {
-                                Rid = int.Parse(RegnskabId)
-                            };
-                            Program.dbData3060.TblRegnskab.InsertOnSubmit(m_rec_Regnskab);
-                            Program.dbData3060.SubmitChanges();
-                        }
-                        RegnskabMappe = Datamappe + sub_dir.Name + @"\";
-                        m_rec_Regnskab.Placering = RegnskabMappe;
+                                m_rec_Regnskab =
+                                    (from d in Program.dbData3060.TblRegnskab
+                                     where d.Rid.ToString() == RegnskabId
+                                     select d).First();
 
-                        m_rec_Regnskab.Eksportmappe = Eksportmappe + @"\";
-
-                        if (m_rec_Regnskab.FraPBS == null)
-                        {
-                            DirectoryInfo infoEksportmappe = new DirectoryInfo(m_rec_Regnskab.Eksportmappe);
-                            if (infoEksportmappe.Exists)
-                            {
-                                m_rec_Regnskab.FraPBS = Eksportmappe + @"\FraPBS\";
-                                DirectoryInfo infoFraPBS = new DirectoryInfo(m_rec_Regnskab.FraPBS);
-                                if (!infoFraPBS.Exists)
-                                {
-                                    infoFraPBS.Create();
-                                }
                             }
-                        }
-
-                        if (m_rec_Regnskab.TilPBS == null)
-                        {
-                            DirectoryInfo infoEksportmappe = new DirectoryInfo(m_rec_Regnskab.Eksportmappe);
-                            if (infoEksportmappe.Exists)
+                            catch (System.InvalidOperationException)
                             {
-                                m_rec_Regnskab.TilPBS = Eksportmappe + @"\TilPBS\";
-                                DirectoryInfo infoTilPBS = new DirectoryInfo(m_rec_Regnskab.TilPBS);
-                                if (!infoTilPBS.Exists)
+                                m_rec_Regnskab = new TblRegnskab
                                 {
-                                    infoTilPBS.Create();
-                                }
+                                    Rid = int.Parse(RegnskabId)
+                                };
+                                Program.dbData3060.TblRegnskab.InsertOnSubmit(m_rec_Regnskab);
+                                Program.dbData3060.SubmitChanges();
                             }
-                        }
-                        string[] files = new string[2];
-                        files[0] = RegnskabMappe + "regnskab.dat";
-                        files[1] = RegnskabMappe + "status.dat";
+                            RegnskabMappe = Datamappe + sub_dir.Name + @"\";
+                            m_rec_Regnskab.Placering = RegnskabMappe;
 
-                        foreach (var file in files)
-                        {
-                            ts = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.None);
-                            using (StreamReader sr = new StreamReader(ts, Encoding.Default))
+                            m_rec_Regnskab.Eksportmappe = Eksportmappe + @"\";
+
+                            if (m_rec_Regnskab.FraPBS == null)
                             {
-                                while ((line = sr.ReadLine()) != null)
+                                DirectoryInfo infoEksportmappe = new DirectoryInfo(m_rec_Regnskab.Eksportmappe);
+                                if (infoEksportmappe.Exists)
                                 {
-                                    if (line.Length > 0)
+                                    m_rec_Regnskab.FraPBS = Eksportmappe + @"\FraPBS\";
+                                    DirectoryInfo infoFraPBS = new DirectoryInfo(m_rec_Regnskab.FraPBS);
+                                    if (!infoFraPBS.Exists)
                                     {
-                                        string[] X = line.Split('=');
-                                        switch (X[0])
+                                        infoFraPBS.Create();
+                                    }
+                                }
+                            }
+
+                            if (m_rec_Regnskab.TilPBS == null)
+                            {
+                                DirectoryInfo infoEksportmappe = new DirectoryInfo(m_rec_Regnskab.Eksportmappe);
+                                if (infoEksportmappe.Exists)
+                                {
+                                    m_rec_Regnskab.TilPBS = Eksportmappe + @"\TilPBS\";
+                                    DirectoryInfo infoTilPBS = new DirectoryInfo(m_rec_Regnskab.TilPBS);
+                                    if (!infoTilPBS.Exists)
+                                    {
+                                        infoTilPBS.Create();
+                                    }
+                                }
+                            }
+                            string[] files = new string[2];
+                            files[0] = RegnskabMappe + "regnskab.dat";
+                            files[1] = RegnskabMappe + "status.dat";
+
+                            foreach (var file in files)
+                            {
+                                ts = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.None);
+                                using (StreamReader sr = new StreamReader(ts, Encoding.Default))
+                                {
+                                    while ((line = sr.ReadLine()) != null)
+                                    {
+                                        if (line.Length > 0)
                                         {
-                                            case "Navn":
-                                                m_rec_Regnskab.Navn = X[1];
-                                                break;
-                                            case "Oprettet":
-                                                m_rec_Regnskab.Oprettet = clsUtil.MSSerial2DateTime(double.Parse(X[1]));
-                                                break;
-                                            case "Start":
-                                                m_rec_Regnskab.Start = clsUtil.MSSerial2DateTime(double.Parse(X[1]));
-                                                break;
-                                            case "Slut":
-                                                m_rec_Regnskab.Slut = clsUtil.MSSerial2DateTime(double.Parse(X[1]));
-                                                break;
-                                            case "DatoLaas":
-                                                m_rec_Regnskab.DatoLaas = clsUtil.MSSerial2DateTime(double.Parse(X[1]));
-                                                break;
-                                            case "Firmanavn":
-                                                m_rec_Regnskab.Firmanavn = X[1];
-                                                break;
+                                            string[] X = line.Split('=');
+                                            switch (X[0])
+                                            {
+                                                case "Navn":
+                                                    m_rec_Regnskab.Navn = X[1];
+                                                    break;
+                                                case "Oprettet":
+                                                    m_rec_Regnskab.Oprettet = clsUtil.MSSerial2DateTime(double.Parse(X[1]));
+                                                    break;
+                                                case "Start":
+                                                    m_rec_Regnskab.Start = clsUtil.MSSerial2DateTime(double.Parse(X[1]));
+                                                    break;
+                                                case "Slut":
+                                                    m_rec_Regnskab.Slut = clsUtil.MSSerial2DateTime(double.Parse(X[1]));
+                                                    break;
+                                                case "DatoLaas":
+                                                    m_rec_Regnskab.DatoLaas = clsUtil.MSSerial2DateTime(double.Parse(X[1]));
+                                                    break;
+                                                case "Firmanavn":
+                                                    m_rec_Regnskab.Firmanavn = X[1];
+                                                    break;
+                                            }
                                         }
                                     }
                                 }
                             }
-                        }
-                        break;
+                            break;
+                    }
                 }
             }
             return true;

@@ -36,6 +36,7 @@
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.excelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kreditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -43,17 +44,21 @@
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 712);
+            this.toolStripStatusLabel1,
+            this.toolStripStatusLabel2});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 706);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1016, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1016, 28);
             this.statusStrip1.TabIndex = 1;
-            this.statusStrip1.Text = "statusStrip1";
             // 
             // toolStripStatusLabel1
             // 
+            this.toolStripStatusLabel1.BackColor = System.Drawing.SystemColors.Info;
+            this.toolStripStatusLabel1.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
+            this.toolStripStatusLabel1.Margin = new System.Windows.Forms.Padding(0, 3, 3, 2);
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(109, 17);
+            this.toolStripStatusLabel1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(109, 23);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
             // menuStrip1
@@ -80,30 +85,41 @@
             // medlemmerToolStripMenuItem
             // 
             this.medlemmerToolStripMenuItem.Name = "medlemmerToolStripMenuItem";
-            this.medlemmerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.medlemmerToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.medlemmerToolStripMenuItem.Text = "Medlemmer";
             this.medlemmerToolStripMenuItem.Click += new System.EventHandler(this.medlemmerToolStripMenuItem_Click);
             // 
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.testToolStripMenuItem.Text = "Test";
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
             // 
             // excelToolStripMenuItem
             // 
             this.excelToolStripMenuItem.Name = "excelToolStripMenuItem";
-            this.excelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.excelToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.excelToolStripMenuItem.Text = "Excel";
             this.excelToolStripMenuItem.Click += new System.EventHandler(this.excelToolStripMenuItem_Click);
             // 
             // kreditorToolStripMenuItem
             // 
             this.kreditorToolStripMenuItem.Name = "kreditorToolStripMenuItem";
-            this.kreditorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.kreditorToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
             this.kreditorToolStripMenuItem.Text = "Kreditor";
             this.kreditorToolStripMenuItem.Click += new System.EventHandler(this.kerditorToolStripMenuItem_Click);
+            // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.BackColor = System.Drawing.SystemColors.Info;
+            this.toolStripStatusLabel2.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
+            this.toolStripStatusLabel2.Margin = new System.Windows.Forms.Padding(3, 3, 3, 2);
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(509, 23);
+            this.toolStripStatusLabel2.Text = "C:\\Documents and Settings\\mha\\Dokumenter\\Medlem3060\\Databaser\\SQLCompact\\dbData30" +
+                "60.sdf";
             // 
             // FrmMain
             // 
@@ -138,6 +154,7 @@
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem excelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kreditorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
    }
 }
 

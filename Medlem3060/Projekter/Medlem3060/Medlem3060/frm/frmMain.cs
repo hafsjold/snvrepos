@@ -52,6 +52,8 @@ namespace nsPuls3060
                 var rec_regnskab = Program.qryAktivRegnskab(); 
                 this.toolStripStatusLabel1.Text = "Regnskab: " + rec_regnskab.Rid + " " + rec_regnskab.Navn;
                 this.toolStripStatusLabel1.Alignment = ToolStripItemAlignment.Right;
+                this.toolStripStatusLabel2.Text = "Database: " + global::nsPuls3060.Properties.Settings.Default.DataBasePath;
+                this.toolStripStatusLabel2.Alignment = ToolStripItemAlignment.Right;
                 m_path = rec_regnskab.Placering + "kontoplan.dat";
                 m_ts = new FileStream(m_path, FileMode.Open, FileAccess.Read, FileShare.None);
             }
