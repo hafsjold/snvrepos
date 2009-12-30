@@ -68,11 +68,11 @@
             this.bNavKreditor.SuspendLayout();
             this.SuspendLayout();
             // 
-            // bindingSource1
+            // bsKreditor
             // 
             this.bsKreditor.DataSource = typeof(nsPuls3060.Tblkreditor);
             // 
-            // bindingNavigator2
+            // bNavKreditor
             // 
             this.bNavKreditor.AddNewItem = this.bindingNavigatorAddNewItem1;
             this.bNavKreditor.BindingSource = this.bsKreditor;
@@ -97,7 +97,7 @@
             this.bNavKreditor.MoveLastItem = this.bindingNavigatorMoveLastItem1;
             this.bNavKreditor.MoveNextItem = this.bindingNavigatorMoveNextItem1;
             this.bNavKreditor.MovePreviousItem = this.bindingNavigatorMovePreviousItem1;
-            this.bNavKreditor.Name = "bindingNavigator2";
+            this.bNavKreditor.Name = "bNavKreditor";
             this.bNavKreditor.PositionItem = this.bindingNavigatorPositionItem1;
             this.bNavKreditor.Size = new System.Drawing.Size(304, 25);
             this.bNavKreditor.TabIndex = 1;
@@ -369,7 +369,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(304, 300);
+            this.ClientSize = global::nsPuls3060.Properties.Settings.Default.frmKreditorSize;
             this.Controls.Add(this.label_Transkodebetaling);
             this.Controls.Add(this.label_Sektionnr);
             this.Controls.Add(this.label2);
@@ -390,9 +390,16 @@
             this.Controls.Add(this.Datalevnavn);
             this.Controls.Add(this.Datalevnr);
             this.Controls.Add(this.bNavKreditor);
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsPuls3060.Properties.Settings.Default, "frmKreditorPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::nsPuls3060.Properties.Settings.Default, "frmKreditorSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("WindowState", global::nsPuls3060.Properties.Settings.Default, "frmKreditorState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.Location = global::nsPuls3060.Properties.Settings.Default.frmKreditorPoint;
             this.Name = "FrmKreditor";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Kreditor";
+            this.WindowState = global::nsPuls3060.Properties.Settings.Default.frmKreditorState;
             this.Load += new System.EventHandler(this.FrmKreditor_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmKreditor_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.bsKreditor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bNavKreditor)).EndInit();
             this.bNavKreditor.ResumeLayout(false);

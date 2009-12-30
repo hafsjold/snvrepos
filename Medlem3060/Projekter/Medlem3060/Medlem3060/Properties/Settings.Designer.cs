@@ -59,5 +59,89 @@ namespace nsPuls3060.Properties {
                 this["DataBasePath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
+        public global::System.Drawing.Point frmMainPoint {
+            get {
+                return ((global::System.Drawing.Point)(this["frmMainPoint"]));
+            }
+            set {
+                this["frmMainPoint"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1024, 800")]
+        public global::System.Drawing.Size frmMainSize {
+            get {
+                return ((global::System.Drawing.Size)(this["frmMainSize"]));
+            }
+            set {
+                this["frmMainSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
+        public global::System.Drawing.Point frmMedlemmerPoint {
+            get {
+                return ((global::System.Drawing.Point)(this["frmMedlemmerPoint"]));
+            }
+            set {
+                this["frmMedlemmerPoint"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("800, 600")]
+        public global::System.Drawing.Size frmMedlemmerSize {
+            get {
+                return ((global::System.Drawing.Size)(this["frmMedlemmerSize"]));
+            }
+            set {
+                this["frmMedlemmerSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10, 10")]
+        public global::System.Drawing.Point frmKreditorPoint {
+            get {
+                return ((global::System.Drawing.Point)(this["frmKreditorPoint"]));
+            }
+            set {
+                this["frmKreditorPoint"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("304, 300")]
+        public global::System.Drawing.Size frmKreditorSize {
+            get {
+                return ((global::System.Drawing.Size)(this["frmKreditorSize"]));
+            }
+            set {
+                this["frmKreditorSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
+        public global::System.Windows.Forms.FormWindowState frmKreditorState {
+            get {
+                return ((global::System.Windows.Forms.FormWindowState)(this["frmKreditorState"]));
+            }
+            set {
+                this["frmKreditorState"] = value;
+            }
+        }
     }
 }

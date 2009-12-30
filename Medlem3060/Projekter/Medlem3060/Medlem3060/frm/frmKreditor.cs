@@ -21,5 +21,10 @@ namespace nsPuls3060
             this.bsKreditor.DataSource = Program.dbData3060.Tblkreditor;
 
         }
+
+        private void FrmKreditor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.Save();
+        }
     }
 }

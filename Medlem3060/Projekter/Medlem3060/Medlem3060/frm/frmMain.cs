@@ -62,6 +62,7 @@ namespace nsPuls3060
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             Program.dbData3060.SubmitChanges();
+            Properties.Settings.Default.Save();
         }
 
 

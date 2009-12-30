@@ -70,7 +70,7 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(749, 488);
+            this.dataGridView1.Size = new System.Drawing.Size(800, 600);
             this.dataGridView1.TabIndex = 0;
             // 
             // nrDataGridViewTextBoxColumn
@@ -149,13 +149,17 @@
             this.dsMedlem.DataSetName = "dsMedlem";
             this.dsMedlem.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // frmMedlemmer
+            // FrmMedlemmer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(749, 488);
+            this.ClientSize = global::nsPuls3060.Properties.Settings.Default.frmMedlemmerSize;
             this.Controls.Add(this.dataGridView1);
-            this.Name = "frmMedlemmer";
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsPuls3060.Properties.Settings.Default, "frmMedlemmerPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::nsPuls3060.Properties.Settings.Default, "frmMedlemmerSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.Location = global::nsPuls3060.Properties.Settings.Default.frmMedlemmerPoint;
+            this.Name = "FrmMedlemmer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Medlemmer";
             this.Load += new System.EventHandler(this.frmMedlemmer_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMedlemmer_FormClosing);

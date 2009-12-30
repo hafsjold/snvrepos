@@ -23,7 +23,8 @@ namespace nsPuls3060
         
         private void frmMedlemmer_FormClosing(object sender, FormClosingEventArgs e)
         {
-            save();
+            save(); 
+            Properties.Settings.Default.Save();
         }
 
         private void open()
