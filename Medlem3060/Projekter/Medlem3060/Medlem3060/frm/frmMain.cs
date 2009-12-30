@@ -65,17 +65,37 @@ namespace nsPuls3060
             Properties.Settings.Default.Save();
         }
 
-
+        private bool FocusChild(string child) 
+        {
+            foreach (Form frm in this.MdiChildren)
+            {
+                if (frm.Text.ToUpper() == child.ToUpper())
+                {
+                    frm.Focus();
+                    return true;
+                }
+            }
+            return false;
+        }
+        
         private void medlemmerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Program.frmMedlemmer.MdiParent = this;
-            Program.frmMedlemmer.Focus();
+            if (!FocusChild("Medlemmer"))
+            {
+                FrmMedlemmer frmMedlemmer = new FrmMedlemmer();
+                frmMedlemmer.MdiParent = this;
+                frmMedlemmer.Show();
+            }
         }
 
         private void kerditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Program.frmKreditor.MdiParent = this;
-            Program.frmKreditor.Focus();
+            if (!FocusChild("Kreditor"))
+            {
+                FrmKreditor m_frmKreditor = new FrmKreditor();
+                m_frmKreditor.MdiParent = this;
+                m_frmKreditor.Show();
+            }
         }
 
         private void testToolStripMenuItem_Click(object sender, EventArgs e)

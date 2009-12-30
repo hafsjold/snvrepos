@@ -8,8 +8,6 @@ namespace nsPuls3060
 {
     static class Program
     {
-        private static FrmMedlemmer m_frmMedlemmer;
-        private static FrmKreditor m_frmKreditor;
         private static DbData3060 m_dbData3060;
         private static KarMedlemmer m_KarMedlemmer;
         private static MemMedlemDictionary m_dicMedlem;
@@ -23,66 +21,6 @@ namespace nsPuls3060
         private static KarRegnskab m_KarRegnskab;
         private static KarStatus m_KarStatus;
 
-        public static FrmMedlemmer frmMedlemmer
-        {
-            get
-            {
-                if (m_frmMedlemmer == null)
-                {
-                    m_frmMedlemmer = new FrmMedlemmer();
-                    Program.frmMedlemmer.Show();
-                }
-                else
-                {
-                    try
-                    {
-                        m_frmMedlemmer.Show();
-
-                    }
-                    catch (ObjectDisposedException)
-                    {
-                        m_frmMedlemmer = new FrmMedlemmer();
-                        m_frmMedlemmer.Show();
-                    }
-                }
-
-                return m_frmMedlemmer;
-            }
-            set
-            {
-                m_frmMedlemmer = value;
-            }
-        }
-        public static FrmKreditor frmKreditor
-        {
-            get
-            {
-                if (m_frmKreditor == null)
-                {
-                    m_frmKreditor = new FrmKreditor();
-                    Program.frmKreditor.Show();
-                }
-                else
-                {
-                    try
-                    {
-                        m_frmKreditor.Show();
-
-                    }
-                    catch (ObjectDisposedException)
-                    {
-                        m_frmKreditor = new FrmKreditor();
-                        m_frmKreditor.Show();
-                    }
-                }
-
-                return m_frmKreditor;
-            }
-            set
-            {
-                m_frmKreditor = value;
-            }
-        }
         public static DbData3060 dbData3060
         {
             get
