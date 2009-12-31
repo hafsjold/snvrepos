@@ -37,6 +37,7 @@
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.excelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kreditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.regnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -88,7 +89,8 @@
             this.medlemmerToolStripMenuItem,
             this.testToolStripMenuItem,
             this.excelToolStripMenuItem,
-            this.kreditorToolStripMenuItem});
+            this.kreditorToolStripMenuItem,
+            this.regnskabToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -96,30 +98,37 @@
             // medlemmerToolStripMenuItem
             // 
             this.medlemmerToolStripMenuItem.Name = "medlemmerToolStripMenuItem";
-            this.medlemmerToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.medlemmerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.medlemmerToolStripMenuItem.Text = "Medlemmer";
             this.medlemmerToolStripMenuItem.Click += new System.EventHandler(this.medlemmerToolStripMenuItem_Click);
             // 
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.testToolStripMenuItem.Text = "Test";
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
             // 
             // excelToolStripMenuItem
             // 
             this.excelToolStripMenuItem.Name = "excelToolStripMenuItem";
-            this.excelToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.excelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.excelToolStripMenuItem.Text = "Excel";
             this.excelToolStripMenuItem.Click += new System.EventHandler(this.excelToolStripMenuItem_Click);
             // 
             // kreditorToolStripMenuItem
             // 
             this.kreditorToolStripMenuItem.Name = "kreditorToolStripMenuItem";
-            this.kreditorToolStripMenuItem.Size = new System.Drawing.Size(139, 22);
+            this.kreditorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.kreditorToolStripMenuItem.Text = "Kreditor";
             this.kreditorToolStripMenuItem.Click += new System.EventHandler(this.kerditorToolStripMenuItem_Click);
+            // 
+            // regnskabToolStripMenuItem
+            // 
+            this.regnskabToolStripMenuItem.Name = "regnskabToolStripMenuItem";
+            this.regnskabToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.regnskabToolStripMenuItem.Text = "Regnskab";
+            this.regnskabToolStripMenuItem.Click += new System.EventHandler(this.regnskabToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -159,6 +168,7 @@
         private System.Windows.Forms.ToolStripMenuItem excelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kreditorToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
+        private System.Windows.Forms.ToolStripMenuItem regnskabToolStripMenuItem;
    }
 }
 

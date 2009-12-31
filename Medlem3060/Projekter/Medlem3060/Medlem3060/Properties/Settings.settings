@@ -32,5 +32,14 @@
     <Setting Name="frmKreditorState" Type="System.Windows.Forms.FormWindowState" Scope="User">
       <Value Profile="(Default)">Normal</Value>
     </Setting>
+    <Setting Name="frmRegnskabState" Type="System.Windows.Forms.FormWindowState" Scope="User">
+      <Value Profile="(Default)">Normal</Value>
+    </Setting>
+    <Setting Name="frmRegnskabSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">531, 398</Value>
+    </Setting>
+    <Setting Name="frmRegnskabPoint" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

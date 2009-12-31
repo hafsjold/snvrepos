@@ -272,6 +272,16 @@ namespace nsPuls3060
             (new frmSelectRegnskab()).ShowDialog();
         }
 
+        private void regnskabToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("Regnskab"))
+            {
+                FrmRegnskab frmRegnskab = new FrmRegnskab();
+                frmRegnskab.MdiParent = this;
+                frmRegnskab.Show();
+            }
+        }
+
 
     }
 }

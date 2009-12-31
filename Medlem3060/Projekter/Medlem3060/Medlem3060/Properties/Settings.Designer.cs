@@ -143,5 +143,41 @@ namespace nsPuls3060.Properties {
                 this["frmKreditorState"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
+        public global::System.Windows.Forms.FormWindowState frmRegnskabState {
+            get {
+                return ((global::System.Windows.Forms.FormWindowState)(this["frmRegnskabState"]));
+            }
+            set {
+                this["frmRegnskabState"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("531, 398")]
+        public global::System.Drawing.Size frmRegnskabSize {
+            get {
+                return ((global::System.Drawing.Size)(this["frmRegnskabSize"]));
+            }
+            set {
+                this["frmRegnskabSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point frmRegnskabPoint {
+            get {
+                return ((global::System.Drawing.Point)(this["frmRegnskabPoint"]));
+            }
+            set {
+                this["frmRegnskabPoint"] = value;
+            }
+        }
     }
 }

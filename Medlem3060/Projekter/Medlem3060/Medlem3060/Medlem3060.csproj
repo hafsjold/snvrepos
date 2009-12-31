@@ -78,6 +78,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frm\frmRegnskab.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmRegnskab.Designer.cs">
+      <DependentUpon>frmRegnskab.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm\BetterDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +161,9 @@
     <EmbeddedResource Include="frm\frmMedlemmer.resx">
       <DependentUpon>frmMedlemmer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmRegnskab.resx">
+      <DependentUpon>frmRegnskab.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm\frmSelectRegnskab.resx">
       <DependentUpon>frmSelectRegnskab.cs</DependentUpon>
     </EmbeddedResource>
@@ -186,6 +195,7 @@
     </None>
     <None Include="Medlem3060_TemporaryKey.pfx" />
     <None Include="Properties\DataSources\Tblkreditor.datasource" />
+    <None Include="Properties\DataSources\TblRegnskab.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
