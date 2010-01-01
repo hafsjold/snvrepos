@@ -1,0 +1,14 @@
+SET IDENTITY_INSERT [tblMedlemLog] ON
+GO
+INSERT INTO [tblMedlemLog] ([id],[Nr],[logdato],[akt_id],[akt_dato]) VALUES (1,10,{ts '2002-12-11 12:00:00'},10,{ts '2002-12-11 12:00:00'});
+GO
+INSERT INTO [tblMedlemLog] ([id],[Nr],[logdato],[akt_id],[akt_dato]) VALUES (2,10,{ts '2008-01-01 12:00:00'},30,{ts '2009-12-31 12:00:00'});
+GO
+INSERT INTO [tblMedlemLog] ([id],[Nr],[logdato],[akt_id],[akt_dato]) VALUES (3,8,{ts '2009-11-01 12:00:00'},10,{ts '2009-11-01 12:00:00'});
+GO
+INSERT INTO [tblMedlemLog] ([id],[Nr],[logdato],[akt_id],[akt_dato]) VALUES (5,7,{ts '2009-11-14 12:00:00'},10,{ts '2009-11-14 12:00:00'});
+GO
+INSERT INTO [tblMedlemLog] ([id],[Nr],[logdato],[akt_id],[akt_dato]) VALUES (6,443,{ts '2009-12-07 08:52:49'},10,{ts '2009-11-01 12:00:00'});
+GO
+SET IDENTITY_INSERT [tblMedlemLog] OFF
+GO
