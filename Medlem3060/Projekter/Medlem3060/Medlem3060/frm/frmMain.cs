@@ -85,6 +85,7 @@ namespace nsPuls3060
                 FrmMedlemmer frmMedlemmer = new FrmMedlemmer();
                 frmMedlemmer.MdiParent = this;
                 frmMedlemmer.Show();
+                frmMedlemmer.setErrorMode();
             }
         }
 

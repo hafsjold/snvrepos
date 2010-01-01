@@ -63,9 +63,11 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.epRegnskab = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bsRegnskab)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bnRegnskab)).BeginInit();
             this.bnRegnskab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epRegnskab)).BeginInit();
             this.SuspendLayout();
             // 
             // label_Rid
@@ -127,9 +129,9 @@
             this.label_Placering.AutoSize = true;
             this.label_Placering.Location = new System.Drawing.Point(12, 212);
             this.label_Placering.Name = "label_Placering";
-            this.label_Placering.Size = new System.Drawing.Size(50, 13);
+            this.label_Placering.Size = new System.Drawing.Size(51, 13);
             this.label_Placering.TabIndex = 0;
-            this.label_Placering.Text = "Plasering";
+            this.label_Placering.Text = "Placering";
             // 
             // label_Eksportmappe
             // 
@@ -186,6 +188,8 @@
             this.Navn.Name = "Navn";
             this.Navn.Size = new System.Drawing.Size(390, 20);
             this.Navn.TabIndex = 2;
+            this.Navn.Validated += new System.EventHandler(this.Navn_Validated);
+            this.Navn.Validating += new System.ComponentModel.CancelEventHandler(this.Navn_Validating);
             // 
             // Oprettet
             // 
@@ -278,7 +282,7 @@
             this.bindingNavigatorMoveNextItem,
             this.bindingNavigatorMoveLastItem,
             this.bindingNavigatorSeparator2});
-            this.bnRegnskab.Location = new System.Drawing.Point(0, 373);
+            this.bnRegnskab.Location = new System.Drawing.Point(0, 380);
             this.bnRegnskab.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bnRegnskab.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.bnRegnskab.MoveNextItem = this.bindingNavigatorMoveNextItem;
@@ -356,6 +360,11 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
+            // epRegnskab
+            // 
+            this.epRegnskab.ContainerControl = this;
+            this.epRegnskab.DataSource = this.bsRegnskab;
+            // 
             // FrmRegnskab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -400,6 +409,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bnRegnskab)).EndInit();
             this.bnRegnskab.ResumeLayout(false);
             this.bnRegnskab.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epRegnskab)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -440,5 +450,6 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.BindingSource bsRegnskab;
+        private System.Windows.Forms.ErrorProvider epRegnskab;
     }
 }

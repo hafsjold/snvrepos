@@ -25,5 +25,22 @@ namespace nsPuls3060
         {
             Properties.Settings.Default.Save();
         }
+
+        private void Navn_Validating(object sender, CancelEventArgs e)
+        {
+            if (Navn.Text.Length > 15)
+            {
+                e.Cancel = true;
+                Navn.Select(0, Navn.Text.Length);
+
+                // Set the ErrorProvider error with the text to display. 
+                this.epRegnskab.SetError(Navn, "Dette er en fejl");
+            }
+        }
+
+        private void Navn_Validated(object sender, EventArgs e)
+        {
+            this.epRegnskab.SetError(Navn, "");
+        }
     }
 }
