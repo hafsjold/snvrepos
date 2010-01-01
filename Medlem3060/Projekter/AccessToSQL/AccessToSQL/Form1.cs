@@ -17,6 +17,7 @@ namespace AccessToSQL
         public Form1()
         {
             InitializeComponent();
+            //Program.dbData3060.ExecuteCommand("");
         }
 
         private void tblMedlemToolStripMenuItem1_Click(object sender, EventArgs e)

@@ -23,6 +23,7 @@ namespace nsPuls3060
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
+
             if (clsUtil.IsProcessOpen("Summa"))
             {
                 DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
