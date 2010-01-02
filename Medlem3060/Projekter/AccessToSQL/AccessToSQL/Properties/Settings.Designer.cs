@@ -33,18 +33,5 @@ namespace AccessToSQL.Properties {
                 return ((string)(this["dbData3060ConnectionString"]));
             }
         }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Documents and Settings\\mha\\Dokumenter\\Medlem3060\\Databaser\\SQLCompact\\dbData30" +
-            "60.sdf")]
-        public string DataBasePath {
-            get {
-                return ((string)(this["DataBasePath"]));
-            }
-            set {
-                this["DataBasePath"] = value;
-            }
-        }
     }
 }

@@ -10,8 +10,5 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Provider=Microsoft.Jet.OLEDB.4.0;Data Source="C:\Documents and Settings\mha\Dokumenter\Medlem3060\Databaser\Access2003\dbData3060.mdb"</Value>
     </Setting>
-    <Setting Name="DataBasePath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Documents and Settings\mha\Dokumenter\Medlem3060\Databaser\SQLCompact\dbData3060.sdf</Value>
-    </Setting>
   </Settings>
 </SettingsFile>
