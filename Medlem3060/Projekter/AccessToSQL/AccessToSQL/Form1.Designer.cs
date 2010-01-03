@@ -50,6 +50,9 @@
             this.tableAdapterManager1 = new AccessToSQL.AccessDataSetTableAdapters.TableAdapterManager();
             this.Run = new System.Windows.Forms.Button();
             this.Returkode = new System.Windows.Forms.Label();
+            this.tblAktivitetTableAdapter1 = new AccessToSQL.AccessDataSetTableAdapters.tblAktivitetTableAdapter();
+            this.tblkreditorTableAdapter1 = new AccessToSQL.AccessDataSetTableAdapters.tblkreditorTableAdapter();
+            this.tblnrserieTableAdapter1 = new AccessToSQL.AccessDataSetTableAdapters.tblnrserieTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dsAccess)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,9 +72,9 @@
             this.label_SQLDB.AutoSize = true;
             this.label_SQLDB.Location = new System.Drawing.Point(12, 52);
             this.label_SQLDB.Name = "label_SQLDB";
-            this.label_SQLDB.Size = new System.Drawing.Size(77, 13);
+            this.label_SQLDB.Size = new System.Drawing.Size(73, 13);
             this.label_SQLDB.TabIndex = 3;
-            this.label_SQLDB.Text = "SQL Database";
+            this.label_SQLDB.Text = "SQL Compact";
             // 
             // label_SqlCeCmd
             // 
@@ -98,7 +101,7 @@
             this.Script.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AccessToSQL.Properties.Settings.Default, "Script", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.Script.Location = new System.Drawing.Point(123, 101);
             this.Script.Name = "Script";
-            this.Script.Size = new System.Drawing.Size(724, 20);
+            this.Script.Size = new System.Drawing.Size(560, 20);
             this.Script.TabIndex = 2;
             this.Script.Text = global::AccessToSQL.Properties.Settings.Default.Script;
             this.Script.DoubleClick += new System.EventHandler(this.Script_DoubleClick);
@@ -108,7 +111,7 @@
             this.SqlCeCmd.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AccessToSQL.Properties.Settings.Default, "SqlCeCmd", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.SqlCeCmd.Location = new System.Drawing.Point(123, 75);
             this.SqlCeCmd.Name = "SqlCeCmd";
-            this.SqlCeCmd.Size = new System.Drawing.Size(724, 20);
+            this.SqlCeCmd.Size = new System.Drawing.Size(560, 20);
             this.SqlCeCmd.TabIndex = 2;
             this.SqlCeCmd.Text = global::AccessToSQL.Properties.Settings.Default.SqlCeCmd;
             this.SqlCeCmd.DoubleClick += new System.EventHandler(this.SqlCeCmd_DoubleClick);
@@ -118,7 +121,7 @@
             this.SQLDB.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AccessToSQL.Properties.Settings.Default, "SQLDB", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.SQLDB.Location = new System.Drawing.Point(123, 49);
             this.SQLDB.Name = "SQLDB";
-            this.SQLDB.Size = new System.Drawing.Size(724, 20);
+            this.SQLDB.Size = new System.Drawing.Size(560, 20);
             this.SQLDB.TabIndex = 2;
             this.SQLDB.Text = global::AccessToSQL.Properties.Settings.Default.SQLDB;
             this.SQLDB.DoubleClick += new System.EventHandler(this.SQLDB_DoubleClick);
@@ -128,7 +131,7 @@
             this.accessDB.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::AccessToSQL.Properties.Settings.Default, "accessDB", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.accessDB.Location = new System.Drawing.Point(123, 23);
             this.accessDB.Name = "accessDB";
-            this.accessDB.Size = new System.Drawing.Size(724, 20);
+            this.accessDB.Size = new System.Drawing.Size(560, 20);
             this.accessDB.TabIndex = 2;
             this.accessDB.Text = global::AccessToSQL.Properties.Settings.Default.accessDB;
             this.accessDB.DoubleClick += new System.EventHandler(this.accessDB_DoubleClick);
@@ -181,12 +184,15 @@
             // tableAdapterManager1
             // 
             this.tableAdapterManager1.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager1.tblAktivitetTableAdapter = null;
             this.tableAdapterManager1.tblbetlinTableAdapter = this.taTblbetlin;
             this.tableAdapterManager1.tblbetTableAdapter = this.taTblbet;
             this.tableAdapterManager1.tblfakTableAdapter = this.taTblfak;
             this.tableAdapterManager1.tblfrapbsTableAdapter = this.taTblfrapbs;
+            this.tableAdapterManager1.tblkreditorTableAdapter = null;
             this.tableAdapterManager1.tblMedlemLogTableAdapter = this.taTblMedlemLog;
             this.tableAdapterManager1.tblMedlemTableAdapter = this.taTblMedlem;
+            this.tableAdapterManager1.tblnrserieTableAdapter = null;
             this.tableAdapterManager1.tblpbsfilesTableAdapter = this.taTblpbsfiles;
             this.tableAdapterManager1.tblpbsfileTableAdapter = this.taTblpbsfile;
             this.tableAdapterManager1.tblpbsforsendelseTableAdapter = this.taTblpbsforsendelse;
@@ -213,11 +219,23 @@
             this.Returkode.Text = "label1";
             this.Returkode.Visible = false;
             // 
+            // tblAktivitetTableAdapter1
+            // 
+            this.tblAktivitetTableAdapter1.ClearBeforeFill = true;
+            // 
+            // tblkreditorTableAdapter1
+            // 
+            this.tblkreditorTableAdapter1.ClearBeforeFill = true;
+            // 
+            // tblnrserieTableAdapter1
+            // 
+            this.tblnrserieTableAdapter1.ClearBeforeFill = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(860, 452);
+            this.ClientSize = new System.Drawing.Size(699, 184);
             this.Controls.Add(this.Returkode);
             this.Controls.Add(this.Run);
             this.Controls.Add(this.label_Script);
@@ -229,7 +247,7 @@
             this.Controls.Add(this.SQLDB);
             this.Controls.Add(this.accessDB);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Konverter dbData3060 fra Access til SQL Compact";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dsAccess)).EndInit();
             this.ResumeLayout(false);
@@ -261,6 +279,9 @@
         private System.Windows.Forms.Label label_Script;
         private System.Windows.Forms.Button Run;
         private System.Windows.Forms.Label Returkode;
+        private AccessToSQL.AccessDataSetTableAdapters.tblAktivitetTableAdapter tblAktivitetTableAdapter1;
+        private AccessToSQL.AccessDataSetTableAdapters.tblkreditorTableAdapter tblkreditorTableAdapter1;
+        private AccessToSQL.AccessDataSetTableAdapters.tblnrserieTableAdapter tblnrserieTableAdapter1;
     }
 }
 

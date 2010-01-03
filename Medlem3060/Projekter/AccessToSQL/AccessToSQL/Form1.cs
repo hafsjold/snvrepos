@@ -28,8 +28,19 @@ namespace AccessToSQL
             {
                 ts = new FileStream(this.Script.Text, FileMode.CreateNew, FileAccess.Write, FileShare.None);
             }
-            using (StreamWriter sr = new StreamWriter(ts, Encoding.GetEncoding("Windows-1252")))
+            //using (StreamWriter sr = new StreamWriter(ts, Encoding.GetEncoding("Windows-1252")))
+            //using (StreamWriter sr = new StreamWriter(ts, Encoding.Default))
+            using (StreamWriter sr = new StreamWriter(ts, Encoding.UTF8))
             {
+                sr.WriteLine("DELETE FROM [tempKontforslaglinie];");
+                sr.WriteLine("GO");
+                sr.WriteLine("DELETE FROM [tempKontforslag];");
+                sr.WriteLine("GO");
+                sr.WriteLine("DELETE FROM [tblRegnskab];");
+                sr.WriteLine("GO");
+                
+                sr.WriteLine("DELETE FROM [tblAktivitet];");
+                sr.WriteLine("GO");
                 sr.WriteLine("DELETE FROM [tblMedlemLog];");
                 sr.WriteLine("GO");
                 sr.WriteLine("DELETE FROM [tblMedlem];");
@@ -51,8 +62,13 @@ namespace AccessToSQL
                 sr.WriteLine("GO");
                 sr.WriteLine("DELETE FROM [tblpbsforsendelse];");
                 sr.WriteLine("GO");
+                sr.WriteLine("DELETE FROM [tblkreditor];");
+                sr.WriteLine("GO");
+                sr.WriteLine("DELETE FROM [tblnrserie];");
+                sr.WriteLine("GO");
 
                 tblMedlem(sr);
+                tblAktivitet(sr);
                 tblMedlemLog(sr);
 
                 tblpbsforsendelse(sr);
@@ -63,6 +79,8 @@ namespace AccessToSQL
                 tblfrapbs(sr);
                 tblbet(sr);
                 tblbetlin(sr);
+                tblkreditor(sr);
+                tblnrserie(sr);
             }
             ts.Close();
             ts = null;
@@ -72,6 +90,68 @@ namespace AccessToSQL
             this.Returkode.Text = string.Format("Afsluttet med rekode = {0}",ret);
             this.Returkode.Visible = true;
 
+        }
+
+        private void tblAktivitet(StreamWriter sr)
+        {
+            this.tblAktivitetTableAdapter1.Fill(this.dsAccess.tblAktivitet);
+            string SQL = "INSERT INTO [tblAktivitet] ([id],[akt_tekst]) VALUES ({0},{1});";
+
+            string[] p = new string[2];
+            foreach (AccessDataSet.tblAktivitetRow h in this.dsAccess.tblAktivitet.Rows)
+            {
+                p[0] = qf(h.id);
+                p[1] = h.Isakt_tekstNull() ? "null" : qf(h.akt_tekst);
+
+                string myString = string.Format(SQL, p[0], p[1]);
+
+                sr.WriteLine(myString);
+                sr.WriteLine("GO");
+            }
+        }
+
+        private void tblnrserie(StreamWriter sr)
+        {
+            this.tblnrserieTableAdapter1.Fill(this.dsAccess.tblnrserie);
+            string SQL = "INSERT INTO [tblnrserie] ([nrserienavn],[sidstbrugtenr]) VALUES ({0},{1});";
+
+            string[] p = new string[2];
+            foreach (AccessDataSet.tblnrserieRow h in this.dsAccess.tblnrserie.Rows)
+            {
+                p[0] = qf(h.nrserienavn);
+                p[1] = h.IssidstbrugtenrNull() ? "null" : qf(h.sidstbrugtenr);
+
+                string myString = string.Format(SQL, p[0], p[1]);
+
+                sr.WriteLine(myString);
+                sr.WriteLine("GO");
+            }
+        }
+
+        private void tblkreditor(StreamWriter sr)
+        {
+            this.tblkreditorTableAdapter1.Fill(this.dsAccess.tblkreditor);
+            string SQL = "INSERT INTO [tblkreditor] ([id],[datalevnr],[datalevnavn],[pbsnr],[delsystem],[regnr],[kontonr],[debgrpnr],[sektionnr],[transkodebetaling]) VALUES ({0},{1},{2},{3},{4},{5},{6},{7},{8},{9});";
+
+            string[] p = new string[10];
+            foreach (AccessDataSet.tblkreditorRow h in this.dsAccess.tblkreditor.Rows)
+            {
+                p[0] = qf(h.id);
+                p[1] = h.IsdatalevnrNull() ? "null" : qf(h.datalevnr);
+                p[2] = h.IsdatalevnavnNull() ? "null" : qf(h.datalevnavn);
+                p[3] = h.IspbsnrNull() ? "null" : qf(h.pbsnr);
+                p[4] = h.IsdelsystemNull() ? "null" : qf(h.delsystem);
+                p[5] = h.IsregnrNull() ? "null" : qf(h.regnr);
+                p[6] = h.IskontonrNull() ? "null" : qf(h.kontonr);
+                p[7] = h.IsdebgrpnrNull() ? "null" : qf(h.debgrpnr);
+                p[8] = h.IssektionnrNull() ? "null" : qf(h.sektionnr);
+                p[9] = h.IstranskodebetalingNull() ? "null" : qf(h.transkodebetaling);
+
+                string myString = string.Format(SQL, p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9]);
+
+                sr.WriteLine(myString);
+                sr.WriteLine("GO");
+            }
         }
 
         private void tblMedlem(StreamWriter sr)
@@ -101,8 +181,10 @@ namespace AccessToSQL
             sr.WriteLine("GO");
 
             string[] p = new string[5];
+            int Maxid = 0;
             foreach (AccessDataSet.tblMedlemLogRow h in this.dsAccess.tblMedlemLog.Rows)
             {
+                Maxid = h.id > Maxid ? h.id : Maxid;
                 p[0] = qf(h.id);
                 p[1] = h.IsNrNull() ? "null" : qf(h.Nr);
                 p[2] = h.IslogdatoNull() ? "null" : qf(h.logdato);
@@ -116,6 +198,9 @@ namespace AccessToSQL
             }
             sr.WriteLine("SET IDENTITY_INSERT [tblMedlemLog] OFF");
             sr.WriteLine("GO");
+            string Identity = string.Format("ALTER TABLE [{0}] ALTER COLUMN [id] IDENTITY ({1}, 1);", "tblMedlemLog", Maxid + 1);
+            sr.WriteLine(Identity);
+            sr.WriteLine("GO");
         }
 
         private void tblpbsforsendelse(StreamWriter sr)
@@ -125,8 +210,11 @@ namespace AccessToSQL
             sr.WriteLine("SET IDENTITY_INSERT [tblpbsforsendelse] ON");
             sr.WriteLine("GO");
             string[] p = new string[6];
+            int Maxid = 0;
+
             foreach (AccessDataSet.tblpbsforsendelseRow h in this.dsAccess.tblpbsforsendelse.Rows)
             {
+                Maxid = h.id > Maxid ? h.id : Maxid;
                 p[0] = qf(h.id);
                 p[1] = h.IsdelsystemNull() ? "null" : qf(h.delsystem);
                 p[2] = h.IsleverancetypeNull() ? "null" : qf(h.leverancetype);
@@ -139,6 +227,9 @@ namespace AccessToSQL
             }
             sr.WriteLine("SET IDENTITY_INSERT [tblpbsforsendelse] OFF");
             sr.WriteLine("GO");
+            string Identity = string.Format("ALTER TABLE [{0}] ALTER COLUMN [id] IDENTITY ({1}, 1);", "tblpbsforsendelse", Maxid + 1);
+            sr.WriteLine(Identity);
+            sr.WriteLine("GO");
         }
 
         private void tbltilpbs(StreamWriter sr)
@@ -148,8 +239,10 @@ namespace AccessToSQL
             sr.WriteLine("SET IDENTITY_INSERT [tbltilpbs] ON");
             sr.WriteLine("GO");
             string[] p = new string[8];
+            int Maxid = 0;
             foreach (AccessDataSet.tbltilpbsRow h in this.dsAccess.tbltilpbs.Rows)
             {
+                Maxid = h.id > Maxid ? h.id : Maxid;
                 p[0] = qf(h.id);
                 p[1] = h.IsdelsystemNull() ? "null" : qf(h.delsystem);
                 p[2] = h.IsleverancetypeNull() ? "null" : qf(h.leverancetype);
@@ -166,6 +259,9 @@ namespace AccessToSQL
             }
             sr.WriteLine("SET IDENTITY_INSERT [tbltilpbs] OFF");
             sr.WriteLine("GO");
+            string Identity = string.Format("ALTER TABLE [{0}] ALTER COLUMN [id] IDENTITY ({1}, 1);", "tbltilpbs", Maxid + 1);
+            sr.WriteLine(Identity);
+            sr.WriteLine("GO");
         }
 
         private void tblfak(StreamWriter sr)
@@ -175,8 +271,10 @@ namespace AccessToSQL
             sr.WriteLine("SET IDENTITY_INSERT [tblfak] ON");
             sr.WriteLine("GO");
             string[] p = new string[18];
+            int Maxid = 0;
             foreach (AccessDataSet.tblfakRow h in this.dsAccess.tblfak.Rows)
             {
+                Maxid = h.id > Maxid ? h.id : Maxid;
                 p[0] = qf(h.id);
                 p[1] = h.IstilpbsidNull() ? "null" : qf(h.tilpbsid);
                 p[2] = h.IsbetalingsdatoNull() ? "null" : qf(h.betalingsdato);
@@ -203,6 +301,9 @@ namespace AccessToSQL
             }
             sr.WriteLine("SET IDENTITY_INSERT [tblfak] OFF");
             sr.WriteLine("GO");
+            string Identity = string.Format("ALTER TABLE [{0}] ALTER COLUMN [id] IDENTITY ({1}, 1);", "tblfak", Maxid + 1);
+            sr.WriteLine(Identity);
+            sr.WriteLine("GO");
         }
 
         private void tblpbsfiles(StreamWriter sr)
@@ -212,8 +313,10 @@ namespace AccessToSQL
             sr.WriteLine("SET IDENTITY_INSERT [tblpbsfiles] ON");
             sr.WriteLine("GO");
             string[] p = new string[12];
+            int Maxid = 0;
             foreach (AccessDataSet.tblpbsfilesRow h in this.dsAccess.tblpbsfiles.Rows)
             {
+                Maxid = h.id > Maxid ? h.id : Maxid;
                 p[0] = qf(h.id);
                 p[1] = h.IstypeNull() ? "null" : qf(h.type);
                 p[2] = h.IspathNull() ? "null" : qf(h.path);
@@ -234,6 +337,9 @@ namespace AccessToSQL
             }
             sr.WriteLine("SET IDENTITY_INSERT [tblpbsfiles] OFF");
             sr.WriteLine("GO");
+            string Identity = string.Format("ALTER TABLE [{0}] ALTER COLUMN [id] IDENTITY ({1}, 1);", "tblpbsfiles", Maxid + 1);
+            sr.WriteLine(Identity);
+            sr.WriteLine("GO");
         }
 
         private void tblpbsfile(StreamWriter sr)
@@ -243,8 +349,10 @@ namespace AccessToSQL
             sr.WriteLine("SET IDENTITY_INSERT [tblpbsfile] ON");
             sr.WriteLine("GO");
             string[] p = new string[4];
+            int Maxid = 0;
             foreach (AccessDataSet.tblpbsfileRow h in this.dsAccess.tblpbsfile.Rows)
             {
+                Maxid = h.id > Maxid ? h.id : Maxid;
                 p[0] = qf(h.id);
                 p[1] = h.IspbsfilesidNull() ? "null" : qf(h.pbsfilesid);
                 p[2] = h.IsseqnrNull() ? "null" : qf(h.seqnr);
@@ -257,6 +365,9 @@ namespace AccessToSQL
             }
             sr.WriteLine("SET IDENTITY_INSERT [tblpbsfile] OFF");
             sr.WriteLine("GO");
+            string Identity = string.Format("ALTER TABLE [{0}] ALTER COLUMN [id] IDENTITY ({1}, 1);", "tblpbsfile", Maxid + 1);
+            sr.WriteLine(Identity);
+            sr.WriteLine("GO");
         }
 
         private void tblfrapbs(StreamWriter sr)
@@ -266,8 +377,10 @@ namespace AccessToSQL
             sr.WriteLine("SET IDENTITY_INSERT [tblfrapbs] ON");
             sr.WriteLine("GO");
             string[] p = new string[8];
+            int Maxid = 0;
             foreach (AccessDataSet.tblfrapbsRow h in this.dsAccess.tblfrapbs.Rows)
             {
+                Maxid = h.id > Maxid ? h.id : Maxid;
                 p[0] = qf(h.id);
                 p[1] = h.IsdelsystemNull() ? "null" : qf(h.delsystem);
                 p[2] = h.IsleverancetypeNull() ? "null" : qf(h.leverancetype);
@@ -284,6 +397,9 @@ namespace AccessToSQL
             }
             sr.WriteLine("SET IDENTITY_INSERT [tblfrapbs] OFF");
             sr.WriteLine("GO");
+            string Identity = string.Format("ALTER TABLE [{0}] ALTER COLUMN [id] IDENTITY ({1}, 1);", "tblfrapbs", Maxid + 1);
+            sr.WriteLine(Identity);
+            sr.WriteLine("GO");
         }
 
         private void tblbet(StreamWriter sr)
@@ -293,8 +409,10 @@ namespace AccessToSQL
             sr.WriteLine("SET IDENTITY_INSERT [tblbet] ON");
             sr.WriteLine("GO");
             string[] p = new string[6];
+            int Maxid = 0;
             foreach (AccessDataSet.tblbetRow h in this.dsAccess.tblbet.Rows)
             {
+                Maxid = h.id > Maxid ? h.id : Maxid;
                 p[0] = qf(h.id);
                 p[1] = h.IsfrapbsidNull() ? "null" : qf(h.frapbsid);
                 p[2] = h.IspbssektionnrNull() ? "null" : qf(h.pbssektionnr);
@@ -309,6 +427,9 @@ namespace AccessToSQL
             }
             sr.WriteLine("SET IDENTITY_INSERT [tblbet] OFF");
             sr.WriteLine("GO");
+            string Identity = string.Format("ALTER TABLE [{0}] ALTER COLUMN [id] IDENTITY ({1}, 1);", "tblbet", Maxid + 1);
+            sr.WriteLine(Identity);
+            sr.WriteLine("GO");
         }
 
         private void tblbetlin(StreamWriter sr)
@@ -318,8 +439,10 @@ namespace AccessToSQL
             sr.WriteLine("SET IDENTITY_INSERT [tblbetlin] ON");
             sr.WriteLine("GO");
             string[] p = new string[16];
+            int Maxid = 0;
             foreach (AccessDataSet.tblbetlinRow h in this.dsAccess.tblbetlin.Rows)
             {
+                Maxid = h.id > Maxid ? h.id : Maxid;
                 p[0] = qf(h.id);
                 p[1] = h.IsbetidNull() ? "null" : qf(h.betid);
                 p[2] = h.IspbssektionnrNull() ? "null" : qf(h.pbssektionnr);
@@ -343,6 +466,9 @@ namespace AccessToSQL
                 sr.WriteLine("GO");
             }
             sr.WriteLine("SET IDENTITY_INSERT [tblbetlin] OFF");
+            sr.WriteLine("GO");
+            string Identity = string.Format("ALTER TABLE [{0}] ALTER COLUMN [id] IDENTITY ({1}, 1);", "tblbetlin", Maxid + 1);
+            sr.WriteLine(Identity);
             sr.WriteLine("GO");
         }
 
