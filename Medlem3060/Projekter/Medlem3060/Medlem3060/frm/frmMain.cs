@@ -50,7 +50,7 @@ namespace nsPuls3060
             }
             else
             {
-                var rec_regnskab = Program.qryAktivRegnskab(); 
+                var rec_regnskab = Program.qryAktivRegnskab();
                 this.toolStripStatusLabel1.Text = "Regnskab: " + rec_regnskab.Rid + " " + rec_regnskab.Navn;
                 this.toolStripStatusLabel1.Alignment = ToolStripItemAlignment.Right;
                 this.toolStripStatusLabel2.Text = "Database: " + global::nsPuls3060.Properties.Settings.Default.DataBasePath;
@@ -66,7 +66,7 @@ namespace nsPuls3060
             Properties.Settings.Default.Save();
         }
 
-        private bool FocusChild(string child) 
+        private bool FocusChild(string child)
         {
             foreach (Form frm in this.MdiChildren)
             {
@@ -78,7 +78,7 @@ namespace nsPuls3060
             }
             return false;
         }
-        
+
         private void medlemmerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!FocusChild("Medlemmer"))
@@ -102,13 +102,13 @@ namespace nsPuls3060
 
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //clsPbs objPbs = new clsPbs();
+            clsPbs objPbs = new clsPbs();
             //clsPbs601 objPbs601 = new clsPbs601();
             //clsPbs602 objPbs602 = new clsPbs602();
             //objPbs601.faktura_601_action(1);
             //objPbs602.TestRead042();
             //objPbs602.ReadFraPbsFile();
-            //objPbs601.WriteTilPbsFile(615);
+            //objPbs601.WriteTilPbsFile(602);
             //objPbs.ReadRegnskaber();
             //objPbs.SetAktivRegnskaber();
             //DateTime dt = new DateTime(2009, 10, 31);
@@ -142,7 +142,38 @@ namespace nsPuls3060
             string nystring = nytmedlem.getNewCvsString();
             KarFakturaer_s objFakturaer_s = new KarFakturaer_s();
             objFakturaer_s.save();
+            int pNr = 3;
+            DateTime pDate = DateTime.Now;
+            var qryMedlemLog = from m in Program.dbData3060.TblMedlemLog
+                        where m.Nr == pNr && m.Logdato <= pDate
+                        select new
+                        {
+                            Id = (int)m.Id,
+                            Nr = (int)m.Nr,
+                            Logdato = (DateTime)m.Logdato,
+                            Akt_id = (int)m.Akt_id,
+                            Akt_dato = (DateTime)m.Akt_dato
+                        };
+            var qryFak = from f in Program.dbData3060.Tblfak
+                       join p in Program.dbData3060.Tbltilpbs on f.Tilpbsid equals p.Id
+                       where f.Nr == pNr && p.Bilagdato <= pDate
+                       select new
+                       {
+                           Id = (int)f.Id,
+                           Nr = (int)f.Nr,
+                           Logdato = (DateTime)p.Bilagdato,
+                           Akt_id = (int)20,
+                           Akt_dato = (DateTime)f.Betalingsdato
+                       };
+
+            var qryUnion = qryMedlemLog.Union(qryFak).OrderByDescending(u => u.Logdato);
+
+            foreach (var l in qryUnion)
+            {
+                var x = l.Logdato;
+            }
             */
+            bool x = objPbs.erMedlem(3);
         }
 
 
@@ -157,7 +188,7 @@ namespace nsPuls3060
             Excel.Window oWindow;
             Excel.Range oRng;
 
-            var rec_regnskab = Program.qryAktivRegnskab(); 
+            var rec_regnskab = Program.qryAktivRegnskab();
             string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xls";
 
             var MedlemmerAll = from h in Program.karMedlemmer

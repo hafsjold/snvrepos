@@ -42,13 +42,31 @@ namespace nsPuls3060
             var b40 = false; // Seneste PBS betaling tilbageført fundet
             var b50 = false; // Udmeldelses dato fundet
 
-            //Den query skal ændres til en union !!!!!!!!!!!!
-            var MedlemLogs = from c in Program.dbData3060.TblMedlemLog
-                             where c.Nr == pNr && c.Logdato <= pDate
-                             orderby c.Logdato descending
-                             select c;
+            var qryMedlemLog = from m in Program.dbData3060.TblMedlemLog
+                               where m.Nr == pNr && m.Logdato <= pDate
+                               select new
+                               {
+                                   Id = (int)m.Id,
+                                   Nr = (int)m.Nr,
+                                   Logdato = (DateTime)m.Logdato,
+                                   Akt_id = (int)m.Akt_id,
+                                   Akt_dato = (DateTime)m.Akt_dato
+                               };
+            var qryFak = from f in Program.dbData3060.Tblfak
+                         join p in Program.dbData3060.Tbltilpbs on f.Tilpbsid equals p.Id
+                         where f.Nr == pNr && p.Bilagdato <= pDate
+                         select new
+                         {
+                             Id = (int)f.Id,
+                             Nr = (int)f.Nr,
+                             Logdato = (DateTime)p.Bilagdato,
+                             Akt_id = (int)20,
+                             Akt_dato = (DateTime)f.Betalingsdato
+                         };
 
-            foreach (var MedlemLog in MedlemLogs)
+            var qryUnion = qryMedlemLog.Union(qryFak).OrderByDescending(u => u.Logdato);
+
+            foreach (var MedlemLog in qryUnion)
             {
                 switch (MedlemLog.Akt_id)
                 {
@@ -114,11 +132,12 @@ namespace nsPuls3060
                         }
                     }
                 }
-                else //Der findes ingen indmeldelse
-                {
-                    return false;
-                }
             }
+            else //Der findes ingen indmeldelse
+            {
+                return false;
+            }
+
 
             //Find aktive betalingsrecord
             if (b40) //Findes der en kontingent tilbageført
