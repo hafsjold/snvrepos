@@ -43,7 +43,6 @@ namespace nsPuls3060
             var b50 = false; // Udmeldelses dato fundet
 
             var qryMedlemLog = from m in Program.dbData3060.TblMedlemLog
-                               where m.Nr == pNr && m.Logdato <= pDate
                                select new
                                {
                                    Id = (int)m.Id,
@@ -54,7 +53,6 @@ namespace nsPuls3060
                                };
             var qryFak = from f in Program.dbData3060.Tblfak
                          join p in Program.dbData3060.Tbltilpbs on f.Tilpbsid equals p.Id
-                         where f.Nr == pNr && p.Bilagdato <= pDate
                          select new
                          {
                              Id = (int)f.Id,
@@ -64,7 +62,36 @@ namespace nsPuls3060
                              Akt_dato = (DateTime)f.Betalingsdato
                          };
 
-            var qryUnion = qryMedlemLog.Union(qryFak).OrderByDescending(u => u.Logdato);
+            var qryBetlin = from b in Program.dbData3060.Tblbetlin
+                            join f in Program.dbData3060.Tblfak on b.Faknr equals f.Faknr
+                            where b.Pbstranskode == "0236" || b.Pbstranskode == "0297"
+                            select new
+                            {
+                                Id = (int)b.Id,
+                                Nr = (int)b.Nr,
+                                Logdato = (DateTime)b.Indbetalingsdato,
+                                Akt_id = (int)30,
+                                Akt_dato = (DateTime)f.Tildato
+                            };
+
+            var qryBetlin40 = from b in Program.dbData3060.Tblbetlin
+                            where b.Pbstranskode == "0237"
+                            select new
+                            {
+                                Id = (int)b.Id,
+                                Nr = (int)b.Nr,
+                                Logdato = (DateTime)b.Betalingsdato,
+                                Akt_id = (int)40,
+                                Akt_dato = (DateTime)b.Betalingsdato
+                            };
+
+
+            var qryUnion = qryMedlemLog.Union(qryFak)
+                                       .Union(qryBetlin)
+                                       .Union(qryBetlin40)
+                                       .Where(u => u.Nr == pNr)
+                                       .Where(u => u.Logdato <= pDate)
+                                       .OrderByDescending(u => u.Logdato);
 
             foreach (var MedlemLog in qryUnion)
             {
