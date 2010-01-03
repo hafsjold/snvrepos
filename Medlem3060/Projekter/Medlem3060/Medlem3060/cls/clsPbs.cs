@@ -12,13 +12,21 @@ using Microsoft.VisualBasic;
 
 namespace nsPuls3060
 {
+    public class clsLog
+        {
+            public int  Id;
+            public int Nr;
+            public DateTime Logdato;
+            public int Akt_id;
+            public DateTime Akt_dato;
+       } 
+
     class clsPbs
     {
         private TblRegnskab m_rec_Regnskab;
 
-        public clsPbs()
-        {
-        }
+        public clsPbs() { }
+
 
         public Boolean erMedlem(short pNr) { return erMedlem(pNr, DateTime.Now); }
         public Boolean erMedlem(short pNr, DateTime pDate)
@@ -42,58 +50,13 @@ namespace nsPuls3060
             var b40 = false; // Seneste PBS betaling tilbageført fundet
             var b50 = false; // Udmeldelses dato fundet
 
-            var qryMedlemLog = from m in Program.dbData3060.TblMedlemLog
-                               select new
-                               {
-                                   Id = (int)m.Id,
-                                   Nr = (int)m.Nr,
-                                   Logdato = (DateTime)m.Logdato,
-                                   Akt_id = (int)m.Akt_id,
-                                   Akt_dato = (DateTime)m.Akt_dato
-                               };
-            var qryFak = from f in Program.dbData3060.Tblfak
-                         join p in Program.dbData3060.Tbltilpbs on f.Tilpbsid equals p.Id
-                         select new
-                         {
-                             Id = (int)f.Id,
-                             Nr = (int)f.Nr,
-                             Logdato = (DateTime)p.Bilagdato,
-                             Akt_id = (int)20,
-                             Akt_dato = (DateTime)f.Betalingsdato
-                         };
 
-            var qryBetlin = from b in Program.dbData3060.Tblbetlin
-                            join f in Program.dbData3060.Tblfak on b.Faknr equals f.Faknr
-                            where b.Pbstranskode == "0236" || b.Pbstranskode == "0297"
-                            select new
-                            {
-                                Id = (int)b.Id,
-                                Nr = (int)b.Nr,
-                                Logdato = (DateTime)b.Indbetalingsdato,
-                                Akt_id = (int)30,
-                                Akt_dato = (DateTime)f.Tildato
-                            };
+            var qrylog = Program.qryLog()
+                                .Where(u => u.Nr == pNr)
+                                .Where(u => u.Logdato <= pDate)
+                                .OrderByDescending(u => u.Logdato);
 
-            var qryBetlin40 = from b in Program.dbData3060.Tblbetlin
-                            where b.Pbstranskode == "0237"
-                            select new
-                            {
-                                Id = (int)b.Id,
-                                Nr = (int)b.Nr,
-                                Logdato = (DateTime)b.Betalingsdato,
-                                Akt_id = (int)40,
-                                Akt_dato = (DateTime)b.Betalingsdato
-                            };
-
-
-            var qryUnion = qryMedlemLog.Union(qryFak)
-                                       .Union(qryBetlin)
-                                       .Union(qryBetlin40)
-                                       .Where(u => u.Nr == pNr)
-                                       .Where(u => u.Logdato <= pDate)
-                                       .OrderByDescending(u => u.Logdato);
-
-            foreach (var MedlemLog in qryUnion)
+            foreach (var MedlemLog in qrylog)
             {
                 switch (MedlemLog.Akt_id)
                 {

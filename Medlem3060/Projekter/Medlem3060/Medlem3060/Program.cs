@@ -38,7 +38,7 @@ namespace nsPuls3060
                         openFileDialog1.FilterIndex = 1;
                         openFileDialog1.Multiselect = false;
                         openFileDialog1.Title = "Vælg SQL Database";
-                        
+
                         DialogResult res = openFileDialog1.ShowDialog();
                         if (res == DialogResult.OK)
                         {
@@ -205,6 +205,57 @@ namespace nsPuls3060
                     Navn = "Vælg et eksisterende regnskab"
                 };
             }
+        }
+        public static IQueryable<clsLog> qryLog()
+        {
+            var qryMedlemLog = from m in Program.dbData3060.TblMedlemLog
+                               select new clsLog
+                               {
+                                   Id = (int)m.Id,
+                                   Nr = (int)m.Nr,
+                                   Logdato = (DateTime)m.Logdato,
+                                   Akt_id = (int)m.Akt_id,
+                                   Akt_dato = (DateTime)m.Akt_dato
+                               };
+            var qryFak = from f in Program.dbData3060.Tblfak
+                         join p in Program.dbData3060.Tbltilpbs on f.Tilpbsid equals p.Id
+                         select new clsLog
+                         {
+                             Id = (int)f.Id,
+                             Nr = (int)f.Nr,
+                             Logdato = (DateTime)p.Bilagdato,
+                             Akt_id = (int)20,
+                             Akt_dato = (DateTime)f.Betalingsdato
+                         };
+
+            var qryBetlin = from b in Program.dbData3060.Tblbetlin
+                            join f in Program.dbData3060.Tblfak on b.Faknr equals f.Faknr
+                            where b.Pbstranskode == "0236" || b.Pbstranskode == "0297"
+                            select new clsLog
+                            {
+                                Id = (int)b.Id,
+                                Nr = (int)b.Nr,
+                                Logdato = (DateTime)b.Indbetalingsdato,
+                                Akt_id = (int)30,
+                                Akt_dato = (DateTime)f.Tildato
+                            };
+
+            var qryBetlin40 = from b in Program.dbData3060.Tblbetlin
+                              where b.Pbstranskode == "0237"
+                              select new clsLog
+                              {
+                                  Id = (int)b.Id,
+                                  Nr = (int)b.Nr,
+                                  Logdato = (DateTime)b.Betalingsdato,
+                                  Akt_id = (int)40,
+                                  Akt_dato = (DateTime)b.Betalingsdato
+                              };
+
+
+            var qryLogResult =  qryMedlemLog.Union(qryFak)
+                                            .Union(qryBetlin)
+                                            .Union(qryBetlin40);
+            return qryLogResult;
         }
 
         /// <summary>
