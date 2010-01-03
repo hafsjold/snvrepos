@@ -33,5 +33,53 @@ namespace AccessToSQL.Properties {
                 return ((string)(this["dbData3060ConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string accessDB {
+            get {
+                return ((string)(this["accessDB"]));
+            }
+            set {
+                this["accessDB"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SQLDB {
+            get {
+                return ((string)(this["SQLDB"]));
+            }
+            set {
+                this["SQLDB"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string SqlCeCmd {
+            get {
+                return ((string)(this["SqlCeCmd"]));
+            }
+            set {
+                this["SqlCeCmd"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Script {
+            get {
+                return ((string)(this["Script"]));
+            }
+            set {
+                this["Script"] = value;
+            }
+        }
     }
 }

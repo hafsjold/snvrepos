@@ -7,53 +7,72 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics;
 
 namespace AccessToSQL
 {
     public partial class Form1 : Form
     {
-        private string m_path = @"C:\Documents and Settings\mha\Dokumenter\Medlem3060\Databaser\SQLCompact\Scripts\";
-
         public Form1()
         {
             InitializeComponent();
         }
-        private void MedlemToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void Run_MouseClick(object sender, MouseEventArgs e)
         {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.DefaultExt = "sqlce";
-            openFileDialog1.FileName = m_path + "Medlem.sqlce";
-            openFileDialog1.CheckFileExists = false;
-            openFileDialog1.CheckPathExists = true;
-            openFileDialog1.Filter = "Database files (*.sqlce)|*.sqlce|All files (*.*)|*.*";
-            openFileDialog1.FilterIndex = 1;
-            openFileDialog1.Multiselect = false;
-            openFileDialog1.Title = "Vælg File";
-
-            DialogResult res = openFileDialog1.ShowDialog();
-            if (res == DialogResult.OK)
+            FileStream ts;
+            if (File.Exists(this.Script.Text))
             {
-                FileStream ts;
-                if (File.Exists(openFileDialog1.FileName))
-                {
-                    ts = new FileStream(openFileDialog1.FileName, FileMode.Truncate, FileAccess.Write, FileShare.None);
-                }
-                else
-                {
-                    ts = new FileStream(openFileDialog1.FileName, FileMode.CreateNew, FileAccess.Write, FileShare.None);
-                }
-                using (StreamWriter sr = new StreamWriter(ts, Encoding.GetEncoding("Windows-1252")))
-                {
-                    sr.WriteLine("DELETE FROM [tblMedlemLog];");
-                    sr.WriteLine("GO");
-                    sr.WriteLine("DELETE FROM [tblMedlem];");
-                    sr.WriteLine("GO");
-                    tblMedlem(sr);
-                    tblMedlemLog(sr);
-                }
+                ts = new FileStream(this.Script.Text, FileMode.Truncate, FileAccess.Write, FileShare.None);
             }
-        }
+            else
+            {
+                ts = new FileStream(this.Script.Text, FileMode.CreateNew, FileAccess.Write, FileShare.None);
+            }
+            using (StreamWriter sr = new StreamWriter(ts, Encoding.GetEncoding("Windows-1252")))
+            {
+                sr.WriteLine("DELETE FROM [tblMedlemLog];");
+                sr.WriteLine("GO");
+                sr.WriteLine("DELETE FROM [tblMedlem];");
+                sr.WriteLine("GO");
 
+                sr.WriteLine("DELETE FROM [tblbetlin];");
+                sr.WriteLine("GO");
+                sr.WriteLine("DELETE FROM [tblbet];");
+                sr.WriteLine("GO");
+                sr.WriteLine("DELETE FROM [tblfrapbs];");
+                sr.WriteLine("GO");
+                sr.WriteLine("DELETE FROM [tblpbsfile];");
+                sr.WriteLine("GO");
+                sr.WriteLine("DELETE FROM [tblpbsfiles];");
+                sr.WriteLine("GO");
+                sr.WriteLine("DELETE FROM [tblfak];");
+                sr.WriteLine("GO");
+                sr.WriteLine("DELETE FROM [tbltilpbs];");
+                sr.WriteLine("GO");
+                sr.WriteLine("DELETE FROM [tblpbsforsendelse];");
+                sr.WriteLine("GO");
+
+                tblMedlem(sr);
+                tblMedlemLog(sr);
+
+                tblpbsforsendelse(sr);
+                tbltilpbs(sr);
+                tblfak(sr);
+                tblpbsfiles(sr);
+                tblpbsfile(sr);
+                tblfrapbs(sr);
+                tblbet(sr);
+                tblbetlin(sr);
+            }
+            ts.Close();
+            ts = null;
+
+            string SqlCeCmdArg = string.Format(@"-d ""Data Source={0}"" -i ""{1}"" -o ""{2}""", this.SQLDB.Text, this.Script.Text, this.Script.Text + ".log");
+            int ret = execSqlCeCmd(SqlCeCmdArg);
+            this.Returkode.Text = string.Format("Afsluttet med rekode = {0}",ret);
+            this.Returkode.Visible = true;
+
+        }
 
         private void tblMedlem(StreamWriter sr)
         {
@@ -97,61 +116,6 @@ namespace AccessToSQL
             }
             sr.WriteLine("SET IDENTITY_INSERT [tblMedlemLog] OFF");
             sr.WriteLine("GO");
-        }
-
-        private void PBSToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.DefaultExt = "sqlce";
-            openFileDialog1.FileName = m_path + "PBS.sqlce";
-            openFileDialog1.CheckFileExists = false;
-            openFileDialog1.CheckPathExists = true;
-            openFileDialog1.Filter = "Database files (*.sqlce)|*.sqlce|All files (*.*)|*.*";
-            openFileDialog1.FilterIndex = 1;
-            openFileDialog1.Multiselect = false;
-            openFileDialog1.Title = "Vælg File";
-
-            DialogResult res = openFileDialog1.ShowDialog();
-            if (res == DialogResult.OK)
-            {
-                FileStream ts;
-                if (File.Exists(openFileDialog1.FileName))
-                {
-                    ts = new FileStream(openFileDialog1.FileName, FileMode.Truncate, FileAccess.Write, FileShare.None);
-                }
-                else
-                {
-                    ts = new FileStream(openFileDialog1.FileName, FileMode.CreateNew, FileAccess.Write, FileShare.None);
-                }
-                using (StreamWriter sr = new StreamWriter(ts, Encoding.GetEncoding("Windows-1252")))
-                {
-                    sr.WriteLine("DELETE FROM [tblbetlin];");
-                    sr.WriteLine("GO");
-                    sr.WriteLine("DELETE FROM [tblbet];");
-                    sr.WriteLine("GO");
-                    sr.WriteLine("DELETE FROM [tblfrapbs];");
-                    sr.WriteLine("GO");
-                    sr.WriteLine("DELETE FROM [tblpbsfile];");
-                    sr.WriteLine("GO");
-                    sr.WriteLine("DELETE FROM [tblpbsfiles];");
-                    sr.WriteLine("GO");
-                    sr.WriteLine("DELETE FROM [tblfak];");
-                    sr.WriteLine("GO");
-                    sr.WriteLine("DELETE FROM [tbltilpbs];");
-                    sr.WriteLine("GO");
-                    sr.WriteLine("DELETE FROM [tblpbsforsendelse];");
-                    sr.WriteLine("GO");
-
-                    tblpbsforsendelse(sr);
-                    tbltilpbs(sr);
-                    tblfak(sr);
-                    tblpbsfiles(sr);
-                    tblpbsfile(sr);
-                    tblfrapbs(sr);
-                    tblbet(sr);
-                    tblbetlin(sr);
-                }
-            }
         }
 
         private void tblpbsforsendelse(StreamWriter sr)
@@ -419,17 +383,42 @@ namespace AccessToSQL
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            toolStripStatusLabel1.Text = tableAdapterManager1.Connection.ConnectionString;
         }
 
-        private void accessToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string[] s1 = tableAdapterManager1.Connection.ConnectionString.Split(';');
-            string[] s2 = s1[1].Split('=');
 
+        private int execSqlCeCmd(string SqlCeCmdArg)
+        {
+            System.Diagnostics.Process objProcess;
+            int codeExit = 999;
+            try
+            {
+                objProcess = new System.Diagnostics.Process();
+                objProcess.StartInfo.FileName = this.SqlCeCmd.Text;
+                objProcess.StartInfo.Arguments = SqlCeCmdArg;
+                objProcess.StartInfo.UseShellExecute = true;
+                objProcess.StartInfo.WindowStyle = ProcessWindowStyle.Normal;
+                objProcess.Start();
+
+                //Wait until the process passes back an exit code 
+                objProcess.WaitForExit();
+
+                //Read ExitCode
+                codeExit = objProcess.ExitCode;
+                //Free resources associated with this process 
+                objProcess.Close();
+            }
+            catch
+            {
+                codeExit = 999;
+            }
+            return codeExit;
+        }
+
+        private void accessDB_DoubleClick(object sender, EventArgs e)
+        {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.DefaultExt = "mdb";
-            openFileDialog1.FileName = s2[1].Trim('"');
+            openFileDialog1.FileName = accessDB.Text;
             openFileDialog1.CheckFileExists = true;
             openFileDialog1.CheckPathExists = true;
             openFileDialog1.Filter = "Database files (*.mdb)|*.mdb|All files (*.*)|*.*";
@@ -440,11 +429,70 @@ namespace AccessToSQL
             DialogResult res = openFileDialog1.ShowDialog();
             if (res == DialogResult.OK)
             {
+                accessDB.Text = openFileDialog1.FileName;
                 tableAdapterManager1.Connection.ConnectionString = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=""{0}""", openFileDialog1.FileName);
-                toolStripStatusLabel1.Text = tableAdapterManager1.Connection.ConnectionString;
+                Properties.Settings.Default.Save();
             }
-
         }
 
+        private void SQLDB_DoubleClick(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.DefaultExt = "sdf";
+            openFileDialog1.FileName = SQLDB.Text;
+            openFileDialog1.CheckFileExists = true;
+            openFileDialog1.CheckPathExists = true;
+            openFileDialog1.Filter = "Database files (*.sdf)|*.sdf|All files (*.*)|*.*";
+            openFileDialog1.FilterIndex = 1;
+            openFileDialog1.Multiselect = false;
+            openFileDialog1.Title = "Vælg SQL Database";
+
+            DialogResult res = openFileDialog1.ShowDialog();
+            if (res == DialogResult.OK)
+            {
+                SQLDB.Text = openFileDialog1.FileName;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        private void SqlCeCmd_DoubleClick(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.DefaultExt = "exe";
+            openFileDialog1.FileName = SqlCeCmd.Text;
+            openFileDialog1.CheckFileExists = true;
+            openFileDialog1.CheckPathExists = true;
+            openFileDialog1.Filter = "Database files (*.exe)|*.exe|All files (*.*)|*.*";
+            openFileDialog1.FilterIndex = 1;
+            openFileDialog1.Multiselect = false;
+            openFileDialog1.Title = "Vælg SqlCeCmd path";
+
+            DialogResult res = openFileDialog1.ShowDialog();
+            if (res == DialogResult.OK)
+            {
+                SqlCeCmd.Text = openFileDialog1.FileName;
+                Properties.Settings.Default.Save();
+            }
+        }
+
+        private void Script_DoubleClick(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.DefaultExt = "sqlce";
+            openFileDialog1.FileName = Script.Text;
+            openFileDialog1.CheckFileExists = false;
+            openFileDialog1.CheckPathExists = true;
+            openFileDialog1.Filter = "Script files (*.sqlce)|*.sqlce|All files (*.*)|*.*";
+            openFileDialog1.FilterIndex = 1;
+            openFileDialog1.Multiselect = false;
+            openFileDialog1.Title = "Vælg Script path";
+
+            DialogResult res = openFileDialog1.ShowDialog();
+            if (res == DialogResult.OK)
+            {
+                Script.Text = openFileDialog1.FileName;
+                Properties.Settings.Default.Save();
+            }
+        }
     }
 }
