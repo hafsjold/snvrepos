@@ -67,6 +67,23 @@ namespace AccessToSQL
                 sr.WriteLine("DELETE FROM [tblnrserie];");
                 sr.WriteLine("GO");
 
+                tableAdapterManager1.Connection.ConnectionString = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=""{0}""", this.accessDB.Text);
+
+                this.taTblMedlem.Connection.ConnectionString = tableAdapterManager1.Connection.ConnectionString;
+                this.taTblAktivitet.Connection.ConnectionString = tableAdapterManager1.Connection.ConnectionString;
+                this.taTblMedlemLog.Connection.ConnectionString = tableAdapterManager1.Connection.ConnectionString;
+                
+                this.taTblpbsforsendelse.Connection.ConnectionString = tableAdapterManager1.Connection.ConnectionString;
+                this.taTbltilpbs.Connection.ConnectionString = tableAdapterManager1.Connection.ConnectionString;
+                this.taTblfak.Connection.ConnectionString = tableAdapterManager1.Connection.ConnectionString;
+                this.taTblpbsfiles.Connection.ConnectionString = tableAdapterManager1.Connection.ConnectionString;
+                this.taTblpbsfile.Connection.ConnectionString = tableAdapterManager1.Connection.ConnectionString;
+                this.taTblfrapbs.Connection.ConnectionString = tableAdapterManager1.Connection.ConnectionString;
+                this.taTblbet.Connection.ConnectionString = tableAdapterManager1.Connection.ConnectionString;
+                this.taTblbetlin.Connection.ConnectionString = tableAdapterManager1.Connection.ConnectionString;
+                this.taTblkreditor.Connection.ConnectionString = tableAdapterManager1.Connection.ConnectionString;
+                this.taTblnrserie.Connection.ConnectionString = tableAdapterManager1.Connection.ConnectionString;
+                
                 tblMedlem(sr);
                 tblAktivitet(sr);
                 tblMedlemLog(sr);
@@ -94,7 +111,7 @@ namespace AccessToSQL
 
         private void tblAktivitet(StreamWriter sr)
         {
-            this.tblAktivitetTableAdapter1.Fill(this.dsAccess.tblAktivitet);
+            this.taTblAktivitet.Fill(this.dsAccess.tblAktivitet);
             string SQL = "INSERT INTO [tblAktivitet] ([id],[akt_tekst]) VALUES ({0},{1});";
 
             string[] p = new string[2];
@@ -112,7 +129,7 @@ namespace AccessToSQL
 
         private void tblnrserie(StreamWriter sr)
         {
-            this.tblnrserieTableAdapter1.Fill(this.dsAccess.tblnrserie);
+            this.taTblnrserie.Fill(this.dsAccess.tblnrserie);
             string SQL = "INSERT INTO [tblnrserie] ([nrserienavn],[sidstbrugtenr]) VALUES ({0},{1});";
 
             string[] p = new string[2];
@@ -130,7 +147,7 @@ namespace AccessToSQL
 
         private void tblkreditor(StreamWriter sr)
         {
-            this.tblkreditorTableAdapter1.Fill(this.dsAccess.tblkreditor);
+            this.taTblkreditor.Fill(this.dsAccess.tblkreditor);
             string SQL = "INSERT INTO [tblkreditor] ([id],[datalevnr],[datalevnavn],[pbsnr],[delsystem],[regnr],[kontonr],[debgrpnr],[sektionnr],[transkodebetaling]) VALUES ({0},{1},{2},{3},{4},{5},{6},{7},{8},{9});";
 
             string[] p = new string[10];
@@ -556,7 +573,6 @@ namespace AccessToSQL
             if (res == DialogResult.OK)
             {
                 accessDB.Text = openFileDialog1.FileName;
-                tableAdapterManager1.Connection.ConnectionString = string.Format(@"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=""{0}""", openFileDialog1.FileName);
                 Properties.Settings.Default.Save();
             }
         }
@@ -620,5 +636,6 @@ namespace AccessToSQL
                 Properties.Settings.Default.Save();
             }
         }
+
     }
 }
