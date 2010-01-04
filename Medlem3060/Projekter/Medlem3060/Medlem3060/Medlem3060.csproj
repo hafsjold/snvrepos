@@ -78,6 +78,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frm\frmKontingentForslag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmKontingentForslag.Designer.cs">
+      <DependentUpon>frmKontingentForslag.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm\frmRegnskab.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,6 +157,9 @@
     </None>
     <EmbeddedResource Include="frm\BetterDialog.resx">
       <DependentUpon>BetterDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmKontingentForslag.resx">
+      <DependentUpon>frmKontingentForslag.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm\frmKreditor.resx">
       <DependentUpon>frmKreditor.cs</DependentUpon>

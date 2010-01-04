@@ -39,7 +39,7 @@ namespace nsPuls3060
             multifld = p_multifld;
         }
 
-        public static string buildKey(int p_sumNumber, int p_sumSubNumber)
+        public static string buildKey(int? p_sumNumber, int? p_sumSubNumber)
         {
             string key = null;
             if (p_sumNumber > 0)
@@ -109,7 +109,7 @@ namespace nsPuls3060
             }
         }
 
-        public string NewMedlemCsvString(int pNr)
+        public string NewMedlemCsvString(int? pNr)
         {
             string s = "";
             var fields = from d in this
@@ -149,11 +149,11 @@ namespace nsPuls3060
                 return false;
             }
         }
-        public Boolean multifld(int p_key)
+        public Boolean multifld(int? p_key)
         {
             return multifld(p_key.ToString());
         }
-        public Boolean multifld(int p_key, int p_subkey)
+        public Boolean multifld(int? p_key, int? p_subkey)
         {
             string key;
             if (((key = clsField.buildKey(p_key, p_subkey)) != null))

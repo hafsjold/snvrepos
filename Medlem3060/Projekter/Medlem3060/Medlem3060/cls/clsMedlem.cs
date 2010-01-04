@@ -8,7 +8,7 @@ namespace nsPuls3060
 {
     public class clsMedlem
     {
-        private Int32 m_Nr;
+        private int? m_Nr;
         private String m_Navn;
         private String m_Kaldenavn;
         private String m_Adresse;
@@ -19,7 +19,7 @@ namespace nsPuls3060
         private String m_CsvString;
         private clsCsv m_Csv;
 
-        public Int32 Nr
+        public int? Nr
         {
             get
             {
@@ -165,11 +165,11 @@ namespace nsPuls3060
 
         private void On_MedlemCsvStringUpdate()
         {
-            Int32 w_nr = m_Csv.nr;
-            Int32 w_subnr = 0;
+            int? w_nr = m_Csv.nr;
+            int? w_subnr = 0;
             if (m_Csv.niveau > 0)
             {
-                w_nr = m_Csv.stack[m_Csv.niveau - 1].nr;
+                w_nr = m_Csv.stack[(int)m_Csv.niveau - 1].nr;
                 w_subnr = m_Csv.nr;
             }
             string fieldKey = clsField.buildKey(w_nr, w_subnr);
@@ -237,8 +237,8 @@ namespace nsPuls3060
 
         private void On_MedlemFieldUpdate()
         {
-            Int32 w_nr = m_Csv.nr;
-            Int32 w_subnr = 0;
+            int w_nr = m_Csv.nr;
+            int w_subnr = 0;
             if (m_Csv.niveau > 0)
             {
                 w_nr = m_Csv.stack[m_Csv.niveau - 1].nr;
@@ -565,7 +565,7 @@ namespace nsPuls3060
     public class clsMedlemAll
     {
         [Fieldattr(Heading="Nr")]
-        public int Nr { get; set; }
+        public int? Nr { get; set; }
         [Fieldattr(Heading = "Navn")]
         public string Navn { get; set; }
         [Fieldattr(Heading = "Kaldenavn")]
@@ -581,10 +581,10 @@ namespace nsPuls3060
         [Fieldattr(Heading = "Telefon")]
         public string Telefon { get; set; }
         [Fieldattr(Heading = "Kom")]
-        public int Knr { get; set; }
+        public int? Knr { get; set; }
         [Fieldattr(Heading = "Køn")]
         public string Kon { get; set; }
         [Fieldattr(Heading = "Født")]
-        public DateTime FodtDato { get; set; }
+        public DateTime? FodtDato { get; set; }
     }
 }

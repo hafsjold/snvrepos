@@ -38,6 +38,8 @@
             this.excelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kreditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.regnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kontingentForslagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -76,7 +78,8 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,
+            this.pBSToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1024, 24);
@@ -130,6 +133,21 @@
             this.regnskabToolStripMenuItem.Text = "Regnskab";
             this.regnskabToolStripMenuItem.Click += new System.EventHandler(this.regnskabToolStripMenuItem_Click);
             // 
+            // pBSToolStripMenuItem
+            // 
+            this.pBSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.kontingentForslagToolStripMenuItem});
+            this.pBSToolStripMenuItem.Name = "pBSToolStripMenuItem";
+            this.pBSToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.pBSToolStripMenuItem.Text = "PBS";
+            // 
+            // kontingentForslagToolStripMenuItem
+            // 
+            this.kontingentForslagToolStripMenuItem.Name = "kontingentForslagToolStripMenuItem";
+            this.kontingentForslagToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.kontingentForslagToolStripMenuItem.Text = "Kontingent Forslag";
+            this.kontingentForslagToolStripMenuItem.Click += new System.EventHandler(this.kontingentForslagToolStripMenuItem_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -169,6 +187,8 @@
         private System.Windows.Forms.ToolStripMenuItem kreditorToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripMenuItem regnskabToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pBSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem kontingentForslagToolStripMenuItem;
    }
 }
 

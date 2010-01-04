@@ -14,11 +14,11 @@ namespace nsPuls3060
 {
     public class clsLog
         {
-            public int  Id;
-            public int Nr;
-            public DateTime Logdato;
-            public int Akt_id;
-            public DateTime Akt_dato;
+            public int?  Id;
+            public int? Nr;
+            public DateTime? Logdato;
+            public int? Akt_id;
+            public DateTime? Akt_dato;
        } 
 
     class clsPbs

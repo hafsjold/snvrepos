@@ -100,6 +100,16 @@ namespace nsPuls3060
             }
         }
 
+        private void kontingentForslagToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("Kontingent Forslag"))
+            {
+                FrmKontingentForslag m_frmKontingentForslag = new FrmKontingentForslag();
+                m_frmKontingentForslag.MdiParent = this;
+                m_frmKontingentForslag.Show();
+            }
+        }        
+        
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
             clsPbs objPbs = new clsPbs();
@@ -173,7 +183,92 @@ namespace nsPuls3060
                 var x = l.Logdato;
             }
             */
-            bool x = objPbs.erMedlem(3);
+            //bool x = objPbs.erMedlem(3);
+
+            DateTime qryStart = DateTime.Now;
+            var MedlemmerAll = from h in Program.karMedlemmer
+                               join d1 in Program.dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
+                               from x in details1.DefaultIfEmpty(new TblMedlem { Nr = -1, Knr = -1, Kon = "X", FodtDato = new DateTime(1900, 1, 1) })
+                               select new clsMedlemAll
+                               {
+                                   Nr = h.Nr,
+                                   Navn = h.Navn,
+                                   Kaldenavn = h.Kaldenavn,
+                                   Adresse = h.Adresse,
+                                   Postnr = h.Postnr,
+                                   Bynavn = h.Bynavn,
+                                   Telefon = h.Telefon,
+                                   Email = h.Email,
+                                   Knr = (int)(x.Knr == null ? -1 : x.Knr),
+                                   Kon = x.Kon == null ? "X" : x.Kon,
+                                   FodtDato = (DateTime)(x.FodtDato == null ? new DateTime(1900, 01, 01) : x.FodtDato)
+                               };
+
+            var qry = from t in MedlemmerAll
+                      select new
+                      {
+                          MNr = t.Nr,
+                          t.Knr,
+                          t.Kon,
+                          t.FodtDato,
+                          t.Navn,
+                          log10 = (from w in Program.qryLog()
+                                 where w.Nr == t.Nr && w.Akt_id == 10
+                                orderby w.Logdato descending
+                                select new
+                                {
+                                    w.Id,
+                                    LNr = w.Nr,
+                                    w.Logdato,
+                                    w.Akt_id,
+                                    w.Akt_dato
+                                }).FirstOrDefault(),
+                          log20 = (from w in Program.qryLog()
+                                 where w.Nr == t.Nr && w.Akt_id == 20
+                                 orderby w.Logdato descending
+                                 select new
+                                 {
+                                     w.Id,
+                                     LNr = w.Nr,
+                                     w.Logdato,
+                                     w.Akt_id,
+                                     w.Akt_dato
+                                 }).FirstOrDefault(),
+                          log30 = (from w in Program.qryLog()
+                                 where w.Nr == t.Nr && w.Akt_id == 30
+                                orderby w.Logdato descending
+                                select new
+                                {
+                                    w.Id,
+                                    LNr = w.Nr,
+                                    w.Logdato,
+                                    w.Akt_id,
+                                    w.Akt_dato
+                                }).FirstOrDefault(),
+                          log50 = (from w in Program.qryLog()
+                                 where w.Nr == t.Nr && w.Akt_id == 50
+                                orderby w.Logdato descending
+                                select new
+                                {
+                                    w.Id,
+                                    LNr = w.Nr,
+                                    w.Logdato,
+                                    w.Akt_id,
+                                    w.Akt_dato
+                                }).FirstOrDefault()
+
+                      };
+            foreach (var q in qry)
+            {
+                var x = q;
+                //foreach (var y in x) 
+                //{
+                //    var z = y.Akt_dato;
+                //}
+            }
+
+            DateTime qrySlut = DateTime.Now;
+            TimeSpan Tid = qrySlut - qryStart;
         }
 
 
@@ -314,6 +409,8 @@ namespace nsPuls3060
                 frmRegnskab.Show();
             }
         }
+
+
 
 
     }

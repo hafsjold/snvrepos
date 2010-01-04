@@ -15,17 +15,17 @@ namespace nsPuls3060
         private String m_value;
         private int m_n;
         private String m_ln;
-        private Int32 m_lnLen;
-        private Int32 m_niveau;
-        private Int32 m_nr;
-        private Int32 m_fld_start;
-        private Int32 m_fld_end;
+        private int? m_lnLen;
+        private int m_niveau;
+        private int m_nr;
+        private int m_fld_start;
+        private int m_fld_end;
         private clsCsv[] m_stack;
         private String m_ln_updated;
         private String m_value_new;
         private CsvToDoType m_todo;
-        private Int32 m_comma_start;
-        private Int32 m_comma_end;
+        private int m_comma_start;
+        private int m_comma_end;
 
         public String value
         {
@@ -73,7 +73,7 @@ namespace nsPuls3060
             }
         }
 
-        public Int32 lnLen
+        public int? lnLen
         {
             get
             {
@@ -85,7 +85,7 @@ namespace nsPuls3060
             }
         }
 
-        public Int32 niveau
+        public int niveau
         {
             get
             {
@@ -97,7 +97,7 @@ namespace nsPuls3060
             }
         }
 
-        public Int32 nr
+        public int nr
         {
             get
             {
@@ -109,7 +109,7 @@ namespace nsPuls3060
             }
         }
 
-        public Int32 fld_start
+        public int fld_start
         {
             get
             {
@@ -121,7 +121,7 @@ namespace nsPuls3060
             }
         }
 
-        public Int32 fld_end
+        public int fld_end
         {
             get
             {
@@ -197,7 +197,7 @@ namespace nsPuls3060
             }
         }
 
-        public Int32 comma_start
+        public int comma_start
         {
             get
             {
@@ -209,7 +209,7 @@ namespace nsPuls3060
             }
         }
 
-        public Int32 comma_end
+        public int comma_end
         {
             get
             {

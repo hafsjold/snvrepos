@@ -39,7 +39,7 @@ namespace nsPuls3060
             this.Add(pMedlem);
         }
 
-        public void Update(Int32 p_Nr)
+        public void Update(int p_Nr)
         {
             clsMedlem medlem;
             string wCsv;
