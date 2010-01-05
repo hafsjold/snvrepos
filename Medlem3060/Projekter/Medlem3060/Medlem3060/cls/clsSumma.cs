@@ -105,8 +105,8 @@ namespace nsPuls3060
             var qry = from k in Program.karFakturaer_s
                       join f in Program.dbData3060.Tblfak on k.fakid equals f.SFakID
                       where f.SFaknr == null
-                      select new { f.Id, SFaknr = k.faknr};
-            
+                      select new { f.Id, SFaknr = k.faknr };
+
             if (qry.Count() > 0)
             {
                 foreach (var k in qry)
@@ -126,5 +126,99 @@ namespace nsPuls3060
                 Program.dbData3060.SubmitChanges();
             }
         }
+        public void BogforBetalinger()
+        {
+            int saveBetid = 0;
+            var bogf = from s in Program.karFakturaer_s
+                       join f in Program.dbData3060.Tblfak on s.fakid equals f.SFakID
+                       where f.SFaknr != null
+                       join m in Program.karMedlemmer on f.Nr equals m.Nr
+                       join bl in Program.dbData3060.Tblbetlin on f.Faknr equals bl.Faknr
+                       join b in Program.dbData3060.Tblbet on bl.Betid equals b.Id
+                       join p in Program.dbData3060.Tblfrapbs on b.Frapbsid equals p.Id
+                       orderby p.Id, b.Id, bl.Id
+                       select new
+                       {
+                           Frapbsid = p.Id,
+                           p.Leverancespecifikation,
+                           Betid = b.Id,
+                           GruppeIndbetalingsbelob = b.Indbetalingsbelob,
+                           Betlinid = bl.Id,
+                           Fakid = f.Id,
+                           bl.Betalingsdato,
+                           bl.Indbetalingsdato,
+                           m.Navn,
+                           bl.Indbetalingsbelob,
+                           f.SFaknr
+                       };
+
+            if (bogf.Count() > 0)
+            {
+                int BS1_SidsteNr = 0;
+                try
+                {
+                    recStatus rec_Status = (from s in Program.karStatus where s.key == "BS1_SidsteNr" select s).First();
+                    BS1_SidsteNr = int.Parse(rec_Status.value);
+                }
+                catch (System.InvalidOperationException)
+                {
+                }
+
+                Program.karKladde = null;
+
+
+                foreach (var b in bogf)
+                {
+                    if (saveBetid != b.Betid) // ny gruppe
+                    {
+                        saveBetid = b.Betid;
+                        recKladde gkl = new recKladde
+                        {
+                            Dato = (b.Betalingsdato > b.Indbetalingsdato) ? (DateTime)b.Betalingsdato : (DateTime)b.Indbetalingsdato,
+                            Bilag = ++BS1_SidsteNr,
+                            Tekst = "PBS Leverance " + b.Leverancespecifikation,
+                            Afstemningskonto = "Bank",
+                            Belob = b.GruppeIndbetalingsbelob,
+                            Kontonr = null,
+                            Faknr = null
+                        };
+                        Program.karKladde.Add(gkl);
+                    }
+
+                    recKladde kl = new recKladde
+                    {
+                        Dato = (b.Betalingsdato > b.Indbetalingsdato) ? (DateTime)b.Betalingsdato : (DateTime)b.Indbetalingsdato,
+                        Bilag = BS1_SidsteNr,
+                        Tekst = "F" + b.SFaknr + " " + b.Navn,
+                        Afstemningskonto = null,
+                        Belob = b.Indbetalingsbelob,
+                        Kontonr = 56100,
+                        Faknr = b.SFaknr
+                    };
+                    Program.karKladde.Add(kl);
+                }
+                /*
+                try
+                {
+                    recStatus rec_Status = (from s in Program.karStatus where s.key == "BS1_SidsteNr" select s).First();
+                    rec_Status.value = BS1_SidsteNr.ToString();
+                }
+                catch (System.InvalidOperationException)
+                {
+                    recStatus rec_Status = new recStatus
+                    {
+                        key = "BS1_SidsteNr",
+                        value = BS1_SidsteNr.ToString()
+                    };
+                    Program.karStatus.Add(rec_Status);
+                }
+                */
+                Program.karStatus.save();
+                Program.karKladde.save();
+                Program.dbData3060.SubmitChanges();
+            }
+
+        }
+
     }
 }

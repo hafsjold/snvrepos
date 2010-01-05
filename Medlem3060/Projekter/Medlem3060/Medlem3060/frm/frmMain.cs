@@ -117,7 +117,8 @@ namespace nsPuls3060
             clsPbs602 objPbs602 = new clsPbs602();
             clsSumma objSumma = new clsSumma();
             //objSumma.Order2Summa();
-            objSumma.OrderFaknrUpdate();
+            //objSumma.OrderFaknrUpdate();
+            objSumma.BogforBetalinger();
             //objPbs601.faktura_601_action(1);
             //objPbs602.TestRead042();
             //objPbs602.ReadFraPbsFile();
@@ -274,7 +275,7 @@ namespace nsPuls3060
             DateTime qrySlut = DateTime.Now;
             TimeSpan Tid = qrySlut - qryStart;
         */
-        
+
         }
 
 

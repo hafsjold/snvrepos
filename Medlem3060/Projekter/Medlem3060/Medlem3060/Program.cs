@@ -20,6 +20,7 @@ namespace nsPuls3060
         private static KarKortnr m_KarKortnr;
         private static KarRegnskab m_KarRegnskab;
         private static KarStatus m_KarStatus;
+        private static KarKladde m_KarKladde;
 
         public static DbData3060 dbData3060
         {
@@ -185,6 +186,18 @@ namespace nsPuls3060
             set
             {
                 m_KarStatus = value;
+            }
+        }
+        public static KarKladde karKladde
+        {
+            get
+            {
+                if (m_KarKladde == null) m_KarKladde = new KarKladde();
+                return m_KarKladde;
+            }
+            set
+            {
+                m_KarKladde = value;
             }
         }
 

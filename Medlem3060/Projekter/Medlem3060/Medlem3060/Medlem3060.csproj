@@ -99,6 +99,7 @@
     </Compile>
     <Compile Include="cls\clsCsv.cs" />
     <Compile Include="cls\clsMedlem.cs" />
+    <Compile Include="kar\karKladde.cs" />
     <Compile Include="mem\memPbsnetdir.cs" />
     <Compile Include="mem\memAktivRegnskab.cs" />
     <Compile Include="frm\frmKreditor.cs">
