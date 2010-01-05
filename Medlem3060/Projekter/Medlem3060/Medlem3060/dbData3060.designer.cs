@@ -365,6 +365,8 @@ namespace nsPuls3060
 		
 		private System.Nullable<decimal> _Indbetalingsbelob;
 		
+		private System.Nullable<bool> _Summabogfort;
+		
 		private EntitySet<Tblbetlin> _Tblbetlin;
 		
 		private EntityRef<Tblfrapbs> _Tblfrapbs;
@@ -385,6 +387,8 @@ namespace nsPuls3060
     partial void OnBogforingsdatoChanged();
     partial void OnIndbetalingsbelobChanging(System.Nullable<decimal> value);
     partial void OnIndbetalingsbelobChanged();
+    partial void OnSummabogfortChanging(System.Nullable<bool> value);
+    partial void OnSummabogfortChanged();
     #endregion
 		
 		public Tblbet()
@@ -510,6 +514,26 @@ namespace nsPuls3060
 					this._Indbetalingsbelob = value;
 					this.SendPropertyChanged("Indbetalingsbelob");
 					this.OnIndbetalingsbelobChanged();
+				}
+			}
+		}
+		
+		[Column(Name="summabogfort", Storage="_Summabogfort", DbType="Bit")]
+		public System.Nullable<bool> Summabogfort
+		{
+			get
+			{
+				return this._Summabogfort;
+			}
+			set
+			{
+				if ((this._Summabogfort != value))
+				{
+					this.OnSummabogfortChanging(value);
+					this.SendPropertyChanging();
+					this._Summabogfort = value;
+					this.SendPropertyChanged("Summabogfort");
+					this.OnSummabogfortChanged();
 				}
 			}
 		}

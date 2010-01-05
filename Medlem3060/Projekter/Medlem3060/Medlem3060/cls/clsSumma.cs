@@ -135,6 +135,7 @@ namespace nsPuls3060
                        join m in Program.karMedlemmer on f.Nr equals m.Nr
                        join bl in Program.dbData3060.Tblbetlin on f.Faknr equals bl.Faknr
                        join b in Program.dbData3060.Tblbet on bl.Betid equals b.Id
+                       where b.Summabogfort == false
                        join p in Program.dbData3060.Tblfrapbs on b.Frapbsid equals p.Id
                        orderby p.Id, b.Id, bl.Id
                        select new
@@ -183,6 +184,10 @@ namespace nsPuls3060
                             Faknr = null
                         };
                         Program.karKladde.Add(gkl);
+
+                        var rec_bet= (from ub in Program.dbData3060.Tblbet where ub.Id ==  b.Betid select ub).First();
+                        rec_bet.Summabogfort = true;
+
                     }
 
                     recKladde kl = new recKladde
