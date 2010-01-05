@@ -50,9 +50,10 @@ namespace nsPuls3060
                 };
                 Program.memPbsnetdir.Add(rec);
             }
-            var leftqry_pbsnetdir = from h in Program.memPbsnetdir
-                                    join d1 in Program.dbData3060.Tblpbsfiles on new { h.Path, h.Filename } equals new { d1.Path, d1.Filename } into details
-                from d1 in details.DefaultIfEmpty()
+            var leftqry_pbsnetdir =
+                from h in Program.memPbsnetdir
+                join d1 in Program.dbData3060.Tblpbsfiles on new { h.Path, h.Filename } equals new { d1.Path, d1.Filename } into details
+                from d1 in details.DefaultIfEmpty(new Tblpbsfiles { Id = -1, Type = (int?)null, Path = null, Filename = null, Size = (int?)null, Atime = (DateTime?)null, Mtime = (DateTime?)null, Perm = null, Uid = (int?)null, Gid = (int?)null })
                 where d1.Path == null && d1.Filename == null
                 select h;
             
@@ -96,6 +97,7 @@ namespace nsPuls3060
                     Program.dbData3060.SubmitChanges();
                 }
             }
+            Program.dbData3060.SubmitChanges();
             return true;
         }
 
@@ -339,7 +341,7 @@ namespace nsPuls3060
                 }
 
             }  // slut rstpbsfiles
-
+            Program.dbData3060.SubmitChanges();
             return wfilescount;
         }
 

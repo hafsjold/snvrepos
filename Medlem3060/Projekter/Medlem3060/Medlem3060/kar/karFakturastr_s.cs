@@ -9,6 +9,7 @@ namespace nsPuls3060
     public class recFakturastr_s
     {
         public recFakturastr_s() { }
+        
         public string Fakid { get; set; }
         public string Navn { get; set; }
         public string Adresse { get; set; }
@@ -26,24 +27,6 @@ namespace nsPuls3060
         {
             var rec_regnskab = Program.qryAktivRegnskab();
             m_path = rec_regnskab.Placering + "fakturastr_s.dat";
-            open();
-        }
-
-        private void open()
-        {
-            /*
-            FileStream ts = new FileStream(m_path, FileMode.Open, FileAccess.Read, FileShare.None);
-            string ln = null;
-            recFakturastr_s rec;
-            using (StreamReader sr = new StreamReader(ts, Encoding.Default))
-            {
-                while ((ln = sr.ReadLine()) != null)
-                {
-                    //rec = new recFakturastr_s { Fakid = ln };
-                    //this.Add(rec);
-                }
-            }
-            */
         }
 
         public void save()

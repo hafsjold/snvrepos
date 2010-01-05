@@ -162,7 +162,7 @@ namespace nsPuls3060
 
         private void open()
         {
-            FileStream bs = new FileStream(m_path + "_test", FileMode.Open, FileAccess.Read, FileShare.None);
+            FileStream bs = new FileStream(m_path, FileMode.Open, FileAccess.Read, FileShare.None);
             ordtype ord;
             recFakturaer_s rec;
             int n = 0;

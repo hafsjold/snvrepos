@@ -8,13 +8,14 @@ namespace nsPuls3060
 {
     public class recFakturavarer_s
     {
-public recFakturavarer_s() { }
+        public recFakturavarer_s() { }
+        
         public string Fakid { get; set; }
         public int Varenr { get; set; }
         public string VareTekst { get; set; }
         public int Bogfkonto { get; set; }
         public int Antal { get; set; }
-        public double Indbetalingsbelob { get; set; }
+        public double Fakturabelob { get; set; }
     }
 
     public class KarFakturavarer_s : List<recFakturavarer_s>
@@ -25,24 +26,6 @@ public recFakturavarer_s() { }
         {
             var rec_regnskab = Program.qryAktivRegnskab();
             m_path = rec_regnskab.Placering + "fakturavarer_s.dat";
-            open();
-        }
-
-        private void open()
-        {
-            /*
-            FileStream ts = new FileStream(m_path, FileMode.Open, FileAccess.Read, FileShare.None);
-            string ln = null;
-            recFakturavarer_s rec;
-            using (StreamReader sr = new StreamReader(ts, Encoding.Default))
-            {
-                while ((ln = sr.ReadLine()) != null)
-                {
-                    //rec = new recFakturavarer_s { Fakid = ln };
-                    //this.Add(rec);
-                }
-            }
-            */
         }
 
         public void save()
@@ -55,7 +38,7 @@ public recFakturavarer_s() { }
                                select d;
                 foreach (var rec in qry_this)
                 {
-                    string ln = rec.Fakid + @"=""" + rec.Varenr + @",""""" + rec.VareTekst + @"""""," + rec.Bogfkonto + "," + rec.Antal + @",,""""" + rec.Indbetalingsbelob + @",00"""",,,""""" + rec.Indbetalingsbelob + @",00"""",""""" + rec.Indbetalingsbelob + @",00"""",0,,,,,""";
+                    string ln = rec.Fakid + @"=""" + rec.Varenr + @",""""" + rec.VareTekst + @"""""," + rec.Bogfkonto + "," + rec.Antal + @",,""""" + rec.Fakturabelob + @",00"""",,,""""" + rec.Fakturabelob + @",00"""",""""" + rec.Fakturabelob + @",00"""",0,,,,,""";
                     sr.WriteLine(ln);
                 }
             }

@@ -248,13 +248,13 @@ namespace nsPuls3060
                                   Nr = (int?)b.Nr,
                                   Logdato = (DateTime?)b.Betalingsdato,
                                   Akt_id = (int?)40,
-                                  Akt_dato = (DateTime?)b.Betalingsdato
+                                  Akt_dato = (DateTime?)b.Bogforingsdato
                               };
 
 
-            var qryLogResult =  qryMedlemLog.Union(qryFak)
-                                            .Union(qryBetlin)
-                                            .Union(qryBetlin40);
+            var qryLogResult = qryMedlemLog.Union(qryFak)
+                                           .Union(qryBetlin)
+                                           .Union(qryBetlin40);
 
             return qryLogResult;
         }

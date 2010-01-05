@@ -114,10 +114,15 @@ namespace nsPuls3060
         {
             clsPbs objPbs = new clsPbs();
             //clsPbs601 objPbs601 = new clsPbs601();
-            //clsPbs602 objPbs602 = new clsPbs602();
+            clsPbs602 objPbs602 = new clsPbs602();
+            clsSumma objSumma = new clsSumma();
+            //objSumma.Order2Summa();
+            objSumma.OrderFaknrUpdate();
             //objPbs601.faktura_601_action(1);
             //objPbs602.TestRead042();
             //objPbs602.ReadFraPbsFile();
+            //objPbs602.betalinger_fra_pbs();
+            //bool x = objPbs.erMedlem(93);
             //objPbs601.WriteTilPbsFile(602);
             //objPbs.ReadRegnskaber();
             //objPbs.SetAktivRegnskaber();
@@ -183,8 +188,7 @@ namespace nsPuls3060
                 var x = l.Logdato;
             }
             */
-            //bool x = objPbs.erMedlem(3);
-
+            /*
             DateTime qryStart = DateTime.Now;
             var MedlemmerAll = from h in Program.karMedlemmer
                                join d1 in Program.dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
@@ -269,6 +273,8 @@ namespace nsPuls3060
 
             DateTime qrySlut = DateTime.Now;
             TimeSpan Tid = qrySlut - qryStart;
+        */
+        
         }
 
 
