@@ -135,6 +135,17 @@ namespace nsPuls3060
                 m_rec_data.fakbelob = value;
             }
         }
+        public int saldo
+        {
+            get
+            {
+                return m_rec_data.saldo;
+            }
+            set
+            {
+                m_rec_data.saldo = value;
+            }
+        }
         public int debitornr
         {
             get

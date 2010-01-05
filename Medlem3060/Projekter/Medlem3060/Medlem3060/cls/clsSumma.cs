@@ -130,6 +130,7 @@ namespace nsPuls3060
         {
             int saveBetid = 0;
             var bogf = from s in Program.karFakturaer_s
+                       //where s.saldo != 0
                        join f in Program.dbData3060.Tblfak on s.fakid equals f.SFakID
                        where f.SFaknr != null
                        join m in Program.karMedlemmer on f.Nr equals m.Nr
