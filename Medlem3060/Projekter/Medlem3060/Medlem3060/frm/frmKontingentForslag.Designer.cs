@@ -40,7 +40,17 @@
             this.cmdFakturer = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.lvwMedlem = new System.Windows.Forms.ListView();
+            this.columnHeaderMNavn = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderMNr = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderMAdresse = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderMPostnr = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderMBynavn = new System.Windows.Forms.ColumnHeader();
             this.lvwKontingent = new System.Windows.Forms.ListView();
+            this.columnHeaderKNavn = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderKNr = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderKAdresse = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderKPostnr = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderKBynavn = new System.Windows.Forms.ColumnHeader();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cmdForslag = new System.Windows.Forms.Button();
@@ -152,21 +162,79 @@
             // 
             // lvwMedlem
             // 
+            this.lvwMedlem.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderMNavn,
+            this.columnHeaderMNr,
+            this.columnHeaderMAdresse,
+            this.columnHeaderMPostnr,
+            this.columnHeaderMBynavn});
             this.lvwMedlem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvwMedlem.Location = new System.Drawing.Point(0, 0);
             this.lvwMedlem.Name = "lvwMedlem";
             this.lvwMedlem.Size = new System.Drawing.Size(409, 374);
             this.lvwMedlem.TabIndex = 0;
             this.lvwMedlem.UseCompatibleStateImageBehavior = false;
+            this.lvwMedlem.View = System.Windows.Forms.View.Details;
+            this.lvwMedlem.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwMedlem_ColumnClick);
+            // 
+            // columnHeaderMNavn
+            // 
+            this.columnHeaderMNavn.Text = "Navn";
+            // 
+            // columnHeaderMNr
+            // 
+            this.columnHeaderMNr.Text = "Nr";
+            // 
+            // columnHeaderMAdresse
+            // 
+            this.columnHeaderMAdresse.Text = "Adresse";
+            // 
+            // columnHeaderMPostnr
+            // 
+            this.columnHeaderMPostnr.Text = "Postnr";
+            // 
+            // columnHeaderMBynavn
+            // 
+            this.columnHeaderMBynavn.Text = "By";
             // 
             // lvwKontingent
             // 
+            this.lvwKontingent.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderKNavn,
+            this.columnHeaderKNr,
+            this.columnHeaderKAdresse,
+            this.columnHeaderKPostnr,
+            this.columnHeaderKBynavn});
             this.lvwKontingent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvwKontingent.Location = new System.Drawing.Point(0, 0);
             this.lvwKontingent.Name = "lvwKontingent";
             this.lvwKontingent.Size = new System.Drawing.Size(416, 374);
             this.lvwKontingent.TabIndex = 0;
             this.lvwKontingent.UseCompatibleStateImageBehavior = false;
+            this.lvwKontingent.View = System.Windows.Forms.View.Details;
+            this.lvwKontingent.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwKontingent_ColumnClick);
+            // 
+            // columnHeaderKNavn
+            // 
+            this.columnHeaderKNavn.DisplayIndex = 1;
+            this.columnHeaderKNavn.Text = "Navn";
+            // 
+            // columnHeaderKNr
+            // 
+            this.columnHeaderKNr.DisplayIndex = 0;
+            this.columnHeaderKNr.Text = "Nr";
+            // 
+            // columnHeaderKAdresse
+            // 
+            this.columnHeaderKAdresse.Text = "Adresse";
+            // 
+            // columnHeaderKPostnr
+            // 
+            this.columnHeaderKPostnr.Text = "Postnr";
+            // 
+            // columnHeaderKBynavn
+            // 
+            this.columnHeaderKBynavn.Text = "By";
             // 
             // label1
             // 
@@ -218,6 +286,7 @@
             this.Controls.Add(this.label_DatoKontingentTil);
             this.Name = "FrmKontingentForslag";
             this.Text = "Kontingent Forslag";
+            this.Load += new System.EventHandler(this.FrmKontingentForslag_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
@@ -244,5 +313,15 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button cmdForslag;
+        private System.Windows.Forms.ColumnHeader columnHeaderMNr;
+        private System.Windows.Forms.ColumnHeader columnHeaderMNavn;
+        private System.Windows.Forms.ColumnHeader columnHeaderMAdresse;
+        private System.Windows.Forms.ColumnHeader columnHeaderMPostnr;
+        private System.Windows.Forms.ColumnHeader columnHeaderMBynavn;
+        private System.Windows.Forms.ColumnHeader columnHeaderKNr;
+        private System.Windows.Forms.ColumnHeader columnHeaderKNavn;
+        private System.Windows.Forms.ColumnHeader columnHeaderKAdresse;
+        private System.Windows.Forms.ColumnHeader columnHeaderKPostnr;
+        private System.Windows.Forms.ColumnHeader columnHeaderKBynavn;
     }
 }

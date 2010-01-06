@@ -7,9 +7,69 @@ using System.Threading;
 using System.Globalization;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
+using System.Collections;
 
 namespace nsPuls3060
 {
+    public class ColumnSorter : IComparer
+    {
+        private int m_CurrentColumn;
+        private SortOrder m_CurrentSortOrder;
+        public int CurrentColumn
+        {
+            get
+            {
+                return m_CurrentColumn;
+            }
+            set
+            {
+                if (m_CurrentColumn == value)
+                {
+                    switch (m_CurrentSortOrder)
+                    {
+                        case SortOrder.Ascending:
+                            m_CurrentSortOrder = SortOrder.Descending;
+                            break;
+                        case SortOrder.Descending:
+                            m_CurrentSortOrder = SortOrder.Ascending;
+                            break;
+                        case SortOrder.None:
+                            m_CurrentSortOrder = SortOrder.Ascending;
+                            break;
+                        default:
+                            m_CurrentSortOrder = SortOrder.Ascending;
+                            break;
+                    }
+                }
+                else m_CurrentSortOrder = SortOrder.Ascending;
+
+                m_CurrentColumn = value;
+            }
+        }
+
+        public int Compare(object x, object y)
+        {
+            ListViewItem rowA = (ListViewItem)x;
+            ListViewItem rowB = (ListViewItem)y;
+            if (m_CurrentSortOrder == SortOrder.Ascending)
+            {
+                return String.Compare(rowA.SubItems[m_CurrentColumn].Text, rowB.SubItems[m_CurrentColumn].Text);
+            }
+            else 
+            {
+                return String.Compare(rowB.SubItems[m_CurrentColumn].Text, rowA.SubItems[m_CurrentColumn].Text);
+            }
+        }
+
+        public ColumnSorter()
+        {
+            m_CurrentColumn = 0;
+            m_CurrentSortOrder = SortOrder.Descending;
+
+        }
+    }
+
     public class Fieldattr : Attribute
     {
         public string Heading { get; set; }
@@ -35,7 +95,7 @@ namespace nsPuls3060
         }
 
         #endregion
-    } 
+    }
 
     public static class clsUtil
     {
@@ -53,7 +113,7 @@ namespace nsPuls3060
             }
             return false;
         }
-        
+
         public static int SummaDateTime2Serial(DateTime dt)
         {
             double sumStartDate = 1088647360;
