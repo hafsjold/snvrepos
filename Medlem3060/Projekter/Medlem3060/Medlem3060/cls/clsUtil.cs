@@ -52,13 +52,29 @@ namespace nsPuls3060
         {
             ListViewItem rowA = (ListViewItem)x;
             ListViewItem rowB = (ListViewItem)y;
-            if (m_CurrentSortOrder == SortOrder.Ascending)
+            try
             {
-                return String.Compare(rowA.SubItems[m_CurrentColumn].Text, rowB.SubItems[m_CurrentColumn].Text);
+                string sA = rowA.SubItems[m_CurrentColumn].Text;
+                string sB = rowB.SubItems[m_CurrentColumn].Text;
+                if (m_CurrentColumn == 1)
+                {
+                    sA = lpad(sA, 5, ' ');
+                    sB = lpad(sB, 5, ' ');
+                }
+                if (m_CurrentSortOrder == SortOrder.Ascending)
+                {
+                    return String.Compare(sA, sB);
+                }
+                else
+                {
+                    return String.Compare(sB, sA);
+                }
+
             }
-            else 
+            catch (ArgumentOutOfRangeException)
             {
-                return String.Compare(rowB.SubItems[m_CurrentColumn].Text, rowA.SubItems[m_CurrentColumn].Text);
+
+                return 0;
             }
         }
 
@@ -68,6 +84,13 @@ namespace nsPuls3060
             m_CurrentSortOrder = SortOrder.Descending;
 
         }
+
+        public string lpad(Object oVal, int Length, char PadChar)
+        {
+            string Val = oVal.ToString();
+            return Val.PadLeft(Length, PadChar);
+        }
+
     }
 
     public class Fieldattr : Attribute

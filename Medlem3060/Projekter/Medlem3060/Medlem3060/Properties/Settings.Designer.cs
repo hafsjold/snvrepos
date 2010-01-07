@@ -179,5 +179,29 @@ namespace nsPuls3060.Properties {
                 this["frmRegnskabPoint"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("829, 513")]
+        public global::System.Drawing.Size frmKontingentForslagSize {
+            get {
+                return ((global::System.Drawing.Size)(this["frmKontingentForslagSize"]));
+            }
+            set {
+                this["frmKontingentForslagSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point frmKontingentForslagPoint {
+            get {
+                return ((global::System.Drawing.Point)(this["frmKontingentForslagPoint"]));
+            }
+            set {
+                this["frmKontingentForslagPoint"] = value;
+            }
+        }
     }
 }
