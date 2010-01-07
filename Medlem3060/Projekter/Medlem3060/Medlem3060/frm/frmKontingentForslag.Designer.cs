@@ -44,7 +44,7 @@
             this.columnHeaderMNr = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderMAdresse = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderMPostnr = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderMBynavn = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderMFradato = new System.Windows.Forms.ColumnHeader();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdForslag = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
@@ -53,7 +53,13 @@
             this.columnHeaderKNR = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderKAdresse = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderKPostnr = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderKBynavn = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderKFradato = new System.Windows.Forms.ColumnHeader();
+            this.pgmForslag = new System.Windows.Forms.ProgressBar();
+            this.Label_Forslagstekst = new System.Windows.Forms.Label();
+            this.Label_Fakturatekst = new System.Windows.Forms.Label();
+            this.pgmFaktura = new System.Windows.Forms.ProgressBar();
+            this.columnHeaderMKontingent = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderKKontingent = new System.Windows.Forms.ColumnHeader();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -133,6 +139,7 @@
             this.cmdCancel.TabIndex = 3;
             this.cmdCancel.Text = "Fortryd";
             this.cmdCancel.UseVisualStyleBackColor = true;
+            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
             // cmdFakturer
             // 
@@ -142,6 +149,7 @@
             this.cmdFakturer.TabIndex = 3;
             this.cmdFakturer.Text = "Fakturer";
             this.cmdFakturer.UseVisualStyleBackColor = true;
+            this.cmdFakturer.Visible = false;
             // 
             // splitContainer1
             // 
@@ -151,7 +159,9 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.pgmForslag);
             this.splitContainer1.Panel1.Controls.Add(this.lvwMedlem);
+            this.splitContainer1.Panel1.Controls.Add(this.Label_Forslagstekst);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.label_DatoKontingentTil);
             this.splitContainer1.Panel1.Controls.Add(this.label_DatoKontingentForfald);
@@ -162,6 +172,8 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.pgmFaktura);
+            this.splitContainer1.Panel2.Controls.Add(this.Label_Fakturatekst);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.lvwKontingent);
             this.splitContainer1.Panel2.Controls.Add(this.label_DatoBetaltKontingentTil);
@@ -181,8 +193,10 @@
             this.columnHeaderMNr,
             this.columnHeaderMAdresse,
             this.columnHeaderMPostnr,
-            this.columnHeaderMBynavn});
+            this.columnHeaderMFradato,
+            this.columnHeaderMKontingent});
             this.lvwMedlem.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lvwMedlem.FullRowSelect = true;
             this.lvwMedlem.Location = new System.Drawing.Point(0, 137);
             this.lvwMedlem.Name = "lvwMedlem";
             this.lvwMedlem.Size = new System.Drawing.Size(409, 376);
@@ -210,9 +224,9 @@
             // 
             this.columnHeaderMPostnr.Text = "Postnr";
             // 
-            // columnHeaderMBynavn
+            // columnHeaderMFradato
             // 
-            this.columnHeaderMBynavn.Text = "By";
+            this.columnHeaderMFradato.Text = "Fra dato";
             // 
             // label1
             // 
@@ -252,8 +266,10 @@
             this.columnHeaderKNR,
             this.columnHeaderKAdresse,
             this.columnHeaderKPostnr,
-            this.columnHeaderKBynavn});
+            this.columnHeaderKFradato,
+            this.columnHeaderKKontingent});
             this.lvwKontingent.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lvwKontingent.FullRowSelect = true;
             this.lvwKontingent.Location = new System.Drawing.Point(0, 137);
             this.lvwKontingent.Name = "lvwKontingent";
             this.lvwKontingent.Size = new System.Drawing.Size(416, 376);
@@ -281,9 +297,61 @@
             // 
             this.columnHeaderKPostnr.Text = "Postnr";
             // 
-            // columnHeaderKBynavn
+            // columnHeaderKFradato
             // 
-            this.columnHeaderKBynavn.Text = "By";
+            this.columnHeaderKFradato.Text = "Fra dato";
+            // 
+            // pgmForslag
+            // 
+            this.pgmForslag.Location = new System.Drawing.Point(165, 74);
+            this.pgmForslag.Maximum = 325;
+            this.pgmForslag.Name = "pgmForslag";
+            this.pgmForslag.Size = new System.Drawing.Size(218, 15);
+            this.pgmForslag.Step = 1;
+            this.pgmForslag.TabIndex = 6;
+            this.pgmForslag.Visible = false;
+            // 
+            // Label_Forslagstekst
+            // 
+            this.Label_Forslagstekst.AutoSize = true;
+            this.Label_Forslagstekst.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Forslagstekst.ForeColor = System.Drawing.Color.Red;
+            this.Label_Forslagstekst.Location = new System.Drawing.Point(20, 96);
+            this.Label_Forslagstekst.Name = "Label_Forslagstekst";
+            this.Label_Forslagstekst.Size = new System.Drawing.Size(33, 16);
+            this.Label_Forslagstekst.TabIndex = 5;
+            this.Label_Forslagstekst.Text = "test";
+            this.Label_Forslagstekst.Visible = false;
+            // 
+            // Label_Fakturatekst
+            // 
+            this.Label_Fakturatekst.AutoSize = true;
+            this.Label_Fakturatekst.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Fakturatekst.ForeColor = System.Drawing.Color.Red;
+            this.Label_Fakturatekst.Location = new System.Drawing.Point(15, 96);
+            this.Label_Fakturatekst.Name = "Label_Fakturatekst";
+            this.Label_Fakturatekst.Size = new System.Drawing.Size(33, 16);
+            this.Label_Fakturatekst.TabIndex = 5;
+            this.Label_Fakturatekst.Text = "test";
+            this.Label_Fakturatekst.Visible = false;
+            // 
+            // pgmFaktura
+            // 
+            this.pgmFaktura.Location = new System.Drawing.Point(97, 74);
+            this.pgmFaktura.Maximum = 325;
+            this.pgmFaktura.Name = "pgmFaktura";
+            this.pgmFaktura.Size = new System.Drawing.Size(218, 15);
+            this.pgmFaktura.Step = 1;
+            this.pgmFaktura.TabIndex = 6;
+            this.pgmFaktura.Visible = false;
+            // 
+            // columnHeaderMKontingent
+            // 
+            this.columnHeaderMKontingent.Text = "Kontingent";
+            // 
+            // columnHeaderKKontingent
+            // 
+            this.columnHeaderKKontingent.Text = "Kontingent";
             // 
             // FrmKontingentForslag
             // 
@@ -328,11 +396,17 @@
         private System.Windows.Forms.ColumnHeader columnHeaderMNavn;
         private System.Windows.Forms.ColumnHeader columnHeaderMAdresse;
         private System.Windows.Forms.ColumnHeader columnHeaderMPostnr;
-        private System.Windows.Forms.ColumnHeader columnHeaderMBynavn;
+        private System.Windows.Forms.ColumnHeader columnHeaderMFradato;
         private System.Windows.Forms.ColumnHeader columnHeaderKNnavn;
         private System.Windows.Forms.ColumnHeader columnHeaderKNR;
         private System.Windows.Forms.ColumnHeader columnHeaderKAdresse;
         private System.Windows.Forms.ColumnHeader columnHeaderKPostnr;
-        private System.Windows.Forms.ColumnHeader columnHeaderKBynavn;
+        private System.Windows.Forms.ColumnHeader columnHeaderKFradato;
+        private System.Windows.Forms.ProgressBar pgmForslag;
+        private System.Windows.Forms.Label Label_Forslagstekst;
+        private System.Windows.Forms.Label Label_Fakturatekst;
+        private System.Windows.Forms.ProgressBar pgmFaktura;
+        private System.Windows.Forms.ColumnHeader columnHeaderMKontingent;
+        private System.Windows.Forms.ColumnHeader columnHeaderKKontingent;
     }
 }
