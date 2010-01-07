@@ -15,6 +15,7 @@ namespace nsPuls3060
         ColumnSorter lvwMedlem_ColumnSorter;
         ColumnSorter lvwKontingent_ColumnSorter;
         private string DragDropKey;
+        private DateTime m_initdate;
 
         public FrmKontingentForslag()
         {
@@ -40,12 +41,36 @@ namespace nsPuls3060
 
         private void FrmKontingentForslag_Load(object sender, EventArgs e)
         {
-            open();
+            DateTime wt = DateTime.Now;
+            m_initdate = new DateTime(wt.Year, wt.Month, wt.Day);
+
+            wt = m_initdate.AddMonths(1);
+            this.DatoBetaltKontingentTil.Value = wt.AddDays(-wt.Day);
+
+            wt = m_initdate.AddMonths(13 - m_initdate.Month);
+            this.DatoKontingentTil.Value = wt.AddDays(-wt.Day);
+
+            if ((this.DatoKontingentTil.Value - this.DatoBetaltKontingentTil.Value) < (new TimeSpan(183, 0, 0, 0)))
+            {
+                this.DatoKontingentTil.Value.AddYears(1);
+            }
+            this.Aarskontingent.Text = "150";
+
+            wt = m_initdate.AddMonths(1);
+            this.DatoKontingentForfald.Value = wt.AddDays(-wt.Day + 4);
+
         }
 
 
-        private void open()
+        private void cmdForslag_Click(object sender, EventArgs e)
         {
+            getKontingentForslag();
+        }
+
+        private void getKontingentForslag()
+        {
+            DateTime KontingentFradato = DateTime.MinValue;
+
             var qry_medlemmer = from h in Program.karMedlemmer
                                 orderby h.Kaldenavn
                                 select h;
@@ -53,15 +78,55 @@ namespace nsPuls3060
             var antal = qry_medlemmer.Count();
             foreach (var m in qry_medlemmer)
             {
-                ListViewItem it = lvwKontingent.Items.Add(m.Navn, 0);
-                it.SubItems.Add(m.Nr.ToString());
-                it.SubItems.Add(m.Adresse);
-                it.SubItems.Add(m.Postnr);
-                it.SubItems.Add(m.Bynavn);
-            }
-            this.lvwKontingent.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-        }
+                bool bSelected = true;
+                if (!m.erMedlem()) //er ikke medlem
+                {
+                    bSelected = false;
+                }
+                else //Er medlem
+                {
+                    if (m.kontingentBetaltDato != null)  //'Der findes en kontingent-betaling
+                    {
+                        if (m.kontingentBetaltDato > this.DatoBetaltKontingentTil.Value)   //der er betalt kontingent efter DatoBetaltKontingentTil
+                        {
+                            bSelected = false;
+                        }
+                        else
+                        {
+                            if (m.kontingentBetaltDato >= m.indmeldelsesDato)
+                            {
+                                KontingentFradato = ((DateTime)m.kontingentBetaltDato).AddDays(1);
+                            }
+                        }
+                    }
+                    else  //Der findes ingen kontingent-betaling
+                    {
+                        KontingentFradato = (DateTime)m.indmeldelsesDato;
+                    }
+                }
 
+                if (bSelected)
+                {
+                    if (m.opkrævningsDato != null) //Der findes en opkrævning
+                    {
+                        if (((DateTime)m.opkrævningsDato) > KontingentFradato)
+                        {
+                            bSelected = false;
+                        }
+                    }
+                }
+
+                if (bSelected)
+                {
+                    ListViewItem it = lvwKontingent.Items.Add(m.Navn, 0);
+                    it.SubItems.Add(m.Nr.ToString());
+                    it.SubItems.Add(m.Adresse);
+                    it.SubItems.Add(m.Postnr);
+                    it.SubItems.Add(m.Bynavn);
+                }
+                this.lvwKontingent.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            }
+        }
         private void lvwMedlem_ItemDrag(object sender, ItemDragEventArgs e)
         {
             Random random = new Random();
@@ -150,6 +215,7 @@ namespace nsPuls3060
             }
             this.lvwMedlem.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
         }
+
 
     }
 }

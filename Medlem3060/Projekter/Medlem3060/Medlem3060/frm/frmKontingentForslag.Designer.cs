@@ -232,6 +232,7 @@
             this.cmdForslag.TabIndex = 3;
             this.cmdForslag.Text = "Forslag";
             this.cmdForslag.UseVisualStyleBackColor = true;
+            this.cmdForslag.Click += new System.EventHandler(this.cmdForslag_Click);
             // 
             // label2
             // 

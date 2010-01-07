@@ -13,46 +13,108 @@ using Microsoft.VisualBasic;
 namespace nsPuls3060
 {
     public class clsLog
-        {
-            public int?  Id;
-            public int? Nr;
-            public DateTime? Logdato;
-            public int? Akt_id;
-            public DateTime? Akt_dato;
-       } 
-
-    class clsPbs
     {
-        private TblRegnskab m_rec_Regnskab;
+        public int? Id;
+        public int? Nr;
+        public DateTime? Logdato;
+        public int? Akt_id;
+        public DateTime? Akt_dato;
+    }
 
-        public clsPbs() { }
+    public partial class clsMedlem
+    {
+        private DateTime? m_indmeldelsesDato = null;
+        private DateTime? m_udmeldelsesDato = null;
+        private DateTime? m_kontingentTilbageførtDato = null;
+        private DateTime? m_kontingentBetaltDato = null;
+        private DateTime? m_kontingentTilDato = null;
+        private DateTime? m_opkrævningsDato = null;
+        private int m_BetalingsFristiDageGamleMedlemmer = global::nsPuls3060.Properties.Settings.Default.BetalingsFristiDageGamleMedlemmer;
+        private int m_BetalingsFristiDageNyeMedlemmer = global::nsPuls3060.Properties.Settings.Default.BetalingsFristiDageNyeMedlemmer;
+        private DateTime m_kontingentTilDato31 = DateTime.MinValue;
+        private DateTime m_kontingentBetaltDato31 = DateTime.MinValue;
+        private DateTime m_restanceTilDatoGamleMedlemmer = DateTime.MinValue;
+        private DateTime restanceTilDatoNyeMedlemmer = DateTime.MinValue;
+        private bool m_b10 = false; // Seneste Indmelses dato fundet
+        private bool m_b20 = false; // Seneste PBS opkrævnings dato fundet
+        private bool m_b30 = false; // Seneste Kontingent betalt til dato fundet
+        private bool m_b31 = false; // Næst seneste Kontingent betalt til dato fundet
+        private bool m_b40 = false; // Seneste PBS betaling tilbageført fundet
+        private bool m_b50 = false; // Udmeldelses dato fundet
 
-
-        public Boolean erMedlem(short pNr) { return erMedlem(pNr, DateTime.Now); }
-        public Boolean erMedlem(short pNr, DateTime pDate)
+        public DateTime? indmeldelsesDato
         {
-            var BetalingsFristiDageGamleMedlemmer = global::nsPuls3060.Properties.Settings.Default.BetalingsFristiDageGamleMedlemmer;
-            var BetalingsFristiDageNyeMedlemmer = global::nsPuls3060.Properties.Settings.Default.BetalingsFristiDageNyeMedlemmer;
-            var indmeldelsesDato = DateTime.MinValue;
-            var udmeldelsesDato = DateTime.MinValue;
-            var kontingentTilbageførtDato = DateTime.MinValue;
-            var kontingentTilDato31 = DateTime.MinValue;
-            var kontingentBetaltDato31 = DateTime.MinValue;
-            var kontingentBetaltDato = DateTime.MinValue; ;
-            var kontingentTilDato = DateTime.MinValue; ;
-            var restanceTilDatoGamleMedlemmer = DateTime.MinValue; ;
-            var opkrævningsDato = DateTime.MinValue; ;
-            var restanceTilDatoNyeMedlemmer = DateTime.MinValue; ;
-            var b10 = false; // Seneste Indmelses dato fundet
-            var b20 = false; // Seneste PBS opkrævnings dato fundet
-            var b30 = false; // Seneste Kontingent betalt til dato fundet
-            var b31 = false; // Næst seneste Kontingent betalt til dato fundet
-            var b40 = false; // Seneste PBS betaling tilbageført fundet
-            var b50 = false; // Udmeldelses dato fundet
+            get
+            {
+                return m_indmeldelsesDato;
+            }
+            set
+            {
+                m_indmeldelsesDato = value;
+            }
+        }
+        public DateTime? udmeldelsesDato
+        {
+            get
+            {
+                return m_udmeldelsesDato;
+            }
+            set
+            {
+                m_udmeldelsesDato = value;
+            }
+        }
+        public DateTime? kontingentTilbageførtDato
+        {
+            get
+            {
+                return m_kontingentTilbageførtDato;
+            }
+            set
+            {
+                m_kontingentTilbageførtDato = value;
+            }
+        }
+        public DateTime? kontingentBetaltDato
+        {
+            get
+            {
+                return m_kontingentBetaltDato;
+            }
+            set
+            {
+                m_kontingentBetaltDato = value;
+            }
+        }
+        public DateTime? kontingentTilDato
+        {
+            get
+            {
+                return m_kontingentTilDato;
+            }
+            set
+            {
+                m_kontingentTilDato = value;
+            }
+        }
+        public DateTime? opkrævningsDato
+        {
+            get
+            {
+                return m_opkrævningsDato;
+            }
+            set
+            {
+                m_opkrævningsDato = value;
+            }
+        }
+        public Boolean erMedlem() { return erMedlem(DateTime.Now); }
+        public Boolean erMedlem(DateTime pDate)
+        {
 
-
+           
             var qrylog = Program.qryLog()
-                                .Where(u => u.Nr == pNr)
+                                .Where(u => u.Nr == m_Nr)
                                 .Where(u => u.Logdato <= pDate)
                                 .OrderByDescending(u => u.Logdato);
 
@@ -61,62 +123,62 @@ namespace nsPuls3060
                 switch (MedlemLog.Akt_id)
                 {
                     case 10: // Seneste Indmelses dato
-                        if (!b10)
+                        if (!m_b10)
                         {
-                            b10 = true;
-                            indmeldelsesDato = (DateTime)MedlemLog.Akt_dato;
+                            m_b10 = true;
+                            m_indmeldelsesDato = (DateTime)MedlemLog.Akt_dato;
                         }
                         break;
 
                     case 20:  // Seneste PBS opkrævnings dato
-                        if (!b20)
+                        if (!m_b20)
                         {
-                            b20 = true;
-                            opkrævningsDato = (DateTime)MedlemLog.Akt_dato;
+                            m_b20 = true;
+                            m_opkrævningsDato = (DateTime)MedlemLog.Akt_dato;
                         }
                         break;
 
                     case 30:  // Kontingent betalt til dato
-                        if ((b30) && (!b31)) // Næst seneste Kontingent betalt til dato
+                        if ((m_b30) && (!m_b31)) // Næst seneste Kontingent betalt til dato
                         {
-                            b31 = true;
-                            kontingentBetaltDato31 = (DateTime)MedlemLog.Logdato;
-                            kontingentTilDato31 = (DateTime)MedlemLog.Akt_dato;
+                            m_b31 = true;
+                            m_kontingentBetaltDato31 = (DateTime)MedlemLog.Logdato;
+                            m_kontingentTilDato31 = (DateTime)MedlemLog.Akt_dato;
                         }
-                        if ((!b30) && (!b31)) // Seneste Kontingent betalt til dato
+                        if ((!m_b30) && (!m_b31)) // Seneste Kontingent betalt til dato
                         {
-                            b30 = true;
-                            kontingentBetaltDato = (DateTime)MedlemLog.Logdato;
-                            kontingentTilDato = (DateTime)MedlemLog.Akt_dato;
+                            m_b30 = true;
+                            m_kontingentBetaltDato = (DateTime)MedlemLog.Logdato;
+                            m_kontingentTilDato = (DateTime)MedlemLog.Akt_dato;
                         }
                         break;
 
                     case 40:  // Seneste PBS betaling tilbageført
-                        if (!b40)
+                        if (!m_b40)
                         {
-                            b40 = true;
-                            kontingentTilbageførtDato = (DateTime)MedlemLog.Akt_dato;
+                            m_b40 = true;
+                            m_kontingentTilbageførtDato = (DateTime)MedlemLog.Akt_dato;
                         }
                         break;
 
                     case 50:  // Udmeldelses dato
-                        if (!b50)
+                        if (!m_b50)
                         {
-                            b50 = true;
-                            udmeldelsesDato = (DateTime)MedlemLog.Akt_dato;
+                            m_b50 = true;
+                            m_udmeldelsesDato = (DateTime)MedlemLog.Akt_dato;
                         }
                         break;
                 }
             }
 
             //Undersøg vedr ind- og udmeldelse
-            if (b10) //Findes der en indmeldelse
+            if (m_b10) //Findes der en indmeldelse
             {
-                if (b50) //Findes der en udmeldelse
+                if (m_b50) //Findes der en udmeldelse
                 {
-                    if (udmeldelsesDato >= indmeldelsesDato) //Er udmeldelsen aktiv
+                    if (m_udmeldelsesDato >= m_indmeldelsesDato) //Er udmeldelsen aktiv
                     {
-                        if (udmeldelsesDato <= pDate) //Er udmeldelsen aktiv
+                        if (m_udmeldelsesDato <= pDate) //Er udmeldelsen aktiv
                         {
                             return false;
                         }
@@ -130,29 +192,29 @@ namespace nsPuls3060
 
 
             //Find aktive betalingsrecord
-            if (b40) //Findes der en kontingent tilbageført
+            if (m_b40) //Findes der en kontingent tilbageført
             {
-                if (kontingentTilbageførtDato >= kontingentBetaltDato) //Kontingenttilbageført er aktiv
+                if (m_kontingentTilbageførtDato >= m_kontingentBetaltDato) //Kontingenttilbageført er aktiv
                 {
                     //''!!!Kontingent er tilbageført !!!!!!!!!
-                    if (b31)
+                    if (m_b31)
                     {
-                        kontingentBetaltDato = kontingentBetaltDato31;
-                        kontingentTilDato = kontingentTilDato31;
+                        m_kontingentBetaltDato = m_kontingentBetaltDato31;
+                        m_kontingentTilDato = m_kontingentTilDato31;
                     }
                     else
                     {
-                        b30 = false;
+                        m_b30 = false;
                     }
                 }
             }
 
 
             //Undersøg om der er betalt kontingent
-            if (b30) //Findes der en betaling
+            if (m_b30) //Findes der en betaling
             {
-                restanceTilDatoGamleMedlemmer = kontingentTilDato.AddDays(BetalingsFristiDageGamleMedlemmer);
-                if (restanceTilDatoGamleMedlemmer >= pDate) //Er kontingentTilDato aktiv
+                m_restanceTilDatoGamleMedlemmer = ((DateTime)m_kontingentTilDato).AddDays(m_BetalingsFristiDageGamleMedlemmer);
+                if (m_restanceTilDatoGamleMedlemmer >= pDate) //Er kontingentTilDato aktiv
                 {
                     return true;
                 }
@@ -163,7 +225,7 @@ namespace nsPuls3060
             }
             else
             { //Der findes ingen betalinger. Nyt medlem?
-                restanceTilDatoNyeMedlemmer = indmeldelsesDato.AddDays(BetalingsFristiDageNyeMedlemmer);
+                restanceTilDatoNyeMedlemmer = ((DateTime)m_indmeldelsesDato).AddDays(m_BetalingsFristiDageNyeMedlemmer);
                 if (restanceTilDatoNyeMedlemmer >= pDate)
                 { //Er kontingentTilDato aktiv
                     return true;
@@ -174,6 +236,12 @@ namespace nsPuls3060
                 }
             }
         }
+    }
+    class clsPbs
+    {
+        private TblRegnskab m_rec_Regnskab;
+
+        public clsPbs() { }
 
         public static int nextval(string nrserienavn)
         {

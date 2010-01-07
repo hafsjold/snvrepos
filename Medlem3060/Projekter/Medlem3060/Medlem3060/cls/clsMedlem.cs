@@ -6,7 +6,7 @@ using System.Data.Linq.Mapping;
 
 namespace nsPuls3060
 {
-    public class clsMedlem
+    public partial class clsMedlem
     {
         private int? m_Nr;
         private String m_Navn;
