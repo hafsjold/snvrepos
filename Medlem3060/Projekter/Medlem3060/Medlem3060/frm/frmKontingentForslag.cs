@@ -16,6 +16,8 @@ namespace nsPuls3060
         ColumnSorter lvwKontingent_ColumnSorter;
         private string DragDropKey;
         private DateTime m_initdate;
+        private int m_lobnr  = 0;
+
 
         public FrmKontingentForslag()
         {
@@ -24,7 +26,6 @@ namespace nsPuls3060
             this.lvwMedlem.ListViewItemSorter = lvwMedlem_ColumnSorter;
             this.lvwKontingent_ColumnSorter = new ColumnSorter();
             this.lvwKontingent.ListViewItemSorter = lvwKontingent_ColumnSorter;
-
         }
 
         private void lvwMedlem_ColumnClick(object sender, ColumnClickEventArgs e)
@@ -79,7 +80,7 @@ namespace nsPuls3060
             var qry_medlemmer = from h in Program.karMedlemmer
                                 where h.Nr > 500
                                 select h;
-            
+
             this.lvwMedlem.Items.Clear();
             this.lvwKontingent.Items.Clear();
 
@@ -87,7 +88,7 @@ namespace nsPuls3060
             this.pgmForslag.Show();
             this.pgmForslag.Maximum = antal;
             this.pgmForslag.Minimum = 0;
-            this.pgmForslag.Value = 0; 
+            this.pgmForslag.Value = 0;
             this.pgmForslag.Step = 1;
             this.pgmForslag.Visible = true;
             this.Label_Forslagstekst.Visible = false;
@@ -142,7 +143,7 @@ namespace nsPuls3060
                     dkontingent = (double.Parse(this.Aarskontingent.Text) / 365) * ((this.DatoKontingentTil.Value - KontingentFradato).Days + 1) + 0.49;
                     ikontingent = (int)dkontingent;
 
-                    ListViewItem it = lvwKontingent.Items.Add(m.Navn, 0);
+                    ListViewItem it = lvwKontingent.Items.Add(m.Nr.ToString(), m.Navn, 0);
                     //it.Tag = m;
                     it.SubItems.Add(m.Nr.ToString());
                     it.SubItems.Add(m.Adresse);
@@ -195,8 +196,7 @@ namespace nsPuls3060
         {
             foreach (ListViewItem lvi in lvwMedlem.SelectedItems)
             {
-                string Tekst = lvi.Text;
-                ListViewItem it = lvwKontingent.Items.Add(Tekst);
+                ListViewItem it = lvwKontingent.Items.Add(lvi.Name, lvi.Text, 0);
 
                 for (int i = 1; i < lvi.SubItems.Count; i++)
                 {
@@ -241,8 +241,7 @@ namespace nsPuls3060
         {
             foreach (ListViewItem lvi in lvwKontingent.SelectedItems)
             {
-                string Tekst = lvi.Text;
-                ListViewItem it = lvwMedlem.Items.Add(lvi.Text);
+                ListViewItem it = lvwMedlem.Items.Add(lvi.Name, lvi.Text, 0);
 
                 for (int i = 1; i < lvi.SubItems.Count; i++)
                 {
@@ -264,6 +263,86 @@ namespace nsPuls3060
             this.Close();
         }
 
+        private void cmdFakturer_Click(object sender, EventArgs e)
+        {
+            string TilPBSFilename;
+            int AntalFakturaer;
+            int imax;
+            string keyval;
+            DateTime fradato;
+            double advisbelob;
+            if ((this.cmdFakturer.Text == "Afslut"))
+            {
+                this.Close();
+            }
+            this.cmdForslag.Visible = false;
+            this.cmdCancel.Visible = false;
+            imax = lvwKontingent.Items.Count;
+            this.pgmFaktura.Maximum = (imax * 4);
+            this.pgmFaktura.Minimum = 0;
+            this.pgmFaktura.Value = 0;
+            this.pgmFaktura.Visible = true;
+            Program.dbData3060.ExecuteCommand("DELETE FROM tempKontforslag;");
+            if ((imax == 0))
+            {
+                this.Label_Fakturatekst.Text = "Der ikke noget at fakturere";
+                this.Label_Fakturatekst.Visible = true;
+            }
+            else
+            {
+                TempKontforslag rec_tempKontforslag = new TempKontforslag
+                {
+                    Betalingsdato = this.DatoKontingentForfald.Value,
+                    Tildato = this.DatoKontingentTil.Value
+                };
+                Program.dbData3060.TempKontforslag.InsertOnSubmit(rec_tempKontforslag);
+                var i = 0;
+                foreach (ListViewItem lvi in lvwKontingent.Items)
+                {
+                    this.pgmFaktura.Value = ++i;
+                    keyval = lvi.Name;
+                    fradato = DateTime.Parse(lvi.SubItems[4].Text);
+                    advisbelob = double.Parse(lvi.SubItems[5].Text);
+                    TempKontforslaglinie rec_tempKontforslaglinie = new TempKontforslaglinie
+                    {
+                        Nr = int.Parse(keyval),
+                        Advisbelob = (decimal)advisbelob,
+                        Fradato = fradato
+                    };
+                    rec_tempKontforslag.TempKontforslaglinie.Add(rec_tempKontforslaglinie);
+                }
+                Program.dbData3060.SubmitChanges();
 
+                clsPbs601 objPbs601 = new clsPbs601();
+                nsPuls3060.clsPbs601.SetLobnr += new nsPuls3060.clsPbs601.Pbs601DelegateHandler(On_clsPbs601_SetLobnr);
+
+                AntalFakturaer = objPbs601.kontingent_fakturer_bs1();
+                this.pgmFaktura.Value = imax * 2;
+                if ((AntalFakturaer > 0))
+                {
+                    objPbs601.faktura_601_action(m_lobnr);
+                    this.pgmFaktura.Value = (imax * 3);
+                    objPbs601.WriteTilPbsFile(m_lobnr);
+                }
+                this.pgmFaktura.Value = (imax * 4);
+                cmdFakturer.Text = "Afslut";
+                try
+                {
+                    var rec_tilpbs = (from t in Program.dbData3060.Tbltilpbs where t.Id == m_lobnr select t).First();
+                    TilPBSFilename = "PBS" + rec_tilpbs.Leverancespecifikation + ".lst";
+                }
+                catch (System.InvalidOperationException)
+                {
+                    TilPBSFilename = "PBSNotFound.lst";
+                }
+                this.Label_Fakturatekst.Text = ("Leverance til PBS er gemt i filen " + TilPBSFilename);
+                this.Label_Fakturatekst.Visible = true;
+                this.pgmFaktura.Visible = false;
+            }
+        }
+        private void On_clsPbs601_SetLobnr(int lobnr)
+        {
+            m_lobnr = lobnr;
+        }
     }
 }

@@ -113,18 +113,18 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
             clsPbs objPbs = new clsPbs();
-            //clsPbs601 objPbs601 = new clsPbs601();
+            clsPbs601 objPbs601 = new clsPbs601();
             clsPbs602 objPbs602 = new clsPbs602();
             clsSumma objSumma = new clsSumma();
             //objSumma.Order2Summa();
-            objSumma.OrderFaknrUpdate();
+            //objSumma.OrderFaknrUpdate();
             //objSumma.BogforBetalinger();
             //objPbs601.faktura_601_action(1);
             //objPbs602.TestRead042();
             //objPbs602.ReadFraPbsFile();
             //objPbs602.betalinger_fra_pbs();
             //bool x = objPbs.erMedlem(93);
-            //objPbs601.WriteTilPbsFile(602);
+            objPbs601.WriteTilPbsFile(606);
             //objPbs.ReadRegnskaber();
             //objPbs.SetAktivRegnskaber();
             //DateTime dt = new DateTime(2009, 10, 31);

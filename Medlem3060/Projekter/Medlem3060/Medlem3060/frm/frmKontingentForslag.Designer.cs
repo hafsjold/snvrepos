@@ -39,14 +39,19 @@
             this.cmdCancel = new System.Windows.Forms.Button();
             this.cmdFakturer = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.pgmForslag = new System.Windows.Forms.ProgressBar();
             this.lvwMedlem = new System.Windows.Forms.ListView();
             this.columnHeaderMNavn = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderMNr = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderMAdresse = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderMPostnr = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderMFradato = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderMKontingent = new System.Windows.Forms.ColumnHeader();
+            this.Label_Forslagstekst = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdForslag = new System.Windows.Forms.Button();
+            this.pgmFaktura = new System.Windows.Forms.ProgressBar();
+            this.Label_Fakturatekst = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lvwKontingent = new System.Windows.Forms.ListView();
             this.columnHeaderKNnavn = new System.Windows.Forms.ColumnHeader();
@@ -54,11 +59,6 @@
             this.columnHeaderKAdresse = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderKPostnr = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderKFradato = new System.Windows.Forms.ColumnHeader();
-            this.pgmForslag = new System.Windows.Forms.ProgressBar();
-            this.Label_Forslagstekst = new System.Windows.Forms.Label();
-            this.Label_Fakturatekst = new System.Windows.Forms.Label();
-            this.pgmFaktura = new System.Windows.Forms.ProgressBar();
-            this.columnHeaderMKontingent = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderKKontingent = new System.Windows.Forms.ColumnHeader();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -150,6 +150,7 @@
             this.cmdFakturer.Text = "Fakturer";
             this.cmdFakturer.UseVisualStyleBackColor = true;
             this.cmdFakturer.Visible = false;
+            this.cmdFakturer.Click += new System.EventHandler(this.cmdFakturer_Click);
             // 
             // splitContainer1
             // 
@@ -184,6 +185,16 @@
             this.splitContainer1.Size = new System.Drawing.Size(829, 513);
             this.splitContainer1.SplitterDistance = 409;
             this.splitContainer1.TabIndex = 4;
+            // 
+            // pgmForslag
+            // 
+            this.pgmForslag.Location = new System.Drawing.Point(165, 74);
+            this.pgmForslag.Maximum = 325;
+            this.pgmForslag.Name = "pgmForslag";
+            this.pgmForslag.Size = new System.Drawing.Size(218, 15);
+            this.pgmForslag.Step = 1;
+            this.pgmForslag.TabIndex = 6;
+            this.pgmForslag.Visible = false;
             // 
             // lvwMedlem
             // 
@@ -228,6 +239,22 @@
             // 
             this.columnHeaderMFradato.Text = "Fra dato";
             // 
+            // columnHeaderMKontingent
+            // 
+            this.columnHeaderMKontingent.Text = "Kontingent";
+            // 
+            // Label_Forslagstekst
+            // 
+            this.Label_Forslagstekst.AutoSize = true;
+            this.Label_Forslagstekst.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Forslagstekst.ForeColor = System.Drawing.Color.Red;
+            this.Label_Forslagstekst.Location = new System.Drawing.Point(20, 96);
+            this.Label_Forslagstekst.Name = "Label_Forslagstekst";
+            this.Label_Forslagstekst.Size = new System.Drawing.Size(33, 16);
+            this.Label_Forslagstekst.TabIndex = 5;
+            this.Label_Forslagstekst.Text = "test";
+            this.Label_Forslagstekst.Visible = false;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -247,6 +274,28 @@
             this.cmdForslag.Text = "Forslag";
             this.cmdForslag.UseVisualStyleBackColor = true;
             this.cmdForslag.Click += new System.EventHandler(this.cmdForslag_Click);
+            // 
+            // pgmFaktura
+            // 
+            this.pgmFaktura.Location = new System.Drawing.Point(97, 74);
+            this.pgmFaktura.Maximum = 325;
+            this.pgmFaktura.Name = "pgmFaktura";
+            this.pgmFaktura.Size = new System.Drawing.Size(218, 15);
+            this.pgmFaktura.Step = 1;
+            this.pgmFaktura.TabIndex = 6;
+            this.pgmFaktura.Visible = false;
+            // 
+            // Label_Fakturatekst
+            // 
+            this.Label_Fakturatekst.AutoSize = true;
+            this.Label_Fakturatekst.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Fakturatekst.ForeColor = System.Drawing.Color.Red;
+            this.Label_Fakturatekst.Location = new System.Drawing.Point(15, 96);
+            this.Label_Fakturatekst.Name = "Label_Fakturatekst";
+            this.Label_Fakturatekst.Size = new System.Drawing.Size(33, 16);
+            this.Label_Fakturatekst.TabIndex = 5;
+            this.Label_Fakturatekst.Text = "test";
+            this.Label_Fakturatekst.Visible = false;
             // 
             // label2
             // 
@@ -300,54 +349,6 @@
             // columnHeaderKFradato
             // 
             this.columnHeaderKFradato.Text = "Fra dato";
-            // 
-            // pgmForslag
-            // 
-            this.pgmForslag.Location = new System.Drawing.Point(165, 74);
-            this.pgmForslag.Maximum = 325;
-            this.pgmForslag.Name = "pgmForslag";
-            this.pgmForslag.Size = new System.Drawing.Size(218, 15);
-            this.pgmForslag.Step = 1;
-            this.pgmForslag.TabIndex = 6;
-            this.pgmForslag.Visible = false;
-            // 
-            // Label_Forslagstekst
-            // 
-            this.Label_Forslagstekst.AutoSize = true;
-            this.Label_Forslagstekst.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Forslagstekst.ForeColor = System.Drawing.Color.Red;
-            this.Label_Forslagstekst.Location = new System.Drawing.Point(20, 96);
-            this.Label_Forslagstekst.Name = "Label_Forslagstekst";
-            this.Label_Forslagstekst.Size = new System.Drawing.Size(33, 16);
-            this.Label_Forslagstekst.TabIndex = 5;
-            this.Label_Forslagstekst.Text = "test";
-            this.Label_Forslagstekst.Visible = false;
-            // 
-            // Label_Fakturatekst
-            // 
-            this.Label_Fakturatekst.AutoSize = true;
-            this.Label_Fakturatekst.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Fakturatekst.ForeColor = System.Drawing.Color.Red;
-            this.Label_Fakturatekst.Location = new System.Drawing.Point(15, 96);
-            this.Label_Fakturatekst.Name = "Label_Fakturatekst";
-            this.Label_Fakturatekst.Size = new System.Drawing.Size(33, 16);
-            this.Label_Fakturatekst.TabIndex = 5;
-            this.Label_Fakturatekst.Text = "test";
-            this.Label_Fakturatekst.Visible = false;
-            // 
-            // pgmFaktura
-            // 
-            this.pgmFaktura.Location = new System.Drawing.Point(97, 74);
-            this.pgmFaktura.Maximum = 325;
-            this.pgmFaktura.Name = "pgmFaktura";
-            this.pgmFaktura.Size = new System.Drawing.Size(218, 15);
-            this.pgmFaktura.Step = 1;
-            this.pgmFaktura.TabIndex = 6;
-            this.pgmFaktura.Visible = false;
-            // 
-            // columnHeaderMKontingent
-            // 
-            this.columnHeaderMKontingent.Text = "Kontingent";
             // 
             // columnHeaderKKontingent
             // 

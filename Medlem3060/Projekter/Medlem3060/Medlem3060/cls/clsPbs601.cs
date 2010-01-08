@@ -27,11 +27,14 @@ namespace nsPuls3060
         fdmmddyyyyhhmmss = 1,
     }
 
-    class clsPbs601
+    public class clsPbs601
     {
         private Tblpbsfiles m_rec_pbsfiles;
 
-        public clsPbs601(){}
+        public delegate void Pbs601DelegateHandler(int lobnr);
+        public static event Pbs601DelegateHandler SetLobnr;
+
+        public clsPbs601() { }
 
         public bool WriteTilPbsFile(int lobnr)
         {
@@ -48,21 +51,21 @@ namespace nsPuls3060
                 from h in Program.dbData3060.Tblpbsforsendelse
                 join d1 in Program.dbData3060.Tblpbsfiles on h.Id equals d1.Pbsforsendelseid into details1
                 from d1 in details1.DefaultIfEmpty()
+                where d1.Id != null && d1.Filename == null
                 join d2 in Program.dbData3060.Tbltilpbs on h.Id equals d2.Pbsforsendelseid into details2
                 from d2 in details2.DefaultIfEmpty()
-                where d2.Id == lobnr && d1.Id != null && d1.Filename == null
+                where d2.Id == lobnr
                 select new
-                {
-                    tilpbsid = d2.Id,
-                    d2.Leverancespecifikation,
-                    d2.Delsystem,
-                    d2.Leverancetype,
-                    d2.Bilagdato,
-                    d2.Pbsforsendelseid,
-                    d2.Udtrukket,
-                    pbsfilesid = d1.Id
-                };
-
+                 {
+                     tilpbsid = (int?)d2.Id,
+                     d2.Leverancespecifikation,
+                     d2.Delsystem,
+                     d2.Leverancetype,
+                     Bilagdato = (DateTime?)d2.Bilagdato,
+                     Pbsforsendelseid = (int?)d2.Pbsforsendelseid,
+                     Udtrukket = (DateTime?)d2.Udtrukket,
+                     pbsfilesid = (int?)d1.Id
+                 };
 
             foreach (var rec_selecfiles in qry_selectfiles)
             {
@@ -114,15 +117,15 @@ namespace nsPuls3060
                 Udtrukket = DateTime.Now
             };
             Program.dbData3060.Tbltilpbs.InsertOnSubmit(rec_tilpbs);
+            Program.dbData3060.SubmitChanges();
             lobnr = rec_tilpbs.Id;
 
-            var rstmedlems = from h in Program.dbData3060.TempKontforslag
-                             join l in Program.dbData3060.TempKontforslaglinie on h.Id equals l.Kontforslagid
-                             join m in Program.dbData3060.TblMedlem on l.Nr equals m.Nr
-                             join k in Program.karMedlemmer on l.Nr equals k.Nr 
+            var rstmedlems = from k in Program.karMedlemmer
+                             join l in Program.dbData3060.TempKontforslaglinie on k.Nr equals l.Nr
+                             join h in Program.dbData3060.TempKontforslag on l.Kontforslagid equals h.Id
                              select new
                              {
-                                 m.Nr,
+                                 k.Nr,
                                  k.Navn,
                                  h.Betalingsdato,
                                  l.Advisbelob,
@@ -154,8 +157,8 @@ namespace nsPuls3060
                 wantalfakturaer++;
             }
             Program.dbData3060.SubmitChanges();
-
-            if (wantalfakturaer > 0) { faktura_601_action(lobnr); }
+            SetLobnr(lobnr);
+            //if (wantalfakturaer > 0) { faktura_601_action(lobnr); }
             return wantalfakturaer;
 
         }
@@ -223,9 +226,7 @@ namespace nsPuls3060
                 var antal = (from c in Program.dbData3060.Tblfak
                              where c.Tilpbsid == lobnr
                              select c).Count();
-                // if (antal == 0) { throw new Exception("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr); }
-                // næste linie skal fjernes efter test
-                if (antal != 0) { throw new Exception("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr); }
+                if (antal == 0) { throw new Exception("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr); }
             }
 
             var rsttil = (from c in Program.dbData3060.Tbltilpbs
@@ -248,6 +249,7 @@ namespace nsPuls3060
                 Leveranceid = wleveranceid
             };
             Program.dbData3060.Tblpbsforsendelse.InsertOnSubmit(rec_pbsforsendelse);
+            rec_pbsforsendelse.Tbltilpbs.Add(rsttil);
 
             Tblpbsfiles rec_pbsfiles = new Tblpbsfiles();
             rec_pbsforsendelse.Tblpbsfiles.Add(rec_pbsfiles);
@@ -280,16 +282,15 @@ namespace nsPuls3060
             rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
             rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
             antalsek++;
-            var rstdebs = from f in Program.dbData3060.Tblfak
+            var rstdebs = from k in Program.karMedlemmer
+                          join f in Program.dbData3060.Tblfak on k.Nr equals f.Nr
                           where f.Tilpbsid == lobnr && f.Nr != null
-                          join m in Program.dbData3060.TblMedlem on f.Nr equals m.Nr
-                          join k in Program.karMedlemmer on f.Nr equals k.Nr 
                           orderby f.Nr
                           select new
                           {
                               f.Id,
-                              m.Nr,
-                              Kundenr = 32001610000000 + m.Nr,
+                              k.Nr,
+                              Kundenr = 32001610000000 + k.Nr,
                               k.Navn,
                               k.Adresse,
                               k.Postnr,
@@ -480,6 +481,7 @@ namespace nsPuls3060
 
             rsttil.Udtrukket = DateTime.Now;
             rsttil.Leverancespecifikation = wleveranceid.ToString();
+            rsttil.Pbsforsendelseid = 1111;
             Program.dbData3060.SubmitChanges();
         }
 
