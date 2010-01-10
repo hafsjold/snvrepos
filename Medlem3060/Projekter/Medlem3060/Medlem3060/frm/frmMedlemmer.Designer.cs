@@ -29,22 +29,28 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMedlemmer));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.nrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.navnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kaldenavnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.postnrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bynavnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.telefonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.knrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.konDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fodtDatoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kartotekBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dsMedlem = new nsPuls3060.dsMedlem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
+            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cmdSave = new System.Windows.Forms.Button();
+            this.cmdUpdate = new System.Windows.Forms.Button();
+            this.lvwLog = new System.Windows.Forms.ListView();
+            this.columnHeaderDato = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderAktivitet = new System.Windows.Forms.ColumnHeader();
             this.Bynavn = new System.Windows.Forms.TextBox();
             this.Postnr = new System.Windows.Forms.TextBox();
             this.Email = new System.Windows.Forms.TextBox();
@@ -67,15 +73,25 @@
             this.label_Knr = new System.Windows.Forms.Label();
             this.Overskrift = new System.Windows.Forms.Label();
             this.label_Nr = new System.Windows.Forms.Label();
-            this.lvwLog = new System.Windows.Forms.ListView();
-            this.columnHeaderDato = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderAktivitet = new System.Windows.Forms.ColumnHeader();
+            this.nrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.navnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kaldenavnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.postnrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bynavnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.telefonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.knrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.konDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fodtDatoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kartotekBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsMedlem)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
+            this.bindingNavigator1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,7 +101,6 @@
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.AutoGenerateColumns = false;
-            this.dataGridView1.CausesValidation = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nrDataGridViewTextBoxColumn,
@@ -103,95 +118,13 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowTemplate.Height = 20;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(523, 493);
+            this.dataGridView1.Size = new System.Drawing.Size(523, 600);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // nrDataGridViewTextBoxColumn
-            // 
-            this.nrDataGridViewTextBoxColumn.DataPropertyName = "Nr";
-            this.nrDataGridViewTextBoxColumn.HeaderText = "Nr";
-            this.nrDataGridViewTextBoxColumn.Name = "nrDataGridViewTextBoxColumn";
-            this.nrDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // navnDataGridViewTextBoxColumn
-            // 
-            this.navnDataGridViewTextBoxColumn.DataPropertyName = "Navn";
-            this.navnDataGridViewTextBoxColumn.HeaderText = "Navn";
-            this.navnDataGridViewTextBoxColumn.Name = "navnDataGridViewTextBoxColumn";
-            this.navnDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // kaldenavnDataGridViewTextBoxColumn
-            // 
-            this.kaldenavnDataGridViewTextBoxColumn.DataPropertyName = "Kaldenavn";
-            this.kaldenavnDataGridViewTextBoxColumn.HeaderText = "Kaldenavn";
-            this.kaldenavnDataGridViewTextBoxColumn.Name = "kaldenavnDataGridViewTextBoxColumn";
-            this.kaldenavnDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // adresseDataGridViewTextBoxColumn
-            // 
-            this.adresseDataGridViewTextBoxColumn.DataPropertyName = "Adresse";
-            this.adresseDataGridViewTextBoxColumn.HeaderText = "Adresse";
-            this.adresseDataGridViewTextBoxColumn.Name = "adresseDataGridViewTextBoxColumn";
-            this.adresseDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // postnrDataGridViewTextBoxColumn
-            // 
-            this.postnrDataGridViewTextBoxColumn.DataPropertyName = "Postnr";
-            this.postnrDataGridViewTextBoxColumn.HeaderText = "Postnr";
-            this.postnrDataGridViewTextBoxColumn.Name = "postnrDataGridViewTextBoxColumn";
-            this.postnrDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // bynavnDataGridViewTextBoxColumn
-            // 
-            this.bynavnDataGridViewTextBoxColumn.DataPropertyName = "Bynavn";
-            this.bynavnDataGridViewTextBoxColumn.HeaderText = "By";
-            this.bynavnDataGridViewTextBoxColumn.Name = "bynavnDataGridViewTextBoxColumn";
-            this.bynavnDataGridViewTextBoxColumn.ReadOnly = true;
-            this.bynavnDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // telefonDataGridViewTextBoxColumn
-            // 
-            this.telefonDataGridViewTextBoxColumn.DataPropertyName = "Telefon";
-            this.telefonDataGridViewTextBoxColumn.HeaderText = "Telefon";
-            this.telefonDataGridViewTextBoxColumn.Name = "telefonDataGridViewTextBoxColumn";
-            this.telefonDataGridViewTextBoxColumn.ReadOnly = true;
-            this.telefonDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
-            this.emailDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // knrDataGridViewTextBoxColumn
-            // 
-            this.knrDataGridViewTextBoxColumn.DataPropertyName = "Knr";
-            this.knrDataGridViewTextBoxColumn.HeaderText = "Knr";
-            this.knrDataGridViewTextBoxColumn.Name = "knrDataGridViewTextBoxColumn";
-            this.knrDataGridViewTextBoxColumn.ReadOnly = true;
-            this.knrDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // konDataGridViewTextBoxColumn
-            // 
-            this.konDataGridViewTextBoxColumn.DataPropertyName = "Kon";
-            this.konDataGridViewTextBoxColumn.HeaderText = "Køn";
-            this.konDataGridViewTextBoxColumn.Name = "konDataGridViewTextBoxColumn";
-            this.konDataGridViewTextBoxColumn.ReadOnly = true;
-            this.konDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // fodtDatoDataGridViewTextBoxColumn
-            // 
-            this.fodtDatoDataGridViewTextBoxColumn.DataPropertyName = "FodtDato";
-            this.fodtDatoDataGridViewTextBoxColumn.HeaderText = "Født Dato";
-            this.fodtDatoDataGridViewTextBoxColumn.Name = "fodtDatoDataGridViewTextBoxColumn";
-            this.fodtDatoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fodtDatoDataGridViewTextBoxColumn.Visible = false;
+            this.dataGridView1.TabStop = false;
+            this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
+            this.dataGridView1.Sorted += new System.EventHandler(this.dataGridView1_Sorted);
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // kartotekBindingSource
             // 
@@ -211,17 +144,127 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.bindingNavigator1);
             this.splitContainer1.Panel1.Controls.Add(this.panel1);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 493);
+            this.splitContainer1.Size = new System.Drawing.Size(800, 600);
             this.splitContainer1.SplitterDistance = 273;
-            this.splitContainer1.TabIndex = 1;
+            this.splitContainer1.TabIndex = 0;
+            this.splitContainer1.TabStop = false;
+            // 
+            // bindingNavigator1
+            // 
+            this.bindingNavigator1.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.bindingNavigator1.BindingSource = this.kartotekBindingSource;
+            this.bindingNavigator1.CountItem = this.bindingNavigatorCountItem;
+            this.bindingNavigator1.DeleteItem = null;
+            this.bindingNavigator1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bindingNavigatorMoveFirstItem,
+            this.bindingNavigatorMovePreviousItem,
+            this.bindingNavigatorSeparator,
+            this.bindingNavigatorPositionItem,
+            this.bindingNavigatorCountItem,
+            this.bindingNavigatorSeparator1,
+            this.bindingNavigatorMoveNextItem,
+            this.bindingNavigatorMoveLastItem,
+            this.bindingNavigatorSeparator2,
+            this.bindingNavigatorAddNewItem});
+            this.bindingNavigator1.Location = new System.Drawing.Point(0, 575);
+            this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
+            this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
+            this.bindingNavigator1.MoveNextItem = this.bindingNavigatorMoveNextItem;
+            this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
+            this.bindingNavigator1.Name = "bindingNavigator1";
+            this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
+            this.bindingNavigator1.Size = new System.Drawing.Size(273, 25);
+            this.bindingNavigator1.TabIndex = 1;
+            this.bindingNavigator1.Text = "bindingNavigator1";
+            // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorAddNewItem.Text = "Add new";
+            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(36, 22);
+            this.bindingNavigatorCountItem.Text = "of {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            // 
+            // bindingNavigatorMoveFirstItem
+            // 
+            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
+            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
+            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveFirstItem.Text = "Move first";
+            // 
+            // bindingNavigatorMovePreviousItem
+            // 
+            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
+            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
+            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
+            // 
+            // bindingNavigatorSeparator
+            // 
+            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
+            // 
+            // bindingNavigatorPositionItem
+            // 
+            this.bindingNavigatorPositionItem.AccessibleName = "Position";
+            this.bindingNavigatorPositionItem.AutoSize = false;
+            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
+            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 21);
+            this.bindingNavigatorPositionItem.Text = "0";
+            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
+            // 
+            // bindingNavigatorSeparator1
+            // 
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // bindingNavigatorMoveNextItem
+            // 
+            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
+            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
+            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveNextItem.Text = "Move next";
+            // 
+            // bindingNavigatorMoveLastItem
+            // 
+            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
+            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
+            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveLastItem.Text = "Move last";
+            // 
+            // bindingNavigatorSeparator2
+            // 
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.cmdSave);
+            this.panel1.Controls.Add(this.cmdUpdate);
             this.panel1.Controls.Add(this.lvwLog);
             this.panel1.Controls.Add(this.Bynavn);
             this.panel1.Controls.Add(this.Postnr);
@@ -245,10 +288,56 @@
             this.panel1.Controls.Add(this.label_Knr);
             this.panel1.Controls.Add(this.Overskrift);
             this.panel1.Controls.Add(this.label_Nr);
-            this.panel1.Location = new System.Drawing.Point(3, 7);
+            this.panel1.Location = new System.Drawing.Point(7, 7);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(258, 411);
+            this.panel1.Size = new System.Drawing.Size(258, 436);
             this.panel1.TabIndex = 0;
+            // 
+            // cmdSave
+            // 
+            this.cmdSave.Location = new System.Drawing.Point(91, 376);
+            this.cmdSave.Name = "cmdSave";
+            this.cmdSave.Size = new System.Drawing.Size(55, 21);
+            this.cmdSave.TabIndex = 0;
+            this.cmdSave.TabStop = false;
+            this.cmdSave.Text = "Save";
+            this.cmdSave.UseVisualStyleBackColor = true;
+            this.cmdSave.Click += new System.EventHandler(this.cmdUpdate_Click);
+            // 
+            // cmdUpdate
+            // 
+            this.cmdUpdate.Location = new System.Drawing.Point(15, 376);
+            this.cmdUpdate.Name = "cmdUpdate";
+            this.cmdUpdate.Size = new System.Drawing.Size(55, 21);
+            this.cmdUpdate.TabIndex = 0;
+            this.cmdUpdate.TabStop = false;
+            this.cmdUpdate.Text = "Opdater";
+            this.cmdUpdate.UseVisualStyleBackColor = true;
+            this.cmdUpdate.Click += new System.EventHandler(this.cmdUpdate_Click);
+            // 
+            // lvwLog
+            // 
+            this.lvwLog.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderDato,
+            this.columnHeaderAktivitet});
+            this.lvwLog.Location = new System.Drawing.Point(15, 271);
+            this.lvwLog.Name = "lvwLog";
+            this.lvwLog.Size = new System.Drawing.Size(233, 87);
+            this.lvwLog.TabIndex = 0;
+            this.lvwLog.TabStop = false;
+            this.lvwLog.UseCompatibleStateImageBehavior = false;
+            this.lvwLog.View = System.Windows.Forms.View.Details;
+            this.lvwLog.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwLog_ColumnClick);
+            // 
+            // columnHeaderDato
+            // 
+            this.columnHeaderDato.Text = "Dato";
+            this.columnHeaderDato.Width = 66;
+            // 
+            // columnHeaderAktivitet
+            // 
+            this.columnHeaderAktivitet.Text = "Aktivitet";
+            this.columnHeaderAktivitet.Width = 154;
             // 
             // Bynavn
             // 
@@ -257,7 +346,7 @@
             this.Bynavn.Name = "Bynavn";
             this.Bynavn.ReadOnly = true;
             this.Bynavn.Size = new System.Drawing.Size(112, 20);
-            this.Bynavn.TabIndex = 1;
+            this.Bynavn.TabIndex = 5;
             // 
             // Postnr
             // 
@@ -266,7 +355,7 @@
             this.Postnr.Name = "Postnr";
             this.Postnr.ReadOnly = true;
             this.Postnr.Size = new System.Drawing.Size(39, 20);
-            this.Postnr.TabIndex = 1;
+            this.Postnr.TabIndex = 4;
             // 
             // Email
             // 
@@ -275,7 +364,7 @@
             this.Email.Name = "Email";
             this.Email.ReadOnly = true;
             this.Email.Size = new System.Drawing.Size(157, 20);
-            this.Email.TabIndex = 1;
+            this.Email.TabIndex = 7;
             // 
             // Telefon
             // 
@@ -284,7 +373,7 @@
             this.Telefon.Name = "Telefon";
             this.Telefon.ReadOnly = true;
             this.Telefon.Size = new System.Drawing.Size(78, 20);
-            this.Telefon.TabIndex = 1;
+            this.Telefon.TabIndex = 6;
             // 
             // Adresse
             // 
@@ -293,7 +382,7 @@
             this.Adresse.Name = "Adresse";
             this.Adresse.ReadOnly = true;
             this.Adresse.Size = new System.Drawing.Size(157, 20);
-            this.Adresse.TabIndex = 1;
+            this.Adresse.TabIndex = 3;
             // 
             // Kaldenavn
             // 
@@ -302,7 +391,7 @@
             this.Kaldenavn.Name = "Kaldenavn";
             this.Kaldenavn.ReadOnly = true;
             this.Kaldenavn.Size = new System.Drawing.Size(157, 20);
-            this.Kaldenavn.TabIndex = 1;
+            this.Kaldenavn.TabIndex = 2;
             // 
             // Navn
             // 
@@ -312,6 +401,7 @@
             this.Navn.ReadOnly = true;
             this.Navn.Size = new System.Drawing.Size(157, 20);
             this.Navn.TabIndex = 1;
+            this.Navn.TextChanged += new System.EventHandler(this.Navn_TextChanged);
             // 
             // FodtDato
             // 
@@ -320,7 +410,7 @@
             this.FodtDato.Name = "FodtDato";
             this.FodtDato.ReadOnly = true;
             this.FodtDato.Size = new System.Drawing.Size(78, 20);
-            this.FodtDato.TabIndex = 1;
+            this.FodtDato.TabIndex = 10;
             // 
             // Kon
             // 
@@ -329,7 +419,7 @@
             this.Kon.Name = "Kon";
             this.Kon.ReadOnly = true;
             this.Kon.Size = new System.Drawing.Size(39, 20);
-            this.Kon.TabIndex = 1;
+            this.Kon.TabIndex = 9;
             // 
             // Knr
             // 
@@ -338,7 +428,7 @@
             this.Knr.Name = "Knr";
             this.Knr.ReadOnly = true;
             this.Knr.Size = new System.Drawing.Size(39, 20);
-            this.Knr.TabIndex = 1;
+            this.Knr.TabIndex = 8;
             // 
             // Nr
             // 
@@ -347,7 +437,8 @@
             this.Nr.Name = "Nr";
             this.Nr.ReadOnly = true;
             this.Nr.Size = new System.Drawing.Size(39, 20);
-            this.Nr.TabIndex = 1;
+            this.Nr.TabIndex = 0;
+            this.Nr.TabStop = false;
             this.Nr.TextChanged += new System.EventHandler(this.Nr_TextChanged);
             // 
             // label_Postnr_By
@@ -440,7 +531,7 @@
             this.Overskrift.Location = new System.Drawing.Point(0, 0);
             this.Overskrift.Name = "Overskrift";
             this.Overskrift.Size = new System.Drawing.Size(258, 16);
-            this.Overskrift.TabIndex = 0;
+            this.Overskrift.TabIndex = 17;
             this.Overskrift.Text = "SSSSS";
             this.Overskrift.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -453,28 +544,82 @@
             this.label_Nr.TabIndex = 0;
             this.label_Nr.Text = "Nr";
             // 
-            // lvwLog
+            // nrDataGridViewTextBoxColumn
             // 
-            this.lvwLog.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeaderDato,
-            this.columnHeaderAktivitet});
-            this.lvwLog.Location = new System.Drawing.Point(15, 271);
-            this.lvwLog.Name = "lvwLog";
-            this.lvwLog.Size = new System.Drawing.Size(233, 87);
-            this.lvwLog.TabIndex = 2;
-            this.lvwLog.UseCompatibleStateImageBehavior = false;
-            this.lvwLog.View = System.Windows.Forms.View.Details;
-            this.lvwLog.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwLog_ColumnClick);
+            this.nrDataGridViewTextBoxColumn.DataPropertyName = "Nr";
+            this.nrDataGridViewTextBoxColumn.HeaderText = "Nr";
+            this.nrDataGridViewTextBoxColumn.Name = "nrDataGridViewTextBoxColumn";
+            this.nrDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // columnHeaderDato
+            // navnDataGridViewTextBoxColumn
             // 
-            this.columnHeaderDato.Text = "Dato";
-            this.columnHeaderDato.Width = 66;
+            this.navnDataGridViewTextBoxColumn.DataPropertyName = "Navn";
+            this.navnDataGridViewTextBoxColumn.HeaderText = "Navn";
+            this.navnDataGridViewTextBoxColumn.Name = "navnDataGridViewTextBoxColumn";
+            this.navnDataGridViewTextBoxColumn.ReadOnly = true;
             // 
-            // columnHeaderAktivitet
+            // kaldenavnDataGridViewTextBoxColumn
             // 
-            this.columnHeaderAktivitet.Text = "Aktivitet";
-            this.columnHeaderAktivitet.Width = 154;
+            this.kaldenavnDataGridViewTextBoxColumn.DataPropertyName = "Kaldenavn";
+            this.kaldenavnDataGridViewTextBoxColumn.HeaderText = "Kaldenavn";
+            this.kaldenavnDataGridViewTextBoxColumn.Name = "kaldenavnDataGridViewTextBoxColumn";
+            this.kaldenavnDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // adresseDataGridViewTextBoxColumn
+            // 
+            this.adresseDataGridViewTextBoxColumn.DataPropertyName = "Adresse";
+            this.adresseDataGridViewTextBoxColumn.HeaderText = "Adresse";
+            this.adresseDataGridViewTextBoxColumn.Name = "adresseDataGridViewTextBoxColumn";
+            this.adresseDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // postnrDataGridViewTextBoxColumn
+            // 
+            this.postnrDataGridViewTextBoxColumn.DataPropertyName = "Postnr";
+            this.postnrDataGridViewTextBoxColumn.HeaderText = "Postnr";
+            this.postnrDataGridViewTextBoxColumn.Name = "postnrDataGridViewTextBoxColumn";
+            this.postnrDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // bynavnDataGridViewTextBoxColumn
+            // 
+            this.bynavnDataGridViewTextBoxColumn.DataPropertyName = "Bynavn";
+            this.bynavnDataGridViewTextBoxColumn.HeaderText = "By";
+            this.bynavnDataGridViewTextBoxColumn.Name = "bynavnDataGridViewTextBoxColumn";
+            this.bynavnDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // telefonDataGridViewTextBoxColumn
+            // 
+            this.telefonDataGridViewTextBoxColumn.DataPropertyName = "Telefon";
+            this.telefonDataGridViewTextBoxColumn.HeaderText = "Telefon";
+            this.telefonDataGridViewTextBoxColumn.Name = "telefonDataGridViewTextBoxColumn";
+            this.telefonDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // knrDataGridViewTextBoxColumn
+            // 
+            this.knrDataGridViewTextBoxColumn.DataPropertyName = "Knr";
+            this.knrDataGridViewTextBoxColumn.HeaderText = "Knr";
+            this.knrDataGridViewTextBoxColumn.Name = "knrDataGridViewTextBoxColumn";
+            this.knrDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // konDataGridViewTextBoxColumn
+            // 
+            this.konDataGridViewTextBoxColumn.DataPropertyName = "Kon";
+            this.konDataGridViewTextBoxColumn.HeaderText = "Køn";
+            this.konDataGridViewTextBoxColumn.Name = "konDataGridViewTextBoxColumn";
+            this.konDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // fodtDatoDataGridViewTextBoxColumn
+            // 
+            this.fodtDatoDataGridViewTextBoxColumn.DataPropertyName = "FodtDato";
+            this.fodtDatoDataGridViewTextBoxColumn.HeaderText = "Født Dato";
+            this.fodtDatoDataGridViewTextBoxColumn.Name = "fodtDatoDataGridViewTextBoxColumn";
+            this.fodtDatoDataGridViewTextBoxColumn.Visible = false;
             // 
             // FrmMedlemmer
             // 
@@ -494,8 +639,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.kartotekBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsMedlem)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
+            this.bindingNavigator1.ResumeLayout(false);
+            this.bindingNavigator1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -531,6 +680,22 @@
         private System.Windows.Forms.Label label_Kon;
         private System.Windows.Forms.Label label_Knr;
         private System.Windows.Forms.Label Overskrift;
+        private System.Windows.Forms.ListView lvwLog;
+        private System.Windows.Forms.ColumnHeader columnHeaderDato;
+        private System.Windows.Forms.ColumnHeader columnHeaderAktivitet;
+        private System.Windows.Forms.Button cmdUpdate;
+        private System.Windows.Forms.BindingNavigator bindingNavigator1;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
+        private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
+        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
+        private System.Windows.Forms.ToolStripTextBox bindingNavigatorPositionItem;
+        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator1;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
+        private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
+        private System.Windows.Forms.Button cmdSave;
         private System.Windows.Forms.DataGridViewTextBoxColumn nrDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn navnDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn kaldenavnDataGridViewTextBoxColumn;
@@ -542,9 +707,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn knrDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn konDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fodtDatoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.ListView lvwLog;
-        private System.Windows.Forms.ColumnHeader columnHeaderDato;
-        private System.Windows.Forms.ColumnHeader columnHeaderAktivitet;
 
 
     }
