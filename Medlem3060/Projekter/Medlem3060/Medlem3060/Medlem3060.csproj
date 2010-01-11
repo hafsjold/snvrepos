@@ -57,6 +57,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BetterEditBox, Version=1.0.3663.37986, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Visual Studio 2008\Projects\Better_DateTime_Picker\BetterEditBox\bin\BetterEditBox.dll</HintPath>
+    </Reference>
+    <Reference Include="DateTimePicker, Version=1.0.3663.33735, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Visual Studio 2008\Projects\DateTimePicker\bin\DateTimePicker.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -254,6 +262,7 @@
     <None Include="Resources\Add.bmp" />
     <Content Include="Resources\info.png" />
     <Content Include="Resources\logopart.jpg" />
+    <None Include="Resources\Upd.bmp" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

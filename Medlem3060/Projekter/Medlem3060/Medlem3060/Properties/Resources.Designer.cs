@@ -80,5 +80,12 @@ namespace nsPuls3060.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        public static System.Drawing.Bitmap Upd {
+            get {
+                object obj = ResourceManager.GetObject("Upd", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

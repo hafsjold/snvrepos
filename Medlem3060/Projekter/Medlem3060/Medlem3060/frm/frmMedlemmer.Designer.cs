@@ -46,17 +46,17 @@
             this.dsMedlem = new nsPuls3060.dsMedlem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panelAdd = new System.Windows.Forms.Panel();
-            this.cmdSave_I_Recird = new System.Windows.Forms.Button();
+            this.cmdSave_I_Record = new System.Windows.Forms.Button();
             this.cmdCancel_I_Record = new System.Windows.Forms.Button();
             this.I_Bynavn = new System.Windows.Forms.TextBox();
             this.I_Postnr = new System.Windows.Forms.TextBox();
             this.I_Email = new System.Windows.Forms.TextBox();
+            this.I_Indmeldelsesdato = new System.Windows.Forms.TextBox();
+            this.I_FodtDato = new System.Windows.Forms.TextBox();
             this.I_Telefon = new System.Windows.Forms.TextBox();
             this.I_Adresse = new System.Windows.Forms.TextBox();
             this.I_Kaldenavn = new System.Windows.Forms.TextBox();
             this.I_Navn = new System.Windows.Forms.TextBox();
-            this.I_Indmeldelsesdato = new System.Windows.Forms.TextBox();
-            this.I_FodtDato = new System.Windows.Forms.TextBox();
             this.I_Kon = new System.Windows.Forms.TextBox();
             this.I_Knr = new System.Windows.Forms.TextBox();
             this.I_Nr = new System.Windows.Forms.TextBox();
@@ -72,20 +72,40 @@
             this.label_I_Knr = new System.Windows.Forms.Label();
             this.I_Overskrift = new System.Windows.Forms.Label();
             this.label_I_Nr = new System.Windows.Forms.Label();
+            this.panelUpdate = new System.Windows.Forms.Panel();
+            this.cmdSave_U_Record = new System.Windows.Forms.Button();
+            this.cmdCancel_U_Record = new System.Windows.Forms.Button();
+            this.U_Bynavn = new System.Windows.Forms.TextBox();
+            this.U_Postnr = new System.Windows.Forms.TextBox();
+            this.U_Email = new System.Windows.Forms.TextBox();
+            this.U_Indmeldelsesdato = new System.Windows.Forms.TextBox();
+            this.U_FodtDato = new System.Windows.Forms.TextBox();
+            this.U_Telefon = new System.Windows.Forms.TextBox();
+            this.U_Adresse = new System.Windows.Forms.TextBox();
+            this.U_Kaldenavn = new System.Windows.Forms.TextBox();
+            this.U_Navn = new System.Windows.Forms.TextBox();
+            this.U_Kon = new System.Windows.Forms.TextBox();
+            this.U_Knr = new System.Windows.Forms.TextBox();
+            this.U_Nr = new System.Windows.Forms.TextBox();
+            this.label_U_label_Postnr_By = new System.Windows.Forms.Label();
+            this.label_U_Email = new System.Windows.Forms.Label();
+            this.label_U_Telefon = new System.Windows.Forms.Label();
+            this.label_U_Adresse = new System.Windows.Forms.Label();
+            this.label_U_Kaldenavn = new System.Windows.Forms.Label();
+            this.label_U_Navn = new System.Windows.Forms.Label();
+            this.label_U_Indmeldelsesdato = new System.Windows.Forms.Label();
+            this.label_U_FodtDato = new System.Windows.Forms.Label();
+            this.label_U_Kon = new System.Windows.Forms.Label();
+            this.label_U_Knr = new System.Windows.Forms.Label();
+            this.U_Overskrift = new System.Windows.Forms.Label();
+            this.label_U_Nr = new System.Windows.Forms.Label();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.panelUpdate = new System.Windows.Forms.Panel();
-            this.cmdSave = new System.Windows.Forms.Button();
-            this.cmdUpdate = new System.Windows.Forms.Button();
+            this.panelDisplay = new System.Windows.Forms.Panel();
             this.lvwLog = new System.Windows.Forms.ListView();
             this.columnHeaderDato = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderAktivitet = new System.Windows.Forms.ColumnHeader();
@@ -111,6 +131,12 @@
             this.label_Knr = new System.Windows.Forms.Label();
             this.Overskrift = new System.Windows.Forms.Label();
             this.label_Nr = new System.Windows.Forms.Label();
+            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorAddUpdateItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kartotekBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsMedlem)).BeginInit();
@@ -118,9 +144,10 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.panelAdd.SuspendLayout();
+            this.panelUpdate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
-            this.panelUpdate.SuspendLayout();
+            this.panelDisplay.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -147,7 +174,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 20;
-            this.dataGridView1.Size = new System.Drawing.Size(523, 842);
+            this.dataGridView1.Size = new System.Drawing.Size(524, 1339);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.TabStop = false;
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
@@ -250,30 +277,31 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.panelAdd);
-            this.splitContainer1.Panel1.Controls.Add(this.bindingNavigator1);
             this.splitContainer1.Panel1.Controls.Add(this.panelUpdate);
+            this.splitContainer1.Panel1.Controls.Add(this.bindingNavigator1);
+            this.splitContainer1.Panel1.Controls.Add(this.panelDisplay);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 842);
-            this.splitContainer1.SplitterDistance = 273;
+            this.splitContainer1.Size = new System.Drawing.Size(800, 1339);
+            this.splitContainer1.SplitterDistance = 272;
             this.splitContainer1.TabIndex = 0;
             this.splitContainer1.TabStop = false;
             // 
             // panelAdd
             // 
-            this.panelAdd.Controls.Add(this.cmdSave_I_Recird);
+            this.panelAdd.Controls.Add(this.cmdSave_I_Record);
             this.panelAdd.Controls.Add(this.cmdCancel_I_Record);
             this.panelAdd.Controls.Add(this.I_Bynavn);
             this.panelAdd.Controls.Add(this.I_Postnr);
             this.panelAdd.Controls.Add(this.I_Email);
+            this.panelAdd.Controls.Add(this.I_Indmeldelsesdato);
+            this.panelAdd.Controls.Add(this.I_FodtDato);
             this.panelAdd.Controls.Add(this.I_Telefon);
             this.panelAdd.Controls.Add(this.I_Adresse);
             this.panelAdd.Controls.Add(this.I_Kaldenavn);
             this.panelAdd.Controls.Add(this.I_Navn);
-            this.panelAdd.Controls.Add(this.I_Indmeldelsesdato);
-            this.panelAdd.Controls.Add(this.I_FodtDato);
             this.panelAdd.Controls.Add(this.I_Kon);
             this.panelAdd.Controls.Add(this.I_Knr);
             this.panelAdd.Controls.Add(this.I_Nr);
@@ -289,22 +317,22 @@
             this.panelAdd.Controls.Add(this.label_I_Knr);
             this.panelAdd.Controls.Add(this.I_Overskrift);
             this.panelAdd.Controls.Add(this.label_I_Nr);
-            this.panelAdd.Location = new System.Drawing.Point(7, 424);
+            this.panelAdd.Location = new System.Drawing.Point(7, 404);
             this.panelAdd.Name = "panelAdd";
             this.panelAdd.Size = new System.Drawing.Size(258, 336);
             this.panelAdd.TabIndex = 1;
             this.panelAdd.Visible = false;
             // 
-            // cmdSave_I_Recird
+            // cmdSave_I_Record
             // 
-            this.cmdSave_I_Recird.Location = new System.Drawing.Point(91, 305);
-            this.cmdSave_I_Recird.Name = "cmdSave_I_Recird";
-            this.cmdSave_I_Recird.Size = new System.Drawing.Size(55, 21);
-            this.cmdSave_I_Recird.TabIndex = 0;
-            this.cmdSave_I_Recird.TabStop = false;
-            this.cmdSave_I_Recird.Text = "Gem";
-            this.cmdSave_I_Recird.UseVisualStyleBackColor = true;
-            this.cmdSave_I_Recird.Click += new System.EventHandler(this.cmdSave_I_Recird_Click);
+            this.cmdSave_I_Record.Location = new System.Drawing.Point(91, 305);
+            this.cmdSave_I_Record.Name = "cmdSave_I_Record";
+            this.cmdSave_I_Record.Size = new System.Drawing.Size(55, 21);
+            this.cmdSave_I_Record.TabIndex = 0;
+            this.cmdSave_I_Record.TabStop = false;
+            this.cmdSave_I_Record.Text = "Gem";
+            this.cmdSave_I_Record.UseVisualStyleBackColor = true;
+            this.cmdSave_I_Record.Click += new System.EventHandler(this.cmdSave_I_Record_Click);
             // 
             // cmdCancel_I_Record
             // 
@@ -338,6 +366,20 @@
             this.I_Email.Size = new System.Drawing.Size(157, 20);
             this.I_Email.TabIndex = 7;
             // 
+            // I_Indmeldelsesdato
+            // 
+            this.I_Indmeldelsesdato.Location = new System.Drawing.Point(91, 268);
+            this.I_Indmeldelsesdato.Name = "I_Indmeldelsesdato";
+            this.I_Indmeldelsesdato.Size = new System.Drawing.Size(78, 20);
+            this.I_Indmeldelsesdato.TabIndex = 6;
+            // 
+            // I_FodtDato
+            // 
+            this.I_FodtDato.Location = new System.Drawing.Point(91, 243);
+            this.I_FodtDato.Name = "I_FodtDato";
+            this.I_FodtDato.Size = new System.Drawing.Size(78, 20);
+            this.I_FodtDato.TabIndex = 6;
+            // 
             // I_Telefon
             // 
             this.I_Telefon.Location = new System.Drawing.Point(91, 146);
@@ -365,20 +407,6 @@
             this.I_Navn.Name = "I_Navn";
             this.I_Navn.Size = new System.Drawing.Size(157, 20);
             this.I_Navn.TabIndex = 1;
-            // 
-            // I_Indmeldelsesdato
-            // 
-            this.I_Indmeldelsesdato.Location = new System.Drawing.Point(91, 268);
-            this.I_Indmeldelsesdato.Name = "I_Indmeldelsesdato";
-            this.I_Indmeldelsesdato.Size = new System.Drawing.Size(78, 20);
-            this.I_Indmeldelsesdato.TabIndex = 11;
-            // 
-            // I_FodtDato
-            // 
-            this.I_FodtDato.Location = new System.Drawing.Point(91, 242);
-            this.I_FodtDato.Name = "I_FodtDato";
-            this.I_FodtDato.Size = new System.Drawing.Size(78, 20);
-            this.I_FodtDato.TabIndex = 10;
             // 
             // I_Kon
             // 
@@ -514,6 +542,259 @@
             this.label_I_Nr.TabIndex = 0;
             this.label_I_Nr.Text = "Nr";
             // 
+            // panelUpdate
+            // 
+            this.panelUpdate.Controls.Add(this.cmdSave_U_Record);
+            this.panelUpdate.Controls.Add(this.cmdCancel_U_Record);
+            this.panelUpdate.Controls.Add(this.U_Bynavn);
+            this.panelUpdate.Controls.Add(this.U_Postnr);
+            this.panelUpdate.Controls.Add(this.U_Email);
+            this.panelUpdate.Controls.Add(this.U_Indmeldelsesdato);
+            this.panelUpdate.Controls.Add(this.U_FodtDato);
+            this.panelUpdate.Controls.Add(this.U_Telefon);
+            this.panelUpdate.Controls.Add(this.U_Adresse);
+            this.panelUpdate.Controls.Add(this.U_Kaldenavn);
+            this.panelUpdate.Controls.Add(this.U_Navn);
+            this.panelUpdate.Controls.Add(this.U_Kon);
+            this.panelUpdate.Controls.Add(this.U_Knr);
+            this.panelUpdate.Controls.Add(this.U_Nr);
+            this.panelUpdate.Controls.Add(this.label_U_label_Postnr_By);
+            this.panelUpdate.Controls.Add(this.label_U_Email);
+            this.panelUpdate.Controls.Add(this.label_U_Telefon);
+            this.panelUpdate.Controls.Add(this.label_U_Adresse);
+            this.panelUpdate.Controls.Add(this.label_U_Kaldenavn);
+            this.panelUpdate.Controls.Add(this.label_U_Navn);
+            this.panelUpdate.Controls.Add(this.label_U_Indmeldelsesdato);
+            this.panelUpdate.Controls.Add(this.label_U_FodtDato);
+            this.panelUpdate.Controls.Add(this.label_U_Kon);
+            this.panelUpdate.Controls.Add(this.label_U_Knr);
+            this.panelUpdate.Controls.Add(this.U_Overskrift);
+            this.panelUpdate.Controls.Add(this.label_U_Nr);
+            this.panelUpdate.Location = new System.Drawing.Point(7, 757);
+            this.panelUpdate.Name = "panelUpdate";
+            this.panelUpdate.Size = new System.Drawing.Size(258, 336);
+            this.panelUpdate.TabIndex = 18;
+            this.panelUpdate.Visible = false;
+            // 
+            // cmdSave_U_Record
+            // 
+            this.cmdSave_U_Record.Location = new System.Drawing.Point(91, 305);
+            this.cmdSave_U_Record.Name = "cmdSave_U_Record";
+            this.cmdSave_U_Record.Size = new System.Drawing.Size(55, 21);
+            this.cmdSave_U_Record.TabIndex = 0;
+            this.cmdSave_U_Record.TabStop = false;
+            this.cmdSave_U_Record.Text = "Gem";
+            this.cmdSave_U_Record.UseVisualStyleBackColor = true;
+            this.cmdSave_U_Record.Click += new System.EventHandler(this.cmdSave_U_Record_Click);
+            // 
+            // cmdCancel_U_Record
+            // 
+            this.cmdCancel_U_Record.Location = new System.Drawing.Point(15, 305);
+            this.cmdCancel_U_Record.Name = "cmdCancel_U_Record";
+            this.cmdCancel_U_Record.Size = new System.Drawing.Size(55, 21);
+            this.cmdCancel_U_Record.TabIndex = 0;
+            this.cmdCancel_U_Record.TabStop = false;
+            this.cmdCancel_U_Record.Text = "Fortryd";
+            this.cmdCancel_U_Record.UseVisualStyleBackColor = true;
+            this.cmdCancel_U_Record.Click += new System.EventHandler(this.cmdCancel_U_Record_Click);
+            // 
+            // U_Bynavn
+            // 
+            this.U_Bynavn.Location = new System.Drawing.Point(136, 122);
+            this.U_Bynavn.Name = "U_Bynavn";
+            this.U_Bynavn.Size = new System.Drawing.Size(112, 20);
+            this.U_Bynavn.TabIndex = 5;
+            // 
+            // U_Postnr
+            // 
+            this.U_Postnr.Location = new System.Drawing.Point(91, 122);
+            this.U_Postnr.Name = "U_Postnr";
+            this.U_Postnr.Size = new System.Drawing.Size(39, 20);
+            this.U_Postnr.TabIndex = 4;
+            // 
+            // U_Email
+            // 
+            this.U_Email.Location = new System.Drawing.Point(91, 170);
+            this.U_Email.Name = "U_Email";
+            this.U_Email.Size = new System.Drawing.Size(157, 20);
+            this.U_Email.TabIndex = 7;
+            // 
+            // U_Indmeldelsesdato
+            // 
+            this.U_Indmeldelsesdato.Location = new System.Drawing.Point(91, 268);
+            this.U_Indmeldelsesdato.Name = "U_Indmeldelsesdato";
+            this.U_Indmeldelsesdato.Size = new System.Drawing.Size(78, 20);
+            this.U_Indmeldelsesdato.TabIndex = 6;
+            // 
+            // U_FodtDato
+            // 
+            this.U_FodtDato.Location = new System.Drawing.Point(91, 243);
+            this.U_FodtDato.Name = "U_FodtDato";
+            this.U_FodtDato.Size = new System.Drawing.Size(78, 20);
+            this.U_FodtDato.TabIndex = 6;
+            // 
+            // U_Telefon
+            // 
+            this.U_Telefon.Location = new System.Drawing.Point(91, 146);
+            this.U_Telefon.Name = "U_Telefon";
+            this.U_Telefon.Size = new System.Drawing.Size(78, 20);
+            this.U_Telefon.TabIndex = 6;
+            // 
+            // U_Adresse
+            // 
+            this.U_Adresse.Location = new System.Drawing.Point(91, 98);
+            this.U_Adresse.Name = "U_Adresse";
+            this.U_Adresse.Size = new System.Drawing.Size(157, 20);
+            this.U_Adresse.TabIndex = 3;
+            // 
+            // U_Kaldenavn
+            // 
+            this.U_Kaldenavn.Location = new System.Drawing.Point(91, 74);
+            this.U_Kaldenavn.Name = "U_Kaldenavn";
+            this.U_Kaldenavn.Size = new System.Drawing.Size(157, 20);
+            this.U_Kaldenavn.TabIndex = 2;
+            // 
+            // U_Navn
+            // 
+            this.U_Navn.Location = new System.Drawing.Point(91, 50);
+            this.U_Navn.Name = "U_Navn";
+            this.U_Navn.Size = new System.Drawing.Size(157, 20);
+            this.U_Navn.TabIndex = 1;
+            // 
+            // U_Kon
+            // 
+            this.U_Kon.Location = new System.Drawing.Point(91, 218);
+            this.U_Kon.Name = "U_Kon";
+            this.U_Kon.Size = new System.Drawing.Size(39, 20);
+            this.U_Kon.TabIndex = 9;
+            // 
+            // U_Knr
+            // 
+            this.U_Knr.Location = new System.Drawing.Point(91, 194);
+            this.U_Knr.Name = "U_Knr";
+            this.U_Knr.Size = new System.Drawing.Size(39, 20);
+            this.U_Knr.TabIndex = 8;
+            // 
+            // U_Nr
+            // 
+            this.U_Nr.Location = new System.Drawing.Point(91, 26);
+            this.U_Nr.Name = "U_Nr";
+            this.U_Nr.ReadOnly = true;
+            this.U_Nr.Size = new System.Drawing.Size(39, 20);
+            this.U_Nr.TabIndex = 0;
+            this.U_Nr.TabStop = false;
+            // 
+            // label_U_label_Postnr_By
+            // 
+            this.label_U_label_Postnr_By.AutoSize = true;
+            this.label_U_label_Postnr_By.Location = new System.Drawing.Point(12, 125);
+            this.label_U_label_Postnr_By.Name = "label_U_label_Postnr_By";
+            this.label_U_label_Postnr_By.Size = new System.Drawing.Size(61, 13);
+            this.label_U_label_Postnr_By.TabIndex = 0;
+            this.label_U_label_Postnr_By.Text = "Postnr + By";
+            // 
+            // label_U_Email
+            // 
+            this.label_U_Email.AutoSize = true;
+            this.label_U_Email.Location = new System.Drawing.Point(12, 173);
+            this.label_U_Email.Name = "label_U_Email";
+            this.label_U_Email.Size = new System.Drawing.Size(32, 13);
+            this.label_U_Email.TabIndex = 0;
+            this.label_U_Email.Text = "Email";
+            // 
+            // label_U_Telefon
+            // 
+            this.label_U_Telefon.AutoSize = true;
+            this.label_U_Telefon.Location = new System.Drawing.Point(12, 149);
+            this.label_U_Telefon.Name = "label_U_Telefon";
+            this.label_U_Telefon.Size = new System.Drawing.Size(43, 13);
+            this.label_U_Telefon.TabIndex = 0;
+            this.label_U_Telefon.Text = "Telefon";
+            // 
+            // label_U_Adresse
+            // 
+            this.label_U_Adresse.AutoSize = true;
+            this.label_U_Adresse.Location = new System.Drawing.Point(12, 101);
+            this.label_U_Adresse.Name = "label_U_Adresse";
+            this.label_U_Adresse.Size = new System.Drawing.Size(45, 13);
+            this.label_U_Adresse.TabIndex = 0;
+            this.label_U_Adresse.Text = "Adresse";
+            // 
+            // label_U_Kaldenavn
+            // 
+            this.label_U_Kaldenavn.AutoSize = true;
+            this.label_U_Kaldenavn.Location = new System.Drawing.Point(12, 77);
+            this.label_U_Kaldenavn.Name = "label_U_Kaldenavn";
+            this.label_U_Kaldenavn.Size = new System.Drawing.Size(58, 13);
+            this.label_U_Kaldenavn.TabIndex = 0;
+            this.label_U_Kaldenavn.Text = "Kaldenavn";
+            // 
+            // label_U_Navn
+            // 
+            this.label_U_Navn.AutoSize = true;
+            this.label_U_Navn.Location = new System.Drawing.Point(12, 53);
+            this.label_U_Navn.Name = "label_U_Navn";
+            this.label_U_Navn.Size = new System.Drawing.Size(33, 13);
+            this.label_U_Navn.TabIndex = 0;
+            this.label_U_Navn.Text = "Navn";
+            // 
+            // label_U_Indmeldelsesdato
+            // 
+            this.label_U_Indmeldelsesdato.AutoSize = true;
+            this.label_U_Indmeldelsesdato.Location = new System.Drawing.Point(12, 271);
+            this.label_U_Indmeldelsesdato.Name = "label_U_Indmeldelsesdato";
+            this.label_U_Indmeldelsesdato.Size = new System.Drawing.Size(59, 13);
+            this.label_U_Indmeldelsesdato.TabIndex = 0;
+            this.label_U_Indmeldelsesdato.Text = "Medlem fra";
+            // 
+            // label_U_FodtDato
+            // 
+            this.label_U_FodtDato.AutoSize = true;
+            this.label_U_FodtDato.Location = new System.Drawing.Point(12, 245);
+            this.label_U_FodtDato.Name = "label_U_FodtDato";
+            this.label_U_FodtDato.Size = new System.Drawing.Size(52, 13);
+            this.label_U_FodtDato.TabIndex = 0;
+            this.label_U_FodtDato.Text = "Født dato";
+            // 
+            // label_U_Kon
+            // 
+            this.label_U_Kon.AutoSize = true;
+            this.label_U_Kon.Location = new System.Drawing.Point(12, 221);
+            this.label_U_Kon.Name = "label_U_Kon";
+            this.label_U_Kon.Size = new System.Drawing.Size(26, 13);
+            this.label_U_Kon.TabIndex = 0;
+            this.label_U_Kon.Text = "Køn";
+            // 
+            // label_U_Knr
+            // 
+            this.label_U_Knr.AutoSize = true;
+            this.label_U_Knr.Location = new System.Drawing.Point(12, 197);
+            this.label_U_Knr.Name = "label_U_Knr";
+            this.label_U_Knr.Size = new System.Drawing.Size(54, 13);
+            this.label_U_Knr.TabIndex = 0;
+            this.label_U_Knr.Text = "Kommune";
+            // 
+            // U_Overskrift
+            // 
+            this.U_Overskrift.Dock = System.Windows.Forms.DockStyle.Top;
+            this.U_Overskrift.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.U_Overskrift.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.U_Overskrift.Location = new System.Drawing.Point(0, 0);
+            this.U_Overskrift.Name = "U_Overskrift";
+            this.U_Overskrift.Size = new System.Drawing.Size(258, 16);
+            this.U_Overskrift.TabIndex = 17;
+            this.U_Overskrift.Text = "Opdater medlem";
+            this.U_Overskrift.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label_U_Nr
+            // 
+            this.label_U_Nr.AutoSize = true;
+            this.label_U_Nr.Location = new System.Drawing.Point(12, 29);
+            this.label_U_Nr.Name = "label_U_Nr";
+            this.label_U_Nr.Size = new System.Drawing.Size(18, 13);
+            this.label_U_Nr.TabIndex = 0;
+            this.label_U_Nr.Text = "Nr";
+            // 
             // bindingNavigator1
             // 
             this.bindingNavigator1.AddNewItem = null;
@@ -531,15 +812,16 @@
             this.bindingNavigatorMoveNextItem,
             this.bindingNavigatorMoveLastItem,
             this.bindingNavigatorSeparator2,
+            this.bindingNavigatorAddUpdateItem,
             this.bindingNavigatorAddNewItem});
-            this.bindingNavigator1.Location = new System.Drawing.Point(0, 817);
+            this.bindingNavigator1.Location = new System.Drawing.Point(0, 1314);
             this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.bindingNavigator1.MoveNextItem = this.bindingNavigatorMoveNextItem;
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(273, 25);
+            this.bindingNavigator1.Size = new System.Drawing.Size(272, 25);
             this.bindingNavigator1.TabIndex = 1;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -549,24 +831,6 @@
             this.bindingNavigatorCountItem.Size = new System.Drawing.Size(36, 22);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
-            // bindingNavigatorMoveFirstItem
-            // 
-            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
-            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
-            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveFirstItem.Text = "Move first";
-            // 
-            // bindingNavigatorMovePreviousItem
-            // 
-            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
-            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
-            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
             // 
             // bindingNavigatorSeparator
             // 
@@ -587,93 +851,40 @@
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
             this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
-            // bindingNavigatorMoveNextItem
-            // 
-            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
-            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
-            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveNextItem.Text = "Move next";
-            // 
-            // bindingNavigatorMoveLastItem
-            // 
-            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
-            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
-            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveLastItem.Text = "Move last";
-            // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
-            // bindingNavigatorAddNewItem
+            // panelDisplay
             // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = global::nsPuls3060.Properties.Resources.Add;
-            this.bindingNavigatorAddNewItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorAddNewItem.Text = "Add New";
-            this.bindingNavigatorAddNewItem.ToolTipText = "Add New";
-            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
-            // 
-            // panelUpdate
-            // 
-            this.panelUpdate.Controls.Add(this.cmdSave);
-            this.panelUpdate.Controls.Add(this.cmdUpdate);
-            this.panelUpdate.Controls.Add(this.lvwLog);
-            this.panelUpdate.Controls.Add(this.Bynavn);
-            this.panelUpdate.Controls.Add(this.Postnr);
-            this.panelUpdate.Controls.Add(this.Email);
-            this.panelUpdate.Controls.Add(this.Telefon);
-            this.panelUpdate.Controls.Add(this.Adresse);
-            this.panelUpdate.Controls.Add(this.Kaldenavn);
-            this.panelUpdate.Controls.Add(this.Navn);
-            this.panelUpdate.Controls.Add(this.FodtDato);
-            this.panelUpdate.Controls.Add(this.Kon);
-            this.panelUpdate.Controls.Add(this.Knr);
-            this.panelUpdate.Controls.Add(this.Nr);
-            this.panelUpdate.Controls.Add(this.label_Postnr_By);
-            this.panelUpdate.Controls.Add(this.label_Email);
-            this.panelUpdate.Controls.Add(this.label_Telefon);
-            this.panelUpdate.Controls.Add(this.label_Adresse);
-            this.panelUpdate.Controls.Add(this.label_Kaldenavn);
-            this.panelUpdate.Controls.Add(this.label_Navn);
-            this.panelUpdate.Controls.Add(this.label_FodtDato);
-            this.panelUpdate.Controls.Add(this.label_Kon);
-            this.panelUpdate.Controls.Add(this.label_Knr);
-            this.panelUpdate.Controls.Add(this.Overskrift);
-            this.panelUpdate.Controls.Add(this.label_Nr);
-            this.panelUpdate.Location = new System.Drawing.Point(7, 7);
-            this.panelUpdate.Name = "panelUpdate";
-            this.panelUpdate.Size = new System.Drawing.Size(258, 411);
-            this.panelUpdate.TabIndex = 0;
-            // 
-            // cmdSave
-            // 
-            this.cmdSave.Location = new System.Drawing.Point(91, 376);
-            this.cmdSave.Name = "cmdSave";
-            this.cmdSave.Size = new System.Drawing.Size(55, 21);
-            this.cmdSave.TabIndex = 0;
-            this.cmdSave.TabStop = false;
-            this.cmdSave.Text = "Save";
-            this.cmdSave.UseVisualStyleBackColor = true;
-            this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
-            // 
-            // cmdUpdate
-            // 
-            this.cmdUpdate.Location = new System.Drawing.Point(15, 376);
-            this.cmdUpdate.Name = "cmdUpdate";
-            this.cmdUpdate.Size = new System.Drawing.Size(55, 21);
-            this.cmdUpdate.TabIndex = 0;
-            this.cmdUpdate.TabStop = false;
-            this.cmdUpdate.Text = "Opdater";
-            this.cmdUpdate.UseVisualStyleBackColor = true;
-            this.cmdUpdate.Click += new System.EventHandler(this.cmdUpdate_Click);
+            this.panelDisplay.Controls.Add(this.lvwLog);
+            this.panelDisplay.Controls.Add(this.Bynavn);
+            this.panelDisplay.Controls.Add(this.Postnr);
+            this.panelDisplay.Controls.Add(this.Email);
+            this.panelDisplay.Controls.Add(this.Telefon);
+            this.panelDisplay.Controls.Add(this.Adresse);
+            this.panelDisplay.Controls.Add(this.Kaldenavn);
+            this.panelDisplay.Controls.Add(this.Navn);
+            this.panelDisplay.Controls.Add(this.FodtDato);
+            this.panelDisplay.Controls.Add(this.Kon);
+            this.panelDisplay.Controls.Add(this.Knr);
+            this.panelDisplay.Controls.Add(this.Nr);
+            this.panelDisplay.Controls.Add(this.label_Postnr_By);
+            this.panelDisplay.Controls.Add(this.label_Email);
+            this.panelDisplay.Controls.Add(this.label_Telefon);
+            this.panelDisplay.Controls.Add(this.label_Adresse);
+            this.panelDisplay.Controls.Add(this.label_Kaldenavn);
+            this.panelDisplay.Controls.Add(this.label_Navn);
+            this.panelDisplay.Controls.Add(this.label_FodtDato);
+            this.panelDisplay.Controls.Add(this.label_Kon);
+            this.panelDisplay.Controls.Add(this.label_Knr);
+            this.panelDisplay.Controls.Add(this.Overskrift);
+            this.panelDisplay.Controls.Add(this.label_Nr);
+            this.panelDisplay.Location = new System.Drawing.Point(7, 7);
+            this.panelDisplay.Name = "panelDisplay";
+            this.panelDisplay.Size = new System.Drawing.Size(258, 379);
+            this.panelDisplay.TabIndex = 0;
             // 
             // lvwLog
             // 
@@ -892,7 +1103,7 @@
             this.Overskrift.Name = "Overskrift";
             this.Overskrift.Size = new System.Drawing.Size(258, 16);
             this.Overskrift.TabIndex = 17;
-            this.Overskrift.Text = "SSSSS";
+            this.Overskrift.Text = "Vis Medlem";
             this.Overskrift.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label_Nr
@@ -903,6 +1114,63 @@
             this.label_Nr.Size = new System.Drawing.Size(18, 13);
             this.label_Nr.TabIndex = 0;
             this.label_Nr.Text = "Nr";
+            // 
+            // bindingNavigatorMoveFirstItem
+            // 
+            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
+            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
+            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveFirstItem.Text = "Move first";
+            // 
+            // bindingNavigatorMovePreviousItem
+            // 
+            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
+            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
+            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
+            // 
+            // bindingNavigatorMoveNextItem
+            // 
+            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
+            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
+            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveNextItem.Text = "Move next";
+            // 
+            // bindingNavigatorMoveLastItem
+            // 
+            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
+            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
+            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveLastItem.Text = "Move last";
+            // 
+            // bindingNavigatorAddUpdateItem
+            // 
+            this.bindingNavigatorAddUpdateItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddUpdateItem.Image = global::nsPuls3060.Properties.Resources.Upd;
+            this.bindingNavigatorAddUpdateItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.bindingNavigatorAddUpdateItem.Name = "bindingNavigatorAddUpdateItem";
+            this.bindingNavigatorAddUpdateItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorAddUpdateItem.Text = "Update";
+            this.bindingNavigatorAddUpdateItem.Click += new System.EventHandler(this.bindingNavigatorUpdateItem_Click);
+            // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = global::nsPuls3060.Properties.Resources.Add;
+            this.bindingNavigatorAddNewItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorAddNewItem.Text = "Add New";
+            this.bindingNavigatorAddNewItem.ToolTipText = "Add New";
+            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
             // 
             // FrmMedlemmer
             // 
@@ -927,11 +1195,13 @@
             this.splitContainer1.ResumeLayout(false);
             this.panelAdd.ResumeLayout(false);
             this.panelAdd.PerformLayout();
+            this.panelUpdate.ResumeLayout(false);
+            this.panelUpdate.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
-            this.panelUpdate.ResumeLayout(false);
-            this.panelUpdate.PerformLayout();
+            this.panelDisplay.ResumeLayout(false);
+            this.panelDisplay.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -942,7 +1212,7 @@
         private System.Windows.Forms.BindingSource kartotekBindingSource;
         private dsMedlem dsMedlem;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Panel panelUpdate;
+        private System.Windows.Forms.Panel panelDisplay;
         private System.Windows.Forms.TextBox Nr;
         private System.Windows.Forms.Label label_Nr;
         private System.Windows.Forms.TextBox Adresse;
@@ -968,7 +1238,6 @@
         private System.Windows.Forms.ListView lvwLog;
         private System.Windows.Forms.ColumnHeader columnHeaderDato;
         private System.Windows.Forms.ColumnHeader columnHeaderAktivitet;
-        private System.Windows.Forms.Button cmdUpdate;
         private System.Windows.Forms.BindingNavigator bindingNavigator1;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
@@ -979,7 +1248,6 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.Button cmdSave;
         private System.Windows.Forms.DataGridViewTextBoxColumn nrDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn navnDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn kaldenavnDataGridViewTextBoxColumn;
@@ -992,7 +1260,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn konDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fodtDatoDataGridViewTextBoxColumn;
         private System.Windows.Forms.Panel panelAdd;
-        private System.Windows.Forms.Button cmdSave_I_Recird;
+        private System.Windows.Forms.Button cmdSave_I_Record;
         private System.Windows.Forms.Button cmdCancel_I_Record;
         private System.Windows.Forms.TextBox I_Bynavn;
         private System.Windows.Forms.TextBox I_Postnr;
@@ -1001,7 +1269,6 @@
         private System.Windows.Forms.TextBox I_Adresse;
         private System.Windows.Forms.TextBox I_Kaldenavn;
         private System.Windows.Forms.TextBox I_Navn;
-        private System.Windows.Forms.TextBox I_FodtDato;
         private System.Windows.Forms.TextBox I_Kon;
         private System.Windows.Forms.TextBox I_Knr;
         private System.Windows.Forms.TextBox I_Nr;
@@ -1016,9 +1283,38 @@
         private System.Windows.Forms.Label label_I_Knr;
         private System.Windows.Forms.Label I_Overskrift;
         private System.Windows.Forms.Label label_I_Nr;
-        private System.Windows.Forms.TextBox I_Indmeldelsesdato;
         private System.Windows.Forms.Label label_I_Indmeldelsesdato;
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
+        private System.Windows.Forms.Panel panelUpdate;
+        private System.Windows.Forms.Button cmdSave_U_Record;
+        private System.Windows.Forms.Button cmdCancel_U_Record;
+        private System.Windows.Forms.TextBox U_Bynavn;
+        private System.Windows.Forms.TextBox U_Postnr;
+        private System.Windows.Forms.TextBox U_Email;
+        private System.Windows.Forms.TextBox U_Telefon;
+        private System.Windows.Forms.TextBox U_Adresse;
+        private System.Windows.Forms.TextBox U_Kaldenavn;
+        private System.Windows.Forms.TextBox U_Navn;
+        private System.Windows.Forms.TextBox U_Kon;
+        private System.Windows.Forms.TextBox U_Knr;
+        private System.Windows.Forms.TextBox U_Nr;
+        private System.Windows.Forms.Label label_U_label_Postnr_By;
+        private System.Windows.Forms.Label label_U_Email;
+        private System.Windows.Forms.Label label_U_Telefon;
+        private System.Windows.Forms.Label label_U_Adresse;
+        private System.Windows.Forms.Label label_U_Kaldenavn;
+        private System.Windows.Forms.Label label_U_Navn;
+        private System.Windows.Forms.Label label_U_Indmeldelsesdato;
+        private System.Windows.Forms.Label label_U_FodtDato;
+        private System.Windows.Forms.Label label_U_Kon;
+        private System.Windows.Forms.Label label_U_Knr;
+        private System.Windows.Forms.Label U_Overskrift;
+        private System.Windows.Forms.Label label_U_Nr;
+        private System.Windows.Forms.TextBox I_Indmeldelsesdato;
+        private System.Windows.Forms.TextBox I_FodtDato;
+        private System.Windows.Forms.TextBox U_Indmeldelsesdato;
+        private System.Windows.Forms.TextBox U_FodtDato;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorAddUpdateItem;
 
 
     }

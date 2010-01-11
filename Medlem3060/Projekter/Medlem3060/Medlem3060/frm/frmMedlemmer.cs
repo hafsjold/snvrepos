@@ -19,8 +19,8 @@ namespace nsPuls3060
             InitializeComponent();
             this.lvwLog_ColumnSorter = new ColumnSorter();
             this.lvwLog.ListViewItemSorter = lvwLog_ColumnSorter;
-            Medlem_ReadOnly(false);
-            this.panelAdd.Location = this.panelUpdate.Location;
+            this.panelAdd.Location = this.panelDisplay.Location;
+            this.panelUpdate.Location = this.panelDisplay.Location;
         }
 
         private void lvwLog_ColumnClick(object sender, ColumnClickEventArgs e)
@@ -133,42 +133,23 @@ namespace nsPuls3060
             this.FodtDato.ReadOnly = val;
         }
 
-        private void cmdUpdate_Click(object sender, EventArgs e)
-        {
-            //Medlem_ReadOnly(false);
-            int tblMedlem_nr = clsPbs.nextval("tblMedlem");
-            this.dsMedlem.Kartotek.Rows.Add(tblMedlem_nr, "Søren Nyhansen 3", "Søren3", "Nørremarken 45", "3060", "Espergærde");
-            this.dataGridView1.Update();
-            foreach (DataGridViewRow r in this.dataGridView1.Rows)
-            {
-                if (r.Cells[0].Value.ToString() == tblMedlem_nr.ToString())
-                {
-                    int ci = dataGridView1.CurrentCell.ColumnIndex;
-                    dataGridView1.CurrentCell = r.Cells[ci];
-                }
-            }
-        }
-
-        private void cmdSave_Click(object sender, EventArgs e)
-        {
-            //this.bindingNavigator1.Validate();
-            this.kartotekBindingSource.EndEdit();
-            this.dataGridView1.Update();
-            //this.kartotekBindingSource.CancelEdit();
-            this.dsMedlem.savedsMedlem();
-            selectRowBeforeSort();
-        }
-
-        //private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
+        //private void cmdUpdate_Click(object sender, EventArgs e)
         //{
-        //    int tblMedlem_nr = clsPbs.nextval("tblMedlem");
-        //    this.dataGridView1.CurrentRow.Cells[0].Value = tblMedlem_nr;
-        //    this.dataGridView1.CurrentRow.Cells[1].Value = "";
-        //    this.Nr.Text = tblMedlem_nr.ToString();
-        //    this.Navn.Text = "";
-        //    RowBeforeSort = tblMedlem_nr.ToString();
+        //    int tblMedlem_nr = int.Parse(this.Nr.Text);
+        //    //this.dsMedlem.savedsMedlem();
+        //
+        //    this.dataGridView1.Update();
+        //    SortOrder cc = this.dataGridView1.SortOrder;
+        //    this.dataGridView1.Sort(this.dataGridView1.SortedColumn, ListSortDirection.Ascending);
+        //    foreach (DataGridViewRow r in this.dataGridView1.Rows)
+        //    {
+        //        if (r.Cells[0].Value.ToString() == tblMedlem_nr.ToString())
+        //{
+        //            int ci = dataGridView1.CurrentCell.ColumnIndex;
+        //            dataGridView1.CurrentCell = r.Cells[ci];
+        //        }
+        //    }
         //}
-
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -200,40 +181,58 @@ namespace nsPuls3060
 
         private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
         {
+            this.panelDisplay.Visible = false;
             this.panelUpdate.Visible = false;
             this.panelAdd.Visible = true;
             this.I_Overskrift.ForeColor = System.Drawing.Color.Blue;
             this.I_Nr.Text = "*";
+            this.I_Indmeldelsesdato.Text = String.Format("{0:dd-MM-yyyy}",DateTime.Now);
             this.I_Navn.Focus();
         }
 
         private void cmdCancel_I_Record_Click(object sender, EventArgs e)
         {
-            this.panelUpdate.Visible = true;
+            this.panelDisplay.Visible = true;
+            this.panelUpdate.Visible = false;
             this.panelAdd.Visible = false;
             this.Navn.Focus();
         }
 
-        private void cmdSave_I_Recird_Click(object sender, EventArgs e)
+        private void cmdSave_I_Record_Click(object sender, EventArgs e)
         {
             int tblMedlem_nr = clsPbs.nextval("tblMedlem");
-            this.dsMedlem.Kartotek.Rows.Add(tblMedlem_nr, I_Navn.Text, I_Kaldenavn.Text, I_Adresse.Text, I_Postnr.Text, I_Bynavn.Text, I_Telefon.Text, I_Email.Text, I_Knr.Text, I_Kon.Text, I_FodtDato.Text);
+            object[] val = new object[11];
+                val[0] = tblMedlem_nr; 
+                val[1] = (I_Navn.Text.Length == 0) ? "" : I_Navn.Text; 
+                val[2] = (I_Kaldenavn.Text.Length == 0) ? null : I_Kaldenavn.Text; 
+                val[3] = (I_Adresse.Text.Length == 0) ? null : I_Adresse.Text; 
+                val[4] = (I_Postnr.Text.Length == 0) ? null : I_Postnr.Text; 
+                val[5] = (I_Bynavn.Text.Length == 0) ? null : I_Bynavn.Text; 
+                val[6] = (I_Telefon.Text.Length == 0) ? null : I_Telefon.Text; 
+                val[7] = (I_Email.Text.Length == 0) ? null : I_Email.Text; 
+                val[8] = (I_Knr.Text.Length == 0) ? ((short?)null) : short.Parse(I_Knr.Text); 
+                val[9] = (I_Kon.Text.Length == 0) ? null : I_Kon.Text; 
+                val[10] = (I_FodtDato.Text.Length == 0) ? ((DateTime?)null) : DateTime.Parse(I_FodtDato.Text); 
+            this.dsMedlem.Kartotek.Rows.Add(val);
             this.dsMedlem.savedsMedlem();
-            try
+            if (I_Indmeldelsesdato.Text.Length > 0)
             {
-                TblMedlemLog recLog = new TblMedlemLog
+                try
                 {
-                    Nr = tblMedlem_nr,
-                    Logdato = DateTime.Now,
-                    Akt_id = 10,
-                    Akt_dato = DateTime.Parse(I_Indmeldelsesdato.Text)
-                };
-                Program.dbData3060.TblMedlemLog.InsertOnSubmit(recLog);
-                Program.dbData3060.SubmitChanges();
-
-            }
-            catch (Exception)
-            {
+                    DateTime nu = DateTime.Now;
+                    TblMedlemLog recLog = new TblMedlemLog
+                    {
+                        Nr = tblMedlem_nr,
+                        Logdato = new DateTime(nu.Year,nu.Month,nu.Day),
+                        Akt_id = 10,
+                        Akt_dato = DateTime.Parse(I_Indmeldelsesdato.Text)
+                    };
+                    Program.dbData3060.TblMedlemLog.InsertOnSubmit(recLog);
+                    Program.dbData3060.SubmitChanges();
+                }
+                catch (Exception)
+                {
+                }
             }
             this.dataGridView1.Update();
             foreach (DataGridViewRow r in this.dataGridView1.Rows)
@@ -244,9 +243,43 @@ namespace nsPuls3060
                     dataGridView1.CurrentCell = r.Cells[ci];
                 }
             }
-            this.panelUpdate.Visible = true;
+            this.panelDisplay.Visible = true;
             this.panelAdd.Visible = false;
             this.Navn.Focus();
+        }
+
+        private void bindingNavigatorUpdateItem_Click(object sender, EventArgs e)
+        {
+            this.panelDisplay.Visible = false;
+            this.panelUpdate.Visible = true;
+            this.panelAdd.Visible = false;
+            this.U_Overskrift.ForeColor = System.Drawing.Color.Blue;
+
+            this.U_Nr.Text = this.Nr.Text;
+            this.U_Navn.Text = this.Navn.Text;
+            this.U_Kaldenavn.Text = this.Kaldenavn.Text;
+            this.U_Adresse.Text = this.Adresse.Text;
+            this.U_Postnr.Text = this.Postnr.Text;
+            this.U_Bynavn.Text = this.Bynavn.Text;
+            this.U_Telefon.Text = this.Telefon.Text;
+            this.U_Email.Text = this.Email.Text;
+            this.U_Knr.Text = this.Knr.Text;
+            this.U_Kon.Text = this.Kon.Text;
+            this.U_FodtDato.Text = this.FodtDato.Text;
+            this.U_Navn.Focus();
+        }
+
+        private void cmdCancel_U_Record_Click(object sender, EventArgs e)
+        {
+            this.panelDisplay.Visible = true;
+            this.panelUpdate.Visible = false;
+            this.panelAdd.Visible = false;
+            this.Navn.Focus();
+        }
+
+        private void cmdSave_U_Record_Click(object sender, EventArgs e)
+        {
+
         }
 
     }
