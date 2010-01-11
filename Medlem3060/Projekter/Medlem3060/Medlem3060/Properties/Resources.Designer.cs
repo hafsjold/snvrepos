@@ -60,6 +60,13 @@ namespace nsPuls3060.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap Add {
+            get {
+                object obj = ResourceManager.GetObject("Add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap logopart {
             get {
                 object obj = ResourceManager.GetObject("logopart", resourceCulture);

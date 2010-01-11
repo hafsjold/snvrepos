@@ -20,7 +20,7 @@ namespace nsPuls3060
             this.lvwLog_ColumnSorter = new ColumnSorter();
             this.lvwLog.ListViewItemSorter = lvwLog_ColumnSorter;
             Medlem_ReadOnly(false);
-
+            this.panelAdd.Location = this.panelUpdate.Location;
         }
 
         private void lvwLog_ColumnClick(object sender, ColumnClickEventArgs e)
@@ -89,7 +89,7 @@ namespace nsPuls3060
         {
             this.Overskrift.Text = ((TextBox)sender).Text;
         }
-        
+
         private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -99,7 +99,7 @@ namespace nsPuls3060
                     case "navnDataGridViewTextBoxColumn":
                         this.Navn.Text = ((DataGridView)sender).CurrentCell.Value.ToString();
                         break;
-                    
+
                     case "kaldenavnDataGridViewTextBoxColumn":
                         this.Kaldenavn.Text = ((DataGridView)sender).CurrentCell.Value.ToString();
                         break;
@@ -118,7 +118,7 @@ namespace nsPuls3060
             {
             }
         }
-        
+
         private void Medlem_ReadOnly(bool val)
         {
             this.Navn.ReadOnly = val;
@@ -135,26 +135,39 @@ namespace nsPuls3060
 
         private void cmdUpdate_Click(object sender, EventArgs e)
         {
-            Medlem_ReadOnly(false);
+            //Medlem_ReadOnly(false);
+            int tblMedlem_nr = clsPbs.nextval("tblMedlem");
+            this.dsMedlem.Kartotek.Rows.Add(tblMedlem_nr, "Søren Nyhansen 3", "Søren3", "Nørremarken 45", "3060", "Espergærde");
+            this.dataGridView1.Update();
+            foreach (DataGridViewRow r in this.dataGridView1.Rows)
+            {
+                if (r.Cells[0].Value.ToString() == tblMedlem_nr.ToString())
+                {
+                    int ci = dataGridView1.CurrentCell.ColumnIndex;
+                    dataGridView1.CurrentCell = r.Cells[ci];
+                }
+            }
         }
 
         private void cmdSave_Click(object sender, EventArgs e)
         {
-            this.bindingNavigator1.Validate();
+            //this.bindingNavigator1.Validate();
             this.kartotekBindingSource.EndEdit();
+            this.dataGridView1.Update();
             //this.kartotekBindingSource.CancelEdit();
             this.dsMedlem.savedsMedlem();
+            selectRowBeforeSort();
         }
 
-        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
-        {
-            int tblMedlem_nr = clsPbs.nextval("tblMedlem");
-            this.dataGridView1.CurrentRow.Cells[0].Value = tblMedlem_nr;
-            this.dataGridView1.CurrentRow.Cells[1].Value = "";
-            this.Nr.Text = tblMedlem_nr.ToString();
-            this.Navn.Text = "";
-            RowBeforeSort = tblMedlem_nr.ToString();
-        }
+        //private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
+        //{
+        //    int tblMedlem_nr = clsPbs.nextval("tblMedlem");
+        //    this.dataGridView1.CurrentRow.Cells[0].Value = tblMedlem_nr;
+        //    this.dataGridView1.CurrentRow.Cells[1].Value = "";
+        //    this.Nr.Text = tblMedlem_nr.ToString();
+        //    this.Navn.Text = "";
+        //    RowBeforeSort = tblMedlem_nr.ToString();
+        //}
 
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -170,14 +183,71 @@ namespace nsPuls3060
 
         private void dataGridView1_Sorted(object sender, EventArgs e)
         {
+            selectRowBeforeSort();
+        }
+
+        private void selectRowBeforeSort()
+        {
             foreach (DataGridViewRow r in this.dataGridView1.Rows)
             {
                 if (r.Cells[0].Value.ToString() == RowBeforeSort)
                 {
                     int ci = dataGridView1.CurrentCell.ColumnIndex;
                     dataGridView1.CurrentCell = r.Cells[ci];
-                }    
+                }
             }
         }
+
+        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
+        {
+            this.panelUpdate.Visible = false;
+            this.panelAdd.Visible = true;
+            this.I_Overskrift.ForeColor = System.Drawing.Color.Blue;
+            this.I_Nr.Text = "*";
+            this.I_Navn.Focus();
+        }
+
+        private void cmdCancel_I_Record_Click(object sender, EventArgs e)
+        {
+            this.panelUpdate.Visible = true;
+            this.panelAdd.Visible = false;
+            this.Navn.Focus();
+        }
+
+        private void cmdSave_I_Recird_Click(object sender, EventArgs e)
+        {
+            int tblMedlem_nr = clsPbs.nextval("tblMedlem");
+            this.dsMedlem.Kartotek.Rows.Add(tblMedlem_nr, I_Navn.Text, I_Kaldenavn.Text, I_Adresse.Text, I_Postnr.Text, I_Bynavn.Text, I_Telefon.Text, I_Email.Text, I_Knr.Text, I_Kon.Text, I_FodtDato.Text);
+            this.dsMedlem.savedsMedlem();
+            try
+            {
+                TblMedlemLog recLog = new TblMedlemLog
+                {
+                    Nr = tblMedlem_nr,
+                    Logdato = DateTime.Now,
+                    Akt_id = 10,
+                    Akt_dato = DateTime.Parse(I_Indmeldelsesdato.Text)
+                };
+                Program.dbData3060.TblMedlemLog.InsertOnSubmit(recLog);
+                Program.dbData3060.SubmitChanges();
+
+            }
+            catch (Exception)
+            {
+            }
+            this.dataGridView1.Update();
+            foreach (DataGridViewRow r in this.dataGridView1.Rows)
+            {
+                if (r.Cells[0].Value.ToString() == tblMedlem_nr.ToString())
+                {
+                    int ci = dataGridView1.CurrentCell.ColumnIndex;
+                    dataGridView1.CurrentCell = r.Cells[ci];
+                }
+            }
+            this.panelUpdate.Visible = true;
+            this.panelAdd.Visible = false;
+            this.Navn.Focus();
+        }
+
     }
 }

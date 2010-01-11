@@ -92,9 +92,11 @@ namespace nsPuls3060
                         m_rec.Knr = (m.IsKnrNull()) ? (int?)null : m.Knr;
                         m_rec.Kon = (m.IsKonNull()) ? null : m.Kon;
                         m_rec.FodtDato = (m.IsFodtDatoNull()) ? (DateTime?)null : m.FodtDato;
+                        m.AcceptChanges();
                         break;
 
                     case DataRowState.Deleted:
+                        m.AcceptChanges();
                         break;
 
                     case DataRowState.Modified:
@@ -129,6 +131,7 @@ namespace nsPuls3060
                         m_rec.Knr = (m.IsKnrNull()) ? (int?)null : m.Knr;
                         m_rec.Kon = (m.IsKonNull()) ? null : m.Kon;
                         m_rec.FodtDato = (m.IsFodtDatoNull()) ? (DateTime?)null : m.FodtDato;
+                        m.AcceptChanges();
                         break;
                 }
             }

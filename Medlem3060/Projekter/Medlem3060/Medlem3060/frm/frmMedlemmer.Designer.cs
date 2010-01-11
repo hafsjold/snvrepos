@@ -31,11 +31,48 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMedlemmer));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.nrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.navnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kaldenavnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.postnrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bynavnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.telefonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.knrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.konDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fodtDatoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kartotekBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dsMedlem = new nsPuls3060.dsMedlem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.panelAdd = new System.Windows.Forms.Panel();
+            this.cmdSave_I_Recird = new System.Windows.Forms.Button();
+            this.cmdCancel_I_Record = new System.Windows.Forms.Button();
+            this.I_Bynavn = new System.Windows.Forms.TextBox();
+            this.I_Postnr = new System.Windows.Forms.TextBox();
+            this.I_Email = new System.Windows.Forms.TextBox();
+            this.I_Telefon = new System.Windows.Forms.TextBox();
+            this.I_Adresse = new System.Windows.Forms.TextBox();
+            this.I_Kaldenavn = new System.Windows.Forms.TextBox();
+            this.I_Navn = new System.Windows.Forms.TextBox();
+            this.I_Indmeldelsesdato = new System.Windows.Forms.TextBox();
+            this.I_FodtDato = new System.Windows.Forms.TextBox();
+            this.I_Kon = new System.Windows.Forms.TextBox();
+            this.I_Knr = new System.Windows.Forms.TextBox();
+            this.I_Nr = new System.Windows.Forms.TextBox();
+            this.label_I_label_Postnr_By = new System.Windows.Forms.Label();
+            this.label_I_Email = new System.Windows.Forms.Label();
+            this.label_I_Telefon = new System.Windows.Forms.Label();
+            this.label_I_Adresse = new System.Windows.Forms.Label();
+            this.label_I_Kaldenavn = new System.Windows.Forms.Label();
+            this.label_I_Navn = new System.Windows.Forms.Label();
+            this.label_I_Indmeldelsesdato = new System.Windows.Forms.Label();
+            this.label_I_FodtDato = new System.Windows.Forms.Label();
+            this.label_I_Kon = new System.Windows.Forms.Label();
+            this.label_I_Knr = new System.Windows.Forms.Label();
+            this.I_Overskrift = new System.Windows.Forms.Label();
+            this.label_I_Nr = new System.Windows.Forms.Label();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
@@ -45,7 +82,8 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.panelUpdate = new System.Windows.Forms.Panel();
             this.cmdSave = new System.Windows.Forms.Button();
             this.cmdUpdate = new System.Windows.Forms.Button();
             this.lvwLog = new System.Windows.Forms.ListView();
@@ -73,26 +111,16 @@
             this.label_Knr = new System.Windows.Forms.Label();
             this.Overskrift = new System.Windows.Forms.Label();
             this.label_Nr = new System.Windows.Forms.Label();
-            this.nrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.navnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kaldenavnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.postnrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bynavnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.telefonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.knrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.konDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fodtDatoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kartotekBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsMedlem)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.panelAdd.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
-            this.panel1.SuspendLayout();
+            this.panelUpdate.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -119,12 +147,89 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 20;
-            this.dataGridView1.Size = new System.Drawing.Size(523, 600);
+            this.dataGridView1.Size = new System.Drawing.Size(523, 842);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.TabStop = false;
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             this.dataGridView1.Sorted += new System.EventHandler(this.dataGridView1_Sorted);
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            // 
+            // nrDataGridViewTextBoxColumn
+            // 
+            this.nrDataGridViewTextBoxColumn.DataPropertyName = "Nr";
+            this.nrDataGridViewTextBoxColumn.HeaderText = "Nr";
+            this.nrDataGridViewTextBoxColumn.Name = "nrDataGridViewTextBoxColumn";
+            this.nrDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // navnDataGridViewTextBoxColumn
+            // 
+            this.navnDataGridViewTextBoxColumn.DataPropertyName = "Navn";
+            this.navnDataGridViewTextBoxColumn.HeaderText = "Navn";
+            this.navnDataGridViewTextBoxColumn.Name = "navnDataGridViewTextBoxColumn";
+            this.navnDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // kaldenavnDataGridViewTextBoxColumn
+            // 
+            this.kaldenavnDataGridViewTextBoxColumn.DataPropertyName = "Kaldenavn";
+            this.kaldenavnDataGridViewTextBoxColumn.HeaderText = "Kaldenavn";
+            this.kaldenavnDataGridViewTextBoxColumn.Name = "kaldenavnDataGridViewTextBoxColumn";
+            this.kaldenavnDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // adresseDataGridViewTextBoxColumn
+            // 
+            this.adresseDataGridViewTextBoxColumn.DataPropertyName = "Adresse";
+            this.adresseDataGridViewTextBoxColumn.HeaderText = "Adresse";
+            this.adresseDataGridViewTextBoxColumn.Name = "adresseDataGridViewTextBoxColumn";
+            this.adresseDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // postnrDataGridViewTextBoxColumn
+            // 
+            this.postnrDataGridViewTextBoxColumn.DataPropertyName = "Postnr";
+            this.postnrDataGridViewTextBoxColumn.HeaderText = "Postnr";
+            this.postnrDataGridViewTextBoxColumn.Name = "postnrDataGridViewTextBoxColumn";
+            this.postnrDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // bynavnDataGridViewTextBoxColumn
+            // 
+            this.bynavnDataGridViewTextBoxColumn.DataPropertyName = "Bynavn";
+            this.bynavnDataGridViewTextBoxColumn.HeaderText = "By";
+            this.bynavnDataGridViewTextBoxColumn.Name = "bynavnDataGridViewTextBoxColumn";
+            this.bynavnDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // telefonDataGridViewTextBoxColumn
+            // 
+            this.telefonDataGridViewTextBoxColumn.DataPropertyName = "Telefon";
+            this.telefonDataGridViewTextBoxColumn.HeaderText = "Telefon";
+            this.telefonDataGridViewTextBoxColumn.Name = "telefonDataGridViewTextBoxColumn";
+            this.telefonDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // knrDataGridViewTextBoxColumn
+            // 
+            this.knrDataGridViewTextBoxColumn.DataPropertyName = "Knr";
+            this.knrDataGridViewTextBoxColumn.HeaderText = "Knr";
+            this.knrDataGridViewTextBoxColumn.Name = "knrDataGridViewTextBoxColumn";
+            this.knrDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // konDataGridViewTextBoxColumn
+            // 
+            this.konDataGridViewTextBoxColumn.DataPropertyName = "Kon";
+            this.konDataGridViewTextBoxColumn.HeaderText = "Køn";
+            this.konDataGridViewTextBoxColumn.Name = "konDataGridViewTextBoxColumn";
+            this.konDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // fodtDatoDataGridViewTextBoxColumn
+            // 
+            this.fodtDatoDataGridViewTextBoxColumn.DataPropertyName = "FodtDato";
+            this.fodtDatoDataGridViewTextBoxColumn.HeaderText = "Født Dato";
+            this.fodtDatoDataGridViewTextBoxColumn.Name = "fodtDatoDataGridViewTextBoxColumn";
+            this.fodtDatoDataGridViewTextBoxColumn.Visible = false;
             // 
             // kartotekBindingSource
             // 
@@ -144,20 +249,274 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.panelAdd);
             this.splitContainer1.Panel1.Controls.Add(this.bindingNavigator1);
-            this.splitContainer1.Panel1.Controls.Add(this.panel1);
+            this.splitContainer1.Panel1.Controls.Add(this.panelUpdate);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 600);
+            this.splitContainer1.Size = new System.Drawing.Size(800, 842);
             this.splitContainer1.SplitterDistance = 273;
             this.splitContainer1.TabIndex = 0;
             this.splitContainer1.TabStop = false;
             // 
+            // panelAdd
+            // 
+            this.panelAdd.Controls.Add(this.cmdSave_I_Recird);
+            this.panelAdd.Controls.Add(this.cmdCancel_I_Record);
+            this.panelAdd.Controls.Add(this.I_Bynavn);
+            this.panelAdd.Controls.Add(this.I_Postnr);
+            this.panelAdd.Controls.Add(this.I_Email);
+            this.panelAdd.Controls.Add(this.I_Telefon);
+            this.panelAdd.Controls.Add(this.I_Adresse);
+            this.panelAdd.Controls.Add(this.I_Kaldenavn);
+            this.panelAdd.Controls.Add(this.I_Navn);
+            this.panelAdd.Controls.Add(this.I_Indmeldelsesdato);
+            this.panelAdd.Controls.Add(this.I_FodtDato);
+            this.panelAdd.Controls.Add(this.I_Kon);
+            this.panelAdd.Controls.Add(this.I_Knr);
+            this.panelAdd.Controls.Add(this.I_Nr);
+            this.panelAdd.Controls.Add(this.label_I_label_Postnr_By);
+            this.panelAdd.Controls.Add(this.label_I_Email);
+            this.panelAdd.Controls.Add(this.label_I_Telefon);
+            this.panelAdd.Controls.Add(this.label_I_Adresse);
+            this.panelAdd.Controls.Add(this.label_I_Kaldenavn);
+            this.panelAdd.Controls.Add(this.label_I_Navn);
+            this.panelAdd.Controls.Add(this.label_I_Indmeldelsesdato);
+            this.panelAdd.Controls.Add(this.label_I_FodtDato);
+            this.panelAdd.Controls.Add(this.label_I_Kon);
+            this.panelAdd.Controls.Add(this.label_I_Knr);
+            this.panelAdd.Controls.Add(this.I_Overskrift);
+            this.panelAdd.Controls.Add(this.label_I_Nr);
+            this.panelAdd.Location = new System.Drawing.Point(7, 424);
+            this.panelAdd.Name = "panelAdd";
+            this.panelAdd.Size = new System.Drawing.Size(258, 336);
+            this.panelAdd.TabIndex = 1;
+            this.panelAdd.Visible = false;
+            // 
+            // cmdSave_I_Recird
+            // 
+            this.cmdSave_I_Recird.Location = new System.Drawing.Point(91, 305);
+            this.cmdSave_I_Recird.Name = "cmdSave_I_Recird";
+            this.cmdSave_I_Recird.Size = new System.Drawing.Size(55, 21);
+            this.cmdSave_I_Recird.TabIndex = 0;
+            this.cmdSave_I_Recird.TabStop = false;
+            this.cmdSave_I_Recird.Text = "Gem";
+            this.cmdSave_I_Recird.UseVisualStyleBackColor = true;
+            this.cmdSave_I_Recird.Click += new System.EventHandler(this.cmdSave_I_Recird_Click);
+            // 
+            // cmdCancel_I_Record
+            // 
+            this.cmdCancel_I_Record.Location = new System.Drawing.Point(15, 305);
+            this.cmdCancel_I_Record.Name = "cmdCancel_I_Record";
+            this.cmdCancel_I_Record.Size = new System.Drawing.Size(55, 21);
+            this.cmdCancel_I_Record.TabIndex = 0;
+            this.cmdCancel_I_Record.TabStop = false;
+            this.cmdCancel_I_Record.Text = "Fortryd";
+            this.cmdCancel_I_Record.UseVisualStyleBackColor = true;
+            this.cmdCancel_I_Record.Click += new System.EventHandler(this.cmdCancel_I_Record_Click);
+            // 
+            // I_Bynavn
+            // 
+            this.I_Bynavn.Location = new System.Drawing.Point(136, 122);
+            this.I_Bynavn.Name = "I_Bynavn";
+            this.I_Bynavn.Size = new System.Drawing.Size(112, 20);
+            this.I_Bynavn.TabIndex = 5;
+            // 
+            // I_Postnr
+            // 
+            this.I_Postnr.Location = new System.Drawing.Point(91, 122);
+            this.I_Postnr.Name = "I_Postnr";
+            this.I_Postnr.Size = new System.Drawing.Size(39, 20);
+            this.I_Postnr.TabIndex = 4;
+            // 
+            // I_Email
+            // 
+            this.I_Email.Location = new System.Drawing.Point(91, 170);
+            this.I_Email.Name = "I_Email";
+            this.I_Email.Size = new System.Drawing.Size(157, 20);
+            this.I_Email.TabIndex = 7;
+            // 
+            // I_Telefon
+            // 
+            this.I_Telefon.Location = new System.Drawing.Point(91, 146);
+            this.I_Telefon.Name = "I_Telefon";
+            this.I_Telefon.Size = new System.Drawing.Size(78, 20);
+            this.I_Telefon.TabIndex = 6;
+            // 
+            // I_Adresse
+            // 
+            this.I_Adresse.Location = new System.Drawing.Point(91, 98);
+            this.I_Adresse.Name = "I_Adresse";
+            this.I_Adresse.Size = new System.Drawing.Size(157, 20);
+            this.I_Adresse.TabIndex = 3;
+            // 
+            // I_Kaldenavn
+            // 
+            this.I_Kaldenavn.Location = new System.Drawing.Point(91, 74);
+            this.I_Kaldenavn.Name = "I_Kaldenavn";
+            this.I_Kaldenavn.Size = new System.Drawing.Size(157, 20);
+            this.I_Kaldenavn.TabIndex = 2;
+            // 
+            // I_Navn
+            // 
+            this.I_Navn.Location = new System.Drawing.Point(91, 50);
+            this.I_Navn.Name = "I_Navn";
+            this.I_Navn.Size = new System.Drawing.Size(157, 20);
+            this.I_Navn.TabIndex = 1;
+            // 
+            // I_Indmeldelsesdato
+            // 
+            this.I_Indmeldelsesdato.Location = new System.Drawing.Point(91, 268);
+            this.I_Indmeldelsesdato.Name = "I_Indmeldelsesdato";
+            this.I_Indmeldelsesdato.Size = new System.Drawing.Size(78, 20);
+            this.I_Indmeldelsesdato.TabIndex = 11;
+            // 
+            // I_FodtDato
+            // 
+            this.I_FodtDato.Location = new System.Drawing.Point(91, 242);
+            this.I_FodtDato.Name = "I_FodtDato";
+            this.I_FodtDato.Size = new System.Drawing.Size(78, 20);
+            this.I_FodtDato.TabIndex = 10;
+            // 
+            // I_Kon
+            // 
+            this.I_Kon.Location = new System.Drawing.Point(91, 218);
+            this.I_Kon.Name = "I_Kon";
+            this.I_Kon.Size = new System.Drawing.Size(39, 20);
+            this.I_Kon.TabIndex = 9;
+            // 
+            // I_Knr
+            // 
+            this.I_Knr.Location = new System.Drawing.Point(91, 194);
+            this.I_Knr.Name = "I_Knr";
+            this.I_Knr.Size = new System.Drawing.Size(39, 20);
+            this.I_Knr.TabIndex = 8;
+            // 
+            // I_Nr
+            // 
+            this.I_Nr.Location = new System.Drawing.Point(91, 26);
+            this.I_Nr.Name = "I_Nr";
+            this.I_Nr.ReadOnly = true;
+            this.I_Nr.Size = new System.Drawing.Size(39, 20);
+            this.I_Nr.TabIndex = 0;
+            this.I_Nr.TabStop = false;
+            // 
+            // label_I_label_Postnr_By
+            // 
+            this.label_I_label_Postnr_By.AutoSize = true;
+            this.label_I_label_Postnr_By.Location = new System.Drawing.Point(12, 125);
+            this.label_I_label_Postnr_By.Name = "label_I_label_Postnr_By";
+            this.label_I_label_Postnr_By.Size = new System.Drawing.Size(61, 13);
+            this.label_I_label_Postnr_By.TabIndex = 0;
+            this.label_I_label_Postnr_By.Text = "Postnr + By";
+            // 
+            // label_I_Email
+            // 
+            this.label_I_Email.AutoSize = true;
+            this.label_I_Email.Location = new System.Drawing.Point(12, 173);
+            this.label_I_Email.Name = "label_I_Email";
+            this.label_I_Email.Size = new System.Drawing.Size(32, 13);
+            this.label_I_Email.TabIndex = 0;
+            this.label_I_Email.Text = "Email";
+            // 
+            // label_I_Telefon
+            // 
+            this.label_I_Telefon.AutoSize = true;
+            this.label_I_Telefon.Location = new System.Drawing.Point(12, 149);
+            this.label_I_Telefon.Name = "label_I_Telefon";
+            this.label_I_Telefon.Size = new System.Drawing.Size(43, 13);
+            this.label_I_Telefon.TabIndex = 0;
+            this.label_I_Telefon.Text = "Telefon";
+            // 
+            // label_I_Adresse
+            // 
+            this.label_I_Adresse.AutoSize = true;
+            this.label_I_Adresse.Location = new System.Drawing.Point(12, 101);
+            this.label_I_Adresse.Name = "label_I_Adresse";
+            this.label_I_Adresse.Size = new System.Drawing.Size(45, 13);
+            this.label_I_Adresse.TabIndex = 0;
+            this.label_I_Adresse.Text = "Adresse";
+            // 
+            // label_I_Kaldenavn
+            // 
+            this.label_I_Kaldenavn.AutoSize = true;
+            this.label_I_Kaldenavn.Location = new System.Drawing.Point(12, 77);
+            this.label_I_Kaldenavn.Name = "label_I_Kaldenavn";
+            this.label_I_Kaldenavn.Size = new System.Drawing.Size(58, 13);
+            this.label_I_Kaldenavn.TabIndex = 0;
+            this.label_I_Kaldenavn.Text = "Kaldenavn";
+            // 
+            // label_I_Navn
+            // 
+            this.label_I_Navn.AutoSize = true;
+            this.label_I_Navn.Location = new System.Drawing.Point(12, 53);
+            this.label_I_Navn.Name = "label_I_Navn";
+            this.label_I_Navn.Size = new System.Drawing.Size(33, 13);
+            this.label_I_Navn.TabIndex = 0;
+            this.label_I_Navn.Text = "Navn";
+            // 
+            // label_I_Indmeldelsesdato
+            // 
+            this.label_I_Indmeldelsesdato.AutoSize = true;
+            this.label_I_Indmeldelsesdato.Location = new System.Drawing.Point(12, 271);
+            this.label_I_Indmeldelsesdato.Name = "label_I_Indmeldelsesdato";
+            this.label_I_Indmeldelsesdato.Size = new System.Drawing.Size(59, 13);
+            this.label_I_Indmeldelsesdato.TabIndex = 0;
+            this.label_I_Indmeldelsesdato.Text = "Medlem fra";
+            // 
+            // label_I_FodtDato
+            // 
+            this.label_I_FodtDato.AutoSize = true;
+            this.label_I_FodtDato.Location = new System.Drawing.Point(12, 245);
+            this.label_I_FodtDato.Name = "label_I_FodtDato";
+            this.label_I_FodtDato.Size = new System.Drawing.Size(52, 13);
+            this.label_I_FodtDato.TabIndex = 0;
+            this.label_I_FodtDato.Text = "Født dato";
+            // 
+            // label_I_Kon
+            // 
+            this.label_I_Kon.AutoSize = true;
+            this.label_I_Kon.Location = new System.Drawing.Point(12, 221);
+            this.label_I_Kon.Name = "label_I_Kon";
+            this.label_I_Kon.Size = new System.Drawing.Size(26, 13);
+            this.label_I_Kon.TabIndex = 0;
+            this.label_I_Kon.Text = "Køn";
+            // 
+            // label_I_Knr
+            // 
+            this.label_I_Knr.AutoSize = true;
+            this.label_I_Knr.Location = new System.Drawing.Point(12, 197);
+            this.label_I_Knr.Name = "label_I_Knr";
+            this.label_I_Knr.Size = new System.Drawing.Size(54, 13);
+            this.label_I_Knr.TabIndex = 0;
+            this.label_I_Knr.Text = "Kommune";
+            // 
+            // I_Overskrift
+            // 
+            this.I_Overskrift.Dock = System.Windows.Forms.DockStyle.Top;
+            this.I_Overskrift.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.I_Overskrift.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.I_Overskrift.Location = new System.Drawing.Point(0, 0);
+            this.I_Overskrift.Name = "I_Overskrift";
+            this.I_Overskrift.Size = new System.Drawing.Size(258, 16);
+            this.I_Overskrift.TabIndex = 17;
+            this.I_Overskrift.Text = "Nyt medlem";
+            this.I_Overskrift.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // label_I_Nr
+            // 
+            this.label_I_Nr.AutoSize = true;
+            this.label_I_Nr.Location = new System.Drawing.Point(12, 29);
+            this.label_I_Nr.Name = "label_I_Nr";
+            this.label_I_Nr.Size = new System.Drawing.Size(18, 13);
+            this.label_I_Nr.TabIndex = 0;
+            this.label_I_Nr.Text = "Nr";
+            // 
             // bindingNavigator1
             // 
-            this.bindingNavigator1.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.bindingNavigator1.AddNewItem = null;
             this.bindingNavigator1.BindingSource = this.kartotekBindingSource;
             this.bindingNavigator1.CountItem = this.bindingNavigatorCountItem;
             this.bindingNavigator1.DeleteItem = null;
@@ -173,7 +532,7 @@
             this.bindingNavigatorMoveLastItem,
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddNewItem});
-            this.bindingNavigator1.Location = new System.Drawing.Point(0, 575);
+            this.bindingNavigator1.Location = new System.Drawing.Point(0, 817);
             this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.bindingNavigator1.MoveNextItem = this.bindingNavigatorMoveNextItem;
@@ -183,16 +542,6 @@
             this.bindingNavigator1.Size = new System.Drawing.Size(273, 25);
             this.bindingNavigator1.TabIndex = 1;
             this.bindingNavigator1.Text = "bindingNavigator1";
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
             // 
             // bindingNavigatorCountItem
             // 
@@ -261,37 +610,48 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
-            // panel1
+            // bindingNavigatorAddNewItem
             // 
-            this.panel1.Controls.Add(this.cmdSave);
-            this.panel1.Controls.Add(this.cmdUpdate);
-            this.panel1.Controls.Add(this.lvwLog);
-            this.panel1.Controls.Add(this.Bynavn);
-            this.panel1.Controls.Add(this.Postnr);
-            this.panel1.Controls.Add(this.Email);
-            this.panel1.Controls.Add(this.Telefon);
-            this.panel1.Controls.Add(this.Adresse);
-            this.panel1.Controls.Add(this.Kaldenavn);
-            this.panel1.Controls.Add(this.Navn);
-            this.panel1.Controls.Add(this.FodtDato);
-            this.panel1.Controls.Add(this.Kon);
-            this.panel1.Controls.Add(this.Knr);
-            this.panel1.Controls.Add(this.Nr);
-            this.panel1.Controls.Add(this.label_Postnr_By);
-            this.panel1.Controls.Add(this.label_Email);
-            this.panel1.Controls.Add(this.label_Telefon);
-            this.panel1.Controls.Add(this.label_Adresse);
-            this.panel1.Controls.Add(this.label_Kaldenavn);
-            this.panel1.Controls.Add(this.label_Navn);
-            this.panel1.Controls.Add(this.label_FodtDato);
-            this.panel1.Controls.Add(this.label_Kon);
-            this.panel1.Controls.Add(this.label_Knr);
-            this.panel1.Controls.Add(this.Overskrift);
-            this.panel1.Controls.Add(this.label_Nr);
-            this.panel1.Location = new System.Drawing.Point(7, 7);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(258, 436);
-            this.panel1.TabIndex = 0;
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = global::nsPuls3060.Properties.Resources.Add;
+            this.bindingNavigatorAddNewItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorAddNewItem.Text = "Add New";
+            this.bindingNavigatorAddNewItem.ToolTipText = "Add New";
+            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
+            // 
+            // panelUpdate
+            // 
+            this.panelUpdate.Controls.Add(this.cmdSave);
+            this.panelUpdate.Controls.Add(this.cmdUpdate);
+            this.panelUpdate.Controls.Add(this.lvwLog);
+            this.panelUpdate.Controls.Add(this.Bynavn);
+            this.panelUpdate.Controls.Add(this.Postnr);
+            this.panelUpdate.Controls.Add(this.Email);
+            this.panelUpdate.Controls.Add(this.Telefon);
+            this.panelUpdate.Controls.Add(this.Adresse);
+            this.panelUpdate.Controls.Add(this.Kaldenavn);
+            this.panelUpdate.Controls.Add(this.Navn);
+            this.panelUpdate.Controls.Add(this.FodtDato);
+            this.panelUpdate.Controls.Add(this.Kon);
+            this.panelUpdate.Controls.Add(this.Knr);
+            this.panelUpdate.Controls.Add(this.Nr);
+            this.panelUpdate.Controls.Add(this.label_Postnr_By);
+            this.panelUpdate.Controls.Add(this.label_Email);
+            this.panelUpdate.Controls.Add(this.label_Telefon);
+            this.panelUpdate.Controls.Add(this.label_Adresse);
+            this.panelUpdate.Controls.Add(this.label_Kaldenavn);
+            this.panelUpdate.Controls.Add(this.label_Navn);
+            this.panelUpdate.Controls.Add(this.label_FodtDato);
+            this.panelUpdate.Controls.Add(this.label_Kon);
+            this.panelUpdate.Controls.Add(this.label_Knr);
+            this.panelUpdate.Controls.Add(this.Overskrift);
+            this.panelUpdate.Controls.Add(this.label_Nr);
+            this.panelUpdate.Location = new System.Drawing.Point(7, 7);
+            this.panelUpdate.Name = "panelUpdate";
+            this.panelUpdate.Size = new System.Drawing.Size(258, 411);
+            this.panelUpdate.TabIndex = 0;
             // 
             // cmdSave
             // 
@@ -302,7 +662,7 @@
             this.cmdSave.TabStop = false;
             this.cmdSave.Text = "Save";
             this.cmdSave.UseVisualStyleBackColor = true;
-            this.cmdSave.Click += new System.EventHandler(this.cmdUpdate_Click);
+            this.cmdSave.Click += new System.EventHandler(this.cmdSave_Click);
             // 
             // cmdUpdate
             // 
@@ -544,83 +904,6 @@
             this.label_Nr.TabIndex = 0;
             this.label_Nr.Text = "Nr";
             // 
-            // nrDataGridViewTextBoxColumn
-            // 
-            this.nrDataGridViewTextBoxColumn.DataPropertyName = "Nr";
-            this.nrDataGridViewTextBoxColumn.HeaderText = "Nr";
-            this.nrDataGridViewTextBoxColumn.Name = "nrDataGridViewTextBoxColumn";
-            this.nrDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // navnDataGridViewTextBoxColumn
-            // 
-            this.navnDataGridViewTextBoxColumn.DataPropertyName = "Navn";
-            this.navnDataGridViewTextBoxColumn.HeaderText = "Navn";
-            this.navnDataGridViewTextBoxColumn.Name = "navnDataGridViewTextBoxColumn";
-            this.navnDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // kaldenavnDataGridViewTextBoxColumn
-            // 
-            this.kaldenavnDataGridViewTextBoxColumn.DataPropertyName = "Kaldenavn";
-            this.kaldenavnDataGridViewTextBoxColumn.HeaderText = "Kaldenavn";
-            this.kaldenavnDataGridViewTextBoxColumn.Name = "kaldenavnDataGridViewTextBoxColumn";
-            this.kaldenavnDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // adresseDataGridViewTextBoxColumn
-            // 
-            this.adresseDataGridViewTextBoxColumn.DataPropertyName = "Adresse";
-            this.adresseDataGridViewTextBoxColumn.HeaderText = "Adresse";
-            this.adresseDataGridViewTextBoxColumn.Name = "adresseDataGridViewTextBoxColumn";
-            this.adresseDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // postnrDataGridViewTextBoxColumn
-            // 
-            this.postnrDataGridViewTextBoxColumn.DataPropertyName = "Postnr";
-            this.postnrDataGridViewTextBoxColumn.HeaderText = "Postnr";
-            this.postnrDataGridViewTextBoxColumn.Name = "postnrDataGridViewTextBoxColumn";
-            this.postnrDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // bynavnDataGridViewTextBoxColumn
-            // 
-            this.bynavnDataGridViewTextBoxColumn.DataPropertyName = "Bynavn";
-            this.bynavnDataGridViewTextBoxColumn.HeaderText = "By";
-            this.bynavnDataGridViewTextBoxColumn.Name = "bynavnDataGridViewTextBoxColumn";
-            this.bynavnDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // telefonDataGridViewTextBoxColumn
-            // 
-            this.telefonDataGridViewTextBoxColumn.DataPropertyName = "Telefon";
-            this.telefonDataGridViewTextBoxColumn.HeaderText = "Telefon";
-            this.telefonDataGridViewTextBoxColumn.Name = "telefonDataGridViewTextBoxColumn";
-            this.telefonDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            this.emailDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // knrDataGridViewTextBoxColumn
-            // 
-            this.knrDataGridViewTextBoxColumn.DataPropertyName = "Knr";
-            this.knrDataGridViewTextBoxColumn.HeaderText = "Knr";
-            this.knrDataGridViewTextBoxColumn.Name = "knrDataGridViewTextBoxColumn";
-            this.knrDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // konDataGridViewTextBoxColumn
-            // 
-            this.konDataGridViewTextBoxColumn.DataPropertyName = "Kon";
-            this.konDataGridViewTextBoxColumn.HeaderText = "Køn";
-            this.konDataGridViewTextBoxColumn.Name = "konDataGridViewTextBoxColumn";
-            this.konDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // fodtDatoDataGridViewTextBoxColumn
-            // 
-            this.fodtDatoDataGridViewTextBoxColumn.DataPropertyName = "FodtDato";
-            this.fodtDatoDataGridViewTextBoxColumn.HeaderText = "Født Dato";
-            this.fodtDatoDataGridViewTextBoxColumn.Name = "fodtDatoDataGridViewTextBoxColumn";
-            this.fodtDatoDataGridViewTextBoxColumn.Visible = false;
-            // 
             // FrmMedlemmer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -642,11 +925,13 @@
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
+            this.panelAdd.ResumeLayout(false);
+            this.panelAdd.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
+            this.panelUpdate.ResumeLayout(false);
+            this.panelUpdate.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -657,7 +942,7 @@
         private System.Windows.Forms.BindingSource kartotekBindingSource;
         private dsMedlem dsMedlem;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelUpdate;
         private System.Windows.Forms.TextBox Nr;
         private System.Windows.Forms.Label label_Nr;
         private System.Windows.Forms.TextBox Adresse;
@@ -685,7 +970,6 @@
         private System.Windows.Forms.ColumnHeader columnHeaderAktivitet;
         private System.Windows.Forms.Button cmdUpdate;
         private System.Windows.Forms.BindingNavigator bindingNavigator1;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
@@ -707,6 +991,34 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn knrDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn konDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fodtDatoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Panel panelAdd;
+        private System.Windows.Forms.Button cmdSave_I_Recird;
+        private System.Windows.Forms.Button cmdCancel_I_Record;
+        private System.Windows.Forms.TextBox I_Bynavn;
+        private System.Windows.Forms.TextBox I_Postnr;
+        private System.Windows.Forms.TextBox I_Email;
+        private System.Windows.Forms.TextBox I_Telefon;
+        private System.Windows.Forms.TextBox I_Adresse;
+        private System.Windows.Forms.TextBox I_Kaldenavn;
+        private System.Windows.Forms.TextBox I_Navn;
+        private System.Windows.Forms.TextBox I_FodtDato;
+        private System.Windows.Forms.TextBox I_Kon;
+        private System.Windows.Forms.TextBox I_Knr;
+        private System.Windows.Forms.TextBox I_Nr;
+        private System.Windows.Forms.Label label_I_label_Postnr_By;
+        private System.Windows.Forms.Label label_I_Email;
+        private System.Windows.Forms.Label label_I_Telefon;
+        private System.Windows.Forms.Label label_I_Adresse;
+        private System.Windows.Forms.Label label_I_Kaldenavn;
+        private System.Windows.Forms.Label label_I_Navn;
+        private System.Windows.Forms.Label label_I_FodtDato;
+        private System.Windows.Forms.Label label_I_Kon;
+        private System.Windows.Forms.Label label_I_Knr;
+        private System.Windows.Forms.Label I_Overskrift;
+        private System.Windows.Forms.Label label_I_Nr;
+        private System.Windows.Forms.TextBox I_Indmeldelsesdato;
+        private System.Windows.Forms.Label label_I_Indmeldelsesdato;
+        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
 
 
     }
