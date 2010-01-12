@@ -40,15 +40,13 @@ namespace nsPuls3060
 
         public void save()
         {
+            var maxNr = (from m in Program.karMedlemmer select m.Nr).Max();
             FileStream ts = new FileStream(m_path, FileMode.Open, FileAccess.Write, FileShare.None);
             using (StreamWriter sr = new StreamWriter(ts, Encoding.Default))
             {
-                var qry_this = from d in this
-                               orderby d.Nr
-                               select d;
-                foreach (var rec in qry_this)
+                for (var i = 1; i <= maxNr; i++)
                 {
-                    sr.WriteLine(rec.Nr);
+                    sr.WriteLine(i.ToString());
                 }
             }
 

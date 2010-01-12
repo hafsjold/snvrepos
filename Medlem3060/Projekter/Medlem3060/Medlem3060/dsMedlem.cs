@@ -135,6 +135,8 @@ namespace nsPuls3060
                         break;
                 }
             }
+            Program.karDkkonti.save();
+            Program.karKortnr.save();
             Program.karMedlemmer.Save();
         }
     }
