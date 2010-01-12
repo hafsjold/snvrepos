@@ -259,9 +259,9 @@ namespace nsPuls3060
                               {
                                   Id = (int?)b.Id,
                                   Nr = (int?)b.Nr,
-                                  Logdato = (DateTime?)b.Betalingsdato,
+                                  Logdato = (DateTime?)(((DateTime)b.Betalingsdato).AddSeconds(-30)),  //Workaround for problem med samme felt (b.Betalingsdato) 2 gange
                                   Akt_id = (int?)40,
-                                  Akt_dato = (DateTime?)b.Bogforingsdato
+                                  Akt_dato = (DateTime?)b.Betalingsdato
                               };
 
 
