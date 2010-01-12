@@ -44,12 +44,18 @@ namespace nsPuls3060
 
         private void Nr_TextChanged(object sender, EventArgs e)
         {
+            int Nr = int.Parse(((TextBox)sender).Text);
+            Update_lvwLog(Nr);
 
+        }
+
+        private void Update_lvwLog(int P_Nr)
+        {
             this.lvwLog.Items.Clear();
             try
             {
                 var medlem = (from m in Program.karMedlemmer
-                              where m.Nr == int.Parse(((TextBox)sender).Text)
+                              where m.Nr == P_Nr
                               select m).First();
 
                 if (medlem.erMedlem())
@@ -62,7 +68,7 @@ namespace nsPuls3060
                 }
 
                 var qrylog = Program.qryLog()
-                                    .Where(u => u.Nr == int.Parse(((TextBox)sender).Text))
+                                    .Where(u => u.Nr == P_Nr)
                                     .Where(u => u.Logdato <= DateTime.Now)
                                     .OrderByDescending(u => u.Logdato);
 
@@ -186,7 +192,17 @@ namespace nsPuls3060
             this.panelAdd.Visible = true;
             this.I_Overskrift.ForeColor = System.Drawing.Color.Blue;
             this.I_Nr.Text = "*";
-            this.I_Indmeldelsesdato.Text = String.Format("{0:dd-MM-yyyy}",DateTime.Now);
+            this.I_Navn.Text = null;
+            this.I_Kaldenavn.Text = null;
+            this.I_Adresse.Text = null;
+            this.I_Postnr.Text = null;
+            this.I_Bynavn.Text = null;
+            this.I_Telefon.Text = null;
+            this.I_Email.Text = null;
+            this.I_Knr.Text = null;
+            this.I_Kon.Text = null;
+            this.I_DT_FodtDato.Value = null;
+            this.I_DT_Indmeldelsesdato.Value = DateTime.Now;
             this.I_Navn.Focus();
         }
 
@@ -202,20 +218,20 @@ namespace nsPuls3060
         {
             int tblMedlem_nr = clsPbs.nextval("tblMedlem");
             object[] val = new object[11];
-                val[0] = tblMedlem_nr; 
-                val[1] = (I_Navn.Text.Length == 0) ? "" : I_Navn.Text; 
-                val[2] = (I_Kaldenavn.Text.Length == 0) ? null : I_Kaldenavn.Text; 
-                val[3] = (I_Adresse.Text.Length == 0) ? null : I_Adresse.Text; 
-                val[4] = (I_Postnr.Text.Length == 0) ? null : I_Postnr.Text; 
-                val[5] = (I_Bynavn.Text.Length == 0) ? null : I_Bynavn.Text; 
-                val[6] = (I_Telefon.Text.Length == 0) ? null : I_Telefon.Text; 
-                val[7] = (I_Email.Text.Length == 0) ? null : I_Email.Text; 
-                val[8] = (I_Knr.Text.Length == 0) ? ((short?)null) : short.Parse(I_Knr.Text); 
-                val[9] = (I_Kon.Text.Length == 0) ? null : I_Kon.Text; 
-                val[10] = (I_FodtDato.Text.Length == 0) ? ((DateTime?)null) : DateTime.Parse(I_FodtDato.Text); 
+            val[0] = tblMedlem_nr;
+            val[1] = (I_Navn.Text.Length == 0) ? "" : I_Navn.Text;
+            val[2] = (I_Kaldenavn.Text.Length == 0) ? null : I_Kaldenavn.Text;
+            val[3] = (I_Adresse.Text.Length == 0) ? null : I_Adresse.Text;
+            val[4] = (I_Postnr.Text.Length == 0) ? null : I_Postnr.Text;
+            val[5] = (I_Bynavn.Text.Length == 0) ? null : I_Bynavn.Text;
+            val[6] = (I_Telefon.Text.Length == 0) ? null : I_Telefon.Text;
+            val[7] = (I_Email.Text.Length == 0) ? null : I_Email.Text;
+            val[8] = (I_Knr.Text.Length == 0) ? ((short?)null) : short.Parse(I_Knr.Text);
+            val[9] = (I_Kon.Text.Length == 0) ? null : I_Kon.Text;
+            val[10] = (I_DT_FodtDato.Value == null) ? ((DateTime?)null) : (DateTime)I_DT_FodtDato.Value;
             this.dsMedlem.Kartotek.Rows.Add(val);
             this.dsMedlem.savedsMedlem();
-            if (I_Indmeldelsesdato.Text.Length > 0)
+            if (I_DT_Indmeldelsesdato.Value != null)
             {
                 try
                 {
@@ -223,9 +239,9 @@ namespace nsPuls3060
                     TblMedlemLog recLog = new TblMedlemLog
                     {
                         Nr = tblMedlem_nr,
-                        Logdato = new DateTime(nu.Year,nu.Month,nu.Day),
+                        Logdato = new DateTime(nu.Year, nu.Month, nu.Day),
                         Akt_id = 10,
-                        Akt_dato = DateTime.Parse(I_Indmeldelsesdato.Text)
+                        Akt_dato = (DateTime)I_DT_Indmeldelsesdato.Value
                     };
                     Program.dbData3060.TblMedlemLog.InsertOnSubmit(recLog);
                     Program.dbData3060.SubmitChanges();
@@ -265,7 +281,12 @@ namespace nsPuls3060
             this.U_Email.Text = this.Email.Text;
             this.U_Knr.Text = this.Knr.Text;
             this.U_Kon.Text = this.Kon.Text;
-            this.U_FodtDato.Text = this.FodtDato.Text;
+            this.U_DT_FodtDato.Value = (this.FodtDato.Text.Length == 0) ? (DateTime?)null : DateTime.Parse(this.FodtDato.Text);
+            this.U_NyAktivitet.Items.Clear();
+            this.U_NyAktivitet.Items.Add("Indmeldelse");
+            this.U_NyAktivitet.Items.Add("Udmeldelse");
+            this.U_NyAktivitet.Items.Add("Kontingent betalt til");
+            this.U_DT_NyAktivitetDato.Value = null;
             this.U_Navn.Focus();
         }
 
@@ -279,7 +300,75 @@ namespace nsPuls3060
 
         private void cmdSave_U_Record_Click(object sender, EventArgs e)
         {
-
+            int tblMedlem_nr = int.Parse(this.U_Nr.Text);
+            DataRow row = this.dsMedlem.Kartotek.Rows.Find(tblMedlem_nr);
+            object[] val = row.ItemArray;
+            val[1] = (U_Navn.Text.Length == 0) ? "" : U_Navn.Text;
+            val[2] = (U_Kaldenavn.Text.Length == 0) ? null : U_Kaldenavn.Text;
+            val[3] = (U_Adresse.Text.Length == 0) ? null : U_Adresse.Text;
+            val[4] = (U_Postnr.Text.Length == 0) ? null : U_Postnr.Text;
+            val[5] = (U_Bynavn.Text.Length == 0) ? null : U_Bynavn.Text;
+            val[6] = (U_Telefon.Text.Length == 0) ? null : U_Telefon.Text;
+            val[7] = (U_Email.Text.Length == 0) ? null : U_Email.Text;
+            val[8] = (U_Knr.Text.Length == 0) ? ((short?)null) : short.Parse(U_Knr.Text);
+            val[9] = (U_Kon.Text.Length == 0) ? null : U_Kon.Text;
+            val[10] = (U_DT_FodtDato.Value == null) ? ((DateTime?)null) : (DateTime)U_DT_FodtDato.Value;
+            row.BeginEdit();
+            row.ItemArray = val;
+            row.EndEdit();
+            this.dsMedlem.savedsMedlem();
+            if (U_DT_NyAktivitetDato.Value != null)
+            {
+                int Akt_id;
+                switch (U_NyAktivitet.Text)
+                {
+                    case "Indmeldelse":
+                        Akt_id = 10;
+                        break;
+                    case "Kontingent betalt til":
+                        Akt_id = 30;
+                        break;
+                    case "Udmeldelse":
+                        Akt_id = 50;
+                        break;
+                    default:
+                        Akt_id = 0;
+                        break;
+                }
+                if (Akt_id != 0)
+                {
+                    try
+                    {
+                        DateTime nu = DateTime.Now;
+                        TblMedlemLog recLog = new TblMedlemLog
+                        {
+                            Nr = tblMedlem_nr,
+                            Logdato = new DateTime(nu.Year, nu.Month, nu.Day),
+                            Akt_id = Akt_id,
+                            Akt_dato = (DateTime)U_DT_NyAktivitetDato.Value
+                        };
+                        Program.dbData3060.TblMedlemLog.InsertOnSubmit(recLog);
+                        Program.dbData3060.SubmitChanges();
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
+            }
+            this.dataGridView1.Update();
+            foreach (DataGridViewRow r in this.dataGridView1.Rows)
+            {
+                if (r.Cells[0].Value.ToString() == tblMedlem_nr.ToString())
+                {
+                    int ci = dataGridView1.CurrentCell.ColumnIndex;
+                    dataGridView1.CurrentCell = r.Cells[ci];
+                }
+            }
+            Update_lvwLog(tblMedlem_nr);
+            
+            this.panelDisplay.Visible = true;
+            this.panelUpdate.Visible = false;
+            this.Navn.Focus();
         }
 
     }

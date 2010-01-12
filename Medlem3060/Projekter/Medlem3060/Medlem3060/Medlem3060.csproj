@@ -162,6 +162,9 @@
     <Compile Include="kar\karKortnr.cs" />
     <Compile Include="kar\karRegnskab.cs" />
     <Compile Include="kar\karStatus.cs" />
+    <Compile Include="NullableDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="app.config" />

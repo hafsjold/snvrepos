@@ -51,8 +51,6 @@
             this.I_Bynavn = new System.Windows.Forms.TextBox();
             this.I_Postnr = new System.Windows.Forms.TextBox();
             this.I_Email = new System.Windows.Forms.TextBox();
-            this.I_Indmeldelsesdato = new System.Windows.Forms.TextBox();
-            this.I_FodtDato = new System.Windows.Forms.TextBox();
             this.I_Telefon = new System.Windows.Forms.TextBox();
             this.I_Adresse = new System.Windows.Forms.TextBox();
             this.I_Kaldenavn = new System.Windows.Forms.TextBox();
@@ -78,8 +76,6 @@
             this.U_Bynavn = new System.Windows.Forms.TextBox();
             this.U_Postnr = new System.Windows.Forms.TextBox();
             this.U_Email = new System.Windows.Forms.TextBox();
-            this.U_Indmeldelsesdato = new System.Windows.Forms.TextBox();
-            this.U_FodtDato = new System.Windows.Forms.TextBox();
             this.U_Telefon = new System.Windows.Forms.TextBox();
             this.U_Adresse = new System.Windows.Forms.TextBox();
             this.U_Kaldenavn = new System.Windows.Forms.TextBox();
@@ -93,7 +89,7 @@
             this.label_U_Adresse = new System.Windows.Forms.Label();
             this.label_U_Kaldenavn = new System.Windows.Forms.Label();
             this.label_U_Navn = new System.Windows.Forms.Label();
-            this.label_U_Indmeldelsesdato = new System.Windows.Forms.Label();
+            this.label_U_NyAktivitet = new System.Windows.Forms.Label();
             this.label_U_FodtDato = new System.Windows.Forms.Label();
             this.label_U_Kon = new System.Windows.Forms.Label();
             this.label_U_Knr = new System.Windows.Forms.Label();
@@ -101,10 +97,16 @@
             this.label_U_Nr = new System.Windows.Forms.Label();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorAddUpdateItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.panelDisplay = new System.Windows.Forms.Panel();
             this.lvwLog = new System.Windows.Forms.ListView();
             this.columnHeaderDato = new System.Windows.Forms.ColumnHeader();
@@ -131,12 +133,11 @@
             this.label_Knr = new System.Windows.Forms.Label();
             this.Overskrift = new System.Windows.Forms.Label();
             this.label_Nr = new System.Windows.Forms.Label();
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorAddUpdateItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.U_NyAktivitet = new System.Windows.Forms.ComboBox();
+            this.I_DT_FodtDato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
+            this.I_DT_Indmeldelsesdato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
+            this.U_DT_NyAktivitetDato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
+            this.U_DT_FodtDato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kartotekBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsMedlem)).BeginInit();
@@ -174,7 +175,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 20;
-            this.dataGridView1.Size = new System.Drawing.Size(524, 1339);
+            this.dataGridView1.Size = new System.Drawing.Size(524, 600);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.TabStop = false;
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
@@ -284,20 +285,20 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 1339);
+            this.splitContainer1.Size = new System.Drawing.Size(800, 600);
             this.splitContainer1.SplitterDistance = 272;
             this.splitContainer1.TabIndex = 0;
             this.splitContainer1.TabStop = false;
             // 
             // panelAdd
             // 
+            this.panelAdd.Controls.Add(this.I_DT_FodtDato);
+            this.panelAdd.Controls.Add(this.I_DT_Indmeldelsesdato);
             this.panelAdd.Controls.Add(this.cmdSave_I_Record);
             this.panelAdd.Controls.Add(this.cmdCancel_I_Record);
             this.panelAdd.Controls.Add(this.I_Bynavn);
             this.panelAdd.Controls.Add(this.I_Postnr);
             this.panelAdd.Controls.Add(this.I_Email);
-            this.panelAdd.Controls.Add(this.I_Indmeldelsesdato);
-            this.panelAdd.Controls.Add(this.I_FodtDato);
             this.panelAdd.Controls.Add(this.I_Telefon);
             this.panelAdd.Controls.Add(this.I_Adresse);
             this.panelAdd.Controls.Add(this.I_Kaldenavn);
@@ -365,20 +366,6 @@
             this.I_Email.Name = "I_Email";
             this.I_Email.Size = new System.Drawing.Size(157, 20);
             this.I_Email.TabIndex = 7;
-            // 
-            // I_Indmeldelsesdato
-            // 
-            this.I_Indmeldelsesdato.Location = new System.Drawing.Point(91, 268);
-            this.I_Indmeldelsesdato.Name = "I_Indmeldelsesdato";
-            this.I_Indmeldelsesdato.Size = new System.Drawing.Size(78, 20);
-            this.I_Indmeldelsesdato.TabIndex = 6;
-            // 
-            // I_FodtDato
-            // 
-            this.I_FodtDato.Location = new System.Drawing.Point(91, 243);
-            this.I_FodtDato.Name = "I_FodtDato";
-            this.I_FodtDato.Size = new System.Drawing.Size(78, 20);
-            this.I_FodtDato.TabIndex = 6;
             // 
             // I_Telefon
             // 
@@ -544,13 +531,14 @@
             // 
             // panelUpdate
             // 
+            this.panelUpdate.Controls.Add(this.U_NyAktivitet);
+            this.panelUpdate.Controls.Add(this.U_DT_NyAktivitetDato);
+            this.panelUpdate.Controls.Add(this.U_DT_FodtDato);
             this.panelUpdate.Controls.Add(this.cmdSave_U_Record);
             this.panelUpdate.Controls.Add(this.cmdCancel_U_Record);
             this.panelUpdate.Controls.Add(this.U_Bynavn);
             this.panelUpdate.Controls.Add(this.U_Postnr);
             this.panelUpdate.Controls.Add(this.U_Email);
-            this.panelUpdate.Controls.Add(this.U_Indmeldelsesdato);
-            this.panelUpdate.Controls.Add(this.U_FodtDato);
             this.panelUpdate.Controls.Add(this.U_Telefon);
             this.panelUpdate.Controls.Add(this.U_Adresse);
             this.panelUpdate.Controls.Add(this.U_Kaldenavn);
@@ -564,7 +552,7 @@
             this.panelUpdate.Controls.Add(this.label_U_Adresse);
             this.panelUpdate.Controls.Add(this.label_U_Kaldenavn);
             this.panelUpdate.Controls.Add(this.label_U_Navn);
-            this.panelUpdate.Controls.Add(this.label_U_Indmeldelsesdato);
+            this.panelUpdate.Controls.Add(this.label_U_NyAktivitet);
             this.panelUpdate.Controls.Add(this.label_U_FodtDato);
             this.panelUpdate.Controls.Add(this.label_U_Kon);
             this.panelUpdate.Controls.Add(this.label_U_Knr);
@@ -572,13 +560,13 @@
             this.panelUpdate.Controls.Add(this.label_U_Nr);
             this.panelUpdate.Location = new System.Drawing.Point(7, 757);
             this.panelUpdate.Name = "panelUpdate";
-            this.panelUpdate.Size = new System.Drawing.Size(258, 336);
+            this.panelUpdate.Size = new System.Drawing.Size(258, 361);
             this.panelUpdate.TabIndex = 18;
             this.panelUpdate.Visible = false;
             // 
             // cmdSave_U_Record
             // 
-            this.cmdSave_U_Record.Location = new System.Drawing.Point(91, 305);
+            this.cmdSave_U_Record.Location = new System.Drawing.Point(91, 329);
             this.cmdSave_U_Record.Name = "cmdSave_U_Record";
             this.cmdSave_U_Record.Size = new System.Drawing.Size(55, 21);
             this.cmdSave_U_Record.TabIndex = 0;
@@ -589,7 +577,7 @@
             // 
             // cmdCancel_U_Record
             // 
-            this.cmdCancel_U_Record.Location = new System.Drawing.Point(15, 305);
+            this.cmdCancel_U_Record.Location = new System.Drawing.Point(15, 329);
             this.cmdCancel_U_Record.Name = "cmdCancel_U_Record";
             this.cmdCancel_U_Record.Size = new System.Drawing.Size(55, 21);
             this.cmdCancel_U_Record.TabIndex = 0;
@@ -618,20 +606,6 @@
             this.U_Email.Name = "U_Email";
             this.U_Email.Size = new System.Drawing.Size(157, 20);
             this.U_Email.TabIndex = 7;
-            // 
-            // U_Indmeldelsesdato
-            // 
-            this.U_Indmeldelsesdato.Location = new System.Drawing.Point(91, 268);
-            this.U_Indmeldelsesdato.Name = "U_Indmeldelsesdato";
-            this.U_Indmeldelsesdato.Size = new System.Drawing.Size(78, 20);
-            this.U_Indmeldelsesdato.TabIndex = 6;
-            // 
-            // U_FodtDato
-            // 
-            this.U_FodtDato.Location = new System.Drawing.Point(91, 243);
-            this.U_FodtDato.Name = "U_FodtDato";
-            this.U_FodtDato.Size = new System.Drawing.Size(78, 20);
-            this.U_FodtDato.TabIndex = 6;
             // 
             // U_Telefon
             // 
@@ -738,14 +712,14 @@
             this.label_U_Navn.TabIndex = 0;
             this.label_U_Navn.Text = "Navn";
             // 
-            // label_U_Indmeldelsesdato
+            // label_U_NyAktivitet
             // 
-            this.label_U_Indmeldelsesdato.AutoSize = true;
-            this.label_U_Indmeldelsesdato.Location = new System.Drawing.Point(12, 271);
-            this.label_U_Indmeldelsesdato.Name = "label_U_Indmeldelsesdato";
-            this.label_U_Indmeldelsesdato.Size = new System.Drawing.Size(59, 13);
-            this.label_U_Indmeldelsesdato.TabIndex = 0;
-            this.label_U_Indmeldelsesdato.Text = "Medlem fra";
+            this.label_U_NyAktivitet.AutoSize = true;
+            this.label_U_NyAktivitet.Location = new System.Drawing.Point(12, 271);
+            this.label_U_NyAktivitet.Name = "label_U_NyAktivitet";
+            this.label_U_NyAktivitet.Size = new System.Drawing.Size(60, 13);
+            this.label_U_NyAktivitet.TabIndex = 0;
+            this.label_U_NyAktivitet.Text = "Ny aktivitet";
             // 
             // label_U_FodtDato
             // 
@@ -814,7 +788,7 @@
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddUpdateItem,
             this.bindingNavigatorAddNewItem});
-            this.bindingNavigator1.Location = new System.Drawing.Point(0, 1314);
+            this.bindingNavigator1.Location = new System.Drawing.Point(0, 575);
             this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.bindingNavigator1.MoveNextItem = this.bindingNavigatorMoveNextItem;
@@ -831,6 +805,24 @@
             this.bindingNavigatorCountItem.Size = new System.Drawing.Size(36, 22);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            // 
+            // bindingNavigatorMoveFirstItem
+            // 
+            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
+            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
+            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveFirstItem.Text = "Move first";
+            // 
+            // bindingNavigatorMovePreviousItem
+            // 
+            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
+            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
+            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
             // 
             // bindingNavigatorSeparator
             // 
@@ -851,10 +843,49 @@
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
             this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
+            // bindingNavigatorMoveNextItem
+            // 
+            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
+            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
+            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveNextItem.Text = "Move next";
+            // 
+            // bindingNavigatorMoveLastItem
+            // 
+            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
+            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
+            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveLastItem.Text = "Move last";
+            // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // bindingNavigatorAddUpdateItem
+            // 
+            this.bindingNavigatorAddUpdateItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddUpdateItem.Image = global::nsPuls3060.Properties.Resources.Upd;
+            this.bindingNavigatorAddUpdateItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.bindingNavigatorAddUpdateItem.Name = "bindingNavigatorAddUpdateItem";
+            this.bindingNavigatorAddUpdateItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorAddUpdateItem.Text = "Update";
+            this.bindingNavigatorAddUpdateItem.Click += new System.EventHandler(this.bindingNavigatorUpdateItem_Click);
+            // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = global::nsPuls3060.Properties.Resources.Add;
+            this.bindingNavigatorAddNewItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorAddNewItem.Text = "Add New";
+            this.bindingNavigatorAddNewItem.ToolTipText = "Add New";
+            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
             // 
             // panelDisplay
             // 
@@ -902,11 +933,13 @@
             // 
             // columnHeaderDato
             // 
+            this.columnHeaderDato.DisplayIndex = 1;
             this.columnHeaderDato.Text = "Dato";
             this.columnHeaderDato.Width = 66;
             // 
             // columnHeaderAktivitet
             // 
+            this.columnHeaderAktivitet.DisplayIndex = 0;
             this.columnHeaderAktivitet.Text = "Aktivitet";
             this.columnHeaderAktivitet.Width = 154;
             // 
@@ -1115,62 +1148,49 @@
             this.label_Nr.TabIndex = 0;
             this.label_Nr.Text = "Nr";
             // 
-            // bindingNavigatorMoveFirstItem
+            // U_NyAktivitet
             // 
-            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
-            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
-            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveFirstItem.Text = "Move first";
+            this.U_NyAktivitet.FormattingEnabled = true;
+            this.U_NyAktivitet.Location = new System.Drawing.Point(16, 291);
+            this.U_NyAktivitet.Name = "U_NyAktivitet";
+            this.U_NyAktivitet.Size = new System.Drawing.Size(148, 21);
+            this.U_NyAktivitet.TabIndex = 19;
             // 
-            // bindingNavigatorMovePreviousItem
+            // I_DT_FodtDato
             // 
-            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
-            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
-            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
+            this.I_DT_FodtDato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.I_DT_FodtDato.Location = new System.Drawing.Point(91, 241);
+            this.I_DT_FodtDato.Name = "I_DT_FodtDato";
+            this.I_DT_FodtDato.Size = new System.Drawing.Size(78, 20);
+            this.I_DT_FodtDato.TabIndex = 18;
+            this.I_DT_FodtDato.Value = new System.DateTime(2010, 1, 12, 8, 47, 59, 886);
             // 
-            // bindingNavigatorMoveNextItem
+            // I_DT_Indmeldelsesdato
             // 
-            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
-            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
-            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveNextItem.Text = "Move next";
+            this.I_DT_Indmeldelsesdato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.I_DT_Indmeldelsesdato.Location = new System.Drawing.Point(91, 267);
+            this.I_DT_Indmeldelsesdato.Name = "I_DT_Indmeldelsesdato";
+            this.I_DT_Indmeldelsesdato.Size = new System.Drawing.Size(78, 20);
+            this.I_DT_Indmeldelsesdato.TabIndex = 18;
+            this.I_DT_Indmeldelsesdato.Value = new System.DateTime(2010, 1, 12, 8, 47, 59, 886);
             // 
-            // bindingNavigatorMoveLastItem
+            // U_DT_NyAktivitetDato
             // 
-            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
-            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
-            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveLastItem.Text = "Move last";
+            this.U_DT_NyAktivitetDato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.U_DT_NyAktivitetDato.Location = new System.Drawing.Point(170, 290);
+            this.U_DT_NyAktivitetDato.Name = "U_DT_NyAktivitetDato";
+            this.U_DT_NyAktivitetDato.Size = new System.Drawing.Size(78, 20);
+            this.U_DT_NyAktivitetDato.TabIndex = 18;
+            this.U_DT_NyAktivitetDato.Value = new System.DateTime(2010, 1, 12, 8, 47, 59, 886);
             // 
-            // bindingNavigatorAddUpdateItem
+            // U_DT_FodtDato
             // 
-            this.bindingNavigatorAddUpdateItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddUpdateItem.Image = global::nsPuls3060.Properties.Resources.Upd;
-            this.bindingNavigatorAddUpdateItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.bindingNavigatorAddUpdateItem.Name = "bindingNavigatorAddUpdateItem";
-            this.bindingNavigatorAddUpdateItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorAddUpdateItem.Text = "Update";
-            this.bindingNavigatorAddUpdateItem.Click += new System.EventHandler(this.bindingNavigatorUpdateItem_Click);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = global::nsPuls3060.Properties.Resources.Add;
-            this.bindingNavigatorAddNewItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorAddNewItem.Text = "Add New";
-            this.bindingNavigatorAddNewItem.ToolTipText = "Add New";
-            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
+            this.U_DT_FodtDato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.U_DT_FodtDato.Location = new System.Drawing.Point(91, 242);
+            this.U_DT_FodtDato.Name = "U_DT_FodtDato";
+            this.U_DT_FodtDato.Size = new System.Drawing.Size(78, 20);
+            this.U_DT_FodtDato.TabIndex = 18;
+            this.U_DT_FodtDato.Value = new System.DateTime(2010, 1, 12, 8, 47, 59, 886);
             // 
             // FrmMedlemmer
             // 
@@ -1304,17 +1324,18 @@
         private System.Windows.Forms.Label label_U_Adresse;
         private System.Windows.Forms.Label label_U_Kaldenavn;
         private System.Windows.Forms.Label label_U_Navn;
-        private System.Windows.Forms.Label label_U_Indmeldelsesdato;
+        private System.Windows.Forms.Label label_U_NyAktivitet;
         private System.Windows.Forms.Label label_U_FodtDato;
         private System.Windows.Forms.Label label_U_Kon;
         private System.Windows.Forms.Label label_U_Knr;
         private System.Windows.Forms.Label U_Overskrift;
         private System.Windows.Forms.Label label_U_Nr;
-        private System.Windows.Forms.TextBox I_Indmeldelsesdato;
-        private System.Windows.Forms.TextBox I_FodtDato;
-        private System.Windows.Forms.TextBox U_Indmeldelsesdato;
-        private System.Windows.Forms.TextBox U_FodtDato;
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddUpdateItem;
+        private ProjectMentor.Windows.Controls.NullableDateTimePicker U_DT_FodtDato;
+        private ProjectMentor.Windows.Controls.NullableDateTimePicker I_DT_Indmeldelsesdato;
+        private ProjectMentor.Windows.Controls.NullableDateTimePicker U_DT_NyAktivitetDato;
+        private ProjectMentor.Windows.Controls.NullableDateTimePicker I_DT_FodtDato;
+        private System.Windows.Forms.ComboBox U_NyAktivitet;
 
 
     }
