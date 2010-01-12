@@ -215,5 +215,29 @@ namespace nsPuls3060.Properties {
                 this["frmMedlemmerSplitteDist"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point frmPbsfilesPoint {
+            get {
+                return ((global::System.Drawing.Point)(this["frmPbsfilesPoint"]));
+            }
+            set {
+                this["frmPbsfilesPoint"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("707, 511")]
+        public global::System.Drawing.Size frmPbsfilesSize {
+            get {
+                return ((global::System.Drawing.Size)(this["frmPbsfilesSize"]));
+            }
+            set {
+                this["frmPbsfilesSize"] = value;
+            }
+        }
     }
 }

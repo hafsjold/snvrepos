@@ -108,7 +108,16 @@ namespace nsPuls3060
                 m_frmKontingentForslag.Show();
             }
         }
-
+        private void pbsfilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("Pbsfiles"))
+            {
+                FrmPbsfiles m_frmPbsfiles = new FrmPbsfiles();
+                m_frmPbsfiles.MdiParent = this;
+                m_frmPbsfiles.Show();
+            }
+        }
+        
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
             clsPbs objPbs = new clsPbs();

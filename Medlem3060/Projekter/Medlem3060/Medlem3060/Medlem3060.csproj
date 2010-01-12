@@ -91,6 +91,12 @@
       <DependentUpon>dsMedlem.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="frm\frmPbsfiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmPbsfiles.Designer.cs">
+      <DependentUpon>frmPbsfiles.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm\frmKontingentForslag.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -187,6 +193,9 @@
     <EmbeddedResource Include="frm\frmMedlemmer.resx">
       <DependentUpon>frmMedlemmer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmPbsfiles.resx">
+      <DependentUpon>frmPbsfiles.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm\frmRegnskab.resx">
       <DependentUpon>frmRegnskab.cs</DependentUpon>
     </EmbeddedResource>
@@ -262,6 +271,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\Tblpbsfiles.datasource" />
     <None Include="Resources\Add.bmp" />
     <Content Include="Resources\info.png" />
     <Content Include="Resources\logopart.jpg" />
