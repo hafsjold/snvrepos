@@ -265,6 +265,8 @@
     <None Include="Resources\Add.bmp" />
     <Content Include="Resources\info.png" />
     <Content Include="Resources\logopart.jpg" />
+    <None Include="Resources\Summa.ico" />
+    <None Include="Resources\Summakartotek.png" />
     <None Include="Resources\Upd.bmp" />
   </ItemGroup>
   <ItemGroup>

@@ -190,7 +190,7 @@ namespace nsPuls3060
 
         public void save()
         {
-            FileStream bs = new FileStream(m_path + "_test", FileMode.Truncate, FileAccess.Write, FileShare.None);
+            FileStream bs = new FileStream(m_path, FileMode.Truncate, FileAccess.Write, FileShare.None);
             using (BinaryWriter bw = new BinaryWriter(bs))
             {
                 var qry_this = from d in this

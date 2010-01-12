@@ -286,6 +286,7 @@ namespace nsPuls3060
             this.U_NyAktivitet.Items.Add("Indmeldelse");
             this.U_NyAktivitet.Items.Add("Udmeldelse");
             this.U_NyAktivitet.Items.Add("Kontingent betalt til");
+            this.U_NyAktivitet.Text = null;
             this.U_DT_NyAktivitetDato.Value = null;
             this.U_Navn.Focus();
         }

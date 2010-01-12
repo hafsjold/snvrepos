@@ -121,13 +121,19 @@
   <data name="Message_info" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\info.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Summakartotek" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Summakartotek.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Add" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Add.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Upd" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Upd.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="logopart" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logopart.jpg;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Upd" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Upd.bmp;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Summa" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Summa.ico;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

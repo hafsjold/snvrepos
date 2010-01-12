@@ -25,7 +25,7 @@ namespace nsPuls3060
         }
 
 
-        public bool ReadFraPbsFile()
+        public int ReadFraPbsFile()
         {
             string FraPBSFolderPath;
             DirectoryInfo fld;
@@ -56,8 +56,8 @@ namespace nsPuls3060
                 from d1 in details.DefaultIfEmpty(new Tblpbsfiles { Id = -1, Type = (int?)null, Path = null, Filename = null, Size = (int?)null, Atime = (DateTime?)null, Mtime = (DateTime?)null, Perm = null, Uid = (int?)null, Gid = (int?)null })
                 where d1.Path == null && d1.Filename == null
                 select h;
-            
-            int xantal = leftqry_pbsnetdir.Count();
+
+            int AntalFiler = leftqry_pbsnetdir.Count();
             if (leftqry_pbsnetdir.Count() > 0)
             {
                 foreach (var rec_pbsnetdir in leftqry_pbsnetdir)
@@ -98,7 +98,7 @@ namespace nsPuls3060
                 }
             }
             Program.dbData3060.SubmitChanges();
-            return true;
+            return AntalFiler;
         }
 
         public void TestRead042()
@@ -121,13 +121,14 @@ namespace nsPuls3060
             string sektion;
             int wpbsfilesid;
             int wleveranceid;
-            int wfilescount = 0;
+            int AntalFiler = 0;
             //  wpbsfilesid = 3450  //'--test test
             //  leverancetype = "0602"
             //  sektion = "0211"
             //  rec = "BS0420398564402360000000100000000001231312345678910120310000000012755000000125                         3112031112030000000012755"
 
             var qrypbsfiles = from h in Program.dbData3060.Tblpbsfiles
+                              where h.Pbsforsendelseid == null
                               join d in Program.dbData3060.Tblpbsfile on h.Id equals d.Pbsfilesid
                               where d.Seqnr == 1 && d.Data.Substring(16, 4) == "0602" && d.Data.Substring(0, 2) == "BS"
                               select new
@@ -137,212 +138,232 @@ namespace nsPuls3060
                                   h.Filename,
                                   leverancetype = d.Data.Substring(16, 4),
                                   delsystem = d.Data.Substring(13, 3),
-                                  h.Pbsforsendelseid
                               };
 
             foreach (var rstpbsfiles in qrypbsfiles)
             {
-                wpbsfilesid = rstpbsfiles.Id;
-                wfilescount++;
-                leverancetype = "";
-                sektion = "";
-                leverancespecifikation = "";
-
-                var qrypbsfile = from d in Program.dbData3060.Tblpbsfile
-                                 where d.Pbsfilesid == wpbsfilesid && d.Seqnr > 0
-                                 orderby d.Seqnr
-                                 select d;
-
-                foreach (var rstpbsfile in qrypbsfile)
+                try
                 {
-                    rec = rstpbsfile.Data;
-                    // -- Bestem Leverance Type
-                    if (rstpbsfile.Seqnr == 1)
+                    wpbsfilesid = rstpbsfiles.Id;
+                    AntalFiler++;
+                    leverancetype = "";
+                    sektion = "";
+                    leverancespecifikation = "";
+
+                    var qrypbsfile = from d in Program.dbData3060.Tblpbsfile
+                                     where d.Pbsfilesid == wpbsfilesid && d.Seqnr > 0
+                                     orderby d.Seqnr
+                                     select d;
+
+                    foreach (var rstpbsfile in qrypbsfile)
                     {
-                        if ((rec.Substring(0, 5) == "BS002"))
+                        rec = rstpbsfile.Data;
+                        // -- Bestem Leverance Type
+                        if (rstpbsfile.Seqnr == 1)
                         {
-                            // -- Leverance Start
-                            leverancetype = rec.Substring(16, 4);
-                            leverancespecifikation = rec.Substring(20, 10);
-                            leverancedannelsesdato = DateTime.Parse("20" + rec.Substring(53, 2) + "-" + rec.Substring(51, 2) + "-" + rec.Substring(49, 2));
-                        }
-                        else
-                        {
-                            throw new Exception("241 - Første record er ikke en Leverance start record");
+                            if ((rec.Substring(0, 5) == "BS002"))
+                            {
+                                // -- Leverance Start
+                                leverancetype = rec.Substring(16, 4);
+                                leverancespecifikation = rec.Substring(20, 10);
+                                leverancedannelsesdato = DateTime.Parse("20" + rec.Substring(53, 2) + "-" + rec.Substring(51, 2) + "-" + rec.Substring(49, 2));
+                            }
+                            else
+                            {
+                                throw new Exception("241 - Første record er ikke en Leverance start record");
+                            }
+                            if ((leverancetype == "0602"))
+                            {
+                                // -- Leverance 0602
+                                var antal = (from c in Program.dbData3060.Tblfrapbs
+                                             where c.Leverancespecifikation == leverancespecifikation
+                                             select c).Count();
+                                if (antal > 0) { throw new Exception("242 - Leverance med pbsfilesid: " + wpbsfilesid + " og leverancespecifikation: " + leverancespecifikation + " er indlæst tidligere"); }
+
+                                wleveranceid = clsPbs.nextval("leveranceid");
+                                m_rec_pbsforsendelse = new Tblpbsforsendelse
+                                {
+                                    Delsystem = "BS1",
+                                    Leverancetype = "0602",
+                                    Oprettetaf = "Bet",
+                                    Oprettet = DateTime.Now,
+                                    Leveranceid = wleveranceid
+                                };
+                                Program.dbData3060.Tblpbsforsendelse.InsertOnSubmit(m_rec_pbsforsendelse);
+
+                                m_rec_frapbs = new Tblfrapbs
+                                {
+                                    Delsystem = "BS1",
+                                    Leverancetype = "0602",
+                                    Leverancespecifikation = leverancespecifikation,
+                                    Leverancedannelsesdato = leverancedannelsesdato,
+                                    Udtrukket = DateTime.Now
+                                };
+                                m_rec_pbsforsendelse.Tblfrapbs.Add(m_rec_frapbs);
+
+                                m_rec_pbsfiles = (from c in Program.dbData3060.Tblpbsfiles
+                                                  where c.Id == rstpbsfiles.Id
+                                                  select c).First();
+                                m_rec_pbsforsendelse.Tblpbsfiles.Add(m_rec_pbsfiles);
+                            }
                         }
                         if ((leverancetype == "0602"))
                         {
-                            // -- Leverance 0602
-                            var antal = (from c in Program.dbData3060.Tblfrapbs
-                                         where c.Leverancespecifikation == leverancespecifikation
-                                         select c).Count();
-                            if (antal > 0) { throw new Exception("242 - Leverance med pbsfilesid: " + wpbsfilesid + " og leverancespecifikation: " + leverancespecifikation + " er indlæst tidligere"); }
-
-                            wleveranceid = clsPbs.nextval("leveranceid");
-                            m_rec_pbsforsendelse = new Tblpbsforsendelse
+                            // -- Leverance 0602*********
+                            // -- Bestem Sektions Type
+                            if ((sektion == ""))
                             {
-                                Delsystem = "BS1",
-                                Leverancetype = "0602",
-                                Oprettetaf = "Bet",
-                                Oprettet = DateTime.Now,
-                                Leveranceid = wleveranceid
-                            };
-                            Program.dbData3060.Tblpbsforsendelse.InsertOnSubmit(m_rec_pbsforsendelse);
-
-                            m_rec_frapbs = new Tblfrapbs
-                            {
-                                Delsystem = "BS1",
-                                Leverancetype = "0602",
-                                Leverancespecifikation = leverancespecifikation,
-                                Leverancedannelsesdato = leverancedannelsesdato,
-                                Udtrukket = DateTime.Now
-                            };
-                            m_rec_pbsforsendelse.Tblfrapbs.Add(m_rec_frapbs);
-
-                            m_rec_pbsfiles = (from c in Program.dbData3060.Tblpbsfiles
-                                              where c.Id == rstpbsfiles.Id
-                                              select c).First();
-                            m_rec_pbsforsendelse.Tblpbsfiles.Add(m_rec_pbsfiles);
-                        }
-                    }
-                    if ((leverancetype == "0602"))
-                    {
-                        // -- Leverance 0602*********
-                        // -- Bestem Sektions Type
-                        if ((sektion == ""))
-                        {
-                            if ((rec.Substring(0, 5) == "BS012"))
-                            {
-                                // -- Sektion Start
-                                sektion = rec.Substring(13, 4);
+                                if ((rec.Substring(0, 5) == "BS012"))
+                                {
+                                    // -- Sektion Start
+                                    sektion = rec.Substring(13, 4);
+                                }
+                                else if (!((rec.Substring(0, 5) == "BS992")
+                                            || (rec.Substring(0, 5) == "BS002")))
+                                {
+                                    throw new Exception("243 - Første record er ikke en Sektions start record");
+                                }
                             }
-                            else if (!((rec.Substring(0, 5) == "BS992")
-                                        || (rec.Substring(0, 5) == "BS002")))
+                            if ((rec.Substring(0, 5) == "BS002"))
                             {
-                                throw new Exception("243 - F?rste record er ikke en Sektions start record");
+                                // -- Leverance start
+                                // -- BEHANDL: Leverance start
                             }
-                        }
-                        if ((rec.Substring(0, 5) == "BS002"))
-                        {
-                            // -- Leverance start
-                            // -- BEHANDL: Leverance start
-                        }
-                        else if ((sektion == "0211"))
-                        {
-                            // -- Sektion 0211 Betalingsinformation
-                            if (((rec.Substring(0, 5) == "BS012")
-                                        && (rec.Substring(13, 4) == "0211")))
+                            else if ((sektion == "0211"))
                             {
-                                // -- Sektion Start
-                                // -- BEHANDL: Sektion Start
+                                // -- Sektion 0211 Betalingsinformation
+                                if (((rec.Substring(0, 5) == "BS012")
+                                            && (rec.Substring(13, 4) == "0211")))
+                                {
+                                    // -- Sektion Start
+                                    // -- BEHANDL: Sektion Start
+                                }
+                                else if (((rec.Substring(0, 5) == "BS042")
+                                            && (rec.Substring(13, 4) == "0236")))
+                                {
+                                    // -- Gennemf?rt automatisk betaling
+                                    // -- BEHANDL: Gennemf?rt automatisk betaling
+                                    read042(sektion, "0236", rec);
+                                }
+                                else if (((rec.Substring(0, 5) == "BS042")
+                                            && (rec.Substring(13, 4) == "0237")))
+                                {
+                                    // -- Afvist betaling
+                                    // -- BEHANDL: Afvist betaling
+                                    read042(sektion, "0237", rec);
+                                }
+                                else if (((rec.Substring(0, 5) == "BS042")
+                                            && (rec.Substring(13, 4) == "0238")))
+                                {
+                                    // -- Afmeldt betaling
+                                    // -- BEHANDL: Afmeldt betaling
+                                    read042(sektion, "0238", rec);
+                                }
+                                else if (((rec.Substring(0, 5) == "BS042")
+                                            && (rec.Substring(13, 4) == "0239")))
+                                {
+                                    // -- Tilbagef?rt betaling
+                                    // -- BEHANDL: Tilbagef?rt betaling
+                                    read042(sektion, "0239", rec);
+                                }
+                                else if (((rec.Substring(0, 5) == "BS092")
+                                            && (rec.Substring(13, 4) == "0211")))
+                                {
+                                    // -- Sektion Slut
+                                    // -- BEHANDL: Sektion Slut
+                                    sektion = "";
+                                }
+                                else
+                                {
+                                    throw new Exception("244 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
+                                }
                             }
-                            else if (((rec.Substring(0, 5) == "BS042")
-                                        && (rec.Substring(13, 4) == "0236")))
+                            else if ((sektion == "0215"))
                             {
-                                // -- Gennemf?rt automatisk betaling
-                                // -- BEHANDL: Gennemf?rt automatisk betaling
-                                read042(sektion, "0236", rec);
+                                // -- Sektion 0215 FI-Betalingsinformation
+                                if (((rec.Substring(0, 5) == "BS012")
+                                            && (rec.Substring(13, 4) == "0215")))
+                                {
+                                    // -- Sektion Start
+                                    // -- BEHANDL: Sektion Start
+                                }
+                                else if (((rec.Substring(0, 5) == "BS042")
+                                            && (rec.Substring(13, 4) == "0297")))
+                                {
+                                    // -- Gennemf?rt FI-betaling
+                                    // -- BEHANDL: Gennemf?rt FI-betaling
+                                    read042(sektion, "0297", rec);
+                                }
+                                else if (((rec.Substring(0, 5) == "BS042")
+                                            && (rec.Substring(13, 4) == "0299")))
+                                {
+                                    // -- Tilbagef?rt FI-betaling
+                                    // -- BEHANDL: Tilbagef?rt FI-betaling
+                                    read042(sektion, "0299", rec);
+                                }
+                                else if (((rec.Substring(0, 5) == "BS092")
+                                            && (rec.Substring(13, 4) == "0215")))
+                                {
+                                    // -- Sektion Slut
+                                    // -- BEHANDL: Sektion Slut
+                                    sektion = "";
+                                }
+                                else
+                                {
+                                    throw new Exception("245 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
+                                }
                             }
-                            else if (((rec.Substring(0, 5) == "BS042")
-                                        && (rec.Substring(13, 4) == "0237")))
+                            else if ((rec.Substring(0, 5) == "BS992"))
                             {
-                                // -- Afvist betaling
-                                // -- BEHANDL: Afvist betaling
-                                read042(sektion, "0237", rec);
-                            }
-                            else if (((rec.Substring(0, 5) == "BS042")
-                                        && (rec.Substring(13, 4) == "0238")))
-                            {
-                                // -- Afmeldt betaling
-                                // -- BEHANDL: Afmeldt betaling
-                                read042(sektion, "0238", rec);
-                            }
-                            else if (((rec.Substring(0, 5) == "BS042")
-                                        && (rec.Substring(13, 4) == "0239")))
-                            {
-                                // -- Tilbagef?rt betaling
-                                // -- BEHANDL: Tilbagef?rt betaling
-                                read042(sektion, "0239", rec);
-                            }
-                            else if (((rec.Substring(0, 5) == "BS092")
-                                        && (rec.Substring(13, 4) == "0211")))
-                            {
-                                // -- Sektion Slut
-                                // -- BEHANDL: Sektion Slut
-                                sektion = "";
-                            }
-                            else
-                            {
-                                throw new Exception("244 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
-                            }
-                        }
-                        else if ((sektion == "0215"))
-                        {
-                            // -- Sektion 0215 FI-Betalingsinformation
-                            if (((rec.Substring(0, 5) == "BS012")
-                                        && (rec.Substring(13, 4) == "0215")))
-                            {
-                                // -- Sektion Start
-                                // -- BEHANDL: Sektion Start
-                            }
-                            else if (((rec.Substring(0, 5) == "BS042")
-                                        && (rec.Substring(13, 4) == "0297")))
-                            {
-                                // -- Gennemf?rt FI-betaling
-                                // -- BEHANDL: Gennemf?rt FI-betaling
-                                read042(sektion, "0297", rec);
-                            }
-                            else if (((rec.Substring(0, 5) == "BS042")
-                                        && (rec.Substring(13, 4) == "0299")))
-                            {
-                                // -- Tilbagef?rt FI-betaling
-                                // -- BEHANDL: Tilbagef?rt FI-betaling
-                                read042(sektion, "0299", rec);
-                            }
-                            else if (((rec.Substring(0, 5) == "BS092")
-                                        && (rec.Substring(13, 4) == "0215")))
-                            {
-                                // -- Sektion Slut
-                                // -- BEHANDL: Sektion Slut
-                                sektion = "";
+                                // -- Leverance slut
+                                // -- BEHANDL: Leverance Slut
+                                leverancetype = "";
                             }
                             else
                             {
-                                throw new Exception("245 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
+                                throw new Exception("246 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
                             }
-                        }
-                        else if ((rec.Substring(0, 5) == "BS992"))
-                        {
-                            // -- Leverance slut
-                            // -- BEHANDL: Leverance Slut
-                            leverancetype = "";
                         }
                         else
                         {
-                            throw new Exception("246 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
+                            throw new Exception("247 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
                         }
-                    }
-                    else
+                    }  // slut rstpbsfile
+
+                    // -- Update indbetalingsbelob
+                    foreach (Tblbet rec_bet in m_rec_frapbs.Tblbet)
                     {
-                        throw new Exception("247 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
+                        var SumIndbetalingsbelob = (
+                            from c in rec_bet.Tblbetlin
+                            group c by c.Betid into g
+                            select new { Betid = g.Key, SumIndbetalingsbelob = g.Sum(c => c.Indbetalingsbelob) }
+                            ).First().SumIndbetalingsbelob;
+
+                        rec_bet.Indbetalingsbelob = SumIndbetalingsbelob;
                     }
-                }  // slut rstpbsfile
 
-                // -- Update indbetalingsbelob
-                foreach (Tblbet rec_bet in m_rec_frapbs.Tblbet)
-                {
-                    var SumIndbetalingsbelob = (
-                        from c in rec_bet.Tblbetlin
-                        group c by c.Betid into g
-                        select new { Betid = g.Key, SumIndbetalingsbelob = g.Sum(c => c.Indbetalingsbelob) }
-                        ).First().SumIndbetalingsbelob;
-
-                    rec_bet.Indbetalingsbelob = SumIndbetalingsbelob;
                 }
+                catch (Exception e)
+                {
+                    switch (e.Message.Substring(0, 3))
+                    {
+                        case "241":   //241 - Første record er ikke en Leverance start record
+                        case "242":   //242 - Leverancen er indlæst tidligere
+                        case "243":   //243 - Første record er ikke en Sektions start record
+                        case "244":   //244 - Record ukendt
+                        case "245":   //245 - Record ukendt
+                        case "246":   //246 - Record ukendt
+                        case "247":   //247 - Record ukendt
+                            AntalFiler--;
+                            break;
 
+                        default:
+                            throw;
+                    }
+                }
             }  // slut rstpbsfiles
             Program.dbData3060.SubmitChanges();
-            return wfilescount;
+            return AntalFiler;
         }
 
         public void read042(string sektion, string transkode, string rec)

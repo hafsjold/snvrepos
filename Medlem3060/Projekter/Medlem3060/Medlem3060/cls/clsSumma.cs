@@ -7,7 +7,7 @@ namespace nsPuls3060
 {
     class clsSumma
     {
-        public void Order2Summa()
+        public int Order2Summa()
         {
             var qry_ord = from f in Program.dbData3060.Tblfak
                           where f.SFakID == null
@@ -15,9 +15,11 @@ namespace nsPuls3060
                           where b.Pbstranskode == "0236" || b.Pbstranskode == "0297"
                           select new { f.Id, Pbsfaknr = f.Faknr, f.Nr, f.Advisbelob, f.Betalingsdato, f.Vnr, f.Bogfkonto, b.Indbetalingsdato };
 
-
+            int AntalOrdre = qry_ord.Count(); 
             if (qry_ord.Count() > 0)
             {
+                DateTime nu = DateTime.Now;
+                DateTime ToDay = new DateTime(nu.Year, nu.Month, nu.Day); ;
                 var SidsteSFakID = (from f in Program.karFakturaer_s select f.fakid).Max();
                 var SidsteRec_no = (from f in Program.karFakturaer_s select f.rec_no).Max();
 
@@ -32,8 +34,8 @@ namespace nsPuls3060
                     ordtype ord = new ordtype
                     (
                         SidsteSFakID,               //fakid
-                        (o.Betalingsdato > o.Indbetalingsdato) ? (DateTime)o.Betalingsdato : (DateTime)o.Indbetalingsdato, //dato
-                        (DateTime)o.Betalingsdato, //forfaldsdato
+                        ToDay,      //(o.Betalingsdato > o.Indbetalingsdato) ? (DateTime)o.Betalingsdato : (DateTime)o.Indbetalingsdato, //dato
+                        ToDay,      //(DateTime)o.Betalingsdato, //forfaldsdato
                         orebelob,                  //fakbeløb i øre
                         100000 + (int)o.Nr         //debitornr
                     );
@@ -70,7 +72,6 @@ namespace nsPuls3060
                                           where f.Id == o.Id
                                           select f).First();
                         rec_fak.SFakID = SidsteSFakID;
-                        rec_fak.Betalt = true;
                     }
                     catch (System.InvalidOperationException)
                     {
@@ -98,15 +99,17 @@ namespace nsPuls3060
                 Program.karStatus.save();
                 Program.dbData3060.SubmitChanges();
             }
+            return AntalOrdre;
         }
 
-        public void OrderFaknrUpdate()
+        public int OrderFaknrUpdate()
         {
             var qry = from k in Program.karFakturaer_s
                       join f in Program.dbData3060.Tblfak on k.fakid equals f.SFakID
                       where f.SFaknr == null
                       select new { f.Id, SFaknr = k.faknr };
 
+            int AntalFakturaer = qry.Count();
             if (qry.Count() > 0)
             {
                 foreach (var k in qry)
@@ -125,8 +128,10 @@ namespace nsPuls3060
                 }
                 Program.dbData3060.SubmitChanges();
             }
+            return AntalFakturaer;
         }
-        public void BogforBetalinger()
+
+        public int BogforBetalinger()
         {
             int saveBetid = 0;
             var bogf = from s in Program.karFakturaer_s
@@ -136,7 +141,7 @@ namespace nsPuls3060
                        join m in Program.karMedlemmer on f.Nr equals m.Nr
                        join bl in Program.dbData3060.Tblbetlin on f.Faknr equals bl.Faknr
                        join b in Program.dbData3060.Tblbet on bl.Betid equals b.Id
-                       where b.Summabogfort == false
+                       where b.Summabogfort != true
                        join p in Program.dbData3060.Tblfrapbs on b.Frapbsid equals p.Id
                        orderby p.Id, b.Id, bl.Id
                        select new
@@ -153,9 +158,12 @@ namespace nsPuls3060
                            bl.Indbetalingsbelob,
                            f.SFaknr
                        };
-
+            int AntalBetalinger = bogf.Count();
             if (bogf.Count() > 0)
             {
+                DateTime nu = DateTime.Now;
+                DateTime ToDay = new DateTime(nu.Year, nu.Month, nu.Day); ;
+
                 int BS1_SidsteNr = 0;
                 try
                 {
@@ -176,7 +184,7 @@ namespace nsPuls3060
                         saveBetid = b.Betid;
                         recKladde gkl = new recKladde
                         {
-                            Dato = (b.Betalingsdato > b.Indbetalingsdato) ? (DateTime)b.Betalingsdato : (DateTime)b.Indbetalingsdato,
+                            Dato = ToDay,    //(b.Betalingsdato > b.Indbetalingsdato) ? (DateTime)b.Betalingsdato : (DateTime)b.Indbetalingsdato,
                             Bilag = ++BS1_SidsteNr,
                             Tekst = "PBS Leverance " + b.Leverancespecifikation,
                             Afstemningskonto = "Bank",
@@ -186,14 +194,14 @@ namespace nsPuls3060
                         };
                         Program.karKladde.Add(gkl);
 
-                        var rec_bet= (from ub in Program.dbData3060.Tblbet where ub.Id ==  b.Betid select ub).First();
+                        var rec_bet = (from ub in Program.dbData3060.Tblbet where ub.Id == b.Betid select ub).First();
                         rec_bet.Summabogfort = true;
 
                     }
 
                     recKladde kl = new recKladde
                     {
-                        Dato = (b.Betalingsdato > b.Indbetalingsdato) ? (DateTime)b.Betalingsdato : (DateTime)b.Indbetalingsdato,
+                        Dato = ToDay,  //(b.Betalingsdato > b.Indbetalingsdato) ? (DateTime)b.Betalingsdato : (DateTime)b.Indbetalingsdato,
                         Bilag = BS1_SidsteNr,
                         Tekst = "F" + b.SFaknr + " " + b.Navn,
                         Afstemningskonto = null,
@@ -203,27 +211,11 @@ namespace nsPuls3060
                     };
                     Program.karKladde.Add(kl);
                 }
-                /*
-                try
-                {
-                    recStatus rec_Status = (from s in Program.karStatus where s.key == "BS1_SidsteNr" select s).First();
-                    rec_Status.value = BS1_SidsteNr.ToString();
-                }
-                catch (System.InvalidOperationException)
-                {
-                    recStatus rec_Status = new recStatus
-                    {
-                        key = "BS1_SidsteNr",
-                        value = BS1_SidsteNr.ToString()
-                    };
-                    Program.karStatus.Add(rec_Status);
-                }
-                */
                 Program.karStatus.save();
                 Program.karKladde.save();
                 Program.dbData3060.SubmitChanges();
             }
-
+            return AntalBetalinger;
         }
 
     }

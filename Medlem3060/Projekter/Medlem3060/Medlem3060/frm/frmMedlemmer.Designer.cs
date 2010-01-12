@@ -71,6 +71,7 @@
             this.I_Overskrift = new System.Windows.Forms.Label();
             this.label_I_Nr = new System.Windows.Forms.Label();
             this.panelUpdate = new System.Windows.Forms.Panel();
+            this.U_NyAktivitet = new System.Windows.Forms.ComboBox();
             this.cmdSave_U_Record = new System.Windows.Forms.Button();
             this.cmdCancel_U_Record = new System.Windows.Forms.Button();
             this.U_Bynavn = new System.Windows.Forms.TextBox();
@@ -133,7 +134,7 @@
             this.label_Knr = new System.Windows.Forms.Label();
             this.Overskrift = new System.Windows.Forms.Label();
             this.label_Nr = new System.Windows.Forms.Label();
-            this.U_NyAktivitet = new System.Windows.Forms.ComboBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.I_DT_FodtDato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
             this.I_DT_Indmeldelsesdato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
             this.U_DT_NyAktivitetDato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
@@ -175,7 +176,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 20;
-            this.dataGridView1.Size = new System.Drawing.Size(524, 600);
+            this.dataGridView1.Size = new System.Drawing.Size(516, 576);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.TabStop = false;
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
@@ -271,22 +272,23 @@
             // 
             // splitContainer1
             // 
+            this.splitContainer1.DataBindings.Add(new System.Windows.Forms.Binding("SplitterDistance", global::nsPuls3060.Properties.Settings.Default, "frmMedlemmerSplitteDist", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 24);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.panelAdd);
             this.splitContainer1.Panel1.Controls.Add(this.panelUpdate);
-            this.splitContainer1.Panel1.Controls.Add(this.bindingNavigator1);
             this.splitContainer1.Panel1.Controls.Add(this.panelDisplay);
+            this.splitContainer1.Panel1MinSize = 280;
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 600);
-            this.splitContainer1.SplitterDistance = 272;
+            this.splitContainer1.Size = new System.Drawing.Size(800, 576);
+            this.splitContainer1.SplitterDistance = global::nsPuls3060.Properties.Settings.Default.frmMedlemmerSplitteDist;
             this.splitContainer1.TabIndex = 0;
             this.splitContainer1.TabStop = false;
             // 
@@ -564,6 +566,14 @@
             this.panelUpdate.TabIndex = 18;
             this.panelUpdate.Visible = false;
             // 
+            // U_NyAktivitet
+            // 
+            this.U_NyAktivitet.FormattingEnabled = true;
+            this.U_NyAktivitet.Location = new System.Drawing.Point(16, 291);
+            this.U_NyAktivitet.Name = "U_NyAktivitet";
+            this.U_NyAktivitet.Size = new System.Drawing.Size(148, 21);
+            this.U_NyAktivitet.TabIndex = 19;
+            // 
             // cmdSave_U_Record
             // 
             this.cmdSave_U_Record.Location = new System.Drawing.Point(91, 329);
@@ -775,7 +785,7 @@
             this.bindingNavigator1.BindingSource = this.kartotekBindingSource;
             this.bindingNavigator1.CountItem = this.bindingNavigatorCountItem;
             this.bindingNavigator1.DeleteItem = null;
-            this.bindingNavigator1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.bindingNavigator1.Dock = System.Windows.Forms.DockStyle.None;
             this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
             this.bindingNavigatorMovePreviousItem,
@@ -788,14 +798,14 @@
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddUpdateItem,
             this.bindingNavigatorAddNewItem});
-            this.bindingNavigator1.Location = new System.Drawing.Point(0, 575);
+            this.bindingNavigator1.Location = new System.Drawing.Point(1, -1);
             this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.bindingNavigator1.MoveNextItem = this.bindingNavigatorMoveNextItem;
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(272, 25);
+            this.bindingNavigator1.Size = new System.Drawing.Size(256, 25);
             this.bindingNavigator1.TabIndex = 1;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -1148,13 +1158,13 @@
             this.label_Nr.TabIndex = 0;
             this.label_Nr.Text = "Nr";
             // 
-            // U_NyAktivitet
+            // menuStrip1
             // 
-            this.U_NyAktivitet.FormattingEnabled = true;
-            this.U_NyAktivitet.Location = new System.Drawing.Point(16, 291);
-            this.U_NyAktivitet.Name = "U_NyAktivitet";
-            this.U_NyAktivitet.Size = new System.Drawing.Size(148, 21);
-            this.U_NyAktivitet.TabIndex = 19;
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.Text = "menuStrip1";
             // 
             // I_DT_FodtDato
             // 
@@ -1197,10 +1207,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = global::nsPuls3060.Properties.Settings.Default.frmMedlemmerSize;
+            this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.splitContainer1);
+            this.Controls.Add(this.menuStrip1);
             this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsPuls3060.Properties.Settings.Default, "frmMedlemmerPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::nsPuls3060.Properties.Settings.Default, "frmMedlemmerSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.Location = global::nsPuls3060.Properties.Settings.Default.frmMedlemmerPoint;
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmMedlemmer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Medlemmer";
@@ -1210,7 +1223,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.kartotekBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsMedlem)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
             this.panelAdd.ResumeLayout(false);
@@ -1223,6 +1235,7 @@
             this.panelDisplay.ResumeLayout(false);
             this.panelDisplay.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1336,6 +1349,7 @@
         private ProjectMentor.Windows.Controls.NullableDateTimePicker U_DT_NyAktivitetDato;
         private ProjectMentor.Windows.Controls.NullableDateTimePicker I_DT_FodtDato;
         private System.Windows.Forms.ComboBox U_NyAktivitet;
+        private System.Windows.Forms.MenuStrip menuStrip1;
 
 
     }

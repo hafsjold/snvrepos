@@ -81,6 +81,20 @@ namespace nsPuls3060.Properties {
             }
         }
         
+        public static System.Drawing.Bitmap Summa {
+            get {
+                object obj = ResourceManager.GetObject("Summa", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        public static System.Drawing.Bitmap Summakartotek {
+            get {
+                object obj = ResourceManager.GetObject("Summakartotek", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         public static System.Drawing.Bitmap Upd {
             get {
                 object obj = ResourceManager.GetObject("Upd", resourceCulture);

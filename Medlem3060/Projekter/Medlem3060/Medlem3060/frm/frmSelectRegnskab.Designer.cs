@@ -82,6 +82,7 @@
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             this.listView1.Visible = false;
+            this.listView1.DoubleClick += new System.EventHandler(this.cmdOK_Click);
             // 
             // colRegnskab
             // 
@@ -126,11 +127,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(332, 224);
+            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.Regnskab);
             this.Controls.Add(this.label_listview);
             this.Controls.Add(this.cmdOK);
             this.Controls.Add(this.cmdCancel);
-            this.Controls.Add(this.listView1);
-            this.Controls.Add(this.Regnskab);
             this.Controls.Add(this.cmdSidstAnventeRegnskab);
             this.Controls.Add(this.cmdOpenRegnskab);
             this.MaximizeBox = false;

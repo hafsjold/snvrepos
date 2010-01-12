@@ -33,13 +33,20 @@
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.medlemmerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.excelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.kreditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.regnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.afslutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.medlemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vedligeholdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.medlemmerTilRegnearkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kontingentForslagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.betalingerFraPBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.betalingerTilKassekladeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -49,29 +56,27 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 772);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 778);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1024, 28);
+            this.statusStrip1.Size = new System.Drawing.Size(1024, 22);
             this.statusStrip1.TabIndex = 1;
             // 
             // toolStripStatusLabel1
             // 
-            this.toolStripStatusLabel1.BackColor = System.Drawing.SystemColors.Info;
-            this.toolStripStatusLabel1.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
-            this.toolStripStatusLabel1.Margin = new System.Windows.Forms.Padding(0, 3, 3, 2);
+            this.toolStripStatusLabel1.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.toolStripStatusLabel1.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 10);
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(109, 23);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(113, 17);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
             // toolStripStatusLabel2
             // 
-            this.toolStripStatusLabel2.BackColor = System.Drawing.SystemColors.Info;
-            this.toolStripStatusLabel2.BorderStyle = System.Windows.Forms.Border3DStyle.Sunken;
-            this.toolStripStatusLabel2.Margin = new System.Windows.Forms.Padding(3, 3, 3, 2);
+            this.toolStripStatusLabel2.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.toolStripStatusLabel2.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Padding = new System.Windows.Forms.Padding(10, 0, 10, 0);
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(509, 23);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(493, 17);
             this.toolStripStatusLabel2.Text = "C:\\Documents and Settings\\mha\\Dokumenter\\Medlem3060\\Databaser\\SQLCompact\\dbData30" +
                 "60.sdf";
             // 
@@ -79,7 +84,9 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.pBSToolStripMenuItem});
+            this.medlemToolStripMenuItem,
+            this.pBSToolStripMenuItem,
+            this.systemToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1024, 24);
@@ -89,53 +96,61 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.medlemmerToolStripMenuItem,
             this.testToolStripMenuItem,
-            this.excelToolStripMenuItem,
-            this.kreditorToolStripMenuItem,
-            this.regnskabToolStripMenuItem});
+            this.toolStripSeparator1,
+            this.afslutToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // medlemmerToolStripMenuItem
-            // 
-            this.medlemmerToolStripMenuItem.Name = "medlemmerToolStripMenuItem";
-            this.medlemmerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.medlemmerToolStripMenuItem.Text = "Medlemmer";
-            this.medlemmerToolStripMenuItem.Click += new System.EventHandler(this.medlemmerToolStripMenuItem_Click);
-            // 
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
             this.testToolStripMenuItem.Text = "Test";
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
             // 
-            // excelToolStripMenuItem
+            // toolStripSeparator1
             // 
-            this.excelToolStripMenuItem.Name = "excelToolStripMenuItem";
-            this.excelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.excelToolStripMenuItem.Text = "Excel";
-            this.excelToolStripMenuItem.Click += new System.EventHandler(this.excelToolStripMenuItem_Click);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(110, 6);
             // 
-            // kreditorToolStripMenuItem
+            // afslutToolStripMenuItem
             // 
-            this.kreditorToolStripMenuItem.Name = "kreditorToolStripMenuItem";
-            this.kreditorToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.kreditorToolStripMenuItem.Text = "Kreditor";
-            this.kreditorToolStripMenuItem.Click += new System.EventHandler(this.kerditorToolStripMenuItem_Click);
+            this.afslutToolStripMenuItem.Name = "afslutToolStripMenuItem";
+            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.afslutToolStripMenuItem.Text = "Afslut";
+            this.afslutToolStripMenuItem.Click += new System.EventHandler(this.afslutToolStripMenuItem_Click);
             // 
-            // regnskabToolStripMenuItem
+            // medlemToolStripMenuItem
             // 
-            this.regnskabToolStripMenuItem.Name = "regnskabToolStripMenuItem";
-            this.regnskabToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.regnskabToolStripMenuItem.Text = "Regnskab";
-            this.regnskabToolStripMenuItem.Click += new System.EventHandler(this.regnskabToolStripMenuItem_Click);
+            this.medlemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.vedligeholdToolStripMenuItem,
+            this.medlemmerTilRegnearkToolStripMenuItem});
+            this.medlemToolStripMenuItem.Name = "medlemToolStripMenuItem";
+            this.medlemToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
+            this.medlemToolStripMenuItem.Text = "Medlem";
+            // 
+            // vedligeholdToolStripMenuItem
+            // 
+            this.vedligeholdToolStripMenuItem.Name = "vedligeholdToolStripMenuItem";
+            this.vedligeholdToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.vedligeholdToolStripMenuItem.Text = "Vedligehold Medlemmer";
+            this.vedligeholdToolStripMenuItem.Click += new System.EventHandler(this.medlemmerToolStripMenuItem_Click);
+            // 
+            // medlemmerTilRegnearkToolStripMenuItem
+            // 
+            this.medlemmerTilRegnearkToolStripMenuItem.Name = "medlemmerTilRegnearkToolStripMenuItem";
+            this.medlemmerTilRegnearkToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.medlemmerTilRegnearkToolStripMenuItem.Text = "Medlemmer til Regneark";
+            this.medlemmerTilRegnearkToolStripMenuItem.Click += new System.EventHandler(this.excelToolStripMenuItem_Click);
             // 
             // pBSToolStripMenuItem
             // 
             this.pBSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.betalingerFraPBSToolStripMenuItem,
+            this.betalingerTilKassekladeToolStripMenuItem,
+            this.toolStripSeparator2,
             this.kontingentForslagToolStripMenuItem});
             this.pBSToolStripMenuItem.Name = "pBSToolStripMenuItem";
             this.pBSToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -144,9 +159,51 @@
             // kontingentForslagToolStripMenuItem
             // 
             this.kontingentForslagToolStripMenuItem.Name = "kontingentForslagToolStripMenuItem";
-            this.kontingentForslagToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.kontingentForslagToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
             this.kontingentForslagToolStripMenuItem.Text = "Kontingent Forslag";
             this.kontingentForslagToolStripMenuItem.Click += new System.EventHandler(this.kontingentForslagToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(203, 6);
+            // 
+            // betalingerFraPBSToolStripMenuItem
+            // 
+            this.betalingerFraPBSToolStripMenuItem.Name = "betalingerFraPBSToolStripMenuItem";
+            this.betalingerFraPBSToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.betalingerFraPBSToolStripMenuItem.Text = "Betalinger fra PBS";
+            this.betalingerFraPBSToolStripMenuItem.Click += new System.EventHandler(this.betalingerFraPBSToolStripMenuItem_Click);
+            // 
+            // betalingerTilKassekladeToolStripMenuItem
+            // 
+            this.betalingerTilKassekladeToolStripMenuItem.Name = "betalingerTilKassekladeToolStripMenuItem";
+            this.betalingerTilKassekladeToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
+            this.betalingerTilKassekladeToolStripMenuItem.Text = "Betalinger til Kassekladde";
+            this.betalingerTilKassekladeToolStripMenuItem.Click += new System.EventHandler(this.betalingerTilKassekladeToolStripMenuItem_Click);
+            // 
+            // systemToolStripMenuItem
+            // 
+            this.systemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem1});
+            this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
+            this.systemToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.systemToolStripMenuItem.Text = "System";
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(132, 22);
+            this.toolStripMenuItem2.Text = "Regnskab";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.regnskabToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
+            this.toolStripMenuItem1.Text = "Kreditor";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.kerditorToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -181,14 +238,21 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem medlemmerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem excelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem kreditorToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
-        private System.Windows.Forms.ToolStripMenuItem regnskabToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pBSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kontingentForslagToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem afslutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem medlemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem vedligeholdToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem systemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem medlemmerTilRegnearkToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem betalingerFraPBSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem betalingerTilKassekladeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
    }
 }
 

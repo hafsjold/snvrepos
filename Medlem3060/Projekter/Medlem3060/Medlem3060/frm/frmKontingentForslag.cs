@@ -78,7 +78,6 @@ namespace nsPuls3060
 
 
             var qry_medlemmer = from h in Program.karMedlemmer
-                                where h.Nr > 500
                                 select h;
 
             this.lvwMedlem.Items.Clear();

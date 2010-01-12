@@ -47,5 +47,8 @@
     <Setting Name="frmKontingentForslagPoint" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">0, 0</Value>
     </Setting>
+    <Setting Name="frmMedlemmerSplitteDist" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">280</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -107,8 +107,8 @@ namespace nsPuls3060
                 m_frmKontingentForslag.MdiParent = this;
                 m_frmKontingentForslag.Show();
             }
-        }        
-        
+        }
+
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
             clsPbs objPbs = new clsPbs();
@@ -418,8 +418,71 @@ namespace nsPuls3060
             }
         }
 
+        private void afslutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
+        private void betalingerFraPBSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string bigString = null;
+            string smallString = null;
 
+            clsPbs602 objPbs602 = new clsPbs602();
+            int AntalImportFiler = objPbs602.ReadFraPbsFile();
+            int Antal602Filer = objPbs602.betalinger_fra_pbs();
+
+            clsSumma objSumma = new clsSumma();
+            int AntalOrdre = objSumma.Order2Summa();
+            
+            bigString = String.Format("Antal indlæste filer fra PBS: {0} \nAntal nye betalings filer: {1}\nAntal nye ordre: {2}.", AntalImportFiler, Antal602Filer, AntalOrdre);
+            if (AntalOrdre > 0)
+            {
+                smallString = String.Format("Åben SummaSummarum\nTryk på ikonet Bilag i venstre side\nbogfør de {0} nye ordre.", AntalOrdre);
+            }
+            else
+            {
+                smallString = "Der er ingen nye odre";
+            }
+
+            DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
+                "Betalinger fra PBS", //titleString 
+                bigString, //bigString 
+                smallString, //smallString
+                null, //leftButton
+                "OK", //rightButton
+                global::nsPuls3060.Properties.Resources.Message_info); //iconSet
+
+        }
+
+        private void betalingerTilKassekladeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string bigString = null;
+            string smallString = null;
+            
+            clsSumma objSumma = new clsSumma();
+            int AntalFakturaer = objSumma.OrderFaknrUpdate();
+            int AntalBetalinger = objSumma.BogforBetalinger();
+
+            bigString = String.Format("Antal bogførte fakturear: {0} \nAntal nye betalinger i kassekladde: {1}.", AntalFakturaer, AntalBetalinger);
+            if (AntalBetalinger > 0)
+            {
+                smallString = "Åben SummaSummarum\nTryk på ikonet Kassekladde i venstre side\nbogfør den nye kassekladde.";
+            }
+            else
+            {
+                smallString = "Der er ingen ny kassekladde";
+            }
+
+            DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
+                "Betalinger til Kassekladde", //titleString 
+                bigString, //bigString 
+                smallString, //smallString
+                null, //leftButton
+                "OK", //rightButton
+                global::nsPuls3060.Properties.Resources.Message_info); //iconSet
+
+        }
 
     }
 }

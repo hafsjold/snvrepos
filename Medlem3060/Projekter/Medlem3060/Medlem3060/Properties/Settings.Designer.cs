@@ -203,5 +203,17 @@ namespace nsPuls3060.Properties {
                 this["frmKontingentForslagPoint"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("280")]
+        public int frmMedlemmerSplitteDist {
+            get {
+                return ((int)(this["frmMedlemmerSplitteDist"]));
+            }
+            set {
+                this["frmMedlemmerSplitteDist"] = value;
+            }
+        }
     }
 }
