@@ -586,5 +586,7 @@ namespace nsPuls3060
         public string Kon { get; set; }
         [Fieldattr(Heading = "Født")]
         public DateTime? FodtDato { get; set; }
+        [Fieldattr(Heading = "erMedlem")]
+        public bool? erMedlem { get; set;}
     }
 }

@@ -320,7 +320,8 @@ namespace nsPuls3060
                                    Email = h.Email,
                                    Knr = (int)(x.Knr == null ? -1 : x.Knr),
                                    Kon = x.Kon == null ? "X" : x.Kon,
-                                   FodtDato = (DateTime)(x.FodtDato == null ? new DateTime(1900, 01, 01) : x.FodtDato)
+                                   FodtDato = (DateTime)(x.FodtDato == null ? new DateTime(1900, 01, 01) : x.FodtDato),
+                                   erMedlem = h.erMedlem()
                                };
 
 
@@ -394,7 +395,9 @@ namespace nsPuls3060
                     oSheet.get_Range("A1", Missing.Value).Select();
 
                     oWB.SaveAs(SaveAs, Excel.XlFileFormat.xlWorkbookNormal, "", "", false, false, Excel.XlSaveAsAccessMode.xlExclusive, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
-
+                    oWB.Saved = true;
+                    //oXL.Quit();
+                    //oXL = null;
                 }
                 catch (Exception theException)
                 {
