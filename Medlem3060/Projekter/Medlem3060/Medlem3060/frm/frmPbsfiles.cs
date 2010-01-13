@@ -93,5 +93,18 @@ namespace nsPuls3060
             dataGridView1.BorderStyle = BorderStyle.Fixed3D;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
+
+        private void pbsforsendelseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Text = "Pbsforsendelse";
+            bindingSource1.DataSource = Program.dbData3060.Tblpbsforsendelse;
+            dataGridView1.DataSource = bindingSource1;
+
+            // Grid attributes 
+            dataGridView1.BorderStyle = BorderStyle.Fixed3D;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+
+        }
     }
 }

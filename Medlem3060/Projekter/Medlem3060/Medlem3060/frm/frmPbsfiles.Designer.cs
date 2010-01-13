@@ -36,6 +36,7 @@
             this.pbsfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pbsfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pbsforsendelseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -69,7 +70,8 @@
             this.tabellerToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.pbsfilesToolStripMenuItem,
             this.logToolStripMenuItem,
-            this.pbsfileToolStripMenuItem});
+            this.pbsfileToolStripMenuItem,
+            this.pbsforsendelseToolStripMenuItem});
             this.tabellerToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.MatchOnly;
             this.tabellerToolStripMenuItem.Name = "tabellerToolStripMenuItem";
             this.tabellerToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
@@ -79,7 +81,7 @@
             // 
             this.pbsfilesToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.MatchOnly;
             this.pbsfilesToolStripMenuItem.Name = "pbsfilesToolStripMenuItem";
-            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.pbsfilesToolStripMenuItem.Text = "Pbsfiles";
             this.pbsfilesToolStripMenuItem.Click += new System.EventHandler(this.pbsfilesToolStripMenuItem_Click);
             // 
@@ -87,16 +89,25 @@
             // 
             this.logToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.MatchOnly;
             this.logToolStripMenuItem.Name = "logToolStripMenuItem";
-            this.logToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.logToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.logToolStripMenuItem.Text = "Log";
             this.logToolStripMenuItem.Click += new System.EventHandler(this.logToolStripMenuItem_Click);
             // 
             // pbsfileToolStripMenuItem
             // 
+            this.pbsfileToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.MatchOnly;
             this.pbsfileToolStripMenuItem.Name = "pbsfileToolStripMenuItem";
-            this.pbsfileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pbsfileToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
             this.pbsfileToolStripMenuItem.Text = "Pbsfile";
             this.pbsfileToolStripMenuItem.Click += new System.EventHandler(this.pbsfileToolStripMenuItem_Click);
+            // 
+            // pbsforsendelseToolStripMenuItem
+            // 
+            this.pbsforsendelseToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.MatchOnly;
+            this.pbsforsendelseToolStripMenuItem.Name = "pbsforsendelseToolStripMenuItem";
+            this.pbsforsendelseToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.pbsforsendelseToolStripMenuItem.Text = "Pbsforsendelse";
+            this.pbsforsendelseToolStripMenuItem.Click += new System.EventHandler(this.pbsforsendelseToolStripMenuItem_Click);
             // 
             // FrmPbsfiles
             // 
@@ -127,5 +138,6 @@
         private System.Windows.Forms.ToolStripMenuItem pbsfilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem logToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pbsfileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pbsforsendelseToolStripMenuItem;
     }
 }
