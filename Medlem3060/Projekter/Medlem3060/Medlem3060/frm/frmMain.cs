@@ -110,7 +110,7 @@ namespace nsPuls3060
         }
         private void pbsfilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!FocusChild("Pbsfiles"))
+            //if (!FocusChild("Pbsfiles"))
             {
                 FrmPbsfiles m_frmPbsfiles = new FrmPbsfiles();
                 m_frmPbsfiles.MdiParent = this;
