@@ -19,14 +19,26 @@ namespace nsPuls3060
             set
             {
                 m_rid = value.ToString();
-                Registry.CurrentUser.OpenSubKey(@"SOFTWARE\STONE'S SOFTWARE\SUMMAPRO\START", true).SetValue("SidsteMappe", m_rid);
-
+                try
+                {
+                    Registry.CurrentUser.OpenSubKey(@"SOFTWARE\STONE'S SOFTWARE\SUMMAPRO\START", true).SetValue("SidsteMappe", m_rid);
+                }
+                catch (System.NullReferenceException)
+                {
+                }
             }
         }
 
         public recActivRegnskab()
         {
-            m_rid = (string)Registry.CurrentUser.OpenSubKey(@"SOFTWARE\STONE'S SOFTWARE\SUMMAPRO\START").GetValue("SidsteMappe");
+            try
+            {
+                m_rid = (string)Registry.CurrentUser.OpenSubKey(@"SOFTWARE\STONE'S SOFTWARE\SUMMAPRO\START").GetValue("SidsteMappe");
+            }
+            catch (System.NullReferenceException)
+            {
+                m_rid = "999";
+            }
         }
     }
 
