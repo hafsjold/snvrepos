@@ -23,7 +23,9 @@ namespace nsPuls3060
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-
+#if (DEBUG)
+            testToolStripMenuItem.Visible = true;
+#endif   
             if (clsUtil.IsProcessOpen("Summa"))
             {
                 DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
@@ -120,12 +122,13 @@ namespace nsPuls3060
         
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            clsPbs objPbs = new clsPbs();
-            clsPbs601 objPbs601 = new clsPbs601();
-            clsPbs602 objPbs602 = new clsPbs602();
-            Program.karDkkonti.save();
-            Program.karKortnr.save();
-            clsSumma objSumma = new clsSumma();
+#if (DEBUG)
+            //clsPbs objPbs = new clsPbs();
+            //clsPbs601 objPbs601 = new clsPbs601();
+            //clsPbs602 objPbs602 = new clsPbs602();
+            //Program.karDkkonti.save();
+            //Program.karKortnr.save();
+            //clsSumma objSumma = new clsSumma();
             //objSumma.Order2Summa();
             //objSumma.OrderFaknrUpdate();
             //objSumma.BogforBetalinger();
@@ -198,8 +201,7 @@ namespace nsPuls3060
             {
                 var x = l.Logdato;
             }
-            */
-            /*
+
             DateTime qryStart = DateTime.Now;
             var MedlemmerAll = from h in Program.karMedlemmer
                                join d1 in Program.dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
@@ -285,7 +287,7 @@ namespace nsPuls3060
             DateTime qrySlut = DateTime.Now;
             TimeSpan Tid = qrySlut - qryStart;
         */
-
+#endif
         }
 
 

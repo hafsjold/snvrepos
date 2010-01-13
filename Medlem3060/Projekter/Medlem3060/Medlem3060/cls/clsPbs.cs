@@ -280,9 +280,18 @@ namespace nsPuls3060
             string RegnskabMappe;
             string line;
             FileStream ts;
-
-            string Eksportmappe = (string)Registry.CurrentUser.OpenSubKey(@"SOFTWARE\STONE'S SOFTWARE\SUMMAPRO\START").GetValue("Eksportmappe");
-            string Datamappe = (string)Registry.CurrentUser.OpenSubKey(@"SOFTWARE\STONE'S SOFTWARE\SUMMAPRO\START").GetValue("Datamappe");
+            string Eksportmappe;
+            string Datamappe;
+            try
+            {
+                Eksportmappe = (string)Registry.CurrentUser.OpenSubKey(@"SOFTWARE\STONE'S SOFTWARE\SUMMAPRO\START").GetValue("Eksportmappe");
+                Datamappe = (string)Registry.CurrentUser.OpenSubKey(@"SOFTWARE\STONE'S SOFTWARE\SUMMAPRO\START").GetValue("Datamappe");
+            }
+            catch (System.NullReferenceException)
+            {
+                Program.dbData3060.ExecuteCommand("DELETE FROM TblRegnskab;");
+                return false;
+            } 
             DirectoryInfo dir = new DirectoryInfo(Datamappe);
             foreach (var sub_dir in dir.GetDirectories())
             {
