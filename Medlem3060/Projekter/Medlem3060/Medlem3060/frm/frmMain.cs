@@ -307,7 +307,7 @@ namespace nsPuls3060
 
             var MedlemmerAll = from h in Program.karMedlemmer
                                join d1 in Program.dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
-                               from x in details1.DefaultIfEmpty(new TblMedlem { Nr = -1, Knr = -1, Kon = "X", FodtDato = new DateTime(1900, 1, 1) })
+                               from x in details1.DefaultIfEmpty()  //new TblMedlem { Nr = -1, Knr = -1, Kon = "X", FodtDato = new DateTime(1900, 1, 1) })
                                select new clsMedlemAll
                                {
                                    Nr = h.Nr,
@@ -318,16 +318,15 @@ namespace nsPuls3060
                                    Bynavn = h.Bynavn,
                                    Telefon = h.Telefon,
                                    Email = h.Email,
-                                   Knr = (int)(x.Knr == null ? -1 : x.Knr),
-                                   Kon = x.Kon == null ? "X" : x.Kon,
-                                   FodtDato = (DateTime)(x.FodtDato == null ? new DateTime(1900, 01, 01) : x.FodtDato),
-                                   erMedlem = h.erMedlem(),
+                                   Knr = x.Knr,
+                                   Kon = x.Kon,
+                                   FodtDato = x.FodtDato,
+                                   erMedlem = (h.erMedlem()) ? 1 : 0,
                                    indmeldelsesDato = h.indmeldelsesDato,
-                                   kontingentBetalingsDato = h.kontingentBetalingsDato,
+                                   udmeldelsesDato = h.udmeldelsesDato,
                                    kontingentBetaltTilDato = h.kontingentBetaltTilDato,
-                                   kontingentTilbageførtDato = h.kontingentTilbageførtDato,
                                    opkrævningsDato = h.opkrævningsDato,
-                                   udmeldelsesDato = h.udmeldelsesDato
+                                   kontingentTilbageførtDato = h.kontingentTilbageførtDato,
                                };
 
 

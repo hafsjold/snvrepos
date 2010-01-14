@@ -17,7 +17,7 @@
     <ManifestKeyFile>Medlem3060_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
     <SignManifests>true</SignManifests>
-    <PublishUrl>Y:\Medlem3060Install\</PublishUrl>
+    <PublishUrl>C:\Documents and Settings\mha\Dokumenter\Medlem3060\3060Install\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -31,9 +31,8 @@
     <ProductName>Medlem3060</ProductName>
     <PublisherName>Hafsjold</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <AutorunEnabled>true</AutorunEnabled>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.4.0.0</ApplicationVersion>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
