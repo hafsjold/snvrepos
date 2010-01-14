@@ -321,7 +321,13 @@ namespace nsPuls3060
                                    Knr = (int)(x.Knr == null ? -1 : x.Knr),
                                    Kon = x.Kon == null ? "X" : x.Kon,
                                    FodtDato = (DateTime)(x.FodtDato == null ? new DateTime(1900, 01, 01) : x.FodtDato),
-                                   erMedlem = h.erMedlem()
+                                   erMedlem = h.erMedlem(),
+                                   indmeldelsesDato = h.indmeldelsesDato,
+                                   kontingentBetalingsDato = h.kontingentBetalingsDato,
+                                   kontingentBetaltTilDato = h.kontingentBetaltTilDato,
+                                   kontingentTilbageførtDato = h.kontingentTilbageførtDato,
+                                   opkrævningsDato = h.opkrævningsDato,
+                                   udmeldelsesDato = h.udmeldelsesDato
                                };
 
 

@@ -588,5 +588,17 @@ namespace nsPuls3060
         public DateTime? FodtDato { get; set; }
         [Fieldattr(Heading = "erMedlem")]
         public bool? erMedlem { get; set;}
+        [Fieldattr(Heading = "Indmeldt")]
+        public DateTime? indmeldelsesDato { get; set; }
+        [Fieldattr(Heading = "BetalingsDato")]
+        public DateTime? kontingentBetalingsDato { get; set; }
+        [Fieldattr(Heading = "BetaltTilDato")]
+        public DateTime? kontingentBetaltTilDato { get; set; }
+        [Fieldattr(Heading = "TilbageførtDato")]
+        public DateTime? kontingentTilbageførtDato { get; set; }
+        [Fieldattr(Heading = "OpkrævningsDato")]
+        public DateTime? opkrævningsDato { get; set; }
+        [Fieldattr(Heading = "Udmeldt")]
+        public DateTime? udmeldelsesDato { get; set; }
     }
 }
