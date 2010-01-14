@@ -40,7 +40,7 @@
             this.label_Eksportmappe = new System.Windows.Forms.Label();
             this.label_TilPBS = new System.Windows.Forms.Label();
             this.label_FraPBS = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.label1_Afsluttet = new System.Windows.Forms.Label();
             this.Rid = new System.Windows.Forms.TextBox();
             this.bsRegnskab = new System.Windows.Forms.BindingSource(this.components);
             this.Navn = new System.Windows.Forms.TextBox();
@@ -52,7 +52,7 @@
             this.Eksportmappe = new System.Windows.Forms.TextBox();
             this.TilPBS = new System.Windows.Forms.TextBox();
             this.FraPBS = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.Afsluttet = new System.Windows.Forms.TextBox();
             this.bnRegnskab = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -160,14 +160,14 @@
             this.label_FraPBS.TabIndex = 0;
             this.label_FraPBS.Text = "Fra PBS";
             // 
-            // label11
+            // label1_Afsluttet
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(12, 341);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(44, 13);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "Backup";
+            this.label1_Afsluttet.AutoSize = true;
+            this.label1_Afsluttet.Location = new System.Drawing.Point(12, 341);
+            this.label1_Afsluttet.Name = "label1_Afsluttet";
+            this.label1_Afsluttet.Size = new System.Drawing.Size(45, 13);
+            this.label1_Afsluttet.TabIndex = 0;
+            this.label1_Afsluttet.Text = "Afsluttet";
             // 
             // Rid
             // 
@@ -258,12 +258,13 @@
             this.FraPBS.Size = new System.Drawing.Size(390, 20);
             this.FraPBS.TabIndex = 2;
             // 
-            // textBox11
+            // Afsluttet
             // 
-            this.textBox11.Location = new System.Drawing.Point(94, 341);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(390, 20);
-            this.textBox11.TabIndex = 2;
+            this.Afsluttet.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegnskab, "Afsluttet", true));
+            this.Afsluttet.Location = new System.Drawing.Point(94, 341);
+            this.Afsluttet.Name = "Afsluttet";
+            this.Afsluttet.Size = new System.Drawing.Size(95, 20);
+            this.Afsluttet.TabIndex = 2;
             // 
             // bnRegnskab
             // 
@@ -282,7 +283,7 @@
             this.bindingNavigatorMoveNextItem,
             this.bindingNavigatorMoveLastItem,
             this.bindingNavigatorSeparator2});
-            this.bnRegnskab.Location = new System.Drawing.Point(0, 380);
+            this.bnRegnskab.Location = new System.Drawing.Point(0, 373);
             this.bnRegnskab.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bnRegnskab.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.bnRegnskab.MoveNextItem = this.bindingNavigatorMoveNextItem;
@@ -371,7 +372,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = global::nsPuls3060.Properties.Settings.Default.frmRegnskabSize;
             this.Controls.Add(this.bnRegnskab);
-            this.Controls.Add(this.textBox11);
+            this.Controls.Add(this.Afsluttet);
             this.Controls.Add(this.FraPBS);
             this.Controls.Add(this.TilPBS);
             this.Controls.Add(this.Eksportmappe);
@@ -382,7 +383,7 @@
             this.Controls.Add(this.Oprettet);
             this.Controls.Add(this.Navn);
             this.Controls.Add(this.Rid);
-            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label1_Afsluttet);
             this.Controls.Add(this.label_FraPBS);
             this.Controls.Add(this.label_TilPBS);
             this.Controls.Add(this.label_Eksportmappe);
@@ -427,7 +428,7 @@
         private System.Windows.Forms.Label label_Eksportmappe;
         private System.Windows.Forms.Label label_TilPBS;
         private System.Windows.Forms.Label label_FraPBS;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label1_Afsluttet;
         private System.Windows.Forms.TextBox Rid;
         private System.Windows.Forms.TextBox Navn;
         private System.Windows.Forms.TextBox Oprettet;
@@ -438,7 +439,7 @@
         private System.Windows.Forms.TextBox Eksportmappe;
         private System.Windows.Forms.TextBox TilPBS;
         private System.Windows.Forms.TextBox FraPBS;
-        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox Afsluttet;
         private System.Windows.Forms.BindingNavigator bnRegnskab;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;

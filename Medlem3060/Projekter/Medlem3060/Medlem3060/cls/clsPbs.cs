@@ -282,6 +282,7 @@ namespace nsPuls3060
             FileStream ts;
             string Eksportmappe;
             string Datamappe;
+
             try
             {
                 Eksportmappe = (string)Registry.CurrentUser.OpenSubKey(@"SOFTWARE\STONE'S SOFTWARE\SUMMAPRO\START").GetValue("Eksportmappe");
@@ -360,7 +361,7 @@ namespace nsPuls3060
                             string[] files = new string[2];
                             files[0] = RegnskabMappe + "regnskab.dat";
                             files[1] = RegnskabMappe + "status.dat";
-
+                            m_rec_Regnskab.Afsluttet = false;
                             foreach (var file in files)
                             {
                                 ts = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.None);
@@ -389,7 +390,7 @@ namespace nsPuls3060
                                                     m_rec_Regnskab.DatoLaas = clsUtil.MSSerial2DateTime(double.Parse(X[1]));
                                                     break;
                                                 case "Afsluttet":
-                                                    //m_rec_Regnskab.Afsluttet = X[1];
+                                                    m_rec_Regnskab.Afsluttet = (X[1] == "1")? true : false;
                                                     break;
                                                 case "Firmanavn":
                                                     m_rec_Regnskab.Firmanavn = X[1];
@@ -406,6 +407,44 @@ namespace nsPuls3060
             return true;
         }
 
+        public class clsSysinfo
+        {
+            //public string vkey;
+            public string val;
+        }
+
+        public bool DatabaseUpdate()
+        {
+            string dbVersion = "";
+            try
+            {
+                dbVersion = (Program.dbData3060.ExecuteQuery<clsSysinfo>("SELECT [val] FROM [tblSysinfo] WHERE [vkey] = N'VERSION';")).First().val;
+            }
+            catch (System.Data.SqlServerCe.SqlCeException)
+            {
+                dbVersion = "2.0.0.0";
+            }
+            
+            if (dbVersion == "2.0.0.0")
+            {
+                try
+                {
+                    //version "2.0.0.0" --> "2.1.0.0" opgradering af SqlDatabasen
+                    //Tilføj et ny tabel [tblSysinfo]  til SqlDatabasen 
+                    Program.dbData3060.ExecuteCommand("CREATE TABLE [tblSysinfo] ([vkey] nvarchar(10) NOT NULL, [val] nvarchar(100) NOT NULL);");
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tblSysinfo] ADD PRIMARY KEY ([vkey]);");
+                    Program.dbData3060.ExecuteCommand("CREATE UNIQUE INDEX [UQ__tblSysinfo__000000000000068A] ON [tblSysinfo] ([vkey] ASC);");
+                    Program.dbData3060.ExecuteCommand("INSERT INTO [tblSysinfo] ([vkey],[val]) VALUES (N'VERSION',N'2.1.0.0');");
+                    //Tilføj et nyt felt [Afsluttet] til SqlDatabasen 
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tblRegnskab] ADD COLUMN [Afsluttet] bit NULL;");
+                }
+                catch (System.Data.SqlServerCe.SqlCeException e)
+                {
+                    object x = e;
+                }
+            }
+            return true;
+        }
     }
 
 }

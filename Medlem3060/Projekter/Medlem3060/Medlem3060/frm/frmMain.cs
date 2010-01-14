@@ -23,6 +23,8 @@ namespace nsPuls3060
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
+            clsPbs objPbs = new clsPbs();
+            objPbs.DatabaseUpdate();
 #if (DEBUG)
             testToolStripMenuItem.Visible = true;
 #endif   

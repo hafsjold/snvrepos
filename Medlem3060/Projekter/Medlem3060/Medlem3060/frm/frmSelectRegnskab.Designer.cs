@@ -36,6 +36,7 @@
             this.cmdCancel = new System.Windows.Forms.Button();
             this.cmdOK = new System.Windows.Forms.Button();
             this.label_listview = new System.Windows.Forms.Label();
+            this.colStatus = new System.Windows.Forms.ColumnHeader();
             this.SuspendLayout();
             // 
             // cmdOpenRegnskab
@@ -71,7 +72,9 @@
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colRegnskab});
+            this.colRegnskab,
+            this.colStatus});
+            this.listView1.FullRowSelect = true;
             this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(28, 30);
@@ -87,7 +90,7 @@
             // colRegnskab
             // 
             this.colRegnskab.Text = "Regnskaber";
-            this.colRegnskab.Width = 260;
+            this.colRegnskab.Width = 200;
             // 
             // cmdCancel
             // 
@@ -120,6 +123,10 @@
             this.label_listview.TabIndex = 4;
             this.label_listview.Text = "Regnskab:";
             this.label_listview.Visible = false;
+            // 
+            // colStatus
+            // 
+            this.colStatus.Text = "Status";
             // 
             // frmSelectRegnskab
             // 
@@ -158,5 +165,6 @@
         private System.Windows.Forms.Button cmdCancel;
         private System.Windows.Forms.Button cmdOK;
         private System.Windows.Forms.Label label_listview;
+        private System.Windows.Forms.ColumnHeader colStatus;
     }
 }

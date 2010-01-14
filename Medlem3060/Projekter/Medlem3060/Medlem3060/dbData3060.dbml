@@ -171,6 +171,7 @@
       <Column Name="Eksportmappe" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="TilPBS" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="FraPBS" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Afsluttet" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="tbltilpbs" Member="Tbltilpbs">

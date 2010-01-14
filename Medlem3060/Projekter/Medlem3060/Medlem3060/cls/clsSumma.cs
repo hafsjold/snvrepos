@@ -10,6 +10,8 @@ namespace nsPuls3060
         public int Order2Summa()
         {
             var rec_regnskab = Program.qryAktivRegnskab();
+            if (rec_regnskab.Afsluttet == true) return 0;
+            
             DateTime? Startdato = rec_regnskab.Start;
             DateTime? Slutdato = rec_regnskab.Slut;
             if (rec_regnskab.DatoLaas != null) 
@@ -23,7 +25,6 @@ namespace nsPuls3060
                           select new { f.Id, Pbsfaknr = f.Faknr, f.Nr, f.Advisbelob, f.Betalingsdato, f.Vnr, f.Bogfkonto, b.Indbetalingsdato };
 
             int AntalOrdre = qry_ord.Count();
-            //if (rec_regnskab.DatoLaas
 
             if (AntalOrdre > 0)
             {

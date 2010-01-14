@@ -19,7 +19,8 @@ namespace nsPuls3060
 
         private void frmSelectRegnskab_Load(object sender, EventArgs e)
         {
-            (new clsPbs()).ReadRegnskaber();
+            clsPbs objPbs = new clsPbs();
+            objPbs.ReadRegnskaber();
             var rec_AktivRegnskab = Program.qryAktivRegnskab();
             if (rec_AktivRegnskab.Rid == 999) this.cmdSidstAnventeRegnskab.Enabled = false;
             this.Regnskab.Text = rec_AktivRegnskab.Navn;
@@ -39,7 +40,9 @@ namespace nsPuls3060
             var rec_regnskab = (from r in Program.dbData3060.TblRegnskab select r);
             foreach (var r in rec_regnskab)
             {
-                this.listView1.Items.Add(r.Rid.ToString(), r.Navn, 0);
+                ListViewItem it = this.listView1.Items.Add(r.Rid.ToString(), r.Navn, 0);
+                it.SubItems.Add((r.Afsluttet.Value == true) ? "Afsluttet" : "");
+                 
             }
             this.listView1.Visible = true;
             this.cmdOK.Visible = true;

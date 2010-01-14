@@ -3497,6 +3497,8 @@ namespace nsPuls3060
 		
 		private string _FraPBS;
 		
+		private System.Nullable<bool> _Afsluttet;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -3523,6 +3525,8 @@ namespace nsPuls3060
     partial void OnTilPBSChanged();
     partial void OnFraPBSChanging(string value);
     partial void OnFraPBSChanged();
+    partial void OnAfsluttetChanging(System.Nullable<bool> value);
+    partial void OnAfsluttetChanged();
     #endregion
 		
 		public TblRegnskab()
@@ -3746,6 +3750,26 @@ namespace nsPuls3060
 					this._FraPBS = value;
 					this.SendPropertyChanged("FraPBS");
 					this.OnFraPBSChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Afsluttet", DbType="Bit")]
+		public System.Nullable<bool> Afsluttet
+		{
+			get
+			{
+				return this._Afsluttet;
+			}
+			set
+			{
+				if ((this._Afsluttet != value))
+				{
+					this.OnAfsluttetChanging(value);
+					this.SendPropertyChanging();
+					this._Afsluttet = value;
+					this.SendPropertyChanged("Afsluttet");
+					this.OnAfsluttetChanged();
 				}
 			}
 		}
