@@ -48,10 +48,11 @@ namespace nsPuls3060
             wt = m_initdate.AddMonths(1);
             this.DatoBetaltKontingentTil.Value = wt.AddDays(-wt.Day);
 
+
             wt = m_initdate.AddMonths(13 - m_initdate.Month);
             this.DatoKontingentTil.Value = wt.AddDays(-wt.Day);
 
-            if ((this.DatoKontingentTil.Value - this.DatoBetaltKontingentTil.Value) < (new TimeSpan(183, 0, 0, 0)))
+            if ((this.DatoKontingentTil.Value - this.DatoBetaltKontingentTil.Value) < (new TimeSpan(61, 0, 0, 0))) //Nov + Dec
             {
                 this.DatoKontingentTil.Value.AddYears(1);
             }
@@ -71,11 +72,11 @@ namespace nsPuls3060
         private void getKontingentForslag()
         {
             DateTime KontingentFradato = DateTime.MinValue;
+            DateTime KontingentTildato = DateTime.MinValue;
             int AntalMedlemmer = 0;
             int AntalForslag = 0;
             double dkontingent;
             int ikontingent;
-
 
             var qry_medlemmer = from h in Program.karMedlemmer
                                 select h;
@@ -139,7 +140,31 @@ namespace nsPuls3060
                 if (bSelected)
                 {
                     AntalForslag++;
-                    dkontingent = (double.Parse(this.Aarskontingent.Text) / 365) * ((this.DatoKontingentTil.Value - KontingentFradato).Days + 1) + 0.49;
+                    switch (KontingentFradato.Month )
+                    {
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 4:
+                        case 5:
+                        case 6:
+                            KontingentTildato = new DateTime(KontingentFradato.Year, 12, 31);
+                            dkontingent = double.Parse(this.Aarskontingent.Text);
+                            break;
+                        
+                        case 7:
+                        case 8:
+                        case 9:
+                        case 10:
+                            KontingentTildato = new DateTime(KontingentFradato.Year, 12, 31);
+                            dkontingent = double.Parse(this.Aarskontingent.Text) / 2;
+                            break;
+                        
+                        default:
+                            KontingentTildato = new DateTime(KontingentFradato.Year + 1, 12, 31);
+                            dkontingent = double.Parse(this.Aarskontingent.Text);
+                            break;
+                    }
                     ikontingent = (int)dkontingent;
 
                     ListViewItem it = lvwKontingent.Items.Add(m.Nr.ToString(), m.Navn, 0);
@@ -149,6 +174,7 @@ namespace nsPuls3060
                     it.SubItems.Add(m.Postnr);
                     it.SubItems.Add(string.Format("{0:dd-MM-yyy}", KontingentFradato));
                     it.SubItems.Add(ikontingent.ToString());
+                    it.SubItems.Add(string.Format("{0:dd-MM-yyy}", KontingentTildato));
                 }
                 pgmForslag.PerformStep();
             }
@@ -269,6 +295,7 @@ namespace nsPuls3060
             int imax;
             string keyval;
             DateTime fradato;
+            DateTime tildato;
             double advisbelob;
             if ((this.cmdFakturer.Text == "Afslut"))
             {
@@ -292,7 +319,6 @@ namespace nsPuls3060
                 TempKontforslag rec_tempKontforslag = new TempKontforslag
                 {
                     Betalingsdato = this.DatoKontingentForfald.Value,
-                    Tildato = this.DatoKontingentTil.Value
                 };
                 Program.dbData3060.TempKontforslag.InsertOnSubmit(rec_tempKontforslag);
                 var i = 0;
@@ -302,11 +328,14 @@ namespace nsPuls3060
                     keyval = lvi.Name;
                     fradato = DateTime.Parse(lvi.SubItems[4].Text);
                     advisbelob = double.Parse(lvi.SubItems[5].Text);
+                    tildato = DateTime.Parse(lvi.SubItems[6].Text);
+
                     TempKontforslaglinie rec_tempKontforslaglinie = new TempKontforslaglinie
                     {
                         Nr = int.Parse(keyval),
                         Advisbelob = (decimal)advisbelob,
-                        Fradato = fradato
+                        Fradato = fradato,
+                        Tildato = tildato
                     };
                     rec_tempKontforslag.TempKontforslaglinie.Add(rec_tempKontforslaglinie);
                 }

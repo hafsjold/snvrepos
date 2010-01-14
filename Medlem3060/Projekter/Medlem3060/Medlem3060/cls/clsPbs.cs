@@ -409,8 +409,8 @@ namespace nsPuls3060
 
         public class clsSysinfo
         {
-            //public string vkey;
-            public string val;
+            public string vkey = "";
+            public string val = "";
         }
 
         public bool DatabaseUpdate()
@@ -418,7 +418,7 @@ namespace nsPuls3060
             string dbVersion = "";
             try
             {
-                dbVersion = (Program.dbData3060.ExecuteQuery<clsSysinfo>("SELECT [val] FROM [tblSysinfo] WHERE [vkey] = N'VERSION';")).First().val;
+                dbVersion = (Program.dbData3060.ExecuteQuery<clsSysinfo>("SELECT * FROM [tblSysinfo] WHERE [vkey] = N'VERSION';")).First().val;
             }
             catch (System.Data.SqlServerCe.SqlCeException)
             {
@@ -437,6 +437,11 @@ namespace nsPuls3060
                     Program.dbData3060.ExecuteCommand("INSERT INTO [tblSysinfo] ([vkey],[val]) VALUES (N'VERSION',N'2.1.0.0');");
                     //Tilføj et nyt felt [Afsluttet] til SqlDatabasen 
                     Program.dbData3060.ExecuteCommand("ALTER TABLE [tblRegnskab] ADD COLUMN [Afsluttet] bit NULL;");
+
+                    //Fjern et felt [tildato] fra tempKontforslag i SqlDatabasen 
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tempKontforslag] DROP COLUMN [tildato];");
+                    //Tilføj et nyt felt [tildato] til tempKontforslaglinie i SqlDatabasen 
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tempKontforslaglinie] ADD COLUMN [tildato] datetime NULL;");
                 }
                 catch (System.Data.SqlServerCe.SqlCeException e)
                 {

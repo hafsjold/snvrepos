@@ -19,6 +19,7 @@ namespace nsPuls3060
         public FrmMain()
         {
             InitializeComponent();
+            Program.frmMain = this;
         }
 
         private void FrmMain_Load(object sender, EventArgs e)
@@ -298,7 +299,7 @@ namespace nsPuls3060
             DateTime pReadDate = DateTime.Now;
             string pSheetName = "Medlem";
 
-            Excel.Application oXL;
+            Excel.Application oXL = null; ;
             Excel._Workbook oWB;
             Excel._Worksheet oSheet;
             Excel.Window oWindow;
@@ -338,7 +339,7 @@ namespace nsPuls3060
                 {
                     //Start Excel and get Application object.
                     oXL = new Excel.Application();
-                    oXL.Visible = true;
+                    oXL.Visible = false;
                     //Get a new workbook.
 
                     oWB = oXL.Workbooks.Add((Missing.Value));
@@ -347,8 +348,14 @@ namespace nsPuls3060
 
                     if (pSheetName.Length > 0) oSheet.Name = pSheetName.Substring(0, pSheetName.Length > 34 ? 34 : pSheetName.Length);
                     int row = 1;
+                    this.toolStripProgressBar1.Value = 0;
+                    this.toolStripProgressBar1.Minimum = 0;
+                    this.toolStripProgressBar1.Maximum = (from h in Program.karMedlemmer select h).Count();
+                    this.toolStripProgressBar1.Step = 1;
+                    this.toolStripProgressBar1.Visible = true;
                     foreach (clsMedlemAll m in MedlemmerAll)
                     {
+                        this.toolStripProgressBar1.PerformStep();
                         row++;
                         Type objectType = m.GetType();
                         PropertyInfo[] properties = objectType.GetProperties();
@@ -403,6 +410,10 @@ namespace nsPuls3060
 
                     oWB.SaveAs(SaveAs, Excel.XlFileFormat.xlWorkbookNormal, "", "", false, false, Excel.XlSaveAsAccessMode.xlExclusive, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
                     oWB.Saved = true;
+                    oXL.Visible = true;
+                    this.toolStripProgressBar1.Visible = false;
+
+
                     //oXL.Quit();
                     //oXL = null;
                 }

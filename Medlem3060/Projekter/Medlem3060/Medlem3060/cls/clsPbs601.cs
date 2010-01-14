@@ -130,7 +130,7 @@ namespace nsPuls3060
                                  h.Betalingsdato,
                                  l.Advisbelob,
                                  l.Fradato,
-                                 h.Tildato
+                                 l.Tildato
                              };
 
             foreach (var rstmedlem in rstmedlems)

@@ -60,6 +60,8 @@
             this.columnHeaderKPostnr = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderKFradato = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderKKontingent = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderMTildato = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderKTildato = new System.Windows.Forms.ColumnHeader();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -205,7 +207,8 @@
             this.columnHeaderMAdresse,
             this.columnHeaderMPostnr,
             this.columnHeaderMFradato,
-            this.columnHeaderMKontingent});
+            this.columnHeaderMKontingent,
+            this.columnHeaderMTildato});
             this.lvwMedlem.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lvwMedlem.FullRowSelect = true;
             this.lvwMedlem.Location = new System.Drawing.Point(0, 137);
@@ -316,7 +319,8 @@
             this.columnHeaderKAdresse,
             this.columnHeaderKPostnr,
             this.columnHeaderKFradato,
-            this.columnHeaderKKontingent});
+            this.columnHeaderKKontingent,
+            this.columnHeaderKTildato});
             this.lvwKontingent.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lvwKontingent.FullRowSelect = true;
             this.lvwKontingent.Location = new System.Drawing.Point(0, 137);
@@ -353,6 +357,14 @@
             // columnHeaderKKontingent
             // 
             this.columnHeaderKKontingent.Text = "Kontingent";
+            // 
+            // columnHeaderMTildato
+            // 
+            this.columnHeaderMTildato.Text = "Til dato";
+            // 
+            // columnHeaderKTildato
+            // 
+            this.columnHeaderKTildato.Text = "Til dato";
             // 
             // FrmKontingentForslag
             // 
@@ -409,5 +421,7 @@
         private System.Windows.Forms.ProgressBar pgmFaktura;
         private System.Windows.Forms.ColumnHeader columnHeaderMKontingent;
         private System.Windows.Forms.ColumnHeader columnHeaderKKontingent;
+        private System.Windows.Forms.ColumnHeader columnHeaderMTildato;
+        private System.Windows.Forms.ColumnHeader columnHeaderKTildato;
     }
 }

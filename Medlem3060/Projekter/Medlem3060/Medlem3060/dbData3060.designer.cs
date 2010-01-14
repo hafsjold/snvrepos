@@ -69,6 +69,9 @@ namespace nsPuls3060
     partial void InsertTblRegnskab(TblRegnskab instance);
     partial void UpdateTblRegnskab(TblRegnskab instance);
     partial void DeleteTblRegnskab(TblRegnskab instance);
+    partial void InsertTblSysinfo(TblSysinfo instance);
+    partial void UpdateTblSysinfo(TblSysinfo instance);
+    partial void DeleteTblSysinfo(TblSysinfo instance);
     partial void InsertTbltilpbs(Tbltilpbs instance);
     partial void UpdateTbltilpbs(Tbltilpbs instance);
     partial void DeleteTbltilpbs(Tbltilpbs instance);
@@ -205,6 +208,14 @@ namespace nsPuls3060
 			get
 			{
 				return this.GetTable<TblRegnskab>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TblSysinfo> TblSysinfo
+		{
+			get
+			{
+				return this.GetTable<TblSysinfo>();
 			}
 		}
 		
@@ -3795,6 +3806,92 @@ namespace nsPuls3060
 		}
 	}
 	
+	[Table(Name="tblSysinfo")]
+	public partial class TblSysinfo : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _Vkey;
+		
+		private string _Val;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnVkeyChanging(string value);
+    partial void OnVkeyChanged();
+    partial void OnValChanging(string value);
+    partial void OnValChanged();
+    #endregion
+		
+		public TblSysinfo()
+		{
+			OnCreated();
+		}
+		
+		[Column(Name="vkey", Storage="_Vkey", DbType="NVarChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Vkey
+		{
+			get
+			{
+				return this._Vkey;
+			}
+			set
+			{
+				if ((this._Vkey != value))
+				{
+					this.OnVkeyChanging(value);
+					this.SendPropertyChanging();
+					this._Vkey = value;
+					this.SendPropertyChanged("Vkey");
+					this.OnVkeyChanged();
+				}
+			}
+		}
+		
+		[Column(Name="val", Storage="_Val", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string Val
+		{
+			get
+			{
+				return this._Val;
+			}
+			set
+			{
+				if ((this._Val != value))
+				{
+					this.OnValChanging(value);
+					this.SendPropertyChanging();
+					this._Val = value;
+					this.SendPropertyChanged("Val");
+					this.OnValChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[Table(Name="tbltilpbs")]
 	public partial class Tbltilpbs : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -4100,8 +4197,6 @@ namespace nsPuls3060
 		
 		private System.DateTime _Betalingsdato;
 		
-		private System.DateTime _Tildato;
-		
 		private EntitySet<TempKontforslaglinie> _TempKontforslaglinie;
 		
     #region Extensibility Method Definitions
@@ -4112,8 +4207,6 @@ namespace nsPuls3060
     partial void OnIdChanged();
     partial void OnBetalingsdatoChanging(System.DateTime value);
     partial void OnBetalingsdatoChanged();
-    partial void OnTildatoChanging(System.DateTime value);
-    partial void OnTildatoChanged();
     #endregion
 		
 		public TempKontforslag()
@@ -4158,26 +4251,6 @@ namespace nsPuls3060
 					this._Betalingsdato = value;
 					this.SendPropertyChanged("Betalingsdato");
 					this.OnBetalingsdatoChanged();
-				}
-			}
-		}
-		
-		[Column(Name="tildato", Storage="_Tildato", DbType="DateTime NOT NULL")]
-		public System.DateTime Tildato
-		{
-			get
-			{
-				return this._Tildato;
-			}
-			set
-			{
-				if ((this._Tildato != value))
-				{
-					this.OnTildatoChanging(value);
-					this.SendPropertyChanging();
-					this._Tildato = value;
-					this.SendPropertyChanged("Tildato");
-					this.OnTildatoChanged();
 				}
 			}
 		}
@@ -4244,6 +4317,8 @@ namespace nsPuls3060
 		
 		private decimal _Advisbelob;
 		
+		private System.Nullable<System.DateTime> _Tildato;
+		
 		private EntityRef<TempKontforslag> _TempKontforslag;
 		
     #region Extensibility Method Definitions
@@ -4260,6 +4335,8 @@ namespace nsPuls3060
     partial void OnFradatoChanged();
     partial void OnAdvisbelobChanging(decimal value);
     partial void OnAdvisbelobChanged();
+    partial void OnTildatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnTildatoChanged();
     #endregion
 		
 		public TempKontforslaglinie()
@@ -4368,6 +4445,26 @@ namespace nsPuls3060
 					this._Advisbelob = value;
 					this.SendPropertyChanged("Advisbelob");
 					this.OnAdvisbelobChanged();
+				}
+			}
+		}
+		
+		[Column(Name="tildato", Storage="_Tildato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Tildato
+		{
+			get
+			{
+				return this._Tildato;
+			}
+			set
+			{
+				if ((this._Tildato != value))
+				{
+					this.OnTildatoChanging(value);
+					this.SendPropertyChanging();
+					this._Tildato = value;
+					this.SendPropertyChanged("Tildato");
+					this.OnTildatoChanged();
 				}
 			}
 		}
