@@ -9,20 +9,44 @@ namespace nsPuls3060
     {
         public int Order2Summa()
         {
+            var rec_regnskab = Program.qryAktivRegnskab();
+            DateTime? Startdato = rec_regnskab.Start;
+            DateTime? Slutdato = rec_regnskab.Slut;
+            if (rec_regnskab.DatoLaas != null) 
+            {
+                if (rec_regnskab.DatoLaas > Startdato) Startdato = rec_regnskab.DatoLaas;
+            }
             var qry_ord = from f in Program.dbData3060.Tblfak
-                          where f.SFakID == null
+                          where f.SFakID == null && Startdato <= f.Betalingsdato && f.Betalingsdato <= Slutdato 
                           join b in Program.dbData3060.Tblbetlin on f.Faknr equals b.Faknr
                           where b.Pbstranskode == "0236" || b.Pbstranskode == "0297"
                           select new { f.Id, Pbsfaknr = f.Faknr, f.Nr, f.Advisbelob, f.Betalingsdato, f.Vnr, f.Bogfkonto, b.Indbetalingsdato };
 
-            int AntalOrdre = qry_ord.Count(); 
-            if (qry_ord.Count() > 0)
+            int AntalOrdre = qry_ord.Count();
+            //if (rec_regnskab.DatoLaas
+
+            if (AntalOrdre > 0)
             {
                 DateTime nu = DateTime.Now;
                 DateTime ToDay = new DateTime(nu.Year, nu.Month, nu.Day); ;
-                var SidsteSFakID = (from f in Program.karFakturaer_s select f.fakid).Max();
-                var SidsteRec_no = (from f in Program.karFakturaer_s select f.rec_no).Max();
-
+                int SidsteSFakID;
+                int SidsteRec_no;
+                try
+                {
+                    SidsteSFakID = (from f in Program.karFakturaer_s select f.fakid).Max();
+                }
+                catch (System.NullReferenceException)
+                {
+                    SidsteSFakID = 0;
+                }
+                try
+                {
+                    SidsteRec_no = (from f in Program.karFakturaer_s select f.rec_no).Max();
+                }
+                catch (System.NullReferenceException)
+                {
+                    SidsteRec_no = 0;
+                }
                 Program.karFakturastr_s = null;
                 Program.karFakturavarer_s = null;
 
@@ -33,11 +57,11 @@ namespace nsPuls3060
                     int orebelob = (int)o.Advisbelob * 100;
                     ordtype ord = new ordtype
                     (
-                        SidsteSFakID,               //fakid
-                        ToDay,      //(o.Betalingsdato > o.Indbetalingsdato) ? (DateTime)o.Betalingsdato : (DateTime)o.Indbetalingsdato, //dato
-                        ToDay,      //(DateTime)o.Betalingsdato, //forfaldsdato
-                        orebelob,                  //fakbeløb i øre
-                        100000 + (int)o.Nr         //debitornr
+                        SidsteSFakID,       //fakid
+                        ToDay,              //(o.Betalingsdato > o.Indbetalingsdato) ? (DateTime)o.Betalingsdato : (DateTime)o.Indbetalingsdato, //dato
+                        ToDay,              //(DateTime)o.Betalingsdato, //forfaldsdato
+                        orebelob,           //fakbeløb i øre
+                        100000 + (int)o.Nr  //debitornr
                     );
                     recFakturaer_s rec = new recFakturaer_s { rec_no = SidsteRec_no, rec_data = ord };
                     Program.karFakturaer_s.Add(rec);

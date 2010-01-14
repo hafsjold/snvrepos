@@ -388,6 +388,9 @@ namespace nsPuls3060
                                                 case "DatoLaas":
                                                     m_rec_Regnskab.DatoLaas = clsUtil.MSSerial2DateTime(double.Parse(X[1]));
                                                     break;
+                                                case "Afsluttet":
+                                                    //m_rec_Regnskab.Afsluttet = X[1];
+                                                    break;
                                                 case "Firmanavn":
                                                     m_rec_Regnskab.Firmanavn = X[1];
                                                     break;
