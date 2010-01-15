@@ -16,7 +16,7 @@ namespace nsPuls3060
             InitializeComponent();
             this.Text = String.Format("About {0}", AssemblyTitle);
             this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = String.Format("Version {0} -- {1}", AssemblyVersion, version);
+            this.labelVersion.Text = String.Format("Version {0}", Version);
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = AssemblyCompany;
             this.textBoxDescription.Text = AssemblyDescription;
@@ -101,7 +101,7 @@ namespace nsPuls3060
             }
         }
         #endregion
-        public string version
+        public string Version
         {
             get
             {

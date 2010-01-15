@@ -36,7 +36,7 @@ namespace nsPuls3060
                 {
                     SidsteSFakID = (from f in Program.karFakturaer_s select f.fakid).Max();
                 }
-                catch (System.NullReferenceException)
+                catch (System.InvalidOperationException)
                 {
                     SidsteSFakID = 0;
                 }
@@ -44,7 +44,7 @@ namespace nsPuls3060
                 {
                     SidsteRec_no = (from f in Program.karFakturaer_s select f.rec_no).Max();
                 }
-                catch (System.NullReferenceException)
+                catch (System.InvalidOperationException)
                 {
                     SidsteRec_no = 0;
                 }
@@ -130,6 +130,7 @@ namespace nsPuls3060
         public int OrderFaknrUpdate()
         {
             var qry = from k in Program.karFakturaer_s
+                      where k.faknr > 0
                       join f in Program.dbData3060.Tblfak on k.fakid equals f.SFakID
                       where f.SFaknr == null
                       select new { f.Id, SFaknr = k.faknr };
