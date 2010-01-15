@@ -516,5 +516,10 @@ namespace nsPuls3060
 
         }
 
+        private void omToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult res = (new AboutBox()).ShowDialog();
+        }
+
     }
 }
