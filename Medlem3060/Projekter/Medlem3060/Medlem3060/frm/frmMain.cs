@@ -521,5 +521,15 @@ namespace nsPuls3060
             DialogResult res = (new AboutBox()).ShowDialog();
         }
 
+        private void backupDataBaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.dbData3060 = null;
+            string dbPath = global::nsPuls3060.Properties.Settings.Default.DataBasePath;
+            if (File.Exists(dbPath))
+            {
+                File.Copy(dbPath, @"c:\dbBackup\dbData3060" + String.Format("{0:_yyyyMMddHHmmss}", DateTime.Now) + ".sdf", false);
+            }
+        }
+
     }
 }
