@@ -8,15 +8,67 @@ using System.Security.Cryptography;
 
 namespace nsPuls3060
 {
-    class clsRecovery
+    public class clsRecovery
     {
         private DbRecovery3060 m_dbRecovery;
+        private string m_DataBasePath;
+        private string m_FraPBSPath;
+        private string m_TilPBSPath;
+        private string m_PlaceringPath;
+        private string m_EksportmappePath;
+        private int m_Rid;
+        private string m_RegnskabsNavn;
+
+        public clsRecovery() 
+        {
+            m_DataBasePath = global::nsPuls3060.Properties.Settings.Default.DataBasePath;
+            var rec_regnskab = Program.qryAktivRegnskab();
+            m_FraPBSPath = rec_regnskab.FraPBS;
+            m_TilPBSPath = rec_regnskab.TilPBS;
+            m_PlaceringPath = rec_regnskab.Placering;
+            m_EksportmappePath = rec_regnskab.Eksportmappe;
+            m_Rid = rec_regnskab.Rid;
+            m_RegnskabsNavn = rec_regnskab.Navn;
+        }
+
+        public void createRecoveryPoint() 
+        {
+            Program.dbData3060 = null;
+            Program.karMedlemmer = null;
+            Program.memMedlemDictionary = null;
+            Program.memAktivRegnskab = null;
+            Program.memPbsnetdir = null;
+            Program.karDkkonti = null;
+            Program.karFakturaer_s = null;
+            Program.karFakturastr_s = null;
+            Program.karFakturavarer_s = null;
+            Program.karKortnr = null;
+            Program.karRegnskab = null;
+            Program.karStatus = null;
+            Program.karKladde = null;
+            
+            // unlock lock summasummarum kontoplan
+            Program.filestream_to_lock_summasummarum_kontoplan.Close();
+            Program.filestream_to_lock_summasummarum_kontoplan = null;
+
+            // open recoverypoint database
+            string dbRecovery3060path = m_EksportmappePath + @"dbRecovery3060.sdf";
+            m_dbRecovery = new DbRecovery3060(m_EksportmappePath + @"dbRecovery3060.sdf");
+            if (!File.Exists(dbRecovery3060path)) m_dbRecovery.CreateDatabase();
+            
+            // create recoverypoint
+            TblRecoveryPoint rec_RceoveryPoint = setupRecoveryPoint();
+            createRecoveryPoint(rec_RceoveryPoint);
+
+            // lock lock summasummarum kontoplan
+            Program.filestream_to_lock_summasummarum_kontoplan = new FileStream(Program.path_to_lock_summasummarum_kontoplan, FileMode.Open, FileAccess.Read, FileShare.None);
+        }
 
         public void TestRecovery()
         {
-            m_dbRecovery = new DbRecovery3060(@"C:\Documents and Settings\mha\Dokumenter\dbRecovery3060.sdf");
-
-            //TblRceoveryPoint rec_RceoveryPoint = setupRecoveryPoint();
+            m_dbRecovery = new DbRecovery3060(@"C:\Documents and Settings\mha\Dokumenter\dbRecovery3060Ny.sdf");
+            m_dbRecovery.CreateDatabase();
+            //TblRecoveryPoint rec_RceoveryPoint = setupRecoveryPoint();
             //createRecoveryPoint(rec_RceoveryPoint);
 
             //TblRecoveryPoint rec_RestorePoint = setupRestorePoint();
@@ -29,21 +81,35 @@ namespace nsPuls3060
         {
             TblRecoveryPoint rec_RceoveryPoint = new TblRecoveryPoint
             {
-                Name = "MHATest",
+                Name = m_Rid.ToString() + " " + m_RegnskabsNavn,
                 Rptime = DateTime.Now
             };
             m_dbRecovery.TblRecoveryPoint.InsertOnSubmit(rec_RceoveryPoint);
 
             TblRecoveryPointLine rec_RecoveryPointLine = new TblRecoveryPointLine
             {
-                Recoverypath = @"C:\Documents and Settings\mha\Application Data\SummaSummarum\4",
+                Recoverypath = m_PlaceringPath,
+                Recoveryisfile = false
+            };
+            rec_RceoveryPoint.TblRecoveryPointLine.Add(rec_RecoveryPointLine);
+            
+            rec_RecoveryPointLine = new TblRecoveryPointLine
+            {
+                Recoverypath = m_FraPBSPath,
+                Recoveryisfile = false
+            };
+            rec_RceoveryPoint.TblRecoveryPointLine.Add(rec_RecoveryPointLine);
+            
+            rec_RecoveryPointLine = new TblRecoveryPointLine
+            {
+                Recoverypath = m_TilPBSPath,
                 Recoveryisfile = false
             };
             rec_RceoveryPoint.TblRecoveryPointLine.Add(rec_RecoveryPointLine);
 
             rec_RecoveryPointLine = new TblRecoveryPointLine
             {
-                Recoverypath = @"C:\Documents and Settings\mha\Dokumenter\Medlem3060\Databaser\SQLCompact\dbData3060.sdf",
+                Recoverypath = m_DataBasePath,
                 Recoveryisfile = true
             };
             rec_RceoveryPoint.TblRecoveryPointLine.Add(rec_RecoveryPointLine);

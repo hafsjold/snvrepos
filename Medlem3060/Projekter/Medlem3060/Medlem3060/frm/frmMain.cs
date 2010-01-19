@@ -13,9 +13,7 @@ namespace nsPuls3060
 {
     public partial class FrmMain : Form
     {
-        private FileStream m_ts;
-        private string m_path;
-
+        
         public FrmMain()
         {
             InitializeComponent();
@@ -60,8 +58,9 @@ namespace nsPuls3060
                 this.toolStripStatusLabel1.Alignment = ToolStripItemAlignment.Right;
                 this.toolStripStatusLabel2.Text = "Database: " + global::nsPuls3060.Properties.Settings.Default.DataBasePath;
                 this.toolStripStatusLabel2.Alignment = ToolStripItemAlignment.Right;
-                m_path = rec_regnskab.Placering + "kontoplan.dat";
-                m_ts = new FileStream(m_path, FileMode.Open, FileAccess.Read, FileShare.None);
+
+                Program.path_to_lock_summasummarum_kontoplan = rec_regnskab.Placering + "kontoplan.dat";
+                Program.filestream_to_lock_summasummarum_kontoplan = new FileStream(Program.path_to_lock_summasummarum_kontoplan, FileMode.Open, FileAccess.Read, FileShare.None);
             }
         }
 
@@ -521,14 +520,16 @@ namespace nsPuls3060
             DialogResult res = (new AboutBox()).ShowDialog();
         }
 
-        private void backupDataBaseToolStripMenuItem_Click(object sender, EventArgs e)
+        private void opretGendannelsespunktToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Program.dbData3060 = null;
-            string dbPath = global::nsPuls3060.Properties.Settings.Default.DataBasePath;
-            if (File.Exists(dbPath))
-            {
-                File.Copy(dbPath, @"c:\dbBackup\dbData3060" + String.Format("{0:_yyyyMMddHHmmss}", DateTime.Now) + ".sdf", false);
-            }
+            clsRecovery objRecovery = new clsRecovery();
+            objRecovery.createRecoveryPoint();
+
+        }
+
+        private void tilbageTilGendannelsesPunktToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

@@ -8,6 +8,8 @@ namespace nsPuls3060
 {
     static class Program
     {
+        private static string m_path_to_lock_summasummarum_kontoplan;
+        private static FileStream m_filestream_to_lock_summasummarum_kontoplan;
         private static DbData3060 m_dbData3060;
         private static KarMedlemmer m_KarMedlemmer;
         private static MemMedlemDictionary m_dicMedlem;
@@ -22,6 +24,28 @@ namespace nsPuls3060
         private static KarStatus m_KarStatus;
         private static KarKladde m_KarKladde;
 
+        public static string path_to_lock_summasummarum_kontoplan
+        {
+            get
+            {
+                return m_path_to_lock_summasummarum_kontoplan;
+            }
+            set
+            {
+                m_path_to_lock_summasummarum_kontoplan = value;
+            }
+        }
+        public static FileStream filestream_to_lock_summasummarum_kontoplan
+        {
+            get
+            {
+                return m_filestream_to_lock_summasummarum_kontoplan;
+            }
+            set
+            {
+                m_filestream_to_lock_summasummarum_kontoplan = value;
+            }
+        }
         public static DbData3060 dbData3060
         {
             get
