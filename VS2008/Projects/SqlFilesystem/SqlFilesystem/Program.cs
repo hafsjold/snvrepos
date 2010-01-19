@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Security.Cryptography;
+using ICSharpCode.SharpZipLib.Zip;
 
 namespace SqlFilesystem
 {
@@ -17,10 +18,10 @@ namespace SqlFilesystem
             //TblRceoveryPoint rec_RceoveryPoint = setupRecoveryPoint();
             //createRecoveryPoint(rec_RceoveryPoint);
 
-            //TblRceoveryPoint rec_RestorePoint = setupRestorePoint();
-            //restoreRecoveryPoint(rec_RestorePoint );
+            TblRceoveryPoint rec_RestorePoint = setupRestorePoint();
+            restoreRecoveryPoint(rec_RestorePoint );
 
-            deleteContentNotUsed();
+            //deleteContentNotUsed();
         }
 
         private static TblRceoveryPoint setupRecoveryPoint()
@@ -141,6 +142,7 @@ namespace SqlFilesystem
             byte[] bData = File.ReadAllBytes(fi.FullName);
             foreach (byte b in md5.ComputeHash(bData)) sb.Append(b.ToString("x2").ToLower());
 
+
             TblContent rec_Content;
             try
             {
@@ -154,7 +156,7 @@ namespace SqlFilesystem
                     Size = fi.Length,
                     Mtime = fi.LastWriteTime,
                     Atime = fi.LastAccessTime,
-                    Data = bData
+                    Data = ZipCompressStream(bData, fi.Name, fi.LastWriteTime)
                 };
                 rec_File.TblContent.Add(rec_Content);
                 m_db.SubmitChanges();
@@ -253,7 +255,7 @@ namespace SqlFilesystem
                     RestorePathOnly = fil.RestorePath;
                 }
                 string RestorePathAndName = RestorePathOnly + @"\" + RestoreFileName;
-                File.WriteAllBytes(RestorePathAndName, fil.Data.ToArray());
+                File.WriteAllBytes(RestorePathAndName, ZipUncompressStream(fil.Data.ToArray()));
                 FileInfo nfi = new FileInfo(RestorePathAndName);
                 nfi.LastWriteTime = fil.Mtime;
                 nfi.LastAccessTime = fil.Atime;
@@ -273,7 +275,43 @@ namespace SqlFilesystem
                 int id = rec.Id;
                 m_db.TblContent.DeleteOnSubmit(rec);
             }
-            m_db.SubmitChanges(); 
+            m_db.SubmitChanges();
+        }
+
+        private static byte[] ZipCompressStream(byte[] bData, string fileName, DateTime fileDate)
+        {
+            MemoryStream streamIm = new MemoryStream(bData);
+            MemoryStream streamOut = new MemoryStream();
+            ZipOutputStream zipOut = new ZipOutputStream(streamOut);
+            ZipEntry entry = new ZipEntry(fileName);
+            entry.DateTime = fileDate;
+            entry.Size = streamIm.Length;
+            zipOut.PutNextEntry(entry);
+            zipOut.Write(streamIm.ToArray(), 0, (int)streamIm.Length);
+
+            zipOut.Finish();
+            zipOut.IsStreamOwner = false;
+            zipOut.Close();
+            return streamOut.ToArray();
+        }
+
+        private static byte[] ZipUncompressStream(byte[] bData)
+        {
+            MemoryStream streamIn = new MemoryStream(bData);
+            MemoryStream streamOut = new MemoryStream();
+            ZipInputStream zipIn = new ZipInputStream(streamIn);
+            ZipEntry entry;
+            entry = zipIn.GetNextEntry();
+            long size = entry.Size;
+            byte[] buffer = new byte[size];
+            while (true)
+            {
+                size = zipIn.Read(buffer, 0, buffer.Length);
+                if (size > 0) streamOut.Write(buffer, 0, (int)size);
+                else break;
+            }
+            streamOut.Flush();
+            return streamOut.ToArray();
         }
     }
 }
