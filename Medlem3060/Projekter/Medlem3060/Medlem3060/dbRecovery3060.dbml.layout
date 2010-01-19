@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.625, 8.5" name="dbRecovery3060">
+  <DataContextMoniker Name="/DbRecovery3060" />
+  <nestedChildShapes>
+    <classShape Id="f245d524-ecbe-48d8-a960-49e8d7093268" absoluteBounds="5.75, 4.5, 2, 1.9178898111979166">
+      <DataClassMoniker Name="/DbRecovery3060/TblContent" />
+      <nestedChildShapes>
+        <elementListCompartment Id="039f7eb7-43da-4a07-8165-5be5ba8581f2" absoluteBounds="5.7650000000000006, 4.96, 1.9700000000000002, 1.3578898111979165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7cd7cb6d-614b-4881-bc51-29e923bc8e03" absoluteBounds="9.375, 5, 2, 1.4248478190104166">
+      <DataClassMoniker Name="/DbRecovery3060/TblDirectory" />
+      <nestedChildShapes>
+        <elementListCompartment Id="186fa444-dfee-4f92-9c57-e4085e1df49e" absoluteBounds="9.39, 5.46, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="038ee3c0-26e8-4ee7-a625-2a5a2edf8953" absoluteBounds="2.625, 0.5, 2, 1.2605004882812505">
+      <DataClassMoniker Name="/DbRecovery3060/TblRecoveryPoint" />
+      <nestedChildShapes>
+        <elementListCompartment Id="28fac337-5da3-43db-bbdc-3d9b6f96d3fa" absoluteBounds="2.64, 0.96, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2339d854-0584-4a5e-b4b3-3095090af203" absoluteBounds="5.75, 2.75, 2, 1.2605004882812498">
+      <DataClassMoniker Name="/DbRecovery3060/TblRecoveryPointContent" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ea2facf7-3ccf-4b80-9e04-64aa5f24a765" absoluteBounds="5.765, 3.21, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="406cbc8e-29a4-4e9e-b25d-9a4ebf9eded8" absoluteBounds="5.75, 0.5, 2, 1.5891951497395827">
+      <DataClassMoniker Name="/DbRecovery3060/TblRecoveryPointLine" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c98cd735-475b-40ad-8bec-149961713f41" absoluteBounds="5.7650000000000006, 0.96, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(9.375 : 5.70894490559896); (7.75 : 5.70894490559896)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DbRecovery3060/TblDirectory/TblDirectory_TblContent" />
+      <nodes>
+        <classShapeMoniker Id="7cd7cb6d-614b-4881-bc51-29e923bc8e03" />
+        <classShapeMoniker Id="f245d524-ecbe-48d8-a960-49e8d7093268" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10.074939849384 : 6.42484781901042); (10.074939849384 : 6.67484781901042); (10.6893487292167 : 6.67484781901042); (10.6893487292167 : 6.42484781901042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DbRecovery3060/TblDirectory/TblDirectory_TblDirectory" />
+      <nodes>
+        <classShapeMoniker Id="7cd7cb6d-614b-4881-bc51-29e923bc8e03" />
+        <classShapeMoniker Id="7cd7cb6d-614b-4881-bc51-29e923bc8e03" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.75 : 4.5); (6.75 : 4.01050048828125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DbRecovery3060/TblContent/TblContent_TblRecoveryPointContent" />
+      <nodes>
+        <classShapeMoniker Id="f245d524-ecbe-48d8-a960-49e8d7093268" />
+        <classShapeMoniker Id="2339d854-0584-4a5e-b4b3-3095090af203" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.75 : 2.08919514973958); (6.75 : 2.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DbRecovery3060/TblRecoveryPointLine/TblRecoveryPointLine_TblRecoveryPointContent" />
+      <nodes>
+        <classShapeMoniker Id="406cbc8e-29a4-4e9e-b25d-9a4ebf9eded8" />
+        <classShapeMoniker Id="2339d854-0584-4a5e-b4b3-3095090af203" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.625 : 1.13025024414063); (5.75 : 1.13025024414063)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DbRecovery3060/TblRecoveryPoint/TblRecoveryPoint_TblRecoveryPointLine" />
+      <nodes>
+        <classShapeMoniker Id="038ee3c0-26e8-4ee7-a625-2a5a2edf8953" />
+        <classShapeMoniker Id="406cbc8e-29a4-4e9e-b25d-9a4ebf9eded8" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
