@@ -125,6 +125,7 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
+            clsSFTP objSFTP = new clsSFTP();
             //clsPbs objPbs = new clsPbs();
             //clsPbs601 objPbs601 = new clsPbs601();
             //clsPbs602 objPbs602 = new clsPbs602();
