@@ -10,28 +10,28 @@ namespace SqlFilesystem
 {
     class Program
     {
-        private static DbFilesystem m_db;
+        private static DbRecovery3060 m_db;
         static void Main(string[] args)
         {
-            m_db = new DbFilesystem(@"C:\Documents and Settings\mha\Dokumenter\dbFilesystem.sdf");
+            m_db = new DbRecovery3060(@"C:\Documents and Settings\mha\Dokumenter\dbRecovery3060.sdf");
 
             //TblRceoveryPoint rec_RceoveryPoint = setupRecoveryPoint();
             //createRecoveryPoint(rec_RceoveryPoint);
 
-            TblRceoveryPoint rec_RestorePoint = setupRestorePoint();
+            TblRecoveryPoint rec_RestorePoint = setupRestorePoint();
             restoreRecoveryPoint(rec_RestorePoint );
 
             //deleteContentNotUsed();
         }
 
-        private static TblRceoveryPoint setupRecoveryPoint()
+        private static TblRecoveryPoint setupRecoveryPoint()
         {
-            TblRceoveryPoint rec_RceoveryPoint = new TblRceoveryPoint
+            TblRecoveryPoint rec_RceoveryPoint = new TblRecoveryPoint
             {
                 Name = "MHATest",
                 Rptime = DateTime.Now
             };
-            m_db.TblRceoveryPoint.InsertOnSubmit(rec_RceoveryPoint);
+            m_db.TblRecoveryPoint.InsertOnSubmit(rec_RceoveryPoint);
 
             TblRecoveryPointLine rec_RecoveryPointLine = new TblRecoveryPointLine
             {
@@ -50,7 +50,7 @@ namespace SqlFilesystem
             return rec_RceoveryPoint;
         }
 
-        private static void createRecoveryPoint(TblRceoveryPoint rec_RceoveryPoint)
+        private static void createRecoveryPoint(TblRecoveryPoint rec_RceoveryPoint)
         {
             rec_RceoveryPoint.Rptime = DateTime.Now;
             var qry_Recoverypointlines = from l in rec_RceoveryPoint.TblRecoveryPointLine select l;
@@ -170,9 +170,9 @@ namespace SqlFilesystem
         }
 
 
-        private static TblRceoveryPoint setupRestorePoint()
+        private static TblRecoveryPoint setupRestorePoint()
         {
-            TblRceoveryPoint rec_RestorePoint = (from r in m_db.TblRceoveryPoint where r.Name == "MHATest" select r).First();
+            TblRecoveryPoint rec_RestorePoint = (from r in m_db.TblRecoveryPoint where r.Name == "MHATest" select r).First();
             var RestorePointLines = from l in rec_RestorePoint.TblRecoveryPointLine select l;
             foreach (TblRecoveryPointLine RecoveryPointLine in RestorePointLines)
             {
@@ -194,7 +194,7 @@ namespace SqlFilesystem
             return rec_RestorePoint;
         }
 
-        static void restoreRecoveryPoint(TblRceoveryPoint rec_RestorePoint)
+        static void restoreRecoveryPoint(TblRecoveryPoint rec_RestorePoint)
         {
             var RecoveryPointLines = from rp in rec_RestorePoint.TblRecoveryPointLine select rp;
             foreach (TblRecoveryPointLine RecoveryPointLine in RecoveryPointLines)

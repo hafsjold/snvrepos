@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Database Name="dbFilesystem" Class="DbFilesystem" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+<Database Name="dbRecovery3060" Class="DbRecovery3060" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Table Name="tblContent" Member="TblContent">
     <Type Name="TblContent">
       <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -24,12 +24,12 @@
       <Association Name="TblDirectory_TblDirectory" Member="Parent" ThisKey="Parentid" OtherKey="Id" Type="TblDirectory" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="tblRceoveryPoint" Member="TblRceoveryPoint">
-    <Type Name="TblRceoveryPoint">
+  <Table Name="tblRecoveryPoint" Member="TblRecoveryPoint">
+    <Type Name="TblRecoveryPoint">
       <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="name" Member="Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="rptime" Member="Rptime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="TblRceoveryPoint_TblRecoveryPointLine" Member="TblRecoveryPointLine" ThisKey="Id" OtherKey="Recoverypointid" Type="TblRecoveryPointLine" />
+      <Association Name="TblRecoveryPoint_TblRecoveryPointLine" Member="TblRecoveryPointLine" ThisKey="Id" OtherKey="Recoverypointid" Type="TblRecoveryPointLine" />
     </Type>
   </Table>
   <Table Name="tblRecoveryPointContent" Member="TblRecoveryPointContent">
@@ -49,7 +49,7 @@
       <Column Name="recoveryisfile" Member="Recoveryisfile" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="restorepath" Member="Restorepath" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Association Name="TblRecoveryPointLine_TblRecoveryPointContent" Member="TblRecoveryPointContent" ThisKey="Id" OtherKey="Recoverypointlineid" Type="TblRecoveryPointContent" />
-      <Association Name="TblRceoveryPoint_TblRecoveryPointLine" Member="TblRceoveryPoint" ThisKey="Recoverypointid" OtherKey="Id" Type="TblRceoveryPoint" IsForeignKey="true" DeleteOnNull="true" />
+      <Association Name="TblRecoveryPoint_TblRecoveryPointLine" Member="TblRecoveryPoint" ThisKey="Recoverypointid" OtherKey="Id" Type="TblRecoveryPoint" IsForeignKey="true" DeleteOnNull="true" />
     </Type>
   </Table>
 </Database>

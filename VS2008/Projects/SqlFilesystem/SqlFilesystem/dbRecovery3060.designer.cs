@@ -22,8 +22,8 @@ namespace SqlFilesystem
 	using System;
 	
 	
-	[System.Data.Linq.Mapping.DatabaseAttribute(Name="dbFilesystem")]
-	public partial class DbFilesystem : System.Data.Linq.DataContext
+	[System.Data.Linq.Mapping.DatabaseAttribute(Name="dbRecovery3060")]
+	public partial class DbRecovery3060 : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -36,9 +36,9 @@ namespace SqlFilesystem
     partial void InsertTblDirectory(TblDirectory instance);
     partial void UpdateTblDirectory(TblDirectory instance);
     partial void DeleteTblDirectory(TblDirectory instance);
-    partial void InsertTblRceoveryPoint(TblRceoveryPoint instance);
-    partial void UpdateTblRceoveryPoint(TblRceoveryPoint instance);
-    partial void DeleteTblRceoveryPoint(TblRceoveryPoint instance);
+    partial void InsertTblRecoveryPoint(TblRecoveryPoint instance);
+    partial void UpdateTblRecoveryPoint(TblRecoveryPoint instance);
+    partial void DeleteTblRecoveryPoint(TblRecoveryPoint instance);
     partial void InsertTblRecoveryPointContent(TblRecoveryPointContent instance);
     partial void UpdateTblRecoveryPointContent(TblRecoveryPointContent instance);
     partial void DeleteTblRecoveryPointContent(TblRecoveryPointContent instance);
@@ -47,25 +47,25 @@ namespace SqlFilesystem
     partial void DeleteTblRecoveryPointLine(TblRecoveryPointLine instance);
     #endregion
 		
-		public DbFilesystem(string connection) : 
+		public DbRecovery3060(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DbFilesystem(System.Data.IDbConnection connection) : 
+		public DbRecovery3060(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DbFilesystem(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public DbRecovery3060(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DbFilesystem(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public DbRecovery3060(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -87,11 +87,11 @@ namespace SqlFilesystem
 			}
 		}
 		
-		public System.Data.Linq.Table<TblRceoveryPoint> TblRceoveryPoint
+		public System.Data.Linq.Table<TblRecoveryPoint> TblRecoveryPoint
 		{
 			get
 			{
-				return this.GetTable<TblRceoveryPoint>();
+				return this.GetTable<TblRecoveryPoint>();
 			}
 		}
 		
@@ -610,8 +610,8 @@ namespace SqlFilesystem
 		}
 	}
 	
-	[Table(Name="tblRceoveryPoint")]
-	public partial class TblRceoveryPoint : INotifyPropertyChanging, INotifyPropertyChanged
+	[Table(Name="tblRecoveryPoint")]
+	public partial class TblRecoveryPoint : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -636,7 +636,7 @@ namespace SqlFilesystem
     partial void OnRptimeChanged();
     #endregion
 		
-		public TblRceoveryPoint()
+		public TblRecoveryPoint()
 		{
 			this._TblRecoveryPointLine = new EntitySet<TblRecoveryPointLine>(new Action<TblRecoveryPointLine>(this.attach_TblRecoveryPointLine), new Action<TblRecoveryPointLine>(this.detach_TblRecoveryPointLine));
 			OnCreated();
@@ -702,7 +702,7 @@ namespace SqlFilesystem
 			}
 		}
 		
-		[Association(Name="TblRceoveryPoint_TblRecoveryPointLine", Storage="_TblRecoveryPointLine", ThisKey="Id", OtherKey="Recoverypointid")]
+		[Association(Name="TblRecoveryPoint_TblRecoveryPointLine", Storage="_TblRecoveryPointLine", ThisKey="Id", OtherKey="Recoverypointid")]
 		public EntitySet<TblRecoveryPointLine> TblRecoveryPointLine
 		{
 			get
@@ -738,13 +738,13 @@ namespace SqlFilesystem
 		private void attach_TblRecoveryPointLine(TblRecoveryPointLine entity)
 		{
 			this.SendPropertyChanging();
-			entity.TblRceoveryPoint = this;
+			entity.TblRecoveryPoint = this;
 		}
 		
 		private void detach_TblRecoveryPointLine(TblRecoveryPointLine entity)
 		{
 			this.SendPropertyChanging();
-			entity.TblRceoveryPoint = null;
+			entity.TblRecoveryPoint = null;
 		}
 	}
 	
@@ -950,7 +950,7 @@ namespace SqlFilesystem
 		
 		private EntitySet<TblRecoveryPointContent> _TblRecoveryPointContent;
 		
-		private EntityRef<TblRceoveryPoint> _TblRceoveryPoint;
+		private EntityRef<TblRecoveryPoint> _TblRecoveryPoint;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -971,7 +971,7 @@ namespace SqlFilesystem
 		public TblRecoveryPointLine()
 		{
 			this._TblRecoveryPointContent = new EntitySet<TblRecoveryPointContent>(new Action<TblRecoveryPointContent>(this.attach_TblRecoveryPointContent), new Action<TblRecoveryPointContent>(this.detach_TblRecoveryPointContent));
-			this._TblRceoveryPoint = default(EntityRef<TblRceoveryPoint>);
+			this._TblRecoveryPoint = default(EntityRef<TblRecoveryPoint>);
 			OnCreated();
 		}
 		
@@ -1088,26 +1088,26 @@ namespace SqlFilesystem
 			}
 		}
 		
-		[Association(Name="TblRceoveryPoint_TblRecoveryPointLine", Storage="_TblRceoveryPoint", ThisKey="Recoverypointid", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true)]
-		public TblRceoveryPoint TblRceoveryPoint
+		[Association(Name="TblRecoveryPoint_TblRecoveryPointLine", Storage="_TblRecoveryPoint", ThisKey="Recoverypointid", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true)]
+		public TblRecoveryPoint TblRecoveryPoint
 		{
 			get
 			{
-				return this._TblRceoveryPoint.Entity;
+				return this._TblRecoveryPoint.Entity;
 			}
 			set
 			{
-				TblRceoveryPoint previousValue = this._TblRceoveryPoint.Entity;
+				TblRecoveryPoint previousValue = this._TblRecoveryPoint.Entity;
 				if (((previousValue != value) 
-							|| (this._TblRceoveryPoint.HasLoadedOrAssignedValue == false)))
+							|| (this._TblRecoveryPoint.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._TblRceoveryPoint.Entity = null;
+						this._TblRecoveryPoint.Entity = null;
 						previousValue.TblRecoveryPointLine.Remove(this);
 					}
-					this._TblRceoveryPoint.Entity = value;
+					this._TblRecoveryPoint.Entity = value;
 					if ((value != null))
 					{
 						value.TblRecoveryPointLine.Add(this);
@@ -1117,7 +1117,7 @@ namespace SqlFilesystem
 					{
 						this._Recoverypointid = default(int);
 					}
-					this.SendPropertyChanged("TblRceoveryPoint");
+					this.SendPropertyChanged("TblRecoveryPoint");
 				}
 			}
 		}
