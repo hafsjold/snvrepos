@@ -262,12 +262,6 @@
     <None Include="Resources\Add.bmp" />
     <Content Include="Resources\info.png" />
     <Content Include="Resources\logopart.jpg" />
-    <Content Include="unzip.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="zip.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <None Include="Resources\Summa.ico" />
     <None Include="Resources\Summakartotek.png" />
     <None Include="Resources\Upd.bmp" />
