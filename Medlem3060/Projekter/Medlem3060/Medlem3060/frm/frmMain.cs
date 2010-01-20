@@ -126,6 +126,7 @@ namespace nsPuls3060
         {
 #if (DEBUG)
             clsSFTP objSFTP = new clsSFTP();
+            objSFTP.ReadFraSFtp();
             //clsPbs objPbs = new clsPbs();
             //clsPbs601 objPbs601 = new clsPbs601();
             //clsPbs602 objPbs602 = new clsPbs602();
