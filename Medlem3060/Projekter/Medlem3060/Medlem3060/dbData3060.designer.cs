@@ -69,6 +69,9 @@ namespace nsPuls3060
     partial void InsertTblRegnskab(TblRegnskab instance);
     partial void UpdateTblRegnskab(TblRegnskab instance);
     partial void DeleteTblRegnskab(TblRegnskab instance);
+    partial void InsertTblsftp(Tblsftp instance);
+    partial void UpdateTblsftp(Tblsftp instance);
+    partial void DeleteTblsftp(Tblsftp instance);
     partial void InsertTblSysinfo(TblSysinfo instance);
     partial void UpdateTblSysinfo(TblSysinfo instance);
     partial void DeleteTblSysinfo(TblSysinfo instance);
@@ -208,6 +211,14 @@ namespace nsPuls3060
 			get
 			{
 				return this.GetTable<TblRegnskab>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Tblsftp> Tblsftp
+		{
+			get
+			{
+				return this.GetTable<Tblsftp>();
 			}
 		}
 		
@@ -3781,6 +3792,188 @@ namespace nsPuls3060
 					this._Afsluttet = value;
 					this.SendPropertyChanged("Afsluttet");
 					this.OnAfsluttetChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="tblsftp")]
+	public partial class Tblsftp : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Host;
+		
+		private string _User;
+		
+		private string _Outbound;
+		
+		private string _Inbound;
+		
+		private string _Pincode;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnHostChanging(string value);
+    partial void OnHostChanged();
+    partial void OnUserChanging(string value);
+    partial void OnUserChanged();
+    partial void OnOutboundChanging(string value);
+    partial void OnOutboundChanged();
+    partial void OnInboundChanging(string value);
+    partial void OnInboundChanged();
+    partial void OnPincodeChanging(string value);
+    partial void OnPincodeChanged();
+    #endregion
+		
+		public Tblsftp()
+		{
+			OnCreated();
+		}
+		
+		[Column(Name="id", Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Name="host", Storage="_Host", DbType="NVarChar(64)")]
+		public string Host
+		{
+			get
+			{
+				return this._Host;
+			}
+			set
+			{
+				if ((this._Host != value))
+				{
+					this.OnHostChanging(value);
+					this.SendPropertyChanging();
+					this._Host = value;
+					this.SendPropertyChanged("Host");
+					this.OnHostChanged();
+				}
+			}
+		}
+		
+		[Column(Name="user", Storage="_User", DbType="NVarChar(16)")]
+		public string User
+		{
+			get
+			{
+				return this._User;
+			}
+			set
+			{
+				if ((this._User != value))
+				{
+					this.OnUserChanging(value);
+					this.SendPropertyChanging();
+					this._User = value;
+					this.SendPropertyChanged("User");
+					this.OnUserChanged();
+				}
+			}
+		}
+		
+		[Column(Name="outbound", Storage="_Outbound", DbType="NVarChar(64)")]
+		public string Outbound
+		{
+			get
+			{
+				return this._Outbound;
+			}
+			set
+			{
+				if ((this._Outbound != value))
+				{
+					this.OnOutboundChanging(value);
+					this.SendPropertyChanging();
+					this._Outbound = value;
+					this.SendPropertyChanged("Outbound");
+					this.OnOutboundChanged();
+				}
+			}
+		}
+		
+		[Column(Name="inbound", Storage="_Inbound", DbType="NVarChar(64)")]
+		public string Inbound
+		{
+			get
+			{
+				return this._Inbound;
+			}
+			set
+			{
+				if ((this._Inbound != value))
+				{
+					this.OnInboundChanging(value);
+					this.SendPropertyChanging();
+					this._Inbound = value;
+					this.SendPropertyChanged("Inbound");
+					this.OnInboundChanged();
+				}
+			}
+		}
+		
+		[Column(Name="pincode", Storage="_Pincode", DbType="NVarChar(64)")]
+		public string Pincode
+		{
+			get
+			{
+				return this._Pincode;
+			}
+			set
+			{
+				if ((this._Pincode != value))
+				{
+					this.OnPincodeChanging(value);
+					this.SendPropertyChanging();
+					this._Pincode = value;
+					this.SendPropertyChanged("Pincode");
+					this.OnPincodeChanged();
 				}
 			}
 		}

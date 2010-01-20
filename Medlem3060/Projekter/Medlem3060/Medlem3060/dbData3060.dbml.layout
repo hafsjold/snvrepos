@@ -135,7 +135,7 @@
         <classShapeMoniker Id="a6d3ea79-d866-4114-b3fe-b32afa91f89d" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4.5 : 2.038271484375); (3.03125 : 2.038271484375); (3.03125 : 3.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(4.5 : 1.95609781901042); (3.03125 : 1.95609781901042); (3.03125 : 3.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DbData3060/Tblpbsforsendelse/Tblpbsforsendelse_Tbltilpbs" />
       <nodes>
         <classShapeMoniker Id="220d47c1-50a6-477e-94ea-65d0ba610cfb" />
@@ -161,7 +161,7 @@
         <classShapeMoniker Id="6c69da5f-7dd0-4a99-8d61-ce1a4f799b3f" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.4375 : 14.3461531575521); (2.4375 : 15.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.4375 : 14.3461531575521); (2.4375 : 15.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DbData3060/TempKontforslag/TempKontforslag_TempKontforslaglinie" />
       <nodes>
         <classShapeMoniker Id="5b6891d2-2e6f-4561-ad36-7287cc194326" />
@@ -172,6 +172,12 @@
       <DataClassMoniker Name="/DbData3060/TblSysinfo" />
       <nestedChildShapes>
         <elementListCompartment Id="2f7df87e-9511-48de-a16d-4acb8348d7a7" absoluteBounds="0.515, 0.96, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bde7b5ca-80ff-49f4-af80-ed74d44111f6" absoluteBounds="7.5, 15, 2, 1.75354248046875">
+      <DataClassMoniker Name="/DbData3060/Tblsftp" />
+      <nestedChildShapes>
+        <elementListCompartment Id="543d8d1e-e5db-45f8-a97a-82502346c212" absoluteBounds="7.5150000000000006, 15.46, 1.9700000000000002, 1.19354248046875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

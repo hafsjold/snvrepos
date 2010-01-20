@@ -448,7 +448,26 @@ namespace nsPuls3060
                     object x = e;
                 }
             }
-            return true;
+
+            if (dbVersion == "2.1.0.0")
+            {
+                try
+                {
+                    //version "2.1.0.0" --> "2.2.0.0" opgradering af SqlDatabasen
+                    //Tilføj et ny tabel [tblsftp]  til SqlDatabasen 
+                    Program.dbData3060.ExecuteCommand("CREATE TABLE [tblsftp] ([id] int NOT NULL  IDENTITY (1,1), [host] nvarchar(64) NULL, [user] nvarchar(16) NULL, [outbound] nvarchar(64) NULL, [inbound] nvarchar(64) NULL, [pincode] nvarchar(64) NULL);");
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tblsftp] ADD PRIMARY KEY ([id]);");
+                    Program.dbData3060.ExecuteCommand("CREATE UNIQUE INDEX [UQ__tblsftp__00000000000006E4] ON [tblsftp] ([id] ASC);");
+
+                    Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.2.0.0'  WHERE [vkey] = 'VERSION';");
+                    Program.dbData3060.ExecuteCommand("INSERT INTO [tblsftp] ([host],[user],[outbound],[inbound],[pincode]) VALUES (N'194.239.133.111',N'LOEBEKLU',N'/LOEBEKLU',N'/LOEBEKLU',N'1234');");
+                    Program.dbData3060.ExecuteCommand("INSERT INTO [tblsftp] ([host],[user],[outbound],[inbound],[pincode]) VALUES (N'194.239.133.112',N'TOEBEKLU',N'/TOEBEKLU',N'/TOEBEKLU',N'1234');");
+                }
+                catch (System.Data.SqlServerCe.SqlCeException e)
+                {
+                    object x = e;
+                }
+            } return true;
         }
     }
 
