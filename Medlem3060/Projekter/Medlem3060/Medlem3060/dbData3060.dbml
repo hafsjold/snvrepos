@@ -177,11 +177,14 @@
   <Table Name="tblsftp" Member="Tblsftp">
     <Type Name="Tblsftp">
       <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="host" Member="Host" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
-      <Column Name="user" Member="User" Type="System.String" DbType="NVarChar(16)" CanBeNull="true" />
+      <Column Name="navn" Member="Navn" Type="System.String" DbType="NVarChar(64) NOT NULL" CanBeNull="false" />
+      <Column Name="host" Member="Host" Type="System.String" DbType="NVarChar(64) NOT NULL" CanBeNull="false" />
+      <Column Name="port" Member="Port" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="user" Member="User" Type="System.String" DbType="NVarChar(16) NOT NULL" CanBeNull="false" />
       <Column Name="outbound" Member="Outbound" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
       <Column Name="inbound" Member="Inbound" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
       <Column Name="pincode" Member="Pincode" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
+      <Column Name="certificate" Member="Certificate" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="tblSysinfo" Member="TblSysinfo">

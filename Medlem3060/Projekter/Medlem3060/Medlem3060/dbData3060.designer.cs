@@ -3825,7 +3825,11 @@ namespace nsPuls3060
 		
 		private int _Id;
 		
+		private string _Navn;
+		
 		private string _Host;
+		
+		private string _Port;
 		
 		private string _User;
 		
@@ -3835,14 +3839,20 @@ namespace nsPuls3060
 		
 		private string _Pincode;
 		
+		private string _Certificate;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
     partial void OnIdChanging(int value);
     partial void OnIdChanged();
+    partial void OnNavnChanging(string value);
+    partial void OnNavnChanged();
     partial void OnHostChanging(string value);
     partial void OnHostChanged();
+    partial void OnPortChanging(string value);
+    partial void OnPortChanged();
     partial void OnUserChanging(string value);
     partial void OnUserChanged();
     partial void OnOutboundChanging(string value);
@@ -3851,6 +3861,8 @@ namespace nsPuls3060
     partial void OnInboundChanged();
     partial void OnPincodeChanging(string value);
     partial void OnPincodeChanged();
+    partial void OnCertificateChanging(string value);
+    partial void OnCertificateChanged();
     #endregion
 		
 		public Tblsftp()
@@ -3878,7 +3890,27 @@ namespace nsPuls3060
 			}
 		}
 		
-		[Column(Name="host", Storage="_Host", DbType="NVarChar(64)")]
+		[Column(Name="navn", Storage="_Navn", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
+		public string Navn
+		{
+			get
+			{
+				return this._Navn;
+			}
+			set
+			{
+				if ((this._Navn != value))
+				{
+					this.OnNavnChanging(value);
+					this.SendPropertyChanging();
+					this._Navn = value;
+					this.SendPropertyChanged("Navn");
+					this.OnNavnChanged();
+				}
+			}
+		}
+		
+		[Column(Name="host", Storage="_Host", DbType="NVarChar(64) NOT NULL", CanBeNull=false)]
 		public string Host
 		{
 			get
@@ -3898,7 +3930,27 @@ namespace nsPuls3060
 			}
 		}
 		
-		[Column(Name="user", Storage="_User", DbType="NVarChar(16)")]
+		[Column(Name="port", Storage="_Port", DbType="NVarChar(5) NOT NULL", CanBeNull=false)]
+		public string Port
+		{
+			get
+			{
+				return this._Port;
+			}
+			set
+			{
+				if ((this._Port != value))
+				{
+					this.OnPortChanging(value);
+					this.SendPropertyChanging();
+					this._Port = value;
+					this.SendPropertyChanged("Port");
+					this.OnPortChanged();
+				}
+			}
+		}
+		
+		[Column(Name="user", Storage="_User", DbType="NVarChar(16) NOT NULL", CanBeNull=false)]
 		public string User
 		{
 			get
@@ -3974,6 +4026,26 @@ namespace nsPuls3060
 					this._Pincode = value;
 					this.SendPropertyChanged("Pincode");
 					this.OnPincodeChanged();
+				}
+			}
+		}
+		
+		[Column(Name="certificate", Storage="_Certificate", DbType="NVarChar(4000)")]
+		public string Certificate
+		{
+			get
+			{
+				return this._Certificate;
+			}
+			set
+			{
+				if ((this._Certificate != value))
+				{
+					this.OnCertificateChanging(value);
+					this.SendPropertyChanging();
+					this._Certificate = value;
+					this.SendPropertyChanged("Certificate");
+					this.OnCertificateChanged();
 				}
 			}
 		}
