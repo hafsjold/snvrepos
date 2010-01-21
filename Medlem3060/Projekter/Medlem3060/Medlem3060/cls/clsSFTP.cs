@@ -10,30 +10,31 @@ namespace nsPuls3060
     public class clsSFTP
     {
         private SFtp m_sftp;
-        Tblpbsfile m_rec_pbsfile;
+        private Tblpbsfile m_rec_pbsfile;
+        private Tblsftp m_rec_sftp;
 
         public clsSFTP()
         {
-            Tblsftp rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Test" select s).First();
+            m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Test" select s).First();
 
-            SFtp m_sftp = new SFtp();
+            m_sftp = new SFtp();
             bool success = m_sftp.UnlockComponent("BUUSJESSH_qKCpze49oVnG");
             if (!success) throw new Exception(m_sftp.LastErrorText);
             m_sftp.ConnectTimeoutMs = 5000;
             m_sftp.IdleTimeoutMs = 15000;
-            success = m_sftp.Connect(rec_sftp.Host, int.Parse(rec_sftp.Port));
+            success = m_sftp.Connect(m_rec_sftp.Host, int.Parse(m_rec_sftp.Port));
             if (!success) throw new Exception(m_sftp.LastErrorText);
 
             Chilkat.SshKey key = new Chilkat.SshKey();
 
-            string privKey = rec_sftp.Certificate;
+            string privKey = m_rec_sftp.Certificate;
             if (privKey == null) throw new Exception(m_sftp.LastErrorText);
 
-            key.Password = rec_sftp.Pincode;
+            key.Password = m_rec_sftp.Pincode;
             success = key.FromOpenSshPrivateKey(privKey);
             if (!success) throw new Exception(m_sftp.LastErrorText);
 
-            success = m_sftp.AuthenticatePk(rec_sftp.User, key);
+            success = m_sftp.AuthenticatePk(m_rec_sftp.User, key);
             if (!success) throw new Exception(m_sftp.LastErrorText);
 
             //  After authenticating, the SFTP subsystem must be initialized:
@@ -44,7 +45,7 @@ namespace nsPuls3060
         
         public int ReadFraSFtp(){
             //  Open a directory on the server...
-            string handle = m_sftp.OpenDir("..");
+            string handle = m_sftp.OpenDir(".");
             if (handle == null) throw new Exception(m_sftp.LastErrorText);
 
             //  Download the directory listing:
@@ -67,7 +68,7 @@ namespace nsPuls3060
                     recPbsnetdir rec = new recPbsnetdir
                     {
                         Type = 8,
-                        Path = ".",
+                        Path = m_rec_sftp.Outbound,
                         Filename = fileObj.Filename,
                         Size = (int)fileObj.Size32,
                         Atime = fileObj.LastAccessTime,
@@ -121,7 +122,7 @@ namespace nsPuls3060
 
                     string charset = "ansi";
                     int offset32 = 0;
-                    string fileContents;
+                    string fileContents = null;
                     fileContents = m_sftp.ReadFileText32(handle, offset32, numBytes, charset);
                     if (fileContents == null) throw new Exception(m_sftp.LastErrorText);
 
