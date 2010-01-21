@@ -14,7 +14,7 @@ namespace nsPuls3060
 
         public clsSFTP()
         {
-            Tblsftp rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Produktion" select s).First();
+            Tblsftp rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Test" select s).First();
 
             SFtp m_sftp = new SFtp();
             bool success = m_sftp.UnlockComponent("BUUSJESSH_qKCpze49oVnG");
