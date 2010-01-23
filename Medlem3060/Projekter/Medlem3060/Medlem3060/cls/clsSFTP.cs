@@ -18,7 +18,7 @@ namespace nsPuls3060
             m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Test" select s).First();
 
             m_sftp = new SFtp();
-            bool success = m_sftp.UnlockComponent("BUUSJESSH_qKCpze49oVnG");
+            bool success = m_sftp.UnlockComponent("HAFSJOSSH_6pspJCMP1QnW");
             if (!success) throw new Exception(m_sftp.LastErrorText);
             m_sftp.ConnectTimeoutMs = 5000;
             m_sftp.IdleTimeoutMs = 15000;
@@ -120,13 +120,14 @@ namespace nsPuls3060
                     int numBytes = (int)rec_pbsnetdir.Size;
                     if (numBytes < 0) throw new Exception(m_sftp.LastErrorText);
 
-                    string charset = "ansi";
-                    int offset32 = 0;
-                    string fileContents = null;
-                    fileContents = m_sftp.ReadFileText32(handle, offset32, numBytes, charset);
-                    if (fileContents == null) throw new Exception(m_sftp.LastErrorText);
-
-                    string[] lines = fileContents.Split('\n');
+                    byte[] b_data = null;
+                    b_data = m_sftp.ReadFileBytes(handle, numBytes);
+                    if (b_data == null) throw new Exception(m_sftp.LastErrorText);
+                    sendfile(rec_pbsnetdir.Filename, b_data);
+                    char[] c_data = System.Text.Encoding.GetEncoding("windows-1252").GetString(b_data).ToCharArray();
+                    string filecontens = new string(c_data);
+                    
+                    string[] lines = filecontens.Split('\n');
                     string ln = null;
                     int seqnr = 0;
                     for (int idx = 0; seqnr < lines.Count(); idx++)
@@ -152,6 +153,38 @@ namespace nsPuls3060
             }
             Program.dbData3060.SubmitChanges();
             return AntalFiler;
+        }
+
+        public void sendfile(string filename, byte[] data)
+        {
+            string local_filename = filename.Replace('.', '_') + ".txt";
+            Chilkat.MailMan mailman = new Chilkat.MailMan();
+            bool success;
+            success = mailman.UnlockComponent("HAFSJOMAILQ_9QYSMgP0oR1h");
+            if (success != true) throw new Exception(mailman.LastErrorText);
+
+            //  Use the GMail SMTP server
+            mailman.SmtpHost = "smtp.gmail.com";
+            mailman.SmtpPort = 465;
+            mailman.SmtpSsl = true;
+
+            //  Set the SMTP login/password.
+            mailman.SmtpUsername = "kasserer.puls3060@gmail.com";
+            mailman.SmtpPassword = "n4vWYkAKsfRFcuLW";
+
+            //  Create a new email object
+            Chilkat.Email email = new Chilkat.Email();
+
+            email.Subject = local_filename + " fra PBS";
+            email.Body = local_filename + " fra PBS"; ;
+            email.From = "kasserer <kasserer.puls3060@gmail.com>";
+            email.AddTo("kasserer", "kasserer.puls3060@gmail.com");
+            email.AddDataAttachment2(local_filename, data, "text/plain");
+            email.UnzipAttachments();
+
+            success = mailman.SendEmail(email);
+            if (success != true) throw new Exception(email.LastErrorText);
+
         }
     }
 

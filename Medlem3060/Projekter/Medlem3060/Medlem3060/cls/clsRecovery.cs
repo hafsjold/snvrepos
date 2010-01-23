@@ -209,7 +209,6 @@ namespace nsPuls3060
             byte[] bData = File.ReadAllBytes(fi.FullName);
             foreach (byte b in md5.ComputeHash(bData)) sb.Append(b.ToString("x2").ToLower());
 
-
             TblContent rec_Content;
             try
             {
@@ -379,6 +378,26 @@ namespace nsPuls3060
             }
             streamOut.Flush();
             return streamOut.ToArray();
+        }
+
+        private byte[] ZipCompressStream2(byte[] bData, string fileName, DateTime fileDate)
+        {
+            Chilkat.Zip zip = new Chilkat.Zip();
+            zip.UnlockComponent("HAFSJOZIP_5KkXdE9n9Zpu");
+            zip.NewZip("notUsed.zip");
+            Chilkat.ZipEntry entry = null;
+            entry = zip.AppendData(fileName, bData);
+            entry.FileDateTime = fileDate;
+            return zip.WriteToMemory();
+        }
+
+        private byte[] ZipUncompressStream2(byte[] bData)
+        {
+            Chilkat.Zip zip = new Chilkat.Zip();
+            zip.UnlockComponent("HAFSJOZIP_5KkXdE9n9Zpu");
+            bool success = zip.OpenFromMemory(bData);
+            Chilkat.ZipEntry entry = zip.FirstEntry();
+            return entry.Inflate();
         }
     }
 }
