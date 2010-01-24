@@ -366,10 +366,91 @@ namespace nsPuls3060
                 }
             }
             Update_lvwLog(tblMedlem_nr);
-            
+
             this.panelDisplay.Visible = true;
             this.panelUpdate.Visible = false;
             this.Navn.Focus();
+        }
+
+        private void I_Postnr_Leave(object sender, EventArgs e)
+        {
+            if (I_Postnr.Text.Length == 4)
+            {
+                try
+                {
+                    var medlem = (from i in Program.karMedlemmer where i.Postnr == I_Postnr.Text select i).First();
+                    I_Bynavn.Text = medlem.Bynavn;
+                }
+                catch (Exception)
+                {
+                }
+            }
+        }
+
+        private void U_Postnr_Leave(object sender, EventArgs e)
+        {
+            if (U_Postnr.Text.Length == 4)
+            {
+                try
+                {
+                    var medlem = (from i in Program.karMedlemmer where i.Postnr == U_Postnr.Text select i).First();
+                    U_Bynavn.Text = medlem.Bynavn;
+                }
+                catch (Exception)
+                {
+                }
+            }
+        }
+
+        private void I_Navn_Leave(object sender, EventArgs e)
+        {
+            if (I_Kaldenavn.Text.Length == 0)
+            {
+                string[] navne = I_Navn.Text.Split(' ');
+                for (var i = 0; i < navne.Length - 1; i++)
+                {
+                    if (i > 0)
+                    {
+                        I_Kaldenavn.Text += " " + navne[i];
+                    }
+                    else
+                    {
+                        I_Kaldenavn.Text = navne[i];
+                    }
+                }
+            }
+        }
+
+        private void U_Navn_Leave(object sender, EventArgs e)
+        {
+            string[] navne = U_Navn.Text.Split(' ');
+            for (var i = 0; i < navne.Length - 1; i++)
+            {
+                if (i > 0)
+                {
+                    U_Kaldenavn.Text += " " + navne[i];
+                }
+                else
+                {
+                    U_Kaldenavn.Text = navne[i];
+                }
+            }
+        }
+
+        private void I_DT_FodtDato_Enter(object sender, EventArgs e)
+        {
+            if (I_DT_FodtDato.Value == null) 
+            {
+                I_DT_FodtDato.Value = new DateTime(1970, 01, 01);
+            }
+        }
+
+        private void U_DT_FodtDato_Enter(object sender, EventArgs e)
+        {
+            if (U_DT_FodtDato.Value == null)
+            {
+                U_DT_FodtDato.Value = new DateTime(1970, 01, 01);
+            }
         }
 
     }

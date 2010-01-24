@@ -125,9 +125,11 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
-            clsSFTP objSFTP = new clsSFTP();
+            //clsRecovery objRecovery = new clsRecovery();
+            //objRecovery.TestRecovery();
+            //clsSFTP objSFTP = new clsSFTP();
             //objSFTP.sendfile();
-            objSFTP.ReadFraSFtp();
+            //objSFTP.ReadFraSFtp();
             //clsPbs objPbs = new clsPbs();
             //clsPbs601 objPbs601 = new clsPbs601();
             //clsPbs602 objPbs602 = new clsPbs602();

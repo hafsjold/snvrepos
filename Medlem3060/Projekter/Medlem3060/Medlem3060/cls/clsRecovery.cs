@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-using ICSharpCode.SharpZipLib.Zip;
+//using ICSharpCode.SharpZipLib.Zip;
 using System.Security.Cryptography;
 
 namespace nsPuls3060
@@ -66,8 +66,8 @@ namespace nsPuls3060
 
         public void TestRecovery()
         {
-            m_dbRecovery = new DbRecovery3060(@"C:\Documents and Settings\mha\Dokumenter\dbRecovery3060Ny.sdf");
-            m_dbRecovery.CreateDatabase();
+            m_dbRecovery = new DbRecovery3060(@"C:\Documents and Settings\mha\Dokumenter\SummaSummarum\dbRecovery3060.sdf");
+            //m_dbRecovery.CreateDatabase();
             //TblRecoveryPoint rec_RceoveryPoint = setupRecoveryPoint();
             //createRecoveryPoint(rec_RceoveryPoint);
 
@@ -222,7 +222,7 @@ namespace nsPuls3060
                     Size = fi.Length,
                     Mtime = fi.LastWriteTime,
                     Atime = fi.LastAccessTime,
-                    Data = ZipCompressStream(bData, fi.Name, fi.LastWriteTime)
+                    Data = ZipCompressStream2(bData, fi.Name, fi.LastWriteTime)
                 };
                 rec_File.TblContent.Add(rec_Content);
                 m_dbRecovery.SubmitChanges();
@@ -238,7 +238,7 @@ namespace nsPuls3060
 
         private TblRecoveryPoint setupRestorePoint()
         {
-            TblRecoveryPoint rec_RestorePoint = (from r in m_dbRecovery.TblRecoveryPoint where r.Name == "MHATest" select r).First();
+            TblRecoveryPoint rec_RestorePoint = (from r in m_dbRecovery.TblRecoveryPoint where r.Name == "4 PULS 3060 - 2010" select r).First();
             var RestorePointLines = from l in rec_RestorePoint.TblRecoveryPointLine select l;
             foreach (TblRecoveryPointLine RecoveryPointLine in RestorePointLines)
             {
@@ -249,7 +249,7 @@ namespace nsPuls3060
                         break;
 
                     case @"C:\Documents and Settings\mha\Dokumenter\Medlem3060\Databaser\SQLCompact\dbData3060.sdf":
-                        RecoveryPointLine.Restorepath = @"C:\Documents and Settings\mha\Dokumenter\dbData3060.sdf";
+                        RecoveryPointLine.Restorepath = @"C:\Documents and Settings\mha\Dokumenter\dbData3060XYZ.sdf";
                         break;
 
                     default:
@@ -321,7 +321,7 @@ namespace nsPuls3060
                     RestorePathOnly = fil.RestorePath;
                 }
                 string RestorePathAndName = RestorePathOnly + @"\" + RestoreFileName;
-                File.WriteAllBytes(RestorePathAndName, ZipUncompressStream(fil.Data.ToArray()));
+                File.WriteAllBytes(RestorePathAndName, ZipUncompressStream2(fil.Data.ToArray()));
                 FileInfo nfi = new FileInfo(RestorePathAndName);
                 nfi.LastWriteTime = fil.Mtime;
                 nfi.LastAccessTime = fil.Atime;
@@ -344,6 +344,7 @@ namespace nsPuls3060
             m_dbRecovery.SubmitChanges();
         }
 
+        /*
         private byte[] ZipCompressStream(byte[] bData, string fileName, DateTime fileDate)
         {
             MemoryStream streamIm = new MemoryStream(bData);
@@ -360,7 +361,7 @@ namespace nsPuls3060
             zipOut.Close();
             return streamOut.ToArray();
         }
-
+        
         private byte[] ZipUncompressStream(byte[] bData)
         {
             MemoryStream streamIn = new MemoryStream(bData);
@@ -379,6 +380,7 @@ namespace nsPuls3060
             streamOut.Flush();
             return streamOut.ToArray();
         }
+        */
 
         private byte[] ZipCompressStream2(byte[] bData, string fileName, DateTime fileDate)
         {
