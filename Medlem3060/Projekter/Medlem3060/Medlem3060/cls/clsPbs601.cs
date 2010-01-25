@@ -318,6 +318,48 @@ namespace nsPuls3060
                 rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
                 rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
 
+                // Split adresse i 2 felter hvis længde > 35
+                string rstdeb_Adresse1 = null;
+                string rstdeb_Adresse2 = null;
+                bool bStart_Adresse1 = true;
+                bool bStart_Adresse2 = true;
+                if (rstdeb.Adresse.Length <= 35)
+                {
+                    rstdeb_Adresse1 = rstdeb.Adresse;
+                }
+                else
+                {
+                    string[] words = rstdeb.Adresse.Split(' ');
+                    for (var i = 0; i < words.Length; i++) 
+                    {
+                        if (bStart_Adresse1 == true)
+                        {
+                            rstdeb_Adresse1 = words[i];
+                            bStart_Adresse1 = false;
+                        }
+                        else 
+                        {
+                            if ((rstdeb_Adresse1.Length + 1 + words[i].Length) <= 35)
+                            {
+                                rstdeb_Adresse1 += " " + words[i];
+                            }
+                            else
+                            {
+                                if (bStart_Adresse2 == true)
+                                {
+                                    rstdeb_Adresse2 = words[i];
+                                    bStart_Adresse2 = false;
+                                }
+                                else
+                                {
+                                    rstdeb_Adresse2 += " " + words[i];
+                                }
+                            }
+                        }
+                    
+                    }
+                }
+
                 // -- Debitoradresse 1/adresse 2
                 // - rstkrd.Sektionnr -
                 // - rstkrd.Pbsnr     - PBS-nr.: Kreditors PBS-nummer
@@ -327,11 +369,29 @@ namespace nsPuls3060
                 // - rstdeb.Kundenr   - Kundenr.: Debitors kundenummer hos kreditor
                 // - 0                - Aftalenr.: 000000000 eller 999999999
                 // - rstdeb.Adresse   - Adresse 1: Adresselinie 1
-                rec = write022(rstkrd.Sektionnr, rstkrd.Pbsnr, "0240", 2, rstkrd.Debgrpnr, rstdeb.Kundenr.ToString(), 0, rstdeb.Adresse);
+                rec = write022(rstkrd.Sektionnr, rstkrd.Pbsnr, "0240", 2, rstkrd.Debgrpnr, rstdeb.Kundenr.ToString(), 0, rstdeb_Adresse1);
                 antal022++;
                 antal022tot++;
                 rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
                 rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+
+                if (rstdeb_Adresse2.Length > 0)
+                {
+                    // -- Debitoradresse 1/adresse 3
+                    // - rstkrd.Sektionnr -
+                    // - rstkrd.Pbsnr     - PBS-nr.: Kreditors PBS-nummer
+                    // - "0240"           - Transkode: 0240 (Navn/adresse på debitor)
+                    // - 2                - Recordnr.: 002
+                    // - rstkrd.Debgrpnr  - Debitorgruppenr.: Debitorgruppenummer
+                    // - rstdeb.Kundenr   - Kundenr.: Debitors kundenummer hos kreditor
+                    // - 0                - Aftalenr.: 000000000 eller 999999999
+                    // - rstdeb.Adresse   - Adresse 1: Adresselinie 1
+                    rec = write022(rstkrd.Sektionnr, rstkrd.Pbsnr, "0240", 3, rstkrd.Debgrpnr, rstdeb.Kundenr.ToString(), 0, rstdeb_Adresse2);
+                    antal022++;
+                    antal022tot++;
+                    rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
+                    rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+                }
 
                 // -- Debitorpostnummer
                 // - rstkrd.Sektionnr -
