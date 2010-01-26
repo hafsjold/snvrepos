@@ -125,6 +125,9 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
+
+            clsGoogle objGoogle = new clsGoogle();
+            objGoogle.test();
             //clsRecovery objRecovery = new clsRecovery();
             //objRecovery.TestRecovery();
             //clsSFTP objSFTP = new clsSFTP();
