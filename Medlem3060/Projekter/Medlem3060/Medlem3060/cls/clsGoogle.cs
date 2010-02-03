@@ -37,8 +37,7 @@ namespace nsPuls3060
                 
                 }
             }
-
-        }
+                    }
 
         private static void addMedlem(string p_navn, string p_email)
         {
@@ -53,6 +52,8 @@ namespace nsPuls3060
             GroupMembership gm = new GroupMembership();
             gm.HRef = HRefMedlem;
             newContact.GroupMembership.Add(gm);
+
+            
 
             Uri feedUri = new Uri(ContactsQuery.CreateContactsUri("default"));
             Contact createdContact = cr.Insert(feedUri, newContact);
