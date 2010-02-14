@@ -123,7 +123,7 @@ namespace nsPuls3060
                     byte[] b_data = null;
                     b_data = m_sftp.ReadFileBytes(handle, numBytes);
                     if (b_data == null) throw new Exception(m_sftp.LastErrorText);
-                    sendfile(rec_pbsnetdir.Filename, b_data);
+                    sendAttachedFile(rec_pbsnetdir.Filename, b_data);
                     char[] c_data = System.Text.Encoding.GetEncoding("windows-1252").GetString(b_data).ToCharArray();
                     string filecontens = new string(c_data);
                     
@@ -155,7 +155,7 @@ namespace nsPuls3060
             return AntalFiler;
         }
 
-        public void sendfile(string filename, byte[] data)
+        private void sendAttachedFile(string filename, byte[] data)
         {
             string local_filename = filename.Replace('.', '_') + ".txt";
             Chilkat.MailMan mailman = new Chilkat.MailMan();

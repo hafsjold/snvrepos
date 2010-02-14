@@ -126,12 +126,11 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
-            clsGoogle objGoogle = new clsGoogle();
-            objGoogle.test();
+            //clsGoogle objGoogle = new clsGoogle();
+            //objGoogle.test();
             //clsRecovery objRecovery = new clsRecovery();
             //objRecovery.TestRecovery();
             //clsSFTP objSFTP = new clsSFTP();
-            //objSFTP.sendfile();
             //objSFTP.ReadFraSFtp();
             //clsPbs objPbs = new clsPbs();
             //clsPbs601 objPbs601 = new clsPbs601();
@@ -371,6 +370,7 @@ namespace nsPuls3060
                         {
                             col++;
                             string Name = property.Name;
+                            //string NamePropertyType = property.GetValue(m, null).GetType().ToString();
                             oSheet.Cells[row, col] = property.GetValue(m, null);
                             if (row == 2)
                             {
@@ -406,6 +406,12 @@ namespace nsPuls3060
                     oRng.IndentLevel = 0;
                     oRng.ShrinkToFit = false;
                     oRng.MergeCells = false;
+
+                    oRng = oSheet.get_Range("K2", "K1024");
+                    oRng.NumberFormat = "dd-mm-yyyy";
+
+                    oRng = oSheet.get_Range("M2", "Q1024");
+                    oRng.NumberFormat = "dd-mm-yyyy";
 
                     oSheet.Cells.EntireColumn.AutoFit();
 
