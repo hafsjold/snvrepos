@@ -375,7 +375,7 @@ namespace nsPuls3060
                 rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
                 rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
 
-                if (rstdeb_Adresse2.Length > 0)
+                if (!bStart_Adresse2)
                 {
                     // -- Debitoradresse 1/adresse 3
                     // - rstkrd.Sektionnr -
