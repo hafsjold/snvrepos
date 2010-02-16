@@ -46,6 +46,8 @@
             this.dsMedlem = new nsPuls3060.dsMedlem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panelAdd = new System.Windows.Forms.Panel();
+            this.I_DT_FodtDato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
+            this.I_DT_Indmeldelsesdato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
             this.cmdSave_I_Record = new System.Windows.Forms.Button();
             this.cmdCancel_I_Record = new System.Windows.Forms.Button();
             this.I_Bynavn = new System.Windows.Forms.TextBox();
@@ -72,6 +74,8 @@
             this.label_I_Nr = new System.Windows.Forms.Label();
             this.panelUpdate = new System.Windows.Forms.Panel();
             this.U_NyAktivitet = new System.Windows.Forms.ComboBox();
+            this.U_DT_NyAktivitetDato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
+            this.U_DT_FodtDato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
             this.cmdSave_U_Record = new System.Windows.Forms.Button();
             this.cmdCancel_U_Record = new System.Windows.Forms.Button();
             this.U_Bynavn = new System.Windows.Forms.TextBox();
@@ -135,10 +139,6 @@
             this.bindingNavigatorAddUpdateItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.I_DT_FodtDato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
-            this.I_DT_Indmeldelsesdato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
-            this.U_DT_NyAktivitetDato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
-            this.U_DT_FodtDato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kartotekBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsMedlem)).BeginInit();
@@ -176,7 +176,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 20;
-            this.dataGridView1.Size = new System.Drawing.Size(516, 576);
+            this.dataGridView1.Size = new System.Drawing.Size(516, 1173);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.TabStop = false;
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
@@ -287,7 +287,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 576);
+            this.splitContainer1.Size = new System.Drawing.Size(800, 1173);
             this.splitContainer1.SplitterDistance = global::nsPuls3060.Properties.Settings.Default.frmMedlemmerSplitteDist;
             this.splitContainer1.TabIndex = 0;
             this.splitContainer1.TabStop = false;
@@ -325,6 +325,25 @@
             this.panelAdd.Size = new System.Drawing.Size(258, 336);
             this.panelAdd.TabIndex = 1;
             this.panelAdd.Visible = false;
+            // 
+            // I_DT_FodtDato
+            // 
+            this.I_DT_FodtDato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.I_DT_FodtDato.Location = new System.Drawing.Point(91, 241);
+            this.I_DT_FodtDato.Name = "I_DT_FodtDato";
+            this.I_DT_FodtDato.Size = new System.Drawing.Size(78, 20);
+            this.I_DT_FodtDato.TabIndex = 18;
+            this.I_DT_FodtDato.Value = new System.DateTime(2010, 1, 12, 8, 47, 59, 886);
+            this.I_DT_FodtDato.Enter += new System.EventHandler(this.I_DT_FodtDato_Enter);
+            // 
+            // I_DT_Indmeldelsesdato
+            // 
+            this.I_DT_Indmeldelsesdato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.I_DT_Indmeldelsesdato.Location = new System.Drawing.Point(91, 267);
+            this.I_DT_Indmeldelsesdato.Name = "I_DT_Indmeldelsesdato";
+            this.I_DT_Indmeldelsesdato.Size = new System.Drawing.Size(78, 20);
+            this.I_DT_Indmeldelsesdato.TabIndex = 18;
+            this.I_DT_Indmeldelsesdato.Value = new System.DateTime(2010, 1, 12, 8, 47, 59, 886);
             // 
             // cmdSave_I_Record
             // 
@@ -575,6 +594,25 @@
             this.U_NyAktivitet.Name = "U_NyAktivitet";
             this.U_NyAktivitet.Size = new System.Drawing.Size(148, 21);
             this.U_NyAktivitet.TabIndex = 19;
+            // 
+            // U_DT_NyAktivitetDato
+            // 
+            this.U_DT_NyAktivitetDato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.U_DT_NyAktivitetDato.Location = new System.Drawing.Point(170, 290);
+            this.U_DT_NyAktivitetDato.Name = "U_DT_NyAktivitetDato";
+            this.U_DT_NyAktivitetDato.Size = new System.Drawing.Size(78, 20);
+            this.U_DT_NyAktivitetDato.TabIndex = 18;
+            this.U_DT_NyAktivitetDato.Value = new System.DateTime(2010, 1, 12, 8, 47, 59, 886);
+            // 
+            // U_DT_FodtDato
+            // 
+            this.U_DT_FodtDato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.U_DT_FodtDato.Location = new System.Drawing.Point(91, 242);
+            this.U_DT_FodtDato.Name = "U_DT_FodtDato";
+            this.U_DT_FodtDato.Size = new System.Drawing.Size(78, 20);
+            this.U_DT_FodtDato.TabIndex = 18;
+            this.U_DT_FodtDato.Value = new System.DateTime(2010, 1, 12, 8, 47, 59, 886);
+            this.U_DT_FodtDato.Enter += new System.EventHandler(this.U_DT_FodtDato_Enter);
             // 
             // cmdSave_U_Record
             // 
@@ -1169,44 +1207,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // I_DT_FodtDato
-            // 
-            this.I_DT_FodtDato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.I_DT_FodtDato.Location = new System.Drawing.Point(91, 241);
-            this.I_DT_FodtDato.Name = "I_DT_FodtDato";
-            this.I_DT_FodtDato.Size = new System.Drawing.Size(78, 20);
-            this.I_DT_FodtDato.TabIndex = 18;
-            this.I_DT_FodtDato.Value = new System.DateTime(2010, 1, 12, 8, 47, 59, 886);
-            this.I_DT_FodtDato.Enter += new System.EventHandler(this.I_DT_FodtDato_Enter);
-            // 
-            // I_DT_Indmeldelsesdato
-            // 
-            this.I_DT_Indmeldelsesdato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.I_DT_Indmeldelsesdato.Location = new System.Drawing.Point(91, 267);
-            this.I_DT_Indmeldelsesdato.Name = "I_DT_Indmeldelsesdato";
-            this.I_DT_Indmeldelsesdato.Size = new System.Drawing.Size(78, 20);
-            this.I_DT_Indmeldelsesdato.TabIndex = 18;
-            this.I_DT_Indmeldelsesdato.Value = new System.DateTime(2010, 1, 12, 8, 47, 59, 886);
-            // 
-            // U_DT_NyAktivitetDato
-            // 
-            this.U_DT_NyAktivitetDato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.U_DT_NyAktivitetDato.Location = new System.Drawing.Point(170, 290);
-            this.U_DT_NyAktivitetDato.Name = "U_DT_NyAktivitetDato";
-            this.U_DT_NyAktivitetDato.Size = new System.Drawing.Size(78, 20);
-            this.U_DT_NyAktivitetDato.TabIndex = 18;
-            this.U_DT_NyAktivitetDato.Value = new System.DateTime(2010, 1, 12, 8, 47, 59, 886);
-            // 
-            // U_DT_FodtDato
-            // 
-            this.U_DT_FodtDato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.U_DT_FodtDato.Location = new System.Drawing.Point(91, 242);
-            this.U_DT_FodtDato.Name = "U_DT_FodtDato";
-            this.U_DT_FodtDato.Size = new System.Drawing.Size(78, 20);
-            this.U_DT_FodtDato.TabIndex = 18;
-            this.U_DT_FodtDato.Value = new System.DateTime(2010, 1, 12, 8, 47, 59, 886);
-            this.U_DT_FodtDato.Enter += new System.EventHandler(this.U_DT_FodtDato_Enter);
             // 
             // FrmMedlemmer
             // 

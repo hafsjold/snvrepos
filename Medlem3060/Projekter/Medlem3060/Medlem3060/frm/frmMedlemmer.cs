@@ -340,13 +340,13 @@ namespace nsPuls3060
                 {
                     try
                     {
-                        DateTime nu = DateTime.Now;
+                        DateTime aktdt = (DateTime)U_DT_NyAktivitetDato.Value;
                         TblMedlemLog recLog = new TblMedlemLog
                         {
                             Nr = tblMedlem_nr,
-                            Logdato = new DateTime(nu.Year, nu.Month, nu.Day),
+                            Logdato = DateTime.Now,
                             Akt_id = Akt_id,
-                            Akt_dato = (DateTime)U_DT_NyAktivitetDato.Value
+                            Akt_dato = new DateTime(aktdt.Year, aktdt.Month, aktdt.Day)
                         };
                         Program.dbData3060.TblMedlemLog.InsertOnSubmit(recLog);
                         Program.dbData3060.SubmitChanges();
