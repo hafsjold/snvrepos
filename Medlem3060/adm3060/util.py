@@ -8,39 +8,7 @@ import random
 
 COOKIE_NAME = 'adm3060_session'
 LOGIN_URL = '/login'
-LOGIN_TEMPLATE = """<html>
-<head>
-  <title>Login</title>
-</head>
-<body>
-
-<form method='%(method)s' action='%(login_url)s'
-      style='text-align:center; font: 13px sans-serif'>
-  <div style='width: 22em; margin: 1em auto;
-              text-align:left;
-              padding: 0 2em 1.25em 2em;
-              background-color: #d6e9f8;
-              border: 2px solid #67a7e3'>
-    <h3>%(login_message)s</h3>
-    <p style='padding: 0; margin: 0'>
-      <label for='account' style="width: 5em">User:</label>
-      <input name='account' type='text' value='%(account)s' id='account'/>
-    </p>
-    <p style='padding: 0; margin: 0'>
-      <label for='password' style="width: 5em">Password:</label>
-      <input name='password' type='password' id='password'/>
-    </p>
-    <p style='margin-left: 5em'>
-      <input name='action' value='Login' type='submit' id='submit-login' />
-      <input name='action' value='Logout' type='submit' id='submit-logout' />
-      <input name='continue' type='hidden' value='%(continue_url)s'/>
-    </p>
-  </div>
-</form>
-
-</body>
-</html>
-""" 
+PUBLIC_URL = ['/login', '/test']
 
 def CreateCookieData(user):
   if user:

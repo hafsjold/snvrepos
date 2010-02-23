@@ -1,7 +1,9 @@
 
-from util import COOKIE_NAME, LOGIN_URL, LOGIN_TEMPLATE, CreateCookieData, GetUserInfo, SetUserInfoCookie
+from util import COOKIE_NAME, LOGIN_URL, PUBLIC_URL, CreateCookieData, GetUserInfo, SetUserInfoCookie
 import logging
 import pprint
+from google.appengine.ext.webapp import template
+import os
 
 class LoggingMiddleware: 
 
@@ -27,16 +29,18 @@ class LoggingMiddleware:
     pprint.pprint(('REQUEST', environ), stream=errors)
 
     if userAuth != True:   
-      if environ['PATH_INFO'] != LOGIN_URL:
+      if environ['PATH_INFO'] not in PUBLIC_URL:
         #display login screen
-        template_dict = {
+        template_values = {
           'account': user,
           'login_message': 'Login',
           'method': 'post',
           'login_url': LOGIN_URL,
           'continue_url': environ['PATH_INFO'], 
         }
-        print LOGIN_TEMPLATE % template_dict
+        path = os.path.join(os.path.dirname(__file__), 'templates/login.html') 
+        print template.render(path, template_values)
+
         return
     
     """This is the RESPONSE side of the middleware"""

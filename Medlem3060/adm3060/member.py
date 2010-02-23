@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-from util import CreateCookieData, SetUserInfoCookie, LOGIN_TEMPLATE, COOKIE_NAME, LOGIN_URL
+from util import CreateCookieData, SetUserInfoCookie, COOKIE_NAME, LOGIN_URL
 from pprint import pformat
 
 from google.appengine.api import users 
@@ -59,7 +59,7 @@ class MainHandler(webapp.RequestHandler):
     #self.response.set_cookie('lastvisit', 'fredag', max_age=3600, path='/', domain='localhost', secure=True)
 
     #self.response.headers['Set-Cookie'] = 'lastvisit=fredag'
-    path = os.path.join(os.path.dirname(__file__), 'index.html') 
+    path = os.path.join(os.path.dirname(__file__), 'templates/index.html') 
     self.response.out.write(template.render(path, template_values))
     user3060 = self.request._environ['user3060'] 
     userAuth = self.request._environ['userAuth']    
@@ -96,14 +96,15 @@ class LoginHandler(webapp.RequestHandler):
   def get(self):
     user = self.request.environ['user3060']
     userAuth = self.request.environ['userAuth']
-    template_dict = {
+    template_values = {
       'account': user,
       'login_message': 'Login',
       'method': 'post',
       'login_url': LOGIN_URL,
       'continue_url': '/test', 
     }
-    self.response.out.write(LOGIN_TEMPLATE % template_dict)
+    path = os.path.join(os.path.dirname(__file__), 'templates/login.html') 
+    self.response.out.write(template.render(path, template_values))
   
   def post(self):
     user = self.request.get('account') 
