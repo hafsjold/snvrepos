@@ -8,7 +8,7 @@ import random
 
 COOKIE_NAME = 'adm3060_session'
 LOGIN_URL = '/login'
-PUBLIC_URL = ['/login', '/test']
+PUBLIC_URL = ['/login', '/nytmedlem']
 
 def CreateCookieData(user):
   if user:

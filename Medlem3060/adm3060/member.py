@@ -127,10 +127,55 @@ class LoginHandler(webapp.RequestHandler):
       self.response.headers['Set-Cookie'] = sessioncookie
       self.redirect('/')
       
+class NytmedlemHandler(webapp.RequestHandler):
+  def get(self):
+    template_values = {
+      'kontingent_fra_dato': '1. januar 2010',
+      'kontingent_til_dato': '31. december 2010',
+      'kontingent': '150,00',
+      'Fornavn': '',
+      'Efternavn': '',
+      'Adresse': '',
+      'Postnr': '',
+      'Bynavn': '',
+      'Telefonnr': '',
+      'Email': '',
+      'Fodelsdato': '',
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/nytmedlem.html') 
+    self.response.out.write(template.render(path, template_values))
+    
+  def post(self):
+    Fornavn = self.request.get('Fornavn') 
+    Efternavn = self.request.get('Efternavn')
+    Adresse = self.request.get('Adresse')
+    Postnr = self.request.get('Postnr')
+    Bynavn = self.request.get('Bynavn')
+    Telefonnr = self.request.get('Telefonnr')
+    Email = self.request.get('Email')
+    Fodelsdato = self.request.get('Fodelsdato')
+    logging.info('Fornavn: %s, Efternavn: %s' % (Fornavn,Efternavn))
+    template_values = {
+      'kontingent_fra_dato': '1. januar 2010',
+      'kontingent_til_dato': '31. december 2010',
+      'kontingent': '150,00',
+      'Fornavn': Fornavn,
+      'Efternavn': Efternavn,
+      'Adresse': Adresse,
+      'Postnr': Postnr,
+      'Bynavn': Bynavn,
+      'Telefonnr': Telefonnr,
+      'Email': Email,
+      'Fodelsdato': Fodelsdato,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/nytmedlem.html') 
+    self.response.out.write(template.render(path, template_values))
+      
 def main():
   logging.getLogger().setLevel(logging.DEBUG) 
   application = webapp.WSGIApplication([('/', MainHandler),
                                         (LOGIN_URL, LoginHandler),
+                                        ('/nytmedlem', NytmedlemHandler),
                                         ('/test', TestHandler)],
                                        debug=True)
   util.run_wsgi_app(application)
