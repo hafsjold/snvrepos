@@ -103,9 +103,6 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="cls\clsRecovery.cs" />
-    <Compile Include="dbHafsjoldData.cs">
-      <DependentUpon>dbHafsjoldData.dbml</DependentUpon>
-    </Compile>
     <Compile Include="dbHafsjoldData.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -156,11 +153,11 @@
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="dbHafsjoldData.dbml.layout">
-      <DependentUpon>dbHafsjoldData.dbml</DependentUpon>
-    </None>
     <None Include="dbRecoveryHafsjoldData.dbml.layout">
       <DependentUpon>dbRecoveryHafsjoldData.dbml</DependentUpon>
+    </None>
+    <None Include="dbHafsjoldData.dbml.layout">
+      <DependentUpon>dbHafsjoldData.dbml</DependentUpon>
     </None>
     <EmbeddedResource Include="frm\BetterDialog.resx">
       <DependentUpon>BetterDialog.cs</DependentUpon>

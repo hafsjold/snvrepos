@@ -13,7 +13,8 @@ namespace nsHafsjoldData.Properties {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "9.0.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
+    {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
         
@@ -25,32 +26,7 @@ namespace nsHafsjoldData.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("31")]
-        public int BetalingsFristiDageGamleMedlemmer {
-            get {
-                return ((int)(this["BetalingsFristiDageGamleMedlemmer"]));
-            }
-            set {
-                this["BetalingsFristiDageGamleMedlemmer"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("61")]
-        public int BetalingsFristiDageNyeMedlemmer {
-            get {
-                return ((int)(this["BetalingsFristiDageNyeMedlemmer"]));
-            }
-            set {
-                this["BetalingsFristiDageNyeMedlemmer"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Documents and Settings\\mha\\Dokumenter\\HafsjoldData\\Databaser\\dbHafsjoldData.sd" +
-            "f")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Documents and Settings\\mha\\Dokumenter\\HafsjoldData\\Databaser\\dbHafsjoldData.sdf")]
         public string DataBasePath {
             get {
                 return ((string)(this["DataBasePath"]));
@@ -81,66 +57,6 @@ namespace nsHafsjoldData.Properties {
             }
             set {
                 this["frmMainSize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
-        public global::System.Drawing.Point frmMedlemmerPoint {
-            get {
-                return ((global::System.Drawing.Point)(this["frmMedlemmerPoint"]));
-            }
-            set {
-                this["frmMedlemmerPoint"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("800, 600")]
-        public global::System.Drawing.Size frmMedlemmerSize {
-            get {
-                return ((global::System.Drawing.Size)(this["frmMedlemmerSize"]));
-            }
-            set {
-                this["frmMedlemmerSize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10, 10")]
-        public global::System.Drawing.Point frmKreditorPoint {
-            get {
-                return ((global::System.Drawing.Point)(this["frmKreditorPoint"]));
-            }
-            set {
-                this["frmKreditorPoint"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("304, 300")]
-        public global::System.Drawing.Size frmKreditorSize {
-            get {
-                return ((global::System.Drawing.Size)(this["frmKreditorSize"]));
-            }
-            set {
-                this["frmKreditorSize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
-        public global::System.Windows.Forms.FormWindowState frmKreditorState {
-            get {
-                return ((global::System.Windows.Forms.FormWindowState)(this["frmKreditorState"]));
-            }
-            set {
-                this["frmKreditorState"] = value;
             }
         }
         
@@ -177,66 +93,6 @@ namespace nsHafsjoldData.Properties {
             }
             set {
                 this["frmRegnskabPoint"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("829, 513")]
-        public global::System.Drawing.Size frmKontingentForslagSize {
-            get {
-                return ((global::System.Drawing.Size)(this["frmKontingentForslagSize"]));
-            }
-            set {
-                this["frmKontingentForslagSize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point frmKontingentForslagPoint {
-            get {
-                return ((global::System.Drawing.Point)(this["frmKontingentForslagPoint"]));
-            }
-            set {
-                this["frmKontingentForslagPoint"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("280")]
-        public int frmMedlemmerSplitteDist {
-            get {
-                return ((int)(this["frmMedlemmerSplitteDist"]));
-            }
-            set {
-                this["frmMedlemmerSplitteDist"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point frmPbsfilesPoint {
-            get {
-                return ((global::System.Drawing.Point)(this["frmPbsfilesPoint"]));
-            }
-            set {
-                this["frmPbsfilesPoint"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("707, 511")]
-        public global::System.Drawing.Size frmPbsfilesSize {
-            get {
-                return ((global::System.Drawing.Size)(this["frmPbsfilesSize"]));
-            }
-            set {
-                this["frmPbsfilesSize"] = value;
             }
         }
     }

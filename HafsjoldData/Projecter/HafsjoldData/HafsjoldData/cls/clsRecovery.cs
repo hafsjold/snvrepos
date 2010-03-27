@@ -11,8 +11,6 @@ namespace nsHafsjoldData
     {
         private DbRecoveryHafsjoldData m_dbRecovery;
         private string m_DataBasePath;
-        private string m_FraPBSPath;
-        private string m_TilPBSPath;
         private string m_PlaceringPath;
         private string m_EksportmappePath;
         private int m_Rid;
@@ -22,8 +20,6 @@ namespace nsHafsjoldData
         {
             m_DataBasePath = global::nsHafsjoldData.Properties.Settings.Default.DataBasePath;
             var rec_regnskab = Program.qryAktivRegnskab();
-            m_FraPBSPath = rec_regnskab.FraPBS;
-            m_TilPBSPath = rec_regnskab.TilPBS;
             m_PlaceringPath = rec_regnskab.Placering;
             m_EksportmappePath = rec_regnskab.Eksportmappe;
             m_Rid = rec_regnskab.Rid;
@@ -84,18 +80,6 @@ namespace nsHafsjoldData
             };
             rec_RceoveryPoint.TblRecoveryPointLine.Add(rec_RecoveryPointLine);
 
-            rec_RecoveryPointLine = new TblRecoveryPointLine
-            {
-                Recoverypath = m_FraPBSPath,
-                Recoveryisfile = false
-            };
-            rec_RceoveryPoint.TblRecoveryPointLine.Add(rec_RecoveryPointLine);
-
-            rec_RecoveryPointLine = new TblRecoveryPointLine
-            {
-                Recoverypath = m_TilPBSPath,
-                Recoveryisfile = false
-            };
             rec_RceoveryPoint.TblRecoveryPointLine.Add(rec_RecoveryPointLine);
 
             rec_RecoveryPointLine = new TblRecoveryPointLine

@@ -1,12 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="dbHafsjoldData" Class="DbHafsjoldData" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Table Name="tblAktivitet" Member="TblAktivitet">
-    <Type Name="TblAktivitet">
-      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="akt_tekst" Member="Akt_tekst" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
-      <Association Name="TblAktivitet_TblMedlemLog" Member="TblMedlemLog" ThisKey="Id" OtherKey="Akt_id" Type="TblMedlemLog" />
-    </Type>
-  </Table>
   <Table Name="tblbankkonto" Member="Tblbankkonto">
     <Type Name="Tblbankkonto">
       <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -17,40 +10,6 @@
       <Column Name="beløb" Member="BeløB" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="tblbet" Member="Tblbet">
-    <Type Name="Tblbet">
-      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="frapbsid" Member="Frapbsid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="pbssektionnr" Member="Pbssektionnr" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
-      <Column Name="transkode" Member="Transkode" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
-      <Column Name="bogforingsdato" Member="Bogforingsdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="indbetalingsbelob" Member="Indbetalingsbelob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="summabogfort" Member="Summabogfort" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="Tblbet_Tblbetlin" Member="Tblbetlin" ThisKey="Id" OtherKey="Betid" Type="Tblbetlin" />
-      <Association Name="Tblfrapbs_Tblbet" Member="Tblfrapbs" ThisKey="Frapbsid" OtherKey="Id" Type="Tblfrapbs" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="tblbetlin" Member="Tblbetlin">
-    <Type Name="Tblbetlin">
-      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="betid" Member="Betid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="pbssektionnr" Member="Pbssektionnr" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
-      <Column Name="pbstranskode" Member="Pbstranskode" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
-      <Column Name="Nr" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="faknr" Member="Faknr" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="debitorkonto" Member="Debitorkonto" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
-      <Column Name="aftalenr" Member="Aftalenr" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="betalingsdato" Member="Betalingsdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="belob" Member="Belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="indbetalingsdato" Member="Indbetalingsdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="bogforingsdato" Member="Bogforingsdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="indbetalingsbelob" Member="Indbetalingsbelob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="pbskortart" Member="Pbskortart" Type="System.String" DbType="NVarChar(2)" CanBeNull="true" />
-      <Column Name="pbsgebyrbelob" Member="Pbsgebyrbelob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="pbsarkivnr" Member="Pbsarkivnr" Type="System.String" DbType="NVarChar(22)" CanBeNull="true" />
-      <Association Name="Tblbet_Tblbetlin" Member="Tblbet" ThisKey="Betid" OtherKey="Id" Type="Tblbet" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="tblbilag" Member="Tblbilag">
     <Type Name="Tblbilag">
       <Column Name="pid" Member="Pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -58,43 +17,6 @@
       <Column Name="bilag" Member="Bilag" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="dato" Member="Dato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="udskriv" Member="Udskriv" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="tblfak" Member="Tblfak">
-    <Type Name="Tblfak">
-      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="tilpbsid" Member="Tilpbsid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="betalingsdato" Member="Betalingsdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Nr" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="faknr" Member="Faknr" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="advistekst" Member="Advistekst" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="advisbelob" Member="Advisbelob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="infotekst" Member="Infotekst" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="bogfkonto" Member="Bogfkonto" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="vnr" Member="Vnr" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="fradato" Member="Fradato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="tildato" Member="Tildato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="SFakID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SFaknr" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="rykkerdato" Member="Rykkerdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="maildato" Member="Maildato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="rykkerstop" Member="Rykkerstop" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="betalt" Member="Betalt" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="Tbltilpbs_Tblfak" Member="Tbltilpbs" ThisKey="Tilpbsid" OtherKey="Id" Type="Tbltilpbs" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="tblfrapbs" Member="Tblfrapbs">
-    <Type Name="Tblfrapbs">
-      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="delsystem" Member="Delsystem" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
-      <Column Name="leverancetype" Member="Leverancetype" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
-      <Column Name="udtrukket" Member="Udtrukket" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="bilagdato" Member="Bilagdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="pbsforsendelseid" Member="Pbsforsendelseid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="leverancespecifikation" Member="Leverancespecifikation" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="leverancedannelsesdato" Member="Leverancedannelsesdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="Tblfrapbs_Tblbet" Member="Tblbet" ThisKey="Id" OtherKey="Frapbsid" Type="Tblbet" />
-      <Association Name="Tblpbsforsendelse_Tblfrapbs" Member="Tblpbsforsendelse" ThisKey="Pbsforsendelseid" OtherKey="Id" Type="Tblpbsforsendelse" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="tblkladder" Member="Tblkladder">
@@ -119,86 +41,6 @@
       <Column Name="saldo" Member="Saldo" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="tblkreditor" Member="Tblkreditor">
-    <Type Name="Tblkreditor">
-      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="datalevnr" Member="Datalevnr" Type="System.String" DbType="NVarChar(8) NOT NULL" CanBeNull="false" />
-      <Column Name="datalevnavn" Member="Datalevnavn" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
-      <Column Name="pbsnr" Member="Pbsnr" Type="System.String" DbType="NVarChar(8) NOT NULL" CanBeNull="false" />
-      <Column Name="delsystem" Member="Delsystem" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
-      <Column Name="regnr" Member="Regnr" Type="System.String" DbType="NVarChar(4) NOT NULL" CanBeNull="false" />
-      <Column Name="kontonr" Member="Kontonr" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
-      <Column Name="debgrpnr" Member="Debgrpnr" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
-      <Column Name="sektionnr" Member="Sektionnr" Type="System.String" DbType="NVarChar(4) NOT NULL" CanBeNull="false" />
-      <Column Name="transkodebetaling" Member="Transkodebetaling" Type="System.String" DbType="NVarChar(4) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="tblMedlem" Member="TblMedlem">
-    <Type Name="TblMedlem">
-      <Column Name="Nr" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Knr" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Kon" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
-      <Column Name="FodtDato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="TblMedlem_TblMedlemLog" Member="TblMedlemLog" ThisKey="Nr" OtherKey="Nr" Type="TblMedlemLog" />
-    </Type>
-  </Table>
-  <Table Name="tblMedlemLog" Member="TblMedlemLog">
-    <Type Name="TblMedlemLog">
-      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Nr" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="logdato" Member="Logdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="akt_id" Member="Akt_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="akt_dato" Member="Akt_dato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="TblMedlem_TblMedlemLog" Member="TblMedlem" ThisKey="Nr" OtherKey="Nr" Type="TblMedlem" IsForeignKey="true" />
-      <Association Name="TblAktivitet_TblMedlemLog" Member="TblAktivitet" ThisKey="Akt_id" OtherKey="Id" Type="TblAktivitet" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="tblnrserie" Member="Tblnrserie">
-    <Type Name="Tblnrserie">
-      <Column Name="nrserienavn" Member="Nrserienavn" Type="System.String" DbType="NVarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="sidstbrugtenr" Member="Sidstbrugtenr" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="tblpbsfile" Member="Tblpbsfile">
-    <Type Name="Tblpbsfile">
-      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="pbsfilesid" Member="Pbsfilesid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="seqnr" Member="Seqnr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="data" Member="Data" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
-      <Association Name="Tblpbsfiles_Tblpbsfile" Member="Tblpbsfiles" ThisKey="Pbsfilesid" OtherKey="Id" Type="Tblpbsfiles" IsForeignKey="true" DeleteOnNull="true" />
-    </Type>
-  </Table>
-  <Table Name="tblpbsfiles" Member="Tblpbsfiles">
-    <Type Name="Tblpbsfiles">
-      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="type" Member="Type" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="path" Member="Path" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="filename" Member="Filename" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="size" Member="Size" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="atime" Member="Atime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="mtime" Member="Mtime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="perm" Member="Perm" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="uid" Member="Uid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="gid" Member="Gid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="transmittime" Member="Transmittime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="pbsforsendelseid" Member="Pbsforsendelseid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Tblpbsfiles_Tblpbsfile" Member="Tblpbsfile" ThisKey="Id" OtherKey="Pbsfilesid" Type="Tblpbsfile" />
-      <Association Name="Tblpbsforsendelse_Tblpbsfiles" Member="Tblpbsforsendelse" ThisKey="Pbsforsendelseid" OtherKey="Id" Type="Tblpbsforsendelse" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="tblpbsforsendelse" Member="Tblpbsforsendelse">
-    <Type Name="Tblpbsforsendelse">
-      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="delsystem" Member="Delsystem" Type="System.String" DbType="NVarChar(3) NOT NULL" CanBeNull="false" />
-      <Column Name="leverancetype" Member="Leverancetype" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
-      <Column Name="oprettetaf" Member="Oprettetaf" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
-      <Column Name="oprettet" Member="Oprettet" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="leveranceid" Member="Leveranceid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Tblpbsforsendelse_Tblfrapbs" Member="Tblfrapbs" ThisKey="Id" OtherKey="Pbsforsendelseid" Type="Tblfrapbs" />
-      <Association Name="Tblpbsforsendelse_Tblpbsfiles" Member="Tblpbsfiles" ThisKey="Id" OtherKey="Pbsforsendelseid" Type="Tblpbsfiles" />
-      <Association Name="Tblpbsforsendelse_Tbltilpbs" Member="Tbltilpbs" ThisKey="Id" OtherKey="Pbsforsendelseid" Type="Tbltilpbs" />
-    </Type>
-  </Table>
   <Table Name="tblRegnskab" Member="TblRegnskab">
     <Type Name="TblRegnskab">
       <Column Name="rid" Member="Rid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -210,42 +52,13 @@
       <Column Name="Firmanavn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Placering" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="Eksportmappe" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="TilPBS" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="FraPBS" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="Afsluttet" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="tblsftp" Member="Tblsftp">
-    <Type Name="Tblsftp">
-      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="navn" Member="Navn" Type="System.String" DbType="NVarChar(64) NOT NULL" CanBeNull="false" />
-      <Column Name="host" Member="Host" Type="System.String" DbType="NVarChar(64) NOT NULL" CanBeNull="false" />
-      <Column Name="port" Member="Port" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
-      <Column Name="user" Member="User" Type="System.String" DbType="NVarChar(16) NOT NULL" CanBeNull="false" />
-      <Column Name="outbound" Member="Outbound" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
-      <Column Name="inbound" Member="Inbound" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
-      <Column Name="pincode" Member="Pincode" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
-      <Column Name="certificate" Member="Certificate" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="tblSysinfo" Member="TblSysinfo">
     <Type Name="TblSysinfo">
       <Column Name="vkey" Member="Vkey" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="val" Member="Val" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="tbltilpbs" Member="Tbltilpbs">
-    <Type Name="Tbltilpbs">
-      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="delsystem" Member="Delsystem" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
-      <Column Name="leverancetype" Member="Leverancetype" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
-      <Column Name="bilagdato" Member="Bilagdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="pbsforsendelseid" Member="Pbsforsendelseid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="udtrukket" Member="Udtrukket" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="leverancespecifikation" Member="Leverancespecifikation" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
-      <Column Name="leverancedannelsesdato" Member="Leverancedannelsesdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="Tbltilpbs_Tblfak" Member="Tblfak" ThisKey="Id" OtherKey="Tilpbsid" Type="Tblfak" />
-      <Association Name="Tblpbsforsendelse_Tbltilpbs" Member="Tblpbsforsendelse" ThisKey="Pbsforsendelseid" OtherKey="Id" Type="Tblpbsforsendelse" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="tbltrans" Member="Tbltrans">
@@ -263,24 +76,6 @@
       <Column Name="nr" Member="Nr" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
       <Column Name="beløb" Member="BeløB" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="afstem" Member="Afstem" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="tempKontforslag" Member="TempKontforslag">
-    <Type Name="TempKontforslag">
-      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="betalingsdato" Member="Betalingsdato" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="TempKontforslag_TempKontforslaglinie" Member="TempKontforslaglinie" ThisKey="Id" OtherKey="Kontforslagid" Type="TempKontforslaglinie" />
-    </Type>
-  </Table>
-  <Table Name="tempKontforslaglinie" Member="TempKontforslaglinie">
-    <Type Name="TempKontforslaglinie">
-      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Nr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Kontforslagid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="fradato" Member="Fradato" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="advisbelob" Member="Advisbelob" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
-      <Column Name="tildato" Member="Tildato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="TempKontforslag_TempKontforslaglinie" Member="TempKontforslag" ThisKey="Kontforslagid" OtherKey="Id" Type="TempKontforslag" IsForeignKey="true" DeleteOnNull="true" />
     </Type>
   </Table>
 </Database>
