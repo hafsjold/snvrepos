@@ -10,7 +10,7 @@ namespace nsHafsjoldData
 {
     public class clsRecovery
     {
-        private DbRecovery3060 m_dbRecovery;
+        private DbRecoveryHafsjoldData m_dbRecovery;
         private string m_DataBasePath;
         private string m_FraPBSPath;
         private string m_TilPBSPath;
@@ -33,7 +33,7 @@ namespace nsHafsjoldData
 
         public void createRecoveryPoint()
         {
-            Program.dbData3060 = null;
+            Program.dbHafsjoldData = null;
             Program.karMedlemmer = null;
             Program.memMedlemDictionary = null;
             Program.memAktivRegnskab = null;
@@ -52,8 +52,8 @@ namespace nsHafsjoldData
             Program.filestream_to_lock_summasummarum_kontoplan = null;
 
             // open recoverypoint database
-            string dbRecovery3060path = m_EksportmappePath + @"dbRecovery3060.sdf";
-            m_dbRecovery = new DbRecovery3060(m_EksportmappePath + @"dbRecovery3060.sdf");
+            string dbRecovery3060path = m_EksportmappePath + @"dbRecoveryHafsjoldData.sdf";
+            m_dbRecovery = new DbRecoveryHafsjoldData(m_EksportmappePath + @"dbRecoveryHafsjoldData.sdf");
             if (!File.Exists(dbRecovery3060path)) m_dbRecovery.CreateDatabase();
 
             // create recoverypoint
@@ -66,7 +66,7 @@ namespace nsHafsjoldData
 
         public void TestRecovery()
         {
-            m_dbRecovery = new DbRecovery3060(@"C:\Documents and Settings\mha\Dokumenter\SummaSummarum\dbRecovery3060.sdf");
+            m_dbRecovery = new DbRecoveryHafsjoldData(@"C:\Documents and Settings\mha\Dokumenter\SummaSummarum\dbRecoveryHafsjoldData.sdf");
             //m_dbRecovery.CreateDatabase();
             //TblRecoveryPoint rec_RceoveryPoint = setupRecoveryPoint();
             //createRecoveryPoint(rec_RceoveryPoint);
@@ -248,8 +248,8 @@ namespace nsHafsjoldData
                         RecoveryPointLine.Restorepath = @"C:\Documents and Settings\mha\Dokumenter\SummaSummarum\4";
                         break;
 
-                    case @"C:\Documents and Settings\mha\Dokumenter\HafsjoldData\Databaser\SQLCompact\dbData3060.sdf":
-                        RecoveryPointLine.Restorepath = @"C:\Documents and Settings\mha\Dokumenter\dbData3060XYZ.sdf";
+                    case @"C:\Documents and Settings\mha\Dokumenter\HafsjoldData\Databaser\SQLCompact\dbHafsjoldData.sdf":
+                        RecoveryPointLine.Restorepath = @"C:\Documents and Settings\mha\Dokumenter\dbHafsjoldDataXYZ.sdf";
                         break;
 
                     default:

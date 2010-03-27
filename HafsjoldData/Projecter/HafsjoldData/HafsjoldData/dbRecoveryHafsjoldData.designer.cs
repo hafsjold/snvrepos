@@ -22,8 +22,8 @@ namespace nsHafsjoldData
 	using System;
 	
 	
-	[System.Data.Linq.Mapping.DatabaseAttribute(Name="dbRecovery3060")]
-	public partial class DbRecovery3060 : System.Data.Linq.DataContext
+	[System.Data.Linq.Mapping.DatabaseAttribute(Name="dbRecoveryHafsjoldData")]
+	public partial class DbRecoveryHafsjoldData : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -47,25 +47,25 @@ namespace nsHafsjoldData
     partial void DeleteTblRecoveryPointLine(TblRecoveryPointLine instance);
     #endregion
 		
-		public DbRecovery3060(string connection) : 
+		public DbRecoveryHafsjoldData(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DbRecovery3060(System.Data.IDbConnection connection) : 
+		public DbRecoveryHafsjoldData(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DbRecovery3060(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public DbRecoveryHafsjoldData(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DbRecovery3060(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public DbRecoveryHafsjoldData(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();

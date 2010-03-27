@@ -73,7 +73,7 @@ namespace nsHafsjoldData
                                     .OrderByDescending(u => u.Logdato);
 
                 var qry = from l in qrylog
-                          join a in Program.dbData3060.TblAktivitet on l.Akt_id equals a.Id
+                          join a in Program.dbHafsjoldData.TblAktivitet on l.Akt_id equals a.Id
                           select new { l.Akt_dato, a.Akt_tekst };
 
 
@@ -243,8 +243,8 @@ namespace nsHafsjoldData
                         Akt_id = 10,
                         Akt_dato = (DateTime)I_DT_Indmeldelsesdato.Value
                     };
-                    Program.dbData3060.TblMedlemLog.InsertOnSubmit(recLog);
-                    Program.dbData3060.SubmitChanges();
+                    Program.dbHafsjoldData.TblMedlemLog.InsertOnSubmit(recLog);
+                    Program.dbHafsjoldData.SubmitChanges();
                 }
                 catch (Exception)
                 {
@@ -348,8 +348,8 @@ namespace nsHafsjoldData
                             Akt_id = Akt_id,
                             Akt_dato = new DateTime(aktdt.Year, aktdt.Month, aktdt.Day)
                         };
-                        Program.dbData3060.TblMedlemLog.InsertOnSubmit(recLog);
-                        Program.dbData3060.SubmitChanges();
+                        Program.dbHafsjoldData.TblMedlemLog.InsertOnSubmit(recLog);
+                        Program.dbHafsjoldData.SubmitChanges();
                     }
                     catch (Exception)
                     {

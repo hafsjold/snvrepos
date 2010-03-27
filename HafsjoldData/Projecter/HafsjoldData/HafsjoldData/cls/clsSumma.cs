@@ -18,9 +18,9 @@ namespace nsHafsjoldData
             {
                 if (rec_regnskab.DatoLaas > Startdato) Startdato = rec_regnskab.DatoLaas;
             }
-            var qry_ord = from f in Program.dbData3060.Tblfak
+            var qry_ord = from f in Program.dbHafsjoldData.Tblfak
                           where f.SFakID == null && Startdato <= f.Betalingsdato && f.Betalingsdato <= Slutdato
-                          join b in Program.dbData3060.Tblbetlin on f.Faknr equals b.Faknr
+                          join b in Program.dbHafsjoldData.Tblbetlin on f.Faknr equals b.Faknr
                           where b.Pbstranskode == "0236" || b.Pbstranskode == "0297"
                           select new { f.Id, Pbsfaknr = f.Faknr, f.Nr, f.Advisbelob, f.Betalingsdato, f.Vnr, f.Bogfkonto, b.Indbetalingsdato };
 
@@ -93,7 +93,7 @@ namespace nsHafsjoldData
 
                     try
                     {
-                        Tblfak rec_fak = (from f in Program.dbData3060.Tblfak
+                        Tblfak rec_fak = (from f in Program.dbHafsjoldData.Tblfak
                                           where f.Id == o.Id
                                           select f).First();
                         rec_fak.SFakID = SidsteSFakID;
@@ -122,7 +122,7 @@ namespace nsHafsjoldData
                     Program.karStatus.Add(rec_Status);
                 }
                 Program.karStatus.save();
-                Program.dbData3060.SubmitChanges();
+                Program.dbHafsjoldData.SubmitChanges();
             }
             return AntalOrdre;
         }
@@ -131,7 +131,7 @@ namespace nsHafsjoldData
         {
             var qry = from k in Program.karFakturaer_s
                       where k.faknr > 0
-                      join f in Program.dbData3060.Tblfak on k.fakid equals f.SFakID
+                      join f in Program.dbHafsjoldData.Tblfak on k.fakid equals f.SFakID
                       where f.SFaknr == null
                       select new { f.Id, SFaknr = k.faknr };
 
@@ -142,7 +142,7 @@ namespace nsHafsjoldData
                 {
                     try
                     {
-                        Tblfak rec_fak = (from f in Program.dbData3060.Tblfak
+                        Tblfak rec_fak = (from f in Program.dbHafsjoldData.Tblfak
                                           where f.Id == k.Id
                                           select f).First();
                         rec_fak.SFaknr = k.SFaknr;
@@ -152,7 +152,7 @@ namespace nsHafsjoldData
                         throw;
                     }
                 }
-                Program.dbData3060.SubmitChanges();
+                Program.dbHafsjoldData.SubmitChanges();
             }
             return AntalFakturaer;
         }
@@ -162,13 +162,13 @@ namespace nsHafsjoldData
             int saveBetid = 0;
             var bogf = from s in Program.karFakturaer_s
                        //where s.saldo != 0
-                       join f in Program.dbData3060.Tblfak on s.fakid equals f.SFakID
+                       join f in Program.dbHafsjoldData.Tblfak on s.fakid equals f.SFakID
                        where f.SFaknr != null
                        join m in Program.karMedlemmer on f.Nr equals m.Nr
-                       join bl in Program.dbData3060.Tblbetlin on f.Faknr equals bl.Faknr
-                       join b in Program.dbData3060.Tblbet on bl.Betid equals b.Id
+                       join bl in Program.dbHafsjoldData.Tblbetlin on f.Faknr equals bl.Faknr
+                       join b in Program.dbHafsjoldData.Tblbet on bl.Betid equals b.Id
                        where b.Summabogfort != true
-                       join p in Program.dbData3060.Tblfrapbs on b.Frapbsid equals p.Id
+                       join p in Program.dbHafsjoldData.Tblfrapbs on b.Frapbsid equals p.Id
                        orderby p.Id, b.Id, bl.Id
                        select new
                        {
@@ -220,7 +220,7 @@ namespace nsHafsjoldData
                         };
                         Program.karKladde.Add(gkl);
 
-                        var rec_bet = (from ub in Program.dbData3060.Tblbet where ub.Id == b.Betid select ub).First();
+                        var rec_bet = (from ub in Program.dbHafsjoldData.Tblbet where ub.Id == b.Betid select ub).First();
                         rec_bet.Summabogfort = true;
 
                     }
@@ -239,7 +239,7 @@ namespace nsHafsjoldData
                 }
                 Program.karStatus.save();
                 Program.karKladde.save();
-                Program.dbData3060.SubmitChanges();
+                Program.dbHafsjoldData.SubmitChanges();
             }
             return AntalBetalinger;
         }

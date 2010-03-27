@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Medlem 3060")]
-[assembly: AssemblyDescription("Administration af medlemmer med kontingent opkrævninger via PBS.")]
+[assembly: AssemblyTitle("Hafsjold Data")]
+[assembly: AssemblyDescription("Administration af Hafsjold Data Bogføring.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Hafsjold Data ApS")]
-[assembly: AssemblyProduct("Medlem 3060")]
+[assembly: AssemblyProduct("HafsjoldData")]
 [assembly: AssemblyCopyright("Copyright © Hafsjold Data ApS 2010")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

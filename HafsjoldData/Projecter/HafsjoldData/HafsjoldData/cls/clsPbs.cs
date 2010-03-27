@@ -248,7 +248,7 @@ namespace nsHafsjoldData
         {
             try
             {
-                var rst = (from c in Program.dbData3060.Tblnrserie
+                var rst = (from c in Program.dbHafsjoldData.Tblnrserie
                            where c.Nrserienavn == nrserienavn
                            select c).First();
 
@@ -270,7 +270,7 @@ namespace nsHafsjoldData
                     Nrserienavn = nrserienavn,
                     Sidstbrugtenr = 0
                 };
-                Program.dbData3060.Tblnrserie.InsertOnSubmit(rec_nrserie);
+                Program.dbHafsjoldData.Tblnrserie.InsertOnSubmit(rec_nrserie);
                 return 0;
             }
         }
@@ -291,7 +291,7 @@ namespace nsHafsjoldData
             }
             catch (System.NullReferenceException)
             {
-                Program.dbData3060.ExecuteCommand("DELETE FROM TblRegnskab;");
+                Program.dbHafsjoldData.ExecuteCommand("DELETE FROM TblRegnskab;");
                 return false;
             }
             DirectoryInfo dir = new DirectoryInfo(Datamappe);
@@ -313,7 +313,7 @@ namespace nsHafsjoldData
                             try
                             {
                                 m_rec_Regnskab =
-                                    (from d in Program.dbData3060.TblRegnskab
+                                    (from d in Program.dbHafsjoldData.TblRegnskab
                                      where d.Rid.ToString() == RegnskabId
                                      select d).First();
 
@@ -324,8 +324,8 @@ namespace nsHafsjoldData
                                 {
                                     Rid = int.Parse(RegnskabId)
                                 };
-                                Program.dbData3060.TblRegnskab.InsertOnSubmit(m_rec_Regnskab);
-                                Program.dbData3060.SubmitChanges();
+                                Program.dbHafsjoldData.TblRegnskab.InsertOnSubmit(m_rec_Regnskab);
+                                Program.dbHafsjoldData.SubmitChanges();
                             }
                             RegnskabMappe = Datamappe + sub_dir.Name + @"\";
                             m_rec_Regnskab.Placering = RegnskabMappe;
@@ -419,7 +419,7 @@ namespace nsHafsjoldData
             string dbVersion = "";
             try
             {
-                dbVersion = (Program.dbData3060.ExecuteQuery<clsSysinfo>("SELECT * FROM [tblSysinfo] WHERE [vkey] = N'VERSION';")).First().val;
+                dbVersion = (Program.dbHafsjoldData.ExecuteQuery<clsSysinfo>("SELECT * FROM [tblSysinfo] WHERE [vkey] = N'VERSION';")).First().val;
             }
             catch (System.Data.SqlServerCe.SqlCeException)
             {
@@ -432,17 +432,17 @@ namespace nsHafsjoldData
                 {
                     //version "2.0.0.0" --> "2.1.0.0" opgradering af SqlDatabasen
                     //Tilføj et ny tabel [tblSysinfo]  til SqlDatabasen 
-                    Program.dbData3060.ExecuteCommand("CREATE TABLE [tblSysinfo] ([vkey] nvarchar(10) NOT NULL, [val] nvarchar(100) NOT NULL);");
-                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tblSysinfo] ADD PRIMARY KEY ([vkey]);");
-                    Program.dbData3060.ExecuteCommand("CREATE UNIQUE INDEX [UQ__tblSysinfo__000000000000068A] ON [tblSysinfo] ([vkey] ASC);");
-                    Program.dbData3060.ExecuteCommand("INSERT INTO [tblSysinfo] ([vkey],[val]) VALUES (N'VERSION',N'2.1.0.0');");
+                    Program.dbHafsjoldData.ExecuteCommand("CREATE TABLE [tblSysinfo] ([vkey] nvarchar(10) NOT NULL, [val] nvarchar(100) NOT NULL);");
+                    Program.dbHafsjoldData.ExecuteCommand("ALTER TABLE [tblSysinfo] ADD PRIMARY KEY ([vkey]);");
+                    Program.dbHafsjoldData.ExecuteCommand("CREATE UNIQUE INDEX [UQ__tblSysinfo__000000000000068A] ON [tblSysinfo] ([vkey] ASC);");
+                    Program.dbHafsjoldData.ExecuteCommand("INSERT INTO [tblSysinfo] ([vkey],[val]) VALUES (N'VERSION',N'2.1.0.0');");
                     //Tilføj et nyt felt [Afsluttet] til SqlDatabasen 
-                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tblRegnskab] ADD COLUMN [Afsluttet] bit NULL;");
+                    Program.dbHafsjoldData.ExecuteCommand("ALTER TABLE [tblRegnskab] ADD COLUMN [Afsluttet] bit NULL;");
 
                     //Fjern et felt [tildato] fra tempKontforslag i SqlDatabasen 
-                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tempKontforslag] DROP COLUMN [tildato];");
+                    Program.dbHafsjoldData.ExecuteCommand("ALTER TABLE [tempKontforslag] DROP COLUMN [tildato];");
                     //Tilføj et nyt felt [tildato] til tempKontforslaglinie i SqlDatabasen 
-                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tempKontforslaglinie] ADD COLUMN [tildato] datetime NULL;");
+                    Program.dbHafsjoldData.ExecuteCommand("ALTER TABLE [tempKontforslaglinie] ADD COLUMN [tildato] datetime NULL;");
                 }
                 catch (System.Data.SqlServerCe.SqlCeException e)
                 {
@@ -456,13 +456,13 @@ namespace nsHafsjoldData
                 {
                     //version "2.1.0.0" --> "2.2.0.0" opgradering af SqlDatabasen
                     //Tilføj et ny tabel [tblsftp]  til SqlDatabasen 
-                    Program.dbData3060.ExecuteCommand("CREATE TABLE [tblsftp] ([id] int NOT NULL  IDENTITY (1,1), [navn] nvarchar(64) NOT NULL, [host] nvarchar(64) NOT NULL, [port] nvarchar(5) NOT NULL, [user] nvarchar(16) NOT NULL, [outbound] nvarchar(64) NULL, [inbound] nvarchar(64) NULL, [pincode] nvarchar(64) NULL, [certificate] nvarchar(4000) NULL);");
-                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tblsftp] ADD PRIMARY KEY ([id]);");
-                    Program.dbData3060.ExecuteCommand("CREATE UNIQUE INDEX [UQ__tblsftp__00000000000006E4] ON [tblsftp] ([id] ASC);");
+                    Program.dbHafsjoldData.ExecuteCommand("CREATE TABLE [tblsftp] ([id] int NOT NULL  IDENTITY (1,1), [navn] nvarchar(64) NOT NULL, [host] nvarchar(64) NOT NULL, [port] nvarchar(5) NOT NULL, [user] nvarchar(16) NOT NULL, [outbound] nvarchar(64) NULL, [inbound] nvarchar(64) NULL, [pincode] nvarchar(64) NULL, [certificate] nvarchar(4000) NULL);");
+                    Program.dbHafsjoldData.ExecuteCommand("ALTER TABLE [tblsftp] ADD PRIMARY KEY ([id]);");
+                    Program.dbHafsjoldData.ExecuteCommand("CREATE UNIQUE INDEX [UQ__tblsftp__00000000000006E4] ON [tblsftp] ([id] ASC);");
 
-                    Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.2.0.0'  WHERE [vkey] = 'VERSION';");
-                    Program.dbData3060.ExecuteCommand("INSERT INTO [tblsftp] ([navn],[host],[port],[user],[outbound],[inbound],[pincode]) VALUES (N'Produktion',N'194.239.133.111',N'10022',N'LOEBEKLU',N'/LOEBEKLU',N'/LOEBEKLU',N'1234');");
-                    Program.dbData3060.ExecuteCommand("INSERT INTO [tblsftp] ([navn],[host],[port],[user],[outbound],[inbound],[pincode]) VALUES (N'Test',N'194.239.133.112',N'10022',N'TOEBEKLU',N'/TOEBEKLU',N'/TOEBEKLU',N'1234');");
+                    Program.dbHafsjoldData.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.2.0.0'  WHERE [vkey] = 'VERSION';");
+                    Program.dbHafsjoldData.ExecuteCommand("INSERT INTO [tblsftp] ([navn],[host],[port],[user],[outbound],[inbound],[pincode]) VALUES (N'Produktion',N'194.239.133.111',N'10022',N'LOEBEKLU',N'/LOEBEKLU',N'/LOEBEKLU',N'1234');");
+                    Program.dbHafsjoldData.ExecuteCommand("INSERT INTO [tblsftp] ([navn],[host],[port],[user],[outbound],[inbound],[pincode]) VALUES (N'Test',N'194.239.133.112',N'10022',N'TOEBEKLU',N'/TOEBEKLU',N'/TOEBEKLU',N'1234');");
                 }
                 catch (System.Data.SqlServerCe.SqlCeException e)
                 {

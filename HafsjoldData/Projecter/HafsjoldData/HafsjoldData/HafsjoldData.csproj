@@ -110,6 +110,9 @@
     <Compile Include="cls\clsSFTP.cs" />
     <Compile Include="cls\clsRecovery.cs" />
     <Compile Include="cls\clsSumma.cs" />
+    <Compile Include="dbHafsjoldData.cs">
+      <DependentUpon>dbHafsjoldData.dbml</DependentUpon>
+    </Compile>
     <Compile Include="dbHafsjoldData.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -203,12 +206,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="app.config" />
     <None Include="mem\app.config" />
-    <None Include="dbHafsjoldData.dbml.layout">
-      <DependentUpon>dbHafsjoldData.dbml</DependentUpon>
-    </None>
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="dbHafsjoldData.dbml.layout">
+      <DependentUpon>dbHafsjoldData.dbml</DependentUpon>
+    </None>
     <None Include="dbRecoveryHafsjoldData.dbml.layout">
       <DependentUpon>dbRecoveryHafsjoldData.dbml</DependentUpon>
     </None>
@@ -263,10 +266,8 @@
       <DependentUpon>dsMedlem.xsd</DependentUpon>
     </None>
     <None Include="HafsjoldData_TemporaryKey.pfx" />
-    <None Include="Properties\DataSources\Tblkreditor.datasource" />
-    <None Include="Properties\DataSources\TblRegnskab.datasource" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Compile Include="Properties\Settings.Designer.cs">
@@ -274,6 +275,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Settings.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
@@ -284,7 +286,6 @@
       <LastGenOutput>dbRecoveryHafsjoldData.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="Properties\DataSources\Tblpbsfiles.datasource" />
     <None Include="Resources\Add.bmp" />
     <Content Include="Libraries\Chilkat Receipt and Unlock Codes.htm" />
     <Content Include="Libraries\ChilkatDotNet2.dll" />

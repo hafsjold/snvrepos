@@ -18,7 +18,7 @@ namespace nsHafsjoldData
 
         private void FrmKreditor_Load(object sender, EventArgs e)
         {
-            this.bsKreditor.DataSource = Program.dbData3060.Tblkreditor;
+            this.bsKreditor.DataSource = Program.dbHafsjoldData.Tblkreditor;
 
         }
 

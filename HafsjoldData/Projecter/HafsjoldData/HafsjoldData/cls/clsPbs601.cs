@@ -48,11 +48,11 @@ namespace nsHafsjoldData
             TilPBSFolderPath = rec_regnskab.TilPBS;
 
             var qry_selectfiles =
-                from h in Program.dbData3060.Tblpbsforsendelse
-                join d1 in Program.dbData3060.Tblpbsfiles on h.Id equals d1.Pbsforsendelseid into details1
+                from h in Program.dbHafsjoldData.Tblpbsforsendelse
+                join d1 in Program.dbHafsjoldData.Tblpbsfiles on h.Id equals d1.Pbsforsendelseid into details1
                 from d1 in details1.DefaultIfEmpty()
                 where d1.Id != null && d1.Filename == null
-                join d2 in Program.dbData3060.Tbltilpbs on h.Id equals d2.Pbsforsendelseid into details2
+                join d2 in Program.dbHafsjoldData.Tbltilpbs on h.Id equals d2.Pbsforsendelseid into details2
                 from d2 in details2.DefaultIfEmpty()
                 where d2.Id == lobnr
                 select new
@@ -69,7 +69,7 @@ namespace nsHafsjoldData
 
             foreach (var rec_selecfiles in qry_selectfiles)
             {
-                var qry_pbsfiles = from h in Program.dbData3060.Tblpbsfiles
+                var qry_pbsfiles = from h in Program.dbHafsjoldData.Tblpbsfiles
                                    where h.Id == rec_selecfiles.pbsfilesid
                                    select h;
                 if (qry_pbsfiles.Count() > 0)
@@ -116,13 +116,13 @@ namespace nsHafsjoldData
                 Leverancetype = "0601",
                 Udtrukket = DateTime.Now
             };
-            Program.dbData3060.Tbltilpbs.InsertOnSubmit(rec_tilpbs);
-            Program.dbData3060.SubmitChanges();
+            Program.dbHafsjoldData.Tbltilpbs.InsertOnSubmit(rec_tilpbs);
+            Program.dbHafsjoldData.SubmitChanges();
             lobnr = rec_tilpbs.Id;
 
             var rstmedlems = from k in Program.karMedlemmer
-                             join l in Program.dbData3060.TempKontforslaglinie on k.Nr equals l.Nr
-                             join h in Program.dbData3060.TempKontforslag on l.Kontforslagid equals h.Id
+                             join l in Program.dbHafsjoldData.TempKontforslaglinie on k.Nr equals l.Nr
+                             join h in Program.dbHafsjoldData.TempKontforslag on l.Kontforslagid equals h.Id
                              select new
                              {
                                  k.Nr,
@@ -156,7 +156,7 @@ namespace nsHafsjoldData
                 rec_tilpbs.Tblfak.Add(rec_fak);
                 wantalfakturaer++;
             }
-            Program.dbData3060.SubmitChanges();
+            Program.dbHafsjoldData.SubmitChanges();
             SetLobnr(lobnr);
             //if (wantalfakturaer > 0) { faktura_601_action(lobnr); }
             return wantalfakturaer;
@@ -211,32 +211,32 @@ namespace nsHafsjoldData
             antal022tot = 0;
 
             {
-                var antal = (from c in Program.dbData3060.Tbltilpbs
+                var antal = (from c in Program.dbHafsjoldData.Tbltilpbs
                              where c.Id == lobnr
                              select c).Count();
                 if (antal == 0) { throw new Exception("101 - Der er ingen PBS forsendelse for id: " + lobnr); }
             }
             {
-                var antal = (from c in Program.dbData3060.Tbltilpbs
+                var antal = (from c in Program.dbHafsjoldData.Tbltilpbs
                              where c.Id == lobnr && c.Pbsforsendelseid != null
                              select c).Count();
                 if (antal > 0) { throw new Exception("102 - Pbsforsendelse for id: " + lobnr + " er allerede sendt"); }
             }
             {
-                var antal = (from c in Program.dbData3060.Tblfak
+                var antal = (from c in Program.dbHafsjoldData.Tblfak
                              where c.Tilpbsid == lobnr
                              select c).Count();
                 if (antal == 0) { throw new Exception("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr); }
             }
 
-            var rsttil = (from c in Program.dbData3060.Tbltilpbs
+            var rsttil = (from c in Program.dbHafsjoldData.Tbltilpbs
                           where c.Id == lobnr
                           select c).First();
             if (rsttil.Udtrukket == null) { rsttil.Udtrukket = DateTime.Now; }
             if (rsttil.Bilagdato == null) { rsttil.Bilagdato = rsttil.Udtrukket; }
             if (rsttil.Delsystem == null) { rsttil.Delsystem = "BS1"; }
             if (rsttil.Leverancetype == null) { rsttil.Leverancetype = ""; }
-            Program.dbData3060.SubmitChanges();
+            Program.dbHafsjoldData.SubmitChanges();
 
             wleveranceid = clsPbs.nextval("leveranceid");
 
@@ -248,13 +248,13 @@ namespace nsHafsjoldData
                 Oprettet = DateTime.Now,
                 Leveranceid = wleveranceid
             };
-            Program.dbData3060.Tblpbsforsendelse.InsertOnSubmit(rec_pbsforsendelse);
+            Program.dbHafsjoldData.Tblpbsforsendelse.InsertOnSubmit(rec_pbsforsendelse);
             rec_pbsforsendelse.Tbltilpbs.Add(rsttil);
 
             Tblpbsfiles rec_pbsfiles = new Tblpbsfiles();
             rec_pbsforsendelse.Tblpbsfiles.Add(rec_pbsfiles);
 
-            var rstkrd = (from c in Program.dbData3060.Tblkreditor
+            var rstkrd = (from c in Program.dbHafsjoldData.Tblkreditor
                           where c.Delsystem == rsttil.Delsystem
                           select c).First();
 
@@ -283,7 +283,7 @@ namespace nsHafsjoldData
             rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
             antalsek++;
             var rstdebs = from k in Program.karMedlemmer
-                          join f in Program.dbData3060.Tblfak on k.Nr equals f.Nr
+                          join f in Program.dbHafsjoldData.Tblfak on k.Nr equals f.Nr
                           where f.Tilpbsid == lobnr && f.Nr != null
                           orderby f.Nr
                           select new
@@ -542,7 +542,7 @@ namespace nsHafsjoldData
             rsttil.Udtrukket = DateTime.Now;
             rsttil.Leverancespecifikation = wleveranceid.ToString();
             rsttil.Pbsforsendelseid = 1111;
-            Program.dbData3060.SubmitChanges();
+            Program.dbHafsjoldData.SubmitChanges();
         }
 
 

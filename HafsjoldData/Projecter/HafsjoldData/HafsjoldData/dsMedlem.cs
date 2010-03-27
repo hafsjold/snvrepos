@@ -12,7 +12,7 @@ namespace nsHafsjoldData
         public void filldsMedlem()
         {
             var qry_medlemmer = from h in Program.karMedlemmer
-                                join d1 in Program.dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
+                                join d1 in Program.dbHafsjoldData.TblMedlem on h.Nr equals d1.Nr into details1
                                 from x in details1.DefaultIfEmpty(new TblMedlem { Nr = -1, Knr = (int?)null, Kon = null, FodtDato = (DateTime?)null })
                                 //where x.Nr == -1
                                 select new
@@ -77,7 +77,7 @@ namespace nsHafsjoldData
                         TblMedlem m_rec;
                         try
                         {
-                            m_rec = (from k in Program.dbData3060.TblMedlem
+                            m_rec = (from k in Program.dbHafsjoldData.TblMedlem
                                      where k.Nr == Nr_Key
                                      select k).First();
                         }
@@ -87,7 +87,7 @@ namespace nsHafsjoldData
                             {
                                 Nr = Nr_Key
                             };
-                            Program.dbData3060.TblMedlem.InsertOnSubmit(m_rec);
+                            Program.dbHafsjoldData.TblMedlem.InsertOnSubmit(m_rec);
                         }
                         m_rec.Knr = (m.IsKnrNull()) ? (int?)null : m.Knr;
                         m_rec.Kon = (m.IsKonNull()) ? null : m.Kon;
@@ -116,7 +116,7 @@ namespace nsHafsjoldData
 
                         try
                         {
-                            m_rec = (from k in Program.dbData3060.TblMedlem
+                            m_rec = (from k in Program.dbHafsjoldData.TblMedlem
                                      where k.Nr == Nr_Key
                                      select k).First();
                         }
@@ -126,7 +126,7 @@ namespace nsHafsjoldData
                             {
                                 Nr = Nr_Key
                             };
-                            Program.dbData3060.TblMedlem.InsertOnSubmit(m_rec);
+                            Program.dbHafsjoldData.TblMedlem.InsertOnSubmit(m_rec);
                         }
                         m_rec.Knr = (m.IsKnrNull()) ? (int?)null : m.Knr;
                         m_rec.Kon = (m.IsKonNull()) ? null : m.Kon;

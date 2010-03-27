@@ -20,8 +20,8 @@ namespace nsHafsjoldData
         private void pbsfilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Text = "Pbsfiles";
-            var qry = from p in Program.dbData3060.Tblpbsfiles
-                      join f in Program.dbData3060.Tblpbsforsendelse on p.Pbsforsendelseid equals f.Id into forsendelse
+            var qry = from p in Program.dbHafsjoldData.Tblpbsfiles
+                      join f in Program.dbHafsjoldData.Tblpbsforsendelse on p.Pbsforsendelseid equals f.Id into forsendelse
                       from f in forsendelse.DefaultIfEmpty()
                       select new
                       {
@@ -77,8 +77,8 @@ namespace nsHafsjoldData
         private void pbsfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Text = "Pbsfile";
-            var qry = from p in Program.dbData3060.Tblpbsfile
-                      join f in Program.dbData3060.Tblpbsfiles on p.Pbsfilesid equals f.Id
+            var qry = from p in Program.dbHafsjoldData.Tblpbsfile
+                      join f in Program.dbHafsjoldData.Tblpbsfiles on p.Pbsfilesid equals f.Id
                       orderby f.Id descending, p.Seqnr
                       select new
                       {
@@ -97,7 +97,7 @@ namespace nsHafsjoldData
         private void pbsforsendelseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Text = "Pbsforsendelse";
-            bindingSource1.DataSource = Program.dbData3060.Tblpbsforsendelse;
+            bindingSource1.DataSource = Program.dbHafsjoldData.Tblpbsforsendelse;
             dataGridView1.DataSource = bindingSource1;
 
             // Grid attributes 

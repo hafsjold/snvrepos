@@ -66,7 +66,7 @@ namespace nsHafsjoldData
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Program.dbData3060.SubmitChanges();
+            Program.dbHafsjoldData.SubmitChanges();
             Properties.Settings.Default.Save();
         }
 
@@ -156,7 +156,7 @@ namespace nsHafsjoldData
             //KarStatus myKarStatus = new KarStatus();
             //myKarStatus.save();
             //var qry_medlemmer = from k in objMedlemmer
-            //                    join m in Program.dbData3060.TblMedlem on k.Nr equals m.Nr
+            //                    join m in Program.dbHafsjoldData.TblMedlem on k.Nr equals m.Nr
             //                    where m.FodtDato > DateTime.Parse("1980-01-01")
             //                    select new { k.Nr, k.Navn, k.Kaldenavn, k.Adresse, k.Postnr, k.Bynavn, k.Email, k.Telefon, m.Knr, m.Kon, m.FodtDato };
             //
@@ -182,7 +182,7 @@ namespace nsHafsjoldData
             objFakturaer_s.save();
             int pNr = 3;
             DateTime pDate = DateTime.Now;
-            var qryMedlemLog = from m in Program.dbData3060.TblMedlemLog
+            var qryMedlemLog = from m in Program.dbHafsjoldData.TblMedlemLog
                         where m.Nr == pNr && m.Logdato <= pDate
                         select new
                         {
@@ -192,8 +192,8 @@ namespace nsHafsjoldData
                             Akt_id = (int)m.Akt_id,
                             Akt_dato = (DateTime)m.Akt_dato
                         };
-            var qryFak = from f in Program.dbData3060.Tblfak
-                       join p in Program.dbData3060.Tbltilpbs on f.Tilpbsid equals p.Id
+            var qryFak = from f in Program.dbHafsjoldData.Tblfak
+                       join p in Program.dbHafsjoldData.Tbltilpbs on f.Tilpbsid equals p.Id
                        where f.Nr == pNr && p.Bilagdato <= pDate
                        select new
                        {
@@ -213,7 +213,7 @@ namespace nsHafsjoldData
 
             DateTime qryStart = DateTime.Now;
             var MedlemmerAll = from h in Program.karMedlemmer
-                               join d1 in Program.dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
+                               join d1 in Program.dbHafsjoldData.TblMedlem on h.Nr equals d1.Nr into details1
                                from x in details1.DefaultIfEmpty(new TblMedlem { Nr = -1, Knr = -1, Kon = "X", FodtDato = new DateTime(1900, 1, 1) })
                                select new clsMedlemAll
                                {
@@ -315,7 +315,7 @@ namespace nsHafsjoldData
             string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xls";
 
             var MedlemmerAll = from h in Program.karMedlemmer
-                               join d1 in Program.dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
+                               join d1 in Program.dbHafsjoldData.TblMedlem on h.Nr equals d1.Nr into details1
                                from x in details1.DefaultIfEmpty()  //new TblMedlem { Nr = -1, Knr = -1, Kon = "X", FodtDato = new DateTime(1900, 1, 1) })
                                select new clsMedlemAll
                                {
@@ -378,7 +378,7 @@ namespace nsHafsjoldData
                                 foreach (var att in CustomAttributes)
                                 {
                                     Type tp = att.GetType();
-                                    if (tp.ToString() == "nsPuls3060.Fieldattr")
+                                    if (tp.ToString() == "dbHafsjoldData.Fieldattr")
                                     {
                                         Fieldattr attr = (Fieldattr)att;
                                         string heading = attr.Heading;

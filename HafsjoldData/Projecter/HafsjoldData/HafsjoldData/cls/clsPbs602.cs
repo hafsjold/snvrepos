@@ -52,7 +52,7 @@ namespace nsHafsjoldData
             }
             var leftqry_pbsnetdir =
                 from h in Program.memPbsnetdir
-                join d1 in Program.dbData3060.Tblpbsfiles on new { h.Path, h.Filename } equals new { d1.Path, d1.Filename } into details
+                join d1 in Program.dbHafsjoldData.Tblpbsfiles on new { h.Path, h.Filename } equals new { d1.Path, d1.Filename } into details
                 from d1 in details.DefaultIfEmpty(new Tblpbsfiles { Id = -1, Type = (int?)null, Path = null, Filename = null, Size = (int?)null, Atime = (DateTime?)null, Mtime = (DateTime?)null, Perm = null, Uid = (int?)null, Gid = (int?)null })
                 where d1.Path == null && d1.Filename == null
                 select h;
@@ -74,7 +74,7 @@ namespace nsHafsjoldData
                        Uid = rec_pbsnetdir.Uid,
                        Gid = rec_pbsnetdir.Gid
                    };
-                    Program.dbData3060.Tblpbsfiles.InsertOnSubmit(m_rec_pbsfiles);
+                    Program.dbHafsjoldData.Tblpbsfiles.InsertOnSubmit(m_rec_pbsfiles);
 
                     string varFromFile = FraPBSFolderPath + rec_pbsnetdir.Filename;
                     int seqnr = 0;
@@ -94,10 +94,10 @@ namespace nsHafsjoldData
                         }
                     }
                     m_rec_pbsfiles.Transmittime = DateTime.Now;
-                    Program.dbData3060.SubmitChanges();
+                    Program.dbHafsjoldData.SubmitChanges();
                 }
             }
-            Program.dbData3060.SubmitChanges();
+            Program.dbHafsjoldData.SubmitChanges();
             return AntalFiler;
         }
 
@@ -127,9 +127,9 @@ namespace nsHafsjoldData
             //  sektion = "0211"
             //  rec = "BS0420398564402360000000100000000001231312345678910120310000000012755000000125                         3112031112030000000012755"
 
-            var qrypbsfiles = from h in Program.dbData3060.Tblpbsfiles
+            var qrypbsfiles = from h in Program.dbHafsjoldData.Tblpbsfiles
                               where h.Pbsforsendelseid == null
-                              join d in Program.dbData3060.Tblpbsfile on h.Id equals d.Pbsfilesid
+                              join d in Program.dbHafsjoldData.Tblpbsfile on h.Id equals d.Pbsfilesid
                               where d.Seqnr == 1 && d.Data.Substring(16, 4) == "0602" && d.Data.Substring(0, 2) == "BS"
                               select new
                               {
@@ -150,7 +150,7 @@ namespace nsHafsjoldData
                     sektion = "";
                     leverancespecifikation = "";
 
-                    var qrypbsfile = from d in Program.dbData3060.Tblpbsfile
+                    var qrypbsfile = from d in Program.dbHafsjoldData.Tblpbsfile
                                      where d.Pbsfilesid == wpbsfilesid && d.Seqnr > 0
                                      orderby d.Seqnr
                                      select d;
@@ -175,7 +175,7 @@ namespace nsHafsjoldData
                             if ((leverancetype == "0602"))
                             {
                                 // -- Leverance 0602
-                                var antal = (from c in Program.dbData3060.Tblfrapbs
+                                var antal = (from c in Program.dbHafsjoldData.Tblfrapbs
                                              where c.Leverancespecifikation == leverancespecifikation
                                              select c).Count();
                                 if (antal > 0) { throw new Exception("242 - Leverance med pbsfilesid: " + wpbsfilesid + " og leverancespecifikation: " + leverancespecifikation + " er indlæst tidligere"); }
@@ -189,7 +189,7 @@ namespace nsHafsjoldData
                                     Oprettet = DateTime.Now,
                                     Leveranceid = wleveranceid
                                 };
-                                Program.dbData3060.Tblpbsforsendelse.InsertOnSubmit(m_rec_pbsforsendelse);
+                                Program.dbHafsjoldData.Tblpbsforsendelse.InsertOnSubmit(m_rec_pbsforsendelse);
 
                                 m_rec_frapbs = new Tblfrapbs
                                 {
@@ -201,7 +201,7 @@ namespace nsHafsjoldData
                                 };
                                 m_rec_pbsforsendelse.Tblfrapbs.Add(m_rec_frapbs);
 
-                                m_rec_pbsfiles = (from c in Program.dbData3060.Tblpbsfiles
+                                m_rec_pbsfiles = (from c in Program.dbHafsjoldData.Tblpbsfiles
                                                   where c.Id == rstpbsfiles.Id
                                                   select c).First();
                                 m_rec_pbsforsendelse.Tblpbsfiles.Add(m_rec_pbsfiles);
@@ -362,7 +362,7 @@ namespace nsHafsjoldData
                     }
                 }
             }  // slut rstpbsfiles
-            Program.dbData3060.SubmitChanges();
+            Program.dbHafsjoldData.SubmitChanges();
             return AntalFiler;
         }
 

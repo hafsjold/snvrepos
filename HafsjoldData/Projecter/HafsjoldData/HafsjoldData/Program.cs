@@ -10,7 +10,7 @@ namespace nsHafsjoldData
     {
         private static string m_path_to_lock_summasummarum_kontoplan;
         private static FileStream m_filestream_to_lock_summasummarum_kontoplan;
-        private static DbData3060 m_dbData3060;
+        private static DbHafsjoldData m_dbHafsjoldData;
         private static KarMedlemmer m_KarMedlemmer;
         private static MemMedlemDictionary m_dicMedlem;
         private static MemAktivRegnskab m_memAktivRegnskab;
@@ -46,11 +46,11 @@ namespace nsHafsjoldData
                 m_filestream_to_lock_summasummarum_kontoplan = value;
             }
         }
-        public static DbData3060 dbData3060
+        public static DbHafsjoldData dbHafsjoldData
         {
             get
             {
-                if (m_dbData3060 == null)
+                if (m_dbHafsjoldData == null)
                 {
                     if (!File.Exists(global::nsHafsjoldData.Properties.Settings.Default.DataBasePath))
                     {
@@ -71,13 +71,13 @@ namespace nsHafsjoldData
                             global::nsHafsjoldData.Properties.Settings.Default.Save();
                         }
                     }
-                    m_dbData3060 = new DbData3060(global::nsHafsjoldData.Properties.Settings.Default.DataBasePath);
+                    m_dbHafsjoldData = new DbHafsjoldData(global::nsHafsjoldData.Properties.Settings.Default.DataBasePath);
                 }
-                return m_dbData3060;
+                return m_dbHafsjoldData;
             }
             set
             {
-                m_dbData3060 = value;
+                m_dbHafsjoldData = value;
             }
         }
         public static KarMedlemmer karMedlemmer
@@ -230,7 +230,7 @@ namespace nsHafsjoldData
             try
             {
                 return (from a in Program.memAktivRegnskab
-                        join r in Program.dbData3060.TblRegnskab on a.Rid equals r.Rid
+                        join r in Program.dbHafsjoldData.TblRegnskab on a.Rid equals r.Rid
                         select r).First();
 
             }
@@ -245,7 +245,7 @@ namespace nsHafsjoldData
         }
         public static IQueryable<clsLog> qryLog()
         {
-            var qryMedlemLog = from m in Program.dbData3060.TblMedlemLog
+            var qryMedlemLog = from m in Program.dbHafsjoldData.TblMedlemLog
                                select new clsLog
                                {
                                    Id = (int?)m.Id,
@@ -254,8 +254,8 @@ namespace nsHafsjoldData
                                    Akt_id = (int?)m.Akt_id,
                                    Akt_dato = (DateTime?)m.Akt_dato
                                };
-            var qryFak = from f in Program.dbData3060.Tblfak
-                         join p in Program.dbData3060.Tbltilpbs on f.Tilpbsid equals p.Id
+            var qryFak = from f in Program.dbHafsjoldData.Tblfak
+                         join p in Program.dbHafsjoldData.Tbltilpbs on f.Tilpbsid equals p.Id
                          select new clsLog
                          {
                              Id = (int?)f.Id,
@@ -265,8 +265,8 @@ namespace nsHafsjoldData
                              Akt_dato = (DateTime?)f.Betalingsdato
                          };
 
-            var qryBetlin = from b in Program.dbData3060.Tblbetlin
-                            join f in Program.dbData3060.Tblfak on b.Faknr equals f.Faknr
+            var qryBetlin = from b in Program.dbHafsjoldData.Tblbetlin
+                            join f in Program.dbHafsjoldData.Tblfak on b.Faknr equals f.Faknr
                             where b.Pbstranskode == "0236" || b.Pbstranskode == "0297"
                             select new clsLog
                             {
@@ -277,7 +277,7 @@ namespace nsHafsjoldData
                                 Akt_dato = (DateTime?)f.Tildato
                             };
 
-            var qryBetlin40 = from b in Program.dbData3060.Tblbetlin
+            var qryBetlin40 = from b in Program.dbHafsjoldData.Tblbetlin
                               where b.Pbstranskode == "0237"
                               select new clsLog
                               {

@@ -22,8 +22,8 @@ namespace nsHafsjoldData
 	using System;
 	
 	
-	[System.Data.Linq.Mapping.DatabaseAttribute(Name="dbData3060")]
-	public partial class DbData3060 : System.Data.Linq.DataContext
+	[System.Data.Linq.Mapping.DatabaseAttribute(Name="dbHafsjoldData")]
+	public partial class DbHafsjoldData : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -33,18 +33,30 @@ namespace nsHafsjoldData
     partial void InsertTblAktivitet(TblAktivitet instance);
     partial void UpdateTblAktivitet(TblAktivitet instance);
     partial void DeleteTblAktivitet(TblAktivitet instance);
+    partial void InsertTblbankkonto(Tblbankkonto instance);
+    partial void UpdateTblbankkonto(Tblbankkonto instance);
+    partial void DeleteTblbankkonto(Tblbankkonto instance);
     partial void InsertTblbet(Tblbet instance);
     partial void UpdateTblbet(Tblbet instance);
     partial void DeleteTblbet(Tblbet instance);
     partial void InsertTblbetlin(Tblbetlin instance);
     partial void UpdateTblbetlin(Tblbetlin instance);
     partial void DeleteTblbetlin(Tblbetlin instance);
+    partial void InsertTblbilag(Tblbilag instance);
+    partial void UpdateTblbilag(Tblbilag instance);
+    partial void DeleteTblbilag(Tblbilag instance);
     partial void InsertTblfak(Tblfak instance);
     partial void UpdateTblfak(Tblfak instance);
     partial void DeleteTblfak(Tblfak instance);
     partial void InsertTblfrapbs(Tblfrapbs instance);
     partial void UpdateTblfrapbs(Tblfrapbs instance);
     partial void DeleteTblfrapbs(Tblfrapbs instance);
+    partial void InsertTblkladder(Tblkladder instance);
+    partial void UpdateTblkladder(Tblkladder instance);
+    partial void DeleteTblkladder(Tblkladder instance);
+    partial void InsertTblkonto(Tblkonto instance);
+    partial void UpdateTblkonto(Tblkonto instance);
+    partial void DeleteTblkonto(Tblkonto instance);
     partial void InsertTblkreditor(Tblkreditor instance);
     partial void UpdateTblkreditor(Tblkreditor instance);
     partial void DeleteTblkreditor(Tblkreditor instance);
@@ -78,6 +90,9 @@ namespace nsHafsjoldData
     partial void InsertTbltilpbs(Tbltilpbs instance);
     partial void UpdateTbltilpbs(Tbltilpbs instance);
     partial void DeleteTbltilpbs(Tbltilpbs instance);
+    partial void InsertTbltrans(Tbltrans instance);
+    partial void UpdateTbltrans(Tbltrans instance);
+    partial void DeleteTbltrans(Tbltrans instance);
     partial void InsertTempKontforslag(TempKontforslag instance);
     partial void UpdateTempKontforslag(TempKontforslag instance);
     partial void DeleteTempKontforslag(TempKontforslag instance);
@@ -86,25 +101,25 @@ namespace nsHafsjoldData
     partial void DeleteTempKontforslaglinie(TempKontforslaglinie instance);
     #endregion
 		
-		public DbData3060(string connection) : 
+		public DbHafsjoldData(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DbData3060(System.Data.IDbConnection connection) : 
+		public DbHafsjoldData(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DbData3060(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public DbHafsjoldData(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public DbData3060(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public DbHafsjoldData(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -115,6 +130,14 @@ namespace nsHafsjoldData
 			get
 			{
 				return this.GetTable<TblAktivitet>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Tblbankkonto> Tblbankkonto
+		{
+			get
+			{
+				return this.GetTable<Tblbankkonto>();
 			}
 		}
 		
@@ -134,6 +157,14 @@ namespace nsHafsjoldData
 			}
 		}
 		
+		public System.Data.Linq.Table<Tblbilag> Tblbilag
+		{
+			get
+			{
+				return this.GetTable<Tblbilag>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Tblfak> Tblfak
 		{
 			get
@@ -147,6 +178,22 @@ namespace nsHafsjoldData
 			get
 			{
 				return this.GetTable<Tblfrapbs>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Tblkladder> Tblkladder
+		{
+			get
+			{
+				return this.GetTable<Tblkladder>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Tblkonto> Tblkonto
+		{
+			get
+			{
+				return this.GetTable<Tblkonto>();
 			}
 		}
 		
@@ -235,6 +282,14 @@ namespace nsHafsjoldData
 			get
 			{
 				return this.GetTable<Tbltilpbs>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Tbltrans> Tbltrans
+		{
+			get
+			{
+				return this.GetTable<Tbltrans>();
 			}
 		}
 		
@@ -366,6 +421,188 @@ namespace nsHafsjoldData
 		{
 			this.SendPropertyChanging();
 			entity.TblAktivitet = null;
+		}
+	}
+	
+	[Table(Name="tblbankkonto")]
+	public partial class Tblbankkonto : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<decimal> _Saldo;
+		
+		private System.Nullable<bool> _Skjul;
+		
+		private System.Nullable<System.DateTime> _Dato;
+		
+		private string _Tekst;
+		
+		private System.Nullable<decimal> _BeløB;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnSaldoChanging(System.Nullable<decimal> value);
+    partial void OnSaldoChanged();
+    partial void OnSkjulChanging(System.Nullable<bool> value);
+    partial void OnSkjulChanged();
+    partial void OnDatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnDatoChanged();
+    partial void OnTekstChanging(string value);
+    partial void OnTekstChanged();
+    partial void OnBeløBChanging(System.Nullable<decimal> value);
+    partial void OnBeløBChanged();
+    #endregion
+		
+		public Tblbankkonto()
+		{
+			OnCreated();
+		}
+		
+		[Column(Name="id", Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Name="saldo", Storage="_Saldo", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Saldo
+		{
+			get
+			{
+				return this._Saldo;
+			}
+			set
+			{
+				if ((this._Saldo != value))
+				{
+					this.OnSaldoChanging(value);
+					this.SendPropertyChanging();
+					this._Saldo = value;
+					this.SendPropertyChanged("Saldo");
+					this.OnSaldoChanged();
+				}
+			}
+		}
+		
+		[Column(Name="skjul", Storage="_Skjul", DbType="Bit")]
+		public System.Nullable<bool> Skjul
+		{
+			get
+			{
+				return this._Skjul;
+			}
+			set
+			{
+				if ((this._Skjul != value))
+				{
+					this.OnSkjulChanging(value);
+					this.SendPropertyChanging();
+					this._Skjul = value;
+					this.SendPropertyChanged("Skjul");
+					this.OnSkjulChanged();
+				}
+			}
+		}
+		
+		[Column(Name="dato", Storage="_Dato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Dato
+		{
+			get
+			{
+				return this._Dato;
+			}
+			set
+			{
+				if ((this._Dato != value))
+				{
+					this.OnDatoChanging(value);
+					this.SendPropertyChanging();
+					this._Dato = value;
+					this.SendPropertyChanged("Dato");
+					this.OnDatoChanged();
+				}
+			}
+		}
+		
+		[Column(Name="tekst", Storage="_Tekst", DbType="NVarChar(100)")]
+		public string Tekst
+		{
+			get
+			{
+				return this._Tekst;
+			}
+			set
+			{
+				if ((this._Tekst != value))
+				{
+					this.OnTekstChanging(value);
+					this.SendPropertyChanging();
+					this._Tekst = value;
+					this.SendPropertyChanged("Tekst");
+					this.OnTekstChanged();
+				}
+			}
+		}
+		
+		[Column(Name="beløb", Storage="_BeløB", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> BeløB
+		{
+			get
+			{
+				return this._BeløB;
+			}
+			set
+			{
+				if ((this._BeløB != value))
+				{
+					this.OnBeløBChanging(value);
+					this.SendPropertyChanging();
+					this._BeløB = value;
+					this.SendPropertyChanged("BeløB");
+					this.OnBeløBChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	
@@ -1074,6 +1311,164 @@ namespace nsHafsjoldData
 						this._Betid = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("Tblbet");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="tblbilag")]
+	public partial class Tblbilag : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Pid;
+		
+		private System.Nullable<int> _Rid;
+		
+		private System.Nullable<int> _Bilag;
+		
+		private System.Nullable<System.DateTime> _Dato;
+		
+		private System.Nullable<bool> _Udskriv;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPidChanging(int value);
+    partial void OnPidChanged();
+    partial void OnRidChanging(System.Nullable<int> value);
+    partial void OnRidChanged();
+    partial void OnBilagChanging(System.Nullable<int> value);
+    partial void OnBilagChanged();
+    partial void OnDatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnDatoChanged();
+    partial void OnUdskrivChanging(System.Nullable<bool> value);
+    partial void OnUdskrivChanged();
+    #endregion
+		
+		public Tblbilag()
+		{
+			OnCreated();
+		}
+		
+		[Column(Name="pid", Storage="_Pid", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Pid
+		{
+			get
+			{
+				return this._Pid;
+			}
+			set
+			{
+				if ((this._Pid != value))
+				{
+					this.OnPidChanging(value);
+					this.SendPropertyChanging();
+					this._Pid = value;
+					this.SendPropertyChanged("Pid");
+					this.OnPidChanged();
+				}
+			}
+		}
+		
+		[Column(Name="rid", Storage="_Rid", DbType="Int")]
+		public System.Nullable<int> Rid
+		{
+			get
+			{
+				return this._Rid;
+			}
+			set
+			{
+				if ((this._Rid != value))
+				{
+					this.OnRidChanging(value);
+					this.SendPropertyChanging();
+					this._Rid = value;
+					this.SendPropertyChanged("Rid");
+					this.OnRidChanged();
+				}
+			}
+		}
+		
+		[Column(Name="bilag", Storage="_Bilag", DbType="Int")]
+		public System.Nullable<int> Bilag
+		{
+			get
+			{
+				return this._Bilag;
+			}
+			set
+			{
+				if ((this._Bilag != value))
+				{
+					this.OnBilagChanging(value);
+					this.SendPropertyChanging();
+					this._Bilag = value;
+					this.SendPropertyChanged("Bilag");
+					this.OnBilagChanged();
+				}
+			}
+		}
+		
+		[Column(Name="dato", Storage="_Dato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Dato
+		{
+			get
+			{
+				return this._Dato;
+			}
+			set
+			{
+				if ((this._Dato != value))
+				{
+					this.OnDatoChanging(value);
+					this.SendPropertyChanging();
+					this._Dato = value;
+					this.SendPropertyChanged("Dato");
+					this.OnDatoChanged();
+				}
+			}
+		}
+		
+		[Column(Name="udskriv", Storage="_Udskriv", DbType="Bit")]
+		public System.Nullable<bool> Udskriv
+		{
+			get
+			{
+				return this._Udskriv;
+			}
+			set
+			{
+				if ((this._Udskriv != value))
+				{
+					this.OnUdskrivChanging(value);
+					this.SendPropertyChanging();
+					this._Udskriv = value;
+					this.SendPropertyChanged("Udskriv");
+					this.OnUdskrivChanged();
 				}
 			}
 		}
@@ -1898,6 +2293,418 @@ namespace nsHafsjoldData
 		{
 			this.SendPropertyChanging();
 			entity.Tblfrapbs = null;
+		}
+	}
+	
+	[Table(Name="tblkladder")]
+	public partial class Tblkladder : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Pid;
+		
+		private System.Nullable<int> _Bilagpid;
+		
+		private string _Tekst;
+		
+		private string _Afstemningskonto;
+		
+		private System.Nullable<decimal> _BeløB;
+		
+		private System.Nullable<int> _Konto;
+		
+		private string _Momskode;
+		
+		private System.Nullable<int> _Faktura;
+		
+		private System.Nullable<int> _Id;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPidChanging(int value);
+    partial void OnPidChanged();
+    partial void OnBilagpidChanging(System.Nullable<int> value);
+    partial void OnBilagpidChanged();
+    partial void OnTekstChanging(string value);
+    partial void OnTekstChanged();
+    partial void OnAfstemningskontoChanging(string value);
+    partial void OnAfstemningskontoChanged();
+    partial void OnBeløBChanging(System.Nullable<decimal> value);
+    partial void OnBeløBChanged();
+    partial void OnKontoChanging(System.Nullable<int> value);
+    partial void OnKontoChanged();
+    partial void OnMomskodeChanging(string value);
+    partial void OnMomskodeChanged();
+    partial void OnFakturaChanging(System.Nullable<int> value);
+    partial void OnFakturaChanged();
+    partial void OnIdChanging(System.Nullable<int> value);
+    partial void OnIdChanged();
+    #endregion
+		
+		public Tblkladder()
+		{
+			OnCreated();
+		}
+		
+		[Column(Name="pid", Storage="_Pid", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Pid
+		{
+			get
+			{
+				return this._Pid;
+			}
+			set
+			{
+				if ((this._Pid != value))
+				{
+					this.OnPidChanging(value);
+					this.SendPropertyChanging();
+					this._Pid = value;
+					this.SendPropertyChanged("Pid");
+					this.OnPidChanged();
+				}
+			}
+		}
+		
+		[Column(Name="bilagpid", Storage="_Bilagpid", DbType="Int")]
+		public System.Nullable<int> Bilagpid
+		{
+			get
+			{
+				return this._Bilagpid;
+			}
+			set
+			{
+				if ((this._Bilagpid != value))
+				{
+					this.OnBilagpidChanging(value);
+					this.SendPropertyChanging();
+					this._Bilagpid = value;
+					this.SendPropertyChanged("Bilagpid");
+					this.OnBilagpidChanged();
+				}
+			}
+		}
+		
+		[Column(Name="tekst", Storage="_Tekst", DbType="NVarChar(100)")]
+		public string Tekst
+		{
+			get
+			{
+				return this._Tekst;
+			}
+			set
+			{
+				if ((this._Tekst != value))
+				{
+					this.OnTekstChanging(value);
+					this.SendPropertyChanging();
+					this._Tekst = value;
+					this.SendPropertyChanged("Tekst");
+					this.OnTekstChanged();
+				}
+			}
+		}
+		
+		[Column(Name="afstemningskonto", Storage="_Afstemningskonto", DbType="NVarChar(100)")]
+		public string Afstemningskonto
+		{
+			get
+			{
+				return this._Afstemningskonto;
+			}
+			set
+			{
+				if ((this._Afstemningskonto != value))
+				{
+					this.OnAfstemningskontoChanging(value);
+					this.SendPropertyChanging();
+					this._Afstemningskonto = value;
+					this.SendPropertyChanged("Afstemningskonto");
+					this.OnAfstemningskontoChanged();
+				}
+			}
+		}
+		
+		[Column(Name="beløb", Storage="_BeløB", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> BeløB
+		{
+			get
+			{
+				return this._BeløB;
+			}
+			set
+			{
+				if ((this._BeløB != value))
+				{
+					this.OnBeløBChanging(value);
+					this.SendPropertyChanging();
+					this._BeløB = value;
+					this.SendPropertyChanged("BeløB");
+					this.OnBeløBChanged();
+				}
+			}
+		}
+		
+		[Column(Name="konto", Storage="_Konto", DbType="Int")]
+		public System.Nullable<int> Konto
+		{
+			get
+			{
+				return this._Konto;
+			}
+			set
+			{
+				if ((this._Konto != value))
+				{
+					this.OnKontoChanging(value);
+					this.SendPropertyChanging();
+					this._Konto = value;
+					this.SendPropertyChanged("Konto");
+					this.OnKontoChanged();
+				}
+			}
+		}
+		
+		[Column(Name="momskode", Storage="_Momskode", DbType="NVarChar(100)")]
+		public string Momskode
+		{
+			get
+			{
+				return this._Momskode;
+			}
+			set
+			{
+				if ((this._Momskode != value))
+				{
+					this.OnMomskodeChanging(value);
+					this.SendPropertyChanging();
+					this._Momskode = value;
+					this.SendPropertyChanged("Momskode");
+					this.OnMomskodeChanged();
+				}
+			}
+		}
+		
+		[Column(Name="faktura", Storage="_Faktura", DbType="Int")]
+		public System.Nullable<int> Faktura
+		{
+			get
+			{
+				return this._Faktura;
+			}
+			set
+			{
+				if ((this._Faktura != value))
+				{
+					this.OnFakturaChanging(value);
+					this.SendPropertyChanging();
+					this._Faktura = value;
+					this.SendPropertyChanged("Faktura");
+					this.OnFakturaChanged();
+				}
+			}
+		}
+		
+		[Column(Name="id", Storage="_Id", DbType="Int")]
+		public System.Nullable<int> Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="tblkonto")]
+	public partial class Tblkonto : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Kontonr;
+		
+		private string _Kontonavn;
+		
+		private string _Type;
+		
+		private string _Moms;
+		
+		private System.Nullable<decimal> _Saldo;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnKontonrChanging(int value);
+    partial void OnKontonrChanged();
+    partial void OnKontonavnChanging(string value);
+    partial void OnKontonavnChanged();
+    partial void OnTypeChanging(string value);
+    partial void OnTypeChanged();
+    partial void OnMomsChanging(string value);
+    partial void OnMomsChanged();
+    partial void OnSaldoChanging(System.Nullable<decimal> value);
+    partial void OnSaldoChanged();
+    #endregion
+		
+		public Tblkonto()
+		{
+			OnCreated();
+		}
+		
+		[Column(Name="kontonr", Storage="_Kontonr", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Kontonr
+		{
+			get
+			{
+				return this._Kontonr;
+			}
+			set
+			{
+				if ((this._Kontonr != value))
+				{
+					this.OnKontonrChanging(value);
+					this.SendPropertyChanging();
+					this._Kontonr = value;
+					this.SendPropertyChanged("Kontonr");
+					this.OnKontonrChanged();
+				}
+			}
+		}
+		
+		[Column(Name="kontonavn", Storage="_Kontonavn", DbType="NVarChar(100)")]
+		public string Kontonavn
+		{
+			get
+			{
+				return this._Kontonavn;
+			}
+			set
+			{
+				if ((this._Kontonavn != value))
+				{
+					this.OnKontonavnChanging(value);
+					this.SendPropertyChanging();
+					this._Kontonavn = value;
+					this.SendPropertyChanged("Kontonavn");
+					this.OnKontonavnChanged();
+				}
+			}
+		}
+		
+		[Column(Name="type", Storage="_Type", DbType="NVarChar(100)")]
+		public string Type
+		{
+			get
+			{
+				return this._Type;
+			}
+			set
+			{
+				if ((this._Type != value))
+				{
+					this.OnTypeChanging(value);
+					this.SendPropertyChanging();
+					this._Type = value;
+					this.SendPropertyChanged("Type");
+					this.OnTypeChanged();
+				}
+			}
+		}
+		
+		[Column(Name="moms", Storage="_Moms", DbType="NVarChar(100)")]
+		public string Moms
+		{
+			get
+			{
+				return this._Moms;
+			}
+			set
+			{
+				if ((this._Moms != value))
+				{
+					this.OnMomsChanging(value);
+					this.SendPropertyChanging();
+					this._Moms = value;
+					this.SendPropertyChanged("Moms");
+					this.OnMomsChanged();
+				}
+			}
+		}
+		
+		[Column(Name="saldo", Storage="_Saldo", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Saldo
+		{
+			get
+			{
+				return this._Saldo;
+			}
+			set
+			{
+				if ((this._Saldo != value))
+				{
+					this.OnSaldoChanging(value);
+					this.SendPropertyChanging();
+					this._Saldo = value;
+					this.SendPropertyChanged("Saldo");
+					this.OnSaldoChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	
@@ -4449,6 +5256,356 @@ namespace nsHafsjoldData
 		{
 			this.SendPropertyChanging();
 			entity.Tbltilpbs = null;
+		}
+	}
+	
+	[Table(Name="tbltrans")]
+	public partial class Tbltrans : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Pid;
+		
+		private System.Nullable<bool> _Skjul;
+		
+		private System.Nullable<int> _Bilagpid;
+		
+		private string _Tekst;
+		
+		private System.Nullable<int> _Kontonr;
+		
+		private string _Kontonavn;
+		
+		private System.Nullable<decimal> _Moms;
+		
+		private System.Nullable<decimal> _Debet;
+		
+		private System.Nullable<decimal> _Kredit;
+		
+		private System.Nullable<int> _Id;
+		
+		private System.Nullable<byte> _Nr;
+		
+		private System.Nullable<decimal> _BeløB;
+		
+		private System.Nullable<int> _Afstem;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPidChanging(int value);
+    partial void OnPidChanged();
+    partial void OnSkjulChanging(System.Nullable<bool> value);
+    partial void OnSkjulChanged();
+    partial void OnBilagpidChanging(System.Nullable<int> value);
+    partial void OnBilagpidChanged();
+    partial void OnTekstChanging(string value);
+    partial void OnTekstChanged();
+    partial void OnKontonrChanging(System.Nullable<int> value);
+    partial void OnKontonrChanged();
+    partial void OnKontonavnChanging(string value);
+    partial void OnKontonavnChanged();
+    partial void OnMomsChanging(System.Nullable<decimal> value);
+    partial void OnMomsChanged();
+    partial void OnDebetChanging(System.Nullable<decimal> value);
+    partial void OnDebetChanged();
+    partial void OnKreditChanging(System.Nullable<decimal> value);
+    partial void OnKreditChanged();
+    partial void OnIdChanging(System.Nullable<int> value);
+    partial void OnIdChanged();
+    partial void OnNrChanging(System.Nullable<byte> value);
+    partial void OnNrChanged();
+    partial void OnBeløBChanging(System.Nullable<decimal> value);
+    partial void OnBeløBChanged();
+    partial void OnAfstemChanging(System.Nullable<int> value);
+    partial void OnAfstemChanged();
+    #endregion
+		
+		public Tbltrans()
+		{
+			OnCreated();
+		}
+		
+		[Column(Name="pid", Storage="_Pid", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Pid
+		{
+			get
+			{
+				return this._Pid;
+			}
+			set
+			{
+				if ((this._Pid != value))
+				{
+					this.OnPidChanging(value);
+					this.SendPropertyChanging();
+					this._Pid = value;
+					this.SendPropertyChanged("Pid");
+					this.OnPidChanged();
+				}
+			}
+		}
+		
+		[Column(Name="skjul", Storage="_Skjul", DbType="Bit")]
+		public System.Nullable<bool> Skjul
+		{
+			get
+			{
+				return this._Skjul;
+			}
+			set
+			{
+				if ((this._Skjul != value))
+				{
+					this.OnSkjulChanging(value);
+					this.SendPropertyChanging();
+					this._Skjul = value;
+					this.SendPropertyChanged("Skjul");
+					this.OnSkjulChanged();
+				}
+			}
+		}
+		
+		[Column(Name="bilagpid", Storage="_Bilagpid", DbType="Int")]
+		public System.Nullable<int> Bilagpid
+		{
+			get
+			{
+				return this._Bilagpid;
+			}
+			set
+			{
+				if ((this._Bilagpid != value))
+				{
+					this.OnBilagpidChanging(value);
+					this.SendPropertyChanging();
+					this._Bilagpid = value;
+					this.SendPropertyChanged("Bilagpid");
+					this.OnBilagpidChanged();
+				}
+			}
+		}
+		
+		[Column(Name="tekst", Storage="_Tekst", DbType="NVarChar(100)")]
+		public string Tekst
+		{
+			get
+			{
+				return this._Tekst;
+			}
+			set
+			{
+				if ((this._Tekst != value))
+				{
+					this.OnTekstChanging(value);
+					this.SendPropertyChanging();
+					this._Tekst = value;
+					this.SendPropertyChanged("Tekst");
+					this.OnTekstChanged();
+				}
+			}
+		}
+		
+		[Column(Name="kontonr", Storage="_Kontonr", DbType="Int")]
+		public System.Nullable<int> Kontonr
+		{
+			get
+			{
+				return this._Kontonr;
+			}
+			set
+			{
+				if ((this._Kontonr != value))
+				{
+					this.OnKontonrChanging(value);
+					this.SendPropertyChanging();
+					this._Kontonr = value;
+					this.SendPropertyChanged("Kontonr");
+					this.OnKontonrChanged();
+				}
+			}
+		}
+		
+		[Column(Name="kontonavn", Storage="_Kontonavn", DbType="NVarChar(100)")]
+		public string Kontonavn
+		{
+			get
+			{
+				return this._Kontonavn;
+			}
+			set
+			{
+				if ((this._Kontonavn != value))
+				{
+					this.OnKontonavnChanging(value);
+					this.SendPropertyChanging();
+					this._Kontonavn = value;
+					this.SendPropertyChanged("Kontonavn");
+					this.OnKontonavnChanged();
+				}
+			}
+		}
+		
+		[Column(Name="moms", Storage="_Moms", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Moms
+		{
+			get
+			{
+				return this._Moms;
+			}
+			set
+			{
+				if ((this._Moms != value))
+				{
+					this.OnMomsChanging(value);
+					this.SendPropertyChanging();
+					this._Moms = value;
+					this.SendPropertyChanged("Moms");
+					this.OnMomsChanged();
+				}
+			}
+		}
+		
+		[Column(Name="debet", Storage="_Debet", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Debet
+		{
+			get
+			{
+				return this._Debet;
+			}
+			set
+			{
+				if ((this._Debet != value))
+				{
+					this.OnDebetChanging(value);
+					this.SendPropertyChanging();
+					this._Debet = value;
+					this.SendPropertyChanged("Debet");
+					this.OnDebetChanged();
+				}
+			}
+		}
+		
+		[Column(Name="kredit", Storage="_Kredit", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Kredit
+		{
+			get
+			{
+				return this._Kredit;
+			}
+			set
+			{
+				if ((this._Kredit != value))
+				{
+					this.OnKreditChanging(value);
+					this.SendPropertyChanging();
+					this._Kredit = value;
+					this.SendPropertyChanged("Kredit");
+					this.OnKreditChanged();
+				}
+			}
+		}
+		
+		[Column(Name="id", Storage="_Id", DbType="Int")]
+		public System.Nullable<int> Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Name="nr", Storage="_Nr", DbType="TinyInt")]
+		public System.Nullable<byte> Nr
+		{
+			get
+			{
+				return this._Nr;
+			}
+			set
+			{
+				if ((this._Nr != value))
+				{
+					this.OnNrChanging(value);
+					this.SendPropertyChanging();
+					this._Nr = value;
+					this.SendPropertyChanged("Nr");
+					this.OnNrChanged();
+				}
+			}
+		}
+		
+		[Column(Name="beløb", Storage="_BeløB", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> BeløB
+		{
+			get
+			{
+				return this._BeløB;
+			}
+			set
+			{
+				if ((this._BeløB != value))
+				{
+					this.OnBeløBChanging(value);
+					this.SendPropertyChanging();
+					this._BeløB = value;
+					this.SendPropertyChanged("BeløB");
+					this.OnBeløBChanged();
+				}
+			}
+		}
+		
+		[Column(Name="afstem", Storage="_Afstem", DbType="Int")]
+		public System.Nullable<int> Afstem
+		{
+			get
+			{
+				return this._Afstem;
+			}
+			set
+			{
+				if ((this._Afstem != value))
+				{
+					this.OnAfstemChanging(value);
+					this.SendPropertyChanging();
+					this._Afstem = value;
+					this.SendPropertyChanged("Afstem");
+					this.OnAfstemChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	

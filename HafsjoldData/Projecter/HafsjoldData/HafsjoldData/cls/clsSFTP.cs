@@ -15,7 +15,7 @@ namespace nsHafsjoldData
 
         public clsSFTP()
         {
-            m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Test" select s).First();
+            m_rec_sftp = (from s in Program.dbHafsjoldData.Tblsftp where s.Navn == "Test" select s).First();
 
             m_sftp = new SFtp();
             bool success = m_sftp.UnlockComponent("HAFSJOSSH_6pspJCMP1QnW");
@@ -89,7 +89,7 @@ namespace nsHafsjoldData
 
             var leftqry_pbsnetdir =
                 from h in Program.memPbsnetdir
-                //join d1 in Program.dbData3060.Tblpbsfiles on new { h.Path, h.Filename } equals new { d1.Path, d1.Filename } into details
+                //join d1 in Program.dbHafsjoldData.Tblpbsfiles on new { h.Path, h.Filename } equals new { d1.Path, d1.Filename } into details
                 //from d1 in details.DefaultIfEmpty(new Tblpbsfiles { Id = -1, Type = (int?)null, Path = null, Filename = null, Size = (int?)null, Atime = (DateTime?)null, Mtime = (DateTime?)null, Perm = null, Uid = (int?)null, Gid = (int?)null })
                 //where d1.Path == null && d1.Filename == null
                 select h;
@@ -111,7 +111,7 @@ namespace nsHafsjoldData
                         Uid = rec_pbsnetdir.Uid,
                         Gid = rec_pbsnetdir.Gid
                     };
-                    Program.dbData3060.Tblpbsfiles.InsertOnSubmit(m_rec_pbsfiles);
+                    Program.dbHafsjoldData.Tblpbsfiles.InsertOnSubmit(m_rec_pbsfiles);
 
                     //***********************************************************************
                     //  Open a file on the server:
@@ -144,7 +144,7 @@ namespace nsHafsjoldData
                     }
 
                     m_rec_pbsfiles.Transmittime = DateTime.Now;
-                    Program.dbData3060.SubmitChanges();
+                    Program.dbHafsjoldData.SubmitChanges();
 
                     //  Close the file.
                     success = m_sftp.CloseHandle(filehandle);
@@ -152,7 +152,7 @@ namespace nsHafsjoldData
                     //***********************************************************************************
                 }
             }
-            Program.dbData3060.SubmitChanges();
+            Program.dbHafsjoldData.SubmitChanges();
             return AntalFiler;
         }
 

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Database Name="dbRecovery3060" Class="DbRecovery3060" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+<Database Name="dbRecoveryHafsjoldData" Class="DbRecoveryHafsjoldData" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Table Name="tblContent" Member="TblContent">
     <Type Name="TblContent">
       <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />

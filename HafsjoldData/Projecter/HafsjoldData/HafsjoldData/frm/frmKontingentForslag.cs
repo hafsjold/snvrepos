@@ -308,7 +308,7 @@ namespace nsHafsjoldData
             this.pgmFaktura.Minimum = 0;
             this.pgmFaktura.Value = 0;
             this.pgmFaktura.Visible = true;
-            Program.dbData3060.ExecuteCommand("DELETE FROM tempKontforslag;");
+            Program.dbHafsjoldData.ExecuteCommand("DELETE FROM tempKontforslag;");
             if ((imax == 0))
             {
                 this.Label_Fakturatekst.Text = "Der ikke noget at fakturere";
@@ -320,7 +320,7 @@ namespace nsHafsjoldData
                 {
                     Betalingsdato = this.DatoKontingentForfald.Value,
                 };
-                Program.dbData3060.TempKontforslag.InsertOnSubmit(rec_tempKontforslag);
+                Program.dbHafsjoldData.TempKontforslag.InsertOnSubmit(rec_tempKontforslag);
                 var i = 0;
                 foreach (ListViewItem lvi in lvwKontingent.Items)
                 {
@@ -339,7 +339,7 @@ namespace nsHafsjoldData
                     };
                     rec_tempKontforslag.TempKontforslaglinie.Add(rec_tempKontforslaglinie);
                 }
-                Program.dbData3060.SubmitChanges();
+                Program.dbHafsjoldData.SubmitChanges();
 
                 clsPbs601 objPbs601 = new clsPbs601();
                 nsHafsjoldData.clsPbs601.SetLobnr += new nsHafsjoldData.clsPbs601.Pbs601DelegateHandler(On_clsPbs601_SetLobnr);
@@ -356,7 +356,7 @@ namespace nsHafsjoldData
                 cmdFakturer.Text = "Afslut";
                 try
                 {
-                    var rec_tilpbs = (from t in Program.dbData3060.Tbltilpbs where t.Id == m_lobnr select t).First();
+                    var rec_tilpbs = (from t in Program.dbHafsjoldData.Tbltilpbs where t.Id == m_lobnr select t).First();
                     TilPBSFilename = "PBS" + rec_tilpbs.Leverancespecifikation + ".lst";
                 }
                 catch (System.InvalidOperationException)
