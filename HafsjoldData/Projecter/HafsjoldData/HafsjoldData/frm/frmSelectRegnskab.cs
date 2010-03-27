@@ -19,8 +19,6 @@ namespace nsHafsjoldData
 
         private void frmSelectRegnskab_Load(object sender, EventArgs e)
         {
-            clsPbs objPbs = new clsPbs();
-            objPbs.ReadRegnskaber();
             var rec_AktivRegnskab = Program.qryAktivRegnskab();
             if (rec_AktivRegnskab.Rid == 999) this.cmdSidstAnventeRegnskab.Enabled = false;
             this.Regnskab.Text = rec_AktivRegnskab.Navn;

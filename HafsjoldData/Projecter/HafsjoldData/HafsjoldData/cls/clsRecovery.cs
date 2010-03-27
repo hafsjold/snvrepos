@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-//using ICSharpCode.SharpZipLib.Zip;
 using System.Security.Cryptography;
 
 namespace nsHafsjoldData
@@ -34,15 +33,7 @@ namespace nsHafsjoldData
         public void createRecoveryPoint()
         {
             Program.dbHafsjoldData = null;
-            Program.karMedlemmer = null;
-            Program.memMedlemDictionary = null;
             Program.memAktivRegnskab = null;
-            Program.memPbsnetdir = null;
-            Program.karDkkonti = null;
-            Program.karFakturaer_s = null;
-            Program.karFakturastr_s = null;
-            Program.karFakturavarer_s = null;
-            Program.karKortnr = null;
             Program.karRegnskab = null;
             Program.karStatus = null;
             Program.karKladde = null;

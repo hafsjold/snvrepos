@@ -62,10 +62,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\ChilkatDotNet2.dll</HintPath>
     </Reference>
-    <Reference Include="Google.GData.AccessControl, Version=1.4.0.2, Culture=neutral, PublicKeyToken=b4b8eb9a7afc8328, processorArchitecture=MSIL" />
-    <Reference Include="Google.GData.Client, Version=1.4.0.2, Culture=neutral, PublicKeyToken=04a59ca9b0273830, processorArchitecture=MSIL" />
-    <Reference Include="Google.GData.Contacts, Version=1.4.0.2, Culture=neutral, PublicKeyToken=7e065189dd4b982f, processorArchitecture=MSIL" />
-    <Reference Include="Google.GData.Extensions, Version=1.4.0.2, Culture=neutral, PublicKeyToken=0b4c5df2ebf20876, processorArchitecture=MSIL" />
     <Reference Include="Interop.Excel, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\Interop.Excel.dll</HintPath>
@@ -106,10 +102,7 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="cls\clsGoogle.cs" />
-    <Compile Include="cls\clsSFTP.cs" />
     <Compile Include="cls\clsRecovery.cs" />
-    <Compile Include="cls\clsSumma.cs" />
     <Compile Include="dbHafsjoldData.cs">
       <DependentUpon>dbHafsjoldData.dbml</DependentUpon>
     </Compile>
@@ -123,22 +116,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbRecoveryHafsjoldData.dbml</DependentUpon>
     </Compile>
-    <Compile Include="dsMedlem.cs">
-      <DependentUpon>dsMedlem.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="frm\frmPbsfiles.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frm\frmPbsfiles.Designer.cs">
-      <DependentUpon>frmPbsfiles.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frm\frmKontingentForslag.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frm\frmKontingentForslag.Designer.cs">
-      <DependentUpon>frmKontingentForslag.cs</DependentUpon>
-    </Compile>
     <Compile Include="frm\frmRegnskab.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,34 +128,15 @@
     <Compile Include="frm\BetterDialog.designer.cs">
       <DependentUpon>BetterDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="cls\clsCsv.cs" />
-    <Compile Include="cls\clsMedlem.cs" />
     <Compile Include="kar\karKladde.cs" />
-    <Compile Include="mem\memPbsnetdir.cs" />
     <Compile Include="mem\memAktivRegnskab.cs" />
-    <Compile Include="frm\frmKreditor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frm\frmKreditor.Designer.cs">
-      <DependentUpon>frmKreditor.cs</DependentUpon>
-    </Compile>
     <Compile Include="frm\frmSelectRegnskab.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frm\frmSelectRegnskab.Designer.cs">
       <DependentUpon>frmSelectRegnskab.cs</DependentUpon>
     </Compile>
-    <Compile Include="kar\karMedlemmer.cs" />
-    <Compile Include="cls\clsPbs.cs" />
-    <Compile Include="cls\clsPbs601.cs" />
-    <Compile Include="cls\clsPbs602.cs" />
     <Compile Include="cls\clsUtil.cs" />
-    <Compile Include="mem\memMedlemDictionary.cs" />
-    <Compile Include="dsMedlem.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dsMedlem.xsd</DependentUpon>
-    </Compile>
     <Compile Include="frm\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -186,17 +144,6 @@
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="cls\clsRegistry.cs" />
-    <Compile Include="frm\frmMedlemmer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frm\frmMedlemmer.Designer.cs">
-      <DependentUpon>frmMedlemmer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="kar\karDkkonti.cs" />
-    <Compile Include="kar\karFakturaer_s.cs" />
-    <Compile Include="kar\karFakturastr_s.cs" />
-    <Compile Include="kar\karFakturavarer_s.cs" />
-    <Compile Include="kar\karKortnr.cs" />
     <Compile Include="kar\karRegnskab.cs" />
     <Compile Include="kar\karStatus.cs" />
     <Compile Include="NullableDateTimePicker.cs">
@@ -218,20 +165,8 @@
     <EmbeddedResource Include="frm\BetterDialog.resx">
       <DependentUpon>BetterDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm\frmKontingentForslag.resx">
-      <DependentUpon>frmKontingentForslag.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frm\frmKreditor.resx">
-      <DependentUpon>frmKreditor.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frm\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frm\frmMedlemmer.resx">
-      <DependentUpon>frmMedlemmer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frm\frmPbsfiles.resx">
-      <DependentUpon>frmPbsfiles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm\frmRegnskab.resx">
       <DependentUpon>frmRegnskab.cs</DependentUpon>
@@ -253,17 +188,6 @@
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>dbHafsjoldData.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </None>
-    <None Include="dsMedlem.xsc">
-      <DependentUpon>dsMedlem.xsd</DependentUpon>
-    </None>
-    <None Include="dsMedlem.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dsMedlem.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="dsMedlem.xss">
-      <DependentUpon>dsMedlem.xsd</DependentUpon>
     </None>
     <None Include="HafsjoldData_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
@@ -289,7 +213,6 @@
     <None Include="Resources\Add.bmp" />
     <Content Include="Libraries\Chilkat Receipt and Unlock Codes.htm" />
     <Content Include="Libraries\ChilkatDotNet2.dll" />
-    <Content Include="Libraries\ICSharpCode.SharpZipLib.dll" />
     <Content Include="Libraries\Interop.Excel.dll" />
     <Content Include="Libraries\Interop.Microsoft.Office.Core.dll" />
     <Content Include="Libraries\Interop.VBIDE.dll" />
