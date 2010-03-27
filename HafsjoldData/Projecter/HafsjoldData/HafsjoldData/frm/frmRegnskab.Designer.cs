@@ -38,8 +38,6 @@
             this.label_DatoLaas = new System.Windows.Forms.Label();
             this.label_Placering = new System.Windows.Forms.Label();
             this.label_Eksportmappe = new System.Windows.Forms.Label();
-            this.label_TilPBS = new System.Windows.Forms.Label();
-            this.label_FraPBS = new System.Windows.Forms.Label();
             this.label1_Afsluttet = new System.Windows.Forms.Label();
             this.Rid = new System.Windows.Forms.TextBox();
             this.bsRegnskab = new System.Windows.Forms.BindingSource(this.components);
@@ -50,8 +48,6 @@
             this.DatoLaas = new System.Windows.Forms.TextBox();
             this.Placering = new System.Windows.Forms.TextBox();
             this.Eksportmappe = new System.Windows.Forms.TextBox();
-            this.TilPBS = new System.Windows.Forms.TextBox();
-            this.FraPBS = new System.Windows.Forms.TextBox();
             this.Afsluttet = new System.Windows.Forms.TextBox();
             this.bnRegnskab = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
@@ -142,28 +138,10 @@
             this.label_Eksportmappe.TabIndex = 0;
             this.label_Eksportmappe.Text = "Eksportmappe";
             // 
-            // label_TilPBS
-            // 
-            this.label_TilPBS.AutoSize = true;
-            this.label_TilPBS.Location = new System.Drawing.Point(13, 278);
-            this.label_TilPBS.Name = "label_TilPBS";
-            this.label_TilPBS.Size = new System.Drawing.Size(42, 13);
-            this.label_TilPBS.TabIndex = 0;
-            this.label_TilPBS.Text = "Til PBS";
-            // 
-            // label_FraPBS
-            // 
-            this.label_FraPBS.AutoSize = true;
-            this.label_FraPBS.Location = new System.Drawing.Point(12, 311);
-            this.label_FraPBS.Name = "label_FraPBS";
-            this.label_FraPBS.Size = new System.Drawing.Size(46, 13);
-            this.label_FraPBS.TabIndex = 0;
-            this.label_FraPBS.Text = "Fra PBS";
-            // 
             // label1_Afsluttet
             // 
             this.label1_Afsluttet.AutoSize = true;
-            this.label1_Afsluttet.Location = new System.Drawing.Point(12, 341);
+            this.label1_Afsluttet.Location = new System.Drawing.Point(12, 273);
             this.label1_Afsluttet.Name = "label1_Afsluttet";
             this.label1_Afsluttet.Size = new System.Drawing.Size(45, 13);
             this.label1_Afsluttet.TabIndex = 0;
@@ -242,26 +220,10 @@
             this.Eksportmappe.Size = new System.Drawing.Size(390, 20);
             this.Eksportmappe.TabIndex = 2;
             // 
-            // TilPBS
-            // 
-            this.TilPBS.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegnskab, "TilPBS", true));
-            this.TilPBS.Location = new System.Drawing.Point(94, 275);
-            this.TilPBS.Name = "TilPBS";
-            this.TilPBS.Size = new System.Drawing.Size(390, 20);
-            this.TilPBS.TabIndex = 2;
-            // 
-            // FraPBS
-            // 
-            this.FraPBS.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegnskab, "FraPBS", true));
-            this.FraPBS.Location = new System.Drawing.Point(94, 308);
-            this.FraPBS.Name = "FraPBS";
-            this.FraPBS.Size = new System.Drawing.Size(390, 20);
-            this.FraPBS.TabIndex = 2;
-            // 
             // Afsluttet
             // 
             this.Afsluttet.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegnskab, "Afsluttet", true));
-            this.Afsluttet.Location = new System.Drawing.Point(94, 341);
+            this.Afsluttet.Location = new System.Drawing.Point(94, 273);
             this.Afsluttet.Name = "Afsluttet";
             this.Afsluttet.Size = new System.Drawing.Size(95, 20);
             this.Afsluttet.TabIndex = 2;
@@ -283,7 +245,7 @@
             this.bindingNavigatorMoveNextItem,
             this.bindingNavigatorMoveLastItem,
             this.bindingNavigatorSeparator2});
-            this.bnRegnskab.Location = new System.Drawing.Point(0, 373);
+            this.bnRegnskab.Location = new System.Drawing.Point(0, 314);
             this.bnRegnskab.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bnRegnskab.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.bnRegnskab.MoveNextItem = this.bindingNavigatorMoveNextItem;
@@ -373,8 +335,6 @@
             this.ClientSize = global::nsHafsjoldData.Properties.Settings.Default.frmRegnskabSize;
             this.Controls.Add(this.bnRegnskab);
             this.Controls.Add(this.Afsluttet);
-            this.Controls.Add(this.FraPBS);
-            this.Controls.Add(this.TilPBS);
             this.Controls.Add(this.Eksportmappe);
             this.Controls.Add(this.Placering);
             this.Controls.Add(this.DatoLaas);
@@ -384,8 +344,6 @@
             this.Controls.Add(this.Navn);
             this.Controls.Add(this.Rid);
             this.Controls.Add(this.label1_Afsluttet);
-            this.Controls.Add(this.label_FraPBS);
-            this.Controls.Add(this.label_TilPBS);
             this.Controls.Add(this.label_Eksportmappe);
             this.Controls.Add(this.label_Placering);
             this.Controls.Add(this.label_DatoLaas);
@@ -426,8 +384,6 @@
         private System.Windows.Forms.Label label_DatoLaas;
         private System.Windows.Forms.Label label_Placering;
         private System.Windows.Forms.Label label_Eksportmappe;
-        private System.Windows.Forms.Label label_TilPBS;
-        private System.Windows.Forms.Label label_FraPBS;
         private System.Windows.Forms.Label label1_Afsluttet;
         private System.Windows.Forms.TextBox Rid;
         private System.Windows.Forms.TextBox Navn;
@@ -437,8 +393,6 @@
         private System.Windows.Forms.TextBox DatoLaas;
         private System.Windows.Forms.TextBox Placering;
         private System.Windows.Forms.TextBox Eksportmappe;
-        private System.Windows.Forms.TextBox TilPBS;
-        private System.Windows.Forms.TextBox FraPBS;
         private System.Windows.Forms.TextBox Afsluttet;
         private System.Windows.Forms.BindingNavigator bnRegnskab;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
