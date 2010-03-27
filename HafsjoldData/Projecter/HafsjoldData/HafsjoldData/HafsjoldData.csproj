@@ -126,6 +126,7 @@
       <DependentUpon>BetterDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="kar\karKladde.cs" />
+    <Compile Include="kar\karKontoplan.cs" />
     <Compile Include="mem\memAktivRegnskab.cs" />
     <Compile Include="frm\frmSelectRegnskab.cs">
       <SubType>Form</SubType>
