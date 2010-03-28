@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Text.RegularExpressions;
+
 
 namespace nsHafsjoldData
 {
@@ -25,23 +27,45 @@ namespace nsHafsjoldData
         {
             var rec_regnskab = Program.qryAktivRegnskab();
             m_path = rec_regnskab.Placering + "kontoplan.dat";
+            open();
         }
 
-        private void open()
+        public void open()
         {
             FileStream ts = new FileStream(m_path, FileMode.Open, FileAccess.Read, FileShare.None);
             string ln = null;
             recKontoplan rec;
+            Regex regexKontoplan = new Regex(@"""(.*?)"",|([^,]*),|(.*)$");
             using (StreamReader sr = new StreamReader(ts, Encoding.Default))
             {
                 while ((ln = sr.ReadLine()) != null)
                 {
-                    string[] X = ln.Split('=');
-                    rec = new recKontoplan { 
-                        //key = X[0], 
-                        //value = X[1] 
-                    };
-                    this.Add(rec);
+                    int i = 0;
+                    int iMax = 11;
+                    string[] value = new string[iMax];
+                    foreach (Match m in regexKontoplan.Matches(ln)) {
+                        for (int j = 1; j <= 3; j++) {
+                            if (m.Groups[j].Success)
+                            {
+                                if (i < iMax)
+                                {
+                                    value[i++] = m.Groups[j].ToString();
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    if ((value[2] == "Drift") || (value[2] == "Status")){
+                        rec = new recKontoplan {
+                            Kontonr = Microsoft.VisualBasic.Information.IsNumeric(value[0]) ? int.Parse(value[0]) : (int?)null,
+                            Kontonavn = value[1],
+                            Type = value[2],
+                            Moms  = value[3],
+                            Saldo = Microsoft.VisualBasic.Information.IsNumeric(value[7]) ? decimal.Parse(value[7]) : (decimal?)null
+                        };
+                        this.Add(rec);
+                    }
                 }
             }
         }
