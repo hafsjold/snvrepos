@@ -87,8 +87,10 @@ namespace nsHafsjoldData
         {
 #if (DEBUG)
 
-            KarPosteringsjournal karPosteringsjournal = new KarPosteringsjournal();
-            karPosteringsjournal.open();
+            //KarPosteringsjournal karPosteringsjournal = new KarPosteringsjournal();
+            //karPosteringsjournal.open();
+
+            KarDanskeErhverv karDanskeErhverv = new KarDanskeErhverv();
             
 #endif
         }

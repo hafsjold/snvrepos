@@ -16,6 +16,7 @@ namespace nsHafsjoldData
         private static KarStatus m_KarStatus;
         private static KarKladde m_KarKladde;
         private static KarKontoplan m_KarKontoplan;
+        private static KarKartotek m_KarKartotek;
 
         public static string path_to_lock_summasummarum_kontoplan
         {
@@ -133,6 +134,18 @@ namespace nsHafsjoldData
             set
             {
                 m_KarKontoplan = value;
+            }
+        }
+        public static KarKartotek karKartotek
+        {
+            get
+            {
+                if (m_KarKartotek == null) m_KarKartotek = new KarKartotek();
+                return m_KarKartotek;
+            }
+            set
+            {
+                m_KarKartotek = value;
             }
         }
         public static TblRegnskab qryAktivRegnskab()

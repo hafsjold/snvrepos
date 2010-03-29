@@ -125,6 +125,8 @@
     <Compile Include="frm\BetterDialog.designer.cs">
       <DependentUpon>BetterDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="kar\karDanskeErhverv.cs" />
+    <Compile Include="kar\karKartotek.cs" />
     <Compile Include="kar\karPosteringsjournal.cs" />
     <Compile Include="kar\karKladde.cs" />
     <Compile Include="kar\karKontoplan.cs" />
