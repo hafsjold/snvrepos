@@ -14,7 +14,7 @@ namespace nsHafsjoldData
 
         public DateTime? Dato { get; set; }
         public string Tekst { get; set; }
-        public decimal? Beløb { get; set; }
+        public decimal? Belob { get; set; }
         public decimal? Saldo { get; set; }
     }
 
@@ -66,7 +66,7 @@ namespace nsHafsjoldData
                         {
                             Dato = Microsoft.VisualBasic.Information.IsDate(value[0]) ? DateTime.Parse(value[0]) : (DateTime?)null,
                             Tekst = value[1],
-                            Beløb = Microsoft.VisualBasic.Information.IsNumeric(value[2]) ? decimal.Parse(value[2]) : (decimal?)null,
+                            Belob = Microsoft.VisualBasic.Information.IsNumeric(value[2]) ? decimal.Parse(value[2]) : (decimal?)null,
                             Saldo = Microsoft.VisualBasic.Information.IsNumeric(value[3]) ? decimal.Parse(value[3]) : (decimal?)null
                         };
                         this.Add(rec);

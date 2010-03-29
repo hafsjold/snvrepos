@@ -7,7 +7,7 @@
       <Column Name="skjul" Member="Skjul" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="dato" Member="Dato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="tekst" Member="Tekst" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="beløb" Member="BeløB" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="belob" Member="Belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="tblbilag" Member="Tblbilag">
@@ -25,7 +25,7 @@
       <Column Name="bilagpid" Member="Bilagpid" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="tekst" Member="Tekst" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="afstemningskonto" Member="Afstemningskonto" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="beløb" Member="BeløB" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="belob" Member="Belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="konto" Member="Konto" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="momskode" Member="Momskode" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="faktura" Member="Faktura" Type="System.Int32" DbType="Int" CanBeNull="true" />
@@ -74,7 +74,7 @@
       <Column Name="kredit" Member="Kredit" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="id" Member="Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="nr" Member="Nr" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="beløb" Member="BeløB" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="belob" Member="Belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="afstem" Member="Afstem" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>

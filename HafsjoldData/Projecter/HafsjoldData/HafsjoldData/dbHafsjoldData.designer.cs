@@ -150,7 +150,7 @@ namespace nsHafsjoldData
 		
 		private string _Tekst;
 		
-		private System.Nullable<decimal> _BeløB;
+		private System.Nullable<decimal> _Belob;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -166,8 +166,8 @@ namespace nsHafsjoldData
     partial void OnDatoChanged();
     partial void OnTekstChanging(string value);
     partial void OnTekstChanged();
-    partial void OnBeløBChanging(System.Nullable<decimal> value);
-    partial void OnBeløBChanged();
+    partial void OnBelobChanging(System.Nullable<decimal> value);
+    partial void OnBelobChanged();
     #endregion
 		
 		public Tblbankkonto()
@@ -275,22 +275,22 @@ namespace nsHafsjoldData
 			}
 		}
 		
-		[Column(Name="beløb", Storage="_BeløB", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> BeløB
+		[Column(Name="belob", Storage="_Belob", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Belob
 		{
 			get
 			{
-				return this._BeløB;
+				return this._Belob;
 			}
 			set
 			{
-				if ((this._BeløB != value))
+				if ((this._Belob != value))
 				{
-					this.OnBeløBChanging(value);
+					this.OnBelobChanging(value);
 					this.SendPropertyChanging();
-					this._BeløB = value;
-					this.SendPropertyChanged("BeløB");
-					this.OnBeløBChanged();
+					this._Belob = value;
+					this.SendPropertyChanged("Belob");
+					this.OnBelobChanged();
 				}
 			}
 		}
@@ -488,7 +488,7 @@ namespace nsHafsjoldData
 		
 		private string _Afstemningskonto;
 		
-		private System.Nullable<decimal> _BeløB;
+		private System.Nullable<decimal> _Belob;
 		
 		private System.Nullable<int> _Konto;
 		
@@ -510,8 +510,8 @@ namespace nsHafsjoldData
     partial void OnTekstChanged();
     partial void OnAfstemningskontoChanging(string value);
     partial void OnAfstemningskontoChanged();
-    partial void OnBeløBChanging(System.Nullable<decimal> value);
-    partial void OnBeløBChanged();
+    partial void OnBelobChanging(System.Nullable<decimal> value);
+    partial void OnBelobChanged();
     partial void OnKontoChanging(System.Nullable<int> value);
     partial void OnKontoChanged();
     partial void OnMomskodeChanging(string value);
@@ -607,22 +607,22 @@ namespace nsHafsjoldData
 			}
 		}
 		
-		[Column(Name="beløb", Storage="_BeløB", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> BeløB
+		[Column(Name="belob", Storage="_Belob", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Belob
 		{
 			get
 			{
-				return this._BeløB;
+				return this._Belob;
 			}
 			set
 			{
-				if ((this._BeløB != value))
+				if ((this._Belob != value))
 				{
-					this.OnBeløBChanging(value);
+					this.OnBelobChanging(value);
 					this.SendPropertyChanging();
-					this._BeløB = value;
-					this.SendPropertyChanged("BeløB");
-					this.OnBeløBChanged();
+					this._Belob = value;
+					this.SendPropertyChanged("Belob");
+					this.OnBelobChanged();
 				}
 			}
 		}
@@ -1278,7 +1278,7 @@ namespace nsHafsjoldData
 		
 		private System.Nullable<byte> _Nr;
 		
-		private System.Nullable<decimal> _BeløB;
+		private System.Nullable<decimal> _Belob;
 		
 		private System.Nullable<int> _Afstem;
 		
@@ -1308,8 +1308,8 @@ namespace nsHafsjoldData
     partial void OnIdChanged();
     partial void OnNrChanging(System.Nullable<byte> value);
     partial void OnNrChanged();
-    partial void OnBeløBChanging(System.Nullable<decimal> value);
-    partial void OnBeløBChanged();
+    partial void OnBelobChanging(System.Nullable<decimal> value);
+    partial void OnBelobChanged();
     partial void OnAfstemChanging(System.Nullable<int> value);
     partial void OnAfstemChanged();
     #endregion
@@ -1539,22 +1539,22 @@ namespace nsHafsjoldData
 			}
 		}
 		
-		[Column(Name="beløb", Storage="_BeløB", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> BeløB
+		[Column(Name="belob", Storage="_Belob", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Belob
 		{
 			get
 			{
-				return this._BeløB;
+				return this._Belob;
 			}
 			set
 			{
-				if ((this._BeløB != value))
+				if ((this._Belob != value))
 				{
-					this.OnBeløBChanging(value);
+					this.OnBelobChanging(value);
 					this.SendPropertyChanging();
-					this._BeløB = value;
-					this.SendPropertyChanged("BeløB");
-					this.OnBeløBChanged();
+					this._Belob = value;
+					this.SendPropertyChanged("Belob");
+					this.OnBelobChanged();
 				}
 			}
 		}

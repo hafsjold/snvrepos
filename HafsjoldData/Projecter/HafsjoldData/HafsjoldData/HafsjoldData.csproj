@@ -102,6 +102,7 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="cls\clsImport.cs" />
     <Compile Include="cls\clsRecovery.cs" />
     <Compile Include="dbHafsjoldData.designer.cs">
       <AutoGen>True</AutoGen>

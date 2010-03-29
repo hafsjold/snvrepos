@@ -19,7 +19,7 @@ namespace nsHafsjoldData
         public string Kontonavn { get; set; }
         public decimal? Bruttobeløb { get; set; }
         public decimal? Moms { get; set; }
-        public decimal? Beløb { get; set; }
+        public decimal? Belob { get; set; }
         public int? Nr { get; set; }
         public int? Id { get; set; }
         public int? Sag { get; set; }
@@ -91,7 +91,7 @@ namespace nsHafsjoldData
                             Kontonavn = value[4],
                             Bruttobeløb = wDebet - wKredit,
                             Moms = wMoms,
-                            Beløb = wDebet - wKredit - wMoms,
+                            Belob = wDebet - wKredit - wMoms,
                             Nr = Microsoft.VisualBasic.Information.IsNumeric(value[8]) ? int.Parse(value[8]) : (int?)null,
                             Id = Microsoft.VisualBasic.Information.IsNumeric(value[9]) ? int.Parse(value[9]) : (int?)null,
                             Sag = Microsoft.VisualBasic.Information.IsNumeric(value[10]) ? int.Parse(value[10]) : (int?)null
@@ -112,7 +112,7 @@ namespace nsHafsjoldData
                             Kontonavn = value[4],
                             Bruttobeløb = Microsoft.VisualBasic.Information.IsNumeric(value[5]) ? decimal.Parse(value[5]) : (decimal?)null,
                             Moms = Microsoft.VisualBasic.Information.IsNumeric(value[6]) ? decimal.Parse(value[6]) : (decimal?)null,
-                            Beløb = Microsoft.VisualBasic.Information.IsNumeric(value[7]) ? decimal.Parse(value[7]) : (decimal?)null,
+                            Belob = Microsoft.VisualBasic.Information.IsNumeric(value[7]) ? decimal.Parse(value[7]) : (decimal?)null,
                             Nr = Microsoft.VisualBasic.Information.IsNumeric(value[8]) ? int.Parse(value[8]) : (int?)null,
                             Id = Microsoft.VisualBasic.Information.IsNumeric(value[9]) ? int.Parse(value[9]) : (int?)null,
                             Sag = Microsoft.VisualBasic.Information.IsNumeric(value[10]) ? int.Parse(value[10]) : (int?)null

@@ -44,6 +44,7 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importBankkontoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -151,7 +152,8 @@
             // systemToolStripMenuItem
             // 
             this.systemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem2});
+            this.toolStripMenuItem2,
+            this.importBankkontoToolStripMenuItem});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
             this.systemToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.systemToolStripMenuItem.Text = "System";
@@ -159,7 +161,7 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(132, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(170, 22);
             this.toolStripMenuItem2.Text = "Regnskab";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.regnskabToolStripMenuItem_Click);
             // 
@@ -177,6 +179,13 @@
             this.omToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
+            // 
+            // importBankkontoToolStripMenuItem
+            // 
+            this.importBankkontoToolStripMenuItem.Name = "importBankkontoToolStripMenuItem";
+            this.importBankkontoToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.importBankkontoToolStripMenuItem.Text = "Import Bankkonto";
+            this.importBankkontoToolStripMenuItem.Click += new System.EventHandler(this.importBankkontoToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -223,6 +232,7 @@
         private System.Windows.Forms.ToolStripMenuItem opretGendannelsespunktToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tilbageTilGendannelsesPunktToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem importBankkontoToolStripMenuItem;
     }
 }
 

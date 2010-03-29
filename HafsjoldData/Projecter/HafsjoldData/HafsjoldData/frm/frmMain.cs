@@ -90,7 +90,7 @@ namespace nsHafsjoldData
             //KarPosteringsjournal karPosteringsjournal = new KarPosteringsjournal();
             //karPosteringsjournal.open();
 
-            KarDanskeErhverv karDanskeErhverv = new KarDanskeErhverv();
+            //KarDanskeErhverv karDanskeErhverv = new KarDanskeErhverv();
             
 #endif
         }
@@ -135,6 +135,12 @@ namespace nsHafsjoldData
         private void tilbageTilGendannelsesPunktToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void importBankkontoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clsImport objImport = new clsImport();
+            objImport.ImportDanskeErhverv();
         }
 
     }
