@@ -30,39 +30,25 @@
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.lvwKontoudtogBank = new System.Windows.Forms.ListView();
-            this.columnHeaderMNavn = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderMNr = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderMAdresse = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderMPostnr = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderMFradato = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderMKontingent = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderMTildato = new System.Windows.Forms.ColumnHeader();
+            this.lvwKontoudtog = new System.Windows.Forms.ListView();
+            this.colHdKDato = new System.Windows.Forms.ColumnHeader();
+            this.colHdKTekst = new System.Windows.Forms.ColumnHeader();
+            this.colHdKBeløb = new System.Windows.Forms.ColumnHeader();
+            this.lvwKontoudtogAfstemt = new System.Windows.Forms.ListView();
+            this.colHdKADato = new System.Windows.Forms.ColumnHeader();
+            this.colHdKATekst = new System.Windows.Forms.ColumnHeader();
+            this.colHdKABeløb = new System.Windows.Forms.ColumnHeader();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.lvwBilagBankkonto = new System.Windows.Forms.ListView();
-            this.columnHeaderKNnavn = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderKNR = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderKAdresse = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderKPostnr = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderKFradato = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderKKontingent = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderKTildato = new System.Windows.Forms.ColumnHeader();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader7 = new System.Windows.Forms.ColumnHeader();
-            this.listView2 = new System.Windows.Forms.ListView();
-            this.columnHeader8 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader9 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader10 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader11 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader12 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader13 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader14 = new System.Windows.Forms.ColumnHeader();
+            this.lvwBilag = new System.Windows.Forms.ListView();
+            this.colHdBDato = new System.Windows.Forms.ColumnHeader();
+            this.colHdBBilag = new System.Windows.Forms.ColumnHeader();
+            this.colHdBTekst = new System.Windows.Forms.ColumnHeader();
+            this.colHdBBeløb = new System.Windows.Forms.ColumnHeader();
+            this.lvwBilagAfstemt = new System.Windows.Forms.ListView();
+            this.colHdBADato = new System.Windows.Forms.ColumnHeader();
+            this.colHdBABilag = new System.Windows.Forms.ColumnHeader();
+            this.colHdBATekst = new System.Windows.Forms.ColumnHeader();
+            this.colHdBABeløb = new System.Windows.Forms.ColumnHeader();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -76,7 +62,7 @@
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -87,8 +73,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer3);
-            this.splitContainer1.Size = new System.Drawing.Size(916, 527);
-            this.splitContainer1.SplitterDistance = 450;
+            this.splitContainer1.Size = new System.Drawing.Size(916, 469);
+            this.splitContainer1.SplitterDistance = 448;
             this.splitContainer1.TabIndex = 4;
             // 
             // splitContainer2
@@ -100,66 +86,86 @@
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.lvwKontoudtogBank);
+            this.splitContainer2.Panel1.Controls.Add(this.lvwKontoudtog);
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.listView1);
-            this.splitContainer2.Size = new System.Drawing.Size(450, 527);
-            this.splitContainer2.SplitterDistance = 263;
+            this.splitContainer2.Panel2.Controls.Add(this.lvwKontoudtogAfstemt);
+            this.splitContainer2.Size = new System.Drawing.Size(448, 469);
+            this.splitContainer2.SplitterDistance = 350;
             this.splitContainer2.TabIndex = 1;
             // 
-            // lvwKontoudtogBank
+            // lvwKontoudtog
             // 
-            this.lvwKontoudtogBank.AllowDrop = true;
-            this.lvwKontoudtogBank.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeaderMNavn,
-            this.columnHeaderMNr,
-            this.columnHeaderMAdresse,
-            this.columnHeaderMPostnr,
-            this.columnHeaderMFradato,
-            this.columnHeaderMKontingent,
-            this.columnHeaderMTildato});
-            this.lvwKontoudtogBank.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lvwKontoudtogBank.FullRowSelect = true;
-            this.lvwKontoudtogBank.Location = new System.Drawing.Point(0, 0);
-            this.lvwKontoudtogBank.Name = "lvwKontoudtogBank";
-            this.lvwKontoudtogBank.Size = new System.Drawing.Size(450, 263);
-            this.lvwKontoudtogBank.TabIndex = 0;
-            this.lvwKontoudtogBank.UseCompatibleStateImageBehavior = false;
-            this.lvwKontoudtogBank.View = System.Windows.Forms.View.Details;
-            this.lvwKontoudtogBank.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvwKontoudtogBank_DragDrop);
-            this.lvwKontoudtogBank.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwKontoudtogBank_ColumnClick);
-            this.lvwKontoudtogBank.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvwKontoudtogBank_DragEnter);
-            this.lvwKontoudtogBank.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvwKontoudtogBank_ItemDrag);
+            this.lvwKontoudtog.AllowDrop = true;
+            this.lvwKontoudtog.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colHdKDato,
+            this.colHdKTekst,
+            this.colHdKBeløb});
+            this.lvwKontoudtog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvwKontoudtog.FullRowSelect = true;
+            this.lvwKontoudtog.Location = new System.Drawing.Point(0, 0);
+            this.lvwKontoudtog.Name = "lvwKontoudtog";
+            this.lvwKontoudtog.Size = new System.Drawing.Size(448, 350);
+            this.lvwKontoudtog.TabIndex = 0;
+            this.lvwKontoudtog.UseCompatibleStateImageBehavior = false;
+            this.lvwKontoudtog.View = System.Windows.Forms.View.Details;
+            this.lvwKontoudtog.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvwKontoudtog_DragDrop);
+            this.lvwKontoudtog.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwKontoudtog_ColumnClick);
+            this.lvwKontoudtog.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvwKontoudtog_DragEnter);
+            this.lvwKontoudtog.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvwKontoudtog_ItemDrag);
             // 
-            // columnHeaderMNavn
+            // colHdKDato
             // 
-            this.columnHeaderMNavn.Text = "Navn";
+            this.colHdKDato.Text = "Dato";
+            this.colHdKDato.Width = 95;
             // 
-            // columnHeaderMNr
+            // colHdKTekst
             // 
-            this.columnHeaderMNr.Text = "Nr";
+            this.colHdKTekst.Text = "Tekst";
+            this.colHdKTekst.Width = 220;
             // 
-            // columnHeaderMAdresse
+            // colHdKBeløb
             // 
-            this.columnHeaderMAdresse.Text = "Adresse";
+            this.colHdKBeløb.Text = "Beløb";
+            this.colHdKBeløb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.colHdKBeløb.Width = 100;
             // 
-            // columnHeaderMPostnr
+            // lvwKontoudtogAfstemt
             // 
-            this.columnHeaderMPostnr.Text = "Postnr";
+            this.lvwKontoudtogAfstemt.AllowDrop = true;
+            this.lvwKontoudtogAfstemt.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colHdKADato,
+            this.colHdKATekst,
+            this.colHdKABeløb});
+            this.lvwKontoudtogAfstemt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvwKontoudtogAfstemt.FullRowSelect = true;
+            this.lvwKontoudtogAfstemt.Location = new System.Drawing.Point(0, 0);
+            this.lvwKontoudtogAfstemt.Name = "lvwKontoudtogAfstemt";
+            this.lvwKontoudtogAfstemt.Size = new System.Drawing.Size(448, 115);
+            this.lvwKontoudtogAfstemt.TabIndex = 0;
+            this.lvwKontoudtogAfstemt.UseCompatibleStateImageBehavior = false;
+            this.lvwKontoudtogAfstemt.View = System.Windows.Forms.View.Details;
+            this.lvwKontoudtogAfstemt.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvwKontoudtogAfstemt_DragDrop);
+            this.lvwKontoudtogAfstemt.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwKontoudtogAfstemt_ColumnClick);
+            this.lvwKontoudtogAfstemt.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvwKontoudtogAfstemt_DragEnter);
+            this.lvwKontoudtogAfstemt.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvwKontoudtogAfstemt_ItemDrag);
             // 
-            // columnHeaderMFradato
+            // colHdKADato
             // 
-            this.columnHeaderMFradato.Text = "Fra dato";
+            this.colHdKADato.Text = "Dato";
+            this.colHdKADato.Width = 95;
             // 
-            // columnHeaderMKontingent
+            // colHdKATekst
             // 
-            this.columnHeaderMKontingent.Text = "Kontingent";
+            this.colHdKATekst.Text = "Tekst";
+            this.colHdKATekst.Width = 220;
             // 
-            // columnHeaderMTildato
+            // colHdKABeløb
             // 
-            this.columnHeaderMTildato.Text = "Til dato";
+            this.colHdKABeløb.Text = "Beløb";
+            this.colHdKABeløb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.colHdKABeløb.Width = 100;
             // 
             // splitContainer3
             // 
@@ -170,173 +176,107 @@
             // 
             // splitContainer3.Panel1
             // 
-            this.splitContainer3.Panel1.Controls.Add(this.lvwBilagBankkonto);
+            this.splitContainer3.Panel1.Controls.Add(this.lvwBilag);
             // 
             // splitContainer3.Panel2
             // 
-            this.splitContainer3.Panel2.Controls.Add(this.listView2);
-            this.splitContainer3.Size = new System.Drawing.Size(462, 527);
-            this.splitContainer3.SplitterDistance = 263;
+            this.splitContainer3.Panel2.Controls.Add(this.lvwBilagAfstemt);
+            this.splitContainer3.Size = new System.Drawing.Size(464, 469);
+            this.splitContainer3.SplitterDistance = 350;
             this.splitContainer3.TabIndex = 1;
             // 
-            // lvwBilagBankkonto
+            // lvwBilag
             // 
-            this.lvwBilagBankkonto.AllowDrop = true;
-            this.lvwBilagBankkonto.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeaderKNnavn,
-            this.columnHeaderKNR,
-            this.columnHeaderKAdresse,
-            this.columnHeaderKPostnr,
-            this.columnHeaderKFradato,
-            this.columnHeaderKKontingent,
-            this.columnHeaderKTildato});
-            this.lvwBilagBankkonto.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lvwBilagBankkonto.FullRowSelect = true;
-            this.lvwBilagBankkonto.Location = new System.Drawing.Point(0, 0);
-            this.lvwBilagBankkonto.Name = "lvwBilagBankkonto";
-            this.lvwBilagBankkonto.Size = new System.Drawing.Size(462, 263);
-            this.lvwBilagBankkonto.TabIndex = 0;
-            this.lvwBilagBankkonto.UseCompatibleStateImageBehavior = false;
-            this.lvwBilagBankkonto.View = System.Windows.Forms.View.Details;
-            this.lvwBilagBankkonto.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvwBilagBankkonto_DragDrop);
-            this.lvwBilagBankkonto.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwBilagBankkonto_ColumnClick);
-            this.lvwBilagBankkonto.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvwBilagBankkonto_DragEnter);
-            this.lvwBilagBankkonto.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvwBilagBankkonto_ItemDrag);
+            this.lvwBilag.AllowDrop = true;
+            this.lvwBilag.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colHdBDato,
+            this.colHdBBilag,
+            this.colHdBTekst,
+            this.colHdBBeløb});
+            this.lvwBilag.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvwBilag.FullRowSelect = true;
+            this.lvwBilag.Location = new System.Drawing.Point(0, 0);
+            this.lvwBilag.Name = "lvwBilag";
+            this.lvwBilag.Size = new System.Drawing.Size(464, 350);
+            this.lvwBilag.TabIndex = 1;
+            this.lvwBilag.UseCompatibleStateImageBehavior = false;
+            this.lvwBilag.View = System.Windows.Forms.View.Details;
+            this.lvwBilag.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvwBilag_DragDrop);
+            this.lvwBilag.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwBilag_ColumnClick);
+            this.lvwBilag.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvwBilag_DragEnter);
+            this.lvwBilag.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvwBilag_ItemDrag);
             // 
-            // columnHeaderKNnavn
+            // colHdBDato
             // 
-            this.columnHeaderKNnavn.Text = "Navn";
+            this.colHdBDato.Text = "Dato";
+            this.colHdBDato.Width = 95;
             // 
-            // columnHeaderKNR
+            // colHdBBilag
             // 
-            this.columnHeaderKNR.Text = "Nr";
+            this.colHdBBilag.Text = "Bilag";
+            this.colHdBBilag.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // columnHeaderKAdresse
+            // colHdBTekst
             // 
-            this.columnHeaderKAdresse.Text = "Adresse";
+            this.colHdBTekst.Text = "Tekst";
+            this.colHdBTekst.Width = 180;
             // 
-            // columnHeaderKPostnr
+            // colHdBBeløb
             // 
-            this.columnHeaderKPostnr.Text = "Postnr";
+            this.colHdBBeløb.Text = "Beløb";
+            this.colHdBBeløb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.colHdBBeløb.Width = 100;
             // 
-            // columnHeaderKFradato
+            // lvwBilagAfstemt
             // 
-            this.columnHeaderKFradato.Text = "Fra dato";
+            this.lvwBilagAfstemt.AllowDrop = true;
+            this.lvwBilagAfstemt.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colHdBADato,
+            this.colHdBABilag,
+            this.colHdBATekst,
+            this.colHdBABeløb});
+            this.lvwBilagAfstemt.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvwBilagAfstemt.FullRowSelect = true;
+            this.lvwBilagAfstemt.Location = new System.Drawing.Point(0, 0);
+            this.lvwBilagAfstemt.Name = "lvwBilagAfstemt";
+            this.lvwBilagAfstemt.Size = new System.Drawing.Size(464, 115);
+            this.lvwBilagAfstemt.TabIndex = 1;
+            this.lvwBilagAfstemt.UseCompatibleStateImageBehavior = false;
+            this.lvwBilagAfstemt.View = System.Windows.Forms.View.Details;
+            this.lvwBilagAfstemt.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvwBilagAfstemt_DragDrop);
+            this.lvwBilagAfstemt.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwBilagAfstemt_ColumnClick);
+            this.lvwBilagAfstemt.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvwBilagAfstemt_DragEnter);
+            this.lvwBilagAfstemt.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvwBilagAfstemt_ItemDrag);
             // 
-            // columnHeaderKKontingent
+            // colHdBADato
             // 
-            this.columnHeaderKKontingent.Text = "Kontingent";
+            this.colHdBADato.Text = "Dato";
+            this.colHdBADato.Width = 95;
             // 
-            // columnHeaderKTildato
+            // colHdBABilag
             // 
-            this.columnHeaderKTildato.Text = "Til dato";
+            this.colHdBABilag.Text = "Bilag";
+            this.colHdBABilag.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // listView1
+            // colHdBATekst
             // 
-            this.listView1.AllowDrop = true;
-            this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5,
-            this.columnHeader6,
-            this.columnHeader7});
-            this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView1.FullRowSelect = true;
-            this.listView1.Location = new System.Drawing.Point(0, 0);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(450, 260);
-            this.listView1.TabIndex = 1;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.colHdBATekst.Text = "Tekst";
+            this.colHdBATekst.Width = 180;
             // 
-            // columnHeader1
+            // colHdBABeløb
             // 
-            this.columnHeader1.Text = "Navn";
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Nr";
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Adresse";
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Postnr";
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Fra dato";
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Kontingent";
-            // 
-            // columnHeader7
-            // 
-            this.columnHeader7.Text = "Til dato";
-            // 
-            // listView2
-            // 
-            this.listView2.AllowDrop = true;
-            this.listView2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader8,
-            this.columnHeader9,
-            this.columnHeader10,
-            this.columnHeader11,
-            this.columnHeader12,
-            this.columnHeader13,
-            this.columnHeader14});
-            this.listView2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listView2.FullRowSelect = true;
-            this.listView2.Location = new System.Drawing.Point(0, 0);
-            this.listView2.Name = "listView2";
-            this.listView2.Size = new System.Drawing.Size(462, 260);
-            this.listView2.TabIndex = 1;
-            this.listView2.UseCompatibleStateImageBehavior = false;
-            this.listView2.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader8
-            // 
-            this.columnHeader8.Text = "Navn";
-            // 
-            // columnHeader9
-            // 
-            this.columnHeader9.Text = "Nr";
-            // 
-            // columnHeader10
-            // 
-            this.columnHeader10.Text = "Adresse";
-            // 
-            // columnHeader11
-            // 
-            this.columnHeader11.Text = "Postnr";
-            // 
-            // columnHeader12
-            // 
-            this.columnHeader12.Text = "Fra dato";
-            // 
-            // columnHeader13
-            // 
-            this.columnHeader13.Text = "Kontingent";
-            // 
-            // columnHeader14
-            // 
-            this.columnHeader14.Text = "Til dato";
+            this.colHdBABeløb.Text = "Beløb";
+            this.colHdBABeløb.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.colHdBABeløb.Width = 100;
             // 
             // FrmBankafstemning
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(916, 527);
+            this.ClientSize = new System.Drawing.Size(916, 506);
             this.Controls.Add(this.splitContainer1);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::nsHafsjoldData.Properties.Settings.Default, "frmKontingentForslagSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsHafsjoldData.Properties.Settings.Default, "frmKontingentForslagPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.Name = "FrmBankafstemning";
-            this.Text = "Kontingent Forslag";
+            this.Text = "Bankafstemning";
             this.Load += new System.EventHandler(this.FrmBankafstemning_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -354,39 +294,25 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.ListView lvwKontoudtogBank;
-        private System.Windows.Forms.ListView lvwBilagBankkonto;
-        private System.Windows.Forms.ColumnHeader columnHeaderMNr;
-        private System.Windows.Forms.ColumnHeader columnHeaderMNavn;
-        private System.Windows.Forms.ColumnHeader columnHeaderMAdresse;
-        private System.Windows.Forms.ColumnHeader columnHeaderMPostnr;
-        private System.Windows.Forms.ColumnHeader columnHeaderMFradato;
-        private System.Windows.Forms.ColumnHeader columnHeaderKNnavn;
-        private System.Windows.Forms.ColumnHeader columnHeaderKNR;
-        private System.Windows.Forms.ColumnHeader columnHeaderKAdresse;
-        private System.Windows.Forms.ColumnHeader columnHeaderKPostnr;
-        private System.Windows.Forms.ColumnHeader columnHeaderKFradato;
-        private System.Windows.Forms.ColumnHeader columnHeaderMKontingent;
-        private System.Windows.Forms.ColumnHeader columnHeaderKKontingent;
-        private System.Windows.Forms.ColumnHeader columnHeaderMTildato;
-        private System.Windows.Forms.ColumnHeader columnHeaderKTildato;
+        private System.Windows.Forms.ListView lvwKontoudtog;
+        private System.Windows.Forms.ListView lvwKontoudtogAfstemt;
+        private System.Windows.Forms.ColumnHeader colHdKTekst;
+        private System.Windows.Forms.ColumnHeader colHdKDato;
+        private System.Windows.Forms.ColumnHeader colHdKBeløb;
+        private System.Windows.Forms.ColumnHeader colHdKADato;
+        private System.Windows.Forms.ColumnHeader colHdKATekst;
+        private System.Windows.Forms.ColumnHeader colHdKABeløb;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.SplitContainer splitContainer3;
-        private System.Windows.Forms.ListView listView1;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
-        private System.Windows.Forms.ColumnHeader columnHeader6;
-        private System.Windows.Forms.ColumnHeader columnHeader7;
-        private System.Windows.Forms.ListView listView2;
-        private System.Windows.Forms.ColumnHeader columnHeader8;
-        private System.Windows.Forms.ColumnHeader columnHeader9;
-        private System.Windows.Forms.ColumnHeader columnHeader10;
-        private System.Windows.Forms.ColumnHeader columnHeader11;
-        private System.Windows.Forms.ColumnHeader columnHeader12;
-        private System.Windows.Forms.ColumnHeader columnHeader13;
-        private System.Windows.Forms.ColumnHeader columnHeader14;
+        private System.Windows.Forms.ListView lvwBilag;
+        private System.Windows.Forms.ColumnHeader colHdBDato;
+        private System.Windows.Forms.ColumnHeader colHdBBilag;
+        private System.Windows.Forms.ColumnHeader colHdBTekst;
+        private System.Windows.Forms.ColumnHeader colHdBBeløb;
+        private System.Windows.Forms.ListView lvwBilagAfstemt;
+        private System.Windows.Forms.ColumnHeader colHdBADato;
+        private System.Windows.Forms.ColumnHeader colHdBABilag;
+        private System.Windows.Forms.ColumnHeader colHdBATekst;
+        private System.Windows.Forms.ColumnHeader colHdBABeløb;
     }
 }

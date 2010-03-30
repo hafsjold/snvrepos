@@ -154,5 +154,15 @@ namespace nsHafsjoldData
             objImport.ImportKladder();
         }
 
+        private void bankafstemningToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("Bankafstemning"))
+            {
+                FrmBankafstemning frmBankafstemning = new FrmBankafstemning();
+                frmBankafstemning.MdiParent = this;
+                frmBankafstemning.Show();
+            }
+        }
+
     }
 }

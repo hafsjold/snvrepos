@@ -2,16 +2,16 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 9.875" name="dbHafsjoldData">
   <DataContextMoniker Name="/DbHafsjoldData" />
   <nestedChildShapes>
-    <classShape Id="58ad88a2-6ae9-431d-a487-306edf2f2ad6" absoluteBounds="0.75, 0.75, 2, 1.75354248046875">
+    <classShape Id="58ad88a2-6ae9-431d-a487-306edf2f2ad6" absoluteBounds="0.75, 0.75, 2, 1.9178898111979166">
       <DataClassMoniker Name="/DbHafsjoldData/Tblbankkonto" />
       <nestedChildShapes>
-        <elementListCompartment Id="e4468b72-c44f-49a9-b069-afc9e292bfcc" absoluteBounds="0.765, 1.21, 1.9700000000000002, 1.19354248046875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="e4468b72-c44f-49a9-b069-afc9e292bfcc" absoluteBounds="0.765, 1.21, 1.9700000000000002, 1.3578898111979165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="832f0581-fc1e-42d6-9aec-2cdb165b824c" absoluteBounds="4.5, 1.125, 2, 1.5891951497395831">
+    <classShape Id="832f0581-fc1e-42d6-9aec-2cdb165b824c" absoluteBounds="4.75, 1.5, 2, 1.5891951497395831">
       <DataClassMoniker Name="/DbHafsjoldData/Tblbilag" />
       <nestedChildShapes>
-        <elementListCompartment Id="5f73b37c-87a4-4675-ae3e-40e5cec05b2b" absoluteBounds="4.5150000000000006, 1.585, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="5f73b37c-87a4-4675-ae3e-40e5cec05b2b" absoluteBounds="4.7650000000000006, 1.96, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="a03295f5-ce17-43f4-a0d1-fcfb2bef34d4" absoluteBounds="0.75, 3.375, 2, 2.2465844726562505">
@@ -26,10 +26,10 @@
         <elementListCompartment Id="fea12ce4-b614-4066-86c7-a3d896ae061b" absoluteBounds="3.765, 4.21, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="63497cc8-bb3c-4cce-aec2-16577135b2eb" absoluteBounds="7.25, 0.875, 2, 2.4109318033854166">
+    <classShape Id="63497cc8-bb3c-4cce-aec2-16577135b2eb" absoluteBounds="7.625, 1.625, 2, 2.4109318033854166">
       <DataClassMoniker Name="/DbHafsjoldData/TblRegnskab" />
       <nestedChildShapes>
-        <elementListCompartment Id="a261f7b5-4d8c-4038-8ead-931b07b7191c" absoluteBounds="7.265, 1.335, 1.9700000000000002, 1.8509318033854165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="a261f7b5-4d8c-4038-8ead-931b07b7191c" absoluteBounds="7.64, 2.085, 1.9700000000000002, 1.8509318033854165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="90296b50-0425-4e12-8fb3-78402fcf5ee7" absoluteBounds="0.75, 6.75, 2, 1.0961531575520844">

@@ -27,7 +27,8 @@ namespace nsHafsjoldData
                        Tekst = rec_DanskeErhverv.Tekst,
                        Belob = rec_DanskeErhverv.Belob,
                        Saldo = rec_DanskeErhverv.Saldo,
-                       Skjul = false
+                       Skjul = false,
+                       Afstem = (int?)null
                    };
                     Program.dbHafsjoldData.Tblbankkonto.InsertOnSubmit(m_rec_bankkonto);
                 }

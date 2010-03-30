@@ -152,6 +152,8 @@ namespace nsHafsjoldData
 		
 		private System.Nullable<decimal> _Belob;
 		
+		private System.Nullable<int> _Afstem;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -168,6 +170,8 @@ namespace nsHafsjoldData
     partial void OnTekstChanged();
     partial void OnBelobChanging(System.Nullable<decimal> value);
     partial void OnBelobChanged();
+    partial void OnAfstemChanging(System.Nullable<int> value);
+    partial void OnAfstemChanged();
     #endregion
 		
 		public Tblbankkonto()
@@ -291,6 +295,26 @@ namespace nsHafsjoldData
 					this._Belob = value;
 					this.SendPropertyChanged("Belob");
 					this.OnBelobChanged();
+				}
+			}
+		}
+		
+		[Column(Name="afstem", Storage="_Afstem", DbType="Int")]
+		public System.Nullable<int> Afstem
+		{
+			get
+			{
+				return this._Afstem;
+			}
+			set
+			{
+				if ((this._Afstem != value))
+				{
+					this.OnAfstemChanging(value);
+					this.SendPropertyChanging();
+					this._Afstem = value;
+					this.SendPropertyChanged("Afstem");
+					this.OnAfstemChanged();
 				}
 			}
 		}
