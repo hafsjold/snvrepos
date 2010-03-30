@@ -11,7 +11,7 @@ namespace nsHafsjoldData
     public class recPosteringsjournal
     {
         public recPosteringsjournal() { }
-        public int rid { get; set; }
+        public int? Rid { get; set; }
         public DateTime? Dato { get; set; }
         public int? Bilag { get; set; }
         public string Tekst { get; set; }
@@ -34,7 +34,8 @@ namespace nsHafsjoldData
         {
             var rec_regnskab = Program.qryAktivRegnskab();
             m_path = rec_regnskab.Eksportmappe + "Posteringsjournal2.txt";
-            m_rid = rec_regnskab.Rid; 
+            m_rid = rec_regnskab.Rid;
+            open();
         }
 
         public void open()
@@ -83,7 +84,7 @@ namespace nsHafsjoldData
 
                         rec = new recPosteringsjournal
                         {
-                            rid = m_rid,
+                            Rid = m_rid,
                             Dato = Microsoft.VisualBasic.Information.IsDate(value[0]) ? DateTime.Parse(value[0]) : (DateTime?)null,
                             Bilag = Microsoft.VisualBasic.Information.IsNumeric(value[1]) ? int.Parse(value[1]) : (int?)null,
                             Tekst = value[2],
@@ -104,7 +105,7 @@ namespace nsHafsjoldData
                         //Dato,Bilag,Tekst,Konto,Kontonavn,Bruttobeløb,Moms,Beløb,Nr.,Id,Sag
                         rec = new recPosteringsjournal
                         {
-                            rid = m_rid,
+                            Rid = m_rid,
                             Dato = Microsoft.VisualBasic.Information.IsDate(value[0]) ? DateTime.Parse(value[0]) : (DateTime?)null,
                             Bilag = Microsoft.VisualBasic.Information.IsNumeric(value[1]) ? int.Parse(value[1]) : (int?)null,
                             Tekst = value[2],

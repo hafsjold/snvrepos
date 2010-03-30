@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="dbHafsjoldData">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11.5, 8.5" name="dbHafsjoldData">
   <DataContextMoniker Name="/DbHafsjoldData" />
   <nestedChildShapes>
     <classShape Id="de07b18a-c857-474b-b5d3-f93c60d0e138" absoluteBounds="1.25, 0.75, 2, 1.75354248046875">
@@ -20,10 +20,10 @@
         <elementListCompartment Id="abe7fdcc-0a41-40ac-9c4f-270b552baf8c" absoluteBounds="1.5150000000000001, 4.085, 1.9700000000000002, 1.68658447265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="e2aff2e1-21c8-4b73-a6ca-c9a8267c3c99" absoluteBounds="4.5, 3.75, 2, 1.5891951497395827">
+    <classShape Id="e2aff2e1-21c8-4b73-a6ca-c9a8267c3c99" absoluteBounds="9.25, 1.25, 2, 1.5891951497395827">
       <DataClassMoniker Name="/DbHafsjoldData/Tblkonto" />
       <nestedChildShapes>
-        <elementListCompartment Id="1fed8eea-2f68-440f-916a-81a18ed38a5b" absoluteBounds="4.5150000000000006, 4.21, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="1fed8eea-2f68-440f-916a-81a18ed38a5b" absoluteBounds="9.265, 1.71, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="9109715c-ea46-436d-afd7-d7cb72a40148" absoluteBounds="6.375, 0.75, 2, 2.4109318033854166">
@@ -38,10 +38,10 @@
         <elementListCompartment Id="17fec726-d8d1-404a-a494-8622879dc230" absoluteBounds="1.0150000000000001, 6.835, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="62cb05e6-2017-4784-aecf-27108b4948bf" absoluteBounds="7.875, 4.125, 2, 2.9039737955729166">
+    <classShape Id="62cb05e6-2017-4784-aecf-27108b4948bf" absoluteBounds="4.5, 3.5, 2, 2.9039737955729166">
       <DataClassMoniker Name="/DbHafsjoldData/Tbltrans" />
       <nestedChildShapes>
-        <elementListCompartment Id="7a11326d-87d1-4ff1-a61f-806c56c037a1" absoluteBounds="7.8900000000000006, 4.585, 1.9700000000000002, 2.3439737955729165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="7a11326d-87d1-4ff1-a61f-806c56c037a1" absoluteBounds="4.5150000000000006, 3.96, 1.9700000000000002, 2.3439737955729165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

@@ -91,6 +91,9 @@ namespace nsHafsjoldData
             //karPosteringsjournal.open();
 
             //KarDanskeErhverv karDanskeErhverv = new KarDanskeErhverv();
+            clsImport objImport = new clsImport();
+            objImport.ImportPosteringsjournal();
+
             
 #endif
         }
