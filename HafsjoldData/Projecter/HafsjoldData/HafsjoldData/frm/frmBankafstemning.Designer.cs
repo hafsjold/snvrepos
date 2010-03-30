@@ -45,9 +45,15 @@
             this.columnHeaderKFradato = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderKKontingent = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderKTildato = new System.Windows.Forms.ColumnHeader();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.splitContainer2.Panel1.SuspendLayout();
+            this.splitContainer2.SuspendLayout();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -58,16 +64,16 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.lvwKontoudtogBank);
+            this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.lvwBilagBankkonto);
+            this.splitContainer1.Panel2.Controls.Add(this.splitContainer3);
             this.splitContainer1.Size = new System.Drawing.Size(916, 527);
             this.splitContainer1.SplitterDistance = 450;
             this.splitContainer1.TabIndex = 4;
             // 
-            // lvwMedlem
+            // lvwKontoudtogBank
             // 
             this.lvwKontoudtogBank.AllowDrop = true;
             this.lvwKontoudtogBank.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -78,11 +84,11 @@
             this.columnHeaderMFradato,
             this.columnHeaderMKontingent,
             this.columnHeaderMTildato});
-            this.lvwKontoudtogBank.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lvwKontoudtogBank.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvwKontoudtogBank.FullRowSelect = true;
-            this.lvwKontoudtogBank.Location = new System.Drawing.Point(0, 12);
-            this.lvwKontoudtogBank.Name = "lvwMedlem";
-            this.lvwKontoudtogBank.Size = new System.Drawing.Size(450, 515);
+            this.lvwKontoudtogBank.Location = new System.Drawing.Point(0, 0);
+            this.lvwKontoudtogBank.Name = "lvwKontoudtogBank";
+            this.lvwKontoudtogBank.Size = new System.Drawing.Size(450, 263);
             this.lvwKontoudtogBank.TabIndex = 0;
             this.lvwKontoudtogBank.UseCompatibleStateImageBehavior = false;
             this.lvwKontoudtogBank.View = System.Windows.Forms.View.Details;
@@ -119,7 +125,7 @@
             // 
             this.columnHeaderMTildato.Text = "Til dato";
             // 
-            // lvwKontingent
+            // lvwBilagBankkonto
             // 
             this.lvwBilagBankkonto.AllowDrop = true;
             this.lvwBilagBankkonto.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -130,11 +136,11 @@
             this.columnHeaderKFradato,
             this.columnHeaderKKontingent,
             this.columnHeaderKTildato});
-            this.lvwBilagBankkonto.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lvwBilagBankkonto.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvwBilagBankkonto.FullRowSelect = true;
-            this.lvwBilagBankkonto.Location = new System.Drawing.Point(0, 12);
-            this.lvwBilagBankkonto.Name = "lvwKontingent";
-            this.lvwBilagBankkonto.Size = new System.Drawing.Size(462, 515);
+            this.lvwBilagBankkonto.Location = new System.Drawing.Point(0, 0);
+            this.lvwBilagBankkonto.Name = "lvwBilagBankkonto";
+            this.lvwBilagBankkonto.Size = new System.Drawing.Size(462, 263);
             this.lvwBilagBankkonto.TabIndex = 0;
             this.lvwBilagBankkonto.UseCompatibleStateImageBehavior = false;
             this.lvwBilagBankkonto.View = System.Windows.Forms.View.Details;
@@ -171,7 +177,35 @@
             // 
             this.columnHeaderKTildato.Text = "Til dato";
             // 
-            // FrmKontingentForslag
+            // splitContainer2
+            // 
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.lvwKontoudtogBank);
+            this.splitContainer2.Size = new System.Drawing.Size(450, 527);
+            this.splitContainer2.SplitterDistance = 263;
+            this.splitContainer2.TabIndex = 1;
+            // 
+            // splitContainer3
+            // 
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer3.Name = "splitContainer3";
+            this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.lvwBilagBankkonto);
+            this.splitContainer3.Size = new System.Drawing.Size(462, 527);
+            this.splitContainer3.SplitterDistance = 263;
+            this.splitContainer3.TabIndex = 1;
+            // 
+            // FrmBankafstemning
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -179,12 +213,16 @@
             this.Controls.Add(this.splitContainer1);
             this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::nsHafsjoldData.Properties.Settings.Default, "frmKontingentForslagSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsHafsjoldData.Properties.Settings.Default, "frmKontingentForslagPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.Name = "FrmKontingentForslag";
+            this.Name = "FrmBankafstemning";
             this.Text = "Kontingent Forslag";
             this.Load += new System.EventHandler(this.FrmBankafstemning_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
+            this.splitContainer2.Panel1.ResumeLayout(false);
+            this.splitContainer2.ResumeLayout(false);
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -208,5 +246,7 @@
         private System.Windows.Forms.ColumnHeader columnHeaderKKontingent;
         private System.Windows.Forms.ColumnHeader columnHeaderMTildato;
         private System.Windows.Forms.ColumnHeader columnHeaderKTildato;
+        private System.Windows.Forms.SplitContainer splitContainer2;
+        private System.Windows.Forms.SplitContainer splitContainer3;
     }
 }
