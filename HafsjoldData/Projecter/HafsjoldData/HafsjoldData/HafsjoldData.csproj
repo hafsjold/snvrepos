@@ -114,6 +114,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbRecoveryHafsjoldData.dbml</DependentUpon>
     </Compile>
+    <Compile Include="frm\frmBankafstemning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmBankafstemning.Designer.cs">
+      <DependentUpon>frmBankafstemning.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm\frmRegnskab.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +171,9 @@
     <None Include="dbHafsjoldData.dbml.layout">
       <DependentUpon>dbHafsjoldData.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="frm\frmBankafstemning.resx">
+      <DependentUpon>frmBankafstemning.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm\BetterDialog.resx">
       <DependentUpon>BetterDialog.cs</DependentUpon>
     </EmbeddedResource>
