@@ -42,9 +42,10 @@
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.importBankkontoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importBankkontoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importJournalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -153,6 +154,7 @@
             // 
             this.systemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem2,
+            this.importJournalToolStripMenuItem,
             this.importBankkontoToolStripMenuItem});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
             this.systemToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
@@ -164,6 +166,13 @@
             this.toolStripMenuItem2.Size = new System.Drawing.Size(170, 22);
             this.toolStripMenuItem2.Text = "Regnskab";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.regnskabToolStripMenuItem_Click);
+            // 
+            // importBankkontoToolStripMenuItem
+            // 
+            this.importBankkontoToolStripMenuItem.Name = "importBankkontoToolStripMenuItem";
+            this.importBankkontoToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.importBankkontoToolStripMenuItem.Text = "Import Bankkonto";
+            this.importBankkontoToolStripMenuItem.Click += new System.EventHandler(this.importBankkontoToolStripMenuItem_Click);
             // 
             // hjælpToolStripMenuItem
             // 
@@ -180,12 +189,12 @@
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
-            // importBankkontoToolStripMenuItem
+            // importJournalToolStripMenuItem
             // 
-            this.importBankkontoToolStripMenuItem.Name = "importBankkontoToolStripMenuItem";
-            this.importBankkontoToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.importBankkontoToolStripMenuItem.Text = "Import Bankkonto";
-            this.importBankkontoToolStripMenuItem.Click += new System.EventHandler(this.importBankkontoToolStripMenuItem_Click);
+            this.importJournalToolStripMenuItem.Name = "importJournalToolStripMenuItem";
+            this.importJournalToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.importJournalToolStripMenuItem.Text = "Import Journal";
+            this.importJournalToolStripMenuItem.Click += new System.EventHandler(this.importJournalToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -233,6 +242,7 @@
         private System.Windows.Forms.ToolStripMenuItem tilbageTilGendannelsesPunktToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem importBankkontoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importJournalToolStripMenuItem;
     }
 }
 

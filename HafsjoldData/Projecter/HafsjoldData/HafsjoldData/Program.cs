@@ -15,6 +15,7 @@ namespace nsHafsjoldData
         private static KarRegnskab m_KarRegnskab;
         private static KarStatus m_KarStatus;
         private static KarKladde m_KarKladde;
+        private static KarKladder m_KarKladder;
         private static KarKontoplan m_KarKontoplan;
         private static KarKartotek m_KarKartotek;
         private static KarDanskeErhverv m_KarDanskeErhverv;
@@ -124,6 +125,18 @@ namespace nsHafsjoldData
             set
             {
                 m_KarKladde = value;
+            }
+        }
+        public static KarKladder karKladder
+        {
+            get
+            {
+                if (m_KarKladder == null) m_KarKladder = new KarKladder();
+                return m_KarKladder;
+            }
+            set
+            {
+                m_KarKladder = value;
             }
         }
         public static KarKontoplan karKontoplan

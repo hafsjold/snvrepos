@@ -33,7 +33,7 @@ namespace nsHafsjoldData
         public KarPosteringsjournal()
         {
             var rec_regnskab = Program.qryAktivRegnskab();
-            m_path = rec_regnskab.Eksportmappe + "Posteringsjournal2.txt";
+            m_path = rec_regnskab.Eksportmappe + "Posteringsjournal.txt";
             m_rid = rec_regnskab.Rid;
             open();
         }

@@ -73,7 +73,7 @@
       <Column Name="debet" Member="Debet" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="kredit" Member="Kredit" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="id" Member="Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="nr" Member="Nr" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="nr" Member="Nr" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="belob" Member="Belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="afstem" Member="Afstem" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>

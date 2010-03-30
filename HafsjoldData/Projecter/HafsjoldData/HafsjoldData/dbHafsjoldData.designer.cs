@@ -1276,7 +1276,7 @@ namespace nsHafsjoldData
 		
 		private System.Nullable<int> _Id;
 		
-		private System.Nullable<byte> _Nr;
+		private System.Nullable<int> _Nr;
 		
 		private System.Nullable<decimal> _Belob;
 		
@@ -1306,7 +1306,7 @@ namespace nsHafsjoldData
     partial void OnKreditChanged();
     partial void OnIdChanging(System.Nullable<int> value);
     partial void OnIdChanged();
-    partial void OnNrChanging(System.Nullable<byte> value);
+    partial void OnNrChanging(System.Nullable<int> value);
     partial void OnNrChanged();
     partial void OnBelobChanging(System.Nullable<decimal> value);
     partial void OnBelobChanged();
@@ -1519,8 +1519,8 @@ namespace nsHafsjoldData
 			}
 		}
 		
-		[Column(Name="nr", Storage="_Nr", DbType="TinyInt")]
-		public System.Nullable<byte> Nr
+		[Column(Name="nr", Storage="_Nr", DbType="Int")]
+		public System.Nullable<int> Nr
 		{
 			get
 			{

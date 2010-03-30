@@ -91,8 +91,9 @@ namespace nsHafsjoldData
             //karPosteringsjournal.open();
 
             //KarDanskeErhverv karDanskeErhverv = new KarDanskeErhverv();
-            clsImport objImport = new clsImport();
-            objImport.ImportPosteringsjournal();
+            
+
+            KarKladder karKladder = new KarKladder();
 
             
 #endif
@@ -144,6 +145,13 @@ namespace nsHafsjoldData
         {
             clsImport objImport = new clsImport();
             objImport.ImportDanskeErhverv();
+        }
+
+        private void importJournalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clsImport objImport = new clsImport();
+            objImport.ImportPosteringsjournal();
+            objImport.ImportKladder();
         }
 
     }
