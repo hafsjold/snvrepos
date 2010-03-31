@@ -164,5 +164,15 @@ namespace nsHafsjoldData
             }
         }
 
+        private void nyKladdeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("NyKladde"))
+            {
+                FrmNyKladde frmNyKladde = new FrmNyKladde();
+                frmNyKladde.MdiParent = this;
+                frmNyKladde.Show();
+            }
+        }
+
     }
 }

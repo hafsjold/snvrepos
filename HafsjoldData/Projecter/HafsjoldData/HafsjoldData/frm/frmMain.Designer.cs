@@ -41,12 +41,13 @@
             this.afslutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bankafstemningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.importJournalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importBankkontoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bankafstemningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nyKladdeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -157,10 +158,18 @@
             this.bankafstemningToolStripMenuItem,
             this.toolStripMenuItem2,
             this.importJournalToolStripMenuItem,
-            this.importBankkontoToolStripMenuItem});
+            this.importBankkontoToolStripMenuItem,
+            this.nyKladdeToolStripMenuItem});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
             this.systemToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.systemToolStripMenuItem.Text = "System";
+            // 
+            // bankafstemningToolStripMenuItem
+            // 
+            this.bankafstemningToolStripMenuItem.Name = "bankafstemningToolStripMenuItem";
+            this.bankafstemningToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.bankafstemningToolStripMenuItem.Text = "Bankafstemning";
+            this.bankafstemningToolStripMenuItem.Click += new System.EventHandler(this.bankafstemningToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
@@ -198,12 +207,12 @@
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
-            // bankafstemningToolStripMenuItem
+            // nyKladdeToolStripMenuItem
             // 
-            this.bankafstemningToolStripMenuItem.Name = "bankafstemningToolStripMenuItem";
-            this.bankafstemningToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.bankafstemningToolStripMenuItem.Text = "Bankafstemning";
-            this.bankafstemningToolStripMenuItem.Click += new System.EventHandler(this.bankafstemningToolStripMenuItem_Click);
+            this.nyKladdeToolStripMenuItem.Name = "nyKladdeToolStripMenuItem";
+            this.nyKladdeToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.nyKladdeToolStripMenuItem.Text = "NyKladde";
+            this.nyKladdeToolStripMenuItem.Click += new System.EventHandler(this.nyKladdeToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -253,6 +262,7 @@
         private System.Windows.Forms.ToolStripMenuItem importBankkontoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importJournalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bankafstemningToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nyKladdeToolStripMenuItem;
     }
 }
 
