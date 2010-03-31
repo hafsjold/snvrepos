@@ -114,11 +114,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbRecoveryHafsjoldData.dbml</DependentUpon>
     </Compile>
-    <Compile Include="frm\frmNyKladde.cs">
+    <Compile Include="frm\frmBogfortKladde.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm\frmNyKladde.Designer.cs">
-      <DependentUpon>frmNyKladde.cs</DependentUpon>
+    <Compile Include="frm\frmBogfortKladde.Designer.cs">
+      <DependentUpon>frmBogfortKladde.cs</DependentUpon>
     </Compile>
     <Compile Include="frm\frmBankafstemning.cs">
       <SubType>Form</SubType>
@@ -183,11 +183,11 @@
     <EmbeddedResource Include="frm\BetterDialog.resx">
       <DependentUpon>BetterDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmBogfortKladde.resx">
+      <DependentUpon>frmBogfortKladde.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frm\frmNyKladde.resx">
-      <DependentUpon>frmNyKladde.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm\frmRegnskab.resx">
       <DependentUpon>frmRegnskab.cs</DependentUpon>
@@ -199,6 +199,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmNyKladde.resx">
+      <DependentUpon>frmNyKladde.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -221,6 +224,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="frm\frmNyKladde.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmNyKladde.Designer.cs">
+      <DependentUpon>frmNyKladde.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
@@ -231,6 +240,10 @@
       <LastGenOutput>dbRecoveryHafsjoldData.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\DataSources\Tblbilag.datasource" />
+    <None Include="Properties\DataSources\Tbltrans.datasource" />
+    <None Include="Properties\DataSources\Tblwbilag.datasource" />
+    <None Include="Properties\DataSources\Tblwkladder.datasource" />
     <None Include="Resources\Add.bmp" />
     <Content Include="Libraries\Chilkat Receipt and Unlock Codes.htm" />
     <Content Include="Libraries\ChilkatDotNet2.dll" />

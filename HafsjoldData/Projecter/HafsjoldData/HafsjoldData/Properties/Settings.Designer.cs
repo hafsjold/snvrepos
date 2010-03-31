@@ -13,8 +13,7 @@ namespace nsHafsjoldData.Properties {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "9.0.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
-    {
+    public sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
         
@@ -26,7 +25,8 @@ namespace nsHafsjoldData.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Documents and Settings\\mha\\Dokumenter\\HafsjoldData\\Databaser\\dbHafsjoldData.sdf")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Documents and Settings\\mha\\Dokumenter\\HafsjoldData\\Databaser\\dbHafsjoldData.sd" +
+            "f")]
         public string DataBasePath {
             get {
                 return ((string)(this["DataBasePath"]));
@@ -93,6 +93,17 @@ namespace nsHafsjoldData.Properties {
             }
             set {
                 this["frmRegnskabPoint"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=C:\\Documents and Settings\\mha\\Dokumenter\\HafsjoldData\\Databaser\\dbHaf" +
+            "sjoldData.sdf")]
+        public string dbHafsjoldDataConnectionString {
+            get {
+                return ((string)(this["dbHafsjoldDataConnectionString"]));
             }
         }
     }

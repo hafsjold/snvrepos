@@ -245,7 +245,7 @@
             this.bindingNavigatorMoveNextItem,
             this.bindingNavigatorMoveLastItem,
             this.bindingNavigatorSeparator2});
-            this.bnRegnskab.Location = new System.Drawing.Point(0, 314);
+            this.bnRegnskab.Location = new System.Drawing.Point(0, 373);
             this.bnRegnskab.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bnRegnskab.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.bnRegnskab.MoveNextItem = this.bindingNavigatorMoveNextItem;

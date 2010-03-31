@@ -45,9 +45,10 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.importJournalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importBankkontoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nyKladdeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bogførtKladdeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nyKladdeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -65,6 +66,7 @@
             // 
             // toolStripStatusLabel1
             // 
+            this.toolStripStatusLabel1.BackColor = System.Drawing.SystemColors.Control;
             this.toolStripStatusLabel1.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
                         | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.toolStripStatusLabel1.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
@@ -74,6 +76,7 @@
             // 
             // toolStripStatusLabel2
             // 
+            this.toolStripStatusLabel2.BackColor = System.Drawing.SystemColors.Control;
             this.toolStripStatusLabel2.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
                         | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.toolStripStatusLabel2.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
@@ -159,7 +162,8 @@
             this.toolStripMenuItem2,
             this.importJournalToolStripMenuItem,
             this.importBankkontoToolStripMenuItem,
-            this.nyKladdeToolStripMenuItem});
+            this.nyKladdeToolStripMenuItem,
+            this.bogførtKladdeToolStripMenuItem});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
             this.systemToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.systemToolStripMenuItem.Text = "System";
@@ -192,6 +196,20 @@
             this.importBankkontoToolStripMenuItem.Text = "Import Bankkonto";
             this.importBankkontoToolStripMenuItem.Click += new System.EventHandler(this.importBankkontoToolStripMenuItem_Click);
             // 
+            // nyKladdeToolStripMenuItem
+            // 
+            this.nyKladdeToolStripMenuItem.Name = "nyKladdeToolStripMenuItem";
+            this.nyKladdeToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.nyKladdeToolStripMenuItem.Text = "Ny Kladde";
+            this.nyKladdeToolStripMenuItem.Click += new System.EventHandler(this.nyKladdeToolStripMenuItem_Click);
+            // 
+            // bogførtKladdeToolStripMenuItem
+            // 
+            this.bogførtKladdeToolStripMenuItem.Name = "bogførtKladdeToolStripMenuItem";
+            this.bogførtKladdeToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
+            this.bogførtKladdeToolStripMenuItem.Text = "Bogført Kladde";
+            this.bogførtKladdeToolStripMenuItem.Click += new System.EventHandler(this.bogførtKladdeToolStripMenuItem_Click);
+            // 
             // hjælpToolStripMenuItem
             // 
             this.hjælpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -207,17 +225,11 @@
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
-            // nyKladdeToolStripMenuItem
-            // 
-            this.nyKladdeToolStripMenuItem.Name = "nyKladdeToolStripMenuItem";
-            this.nyKladdeToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
-            this.nyKladdeToolStripMenuItem.Text = "NyKladde";
-            this.nyKladdeToolStripMenuItem.Click += new System.EventHandler(this.nyKladdeToolStripMenuItem_Click);
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = global::nsHafsjoldData.Properties.Settings.Default.frmMainSize;
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
@@ -263,6 +275,7 @@
         private System.Windows.Forms.ToolStripMenuItem importJournalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bankafstemningToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nyKladdeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bogførtKladdeToolStripMenuItem;
     }
 }
 

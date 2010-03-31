@@ -15,5 +15,15 @@ namespace nsHafsjoldData
         {
             InitializeComponent();
         }
+
+        private void TestMD_Load(object sender, EventArgs e)
+        {
+            bsXWbilag.DataSource = from b in Program.dbHafsjoldData.Tblwbilag select b;
+        }
+
+        private void FrmNyKladde_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Program.dbHafsjoldData.SubmitChanges();
+        }
     }
 }

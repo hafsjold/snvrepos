@@ -29,76 +29,70 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.Label datoLabel;
+            System.Windows.Forms.Label bilagLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNyKladde));
-            this.dtDato = new System.Windows.Forms.DateTimePicker();
-            this.labelDato = new System.Windows.Forms.Label();
-            this.tbBilag = new System.Windows.Forms.TextBox();
-            this.labelBilag = new System.Windows.Forms.Label();
-            this.dgwkladder = new System.Windows.Forms.DataGridView();
-            this.bindingNavigatorwbilag = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bnXWbilag = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.dgwXWkladder = new System.Windows.Forms.DataGridView();
+            this.datoDateTimePicker = new System.Windows.Forms.DateTimePicker();
+            this.bilagTextBox = new System.Windows.Forms.TextBox();
+            this.bsXWbilag = new System.Windows.Forms.BindingSource(this.components);
+            this.bsXWkladder = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            ((System.ComponentModel.ISupportInitialize)(this.dgwkladder)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigatorwbilag)).BeginInit();
-            this.bindingNavigatorwbilag.SuspendLayout();
+            this.tblwbilagBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            datoLabel = new System.Windows.Forms.Label();
+            bilagLabel = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.bnXWbilag)).BeginInit();
+            this.bnXWbilag.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwXWkladder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsXWbilag)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsXWkladder)).BeginInit();
             this.SuspendLayout();
             // 
-            // dtDato
+            // datoLabel
             // 
-            this.dtDato.Location = new System.Drawing.Point(48, 34);
-            this.dtDato.Name = "dtDato";
-            this.dtDato.Size = new System.Drawing.Size(123, 20);
-            this.dtDato.TabIndex = 0;
+            datoLabel.AutoSize = true;
+            datoLabel.Location = new System.Drawing.Point(10, 37);
+            datoLabel.Name = "datoLabel";
+            datoLabel.Size = new System.Drawing.Size(33, 13);
+            datoLabel.TabIndex = 2;
+            datoLabel.Text = "Dato:";
             // 
-            // labelDato
+            // bilagLabel
             // 
-            this.labelDato.AutoSize = true;
-            this.labelDato.Location = new System.Drawing.Point(12, 38);
-            this.labelDato.Name = "labelDato";
-            this.labelDato.Size = new System.Drawing.Size(30, 13);
-            this.labelDato.TabIndex = 1;
-            this.labelDato.Text = "Dato";
+            bilagLabel.AutoSize = true;
+            bilagLabel.Location = new System.Drawing.Point(200, 37);
+            bilagLabel.Name = "bilagLabel";
+            bilagLabel.Size = new System.Drawing.Size(33, 13);
+            bilagLabel.TabIndex = 4;
+            bilagLabel.Text = "Bilag:";
             // 
-            // tbBilag
+            // bnXWbilag
             // 
-            this.tbBilag.Location = new System.Drawing.Point(230, 35);
-            this.tbBilag.Name = "tbBilag";
-            this.tbBilag.Size = new System.Drawing.Size(65, 20);
-            this.tbBilag.TabIndex = 2;
-            // 
-            // labelBilag
-            // 
-            this.labelBilag.AutoSize = true;
-            this.labelBilag.Location = new System.Drawing.Point(194, 38);
-            this.labelBilag.Name = "labelBilag";
-            this.labelBilag.Size = new System.Drawing.Size(30, 13);
-            this.labelBilag.TabIndex = 1;
-            this.labelBilag.Text = "Bilag";
-            // 
-            // dgwkladder
-            // 
-            this.dgwkladder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgwkladder.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dgwkladder.Location = new System.Drawing.Point(0, 61);
-            this.dgwkladder.Name = "dgwkladder";
-            this.dgwkladder.Size = new System.Drawing.Size(571, 258);
-            this.dgwkladder.TabIndex = 3;
-            // 
-            // bindingNavigatorwbilag
-            // 
-            this.bindingNavigatorwbilag.AddNewItem = this.bindingNavigatorAddNewItem;
-            this.bindingNavigatorwbilag.CountItem = this.bindingNavigatorCountItem;
-            this.bindingNavigatorwbilag.DeleteItem = this.bindingNavigatorDeleteItem;
-            this.bindingNavigatorwbilag.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bnXWbilag.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.bnXWbilag.BindingSource = this.bsXWbilag;
+            this.bnXWbilag.CountItem = this.bindingNavigatorCountItem;
+            this.bnXWbilag.DeleteItem = this.bindingNavigatorDeleteItem;
+            this.bnXWbilag.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
             this.bindingNavigatorMovePreviousItem,
             this.bindingNavigatorSeparator,
@@ -109,17 +103,100 @@
             this.bindingNavigatorMoveLastItem,
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddNewItem,
-            this.bindingNavigatorDeleteItem});
-            this.bindingNavigatorwbilag.Location = new System.Drawing.Point(0, 0);
-            this.bindingNavigatorwbilag.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
-            this.bindingNavigatorwbilag.MoveLastItem = this.bindingNavigatorMoveLastItem;
-            this.bindingNavigatorwbilag.MoveNextItem = this.bindingNavigatorMoveNextItem;
-            this.bindingNavigatorwbilag.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
-            this.bindingNavigatorwbilag.Name = "bindingNavigatorwbilag";
-            this.bindingNavigatorwbilag.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigatorwbilag.Size = new System.Drawing.Size(571, 25);
-            this.bindingNavigatorwbilag.TabIndex = 4;
-            this.bindingNavigatorwbilag.Text = "bindingNavigator1";
+            this.bindingNavigatorDeleteItem,
+            this.tblwbilagBindingNavigatorSaveItem});
+            this.bnXWbilag.Location = new System.Drawing.Point(0, 0);
+            this.bnXWbilag.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
+            this.bnXWbilag.MoveLastItem = this.bindingNavigatorMoveLastItem;
+            this.bnXWbilag.MoveNextItem = this.bindingNavigatorMoveNextItem;
+            this.bnXWbilag.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
+            this.bnXWbilag.Name = "bnXWbilag";
+            this.bnXWbilag.PositionItem = this.bindingNavigatorPositionItem;
+            this.bnXWbilag.Size = new System.Drawing.Size(567, 25);
+            this.bnXWbilag.TabIndex = 0;
+            this.bnXWbilag.Text = "bindingNavigator1";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(36, 22);
+            this.bindingNavigatorCountItem.Text = "of {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            // 
+            // bindingNavigatorSeparator
+            // 
+            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
+            // 
+            // bindingNavigatorPositionItem
+            // 
+            this.bindingNavigatorPositionItem.AccessibleName = "Position";
+            this.bindingNavigatorPositionItem.AutoSize = false;
+            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
+            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 21);
+            this.bindingNavigatorPositionItem.Text = "0";
+            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
+            // 
+            // bindingNavigatorSeparator1
+            // 
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // bindingNavigatorSeparator2
+            // 
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // dgwXWkladder
+            // 
+            this.dgwXWkladder.AutoGenerateColumns = false;
+            this.dgwXWkladder.BackgroundColor = System.Drawing.SystemColors.Info;
+            this.dgwXWkladder.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwXWkladder.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10,
+            this.dataGridViewTextBoxColumn11,
+            this.dataGridViewTextBoxColumn12});
+            this.dgwXWkladder.DataSource = this.bsXWkladder;
+            this.dgwXWkladder.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dgwXWkladder.Location = new System.Drawing.Point(0, 59);
+            this.dgwXWkladder.Name = "dgwXWkladder";
+            this.dgwXWkladder.Size = new System.Drawing.Size(567, 240);
+            this.dgwXWkladder.TabIndex = 2;
+            // 
+            // datoDateTimePicker
+            // 
+            this.datoDateTimePicker.CustomFormat = "";
+            this.datoDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.bsXWbilag, "Dato", true));
+            this.datoDateTimePicker.Location = new System.Drawing.Point(49, 33);
+            this.datoDateTimePicker.MaxDate = new System.DateTime(2012, 12, 31, 0, 0, 0, 0);
+            this.datoDateTimePicker.MinDate = new System.DateTime(2001, 1, 1, 0, 0, 0, 0);
+            this.datoDateTimePicker.Name = "datoDateTimePicker";
+            this.datoDateTimePicker.Size = new System.Drawing.Size(145, 20);
+            this.datoDateTimePicker.TabIndex = 3;
+            this.datoDateTimePicker.Value = new System.DateTime(2010, 3, 31, 0, 0, 0, 0);
+            // 
+            // bilagTextBox
+            // 
+            this.bilagTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsXWbilag, "Bilag", true));
+            this.bilagTextBox.Location = new System.Drawing.Point(239, 34);
+            this.bilagTextBox.Name = "bilagTextBox";
+            this.bilagTextBox.Size = new System.Drawing.Size(64, 20);
+            this.bilagTextBox.TabIndex = 5;
+            // 
+            // bsXWbilag
+            // 
+            this.bsXWbilag.DataSource = typeof(nsHafsjoldData.Tblwbilag);
+            // 
+            // bsXWkladder
+            // 
+            this.bsXWkladder.DataMember = "Tblwkladder";
+            this.bsXWkladder.DataSource = this.bsXWbilag;
             // 
             // bindingNavigatorAddNewItem
             // 
@@ -129,13 +206,6 @@
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorAddNewItem.Text = "Add new";
-            // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(36, 22);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
             // bindingNavigatorDeleteItem
             // 
@@ -164,25 +234,6 @@
             this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMovePreviousItem.Text = "Move previous";
             // 
-            // bindingNavigatorSeparator
-            // 
-            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorPositionItem
-            // 
-            this.bindingNavigatorPositionItem.AccessibleName = "Position";
-            this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 21);
-            this.bindingNavigatorPositionItem.Text = "0";
-            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
-            // 
-            // bindingNavigatorSeparator1
-            // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
             // bindingNavigatorMoveNextItem
             // 
             this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -201,28 +252,114 @@
             this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMoveLastItem.Text = "Move last";
             // 
-            // bindingNavigatorSeparator2
+            // tblwbilagBindingNavigatorSaveItem
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.tblwbilagBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tblwbilagBindingNavigatorSaveItem.Enabled = false;
+            this.tblwbilagBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("tblwbilagBindingNavigatorSaveItem.Image")));
+            this.tblwbilagBindingNavigatorSaveItem.Name = "tblwbilagBindingNavigatorSaveItem";
+            this.tblwbilagBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
+            this.tblwbilagBindingNavigatorSaveItem.Text = "Save Data";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Pid";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Pid";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Bilagpid";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Bilagpid";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "Tekst";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Tekst";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "Afstemningskonto";
+            this.dataGridViewTextBoxColumn7.HeaderText = "Afstem";
+            this.dataGridViewTextBoxColumn7.Items.AddRange(new object[] {
+            "",
+            "Bank",
+            "A conto-udbetaling af løn"});
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn7.Width = 70;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "Belob";
+            this.dataGridViewTextBoxColumn8.HeaderText = "Beløb";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.Width = 70;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "Konto";
+            this.dataGridViewTextBoxColumn9.HeaderText = "Konto";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.DataPropertyName = "Momskode";
+            this.dataGridViewTextBoxColumn10.HeaderText = "MK";
+            this.dataGridViewTextBoxColumn10.Items.AddRange(new object[] {
+            "",
+            "K25",
+            "S25",
+            "U25"});
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn10.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.DataPropertyName = "Faktura";
+            this.dataGridViewTextBoxColumn11.HeaderText = "Faknr";
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.Width = 50;
+            // 
+            // dataGridViewTextBoxColumn12
+            // 
+            this.dataGridViewTextBoxColumn12.DataPropertyName = "Tblwbilag";
+            this.dataGridViewTextBoxColumn12.HeaderText = "Tblwbilag";
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.Visible = false;
             // 
             // FrmNyKladde
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(571, 319);
-            this.Controls.Add(this.bindingNavigatorwbilag);
-            this.Controls.Add(this.dgwkladder);
-            this.Controls.Add(this.tbBilag);
-            this.Controls.Add(this.labelBilag);
-            this.Controls.Add(this.labelDato);
-            this.Controls.Add(this.dtDato);
+            this.ClientSize = new System.Drawing.Size(567, 299);
+            this.Controls.Add(bilagLabel);
+            this.Controls.Add(this.bilagTextBox);
+            this.Controls.Add(datoLabel);
+            this.Controls.Add(this.datoDateTimePicker);
+            this.Controls.Add(this.dgwXWkladder);
+            this.Controls.Add(this.bnXWbilag);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "FrmNyKladde";
-            this.Text = "frmNyKladde";
-            ((System.ComponentModel.ISupportInitialize)(this.dgwkladder)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingNavigatorwbilag)).EndInit();
-            this.bindingNavigatorwbilag.ResumeLayout(false);
-            this.bindingNavigatorwbilag.PerformLayout();
+            this.Text = "Ny Kladde";
+            this.Load += new System.EventHandler(this.TestMD_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmNyKladde_FormClosing);
+            ((System.ComponentModel.ISupportInitialize)(this.bnXWbilag)).EndInit();
+            this.bnXWbilag.ResumeLayout(false);
+            this.bnXWbilag.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwXWkladder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsXWbilag)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsXWkladder)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,12 +367,8 @@
 
         #endregion
 
-        private System.Windows.Forms.DateTimePicker dtDato;
-        private System.Windows.Forms.Label labelDato;
-        private System.Windows.Forms.TextBox tbBilag;
-        private System.Windows.Forms.Label labelBilag;
-        private System.Windows.Forms.DataGridView dgwkladder;
-        private System.Windows.Forms.BindingNavigator bindingNavigatorwbilag;
+        private System.Windows.Forms.BindingSource bsXWbilag;
+        private System.Windows.Forms.BindingNavigator bnXWbilag;
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
@@ -247,5 +380,19 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
+        private System.Windows.Forms.ToolStripButton tblwbilagBindingNavigatorSaveItem;
+        private System.Windows.Forms.BindingSource bsXWkladder;
+        private System.Windows.Forms.DataGridView dgwXWkladder;
+        private System.Windows.Forms.DateTimePicker datoDateTimePicker;
+        private System.Windows.Forms.TextBox bilagTextBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
     }
 }

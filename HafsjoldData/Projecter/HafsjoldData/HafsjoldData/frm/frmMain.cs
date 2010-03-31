@@ -166,13 +166,25 @@ namespace nsHafsjoldData
 
         private void nyKladdeToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!FocusChild("NyKladde"))
+            if (!FocusChild("Ny Kladde"))
             {
                 FrmNyKladde frmNyKladde = new FrmNyKladde();
                 frmNyKladde.MdiParent = this;
                 frmNyKladde.Show();
             }
         }
+
+        private void bogførtKladdeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("Bogført Kladde"))
+            {
+                FrmBogfortKladde frmBogfortKladde = new FrmBogfortKladde();
+                frmBogfortKladde.MdiParent = this;
+                frmBogfortKladde.Show();
+            }
+        }
+
+
 
     }
 }
