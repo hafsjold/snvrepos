@@ -212,7 +212,7 @@ namespace nsPuls3060
                         {
                             Dato = ToDay,    //(b.Betalingsdato > b.Indbetalingsdato) ? (DateTime)b.Betalingsdato : (DateTime)b.Indbetalingsdato,
                             Bilag = ++BS1_SidsteNr,
-                            Tekst = "PBS Leverance " + b.Leverancespecifikation,
+                            Tekst = "Indbetalingskort K 81131945-" + ((DateTime)b.Indbetalingsdato).Day + "." + ((DateTime)b.Indbetalingsdato).Month,
                             Afstemningskonto = "Bank",
                             Belob = b.GruppeIndbetalingsbelob,
                             Kontonr = null,

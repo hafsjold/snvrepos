@@ -526,11 +526,11 @@ namespace nsPuls3060
             // --  faknr
             if ((sektion == "0211"))
             {
-                m_rec_betlin.Faknr = int.Parse(rec.Substring(69, 9).Trim());
+                m_rec_betlin.Faknr = int.Parse("0" + rec.Substring(69, 9).Trim());
             }
             else if ((sektion == "0215"))
             {
-                m_rec_betlin.Faknr = int.Parse(rec.Substring(72, 9).Trim());
+                m_rec_betlin.Faknr = int.Parse("0" + rec.Substring(72, 9).Trim());
             }
             else
             {
