@@ -43,6 +43,7 @@
             this.medlemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vedligeholdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medlemmerTilRegnearkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.medlemmerTilRegnearkEksternToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.betalingerFraPBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.betalingerTilKassekladeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -164,7 +165,8 @@
             // 
             this.medlemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.vedligeholdToolStripMenuItem,
-            this.medlemmerTilRegnearkToolStripMenuItem});
+            this.medlemmerTilRegnearkToolStripMenuItem,
+            this.medlemmerTilRegnearkEksternToolStripMenuItem});
             this.medlemToolStripMenuItem.Name = "medlemToolStripMenuItem";
             this.medlemToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.medlemToolStripMenuItem.Text = "Medlem";
@@ -172,16 +174,23 @@
             // vedligeholdToolStripMenuItem
             // 
             this.vedligeholdToolStripMenuItem.Name = "vedligeholdToolStripMenuItem";
-            this.vedligeholdToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.vedligeholdToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.vedligeholdToolStripMenuItem.Text = "Vedligehold Medlemmer";
             this.vedligeholdToolStripMenuItem.Click += new System.EventHandler(this.medlemmerToolStripMenuItem_Click);
             // 
             // medlemmerTilRegnearkToolStripMenuItem
             // 
             this.medlemmerTilRegnearkToolStripMenuItem.Name = "medlemmerTilRegnearkToolStripMenuItem";
-            this.medlemmerTilRegnearkToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.medlemmerTilRegnearkToolStripMenuItem.Text = "Medlemmer til Regneark";
-            this.medlemmerTilRegnearkToolStripMenuItem.Click += new System.EventHandler(this.excelToolStripMenuItem_Click);
+            this.medlemmerTilRegnearkToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.medlemmerTilRegnearkToolStripMenuItem.Text = "Regneark internt";
+            this.medlemmerTilRegnearkToolStripMenuItem.Click += new System.EventHandler(this.excelInterntToolStripMenuItem_Click);
+            // 
+            // medlemmerTilRegnearkEksternToolStripMenuItem
+            // 
+            this.medlemmerTilRegnearkEksternToolStripMenuItem.Name = "medlemmerTilRegnearkEksternToolStripMenuItem";
+            this.medlemmerTilRegnearkEksternToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.medlemmerTilRegnearkEksternToolStripMenuItem.Text = "Regneark eksternt";
+            this.medlemmerTilRegnearkEksternToolStripMenuItem.Click += new System.EventHandler(this.excelExterntToolStripMenuItem_Click);
             // 
             // pBSToolStripMenuItem
             // 
@@ -321,6 +330,7 @@
         private System.Windows.Forms.ToolStripMenuItem opretGendannelsespunktToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tilbageTilGendannelsesPunktToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem medlemmerTilRegnearkEksternToolStripMenuItem;
    }
 }
 

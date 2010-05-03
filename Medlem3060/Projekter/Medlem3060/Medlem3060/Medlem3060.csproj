@@ -106,6 +106,9 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="cls\clsExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="cls\clsGoogle.cs" />
     <Compile Include="cls\clsSFTP.cs" />
     <Compile Include="cls\clsRecovery.cs" />
