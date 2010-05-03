@@ -472,9 +472,14 @@ namespace nsPuls3060
         {
             string bigString = null;
             string smallString = null;
+            int AntalImportFiler = 0;
 
+            clsSFTP objSFTP = new clsSFTP();
             clsPbs602 objPbs602 = new clsPbs602();
-            int AntalImportFiler = objPbs602.ReadFraPbsFile();
+            
+            AntalImportFiler = objSFTP.ReadFraSFtp();  //Læs direkte SFTP
+            //AntalImportFiler = objPbs602.ReadFraPbsFile(); //Læs fra Directory FraPBS
+            
             int Antal602Filer = objPbs602.betalinger_fra_pbs();
 
             clsSumma objSumma = new clsSumma();
