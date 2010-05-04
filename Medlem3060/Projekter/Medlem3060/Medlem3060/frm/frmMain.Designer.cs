@@ -55,6 +55,8 @@
             this.pbsfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.regnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.posterTilExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -101,6 +103,7 @@
             this.fileToolStripMenuItem,
             this.medlemToolStripMenuItem,
             this.pBSToolStripMenuItem,
+            this.regnskabToolStripMenuItem,
             this.systemToolStripMenuItem,
             this.hjælpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -242,21 +245,21 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(132, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem2.Text = "Regnskab";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.regnskabToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem1.Text = "Kreditor";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.kerditorToolStripMenuItem_Click);
             // 
             // pbsfilesToolStripMenuItem
             // 
             this.pbsfilesToolStripMenuItem.Name = "pbsfilesToolStripMenuItem";
-            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.pbsfilesToolStripMenuItem.Text = "Pbsfiles";
             this.pbsfilesToolStripMenuItem.Click += new System.EventHandler(this.pbsfilesToolStripMenuItem_Click);
             // 
@@ -274,6 +277,21 @@
             this.omToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
+            // 
+            // regnskabToolStripMenuItem
+            // 
+            this.regnskabToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.posterTilExcelToolStripMenuItem});
+            this.regnskabToolStripMenuItem.Name = "regnskabToolStripMenuItem";
+            this.regnskabToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.regnskabToolStripMenuItem.Text = "Regnskab";
+            // 
+            // posterTilExcelToolStripMenuItem
+            // 
+            this.posterTilExcelToolStripMenuItem.Name = "posterTilExcelToolStripMenuItem";
+            this.posterTilExcelToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.posterTilExcelToolStripMenuItem.Text = "Poster til Regneark";
+            this.posterTilExcelToolStripMenuItem.Click += new System.EventHandler(this.posterTilExcelToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -331,6 +349,8 @@
         private System.Windows.Forms.ToolStripMenuItem tilbageTilGendannelsesPunktToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem medlemmerTilRegnearkEksternToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem regnskabToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem posterTilExcelToolStripMenuItem;
    }
 }
 

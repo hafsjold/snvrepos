@@ -625,4 +625,27 @@ namespace nsPuls3060
         [Fieldattr(Heading = "erMedlem")]
         public int? erMedlem { get; set; }
     }
+
+    public class clsJournalposter
+    {
+        [Fieldattr(Heading = "ds")]
+        public string ds { get; set; }
+        [Fieldattr(Heading = "k")]
+        public string k { get; set; }
+        [Fieldattr(Heading = "Konto")]
+        public string Konto { get; set; }
+        [Fieldattr(Heading = "Dato")]
+        public DateTime? Dato { get; set; }
+        [Fieldattr(Heading = "Bilag")]
+        public int? Bilag { get; set; }
+        [Fieldattr(Heading = "Nr")]
+        public int? Nr { get; set; }
+        [Fieldattr(Heading = "Id")]
+        public int? Id { get; set; }
+        [Fieldattr(Heading = "Tekst")]
+        public string Tekst { get; set; }
+        [Fieldattr(Heading = "Beløb")]
+        public decimal? Beløb { get; set; }
+    }
+
 }

@@ -59,6 +59,7 @@ namespace nsPuls3060
                 this.toolStripStatusLabel2.Text = "Database: " + global::nsPuls3060.Properties.Settings.Default.DataBasePath;
                 this.toolStripStatusLabel2.Alignment = ToolStripItemAlignment.Right;
 
+                object ReadKontoplan = Program.karKontoplan;
                 Program.path_to_lock_summasummarum_kontoplan = rec_regnskab.Placering + "kontoplan.dat";
                 Program.filestream_to_lock_summasummarum_kontoplan = new FileStream(Program.path_to_lock_summasummarum_kontoplan, FileMode.Open, FileAccess.Read, FileShare.None);
             }
@@ -415,6 +416,11 @@ namespace nsPuls3060
         private void excelExterntToolStripMenuItem_Click(object sender, EventArgs e)
         {
             excelExternt();
+        }
+
+        private void posterTilExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ecxelPoster();
         }
 
     }
