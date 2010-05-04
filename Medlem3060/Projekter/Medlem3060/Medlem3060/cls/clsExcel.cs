@@ -363,6 +363,8 @@ namespace nsPuls3060
                     //Start Excel and get Application object.
                     oXL = new Excel.Application();
                     oXL.Visible = false;
+                    oXL.Visible = true; //For debug
+
                     //Get a new workbook.
 
                     oWB = oXL.Workbooks.Add((Missing.Value));
@@ -406,6 +408,7 @@ namespace nsPuls3060
                             }
                         }
                     }
+
                     oRng = (Excel.Range)oSheetPoster.Rows[1, Missing.Value];
                     oRng.Font.Name = "Arial";
                     oRng.Font.Size = 12;
