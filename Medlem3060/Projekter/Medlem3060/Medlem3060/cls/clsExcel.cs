@@ -363,7 +363,7 @@ namespace nsPuls3060
                     //Start Excel and get Application object.
                     oXL = new Excel.Application();
                     oXL.Visible = false;
-                    oXL.Visible = true; //For debug
+                    //oXL.Visible = true; //For debug
 
                     //Get a new workbook.
 
@@ -517,13 +517,14 @@ namespace nsPuls3060
                     
                     oWB.ShowPivotTableFieldList = false;
 
-                    Excel._Worksheet oSheetWrk = (Excel._Worksheet)oWB.Worksheets.get_Item("Sheet2");
-                    oSheetWrk.Delete();
-                    oSheetWrk = (Excel._Worksheet)oWB.Worksheets.get_Item("Sheet3");
-                    oSheetWrk.Delete();
-
-
-
+                    for (var i = oWB.Worksheets.Count; i > 0; i--)
+                    {
+                        Excel._Worksheet oSheetWrk = (Excel._Worksheet)oWB.Worksheets.get_Item(i);
+                        if ((oSheetWrk.Name != "Regnskab") && (oSheetWrk.Name != "Poster")) 
+                        {
+                            oSheetWrk.Delete();
+                        }
+                    }
 
                     oSheetRegnskab.get_Range("A1", Missing.Value).Select();
                     
