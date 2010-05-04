@@ -310,9 +310,8 @@ namespace nsPuls3060
 
             Excel.Application oXL = null; ;
             Excel._Workbook oWB;
-            Excel._Worksheet oSheet;
-            Excel._Worksheet oSheet2;
-            Excel._Worksheet oSheet3;
+            Excel._Worksheet oSheetPoster;
+            Excel._Worksheet oSheetRegnskab;
             Excel.Window oWindow;
             Excel.Range oRng;
 
@@ -320,7 +319,7 @@ namespace nsPuls3060
             string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xls";
 
 
-            var MedlemmerAll = from h in Program.karPosteringsjournal
+            var JournalPoster = from h in Program.karPosteringsjournal
                                join d1 in Program.karKontoplan on h.Konto equals d1.Kontonr into details1
                                from x in details1.DefaultIfEmpty()
                                select new clsJournalposter
@@ -336,6 +335,26 @@ namespace nsPuls3060
                                    Beløb = h.Bruttobeløb,
                                };
 
+            var MedlemmerAll = from h in Program.karMedlemmer
+                               select new clsMedlemExternAll
+                               {
+                                   Nr = h.Nr,
+                                   Navn = h.Navn,
+                                   Kaldenavn = h.Kaldenavn,
+                                   Adresse = h.Adresse,
+                                   Postnr = h.Postnr,
+                                   Bynavn = h.Bynavn,
+                                   Telefon = h.Telefon,
+                                   Email = h.Email,
+                                   Kon = "X",
+                                   FodtDato = null,
+                                   erMedlem = (h.erMedlem()) ? 1 : 0,
+                               };
+
+            var erMedlem = from h in MedlemmerAll
+                           where h.erMedlem == 1
+                           select h;
+
 
             using (new ExcelUILanguageHelper())
             {
@@ -347,17 +366,17 @@ namespace nsPuls3060
                     //Get a new workbook.
 
                     oWB = oXL.Workbooks.Add((Missing.Value));
-                    oSheet = (Excel._Worksheet)oWB.ActiveSheet;
+                    oSheetPoster = (Excel._Worksheet)oWB.ActiveSheet;
                     oWindow = oXL.ActiveWindow;
 
-                    if (pSheetName.Length > 0) oSheet.Name = pSheetName.Substring(0, pSheetName.Length > 34 ? 34 : pSheetName.Length);
+                    if (pSheetName.Length > 0) oSheetPoster.Name = pSheetName.Substring(0, pSheetName.Length > 34 ? 34 : pSheetName.Length);
                     int row = 1;
                     this.toolStripProgressBar1.Value = 0;
                     this.toolStripProgressBar1.Minimum = 0;
-                    this.toolStripProgressBar1.Maximum = (from h in Program.karMedlemmer select h).Count();
+                    this.toolStripProgressBar1.Maximum = (from h in Program.karPosteringsjournal select h).Count();
                     this.toolStripProgressBar1.Step = 1;
                     this.toolStripProgressBar1.Visible = true;
-                    foreach (clsJournalposter m in MedlemmerAll)
+                    foreach (clsJournalposter m in JournalPoster)
                     {
                         this.toolStripProgressBar1.PerformStep();
                         row++;
@@ -369,7 +388,7 @@ namespace nsPuls3060
                             col++;
                             string Name = property.Name;
                             //string NamePropertyType = property.GetValue(m, null).GetType().ToString();
-                            oSheet.Cells[row, col] = property.GetValue(m, null);
+                            oSheetPoster.Cells[row, col] = property.GetValue(m, null);
                             if (row == 2)
                             {
                                 object[] CustomAttributes = property.GetCustomAttributes(false);
@@ -380,14 +399,14 @@ namespace nsPuls3060
                                     {
                                         Fieldattr attr = (Fieldattr)att;
                                         string heading = attr.Heading;
-                                        oSheet.Cells[1, col] = heading;
+                                        oSheetPoster.Cells[1, col] = heading;
 
                                     }
                                 }
                             }
                         }
                     }
-                    oRng = (Excel.Range)oSheet.Rows[1, Missing.Value];
+                    oRng = (Excel.Range)oSheetPoster.Rows[1, Missing.Value];
                     oRng.Font.Name = "Arial";
                     oRng.Font.Size = 12;
                     oRng.Font.Strikethrough = false;
@@ -406,24 +425,41 @@ namespace nsPuls3060
                     oRng.MergeCells = false;
 
                     string BottomRight = "D" + row.ToString();
-                    oRng = oSheet.get_Range("D2", BottomRight);
+                    oRng = oSheetPoster.get_Range("D2", BottomRight);
                     oRng.NumberFormat = "dd-mm-yyyy";
 
-                    oSheet.Cells.EntireColumn.AutoFit();
+                    oSheetPoster.Cells.EntireColumn.AutoFit();
 
                     oWindow.SplitRow = 1;
                     oWindow.FreezePanes = true;
 
-                    oSheet.get_Range("A1", Missing.Value).Select();
+                    oSheetPoster.get_Range("A1", Missing.Value).Select();
 
-                    oXL.Visible = true;
+
+                    oSheetRegnskab = (Excel._Worksheet)oWB.Worksheets.Add(System.Type.Missing, System.Type.Missing, System.Type.Missing, System.Type.Missing);
+                    oRng = oSheetRegnskab.get_Range("C2", Missing.Value);
+                    oRng.Formula = "Antal medlemmer: " + erMedlem.Count().ToString();
+
+                    //oXL.Visible = true; //For debug
 
                     PivotField _pvtField = null;
-                    PivotTable _pivot = oSheet.PivotTableWizard(XlPivotTableSourceType.xlDatabase, 
-                        oSheet.get_Range(oSheet.Cells[1, 1], oSheet.Cells[row, 9]),
-                        System.Type.Missing, "PivotTable1", System.Type.Missing, System.Type.Missing, System.Type.Missing,
-                        System.Type.Missing, System.Type.Missing, System.Type.Missing, System.Type.Missing, System.Type.Missing,
-                        System.Type.Missing, System.Type.Missing, System.Type.Missing, System.Type.Missing);
+                    PivotTable _pivot = oSheetPoster.PivotTableWizard(
+                        XlPivotTableSourceType.xlDatabase,  //SourceType
+                        oSheetPoster.get_Range(oSheetPoster.Cells[1, 1], oSheetPoster.Cells[row, 9]), //SourceData
+                        oSheetRegnskab.get_Range("A3", Missing.Value),  //TableDestination
+                        "PivotTable1", //TableName
+                        System.Type.Missing, //RowGrand
+                        System.Type.Missing, //CollumnGrand
+                        System.Type.Missing, //SaveData
+                        System.Type.Missing, //HasAutoformat
+                        System.Type.Missing, //AutoPage
+                        System.Type.Missing, //Reserved
+                        System.Type.Missing, //BackgroundQuery
+                        System.Type.Missing, //OptimizeCache 
+                        System.Type.Missing, //PageFieldOrder 
+                        System.Type.Missing, //PageFieldWrapCount 
+                        System.Type.Missing, //ReadData 
+                        System.Type.Missing);//Connection 
                     
                     _pvtField = (PivotField)_pivot.PivotFields("ds");
                     _pvtField.Orientation = XlPivotFieldOrientation.xlRowField;
@@ -442,24 +478,51 @@ namespace nsPuls3060
                     _pvtField.Function = XlConsolidationFunction.xlSum;
                     _pvtField.NumberFormat = "#,##0";
 
-                    oSheet2 = (Excel._Worksheet)oWB.ActiveSheet;
-                    oSheet2.Name = "Regnskab";
-                    oRng = oSheet2.get_Range("D1", Missing.Value);
+                    oSheetRegnskab.Name = "Regnskab";
+                    oRng = oSheetRegnskab.get_Range("D3", Missing.Value);
                     oRng.Select();
                     bool[] Periods = { false, false, false, false, true, false, false};
                     oRng.Group(true, true, Missing.Value, Periods);
 
-                    oRng = oSheet2.get_Range("D2", "P2");
+                    oRng = oSheetRegnskab.get_Range("D4", "P4");
                     oRng.HorizontalAlignment = Excel.XlHAlign.xlHAlignRight;
 
+                    oSheetRegnskab.PageSetup.LeftHeader = "&14Regnskab Puls 3060";
+                    oSheetRegnskab.PageSetup.CenterHeader = "";
+                    oSheetRegnskab.PageSetup.RightHeader = "&P af &N";
+                    oSheetRegnskab.PageSetup.LeftFooter = "&Z&F";
+                    oSheetRegnskab.PageSetup.CenterFooter = "";
+                    oSheetRegnskab.PageSetup.RightFooter = "&D&T";
+                    oSheetRegnskab.PageSetup.LeftMargin = oXL.InchesToPoints(0.75);
+                    oSheetRegnskab.PageSetup.RightMargin = oXL.InchesToPoints(0.75);
+                    oSheetRegnskab.PageSetup.TopMargin = oXL.InchesToPoints(1);
+                    oSheetRegnskab.PageSetup.BottomMargin = oXL.InchesToPoints(1);
+                    oSheetRegnskab.PageSetup.HeaderMargin = oXL.InchesToPoints(0.5);
+                    oSheetRegnskab.PageSetup.FooterMargin = oXL.InchesToPoints(0.5);
+                    oSheetRegnskab.PageSetup.PrintHeadings = false;
+                    oSheetRegnskab.PageSetup.PrintGridlines = true;
+                    oSheetRegnskab.PageSetup.CenterHorizontally = false;
+                    oSheetRegnskab.PageSetup.CenterVertically = false;
+                    oSheetRegnskab.PageSetup.Orientation = XlPageOrientation.xlLandscape;
+                    oSheetRegnskab.PageSetup.Draft = false;
+                    oSheetRegnskab.PageSetup.PaperSize = XlPaperSize.xlPaperA4;
+                    oSheetRegnskab.PageSetup.FirstPageNumber = 1;
+                    oSheetRegnskab.PageSetup.Order = XlOrder.xlDownThenOver;
+                    oSheetRegnskab.PageSetup.BlackAndWhite = false;
+                    oSheetRegnskab.PageSetup.Zoom = 100;
+                    oSheetRegnskab.PageSetup.PrintErrors = XlPrintErrors.xlPrintErrorsDisplayed;
+                    
                     oWB.ShowPivotTableFieldList = false;
 
-                    oSheet3 = (Excel._Worksheet)oWB.Worksheets.get_Item("Sheet2");
-                    oSheet3.Delete();
-                    oSheet3 = (Excel._Worksheet)oWB.Worksheets.get_Item("Sheet3");
-                    oSheet3.Delete();
+                    Excel._Worksheet oSheetWrk = (Excel._Worksheet)oWB.Worksheets.get_Item("Sheet2");
+                    oSheetWrk.Delete();
+                    oSheetWrk = (Excel._Worksheet)oWB.Worksheets.get_Item("Sheet3");
+                    oSheetWrk.Delete();
 
-                    oSheet2.get_Range("A1", Missing.Value).Select();
+
+
+
+                    oSheetRegnskab.get_Range("A1", Missing.Value).Select();
                     
                     oWB.SaveAs(SaveAs, Excel.XlFileFormat.xlWorkbookNormal, "", "", false, false, Excel.XlSaveAsAccessMode.xlExclusive, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
                     oWB.Saved = true;
