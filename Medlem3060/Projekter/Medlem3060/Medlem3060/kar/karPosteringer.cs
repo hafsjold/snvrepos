@@ -120,7 +120,7 @@ namespace nsPuls3060
         {
             get
             {
-                return (decimal)(m_rec_data.belob/100);
+                return ((decimal)(m_rec_data.belob))/100;
             }
             set
             {
