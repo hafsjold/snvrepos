@@ -319,14 +319,15 @@ namespace nsPuls3060
             string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xls";
 
 
-            var JournalPoster = from h in Program.karPosteringsjournal
+            var JournalPoster = from h in Program.karPosteringer
                                join d1 in Program.karKontoplan on h.Konto equals d1.Kontonr into details1
                                from x in details1.DefaultIfEmpty()
+                               orderby h.Nr
                                select new clsJournalposter
                                {
                                    ds = (x.Type == "Drift") ? "D" : "S",
                                    k = IUAP(x.Type, x.DK),
-                                   Konto = h.Konto.ToString() + "-" + h.Kontonavn,
+                                   Konto = h.Konto.ToString() + "-" + x.Kontonavn,
                                    Dato = h.Dato,
                                    Bilag = h.Bilag,
                                    Nr = h.Nr,
@@ -375,7 +376,7 @@ namespace nsPuls3060
                     int row = 1;
                     this.toolStripProgressBar1.Value = 0;
                     this.toolStripProgressBar1.Minimum = 0;
-                    this.toolStripProgressBar1.Maximum = (from h in Program.karPosteringsjournal select h).Count();
+                    this.toolStripProgressBar1.Maximum = (from h in Program.karPosteringer select h).Count();
                     this.toolStripProgressBar1.Step = 1;
                     this.toolStripProgressBar1.Visible = true;
                     foreach (clsJournalposter m in JournalPoster)

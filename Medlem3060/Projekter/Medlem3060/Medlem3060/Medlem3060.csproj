@@ -148,6 +148,7 @@
     </Compile>
     <Compile Include="cls\clsCsv.cs" />
     <Compile Include="cls\clsMedlem.cs" />
+    <Compile Include="kar\karPosteringer.cs" />
     <Compile Include="kar\karKontoplan.cs" />
     <Compile Include="kar\karPosteringsjournal.cs" />
     <Compile Include="kar\karKladde.cs" />

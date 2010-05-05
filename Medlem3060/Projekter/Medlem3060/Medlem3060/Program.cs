@@ -25,6 +25,7 @@ namespace nsPuls3060
         private static KarKladde m_KarKladde;
         private static KarPosteringsjournal m_KarPosteringsjournal;
         private static KarKontoplan m_KarKontoplan;
+        private static KarPosteringer m_KarPosteringer;
 
         public static string path_to_lock_summasummarum_kontoplan
         {
@@ -248,6 +249,18 @@ namespace nsPuls3060
             set
             {
                 m_KarKontoplan = value;
+            }
+        }
+        public static KarPosteringer karPosteringer
+        {
+            get
+            {
+                if (m_KarPosteringer == null) m_KarPosteringer = new KarPosteringer();
+                return m_KarPosteringer;
+            }
+            set
+            {
+                m_KarPosteringer = value;
             }
         }
 
