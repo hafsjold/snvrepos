@@ -91,9 +91,9 @@ namespace nsHafsjoldData
             //karPosteringsjournal.open();
 
             //KarDanskeErhverv karDanskeErhverv = new KarDanskeErhverv();
-            
 
-            KarKladder karKladder = new KarKladder();
+
+            KarPosteringer karPosteringer = new KarPosteringer();
 
             
 #endif

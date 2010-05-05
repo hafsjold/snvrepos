@@ -138,6 +138,7 @@
     <Compile Include="frm\BetterDialog.designer.cs">
       <DependentUpon>BetterDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="kar\karPosteringer.cs" />
     <Compile Include="kar\karKladder.cs" />
     <Compile Include="kar\karDanskeErhverv.cs" />
     <Compile Include="kar\karKartotek.cs" />
