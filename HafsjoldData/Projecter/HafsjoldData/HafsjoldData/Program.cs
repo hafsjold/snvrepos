@@ -20,6 +20,13 @@ namespace nsHafsjoldData
         private static KarKartotek m_KarKartotek;
         private static KarDanskeErhverv m_KarDanskeErhverv;
         private static KarPosteringsjournal m_KarPosteringsjournal;
+        private static FrmNyKladde m_frmNyKladde;
+        private static FrmBogfortKladde m_frmBogfortKladde;
+        private static int? m_BS1_SidsteNr;
+
+
+
+
 
         public static string path_to_lock_summasummarum_kontoplan
         {
@@ -187,6 +194,74 @@ namespace nsHafsjoldData
                 m_KarPosteringsjournal = value;
             }
         }
+        public static FrmNyKladde frmNyKladde
+        {
+            get
+            {
+                foreach (Form frm in frmMain.MdiChildren)
+                {
+                    if (frm.Text.ToUpper() == "NY KLADDE")
+                    {
+                        return m_frmNyKladde;
+                    }
+                }
+                m_frmNyKladde = new FrmNyKladde();
+                m_frmNyKladde.MdiParent = frmMain;
+                m_frmNyKladde.Show();
+                return m_frmNyKladde;
+            }
+            set
+            {
+                m_frmNyKladde = value;
+            }
+        }
+        public static FrmBogfortKladde frmBogfortKladde
+        {
+            get
+            {
+                foreach (Form frm in frmMain.MdiChildren)
+                {
+                    if (frm.Text.ToUpper() == "BOGFØRT KLADDE")
+                    {
+                        return m_frmBogfortKladde;
+                    }
+                }
+                m_frmBogfortKladde = new FrmBogfortKladde();
+                m_frmBogfortKladde.MdiParent = frmMain;
+                m_frmBogfortKladde.Show();
+                return m_frmBogfortKladde;
+            }
+            set
+            {
+                m_frmBogfortKladde = value;
+            }
+        }
+
+        public static int BS1_SidsteNr
+        {
+            get
+            {
+                if (m_BS1_SidsteNr == null)
+                {
+                    try
+                    {
+                        recStatus rec_Status = (from s in Program.karStatus where s.key == "BS1_SidsteNr" select s).First();
+                        m_BS1_SidsteNr = int.Parse(rec_Status.value);
+                    }
+                    catch (System.InvalidOperationException)
+                    {
+                        m_BS1_SidsteNr = 0;
+                    }
+
+                }
+                return (int)m_BS1_SidsteNr;
+            }
+            set
+            {
+                m_BS1_SidsteNr = value;
+            }
+        }
+
         public static TblRegnskab qryAktivRegnskab()
         {
             try
@@ -205,7 +280,7 @@ namespace nsHafsjoldData
                 };
             }
         }
- 
+
         public static FrmMain frmMain { get; set; }
         /// <summary>
         /// The main entry point for the application.

@@ -93,7 +93,7 @@ namespace nsHafsjoldData
             //KarDanskeErhverv karDanskeErhverv = new KarDanskeErhverv();
 
 
-            KarPosteringer karPosteringer = new KarPosteringer();
+            //KarPosteringer karPosteringer = new KarPosteringer();
 
             
 #endif
@@ -168,9 +168,7 @@ namespace nsHafsjoldData
         {
             if (!FocusChild("Ny Kladde"))
             {
-                FrmNyKladde frmNyKladde = new FrmNyKladde();
-                frmNyKladde.MdiParent = this;
-                frmNyKladde.Show();
+                FrmNyKladde frmNyKladde = Program.frmNyKladde;
             }
         }
 
@@ -178,13 +176,8 @@ namespace nsHafsjoldData
         {
             if (!FocusChild("Bogført Kladde"))
             {
-                FrmBogfortKladde frmBogfortKladde = new FrmBogfortKladde();
-                frmBogfortKladde.MdiParent = this;
-                frmBogfortKladde.Show();
+                FrmBogfortKladde frmBogfortKladde = Program.frmBogfortKladde;
             }
         }
-
-
-
     }
 }
