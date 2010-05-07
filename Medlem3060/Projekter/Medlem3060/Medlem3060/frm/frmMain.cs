@@ -132,7 +132,7 @@ namespace nsPuls3060
             //clsRecovery objRecovery = new clsRecovery();
             //objRecovery.TestRecovery();
             //clsSFTP objSFTP = new clsSFTP();
-            //objSFTP.ReadFraSFtp();
+            //objSFTP.WriteTilSFtp(606);
             //clsPbs objPbs = new clsPbs();
             //clsPbs601 objPbs601 = new clsPbs601();
             //clsPbs602 objPbs602 = new clsPbs602();
