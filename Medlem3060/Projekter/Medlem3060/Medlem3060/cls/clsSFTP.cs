@@ -208,9 +208,9 @@ namespace nsPuls3060
                     for (int idx = 0; seqnr < lines.Count(); idx++)
                     {
                         ln = lines[idx].TrimEnd('\r');
+                        if (((seqnr == 0) && !(ln.Substring(0, 6) == "PBCNET")) || (seqnr > 0)) { seqnr++; }
                         if (ln.Length > 0)
                         {
-                            if (((seqnr == 0) && !(ln.Substring(0, 6) == "PBCNET")) || (seqnr > 0)) { seqnr++; }
                             m_rec_pbsfile = new Tblpbsfile
                             {
                                 Seqnr = seqnr,
