@@ -178,7 +178,6 @@ namespace nsPuls3060
                         Gid = rec_pbsnetdir.Gid
                     };
                     Program.dbData3060.Tblpbsfiles.InsertOnSubmit(m_rec_pbsfiles);
-                    //Program.dbData3060.SubmitChanges(); //DEBUG
 
                     //***********************************************************************
                     //  Open a file on the server:
@@ -201,14 +200,16 @@ namespace nsPuls3060
                     for (int idx = 0; seqnr < lines.Count(); idx++)
                     {
                         ln = lines[idx].TrimEnd('\r');
-                        if (((seqnr == 0) && !(ln.Substring(0, 6) == "PBCNET")) || (seqnr > 0)) { seqnr++; }
-                        m_rec_pbsfile = new Tblpbsfile
+                        if (ln.Length > 0)
                         {
-                            Seqnr = seqnr,
-                            Data = ln
-                        };
-                        m_rec_pbsfiles.Tblpbsfile.Add(m_rec_pbsfile);
-                        //Program.dbData3060.SubmitChanges(); //DEBUG
+                            if (((seqnr == 0) && !(ln.Substring(0, 6) == "PBCNET")) || (seqnr > 0)) { seqnr++; }
+                            m_rec_pbsfile = new Tblpbsfile
+                            {
+                                Seqnr = seqnr,
+                                Data = ln
+                            };
+                            m_rec_pbsfiles.Tblpbsfile.Add(m_rec_pbsfile);
+                        }
                     }
 
                     m_rec_pbsfiles.Transmittime = DateTime.Now;
