@@ -439,7 +439,7 @@ namespace nsPuls3060
 
         private void I_DT_FodtDato_Enter(object sender, EventArgs e)
         {
-            if (I_DT_FodtDato.Value == null) 
+            if (I_DT_FodtDato.Value == null)
             {
                 I_DT_FodtDato.Value = new DateTime(1970, 01, 01);
             }
@@ -452,6 +452,63 @@ namespace nsPuls3060
                 U_DT_FodtDato.Value = new DateTime(1970, 01, 01);
             }
         }
+
+        private void toolStripImportMedlem_Click(object sender, EventArgs e)
+        {
+            DateTime Indmeldelsesdato = DateTime.Today;
+            int tblMedlem_nr = 0;
+            clsImportMedlem objImportMedlem = new clsImportMedlem();
+            foreach (recImportMedlem impMedlem in objImportMedlem)
+            {
+                tblMedlem_nr = clsPbs.nextval("tblMedlem");
+
+                object[] val = new object[11];
+                val[0] = tblMedlem_nr;
+                val[1] = impMedlem.Navn;
+                val[2] = impMedlem.Kaldenavn;
+                val[3] = impMedlem.Adresse;
+                val[4] = impMedlem.Postnr;
+                val[5] = impMedlem.Bynavn;
+                val[6] = impMedlem.Telefon;
+                val[7] = impMedlem.Email;
+                val[8] = (short?)null; //Knr
+                val[9] = impMedlem.Kon;
+                val[10] = impMedlem.FodtDato;
+                this.dsMedlem.Kartotek.Rows.Add(val);
+                this.dsMedlem.savedsMedlem();
+
+                try
+                {
+                    DateTime nu = DateTime.Now;
+                    TblMedlemLog recLog = new TblMedlemLog
+                    {
+                        Nr = tblMedlem_nr,
+                        Logdato = new DateTime(nu.Year, nu.Month, nu.Day),
+                        Akt_id = 10,
+                        Akt_dato = Indmeldelsesdato
+                    };
+                    Program.dbData3060.TblMedlemLog.InsertOnSubmit(recLog);
+                    Program.dbData3060.SubmitChanges();
+                }
+                catch (Exception)
+                {
+                }
+            }
+            this.dataGridView1.Update();
+
+            foreach (DataGridViewRow r in this.dataGridView1.Rows)
+            {
+                if (r.Cells[0].Value.ToString() == tblMedlem_nr.ToString())
+                {
+                    int ci = dataGridView1.CurrentCell.ColumnIndex;
+                    dataGridView1.CurrentCell = r.Cells[ci];
+                }
+            }
+            this.panelDisplay.Visible = true;
+            this.panelAdd.Visible = false;
+            this.Navn.Focus();
+        }
+
 
     }
 }

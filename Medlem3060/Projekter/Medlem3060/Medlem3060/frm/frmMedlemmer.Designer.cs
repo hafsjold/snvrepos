@@ -138,6 +138,7 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorAddUpdateItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.toolStripImportMedlem = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kartotekBindingSource)).BeginInit();
@@ -176,7 +177,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 20;
-            this.dataGridView1.Size = new System.Drawing.Size(516, 1173);
+            this.dataGridView1.Size = new System.Drawing.Size(516, 576);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.TabStop = false;
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
@@ -287,7 +288,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 1173);
+            this.splitContainer1.Size = new System.Drawing.Size(800, 576);
             this.splitContainer1.SplitterDistance = global::nsPuls3060.Properties.Settings.Default.frmMedlemmerSplitteDist;
             this.splitContainer1.TabIndex = 0;
             this.splitContainer1.TabStop = false;
@@ -1100,7 +1101,8 @@
             this.bindingNavigatorMoveLastItem,
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddUpdateItem,
-            this.bindingNavigatorAddNewItem});
+            this.bindingNavigatorAddNewItem,
+            this.toolStripImportMedlem});
             this.bindingNavigator1.Location = new System.Drawing.Point(1, -1);
             this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -1108,7 +1110,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(256, 25);
+            this.bindingNavigator1.Size = new System.Drawing.Size(340, 25);
             this.bindingNavigator1.TabIndex = 1;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -1199,6 +1201,17 @@
             this.bindingNavigatorAddNewItem.Text = "Add New";
             this.bindingNavigatorAddNewItem.ToolTipText = "Add New";
             this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
+            // 
+            // toolStripImportMedlem
+            // 
+            this.toolStripImportMedlem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripImportMedlem.Image = ((System.Drawing.Image)(resources.GetObject("toolStripImportMedlem.Image")));
+            this.toolStripImportMedlem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripImportMedlem.Name = "toolStripImportMedlem";
+            this.toolStripImportMedlem.Size = new System.Drawing.Size(53, 22);
+            this.toolStripImportMedlem.Text = "Importer";
+            this.toolStripImportMedlem.ToolTipText = "Importer medlemmer";
+            this.toolStripImportMedlem.Click += new System.EventHandler(this.toolStripImportMedlem_Click);
             // 
             // menuStrip1
             // 
@@ -1356,6 +1369,7 @@
         private ProjectMentor.Windows.Controls.NullableDateTimePicker I_DT_FodtDato;
         private System.Windows.Forms.ComboBox U_NyAktivitet;
         private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripButton toolStripImportMedlem;
 
 
     }

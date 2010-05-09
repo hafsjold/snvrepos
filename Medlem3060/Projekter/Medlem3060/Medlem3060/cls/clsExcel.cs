@@ -121,10 +121,12 @@ namespace nsPuls3060
                     oRng.ShrinkToFit = false;
                     oRng.MergeCells = false;
 
-                    oRng = oSheet.get_Range("K2", "K1024");
+                    string BottomRight = "K" + row.ToString();
+                    oRng = oSheet.get_Range("K2", BottomRight);
                     oRng.NumberFormat = "dd-mm-yyyy";
 
-                    oRng = oSheet.get_Range("M2", "Q1024");
+                    BottomRight = "Q" + row.ToString();
+                    oRng = oSheet.get_Range("M2", BottomRight);
                     oRng.NumberFormat = "dd-mm-yyyy";
 
                     oSheet.Cells.EntireColumn.AutoFit();
@@ -258,7 +260,8 @@ namespace nsPuls3060
                     oRng.ShrinkToFit = false;
                     oRng.MergeCells = false;
 
-                    oRng = oSheet.get_Range("J2", "J1024");
+                    string BottomRight = "J" + row.ToString();
+                    oRng = oSheet.get_Range("J2", BottomRight);
                     oRng.NumberFormat = "dd-mm-yyyy";
 
                     oSheet.Cells.EntireColumn.AutoFit();

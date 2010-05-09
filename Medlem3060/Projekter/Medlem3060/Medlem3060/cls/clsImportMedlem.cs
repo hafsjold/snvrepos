@@ -45,7 +45,7 @@ namespace nsPuls3060
         public clsImportMedlem()
         {
             var rec_regnskab = Program.qryAktivRegnskab();
-            m_kartotek_dat = rec_regnskab.Eksportmappe + "MedlemEkstern_20100503_021228.xls";
+            m_kartotek_dat = rec_regnskab.Eksportmappe + "Medlem_20100507_claus.xls";
             Open();
         }
 
@@ -65,7 +65,8 @@ namespace nsPuls3060
             foreach (DataRow rec in recs)
             {
                 recImportMedlem r = new recImportMedlem();
-                for(int i = 0; i < maxcol; i++)
+                int NotEmptyCount = 0;
+                for (int i = 0; i < maxcol; i++)
                 {
                     string Name = cols[i].ColumnName;
                     switch (Name)
@@ -74,6 +75,7 @@ namespace nsPuls3060
                             try
                             {
                                 r.Nr = int.Parse(rec.ItemArray[i].ToString());
+                                NotEmptyCount++;
                             }
                             catch
                             {
@@ -81,35 +83,107 @@ namespace nsPuls3060
                             }
                             break;
                         case "Navn":
-                            r.Navn = rec.ItemArray[i].ToString();
+                            if (rec.ItemArray[i].ToString().Length > 0)
+                            {
+                                r.Navn = rec.ItemArray[i].ToString();
+                                NotEmptyCount++;
+                            }
+                            else
+                            {
+                                r.Navn = null;
+                            }
                             break;
                         case "Kaldenavn":
-                            r.Kaldenavn = rec.ItemArray[i].ToString();
+                            if (rec.ItemArray[i].ToString().Length > 0)
+                            {
+                                r.Kaldenavn = rec.ItemArray[i].ToString();
+                                NotEmptyCount++;
+                            }
+                            else
+                            {
+                                r.Kaldenavn = null;
+                            }
                             break;
                         case "Adresse":
-                            r.Adresse = rec.ItemArray[i].ToString();
+                            if (rec.ItemArray[i].ToString().Length > 0)
+                            {
+                                r.Adresse = rec.ItemArray[i].ToString();
+                                NotEmptyCount++;
+                            }
+                            else
+                            {
+                                r.Adresse = null;
+                            }
                             break;
                         case "Postnr":
-                            r.Postnr = rec.ItemArray[i].ToString();
+                            if (rec.ItemArray[i].ToString().Length > 0)
+                            {
+                                r.Postnr = rec.ItemArray[i].ToString();
+                                NotEmptyCount++;
+                            }
+                            else
+                            {
+                                r.Postnr = null;
+                            }
                             break;
                         case "By":
-                            r.Bynavn = rec.ItemArray[i].ToString();
+                            if (rec.ItemArray[i].ToString().Length > 0)
+                            {
+                                r.Bynavn = rec.ItemArray[i].ToString();
+                                NotEmptyCount++;
+                            }
+                            else
+                            {
+                                r.Bynavn = null;
+                            }
                             break;
                         case "Email":
-                            r.Email = rec.ItemArray[i].ToString();
+                            if (rec.ItemArray[i].ToString().Length > 0)
+                            {
+                                r.Email = rec.ItemArray[i].ToString();
+                                NotEmptyCount++;
+                            }
+                            else
+                            {
+                                r.Email = null;
+                            }
                             break;
                         case "Telefon":
-                            r.Telefon = rec.ItemArray[i].ToString();
+                            if (rec.ItemArray[i].ToString().Length > 0)
+                            {
+                                r.Telefon = rec.ItemArray[i].ToString();
+                                NotEmptyCount++;
+                            }
+                            else
+                            {
+                                r.Telefon = null;
+                            }
                             break;
                         case "Køn":
-                            r.Kon = rec.ItemArray[i].ToString();
+                            if (rec.ItemArray[i].ToString().Length > 0)
+                            {
+                                r.Kon = rec.ItemArray[i].ToString().ToUpper();
+                                if ((r.Kon != "M") && (r.Kon != "K"))
+                                {
+                                    r.Kon = null;
+                                }
+                                else
+                                {
+                                    NotEmptyCount++;
+                                }
+                            }
+                            else
+                            {
+                                r.Kon = null;
+                            }
                             break;
                         case "Født":
-                            try 
-                            { 
+                            try
+                            {
                                 r.FodtDato = clsUtil.MSSerial2DateTime(Double.Parse(rec.ItemArray[i].ToString()));
+                                NotEmptyCount++;
                             }
-                            catch 
+                            catch
                             {
                                 r.FodtDato = null;
                             }
@@ -118,10 +192,11 @@ namespace nsPuls3060
                             try
                             {
                                 r.erMedlem = int.Parse(rec.ItemArray[i].ToString());
+                                NotEmptyCount++;
                             }
                             catch
                             {
-                                r.erMedlem = 3;
+                                r.erMedlem = null;
                             }
                             break;
 
@@ -129,7 +204,10 @@ namespace nsPuls3060
                             break;
                     }
                 }
-                this.Add(r);
+                if ((NotEmptyCount > 0) && (r.erMedlem == null))
+                {
+                    this.Add(r);
+                }
             }
 
         }

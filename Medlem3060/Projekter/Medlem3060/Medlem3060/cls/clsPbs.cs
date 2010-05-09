@@ -274,6 +274,29 @@ namespace nsPuls3060
             }
         }
 
+        public static int nextvaltest(string nrserienavn)
+        {
+            try
+            {
+                var rst = (from c in Program.dbData3060.Tblnrserie
+                           where c.Nrserienavn == nrserienavn
+                           select c).First();
+
+                if (rst.Sidstbrugtenr != null)
+                {
+                    return rst.Sidstbrugtenr.Value + 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            catch (System.InvalidOperationException)
+            {
+                return 0;
+            }
+        }
+
         public bool ReadRegnskaber()
         {
             string RegnskabId;
