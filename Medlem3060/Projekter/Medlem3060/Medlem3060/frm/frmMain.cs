@@ -128,7 +128,7 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
-            clsImportMedlem objImportMedlem = new clsImportMedlem();
+            //clsImportMedlem objImportMedlem = new clsImportMedlem();
 
             //clsGoogle objGoogle = new clsGoogle();
             //objGoogle.test();

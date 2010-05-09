@@ -458,57 +458,71 @@ namespace nsPuls3060
             DateTime Indmeldelsesdato = DateTime.Today;
             int tblMedlem_nr = 0;
             clsImportMedlem objImportMedlem = new clsImportMedlem();
-            foreach (recImportMedlem impMedlem in objImportMedlem)
+            int AntalNyeMedlemmer = objImportMedlem.Count;
+            if (AntalNyeMedlemmer == 0)
             {
-                tblMedlem_nr = clsPbs.nextval("tblMedlem");
-
-                object[] val = new object[11];
-                val[0] = tblMedlem_nr;
-                val[1] = impMedlem.Navn;
-                val[2] = impMedlem.Kaldenavn;
-                val[3] = impMedlem.Adresse;
-                val[4] = impMedlem.Postnr;
-                val[5] = impMedlem.Bynavn;
-                val[6] = impMedlem.Telefon;
-                val[7] = impMedlem.Email;
-                val[8] = (short?)null; //Knr
-                val[9] = impMedlem.Kon;
-                val[10] = impMedlem.FodtDato;
-                this.dsMedlem.Kartotek.Rows.Add(val);
-                this.dsMedlem.savedsMedlem();
-
-                try
+                DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
+                    "Import Medlemmer", //titleString 
+                    "Der er ingen nye medlemmer i den valgte Excel file.", //bigString 
+                    null, //smallString
+                    null, //leftButton
+                    "OK", //rightButton
+                    global::nsPuls3060.Properties.Resources.Message_info); //iconSet
+            }
+            else
+            {
+                foreach (recImportMedlem impMedlem in objImportMedlem)
                 {
-                    DateTime nu = DateTime.Now;
-                    TblMedlemLog recLog = new TblMedlemLog
+                    tblMedlem_nr = clsPbs.nextval("tblMedlem");
+
+                    object[] val = new object[11];
+                    val[0] = tblMedlem_nr;
+                    val[1] = impMedlem.Navn;
+                    val[2] = impMedlem.Kaldenavn;
+                    val[3] = impMedlem.Adresse;
+                    val[4] = impMedlem.Postnr;
+                    val[5] = impMedlem.Bynavn;
+                    val[6] = impMedlem.Telefon;
+                    val[7] = impMedlem.Email;
+                    val[8] = (short?)null; //Knr
+                    val[9] = impMedlem.Kon;
+                    val[10] = impMedlem.FodtDato;
+                    this.dsMedlem.Kartotek.Rows.Add(val);
+                    this.dsMedlem.savedsMedlem();
+
+                    try
                     {
-                        Nr = tblMedlem_nr,
-                        Logdato = new DateTime(nu.Year, nu.Month, nu.Day),
-                        Akt_id = 10,
-                        Akt_dato = Indmeldelsesdato
-                    };
-                    Program.dbData3060.TblMedlemLog.InsertOnSubmit(recLog);
-                    Program.dbData3060.SubmitChanges();
+                        DateTime nu = DateTime.Now;
+                        TblMedlemLog recLog = new TblMedlemLog
+                        {
+                            Nr = tblMedlem_nr,
+                            Logdato = new DateTime(nu.Year, nu.Month, nu.Day),
+                            Akt_id = 10,
+                            Akt_dato = Indmeldelsesdato
+                        };
+                        Program.dbData3060.TblMedlemLog.InsertOnSubmit(recLog);
+                        Program.dbData3060.SubmitChanges();
+                    }
+                    catch (Exception)
+                    {
+                    }
                 }
-                catch (Exception)
-                {
-                }
-            }
-            this.dataGridView1.Update();
+                this.dataGridView1.Update();
 
-            foreach (DataGridViewRow r in this.dataGridView1.Rows)
-            {
-                if (r.Cells[0].Value.ToString() == tblMedlem_nr.ToString())
+                foreach (DataGridViewRow r in this.dataGridView1.Rows)
                 {
-                    int ci = dataGridView1.CurrentCell.ColumnIndex;
-                    dataGridView1.CurrentCell = r.Cells[ci];
+                    if (r.Cells[0].Value.ToString() == tblMedlem_nr.ToString())
+                    {
+                        int ci = dataGridView1.CurrentCell.ColumnIndex;
+                        dataGridView1.CurrentCell = r.Cells[ci];
+                    }
                 }
+                this.panelDisplay.Visible = true;
+                this.panelAdd.Visible = false;
+                this.Navn.Focus();
             }
-            this.panelDisplay.Visible = true;
-            this.panelAdd.Visible = false;
-            this.Navn.Focus();
+
+
         }
-
-
     }
 }
