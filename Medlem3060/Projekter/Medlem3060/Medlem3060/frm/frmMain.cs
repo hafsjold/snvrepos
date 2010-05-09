@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
 using System.IO;
+using Excel;
 
 namespace nsPuls3060
 {
@@ -126,6 +127,8 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
+
+            clsImportMedlem objImportMedlem = new clsImportMedlem();
 
             //clsGoogle objGoogle = new clsGoogle();
             //objGoogle.test();
