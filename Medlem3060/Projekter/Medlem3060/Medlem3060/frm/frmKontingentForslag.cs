@@ -350,7 +350,9 @@ namespace nsPuls3060
                 {
                     objPbs601.faktura_601_action(m_lobnr);
                     this.pgmFaktura.Value = (imax * 3);
-                    objPbs601.WriteTilPbsFile(m_lobnr);
+                    //objPbs601.WriteTilPbsFile(m_lobnr);
+                    clsSFTP objSFTP = new clsSFTP();
+                    objSFTP.WriteTilSFtp(m_lobnr);
                 }
                 this.pgmFaktura.Value = (imax * 4);
                 cmdFakturer.Text = "Afslut";

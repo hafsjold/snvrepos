@@ -82,23 +82,32 @@ namespace nsPuls3060
                 {
                     Tblpbsfiles m_rec_pbsfiles = qry_pbsfiles.First();
                     TilPBSFilename = "PBS" + rec_selecfiles.Leverancespecifikation + ".lst";
-                    FilesSize = 0;
                     bool success;
 
-                    string handle = m_sftp.OpenFile(TilPBSFilename, "writeOnly", "createTruncate");
-                    if (handle == null) throw new Exception(m_sftp.LastErrorText);
 
                     var qry_pbsfile =
                         from h in m_rec_pbsfiles.Tblpbsfile
                         orderby h.Seqnr
                         select h;
 
+                    string TilPBSFile = "";
+                    int i = 0;
                     foreach (var rec_pbsfile in qry_pbsfile)
                     {
-                        success = m_sftp.WriteFileText(handle, "windows-1252", rec_pbsfile.Data);
-                        if (!success) throw new Exception(m_sftp.LastErrorText);
-                        FilesSize += rec_pbsfile.Data.Length;
+                        if (i++ > 0) TilPBSFile += "\r\n";
+                        TilPBSFile += rec_pbsfile.Data;
                     }
+                    char[] c_TilPBSFile = TilPBSFile.ToCharArray();
+                    byte[] b_TilPBSFile = System.Text.Encoding.GetEncoding("windows-1252").GetBytes(c_TilPBSFile);
+                    FilesSize = b_TilPBSFile.Length;
+                    
+                    sendAttachedFile(TilPBSFilename, b_TilPBSFile);
+
+                    string handle = m_sftp.OpenFile(TilPBSFilename, "writeOnly", "createTruncate");
+                    if (handle == null) throw new Exception(m_sftp.LastErrorText);
+
+                    success = m_sftp.WriteFileBytes(handle, b_TilPBSFile);
+                    if (!success) throw new Exception(m_sftp.LastErrorText);
 
                     success = m_sftp.CloseHandle(handle);
                     if (success != true) throw new Exception(m_sftp.LastErrorText);
@@ -202,10 +211,14 @@ namespace nsPuls3060
                     char[] c_data = System.Text.Encoding.GetEncoding("windows-1252").GetString(b_data).ToCharArray();
                     string filecontens = new string(c_data);
 
-                    string[] lines = filecontens.Split('\n');
+                    string filecontens2 = filecontens.TrimEnd('\n');
+                    string filecontens3 = filecontens2.TrimEnd('\r');
+                    string filecontens4 = filecontens3.TrimEnd('\n');
+
+                    string[] lines = filecontens4.Split('\n');
                     string ln = null;
                     int seqnr = 0;
-                    for (int idx = 0; seqnr < lines.Count(); idx++)
+                    for (int idx = 0; idx < lines.Count(); idx++)
                     {
                         ln = lines[idx].TrimEnd('\r');
                         if (((seqnr == 0) && !(ln.Substring(0, 6) == "PBCNET")) || (seqnr > 0)) { seqnr++; }
@@ -241,6 +254,12 @@ namespace nsPuls3060
             success = mailman.UnlockComponent("HAFSJOMAILQ_9QYSMgP0oR1h");
             if (success != true) throw new Exception(mailman.LastErrorText);
 
+            //  Use the HafsjoldData SMTP server
+            mailman.SmtpHost = "hd34.hafsjold.dk";
+            mailman.SmtpPort = 25;
+            mailman.SmtpSsl = false;
+
+            /*
             //  Use the GMail SMTP server
             mailman.SmtpHost = "smtp.gmail.com";
             mailman.SmtpPort = 465;
@@ -249,14 +268,16 @@ namespace nsPuls3060
             //  Set the SMTP login/password.
             mailman.SmtpUsername = "kasserer.puls3060@gmail.com";
             mailman.SmtpPassword = "n4vWYkAKsfRFcuLW";
+            */
 
             //  Create a new email object
             Chilkat.Email email = new Chilkat.Email();
 
-            email.Subject = local_filename + " fra PBS";
-            email.Body = local_filename + " fra PBS"; ;
-            email.From = "kasserer <kasserer.puls3060@gmail.com>";
+            email.Subject = "Fra PBS: " + local_filename;
+            email.Body = "Fra PBS: " + local_filename;
+            email.From = "Mogens Hafsjold <mha@hafsjold.dk>";
             email.AddTo("kasserer", "kasserer.puls3060@gmail.com");
+            email.AddCC("Mogens Hafsjold", "mha@hafsjold.dk");
             email.AddDataAttachment2(local_filename, data, "text/plain");
             email.UnzipAttachments();
 

@@ -137,12 +137,22 @@ namespace nsPuls3060
 
                     oSheet.get_Range("A1", Missing.Value).Select();
 
+                    for (var i = oWB.Worksheets.Count; i > 0; i--)
+                    {
+                        Excel._Worksheet oSheetWrk = (Excel._Worksheet)oWB.Worksheets.get_Item(i);
+                        if (oSheetWrk.Name != "MedlemIntern")
+                        {
+                            oSheetWrk.Delete();
+                        }
+                    }
+
+
                     oWB.SaveAs(SaveAs, Excel.XlFileFormat.xlWorkbookNormal, "", "", false, false, Excel.XlSaveAsAccessMode.xlExclusive, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
                     oWB.Saved = true;
                     oXL.Visible = true;
                     this.toolStripProgressBar1.Visible = false;
 
-
+                    
                     //oXL.Quit();
                     //oXL = null;
                 }
@@ -272,11 +282,22 @@ namespace nsPuls3060
 
                     oSheet.get_Range("A1", Missing.Value).Select();
 
+                    for (var i = oWB.Worksheets.Count; i > 0; i--)
+                    {
+                        Excel._Worksheet oSheetWrk = (Excel._Worksheet)oWB.Worksheets.get_Item(i);
+                        if (oSheetWrk.Name != "MedlemEkstern")
+                        {
+                            oSheetWrk.Delete();
+                        }
+                    }
+
+
                     oWB.SaveAs(SaveAs, Excel.XlFileFormat.xlWorkbookNormal, "", "", false, false, Excel.XlSaveAsAccessMode.xlExclusive, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
                     oWB.Saved = true;
                     oXL.Visible = true;
                     this.toolStripProgressBar1.Visible = false;
 
+                    this.sendMedlem(SaveAs);
 
                     //oXL.Quit();
                     //oXL = null;
@@ -537,6 +558,9 @@ namespace nsPuls3060
                     oXL.Visible = true;
                     this.toolStripProgressBar1.Visible = false;
 
+                    this.sendPoster(SaveAs);
+
+
                     //oXL.Quit();
                     //oXL = null;
                 }
@@ -553,5 +577,86 @@ namespace nsPuls3060
             }
         }
 
+        private void sendMedlem(string filename)
+        {
+            FileInfo f = new FileInfo(filename);
+            string local_filename = f.Name;
+            Chilkat.MailMan mailman = new Chilkat.MailMan();
+            bool success;
+            success = mailman.UnlockComponent("HAFSJOMAILQ_9QYSMgP0oR1h");
+            if (success != true) throw new Exception(mailman.LastErrorText);
+
+            //  Use the HafsjoldData SMTP server
+            mailman.SmtpHost = "hd34.hafsjold.dk";
+            mailman.SmtpPort = 25;
+            mailman.SmtpSsl = false;
+
+            /*
+            //  Use the GMail SMTP server
+            mailman.SmtpHost = "smtp.gmail.com";
+            mailman.SmtpPort = 465;
+            mailman.SmtpSsl = true;
+
+            //  Set the SMTP login/password.
+            mailman.SmtpUsername = "kasserer.puls3060@gmail.com";
+            mailman.SmtpPassword = "n4vWYkAKsfRFcuLW";
+            */
+
+            //  Create a new email object
+            Chilkat.Email email = new Chilkat.Email();
+
+            email.Subject = "Puls3060 Medlems-oplysninger: " + local_filename;
+            email.Body = "Puls3060 Medlems-oplysninger: " + local_filename;
+            email.From = "Mogens Hafsjold <mha@hafsjold.dk>";
+            email.AddTo("kasserer", "kasserer.puls3060@gmail.com");
+            email.AddCC("Mogens Hafsjold", "mha@hafsjold.dk");
+            email.AddFileAttachment(filename);
+            email.UnzipAttachments();
+
+            success = mailman.SendEmail(email);
+            if (success != true) throw new Exception(email.LastErrorText);
+
+        }
+
+        private void sendPoster(string filename)
+        {
+            FileInfo f = new FileInfo(filename);
+            string local_filename = f.Name;
+            Chilkat.MailMan mailman = new Chilkat.MailMan();
+            bool success;
+            success = mailman.UnlockComponent("HAFSJOMAILQ_9QYSMgP0oR1h");
+            if (success != true) throw new Exception(mailman.LastErrorText);
+
+            //  Use the HafsjoldData SMTP server
+            mailman.SmtpHost = "hd34.hafsjold.dk";
+            mailman.SmtpPort = 25;
+            mailman.SmtpSsl = false;
+
+            /*
+            //  Use the GMail SMTP server
+            mailman.SmtpHost = "smtp.gmail.com";
+            mailman.SmtpPort = 465;
+            mailman.SmtpSsl = true;
+
+            //  Set the SMTP login/password.
+            mailman.SmtpUsername = "kasserer.puls3060@gmail.com";
+            mailman.SmtpPassword = "n4vWYkAKsfRFcuLW";
+            */
+
+            //  Create a new email object
+            Chilkat.Email email = new Chilkat.Email();
+
+            email.Subject = "Puls3060 Regnskab: " + local_filename;
+            email.Body = "Puls3060 Regnskab: " + local_filename;
+            email.From = "Mogens Hafsjold <mha@hafsjold.dk>";
+            email.AddTo("kasserer", "kasserer.puls3060@gmail.com");
+            email.AddCC("Mogens Hafsjold", "mha@hafsjold.dk");
+            email.AddFileAttachment(filename);
+            email.UnzipAttachments();
+
+            success = mailman.SendEmail(email);
+            if (success != true) throw new Exception(email.LastErrorText);
+
+        }
     }
 }
