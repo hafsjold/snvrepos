@@ -13,6 +13,107 @@ namespace nsPuls3060
     class clsOverfoersel
     {
 
+        public void overfoersel()
+        {
+            int lobnr;
+            int seq = 0;
+            //rec varchar(128);
+            //rcd record;
+            //krd record;
+            //deb record;
+            //debinfo record;
+            //bel record;
+            //lin record;
+            //curlin refcursor;
+            int recnr;
+            string command;
+            int fortegn;
+            bool selector;
+            int wbilagid;
+            int wtransid;
+            int wpbsfilesid;
+            int wpbsforsendelseid;
+            int wleveranceid;
+            DateTime wdispositionsdato;
+            int whour;
+            int wbankdage;
+            int wantaloverforsler;
+
+            // Betalingsoplysninger
+            int belobint;
+
+            // Tællere
+            int antalos5;        // Antal OS5: Antal foranstående OS5 records
+            int belobos5;        // Beløb: Nettobeløb i OS5 records
+
+            int antalsek;        // Antal sektioner i leverancen
+            int antalos5tot;     // Antal OS5: Antal foranstående OS5 records
+            int belobos5tot;     // Beløb: Nettobeløb i OS5 records
+
+            whour = DateTime.Now.Hour;
+            if (whour > 17) wbankdage = 3;
+            else wbankdage = 2;
+            wdispositionsdato = bankdageplus(DateTime.Now, wbankdage);
+
+
+        }
+
+        
+        
+        private DateTime bankdageplus(DateTime fradato, int antdage)
+        {
+            DateTime dato;
+            int antal = 0;
+            bool fridag;
+            bool negativ;
+            DateTime[] paaskedag = { new DateTime(2010, 4, 4) 
+                                     , new DateTime(2011, 4, 24) 
+                                     , new DateTime(2012, 4, 8) 
+                                     , new DateTime(2013, 3, 31) 
+                                     , new DateTime(2014, 4, 20) 
+                                     , new DateTime(2015, 4, 5) 
+                                     , new DateTime(2016, 3, 27) 
+                                     , new DateTime(2017, 4, 16) 
+                                     , new DateTime(2018, 4, 1) 
+                                     , new DateTime(2019, 4, 21) 
+                                     , new DateTime(2020, 4, 12) 
+                                   };
+            if (antdage < 0)
+            {
+                negativ = true;
+                dato = fradato.AddDays(1);
+            }
+            else
+            {
+                negativ = false;
+                dato = fradato.AddDays(-1);
+            }
+
+            while (antal <= Math.Abs(antdage))
+            {
+                if (negativ) dato = dato.AddDays(-1);
+                else dato = dato.AddDays(1);
+
+                if (dato.DayOfWeek == DayOfWeek.Saturday) fridag = true; //lørdag
+                else if (dato.DayOfWeek == DayOfWeek.Sunday) fridag = true; //søndag
+                else if ((dato.Month == 1) && (dato.Day == 1)) fridag = true; //1. nytårsdag
+                else if ((from p in paaskedag select p).Contains(dato.AddDays(3))) fridag = true; //skærtorsdag
+                else if ((from p in paaskedag select p).Contains(dato.AddDays(2))) fridag = true; //langfredag
+                else if ((from p in paaskedag select p).Contains(dato.AddDays(-1))) fridag = true; //2. påskedag
+                else if ((from p in paaskedag select p).Contains(dato.AddDays(-26))) fridag = true; //st. bededag
+                else if ((from p in paaskedag select p).Contains(dato.AddDays(-39))) fridag = true; //kristi himmelfartsdag
+                else if ((from p in paaskedag select p).Contains(dato.AddDays(-50))) fridag = true; //2. pinsedag
+                else if ((dato.Month == 6) && (dato.Day == 5)) fridag = true; //grundlovsdag
+                else if ((dato.Month == 12) && (dato.Day == 24)) fridag = true; //juleaften
+                else if ((dato.Month == 12) && (dato.Day == 25)) fridag = true; //1. juledag
+                else if ((dato.Month == 12) && (dato.Day == 26)) fridag = true; //2. juledag
+                else if ((dato.Month == 12) && (dato.Day == 31)) fridag = true; //nytårsaftens dag
+                else fridag = false;
+                if (!fridag) ++antal;
+            }
+
+            return dato;
+        }
 
         private string writeOS1(string datalevnr, string levident)
         {
@@ -62,7 +163,7 @@ namespace nsPuls3060
             rec += rpad("", 44, '0');                                   // Filler
             return rec;
         }
-        
+
         private string writeOS8(int antal1, int belob1, DateTime dispdato, string regnr, string kontonr, string datalevnr)
         {
             string rec = null;
@@ -95,7 +196,7 @@ namespace nsPuls3060
             rec += rpad("", 21, '0');               // Filler
             return rec;
         }
-        
+
         public object lpad(Object oVal, int Length, char PadChar)
         {
             string Val = oVal.ToString();
