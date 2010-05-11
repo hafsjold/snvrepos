@@ -112,7 +112,7 @@ namespace nsPuls3060
         public Boolean erMedlem(DateTime pDate)
         {
 
-           
+
             var qrylog = Program.qryLog()
                                 .Where(u => u.Nr == m_Nr)
                                 .Where(u => u.Logdato <= pDate)
@@ -315,7 +315,7 @@ namespace nsPuls3060
             {
                 Program.dbData3060.ExecuteCommand("DELETE FROM TblRegnskab;");
                 return false;
-            } 
+            }
             DirectoryInfo dir = new DirectoryInfo(Datamappe);
             foreach (var sub_dir in dir.GetDirectories())
             {
@@ -413,7 +413,7 @@ namespace nsPuls3060
                                                     m_rec_Regnskab.DatoLaas = clsUtil.MSSerial2DateTime(double.Parse(X[1]));
                                                     break;
                                                 case "Afsluttet":
-                                                    m_rec_Regnskab.Afsluttet = (X[1] == "1")? true : false;
+                                                    m_rec_Regnskab.Afsluttet = (X[1] == "1") ? true : false;
                                                     break;
                                                 case "Firmanavn":
                                                     m_rec_Regnskab.Firmanavn = X[1];
@@ -447,7 +447,7 @@ namespace nsPuls3060
             {
                 dbVersion = "2.0.0.0";
             }
-            
+
             if (dbVersion == "2.0.0.0")
             {
                 try
@@ -490,8 +490,30 @@ namespace nsPuls3060
                 {
                     object x = e;
                 }
-            } return true;
-        }
-    }
+            }
 
+            if (dbVersion == "2.2.0.0")
+            {
+                try
+                {
+                    //version "2.2.0.0" --> "2.3.0.0" opgradering af SqlDatabasen
+                    //Tilføj et ny tabel [tbloverforsel]  til SqlDatabasen 
+                    Program.dbData3060.ExecuteCommand("CREATE TABLE [tbloverforsel] ([id] int NOT NULL  IDENTITY (1,1), [tilpbsid] int NULL, [Nr] int NULL, [SFaknr] int NULL, [SFakID] int NULL, [advistekst] nvarchar(20) NULL, [advisbelob] numeric(18,2) NULL, [emailtekst] nvarchar(4000) NULL, [emailsent] bit NULL);");
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tbloverforsel] ADD PRIMARY KEY ([id]);");
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tbloverforsel] ADD CONSTRAINT [FK_tbltilpbs_tbloverfoersel] FOREIGN KEY ([tilpbsid]) REFERENCES [tbltilpbs]([id]) ON DELETE CASCADE ON UPDATE CASCADE;");
+                    Program.dbData3060.ExecuteCommand("CREATE UNIQUE INDEX [UQ__tbloverforsel__00000000000006B2] ON [tbloverforsel] ([id] ASC);");
+
+                    Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.3.0.0'  WHERE [vkey] = 'VERSION';");
+
+                }
+                catch (System.Data.SqlServerCe.SqlCeException e)
+                {
+                    object x = e;
+                }
+            }
+            
+            return true;
+        }
+
+    }
 }

@@ -57,6 +57,9 @@ namespace nsPuls3060
     partial void InsertTblnrserie(Tblnrserie instance);
     partial void UpdateTblnrserie(Tblnrserie instance);
     partial void DeleteTblnrserie(Tblnrserie instance);
+    partial void InsertTbloverforsel(Tbloverforsel instance);
+    partial void UpdateTbloverforsel(Tbloverforsel instance);
+    partial void DeleteTbloverforsel(Tbloverforsel instance);
     partial void InsertTblpbsfile(Tblpbsfile instance);
     partial void UpdateTblpbsfile(Tblpbsfile instance);
     partial void DeleteTblpbsfile(Tblpbsfile instance);
@@ -179,6 +182,14 @@ namespace nsPuls3060
 			get
 			{
 				return this.GetTable<Tblnrserie>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Tbloverforsel> Tbloverforsel
+		{
+			get
+			{
+				return this.GetTable<Tbloverforsel>();
 			}
 		}
 		
@@ -2663,6 +2674,297 @@ namespace nsPuls3060
 		}
 	}
 	
+	[Table(Name="tbloverforsel")]
+	public partial class Tbloverforsel : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<int> _Tilpbsid;
+		
+		private System.Nullable<int> _Nr;
+		
+		private System.Nullable<int> _SFaknr;
+		
+		private System.Nullable<int> _SFakID;
+		
+		private string _Advistekst;
+		
+		private System.Nullable<decimal> _Advisbelob;
+		
+		private string _Emailtekst;
+		
+		private System.Nullable<bool> _Emailsent;
+		
+		private EntityRef<Tbltilpbs> _Tbltilpbs;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnTilpbsidChanging(System.Nullable<int> value);
+    partial void OnTilpbsidChanged();
+    partial void OnNrChanging(System.Nullable<int> value);
+    partial void OnNrChanged();
+    partial void OnSFaknrChanging(System.Nullable<int> value);
+    partial void OnSFaknrChanged();
+    partial void OnSFakIDChanging(System.Nullable<int> value);
+    partial void OnSFakIDChanged();
+    partial void OnAdvistekstChanging(string value);
+    partial void OnAdvistekstChanged();
+    partial void OnAdvisbelobChanging(System.Nullable<decimal> value);
+    partial void OnAdvisbelobChanged();
+    partial void OnEmailtekstChanging(string value);
+    partial void OnEmailtekstChanged();
+    partial void OnEmailsentChanging(System.Nullable<bool> value);
+    partial void OnEmailsentChanged();
+    #endregion
+		
+		public Tbloverforsel()
+		{
+			this._Tbltilpbs = default(EntityRef<Tbltilpbs>);
+			OnCreated();
+		}
+		
+		[Column(Name="id", Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Name="tilpbsid", Storage="_Tilpbsid", DbType="Int")]
+		public System.Nullable<int> Tilpbsid
+		{
+			get
+			{
+				return this._Tilpbsid;
+			}
+			set
+			{
+				if ((this._Tilpbsid != value))
+				{
+					this.OnTilpbsidChanging(value);
+					this.SendPropertyChanging();
+					this._Tilpbsid = value;
+					this.SendPropertyChanged("Tilpbsid");
+					this.OnTilpbsidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Nr", DbType="Int")]
+		public System.Nullable<int> Nr
+		{
+			get
+			{
+				return this._Nr;
+			}
+			set
+			{
+				if ((this._Nr != value))
+				{
+					this.OnNrChanging(value);
+					this.SendPropertyChanging();
+					this._Nr = value;
+					this.SendPropertyChanged("Nr");
+					this.OnNrChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_SFaknr", DbType="Int")]
+		public System.Nullable<int> SFaknr
+		{
+			get
+			{
+				return this._SFaknr;
+			}
+			set
+			{
+				if ((this._SFaknr != value))
+				{
+					this.OnSFaknrChanging(value);
+					this.SendPropertyChanging();
+					this._SFaknr = value;
+					this.SendPropertyChanged("SFaknr");
+					this.OnSFaknrChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_SFakID", DbType="Int")]
+		public System.Nullable<int> SFakID
+		{
+			get
+			{
+				return this._SFakID;
+			}
+			set
+			{
+				if ((this._SFakID != value))
+				{
+					this.OnSFakIDChanging(value);
+					this.SendPropertyChanging();
+					this._SFakID = value;
+					this.SendPropertyChanged("SFakID");
+					this.OnSFakIDChanged();
+				}
+			}
+		}
+		
+		[Column(Name="advistekst", Storage="_Advistekst", DbType="NVarChar(20)")]
+		public string Advistekst
+		{
+			get
+			{
+				return this._Advistekst;
+			}
+			set
+			{
+				if ((this._Advistekst != value))
+				{
+					this.OnAdvistekstChanging(value);
+					this.SendPropertyChanging();
+					this._Advistekst = value;
+					this.SendPropertyChanged("Advistekst");
+					this.OnAdvistekstChanged();
+				}
+			}
+		}
+		
+		[Column(Name="advisbelob", Storage="_Advisbelob", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Advisbelob
+		{
+			get
+			{
+				return this._Advisbelob;
+			}
+			set
+			{
+				if ((this._Advisbelob != value))
+				{
+					this.OnAdvisbelobChanging(value);
+					this.SendPropertyChanging();
+					this._Advisbelob = value;
+					this.SendPropertyChanged("Advisbelob");
+					this.OnAdvisbelobChanged();
+				}
+			}
+		}
+		
+		[Column(Name="emailtekst", Storage="_Emailtekst", DbType="NVarChar(4000)")]
+		public string Emailtekst
+		{
+			get
+			{
+				return this._Emailtekst;
+			}
+			set
+			{
+				if ((this._Emailtekst != value))
+				{
+					this.OnEmailtekstChanging(value);
+					this.SendPropertyChanging();
+					this._Emailtekst = value;
+					this.SendPropertyChanged("Emailtekst");
+					this.OnEmailtekstChanged();
+				}
+			}
+		}
+		
+		[Column(Name="emailsent", Storage="_Emailsent", DbType="Bit")]
+		public System.Nullable<bool> Emailsent
+		{
+			get
+			{
+				return this._Emailsent;
+			}
+			set
+			{
+				if ((this._Emailsent != value))
+				{
+					this.OnEmailsentChanging(value);
+					this.SendPropertyChanging();
+					this._Emailsent = value;
+					this.SendPropertyChanged("Emailsent");
+					this.OnEmailsentChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Tbltilpbs_Tbloverforsel", Storage="_Tbltilpbs", ThisKey="Tilpbsid", OtherKey="Id", IsForeignKey=true)]
+		public Tbltilpbs Tbltilpbs
+		{
+			get
+			{
+				return this._Tbltilpbs.Entity;
+			}
+			set
+			{
+				Tbltilpbs previousValue = this._Tbltilpbs.Entity;
+				if (((previousValue != value) 
+							|| (this._Tbltilpbs.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Tbltilpbs.Entity = null;
+						previousValue.Tbloverforsel.Remove(this);
+					}
+					this._Tbltilpbs.Entity = value;
+					if ((value != null))
+					{
+						value.Tbloverforsel.Add(this);
+						this._Tilpbsid = value.Id;
+					}
+					else
+					{
+						this._Tilpbsid = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Tbltilpbs");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[Table(Name="tblpbsfile")]
 	public partial class Tblpbsfile : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -4181,6 +4483,8 @@ namespace nsPuls3060
 		
 		private EntitySet<Tblfak> _Tblfak;
 		
+		private EntitySet<Tbloverforsel> _Tbloverforsel;
+		
 		private EntityRef<Tblpbsforsendelse> _Tblpbsforsendelse;
 		
     #region Extensibility Method Definitions
@@ -4208,6 +4512,7 @@ namespace nsPuls3060
 		public Tbltilpbs()
 		{
 			this._Tblfak = new EntitySet<Tblfak>(new Action<Tblfak>(this.attach_Tblfak), new Action<Tblfak>(this.detach_Tblfak));
+			this._Tbloverforsel = new EntitySet<Tbloverforsel>(new Action<Tbloverforsel>(this.attach_Tbloverforsel), new Action<Tbloverforsel>(this.detach_Tbloverforsel));
 			this._Tblpbsforsendelse = default(EntityRef<Tblpbsforsendelse>);
 			OnCreated();
 		}
@@ -4385,6 +4690,19 @@ namespace nsPuls3060
 			}
 		}
 		
+		[Association(Name="Tbltilpbs_Tbloverforsel", Storage="_Tbloverforsel", ThisKey="Id", OtherKey="Tilpbsid")]
+		public EntitySet<Tbloverforsel> Tbloverforsel
+		{
+			get
+			{
+				return this._Tbloverforsel;
+			}
+			set
+			{
+				this._Tbloverforsel.Assign(value);
+			}
+		}
+		
 		[Association(Name="Tblpbsforsendelse_Tbltilpbs", Storage="_Tblpbsforsendelse", ThisKey="Pbsforsendelseid", OtherKey="Id", IsForeignKey=true)]
 		public Tblpbsforsendelse Tblpbsforsendelse
 		{
@@ -4446,6 +4764,18 @@ namespace nsPuls3060
 		}
 		
 		private void detach_Tblfak(Tblfak entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tbltilpbs = null;
+		}
+		
+		private void attach_Tbloverforsel(Tbloverforsel entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tbltilpbs = this;
+		}
+		
+		private void detach_Tbloverforsel(Tbloverforsel entity)
 		{
 			this.SendPropertyChanging();
 			entity.Tbltilpbs = null;
