@@ -13,8 +13,9 @@ namespace nsPuls3060
     class clsOverfoersel
     {
 
-        public void overfoersel()
+        public int overfoersel()
         {
+            string rec;
             int lobnr;
             int seq = 0;
             //rec varchar(128);
@@ -55,11 +56,134 @@ namespace nsPuls3060
             else wbankdage = 2;
             wdispositionsdato = bankdageplus(DateTime.Now, wbankdage);
 
+            wantaloverforsler = (from h in Program.dbData3060.Tbloverforsel where h.Tbltilpbs == null select h).Count();
+            if (wantaloverforsler == 0) return 0;
 
+            antalos5 = 0;
+            belobos5 = 0;
+
+            antalsek = 0;
+            antalos5tot = 0;
+            belobos5tot = 0;
+
+            wleveranceid = clsPbs.nextval("leveranceid");
+            Tblpbsforsendelse rec_pbsforsendelse = new Tblpbsforsendelse
+            {
+                Delsystem = "OS1",
+                Leverancetype = null,
+                Oprettetaf = "Udb",
+                Oprettet = DateTime.Now,
+                Leveranceid = wleveranceid
+            };
+            Program.dbData3060.Tblpbsforsendelse.InsertOnSubmit(rec_pbsforsendelse);
+
+            Tbltilpbs rec_tbltilpbs = new Tbltilpbs
+            {
+                Delsystem = "OS1",
+                Leverancetype = null,
+                Bilagdato = DateTime.Now,
+                Udtrukket = DateTime.Now,
+                Leverancespecifikation = "",
+                Leverancedannelsesdato = DateTime.Now
+            };
+            rec_pbsforsendelse.Tbltilpbs.Add(rec_tbltilpbs);
+
+            Tblpbsfiles rec_pbsfiles = new Tblpbsfiles();
+            rec_pbsforsendelse.Tblpbsfiles.Add(rec_pbsfiles);
+
+            Tblkreditor krd = (from k in Program.dbData3060.Tblkreditor where k.Delsystem == "OS1" select k).First();
+
+            // -- Leverance Start - OS1
+            // - rstkrd.Datalevnr - Dataleverandørnr.: Dataleverandørens SE-nummer
+            // - wleveranceid     - Leveranceidentifikation: Løbenummer efter eget valg
+            rec = writeOS1(krd.Datalevnr, wleveranceid);
+            Tblpbsfile rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
+            rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+
+            var qrydeb = from h in Program.dbData3060.Tbloverforsel
+                         where h.Tbltilpbs == null
+                         select h;
+
+            // Start loop over betalinger i tbloverforsel
+            foreach (Tbloverforsel deb in qrydeb)
+            {
+                // Sektion start – (OS2)
+                antalos5 = 0;
+                belobos5 = 0;
+
+                // -- OS2
+                // - wdispositionsdato - Dispositionsdato
+                // - krd.regnr         - Reg.nr.: Overførselsregistreringsnummer
+                // - krd.kontonr       - Kontonr.: Overførselskontonummer
+                // - krd.datalevnr     - Dataleverandørnr.: Dataleverandørens SE-nummer
+                rec = writeOS2(wdispositionsdato, krd.Regnr, krd.Kontonr, krd.Datalevnr);
+                rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
+                rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+
+                ++antalsek;
+
+                // -- Forfald betaling
+                if (deb.Advisbelob > 0)
+                {
+                    belobint = (int)(deb.Advisbelob * ((decimal)100));
+                    belobos5 = belobos5 + belobint;
+                    belobos5tot = belobos5tot + belobint;
+                }
+                else
+                {
+                    belobint = 0;
+                }
+
+                //SELECT INTO debinfo bankregnr, bankkontonr FROM public.kontoinfo(deb.kundenr);
+                string debinfo_bankregnr = "1234";
+                string debinfo_bankkontonr = "1234567890";
+
+                // -- OS5
+                // - debinfo.bankregnr   - Betalingsmodtager registreringsnummer
+                // - debinfo.bankkontonr - Betalingsmodtager kontonummer
+                // - belobint            - Beløb: Beløb i øre uden fortegn
+                // - wdispositionsdato   - Dispositionsdato
+                // - krd.regnr           - Reg.nr.: Overførselsregistreringsnummer
+                // - krd.kontonr         - Kontonr.: Overførselskontonummer
+                // - deb.advistekst      - Tekst på Betalingsmodtagers kontoudtog
+                // - deb.kundenr         - Ref til betalingsmodtager til eget brug
+                rec = writeOS5( debinfo_bankregnr, debinfo_bankkontonr, belobint, wdispositionsdato, krd.Regnr, krd.Kontonr, deb.Advistekst, (int)deb.Nr);
+                rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
+                rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+
+                antalos5++;
+                antalos5tot++;
+
+                // -- Update pbs.tbloverforsel.tilpbsid = lobnr
+                rec_tbltilpbs.Tbloverforsel.Add(deb);
+
+                // -- Sektion slut – (OS8)
+                // - OS8
+                // - antalos5          - Antal 042: Antal foranstående 042 records
+                // - belobos5          - Beløb: Nettobeløb i 042 records
+                // - wdispositionsdato - Dispositionsdato
+                // - krd.regnr         - Reg.nr.: Overførselsregistreringsnummer
+                // - krd.kontonr       - Kontonr.: Overførselskontonummer
+                // - krd.datalevnr     - Dataleverandørnr.: Dataleverandørens SE-nummer
+                rec = writeOS8(antalos5, belobos5, wdispositionsdato, krd.Regnr, krd.Kontonr, krd.Datalevnr);
+                rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
+                rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+
+            }
+
+            // -- Leverance slut - (OS9)
+
+            // --OS9 
+            // - antalos5tot    - Antal 042: Antal foranstående 042 records
+            // - belobos5tot    - Beløb: Nettobeløb i 042 records
+            // - krd.datalevnr  - Dataleverandørnr.: Dataleverandørens SE-nummer
+            rec = writeOS9(antalos5tot, belobos5tot, krd.Datalevnr);
+            rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
+            rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+
+            return wantaloverforsler;
         }
 
-        
-        
         private DateTime bankdageplus(DateTime fradato, int antdage)
         {
             DateTime dato;
@@ -115,7 +239,7 @@ namespace nsPuls3060
             return dato;
         }
 
-        private string writeOS1(string datalevnr, string levident)
+        private string writeOS1(string datalevnr, int levident)
         {
             string rec = null;
             string kontroltal = "000000000";
