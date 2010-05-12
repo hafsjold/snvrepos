@@ -8,7 +8,7 @@ namespace nsPuls3060
 {
     public class recDkkonti    {
         public recDkkonti() { }
-        public string Debnr { get; set; }
+        public int Debnr { get; set; }
     }
 
     public class KarDkkonti : List<recDkkonti>
@@ -31,21 +31,41 @@ namespace nsPuls3060
             {
                 while ((ln = sr.ReadLine()) != null)
                 {
-                    rec = new recDkkonti { Debnr = ln };
+                    rec = new recDkkonti { Debnr = int.Parse(ln)};
                     this.Add(rec);
                 }
             }
         }
 
+        public static int nextval()
+        {
+            try
+            {
+                int maxNr = (from k in Program.karDkkonti orderby k.Debnr descending select k.Debnr).First();
+                maxNr++;
+                recDkkonti rec = new recDkkonti { Debnr = maxNr };
+                Program.karDkkonti.Add(rec);
+                return maxNr;
+
+            }
+            catch (Exception)
+            {
+                int maxNr = 1;
+                recDkkonti rec = new recDkkonti { Debnr = maxNr };
+                Program.karDkkonti.Add(rec);
+                return maxNr;
+            }
+        }
+
         public void save()
         {
-            var maxNr = (from m in Program.karMedlemmer select m.Nr).Max();
+            var qry = from k in this orderby k.Debnr select k;
             FileStream ts = new FileStream(m_path, FileMode.Open, FileAccess.Write, FileShare.None);
             using (StreamWriter sr = new StreamWriter(ts, Encoding.Default))
             {
-                for (var i = 100000; i <= (100000 + maxNr); i++)
+                foreach (var i in qry)
                 {
-                    sr.WriteLine(i.ToString());
+                    sr.WriteLine(i.Debnr.ToString());
                 }
             }
         }

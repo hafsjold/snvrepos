@@ -270,6 +270,8 @@ namespace nsPuls3060
                     Sidstbrugtenr = 0
                 };
                 Program.dbData3060.Tblnrserie.InsertOnSubmit(rec_nrserie);
+                Program.dbData3060.SubmitChanges();
+
                 return 0;
             }
         }
@@ -294,6 +296,28 @@ namespace nsPuls3060
             catch (System.InvalidOperationException)
             {
                 return 0;
+            }
+        }
+
+        public static void nextvalset(string nrserienavn, int value)
+        {
+            try
+            {
+                var rst = (from c in Program.dbData3060.Tblnrserie
+                           where c.Nrserienavn == nrserienavn
+                           select c).First();
+
+                rst.Sidstbrugtenr = value;
+            }
+            catch (System.InvalidOperationException)
+            {
+                Tblnrserie rec_nrserie = new Tblnrserie
+                {
+                    Nrserienavn = nrserienavn,
+                    Sidstbrugtenr = value
+                };
+                Program.dbData3060.Tblnrserie.InsertOnSubmit(rec_nrserie);
+                Program.dbData3060.SubmitChanges();
             }
         }
 

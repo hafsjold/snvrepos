@@ -56,13 +56,14 @@ namespace nsPuls3060
                     SidsteSFakID++;
                     SidsteRec_no++;
                     int orebelob = (int)o.Advisbelob * 100;
+
                     ordtype ord = new ordtype
                     (
-                        SidsteSFakID,       //fakid
-                        ToDay,              //(o.Betalingsdato > o.Indbetalingsdato) ? (DateTime)o.Betalingsdato : (DateTime)o.Indbetalingsdato, //dato
-                        ToDay,              //(DateTime)o.Betalingsdato, //forfaldsdato
-                        orebelob,           //fakbeløb i øre
-                        100000 + (int)o.Nr  //debitornr
+                        SidsteSFakID,          //fakid
+                        ToDay,                 //(o.Betalingsdato > o.Indbetalingsdato) ? (DateTime)o.Betalingsdato : (DateTime)o.Indbetalingsdato, //dato
+                        ToDay,                 //(DateTime)o.Betalingsdato, //forfaldsdato
+                        orebelob,              //fakbeløb i øre
+                        (int)Nr2Debktonr(o.Nr) //debitornr
                     );
                     recFakturaer_s rec = new recFakturaer_s { rec_no = SidsteRec_no, rec_data = ord };
                     Program.karFakturaer_s.Add(rec);
@@ -242,6 +243,34 @@ namespace nsPuls3060
                 Program.dbData3060.SubmitChanges();
             }
             return AntalBetalinger;
+        }
+
+        public int? Nr2Debktonr(int? Nr) 
+        {
+            if (Nr == null) return null; 
+            try
+            {
+                return int.Parse((from k in Program.karMedlemmer where k.Nr == Nr select k).First().Debktonr);
+
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        
+        public int? Nr2Krdktonr(int? Nr)
+        {
+            if (Nr == null) return null;
+            try
+            {
+                return int.Parse((from k in Program.karMedlemmer where k.Nr == Nr select k).First().Krdktonr);
+
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
 
     }

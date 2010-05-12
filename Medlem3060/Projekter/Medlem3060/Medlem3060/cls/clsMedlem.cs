@@ -16,6 +16,13 @@ namespace nsPuls3060
         private String m_Bynavn;
         private String m_Email;
         private String m_Telefon;
+        private String m_Bank;
+        private String m_Debgrup;
+        private String m_Krdgrup;
+        private String m_Debktonr;
+        private String m_Krdktonr;
+        private String m_Erdebitor;
+        private String m_Erkreditor;
         private String m_CsvString;
         private clsCsv m_Csv;
 
@@ -115,6 +122,83 @@ namespace nsPuls3060
             }
         }
 
+        public String Bank
+        {
+            get
+            {
+                return m_Bank;
+            }
+            set
+            {
+                m_Bank = value;
+            }
+        }
+        public String Debgrup //11
+        {
+            get
+            {
+                return m_Debgrup;
+            }
+            set
+            {
+                m_Debgrup = value;
+            }
+        }
+        public String Krdgrup //12
+        {
+            get
+            {
+                return m_Krdgrup;
+            }
+            set
+            {
+                m_Krdgrup = value;
+            }
+        }
+        public String Debktonr //20
+        {
+            get
+            {
+                return m_Debktonr;
+            }
+            set
+            {
+                m_Debktonr = value;
+            }
+        }
+        public String Krdktonr //21
+        {
+            get
+            {
+                return m_Krdktonr;
+            }
+            set
+            {
+                m_Krdktonr = value;
+            }
+        }
+        public String Erdebitor //22
+        {
+            get
+            {
+                return m_Erdebitor;
+            }
+            set
+            {
+                m_Erdebitor = value;
+            }
+        }
+        public String Erkreditor //23
+        {
+            get
+            {
+                return m_Erkreditor;
+            }
+            set
+            {
+                m_Erkreditor = value;
+            }
+        }
         public String CsvString
         {
             get
@@ -143,9 +227,9 @@ namespace nsPuls3060
             m_Csv.ln = Program.memMedlemDictionary.NewMedlemCsvString(this.Nr); //Ny tom string
             m_Csv.todo = CsvToDoType.fdUpdateCsvString;
 
-            clsCsv.MedlemCsvStringUpdate += new nsPuls3060.clsCsv.MedlemFieldUpdateHandler(On_MedlemCsvStringUpdate);
+            clsCsv.MedlemCsvStringUpdate += new nsPuls3060.clsCsv.MedlemFieldUpdateHandler(On_MedlemCsvStringNew);
             ParseCsvString(ref m_Csv);
-            clsCsv.MedlemCsvStringUpdate -= new nsPuls3060.clsCsv.MedlemFieldUpdateHandler(On_MedlemCsvStringUpdate);
+            clsCsv.MedlemCsvStringUpdate -= new nsPuls3060.clsCsv.MedlemFieldUpdateHandler(On_MedlemCsvStringNew);
             m_CsvString = m_Csv.ln_raw;
             return m_CsvString;
         }
@@ -163,7 +247,7 @@ namespace nsPuls3060
             return m_CsvString;
         }
 
-        private void On_MedlemCsvStringUpdate()
+        private void On_MedlemCsvStringNew()
         {
             int? w_nr = m_Csv.nr;
             int? w_subnr = 0;
@@ -179,6 +263,9 @@ namespace nsPuls3060
             {
                 case "2":
                     m_Csv.value_new = Navn != null ? Navn : "";
+                    break;
+
+                case "3":
                     break;
 
                 case "3,1":
@@ -205,10 +292,108 @@ namespace nsPuls3060
                     m_Csv.value_new = Telefon != null ? Telefon : "";
                     break;
 
-                case "3":
-                case "17":
-                case "18":
+                case "16":
+                    m_Csv.value_new = Bank != null ? Bank : "";
                     break;
+
+                default:
+                    m_Csv.value_new = m_Csv.value;
+                    break;
+            }
+            if (m_Csv.value != m_Csv.value_new)
+            {
+                string part1 = m_Csv.ln_raw.Substring(0, m_Csv.comma_start + 1);
+                string part2 = m_Csv.ln_raw.Substring(m_Csv.comma_start + 1, (m_Csv.comma_end - 1) - (m_Csv.comma_start + 1) + 1);
+                string part3 = m_Csv.ln_raw.Substring(m_Csv.comma_end);
+                string part2_new = quote(m_Csv.value_new, m_Csv.niveau);
+                m_Csv.ln_updated = part1 + part2_new + part3;
+                m_Csv.ln = part1 + part2_new + part3;
+
+                int n_delta = part2_new.Length - part2.Length;
+                m_Csv.n += n_delta;
+                m_Csv.fld_end += n_delta;
+                m_Csv.comma_end += n_delta;
+            }
+
+            if (m_Csv.niveau > 0)
+            {
+                m_Csv.stack[m_Csv.niveau - 1].value_new = m_Csv.ln_raw;
+            }
+        }
+
+        private void On_MedlemCsvStringUpdate()
+        {
+            int? w_nr = m_Csv.nr;
+            int? w_subnr = 0;
+            if (m_Csv.niveau > 0)
+            {
+                w_nr = m_Csv.stack[(int)m_Csv.niveau - 1].nr;
+                w_subnr = m_Csv.nr;
+            }
+            string fieldKey = clsField.buildKey(w_nr, w_subnr);
+
+
+            switch (fieldKey)
+            {
+                case "2":
+                    m_Csv.value_new = Navn != null ? Navn : "";
+                    break;
+
+                case "3":
+                    break;
+
+                case "3,1":
+                    m_Csv.value_new = Adresse != null ? Adresse : "";
+                    break;
+
+                case "4":
+                    m_Csv.value_new = Postnr != null ? Postnr : "";
+                    break;
+
+                case "5":
+                    m_Csv.value_new = Bynavn != null ? Bynavn : "";
+                    break;
+
+                case "8":
+                    m_Csv.value_new = Kaldenavn != null ? Kaldenavn : "";
+                    break;
+
+                case "9":
+                    m_Csv.value_new = Email != null ? Email : "";
+                    break;
+
+                case "11":
+                    m_Csv.value_new = Debgrup != null ? Debgrup : "";
+                    break;
+                
+                case "12":
+                    m_Csv.value_new = Krdgrup != null ? Krdgrup : "";
+                    break;
+
+                case "13":
+                    m_Csv.value_new = Telefon != null ? Telefon : "";
+                    break;
+
+                case "16":
+                    m_Csv.value_new = Bank != null ? Bank : "";
+                    break;
+
+                case "20":
+                    m_Csv.value_new = Debktonr != null ? Debktonr : "";
+                    break;
+
+                case "21":
+                    m_Csv.value_new = Krdktonr != null ? Krdktonr : "";
+                    break;
+
+                case "22":
+                    m_Csv.value_new = Erdebitor != null ? Erdebitor : "";
+                    break;
+
+                case "23":
+                    m_Csv.value_new = Erkreditor != null ? Erkreditor : "";
+                    break;		
+
 
                 default:
                     m_Csv.value_new = m_Csv.value;
@@ -276,8 +461,36 @@ namespace nsPuls3060
                     Email = m_Csv.value;
                     break;
 
+                case "11":
+                    Debgrup = m_Csv.value;
+                    break;
+
+                case "12":
+                    Krdgrup = m_Csv.value;
+                    break;
+
                 case "13":
                     Telefon = m_Csv.value;
+                    break;
+
+                case "16":
+                    Bank = m_Csv.value;
+                    break;
+
+                case "20":
+                    Debktonr = m_Csv.value;
+                    break;
+                
+                case "21":
+                    Krdktonr = m_Csv.value;
+                    break;
+                
+                case "22":
+                    Erdebitor = m_Csv.value;
+                    break;
+                
+                case "23":
+                    Erkreditor = m_Csv.value;
                     break;
 
                 default:
@@ -564,7 +777,7 @@ namespace nsPuls3060
     }
     public class clsMedlemInternAll
     {
-        [Fieldattr(Heading="Nr")]
+        [Fieldattr(Heading = "Nr")]
         public int? Nr { get; set; }
         [Fieldattr(Heading = "Navn")]
         public string Navn { get; set; }
@@ -586,8 +799,10 @@ namespace nsPuls3060
         public string Kon { get; set; }
         [Fieldattr(Heading = "Født")]
         public DateTime? FodtDato { get; set; }
+        [Fieldattr(Heading = "Bank")]
+        public string Bank { get; set; }
         [Fieldattr(Heading = "erMedlem")]
-        public int? erMedlem { get; set;}
+        public int? erMedlem { get; set; }
         [Fieldattr(Heading = "Kontingent")]
         public DateTime? kontingentBetaltTilDato { get; set; }
         [Fieldattr(Heading = "Indmeldt")]
@@ -599,7 +814,7 @@ namespace nsPuls3060
         [Fieldattr(Heading = "Tilbageført")]
         public DateTime? kontingentTilbageførtDato { get; set; }
     }
-    
+
     public class clsMedlemExternAll
     {
         [Fieldattr(Heading = "Nr")]

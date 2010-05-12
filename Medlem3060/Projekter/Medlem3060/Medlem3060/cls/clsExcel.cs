@@ -44,6 +44,7 @@ namespace nsPuls3060
                                    Knr = x.Knr,
                                    Kon = x.Kon,
                                    FodtDato = x.FodtDato,
+                                   Bank = h.Bank,
                                    erMedlem = (h.erMedlem()) ? 1 : 0,
                                    indmeldelsesDato = h.indmeldelsesDato,
                                    udmeldelsesDato = h.udmeldelsesDato,
@@ -125,8 +126,8 @@ namespace nsPuls3060
                     oRng = oSheet.get_Range("K2", BottomRight);
                     oRng.NumberFormat = "dd-mm-yyyy";
 
-                    BottomRight = "Q" + row.ToString();
-                    oRng = oSheet.get_Range("M2", BottomRight);
+                    BottomRight = "R" + row.ToString();
+                    oRng = oSheet.get_Range("N2", BottomRight);
                     oRng.NumberFormat = "dd-mm-yyyy";
 
                     oSheet.Cells.EntireColumn.AutoFit();

@@ -77,7 +77,7 @@ namespace nsPuls3060
             this.Add(new clsField(12, "Debitor", "", 0, 22, 0, "1", "Const", false));
             this.Add(new clsField(13, "Lås for fakturering", "", 0, 29, 0, "0", "Const", false));
             this.Add(new clsField(14, "Debitor gruppe", "", 0, 11, 0, "Standard", "Const", false));
-            this.Add(new clsField(15, "Debitor kontonr", "", 0, 20, 0, "100000", "SumNr", false));
+            this.Add(new clsField(15, "Debitor kontonr", "", 0, 20, 0, "", "NewDKnr", false));
             this.Add(new clsField(16, "Kreditor", "", 0, 23, 0, "", "", false));
             this.Add(new clsField(17, "Kreditor kontonr", "", 0, 21, 0, "", "", false));
             this.Add(new clsField(18, "Kreditor gruppe", "", 0, 12, 0, "", "", false));
@@ -124,6 +124,11 @@ namespace nsPuls3060
                     case "SumNr":
                         var val = int.Parse(f.NewValue) + pNr;
                         s += val.ToString();
+                        break;
+
+                    case "NewDKnr":
+                        var dknr = KarDkkonti.nextval();
+                        s += dknr.ToString();
                         break;
 
                     case "Const":

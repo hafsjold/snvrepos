@@ -9,7 +9,7 @@ namespace nsPuls3060
     public class recKortnr
     {
         public recKortnr() { }
-        public string Nr { get; set; }
+        public int Nr { get; set; }
     }
 
     public class KarKortnr : List<recKortnr>
@@ -32,21 +32,41 @@ namespace nsPuls3060
             {
                 while ((ln = sr.ReadLine()) != null)
                 {
-                    rec = new recKortnr { Nr = ln };
+                    rec = new recKortnr { Nr = int.Parse(ln) };
                     this.Add(rec);
                 }
             }
         }
 
+        public static int nextval()
+        {
+            try
+            {
+                int maxNr = (from k in Program.karKortnr orderby k.Nr descending select k.Nr).First();
+                maxNr++;
+                recKortnr rec = new recKortnr { Nr = maxNr};
+                Program.karKortnr.Add(rec);
+                return maxNr;
+
+            }
+            catch (Exception)
+            {
+                int maxNr = 1;
+                recKortnr rec = new recKortnr { Nr = maxNr };
+                Program.karKortnr.Add(rec);
+                return maxNr;
+            } 
+        }
+
         public void save()
         {
-            var maxNr = (from m in Program.karMedlemmer select m.Nr).Max();
+            var qry = from k in this orderby k.Nr select k;
             FileStream ts = new FileStream(m_path, FileMode.Open, FileAccess.Write, FileShare.None);
             using (StreamWriter sr = new StreamWriter(ts, Encoding.Default))
             {
-                for (var i = 1; i <= maxNr; i++)
+                foreach (var i in qry)
                 {
-                    sr.WriteLine(i.ToString());
+                    sr.WriteLine(i.Nr.ToString());
                 }
             }
 

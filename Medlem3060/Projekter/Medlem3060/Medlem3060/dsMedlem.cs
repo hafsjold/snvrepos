@@ -28,7 +28,8 @@ namespace nsPuls3060
                                     XNr = x == null ? (int?)null : x.Nr,
                                     Knr = x == null ? (int?)null : x.Knr,
                                     Kon = x == null ? null : x.Kon,
-                                    FodtDato = x == null ? (DateTime?)null : x.FodtDato
+                                    FodtDato = x == null ? (DateTime?)null : x.FodtDato,
+                                    h.Bank
                                 };
 
             var antal = qry_medlemmer.Count();
@@ -45,7 +46,8 @@ namespace nsPuls3060
                     m.Email,
                     m.Knr,
                     m.Kon,
-                    m.FodtDato
+                    m.FodtDato,
+                    m.Bank
                   );
 
                 MyRow.AcceptChanges();
@@ -70,6 +72,7 @@ namespace nsPuls3060
                         k_rec.Postnr = (m.IsPostnrNull()) ? null : m.Postnr;
                         k_rec.Bynavn = (m.IsBynavnNull()) ? null : m.Bynavn;
                         k_rec.Telefon = (m.IsTelefonNull()) ? null : m.Telefon;
+                        k_rec.Bank = (m.IsBankNull()) ? null : m.Bank;
                         k_rec.Email = (m.IsEmailNull()) ? null : m.Email;
                         k_rec.getNewCvsString();
                         Program.karMedlemmer.Add(k_rec);
@@ -111,6 +114,7 @@ namespace nsPuls3060
                         k_rec.Postnr = (m.IsPostnrNull()) ? null : m.Postnr;
                         k_rec.Bynavn = (m.IsBynavnNull()) ? null : m.Bynavn;
                         k_rec.Telefon = (m.IsTelefonNull()) ? null : m.Telefon;
+                        k_rec.Bank = (m.IsBankNull()) ? null : m.Bank;
                         k_rec.Email = (m.IsEmailNull()) ? null : m.Email;
                         Program.karMedlemmer.Update(Nr_Key);
 
