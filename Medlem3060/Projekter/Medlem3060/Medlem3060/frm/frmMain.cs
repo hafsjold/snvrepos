@@ -426,5 +426,15 @@ namespace nsPuls3060
             ecxelPoster();
         }
 
+        private void betalingsForslagToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("Betalings Forslag"))
+            {
+                FrmBetalingsForslag m_frmBetalingsForslag = new FrmBetalingsForslag();
+                m_frmBetalingsForslag.MdiParent = this;
+                m_frmBetalingsForslag.Show();
+            }
+        }
+
     }
 }

@@ -37,10 +37,10 @@
             this.DatoBetaltKontingentTil = new System.Windows.Forms.DateTimePicker();
             this.Aarskontingent = new System.Windows.Forms.TextBox();
             this.cmdCancel = new System.Windows.Forms.Button();
-            this.cmdFakturer = new System.Windows.Forms.Button();
+            this.cmdBetal = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pgmForslag = new System.Windows.Forms.ProgressBar();
-            this.lvwMedlem = new System.Windows.Forms.ListView();
+            this.lvwKreditor = new System.Windows.Forms.ListView();
             this.columnHeaderMNavn = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderMNr = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderMAdresse = new System.Windows.Forms.ColumnHeader();
@@ -51,11 +51,10 @@
             this.Label_Forslagstekst = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdForslag = new System.Windows.Forms.Button();
-            this.DelsystemBSH = new System.Windows.Forms.CheckBox();
-            this.pgmFaktura = new System.Windows.Forms.ProgressBar();
-            this.Label_Fakturatekst = new System.Windows.Forms.Label();
+            this.pgmBetal = new System.Windows.Forms.ProgressBar();
+            this.Label_Betaltekst = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.lvwKontingent = new System.Windows.Forms.ListView();
+            this.lvwKrdFaktura = new System.Windows.Forms.ListView();
             this.columnHeaderKNnavn = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderKNR = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderKAdresse = new System.Windows.Forms.ColumnHeader();
@@ -144,16 +143,16 @@
             this.cmdCancel.UseVisualStyleBackColor = true;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
-            // cmdFakturer
+            // cmdBetal
             // 
-            this.cmdFakturer.Location = new System.Drawing.Point(18, 68);
-            this.cmdFakturer.Name = "cmdFakturer";
-            this.cmdFakturer.Size = new System.Drawing.Size(61, 25);
-            this.cmdFakturer.TabIndex = 3;
-            this.cmdFakturer.Text = "Fakturer";
-            this.cmdFakturer.UseVisualStyleBackColor = true;
-            this.cmdFakturer.Visible = false;
-            this.cmdFakturer.Click += new System.EventHandler(this.cmdFakturer_Click);
+            this.cmdBetal.Location = new System.Drawing.Point(18, 68);
+            this.cmdBetal.Name = "cmdBetal";
+            this.cmdBetal.Size = new System.Drawing.Size(61, 25);
+            this.cmdBetal.TabIndex = 3;
+            this.cmdBetal.Text = "Betal";
+            this.cmdBetal.UseVisualStyleBackColor = true;
+            this.cmdBetal.Visible = false;
+            this.cmdBetal.Click += new System.EventHandler(this.cmdBetal_Click);
             // 
             // splitContainer1
             // 
@@ -164,7 +163,7 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.pgmForslag);
-            this.splitContainer1.Panel1.Controls.Add(this.lvwMedlem);
+            this.splitContainer1.Panel1.Controls.Add(this.lvwKreditor);
             this.splitContainer1.Panel1.Controls.Add(this.Label_Forslagstekst);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.label_DatoKontingentTil);
@@ -176,18 +175,17 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.DelsystemBSH);
-            this.splitContainer1.Panel2.Controls.Add(this.pgmFaktura);
-            this.splitContainer1.Panel2.Controls.Add(this.Label_Fakturatekst);
+            this.splitContainer1.Panel2.Controls.Add(this.pgmBetal);
+            this.splitContainer1.Panel2.Controls.Add(this.Label_Betaltekst);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
-            this.splitContainer1.Panel2.Controls.Add(this.lvwKontingent);
+            this.splitContainer1.Panel2.Controls.Add(this.lvwKrdFaktura);
             this.splitContainer1.Panel2.Controls.Add(this.label_DatoBetaltKontingentTil);
-            this.splitContainer1.Panel2.Controls.Add(this.cmdFakturer);
+            this.splitContainer1.Panel2.Controls.Add(this.cmdBetal);
             this.splitContainer1.Panel2.Controls.Add(this.label_Aarskontingent);
             this.splitContainer1.Panel2.Controls.Add(this.Aarskontingent);
             this.splitContainer1.Panel2.Controls.Add(this.DatoBetaltKontingentTil);
-            this.splitContainer1.Size = new System.Drawing.Size(856, 526);
-            this.splitContainer1.SplitterDistance = 421;
+            this.splitContainer1.Size = new System.Drawing.Size(903, 515);
+            this.splitContainer1.SplitterDistance = 443;
             this.splitContainer1.TabIndex = 4;
             // 
             // pgmForslag
@@ -200,10 +198,10 @@
             this.pgmForslag.TabIndex = 6;
             this.pgmForslag.Visible = false;
             // 
-            // lvwMedlem
+            // lvwKreditor
             // 
-            this.lvwMedlem.AllowDrop = true;
-            this.lvwMedlem.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvwKreditor.AllowDrop = true;
+            this.lvwKreditor.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderMNavn,
             this.columnHeaderMNr,
             this.columnHeaderMAdresse,
@@ -211,18 +209,18 @@
             this.columnHeaderMFradato,
             this.columnHeaderMKontingent,
             this.columnHeaderMTildato});
-            this.lvwMedlem.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lvwMedlem.FullRowSelect = true;
-            this.lvwMedlem.Location = new System.Drawing.Point(0, 150);
-            this.lvwMedlem.Name = "lvwMedlem";
-            this.lvwMedlem.Size = new System.Drawing.Size(421, 376);
-            this.lvwMedlem.TabIndex = 0;
-            this.lvwMedlem.UseCompatibleStateImageBehavior = false;
-            this.lvwMedlem.View = System.Windows.Forms.View.Details;
-            this.lvwMedlem.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvwMedlem_DragDrop);
-            this.lvwMedlem.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwMedlem_ColumnClick);
-            this.lvwMedlem.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvwMedlem_DragEnter);
-            this.lvwMedlem.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvwMedlem_ItemDrag);
+            this.lvwKreditor.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lvwKreditor.FullRowSelect = true;
+            this.lvwKreditor.Location = new System.Drawing.Point(0, 139);
+            this.lvwKreditor.Name = "lvwKreditor";
+            this.lvwKreditor.Size = new System.Drawing.Size(443, 376);
+            this.lvwKreditor.TabIndex = 0;
+            this.lvwKreditor.UseCompatibleStateImageBehavior = false;
+            this.lvwKreditor.View = System.Windows.Forms.View.Details;
+            this.lvwKreditor.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvwKreditor_DragDrop);
+            this.lvwKreditor.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwKreditor_ColumnClick);
+            this.lvwKreditor.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvwKreditor_DragEnter);
+            this.lvwKreditor.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvwKreditor_ItemDrag);
             // 
             // columnHeaderMNavn
             // 
@@ -284,38 +282,27 @@
             this.cmdForslag.UseVisualStyleBackColor = true;
             this.cmdForslag.Click += new System.EventHandler(this.cmdForslag_Click);
             // 
-            // DelsystemBSH
+            // pgmBetal
             // 
-            this.DelsystemBSH.AutoSize = true;
-            this.DelsystemBSH.Location = new System.Drawing.Point(85, 73);
-            this.DelsystemBSH.Name = "DelsystemBSH";
-            this.DelsystemBSH.Size = new System.Drawing.Size(48, 17);
-            this.DelsystemBSH.TabIndex = 7;
-            this.DelsystemBSH.Text = "BSH";
-            this.DelsystemBSH.UseVisualStyleBackColor = true;
-            this.DelsystemBSH.Visible = false;
+            this.pgmBetal.Location = new System.Drawing.Point(96, 74);
+            this.pgmBetal.Maximum = 325;
+            this.pgmBetal.Name = "pgmBetal";
+            this.pgmBetal.Size = new System.Drawing.Size(218, 15);
+            this.pgmBetal.Step = 1;
+            this.pgmBetal.TabIndex = 6;
+            this.pgmBetal.Visible = false;
             // 
-            // pgmFaktura
+            // Label_Betaltekst
             // 
-            this.pgmFaktura.Location = new System.Drawing.Point(139, 74);
-            this.pgmFaktura.Maximum = 325;
-            this.pgmFaktura.Name = "pgmFaktura";
-            this.pgmFaktura.Size = new System.Drawing.Size(218, 15);
-            this.pgmFaktura.Step = 1;
-            this.pgmFaktura.TabIndex = 6;
-            this.pgmFaktura.Visible = false;
-            // 
-            // Label_Fakturatekst
-            // 
-            this.Label_Fakturatekst.AutoSize = true;
-            this.Label_Fakturatekst.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Fakturatekst.ForeColor = System.Drawing.Color.Red;
-            this.Label_Fakturatekst.Location = new System.Drawing.Point(15, 96);
-            this.Label_Fakturatekst.Name = "Label_Fakturatekst";
-            this.Label_Fakturatekst.Size = new System.Drawing.Size(33, 16);
-            this.Label_Fakturatekst.TabIndex = 5;
-            this.Label_Fakturatekst.Text = "test";
-            this.Label_Fakturatekst.Visible = false;
+            this.Label_Betaltekst.AutoSize = true;
+            this.Label_Betaltekst.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Betaltekst.ForeColor = System.Drawing.Color.Red;
+            this.Label_Betaltekst.Location = new System.Drawing.Point(15, 96);
+            this.Label_Betaltekst.Name = "Label_Betaltekst";
+            this.Label_Betaltekst.Size = new System.Drawing.Size(33, 16);
+            this.Label_Betaltekst.TabIndex = 5;
+            this.Label_Betaltekst.Text = "test";
+            this.Label_Betaltekst.Visible = false;
             // 
             // label2
             // 
@@ -323,14 +310,14 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(15, 118);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(141, 16);
+            this.label2.Size = new System.Drawing.Size(44, 16);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Kontingent Betaling";
+            this.label2.Text = "Betal";
             // 
-            // lvwKontingent
+            // lvwKrdFaktura
             // 
-            this.lvwKontingent.AllowDrop = true;
-            this.lvwKontingent.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvwKrdFaktura.AllowDrop = true;
+            this.lvwKrdFaktura.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderKNnavn,
             this.columnHeaderKNR,
             this.columnHeaderKAdresse,
@@ -338,18 +325,18 @@
             this.columnHeaderKFradato,
             this.columnHeaderKKontingent,
             this.columnHeaderKTildato});
-            this.lvwKontingent.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lvwKontingent.FullRowSelect = true;
-            this.lvwKontingent.Location = new System.Drawing.Point(0, 150);
-            this.lvwKontingent.Name = "lvwKontingent";
-            this.lvwKontingent.Size = new System.Drawing.Size(431, 376);
-            this.lvwKontingent.TabIndex = 0;
-            this.lvwKontingent.UseCompatibleStateImageBehavior = false;
-            this.lvwKontingent.View = System.Windows.Forms.View.Details;
-            this.lvwKontingent.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvwKontingent_DragDrop);
-            this.lvwKontingent.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwKontingent_ColumnClick);
-            this.lvwKontingent.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvwKontingent_DragEnter);
-            this.lvwKontingent.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvwKontingent_ItemDrag);
+            this.lvwKrdFaktura.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lvwKrdFaktura.FullRowSelect = true;
+            this.lvwKrdFaktura.Location = new System.Drawing.Point(0, 139);
+            this.lvwKrdFaktura.Name = "lvwKrdFaktura";
+            this.lvwKrdFaktura.Size = new System.Drawing.Size(456, 376);
+            this.lvwKrdFaktura.TabIndex = 0;
+            this.lvwKrdFaktura.UseCompatibleStateImageBehavior = false;
+            this.lvwKrdFaktura.View = System.Windows.Forms.View.Details;
+            this.lvwKrdFaktura.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvwKrdFaktura_DragDrop);
+            this.lvwKrdFaktura.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwKrdFaktura_ColumnClick);
+            this.lvwKrdFaktura.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvwKrdFaktura_DragEnter);
+            this.lvwKrdFaktura.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvwKrdFaktura_ItemDrag);
             // 
             // columnHeaderKNnavn
             // 
@@ -411,10 +398,10 @@
         private System.Windows.Forms.DateTimePicker DatoBetaltKontingentTil;
         private System.Windows.Forms.TextBox Aarskontingent;
         private System.Windows.Forms.Button cmdCancel;
-        private System.Windows.Forms.Button cmdFakturer;
+        private System.Windows.Forms.Button cmdBetal;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.ListView lvwMedlem;
-        private System.Windows.Forms.ListView lvwKontingent;
+        private System.Windows.Forms.ListView lvwKreditor;
+        private System.Windows.Forms.ListView lvwKrdFaktura;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button cmdForslag;
@@ -430,12 +417,11 @@
         private System.Windows.Forms.ColumnHeader columnHeaderKFradato;
         private System.Windows.Forms.ProgressBar pgmForslag;
         private System.Windows.Forms.Label Label_Forslagstekst;
-        private System.Windows.Forms.Label Label_Fakturatekst;
-        private System.Windows.Forms.ProgressBar pgmFaktura;
+        private System.Windows.Forms.Label Label_Betaltekst;
+        private System.Windows.Forms.ProgressBar pgmBetal;
         private System.Windows.Forms.ColumnHeader columnHeaderMKontingent;
         private System.Windows.Forms.ColumnHeader columnHeaderKKontingent;
         private System.Windows.Forms.ColumnHeader columnHeaderMTildato;
         private System.Windows.Forms.ColumnHeader columnHeaderKTildato;
-        private System.Windows.Forms.CheckBox DelsystemBSH;
     }
 }
