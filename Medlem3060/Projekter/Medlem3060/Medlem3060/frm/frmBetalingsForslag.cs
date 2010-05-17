@@ -10,16 +10,16 @@ using System.Collections;
 
 namespace nsPuls3060
 {
-    public partial class FrmKontingentForslag : Form
+    public partial class FrmBetalingsForslag : Form
     {
         ColumnSorter lvwMedlem_ColumnSorter;
         ColumnSorter lvwKontingent_ColumnSorter;
         private string DragDropKey;
         private DateTime m_initdate;
-        private int m_lobnr  = 0;
+        private int m_lobnr = 0;
 
 
-        public FrmKontingentForslag()
+        public FrmBetalingsForslag()
         {
             InitializeComponent();
             this.lvwMedlem_ColumnSorter = new ColumnSorter();
@@ -40,7 +40,7 @@ namespace nsPuls3060
             this.lvwKontingent.Sort();
         }
 
-        private void FrmKontingentForslag_Load(object sender, EventArgs e)
+        private void FrmBetalingsForslag_Load(object sender, EventArgs e)
         {
             DateTime wt = DateTime.Now;
             m_initdate = new DateTime(wt.Year, wt.Month, wt.Day);
@@ -141,7 +141,7 @@ namespace nsPuls3060
                 if (bSelected)
                 {
                     AntalForslag++;
-                    switch (KontingentFradato.Month )
+                    switch (KontingentFradato.Month)
                     {
                         case 1:
                         case 2:
@@ -152,7 +152,7 @@ namespace nsPuls3060
                             KontingentTildato = new DateTime(KontingentFradato.Year, 12, 31);
                             dkontingent = double.Parse(this.Aarskontingent.Text);
                             break;
-                        
+
                         case 7:
                         case 8:
                         case 9:
@@ -160,7 +160,7 @@ namespace nsPuls3060
                             KontingentTildato = new DateTime(KontingentFradato.Year, 12, 31);
                             dkontingent = double.Parse(this.Aarskontingent.Text) / 2;
                             break;
-                        
+
                         default:
                             KontingentTildato = new DateTime(KontingentFradato.Year + 1, 12, 31);
                             dkontingent = double.Parse(this.Aarskontingent.Text);
@@ -378,7 +378,7 @@ namespace nsPuls3060
                 this.pgmFaktura.Visible = false;
             }
         }
-        
+
         private void On_clsPbs601_SetLobnr(int lobnr)
         {
             m_lobnr = lobnr;

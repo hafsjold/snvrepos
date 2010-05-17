@@ -110,9 +110,15 @@ namespace nsPuls3060
             int wantalfakturaer;
             wantalfakturaer = 0;
 
+            bool? wbsh = (from h in Program.dbData3060.TempKontforslag select h.Bsh).First();
+            bool bsh = (wbsh == null) ? false : (bool)wbsh;
+            string wDelsystem;
+            if (bsh) wDelsystem = "BSH";
+            else wDelsystem = "BS1";
+
             Tbltilpbs rec_tilpbs = new Tbltilpbs
             {
-                Delsystem = "BS1",
+                Delsystem = wDelsystem,
                 Leverancetype = "0601",
                 Udtrukket = DateTime.Now
             };
@@ -158,7 +164,6 @@ namespace nsPuls3060
             }
             Program.dbData3060.SubmitChanges();
             SetLobnr(lobnr);
-            //if (wantalfakturaer > 0) { faktura_601_action(lobnr); }
             return wantalfakturaer;
 
         }
@@ -234,7 +239,7 @@ namespace nsPuls3060
                           select c).First();
             if (rsttil.Udtrukket == null) { rsttil.Udtrukket = DateTime.Now; }
             if (rsttil.Bilagdato == null) { rsttil.Bilagdato = rsttil.Udtrukket; }
-            if (rsttil.Delsystem == null) { rsttil.Delsystem = "BS1"; }
+            if (rsttil.Delsystem == null) { rsttil.Delsystem = "BS1"; }  // ????????????????
             if (rsttil.Leverancetype == null) { rsttil.Leverancetype = ""; }
             Program.dbData3060.SubmitChanges();
 

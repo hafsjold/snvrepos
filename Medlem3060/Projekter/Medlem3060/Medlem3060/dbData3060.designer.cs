@@ -4792,6 +4792,8 @@ namespace nsPuls3060
 		
 		private System.DateTime _Betalingsdato;
 		
+		private System.Nullable<bool> _Bsh;
+		
 		private EntitySet<TempKontforslaglinie> _TempKontforslaglinie;
 		
     #region Extensibility Method Definitions
@@ -4802,6 +4804,8 @@ namespace nsPuls3060
     partial void OnIdChanged();
     partial void OnBetalingsdatoChanging(System.DateTime value);
     partial void OnBetalingsdatoChanged();
+    partial void OnBshChanging(System.Nullable<bool> value);
+    partial void OnBshChanged();
     #endregion
 		
 		public TempKontforslag()
@@ -4846,6 +4850,26 @@ namespace nsPuls3060
 					this._Betalingsdato = value;
 					this.SendPropertyChanged("Betalingsdato");
 					this.OnBetalingsdatoChanged();
+				}
+			}
+		}
+		
+		[Column(Name="bsh", Storage="_Bsh", DbType="Bit")]
+		public System.Nullable<bool> Bsh
+		{
+			get
+			{
+				return this._Bsh;
+			}
+			set
+			{
+				if ((this._Bsh != value))
+				{
+					this.OnBshChanging(value);
+					this.SendPropertyChanging();
+					this._Bsh = value;
+					this.SendPropertyChanged("Bsh");
+					this.OnBshChanged();
 				}
 			}
 		}

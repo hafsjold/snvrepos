@@ -536,6 +536,22 @@ namespace nsPuls3060
                 }
             }
             
+            if (dbVersion == "2.3.0.0")
+            {
+                try
+                {
+                    //version "2.3.0.0" --> "2.4.0.0" opgradering af SqlDatabasen
+                    //Tilføj et nyt felt bsh til tabel [tempKontforslag]  til SqlDatabasen 
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tempKontforslag] ADD COLUMN [bsh] bit NULL;");
+                    Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.4.0.0'  WHERE [vkey] = 'VERSION';");
+
+                }
+                catch (System.Data.SqlServerCe.SqlCeException e)
+                {
+                    object x = e;
+                }
+            }
+            
             return true;
         }
 

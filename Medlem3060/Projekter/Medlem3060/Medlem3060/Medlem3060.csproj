@@ -128,6 +128,12 @@
       <DependentUpon>dsMedlem.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="frm\frmBetalingsForslag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmBetalingsForslag.Designer.cs">
+      <DependentUpon>frmBetalingsForslag.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm\frmPbsfiles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -224,6 +230,9 @@
     <None Include="dbRecovery3060.dbml.layout">
       <DependentUpon>dbRecovery3060.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="frm\frmBetalingsForslag.resx">
+      <DependentUpon>frmBetalingsForslag.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm\BetterDialog.resx">
       <DependentUpon>BetterDialog.cs</DependentUpon>
     </EmbeddedResource>

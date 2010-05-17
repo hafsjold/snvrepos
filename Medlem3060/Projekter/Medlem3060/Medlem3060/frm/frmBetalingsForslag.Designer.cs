@@ -1,6 +1,6 @@
 ﻿namespace nsPuls3060
 {
-    partial class FrmKontingentForslag
+    partial class FrmBetalingsForslag
     {
         /// <summary>
         /// Required designer variable.
@@ -186,8 +186,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.label_Aarskontingent);
             this.splitContainer1.Panel2.Controls.Add(this.Aarskontingent);
             this.splitContainer1.Panel2.Controls.Add(this.DatoBetaltKontingentTil);
-            this.splitContainer1.Size = new System.Drawing.Size(829, 513);
-            this.splitContainer1.SplitterDistance = 409;
+            this.splitContainer1.Size = new System.Drawing.Size(856, 526);
+            this.splitContainer1.SplitterDistance = 421;
             this.splitContainer1.TabIndex = 4;
             // 
             // pgmForslag
@@ -213,9 +213,9 @@
             this.columnHeaderMTildato});
             this.lvwMedlem.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lvwMedlem.FullRowSelect = true;
-            this.lvwMedlem.Location = new System.Drawing.Point(0, 137);
+            this.lvwMedlem.Location = new System.Drawing.Point(0, 150);
             this.lvwMedlem.Name = "lvwMedlem";
-            this.lvwMedlem.Size = new System.Drawing.Size(409, 376);
+            this.lvwMedlem.Size = new System.Drawing.Size(421, 376);
             this.lvwMedlem.TabIndex = 0;
             this.lvwMedlem.UseCompatibleStateImageBehavior = false;
             this.lvwMedlem.View = System.Windows.Forms.View.Details;
@@ -340,9 +340,9 @@
             this.columnHeaderKTildato});
             this.lvwKontingent.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lvwKontingent.FullRowSelect = true;
-            this.lvwKontingent.Location = new System.Drawing.Point(0, 137);
+            this.lvwKontingent.Location = new System.Drawing.Point(0, 150);
             this.lvwKontingent.Name = "lvwKontingent";
-            this.lvwKontingent.Size = new System.Drawing.Size(416, 376);
+            this.lvwKontingent.Size = new System.Drawing.Size(431, 376);
             this.lvwKontingent.TabIndex = 0;
             this.lvwKontingent.UseCompatibleStateImageBehavior = false;
             this.lvwKontingent.View = System.Windows.Forms.View.Details;
@@ -379,18 +379,18 @@
             // 
             this.columnHeaderKTildato.Text = "Til dato";
             // 
-            // FrmKontingentForslag
+            // FrmBetalingsForslag
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = global::nsPuls3060.Properties.Settings.Default.frmKontingentForslagSize;
+            this.ClientSize = global::nsPuls3060.Properties.Settings.Default.FrmBetalingsForslagSize;
             this.Controls.Add(this.splitContainer1);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::nsPuls3060.Properties.Settings.Default, "frmKontingentForslagSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsPuls3060.Properties.Settings.Default, "frmKontingentForslagPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.Location = global::nsPuls3060.Properties.Settings.Default.frmKontingentForslagPoint;
-            this.Name = "FrmKontingentForslag";
-            this.Text = "Kontingent Forslag";
-            this.Load += new System.EventHandler(this.FrmKontingentForslag_Load);
+            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::nsPuls3060.Properties.Settings.Default, "FrmBetalingsForslagSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsPuls3060.Properties.Settings.Default, "FrmBetalingsForslagPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.Location = global::nsPuls3060.Properties.Settings.Default.FrmBetalingsForslagPoint;
+            this.Name = "FrmBetalingsForslag";
+            this.Text = "Betalings Forslag";
+            this.Load += new System.EventHandler(this.FrmBetalingsForslag_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
