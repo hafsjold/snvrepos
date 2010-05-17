@@ -81,6 +81,12 @@ namespace nsPuls3060
     partial void InsertTbltilpbs(Tbltilpbs instance);
     partial void UpdateTbltilpbs(Tbltilpbs instance);
     partial void DeleteTbltilpbs(Tbltilpbs instance);
+    partial void InsertTempBetalforslag(TempBetalforslag instance);
+    partial void UpdateTempBetalforslag(TempBetalforslag instance);
+    partial void DeleteTempBetalforslag(TempBetalforslag instance);
+    partial void InsertTempBetalforslaglinie(TempBetalforslaglinie instance);
+    partial void UpdateTempBetalforslaglinie(TempBetalforslaglinie instance);
+    partial void DeleteTempBetalforslaglinie(TempBetalforslaglinie instance);
     partial void InsertTempKontforslag(TempKontforslag instance);
     partial void UpdateTempKontforslag(TempKontforslag instance);
     partial void DeleteTempKontforslag(TempKontforslag instance);
@@ -246,6 +252,22 @@ namespace nsPuls3060
 			get
 			{
 				return this.GetTable<Tbltilpbs>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TempBetalforslag> TempBetalforslag
+		{
+			get
+			{
+				return this.GetTable<TempBetalforslag>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TempBetalforslaglinie> TempBetalforslaglinie
+		{
+			get
+			{
+				return this.GetTable<TempBetalforslaglinie>();
 			}
 		}
 		
@@ -4779,6 +4801,295 @@ namespace nsPuls3060
 		{
 			this.SendPropertyChanging();
 			entity.Tbltilpbs = null;
+		}
+	}
+	
+	[Table(Name="tempBetalforslag")]
+	public partial class TempBetalforslag : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.DateTime _Betalingsdato;
+		
+		private EntitySet<TempBetalforslaglinie> _TempBetalforslaglinie;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnBetalingsdatoChanging(System.DateTime value);
+    partial void OnBetalingsdatoChanged();
+    #endregion
+		
+		public TempBetalforslag()
+		{
+			this._TempBetalforslaglinie = new EntitySet<TempBetalforslaglinie>(new Action<TempBetalforslaglinie>(this.attach_TempBetalforslaglinie), new Action<TempBetalforslaglinie>(this.detach_TempBetalforslaglinie));
+			OnCreated();
+		}
+		
+		[Column(Name="id", Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Name="betalingsdato", Storage="_Betalingsdato", DbType="DateTime NOT NULL")]
+		public System.DateTime Betalingsdato
+		{
+			get
+			{
+				return this._Betalingsdato;
+			}
+			set
+			{
+				if ((this._Betalingsdato != value))
+				{
+					this.OnBetalingsdatoChanging(value);
+					this.SendPropertyChanging();
+					this._Betalingsdato = value;
+					this.SendPropertyChanged("Betalingsdato");
+					this.OnBetalingsdatoChanged();
+				}
+			}
+		}
+		
+		[Association(Name="TempBetalforslag_TempBetalforslaglinie", Storage="_TempBetalforslaglinie", ThisKey="Id", OtherKey="Betalforslagid")]
+		public EntitySet<TempBetalforslaglinie> TempBetalforslaglinie
+		{
+			get
+			{
+				return this._TempBetalforslaglinie;
+			}
+			set
+			{
+				this._TempBetalforslaglinie.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_TempBetalforslaglinie(TempBetalforslaglinie entity)
+		{
+			this.SendPropertyChanging();
+			entity.TempBetalforslag = this;
+		}
+		
+		private void detach_TempBetalforslaglinie(TempBetalforslaglinie entity)
+		{
+			this.SendPropertyChanging();
+			entity.TempBetalforslag = null;
+		}
+	}
+	
+	[Table(Name="tempBetalforslaglinie")]
+	public partial class TempBetalforslaglinie : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _Nr;
+		
+		private int _Betalforslagid;
+		
+		private decimal _Advisbelob;
+		
+		private EntityRef<TempBetalforslag> _TempBetalforslag;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnNrChanging(int value);
+    partial void OnNrChanged();
+    partial void OnBetalforslagidChanging(int value);
+    partial void OnBetalforslagidChanged();
+    partial void OnAdvisbelobChanging(decimal value);
+    partial void OnAdvisbelobChanged();
+    #endregion
+		
+		public TempBetalforslaglinie()
+		{
+			this._TempBetalforslag = default(EntityRef<TempBetalforslag>);
+			OnCreated();
+		}
+		
+		[Column(Name="id", Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Nr", DbType="Int NOT NULL")]
+		public int Nr
+		{
+			get
+			{
+				return this._Nr;
+			}
+			set
+			{
+				if ((this._Nr != value))
+				{
+					this.OnNrChanging(value);
+					this.SendPropertyChanging();
+					this._Nr = value;
+					this.SendPropertyChanged("Nr");
+					this.OnNrChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Betalforslagid", DbType="Int NOT NULL")]
+		public int Betalforslagid
+		{
+			get
+			{
+				return this._Betalforslagid;
+			}
+			set
+			{
+				if ((this._Betalforslagid != value))
+				{
+					if (this._TempBetalforslag.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnBetalforslagidChanging(value);
+					this.SendPropertyChanging();
+					this._Betalforslagid = value;
+					this.SendPropertyChanged("Betalforslagid");
+					this.OnBetalforslagidChanged();
+				}
+			}
+		}
+		
+		[Column(Name="advisbelob", Storage="_Advisbelob", DbType="Decimal(18,2) NOT NULL")]
+		public decimal Advisbelob
+		{
+			get
+			{
+				return this._Advisbelob;
+			}
+			set
+			{
+				if ((this._Advisbelob != value))
+				{
+					this.OnAdvisbelobChanging(value);
+					this.SendPropertyChanging();
+					this._Advisbelob = value;
+					this.SendPropertyChanged("Advisbelob");
+					this.OnAdvisbelobChanged();
+				}
+			}
+		}
+		
+		[Association(Name="TempBetalforslag_TempBetalforslaglinie", Storage="_TempBetalforslag", ThisKey="Betalforslagid", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true)]
+		public TempBetalforslag TempBetalforslag
+		{
+			get
+			{
+				return this._TempBetalforslag.Entity;
+			}
+			set
+			{
+				TempBetalforslag previousValue = this._TempBetalforslag.Entity;
+				if (((previousValue != value) 
+							|| (this._TempBetalforslag.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._TempBetalforslag.Entity = null;
+						previousValue.TempBetalforslaglinie.Remove(this);
+					}
+					this._TempBetalforslag.Entity = value;
+					if ((value != null))
+					{
+						value.TempBetalforslaglinie.Add(this);
+						this._Betalforslagid = value.Id;
+					}
+					else
+					{
+						this._Betalforslagid = default(int);
+					}
+					this.SendPropertyChanged("TempBetalforslag");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	

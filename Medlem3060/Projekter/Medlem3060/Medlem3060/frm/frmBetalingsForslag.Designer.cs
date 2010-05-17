@@ -28,14 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label_DatoKontingentTil = new System.Windows.Forms.Label();
-            this.label_DatoKontingentForfald = new System.Windows.Forms.Label();
-            this.label_DatoBetaltKontingentTil = new System.Windows.Forms.Label();
-            this.label_Aarskontingent = new System.Windows.Forms.Label();
-            this.DatoKontingentTil = new System.Windows.Forms.DateTimePicker();
-            this.DatoKontingentForfald = new System.Windows.Forms.DateTimePicker();
-            this.DatoBetaltKontingentTil = new System.Windows.Forms.DateTimePicker();
-            this.Aarskontingent = new System.Windows.Forms.TextBox();
             this.cmdCancel = new System.Windows.Forms.Button();
             this.cmdBetal = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -67,75 +59,9 @@
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label_DatoKontingentTil
-            // 
-            this.label_DatoKontingentTil.AutoSize = true;
-            this.label_DatoKontingentTil.Location = new System.Drawing.Point(20, 10);
-            this.label_DatoKontingentTil.Name = "label_DatoKontingentTil";
-            this.label_DatoKontingentTil.Size = new System.Drawing.Size(95, 13);
-            this.label_DatoKontingentTil.TabIndex = 0;
-            this.label_DatoKontingentTil.Text = "Kontingent til dato:";
-            // 
-            // label_DatoKontingentForfald
-            // 
-            this.label_DatoKontingentForfald.AutoSize = true;
-            this.label_DatoKontingentForfald.Location = new System.Drawing.Point(20, 40);
-            this.label_DatoKontingentForfald.Name = "label_DatoKontingentForfald";
-            this.label_DatoKontingentForfald.Size = new System.Drawing.Size(122, 13);
-            this.label_DatoKontingentForfald.TabIndex = 0;
-            this.label_DatoKontingentForfald.Text = "Kontingent forfalds dato:";
-            // 
-            // label_DatoBetaltKontingentTil
-            // 
-            this.label_DatoBetaltKontingentTil.AutoSize = true;
-            this.label_DatoBetaltKontingentTil.Location = new System.Drawing.Point(15, 9);
-            this.label_DatoBetaltKontingentTil.Name = "label_DatoBetaltKontingentTil";
-            this.label_DatoBetaltKontingentTil.Size = new System.Drawing.Size(213, 13);
-            this.label_DatoBetaltKontingentTil.TabIndex = 0;
-            this.label_DatoBetaltKontingentTil.Text = "Medlemmer som har betalt kontingent indtil::";
-            // 
-            // label_Aarskontingent
-            // 
-            this.label_Aarskontingent.AutoSize = true;
-            this.label_Aarskontingent.Location = new System.Drawing.Point(15, 39);
-            this.label_Aarskontingent.Name = "label_Aarskontingent";
-            this.label_Aarskontingent.Size = new System.Drawing.Size(135, 13);
-            this.label_Aarskontingent.TabIndex = 0;
-            this.label_Aarskontingent.Text = "Kontingent for 12 måneder:";
-            // 
-            // DatoKontingentTil
-            // 
-            this.DatoKontingentTil.Location = new System.Drawing.Point(195, 10);
-            this.DatoKontingentTil.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
-            this.DatoKontingentTil.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.DatoKontingentTil.Name = "DatoKontingentTil";
-            this.DatoKontingentTil.Size = new System.Drawing.Size(121, 20);
-            this.DatoKontingentTil.TabIndex = 1;
-            // 
-            // DatoKontingentForfald
-            // 
-            this.DatoKontingentForfald.Location = new System.Drawing.Point(195, 36);
-            this.DatoKontingentForfald.Name = "DatoKontingentForfald";
-            this.DatoKontingentForfald.Size = new System.Drawing.Size(121, 20);
-            this.DatoKontingentForfald.TabIndex = 1;
-            // 
-            // DatoBetaltKontingentTil
-            // 
-            this.DatoBetaltKontingentTil.Location = new System.Drawing.Point(248, 9);
-            this.DatoBetaltKontingentTil.Name = "DatoBetaltKontingentTil";
-            this.DatoBetaltKontingentTil.Size = new System.Drawing.Size(124, 20);
-            this.DatoBetaltKontingentTil.TabIndex = 1;
-            // 
-            // Aarskontingent
-            // 
-            this.Aarskontingent.Location = new System.Drawing.Point(248, 36);
-            this.Aarskontingent.Name = "Aarskontingent";
-            this.Aarskontingent.Size = new System.Drawing.Size(47, 20);
-            this.Aarskontingent.TabIndex = 2;
-            // 
             // cmdCancel
             // 
-            this.cmdCancel.Location = new System.Drawing.Point(23, 68);
+            this.cmdCancel.Location = new System.Drawing.Point(23, 38);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(61, 25);
             this.cmdCancel.TabIndex = 3;
@@ -145,7 +71,7 @@
             // 
             // cmdBetal
             // 
-            this.cmdBetal.Location = new System.Drawing.Point(18, 68);
+            this.cmdBetal.Location = new System.Drawing.Point(18, 38);
             this.cmdBetal.Name = "cmdBetal";
             this.cmdBetal.Size = new System.Drawing.Size(61, 25);
             this.cmdBetal.TabIndex = 3;
@@ -166,11 +92,7 @@
             this.splitContainer1.Panel1.Controls.Add(this.lvwKreditor);
             this.splitContainer1.Panel1.Controls.Add(this.Label_Forslagstekst);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
-            this.splitContainer1.Panel1.Controls.Add(this.label_DatoKontingentTil);
-            this.splitContainer1.Panel1.Controls.Add(this.label_DatoKontingentForfald);
-            this.splitContainer1.Panel1.Controls.Add(this.DatoKontingentTil);
             this.splitContainer1.Panel1.Controls.Add(this.cmdForslag);
-            this.splitContainer1.Panel1.Controls.Add(this.DatoKontingentForfald);
             this.splitContainer1.Panel1.Controls.Add(this.cmdCancel);
             // 
             // splitContainer1.Panel2
@@ -179,18 +101,14 @@
             this.splitContainer1.Panel2.Controls.Add(this.Label_Betaltekst);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.lvwKrdFaktura);
-            this.splitContainer1.Panel2.Controls.Add(this.label_DatoBetaltKontingentTil);
             this.splitContainer1.Panel2.Controls.Add(this.cmdBetal);
-            this.splitContainer1.Panel2.Controls.Add(this.label_Aarskontingent);
-            this.splitContainer1.Panel2.Controls.Add(this.Aarskontingent);
-            this.splitContainer1.Panel2.Controls.Add(this.DatoBetaltKontingentTil);
-            this.splitContainer1.Size = new System.Drawing.Size(903, 515);
-            this.splitContainer1.SplitterDistance = 443;
+            this.splitContainer1.Size = new System.Drawing.Size(800, 495);
+            this.splitContainer1.SplitterDistance = 392;
             this.splitContainer1.TabIndex = 4;
             // 
             // pgmForslag
             // 
-            this.pgmForslag.Location = new System.Drawing.Point(165, 74);
+            this.pgmForslag.Location = new System.Drawing.Point(165, 44);
             this.pgmForslag.Maximum = 325;
             this.pgmForslag.Name = "pgmForslag";
             this.pgmForslag.Size = new System.Drawing.Size(218, 15);
@@ -211,9 +129,9 @@
             this.columnHeaderMTildato});
             this.lvwKreditor.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lvwKreditor.FullRowSelect = true;
-            this.lvwKreditor.Location = new System.Drawing.Point(0, 139);
+            this.lvwKreditor.Location = new System.Drawing.Point(0, 119);
             this.lvwKreditor.Name = "lvwKreditor";
-            this.lvwKreditor.Size = new System.Drawing.Size(443, 376);
+            this.lvwKreditor.Size = new System.Drawing.Size(392, 376);
             this.lvwKreditor.TabIndex = 0;
             this.lvwKreditor.UseCompatibleStateImageBehavior = false;
             this.lvwKreditor.View = System.Windows.Forms.View.Details;
@@ -255,7 +173,7 @@
             this.Label_Forslagstekst.AutoSize = true;
             this.Label_Forslagstekst.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Forslagstekst.ForeColor = System.Drawing.Color.Red;
-            this.Label_Forslagstekst.Location = new System.Drawing.Point(20, 96);
+            this.Label_Forslagstekst.Location = new System.Drawing.Point(20, 66);
             this.Label_Forslagstekst.Name = "Label_Forslagstekst";
             this.Label_Forslagstekst.Size = new System.Drawing.Size(33, 16);
             this.Label_Forslagstekst.TabIndex = 5;
@@ -266,7 +184,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(20, 118);
+            this.label1.Location = new System.Drawing.Point(20, 88);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(122, 16);
             this.label1.TabIndex = 5;
@@ -274,7 +192,7 @@
             // 
             // cmdForslag
             // 
-            this.cmdForslag.Location = new System.Drawing.Point(90, 68);
+            this.cmdForslag.Location = new System.Drawing.Point(90, 38);
             this.cmdForslag.Name = "cmdForslag";
             this.cmdForslag.Size = new System.Drawing.Size(61, 25);
             this.cmdForslag.TabIndex = 3;
@@ -284,7 +202,7 @@
             // 
             // pgmBetal
             // 
-            this.pgmBetal.Location = new System.Drawing.Point(96, 74);
+            this.pgmBetal.Location = new System.Drawing.Point(96, 44);
             this.pgmBetal.Maximum = 325;
             this.pgmBetal.Name = "pgmBetal";
             this.pgmBetal.Size = new System.Drawing.Size(218, 15);
@@ -297,7 +215,7 @@
             this.Label_Betaltekst.AutoSize = true;
             this.Label_Betaltekst.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Betaltekst.ForeColor = System.Drawing.Color.Red;
-            this.Label_Betaltekst.Location = new System.Drawing.Point(15, 96);
+            this.Label_Betaltekst.Location = new System.Drawing.Point(15, 66);
             this.Label_Betaltekst.Name = "Label_Betaltekst";
             this.Label_Betaltekst.Size = new System.Drawing.Size(33, 16);
             this.Label_Betaltekst.TabIndex = 5;
@@ -308,7 +226,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(15, 118);
+            this.label2.Location = new System.Drawing.Point(15, 88);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 16);
             this.label2.TabIndex = 5;
@@ -327,9 +245,9 @@
             this.columnHeaderKTildato});
             this.lvwKrdFaktura.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lvwKrdFaktura.FullRowSelect = true;
-            this.lvwKrdFaktura.Location = new System.Drawing.Point(0, 139);
+            this.lvwKrdFaktura.Location = new System.Drawing.Point(0, 119);
             this.lvwKrdFaktura.Name = "lvwKrdFaktura";
-            this.lvwKrdFaktura.Size = new System.Drawing.Size(456, 376);
+            this.lvwKrdFaktura.Size = new System.Drawing.Size(404, 376);
             this.lvwKrdFaktura.TabIndex = 0;
             this.lvwKrdFaktura.UseCompatibleStateImageBehavior = false;
             this.lvwKrdFaktura.View = System.Windows.Forms.View.Details;
@@ -389,14 +307,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label_DatoKontingentTil;
-        private System.Windows.Forms.Label label_DatoKontingentForfald;
-        private System.Windows.Forms.Label label_DatoBetaltKontingentTil;
-        private System.Windows.Forms.Label label_Aarskontingent;
-        private System.Windows.Forms.DateTimePicker DatoKontingentTil;
-        private System.Windows.Forms.DateTimePicker DatoKontingentForfald;
-        private System.Windows.Forms.DateTimePicker DatoBetaltKontingentTil;
-        private System.Windows.Forms.TextBox Aarskontingent;
         private System.Windows.Forms.Button cmdCancel;
         private System.Windows.Forms.Button cmdBetal;
         private System.Windows.Forms.SplitContainer splitContainer1;

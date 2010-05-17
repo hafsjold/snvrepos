@@ -222,6 +222,22 @@
       <Association Name="Tblpbsforsendelse_Tbltilpbs" Member="Tblpbsforsendelse" ThisKey="Pbsforsendelseid" OtherKey="Id" Type="Tblpbsforsendelse" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="tempBetalforslag" Member="TempBetalforslag">
+    <Type Name="TempBetalforslag">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="betalingsdato" Member="Betalingsdato" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="TempBetalforslag_TempBetalforslaglinie" Member="TempBetalforslaglinie" ThisKey="Id" OtherKey="Betalforslagid" Type="TempBetalforslaglinie" />
+    </Type>
+  </Table>
+  <Table Name="tempBetalforslaglinie" Member="TempBetalforslaglinie">
+    <Type Name="TempBetalforslaglinie">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Betalforslagid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="advisbelob" Member="Advisbelob" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Association Name="TempBetalforslag_TempBetalforslaglinie" Member="TempBetalforslag" ThisKey="Betalforslagid" OtherKey="Id" Type="TempBetalforslag" IsForeignKey="true" DeleteOnNull="true" />
+    </Type>
+  </Table>
   <Table Name="tempKontforslag" Member="TempKontforslag">
     <Type Name="TempKontforslag">
       <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />

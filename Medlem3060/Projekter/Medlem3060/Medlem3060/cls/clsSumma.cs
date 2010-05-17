@@ -57,7 +57,7 @@ namespace nsPuls3060
                     SidsteRec_no++;
                     int orebelob = (int)o.Advisbelob * 100;
 
-                    ordtype ord = new ordtype
+                    ordtype_s ord = new ordtype_s
                     (
                         SidsteSFakID,          //fakid
                         ToDay,                 //(o.Betalingsdato > o.Indbetalingsdato) ? (DateTime)o.Betalingsdato : (DateTime)o.Indbetalingsdato, //dato

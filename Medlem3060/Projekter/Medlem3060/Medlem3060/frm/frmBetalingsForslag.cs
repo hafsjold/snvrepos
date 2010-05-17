@@ -45,22 +45,6 @@ namespace nsPuls3060
             DateTime wt = DateTime.Now;
             m_initdate = new DateTime(wt.Year, wt.Month, wt.Day);
 
-            wt = m_initdate.AddMonths(1);
-            this.DatoBetaltKontingentTil.Value = wt.AddDays(-wt.Day);
-
-
-            wt = m_initdate.AddMonths(13 - m_initdate.Month);
-            this.DatoKontingentTil.Value = wt.AddDays(-wt.Day);
-
-            if ((this.DatoKontingentTil.Value - this.DatoBetaltKontingentTil.Value) < (new TimeSpan(61, 0, 0, 0))) //Nov + Dec
-            {
-                this.DatoKontingentTil.Value.AddYears(1);
-            }
-            this.Aarskontingent.Text = "150";
-
-            wt = m_initdate.AddMonths(1);
-            this.DatoKontingentForfald.Value = wt.AddDays(-wt.Day + 4);
-
         }
 
 
@@ -73,10 +57,9 @@ namespace nsPuls3060
         {
             DateTime KontingentFradato = DateTime.MinValue;
             DateTime KontingentTildato = DateTime.MinValue;
-            int AntalMedlemmer = 0;
+            int AntalKreditorer = 0;
             int AntalForslag = 0;
-            double dkontingent;
-            int ikontingent;
+            int ikrdfaktura;
 
             var qry_medlemmer = from h in Program.karMedlemmer
                                 select h;
@@ -99,31 +82,13 @@ namespace nsPuls3060
             foreach (var m in qry_medlemmer)
             {
                 bool bSelected = true;
-                AntalMedlemmer++;
+                AntalKreditorer++;
                 if (!m.erMedlem()) //er ikke medlem
                 {
                     bSelected = false;
                 }
                 else //Er medlem
                 {
-                    if (m.kontingentBetaltTilDato != null)  //'Der findes en kontingent-betaling
-                    {
-                        if (m.kontingentBetaltTilDato > this.DatoBetaltKontingentTil.Value)   //der er betalt kontingent efter DatoBetaltKontingentTil
-                        {
-                            bSelected = false;
-                        }
-                        else
-                        {
-                            if (m.kontingentBetaltTilDato >= m.indmeldelsesDato)
-                            {
-                                KontingentFradato = ((DateTime)m.kontingentBetaltTilDato).AddDays(1);
-                            }
-                        }
-                    }
-                    else  //Der findes ingen kontingent-betaling
-                    {
-                        KontingentFradato = (DateTime)m.indmeldelsesDato;
-                    }
                 }
 
                 if (bSelected)
@@ -140,41 +105,16 @@ namespace nsPuls3060
                 if (bSelected)
                 {
                     AntalForslag++;
-                    switch (KontingentFradato.Month)
-                    {
-                        case 1:
-                        case 2:
-                        case 3:
-                        case 4:
-                        case 5:
-                        case 6:
-                            KontingentTildato = new DateTime(KontingentFradato.Year, 12, 31);
-                            dkontingent = double.Parse(this.Aarskontingent.Text);
-                            break;
-
-                        case 7:
-                        case 8:
-                        case 9:
-                        case 10:
-                            KontingentTildato = new DateTime(KontingentFradato.Year, 12, 31);
-                            dkontingent = double.Parse(this.Aarskontingent.Text) / 2;
-                            break;
-
-                        default:
-                            KontingentTildato = new DateTime(KontingentFradato.Year + 1, 12, 31);
-                            dkontingent = double.Parse(this.Aarskontingent.Text);
-                            break;
-                    }
-                    ikontingent = (int)dkontingent;
+                    ikrdfaktura = 150;
 
                     ListViewItem it = lvwKrdFaktura.Items.Add(m.Nr.ToString(), m.Navn, 0);
                     //it.Tag = m;
                     it.SubItems.Add(m.Nr.ToString());
                     it.SubItems.Add(m.Adresse);
                     it.SubItems.Add(m.Postnr);
-                    it.SubItems.Add(string.Format("{0:dd-MM-yyy}", KontingentFradato));
-                    it.SubItems.Add(ikontingent.ToString());
-                    it.SubItems.Add(string.Format("{0:dd-MM-yyy}", KontingentTildato));
+                    it.SubItems.Add("");
+                    it.SubItems.Add(ikrdfaktura.ToString());
+                    it.SubItems.Add("");
                 }
                 pgmForslag.PerformStep();
             }
@@ -291,11 +231,9 @@ namespace nsPuls3060
         private void cmdBetal_Click(object sender, EventArgs e)
         {
             string TilPBSFilename;
-            int AntalFakturaer;
+            int AntalBetalinger;
             int imax;
             string keyval;
-            DateTime fradato;
-            DateTime tildato;
             double advisbelob;
             if ((this.cmdBetal.Text == "Afslut"))
             {
@@ -308,45 +246,41 @@ namespace nsPuls3060
             this.pgmBetal.Minimum = 0;
             this.pgmBetal.Value = 0;
             this.pgmBetal.Visible = true;
-            Program.dbData3060.ExecuteCommand("DELETE FROM tempKontforslag;");
+            Program.dbData3060.ExecuteCommand("DELETE FROM tempBetalforslag;");
             if ((imax == 0))
             {
-                this.Label_Betaltekst.Text = "Der ikke noget at fakturere";
+                this.Label_Betaltekst.Text = "Der ikke noget at betale";
                 this.Label_Betaltekst.Visible = true;
             }
             else
             {
-                TempKontforslag rec_tempKontforslag = new TempKontforslag
+                TempBetalforslag rec_tempBetalforslag = new TempBetalforslag
                 {
-                    Betalingsdato = this.DatoKontingentForfald.Value,
+                    Betalingsdato = DateTime.Now,
                 };
-                Program.dbData3060.TempKontforslag.InsertOnSubmit(rec_tempKontforslag);
+                Program.dbData3060.TempBetalforslag.InsertOnSubmit(rec_tempBetalforslag);
                 var i = 0;
                 foreach (ListViewItem lvi in lvwKrdFaktura.Items)
                 {
                     this.pgmBetal.Value = ++i;
                     keyval = lvi.Name;
-                    fradato = DateTime.Parse(lvi.SubItems[4].Text);
                     advisbelob = double.Parse(lvi.SubItems[5].Text);
-                    tildato = DateTime.Parse(lvi.SubItems[6].Text);
 
-                    TempKontforslaglinie rec_tempKontforslaglinie = new TempKontforslaglinie
+                    TempBetalforslaglinie rec_tempBetalforslaglinie = new TempBetalforslaglinie
                     {
                         Nr = int.Parse(keyval),
                         Advisbelob = (decimal)advisbelob,
-                        Fradato = fradato,
-                        Tildato = tildato
                     };
-                    rec_tempKontforslag.TempKontforslaglinie.Add(rec_tempKontforslaglinie);
+                    rec_tempBetalforslag.TempBetalforslaglinie.Add(rec_tempBetalforslaglinie);
                 }
                 Program.dbData3060.SubmitChanges();
 
                 clsPbs601 objPbs601 = new clsPbs601();
                 nsPuls3060.clsPbs601.SetLobnr += new nsPuls3060.clsPbs601.Pbs601DelegateHandler(On_clsPbs601_SetLobnr);
 
-                AntalFakturaer = objPbs601.kontingent_fakturer_bs1();
+                AntalBetalinger = objPbs601.kontingent_fakturer_bs1();
                 this.pgmBetal.Value = imax * 2;
-                if ((AntalFakturaer > 0))
+                if ((AntalBetalinger > 0))
                 {
                     objPbs601.faktura_601_action(m_lobnr);
                     this.pgmBetal.Value = (imax * 3);

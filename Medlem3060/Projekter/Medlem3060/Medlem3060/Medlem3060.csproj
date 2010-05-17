@@ -160,6 +160,9 @@
     </Compile>
     <Compile Include="cls\clsCsv.cs" />
     <Compile Include="cls\clsMedlem.cs" />
+    <Compile Include="kar\karFakturastr_k.cs" />
+    <Compile Include="kar\karFakturavarer_k.cs" />
+    <Compile Include="kar\karFakturaer_k.cs" />
     <Compile Include="kar\karPosteringer.cs" />
     <Compile Include="kar\karKontoplan.cs" />
     <Compile Include="kar\karPosteringsjournal.cs" />

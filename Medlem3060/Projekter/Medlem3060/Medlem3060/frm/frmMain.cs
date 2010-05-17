@@ -128,8 +128,9 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
+            KarFakturaer_k objKarFakturaer_k = Program.karFakturaer_k;
+            int xx = 2;
             //clsImportMedlem objImportMedlem = new clsImportMedlem();
-
             //clsGoogle objGoogle = new clsGoogle();
             //objGoogle.test();
             //clsRecovery objRecovery = new clsRecovery();
