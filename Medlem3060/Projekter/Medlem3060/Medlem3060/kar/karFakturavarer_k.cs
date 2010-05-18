@@ -11,12 +11,24 @@ namespace nsPuls3060
     {
         public recFakturavarer_k() { }
 
-        public string Fakid { get; set; }
-        public int Varenr { get; set; }
+        public int Fakid { get; set; }
+        public int Line { get; set; }
+        public int? Varenr { get; set; }
         public string VareTekst { get; set; }
-        public int Bogfkonto { get; set; }
-        public int Antal { get; set; }
-        public double Fakturabelob { get; set; }
+        public int? Bogfkonto { get; set; }
+        public int? Antal { get; set; }
+        public string Enhed { get; set; }
+        public decimal? Pris { get; set; }
+        public decimal? Rabat { get; set; }
+        public string Felt07 { get; set; }
+        public decimal? Felt08 { get; set; }
+        public decimal? Fakturabelob { get; set; }
+        public string Felt10 { get; set; }
+        public string Felt11 { get; set; }
+        public string Felt12 { get; set; }
+        public string Felt13 { get; set; }
+        public string Felt14 { get; set; }
+        public string Felt15 { get; set; }
     }
 
     public class KarFakturavarer_k : List<recFakturavarer_k>
@@ -56,7 +68,7 @@ namespace nsPuls3060
                             }
                         }
                     }
-                    string faknr = value1[0];
+                    int wFakid = int.Parse(value1[0]);
                     string ln2 = value1[1];
 
                     MatchCollection collFakturavarer = regexFakturavarer.Matches(ln2);
@@ -78,8 +90,10 @@ namespace nsPuls3060
                         }
                     }
 
+                    int wLine = 0;
                     foreach (string ln3 in value)
                     {
+                        wLine++;
                         MatchCollection collFaktline = regexFakline.Matches(ln3);
                         int n = 0;
                         int nMax = collFaktline.Count;
@@ -98,27 +112,36 @@ namespace nsPuls3060
                                 }
                             }
                         }
-                        int xyztest = 1;
 
-                        /*
                         rec = new recFakturavarer_k
                         {
-                            Kontonr = Microsoft.VisualBasic.Information.IsNumeric(value[0]) ? int.Parse(value[0]) : (int?)null,
-                            Kontonavn = value[1],
-                            Type = value[2],
-                            Moms = value[3],
-                            Saldo = Microsoft.VisualBasic.Information.IsNumeric(value[7]) ? decimal.Parse(value[7]) : (decimal?)null,
-                            DK = value[9]
+                            Fakid = wFakid,
+                            Line = wLine,
+                            Varenr = Microsoft.VisualBasic.Information.IsNumeric(value3[0]) ? int.Parse(value3[0]) : (int?)null,
+                            VareTekst = value3[1],
+                            Bogfkonto = Microsoft.VisualBasic.Information.IsNumeric(value3[2]) ? int.Parse(value3[2]) : (int?)null,
+                            Antal = Microsoft.VisualBasic.Information.IsNumeric(value3[3]) ? int.Parse(value3[3]) : (int?)null,
+                            Enhed = value3[4],
+                            Pris = Microsoft.VisualBasic.Information.IsNumeric(value3[5]) ? decimal.Parse(value3[5]) : (decimal?)null,
+                            Rabat = Microsoft.VisualBasic.Information.IsNumeric(value3[6]) ? decimal.Parse(value3[6]) : (decimal?)null,
+                            Felt07 = value3[7],
+                            Felt08 = Microsoft.VisualBasic.Information.IsNumeric(value3[8]) ? decimal.Parse(value3[8]) : (decimal?)null,
+                            Fakturabelob = Microsoft.VisualBasic.Information.IsNumeric(value3[9]) ? decimal.Parse(value3[9]) : (decimal?)null,
+                            Felt10 = value3[10],
+                            Felt11 = value3[11],
+                            Felt12 = value3[12],
+                            Felt13 = value3[13],
+                            Felt14 = value3[14],
+                            Felt15 = value3[15],
                         };
                         this.Add(rec);
-                        */
                     }
                 }
             }
         }
 
 
-        public void save()
+        private void save()
         {
             FileStream ts = new FileStream(m_path, FileMode.Append, FileAccess.Write, FileShare.None);
             using (StreamWriter sr = new StreamWriter(ts, Encoding.Default))
@@ -128,7 +151,7 @@ namespace nsPuls3060
                                select d;
                 foreach (var rec in qry_this)
                 {
-                    string ln = rec.Fakid + @"=""" + rec.Varenr + @",""""" + rec.VareTekst + @"""""," + rec.Bogfkonto + "," + rec.Antal + @",,""""" + rec.Fakturabelob + @",00"""",,,""""" + rec.Fakturabelob + @",00"""",""""" + rec.Fakturabelob + @",00"""",0,,,,,""";
+                    string ln = rec.Fakid + @"=""" + rec.Varenr + @",""""" + rec.VareTekst + @"""""," + rec.Bogfkonto + "," + rec.Antal + @",,""""" + rec.Pris + @",00"""",,,""""" + rec.Pris + @",00"""",""""" + rec.Pris + @",00"""",0,,,,,""";
                     sr.WriteLine(ln);
                 }
             }

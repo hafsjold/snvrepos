@@ -104,7 +104,7 @@ namespace nsPuls3060
                     byte[] b_TilPBSFile = System.Text.Encoding.GetEncoding("windows-1252").GetBytes(c_TilPBSFile);
                     FilesSize = b_TilPBSFile.Length;
                     
-                    sendAttachedFile(TilPBSFilename, b_TilPBSFile);
+                    sendAttachedFile(TilPBSFilename, b_TilPBSFile, true);
 
                     string handle = m_sftp.OpenFile(TilPBSFilename, "writeOnly", "createTruncate");
                     if (handle == null) throw new Exception(m_sftp.LastErrorText);
@@ -210,7 +210,7 @@ namespace nsPuls3060
                     byte[] b_data = null;
                     b_data = m_sftp.ReadFileBytes(handle, numBytes);
                     if (b_data == null) throw new Exception(m_sftp.LastErrorText);
-                    sendAttachedFile(rec_pbsnetdir.Filename, b_data);
+                    sendAttachedFile(rec_pbsnetdir.Filename, b_data, false);
                     char[] c_data = System.Text.Encoding.GetEncoding("windows-1252").GetString(b_data).ToCharArray();
                     string filecontens = new string(c_data);
 
@@ -249,7 +249,7 @@ namespace nsPuls3060
             return AntalFiler;
         }
 
-        private void sendAttachedFile(string filename, byte[] data)
+        private void sendAttachedFile(string filename, byte[] data, bool bTilPBS)
         {
             string local_filename = filename.Replace('.', '_') + ".txt";
             Chilkat.MailMan mailman = new Chilkat.MailMan();
@@ -276,8 +276,16 @@ namespace nsPuls3060
             //  Create a new email object
             Chilkat.Email email = new Chilkat.Email();
 
-            email.Subject = "Fra PBS: " + local_filename;
-            email.Body = "Fra PBS: " + local_filename;
+            if (bTilPBS)
+            {
+                email.Subject = "Til PBS: " + local_filename;
+                email.Body = "Til PBS: " + local_filename;
+            }
+            else
+            {
+                email.Subject = "Fra PBS: " + local_filename;
+                email.Body = "Fra PBS: " + local_filename;
+            }
             email.From = "Mogens Hafsjold <mha@hafsjold.dk>";
             email.AddTo("kasserer", "kasserer.puls3060@gmail.com");
             email.AddCC("Mogens Hafsjold", "mha@hafsjold.dk");

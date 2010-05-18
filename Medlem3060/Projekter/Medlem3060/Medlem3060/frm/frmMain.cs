@@ -128,8 +128,8 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
-            KarFakturavarer_k objKarFakturavarer_k = new KarFakturavarer_k();
-            objKarFakturavarer_k.open();
+            KarFakturastr_k objKarFakturastr_k = new KarFakturastr_k();
+            objKarFakturastr_k.open();
             int xx = 1;
             //clsImportMedlem objImportMedlem = new clsImportMedlem();
             //clsGoogle objGoogle = new clsGoogle();
