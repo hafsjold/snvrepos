@@ -12,13 +12,20 @@ namespace nsPuls3060
     {
         public recFakturastr_k() { }
 
-        public string Fakid { get; set; }
-        public string Navn { get; set; }
-        public string Adresse { get; set; }
-        public string Postnr { get; set; }
-        public string Bynavn { get; set; }
-        public int Faknr { get; set; }
-        public string Email { get; set; }
+        public int Fakid { get; set; }
+        public string FakNavnAdresse { get; set; }
+        public string LevNavnAdresse { get; set; }
+        public string Note { get; set; }
+        public string Felt03 { get; set; }
+        public string Felt04 { get; set; }
+        public string Felt05 { get; set; }
+        public string Felt06 { get; set; }
+        public string Felt07 { get; set; }
+        public string Felt08 { get; set; }
+        public string DeresRef { get; set; }
+        public string Felt10 { get; set; }
+        public string Felt11 { get; set; }
+        public string Felt12 { get; set; }
     }
 
     public class KarFakturastr_k : List<recFakturastr_k>
@@ -38,8 +45,7 @@ namespace nsPuls3060
             recFakturastr_k rec;
             RegexOptions options = ((RegexOptions.IgnorePatternWhitespace | RegexOptions.Multiline) | RegexOptions.IgnoreCase);
             Regex regexFaknr = new Regex("(^[0-9]*)=(.*$)", options);
-            Regex regexFakturavarer = new Regex("(?:^|,)(\\\"(?:[^\\\"]+|\\\"\\\")*\\\"|[^,]*)", options);
-            Regex regexFakline = new Regex(@"""""(.*?)"""",|([^,]*),|(.*)$");
+            Regex regexFakturastr = new Regex("(?:^|,)(\\\"(?:[^\\\"]+|\\\"\\\")*\\\"|[^,]*)", options);
 
             using (StreamReader sr = new StreamReader(ts, Encoding.Default))
             {
@@ -61,11 +67,11 @@ namespace nsPuls3060
                     int wFakid = int.Parse(value1[0]);
                     string ln2 = value1[1];
 
-                    MatchCollection collFakturavarer = regexFakturavarer.Matches(ln2);
+                    MatchCollection collFakturastr = regexFakturastr.Matches(ln2);
                     int i = 0;
-                    int iMax = collFakturavarer.Count;
+                    int iMax = collFakturastr.Count;
                     string[] value = new string[iMax];
-                    foreach (Match m in collFakturavarer)
+                    foreach (Match m in collFakturastr)
                     {
                         for (int j = 1; j <= 3; j++)
                         {
@@ -80,74 +86,27 @@ namespace nsPuls3060
                         }
                     }
 
-                    int wLine = 0;
-                    foreach (string ln3 in value)
+
+                    rec = new recFakturastr_k
                     {
-                        wLine++;
-                        MatchCollection collFaktline = regexFakline.Matches(ln3);
-                        int n = 0;
-                        int nMax = collFaktline.Count;
-                        string[] value3 = new string[nMax];
-                        foreach (Match m in collFaktline)
-                        {
-                            for (int j = 1; j <= 3; j++)
-                            {
-                                if (m.Groups[j].Success)
-                                {
-                                    if (n < nMax)
-                                    {
-                                        value3[n++] = m.Groups[j].ToString().Trim().Trim('"');
-                                        break;
-                                    }
-                                }
-                            }
-                        }
-
-                        rec = new recFakturastr_k
-                        {
-                            /*
-                            Fakid = wFakid,
-                            Line = wLine,
-                            Varenr = Microsoft.VisualBasic.Information.IsNumeric(value3[0]) ? int.Parse(value3[0]) : (int?)null,
-                            VareTekst = value3[1],
-                            Bogfkonto = Microsoft.VisualBasic.Information.IsNumeric(value3[2]) ? int.Parse(value3[2]) : (int?)null,
-                            Antal = Microsoft.VisualBasic.Information.IsNumeric(value3[3]) ? int.Parse(value3[3]) : (int?)null,
-                            Enhed = value3[4],
-                            Pris = Microsoft.VisualBasic.Information.IsNumeric(value3[5]) ? decimal.Parse(value3[5]) : (decimal?)null,
-                            Rabat = Microsoft.VisualBasic.Information.IsNumeric(value3[6]) ? decimal.Parse(value3[6]) : (decimal?)null,
-                            Felt07 = value3[7],
-                            Felt08 = Microsoft.VisualBasic.Information.IsNumeric(value3[8]) ? decimal.Parse(value3[8]) : (decimal?)null,
-                            Fakturabelob = Microsoft.VisualBasic.Information.IsNumeric(value3[9]) ? decimal.Parse(value3[9]) : (decimal?)null,
-                            Felt10 = value3[10],
-                            Felt11 = value3[11],
-                            Felt12 = value3[12],
-                            Felt13 = value3[13],
-                            Felt14 = value3[14],
-                            Felt15 = value3[15],
-                            */
-                        };
-                        this.Add(rec);
-                    }
+                        Fakid = wFakid,
+                        FakNavnAdresse = value[0],
+                        LevNavnAdresse = value[1],
+                        Note = value[2],
+                        Felt03 = value[3],
+                        Felt04 = value[4],
+                        Felt05 = value[5],
+                        Felt06 = value[6],
+                        Felt07 = value[7],
+                        Felt08 = value[8],
+                        DeresRef = value[9],
+                        Felt10 = value[10],
+                        Felt11 = value[11],
+                        Felt12 = value[12],
+                    };
+                    this.Add(rec);
                 }
             }
         }
-        
-        private void save()
-        {
-            FileStream ts = new FileStream(m_path, FileMode.Append, FileAccess.Write, FileShare.None);
-            using (StreamWriter sr = new StreamWriter(ts, Encoding.Default))
-            {
-                var qry_this = from d in this
-                               orderby d.Fakid
-                               select d;
-                foreach (var rec in qry_this)
-                {
-                    string ln = rec.Fakid + @"=""""""" + rec.Navn + @""""",""""" + rec.Adresse + @""""",""""" + rec.Postnr + " " + rec.Bynavn + @""""""",,,," + rec.Faknr + @",,,,," + rec.Email + @",,,";
-                    sr.WriteLine(ln);
-                }
-            }
-
-        }
-
     }
 }
