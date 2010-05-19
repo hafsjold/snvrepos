@@ -55,19 +55,30 @@ namespace nsPuls3060
 
         private void getBetalingsForslag()
         {
-            DateTime KontingentFradato = DateTime.MinValue;
-            DateTime KontingentTildato = DateTime.MinValue;
             int AntalKreditorer = 0;
             int AntalForslag = 0;
-            int ikrdfaktura;
 
-            var qry_medlemmer = from h in Program.karMedlemmer
-                                select h;
+            var qry_Kreditor = from h in Program.karFakturaer_k
+                               where h.saldo > 0
+                               join m in Program.karMedlemmer on h.kreditornr.ToString() equals m.Krdktonr
+                               select new 
+                               {
+                                   h.fakid,
+                                   m.Nr,
+                                   m.Navn,
+                                   m.Adresse,
+                                   m.Postnr,
+                                   m.Bank,
+                                   h.faknr,
+                                   h.saldo,
+
+                               };
+
 
             this.lvwKreditor.Items.Clear();
             this.lvwKrdFaktura.Items.Clear();
 
-            var antal = qry_medlemmer.Count();
+            var antal = qry_Kreditor.Count();
             this.pgmForslag.Show();
             this.pgmForslag.Maximum = antal;
             this.pgmForslag.Minimum = 0;
@@ -79,43 +90,20 @@ namespace nsPuls3060
 
             pgmForslag.PerformStep();
 
-            foreach (var m in qry_medlemmer)
+            foreach (var m in qry_Kreditor)
             {
-                bool bSelected = true;
                 AntalKreditorer++;
-                if (!m.erMedlem()) //er ikke medlem
-                {
-                    bSelected = false;
-                }
-                else //Er medlem
-                {
-                }
 
-                if (bSelected)
-                {
-                    if (m.opkrævningsDato != null) //Der findes en opkrævning
-                    {
-                        if (((DateTime)m.opkrævningsDato) > KontingentFradato)
-                        {
-                            bSelected = false;
-                        }
-                    }
-                }
+                AntalForslag++;
 
-                if (bSelected)
-                {
-                    AntalForslag++;
-                    ikrdfaktura = 150;
-
-                    ListViewItem it = lvwKrdFaktura.Items.Add(m.Nr.ToString(), m.Navn, 0);
-                    //it.Tag = m;
-                    it.SubItems.Add(m.Nr.ToString());
-                    it.SubItems.Add(m.Adresse);
-                    it.SubItems.Add(m.Postnr);
-                    it.SubItems.Add("");
-                    it.SubItems.Add(ikrdfaktura.ToString());
-                    it.SubItems.Add("");
-                }
+                ListViewItem it = lvwKrdFaktura.Items.Add(m.fakid.ToString(), m.Navn, 0);
+                //it.Tag = m;
+                it.SubItems.Add(m.Nr.ToString());
+                it.SubItems.Add(m.Adresse);
+                it.SubItems.Add(m.Postnr);
+                it.SubItems.Add(m.faknr.ToString());
+                it.SubItems.Add((((decimal)m.saldo)/100).ToString());
+                it.SubItems.Add(m.Bank);
                 pgmForslag.PerformStep();
             }
             this.lvwKrdFaktura.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -234,6 +222,7 @@ namespace nsPuls3060
             int AntalBetalinger;
             int imax;
             string keyval;
+            int Nr;
             double advisbelob;
             if ((this.cmdBetal.Text == "Afslut"))
             {
@@ -264,17 +253,19 @@ namespace nsPuls3060
                 {
                     this.pgmBetal.Value = ++i;
                     keyval = lvi.Name;
+                    Nr = int.Parse(lvi.SubItems[1].Text);
                     advisbelob = double.Parse(lvi.SubItems[5].Text);
 
                     TempBetalforslaglinie rec_tempBetalforslaglinie = new TempBetalforslaglinie
                     {
-                        Nr = int.Parse(keyval),
+                        Nr = Nr,
                         Advisbelob = (decimal)advisbelob,
                     };
                     rec_tempBetalforslag.TempBetalforslaglinie.Add(rec_tempBetalforslaglinie);
                 }
                 Program.dbData3060.SubmitChanges();
 
+                /*
                 clsPbs601 objPbs601 = new clsPbs601();
                 nsPuls3060.clsPbs601.SetLobnr += new nsPuls3060.clsPbs601.Pbs601DelegateHandler(On_clsPbs601_SetLobnr);
 
@@ -287,6 +278,7 @@ namespace nsPuls3060
                     clsSFTP objSFTP = new clsSFTP();
                     objSFTP.WriteTilSFtp(m_lobnr);
                 }
+                */
                 this.pgmBetal.Value = (imax * 4);
                 cmdBetal.Text = "Afslut";
 

@@ -257,21 +257,14 @@ namespace nsPuls3060
             success = mailman.UnlockComponent("HAFSJOMAILQ_9QYSMgP0oR1h");
             if (success != true) throw new Exception(mailman.LastErrorText);
 
-            //  Use the HafsjoldData SMTP server
-            mailman.SmtpHost = "hd34.hafsjold.dk";
-            mailman.SmtpPort = 25;
-            mailman.SmtpSsl = false;
-
-            /*
             //  Use the GMail SMTP server
             mailman.SmtpHost = "smtp.gmail.com";
             mailman.SmtpPort = 465;
             mailman.SmtpSsl = true;
-
+            
             //  Set the SMTP login/password.
-            mailman.SmtpUsername = "kasserer.puls3060@gmail.com";
-            mailman.SmtpPassword = "n4vWYkAKsfRFcuLW";
-            */
+            mailman.SmtpUsername = "regnskab.puls3060@gmail.com";
+            mailman.SmtpPassword = "n4vWYkAKsfRFcuLW 58Tb0P0t04wmo6YbC5d1y5h3";
 
             //  Create a new email object
             Chilkat.Email email = new Chilkat.Email();
@@ -286,9 +279,8 @@ namespace nsPuls3060
                 email.Subject = "Fra PBS: " + local_filename;
                 email.Body = "Fra PBS: " + local_filename;
             }
-            email.From = "Mogens Hafsjold <mha@hafsjold.dk>";
-            email.AddTo("kasserer", "kasserer.puls3060@gmail.com");
-            email.AddCC("Mogens Hafsjold", "mha@hafsjold.dk");
+            email.From = "Regnskab Puls3060 <regnskab@puls3060.dk>";
+            email.AddTo("Regnskab Puls3060", "regnskab.puls3060@gmail.com");
             email.AddDataAttachment2(local_filename, data, "text/plain");
             email.UnzipAttachments();
 

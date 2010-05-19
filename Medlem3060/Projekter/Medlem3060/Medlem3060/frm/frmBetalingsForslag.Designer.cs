@@ -37,9 +37,9 @@
             this.columnHeaderMNr = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderMAdresse = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderMPostnr = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderMFradato = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderMKontingent = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderMTildato = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderMFaknr = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderMBelob = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderMBank = new System.Windows.Forms.ColumnHeader();
             this.Label_Forslagstekst = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdForslag = new System.Windows.Forms.Button();
@@ -51,9 +51,9 @@
             this.columnHeaderKNR = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderKAdresse = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderKPostnr = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderKFradato = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderKKontingent = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderKTildato = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderKFaknr = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderKBelob = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderKBank = new System.Windows.Forms.ColumnHeader();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -102,8 +102,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.lvwKrdFaktura);
             this.splitContainer1.Panel2.Controls.Add(this.cmdBetal);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 495);
-            this.splitContainer1.SplitterDistance = 392;
+            this.splitContainer1.Size = new System.Drawing.Size(879, 490);
+            this.splitContainer1.SplitterDistance = 430;
             this.splitContainer1.TabIndex = 4;
             // 
             // pgmForslag
@@ -124,14 +124,14 @@
             this.columnHeaderMNr,
             this.columnHeaderMAdresse,
             this.columnHeaderMPostnr,
-            this.columnHeaderMFradato,
-            this.columnHeaderMKontingent,
-            this.columnHeaderMTildato});
+            this.columnHeaderMFaknr,
+            this.columnHeaderMBelob,
+            this.columnHeaderMBank});
             this.lvwKreditor.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lvwKreditor.FullRowSelect = true;
-            this.lvwKreditor.Location = new System.Drawing.Point(0, 119);
+            this.lvwKreditor.Location = new System.Drawing.Point(0, 114);
             this.lvwKreditor.Name = "lvwKreditor";
-            this.lvwKreditor.Size = new System.Drawing.Size(392, 376);
+            this.lvwKreditor.Size = new System.Drawing.Size(430, 376);
             this.lvwKreditor.TabIndex = 0;
             this.lvwKreditor.UseCompatibleStateImageBehavior = false;
             this.lvwKreditor.View = System.Windows.Forms.View.Details;
@@ -156,17 +156,17 @@
             // 
             this.columnHeaderMPostnr.Text = "Postnr";
             // 
-            // columnHeaderMFradato
+            // columnHeaderMFaknr
             // 
-            this.columnHeaderMFradato.Text = "Fra dato";
+            this.columnHeaderMFaknr.Text = "Faknr";
             // 
-            // columnHeaderMKontingent
+            // columnHeaderMBelob
             // 
-            this.columnHeaderMKontingent.Text = "Kontingent";
+            this.columnHeaderMBelob.Text = "Beløb";
             // 
-            // columnHeaderMTildato
+            // columnHeaderMBank
             // 
-            this.columnHeaderMTildato.Text = "Til dato";
+            this.columnHeaderMBank.Text = "Bank";
             // 
             // Label_Forslagstekst
             // 
@@ -240,14 +240,14 @@
             this.columnHeaderKNR,
             this.columnHeaderKAdresse,
             this.columnHeaderKPostnr,
-            this.columnHeaderKFradato,
-            this.columnHeaderKKontingent,
-            this.columnHeaderKTildato});
+            this.columnHeaderKFaknr,
+            this.columnHeaderKBelob,
+            this.columnHeaderKBank});
             this.lvwKrdFaktura.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lvwKrdFaktura.FullRowSelect = true;
-            this.lvwKrdFaktura.Location = new System.Drawing.Point(0, 119);
+            this.lvwKrdFaktura.Location = new System.Drawing.Point(0, 114);
             this.lvwKrdFaktura.Name = "lvwKrdFaktura";
-            this.lvwKrdFaktura.Size = new System.Drawing.Size(404, 376);
+            this.lvwKrdFaktura.Size = new System.Drawing.Size(445, 376);
             this.lvwKrdFaktura.TabIndex = 0;
             this.lvwKrdFaktura.UseCompatibleStateImageBehavior = false;
             this.lvwKrdFaktura.View = System.Windows.Forms.View.Details;
@@ -272,17 +272,17 @@
             // 
             this.columnHeaderKPostnr.Text = "Postnr";
             // 
-            // columnHeaderKFradato
+            // columnHeaderKFaknr
             // 
-            this.columnHeaderKFradato.Text = "Fra dato";
+            this.columnHeaderKFaknr.Text = "Faknr";
             // 
-            // columnHeaderKKontingent
+            // columnHeaderKBelob
             // 
-            this.columnHeaderKKontingent.Text = "Kontingent";
+            this.columnHeaderKBelob.Text = "Beløb";
             // 
-            // columnHeaderKTildato
+            // columnHeaderKBank
             // 
-            this.columnHeaderKTildato.Text = "Til dato";
+            this.columnHeaderKBank.Text = "Bank";
             // 
             // FrmBetalingsForslag
             // 
@@ -319,19 +319,19 @@
         private System.Windows.Forms.ColumnHeader columnHeaderMNavn;
         private System.Windows.Forms.ColumnHeader columnHeaderMAdresse;
         private System.Windows.Forms.ColumnHeader columnHeaderMPostnr;
-        private System.Windows.Forms.ColumnHeader columnHeaderMFradato;
+        private System.Windows.Forms.ColumnHeader columnHeaderMFaknr;
         private System.Windows.Forms.ColumnHeader columnHeaderKNnavn;
         private System.Windows.Forms.ColumnHeader columnHeaderKNR;
         private System.Windows.Forms.ColumnHeader columnHeaderKAdresse;
         private System.Windows.Forms.ColumnHeader columnHeaderKPostnr;
-        private System.Windows.Forms.ColumnHeader columnHeaderKFradato;
+        private System.Windows.Forms.ColumnHeader columnHeaderKFaknr;
         private System.Windows.Forms.ProgressBar pgmForslag;
         private System.Windows.Forms.Label Label_Forslagstekst;
         private System.Windows.Forms.Label Label_Betaltekst;
         private System.Windows.Forms.ProgressBar pgmBetal;
-        private System.Windows.Forms.ColumnHeader columnHeaderMKontingent;
-        private System.Windows.Forms.ColumnHeader columnHeaderKKontingent;
-        private System.Windows.Forms.ColumnHeader columnHeaderMTildato;
-        private System.Windows.Forms.ColumnHeader columnHeaderKTildato;
+        private System.Windows.Forms.ColumnHeader columnHeaderMBelob;
+        private System.Windows.Forms.ColumnHeader columnHeaderKBelob;
+        private System.Windows.Forms.ColumnHeader columnHeaderMBank;
+        private System.Windows.Forms.ColumnHeader columnHeaderKBank;
     }
 }
