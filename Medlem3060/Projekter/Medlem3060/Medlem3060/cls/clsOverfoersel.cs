@@ -26,7 +26,7 @@ namespace nsPuls3060
 
             Tbltilpbs rec_tilpbs = new Tbltilpbs
             {
-                Delsystem = "OS2",
+                Delsystem = "OS1",
                 Leverancetype = null,
                 Udtrukket = DateTime.Now
             };
@@ -70,7 +70,7 @@ namespace nsPuls3060
 
         }
 
-        public int krdfaktura_overfoersel_action(int lobnr)
+        public void krdfaktura_overfoersel_action(int lobnr)
         {
             string rec;
             int seq = 0;
@@ -110,9 +110,6 @@ namespace nsPuls3060
             if (whour > 17) wbankdage = 3;
             else wbankdage = 2;
             wdispositionsdato = bankdageplus(DateTime.Now, wbankdage);
-
-            wantaloverforsler = (from h in Program.dbData3060.Tbloverforsel where h.Tbltilpbs == null select h).Count();
-            if (wantaloverforsler == 0) return 0;
 
             antalos5 = 0;
             belobos5 = 0;
@@ -178,10 +175,11 @@ namespace nsPuls3060
             rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
 
             var qrydeb = from h in Program.dbData3060.Tbloverforsel
-                         where h.Tbltilpbs == null
+                         where h.Tilpbsid == lobnr
                          select h;
 
             // Start loop over betalinger i tbloverforsel
+            int testantal = qrydeb.Count();
             foreach (Tbloverforsel deb in qrydeb)
             {
                 // Sektion start – (OS2)
@@ -252,7 +250,11 @@ namespace nsPuls3060
             rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
             rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
 
-            return wantaloverforsler;
+            rsttil.Udtrukket = DateTime.Now;
+            rsttil.Leverancespecifikation = wleveranceid.ToString();
+            rsttil.Pbsforsendelseid = 1111;
+            Program.dbData3060.SubmitChanges();
+
         }
 
         private DateTime bankdageplus(DateTime fradato, int antdage)
