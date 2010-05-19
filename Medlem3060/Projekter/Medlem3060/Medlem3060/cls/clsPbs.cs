@@ -590,6 +590,13 @@ namespace nsPuls3060
                     Program.dbData3060.ExecuteCommand("INSERT INTO [tblSysinfo] ([vkey],[val]) VALUES (N'MAILFROM',N'Regnskab Puls3060 <regnskab@puls3060.dk>');");
                     Program.dbData3060.ExecuteCommand("INSERT INTO [tblSysinfo] ([vkey],[val]) VALUES (N'MAILREPLY',N'Regnskab Puls3060 <regnskab@puls3060.dk>');");
 
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tempBetalforslaglinie] ADD COLUMN [fakid] int NULL;");
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tempBetalforslaglinie] ADD COLUMN [bankregnr] nvarchar(4) NULL;");
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tempBetalforslaglinie] ADD COLUMN [bankkontonr] nvarchar(10) NULL;");
+
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tbloverforsel] ADD COLUMN [bankregnr] nvarchar(4) NULL;");
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tbloverforsel] ADD COLUMN [bankkontonr] nvarchar(10) NULL;");					
+                    
                     Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.6.0.0'  WHERE [vkey] = 'VERSION';");
 
                 }

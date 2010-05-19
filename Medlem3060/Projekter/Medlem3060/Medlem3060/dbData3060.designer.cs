@@ -2720,6 +2720,10 @@ namespace nsPuls3060
 		
 		private System.Nullable<bool> _Emailsent;
 		
+		private string _Bankregnr;
+		
+		private string _Bankkontonr;
+		
 		private EntityRef<Tbltilpbs> _Tbltilpbs;
 		
     #region Extensibility Method Definitions
@@ -2744,6 +2748,10 @@ namespace nsPuls3060
     partial void OnEmailtekstChanged();
     partial void OnEmailsentChanging(System.Nullable<bool> value);
     partial void OnEmailsentChanged();
+    partial void OnBankregnrChanging(string value);
+    partial void OnBankregnrChanged();
+    partial void OnBankkontonrChanging(string value);
+    partial void OnBankkontonrChanged();
     #endregion
 		
 		public Tbloverforsel()
@@ -2928,6 +2936,46 @@ namespace nsPuls3060
 					this._Emailsent = value;
 					this.SendPropertyChanged("Emailsent");
 					this.OnEmailsentChanged();
+				}
+			}
+		}
+		
+		[Column(Name="bankregnr", Storage="_Bankregnr", DbType="NVarChar(4)")]
+		public string Bankregnr
+		{
+			get
+			{
+				return this._Bankregnr;
+			}
+			set
+			{
+				if ((this._Bankregnr != value))
+				{
+					this.OnBankregnrChanging(value);
+					this.SendPropertyChanging();
+					this._Bankregnr = value;
+					this.SendPropertyChanged("Bankregnr");
+					this.OnBankregnrChanged();
+				}
+			}
+		}
+		
+		[Column(Name="bankkontonr", Storage="_Bankkontonr", DbType="NVarChar(10)")]
+		public string Bankkontonr
+		{
+			get
+			{
+				return this._Bankkontonr;
+			}
+			set
+			{
+				if ((this._Bankkontonr != value))
+				{
+					this.OnBankkontonrChanging(value);
+					this.SendPropertyChanging();
+					this._Bankkontonr = value;
+					this.SendPropertyChanged("Bankkontonr");
+					this.OnBankkontonrChanged();
 				}
 			}
 		}
@@ -4932,6 +4980,12 @@ namespace nsPuls3060
 		
 		private decimal _Advisbelob;
 		
+		private System.Nullable<int> _Fakid;
+		
+		private string _Bankregnr;
+		
+		private string _Bankkontonr;
+		
 		private EntityRef<TempBetalforslag> _TempBetalforslag;
 		
     #region Extensibility Method Definitions
@@ -4946,6 +5000,12 @@ namespace nsPuls3060
     partial void OnBetalforslagidChanged();
     partial void OnAdvisbelobChanging(decimal value);
     partial void OnAdvisbelobChanged();
+    partial void OnFakidChanging(System.Nullable<int> value);
+    partial void OnFakidChanged();
+    partial void OnBankregnrChanging(string value);
+    partial void OnBankregnrChanged();
+    partial void OnBankkontonrChanging(string value);
+    partial void OnBankkontonrChanged();
     #endregion
 		
 		public TempBetalforslaglinie()
@@ -5034,6 +5094,66 @@ namespace nsPuls3060
 					this._Advisbelob = value;
 					this.SendPropertyChanged("Advisbelob");
 					this.OnAdvisbelobChanged();
+				}
+			}
+		}
+		
+		[Column(Name="fakid", Storage="_Fakid", DbType="Int")]
+		public System.Nullable<int> Fakid
+		{
+			get
+			{
+				return this._Fakid;
+			}
+			set
+			{
+				if ((this._Fakid != value))
+				{
+					this.OnFakidChanging(value);
+					this.SendPropertyChanging();
+					this._Fakid = value;
+					this.SendPropertyChanged("Fakid");
+					this.OnFakidChanged();
+				}
+			}
+		}
+		
+		[Column(Name="bankregnr", Storage="_Bankregnr", DbType="NVarChar(4)")]
+		public string Bankregnr
+		{
+			get
+			{
+				return this._Bankregnr;
+			}
+			set
+			{
+				if ((this._Bankregnr != value))
+				{
+					this.OnBankregnrChanging(value);
+					this.SendPropertyChanging();
+					this._Bankregnr = value;
+					this.SendPropertyChanged("Bankregnr");
+					this.OnBankregnrChanged();
+				}
+			}
+		}
+		
+		[Column(Name="bankkontonr", Storage="_Bankkontonr", DbType="NVarChar(10)")]
+		public string Bankkontonr
+		{
+			get
+			{
+				return this._Bankkontonr;
+			}
+			set
+			{
+				if ((this._Bankkontonr != value))
+				{
+					this.OnBankkontonrChanging(value);
+					this.SendPropertyChanging();
+					this._Bankkontonr = value;
+					this.SendPropertyChanged("Bankkontonr");
+					this.OnBankkontonrChanged();
 				}
 			}
 		}

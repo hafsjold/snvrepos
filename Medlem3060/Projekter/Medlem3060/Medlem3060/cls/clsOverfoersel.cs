@@ -43,6 +43,9 @@ namespace nsPuls3060
                                  k.Navn,
                                  h.Betalingsdato,
                                  l.Advisbelob,
+                                 l.Fakid,
+                                 l.Bankregnr,
+                                 l.Bankkontonr
                              };
 
             foreach (var rstmedlem in rstmedlems)
@@ -54,6 +57,9 @@ namespace nsPuls3060
                     Nr = rstmedlem.Nr,
                     Advistekst = wadvistekst,
                     Advisbelob = rstmedlem.Advisbelob,
+                    SFakID = rstmedlem.Fakid,
+                    Bankregnr = rstmedlem.Bankregnr,
+                    Bankkontonr = rstmedlem.Bankkontonr
                 };
                 rec_tilpbs.Tbloverforsel.Add(rec_krdfak);
                 wantalfakturaer++;
@@ -205,10 +211,6 @@ namespace nsPuls3060
                     belobint = 0;
                 }
 
-                //SELECT INTO debinfo bankregnr, bankkontonr FROM public.kontoinfo(deb.kundenr);
-                string debinfo_bankregnr = "1234";
-                string debinfo_bankkontonr = "1234567890";
-
                 // -- OS5
                 // - debinfo.bankregnr   - Betalingsmodtager registreringsnummer
                 // - debinfo.bankkontonr - Betalingsmodtager kontonummer
@@ -217,8 +219,8 @@ namespace nsPuls3060
                 // - krd.regnr           - Reg.nr.: Overførselsregistreringsnummer
                 // - krd.kontonr         - Kontonr.: Overførselskontonummer
                 // - deb.advistekst      - Tekst på Betalingsmodtagers kontoudtog
-                // - deb.kundenr         - Ref til betalingsmodtager til eget brug
-                rec = writeOS5( debinfo_bankregnr, debinfo_bankkontonr, belobint, wdispositionsdato, krd.Regnr, krd.Kontonr, deb.Advistekst, (int)deb.Nr);
+                // - deb.SFakID          - Ref til betalingsmodtager til eget brug
+                rec = writeOS5(deb.Bankregnr, deb.Bankkontonr, belobint, wdispositionsdato, krd.Regnr, krd.Kontonr, deb.Advistekst, (int)deb.SFakID);
                 rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
                 rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
 

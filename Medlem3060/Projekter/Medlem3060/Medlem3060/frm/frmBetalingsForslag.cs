@@ -223,7 +223,8 @@ namespace nsPuls3060
             int imax;
             string keyval;
             int Nr;
-            double advisbelob;
+            decimal advisbelob;
+            string Bank;
             if ((this.cmdBetal.Text == "Afslut"))
             {
                 this.Close();
@@ -254,13 +255,17 @@ namespace nsPuls3060
                     this.pgmBetal.Value = ++i;
                     keyval = lvi.Name;
                     Nr = int.Parse(lvi.SubItems[1].Text);
-                    advisbelob = double.Parse(lvi.SubItems[5].Text);
+                    advisbelob = decimal.Parse(lvi.SubItems[5].Text);
+                    Bank = lvi.SubItems[6].Text;
 
                     TempBetalforslaglinie rec_tempBetalforslaglinie = new TempBetalforslaglinie
                     {
                         Nr = Nr,
+                        Fakid = int.Parse(keyval),
                         Advisbelob = (decimal)advisbelob,
-                    };
+                        Bankregnr = Bank.Substring(0,4),
+                        Bankkontonr = Bank.Substring(5,10),
+                     };
                     rec_tempBetalforslag.TempBetalforslaglinie.Add(rec_tempBetalforslaglinie);
                 }
                 Program.dbData3060.SubmitChanges();

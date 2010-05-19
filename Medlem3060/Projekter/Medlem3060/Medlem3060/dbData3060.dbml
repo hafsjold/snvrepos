@@ -129,6 +129,8 @@
       <Column Name="advisbelob" Member="Advisbelob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="emailtekst" Member="Emailtekst" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
       <Column Name="emailsent" Member="Emailsent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bankregnr" Member="Bankregnr" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="bankkontonr" Member="Bankkontonr" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Association Name="Tbltilpbs_Tbloverforsel" Member="Tbltilpbs" ThisKey="Tilpbsid" OtherKey="Id" Type="Tbltilpbs" IsForeignKey="true" />
     </Type>
   </Table>
@@ -235,6 +237,9 @@
       <Column Name="Nr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Betalforslagid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="advisbelob" Member="Advisbelob" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="fakid" Member="Fakid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="bankregnr" Member="Bankregnr" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="bankkontonr" Member="Bankkontonr" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Association Name="TempBetalforslag_TempBetalforslaglinie" Member="TempBetalforslag" ThisKey="Betalforslagid" OtherKey="Id" Type="TempBetalforslag" IsForeignKey="true" DeleteOnNull="true" />
     </Type>
   </Table>
