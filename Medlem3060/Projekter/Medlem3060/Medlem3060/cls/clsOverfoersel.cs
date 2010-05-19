@@ -10,15 +10,64 @@ using System.IO;
 
 namespace nsPuls3060
 {
-    class clsOverfoersel
+    public class clsOverfoersel
     {
+        private Tblpbsfiles m_rec_pbsfiles;
 
-        public int overfoersel()
+        public delegate void OverfoerselDelegateHandler(int lobnr);
+        public static event OverfoerselDelegateHandler SetLobnr;
+
+        public int kreditor_fakturer_os1()
+        {
+            int lobnr;
+            string wadvistekst;
+            int wantalfakturaer;
+            wantalfakturaer = 0;
+
+            Tbltilpbs rec_tilpbs = new Tbltilpbs
+            {
+                Delsystem = "OS2",
+                Leverancetype = null,
+                Udtrukket = DateTime.Now
+            };
+            Program.dbData3060.Tbltilpbs.InsertOnSubmit(rec_tilpbs);
+            Program.dbData3060.SubmitChanges();
+            lobnr = rec_tilpbs.Id;
+
+            var rstmedlems = from k in Program.karMedlemmer
+                             join l in Program.dbData3060.TempBetalforslaglinie on k.Nr equals l.Nr
+                             join h in Program.dbData3060.TempBetalforslag on l.Betalforslagid equals h.Id
+                             select new
+                             { 
+                                 k.Nr,
+                                 k.Navn,
+                                 h.Betalingsdato,
+                                 l.Advisbelob,
+                             };
+
+            foreach (var rstmedlem in rstmedlems)
+            {
+
+                wadvistekst = "Puls 3060 Betaling";
+                Tbloverforsel rec_krdfak = new Tbloverforsel 
+                {
+                    Nr = rstmedlem.Nr,
+                    Advistekst = wadvistekst,
+                    Advisbelob = rstmedlem.Advisbelob,
+                };
+                rec_tilpbs.Tbloverforsel.Add(rec_krdfak);
+                wantalfakturaer++;
+            }
+            Program.dbData3060.SubmitChanges();
+            SetLobnr(lobnr);
+            return wantalfakturaer;
+
+        }
+
+        public int krdfaktura_overfoersel_action(int lobnr)
         {
             string rec;
-            int lobnr;
             int seq = 0;
-            //rec varchar(128);
             //rcd record;
             //krd record;
             //deb record;
@@ -66,33 +115,55 @@ namespace nsPuls3060
             antalos5tot = 0;
             belobos5tot = 0;
 
+            {
+                var antal = (from c in Program.dbData3060.Tbltilpbs
+                             where c.Id == lobnr
+                             select c).Count();
+                if (antal == 0) { throw new Exception("101 - Der er ingen PBS forsendelse for id: " + lobnr); }
+            }
+            {
+                var antal = (from c in Program.dbData3060.Tbltilpbs
+                             where c.Id == lobnr && c.Pbsforsendelseid != null
+                             select c).Count();
+                if (antal > 0) { throw new Exception("102 - Pbsforsendelse for id: " + lobnr + " er allerede sendt"); }
+            }
+            {
+                var antal = (from c in Program.dbData3060.Tbloverforsel 
+                             where c.Tilpbsid == lobnr
+                             select c).Count();
+                if (antal == 0) { throw new Exception("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr); }
+            }
+
+            var rsttil = (from c in Program.dbData3060.Tbltilpbs
+                          where c.Id == lobnr
+                          select c).First();
+            if (rsttil.Udtrukket == null) { rsttil.Udtrukket = DateTime.Now; }
+            if (rsttil.Bilagdato == null) { rsttil.Bilagdato = rsttil.Udtrukket; }
+            if (rsttil.Delsystem == null) { rsttil.Delsystem = "OS1"; }
+            if (rsttil.Leverancetype != null) { rsttil.Leverancetype = null; }
+            Program.dbData3060.SubmitChanges();
+
+
             wleveranceid = clsPbs.nextval("leveranceid");
             Tblpbsforsendelse rec_pbsforsendelse = new Tblpbsforsendelse
             {
-                Delsystem = "OS1",
-                Leverancetype = null,
-                Oprettetaf = "Udb",
+                Delsystem = rsttil.Delsystem,
+                Leverancetype = rsttil.Leverancetype,
+                Oprettetaf = "Bet",
                 Oprettet = DateTime.Now,
                 Leveranceid = wleveranceid
             };
             Program.dbData3060.Tblpbsforsendelse.InsertOnSubmit(rec_pbsforsendelse);
-
-            Tbltilpbs rec_tbltilpbs = new Tbltilpbs
-            {
-                Delsystem = "OS1",
-                Leverancetype = null,
-                Bilagdato = DateTime.Now,
-                Udtrukket = DateTime.Now,
-                Leverancespecifikation = "",
-                Leverancedannelsesdato = DateTime.Now
-            };
-            rec_pbsforsendelse.Tbltilpbs.Add(rec_tbltilpbs);
+            rec_pbsforsendelse.Tbltilpbs.Add(rsttil);
 
             Tblpbsfiles rec_pbsfiles = new Tblpbsfiles();
             rec_pbsforsendelse.Tblpbsfiles.Add(rec_pbsfiles);
 
-            Tblkreditor krd = (from k in Program.dbData3060.Tblkreditor where k.Delsystem == "OS1" select k).First();
+            Tblkreditor krd = (from k in Program.dbData3060.Tblkreditor
+                               where k.Delsystem == rsttil.Delsystem 
+                               select k).First();
 
+            
             // -- Leverance Start - OS1
             // - rstkrd.Datalevnr - Dataleverandørnr.: Dataleverandørens SE-nummer
             // - wleveranceid     - Leveranceidentifikation: Løbenummer efter eget valg
@@ -154,8 +225,6 @@ namespace nsPuls3060
                 antalos5++;
                 antalos5tot++;
 
-                // -- Update pbs.tbloverforsel.tilpbsid = lobnr
-                rec_tbltilpbs.Tbloverforsel.Add(deb);
 
                 // -- Sektion slut – (OS8)
                 // - OS8

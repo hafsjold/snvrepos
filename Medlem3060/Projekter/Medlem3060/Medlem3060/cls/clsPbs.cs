@@ -573,7 +573,32 @@ namespace nsPuls3060
                     object x = e;
                 }
             }
-            
+
+            if (dbVersion == "2.5.0.0")
+            {
+                try
+                {
+                    //version "2.5.0.0" --> "2.6.0.0" opgradering af SqlDatabasen
+                    //Add Mailinfo
+                    Program.dbData3060.ExecuteCommand("INSERT INTO [tblSysinfo] ([vkey],[val]) VALUES (N'SMTPHOST',N'smtp.gmail.com');");
+                    Program.dbData3060.ExecuteCommand("INSERT INTO [tblSysinfo] ([vkey],[val]) VALUES (N'SMTPPORT',N'465');");
+                    Program.dbData3060.ExecuteCommand("INSERT INTO [tblSysinfo] ([vkey],[val]) VALUES (N'SMTPSSL',N'true');");
+                    Program.dbData3060.ExecuteCommand("INSERT INTO [tblSysinfo] ([vkey],[val]) VALUES (N'SMTPUSER',N'regnskab.puls3060@gmail.com');");
+                    Program.dbData3060.ExecuteCommand("INSERT INTO [tblSysinfo] ([vkey],[val]) VALUES (N'SMTPPASSWD',N'n4vWYkAKsfRFcuLW 58Tb0P0t04wmo6YbC5d1y5h3');");
+                    Program.dbData3060.ExecuteCommand("INSERT INTO [tblSysinfo] ([vkey],[val]) VALUES (N'MAILTONAME',N'Regnskab Puls3060');");
+                    Program.dbData3060.ExecuteCommand("INSERT INTO [tblSysinfo] ([vkey],[val]) VALUES (N'MAILTOADDR',N'regnskab.puls3060@gmail.com');");
+                    Program.dbData3060.ExecuteCommand("INSERT INTO [tblSysinfo] ([vkey],[val]) VALUES (N'MAILFROM',N'Regnskab Puls3060 <regnskab@puls3060.dk>');");
+                    Program.dbData3060.ExecuteCommand("INSERT INTO [tblSysinfo] ([vkey],[val]) VALUES (N'MAILREPLY',N'Regnskab Puls3060 <regnskab@puls3060.dk>');");
+
+                    Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.6.0.0'  WHERE [vkey] = 'VERSION';");
+
+                }
+                catch (System.Data.SqlServerCe.SqlCeException e)
+                {
+                    object x = e;
+                }
+            }	
+
             return true;
         }
 

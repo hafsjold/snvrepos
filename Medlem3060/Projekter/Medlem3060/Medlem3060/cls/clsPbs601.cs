@@ -167,6 +167,7 @@ namespace nsPuls3060
             return wantalfakturaer;
 
         }
+        
         public void faktura_601_action(int lobnr)
         {
             string rec;

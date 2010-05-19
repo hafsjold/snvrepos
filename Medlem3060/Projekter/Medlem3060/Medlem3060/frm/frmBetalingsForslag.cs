@@ -265,20 +265,18 @@ namespace nsPuls3060
                 }
                 Program.dbData3060.SubmitChanges();
 
-                /*
-                clsPbs601 objPbs601 = new clsPbs601();
-                nsPuls3060.clsPbs601.SetLobnr += new nsPuls3060.clsPbs601.Pbs601DelegateHandler(On_clsPbs601_SetLobnr);
+                clsOverfoersel objOverfoersel = new clsOverfoersel();
+                nsPuls3060.clsOverfoersel.SetLobnr += new nsPuls3060.clsOverfoersel.OverfoerselDelegateHandler(On_clsOverfoersel_SetLobnr);
 
-                AntalBetalinger = objPbs601.kontingent_fakturer_bs1();
+                AntalBetalinger = objOverfoersel.kreditor_fakturer_os1();
                 this.pgmBetal.Value = imax * 2;
                 if ((AntalBetalinger > 0))
                 {
-                    objPbs601.faktura_601_action(m_lobnr);
+                    objOverfoersel.krdfaktura_overfoersel_action(m_lobnr);
                     this.pgmBetal.Value = (imax * 3);
                     clsSFTP objSFTP = new clsSFTP();
                     objSFTP.WriteTilSFtp(m_lobnr);
                 }
-                */
                 this.pgmBetal.Value = (imax * 4);
                 cmdBetal.Text = "Afslut";
 
@@ -297,7 +295,7 @@ namespace nsPuls3060
             }
         }
 
-        private void On_clsPbs601_SetLobnr(int lobnr)
+        private void On_clsOverfoersel_SetLobnr(int lobnr)
         {
             m_lobnr = lobnr;
         }

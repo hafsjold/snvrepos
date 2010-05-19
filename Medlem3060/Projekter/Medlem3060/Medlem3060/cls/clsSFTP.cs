@@ -5,6 +5,14 @@ using System.Text;
 using Chilkat;
 using System.IO;
 
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Windows.Forms;
+using Microsoft.Win32;
+using Microsoft.VisualBasic;
+
+
 namespace nsPuls3060
 {
 
@@ -45,7 +53,6 @@ namespace nsPuls3060
             //  After authenticating, the SFTP subsystem must be initialized:
             success = m_sftp.InitializeSftp();
             if (!success) throw new Exception(m_sftp.LastErrorText);
-
         }
 
         public bool WriteTilSFtp(int lobnr)
@@ -249,7 +256,7 @@ namespace nsPuls3060
             return AntalFiler;
         }
 
-        private void sendAttachedFile(string filename, byte[] data, bool bTilPBS)
+        public void sendAttachedFile(string filename, byte[] data, bool bTilPBS)
         {
             string local_filename = filename.Replace('.', '_') + ".txt";
             Chilkat.MailMan mailman = new Chilkat.MailMan();
@@ -258,29 +265,40 @@ namespace nsPuls3060
             if (success != true) throw new Exception(mailman.LastErrorText);
 
             //  Use the GMail SMTP server
-            mailman.SmtpHost = "smtp.gmail.com";
-            mailman.SmtpPort = 465;
-            mailman.SmtpSsl = true;
+            mailman.SmtpHost = Program.Smtphost;
+            mailman.SmtpPort = int.Parse(Program.Smtpport);
+            mailman.SmtpSsl = bool.Parse(Program.Smtpssl);
             
             //  Set the SMTP login/password.
-            mailman.SmtpUsername = "regnskab.puls3060@gmail.com";
-            mailman.SmtpPassword = "n4vWYkAKsfRFcuLW 58Tb0P0t04wmo6YbC5d1y5h3";
+            mailman.SmtpUsername = Program.Smtpuser;
+            mailman.SmtpPassword = Program.Smtppasswd;
 
             //  Create a new email object
             Chilkat.Email email = new Chilkat.Email();
 
             if (bTilPBS)
             {
+#if (DEBUG)
+                email.Subject = "Test Til PBS: " + local_filename;
+                email.Body = "Test Til PBS: " + local_filename;
+#else
                 email.Subject = "Til PBS: " + local_filename;
                 email.Body = "Til PBS: " + local_filename;
+#endif
             }
             else
             {
+#if (DEBUG)
+                email.Subject = "Test Fra PBS: " + local_filename;
+                email.Body = "Test Fra PBS: " + local_filename;
+#else
                 email.Subject = "Fra PBS: " + local_filename;
                 email.Body = "Fra PBS: " + local_filename;
+#endif
             }
-            email.From = "Regnskab Puls3060 <regnskab@puls3060.dk>";
-            email.AddTo("Regnskab Puls3060", "regnskab.puls3060@gmail.com");
+            email.AddTo(Program.MailToName, Program.MailToAddr);
+            email.From = Program.MailFrom;
+            email.ReplyTo = Program.MailReply;
             email.AddDataAttachment2(local_filename, data, "text/plain");
             email.UnzipAttachments();
 

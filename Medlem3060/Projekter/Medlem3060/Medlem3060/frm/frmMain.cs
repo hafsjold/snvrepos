@@ -128,15 +128,17 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
-            KarFakturastr_k objKarFakturastr_k = new KarFakturastr_k();
-            objKarFakturastr_k.open();
-            int xx = 1;
+            //KarFakturastr_k objKarFakturastr_k = new KarFakturastr_k();
+            //objKarFakturastr_k.open();
+            //int xx = 1;
             //clsImportMedlem objImportMedlem = new clsImportMedlem();
             //clsGoogle objGoogle = new clsGoogle();
             //objGoogle.test();
             //clsRecovery objRecovery = new clsRecovery();
             //objRecovery.TestRecovery();
             //clsSFTP objSFTP = new clsSFTP();
+            //byte[] data ={96,97,98};
+            //objSFTP.sendAttachedFile("testfile", data, false);
             //objSFTP.WriteTilSFtp(606);
             //clsPbs objPbs = new clsPbs();
             //clsPbs601 objPbs601 = new clsPbs601();
