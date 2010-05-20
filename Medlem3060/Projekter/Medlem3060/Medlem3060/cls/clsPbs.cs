@@ -482,6 +482,7 @@ namespace nsPuls3060
                     Program.dbData3060.ExecuteCommand("ALTER TABLE [tblSysinfo] ADD PRIMARY KEY ([vkey]);");
                     Program.dbData3060.ExecuteCommand("CREATE UNIQUE INDEX [UQ__tblSysinfo__000000000000068A] ON [tblSysinfo] ([vkey] ASC);");
                     Program.dbData3060.ExecuteCommand("INSERT INTO [tblSysinfo] ([vkey],[val]) VALUES (N'VERSION',N'2.1.0.0');");
+                    dbVersion = "2.1.0.0";
                     //Tilføj et nyt felt [Afsluttet] til SqlDatabasen 
                     Program.dbData3060.ExecuteCommand("ALTER TABLE [tblRegnskab] ADD COLUMN [Afsluttet] bit NULL;");
 
@@ -507,6 +508,7 @@ namespace nsPuls3060
                     Program.dbData3060.ExecuteCommand("CREATE UNIQUE INDEX [UQ__tblsftp__00000000000006E4] ON [tblsftp] ([id] ASC);");
 
                     Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.2.0.0'  WHERE [vkey] = 'VERSION';");
+                    dbVersion = "2.2.0.0";
                     Program.dbData3060.ExecuteCommand("INSERT INTO [tblsftp] ([navn],[host],[port],[user],[outbound],[inbound],[pincode]) VALUES (N'Produktion',N'194.239.133.111',N'10022',N'LOEBEKLU',N'/LOEBEKLU',N'/LOEBEKLU',N'1234');");
                     Program.dbData3060.ExecuteCommand("INSERT INTO [tblsftp] ([navn],[host],[port],[user],[outbound],[inbound],[pincode]) VALUES (N'Test',N'194.239.133.112',N'10022',N'TOEBEKLU',N'/TOEBEKLU',N'/TOEBEKLU',N'1234');");
                 }
@@ -528,7 +530,7 @@ namespace nsPuls3060
                     Program.dbData3060.ExecuteCommand("CREATE UNIQUE INDEX [UQ__tbloverforsel__00000000000006B2] ON [tbloverforsel] ([id] ASC);");
 
                     Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.3.0.0'  WHERE [vkey] = 'VERSION';");
-
+                    dbVersion = "2.3.0.0";
                 }
                 catch (System.Data.SqlServerCe.SqlCeException e)
                 {
@@ -544,7 +546,7 @@ namespace nsPuls3060
                     //Tilføj et nyt felt bsh til tabel [tempKontforslag]  til SqlDatabasen 
                     Program.dbData3060.ExecuteCommand("ALTER TABLE [tempKontforslag] ADD COLUMN [bsh] bit NULL;");
                     Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.4.0.0'  WHERE [vkey] = 'VERSION';");
-
+                    dbVersion = "2.4.0.0";
                 }
                 catch (System.Data.SqlServerCe.SqlCeException e)
                 {
@@ -566,7 +568,7 @@ namespace nsPuls3060
                     Program.dbData3060.ExecuteCommand("ALTER TABLE [tempBetalforslaglinie] ADD CONSTRAINT [FK_tempBetalforslag_tempBetalforslaglinie] FOREIGN KEY ([Betalforslagid]) REFERENCES [tempBetalforslag]([id]) ON DELETE CASCADE ON UPDATE CASCADE;");
 
                     Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.5.0.0'  WHERE [vkey] = 'VERSION';");
-
+                    dbVersion = "2.5.0.0";
                 }
                 catch (System.Data.SqlServerCe.SqlCeException e)
                 {
@@ -598,7 +600,7 @@ namespace nsPuls3060
                     Program.dbData3060.ExecuteCommand("ALTER TABLE [tbloverforsel] ADD COLUMN [bankkontonr] nvarchar(10) NULL;");					
                     
                     Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.6.0.0'  WHERE [vkey] = 'VERSION';");
-
+                    dbVersion = "2.6.0.0";
                 }
                 catch (System.Data.SqlServerCe.SqlCeException e)
                 {
