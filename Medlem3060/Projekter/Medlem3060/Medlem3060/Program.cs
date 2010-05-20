@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace nsPuls3060
 {
@@ -148,7 +149,7 @@ namespace nsPuls3060
                 m_MailReply = value;
             }
         }
-        
+
         public static string path_to_lock_summasummarum_kontoplan
         {
             get
@@ -493,7 +494,30 @@ namespace nsPuls3060
             return qryLogResult;
         }
 
-        public static FrmMain frmMain{ get; set; }
+        public static FrmMain frmMain { get; set; }
+
+        public static bool ValidatekBank(string Bank)
+        {
+            string[] value = new string[2];
+            Regex regex = new Regex("(^[0-9]*) ([0-9]*$)");
+            Match m = regex.Match(Bank);
+            if (m.Success)
+            {
+                for (int j = 1; j <= 2; j++)
+                {
+                    if (m.Groups[j].Success)
+                    {
+                        value[j - 1] = m.Groups[j].ToString().Trim();
+                    }
+                }
+                string wRegnr = value[0];
+                string wKonto = value[1];
+
+                if ((wRegnr.Length == 4) & (wKonto.Length == 10)) return true;
+                else return false;
+            }
+            return false;
+        }
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

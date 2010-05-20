@@ -61,6 +61,7 @@ namespace nsPuls3060
             var qry_Kreditor = from h in Program.karFakturaer_k
                                where h.saldo > 0
                                join m in Program.karMedlemmer on h.kreditornr.ToString() equals m.Krdktonr
+                               where Program.ValidatekBank(m.Bank)
                                select new 
                                {
                                    h.fakid,

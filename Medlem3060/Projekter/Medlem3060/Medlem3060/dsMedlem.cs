@@ -72,8 +72,9 @@ namespace nsPuls3060
                         k_rec.Postnr = (m.IsPostnrNull()) ? null : m.Postnr;
                         k_rec.Bynavn = (m.IsBynavnNull()) ? null : m.Bynavn;
                         k_rec.Telefon = (m.IsTelefonNull()) ? null : m.Telefon;
-                        k_rec.Bank = (m.IsBankNull()) ? null : m.Bank;
                         k_rec.Email = (m.IsEmailNull()) ? null : m.Email;
+                        k_rec.Bank = (m.IsBankNull()) ? null : m.Bank;
+                        k_rec.setKreditor();
                         k_rec.getNewCvsString();
                         Program.karMedlemmer.Add(k_rec);
 
@@ -114,8 +115,9 @@ namespace nsPuls3060
                         k_rec.Postnr = (m.IsPostnrNull()) ? null : m.Postnr;
                         k_rec.Bynavn = (m.IsBynavnNull()) ? null : m.Bynavn;
                         k_rec.Telefon = (m.IsTelefonNull()) ? null : m.Telefon;
-                        k_rec.Bank = (m.IsBankNull()) ? null : m.Bank;
                         k_rec.Email = (m.IsEmailNull()) ? null : m.Email;
+                        k_rec.Bank = (m.IsBankNull()) ? null : m.Bank;
+                        k_rec.setKreditor();
                         Program.karMedlemmer.Update(Nr_Key);
 
                         try

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Data.Linq.Mapping;
 
 namespace nsPuls3060
@@ -221,6 +222,22 @@ namespace nsPuls3060
             clsCsv.MedlemFieldUpdate -= new nsPuls3060.clsCsv.MedlemFieldUpdateHandler(On_MedlemFieldUpdate);
         }
 
+        public void setKreditor()
+        {
+            if (this.Erkreditor != "1")
+            {
+                if (Program.ValidatekBank(Bank))
+                {
+                    Erkreditor = "1";
+                    if (Krdktonr.Length == 0)
+                    {
+                        Krdgrup = "Standard";
+                        Krdktonr = KarDkkonti.nextval().ToString();
+                    }
+                }
+            }
+        }
+
         public string getNewCvsString()
         {
             m_Csv = new clsCsv();
@@ -365,7 +382,7 @@ namespace nsPuls3060
                 case "11":
                     m_Csv.value_new = Debgrup != null ? Debgrup : "";
                     break;
-                
+
                 case "12":
                     m_Csv.value_new = Krdgrup != null ? Krdgrup : "";
                     break;
@@ -392,7 +409,7 @@ namespace nsPuls3060
 
                 case "23":
                     m_Csv.value_new = Erkreditor != null ? Erkreditor : "";
-                    break;		
+                    break;
 
 
                 default:
@@ -480,15 +497,15 @@ namespace nsPuls3060
                 case "20":
                     Debktonr = m_Csv.value;
                     break;
-                
+
                 case "21":
                     Krdktonr = m_Csv.value;
                     break;
-                
+
                 case "22":
                     Erdebitor = m_Csv.value;
                     break;
-                
+
                 case "23":
                     Erkreditor = m_Csv.value;
                     break;
