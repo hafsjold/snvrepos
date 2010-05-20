@@ -282,6 +282,7 @@ namespace nsPuls3060
                     this.pgmBetal.Value = (imax * 3);
                     clsSFTP objSFTP = new clsSFTP();
                     objSFTP.WriteTilSFtp(m_lobnr);
+                    objOverfoersel.overfoersel_mail(m_lobnr);
                 }
                 this.pgmBetal.Value = (imax * 4);
                 cmdBetal.Text = "Afslut";

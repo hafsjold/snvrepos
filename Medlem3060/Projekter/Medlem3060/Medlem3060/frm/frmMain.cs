@@ -128,6 +128,8 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
+            clsOverfoersel objOverfoersel = new clsOverfoersel();
+            objOverfoersel.overfoersel_mail(617);
             //KarFakturastr_k objKarFakturastr_k = new KarFakturastr_k();
             //objKarFakturastr_k.open();
             //int xx = 1;

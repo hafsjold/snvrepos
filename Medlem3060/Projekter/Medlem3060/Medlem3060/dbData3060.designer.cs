@@ -2724,6 +2724,8 @@ namespace nsPuls3060
 		
 		private string _Bankkontonr;
 		
+		private System.Nullable<System.DateTime> _Betalingsdato;
+		
 		private EntityRef<Tbltilpbs> _Tbltilpbs;
 		
     #region Extensibility Method Definitions
@@ -2752,6 +2754,8 @@ namespace nsPuls3060
     partial void OnBankregnrChanged();
     partial void OnBankkontonrChanging(string value);
     partial void OnBankkontonrChanged();
+    partial void OnBetalingsdatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnBetalingsdatoChanged();
     #endregion
 		
 		public Tbloverforsel()
@@ -2976,6 +2980,26 @@ namespace nsPuls3060
 					this._Bankkontonr = value;
 					this.SendPropertyChanged("Bankkontonr");
 					this.OnBankkontonrChanged();
+				}
+			}
+		}
+		
+		[Column(Name="betalingsdato", Storage="_Betalingsdato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Betalingsdato
+		{
+			get
+			{
+				return this._Betalingsdato;
+			}
+			set
+			{
+				if ((this._Betalingsdato != value))
+				{
+					this.OnBetalingsdatoChanging(value);
+					this.SendPropertyChanging();
+					this._Betalingsdato = value;
+					this.SendPropertyChanged("Betalingsdato");
+					this.OnBetalingsdatoChanged();
 				}
 			}
 		}

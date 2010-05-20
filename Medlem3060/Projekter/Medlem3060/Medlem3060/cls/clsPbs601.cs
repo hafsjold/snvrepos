@@ -547,7 +547,6 @@ namespace nsPuls3060
 
             rsttil.Udtrukket = DateTime.Now;
             rsttil.Leverancespecifikation = wleveranceid.ToString();
-            rsttil.Pbsforsendelseid = 1111;
             Program.dbData3060.SubmitChanges();
         }
 

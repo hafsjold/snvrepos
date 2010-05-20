@@ -12,8 +12,6 @@ namespace nsPuls3060
 {
     public class clsOverfoersel
     {
-        private Tblpbsfiles m_rec_pbsfiles;
-
         public delegate void OverfoerselDelegateHandler(int lobnr);
         public static event OverfoerselDelegateHandler SetLobnr;
 
@@ -38,28 +36,29 @@ namespace nsPuls3060
                              join l in Program.dbData3060.TempBetalforslaglinie on k.Nr equals l.Nr
                              join h in Program.dbData3060.TempBetalforslag on l.Betalforslagid equals h.Id
                              select new
-                             { 
+                             {
                                  k.Nr,
                                  k.Navn,
                                  h.Betalingsdato,
                                  l.Advisbelob,
                                  l.Fakid,
                                  l.Bankregnr,
-                                 l.Bankkontonr
+                                 l.Bankkontonr,
                              };
 
             foreach (var rstmedlem in rstmedlems)
             {
 
-                wadvistekst = "Puls 3060 Betaling";
-                Tbloverforsel rec_krdfak = new Tbloverforsel 
+                wadvistekst = "Puls3060-Ref: " + rstmedlem.Fakid;
+                Tbloverforsel rec_krdfak = new Tbloverforsel
                 {
                     Nr = rstmedlem.Nr,
                     Advistekst = wadvistekst,
                     Advisbelob = rstmedlem.Advisbelob,
                     SFakID = rstmedlem.Fakid,
                     Bankregnr = rstmedlem.Bankregnr,
-                    Bankkontonr = rstmedlem.Bankkontonr
+                    Bankkontonr = rstmedlem.Bankkontonr,
+                    Betalingsdato = bankdageplus(rstmedlem.Betalingsdato, 0)
                 };
                 rec_tilpbs.Tbloverforsel.Add(rec_krdfak);
                 wantalfakturaer++;
@@ -74,26 +73,10 @@ namespace nsPuls3060
         {
             string rec;
             int seq = 0;
-            //rcd record;
-            //krd record;
-            //deb record;
-            //debinfo record;
-            //bel record;
-            //lin record;
-            //curlin refcursor;
-            int recnr;
-            string command;
-            int fortegn;
-            bool selector;
-            int wbilagid;
-            int wtransid;
-            int wpbsfilesid;
-            int wpbsforsendelseid;
             int wleveranceid;
             DateTime wdispositionsdato;
             int whour;
             int wbankdage;
-            int wantaloverforsler;
 
             // Betalingsoplysninger
             int belobint;
@@ -118,6 +101,8 @@ namespace nsPuls3060
             antalos5tot = 0;
             belobos5tot = 0;
 
+
+
             {
                 var antal = (from c in Program.dbData3060.Tbltilpbs
                              where c.Id == lobnr
@@ -131,7 +116,7 @@ namespace nsPuls3060
                 if (antal > 0) { throw new Exception("102 - Pbsforsendelse for id: " + lobnr + " er allerede sendt"); }
             }
             {
-                var antal = (from c in Program.dbData3060.Tbloverforsel 
+                var antal = (from c in Program.dbData3060.Tbloverforsel
                              where c.Tilpbsid == lobnr
                              select c).Count();
                 if (antal == 0) { throw new Exception("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr); }
@@ -163,10 +148,10 @@ namespace nsPuls3060
             rec_pbsforsendelse.Tblpbsfiles.Add(rec_pbsfiles);
 
             Tblkreditor krd = (from k in Program.dbData3060.Tblkreditor
-                               where k.Delsystem == rsttil.Delsystem 
+                               where k.Delsystem == rsttil.Delsystem
                                select k).First();
 
-            
+
             // -- Leverance Start - OS1
             // - rstkrd.Datalevnr - Dataleverandørnr.: Dataleverandørens SE-nummer
             // - wleveranceid     - Leveranceidentifikation: Løbenummer efter eget valg
@@ -180,27 +165,31 @@ namespace nsPuls3060
 
             // Start loop over betalinger i tbloverforsel
             int testantal = qrydeb.Count();
-            foreach (Tbloverforsel deb in qrydeb)
+            foreach (Tbloverforsel rec_overfoersel in qrydeb)
             {
+                DateTime Betalingsdato = (rec_overfoersel.Betalingsdato == null) ? wdispositionsdato : (DateTime)rec_overfoersel.Betalingsdato;
+                if (Betalingsdato < wdispositionsdato) Betalingsdato = wdispositionsdato;
+                rec_overfoersel.Betalingsdato = Betalingsdato; //opdater aktuel betalingsdato
+
                 // Sektion start – (OS2)
                 antalos5 = 0;
                 belobos5 = 0;
 
                 // -- OS2
-                // - wdispositionsdato - Dispositionsdato
-                // - krd.regnr         - Reg.nr.: Overførselsregistreringsnummer
-                // - krd.kontonr       - Kontonr.: Overførselskontonummer
-                // - krd.datalevnr     - Dataleverandørnr.: Dataleverandørens SE-nummer
-                rec = writeOS2(wdispositionsdato, krd.Regnr, krd.Kontonr, krd.Datalevnr);
+                // - Betalingsdato  - Dispositionsdato
+                // - krd.regnr      - Reg.nr.: Overførselsregistreringsnummer
+                // - krd.kontonr    - Kontonr.: Overførselskontonummer
+                // - krd.datalevnr  - Dataleverandørnr.: Dataleverandørens SE-nummer
+                rec = writeOS2(Betalingsdato, krd.Regnr, krd.Kontonr, krd.Datalevnr);
                 rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
                 rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
 
                 ++antalsek;
 
                 // -- Forfald betaling
-                if (deb.Advisbelob > 0)
+                if (rec_overfoersel.Advisbelob > 0)
                 {
-                    belobint = (int)(deb.Advisbelob * ((decimal)100));
+                    belobint = (int)(rec_overfoersel.Advisbelob * ((decimal)100));
                     belobos5 = belobos5 + belobint;
                     belobos5tot = belobos5tot + belobint;
                 }
@@ -213,12 +202,12 @@ namespace nsPuls3060
                 // - debinfo.bankregnr   - Betalingsmodtager registreringsnummer
                 // - debinfo.bankkontonr - Betalingsmodtager kontonummer
                 // - belobint            - Beløb: Beløb i øre uden fortegn
-                // - wdispositionsdato   - Dispositionsdato
+                // - Betalingsdato       - Dispositionsdato
                 // - krd.regnr           - Reg.nr.: Overførselsregistreringsnummer
                 // - krd.kontonr         - Kontonr.: Overførselskontonummer
                 // - deb.advistekst      - Tekst på Betalingsmodtagers kontoudtog
                 // - deb.SFakID          - Ref til betalingsmodtager til eget brug
-                rec = writeOS5(deb.Bankregnr, deb.Bankkontonr, belobint, wdispositionsdato, krd.Regnr, krd.Kontonr, deb.Advistekst, (int)deb.SFakID);
+                rec = writeOS5(rec_overfoersel.Bankregnr, rec_overfoersel.Bankkontonr, belobint, Betalingsdato, krd.Regnr, krd.Kontonr, rec_overfoersel.Advistekst, (int)rec_overfoersel.SFakID);
                 rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
                 rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
 
@@ -230,11 +219,11 @@ namespace nsPuls3060
                 // - OS8
                 // - antalos5          - Antal 042: Antal foranstående 042 records
                 // - belobos5          - Beløb: Nettobeløb i 042 records
-                // - wdispositionsdato - Dispositionsdato
+                // - Betalingsdato     - Dispositionsdato
                 // - krd.regnr         - Reg.nr.: Overførselsregistreringsnummer
                 // - krd.kontonr       - Kontonr.: Overførselskontonummer
                 // - krd.datalevnr     - Dataleverandørnr.: Dataleverandørens SE-nummer
-                rec = writeOS8(antalos5, belobos5, wdispositionsdato, krd.Regnr, krd.Kontonr, krd.Datalevnr);
+                rec = writeOS8(antalos5, belobos5, Betalingsdato, krd.Regnr, krd.Kontonr, krd.Datalevnr);
                 rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
                 rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
 
@@ -252,9 +241,83 @@ namespace nsPuls3060
 
             rsttil.Udtrukket = DateTime.Now;
             rsttil.Leverancespecifikation = wleveranceid.ToString();
-            rsttil.Pbsforsendelseid = 1111;
             Program.dbData3060.SubmitChanges();
 
+        }
+
+        public void overfoersel_mail(int lobnr)
+        {
+            var antal = (from c in Program.dbData3060.Tbltilpbs
+                         where c.Id == lobnr
+                         select c).Count();
+            if (antal == 0) { throw new Exception("101 - Der er ingen PBS forsendelse for id: " + lobnr); }
+
+            Chilkat.MailMan mailman = new Chilkat.MailMan();
+            bool success;
+            success = mailman.UnlockComponent("HAFSJOMAILQ_9QYSMgP0oR1h");
+            if (success != true) throw new Exception(mailman.LastErrorText);
+
+            //  Use the GMail SMTP server
+            mailman.SmtpHost = Program.Smtphost;
+            mailman.SmtpPort = int.Parse(Program.Smtpport);
+            mailman.SmtpSsl = bool.Parse(Program.Smtpssl);
+
+            //  Set the SMTP login/password.
+            mailman.SmtpUsername = Program.Smtpuser;
+            mailman.SmtpPassword = Program.Smtppasswd;
+
+            var qrykrd = from k in Program.karMedlemmer
+                         join h in Program.dbData3060.Tbloverforsel on k.Nr equals h.Nr
+                         where h.Tilpbsid == lobnr
+                         select new 
+                         {
+                           k.Nr,
+                           k.Email,
+                           k.Kaldenavn,
+                           k.Navn,
+                           h.Betalingsdato,
+                           h.Advistekst,
+                           h.Advisbelob,
+                           h.Bankregnr,
+                           h.Bankkontonr,
+                         };
+
+
+            // Start loop over betalinger i tbloverforsel
+            int testantal = qrykrd.Count();
+            foreach (var krd in qrykrd)
+            {
+                //  Create a new email object
+                Chilkat.Email email = new Chilkat.Email();
+
+#if (DEBUG)
+                email.Subject = "Bankoverførsel fra Puls 3060 TEST";
+#else
+                email.Subject = "Bankoverførsel fra Puls 3060";
+#endif
+                string advisbelob_formated = String.Format("{0:###0.00}", krd.Advisbelob).Replace('.', ',');
+                string betaldato_formated = String.Format("{0:dddd} den {0:dd. MMMM}", krd.Betalingsdato);
+
+                string template = "Hej {0}!\n\nPuls 3060 har idag overført {1} kr. til din bank.\nBeløbet vil være til disposition {2} på konto {3}-{4}.\nTeksten på kontoudtoget vil være \"{5}\".\n\nMed venlig hilsen\nPuls3060 Regnskab.";
+
+                email.Body = string.Format(template, 
+                            krd.Kaldenavn, 
+                            advisbelob_formated, 
+                            betaldato_formated, 
+                            krd.Bankregnr, 
+                            krd.Bankkontonr,
+                            krd.Advistekst);
+                if (krd.Email.Length > 0)
+                {
+                    email.AddTo(krd.Navn, krd.Email);
+                }
+                email.AddBcc(Program.MailToName,Program.MailToAddr);
+                email.From = Program.MailFrom;
+                email.ReplyTo = Program.MailReply;
+
+                success = mailman.SendEmail(email);
+                if (success != true) throw new Exception(email.LastErrorText);
+            }
         }
 
         private DateTime bankdageplus(DateTime fradato, int antdage)

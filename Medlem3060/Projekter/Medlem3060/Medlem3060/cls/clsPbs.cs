@@ -537,7 +537,7 @@ namespace nsPuls3060
                     object x = e;
                 }
             }
-            
+
             if (dbVersion == "2.3.0.0")
             {
                 try
@@ -597,8 +597,8 @@ namespace nsPuls3060
                     Program.dbData3060.ExecuteCommand("ALTER TABLE [tempBetalforslaglinie] ADD COLUMN [bankkontonr] nvarchar(10) NULL;");
 
                     Program.dbData3060.ExecuteCommand("ALTER TABLE [tbloverforsel] ADD COLUMN [bankregnr] nvarchar(4) NULL;");
-                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tbloverforsel] ADD COLUMN [bankkontonr] nvarchar(10) NULL;");					
-                    
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tbloverforsel] ADD COLUMN [bankkontonr] nvarchar(10) NULL;");
+
                     Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.6.0.0'  WHERE [vkey] = 'VERSION';");
                     dbVersion = "2.6.0.0";
                 }
@@ -606,7 +606,25 @@ namespace nsPuls3060
                 {
                     object x = e;
                 }
-            }	
+
+            }
+            
+            if (dbVersion == "2.6.0.0")
+            {
+                try
+                {
+                    //version "2.6.0.0" --> "2.7.0.0" opgradering af SqlDatabasen
+
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tbloverforsel] ADD COLUMN [betalingsdato] datetime NULL;");
+
+                    Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.7.0.0'  WHERE [vkey] = 'VERSION';");
+                    dbVersion = "2.7.0.0";
+                }
+                catch (System.Data.SqlServerCe.SqlCeException e)
+                {
+                    object x = e;
+                }
+            }
 
             return true;
         }
