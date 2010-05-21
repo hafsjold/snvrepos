@@ -587,30 +587,26 @@ namespace nsPuls3060
             success = mailman.UnlockComponent("HAFSJOMAILQ_9QYSMgP0oR1h");
             if (success != true) throw new Exception(mailman.LastErrorText);
 
-            //  Use the HafsjoldData SMTP server
-            mailman.SmtpHost = "hd34.hafsjold.dk";
-            mailman.SmtpPort = 25;
-            mailman.SmtpSsl = false;
-
-            /*
             //  Use the GMail SMTP server
-            mailman.SmtpHost = "smtp.gmail.com";
-            mailman.SmtpPort = 465;
-            mailman.SmtpSsl = true;
+            mailman.SmtpHost = Program.Smtphost;
+            mailman.SmtpPort = int.Parse(Program.Smtpport);
+            mailman.SmtpSsl = bool.Parse(Program.Smtpssl);
 
             //  Set the SMTP login/password.
-            mailman.SmtpUsername = "kasserer.puls3060@gmail.com";
-            mailman.SmtpPassword = "n4vWYkAKsfRFcuLW";
-            */
+            mailman.SmtpUsername = Program.Smtpuser;
+            mailman.SmtpPassword = Program.Smtppasswd;
 
             //  Create a new email object
             Chilkat.Email email = new Chilkat.Email();
 
             email.Subject = "Puls3060 Medlems-oplysninger: " + local_filename;
             email.Body = "Puls3060 Medlems-oplysninger: " + local_filename;
-            email.From = "Mogens Hafsjold <mha@hafsjold.dk>";
-            email.AddTo("kasserer", "kasserer.puls3060@gmail.com");
-            email.AddCC("Mogens Hafsjold", "mha@hafsjold.dk");
+
+            //email.AddTo(Program.MailToName, Program.MailToAddr);
+            email.From = Program.MailFrom;
+            email.ReplyTo = Program.MailReply;
+            email.AddBcc(Program.MailToName, Program.MailToAddr);
+
             email.AddFileAttachment(filename);
             email.UnzipAttachments();
 
@@ -628,30 +624,26 @@ namespace nsPuls3060
             success = mailman.UnlockComponent("HAFSJOMAILQ_9QYSMgP0oR1h");
             if (success != true) throw new Exception(mailman.LastErrorText);
 
-            //  Use the HafsjoldData SMTP server
-            mailman.SmtpHost = "hd34.hafsjold.dk";
-            mailman.SmtpPort = 25;
-            mailman.SmtpSsl = false;
-
-            /*
             //  Use the GMail SMTP server
-            mailman.SmtpHost = "smtp.gmail.com";
-            mailman.SmtpPort = 465;
-            mailman.SmtpSsl = true;
+            mailman.SmtpHost = Program.Smtphost;
+            mailman.SmtpPort = int.Parse(Program.Smtpport);
+            mailman.SmtpSsl = bool.Parse(Program.Smtpssl);
 
             //  Set the SMTP login/password.
-            mailman.SmtpUsername = "kasserer.puls3060@gmail.com";
-            mailman.SmtpPassword = "n4vWYkAKsfRFcuLW";
-            */
+            mailman.SmtpUsername = Program.Smtpuser;
+            mailman.SmtpPassword = Program.Smtppasswd;
 
             //  Create a new email object
             Chilkat.Email email = new Chilkat.Email();
 
             email.Subject = "Puls3060 Regnskab: " + local_filename;
             email.Body = "Puls3060 Regnskab: " + local_filename;
-            email.From = "Mogens Hafsjold <mha@hafsjold.dk>";
-            email.AddTo("kasserer", "kasserer.puls3060@gmail.com");
-            email.AddCC("Mogens Hafsjold", "mha@hafsjold.dk");
+
+            //email.AddTo(Program.MailToName, Program.MailToAddr);
+            email.From = Program.MailFrom;
+            email.ReplyTo = Program.MailReply;
+            email.AddBcc(Program.MailToName, Program.MailToAddr);
+            
             email.AddFileAttachment(filename);
             email.UnzipAttachments();
 
