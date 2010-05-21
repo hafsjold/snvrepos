@@ -29,7 +29,7 @@ namespace nsPuls3060
             //m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Produktion" select s).First();
 #else
             m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Produktion" select s).First();
-#endif 
+#endif
 
             m_sftp = new SFtp();
             bool success = m_sftp.UnlockComponent("HAFSJOSSH_6pspJCMP1QnW");
@@ -80,7 +80,8 @@ namespace nsPuls3060
                     Bilagdato = (DateTime?)d2.Bilagdato,
                     Pbsforsendelseid = (int?)d2.Pbsforsendelseid,
                     Udtrukket = (DateTime?)d2.Udtrukket,
-                    pbsfilesid = (int?)d1.Id
+                    pbsfilesid = (int?)d1.Id,
+                    Leveranceid = (int)h.Leveranceid
                 };
 
             int antal = qry_selectfiles.Count();
@@ -92,7 +93,7 @@ namespace nsPuls3060
                 if (qry_pbsfiles.Count() > 0)
                 {
                     Tblpbsfiles m_rec_pbsfiles = qry_pbsfiles.First();
-                    TilPBSFilename = "PBS" + rec_selecfiles.Leverancespecifikation + ".lst";
+                    TilPBSFilename = AddPbcnetRecords(rec_selecfiles.Delsystem, rec_selecfiles.Leveranceid, m_rec_pbsfiles.Id);
                     bool success;
 
 
@@ -111,7 +112,7 @@ namespace nsPuls3060
                     char[] c_TilPBSFile = TilPBSFile.ToCharArray();
                     byte[] b_TilPBSFile = System.Text.Encoding.GetEncoding("windows-1252").GetBytes(c_TilPBSFile);
                     FilesSize = b_TilPBSFile.Length;
-                    
+
                     sendAttachedFile(TilPBSFilename, b_TilPBSFile, true);
 
                     string handle = m_sftp.OpenFile(TilPBSFilename, "writeOnly", "createTruncate");
@@ -269,7 +270,7 @@ namespace nsPuls3060
             mailman.SmtpHost = Program.Smtphost;
             mailman.SmtpPort = int.Parse(Program.Smtpport);
             mailman.SmtpSsl = bool.Parse(Program.Smtpssl);
-            
+
             //  Set the SMTP login/password.
             mailman.SmtpUsername = Program.Smtpuser;
             mailman.SmtpPassword = Program.Smtppasswd;
@@ -307,6 +308,98 @@ namespace nsPuls3060
             if (success != true) throw new Exception(email.LastErrorText);
 
         }
+
+        public string AddPbcnetRecords(string delsystem, int leveranceid, int pbsfilesid)
+        {
+            int antal;
+            int pbcnetrecords;
+            DateTime transmisionsdato;
+            int idlev;
+            string filename;
+            string rec;
+
+            pbcnetrecords = (from h in Program.dbData3060.Tblpbsfile
+                             where h.Pbsfilesid == pbsfilesid & (h.Seqnr == 0 | h.Seqnr == 9999)
+                             select h).Count();
+
+            if (pbcnetrecords == 0)
+            {
+                // Find antal records
+                antal = (from h in Program.dbData3060.Tblpbsfile
+                         where h.Pbsfilesid == pbsfilesid & h.Seqnr != 0 & h.Seqnr != 9999
+                         select h).Count();
+                transmisionsdato = DateTime.Now;
+                idlev = clsPbs.nextval("idlev");
+
+                Tblpbsfiles rec_pbsfiles = (from h in Program.dbData3060.Tblpbsfiles where h.Id == pbsfilesid select h).First();
+
+                rec = write00(delsystem, transmisionsdato, idlev, leveranceid);
+                Tblpbsfile rec_pbsfile = new Tblpbsfile { Seqnr = 0, Data = rec };
+                rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+
+                rec = write90(delsystem, transmisionsdato, idlev, leveranceid, antal);
+                rec_pbsfile = new Tblpbsfile { Seqnr = 9999, Data = rec };
+                rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+
+                Program.dbData3060.SubmitChanges();
+
+                filename = "D";
+                filename += lpad(leveranceid, 5, '0');
+                filename += lpad(idlev, 2, '0');
+                filename += ".";
+                filename += rpad(delsystem, 3, '_');
+            }
+            else
+                filename = "Unknown";
+            
+            return filename;
+        }
+
+        private string write00(string delsystem, DateTime transmisiondato, int idlev, int idfri)
+        {
+            string rec = null;
+
+            rec = "PBCNET00";
+            rec += lpad(delsystem, 3, '?');
+            rec += rpad("", 1, ' ');
+            rec += lpad(String.Format("{0:yyMMdd}", transmisiondato), 6, '?');
+            rec += lpad(idlev, 2, '0');
+            rec += rpad("", 2, ' ');
+            rec += lpad(idfri, 6, '0');
+            rec += rpad("", 8, ' ');
+            rec += rpad("", 8, ' ');
+
+            return rec;
+        }
+
+        private string write90(string delsystem, DateTime transmisiondato, int idlev, int idfri, int antal)
+        {
+            string rec = null;
+
+            rec = "PBCNET90";
+            rec += lpad(delsystem, 3, '?');
+            rec += rpad("", 1, ' ');
+            rec += lpad(String.Format("{0:yyMMdd}", transmisiondato), 6, '?');
+            rec += lpad(idlev, 2, '0');
+            rec += rpad("", 2, ' ');
+            rec += lpad(idfri, 6, '0');
+            rec += lpad(antal, 6, '0');
+
+            return rec;
+        }
+
+        public object lpad(Object oVal, int Length, char PadChar)
+        {
+            string Val = oVal.ToString();
+            return Val.PadLeft(Length, PadChar);
+        }
+
+        public object rpad(Object oVal, int Length, char PadChar)
+        {
+            string Val = oVal.ToString();
+            return Val.PadRight(Length, PadChar);
+        }
+
     }
 
 }
