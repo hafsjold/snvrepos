@@ -59,10 +59,25 @@ namespace nsPuls3060
             this.Aarskontingent.Text = "150";
 
             wt = m_initdate.AddMonths(1);
-            this.DatoKontingentForfald.Value = wt.AddDays(-wt.Day + 4);
+            this.DatoKontingentForfald.Value = clsOverfoersel.bankdageplus(wt.AddDays(-wt.Day + 2), 0);
 
         }
 
+        private void DelsystemBSH_CheckStateChanged(object sender, EventArgs e)
+        {
+            DateTime wt = DateTime.Now;
+            m_initdate = new DateTime(wt.Year, wt.Month, wt.Day);
+
+            if (this.DelsystemBSH.Checked)
+            {
+                this.DatoKontingentForfald.Value = clsOverfoersel.bankdageplus(wt, 5);
+            }
+            else
+            {
+                wt = m_initdate.AddMonths(1);
+                this.DatoKontingentForfald.Value = clsOverfoersel.bankdageplus(wt.AddDays(-wt.Day + 2), 0);
+            }
+        }
 
         private void cmdForslag_Click(object sender, EventArgs e)
         {
@@ -295,7 +310,7 @@ namespace nsPuls3060
 
         private void cmdFakturer_Click(object sender, EventArgs e)
         {
-            string TilPBSFilename;
+            string TilPBSFilename = "Unknown";
             int AntalFakturaer;
             int imax;
             string keyval;
@@ -323,7 +338,7 @@ namespace nsPuls3060
             {
                 TempKontforslag rec_tempKontforslag = new TempKontforslag
                 {
-                    Betalingsdato = this.DatoKontingentForfald.Value,
+                    Betalingsdato = clsOverfoersel.bankdageplus(this.DatoKontingentForfald.Value,0),
                     Bsh = this.DelsystemBSH.Checked
                 };
                 Program.dbData3060.TempKontforslag.InsertOnSubmit(rec_tempKontforslag);
@@ -358,22 +373,12 @@ namespace nsPuls3060
                     this.pgmFaktura.Value = (imax * 3);
                     //objPbs601.WriteTilPbsFile(m_lobnr);
                     clsSFTP objSFTP = new clsSFTP();
-                    objSFTP.WriteTilSFtp(m_lobnr);
+                    TilPBSFilename = objSFTP.WriteTilSFtp(m_lobnr);
                 }
                 this.pgmFaktura.Value = (imax * 4);
                 cmdFakturer.Text = "Afslut";
                 this.DelsystemBSH.Visible = false;
-
-                try
-                {
-                    var rec_tilpbs = (from t in Program.dbData3060.Tbltilpbs where t.Id == m_lobnr select t).First();
-                    TilPBSFilename = "PBS" + rec_tilpbs.Leverancespecifikation + ".lst";
-                }
-                catch (System.InvalidOperationException)
-                {
-                    TilPBSFilename = "PBSNotFound.lst";
-                }
-                this.Label_Fakturatekst.Text = ("Leverance til PBS er gemt i filen " + TilPBSFilename);
+                this.Label_Fakturatekst.Text = ("Leverance til PBS i filen " + TilPBSFilename);
                 this.Label_Fakturatekst.Visible = true;
                 this.pgmFaktura.Visible = false;
             }
@@ -383,5 +388,7 @@ namespace nsPuls3060
         {
             m_lobnr = lobnr;
         }
+
+
     }
 }

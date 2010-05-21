@@ -294,6 +294,7 @@
             this.DelsystemBSH.Text = "BSH";
             this.DelsystemBSH.UseVisualStyleBackColor = true;
             this.DelsystemBSH.Visible = false;
+            this.DelsystemBSH.CheckStateChanged += new System.EventHandler(this.DelsystemBSH_CheckStateChanged);
             // 
             // pgmFaktura
             // 

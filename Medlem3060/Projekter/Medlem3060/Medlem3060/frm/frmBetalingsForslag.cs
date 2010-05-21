@@ -219,7 +219,7 @@ namespace nsPuls3060
 
         private void cmdBetal_Click(object sender, EventArgs e)
         {
-            string TilPBSFilename;
+            string TilPBSFilename = "Unknown";
             int AntalBetalinger;
             int imax;
             string keyval;
@@ -281,22 +281,12 @@ namespace nsPuls3060
                     objOverfoersel.krdfaktura_overfoersel_action(m_lobnr);
                     this.pgmBetal.Value = (imax * 3);
                     clsSFTP objSFTP = new clsSFTP();
-                    objSFTP.WriteTilSFtp(m_lobnr);
+                    TilPBSFilename = objSFTP.WriteTilSFtp(m_lobnr);
                     objOverfoersel.overfoersel_mail(m_lobnr);
                 }
                 this.pgmBetal.Value = (imax * 4);
                 cmdBetal.Text = "Afslut";
-
-                try
-                {
-                    var rec_tilpbs = (from t in Program.dbData3060.Tbltilpbs where t.Id == m_lobnr select t).First();
-                    TilPBSFilename = "PBS" + rec_tilpbs.Leverancespecifikation + ".lst";
-                }
-                catch (System.InvalidOperationException)
-                {
-                    TilPBSFilename = "PBSNotFound.lst";
-                }
-                this.Label_Betaltekst.Text = ("Leverance til PBS er gemt i filen " + TilPBSFilename);
+                this.Label_Betaltekst.Text = ("Leverance til PBS i filen " + TilPBSFilename);
                 this.Label_Betaltekst.Visible = true;
                 this.pgmBetal.Visible = false;
             }

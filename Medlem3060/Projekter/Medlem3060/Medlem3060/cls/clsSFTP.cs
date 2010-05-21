@@ -56,9 +56,9 @@ namespace nsPuls3060
             if (!success) throw new Exception(m_sftp.LastErrorText);
         }
 
-        public bool WriteTilSFtp(int lobnr)
+        public string WriteTilSFtp(int lobnr)
         {
-            string TilPBSFilename;
+            string TilPBSFilename = "Unknown";
             int FilesSize;
 
             var rec_regnskab = Program.qryAktivRegnskab();
@@ -85,8 +85,10 @@ namespace nsPuls3060
                 };
 
             int antal = qry_selectfiles.Count();
-            foreach (var rec_selecfiles in qry_selectfiles)
+            if (antal > 0)
             {
+                var rec_selecfiles = qry_selectfiles.First();
+                
                 var qry_pbsfiles = from h in Program.dbData3060.Tblpbsfiles
                                    where h.Id == rec_selecfiles.pbsfilesid
                                    select h;
@@ -134,7 +136,7 @@ namespace nsPuls3060
                     Program.dbData3060.SubmitChanges();
                 }
             }
-            return true;
+            return TilPBSFilename;
         }
 
 
