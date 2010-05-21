@@ -58,7 +58,7 @@ namespace nsPuls3060
                     SFakID = rstmedlem.Fakid,
                     Bankregnr = rstmedlem.Bankregnr,
                     Bankkontonr = rstmedlem.Bankkontonr,
-                    Betalingsdato = bankdageplus(rstmedlem.Betalingsdato, 0)
+                    Betalingsdato = clsOverfoersel.bankdageplus(rstmedlem.Betalingsdato, 0)
                 };
                 rec_tilpbs.Tbloverforsel.Add(rec_krdfak);
                 wantalfakturaer++;
@@ -92,7 +92,7 @@ namespace nsPuls3060
             whour = DateTime.Now.Hour;
             if (whour > 17) wbankdage = 3;
             else wbankdage = 2;
-            wdispositionsdato = bankdageplus(DateTime.Now, wbankdage);
+            wdispositionsdato = clsOverfoersel.bankdageplus(DateTime.Now, wbankdage);
 
             antalos5 = 0;
             belobos5 = 0;
@@ -320,13 +320,15 @@ namespace nsPuls3060
             }
         }
 
-        private DateTime bankdageplus(DateTime fradato, int antdage)
+        public static DateTime bankdageplus(DateTime pfradato, int antdage)
         {
+            DateTime fradato = new DateTime(pfradato.Year, pfradato.Month, pfradato.Day);
             DateTime dato;
             int antal = 0;
             bool fridag;
             bool negativ;
-            DateTime[] paaskedag = { new DateTime(2010, 4, 4) 
+            DateTime[] paaskedag = {   new DateTime(2009, 4, 12)
+                                     , new DateTime(2010, 4, 4) 
                                      , new DateTime(2011, 4, 24) 
                                      , new DateTime(2012, 4, 8) 
                                      , new DateTime(2013, 3, 31) 
@@ -360,8 +362,9 @@ namespace nsPuls3060
                 else if ((from p in paaskedag select p).Contains(dato.AddDays(3))) fridag = true; //skærtorsdag
                 else if ((from p in paaskedag select p).Contains(dato.AddDays(2))) fridag = true; //langfredag
                 else if ((from p in paaskedag select p).Contains(dato.AddDays(-1))) fridag = true; //2. påskedag
-                else if ((from p in paaskedag select p).Contains(dato.AddDays(-26))) fridag = true; //st. bededag
-                else if ((from p in paaskedag select p).Contains(dato.AddDays(-39))) fridag = true; //kristi himmelfartsdag
+                else if ((from p in paaskedag select p).Contains(dato.AddDays(-26))) fridag = true; //st. bededag (fredag)
+                else if ((from p in paaskedag select p).Contains(dato.AddDays(-39))) fridag = true; //kristi himmelfartsdag (torsdag)
+                else if ((from p in paaskedag select p).Contains(dato.AddDays(-40))) fridag = true; //fredag efter kristi himmelfartsdag
                 else if ((from p in paaskedag select p).Contains(dato.AddDays(-50))) fridag = true; //2. pinsedag
                 else if ((dato.Month == 6) && (dato.Day == 5)) fridag = true; //grundlovsdag
                 else if ((dato.Month == 12) && (dato.Day == 24)) fridag = true; //juleaften

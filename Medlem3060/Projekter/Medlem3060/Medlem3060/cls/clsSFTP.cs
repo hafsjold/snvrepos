@@ -344,10 +344,11 @@ namespace nsPuls3060
                 Program.dbData3060.SubmitChanges();
 
                 filename = "D";
-                filename += lpad(leveranceid, 5, '0');
+                filename += lpad(String.Format("{0:yyMMdd}", transmisionsdato), 6, '?');
                 filename += lpad(idlev, 2, '0');
                 filename += ".";
                 filename += rpad(delsystem, 3, '_');
+
             }
             else
                 filename = "Unknown";
@@ -355,14 +356,14 @@ namespace nsPuls3060
             return filename;
         }
 
-        private string write00(string delsystem, DateTime transmisiondato, int idlev, int idfri)
+        private string write00(string delsystem, DateTime transmisionsdato, int idlev, int idfri)
         {
             string rec = null;
 
             rec = "PBCNET00";
             rec += lpad(delsystem, 3, '?');
             rec += rpad("", 1, ' ');
-            rec += lpad(String.Format("{0:yyMMdd}", transmisiondato), 6, '?');
+            rec += lpad(String.Format("{0:yyMMdd}", transmisionsdato), 6, '?');
             rec += lpad(idlev, 2, '0');
             rec += rpad("", 2, ' ');
             rec += lpad(idfri, 6, '0');

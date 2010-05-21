@@ -128,8 +128,14 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
-            clsOverfoersel objOverfoersel = new clsOverfoersel();
-            objOverfoersel.overfoersel_mail(617);
+            DateTime dato = new DateTime(2010, 5, 20, 
+                13, 25, 00);
+            int plusdage = 2;
+            DateTime wdispositionsdato = clsOverfoersel.bankdageplus(dato, plusdage);
+            int xx = 0;
+
+            //clsOverfoersel objOverfoersel = new clsOverfoersel();
+            //objOverfoersel.overfoersel_mail(617);
             //KarFakturastr_k objKarFakturastr_k = new KarFakturastr_k();
             //objKarFakturastr_k.open();
             //int xx = 1;
