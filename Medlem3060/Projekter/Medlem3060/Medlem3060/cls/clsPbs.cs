@@ -615,10 +615,31 @@ namespace nsPuls3060
                 {
                     //version "2.6.0.0" --> "2.7.0.0" opgradering af SqlDatabasen
 
-                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tbloverforsel] ADD COLUMN [betalingsdato] datetime NULL;");
+                    Program.dbData3060.ExecuteCommand("CREATE TABLE [tempBetalforslaglinie] (  [id] int NOT NULL  IDENTITY (1,1), [Nr] int NOT NULL, [Betalforslagid] int NOT NULL, [advisbelob] numeric(18,2) NOT NULL);");
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tempBetalforslaglinie] ADD PRIMARY KEY ([id]);");
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tempBetalforslaglinie] ADD CONSTRAINT [FK_tempBetalforslag_tempBetalforslaglinie] FOREIGN KEY ([Betalforslagid]) REFERENCES [tempBetalforslag]([id]) ON DELETE CASCADE ON UPDATE CASCADE;");
 
                     Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.7.0.0'  WHERE [vkey] = 'VERSION';");
                     dbVersion = "2.7.0.0";
+                }
+                catch (System.Data.SqlServerCe.SqlCeException e)
+                {
+                    object x = e;
+                }
+            }
+
+            if (dbVersion == "2.7.0.0")
+            {
+                try
+                {
+                    //version "2.7.0.0" --> "2.8.0.0" opgradering af SqlDatabasen
+
+                    Program.dbData3060.ExecuteCommand("CREATE TABLE [tblaftalelin] (  [id] int NOT NULL  IDENTITY (1,1), [frapbsid] int NOT NULL, [pbstranskode] nvarchar(4) NOT NULL, [Nr] int NOT NULL, [debitorkonto] nvarchar(15) NOT NULL, [debgrpnr] nvarchar(5) NOT NULL, [aftalenr] int NULL, [aftalestartdato] datetime NULL, [aftaleslutdato] datetime NULL, [pbssektionnr] nvarchar(5) NOT NULL);");
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tblaftalelin] ADD PRIMARY KEY ([id]);");
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tblaftalelin] ADD CONSTRAINT [FK_tblfrapbs_tblaftalelin] FOREIGN KEY ([frapbsid]) REFERENCES [tblfrapbs]([id]) ON DELETE CASCADE ON UPDATE CASCADE;");
+
+                    Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.8.0.0'  WHERE [vkey] = 'VERSION';");
+                    dbVersion = "2.8.0.0";
                 }
                 catch (System.Data.SqlServerCe.SqlCeException e)
                 {

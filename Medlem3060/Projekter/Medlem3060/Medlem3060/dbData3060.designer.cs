@@ -30,6 +30,9 @@ namespace nsPuls3060
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertTblaftalelin(Tblaftalelin instance);
+    partial void UpdateTblaftalelin(Tblaftalelin instance);
+    partial void DeleteTblaftalelin(Tblaftalelin instance);
     partial void InsertTblAktivitet(TblAktivitet instance);
     partial void UpdateTblAktivitet(TblAktivitet instance);
     partial void DeleteTblAktivitet(TblAktivitet instance);
@@ -117,6 +120,14 @@ namespace nsPuls3060
 				base(connection, mappingSource)
 		{
 			OnCreated();
+		}
+		
+		public System.Data.Linq.Table<Tblaftalelin> Tblaftalelin
+		{
+			get
+			{
+				return this.GetTable<Tblaftalelin>();
+			}
 		}
 		
 		public System.Data.Linq.Table<TblAktivitet> TblAktivitet
@@ -284,6 +295,321 @@ namespace nsPuls3060
 			get
 			{
 				return this.GetTable<TempKontforslaglinie>();
+			}
+		}
+	}
+	
+	[Table(Name="tblaftalelin")]
+	public partial class Tblaftalelin : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _Frapbsid;
+		
+		private string _Pbstranskode;
+		
+		private int _Nr;
+		
+		private string _Debitorkonto;
+		
+		private string _Debgrpnr;
+		
+		private System.Nullable<int> _Aftalenr;
+		
+		private System.Nullable<System.DateTime> _Aftalestartdato;
+		
+		private System.Nullable<System.DateTime> _Aftaleslutdato;
+		
+		private string _Pbssektionnr;
+		
+		private EntityRef<Tblfrapbs> _Tblfrapbs;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnFrapbsidChanging(int value);
+    partial void OnFrapbsidChanged();
+    partial void OnPbstranskodeChanging(string value);
+    partial void OnPbstranskodeChanged();
+    partial void OnNrChanging(int value);
+    partial void OnNrChanged();
+    partial void OnDebitorkontoChanging(string value);
+    partial void OnDebitorkontoChanged();
+    partial void OnDebgrpnrChanging(string value);
+    partial void OnDebgrpnrChanged();
+    partial void OnAftalenrChanging(System.Nullable<int> value);
+    partial void OnAftalenrChanged();
+    partial void OnAftalestartdatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnAftalestartdatoChanged();
+    partial void OnAftaleslutdatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnAftaleslutdatoChanged();
+    partial void OnPbssektionnrChanging(string value);
+    partial void OnPbssektionnrChanged();
+    #endregion
+		
+		public Tblaftalelin()
+		{
+			this._Tblfrapbs = default(EntityRef<Tblfrapbs>);
+			OnCreated();
+		}
+		
+		[Column(Name="id", Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Name="frapbsid", Storage="_Frapbsid", DbType="Int NOT NULL")]
+		public int Frapbsid
+		{
+			get
+			{
+				return this._Frapbsid;
+			}
+			set
+			{
+				if ((this._Frapbsid != value))
+				{
+					this.OnFrapbsidChanging(value);
+					this.SendPropertyChanging();
+					this._Frapbsid = value;
+					this.SendPropertyChanged("Frapbsid");
+					this.OnFrapbsidChanged();
+				}
+			}
+		}
+		
+		[Column(Name="pbstranskode", Storage="_Pbstranskode", DbType="NVarChar(4) NOT NULL", CanBeNull=false)]
+		public string Pbstranskode
+		{
+			get
+			{
+				return this._Pbstranskode;
+			}
+			set
+			{
+				if ((this._Pbstranskode != value))
+				{
+					this.OnPbstranskodeChanging(value);
+					this.SendPropertyChanging();
+					this._Pbstranskode = value;
+					this.SendPropertyChanged("Pbstranskode");
+					this.OnPbstranskodeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Nr", DbType="Int NOT NULL")]
+		public int Nr
+		{
+			get
+			{
+				return this._Nr;
+			}
+			set
+			{
+				if ((this._Nr != value))
+				{
+					this.OnNrChanging(value);
+					this.SendPropertyChanging();
+					this._Nr = value;
+					this.SendPropertyChanged("Nr");
+					this.OnNrChanged();
+				}
+			}
+		}
+		
+		[Column(Name="debitorkonto", Storage="_Debitorkonto", DbType="NVarChar(15) NOT NULL", CanBeNull=false)]
+		public string Debitorkonto
+		{
+			get
+			{
+				return this._Debitorkonto;
+			}
+			set
+			{
+				if ((this._Debitorkonto != value))
+				{
+					this.OnDebitorkontoChanging(value);
+					this.SendPropertyChanging();
+					this._Debitorkonto = value;
+					this.SendPropertyChanged("Debitorkonto");
+					this.OnDebitorkontoChanged();
+				}
+			}
+		}
+		
+		[Column(Name="debgrpnr", Storage="_Debgrpnr", DbType="NVarChar(5) NOT NULL", CanBeNull=false)]
+		public string Debgrpnr
+		{
+			get
+			{
+				return this._Debgrpnr;
+			}
+			set
+			{
+				if ((this._Debgrpnr != value))
+				{
+					this.OnDebgrpnrChanging(value);
+					this.SendPropertyChanging();
+					this._Debgrpnr = value;
+					this.SendPropertyChanged("Debgrpnr");
+					this.OnDebgrpnrChanged();
+				}
+			}
+		}
+		
+		[Column(Name="aftalenr", Storage="_Aftalenr", DbType="Int")]
+		public System.Nullable<int> Aftalenr
+		{
+			get
+			{
+				return this._Aftalenr;
+			}
+			set
+			{
+				if ((this._Aftalenr != value))
+				{
+					this.OnAftalenrChanging(value);
+					this.SendPropertyChanging();
+					this._Aftalenr = value;
+					this.SendPropertyChanged("Aftalenr");
+					this.OnAftalenrChanged();
+				}
+			}
+		}
+		
+		[Column(Name="aftalestartdato", Storage="_Aftalestartdato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Aftalestartdato
+		{
+			get
+			{
+				return this._Aftalestartdato;
+			}
+			set
+			{
+				if ((this._Aftalestartdato != value))
+				{
+					this.OnAftalestartdatoChanging(value);
+					this.SendPropertyChanging();
+					this._Aftalestartdato = value;
+					this.SendPropertyChanged("Aftalestartdato");
+					this.OnAftalestartdatoChanged();
+				}
+			}
+		}
+		
+		[Column(Name="aftaleslutdato", Storage="_Aftaleslutdato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Aftaleslutdato
+		{
+			get
+			{
+				return this._Aftaleslutdato;
+			}
+			set
+			{
+				if ((this._Aftaleslutdato != value))
+				{
+					this.OnAftaleslutdatoChanging(value);
+					this.SendPropertyChanging();
+					this._Aftaleslutdato = value;
+					this.SendPropertyChanged("Aftaleslutdato");
+					this.OnAftaleslutdatoChanged();
+				}
+			}
+		}
+		
+		[Column(Name="pbssektionnr", Storage="_Pbssektionnr", DbType="NVarChar(5) NOT NULL", CanBeNull=false)]
+		public string Pbssektionnr
+		{
+			get
+			{
+				return this._Pbssektionnr;
+			}
+			set
+			{
+				if ((this._Pbssektionnr != value))
+				{
+					this.OnPbssektionnrChanging(value);
+					this.SendPropertyChanging();
+					this._Pbssektionnr = value;
+					this.SendPropertyChanged("Pbssektionnr");
+					this.OnPbssektionnrChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Tblfrapbs_Tblaftalelin", Storage="_Tblfrapbs", ThisKey="Frapbsid", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true)]
+		public Tblfrapbs Tblfrapbs
+		{
+			get
+			{
+				return this._Tblfrapbs.Entity;
+			}
+			set
+			{
+				Tblfrapbs previousValue = this._Tblfrapbs.Entity;
+				if (((previousValue != value) 
+							|| (this._Tblfrapbs.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Tblfrapbs.Entity = null;
+						previousValue.Tblaftalelin.Remove(this);
+					}
+					this._Tblfrapbs.Entity = value;
+					if ((value != null))
+					{
+						value.Tblaftalelin.Add(this);
+						this._Frapbsid = value.Id;
+					}
+					else
+					{
+						this._Frapbsid = default(int);
+					}
+					this.SendPropertyChanged("Tblfrapbs");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -1661,6 +1987,8 @@ namespace nsPuls3060
 		
 		private System.Nullable<System.DateTime> _Leverancedannelsesdato;
 		
+		private EntitySet<Tblaftalelin> _Tblaftalelin;
+		
 		private EntitySet<Tblbet> _Tblbet;
 		
 		private EntityRef<Tblpbsforsendelse> _Tblpbsforsendelse;
@@ -1689,6 +2017,7 @@ namespace nsPuls3060
 		
 		public Tblfrapbs()
 		{
+			this._Tblaftalelin = new EntitySet<Tblaftalelin>(new Action<Tblaftalelin>(this.attach_Tblaftalelin), new Action<Tblaftalelin>(this.detach_Tblaftalelin));
 			this._Tblbet = new EntitySet<Tblbet>(new Action<Tblbet>(this.attach_Tblbet), new Action<Tblbet>(this.detach_Tblbet));
 			this._Tblpbsforsendelse = default(EntityRef<Tblpbsforsendelse>);
 			OnCreated();
@@ -1854,6 +2183,19 @@ namespace nsPuls3060
 			}
 		}
 		
+		[Association(Name="Tblfrapbs_Tblaftalelin", Storage="_Tblaftalelin", ThisKey="Id", OtherKey="Frapbsid")]
+		public EntitySet<Tblaftalelin> Tblaftalelin
+		{
+			get
+			{
+				return this._Tblaftalelin;
+			}
+			set
+			{
+				this._Tblaftalelin.Assign(value);
+			}
+		}
+		
 		[Association(Name="Tblfrapbs_Tblbet", Storage="_Tblbet", ThisKey="Id", OtherKey="Frapbsid")]
 		public EntitySet<Tblbet> Tblbet
 		{
@@ -1919,6 +2261,18 @@ namespace nsPuls3060
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Tblaftalelin(Tblaftalelin entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tblfrapbs = this;
+		}
+		
+		private void detach_Tblaftalelin(Tblaftalelin entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tblfrapbs = null;
 		}
 		
 		private void attach_Tblbet(Tblbet entity)

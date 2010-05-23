@@ -137,7 +137,7 @@ namespace nsPuls3060
             {
                 Delsystem = rsttil.Delsystem,
                 Leverancetype = rsttil.Leverancetype,
-                Oprettetaf = "Bet",
+                Oprettetaf = "Udb",
                 Oprettet = DateTime.Now,
                 Leveranceid = wleveranceid
             };

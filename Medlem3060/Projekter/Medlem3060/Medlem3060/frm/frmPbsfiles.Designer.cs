@@ -37,6 +37,7 @@
             this.logToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pbsfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pbsforsendelseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pbs603ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -71,7 +72,8 @@
             this.pbsfilesToolStripMenuItem,
             this.logToolStripMenuItem,
             this.pbsfileToolStripMenuItem,
-            this.pbsforsendelseToolStripMenuItem});
+            this.pbsforsendelseToolStripMenuItem,
+            this.pbs603ToolStripMenuItem});
             this.tabellerToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.MatchOnly;
             this.tabellerToolStripMenuItem.Name = "tabellerToolStripMenuItem";
             this.tabellerToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
@@ -109,6 +111,13 @@
             this.pbsforsendelseToolStripMenuItem.Text = "Pbsforsendelse";
             this.pbsforsendelseToolStripMenuItem.Click += new System.EventHandler(this.pbsforsendelseToolStripMenuItem_Click);
             // 
+            // pbs603ToolStripMenuItem
+            // 
+            this.pbs603ToolStripMenuItem.Name = "pbs603ToolStripMenuItem";
+            this.pbs603ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.pbs603ToolStripMenuItem.Text = "Pbs603";
+            this.pbs603ToolStripMenuItem.Click += new System.EventHandler(this.pbs603ToolStripMenuItem_Click);
+            // 
             // FrmPbsfiles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -139,5 +148,6 @@
         private System.Windows.Forms.ToolStripMenuItem logToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pbsfileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pbsforsendelseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pbs603ToolStripMenuItem;
     }
 }

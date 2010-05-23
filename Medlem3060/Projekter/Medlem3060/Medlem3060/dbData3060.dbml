@@ -1,5 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="dbData3060" Class="DbData3060" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="tblaftalelin" Member="Tblaftalelin">
+    <Type Name="Tblaftalelin">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="frapbsid" Member="Frapbsid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="pbstranskode" Member="Pbstranskode" Type="System.String" DbType="NVarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="Nr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="debitorkonto" Member="Debitorkonto" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="debgrpnr" Member="Debgrpnr" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="aftalenr" Member="Aftalenr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="aftalestartdato" Member="Aftalestartdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="aftaleslutdato" Member="Aftaleslutdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="pbssektionnr" Member="Pbssektionnr" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Association Name="Tblfrapbs_Tblaftalelin" Member="Tblfrapbs" ThisKey="Frapbsid" OtherKey="Id" Type="Tblfrapbs" IsForeignKey="true" DeleteOnNull="true" />
+    </Type>
+  </Table>
   <Table Name="tblAktivitet" Member="TblAktivitet">
     <Type Name="TblAktivitet">
       <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -74,6 +89,7 @@
       <Column Name="pbsforsendelseid" Member="Pbsforsendelseid" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="leverancespecifikation" Member="Leverancespecifikation" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="leverancedannelsesdato" Member="Leverancedannelsesdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Tblfrapbs_Tblaftalelin" Member="Tblaftalelin" ThisKey="Id" OtherKey="Frapbsid" Type="Tblaftalelin" />
       <Association Name="Tblfrapbs_Tblbet" Member="Tblbet" ThisKey="Id" OtherKey="Frapbsid" Type="Tblbet" />
       <Association Name="Tblpbsforsendelse_Tblfrapbs" Member="Tblpbsforsendelse" ThisKey="Pbsforsendelseid" OtherKey="Id" Type="Tblpbsforsendelse" IsForeignKey="true" />
     </Type>
