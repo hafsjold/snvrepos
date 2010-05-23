@@ -37,10 +37,14 @@
             this.logToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pbsfileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pbsforsendelseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pbs603ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.richData = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             this.menuStrip1.SuspendLayout();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -50,11 +54,12 @@
             this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 24);
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(707, 487);
+            this.dataGridView1.Size = new System.Drawing.Size(749, 330);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_RowEnter);
             // 
             // menuStrip1
             // 
@@ -62,7 +67,7 @@
             this.tabellerToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(707, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(749, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -72,8 +77,7 @@
             this.pbsfilesToolStripMenuItem,
             this.logToolStripMenuItem,
             this.pbsfileToolStripMenuItem,
-            this.pbsforsendelseToolStripMenuItem,
-            this.pbs603ToolStripMenuItem});
+            this.pbsforsendelseToolStripMenuItem});
             this.tabellerToolStripMenuItem.MergeAction = System.Windows.Forms.MergeAction.MatchOnly;
             this.tabellerToolStripMenuItem.Name = "tabellerToolStripMenuItem";
             this.tabellerToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
@@ -111,19 +115,42 @@
             this.pbsforsendelseToolStripMenuItem.Text = "Pbsforsendelse";
             this.pbsforsendelseToolStripMenuItem.Click += new System.EventHandler(this.pbsforsendelseToolStripMenuItem_Click);
             // 
-            // pbs603ToolStripMenuItem
+            // splitContainer1
             // 
-            this.pbs603ToolStripMenuItem.Name = "pbs603ToolStripMenuItem";
-            this.pbs603ToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
-            this.pbs603ToolStripMenuItem.Text = "Pbs603";
-            this.pbs603ToolStripMenuItem.Click += new System.EventHandler(this.pbs603ToolStripMenuItem_Click);
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 24);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.dataGridView1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.richData);
+            this.splitContainer1.Size = new System.Drawing.Size(749, 487);
+            this.splitContainer1.SplitterDistance = 330;
+            this.splitContainer1.TabIndex = 2;
+            // 
+            // richData
+            // 
+            this.richData.DetectUrls = false;
+            this.richData.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richData.Font = new System.Drawing.Font("Lucida Console", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richData.Location = new System.Drawing.Point(0, 0);
+            this.richData.Name = "richData";
+            this.richData.Size = new System.Drawing.Size(749, 153);
+            this.richData.TabIndex = 0;
+            this.richData.Text = "";
+            this.richData.WordWrap = false;
             // 
             // FrmPbsfiles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(707, 511);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(749, 511);
+            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmPbsfiles";
@@ -133,6 +160,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -148,6 +178,7 @@
         private System.Windows.Forms.ToolStripMenuItem logToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pbsfileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pbsforsendelseToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem pbs603ToolStripMenuItem;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.RichTextBox richData;
     }
 }

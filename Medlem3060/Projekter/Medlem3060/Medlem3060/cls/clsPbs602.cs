@@ -218,8 +218,7 @@ namespace nsPuls3060
                                     // -- Sektion Start
                                     sektion = rec.Substring(13, 4);
                                 }
-                                else if (!((rec.Substring(0, 5) == "BS992")
-                                            || (rec.Substring(0, 5) == "BS002")))
+                                else if (!((rec.Substring(0, 5) == "BS992") || (rec.Substring(0, 5) == "BS002")))
                                 {
                                     throw new Exception("243 - Første record er ikke en Sektions start record");
                                 }

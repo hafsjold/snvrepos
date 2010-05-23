@@ -128,10 +128,12 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
-            DateTime dato = new DateTime(2010, 5, 20, 
-                13, 25, 00);
-            int plusdage = 2;
-            DateTime wdispositionsdato = clsOverfoersel.bankdageplus(dato, plusdage);
+            //DateTime dato = new DateTime(2010, 5, 20, 
+            //    13, 25, 00);
+            //int plusdage = 2;
+            //DateTime wdispositionsdato = clsOverfoersel.bankdageplus(dato, plusdage);
+            clsPbs603 objPbs603 = new clsPbs603();
+            objPbs603.aftaleoplysninger_fra_pbs();
             int xx = 0;
 
             //clsOverfoersel objOverfoersel = new clsOverfoersel();
@@ -348,16 +350,18 @@ namespace nsPuls3060
 
             clsSFTP objSFTP = new clsSFTP();
             clsPbs602 objPbs602 = new clsPbs602();
+            clsPbs603 objPbs603 = new clsPbs603();
             
             AntalImportFiler = objSFTP.ReadFraSFtp();  //Læs direkte SFTP
             //AntalImportFiler = objPbs602.ReadFraPbsFile(); //Læs fra Directory FraPBS
-            
+
             int Antal602Filer = objPbs602.betalinger_fra_pbs();
+            int Antal603Filer = objPbs603.aftaleoplysninger_fra_pbs();
 
             clsSumma objSumma = new clsSumma();
             int AntalOrdre = objSumma.Order2Summa();
-            
-            bigString = String.Format("Antal indlæste filer fra PBS: {0} \nAntal nye betalings filer: {1}\nAntal nye ordre: {2}.", AntalImportFiler, Antal602Filer, AntalOrdre);
+
+            bigString = String.Format("Antal indlæste filer fra PBS: {0} \nAntal nye 602 filer: {1}\nAntal nye 603 filer: {3}\nAntal nye ordre: {2}.", AntalImportFiler, Antal602Filer, AntalOrdre, Antal603Filer);
             if (AntalOrdre > 0)
             {
                 smallString = String.Format("Åben SummaSummarum\nTryk på ikonet Bilag i venstre side\nbogfør de {0} nye ordre.", AntalOrdre);

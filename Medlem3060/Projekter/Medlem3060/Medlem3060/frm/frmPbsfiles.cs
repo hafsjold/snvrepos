@@ -11,6 +11,8 @@ namespace nsPuls3060
 {
     public partial class FrmPbsfiles : Form
     {
+        private bool m_listfile = false;
+
         public FrmPbsfiles()
         {
             InitializeComponent();
@@ -19,12 +21,14 @@ namespace nsPuls3060
 
         private void pbsfilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            m_listfile = true;
             this.Text = "Pbsfiles";
             var qry = from p in Program.dbData3060.Tblpbsfiles
                       join f in Program.dbData3060.Tblpbsforsendelse on p.Pbsforsendelseid equals f.Id into forsendelse
                       from f in forsendelse.DefaultIfEmpty()
                       select new
                       {
+                          p.Id,
                           p.Path,
                           p.Filename,
                           Size = (int?)p.Size,
@@ -44,21 +48,23 @@ namespace nsPuls3060
             // Grid attributes 
             dataGridView1.BorderStyle = BorderStyle.Fixed3D;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-
         }
+
+
 
         private void logToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            m_listfile = false;
             this.Text = "Log";
             var qry = from i in Program.qryLog()
-                       select new
-                       {
-                           Id = i.Id,
-                           Logdato = i.Logdato,
-                           Nr = i.Nr,
-                           Akt_id = i.Akt_id,
-                           Akt_dato = i.Akt_dato
-                       };
+                      select new
+                      {
+                          Id = i.Id,
+                          Logdato = i.Logdato,
+                          Nr = i.Nr,
+                          Akt_id = i.Akt_id,
+                          Akt_dato = i.Akt_dato
+                      };
 
             bindingSource1.DataSource = qry;
             dataGridView1.DataSource = bindingSource1;
@@ -66,7 +72,7 @@ namespace nsPuls3060
             // Grid attributes 
             dataGridView1.BorderStyle = BorderStyle.Fixed3D;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
- 
+
         }
 
         private void afslutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -76,15 +82,16 @@ namespace nsPuls3060
 
         private void pbsfileToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            m_listfile = false;
             this.Text = "Pbsfile";
             var qry = from p in Program.dbData3060.Tblpbsfile
                       join f in Program.dbData3060.Tblpbsfiles on p.Pbsfilesid equals f.Id
-                      orderby f.Id descending , p.Seqnr  
+                      orderby f.Id descending, p.Seqnr
                       select new
                       {
                           seq = p.Id,
                           file = f.Filename,
-                          data =p.Data
+                          data = p.Data
                       };
             bindingSource1.DataSource = qry;
             dataGridView1.DataSource = bindingSource1;
@@ -96,6 +103,7 @@ namespace nsPuls3060
 
         private void pbsforsendelseToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            m_listfile = false;
             this.Text = "Pbsforsendelse";
             bindingSource1.DataSource = Program.dbData3060.Tblpbsforsendelse;
             dataGridView1.DataSource = bindingSource1;
@@ -107,59 +115,51 @@ namespace nsPuls3060
 
         }
 
-        private void pbs603ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
         {
-            this.Text = "Pbs603";
+            if (m_listfile)
+            {
+                int row = e.RowIndex;
+                DataGridView dg = (DataGridView)sender;
+                try
+                {
 
-            var pbsfile1 = from d1 in Program.dbData3060.Tblpbsfile
-                           join h1 in Program.dbData3060.Tblpbsfiles on d1.Pbsfilesid equals h1.Id
-                           where d1.Seqnr == 1
-                           select new
-                           {
-                               Pbsfilesid = d1.Pbsfilesid,
-                               h1.Filename,
-                               h1.Path,
-                               h1.Pbsforsendelseid,
-                               h1.Atime,
-                               leverancetype = d1.Data.Substring(16, 4),
-                               data1 = d1.Data
-                           };
+                    string filesid = dg.Rows[row].Cells["Id"].Value.ToString();
+                    fillrichData(int.Parse(filesid));
+                }
+                catch
+                {
+                    this.richData.Text = "";
+                }
+            }
+            else 
+            {
+                this.richData.Text = "";
+            }
+        }
 
-            var pbsfile0 = from d0 in Program.dbData3060.Tblpbsfile
-                           join h0 in Program.dbData3060.Tblpbsfiles on d0.Pbsfilesid equals h0.Id
-                           where d0.Seqnr == 0
-                           select new 
-                           {
-                               Pbsfilesid = d0.Pbsfilesid,
-                               recordtype = d0.Data.Substring(0, 8),
-                               delsystem = d0.Data.Substring(8, 3),
-                               dato_lev_id = d0.Data.Substring(12, 8),
-                               data0 = d0.Data
-                           };
+        private void fillrichData(int filesid)
+        {
+            var src = from d in Program.dbData3060.Tblpbsfile
+                      where d.Pbsfilesid == filesid
+                      orderby d.Seqnr
+                      select d;
+            int i = 0;
+            int test = src.Count();
+            string data = "";
+            foreach (var d in src)
+            {
+                if (++i == 1)
+                {
+                    data = d.Data;
+                }
+                else
+                {
+                    data += "\n" + d.Data;
+                }
+            }
+            this.richData.Text = data;
 
-            var qry = from d1 in pbsfile1
-                      join d0 in pbsfile0 on d1.Pbsfilesid equals d0.Pbsfilesid into pbsfile0j
-                      from d0 in pbsfile0j.DefaultIfEmpty()
-
-                      select new
-                      {
-                        d1.Filename,
-                        d1.Atime,
-                        d0.dato_lev_id,
-                        d0.delsystem,
-                        d0.recordtype,
-                        d1.leverancetype,
-                        d0.data0,
-                        d1.data1
-                      };
-
-
-            bindingSource1.DataSource = qry;
-            dataGridView1.DataSource = bindingSource1;
-
-            // Grid attributes 
-            dataGridView1.BorderStyle = BorderStyle.Fixed3D;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         }
 
 

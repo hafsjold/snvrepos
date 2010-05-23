@@ -638,6 +638,8 @@ namespace nsPuls3060
                     Program.dbData3060.ExecuteCommand("ALTER TABLE [tblaftalelin] ADD PRIMARY KEY ([id]);");
                     Program.dbData3060.ExecuteCommand("ALTER TABLE [tblaftalelin] ADD CONSTRAINT [FK_tblfrapbs_tblaftalelin] FOREIGN KEY ([frapbsid]) REFERENCES [tblfrapbs]([id]) ON DELETE CASCADE ON UPDATE CASCADE;");
 
+                    Program.dbData3060.ExecuteCommand("DELETE FROM [tblpbsfile] WHERE data = '';");
+
                     Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.8.0.0'  WHERE [vkey] = 'VERSION';");
                     dbVersion = "2.8.0.0";
                 }
