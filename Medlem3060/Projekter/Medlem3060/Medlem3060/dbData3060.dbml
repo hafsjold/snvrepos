@@ -91,7 +91,26 @@
       <Column Name="leverancedannelsesdato" Member="Leverancedannelsesdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="Tblfrapbs_Tblaftalelin" Member="Tblaftalelin" ThisKey="Id" OtherKey="Frapbsid" Type="Tblaftalelin" />
       <Association Name="Tblfrapbs_Tblbet" Member="Tblbet" ThisKey="Id" OtherKey="Frapbsid" Type="Tblbet" />
+      <Association Name="Tblfrapbs_Tblindbetalingskort" Member="Tblindbetalingskort" ThisKey="Id" OtherKey="Frapbsid" Type="Tblindbetalingskort" />
       <Association Name="Tblpbsforsendelse_Tblfrapbs" Member="Tblpbsforsendelse" ThisKey="Pbsforsendelseid" OtherKey="Id" Type="Tblpbsforsendelse" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="tblindbetalingskort" Member="Tblindbetalingskort">
+    <Type Name="Tblindbetalingskort">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="frapbsid" Member="Frapbsid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="pbstranskode" Member="Pbstranskode" Type="System.String" DbType="NVarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="Nr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="faknr" Member="Faknr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="debitorkonto" Member="Debitorkonto" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="debgrpnr" Member="Debgrpnr" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="kortartkode" Member="Kortartkode" Type="System.String" DbType="NVarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="fikreditornr" Member="Fikreditornr" Type="System.String" DbType="NVarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="indbetalerident" Member="Indbetalerident" Type="System.String" DbType="NVarChar(19) NOT NULL" CanBeNull="false" />
+      <Column Name="dato" Member="Dato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="belob" Member="Belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="pbssektionnr" Member="Pbssektionnr" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Association Name="Tblfrapbs_Tblindbetalingskort" Member="Tblfrapbs" ThisKey="Frapbsid" OtherKey="Id" Type="Tblfrapbs" IsForeignKey="true" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="tblkreditor" Member="Tblkreditor">
@@ -189,6 +208,20 @@
       <Association Name="Tblpbsforsendelse_Tblfrapbs" Member="Tblfrapbs" ThisKey="Id" OtherKey="Pbsforsendelseid" Type="Tblfrapbs" />
       <Association Name="Tblpbsforsendelse_Tblpbsfiles" Member="Tblpbsfiles" ThisKey="Id" OtherKey="Pbsforsendelseid" Type="Tblpbsfiles" />
       <Association Name="Tblpbsforsendelse_Tbltilpbs" Member="Tbltilpbs" ThisKey="Id" OtherKey="Pbsforsendelseid" Type="Tbltilpbs" />
+    </Type>
+  </Table>
+  <Table Name="tblpbsnetdir" Member="Tblpbsnetdir">
+    <Type Name="Tblpbsnetdir">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="type" Member="Type" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="path" Member="Path" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="filename" Member="Filename" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="size" Member="Size" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="atime" Member="Atime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="mtime" Member="Mtime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="perm" Member="Perm" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="uid" Member="Uid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="gid" Member="Gid" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="tblRegnskab" Member="TblRegnskab">

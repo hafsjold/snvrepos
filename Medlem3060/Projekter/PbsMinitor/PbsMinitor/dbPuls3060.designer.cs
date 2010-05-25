@@ -72,6 +72,9 @@ namespace PbsMinitor
     partial void InsertTblpbsforsendelse(Tblpbsforsendelse instance);
     partial void UpdateTblpbsforsendelse(Tblpbsforsendelse instance);
     partial void DeleteTblpbsforsendelse(Tblpbsforsendelse instance);
+    partial void InsertTblpbsnetdir(Tblpbsnetdir instance);
+    partial void UpdateTblpbsnetdir(Tblpbsnetdir instance);
+    partial void DeleteTblpbsnetdir(Tblpbsnetdir instance);
     partial void InsertTblRegnskab(TblRegnskab instance);
     partial void UpdateTblRegnskab(TblRegnskab instance);
     partial void DeleteTblRegnskab(TblRegnskab instance);
@@ -231,6 +234,14 @@ namespace PbsMinitor
 			get
 			{
 				return this.GetTable<Tblpbsforsendelse>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Tblpbsnetdir> Tblpbsnetdir
+		{
+			get
+			{
+				return this.GetTable<Tblpbsnetdir>();
 			}
 		}
 		
@@ -4238,6 +4249,284 @@ namespace PbsMinitor
 		{
 			this.SendPropertyChanging();
 			entity.Tblpbsforsendelse = null;
+		}
+	}
+	
+	[Table(Name="tblpbsnetdir")]
+	public partial class Tblpbsnetdir : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<int> _Type;
+		
+		private string _Path;
+		
+		private string _Filename;
+		
+		private System.Nullable<int> _Size;
+		
+		private System.Nullable<System.DateTime> _Atime;
+		
+		private System.Nullable<System.DateTime> _Mtime;
+		
+		private string _Perm;
+		
+		private System.Nullable<int> _Uid;
+		
+		private System.Nullable<int> _Gid;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnTypeChanging(System.Nullable<int> value);
+    partial void OnTypeChanged();
+    partial void OnPathChanging(string value);
+    partial void OnPathChanged();
+    partial void OnFilenameChanging(string value);
+    partial void OnFilenameChanged();
+    partial void OnSizeChanging(System.Nullable<int> value);
+    partial void OnSizeChanged();
+    partial void OnAtimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnAtimeChanged();
+    partial void OnMtimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnMtimeChanged();
+    partial void OnPermChanging(string value);
+    partial void OnPermChanged();
+    partial void OnUidChanging(System.Nullable<int> value);
+    partial void OnUidChanged();
+    partial void OnGidChanging(System.Nullable<int> value);
+    partial void OnGidChanged();
+    #endregion
+		
+		public Tblpbsnetdir()
+		{
+			OnCreated();
+		}
+		
+		[Column(Name="id", Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Name="type", Storage="_Type", DbType="Int")]
+		public System.Nullable<int> Type
+		{
+			get
+			{
+				return this._Type;
+			}
+			set
+			{
+				if ((this._Type != value))
+				{
+					this.OnTypeChanging(value);
+					this.SendPropertyChanging();
+					this._Type = value;
+					this.SendPropertyChanged("Type");
+					this.OnTypeChanged();
+				}
+			}
+		}
+		
+		[Column(Name="path", Storage="_Path", DbType="NVarChar(255)")]
+		public string Path
+		{
+			get
+			{
+				return this._Path;
+			}
+			set
+			{
+				if ((this._Path != value))
+				{
+					this.OnPathChanging(value);
+					this.SendPropertyChanging();
+					this._Path = value;
+					this.SendPropertyChanged("Path");
+					this.OnPathChanged();
+				}
+			}
+		}
+		
+		[Column(Name="filename", Storage="_Filename", DbType="NVarChar(50)")]
+		public string Filename
+		{
+			get
+			{
+				return this._Filename;
+			}
+			set
+			{
+				if ((this._Filename != value))
+				{
+					this.OnFilenameChanging(value);
+					this.SendPropertyChanging();
+					this._Filename = value;
+					this.SendPropertyChanged("Filename");
+					this.OnFilenameChanged();
+				}
+			}
+		}
+		
+		[Column(Name="size", Storage="_Size", DbType="Int")]
+		public System.Nullable<int> Size
+		{
+			get
+			{
+				return this._Size;
+			}
+			set
+			{
+				if ((this._Size != value))
+				{
+					this.OnSizeChanging(value);
+					this.SendPropertyChanging();
+					this._Size = value;
+					this.SendPropertyChanged("Size");
+					this.OnSizeChanged();
+				}
+			}
+		}
+		
+		[Column(Name="atime", Storage="_Atime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Atime
+		{
+			get
+			{
+				return this._Atime;
+			}
+			set
+			{
+				if ((this._Atime != value))
+				{
+					this.OnAtimeChanging(value);
+					this.SendPropertyChanging();
+					this._Atime = value;
+					this.SendPropertyChanged("Atime");
+					this.OnAtimeChanged();
+				}
+			}
+		}
+		
+		[Column(Name="mtime", Storage="_Mtime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Mtime
+		{
+			get
+			{
+				return this._Mtime;
+			}
+			set
+			{
+				if ((this._Mtime != value))
+				{
+					this.OnMtimeChanging(value);
+					this.SendPropertyChanging();
+					this._Mtime = value;
+					this.SendPropertyChanged("Mtime");
+					this.OnMtimeChanged();
+				}
+			}
+		}
+		
+		[Column(Name="perm", Storage="_Perm", DbType="NVarChar(50)")]
+		public string Perm
+		{
+			get
+			{
+				return this._Perm;
+			}
+			set
+			{
+				if ((this._Perm != value))
+				{
+					this.OnPermChanging(value);
+					this.SendPropertyChanging();
+					this._Perm = value;
+					this.SendPropertyChanged("Perm");
+					this.OnPermChanged();
+				}
+			}
+		}
+		
+		[Column(Name="uid", Storage="_Uid", DbType="Int")]
+		public System.Nullable<int> Uid
+		{
+			get
+			{
+				return this._Uid;
+			}
+			set
+			{
+				if ((this._Uid != value))
+				{
+					this.OnUidChanging(value);
+					this.SendPropertyChanging();
+					this._Uid = value;
+					this.SendPropertyChanged("Uid");
+					this.OnUidChanged();
+				}
+			}
+		}
+		
+		[Column(Name="gid", Storage="_Gid", DbType="Int")]
+		public System.Nullable<int> Gid
+		{
+			get
+			{
+				return this._Gid;
+			}
+			set
+			{
+				if ((this._Gid != value))
+				{
+					this.OnGidChanging(value);
+					this.SendPropertyChanging();
+					this._Gid = value;
+					this.SendPropertyChanged("Gid");
+					this.OnGidChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	

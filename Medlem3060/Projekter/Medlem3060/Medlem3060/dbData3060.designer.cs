@@ -48,6 +48,9 @@ namespace nsPuls3060
     partial void InsertTblfrapbs(Tblfrapbs instance);
     partial void UpdateTblfrapbs(Tblfrapbs instance);
     partial void DeleteTblfrapbs(Tblfrapbs instance);
+    partial void InsertTblindbetalingskort(Tblindbetalingskort instance);
+    partial void UpdateTblindbetalingskort(Tblindbetalingskort instance);
+    partial void DeleteTblindbetalingskort(Tblindbetalingskort instance);
     partial void InsertTblkreditor(Tblkreditor instance);
     partial void UpdateTblkreditor(Tblkreditor instance);
     partial void DeleteTblkreditor(Tblkreditor instance);
@@ -72,6 +75,9 @@ namespace nsPuls3060
     partial void InsertTblpbsforsendelse(Tblpbsforsendelse instance);
     partial void UpdateTblpbsforsendelse(Tblpbsforsendelse instance);
     partial void DeleteTblpbsforsendelse(Tblpbsforsendelse instance);
+    partial void InsertTblpbsnetdir(Tblpbsnetdir instance);
+    partial void UpdateTblpbsnetdir(Tblpbsnetdir instance);
+    partial void DeleteTblpbsnetdir(Tblpbsnetdir instance);
     partial void InsertTblRegnskab(TblRegnskab instance);
     partial void UpdateTblRegnskab(TblRegnskab instance);
     partial void DeleteTblRegnskab(TblRegnskab instance);
@@ -170,6 +176,14 @@ namespace nsPuls3060
 			}
 		}
 		
+		public System.Data.Linq.Table<Tblindbetalingskort> Tblindbetalingskort
+		{
+			get
+			{
+				return this.GetTable<Tblindbetalingskort>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Tblkreditor> Tblkreditor
 		{
 			get
@@ -231,6 +245,14 @@ namespace nsPuls3060
 			get
 			{
 				return this.GetTable<Tblpbsforsendelse>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Tblpbsnetdir> Tblpbsnetdir
+		{
+			get
+			{
+				return this.GetTable<Tblpbsnetdir>();
 			}
 		}
 		
@@ -1991,6 +2013,8 @@ namespace nsPuls3060
 		
 		private EntitySet<Tblbet> _Tblbet;
 		
+		private EntitySet<Tblindbetalingskort> _Tblindbetalingskort;
+		
 		private EntityRef<Tblpbsforsendelse> _Tblpbsforsendelse;
 		
     #region Extensibility Method Definitions
@@ -2019,6 +2043,7 @@ namespace nsPuls3060
 		{
 			this._Tblaftalelin = new EntitySet<Tblaftalelin>(new Action<Tblaftalelin>(this.attach_Tblaftalelin), new Action<Tblaftalelin>(this.detach_Tblaftalelin));
 			this._Tblbet = new EntitySet<Tblbet>(new Action<Tblbet>(this.attach_Tblbet), new Action<Tblbet>(this.detach_Tblbet));
+			this._Tblindbetalingskort = new EntitySet<Tblindbetalingskort>(new Action<Tblindbetalingskort>(this.attach_Tblindbetalingskort), new Action<Tblindbetalingskort>(this.detach_Tblindbetalingskort));
 			this._Tblpbsforsendelse = default(EntityRef<Tblpbsforsendelse>);
 			OnCreated();
 		}
@@ -2209,6 +2234,19 @@ namespace nsPuls3060
 			}
 		}
 		
+		[Association(Name="Tblfrapbs_Tblindbetalingskort", Storage="_Tblindbetalingskort", ThisKey="Id", OtherKey="Frapbsid")]
+		public EntitySet<Tblindbetalingskort> Tblindbetalingskort
+		{
+			get
+			{
+				return this._Tblindbetalingskort;
+			}
+			set
+			{
+				this._Tblindbetalingskort.Assign(value);
+			}
+		}
+		
 		[Association(Name="Tblpbsforsendelse_Tblfrapbs", Storage="_Tblpbsforsendelse", ThisKey="Pbsforsendelseid", OtherKey="Id", IsForeignKey=true)]
 		public Tblpbsforsendelse Tblpbsforsendelse
 		{
@@ -2285,6 +2323,405 @@ namespace nsPuls3060
 		{
 			this.SendPropertyChanging();
 			entity.Tblfrapbs = null;
+		}
+		
+		private void attach_Tblindbetalingskort(Tblindbetalingskort entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tblfrapbs = this;
+		}
+		
+		private void detach_Tblindbetalingskort(Tblindbetalingskort entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tblfrapbs = null;
+		}
+	}
+	
+	[Table(Name="tblindbetalingskort")]
+	public partial class Tblindbetalingskort : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _Frapbsid;
+		
+		private string _Pbstranskode;
+		
+		private int _Nr;
+		
+		private System.Nullable<int> _Faknr;
+		
+		private string _Debitorkonto;
+		
+		private string _Debgrpnr;
+		
+		private string _Kortartkode;
+		
+		private string _Fikreditornr;
+		
+		private string _Indbetalerident;
+		
+		private System.Nullable<System.DateTime> _Dato;
+		
+		private System.Nullable<decimal> _Belob;
+		
+		private string _Pbssektionnr;
+		
+		private EntityRef<Tblfrapbs> _Tblfrapbs;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnFrapbsidChanging(int value);
+    partial void OnFrapbsidChanged();
+    partial void OnPbstranskodeChanging(string value);
+    partial void OnPbstranskodeChanged();
+    partial void OnNrChanging(int value);
+    partial void OnNrChanged();
+    partial void OnFaknrChanging(System.Nullable<int> value);
+    partial void OnFaknrChanged();
+    partial void OnDebitorkontoChanging(string value);
+    partial void OnDebitorkontoChanged();
+    partial void OnDebgrpnrChanging(string value);
+    partial void OnDebgrpnrChanged();
+    partial void OnKortartkodeChanging(string value);
+    partial void OnKortartkodeChanged();
+    partial void OnFikreditornrChanging(string value);
+    partial void OnFikreditornrChanged();
+    partial void OnIndbetaleridentChanging(string value);
+    partial void OnIndbetaleridentChanged();
+    partial void OnDatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnDatoChanged();
+    partial void OnBelobChanging(System.Nullable<decimal> value);
+    partial void OnBelobChanged();
+    partial void OnPbssektionnrChanging(string value);
+    partial void OnPbssektionnrChanged();
+    #endregion
+		
+		public Tblindbetalingskort()
+		{
+			this._Tblfrapbs = default(EntityRef<Tblfrapbs>);
+			OnCreated();
+		}
+		
+		[Column(Name="id", Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Name="frapbsid", Storage="_Frapbsid", DbType="Int NOT NULL")]
+		public int Frapbsid
+		{
+			get
+			{
+				return this._Frapbsid;
+			}
+			set
+			{
+				if ((this._Frapbsid != value))
+				{
+					this.OnFrapbsidChanging(value);
+					this.SendPropertyChanging();
+					this._Frapbsid = value;
+					this.SendPropertyChanged("Frapbsid");
+					this.OnFrapbsidChanged();
+				}
+			}
+		}
+		
+		[Column(Name="pbstranskode", Storage="_Pbstranskode", DbType="NVarChar(4) NOT NULL", CanBeNull=false)]
+		public string Pbstranskode
+		{
+			get
+			{
+				return this._Pbstranskode;
+			}
+			set
+			{
+				if ((this._Pbstranskode != value))
+				{
+					this.OnPbstranskodeChanging(value);
+					this.SendPropertyChanging();
+					this._Pbstranskode = value;
+					this.SendPropertyChanged("Pbstranskode");
+					this.OnPbstranskodeChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Nr", DbType="Int NOT NULL")]
+		public int Nr
+		{
+			get
+			{
+				return this._Nr;
+			}
+			set
+			{
+				if ((this._Nr != value))
+				{
+					this.OnNrChanging(value);
+					this.SendPropertyChanging();
+					this._Nr = value;
+					this.SendPropertyChanged("Nr");
+					this.OnNrChanged();
+				}
+			}
+		}
+		
+		[Column(Name="faknr", Storage="_Faknr", DbType="Int")]
+		public System.Nullable<int> Faknr
+		{
+			get
+			{
+				return this._Faknr;
+			}
+			set
+			{
+				if ((this._Faknr != value))
+				{
+					this.OnFaknrChanging(value);
+					this.SendPropertyChanging();
+					this._Faknr = value;
+					this.SendPropertyChanged("Faknr");
+					this.OnFaknrChanged();
+				}
+			}
+		}
+		
+		[Column(Name="debitorkonto", Storage="_Debitorkonto", DbType="NVarChar(15) NOT NULL", CanBeNull=false)]
+		public string Debitorkonto
+		{
+			get
+			{
+				return this._Debitorkonto;
+			}
+			set
+			{
+				if ((this._Debitorkonto != value))
+				{
+					this.OnDebitorkontoChanging(value);
+					this.SendPropertyChanging();
+					this._Debitorkonto = value;
+					this.SendPropertyChanged("Debitorkonto");
+					this.OnDebitorkontoChanged();
+				}
+			}
+		}
+		
+		[Column(Name="debgrpnr", Storage="_Debgrpnr", DbType="NVarChar(5) NOT NULL", CanBeNull=false)]
+		public string Debgrpnr
+		{
+			get
+			{
+				return this._Debgrpnr;
+			}
+			set
+			{
+				if ((this._Debgrpnr != value))
+				{
+					this.OnDebgrpnrChanging(value);
+					this.SendPropertyChanging();
+					this._Debgrpnr = value;
+					this.SendPropertyChanged("Debgrpnr");
+					this.OnDebgrpnrChanged();
+				}
+			}
+		}
+		
+		[Column(Name="kortartkode", Storage="_Kortartkode", DbType="NVarChar(2) NOT NULL", CanBeNull=false)]
+		public string Kortartkode
+		{
+			get
+			{
+				return this._Kortartkode;
+			}
+			set
+			{
+				if ((this._Kortartkode != value))
+				{
+					this.OnKortartkodeChanging(value);
+					this.SendPropertyChanging();
+					this._Kortartkode = value;
+					this.SendPropertyChanged("Kortartkode");
+					this.OnKortartkodeChanged();
+				}
+			}
+		}
+		
+		[Column(Name="fikreditornr", Storage="_Fikreditornr", DbType="NVarChar(8) NOT NULL", CanBeNull=false)]
+		public string Fikreditornr
+		{
+			get
+			{
+				return this._Fikreditornr;
+			}
+			set
+			{
+				if ((this._Fikreditornr != value))
+				{
+					this.OnFikreditornrChanging(value);
+					this.SendPropertyChanging();
+					this._Fikreditornr = value;
+					this.SendPropertyChanged("Fikreditornr");
+					this.OnFikreditornrChanged();
+				}
+			}
+		}
+		
+		[Column(Name="indbetalerident", Storage="_Indbetalerident", DbType="NVarChar(19) NOT NULL", CanBeNull=false)]
+		public string Indbetalerident
+		{
+			get
+			{
+				return this._Indbetalerident;
+			}
+			set
+			{
+				if ((this._Indbetalerident != value))
+				{
+					this.OnIndbetaleridentChanging(value);
+					this.SendPropertyChanging();
+					this._Indbetalerident = value;
+					this.SendPropertyChanged("Indbetalerident");
+					this.OnIndbetaleridentChanged();
+				}
+			}
+		}
+		
+		[Column(Name="dato", Storage="_Dato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Dato
+		{
+			get
+			{
+				return this._Dato;
+			}
+			set
+			{
+				if ((this._Dato != value))
+				{
+					this.OnDatoChanging(value);
+					this.SendPropertyChanging();
+					this._Dato = value;
+					this.SendPropertyChanged("Dato");
+					this.OnDatoChanged();
+				}
+			}
+		}
+		
+		[Column(Name="belob", Storage="_Belob", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Belob
+		{
+			get
+			{
+				return this._Belob;
+			}
+			set
+			{
+				if ((this._Belob != value))
+				{
+					this.OnBelobChanging(value);
+					this.SendPropertyChanging();
+					this._Belob = value;
+					this.SendPropertyChanged("Belob");
+					this.OnBelobChanged();
+				}
+			}
+		}
+		
+		[Column(Name="pbssektionnr", Storage="_Pbssektionnr", DbType="NVarChar(5) NOT NULL", CanBeNull=false)]
+		public string Pbssektionnr
+		{
+			get
+			{
+				return this._Pbssektionnr;
+			}
+			set
+			{
+				if ((this._Pbssektionnr != value))
+				{
+					this.OnPbssektionnrChanging(value);
+					this.SendPropertyChanging();
+					this._Pbssektionnr = value;
+					this.SendPropertyChanged("Pbssektionnr");
+					this.OnPbssektionnrChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Tblfrapbs_Tblindbetalingskort", Storage="_Tblfrapbs", ThisKey="Frapbsid", OtherKey="Id", IsForeignKey=true, DeleteOnNull=true)]
+		public Tblfrapbs Tblfrapbs
+		{
+			get
+			{
+				return this._Tblfrapbs.Entity;
+			}
+			set
+			{
+				Tblfrapbs previousValue = this._Tblfrapbs.Entity;
+				if (((previousValue != value) 
+							|| (this._Tblfrapbs.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Tblfrapbs.Entity = null;
+						previousValue.Tblindbetalingskort.Remove(this);
+					}
+					this._Tblfrapbs.Entity = value;
+					if ((value != null))
+					{
+						value.Tblindbetalingskort.Add(this);
+						this._Frapbsid = value.Id;
+					}
+					else
+					{
+						this._Frapbsid = default(int);
+					}
+					this.SendPropertyChanged("Tblfrapbs");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	
@@ -4238,6 +4675,284 @@ namespace nsPuls3060
 		{
 			this.SendPropertyChanging();
 			entity.Tblpbsforsendelse = null;
+		}
+	}
+	
+	[Table(Name="tblpbsnetdir")]
+	public partial class Tblpbsnetdir : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private System.Nullable<int> _Type;
+		
+		private string _Path;
+		
+		private string _Filename;
+		
+		private System.Nullable<int> _Size;
+		
+		private System.Nullable<System.DateTime> _Atime;
+		
+		private System.Nullable<System.DateTime> _Mtime;
+		
+		private string _Perm;
+		
+		private System.Nullable<int> _Uid;
+		
+		private System.Nullable<int> _Gid;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnTypeChanging(System.Nullable<int> value);
+    partial void OnTypeChanged();
+    partial void OnPathChanging(string value);
+    partial void OnPathChanged();
+    partial void OnFilenameChanging(string value);
+    partial void OnFilenameChanged();
+    partial void OnSizeChanging(System.Nullable<int> value);
+    partial void OnSizeChanged();
+    partial void OnAtimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnAtimeChanged();
+    partial void OnMtimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnMtimeChanged();
+    partial void OnPermChanging(string value);
+    partial void OnPermChanged();
+    partial void OnUidChanging(System.Nullable<int> value);
+    partial void OnUidChanged();
+    partial void OnGidChanging(System.Nullable<int> value);
+    partial void OnGidChanged();
+    #endregion
+		
+		public Tblpbsnetdir()
+		{
+			OnCreated();
+		}
+		
+		[Column(Name="id", Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Name="type", Storage="_Type", DbType="Int")]
+		public System.Nullable<int> Type
+		{
+			get
+			{
+				return this._Type;
+			}
+			set
+			{
+				if ((this._Type != value))
+				{
+					this.OnTypeChanging(value);
+					this.SendPropertyChanging();
+					this._Type = value;
+					this.SendPropertyChanged("Type");
+					this.OnTypeChanged();
+				}
+			}
+		}
+		
+		[Column(Name="path", Storage="_Path", DbType="NVarChar(255)")]
+		public string Path
+		{
+			get
+			{
+				return this._Path;
+			}
+			set
+			{
+				if ((this._Path != value))
+				{
+					this.OnPathChanging(value);
+					this.SendPropertyChanging();
+					this._Path = value;
+					this.SendPropertyChanged("Path");
+					this.OnPathChanged();
+				}
+			}
+		}
+		
+		[Column(Name="filename", Storage="_Filename", DbType="NVarChar(50)")]
+		public string Filename
+		{
+			get
+			{
+				return this._Filename;
+			}
+			set
+			{
+				if ((this._Filename != value))
+				{
+					this.OnFilenameChanging(value);
+					this.SendPropertyChanging();
+					this._Filename = value;
+					this.SendPropertyChanged("Filename");
+					this.OnFilenameChanged();
+				}
+			}
+		}
+		
+		[Column(Name="size", Storage="_Size", DbType="Int")]
+		public System.Nullable<int> Size
+		{
+			get
+			{
+				return this._Size;
+			}
+			set
+			{
+				if ((this._Size != value))
+				{
+					this.OnSizeChanging(value);
+					this.SendPropertyChanging();
+					this._Size = value;
+					this.SendPropertyChanged("Size");
+					this.OnSizeChanged();
+				}
+			}
+		}
+		
+		[Column(Name="atime", Storage="_Atime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Atime
+		{
+			get
+			{
+				return this._Atime;
+			}
+			set
+			{
+				if ((this._Atime != value))
+				{
+					this.OnAtimeChanging(value);
+					this.SendPropertyChanging();
+					this._Atime = value;
+					this.SendPropertyChanged("Atime");
+					this.OnAtimeChanged();
+				}
+			}
+		}
+		
+		[Column(Name="mtime", Storage="_Mtime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Mtime
+		{
+			get
+			{
+				return this._Mtime;
+			}
+			set
+			{
+				if ((this._Mtime != value))
+				{
+					this.OnMtimeChanging(value);
+					this.SendPropertyChanging();
+					this._Mtime = value;
+					this.SendPropertyChanged("Mtime");
+					this.OnMtimeChanged();
+				}
+			}
+		}
+		
+		[Column(Name="perm", Storage="_Perm", DbType="NVarChar(50)")]
+		public string Perm
+		{
+			get
+			{
+				return this._Perm;
+			}
+			set
+			{
+				if ((this._Perm != value))
+				{
+					this.OnPermChanging(value);
+					this.SendPropertyChanging();
+					this._Perm = value;
+					this.SendPropertyChanged("Perm");
+					this.OnPermChanged();
+				}
+			}
+		}
+		
+		[Column(Name="uid", Storage="_Uid", DbType="Int")]
+		public System.Nullable<int> Uid
+		{
+			get
+			{
+				return this._Uid;
+			}
+			set
+			{
+				if ((this._Uid != value))
+				{
+					this.OnUidChanging(value);
+					this.SendPropertyChanging();
+					this._Uid = value;
+					this.SendPropertyChanged("Uid");
+					this.OnUidChanged();
+				}
+			}
+		}
+		
+		[Column(Name="gid", Storage="_Gid", DbType="Int")]
+		public System.Nullable<int> Gid
+		{
+			get
+			{
+				return this._Gid;
+			}
+			set
+			{
+				if ((this._Gid != value))
+				{
+					this.OnGidChanging(value);
+					this.SendPropertyChanging();
+					this._Gid = value;
+					this.SendPropertyChanged("Gid");
+					this.OnGidChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	

@@ -26,6 +26,7 @@ namespace PbsMinitor
         private static string m_MailReply;
 
         private static MemPbsnetdir m_memPbsnetdir;
+        private static string m_dbData3060File;
 
         public static string Smtphost
         {
@@ -143,7 +144,7 @@ namespace PbsMinitor
             {
                 if (m_dbData3060 == null)
                 {
-                    m_dbData3060 = new DbData3060(@"C:\Documents and Settings\mha\Dokumenter\Medlem3060\Databaser\SQLCompact\dbData3060.sdf");
+                    m_dbData3060 = new DbData3060(m_dbData3060File);
                 }
                 return m_dbData3060;
             }
@@ -167,6 +168,14 @@ namespace PbsMinitor
         }
         static void Main(string[] args)
         {
+            if (args.Count() == 0)
+            {
+                m_dbData3060File = @"C:\Documents and Settings\mha\Dokumenter\SummaSummarum\dbData3060.sdf";
+            }
+            else 
+            {
+                m_dbData3060File = args[0];
+            }
             clsSFTP objSFTP = new clsSFTP();
             objSFTP.ReadDirectoryFraSFtp();
         }

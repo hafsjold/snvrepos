@@ -25,7 +25,8 @@ namespace nsPuls3060
         public clsSFTP()
         {
 #if (DEBUG)
-            m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Test" select s).First();
+            m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "TestHD35" select s).First();
+            //m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Test" select s).First();
             //m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Produktion" select s).First();
 #else
             m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Produktion" select s).First();
@@ -117,7 +118,8 @@ namespace nsPuls3060
 
                     sendAttachedFile(TilPBSFilename, b_TilPBSFile, true);
 
-                    string handle = m_sftp.OpenFile(TilPBSFilename, "writeOnly", "createTruncate");
+                    string fullpath = m_rec_sftp.Inbound + "/" + TilPBSFilename;
+                    string handle = m_sftp.OpenFile(fullpath, "writeOnly", "createTruncate");
                     if (handle == null) throw new Exception(m_sftp.LastErrorText);
 
                     success = m_sftp.WriteFileBytes(handle, b_TilPBSFile);
@@ -142,8 +144,9 @@ namespace nsPuls3060
 
         public int ReadFraSFtp()
         {
+            string homedir = m_sftp.RealPath(".", "");
             //  Open a directory on the server...
-            string handle = m_sftp.OpenDir(".");
+            string handle = m_sftp.OpenDir(m_rec_sftp.Outbound);
             if (handle == null) throw new Exception(m_sftp.LastErrorText);
 
             //  Download the directory listing:
@@ -162,21 +165,23 @@ namespace nsPuls3060
                 {
                     Chilkat.SFtpFile fileObj = null;
                     fileObj = dirListing.GetFileObject(i);
-
-                    recPbsnetdir rec = new recPbsnetdir
+                    if (!fileObj.IsDirectory)
                     {
-                        Type = 8,
-                        Path = m_rec_sftp.Outbound,
-                        Filename = fileObj.Filename,
-                        Size = (int)fileObj.Size32,
-                        Atime = fileObj.LastAccessTime,
-                        Mtime = fileObj.LastModifiedTime,
-                        Gid = fileObj.Gid,
-                        Uid = fileObj.Uid,
-                        Perm = fileObj.Permissions.ToString()
+                        recPbsnetdir rec = new recPbsnetdir
+                        {
+                            Type = 8,
+                            Path = dirListing.OriginalPath,
+                            Filename = fileObj.Filename,
+                            Size = (int)fileObj.Size32,
+                            Atime = fileObj.LastAccessTime,
+                            Mtime = fileObj.LastModifiedTime,
+                            Gid = fileObj.Gid,
+                            Uid = fileObj.Uid,
+                            Perm = fileObj.Permissions.ToString()
 
-                    };
-                    Program.memPbsnetdir.Add(rec);
+                        };
+                        Program.memPbsnetdir.Add(rec);
+                    }
                 }
             }
 
@@ -212,7 +217,8 @@ namespace nsPuls3060
 
                     //***********************************************************************
                     //  Open a file on the server:
-                    string filehandle = m_sftp.OpenFile(rec_pbsnetdir.Filename, "readOnly", "openExisting");
+                    string fullpath = rec_pbsnetdir.Path + "/" + rec_pbsnetdir.Filename;
+                    string filehandle = m_sftp.OpenFile(fullpath, "readOnly", "openExisting");
                     if (filehandle == null) throw new Exception(m_sftp.LastErrorText);
 
                     int numBytes = (int)rec_pbsnetdir.Size;
@@ -232,10 +238,12 @@ namespace nsPuls3060
                     string[] lines = filecontens4.Split('\n');
                     string ln = null;
                     int seqnr = 0;
+                    string ln0_6;
                     for (int idx = 0; idx < lines.Count(); idx++)
                     {
                         ln = lines[idx].TrimEnd('\r');
-                        if (((seqnr == 0) && !(ln.Substring(0, 6) == "PBCNET")) || (seqnr > 0)) { seqnr++; }
+                        try { ln0_6 = ln.Substring(0, 6); } catch { ln0_6 = ""; }
+                        if (((seqnr == 0) && !(ln0_6 == "PBCNET")) || (seqnr > 0)) { seqnr++; }
                         if (ln.Length > 0)
                         {
                             m_rec_pbsfile = new Tblpbsfile

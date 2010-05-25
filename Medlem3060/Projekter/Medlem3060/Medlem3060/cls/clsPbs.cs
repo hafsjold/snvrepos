@@ -649,6 +649,44 @@ namespace nsPuls3060
                 }
             }
 
+            if (dbVersion == "2.8.0.0")
+            {
+                try
+                {
+                    //version "2.8.0.0" --> "2.9.0.0" opgradering af SqlDatabasen
+
+                    Program.dbData3060.ExecuteCommand("CREATE TABLE [tblpbsnetdir] (  [id] int NOT NULL  IDENTITY (1,1), [type] int NULL, [path] nvarchar(255) NULL, [filename] nvarchar(50) NULL, [size] int NULL, [atime] datetime NULL, [mtime] datetime NULL, [perm] nvarchar(50) NULL, [uid] int NULL, [gid] int NULL);");
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tblpbsnetdir] ADD PRIMARY KEY ([id]);");
+                    Program.dbData3060.ExecuteCommand("CREATE UNIQUE INDEX [UQ__tblpbsnetdir__0000000000000433] ON [tblpbsnetdir] ([id] ASC);");
+
+                    Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.9.0.0'  WHERE [vkey] = 'VERSION';");
+                    dbVersion = "2.9.0.0";
+                }
+                catch (System.Data.SqlServerCe.SqlCeException e)
+                {
+                    object x = e;
+                }
+            }
+
+            if (dbVersion == "2.9.0.0")
+            {
+                try
+                {
+                    //version "2.9.0.0" --> "2.10.0.0" opgradering af SqlDatabasen
+
+                    Program.dbData3060.ExecuteCommand("CREATE TABLE [tblindbetalingskort] ([id] int NOT NULL  IDENTITY (1,1), [frapbsid] int NOT NULL, [pbstranskode] nvarchar(4) NOT NULL, [Nr] int NOT NULL, [faknr] int NULL, [debitorkonto] nvarchar(15) NOT NULL, [debgrpnr] nvarchar(5) NOT NULL, [kortartkode] nvarchar(2) NOT NULL, [fikreditornr] nvarchar(8) NOT NULL, [indbetalerident] nvarchar(19) NOT NULL, [dato] datetime NULL, [belob] numeric(18,2) NULL, [pbssektionnr] nvarchar(5) NOT NULL);");
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tblindbetalingskort] ADD PRIMARY KEY ([id]);");
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tblindbetalingskort] ADD CONSTRAINT [FK_tblfrapbs_tblindbetalingskort] FOREIGN KEY ([frapbsid]) REFERENCES [tblfrapbs]([id]) ON DELETE CASCADE ON UPDATE CASCADE;");
+
+                    Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.10.0.0'  WHERE [vkey] = 'VERSION';");
+                    dbVersion = "2.10.0.0";
+                }
+                catch (System.Data.SqlServerCe.SqlCeException e)
+                {
+                    object x = e;
+                }
+            }
+
             return true;
         }
 

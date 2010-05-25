@@ -17,13 +17,13 @@ namespace PbsMinitor
     public class clsSFTP
     {
         private SFtp m_sftp;
-        private Tblpbsfile m_rec_pbsfile;
         private Tblsftp m_rec_sftp;
 
         public clsSFTP()
         {
 #if (DEBUG)
-            m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Test" select s).First();
+            m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "TestHD35" select s).First();
+            //m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Test" select s).First();
             //m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Produktion" select s).First();
 #else
             m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Produktion" select s).First();
@@ -57,8 +57,9 @@ namespace PbsMinitor
 
         public void ReadDirectoryFraSFtp()
         {
+            string homedir = m_sftp.RealPath(".", "");
             //  Open a directory on the server...
-            string handle = m_sftp.OpenDir(".");
+            string handle = m_sftp.OpenDir(m_rec_sftp.Outbound);
             if (handle == null) throw new Exception(m_sftp.LastErrorText);
 
             //  Download the directory listing:
@@ -77,21 +78,23 @@ namespace PbsMinitor
                 {
                     Chilkat.SFtpFile fileObj = null;
                     fileObj = dirListing.GetFileObject(i);
-
-                    recPbsnetdir rec = new recPbsnetdir
+                    if (!fileObj.IsDirectory)
                     {
-                        Type = 8,
-                        Path = m_rec_sftp.Outbound,
-                        Filename = fileObj.Filename,
-                        Size = (int)fileObj.Size32,
-                        Atime = fileObj.LastAccessTime,
-                        Mtime = fileObj.LastModifiedTime,
-                        Gid = fileObj.Gid,
-                        Uid = fileObj.Uid,
-                        Perm = fileObj.Permissions.ToString()
+                        recPbsnetdir rec = new recPbsnetdir
+                        {
+                            Type = 8,
+                            Path = dirListing.OriginalPath,
+                            Filename = fileObj.Filename,
+                            Size = (int)fileObj.Size32,
+                            Atime = fileObj.LastAccessTime,
+                            Mtime = fileObj.LastModifiedTime,
+                            Gid = fileObj.Gid,
+                            Uid = fileObj.Uid,
+                            Perm = fileObj.Permissions.ToString()
 
-                    };
-                    Program.memPbsnetdir.Add(rec);
+                        };
+                        Program.memPbsnetdir.Add(rec);
+                    }
                 }
             }
 
@@ -101,9 +104,9 @@ namespace PbsMinitor
 
             var leftqry_pbsnetdir =
                 from h in Program.memPbsnetdir
-                //join d1 in Program.dbData3060.Tblpbsfiles on new { h.Path, h.Filename } equals new { d1.Path, d1.Filename } into details
-                //from d1 in details.DefaultIfEmpty(new Tblpbsfiles { Id = -1, Type = (int?)null, Path = null, Filename = null, Size = (int?)null, Atime = (DateTime?)null, Mtime = (DateTime?)null, Perm = null, Uid = (int?)null, Gid = (int?)null })
-                //where d1.Path == null && d1.Filename == null
+                join d1 in Program.dbData3060.Tblpbsnetdir on new { h.Path, h.Filename } equals new { d1.Path, d1.Filename } into details
+                from d1 in details.DefaultIfEmpty(new Tblpbsnetdir { Id = -1, Type = (int?)null, Path = null, Filename = null, Size = (int?)null, Atime = (DateTime?)null, Mtime = (DateTime?)null, Perm = null, Uid = (int?)null, Gid = (int?)null })
+                where d1.Path == null && d1.Filename == null
                 select h;
 
             int AntalFiler = leftqry_pbsnetdir.Count();
@@ -112,10 +115,26 @@ namespace PbsMinitor
             {
                 foreach (var rec_pbsnetdir in leftqry_pbsnetdir)
                 {
-                    MailBody += "\n" + rec_pbsnetdir.Filename + " " + rec_pbsnetdir.Size.ToString() + " " + rec_pbsnetdir.Atime.ToString();
+                    MailBody += "\n" + rec_pbsnetdir.Filename + " - " + rec_pbsnetdir.Mtime.ToString() + " - " + rec_pbsnetdir.Size.ToString();
+
+                    Tblpbsnetdir m_rec_pbsnetdir = new Tblpbsnetdir
+                    {
+                        Type = rec_pbsnetdir.Type,
+                        Path = rec_pbsnetdir.Path,
+                        Filename = rec_pbsnetdir.Filename,
+                        Size = rec_pbsnetdir.Size,
+                        Atime = rec_pbsnetdir.Atime,
+                        Mtime = rec_pbsnetdir.Mtime,
+                        Perm = rec_pbsnetdir.Perm,
+                        Uid = rec_pbsnetdir.Uid,
+                        Gid = rec_pbsnetdir.Gid
+                    };
+                    Program.dbData3060.Tblpbsnetdir.InsertOnSubmit(m_rec_pbsnetdir);
                 }
                 sendAttachedFile(MailBody);
             }
+            Program.dbData3060.SubmitChanges();
+            return;
         }
 
         public void sendAttachedFile(string MailBody)
@@ -141,7 +160,7 @@ namespace PbsMinitor
             email.Subject = "Filer klar til afhentning Fra PBS Test";
             email.Body = MailBody;
 #else
-            email.Subject = "Filer klar til afhentning Fra PBS;
+            email.Subject = "Filer klar til afhentning Fra PBS";
             email.Body = MailBody;
 #endif
             email.AddTo(Program.MailToName, Program.MailToAddr);

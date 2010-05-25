@@ -11,6 +11,7 @@ namespace nsPuls3060
         private Tblpbsfiles m_rec_pbsfiles;
         private Tblfrapbs m_rec_frapbs;
         private Tblaftalelin m_rec_aftalelin;
+        private Tblindbetalingskort m_rec_indbetalingskort;
 
         public clsPbs603()
         {
@@ -269,6 +270,58 @@ namespace nsPuls3060
                                 // -******************************************************************************************************
                                 // -******************************************************************************************************
                             }
+                            else if (sektion == "0217")
+                            {  //  Sektion 0217 Oplysninger fra indbetalingskort
+                                if ((rec.Substring(0, 5) == "BS012") && (rec.Substring(13, 4) == "0217"))
+                                {  //  Sektion Start
+                                    //  BEHANDL: Sektion Start
+                                    dummy = 1;
+
+                                }
+                                else if ((rec.Substring(0, 5) == "BS022") && (rec.Substring(13, 4) == "0295"))
+                                {  //  Oplysninger fra indbetalingskort
+                                    //  BEHANDL: Oplysninger fra indbetalingskort
+                                    readgirokort042(sektion, "0295", rec);
+
+                                }
+                                else if ((rec.Substring(0, 5) == "BS092") && (rec.Substring(14 - 1, 4) == "0217"))
+                                {  //  Sektion Slut
+                                    //  BEHANDL: Sektion Slut
+                                    sektion = "";
+                                }
+                                else
+                                {
+                                    throw new Exception("248 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
+                                };
+                                // -******************************************************************************************************
+                                // -******************************************************************************************************
+                            }
+                            else if (sektion == "0219")
+                            {  //  Sektion 0217 Aktive aftaler om Elektronisk Indbetalingskort
+                                if ((rec.Substring(0, 5) == "BS012") && (rec.Substring(13, 4) == "0219"))
+                                {  //  Sektion Start
+                                    //  BEHANDL: Sektion Start
+                                    dummy = 1;
+
+                                }
+                                else if ((rec.Substring(0, 5) == "BS022") && (rec.Substring(13, 4) == "0230"))
+                                {  //  Aktiv aftale om Elektronisk Indbetalingskort
+                                    //  BEHANDL: Aktiv aftale om Elektronisk Indbetalingskort
+                                    dummy = 1;
+
+                                }
+                                else if ((rec.Substring(0, 5) == "BS092") && (rec.Substring(14 - 1, 4) == "0219"))
+                                {  //  Sektion Slut
+                                    //  BEHANDL: Sektion Slut
+                                    sektion = "";
+                                }
+                                else
+                                {
+                                    throw new Exception("249 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
+                                };
+                                // -******************************************************************************************************
+                                // -******************************************************************************************************
+                            }
                             else if (rec.Substring(0, 5) == "BS992")
                             {  //  Leverance slut
                                 //  BEHANDL: Leverance Slut
@@ -276,12 +329,13 @@ namespace nsPuls3060
                             }
                             else
                             {
-                                throw new Exception("248 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
+                                throw new Exception("250 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
                             };
                         }
+                   
                         else
                         {
-                            throw new Exception("249 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
+                            throw new Exception("251 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
                         };
 
                     }
@@ -300,6 +354,8 @@ namespace nsPuls3060
                         case "247":   //247 - Record ukendt
                         case "248":   //248 - Record ukendt
                         case "249":   //249 - Record ukendt
+                        case "250":   //250 - Record ukendt
+                        case "251":   //251 - Record ukendt
                             AntalFiler--;
                             break;
 
@@ -370,6 +426,65 @@ namespace nsPuls3060
             {
                 // Add tblaftalelin
                 m_rec_frapbs.Tblaftalelin.Add(m_rec_aftalelin);
+            }
+        }
+
+        public void readgirokort042(string sektion, string transkode, string rec)
+        {
+            // --  pbssektionnr
+            // --  pbstranskode
+
+            m_rec_indbetalingskort = new Tblindbetalingskort
+            {
+                Pbssektionnr = sektion,
+                Pbstranskode = transkode
+            };
+
+            //  Medlem Nr
+            try
+            {
+                m_rec_indbetalingskort.Nr = int.Parse(rec.Substring(33, 7));
+            }
+            catch
+            {
+                m_rec_indbetalingskort.Nr = 0;
+            }
+            
+            //  debitorkonto
+            m_rec_aftalelin.Debitorkonto = rec.Substring(25, 15);
+
+            //  debgrpnr
+            m_rec_indbetalingskort.Debgrpnr = rec.Substring(20, 5);
+
+            //  Kortartkode
+            m_rec_indbetalingskort.Kortartkode = rec.Substring(40, 2);
+
+            //  FI-kreditor
+            m_rec_indbetalingskort.Fikreditornr  = rec.Substring(42, 8);
+
+            //  Indbetalerident
+            m_rec_indbetalingskort.Indbetalerident  = rec.Substring(50, 19);
+
+            //  dato
+            if (rec.Substring(55, 6) != "000000")
+            {
+                m_rec_indbetalingskort.Dato = DateTime.Parse("20" + rec.Substring(73, 2) + "-" + rec.Substring(71, 2) + "-" + rec.Substring(69, 2));
+            }
+            else
+            {
+                m_rec_indbetalingskort.Dato = null;
+            };
+
+            //  Beløb
+            m_rec_indbetalingskort.Belob = 1;//rec.Substring(75,13); ?????????????????????????????
+
+            //  Faknr
+            m_rec_indbetalingskort.Faknr = int.Parse(rec.Substring(88, 9));
+
+            if ((from h in Program.dbData3060.TblMedlem where h.Nr == m_rec_indbetalingskort.Nr select h).Count() == 1)
+            {
+                // Add tblindbetalingskort
+                m_rec_frapbs.Tblindbetalingskort.Add(m_rec_indbetalingskort);
             }
         }
     }
