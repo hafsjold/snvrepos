@@ -615,9 +615,9 @@ namespace nsPuls3060
                 {
                     //version "2.6.0.0" --> "2.7.0.0" opgradering af SqlDatabasen
 
-                    Program.dbData3060.ExecuteCommand("CREATE TABLE [tempBetalforslaglinie] (  [id] int NOT NULL  IDENTITY (1,1), [Nr] int NOT NULL, [Betalforslagid] int NOT NULL, [advisbelob] numeric(18,2) NOT NULL);");
-                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tempBetalforslaglinie] ADD PRIMARY KEY ([id]);");
-                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tempBetalforslaglinie] ADD CONSTRAINT [FK_tempBetalforslag_tempBetalforslaglinie] FOREIGN KEY ([Betalforslagid]) REFERENCES [tempBetalforslag]([id]) ON DELETE CASCADE ON UPDATE CASCADE;");
+                    //Program.dbData3060.ExecuteCommand("CREATE TABLE [tempBetalforslaglinie] (  [id] int NOT NULL  IDENTITY (1,1), [Nr] int NOT NULL, [Betalforslagid] int NOT NULL, [advisbelob] numeric(18,2) NOT NULL);");
+                    //Program.dbData3060.ExecuteCommand("ALTER TABLE [tempBetalforslaglinie] ADD PRIMARY KEY ([id]);");
+                    //Program.dbData3060.ExecuteCommand("ALTER TABLE [tempBetalforslaglinie] ADD CONSTRAINT [FK_tempBetalforslag_tempBetalforslaglinie] FOREIGN KEY ([Betalforslagid]) REFERENCES [tempBetalforslag]([id]) ON DELETE CASCADE ON UPDATE CASCADE;");
 
                     Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.7.0.0'  WHERE [vkey] = 'VERSION';");
                     dbVersion = "2.7.0.0";
