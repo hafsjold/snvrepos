@@ -151,7 +151,7 @@ namespace nsPuls3060
                     leverancespecifikation = "";
 
                     var qrypbsfile = from d in Program.dbData3060.Tblpbsfile
-                                     where d.Pbsfilesid == wpbsfilesid && d.Seqnr > 0
+                                     where d.Pbsfilesid == wpbsfilesid && d.Data.Substring(0, 6) != "PBCNET"
                                      orderby d.Seqnr
                                      select d;
 

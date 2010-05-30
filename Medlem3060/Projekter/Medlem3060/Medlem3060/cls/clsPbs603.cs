@@ -48,7 +48,7 @@ namespace nsPuls3060
             int DebugCount = qrypbsfiles.Count();
             foreach (var rstpbsfiles in qrypbsfiles)
             {
-                try
+                //try
                 {
                     wpbsfilesid = rstpbsfiles.Id;
                     AntalFiler++;
@@ -58,7 +58,7 @@ namespace nsPuls3060
 
 
                     var qrypbsfile = from d in Program.dbData3060.Tblpbsfile
-                                     where d.Pbsfilesid == wpbsfilesid && d.Seqnr > 0
+                                     where d.Pbsfilesid == wpbsfilesid && d.Data.Substring(0,6) != "PBCNET"
                                      orderby d.Seqnr
                                      select d;
 
@@ -278,13 +278,13 @@ namespace nsPuls3060
                                     dummy = 1;
 
                                 }
-                                else if ((rec.Substring(0, 5) == "BS022") && (rec.Substring(13, 4) == "0295"))
+                                else if ((rec.Substring(0, 5) == "BS042") && (rec.Substring(13, 4) == "0295"))
                                 {  //  Oplysninger fra indbetalingskort
                                     //  BEHANDL: Oplysninger fra indbetalingskort
                                     readgirokort042(sektion, "0295", rec);
 
                                 }
-                                else if ((rec.Substring(0, 5) == "BS092") && (rec.Substring(14 - 1, 4) == "0217"))
+                                else if ((rec.Substring(0, 5) == "BS092") && (rec.Substring(13, 4) == "0217"))
                                 {  //  Sektion Slut
                                     //  BEHANDL: Sektion Slut
                                     sektion = "";
@@ -341,6 +341,7 @@ namespace nsPuls3060
                     }
 
                 }
+                /*  
                 catch (Exception e)
                 {
                     switch (e.Message.Substring(0, 3))
@@ -363,8 +364,9 @@ namespace nsPuls3060
                             throw;
                     }
                 }
-
+                */
             }
+            
             Program.dbData3060.SubmitChanges();
             return AntalFiler;
         }
@@ -434,6 +436,9 @@ namespace nsPuls3060
             // --  pbssektionnr
             // --  pbstranskode
 
+            decimal belobmun;
+            int belob;
+
             m_rec_indbetalingskort = new Tblindbetalingskort
             {
                 Pbssektionnr = sektion,
@@ -451,7 +456,7 @@ namespace nsPuls3060
             }
             
             //  debitorkonto
-            m_rec_aftalelin.Debitorkonto = rec.Substring(25, 15);
+            m_rec_indbetalingskort.Debitorkonto = rec.Substring(25, 15);
 
             //  debgrpnr
             m_rec_indbetalingskort.Debgrpnr = rec.Substring(20, 5);
@@ -476,7 +481,9 @@ namespace nsPuls3060
             };
 
             //  Beløb
-            m_rec_indbetalingskort.Belob = 1;//rec.Substring(75,13); ?????????????????????????????
+            belob = int.Parse(rec.Substring(75, 13));
+            belobmun = ((decimal)belob) / 100;
+            m_rec_indbetalingskort.Belob = belobmun;
 
             //  Faknr
             m_rec_indbetalingskort.Faknr = int.Parse(rec.Substring(88, 9));
