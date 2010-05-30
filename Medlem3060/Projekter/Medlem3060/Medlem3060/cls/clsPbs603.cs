@@ -366,7 +366,7 @@ namespace nsPuls3060
                 }
                 */
             }
-            
+            if (dummy == 1) dummy = 2;
             Program.dbData3060.SubmitChanges();
             return AntalFiler;
         }

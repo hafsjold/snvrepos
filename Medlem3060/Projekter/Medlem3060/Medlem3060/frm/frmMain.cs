@@ -109,7 +109,7 @@ namespace nsPuls3060
         {
             if (!FocusChild("Kontingent Forslag"))
             {
-                FrmKontingentForslag m_frmKontingentForslag = new FrmKontingentForslag();
+                FrmRykkerForslag m_frmKontingentForslag = new FrmRykkerForslag();
                 m_frmKontingentForslag.MdiParent = this;
                 m_frmKontingentForslag.Show();
             }
@@ -133,8 +133,8 @@ namespace nsPuls3060
             //int plusdage = 2;
             //DateTime wdispositionsdato = clsOverfoersel.bankdageplus(dato, plusdage);
             clsPbs603 objPbs603 = new clsPbs603();
-            objPbs603.aftaleoplysninger_fra_pbs();
-            int xx = 0;
+            //objPbs603.aftaleoplysninger_fra_pbs();
+            //int xx = 0;
 
             //clsOverfoersel objOverfoersel = new clsOverfoersel();
             //objOverfoersel.overfoersel_mail(617);
@@ -449,6 +449,16 @@ namespace nsPuls3060
                 FrmBetalingsForslag m_frmBetalingsForslag = new FrmBetalingsForslag();
                 m_frmBetalingsForslag.MdiParent = this;
                 m_frmBetalingsForslag.Show();
+            }
+        }
+
+        private void emailRykkerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("Rykker Forslag"))
+            {
+                FrmRykkerForslag m_frmRykkerForslag = new FrmRykkerForslag();
+                m_frmRykkerForslag.MdiParent = this;
+                m_frmRykkerForslag.Show();
             }
         }
 

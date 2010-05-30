@@ -1,6 +1,6 @@
 ﻿namespace nsPuls3060
 {
-    partial class FrmKontingentForslag
+    partial class FrmRykkerForslag
     {
         /// <summary>
         /// Required designer variable.
@@ -30,14 +30,10 @@
         {
             this.label_DatoKontingentTil = new System.Windows.Forms.Label();
             this.label_DatoKontingentForfald = new System.Windows.Forms.Label();
-            this.label_DatoBetaltKontingentTil = new System.Windows.Forms.Label();
-            this.label_Aarskontingent = new System.Windows.Forms.Label();
             this.DatoKontingentTil = new System.Windows.Forms.DateTimePicker();
             this.DatoKontingentForfald = new System.Windows.Forms.DateTimePicker();
-            this.DatoBetaltKontingentTil = new System.Windows.Forms.DateTimePicker();
-            this.Aarskontingent = new System.Windows.Forms.TextBox();
             this.cmdCancel = new System.Windows.Forms.Button();
-            this.cmdFakturer = new System.Windows.Forms.Button();
+            this.cmdRykkere = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pgmForslag = new System.Windows.Forms.ProgressBar();
             this.lvwMedlem = new System.Windows.Forms.ListView();
@@ -51,11 +47,10 @@
             this.Label_Forslagstekst = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdForslag = new System.Windows.Forms.Button();
-            this.DelsystemBSH = new System.Windows.Forms.CheckBox();
             this.pgmFaktura = new System.Windows.Forms.ProgressBar();
             this.Label_Fakturatekst = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.lvwKontingent = new System.Windows.Forms.ListView();
+            this.lvwRykker = new System.Windows.Forms.ListView();
             this.columnHeaderKNnavn = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderKNR = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderKAdresse = new System.Windows.Forms.ColumnHeader();
@@ -86,24 +81,6 @@
             this.label_DatoKontingentForfald.TabIndex = 0;
             this.label_DatoKontingentForfald.Text = "Kontingent forfalds dato:";
             // 
-            // label_DatoBetaltKontingentTil
-            // 
-            this.label_DatoBetaltKontingentTil.AutoSize = true;
-            this.label_DatoBetaltKontingentTil.Location = new System.Drawing.Point(15, 9);
-            this.label_DatoBetaltKontingentTil.Name = "label_DatoBetaltKontingentTil";
-            this.label_DatoBetaltKontingentTil.Size = new System.Drawing.Size(213, 13);
-            this.label_DatoBetaltKontingentTil.TabIndex = 0;
-            this.label_DatoBetaltKontingentTil.Text = "Medlemmer som har betalt kontingent indtil::";
-            // 
-            // label_Aarskontingent
-            // 
-            this.label_Aarskontingent.AutoSize = true;
-            this.label_Aarskontingent.Location = new System.Drawing.Point(15, 39);
-            this.label_Aarskontingent.Name = "label_Aarskontingent";
-            this.label_Aarskontingent.Size = new System.Drawing.Size(135, 13);
-            this.label_Aarskontingent.TabIndex = 0;
-            this.label_Aarskontingent.Text = "Kontingent for 12 måneder:";
-            // 
             // DatoKontingentTil
             // 
             this.DatoKontingentTil.Location = new System.Drawing.Point(195, 10);
@@ -120,20 +97,6 @@
             this.DatoKontingentForfald.Size = new System.Drawing.Size(121, 20);
             this.DatoKontingentForfald.TabIndex = 1;
             // 
-            // DatoBetaltKontingentTil
-            // 
-            this.DatoBetaltKontingentTil.Location = new System.Drawing.Point(248, 9);
-            this.DatoBetaltKontingentTil.Name = "DatoBetaltKontingentTil";
-            this.DatoBetaltKontingentTil.Size = new System.Drawing.Size(124, 20);
-            this.DatoBetaltKontingentTil.TabIndex = 1;
-            // 
-            // Aarskontingent
-            // 
-            this.Aarskontingent.Location = new System.Drawing.Point(248, 36);
-            this.Aarskontingent.Name = "Aarskontingent";
-            this.Aarskontingent.Size = new System.Drawing.Size(47, 20);
-            this.Aarskontingent.TabIndex = 2;
-            // 
             // cmdCancel
             // 
             this.cmdCancel.Location = new System.Drawing.Point(23, 68);
@@ -146,14 +109,14 @@
             // 
             // cmdFakturer
             // 
-            this.cmdFakturer.Location = new System.Drawing.Point(18, 68);
-            this.cmdFakturer.Name = "cmdFakturer";
-            this.cmdFakturer.Size = new System.Drawing.Size(61, 25);
-            this.cmdFakturer.TabIndex = 3;
-            this.cmdFakturer.Text = "Fakturer";
-            this.cmdFakturer.UseVisualStyleBackColor = true;
-            this.cmdFakturer.Visible = false;
-            this.cmdFakturer.Click += new System.EventHandler(this.cmdFakturer_Click);
+            this.cmdRykkere.Location = new System.Drawing.Point(18, 68);
+            this.cmdRykkere.Name = "cmdFakturer";
+            this.cmdRykkere.Size = new System.Drawing.Size(61, 25);
+            this.cmdRykkere.TabIndex = 3;
+            this.cmdRykkere.Text = "Rykkere";
+            this.cmdRykkere.UseVisualStyleBackColor = true;
+            this.cmdRykkere.Visible = false;
+            this.cmdRykkere.Click += new System.EventHandler(this.cmdFakturer_Click);
             // 
             // splitContainer1
             // 
@@ -176,16 +139,11 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.DelsystemBSH);
             this.splitContainer1.Panel2.Controls.Add(this.pgmFaktura);
             this.splitContainer1.Panel2.Controls.Add(this.Label_Fakturatekst);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
-            this.splitContainer1.Panel2.Controls.Add(this.lvwKontingent);
-            this.splitContainer1.Panel2.Controls.Add(this.label_DatoBetaltKontingentTil);
-            this.splitContainer1.Panel2.Controls.Add(this.cmdFakturer);
-            this.splitContainer1.Panel2.Controls.Add(this.label_Aarskontingent);
-            this.splitContainer1.Panel2.Controls.Add(this.Aarskontingent);
-            this.splitContainer1.Panel2.Controls.Add(this.DatoBetaltKontingentTil);
+            this.splitContainer1.Panel2.Controls.Add(this.lvwRykker);
+            this.splitContainer1.Panel2.Controls.Add(this.cmdRykkere);
             this.splitContainer1.Size = new System.Drawing.Size(829, 513);
             this.splitContainer1.SplitterDistance = 409;
             this.splitContainer1.TabIndex = 4;
@@ -270,9 +228,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(20, 118);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(122, 16);
+            this.label1.Size = new System.Drawing.Size(121, 16);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Vælg til Betaling";
+            this.label1.Text = "Vælg til Rykning";
             // 
             // cmdForslag
             // 
@@ -283,18 +241,6 @@
             this.cmdForslag.Text = "Forslag";
             this.cmdForslag.UseVisualStyleBackColor = true;
             this.cmdForslag.Click += new System.EventHandler(this.cmdForslag_Click);
-            // 
-            // DelsystemBSH
-            // 
-            this.DelsystemBSH.AutoSize = true;
-            this.DelsystemBSH.Location = new System.Drawing.Point(85, 73);
-            this.DelsystemBSH.Name = "DelsystemBSH";
-            this.DelsystemBSH.Size = new System.Drawing.Size(48, 17);
-            this.DelsystemBSH.TabIndex = 7;
-            this.DelsystemBSH.Text = "BSH";
-            this.DelsystemBSH.UseVisualStyleBackColor = true;
-            this.DelsystemBSH.Visible = false;
-            this.DelsystemBSH.CheckStateChanged += new System.EventHandler(this.DelsystemBSH_CheckStateChanged);
             // 
             // pgmFaktura
             // 
@@ -324,14 +270,14 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(15, 118);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(141, 16);
+            this.label2.Size = new System.Drawing.Size(105, 16);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Kontingent Betaling";
+            this.label2.Text = "Rykker E-mail";
             // 
-            // lvwKontingent
+            // lvwRykker
             // 
-            this.lvwKontingent.AllowDrop = true;
-            this.lvwKontingent.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.lvwRykker.AllowDrop = true;
+            this.lvwRykker.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderKNnavn,
             this.columnHeaderKNR,
             this.columnHeaderKAdresse,
@@ -339,18 +285,18 @@
             this.columnHeaderKFradato,
             this.columnHeaderKKontingent,
             this.columnHeaderKTildato});
-            this.lvwKontingent.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lvwKontingent.FullRowSelect = true;
-            this.lvwKontingent.Location = new System.Drawing.Point(0, 137);
-            this.lvwKontingent.Name = "lvwKontingent";
-            this.lvwKontingent.Size = new System.Drawing.Size(416, 376);
-            this.lvwKontingent.TabIndex = 0;
-            this.lvwKontingent.UseCompatibleStateImageBehavior = false;
-            this.lvwKontingent.View = System.Windows.Forms.View.Details;
-            this.lvwKontingent.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvwKontingent_DragDrop);
-            this.lvwKontingent.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwKontingent_ColumnClick);
-            this.lvwKontingent.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvwKontingent_DragEnter);
-            this.lvwKontingent.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvwKontingent_ItemDrag);
+            this.lvwRykker.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lvwRykker.FullRowSelect = true;
+            this.lvwRykker.Location = new System.Drawing.Point(0, 137);
+            this.lvwRykker.Name = "lvwRykker";
+            this.lvwRykker.Size = new System.Drawing.Size(416, 376);
+            this.lvwRykker.TabIndex = 0;
+            this.lvwRykker.UseCompatibleStateImageBehavior = false;
+            this.lvwRykker.View = System.Windows.Forms.View.Details;
+            this.lvwRykker.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvwRykker_DragDrop);
+            this.lvwRykker.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwRykker_ColumnClick);
+            this.lvwRykker.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvwRykker_DragEnter);
+            this.lvwRykker.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvwRykker_ItemDrag);
             // 
             // columnHeaderKNnavn
             // 
@@ -384,14 +330,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = global::nsPuls3060.Properties.Settings.Default.frmKontingentForslagSize;
+            this.ClientSize = global::nsPuls3060.Properties.Settings.Default.frmRykkerForslagClientSize;
             this.Controls.Add(this.splitContainer1);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::nsPuls3060.Properties.Settings.Default, "frmKontingentForslagSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsPuls3060.Properties.Settings.Default, "frmKontingentForslagPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.Location = global::nsPuls3060.Properties.Settings.Default.frmKontingentForslagPoint;
+            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::nsPuls3060.Properties.Settings.Default, "frmRykkerForslagClientSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsPuls3060.Properties.Settings.Default, "frmRykkerForslagPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.Location = global::nsPuls3060.Properties.Settings.Default.frmRykkerForslagPoint;
             this.Name = "FrmRykkerForslag";
-            this.Text = "Kontingent Forslag";
-            this.Load += new System.EventHandler(this.FrmKontingentForslag_Load);
+            this.Text = "Rykker Forslag";
+            this.Load += new System.EventHandler(this.FrmRykkerForslag_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -405,17 +351,13 @@
 
         private System.Windows.Forms.Label label_DatoKontingentTil;
         private System.Windows.Forms.Label label_DatoKontingentForfald;
-        private System.Windows.Forms.Label label_DatoBetaltKontingentTil;
-        private System.Windows.Forms.Label label_Aarskontingent;
         private System.Windows.Forms.DateTimePicker DatoKontingentTil;
         private System.Windows.Forms.DateTimePicker DatoKontingentForfald;
-        private System.Windows.Forms.DateTimePicker DatoBetaltKontingentTil;
-        private System.Windows.Forms.TextBox Aarskontingent;
         private System.Windows.Forms.Button cmdCancel;
-        private System.Windows.Forms.Button cmdFakturer;
+        private System.Windows.Forms.Button cmdRykkere;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.ListView lvwMedlem;
-        private System.Windows.Forms.ListView lvwKontingent;
+        private System.Windows.Forms.ListView lvwRykker;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button cmdForslag;
@@ -437,6 +379,5 @@
         private System.Windows.Forms.ColumnHeader columnHeaderKKontingent;
         private System.Windows.Forms.ColumnHeader columnHeaderMTildato;
         private System.Windows.Forms.ColumnHeader columnHeaderKTildato;
-        private System.Windows.Forms.CheckBox DelsystemBSH;
     }
 }

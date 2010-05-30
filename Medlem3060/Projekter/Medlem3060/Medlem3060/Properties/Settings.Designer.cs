@@ -263,5 +263,29 @@ namespace nsPuls3060.Properties {
                 this["FrmBetalingsForslagPoint"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("829, 513")]
+        public global::System.Drawing.Size frmRykkerForslagClientSize {
+            get {
+                return ((global::System.Drawing.Size)(this["frmRykkerForslagClientSize"]));
+            }
+            set {
+                this["frmRykkerForslagClientSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point frmRykkerForslagPoint {
+            get {
+                return ((global::System.Drawing.Point)(this["frmRykkerForslagPoint"]));
+            }
+            set {
+                this["frmRykkerForslagPoint"] = value;
+            }
+        }
     }
 }
