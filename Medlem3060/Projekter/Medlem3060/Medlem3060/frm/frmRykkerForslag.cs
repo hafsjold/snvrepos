@@ -218,10 +218,10 @@ namespace nsPuls3060
             this.Close();
         }
 
-        private void cmdFakturer_Click(object sender, EventArgs e)
+        private void cmdRykkere_Click(object sender, EventArgs e)
         {
             string TilPBSFilename;
-            int AntalFakturaer;
+            int AntalRykkere;
             int imax;
             string keyval;
             DateTime fradato;
@@ -234,15 +234,15 @@ namespace nsPuls3060
             this.cmdForslag.Visible = false;
             this.cmdCancel.Visible = false;
             imax = lvwRykker.Items.Count;
-            this.pgmFaktura.Maximum = (imax * 4);
-            this.pgmFaktura.Minimum = 0;
-            this.pgmFaktura.Value = 0;
-            this.pgmFaktura.Visible = true;
+            this.pgmRykker.Maximum = (imax * 4);
+            this.pgmRykker.Minimum = 0;
+            this.pgmRykker.Value = 0;
+            this.pgmRykker.Visible = true;
             Program.dbData3060.ExecuteCommand("DELETE FROM tempKontforslag;");
             if ((imax == 0))
             {
-                this.Label_Fakturatekst.Text = "Der ikke noget at fakturere";
-                this.Label_Fakturatekst.Visible = true;
+                this.Label_Rykkertekst.Text = "Der ikke noget at fakturere";
+                this.Label_Rykkertekst.Visible = true;
             }
             else
             {
@@ -254,7 +254,7 @@ namespace nsPuls3060
                 var i = 0;
                 foreach (ListViewItem lvi in lvwRykker.Items)
                 {
-                    this.pgmFaktura.Value = ++i;
+                    this.pgmRykker.Value = ++i;
                     keyval = lvi.Name;
                     fradato = DateTime.Parse(lvi.SubItems[4].Text);
                     advisbelob = double.Parse(lvi.SubItems[5].Text);
@@ -274,17 +274,16 @@ namespace nsPuls3060
                 clsPbs601 objPbs601 = new clsPbs601();
                 nsPuls3060.clsPbs601.SetLobnr += new nsPuls3060.clsPbs601.Pbs601DelegateHandler(On_clsPbs601_SetLobnr);
 
-                AntalFakturaer = objPbs601.kontingent_fakturer_bs1();
-                this.pgmFaktura.Value = imax * 2;
-                if ((AntalFakturaer > 0))
+                AntalRykkere = objPbs601.kontingent_fakturer_bs1();
+                this.pgmRykker.Value = imax * 2;
+                if ((AntalRykkere > 0))
                 {
                     objPbs601.faktura_601_action(m_lobnr);
-                    this.pgmFaktura.Value = (imax * 3);
-                    //objPbs601.WriteTilPbsFile(m_lobnr);
+                    this.pgmRykker.Value = (imax * 3);
                     clsSFTP objSFTP = new clsSFTP();
                     objSFTP.WriteTilSFtp(m_lobnr);
                 }
-                this.pgmFaktura.Value = (imax * 4);
+                this.pgmRykker.Value = (imax * 4);
                 cmdRykkere.Text = "Afslut";
 
                 try
@@ -296,9 +295,9 @@ namespace nsPuls3060
                 {
                     TilPBSFilename = "PBSNotFound.lst";
                 }
-                this.Label_Fakturatekst.Text = ("Leverance til PBS er gemt i filen " + TilPBSFilename);
-                this.Label_Fakturatekst.Visible = true;
-                this.pgmFaktura.Visible = false;
+                this.Label_Rykkertekst.Text = ("Leverance til PBS er gemt i filen " + TilPBSFilename);
+                this.Label_Rykkertekst.Visible = true;
+                this.pgmRykker.Visible = false;
             }
         }
 

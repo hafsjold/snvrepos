@@ -240,6 +240,21 @@
       <Column Name="Afsluttet" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="tblrykker" Member="Tblrykker">
+    <Type Name="Tblrykker">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tilpbsid" Member="Tilpbsid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="betalingsdato" Member="Betalingsdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Nr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="faknr" Member="Faknr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="advistekst" Member="Advistekst" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="advisbelob" Member="Advisbelob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="infotekst" Member="Infotekst" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="rykkerdato" Member="Rykkerdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="maildato" Member="Maildato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Tbltilpbs_Tblrykker" Member="Tbltilpbs" ThisKey="Tilpbsid" OtherKey="Id" Type="Tbltilpbs" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="tblsftp" Member="Tblsftp">
     <Type Name="Tblsftp">
       <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -271,6 +286,7 @@
       <Column Name="leverancedannelsesdato" Member="Leverancedannelsesdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="Tbltilpbs_Tblfak" Member="Tblfak" ThisKey="Id" OtherKey="Tilpbsid" Type="Tblfak" />
       <Association Name="Tbltilpbs_Tbloverforsel" Member="Tbloverforsel" ThisKey="Id" OtherKey="Tilpbsid" Type="Tbloverforsel" />
+      <Association Name="Tbltilpbs_Tblrykker" Member="Tblrykker" ThisKey="Id" OtherKey="Tilpbsid" Type="Tblrykker" />
       <Association Name="Tblpbsforsendelse_Tbltilpbs" Member="Tblpbsforsendelse" ThisKey="Pbsforsendelseid" OtherKey="Id" Type="Tblpbsforsendelse" IsForeignKey="true" />
     </Type>
   </Table>
@@ -310,6 +326,25 @@
       <Column Name="advisbelob" Member="Advisbelob" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
       <Column Name="tildato" Member="Tildato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="TempKontforslag_TempKontforslaglinie" Member="TempKontforslag" ThisKey="Kontforslagid" OtherKey="Id" Type="TempKontforslag" IsForeignKey="true" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="tempRykkerforslag" Member="TempRykkerforslag">
+    <Type Name="TempRykkerforslag">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="betalingsdato" Member="Betalingsdato" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="bsh" Member="Bsh" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="TempRykkerforslag_TempRykkerforslaglinie" Member="TempRykkerforslaglinie" ThisKey="Id" OtherKey="Rykkerforslagid" Type="TempRykkerforslaglinie" />
+    </Type>
+  </Table>
+  <Table Name="tempRykkerforslaglinie" Member="TempRykkerforslaglinie">
+    <Type Name="TempRykkerforslaglinie">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Rykkerforslagid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="faknr" Member="Faknr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="advistekst" Member="Advistekst" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="advisbelob" Member="Advisbelob" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Association Name="TempRykkerforslag_TempRykkerforslaglinie" Member="TempRykkerforslag" ThisKey="Rykkerforslagid" OtherKey="Id" Type="TempRykkerforslag" IsForeignKey="true" DeleteOnNull="true" />
     </Type>
   </Table>
 </Database>

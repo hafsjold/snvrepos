@@ -1,6 +1,6 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectView>ShowAllFiles</ProjectView>
+    <ProjectView>ProjectFiles</ProjectView>
     <PublishUrlHistory>C:\Documents and Settings\mha\Dokumenter\Medlem3060\3060Install\Medlem3060\|C:\Documents and Settings\mha\Dokumenter\Medlem3060\3060Install\|Y:\Medlem3060Install\|publish\</PublishUrlHistory>
     <InstallUrlHistory>
     </InstallUrlHistory>

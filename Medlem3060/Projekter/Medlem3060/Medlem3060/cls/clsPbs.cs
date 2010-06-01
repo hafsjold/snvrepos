@@ -687,6 +687,33 @@ namespace nsPuls3060
                 }
             }
 
+            if (dbVersion == "2.10.0.0")
+            {
+                try
+                {
+                    //version "2.10.0.0" --> "2.11.0.0" opgradering af SqlDatabasen
+                    Program.dbData3060.ExecuteCommand("CREATE TABLE [tempRykkerforslag] ([id] int NOT NULL  IDENTITY (1,1), [betalingsdato] datetime NOT NULL, [bsh] bit NULL);");
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tempRykkerforslag] ADD PRIMARY KEY ([id]);");
+                    Program.dbData3060.ExecuteCommand("CREATE UNIQUE INDEX [UQ__tempRykkerforslag__000000000000055D] ON [tempRykkerforslag] ([id] ASC);");
+                    Program.dbData3060.ExecuteCommand("CREATE TABLE [tempRykkerforslaglinie] ( [id] int NOT NULL  IDENTITY (1,1), [Rykkerforslagid] int NOT NULL, [Nr] int NOT NULL, [faknr] int NOT NULL, [advistekst] nvarchar(4000) NULL, [advisbelob] numeric(18,2) NOT NULL);");
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tempRykkerforslaglinie] ADD PRIMARY KEY ([id]);");
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tempRykkerforslaglinie] ADD CONSTRAINT [FK_tempRykkerforslag_tempRykkerforslaglinie] FOREIGN KEY ([Rykkerforslagid]) REFERENCES [tempRykkerforslag]([id]) ON DELETE CASCADE ON UPDATE CASCADE;");
+                    Program.dbData3060.ExecuteCommand("CREATE TABLE [tblrykker] ( [id] int NOT NULL  IDENTITY (30641,1), [tilpbsid] int NULL, [betalingsdato] datetime NULL, [Nr] int NULL, [faknr] int NULL, [advistekst] nvarchar(4000) NULL, [advisbelob] numeric(18,2) NULL, [infotekst] int NULL, [rykkerdato] datetime NULL, [maildato] datetime NULL);");
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tblrykker] ADD PRIMARY KEY ([id]);");
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tblrykker] ADD CONSTRAINT [FK_tbltilpbs_tblrykker] FOREIGN KEY ([tilpbsid]) REFERENCES [tbltilpbs]([id]) ON DELETE CASCADE ON UPDATE CASCADE;");
+                    Program.dbData3060.ExecuteCommand("CREATE INDEX [tblmedlem_tblrykker] ON [tblrykker] ([Nr] ASC,[faknr] ASC);");
+                    Program.dbData3060.ExecuteCommand("CREATE UNIQUE INDEX [UQ__tblrykker__00000000000001E7] ON [tblrykker] ([id] ASC);");
+
+                    Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.11.0.0'  WHERE [vkey] = 'VERSION';");
+                    dbVersion = "2.11.0.0";
+                }
+                catch (System.Data.SqlServerCe.SqlCeException e)
+                {
+                    object x = e;
+                }
+            }
+
+
             return true;
         }
 

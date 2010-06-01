@@ -47,8 +47,8 @@
             this.Label_Forslagstekst = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdForslag = new System.Windows.Forms.Button();
-            this.pgmFaktura = new System.Windows.Forms.ProgressBar();
-            this.Label_Fakturatekst = new System.Windows.Forms.Label();
+            this.pgmRykker = new System.Windows.Forms.ProgressBar();
+            this.Label_Rykkertekst = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lvwRykker = new System.Windows.Forms.ListView();
             this.columnHeaderKNnavn = new System.Windows.Forms.ColumnHeader();
@@ -116,7 +116,7 @@
             this.cmdRykkere.Text = "Rykkere";
             this.cmdRykkere.UseVisualStyleBackColor = true;
             this.cmdRykkere.Visible = false;
-            this.cmdRykkere.Click += new System.EventHandler(this.cmdFakturer_Click);
+            this.cmdRykkere.Click += new System.EventHandler(this.cmdRykkere_Click);
             // 
             // splitContainer1
             // 
@@ -139,8 +139,8 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.pgmFaktura);
-            this.splitContainer1.Panel2.Controls.Add(this.Label_Fakturatekst);
+            this.splitContainer1.Panel2.Controls.Add(this.pgmRykker);
+            this.splitContainer1.Panel2.Controls.Add(this.Label_Rykkertekst);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
             this.splitContainer1.Panel2.Controls.Add(this.lvwRykker);
             this.splitContainer1.Panel2.Controls.Add(this.cmdRykkere);
@@ -244,25 +244,25 @@
             // 
             // pgmFaktura
             // 
-            this.pgmFaktura.Location = new System.Drawing.Point(139, 74);
-            this.pgmFaktura.Maximum = 325;
-            this.pgmFaktura.Name = "pgmFaktura";
-            this.pgmFaktura.Size = new System.Drawing.Size(218, 15);
-            this.pgmFaktura.Step = 1;
-            this.pgmFaktura.TabIndex = 6;
-            this.pgmFaktura.Visible = false;
+            this.pgmRykker.Location = new System.Drawing.Point(139, 74);
+            this.pgmRykker.Maximum = 325;
+            this.pgmRykker.Name = "pgmFaktura";
+            this.pgmRykker.Size = new System.Drawing.Size(218, 15);
+            this.pgmRykker.Step = 1;
+            this.pgmRykker.TabIndex = 6;
+            this.pgmRykker.Visible = false;
             // 
             // Label_Fakturatekst
             // 
-            this.Label_Fakturatekst.AutoSize = true;
-            this.Label_Fakturatekst.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Label_Fakturatekst.ForeColor = System.Drawing.Color.Red;
-            this.Label_Fakturatekst.Location = new System.Drawing.Point(15, 96);
-            this.Label_Fakturatekst.Name = "Label_Fakturatekst";
-            this.Label_Fakturatekst.Size = new System.Drawing.Size(33, 16);
-            this.Label_Fakturatekst.TabIndex = 5;
-            this.Label_Fakturatekst.Text = "test";
-            this.Label_Fakturatekst.Visible = false;
+            this.Label_Rykkertekst.AutoSize = true;
+            this.Label_Rykkertekst.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Label_Rykkertekst.ForeColor = System.Drawing.Color.Red;
+            this.Label_Rykkertekst.Location = new System.Drawing.Point(15, 96);
+            this.Label_Rykkertekst.Name = "Label_Fakturatekst";
+            this.Label_Rykkertekst.Size = new System.Drawing.Size(33, 16);
+            this.Label_Rykkertekst.TabIndex = 5;
+            this.Label_Rykkertekst.Text = "test";
+            this.Label_Rykkertekst.Visible = false;
             // 
             // label2
             // 
@@ -373,8 +373,8 @@
         private System.Windows.Forms.ColumnHeader columnHeaderKFradato;
         private System.Windows.Forms.ProgressBar pgmForslag;
         private System.Windows.Forms.Label Label_Forslagstekst;
-        private System.Windows.Forms.Label Label_Fakturatekst;
-        private System.Windows.Forms.ProgressBar pgmFaktura;
+        private System.Windows.Forms.Label Label_Rykkertekst;
+        private System.Windows.Forms.ProgressBar pgmRykker;
         private System.Windows.Forms.ColumnHeader columnHeaderMKontingent;
         private System.Windows.Forms.ColumnHeader columnHeaderKKontingent;
         private System.Windows.Forms.ColumnHeader columnHeaderMTildato;
