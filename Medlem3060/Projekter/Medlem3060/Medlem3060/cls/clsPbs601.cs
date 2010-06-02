@@ -26,6 +26,12 @@ namespace nsPuls3060
         fdmmddyyyy = 0,
         fdmmddyyyyhhmmss = 1,
     }
+    
+    public enum fakType
+    {
+        fdfaktura = 0,
+        fdrykker = 1,
+    }
 
     public class clsPbs601
     {
@@ -102,7 +108,65 @@ namespace nsPuls3060
             }
         return true;
         }
-        
+
+        public int rykkere_bsh()
+        {
+            int lobnr;
+            string wadvistekst;
+            int wantalrykkere;
+            wantalrykkere = 0;
+
+            Tbltilpbs rec_tilpbs = new Tbltilpbs
+            {
+                Delsystem = "BSH",
+                Leverancetype = "0601",
+                Udtrukket = DateTime.Now
+            };
+            Program.dbData3060.Tbltilpbs.InsertOnSubmit(rec_tilpbs);
+            Program.dbData3060.SubmitChanges();
+            lobnr = rec_tilpbs.Id;
+
+            var rstmedlems = from k in Program.karMedlemmer
+                             join l in Program.dbData3060.TempRykkerforslaglinie on k.Nr equals l.Nr
+                             join f in Program.dbData3060.Tblfak on l.Faknr equals f.Faknr
+                             join h in Program.dbData3060.TempRykkerforslag on l.Rykkerforslagid equals h.Id
+                             select new
+                             {
+                                 k.Nr,
+                                 k.Navn,
+                                 h.Betalingsdato,
+                                 l.Advisbelob,
+                                 l.Faknr,
+                                 f.Fradato,
+                                 f.Tildato
+                             };
+
+            foreach (var rstmedlem in rstmedlems)
+            {
+
+                wadvistekst = "Puls 3060 Medlemskontingent";
+                wadvistekst += "\r\n" + "  for " + rstmedlem.Navn;
+                wadvistekst += "\r\n" + "  perioden fra " + string.Format("{0:yyyy-MM-dd}", rstmedlem.Fradato) + " til " + string.Format("{0:yyyy-MM-dd}", rstmedlem.Tildato);
+                wadvistekst += "\r\n" + "Besøg Puls 3060\"s hjemmeside på www.puls3060.dk";
+                Tblrykker rec_rykker = new Tblrykker
+                {
+                    Betalingsdato = rstmedlem.Betalingsdato,
+                    Nr = rstmedlem.Nr,
+                    Faknr = rstmedlem.Faknr,
+                    Advistekst = wadvistekst,
+                    Advisbelob = rstmedlem.Advisbelob,
+                    Infotekst = 0,
+                    Rykkerdato = DateTime.Today,
+                };
+                rec_tilpbs.Tblrykker.Add(rec_rykker);
+                wantalrykkere++;
+            }
+            Program.dbData3060.SubmitChanges();
+            SetLobnr(lobnr);
+            return wantalrykkere;
+        }
+
+     
         public int kontingent_fakturer_bs1()
         {
             int lobnr;
@@ -168,7 +232,7 @@ namespace nsPuls3060
 
         }
         
-        public void faktura_601_action(int lobnr)
+        public void faktura_og_rykker_601_action(int lobnr, fakType fak)
         {
             string rec;
             //lintype lin;
@@ -288,6 +352,7 @@ namespace nsPuls3060
             rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
             rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
             antalsek++;
+            
             var rstdebs = from k in Program.karMedlemmer
                           join f in Program.dbData3060.Tblfak on k.Nr equals f.Nr
                           where f.Tilpbsid == lobnr && f.Nr != null

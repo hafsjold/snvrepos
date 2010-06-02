@@ -369,9 +369,8 @@ namespace nsPuls3060
                 this.pgmFaktura.Value = imax * 2;
                 if ((AntalFakturaer > 0))
                 {
-                    objPbs601.faktura_601_action(m_lobnr);
+                    objPbs601.faktura_og_rykker_601_action(m_lobnr, fakType.fdfaktura);
                     this.pgmFaktura.Value = (imax * 3);
-                    //objPbs601.WriteTilPbsFile(m_lobnr);
                     clsSFTP objSFTP = new clsSFTP();
                     TilPBSFilename = objSFTP.WriteTilSFtp(m_lobnr);
                 }

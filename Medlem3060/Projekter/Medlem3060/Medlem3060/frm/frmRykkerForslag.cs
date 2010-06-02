@@ -238,7 +238,7 @@ namespace nsPuls3060
             this.pgmRykker.Minimum = 0;
             this.pgmRykker.Value = 0;
             this.pgmRykker.Visible = true;
-            Program.dbData3060.ExecuteCommand("DELETE FROM tempKontforslag;");
+            Program.dbData3060.ExecuteCommand("DELETE FROM tempRykkerforslag;");
             if ((imax == 0))
             {
                 this.Label_Rykkertekst.Text = "Der ikke noget at fakturere";
@@ -246,11 +246,11 @@ namespace nsPuls3060
             }
             else
             {
-                TempKontforslag rec_tempKontforslag = new TempKontforslag
+                TempRykkerforslag rec_tempRykkerforslag = new TempRykkerforslag
                 {
                     Betalingsdato = this.DatoKontingentForfald.Value,
                 };
-                Program.dbData3060.TempKontforslag.InsertOnSubmit(rec_tempKontforslag);
+                Program.dbData3060.TempRykkerforslag.InsertOnSubmit(rec_tempRykkerforslag);
                 var i = 0;
                 foreach (ListViewItem lvi in lvwRykker.Items)
                 {
@@ -260,25 +260,25 @@ namespace nsPuls3060
                     advisbelob = double.Parse(lvi.SubItems[5].Text);
                     tildato = DateTime.Parse(lvi.SubItems[6].Text);
 
-                    TempKontforslaglinie rec_tempKontforslaglinie = new TempKontforslaglinie
+                    TempRykkerforslaglinie rec_tempRykkerforslaglinie = new TempRykkerforslaglinie
                     {
                         Nr = int.Parse(keyval),
                         Advisbelob = (decimal)advisbelob,
-                        Fradato = fradato,
-                        Tildato = tildato
+                        //Fradato = fradato,
+                        //Tildato = tildato
                     };
-                    rec_tempKontforslag.TempKontforslaglinie.Add(rec_tempKontforslaglinie);
+                    rec_tempRykkerforslag.TempRykkerforslaglinie.Add(rec_tempRykkerforslaglinie);
                 }
                 Program.dbData3060.SubmitChanges();
 
                 clsPbs601 objPbs601 = new clsPbs601();
                 nsPuls3060.clsPbs601.SetLobnr += new nsPuls3060.clsPbs601.Pbs601DelegateHandler(On_clsPbs601_SetLobnr);
 
-                AntalRykkere = objPbs601.kontingent_fakturer_bs1();
+                AntalRykkere = objPbs601.rykkere_bsh();
                 this.pgmRykker.Value = imax * 2;
                 if ((AntalRykkere > 0))
                 {
-                    objPbs601.faktura_601_action(m_lobnr);
+                    objPbs601.faktura_og_rykker_601_action(m_lobnr, fakType.fdrykker);
                     this.pgmRykker.Value = (imax * 3);
                     clsSFTP objSFTP = new clsSFTP();
                     objSFTP.WriteTilSFtp(m_lobnr);
