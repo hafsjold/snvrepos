@@ -26,7 +26,7 @@ namespace nsPuls3060
         fdmmddyyyy = 0,
         fdmmddyyyyhhmmss = 1,
     }
-    
+
     public enum fakType
     {
         fdfaktura = 0,
@@ -76,20 +76,20 @@ namespace nsPuls3060
             foreach (var rec_selecfiles in qry_selectfiles)
             {
                 var qry_pbsfiles = from h in Program.dbData3060.Tblpbsfiles
-                           where h.Id  == rec_selecfiles.pbsfilesid
-                           select h;
+                                   where h.Id == rec_selecfiles.pbsfilesid
+                                   select h;
                 if (qry_pbsfiles.Count() > 0)
                 {
                     m_rec_pbsfiles = qry_pbsfiles.First();
                     TilPBSFilename = "PBS" + rec_selecfiles.Leverancespecifikation + ".lst";
                     varToFile = TilPBSFolderPath + TilPBSFilename;
                     ts = new FileStream(varToFile, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
-                    
+
                     var qry_pbsfile =
                         from h in m_rec_pbsfiles.Tblpbsfile
                         orderby h.Seqnr
                         select h;
-                    
+
                     using (StreamWriter sr = new StreamWriter(ts, Encoding.Default))
                     {
                         foreach (var rec_pbsfile in qry_pbsfile)
@@ -106,7 +106,7 @@ namespace nsPuls3060
                     m_rec_pbsfiles.Mtime = f.LastWriteTime;
                 }
             }
-        return true;
+            return true;
         }
 
         public int rykkere_bsh()
@@ -115,7 +115,7 @@ namespace nsPuls3060
             string wadvistekst;
             int wantalrykkere;
             wantalrykkere = 0;
-
+            
             Tbltilpbs rec_tilpbs = new Tbltilpbs
             {
                 Delsystem = "BSH",
@@ -166,7 +166,7 @@ namespace nsPuls3060
             return wantalrykkere;
         }
 
-     
+
         public int kontingent_fakturer_bs1()
         {
             int lobnr;
@@ -231,8 +231,8 @@ namespace nsPuls3060
             return wantalfakturaer;
 
         }
-        
-        public void faktura_og_rykker_601_action(int lobnr, fakType fak)
+
+        public void faktura_og_rykker_601_action(int lobnr, fakType fakryk)
         {
             string rec;
             //lintype lin;
@@ -352,26 +352,56 @@ namespace nsPuls3060
             rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
             rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
             antalsek++;
-            
-            var rstdebs = from k in Program.karMedlemmer
+
+            IEnumerable<clsRstdeb> rstdebs;
+            if (fakryk == fakType.fdfaktura) //KONTINGENT FAKTURA
+            {
+
+                rstdebs = from k in Program.karMedlemmer
                           join f in Program.dbData3060.Tblfak on k.Nr equals f.Nr
                           where f.Tilpbsid == lobnr && f.Nr != null
                           orderby f.Nr
-                          select new
+                          select new clsRstdeb
                           {
-                              f.Id,
-                              k.Nr,
+                              Nr = k.Nr,
                               Kundenr = 32001610000000 + k.Nr,
-                              k.Navn,
-                              k.Adresse,
-                              k.Postnr,
-                              f.Faknr,
-                              f.Betalingsdato,
-                              f.Infotekst,
-                              f.Tilpbsid,
-                              f.Advistekst,
-                              belob = f.Advisbelob
+                              Navn = k.Navn,
+                              Adresse = k.Adresse,
+                              Postnr = k.Postnr,
+                              Faknr = f.Faknr,
+                              Betalingsdato = f.Betalingsdato,
+                              Infotekst = f.Infotekst,
+                              Tilpbsid = f.Tilpbsid,
+                              Advistekst = f.Advistekst,
+                              Belob = f.Advisbelob
                           };
+            }
+            else if (fakryk == fakType.fdrykker) //RYKKER
+            {
+                rstdebs = from k in Program.karMedlemmer
+                          join r in Program.dbData3060.Tblrykker on k.Nr equals r.Nr
+                          where r.Tilpbsid == lobnr && r.Nr != null
+                          orderby r.Nr
+                          select new clsRstdeb
+                          {
+                              Nr = k.Nr,
+                              Kundenr = 32001610000000 + k.Nr,
+                              Navn = k.Navn,
+                              Adresse = k.Adresse,
+                              Postnr = k.Postnr,
+                              Faknr = r.Faknr,
+                              Betalingsdato = r.Betalingsdato,
+                              Infotekst = r.Infotekst,
+                              Tilpbsid = r.Tilpbsid,
+                              Advistekst = r.Advistekst,
+                              Belob = r.Advisbelob
+                          };
+            } 
+            else 
+            {
+                rstdebs = null;
+            }
+
             foreach (var rstdeb in rstdebs)
             {
                 // -- Debitornavn
@@ -401,14 +431,14 @@ namespace nsPuls3060
                 else
                 {
                     string[] words = rstdeb.Adresse.Split(' ');
-                    for (var i = 0; i < words.Length; i++) 
+                    for (var i = 0; i < words.Length; i++)
                     {
                         if (bStart_Adresse1 == true)
                         {
                             rstdeb_Adresse1 = words[i];
                             bStart_Adresse1 = false;
                         }
-                        else 
+                        else
                         {
                             if ((rstdeb_Adresse1.Length + 1 + words[i].Length) <= 35)
                             {
@@ -427,7 +457,7 @@ namespace nsPuls3060
                                 }
                             }
                         }
-                    
+
                     }
                 }
 
@@ -480,19 +510,19 @@ namespace nsPuls3060
                 rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
 
                 // -- Forfald betaling
-                if (rstdeb.belob > 0)
+                if (rstdeb.Belob > 0)
                 {
                     fortegn = 1;
                     // -- Fortegnskode: 1 = træk
-                    belobint = ((int)rstdeb.belob) * 100;
+                    belobint = ((int)rstdeb.Belob) * 100;
                     belob042 += belobint;
                     belob042tot += belobint;
                 }
-                else if (rstdeb.belob < 0)
+                else if (rstdeb.Belob < 0)
                 {
                     fortegn = 2;
                     // -- Fortegnskode: 2 = indsættelse
-                    belobint = ((int)rstdeb.belob) * (-100);
+                    belobint = ((int)rstdeb.Belob) * (-100);
                     belob042 -= belobint;
                     belob042tot -= belobint;
                 }
@@ -528,7 +558,7 @@ namespace nsPuls3060
                     {
                         recnr++;
                         advistekst = arradvis[n];
-                        advisbelob = (int)rstdeb.belob;
+                        advisbelob = (int)rstdeb.Belob;
                     }
                     else
                     {
@@ -963,5 +993,20 @@ namespace nsPuls3060
             return Val.PadRight(Length, PadChar);
         }
 
+    }
+
+    public class clsRstdeb
+    {
+        public int? Nr { get; set; }
+        public long? Kundenr { get; set; }
+        public string Navn { get; set; }
+        public string Adresse { get; set; }
+        public string Postnr { get; set; }
+        public int? Faknr { get; set; }
+        public DateTime? Betalingsdato { get; set; }
+        public int? Infotekst { get; set; }
+        public int? Tilpbsid { get; set; }
+        public string Advistekst { get; set; }
+        public decimal? Belob { get; set; }
     }
 }
