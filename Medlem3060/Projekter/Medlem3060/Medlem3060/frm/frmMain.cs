@@ -128,6 +128,13 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
+            //var qry = from i in Program.dbData3060.Tblinfotekst select i;
+            //foreach (Tblinfotekst i in qry)
+            //{
+            //    string Navn = i.Navn;
+            //    string Mag = i.Msgtext;
+            //
+            //}
             //string txt = @"p0: {0}, p1: {1},p5: {5}";
             //string ptxt = string.Format(txt, "x0", "x1", "x2", "x3", "x4", "x5", "x6");
             //int xys = 1;
@@ -135,7 +142,7 @@ namespace nsPuls3060
             //    13, 25, 00);
             //int plusdage = 2;
             //DateTime wdispositionsdato = clsOverfoersel.bankdageplus(dato, plusdage);
-            clsPbs603 objPbs603 = new clsPbs603();
+            //clsPbs603 objPbs603 = new clsPbs603();
             //objPbs603.aftaleoplysninger_fra_pbs();
             //int xx = 0;
 

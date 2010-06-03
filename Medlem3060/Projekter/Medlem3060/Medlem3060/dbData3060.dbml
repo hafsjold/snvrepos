@@ -113,6 +113,13 @@
       <Association Name="Tblfrapbs_Tblindbetalingskort" Member="Tblfrapbs" ThisKey="Frapbsid" OtherKey="Id" Type="Tblfrapbs" IsForeignKey="true" DeleteOnNull="true" />
     </Type>
   </Table>
+  <Table Name="tblinfotekst" Member="Tblinfotekst">
+    <Type Name="Tblinfotekst">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="navn" Member="Navn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="msgtext" Member="Msgtext" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="tblkreditor" Member="Tblkreditor">
     <Type Name="Tblkreditor">
       <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />

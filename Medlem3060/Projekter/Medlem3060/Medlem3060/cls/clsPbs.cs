@@ -460,6 +460,31 @@ namespace nsPuls3060
             public string val = "";
         }
 
+        public void ExecuteSQLScript(string ScriptFile) 
+        {
+            string ln = null;
+            string sqlCommand = "";
+            int i = 0;
+            FileStream ts = new FileStream(ScriptFile, FileMode.Open, FileAccess.Read, FileShare.None);
+            using (StreamReader sr = new StreamReader(ts, Encoding.Default))
+            {
+                while ((ln = sr.ReadLine()) != null)
+                {
+                    if (!ln.StartsWith("GO"))
+                    {
+                        if (i++ != 0) sqlCommand += "\r\n";
+                        sqlCommand += ln;
+                    }
+                    else
+                    {
+                        Program.dbData3060.ExecuteCommand(sqlCommand);
+                        sqlCommand = "";
+                        i = 0;
+                    }
+                }
+            }
+        }
+        
         public bool DatabaseUpdate()
         {
             string dbVersion = "";
@@ -608,7 +633,7 @@ namespace nsPuls3060
                 }
 
             }
-            
+
             if (dbVersion == "2.6.0.0")
             {
                 try
@@ -713,6 +738,38 @@ namespace nsPuls3060
                 }
             }
 
+            if (dbVersion == "2.11.0.0")
+            {
+                try
+                {
+                    //version "2.11.0.0" --> "2.12.0.0" opgradering af SqlDatabasen
+                    Program.dbData3060.ExecuteCommand("CREATE TABLE [tblinfotekst] ([id] int NOT NULL, [navn] nvarchar(50) NULL, [msgtext] nvarchar(4000) NULL);");
+                    Program.dbData3060.ExecuteCommand("ALTER TABLE [tblinfotekst] ADD PRIMARY KEY ([id]);");
+                    Program.dbData3060.ExecuteCommand("CREATE UNIQUE INDEX [UQ__tblinfotekst__0000000000000230] ON [tblinfotekst] ([id] ASC);");
+
+                    Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.12.0.0'  WHERE [vkey] = 'VERSION';");
+                    dbVersion = "2.12.0.0";
+                }
+                catch (System.Data.SqlServerCe.SqlCeException e)
+                {
+                    object x = e;
+                }
+            }
+
+            if (dbVersion == "2.12.0.0")
+            {
+                try
+                {
+                    //version "2.12.0.0" --> "2.13.0.0" opgradering af SqlDatabasen
+                    ExecuteSQLScript(@"sql\script13.sql");
+                    Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.13.0.0'  WHERE [vkey] = 'VERSION';");
+                    dbVersion = "2.13.0.0";
+                }
+                catch (System.Data.SqlServerCe.SqlCeException e)
+                {
+                    object x = e;
+                }
+            }
 
             return true;
         }

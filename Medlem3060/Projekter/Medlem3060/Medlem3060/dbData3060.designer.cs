@@ -51,6 +51,9 @@ namespace nsPuls3060
     partial void InsertTblindbetalingskort(Tblindbetalingskort instance);
     partial void UpdateTblindbetalingskort(Tblindbetalingskort instance);
     partial void DeleteTblindbetalingskort(Tblindbetalingskort instance);
+    partial void InsertTblinfotekst(Tblinfotekst instance);
+    partial void UpdateTblinfotekst(Tblinfotekst instance);
+    partial void DeleteTblinfotekst(Tblinfotekst instance);
     partial void InsertTblkreditor(Tblkreditor instance);
     partial void UpdateTblkreditor(Tblkreditor instance);
     partial void DeleteTblkreditor(Tblkreditor instance);
@@ -190,6 +193,14 @@ namespace nsPuls3060
 			get
 			{
 				return this.GetTable<Tblindbetalingskort>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Tblinfotekst> Tblinfotekst
+		{
+			get
+			{
+				return this.GetTable<Tblinfotekst>();
 			}
 		}
 		
@@ -2733,6 +2744,116 @@ namespace nsPuls3060
 						this._Frapbsid = default(int);
 					}
 					this.SendPropertyChanged("Tblfrapbs");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="tblinfotekst")]
+	public partial class Tblinfotekst : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Navn;
+		
+		private string _Msgtext;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnNavnChanging(string value);
+    partial void OnNavnChanged();
+    partial void OnMsgtextChanging(string value);
+    partial void OnMsgtextChanged();
+    #endregion
+		
+		public Tblinfotekst()
+		{
+			OnCreated();
+		}
+		
+		[Column(Name="id", Storage="_Id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Name="navn", Storage="_Navn", DbType="NVarChar(50)")]
+		public string Navn
+		{
+			get
+			{
+				return this._Navn;
+			}
+			set
+			{
+				if ((this._Navn != value))
+				{
+					this.OnNavnChanging(value);
+					this.SendPropertyChanging();
+					this._Navn = value;
+					this.SendPropertyChanged("Navn");
+					this.OnNavnChanged();
+				}
+			}
+		}
+		
+		[Column(Name="msgtext", Storage="_Msgtext", DbType="NVarChar(4000)")]
+		public string Msgtext
+		{
+			get
+			{
+				return this._Msgtext;
+			}
+			set
+			{
+				if ((this._Msgtext != value))
+				{
+					this.OnMsgtextChanging(value);
+					this.SendPropertyChanging();
+					this._Msgtext = value;
+					this.SendPropertyChanged("Msgtext");
+					this.OnMsgtextChanged();
 				}
 			}
 		}
