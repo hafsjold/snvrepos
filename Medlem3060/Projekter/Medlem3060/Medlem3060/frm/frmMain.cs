@@ -10,11 +10,12 @@ using System.Reflection;
 using System.IO;
 using Excel;
 
+
 namespace nsPuls3060
 {
     public partial class FrmMain : Form
     {
-        
+
         public FrmMain()
         {
             InitializeComponent();
@@ -27,7 +28,7 @@ namespace nsPuls3060
             objPbs.DatabaseUpdate();
 #if (DEBUG)
             testToolStripMenuItem.Visible = true;
-#endif   
+#endif
             if (clsUtil.IsProcessOpen("Summa"))
             {
                 DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
@@ -123,18 +124,14 @@ namespace nsPuls3060
                 m_frmPbsfiles.Show();
             }
         }
-        
+
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
 
-            //var qry = from i in Program.dbData3060.Tblinfotekst select i;
-            //foreach (Tblinfotekst i in qry)
-            //{
-            //    string Navn = i.Navn;
-            //    string Mag = i.Msgtext;
-            //
-            //}
+
+            string[] infotxt = clsPbs.getinfotekst(21, 60);
+
             //string txt = @"p0: {0}, p1: {1},p5: {5}";
             //string ptxt = string.Format(txt, "x0", "x1", "x2", "x3", "x4", "x5", "x6");
             //int xys = 1;
@@ -361,7 +358,7 @@ namespace nsPuls3060
             clsSFTP objSFTP = new clsSFTP();
             clsPbs602 objPbs602 = new clsPbs602();
             clsPbs603 objPbs603 = new clsPbs603();
-            
+
             AntalImportFiler = objSFTP.ReadFraSFtp();  //Læs direkte SFTP
             //AntalImportFiler = objPbs602.ReadFraPbsFile(); //Læs fra Directory FraPBS
 
@@ -395,7 +392,7 @@ namespace nsPuls3060
         {
             string bigString = null;
             string smallString = null;
-            
+
             clsSumma objSumma = new clsSumma();
             int AntalFakturaer = objSumma.OrderFaknrUpdate();
             int AntalBetalinger = objSumma.BogforBetalinger();

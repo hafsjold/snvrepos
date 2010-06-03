@@ -9,6 +9,8 @@ using System.Windows.Forms;
 using Microsoft.Win32;
 using System.IO;
 using Microsoft.VisualBasic;
+using System.Transactions;
+using System.Text.RegularExpressions;
 
 namespace nsPuls3060
 {
@@ -321,6 +323,159 @@ namespace nsPuls3060
             }
         }
 
+        public static string[] getinfotekst(int infotekst_id, int numofcol)
+        {
+            string navn_medlem = "Hans Otto";
+            DateTime betalingsdato = DateTime.Today;
+            string underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører";
+            DateTime fradato = DateTime.Today;
+            DateTime tildato = (DateTime.Today).AddYears(1);
+            string[] crlf = { "\r\n" };
+
+            string infotext = (from i in Program.dbData3060.Tblinfotekst where i.Id == infotekst_id select i).First().Msgtext;
+
+            RegexOptions options = ((RegexOptions.IgnorePatternWhitespace | RegexOptions.Multiline) | RegexOptions.IgnoreCase);
+            Regex regexParam = new Regex(@"(\#\#[^\#]+\#\#)", options);
+
+            string MsgtextSub = "";
+            if (infotext != null)
+            {
+                MsgtextSub = regexParam.Replace(infotext, delegate(Match match)
+                {
+                    string v = match.ToString();
+                    switch (v.ToLower())
+                    {
+                        case "##navn_medlem##":
+                            return navn_medlem;
+
+                        case "##betalingsdato##":
+                            return string.Format("{0:dddd}", betalingsdato) + " den " + string.Format("{0:d. MMMM}", betalingsdato);
+
+                        case "##underskrift_navn##":
+                            return underskrift_navn;
+
+                        case "##fradato##":
+                            return string.Format("{0:d. MMMM yyyy}", fradato);
+
+                        case "##tildato##":
+                            return string.Format("{0:d. MMMM yyyy}", tildato);
+
+
+                        default:
+                            return v;
+                    }
+                });
+
+            }
+            string MsgtextSub2 = splittextincolumns(MsgtextSub, numofcol);
+            string[] infotextarr = MsgtextSub2.Split(crlf, StringSplitOptions.None);
+            return infotextarr;
+        }
+
+        public static string splittextincolumns(string msg, int numofcol)
+        {
+            return formattext(msg, numofcol);
+        }
+
+        public static string formattext(string inputtext, int maxlinewith)
+        {
+
+            int currentlinelength;
+            string outputtext = "";
+            string workline = "";
+            int linecount = 0;
+            int wordcount = 0;
+            string[] crlf = { "\r\n", "\n" };
+            char[] bltp = { '\t', ' ' };
+
+            string[] inputtextlines = inputtext.Split(crlf, StringSplitOptions.None);
+            foreach (string currentline in inputtextlines)
+            {
+                if (currentline.Length <= maxlinewith)
+                {
+                    outputtext += currentline + "\r\n";
+                    linecount++;
+                }
+                else
+                {
+                    currentlinelength = 0;
+                    wordcount = 0;
+                    string[] currentlines = currentline.Split(bltp);
+                    foreach (string currentword in currentlines)
+                    {
+                        if (currentword.Length > 0)
+                        {
+                            if (currentlinelength == 0)
+                            {
+                                workline += currentword;
+                                currentlinelength = currentword.Length;
+                                wordcount++;
+                            }
+                            else
+                            {
+                                if ((currentlinelength + 1 + currentword.Length) <= maxlinewith)
+                                {
+                                    workline += " " + currentword;
+                                    currentlinelength += 1 + currentword.Length;
+                                    wordcount++;
+                                }
+                                else
+                                {
+                                    outputtext += expandline(workline, wordcount, maxlinewith) + "\r\n";
+                                    linecount++;
+                                    workline = currentword;
+                                    currentlinelength = currentword.Length;
+                                    wordcount = 1;
+                                }
+                            }
+                        }
+                    }
+
+                    if (currentlinelength > 0)
+                    {
+                        outputtext += workline + "\r\n";
+                        workline = "";
+                        linecount++;
+                    }
+                }
+            }
+            return outputtext;
+        }
+
+        public static string expandline(string inputline, int wordsinline, int outputlinewith)
+        {
+            string outputline = "";
+            bool firstword = true;
+            char[] splitchar = { ' ' };
+
+            int blanksmissingcount = outputlinewith - inputline.Length;
+            int blankscount = Math.Abs(blanksmissingcount / (wordsinline - 1));
+            int blankscountmodulo = blanksmissingcount % (wordsinline - 1);
+            string[] inputwords = inputline.Split(splitchar);
+            foreach (string inputword in inputwords)
+            {
+                if (firstword)
+                {
+                    outputline = inputword;
+                }
+                else
+                {
+                    if (blankscountmodulo > 0)
+                    {
+                        outputline += inputword.PadLeft(inputword.Length + blankscount + 2, ' ');
+                        blankscountmodulo--;
+                    }
+                    else
+                    {
+                        outputline += inputword.PadLeft(inputword.Length + blankscount + 1, ' ');
+                    }
+                }
+                firstword = false;
+            }
+            return outputline;
+        }
+
+
         public bool ReadRegnskaber()
         {
             string RegnskabId;
@@ -460,7 +615,7 @@ namespace nsPuls3060
             public string val = "";
         }
 
-        public void ExecuteSQLScript(string ScriptFile) 
+        public void ExecuteSQLScript(string ScriptFile)
         {
             string ln = null;
             string sqlCommand = "";
@@ -484,7 +639,7 @@ namespace nsPuls3060
                 }
             }
         }
-        
+
         public bool DatabaseUpdate()
         {
             string dbVersion = "";
@@ -758,19 +913,24 @@ namespace nsPuls3060
 
             if (dbVersion == "2.12.0.0")
             {
-                try
+                using (var dbts = new TransactionScope())
                 {
-                    //version "2.12.0.0" --> "2.13.0.0" opgradering af SqlDatabasen
-                    ExecuteSQLScript(@"sql\script13.sql");
-                    Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.13.0.0'  WHERE [vkey] = 'VERSION';");
-                    dbVersion = "2.13.0.0";
-                }
-                catch (System.Data.SqlServerCe.SqlCeException e)
-                {
-                    object x = e;
+                    try
+                    {
+                        //version "2.12.0.0" --> "2.13.0.0" opgradering af SqlDatabasen
+                        ExecuteSQLScript(@"sql\script13.sql");
+                        Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.13.0.0'  WHERE [vkey] = 'VERSION';");
+                        dbVersion = "2.13.0.0";
+                        dbts.Complete();
+                    }
+
+                    catch (System.Data.SqlServerCe.SqlCeException e)
+                    {
+                        dbts.Dispose();
+                        object x = e;
+                    }
                 }
             }
-
             return true;
         }
 
