@@ -57,6 +57,7 @@ namespace nsPuls3060
                 this.DatoKontingentTil.Value.AddYears(1);
             }
             this.Aarskontingent.Text = "150";
+            this.AarskontingentPbs.Text = "150";
 
             wt = m_initdate.AddMonths(1);
             this.DatoKontingentForfald.Value = clsOverfoersel.bankdageplus(wt.AddDays(-wt.Day + 2), 0);
@@ -88,6 +89,8 @@ namespace nsPuls3060
         {
             DateTime KontingentFradato = DateTime.MinValue;
             DateTime KontingentTildato = DateTime.MinValue;
+            bool tilmeldtpbs = false;
+            bool indmeldelse = false;
             int AntalMedlemmer = 0;
             int AntalForslag = 0;
             double dkontingent;
@@ -116,6 +119,9 @@ namespace nsPuls3060
             {
                 bool bSelected = true;
                 AntalMedlemmer++;
+                tilmeldtpbs = false;
+                indmeldelse = false;
+
                 if (!m.erMedlem()) //er ikke medlem
                 {
                     bSelected = false;
@@ -139,6 +145,7 @@ namespace nsPuls3060
                     else  //Der findes ingen kontingent-betaling
                     {
                         KontingentFradato = (DateTime)m.indmeldelsesDato;
+                        indmeldelse = true;
                     }
                 }
 
@@ -156,6 +163,7 @@ namespace nsPuls3060
                 if (bSelected)
                 {
                     AntalForslag++;
+                    tilmeldtpbs = clsPbs.gettilmeldtpbs(m.Nr);
                     switch (KontingentFradato.Month )
                     {
                         case 1:
@@ -165,7 +173,7 @@ namespace nsPuls3060
                         case 5:
                         case 6:
                             KontingentTildato = new DateTime(KontingentFradato.Year, 12, 31);
-                            dkontingent = double.Parse(this.Aarskontingent.Text);
+                            dkontingent = (tilmeldtpbs) ? double.Parse(this.AarskontingentPbs.Text) : double.Parse(this.Aarskontingent.Text);
                             break;
                         
                         case 7:
@@ -173,12 +181,12 @@ namespace nsPuls3060
                         case 9:
                         case 10:
                             KontingentTildato = new DateTime(KontingentFradato.Year, 12, 31);
-                            dkontingent = double.Parse(this.Aarskontingent.Text) / 2;
+                            dkontingent = (tilmeldtpbs) ? double.Parse(this.AarskontingentPbs.Text) / 2 : double.Parse(this.Aarskontingent.Text) / 2;
                             break;
                         
                         default:
                             KontingentTildato = new DateTime(KontingentFradato.Year + 1, 12, 31);
-                            dkontingent = double.Parse(this.Aarskontingent.Text);
+                            dkontingent = (tilmeldtpbs) ? double.Parse(this.AarskontingentPbs.Text) : double.Parse(this.Aarskontingent.Text);
                             break;
                     }
                     ikontingent = (int)dkontingent;
@@ -191,6 +199,8 @@ namespace nsPuls3060
                     it.SubItems.Add(string.Format("{0:dd-MM-yyy}", KontingentFradato));
                     it.SubItems.Add(ikontingent.ToString());
                     it.SubItems.Add(string.Format("{0:dd-MM-yyy}", KontingentTildato));
+                    it.SubItems.Add((indmeldelse) ? "J" : "N");
+                    it.SubItems.Add((tilmeldtpbs) ? "J" : "N");
                 }
                 pgmForslag.PerformStep();
             }
@@ -316,6 +326,9 @@ namespace nsPuls3060
             string keyval;
             DateTime fradato;
             DateTime tildato;
+            bool tilmeldtpbs;
+            bool indmeldelse;
+
             double advisbelob;
             if ((this.cmdFakturer.Text == "Afslut"))
             {
@@ -350,13 +363,17 @@ namespace nsPuls3060
                     fradato = DateTime.Parse(lvi.SubItems[4].Text);
                     advisbelob = double.Parse(lvi.SubItems[5].Text);
                     tildato = DateTime.Parse(lvi.SubItems[6].Text);
+                    indmeldelse = (lvi.SubItems[7].Text == "J") ? true : false;
+                    tilmeldtpbs = (lvi.SubItems[8].Text == "J") ? true : false;
 
                     TempKontforslaglinie rec_tempKontforslaglinie = new TempKontforslaglinie
                     {
                         Nr = int.Parse(keyval),
                         Advisbelob = (decimal)advisbelob,
                         Fradato = fradato,
-                        Tildato = tildato
+                        Tildato = tildato,
+                        Indmeldelse = indmeldelse,
+                        Tilmeldtpbs = tilmeldtpbs,
                     };
                     rec_tempKontforslag.TempKontforslaglinie.Add(rec_tempKontforslaglinie);
                 }

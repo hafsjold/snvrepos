@@ -1566,6 +1566,10 @@ namespace nsPuls3060
 		
 		private bool _Betalt;
 		
+		private bool _Tilmeldtpbs;
+		
+		private bool _Indmeldelse;
+		
 		private EntityRef<Tbltilpbs> _Tbltilpbs;
 		
     #region Extensibility Method Definitions
@@ -1608,6 +1612,10 @@ namespace nsPuls3060
     partial void OnRykkerstopChanged();
     partial void OnBetaltChanging(bool value);
     partial void OnBetaltChanged();
+    partial void OnTilmeldtpbsChanging(bool value);
+    partial void OnTilmeldtpbsChanged();
+    partial void OnIndmeldelseChanging(bool value);
+    partial void OnIndmeldelseChanged();
     #endregion
 		
 		public Tblfak()
@@ -1972,6 +1980,46 @@ namespace nsPuls3060
 					this._Betalt = value;
 					this.SendPropertyChanged("Betalt");
 					this.OnBetaltChanged();
+				}
+			}
+		}
+		
+		[Column(Name="tilmeldtpbs", Storage="_Tilmeldtpbs", DbType="Bit NOT NULL")]
+		public bool Tilmeldtpbs
+		{
+			get
+			{
+				return this._Tilmeldtpbs;
+			}
+			set
+			{
+				if ((this._Tilmeldtpbs != value))
+				{
+					this.OnTilmeldtpbsChanging(value);
+					this.SendPropertyChanging();
+					this._Tilmeldtpbs = value;
+					this.SendPropertyChanged("Tilmeldtpbs");
+					this.OnTilmeldtpbsChanged();
+				}
+			}
+		}
+		
+		[Column(Name="indmeldelse", Storage="_Indmeldelse", DbType="Bit NOT NULL")]
+		public bool Indmeldelse
+		{
+			get
+			{
+				return this._Indmeldelse;
+			}
+			set
+			{
+				if ((this._Indmeldelse != value))
+				{
+					this.OnIndmeldelseChanging(value);
+					this.SendPropertyChanging();
+					this._Indmeldelse = value;
+					this.SendPropertyChanged("Indmeldelse");
+					this.OnIndmeldelseChanged();
 				}
 			}
 		}
@@ -6959,6 +7007,10 @@ namespace nsPuls3060
 		
 		private System.Nullable<System.DateTime> _Tildato;
 		
+		private bool _Tilmeldtpbs;
+		
+		private bool _Indmeldelse;
+		
 		private EntityRef<TempKontforslag> _TempKontforslag;
 		
     #region Extensibility Method Definitions
@@ -6977,6 +7029,10 @@ namespace nsPuls3060
     partial void OnAdvisbelobChanged();
     partial void OnTildatoChanging(System.Nullable<System.DateTime> value);
     partial void OnTildatoChanged();
+    partial void OnTilmeldtpbsChanging(bool value);
+    partial void OnTilmeldtpbsChanged();
+    partial void OnIndmeldelseChanging(bool value);
+    partial void OnIndmeldelseChanged();
     #endregion
 		
 		public TempKontforslaglinie()
@@ -7105,6 +7161,46 @@ namespace nsPuls3060
 					this._Tildato = value;
 					this.SendPropertyChanged("Tildato");
 					this.OnTildatoChanged();
+				}
+			}
+		}
+		
+		[Column(Name="tilmeldtpbs", Storage="_Tilmeldtpbs", DbType="Bit NOT NULL")]
+		public bool Tilmeldtpbs
+		{
+			get
+			{
+				return this._Tilmeldtpbs;
+			}
+			set
+			{
+				if ((this._Tilmeldtpbs != value))
+				{
+					this.OnTilmeldtpbsChanging(value);
+					this.SendPropertyChanging();
+					this._Tilmeldtpbs = value;
+					this.SendPropertyChanged("Tilmeldtpbs");
+					this.OnTilmeldtpbsChanged();
+				}
+			}
+		}
+		
+		[Column(Name="indmeldelse", Storage="_Indmeldelse", DbType="Bit NOT NULL")]
+		public bool Indmeldelse
+		{
+			get
+			{
+				return this._Indmeldelse;
+			}
+			set
+			{
+				if ((this._Indmeldelse != value))
+				{
+					this.OnIndmeldelseChanging(value);
+					this.SendPropertyChanging();
+					this._Indmeldelse = value;
+					this.SendPropertyChanged("Indmeldelse");
+					this.OnIndmeldelseChanged();
 				}
 			}
 		}

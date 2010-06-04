@@ -113,6 +113,7 @@ namespace nsPuls3060
         {
             int lobnr;
             string wadvistekst;
+            int winfotekst;
             int wantalrykkere;
             wantalrykkere = 0;
             
@@ -138,7 +139,9 @@ namespace nsPuls3060
                                  l.Advisbelob,
                                  l.Faknr,
                                  f.Fradato,
-                                 f.Tildato
+                                 f.Tildato,
+                                 f.Indmeldelse,
+                                 f.Tilmeldtpbs
                              };
 
             foreach (var rstmedlem in rstmedlems)
@@ -148,6 +151,8 @@ namespace nsPuls3060
                 wadvistekst += "\r\n" + "  for " + rstmedlem.Navn;
                 wadvistekst += "\r\n" + "  perioden fra " + string.Format("{0:yyyy-MM-dd}", rstmedlem.Fradato) + " til " + string.Format("{0:yyyy-MM-dd}", rstmedlem.Tildato);
                 wadvistekst += "\r\n" + "Besøg Puls 3060\"s hjemmeside på www.puls3060.dk";
+                winfotekst = (rstmedlem.Indmeldelse) ? 21 : 20;
+
                 Tblrykker rec_rykker = new Tblrykker
                 {
                     Betalingsdato = rstmedlem.Betalingsdato,
@@ -155,7 +160,7 @@ namespace nsPuls3060
                     Faknr = rstmedlem.Faknr,
                     Advistekst = wadvistekst,
                     Advisbelob = rstmedlem.Advisbelob,
-                    Infotekst = 0,
+                    Infotekst = winfotekst,
                     Rykkerdato = DateTime.Today,
                 };
                 rec_tilpbs.Tblrykker.Add(rec_rykker);
@@ -171,6 +176,7 @@ namespace nsPuls3060
         {
             int lobnr;
             string wadvistekst;
+            int winfotekst;
             int wantalfakturaer;
             wantalfakturaer = 0;
 
@@ -200,7 +206,9 @@ namespace nsPuls3060
                                  h.Betalingsdato,
                                  l.Advisbelob,
                                  l.Fradato,
-                                 l.Tildato
+                                 l.Tildato,
+                                 l.Indmeldelse,
+                                 l.Tilmeldtpbs,
                              };
 
             foreach (var rstmedlem in rstmedlems)
@@ -210,6 +218,8 @@ namespace nsPuls3060
                 wadvistekst += "\r\n" + "  for " + rstmedlem.Navn;
                 wadvistekst += "\r\n" + "  perioden fra " + string.Format("{0:yyyy-MM-dd}", rstmedlem.Fradato) + " til " + string.Format("{0:yyyy-MM-dd}", rstmedlem.Tildato);
                 wadvistekst += "\r\n" + "Besøg Puls 3060\"s hjemmeside på www.puls3060.dk";
+
+                winfotekst = (rstmedlem.Indmeldelse) ? 11 : 10;
                 Tblfak rec_fak = new Tblfak
                 {
                     Betalingsdato = rstmedlem.Betalingsdato,
@@ -217,11 +227,13 @@ namespace nsPuls3060
                     Faknr = clsPbs.nextval("faknr"),
                     Advistekst = wadvistekst,
                     Advisbelob = rstmedlem.Advisbelob,
-                    Infotekst = 0,
+                    Infotekst = winfotekst,
                     Bogfkonto = 1800,
                     Vnr = 1,
                     Fradato = rstmedlem.Fradato,
-                    Tildato = rstmedlem.Tildato
+                    Tildato = rstmedlem.Tildato,
+                    Indmeldelse = rstmedlem.Indmeldelse,
+                    Tilmeldtpbs = rstmedlem.Tilmeldtpbs
                 };
                 rec_tilpbs.Tblfak.Add(rec_fak);
                 wantalfakturaer++;
@@ -365,11 +377,14 @@ namespace nsPuls3060
                           {
                               Nr = k.Nr,
                               Kundenr = 32001610000000 + k.Nr,
+                              Kaldenavn = k.Kaldenavn,
                               Navn = k.Navn,
                               Adresse = k.Adresse,
                               Postnr = k.Postnr,
                               Faknr = f.Faknr,
                               Betalingsdato = f.Betalingsdato,
+                              Fradato = f.Fradato,
+                              Tildato = f.Tildato,
                               Infotekst = f.Infotekst,
                               Tilpbsid = f.Tilpbsid,
                               Advistekst = f.Advistekst,
@@ -381,16 +396,20 @@ namespace nsPuls3060
                 rstdebs = from k in Program.karMedlemmer
                           join r in Program.dbData3060.Tblrykker on k.Nr equals r.Nr
                           where r.Tilpbsid == lobnr && r.Nr != null
+                          join f in Program.dbData3060.Tblfak on r.Faknr equals f.Faknr
                           orderby r.Nr
                           select new clsRstdeb
                           {
                               Nr = k.Nr,
                               Kundenr = 32001610000000 + k.Nr,
+                              Kaldenavn = k.Kaldenavn,
                               Navn = k.Navn,
                               Adresse = k.Adresse,
                               Postnr = k.Postnr,
                               Faknr = r.Faknr,
                               Betalingsdato = r.Betalingsdato,
+                              Fradato = f.Fradato,
+                              Tildato = f.Tildato,
                               Infotekst = r.Infotekst,
                               Tilpbsid = r.Tilpbsid,
                               Advistekst = r.Advistekst,
@@ -570,48 +589,50 @@ namespace nsPuls3060
                     // -- Tekst til advis
                     antal052++;
                     antal052tot++;
+
+                    // - rstkrd!sektionnr  -
+                    // - rstkrd!pbsnr      - PBS-nr.: Kreditors PBS-nummer
+                    // - "0241"            - Transkode: 0241 (Tekstlinie)
+                    // - recnr             - Recordnr.: 001-999
+                    // - rstkrd!debgrpnr   - Debitorgruppenr.: Debitorgruppenummer
+                    // - rstdeb!kundenr    - Kundenr.: Debitors kundenummer hos kreditor
+                    // - 0                 - Aftalenr.: 000000000 eller 999999999
+                    // - advistekst        - Advistekst 1: Tekstlinie på advis
+                    // - 0.0               - Advisbeløb 1: Beløb på advis
+                    // - ""                - Advistekst 2: Tekstlinie på advis
+                    // - 0.0               - Advisbeløb 2: Beløb på advis
                     rec = write052(rstkrd.Sektionnr, rstkrd.Pbsnr, "0241", recnr, rstkrd.Debgrpnr, rstdeb.Kundenr.ToString(), 0, advistekst, advisbelob, "", 0);
                     rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
                     rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
                 }
-                // '  FOR infolin IN SELECT * FROM pbs.getinfotekst(rstdeb!id, rstdeb!infotekstid)
-                // '  LOOP  '--pbs.getinfotekst
-                // '    recnr = recnr + 1
-                // '    '-- Tekst til advis
-                // '    antal052 = antal052 + 1
-                // '    antal052tot = antal052tot + 1
-                // '    selector = True
-                // '
-                // '    '- rstkrd!sektionnr     -
-                // '    '- rstkrd!pbsnr         - PBS-nr.: Kreditors PBS-nummer
-                // '    '- "0241"               - Transkode: 0241 (Tekstlinie)
-                // '    '- recnr                - Recordnr.: 001-999
-                // '    '- rstkrd!debgrpnr      - Debitorgruppenr.: Debitorgruppenummer
-                // '    '- rstdeb!kundenr       - Kundenr.: Debitors kundenummer hos kreditor
-                // '    '- 0                    - Aftalenr.: 000000000 eller 999999999
-                // '    '- infolin.getinfotekst - Advistekst 1: Tekstlinie på advis
-                // '    '- 0.0                  - Advisbeløb 1: Beløb på advis
-                // '    '- ""                   - Advistekst 2: Tekstlinie på advis
-                // '    '- 0.0                  - Advisbeløb 2: Beløb på advis
-                // '    rec = write052(IfNull(rstkrd!sektionnr), _
-                // '              IfNull(rstkrd!pbsnr), _
-                // '              "0241", _
-                // '              recnr, _
-                // '              IfNull(rstkrd!debgrpnr), _
-                // '              IfNull(rstdeb!kundenr), _
-                // '              0, _
-                // '              IfNull(infolin.getinfotekst), _
-                // '              0, _
-                // '              "", _
-                // '              0)
-                // '    seq = seq + 1
-                // '    rstfile.AddNew
-                // '    rstfile!pbsfilesid = wpbsfilesid
-                // '    rstfile!Seqnr = seq
-                // '    rstfile!data = rec
-                // '    rstfile.Update
-                // '    ts.WriteLine rec
-                // '  END LOOP  '--pbs.getinfotekst
+
+
+                string infotekst = clsPbs.getinfotekst(rstdeb.Infotekst, 60, rstdeb.Kaldenavn, rstdeb.Betalingsdato, rstdeb.Fradato, rstdeb.Tildato, "\r\nMogens Hafsjold\r\nRegnskabsfører");
+                if (infotekst.Length > 0)
+                {
+                    arradvis = infotekst.Split(splitchars, StringSplitOptions.None);
+                    foreach (string advisline in arradvis)
+                    {
+                        recnr++;
+                        antal052++;
+                        antal052tot++;
+
+                        // - rstkrd!sektionnr     -
+                        // - rstkrd!pbsnr         - PBS-nr.: Kreditors PBS-nummer
+                        // - "0241"               - Transkode: 0241 (Tekstlinie)
+                        // - recnr                - Recordnr.: 001-999
+                        // - rstkrd!debgrpnr      - Debitorgruppenr.: Debitorgruppenummer
+                        // - rstdeb!kundenr       - Kundenr.: Debitors kundenummer hos kreditor
+                        // - 0                    - Aftalenr.: 000000000 eller 999999999
+                        // - infolin.getinfotekst - Advistekst 1: Tekstlinie på advis
+                        // - 0.0                  - Advisbeløb 1: Beløb på advis
+                        // - ""                   - Advistekst 2: Tekstlinie på advis
+                        // - 0.0                  - Advisbeløb 2: Beløb på advis
+                        rec = write052(rstkrd.Sektionnr, rstkrd.Pbsnr, "0241", recnr, rstkrd.Debgrpnr, rstdeb.Kundenr.ToString(), 0, advisline, 0, "", 0);
+                        rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
+                        rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+                    }
+                }
 
             } // -- End rstdebs
 
@@ -999,11 +1020,14 @@ namespace nsPuls3060
     {
         public int? Nr { get; set; }
         public long? Kundenr { get; set; }
+        public string Kaldenavn { get; set; }
         public string Navn { get; set; }
         public string Adresse { get; set; }
         public string Postnr { get; set; }
         public int? Faknr { get; set; }
         public DateTime? Betalingsdato { get; set; }
+        public DateTime? Fradato { get; set; }
+        public DateTime? Tildato { get; set; }
         public int? Infotekst { get; set; }
         public int? Tilpbsid { get; set; }
         public string Advistekst { get; set; }

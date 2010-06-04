@@ -323,16 +323,35 @@ namespace nsPuls3060
             }
         }
 
-        public static string[] getinfotekst(int infotekst_id, int numofcol)
+        public static bool gettilmeldtpbs(int? Nr) 
         {
-            string navn_medlem = "Hans Otto";
-            DateTime betalingsdato = DateTime.Today;
-            string underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører";
-            DateTime fradato = DateTime.Today;
-            DateTime tildato = (DateTime.Today).AddYears(1);
-            string[] crlf = { "\r\n" };
+            var pbsaftalestart = from s in Program.dbData3060.Tblaftalelin 
+                                 where s.Nr == Nr & s.Pbstranskode == "0231" 
+                                 select s;
+            var pbsaftaleslut  = from s in Program.dbData3060.Tblaftalelin
+                                 where s.Nr == Nr & s.Pbstranskode != "0231"
+                                 select s;
 
-            string infotext = (from i in Program.dbData3060.Tblinfotekst where i.Id == infotekst_id select i).First().Msgtext;
+            var pbsaftale = from a in pbsaftalestart
+                            join s in pbsaftaleslut on a.Aftalenr equals s.Aftalenr into pbsaftaleslut2
+                            from s in pbsaftaleslut2.DefaultIfEmpty()
+                            where s.Id == null
+                            orderby a.Aftalestartdato descending
+                            select a;
+
+            int antal = pbsaftale.Count();
+            if (antal > 0) return true;
+            else return false;
+        }
+
+        public static string getinfotekst(int? infotekst_id, int? numofcol, string navn_medlem, DateTime? fradato, DateTime? tildato, DateTime? betalingsdato, string underskrift_navn)
+        {
+          
+            string[] crlf = { "\r\n" };
+            string infotext = null;
+
+            try { infotext = (from i in Program.dbData3060.Tblinfotekst where i.Id == infotekst_id select i).First().Msgtext; }
+            catch (System.InvalidOperationException) { }
 
             RegexOptions options = ((RegexOptions.IgnorePatternWhitespace | RegexOptions.Multiline) | RegexOptions.IgnoreCase);
             Regex regexParam = new Regex(@"(\#\#[^\#]+\#\#)", options);
@@ -346,30 +365,38 @@ namespace nsPuls3060
                     switch (v.ToLower())
                     {
                         case "##navn_medlem##":
-                            return navn_medlem;
-
-                        case "##betalingsdato##":
-                            return string.Format("{0:dddd}", betalingsdato) + " den " + string.Format("{0:d. MMMM}", betalingsdato);
-
-                        case "##underskrift_navn##":
-                            return underskrift_navn;
+                            if (navn_medlem != null) return navn_medlem;
+                            break;
 
                         case "##fradato##":
-                            return string.Format("{0:d. MMMM yyyy}", fradato);
+                            if (fradato != null) return string.Format("{0:d. MMMM yyyy}", fradato);
+                            break;
 
                         case "##tildato##":
-                            return string.Format("{0:d. MMMM yyyy}", tildato);
+                            if (tildato != null) return string.Format("{0:d. MMMM yyyy}", tildato);
+                            break;
 
+                        case "##betalingsdato##":
+                            if (betalingsdato != null) return string.Format("{0:dddd}", betalingsdato) + " den " + string.Format("{0:d. MMMM}", betalingsdato);
+                            break;
 
-                        default:
-                            return v;
+                        case "##underskrift_navn##":
+                            if (underskrift_navn != null) return underskrift_navn;
+                            break;
                     }
+                    return v;
                 });
 
+                if (numofcol == null) 
+                {
+                    return MsgtextSub;
+                }
+                else
+                {
+                    return splittextincolumns(MsgtextSub, (int)numofcol);
+                }
             }
-            string MsgtextSub2 = splittextincolumns(MsgtextSub, numofcol);
-            string[] infotextarr = MsgtextSub2.Split(crlf, StringSplitOptions.None);
-            return infotextarr;
+            return "";
         }
 
         public static string splittextincolumns(string msg, int numofcol)
@@ -921,6 +948,27 @@ namespace nsPuls3060
                         ExecuteSQLScript(@"sql\script13.sql");
                         Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.13.0.0'  WHERE [vkey] = 'VERSION';");
                         dbVersion = "2.13.0.0";
+                        dbts.Complete();
+                    }
+
+                    catch (System.Data.SqlServerCe.SqlCeException e)
+                    {
+                        dbts.Dispose();
+                        object x = e;
+                    }
+                }
+            }
+
+            if (dbVersion == "2.13.0.0")
+            {
+                using (var dbts = new TransactionScope())
+                {
+                    try
+                    {
+                        //version "2.13.0.0" --> "2.14.0.0" opgradering af SqlDatabasen
+                        ExecuteSQLScript(@"sql\script14.sql");
+                        Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.14.0.0'  WHERE [vkey] = 'VERSION';");
+                        dbVersion = "2.14.0.0";
                         dbts.Complete();
                     }
 
