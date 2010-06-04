@@ -344,7 +344,7 @@ namespace nsPuls3060
             else return false;
         }
 
-        public static string getinfotekst(int? infotekst_id, int? numofcol, string navn_medlem, DateTime? fradato, DateTime? tildato, DateTime? betalingsdato, string underskrift_navn)
+        public static string getinfotekst(int? infotekst_id, int? numofcol, string navn_medlem, DateTime? fradato, DateTime? tildato, DateTime? betalingsdato, string ocrstring, string underskrift_navn)
         {
           
             string[] crlf = { "\r\n" };
@@ -378,6 +378,10 @@ namespace nsPuls3060
 
                         case "##betalingsdato##":
                             if (betalingsdato != null) return string.Format("{0:dddd}", betalingsdato) + " den " + string.Format("{0:d. MMMM}", betalingsdato);
+                            break;
+
+                        case "##ocrstring##":
+                            if (ocrstring != null) return ocrstring;
                             break;
 
                         case "##underskrift_navn##":

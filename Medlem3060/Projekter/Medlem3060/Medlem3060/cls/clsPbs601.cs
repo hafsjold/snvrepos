@@ -388,7 +388,8 @@ namespace nsPuls3060
                               Infotekst = f.Infotekst,
                               Tilpbsid = f.Tilpbsid,
                               Advistekst = f.Advistekst,
-                              Belob = f.Advisbelob
+                              Belob = f.Advisbelob,
+                              OcrString = null
                           };
             }
             else if (fakryk == fakType.fdrykker) //RYKKER
@@ -397,6 +398,8 @@ namespace nsPuls3060
                           join r in Program.dbData3060.Tblrykker on k.Nr equals r.Nr
                           where r.Tilpbsid == lobnr && r.Nr != null
                           join f in Program.dbData3060.Tblfak on r.Faknr equals f.Faknr
+                          join b in Program.dbData3060.Tblindbetalingskort on r.Faknr equals b.Faknr into indbetalingskort
+                          from b in indbetalingskort.DefaultIfEmpty( new Tblindbetalingskort { Id = 0, Frapbsid = 0, Pbstranskode = null, Nr = 0, Faknr = null, Debitorkonto = null, Debgrpnr = null, Kortartkode = null, Fikreditornr = null, Indbetalerident = null, Dato = null, Belob = null, Pbssektionnr = null})
                           orderby r.Nr
                           select new clsRstdeb
                           {
@@ -413,7 +416,8 @@ namespace nsPuls3060
                               Infotekst = r.Infotekst,
                               Tilpbsid = r.Tilpbsid,
                               Advistekst = r.Advistekst,
-                              Belob = r.Advisbelob
+                              Belob = r.Advisbelob,
+                              OcrString = (b.Indbetalerident == null) ? null : ">" + b.Kortartkode + "< " +  b.Indbetalerident + "+" + b.Fikreditornr + "<"
                           };
             } 
             else 
@@ -607,7 +611,7 @@ namespace nsPuls3060
                 }
 
 
-                string infotekst = clsPbs.getinfotekst(rstdeb.Infotekst, 60, rstdeb.Kaldenavn, rstdeb.Betalingsdato, rstdeb.Fradato, rstdeb.Tildato, "\r\nMogens Hafsjold\r\nRegnskabsfører");
+                string infotekst = clsPbs.getinfotekst(rstdeb.Infotekst, 60, rstdeb.Kaldenavn, rstdeb.Betalingsdato, rstdeb.Fradato, rstdeb.Tildato, rstdeb.OcrString, "\r\nMogens Hafsjold\r\nRegnskabsfører");
                 if (infotekst.Length > 0)
                 {
                     arradvis = infotekst.Split(splitchars, StringSplitOptions.None);
@@ -1032,5 +1036,7 @@ namespace nsPuls3060
         public int? Tilpbsid { get; set; }
         public string Advistekst { get; set; }
         public decimal? Belob { get; set; }
+        public string OcrString { get; set; }
+
     }
 }
