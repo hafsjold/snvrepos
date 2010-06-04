@@ -41,9 +41,9 @@
             this.columnHeaderMNr = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderMAdresse = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderMPostnr = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderMFradato = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderMDato = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderMKontingent = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderMTildato = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderMFaknr = new System.Windows.Forms.ColumnHeader();
             this.Label_Forslagstekst = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdForslag = new System.Windows.Forms.Button();
@@ -55,9 +55,9 @@
             this.columnHeaderKNR = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderKAdresse = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderKPostnr = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderKFradato = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderKDato = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderKKontingent = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderKTildato = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderKFaknr = new System.Windows.Forms.ColumnHeader();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -107,10 +107,10 @@
             this.cmdCancel.UseVisualStyleBackColor = true;
             this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
-            // cmdFakturer
+            // cmdRykkere
             // 
             this.cmdRykkere.Location = new System.Drawing.Point(18, 68);
-            this.cmdRykkere.Name = "cmdFakturer";
+            this.cmdRykkere.Name = "cmdRykkere";
             this.cmdRykkere.Size = new System.Drawing.Size(61, 25);
             this.cmdRykkere.TabIndex = 3;
             this.cmdRykkere.Text = "Rykkere";
@@ -166,9 +166,9 @@
             this.columnHeaderMNr,
             this.columnHeaderMAdresse,
             this.columnHeaderMPostnr,
-            this.columnHeaderMFradato,
+            this.columnHeaderMDato,
             this.columnHeaderMKontingent,
-            this.columnHeaderMTildato});
+            this.columnHeaderMFaknr});
             this.lvwMedlem.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lvwMedlem.FullRowSelect = true;
             this.lvwMedlem.Location = new System.Drawing.Point(0, 137);
@@ -198,17 +198,17 @@
             // 
             this.columnHeaderMPostnr.Text = "Postnr";
             // 
-            // columnHeaderMFradato
+            // columnHeaderMDato
             // 
-            this.columnHeaderMFradato.Text = "Fra dato";
+            this.columnHeaderMDato.Text = "Dato";
             // 
             // columnHeaderMKontingent
             // 
             this.columnHeaderMKontingent.Text = "Kontingent";
             // 
-            // columnHeaderMTildato
+            // columnHeaderMFaknr
             // 
-            this.columnHeaderMTildato.Text = "Til dato";
+            this.columnHeaderMFaknr.Text = "Faknr";
             // 
             // Label_Forslagstekst
             // 
@@ -242,23 +242,23 @@
             this.cmdForslag.UseVisualStyleBackColor = true;
             this.cmdForslag.Click += new System.EventHandler(this.cmdForslag_Click);
             // 
-            // pgmFaktura
+            // pgmRykker
             // 
             this.pgmRykker.Location = new System.Drawing.Point(139, 74);
             this.pgmRykker.Maximum = 325;
-            this.pgmRykker.Name = "pgmFaktura";
+            this.pgmRykker.Name = "pgmRykker";
             this.pgmRykker.Size = new System.Drawing.Size(218, 15);
             this.pgmRykker.Step = 1;
             this.pgmRykker.TabIndex = 6;
             this.pgmRykker.Visible = false;
             // 
-            // Label_Fakturatekst
+            // Label_Rykkertekst
             // 
             this.Label_Rykkertekst.AutoSize = true;
             this.Label_Rykkertekst.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Label_Rykkertekst.ForeColor = System.Drawing.Color.Red;
             this.Label_Rykkertekst.Location = new System.Drawing.Point(15, 96);
-            this.Label_Rykkertekst.Name = "Label_Fakturatekst";
+            this.Label_Rykkertekst.Name = "Label_Rykkertekst";
             this.Label_Rykkertekst.Size = new System.Drawing.Size(33, 16);
             this.Label_Rykkertekst.TabIndex = 5;
             this.Label_Rykkertekst.Text = "test";
@@ -282,9 +282,9 @@
             this.columnHeaderKNR,
             this.columnHeaderKAdresse,
             this.columnHeaderKPostnr,
-            this.columnHeaderKFradato,
+            this.columnHeaderKDato,
             this.columnHeaderKKontingent,
-            this.columnHeaderKTildato});
+            this.columnHeaderKFaknr});
             this.lvwRykker.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lvwRykker.FullRowSelect = true;
             this.lvwRykker.Location = new System.Drawing.Point(0, 137);
@@ -314,17 +314,17 @@
             // 
             this.columnHeaderKPostnr.Text = "Postnr";
             // 
-            // columnHeaderKFradato
+            // columnHeaderKDato
             // 
-            this.columnHeaderKFradato.Text = "Fra dato";
+            this.columnHeaderKDato.Text = "Dato";
             // 
             // columnHeaderKKontingent
             // 
             this.columnHeaderKKontingent.Text = "Kontingent";
             // 
-            // columnHeaderKTildato
+            // columnHeaderKFaknr
             // 
-            this.columnHeaderKTildato.Text = "Til dato";
+            this.columnHeaderKFaknr.Text = "Faknr";
             // 
             // FrmRykkerForslag
             // 
@@ -365,19 +365,19 @@
         private System.Windows.Forms.ColumnHeader columnHeaderMNavn;
         private System.Windows.Forms.ColumnHeader columnHeaderMAdresse;
         private System.Windows.Forms.ColumnHeader columnHeaderMPostnr;
-        private System.Windows.Forms.ColumnHeader columnHeaderMFradato;
+        private System.Windows.Forms.ColumnHeader columnHeaderMDato;
         private System.Windows.Forms.ColumnHeader columnHeaderKNnavn;
         private System.Windows.Forms.ColumnHeader columnHeaderKNR;
         private System.Windows.Forms.ColumnHeader columnHeaderKAdresse;
         private System.Windows.Forms.ColumnHeader columnHeaderKPostnr;
-        private System.Windows.Forms.ColumnHeader columnHeaderKFradato;
+        private System.Windows.Forms.ColumnHeader columnHeaderKDato;
         private System.Windows.Forms.ProgressBar pgmForslag;
         private System.Windows.Forms.Label Label_Forslagstekst;
         private System.Windows.Forms.Label Label_Rykkertekst;
         private System.Windows.Forms.ProgressBar pgmRykker;
         private System.Windows.Forms.ColumnHeader columnHeaderMKontingent;
         private System.Windows.Forms.ColumnHeader columnHeaderKKontingent;
-        private System.Windows.Forms.ColumnHeader columnHeaderMTildato;
-        private System.Windows.Forms.ColumnHeader columnHeaderKTildato;
+        private System.Windows.Forms.ColumnHeader columnHeaderMFaknr;
+        private System.Windows.Forms.ColumnHeader columnHeaderKFaknr;
     }
 }

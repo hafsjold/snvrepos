@@ -60,14 +60,12 @@ namespace nsPuls3060
 
         private void getRykkerForslag()
         {
-            DateTime RykkerFradato = DateTime.MinValue;
-            DateTime RykkerTildato = DateTime.MinValue;
-            int AntalMedlemmer = 0;
             int AntalForslag = 0;
 
             var qry_medlemmer = from h in Program.karMedlemmer
                                 join f in Program.dbData3060.Tblfak on h.Nr equals f.Nr
-                                where f.SFaknr == null
+                                where f.SFaknr == null & f.Rykkerstop == false
+                                orderby f.Fradato, f.Id
                                 select new
                                 {
                                     h.Nr,
@@ -77,7 +75,8 @@ namespace nsPuls3060
                                     f.Betalingsdato,
                                     f.Fradato,
                                     f.Tildato,
-                                    f.Advisbelob
+                                    f.Advisbelob,
+                                    f.Faknr
                                 };
 
             this.lvwMedlem.Items.Clear();
@@ -97,15 +96,15 @@ namespace nsPuls3060
 
             foreach (var m in qry_medlemmer)
             {
-                AntalMedlemmer++;
+                AntalForslag++;
                 ListViewItem it = lvwRykker.Items.Add(m.Nr.ToString(), m.Navn, 0);
                 //it.Tag = m;
                 it.SubItems.Add(m.Nr.ToString());
                 it.SubItems.Add(m.Adresse);
                 it.SubItems.Add(m.Postnr);
-                it.SubItems.Add(string.Format("{0:dd-MM-yyy}", m.Fradato));
+                it.SubItems.Add(string.Format("{0:yyyy-MM-dd}", m.Betalingsdato));
                 it.SubItems.Add(m.Advisbelob.ToString());
-                it.SubItems.Add(string.Format("{0:dd-MM-yyy}", m.Tildato));
+                it.SubItems.Add(m.Faknr.ToString());
                 pgmForslag.PerformStep();
             }
             this.lvwRykker.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -224,8 +223,7 @@ namespace nsPuls3060
             int AntalRykkere;
             int imax;
             string keyval;
-            DateTime fradato;
-            DateTime tildato;
+            int faknr;
             double advisbelob;
             if ((this.cmdRykkere.Text == "Afslut"))
             {
@@ -256,16 +254,14 @@ namespace nsPuls3060
                 {
                     this.pgmRykker.Value = ++i;
                     keyval = lvi.Name;
-                    fradato = DateTime.Parse(lvi.SubItems[4].Text);
                     advisbelob = double.Parse(lvi.SubItems[5].Text);
-                    tildato = DateTime.Parse(lvi.SubItems[6].Text);
+                    faknr = int.Parse(lvi.SubItems[6].Text);
 
                     TempRykkerforslaglinie rec_tempRykkerforslaglinie = new TempRykkerforslaglinie
                     {
                         Nr = int.Parse(keyval),
                         Advisbelob = (decimal)advisbelob,
-                        //Fradato = fradato,
-                        //Tildato = tildato
+                        Faknr = faknr
                     };
                     rec_tempRykkerforslag.TempRykkerforslaglinie.Add(rec_tempRykkerforslaglinie);
                 }
