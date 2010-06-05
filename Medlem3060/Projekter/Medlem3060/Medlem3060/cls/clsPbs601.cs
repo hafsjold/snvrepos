@@ -116,7 +116,7 @@ namespace nsPuls3060
             int winfotekst;
             int wantalrykkere;
             wantalrykkere = 0;
-            
+
             Tbltilpbs rec_tilpbs = new Tbltilpbs
             {
                 Delsystem = "BSH",
@@ -304,8 +304,16 @@ namespace nsPuls3060
                              select c).Count();
                 if (antal > 0) { throw new Exception("102 - Pbsforsendelse for id: " + lobnr + " er allerede sendt"); }
             }
+            if (fakryk == fakType.fdfaktura) //KONTINGENT FAKTURA
             {
                 var antal = (from c in Program.dbData3060.Tblfak
+                             where c.Tilpbsid == lobnr
+                             select c).Count();
+                if (antal == 0) { throw new Exception("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr); }
+            }
+            if (fakryk == fakType.fdrykker) //RYKKER
+            {
+                var antal = (from c in Program.dbData3060.Tblrykker
                              where c.Tilpbsid == lobnr
                              select c).Count();
                 if (antal == 0) { throw new Exception("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr); }
@@ -399,7 +407,7 @@ namespace nsPuls3060
                           where r.Tilpbsid == lobnr && r.Nr != null
                           join f in Program.dbData3060.Tblfak on r.Faknr equals f.Faknr
                           join b in Program.dbData3060.Tblindbetalingskort on r.Faknr equals b.Faknr into indbetalingskort
-                          from b in indbetalingskort.DefaultIfEmpty( new Tblindbetalingskort { Id = 0, Frapbsid = 0, Pbstranskode = null, Nr = 0, Faknr = null, Debitorkonto = null, Debgrpnr = null, Kortartkode = null, Fikreditornr = null, Indbetalerident = null, Dato = null, Belob = null, Pbssektionnr = null})
+                          from b in indbetalingskort.DefaultIfEmpty(new Tblindbetalingskort { Id = 0, Frapbsid = 0, Pbstranskode = null, Nr = 0, Faknr = null, Debitorkonto = null, Debgrpnr = null, Kortartkode = null, Fikreditornr = null, Indbetalerident = null, Dato = null, Belob = null, Pbssektionnr = null })
                           orderby r.Nr
                           select new clsRstdeb
                           {
@@ -417,10 +425,10 @@ namespace nsPuls3060
                               Tilpbsid = r.Tilpbsid,
                               Advistekst = r.Advistekst,
                               Belob = r.Advisbelob,
-                              OcrString = (b.Indbetalerident == null) ? null : ">" + b.Kortartkode + "< " +  b.Indbetalerident + "+" + b.Fikreditornr + "<"
+                              OcrString = (b.Indbetalerident == null) ? null : ">" + b.Kortartkode + "< " + b.Indbetalerident + "+" + b.Fikreditornr + "<"
                           };
-            } 
-            else 
+            }
+            else
             {
                 rstdebs = null;
             }

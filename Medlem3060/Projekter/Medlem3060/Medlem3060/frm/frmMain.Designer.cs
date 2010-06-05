@@ -44,6 +44,7 @@
             this.vedligeholdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medlemmerTilRegnearkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medlemmerTilRegnearkEksternToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.emailRykkerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.betalingerFraPBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.betalingerTilKassekladeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,7 +59,7 @@
             this.pbsfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.emailRykkerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.infoTekstToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -198,6 +199,13 @@
             this.medlemmerTilRegnearkEksternToolStripMenuItem.Text = "Regneark eksternt";
             this.medlemmerTilRegnearkEksternToolStripMenuItem.Click += new System.EventHandler(this.excelExterntToolStripMenuItem_Click);
             // 
+            // emailRykkerToolStripMenuItem
+            // 
+            this.emailRykkerToolStripMenuItem.Name = "emailRykkerToolStripMenuItem";
+            this.emailRykkerToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.emailRykkerToolStripMenuItem.Text = "E-mail rykker";
+            this.emailRykkerToolStripMenuItem.Click += new System.EventHandler(this.emailRykkerToolStripMenuItem_Click);
+            // 
             // pBSToolStripMenuItem
             // 
             this.pBSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -263,7 +271,8 @@
             this.systemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem2,
             this.toolStripMenuItem1,
-            this.pbsfilesToolStripMenuItem});
+            this.pbsfilesToolStripMenuItem,
+            this.infoTekstToolStripMenuItem});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
             this.systemToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.systemToolStripMenuItem.Text = "System";
@@ -304,12 +313,12 @@
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
-            // emailRykkerToolStripMenuItem
+            // infoTekstToolStripMenuItem
             // 
-            this.emailRykkerToolStripMenuItem.Name = "emailRykkerToolStripMenuItem";
-            this.emailRykkerToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.emailRykkerToolStripMenuItem.Text = "E-mail rykker";
-            this.emailRykkerToolStripMenuItem.Click += new System.EventHandler(this.emailRykkerToolStripMenuItem_Click);
+            this.infoTekstToolStripMenuItem.Name = "infoTekstToolStripMenuItem";
+            this.infoTekstToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.infoTekstToolStripMenuItem.Text = "Info tekst";
+            this.infoTekstToolStripMenuItem.Click += new System.EventHandler(this.infoTekstToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -371,6 +380,7 @@
         private System.Windows.Forms.ToolStripMenuItem posterTilExcelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem betalingsForslagToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem emailRykkerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem infoTekstToolStripMenuItem;
    }
 }
 

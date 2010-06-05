@@ -97,7 +97,7 @@ namespace nsPuls3060
             foreach (var m in qry_medlemmer)
             {
                 AntalForslag++;
-                ListViewItem it = lvwRykker.Items.Add(m.Nr.ToString(), m.Navn, 0);
+                ListViewItem it = lvwMedlem.Items.Add(m.Nr.ToString(), m.Navn, 0);
                 //it.Tag = m;
                 it.SubItems.Add(m.Nr.ToString());
                 it.SubItems.Add(m.Adresse);
@@ -239,7 +239,7 @@ namespace nsPuls3060
             Program.dbData3060.ExecuteCommand("DELETE FROM tempRykkerforslag;");
             if ((imax == 0))
             {
-                this.Label_Rykkertekst.Text = "Der ikke noget at fakturere";
+                this.Label_Rykkertekst.Text = "Der ikke noget at rykkere";
                 this.Label_Rykkertekst.Visible = true;
             }
             else

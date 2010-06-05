@@ -130,6 +130,12 @@
       <DependentUpon>dsMedlem.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="frm\frmInfotekst.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmInfotekst.Designer.cs">
+      <DependentUpon>frmInfotekst.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm\frmBetalingsForslag.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -241,6 +247,9 @@
     <EmbeddedResource Include="frm\BetterDialog.resx">
       <DependentUpon>BetterDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmInfotekst.resx">
+      <DependentUpon>frmInfotekst.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm\frmKontingentForslag.resx">
       <DependentUpon>frmKontingentForslag.cs</DependentUpon>
     </EmbeddedResource>
@@ -319,6 +328,7 @@
       <LastGenOutput>dbRecovery3060.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\DataSources\Tblinfotekst.datasource" />
     <None Include="Properties\DataSources\Tblpbsfiles.datasource" />
     <None Include="Resources\Add.bmp" />
     <Content Include="Resources\info.png" />

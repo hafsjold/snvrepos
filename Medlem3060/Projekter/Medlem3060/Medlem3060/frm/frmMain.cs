@@ -469,5 +469,15 @@ namespace nsPuls3060
             }
         }
 
+        private void infoTekstToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("Info tekst"))
+            {
+                FrmInfotekst m_frmInfotekst = new FrmInfotekst();
+                m_frmInfotekst.MdiParent = this;
+                m_frmInfotekst.Show();
+            }
+        }
+
     }
 }
