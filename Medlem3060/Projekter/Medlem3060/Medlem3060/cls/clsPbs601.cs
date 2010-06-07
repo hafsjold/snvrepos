@@ -112,14 +112,21 @@ namespace nsPuls3060
         public int rykkere_bsh()
         {
             int lobnr;
-            string wadvistekst;
+            string wadvistekst = "";
             int winfotekst;
             int wantalrykkere;
             wantalrykkere = 0;
 
+            bool? wbsh = (from h in Program.dbData3060.TempRykkerforslag select h.Bsh).First();
+            bool bsh = (wbsh == null) ? false : (bool)wbsh;
+            string wDelsystem;
+            if (bsh) wDelsystem = "BSH";
+            else wDelsystem = "EML";
+
+
             Tbltilpbs rec_tilpbs = new Tbltilpbs
             {
-                Delsystem = "BSH",
+                Delsystem = wDelsystem,
                 Leverancetype = "0601",
                 Udtrukket = DateTime.Now
             };
@@ -146,12 +153,8 @@ namespace nsPuls3060
 
             foreach (var rstmedlem in rstmedlems)
             {
-
-                wadvistekst = "Puls 3060 Medlemskontingent";
-                wadvistekst += "\r\n" + "  for " + rstmedlem.Navn;
-                wadvistekst += "\r\n" + "  perioden fra " + string.Format("{0:yyyy-MM-dd}", rstmedlem.Fradato) + " til " + string.Format("{0:yyyy-MM-dd}", rstmedlem.Tildato);
-                wadvistekst += "\r\n" + "Besøg Puls 3060\"s hjemmeside på www.puls3060.dk";
-                winfotekst = (rstmedlem.Indmeldelse) ? 21 : 20;
+                if (bsh) winfotekst = (rstmedlem.Indmeldelse) ? 21 : 20;
+                else winfotekst = (rstmedlem.Indmeldelse) ? 31 : 30;
 
                 Tblrykker rec_rykker = new Tblrykker
                 {
@@ -175,7 +178,7 @@ namespace nsPuls3060
         public int kontingent_fakturer_bs1()
         {
             int lobnr;
-            string wadvistekst;
+            string wadvistekst = "";
             int winfotekst;
             int wantalfakturaer;
             wantalfakturaer = 0;
@@ -213,12 +216,6 @@ namespace nsPuls3060
 
             foreach (var rstmedlem in rstmedlems)
             {
-
-                wadvistekst = "Puls 3060 Medlemskontingent";
-                wadvistekst += "\r\n" + "  for " + rstmedlem.Navn;
-                wadvistekst += "\r\n" + "  perioden fra " + string.Format("{0:yyyy-MM-dd}", rstmedlem.Fradato) + " til " + string.Format("{0:yyyy-MM-dd}", rstmedlem.Tildato);
-                wadvistekst += "\r\n" + "Besøg Puls 3060\"s hjemmeside på www.puls3060.dk";
-
                 winfotekst = (rstmedlem.Indmeldelse) ? 11 : 10;
                 Tblfak rec_fak = new Tblfak
                 {
@@ -242,6 +239,96 @@ namespace nsPuls3060
             SetLobnr(lobnr);
             return wantalfakturaer;
 
+        }
+
+        public void rykker_email(int lobnr)
+        {
+            int wleveranceid;
+
+            {
+                var antal = (from c in Program.dbData3060.Tbltilpbs
+                             where c.Id == lobnr
+                             select c).Count();
+                if (antal == 0) { throw new Exception("101 - Der er ingen PBS forsendelse for id: " + lobnr); }
+            }
+            {
+                var antal = (from c in Program.dbData3060.Tbltilpbs
+                             where c.Id == lobnr && c.Pbsforsendelseid != null
+                             select c).Count();
+                if (antal > 0) { throw new Exception("102 - Pbsforsendelse for id: " + lobnr + " er allerede sendt"); }
+            }
+            {
+                var antal = (from c in Program.dbData3060.Tblrykker
+                             where c.Tilpbsid == lobnr
+                             select c).Count();
+                if (antal == 0) { throw new Exception("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr); }
+            }
+
+            var rsttil = (from c in Program.dbData3060.Tbltilpbs
+                          where c.Id == lobnr
+                          select c).First();
+            if (rsttil.Udtrukket == null) { rsttil.Udtrukket = DateTime.Now; }
+            if (rsttil.Bilagdato == null) { rsttil.Bilagdato = rsttil.Udtrukket; }
+            if (rsttil.Delsystem == null) { rsttil.Delsystem = "EML"; }
+            if (rsttil.Leverancetype == null) { rsttil.Leverancetype = ""; }
+            Program.dbData3060.SubmitChanges();
+
+            wleveranceid = clsPbs.nextval("leveranceid");
+
+            Tblpbsforsendelse rec_pbsforsendelse = new Tblpbsforsendelse
+            {
+                Delsystem = rsttil.Delsystem,
+                Leverancetype = rsttil.Leverancetype,
+                Oprettetaf = "Ryk",
+                Oprettet = DateTime.Now,
+                Leveranceid = wleveranceid
+            };
+            Program.dbData3060.Tblpbsforsendelse.InsertOnSubmit(rec_pbsforsendelse);
+            rec_pbsforsendelse.Tbltilpbs.Add(rsttil);
+
+            var rstdebs = from k in Program.karMedlemmer
+                          join r in Program.dbData3060.Tblrykker on k.Nr equals r.Nr
+                          where r.Tilpbsid == lobnr && r.Nr != null
+                          join f in Program.dbData3060.Tblfak on r.Faknr equals f.Faknr
+                          join b in Program.dbData3060.Tblindbetalingskort on r.Faknr equals b.Faknr into indbetalingskort
+                          from b in indbetalingskort.DefaultIfEmpty(new Tblindbetalingskort { Id = 0, Frapbsid = 0, Pbstranskode = null, Nr = 0, Faknr = null, Debitorkonto = null, Debgrpnr = null, Kortartkode = null, Fikreditornr = null, Indbetalerident = null, Dato = null, Belob = null, Pbssektionnr = null })
+                          orderby r.Nr
+                          select new clsRstdeb
+                          {
+                              Nr = k.Nr,
+                              Kundenr = 32001610000000 + k.Nr,
+                              Kaldenavn = k.Kaldenavn,
+                              Navn = k.Navn,
+                              Adresse = k.Adresse,
+                              Postnr = k.Postnr,
+                              Faknr = r.Faknr,
+                              Betalingsdato = f.Betalingsdato,
+                              Fradato = f.Fradato,
+                              Tildato = f.Tildato,
+                              Infotekst = r.Infotekst,
+                              Tilpbsid = r.Tilpbsid,
+                              Advistekst = r.Advistekst,
+                              Belob = r.Advisbelob,
+                              OcrString = (b.Indbetalerident == null) ? null : ">" + b.Kortartkode + "< " + b.Indbetalerident + "+" + b.Fikreditornr + "<",
+                              Email = k.Email
+                          };
+
+            foreach (var rstdeb in rstdebs)
+            {
+                string infotekst = clsPbs.getinfotekst(rstdeb.Infotekst, null, rstdeb.Navn, rstdeb.Kaldenavn, rstdeb.Fradato, rstdeb.Tildato, rstdeb.Betalingsdato, rstdeb.Belob, rstdeb.OcrString, "\r\nMogens Hafsjold\r\nRegnskabsfører");
+                if (infotekst.Length > 0)
+                {
+                    
+					//Send email
+                    sendRykkerEmail(rstdeb.Navn , rstdeb.Email, "Betaling af Puls 3060 Kontingent", infotekst);
+
+                }
+
+            } // -- End rstdebs
+
+            rsttil.Udtrukket = DateTime.Now;
+            rsttil.Leverancespecifikation = wleveranceid.ToString();
+            Program.dbData3060.SubmitChanges();
         }
 
         public void faktura_og_rykker_601_action(int lobnr, fakType fakryk)
@@ -578,48 +665,49 @@ namespace nsPuls3060
                 rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
                 rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
 
-                string[] arradvis;
-                int n;
-                string[] splitchars = { "\r\n" };
-                arradvis = rstdeb.Advistekst.Split(splitchars, StringSplitOptions.None);
                 recnr = 0;
-                for (n = arradvis.GetLowerBound(0); n <= arradvis.GetUpperBound(0); n++)
+                string[] splitchars = { "\r\n" };
+                string[] arradvis;
+                if (rstdeb.Advistekst.Length > 0)
                 {
-                    if (n == arradvis.GetLowerBound(0))
+                    arradvis = rstdeb.Advistekst.Split(splitchars, StringSplitOptions.None);
+                    for (int n = arradvis.GetLowerBound(0); n <= arradvis.GetUpperBound(0); n++)
                     {
-                        recnr++;
-                        advistekst = arradvis[n];
-                        advisbelob = (int)rstdeb.Belob;
-                    }
-                    else
-                    {
-                        recnr++;
-                        advistekst = arradvis[n];
-                        advisbelob = 0;
-                    }
+                        if (n == arradvis.GetLowerBound(0))
+                        {
+                            recnr++;
+                            advistekst = arradvis[n];
+                            advisbelob = (int)rstdeb.Belob;
+                        }
+                        else
+                        {
+                            recnr++;
+                            advistekst = arradvis[n];
+                            advisbelob = 0;
+                        }
 
-                    // -- Tekst til advis
-                    antal052++;
-                    antal052tot++;
+                        // -- Tekst til advis
+                        antal052++;
+                        antal052tot++;
 
-                    // - rstkrd!sektionnr  -
-                    // - rstkrd!pbsnr      - PBS-nr.: Kreditors PBS-nummer
-                    // - "0241"            - Transkode: 0241 (Tekstlinie)
-                    // - recnr             - Recordnr.: 001-999
-                    // - rstkrd!debgrpnr   - Debitorgruppenr.: Debitorgruppenummer
-                    // - rstdeb!kundenr    - Kundenr.: Debitors kundenummer hos kreditor
-                    // - 0                 - Aftalenr.: 000000000 eller 999999999
-                    // - advistekst        - Advistekst 1: Tekstlinie på advis
-                    // - 0.0               - Advisbeløb 1: Beløb på advis
-                    // - ""                - Advistekst 2: Tekstlinie på advis
-                    // - 0.0               - Advisbeløb 2: Beløb på advis
-                    rec = write052(rstkrd.Sektionnr, rstkrd.Pbsnr, "0241", recnr, rstkrd.Debgrpnr, rstdeb.Kundenr.ToString(), 0, advistekst, advisbelob, "", 0);
-                    rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
-                    rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+                        // - rstkrd!sektionnr  -
+                        // - rstkrd!pbsnr      - PBS-nr.: Kreditors PBS-nummer
+                        // - "0241"            - Transkode: 0241 (Tekstlinie)
+                        // - recnr             - Recordnr.: 001-999
+                        // - rstkrd!debgrpnr   - Debitorgruppenr.: Debitorgruppenummer
+                        // - rstdeb!kundenr    - Kundenr.: Debitors kundenummer hos kreditor
+                        // - 0                 - Aftalenr.: 000000000 eller 999999999
+                        // - advistekst        - Advistekst 1: Tekstlinie på advis
+                        // - 0.0               - Advisbeløb 1: Beløb på advis
+                        // - ""                - Advistekst 2: Tekstlinie på advis
+                        // - 0.0               - Advisbeløb 2: Beløb på advis
+                        rec = write052(rstkrd.Sektionnr, rstkrd.Pbsnr, "0241", recnr, rstkrd.Debgrpnr, rstdeb.Kundenr.ToString(), 0, advistekst, advisbelob, "", 0);
+                        rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
+                        rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+                    }
                 }
 
-
-                string infotekst = clsPbs.getinfotekst(rstdeb.Infotekst, 60, rstdeb.Kaldenavn, rstdeb.Betalingsdato, rstdeb.Fradato, rstdeb.Tildato, rstdeb.OcrString, "\r\nMogens Hafsjold\r\nRegnskabsfører");
+                string infotekst = clsPbs.getinfotekst(rstdeb.Infotekst, 60, rstdeb.Navn, rstdeb.Kaldenavn, rstdeb.Fradato, rstdeb.Tildato, rstdeb.Betalingsdato, rstdeb.Belob, rstdeb.OcrString, "\r\nMogens Hafsjold\r\nRegnskabsfører");
                 if (infotekst.Length > 0)
                 {
                     arradvis = infotekst.Split(splitchars, StringSplitOptions.None);
@@ -1025,7 +1113,43 @@ namespace nsPuls3060
             string Val = oVal.ToString();
             return Val.PadRight(Length, PadChar);
         }
+        public void sendRykkerEmail(string ToName, string ToAddr, string subject, string body)
+        {
+            Chilkat.MailMan mailman = new Chilkat.MailMan();
+            bool success;
+            success = mailman.UnlockComponent("HAFSJOMAILQ_9QYSMgP0oR1h");
+            if (success != true) throw new Exception(mailman.LastErrorText);
 
+            //  Use the GMail SMTP server
+            mailman.SmtpHost = Program.Smtphost;
+            mailman.SmtpPort = int.Parse(Program.Smtpport);
+            mailman.SmtpSsl = bool.Parse(Program.Smtpssl);
+
+            //  Set the SMTP login/password.
+            mailman.SmtpUsername = Program.Smtpuser;
+            mailman.SmtpPassword = Program.Smtppasswd;
+
+            //  Create a new email object
+            Chilkat.Email email = new Chilkat.Email();
+
+
+#if (DEBUG)
+            email.AddTo(Program.MailToName, Program.MailToAddr);
+            email.Subject = "TEST " + subject + " skal sendes til: " + ToName + " " + ToAddr;
+#else
+            email.AddTo(ToName, ToAddr);
+            email.Subject = subject;
+            email.AddCC("Claus Knudsen", "claus@puls3060.dk");
+            email.AddBcc(Program.MailToName, Program.MailToAddr);
+#endif
+            email.Body = body;
+            email.From = Program.MailFrom;
+            email.ReplyTo = Program.MailReply;
+
+            success = mailman.SendEmail(email);
+            if (success != true) throw new Exception(email.LastErrorText);
+
+        }
     }
 
     public class clsRstdeb
@@ -1045,6 +1169,7 @@ namespace nsPuls3060
         public string Advistekst { get; set; }
         public decimal? Belob { get; set; }
         public string OcrString { get; set; }
+        public string Email { get; set; }
 
     }
 }

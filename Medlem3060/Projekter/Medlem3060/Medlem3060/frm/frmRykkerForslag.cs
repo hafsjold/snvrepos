@@ -15,7 +15,6 @@ namespace nsPuls3060
         ColumnSorter lvwMedlem_ColumnSorter;
         ColumnSorter lvwRykker_ColumnSorter;
         private string DragDropKey;
-        private DateTime m_initdate;
         private int m_lobnr = 0;
 
 
@@ -42,16 +41,7 @@ namespace nsPuls3060
 
         private void FrmRykkerForslag_Load(object sender, EventArgs e)
         {
-            DateTime wt = DateTime.Now;
-            m_initdate = new DateTime(wt.Year, wt.Month, wt.Day);
-
-            wt = m_initdate.AddMonths(13 - m_initdate.Month);
-            this.DatoKontingentTil.Value = wt.AddDays(-wt.Day);
-
-            wt = m_initdate.AddMonths(1);
-            this.DatoKontingentForfald.Value = wt.AddDays(-wt.Day + 4);
         }
-
 
         private void cmdForslag_Click(object sender, EventArgs e)
         {
@@ -61,24 +51,46 @@ namespace nsPuls3060
         private void getRykkerForslag()
         {
             int AntalForslag = 0;
-
-            var qry_medlemmer = from h in Program.karMedlemmer
+            IEnumerable<clsqry_medlemmer> qry_medlemmer;
+            if (this.RykketTidligere.Checked)
+            {
+                qry_medlemmer = from h in Program.karMedlemmer
                                 join f in Program.dbData3060.Tblfak on h.Nr equals f.Nr
-                                where f.SFaknr == null & f.Rykkerstop == false
+                                where f.SFaknr == null &&
+                                      f.Rykkerstop == false &&
+                                      (int)(from q in Program.dbData3060.Tblrykker where q.Faknr == f.Faknr select q).Count() > 0
                                 orderby f.Fradato, f.Id
-                                select new
+                                select new clsqry_medlemmer
                                 {
-                                    h.Nr,
-                                    h.Navn,
-                                    h.Adresse,
-                                    h.Postnr,
-                                    f.Betalingsdato,
-                                    f.Fradato,
-                                    f.Tildato,
-                                    f.Advisbelob,
-                                    f.Faknr
+                                    Nr = h.Nr,
+                                    Navn = h.Navn,
+                                    Adresse = h.Adresse,
+                                    Postnr = h.Postnr,
+                                    Betalingsdato = f.Betalingsdato,
+                                    Advisbelob = f.Advisbelob,
+                                    Faknr = f.Faknr
                                 };
-
+            }
+            else
+            {
+                qry_medlemmer = from h in Program.karMedlemmer
+                                join f in Program.dbData3060.Tblfak on h.Nr equals f.Nr
+                                where f.SFaknr == null &&
+                                      f.Rykkerstop == false &&
+                                      f.Betalingsdato.Value.AddDays(7) <=  DateTime.Today &&
+                                      (int)(from q in Program.dbData3060.Tblrykker where q.Faknr == f.Faknr select q).Count() ==  0
+                                orderby f.Fradato, f.Id
+                                select new clsqry_medlemmer
+                                {
+                                    Nr = h.Nr,
+                                    Navn = h.Navn,
+                                    Adresse = h.Adresse,
+                                    Postnr = h.Postnr,
+                                    Betalingsdato = f.Betalingsdato,
+                                    Advisbelob = f.Advisbelob,
+                                    Faknr = f.Faknr
+                                };
+            }
             this.lvwMedlem.Items.Clear();
             this.lvwRykker.Items.Clear();
 
@@ -91,6 +103,7 @@ namespace nsPuls3060
             this.pgmForslag.Visible = true;
             this.Label_Forslagstekst.Visible = false;
             this.cmdRykkere.Visible = false;
+            this.DelsystemBSH.Visible = false;
 
             pgmForslag.PerformStep();
 
@@ -107,18 +120,20 @@ namespace nsPuls3060
                 it.SubItems.Add(m.Faknr.ToString());
                 pgmForslag.PerformStep();
             }
-            this.lvwRykker.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            this.lvwMedlem.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 
             if (AntalForslag == 0)
             {
                 this.Label_Forslagstekst.Text = "Der er ingen forslag";
                 this.Label_Forslagstekst.Visible = true;
                 this.cmdRykkere.Visible = false;
+                this.DelsystemBSH.Visible = false;
             }
             else
             {
                 this.Label_Forslagstekst.Visible = false;
-                this.cmdRykkere.Visible = true;
+                //this.cmdRykkere.Visible = true;
+                //this.DelsystemBSH.Visible = true;
             }
             this.pgmForslag.Visible = false;
 
@@ -165,6 +180,7 @@ namespace nsPuls3060
             }
             this.lvwRykker.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             this.cmdRykkere.Visible = (this.lvwRykker.Items.Count > 0) ? true : false;
+            this.DelsystemBSH.Visible = (this.lvwRykker.Items.Count > 0) ? true : false;
         }
 
 
@@ -210,6 +226,7 @@ namespace nsPuls3060
             }
             this.lvwMedlem.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             this.cmdRykkere.Visible = (this.lvwRykker.Items.Count > 0) ? true : false;
+            this.DelsystemBSH.Visible = (this.lvwRykker.Items.Count > 0) ? true : false;
         }
 
         private void cmdCancel_Click(object sender, EventArgs e)
@@ -246,7 +263,8 @@ namespace nsPuls3060
             {
                 TempRykkerforslag rec_tempRykkerforslag = new TempRykkerforslag
                 {
-                    Betalingsdato = this.DatoKontingentForfald.Value,
+                    Betalingsdato = clsOverfoersel.bankdageplus(DateTime.Today, 5),
+                    Bsh = this.DelsystemBSH.Checked
                 };
                 Program.dbData3060.TempRykkerforslag.InsertOnSubmit(rec_tempRykkerforslag);
                 var i = 0;
@@ -274,10 +292,18 @@ namespace nsPuls3060
                 this.pgmRykker.Value = imax * 2;
                 if ((AntalRykkere > 0))
                 {
-                    objPbs601.faktura_og_rykker_601_action(m_lobnr, fakType.fdrykker);
-                    this.pgmRykker.Value = (imax * 3);
-                    clsSFTP objSFTP = new clsSFTP();
-                    objSFTP.WriteTilSFtp(m_lobnr);
+                    if (this.DelsystemBSH.Checked) //RYKKERE med Indbetalingskort
+                    {
+                        objPbs601.faktura_og_rykker_601_action(m_lobnr, fakType.fdrykker);
+                        this.pgmRykker.Value = (imax * 3);
+                        clsSFTP objSFTP = new clsSFTP();
+                        objSFTP.WriteTilSFtp(m_lobnr);
+                    }
+                    else //RYKKERE som emails
+                    {
+                        objPbs601.rykker_email(m_lobnr);
+                        this.pgmRykker.Value = (imax * 3);
+                    }
                 }
                 this.pgmRykker.Value = (imax * 4);
                 cmdRykkere.Text = "Afslut";
@@ -301,5 +327,16 @@ namespace nsPuls3060
         {
             m_lobnr = lobnr;
         }
+    }
+
+    public class clsqry_medlemmer
+    {
+        public int? Nr { get; set; }
+        public string Navn { get; set; }
+        public string Adresse { get; set; }
+        public string Postnr { get; set; }
+        public DateTime? Betalingsdato { get; set; }
+        public decimal? Advisbelob { get; set; }
+        public int? Faknr { get; set; }
     }
 }

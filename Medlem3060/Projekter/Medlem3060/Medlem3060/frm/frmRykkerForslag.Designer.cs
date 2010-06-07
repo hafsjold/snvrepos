@@ -28,13 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label_DatoKontingentTil = new System.Windows.Forms.Label();
-            this.label_DatoKontingentForfald = new System.Windows.Forms.Label();
-            this.DatoKontingentTil = new System.Windows.Forms.DateTimePicker();
-            this.DatoKontingentForfald = new System.Windows.Forms.DateTimePicker();
             this.cmdCancel = new System.Windows.Forms.Button();
             this.cmdRykkere = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.RykketTidligere = new System.Windows.Forms.CheckBox();
             this.pgmForslag = new System.Windows.Forms.ProgressBar();
             this.lvwMedlem = new System.Windows.Forms.ListView();
             this.columnHeaderMNavn = new System.Windows.Forms.ColumnHeader();
@@ -47,6 +44,7 @@
             this.Label_Forslagstekst = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdForslag = new System.Windows.Forms.Button();
+            this.DelsystemBSH = new System.Windows.Forms.CheckBox();
             this.pgmRykker = new System.Windows.Forms.ProgressBar();
             this.Label_Rykkertekst = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -62,40 +60,6 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label_DatoKontingentTil
-            // 
-            this.label_DatoKontingentTil.AutoSize = true;
-            this.label_DatoKontingentTil.Location = new System.Drawing.Point(20, 10);
-            this.label_DatoKontingentTil.Name = "label_DatoKontingentTil";
-            this.label_DatoKontingentTil.Size = new System.Drawing.Size(95, 13);
-            this.label_DatoKontingentTil.TabIndex = 0;
-            this.label_DatoKontingentTil.Text = "Kontingent til dato:";
-            // 
-            // label_DatoKontingentForfald
-            // 
-            this.label_DatoKontingentForfald.AutoSize = true;
-            this.label_DatoKontingentForfald.Location = new System.Drawing.Point(20, 40);
-            this.label_DatoKontingentForfald.Name = "label_DatoKontingentForfald";
-            this.label_DatoKontingentForfald.Size = new System.Drawing.Size(122, 13);
-            this.label_DatoKontingentForfald.TabIndex = 0;
-            this.label_DatoKontingentForfald.Text = "Kontingent forfalds dato:";
-            // 
-            // DatoKontingentTil
-            // 
-            this.DatoKontingentTil.Location = new System.Drawing.Point(195, 10);
-            this.DatoKontingentTil.MaxDate = new System.DateTime(2100, 12, 31, 0, 0, 0, 0);
-            this.DatoKontingentTil.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.DatoKontingentTil.Name = "DatoKontingentTil";
-            this.DatoKontingentTil.Size = new System.Drawing.Size(121, 20);
-            this.DatoKontingentTil.TabIndex = 1;
-            // 
-            // DatoKontingentForfald
-            // 
-            this.DatoKontingentForfald.Location = new System.Drawing.Point(195, 36);
-            this.DatoKontingentForfald.Name = "DatoKontingentForfald";
-            this.DatoKontingentForfald.Size = new System.Drawing.Size(121, 20);
-            this.DatoKontingentForfald.TabIndex = 1;
             // 
             // cmdCancel
             // 
@@ -126,19 +90,17 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.RykketTidligere);
             this.splitContainer1.Panel1.Controls.Add(this.pgmForslag);
             this.splitContainer1.Panel1.Controls.Add(this.lvwMedlem);
             this.splitContainer1.Panel1.Controls.Add(this.Label_Forslagstekst);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
-            this.splitContainer1.Panel1.Controls.Add(this.label_DatoKontingentTil);
-            this.splitContainer1.Panel1.Controls.Add(this.label_DatoKontingentForfald);
-            this.splitContainer1.Panel1.Controls.Add(this.DatoKontingentTil);
             this.splitContainer1.Panel1.Controls.Add(this.cmdForslag);
-            this.splitContainer1.Panel1.Controls.Add(this.DatoKontingentForfald);
             this.splitContainer1.Panel1.Controls.Add(this.cmdCancel);
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.DelsystemBSH);
             this.splitContainer1.Panel2.Controls.Add(this.pgmRykker);
             this.splitContainer1.Panel2.Controls.Add(this.Label_Rykkertekst);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
@@ -147,6 +109,16 @@
             this.splitContainer1.Size = new System.Drawing.Size(829, 513);
             this.splitContainer1.SplitterDistance = 409;
             this.splitContainer1.TabIndex = 4;
+            // 
+            // RykketTidligere
+            // 
+            this.RykketTidligere.AutoSize = true;
+            this.RykketTidligere.Location = new System.Drawing.Point(23, 12);
+            this.RykketTidligere.Name = "RykketTidligere";
+            this.RykketTidligere.Size = new System.Drawing.Size(99, 17);
+            this.RykketTidligere.TabIndex = 8;
+            this.RykketTidligere.Text = "Rykket tidligere";
+            this.RykketTidligere.UseVisualStyleBackColor = true;
             // 
             // pgmForslag
             // 
@@ -241,6 +213,17 @@
             this.cmdForslag.Text = "Forslag";
             this.cmdForslag.UseVisualStyleBackColor = true;
             this.cmdForslag.Click += new System.EventHandler(this.cmdForslag_Click);
+            // 
+            // DelsystemBSH
+            // 
+            this.DelsystemBSH.AutoSize = true;
+            this.DelsystemBSH.Location = new System.Drawing.Point(85, 74);
+            this.DelsystemBSH.Name = "DelsystemBSH";
+            this.DelsystemBSH.Size = new System.Drawing.Size(48, 17);
+            this.DelsystemBSH.TabIndex = 8;
+            this.DelsystemBSH.Text = "BSH";
+            this.DelsystemBSH.UseVisualStyleBackColor = true;
+            this.DelsystemBSH.Visible = false;
             // 
             // pgmRykker
             // 
@@ -349,10 +332,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label_DatoKontingentTil;
-        private System.Windows.Forms.Label label_DatoKontingentForfald;
-        private System.Windows.Forms.DateTimePicker DatoKontingentTil;
-        private System.Windows.Forms.DateTimePicker DatoKontingentForfald;
         private System.Windows.Forms.Button cmdCancel;
         private System.Windows.Forms.Button cmdRykkere;
         private System.Windows.Forms.SplitContainer splitContainer1;
@@ -379,5 +358,7 @@
         private System.Windows.Forms.ColumnHeader columnHeaderKKontingent;
         private System.Windows.Forms.ColumnHeader columnHeaderMFaknr;
         private System.Windows.Forms.ColumnHeader columnHeaderKFaknr;
+        private System.Windows.Forms.CheckBox DelsystemBSH;
+        private System.Windows.Forms.CheckBox RykketTidligere;
     }
 }
