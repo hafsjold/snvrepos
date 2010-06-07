@@ -238,7 +238,127 @@ namespace nsPuls3060
                 }
             }
         }
+
+        public Boolean kanRykkes() { return kanRykkes(DateTime.Now); }
+        public Boolean kanRykkes(DateTime pDate)
+        {
+            var qrylog = Program.qryLog()
+                                .Where(u => u.Nr == m_Nr)
+                                .Where(u => u.Logdato <= pDate)
+                                .OrderByDescending(u => u.Logdato);
+
+            foreach (var MedlemLog in qrylog)
+            {
+                switch (MedlemLog.Akt_id)
+                {
+                    case 10: // Seneste Indmelses dato
+                        if (!m_b10)
+                        {
+                            m_b10 = true;
+                            m_indmeldelsesDato = (DateTime)MedlemLog.Akt_dato;
+                        }
+                        break;
+
+                    case 20:  // Seneste PBS opkrævnings dato
+                        if (!m_b20)
+                        {
+                            m_b20 = true;
+                            m_opkrævningsDato = (DateTime)MedlemLog.Akt_dato;
+                        }
+                        break;
+
+                    case 30:  // Kontingent betalt til dato
+                        if ((m_b30) && (!m_b31)) // Næst seneste Kontingent betalt til dato
+                        {
+                            m_b31 = true;
+                            m_kontingentBetaltDato31 = (DateTime)MedlemLog.Logdato;
+                            m_kontingentTilDato31 = (DateTime)MedlemLog.Akt_dato;
+                        }
+                        if ((!m_b30) && (!m_b31)) // Seneste Kontingent betalt til dato
+                        {
+                            m_b30 = true;
+                            m_kontingentBetalingsDato = (DateTime)MedlemLog.Logdato;
+                            m_kontingentBetaltTilDato = (DateTime)MedlemLog.Akt_dato;
+                        }
+                        break;
+
+                    case 40:  // Seneste PBS betaling tilbageført
+                        if (!m_b40)
+                        {
+                            m_b40 = true;
+                            m_kontingentTilbageførtDato = (DateTime)MedlemLog.Akt_dato;
+                        }
+                        break;
+
+                    case 50:  // Udmeldelses dato
+                        if (!m_b50)
+                        {
+                            m_b50 = true;
+                            m_udmeldelsesDato = (DateTime)MedlemLog.Akt_dato;
+                        }
+                        break;
+                }
+            }
+
+            //Undersøg vedr ind- og udmeldelse
+            if (m_b10) //Findes der en indmeldelse
+            {
+                if (m_b50) //Findes der en udmeldelse
+                {
+                    if (m_udmeldelsesDato >= m_indmeldelsesDato) //Er udmeldelsen aktiv
+                    {
+                        if (m_udmeldelsesDato <= pDate) //Er udmeldelsen aktiv
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            else //Der findes ingen indmeldelse
+            {
+                return false;
+            }
+
+
+            //Find aktive betalingsrecord
+            if (m_b40) //Findes der en kontingent tilbageført
+            {
+                if (m_kontingentTilbageførtDato >= m_kontingentBetalingsDato) //Kontingenttilbageført er aktiv
+                {
+                    //''!!!Kontingent er tilbageført !!!!!!!!!
+                    if (m_b31)
+                    {
+                        m_kontingentBetalingsDato = m_kontingentBetaltDato31;
+                        m_kontingentBetaltTilDato = m_kontingentTilDato31;
+                    }
+                    else
+                    {
+                        m_b30 = false;
+                    }
+                }
+            }
+
+
+            //Undersøg om der er betalt kontingent
+            if (m_b30) //Findes der en betaling
+            {
+                if ((DateTime)m_kontingentBetaltTilDato >= pDate) //Er kontingentTilDato aktiv
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            else
+            { //Der findes ingen betalinger
+                return true;
+            }
+        }
+ 
     }
+
     class clsPbs
     {
         private TblRegnskab m_rec_Regnskab;
@@ -343,7 +463,18 @@ namespace nsPuls3060
             if (antal > 0) return true;
             else return false;
         }
+        
+        public static bool getbetaltudmeldt(int? Nr)
+        {
+            var qry = from l in Program.dbData3060.TblMedlemLog
+                              where l.Nr == Nr 
+                              orderby l.Logdato descending 
+                              select l;
 
+            if (qry.Count() > 0) return true;
+            else return false;
+        }
+        
         public static string getinfotekst(
             int? infotekst_id, 
             int? numofcol, 

@@ -77,8 +77,8 @@ namespace nsPuls3060
                                 join f in Program.dbData3060.Tblfak on h.Nr equals f.Nr
                                 where f.SFaknr == null &&
                                       f.Rykkerstop == false &&
-                                      f.Betalingsdato.Value.AddDays(7) <=  DateTime.Today &&
-                                      (int)(from q in Program.dbData3060.Tblrykker where q.Faknr == f.Faknr select q).Count() ==  0
+                                      f.Betalingsdato.Value.AddDays(7) <= DateTime.Today &&
+                                      (int)(from q in Program.dbData3060.Tblrykker where q.Faknr == f.Faknr select q).Count() == 0
                                 orderby f.Fradato, f.Id
                                 select new clsqry_medlemmer
                                 {
@@ -109,16 +109,20 @@ namespace nsPuls3060
 
             foreach (var m in qry_medlemmer)
             {
-                AntalForslag++;
-                ListViewItem it = lvwMedlem.Items.Add(m.Nr.ToString(), m.Navn, 0);
-                //it.Tag = m;
-                it.SubItems.Add(m.Nr.ToString());
-                it.SubItems.Add(m.Adresse);
-                it.SubItems.Add(m.Postnr);
-                it.SubItems.Add(string.Format("{0:yyyy-MM-dd}", m.Betalingsdato));
-                it.SubItems.Add(m.Advisbelob.ToString());
-                it.SubItems.Add(m.Faknr.ToString());
-                pgmForslag.PerformStep();
+                clsMedlem medlem = (from k in Program.karMedlemmer where k.Nr == m.Nr select k).First();
+                if (medlem.kanRykkes())
+                {
+                    AntalForslag++;
+                    ListViewItem it = lvwMedlem.Items.Add(m.Nr.ToString(), m.Navn, 0);
+                    //it.Tag = m;
+                    it.SubItems.Add(m.Nr.ToString());
+                    it.SubItems.Add(m.Adresse);
+                    it.SubItems.Add(m.Postnr);
+                    it.SubItems.Add(string.Format("{0:yyyy-MM-dd}", m.Betalingsdato));
+                    it.SubItems.Add(m.Advisbelob.ToString());
+                    it.SubItems.Add(m.Faknr.ToString());
+                    pgmForslag.PerformStep();
+                }
             }
             this.lvwMedlem.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 
