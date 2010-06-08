@@ -225,6 +225,7 @@ namespace nsPuls3060
             int imax;
             string keyval;
             int Nr;
+            int faknr;
             decimal advisbelob;
             string Bank;
             if ((this.cmdBetal.Text == "Afslut"))
@@ -257,6 +258,7 @@ namespace nsPuls3060
                     this.pgmBetal.Value = ++i;
                     keyval = lvi.Name;
                     Nr = int.Parse(lvi.SubItems[1].Text);
+                    faknr = int.Parse(lvi.SubItems[4].Text);
                     advisbelob = decimal.Parse(lvi.SubItems[5].Text);
                     Bank = lvi.SubItems[6].Text;
 
@@ -267,6 +269,7 @@ namespace nsPuls3060
                         Advisbelob = (decimal)advisbelob,
                         Bankregnr = Bank.Substring(0,4),
                         Bankkontonr = Bank.Substring(5,10),
+                        Faknr = faknr,
                      };
                     rec_tempBetalforslag.TempBetalforslaglinie.Add(rec_tempBetalforslaglinie);
                 }
@@ -284,6 +287,8 @@ namespace nsPuls3060
                     clsSFTP objSFTP = new clsSFTP();
                     TilPBSFilename = objSFTP.WriteTilSFtp(m_lobnr);
                     objOverfoersel.overfoersel_mail(m_lobnr);
+                    clsSumma objSumma = new clsSumma();
+                    objSumma.BogforUdBetalinger(m_lobnr);
                 }
                 this.pgmBetal.Value = (imax * 4);
                 cmdBetal.Text = "Afslut";

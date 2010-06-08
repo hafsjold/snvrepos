@@ -132,7 +132,9 @@ namespace nsPuls3060
 
             //string infotxt = clsPbs.getinfotekst(11, null, null, null,null,null,"Mogens Hafsjold");
             //bool tilmeldtpbs = clsPbs.gettilmeldtpbs(386);
-            //int xys = 1;
+            clsSumma objSumma = new clsSumma();
+            objSumma.BogforUdBetalinger(11);
+            int xys = 1;
             //string txt = @"p0: {0}, p1: {1},p5: {5}";
             //string ptxt = string.Format(txt, "x0", "x1", "x2", "x3", "x4", "x5", "x6");
             //DateTime dato = new DateTime(2010, 5, 20, 
@@ -395,7 +397,7 @@ namespace nsPuls3060
 
             clsSumma objSumma = new clsSumma();
             int AntalFakturaer = objSumma.OrderFaknrUpdate();
-            int AntalBetalinger = objSumma.BogforBetalinger();
+            int AntalBetalinger = objSumma.BogforIndBetalinger();
 
             bigString = String.Format("Antal bogførte fakturear: {0} \nAntal nye betalinger i kassekladde: {1}.", AntalFakturaer, AntalBetalinger);
             if (AntalBetalinger > 0)

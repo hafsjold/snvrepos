@@ -44,18 +44,20 @@ namespace nsPuls3060
                                  l.Fakid,
                                  l.Bankregnr,
                                  l.Bankkontonr,
+                                 l.Faknr 
                              };
 
             foreach (var rstmedlem in rstmedlems)
             {
 
-                wadvistekst = "Puls3060-Ref: " + rstmedlem.Fakid;
+                wadvistekst = "Puls3060-" + rstmedlem.Faknr;
                 Tbloverforsel rec_krdfak = new Tbloverforsel
                 {
                     Nr = rstmedlem.Nr,
                     Advistekst = wadvistekst,
                     Advisbelob = rstmedlem.Advisbelob,
                     SFakID = rstmedlem.Fakid,
+                    SFaknr = rstmedlem.Faknr,
                     Bankregnr = rstmedlem.Bankregnr,
                     Bankkontonr = rstmedlem.Bankkontonr,
                     Betalingsdato = clsOverfoersel.bankdageplus(rstmedlem.Betalingsdato, 0)

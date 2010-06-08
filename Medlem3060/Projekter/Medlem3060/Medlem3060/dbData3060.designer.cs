@@ -6624,6 +6624,8 @@ namespace nsPuls3060
 		
 		private string _Bankkontonr;
 		
+		private System.Nullable<int> _Faknr;
+		
 		private EntityRef<TempBetalforslag> _TempBetalforslag;
 		
     #region Extensibility Method Definitions
@@ -6644,6 +6646,8 @@ namespace nsPuls3060
     partial void OnBankregnrChanged();
     partial void OnBankkontonrChanging(string value);
     partial void OnBankkontonrChanged();
+    partial void OnFaknrChanging(System.Nullable<int> value);
+    partial void OnFaknrChanged();
     #endregion
 		
 		public TempBetalforslaglinie()
@@ -6792,6 +6796,26 @@ namespace nsPuls3060
 					this._Bankkontonr = value;
 					this.SendPropertyChanged("Bankkontonr");
 					this.OnBankkontonrChanged();
+				}
+			}
+		}
+		
+		[Column(Name="faknr", Storage="_Faknr", DbType="Int")]
+		public System.Nullable<int> Faknr
+		{
+			get
+			{
+				return this._Faknr;
+			}
+			set
+			{
+				if ((this._Faknr != value))
+				{
+					this.OnFaknrChanging(value);
+					this.SendPropertyChanging();
+					this._Faknr = value;
+					this.SendPropertyChanged("Faknr");
+					this.OnFaknrChanged();
 				}
 			}
 		}

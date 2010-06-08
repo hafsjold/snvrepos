@@ -158,7 +158,7 @@ namespace nsPuls3060
             return AntalFakturaer;
         }
 
-        public int BogforBetalinger()
+        public int BogforIndBetalinger()
         {
             int saveBetid = 0;
             var bogf = from s in Program.karFakturaer_s
@@ -238,6 +238,95 @@ namespace nsPuls3060
                     };
                     Program.karKladde.Add(kl);
                 }
+                Program.karStatus.save();
+                Program.karKladde.save();
+                Program.dbData3060.SubmitChanges();
+            }
+            return AntalBetalinger;
+        }
+
+        public int BogforUdBetalinger(int lobnr)
+        {
+            DateTime? saveBetid = null;
+            decimal? GruppeUdbetalingsbelob = 0;
+            var bogf = from f in Program.karFakturaer_k
+                       where f.saldo != 0
+                       join o in Program.dbData3060.Tbloverforsel on f.fakid equals o.SFakID
+                       where o.Tilpbsid == lobnr
+                       join m in Program.karMedlemmer on o.Nr equals m.Nr
+                       orderby o.Betalingsdato ascending
+                       select new
+                       {
+                           Fakid = o.Id,
+                           m.Navn,
+                           o.SFaknr,
+                           o.Betalingsdato,
+                           o.Advisbelob
+                       };
+            int AntalBetalinger = bogf.Count();
+            if (bogf.Count() > 0)
+            {
+                int BS1_SidsteNr = 0;
+                try
+                {
+                    recStatus rec_Status = (from s in Program.karStatus where s.key == "BS1_SidsteNr" select s).First();
+                    BS1_SidsteNr = int.Parse(rec_Status.value);
+                }
+                catch (System.InvalidOperationException)
+                {
+                }
+
+                Program.karKladde = null;
+
+                saveBetid = bogf.First().Betalingsdato;
+                BS1_SidsteNr++;
+                foreach (var b in bogf)
+                {
+                    if (saveBetid != b.Betalingsdato) // ny gruppe
+                    {
+                        recKladde gkl = new recKladde
+                        {
+                            Dato = saveBetid,
+                            Bilag = BS1_SidsteNr,
+                            Tekst = "Overførsel",
+                            Afstemningskonto = "Bank",
+                            Belob = - GruppeUdbetalingsbelob,
+                            Kontonr = null,
+                            Faknr = null
+                        };
+                        Program.karKladde.Add(gkl);
+                        saveBetid = b.Betalingsdato;
+                        BS1_SidsteNr++;
+                    }
+                    recKladde kl = new recKladde
+                    {
+                        Dato = b.Betalingsdato,
+                        Bilag = BS1_SidsteNr,
+                        Tekst = "KF" + b.SFaknr + " " + b.Navn,
+                        Afstemningskonto = null,
+                        Belob = - b.Advisbelob,
+                        Kontonr = 65100,
+                        Faknr = b.SFaknr
+                    };
+                    Program.karKladde.Add(kl);
+                    GruppeUdbetalingsbelob += b.Advisbelob;
+               }
+               
+               if (GruppeUdbetalingsbelob > 0)
+               {
+                    recKladde gkl = new recKladde
+                    {
+                        Dato = saveBetid,
+                        Bilag = BS1_SidsteNr,
+                        Tekst = "Overførsel",
+                        Afstemningskonto = "Bank",
+                        Belob = - GruppeUdbetalingsbelob,
+                        Kontonr = null,
+                        Faknr = null
+                    };
+                    Program.karKladde.Add(gkl);
+               }
+
                 Program.karStatus.save();
                 Program.karKladde.save();
                 Program.dbData3060.SubmitChanges();
