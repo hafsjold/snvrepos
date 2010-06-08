@@ -62,7 +62,10 @@ namespace nsPuls3060
                                where h.saldo > 0
                                join m in Program.karMedlemmer on h.kreditornr.ToString() equals m.Krdktonr
                                where Program.ValidatekBank(m.Bank)
-                               select new 
+                               join f in Program.dbData3060.Tbloverforsel on h.fakid equals f.SFakID into overforsel
+                               from f in overforsel.DefaultIfEmpty(new Tbloverforsel {Id = 0,Tilpbsid = null,Nr = null,SFaknr = null,SFakID = null,Advistekst = null,Advisbelob = null,Emailtekst = null,Emailsent = null,Bankregnr = null,Bankkontonr = null,Betalingsdato = null})
+                               where f.SFakID == null
+                               select new
                                {
                                    h.fakid,
                                    m.Nr,
@@ -72,9 +75,7 @@ namespace nsPuls3060
                                    m.Bank,
                                    h.faknr,
                                    h.saldo,
-
                                };
-
 
             this.lvwKreditor.Items.Clear();
             this.lvwKrdFaktura.Items.Clear();
@@ -97,7 +98,7 @@ namespace nsPuls3060
 
                 AntalForslag++;
 
-                ListViewItem it = lvwKrdFaktura.Items.Add(m.fakid.ToString(), m.Navn, 0);
+                ListViewItem it = lvwKreditor.Items.Add(m.fakid.ToString(), m.Navn, 0);
                 //it.Tag = m;
                 it.SubItems.Add(m.Nr.ToString());
                 it.SubItems.Add(m.Adresse);
@@ -107,7 +108,7 @@ namespace nsPuls3060
                 it.SubItems.Add(m.Bank);
                 pgmForslag.PerformStep();
             }
-            this.lvwKrdFaktura.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            this.lvwKreditor.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 
             if (AntalForslag == 0)
             {
@@ -118,7 +119,7 @@ namespace nsPuls3060
             else
             {
                 this.Label_Forslagstekst.Visible = false;
-                this.cmdBetal.Visible = true;
+                this.cmdBetal.Visible = false;
             }
             this.pgmForslag.Visible = false;
 

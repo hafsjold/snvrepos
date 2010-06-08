@@ -31,7 +31,7 @@
     <ProductName>Medlem3060</ProductName>
     <PublisherName>Hafsjold</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>26</ApplicationRevision>
+    <ApplicationRevision>27</ApplicationRevision>
     <ApplicationVersion>2.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -337,6 +337,9 @@
     <None Include="Resources\Summa.ico" />
     <None Include="Resources\Summakartotek.png" />
     <None Include="Resources\Upd.bmp" />
+    <Content Include="sql\script15.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="sql\script13.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

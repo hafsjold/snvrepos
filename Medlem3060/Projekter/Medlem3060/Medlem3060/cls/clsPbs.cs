@@ -952,6 +952,28 @@ namespace nsPuls3060
                     }
                 }
             }
+
+            if (dbVersion == "2.14.0.0")
+            {
+                using (var dbts = new TransactionScope())
+                {
+                    try
+                    {
+                        //version "2.14.0.0" --> "2.14.0.0" opgradering af SqlDatabasen
+                        ExecuteSQLScript(@"sql\script15.sql");
+                        Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.15.0.0'  WHERE [vkey] = 'VERSION';");
+                        dbVersion = "2.15.0.0";
+                        dbts.Complete();
+                    }
+
+                    catch (System.Data.SqlServerCe.SqlCeException e)
+                    {
+                        dbts.Dispose();
+                        object x = e;
+                    }
+                }
+            }
+
             return true;
         }
 
