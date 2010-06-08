@@ -315,7 +315,20 @@ namespace nsPuls3060
 
             foreach (var rstdeb in rstdebs)
             {
-                string infotekst = clsPbs.getinfotekst(rstdeb.Infotekst, null, rstdeb.Navn, rstdeb.Kaldenavn, rstdeb.Fradato, rstdeb.Tildato, rstdeb.Betalingsdato, rstdeb.Belob, rstdeb.OcrString, "\r\nMogens Hafsjold\r\nRegnskabsfører");
+                string infotekst = new clsInfotekst
+                {
+                    infotekst_id = rstdeb.Infotekst,
+                    numofcol = null,
+                    navn_medlem = rstdeb.Navn,
+                    kaldenavn = rstdeb.Kaldenavn,
+                    fradato = rstdeb.Fradato,
+                    tildato = rstdeb.Tildato,
+                    betalingsdato = rstdeb.Betalingsdato,
+                    advisbelob = rstdeb.Belob,
+                    ocrstring = rstdeb.OcrString,
+                    underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører"
+                }.getinfotekst();
+
                 if (infotekst.Length > 0)
                 {
                     
@@ -707,7 +720,19 @@ namespace nsPuls3060
                     }
                 }
 
-                string infotekst = clsPbs.getinfotekst(rstdeb.Infotekst, 60, rstdeb.Navn, rstdeb.Kaldenavn, rstdeb.Fradato, rstdeb.Tildato, rstdeb.Betalingsdato, rstdeb.Belob, rstdeb.OcrString, "\r\nMogens Hafsjold\r\nRegnskabsfører");
+                string infotekst = new clsInfotekst { 
+                    infotekst_id = rstdeb.Infotekst,
+                    numofcol = 60,
+                    navn_medlem = rstdeb.Navn,
+                    kaldenavn = rstdeb.Kaldenavn, 
+                    fradato = rstdeb.Fradato, 
+                    tildato = rstdeb.Tildato, 
+                    betalingsdato = rstdeb.Betalingsdato,
+                    advisbelob = rstdeb.Belob, 
+                    ocrstring = rstdeb.OcrString, 
+                    underskrift_navn= "\r\nMogens Hafsjold\r\nRegnskabsfører"
+                }.getinfotekst();
+                
                 if (infotekst.Length > 0)
                 {
                     arradvis = infotekst.Split(splitchars, StringSplitOptions.None);

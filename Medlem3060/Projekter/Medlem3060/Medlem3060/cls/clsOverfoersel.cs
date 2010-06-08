@@ -291,27 +291,33 @@ namespace nsPuls3060
                 Chilkat.Email email = new Chilkat.Email();
 
 #if (DEBUG)
-                email.Subject = "Bankoverførsel fra Puls 3060 TEST";
+                email.Subject = "TEST Bankoverførsel fra Puls 3060: skal sendes til " + Program.MailToName + " " + Program.MailToAddr;
+                email.AddTo(Program.MailToName, Program.MailToAddr);
 #else
                 email.Subject = "Bankoverførsel fra Puls 3060";
-#endif
-                string advisbelob_formated = String.Format("{0:###0.00}", krd.Advisbelob).Replace('.', ',');
-                string betaldato_formated = String.Format("{0:dddd} den {0:dd. MMMM}", krd.Betalingsdato);
-
-                string template = "Hej {0}!\n\nPuls 3060 har idag overført {1} kr. til din bank.\nBeløbet vil være til disposition {2} på konto {3}-{4}.\nTeksten på kontoudtoget vil være \"{5}\".\n\nMed venlig hilsen\nPuls3060 Regnskab.";
-
-                email.Body = string.Format(template, 
-                            krd.Kaldenavn, 
-                            advisbelob_formated, 
-                            betaldato_formated, 
-                            krd.Bankregnr, 
-                            krd.Bankkontonr,
-                            krd.Advistekst);
                 if (krd.Email.Length > 0)
                 {
                     email.AddTo(krd.Navn, krd.Email);
+                    email.AddBcc(Program.MailToName,Program.MailToAddr);
                 }
-                email.AddBcc(Program.MailToName,Program.MailToAddr);
+                else
+                {
+                    email.Subject += ": skal sendes til " + krd.Navn;
+                    email.AddTo(Program.MailToName,Program.MailToAddr);
+                }
+#endif
+                email.Body = new clsInfotekst
+                {
+                    infotekst_id = 40,
+                    numofcol = null,
+                    kaldenavn = krd.Kaldenavn,
+                    betalingsdato = krd.Betalingsdato,
+                    advisbelob = krd.Advisbelob,
+                    bankkonto = krd.Bankregnr + "-" + krd.Bankkontonr,
+                    advistekst = krd.Advistekst,
+                    underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører"
+                }.getinfotekst();
+
                 email.From = Program.MailFrom;
                 email.ReplyTo = Program.MailReply;
 
