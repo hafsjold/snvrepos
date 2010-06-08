@@ -63,7 +63,7 @@ namespace nsPuls3060
                                join m in Program.karMedlemmer on h.kreditornr.ToString() equals m.Krdktonr
                                where Program.ValidatekBank(m.Bank)
                                join f in Program.dbData3060.Tbloverforsel on h.fakid equals f.SFakID into overforsel
-                               from f in overforsel.DefaultIfEmpty(new Tbloverforsel {Id = 0,Tilpbsid = null,Nr = null,SFaknr = null,SFakID = null,Advistekst = null,Advisbelob = null,Emailtekst = null,Emailsent = null,Bankregnr = null,Bankkontonr = null,Betalingsdato = null})
+                               from f in overforsel.DefaultIfEmpty(new Tbloverforsel { Id = 0, Tilpbsid = null, Nr = null, SFaknr = null, SFakID = null, Advistekst = null, Advisbelob = null, Emailtekst = null, Emailsent = null, Bankregnr = null, Bankkontonr = null, Betalingsdato = null })
                                where f.SFakID == null
                                select new
                                {
