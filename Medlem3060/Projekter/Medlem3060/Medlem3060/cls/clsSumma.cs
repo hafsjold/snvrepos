@@ -286,7 +286,7 @@ namespace nsPuls3060
                     {
                         recKladde gkl = new recKladde
                         {
-                            Dato = saveBetid,
+                            Dato = clsOverfoersel.bankdageplus((DateTime)saveBetid, -1),
                             Bilag = BS1_SidsteNr,
                             Tekst = "Overførsel",
                             Afstemningskonto = "Bank",
@@ -300,7 +300,7 @@ namespace nsPuls3060
                     }
                     recKladde kl = new recKladde
                     {
-                        Dato = b.Betalingsdato,
+                        Dato = clsOverfoersel.bankdageplus((DateTime)b.Betalingsdato, -1),
                         Bilag = BS1_SidsteNr,
                         Tekst = "KF" + b.SFaknr + " " + b.Navn,
                         Afstemningskonto = null,
@@ -316,7 +316,7 @@ namespace nsPuls3060
                {
                     recKladde gkl = new recKladde
                     {
-                        Dato = saveBetid,
+                        Dato = clsOverfoersel.bankdageplus((DateTime)saveBetid, -1),
                         Bilag = BS1_SidsteNr,
                         Tekst = "Overførsel",
                         Afstemningskonto = "Bank",
