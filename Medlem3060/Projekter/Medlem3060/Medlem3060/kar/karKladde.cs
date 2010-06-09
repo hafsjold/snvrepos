@@ -43,7 +43,7 @@ namespace nsPuls3060
                     ln += (b.Bilag == null) ? "," : b.Bilag.ToString() + ",";
                     ln += (b.Tekst == null) ? "," : @"""" + b.Tekst + @""",";
                     ln += (b.Afstemningskonto == null) ? "," : @"""" + b.Afstemningskonto + @""",";
-                    ln += (b.Belob == null) ? "," : @"""" + b.Belob.ToString() + @""",";
+                    ln += (b.Belob == null) ? "," : @"""" + ((decimal)(b.Belob)).ToString("0.00") + @""",";
                     ln += (b.Kontonr == null) ? ",," : b.Kontonr.ToString() + ",,";
                     ln += (b.Faknr == null) ? ",0," : b.Faknr.ToString() + ",0,";
                     sr.WriteLine(ln);
