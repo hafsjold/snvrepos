@@ -484,5 +484,15 @@ namespace nsPuls3060
             }
         }
 
+        private void pbsFilertoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("PBS Filer"))
+            {
+                FrmPbsnetdir m_frmPbsnetdir = new FrmPbsnetdir();
+                m_frmPbsnetdir.MdiParent = this;
+                m_frmPbsnetdir.Show();
+            }
+        }
+
     }
 }

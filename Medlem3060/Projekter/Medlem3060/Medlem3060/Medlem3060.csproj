@@ -31,7 +31,7 @@
     <ProductName>Medlem3060</ProductName>
     <PublisherName>Hafsjold</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>28</ApplicationRevision>
+    <ApplicationRevision>29</ApplicationRevision>
     <ApplicationVersion>2.1.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -130,6 +130,12 @@
     <Compile Include="dsMedlem.cs">
       <DependentUpon>dsMedlem.xsd</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="frm\frmPbsnetdir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmPbsnetdir.Designer.cs">
+      <DependentUpon>frmPbsnetdir.cs</DependentUpon>
     </Compile>
     <Compile Include="frm\frmInfotekst.cs">
       <SubType>Form</SubType>
@@ -266,6 +272,9 @@
     <EmbeddedResource Include="frm\frmPbsfiles.resx">
       <DependentUpon>frmPbsfiles.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmPbsnetdir.resx">
+      <DependentUpon>frmPbsnetdir.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm\frmRegnskab.resx">
       <DependentUpon>frmRegnskab.cs</DependentUpon>
     </EmbeddedResource>
@@ -329,6 +338,7 @@
       <LastGenOutput>dbRecovery3060.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\DataSources\MemPbsnetdir.datasource" />
     <None Include="Properties\DataSources\Tblinfotekst.datasource" />
     <None Include="Properties\DataSources\Tblpbsfiles.datasource" />
     <None Include="Resources\Add.bmp" />

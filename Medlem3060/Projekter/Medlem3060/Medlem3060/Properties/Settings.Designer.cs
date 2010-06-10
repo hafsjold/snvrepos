@@ -287,5 +287,29 @@ namespace nsPuls3060.Properties {
                 this["frmRykkerForslagPoint"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("416, 211")]
+        public global::System.Drawing.Size frmPbsnetdirSize {
+            get {
+                return ((global::System.Drawing.Size)(this["frmPbsnetdirSize"]));
+            }
+            set {
+                this["frmPbsnetdirSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
+        public global::System.Drawing.Point frmPbsnetdirPoint {
+            get {
+                return ((global::System.Drawing.Point)(this["frmPbsnetdirPoint"]));
+            }
+            set {
+                this["frmPbsnetdirPoint"] = value;
+            }
+        }
     }
 }

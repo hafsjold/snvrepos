@@ -268,6 +268,54 @@ namespace nsPuls3060
             return AntalFiler;
         }
 
+        public void ReadDirFraSFtp()
+        {
+            string homedir = m_sftp.RealPath(".", "");
+            //  Open a directory on the server...
+            string handle = m_sftp.OpenDir(m_rec_sftp.Outbound);
+            if (handle == null) throw new Exception(m_sftp.LastErrorText);
+
+            //  Download the directory listing:
+            Chilkat.SFtpDir dirListing = null;
+            dirListing = m_sftp.ReadDir(handle);
+            if (dirListing == null) throw new Exception(m_sftp.LastErrorText);
+
+            Program.memPbsnetdir = null; //opret ny memPbsnetdir
+
+            //  Iterate over the files.
+            int i;
+            int n = dirListing.NumFilesAndDirs;
+            if (n > 0)
+            {
+                for (i = 0; i <= n - 1; i++)
+                {
+                    Chilkat.SFtpFile fileObj = null;
+                    fileObj = dirListing.GetFileObject(i);
+                    if (!fileObj.IsDirectory)
+                    {
+                        recPbsnetdir rec = new recPbsnetdir
+                        {
+                            Type = 8,
+                            Path = dirListing.OriginalPath,
+                            Filename = fileObj.Filename,
+                            Size = (int)fileObj.Size32,
+                            Atime = fileObj.LastAccessTime,
+                            Mtime = fileObj.LastModifiedTime,
+                            Gid = fileObj.Gid,
+                            Uid = fileObj.Uid,
+                            Perm = fileObj.Permissions.ToString()
+
+                        };
+                        Program.memPbsnetdir.Add(rec);
+                    }
+                }
+            }
+
+            //  Close the directory
+            bool success = m_sftp.CloseHandle(handle);
+            if (!success) throw new Exception(m_sftp.LastErrorText);
+        }
+
         public void sendAttachedFile(string filename, byte[] data, bool bTilPBS)
         {
             string local_filename = filename.Replace('.', '_') + ".txt";
