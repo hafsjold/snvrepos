@@ -498,6 +498,7 @@ namespace nsPuls3060
 
         public static bool ValidatekBank(string Bank)
         {
+            if (Bank == null) return false;
             string[] value = new string[2];
             Regex regex = new Regex("(^[0-9]*) ([0-9]*$)");
             Match m = regex.Match(Bank);
