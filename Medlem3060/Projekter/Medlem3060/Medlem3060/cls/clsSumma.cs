@@ -11,15 +11,15 @@ namespace nsPuls3060
         {
             var rec_regnskab = Program.qryAktivRegnskab();
             if (rec_regnskab.Afsluttet == true) return 0;
-            
+
             DateTime? Startdato = rec_regnskab.Start;
             DateTime? Slutdato = rec_regnskab.Slut;
-            if (rec_regnskab.DatoLaas != null) 
+            if (rec_regnskab.DatoLaas != null)
             {
                 if (rec_regnskab.DatoLaas > Startdato) Startdato = rec_regnskab.DatoLaas;
             }
             var qry_ord = from f in Program.dbData3060.Tblfak
-                          where f.SFakID == null && Startdato <= f.Betalingsdato && f.Betalingsdato <= Slutdato 
+                          where f.SFakID == null && Startdato <= f.Betalingsdato && f.Betalingsdato <= Slutdato
                           join b in Program.dbData3060.Tblbetlin on f.Faknr equals b.Faknr
                           where b.Pbstranskode == "0236" || b.Pbstranskode == "0297"
                           select new { f.Id, Pbsfaknr = f.Faknr, f.Nr, f.Advisbelob, f.Betalingsdato, f.Vnr, f.Bogfkonto, b.Indbetalingsdato };
@@ -247,8 +247,6 @@ namespace nsPuls3060
 
         public int BogforUdBetalinger(int lobnr)
         {
-            DateTime? saveBetid = null;
-            decimal? GruppeUdbetalingsbelob = 0;
             var bogf = from f in Program.karFakturaer_k
                        where f.saldo != 0
                        join o in Program.dbData3060.Tbloverforsel on f.fakid equals o.SFakID
@@ -278,54 +276,31 @@ namespace nsPuls3060
 
                 Program.karKladde = null;
 
-                saveBetid = bogf.First().Betalingsdato;
-                BS1_SidsteNr++;
                 foreach (var b in bogf)
                 {
-                    if (saveBetid != b.Betalingsdato) // ny gruppe
+                    recKladde gkl = new recKladde
                     {
-                        recKladde gkl = new recKladde
-                        {
-                            Dato = clsOverfoersel.bankdageplus((DateTime)saveBetid, -1),
-                            Bilag = BS1_SidsteNr,
-                            Tekst = "Overførsel",
-                            Afstemningskonto = "Bank",
-                            Belob = - GruppeUdbetalingsbelob,
-                            Kontonr = null,
-                            Faknr = null
-                        };
-                        Program.karKladde.Add(gkl);
-                        saveBetid = b.Betalingsdato;
-                        BS1_SidsteNr++;
-                    }
+                        Dato = clsOverfoersel.bankdageplus((DateTime)b.Betalingsdato, -1),
+                        Bilag = ++BS1_SidsteNr,
+                        Tekst = "Overførsel",
+                        Afstemningskonto = "Bank",
+                        Belob = -b.Advisbelob,
+                        Kontonr = null,
+                        Faknr = null
+                    };
+                    Program.karKladde.Add(gkl);
                     recKladde kl = new recKladde
                     {
                         Dato = clsOverfoersel.bankdageplus((DateTime)b.Betalingsdato, -1),
                         Bilag = BS1_SidsteNr,
                         Tekst = "KF" + b.SFaknr + " " + b.Navn,
                         Afstemningskonto = null,
-                        Belob = - b.Advisbelob,
+                        Belob = -b.Advisbelob,
                         Kontonr = 65100,
                         Faknr = b.SFaknr
                     };
                     Program.karKladde.Add(kl);
-                    GruppeUdbetalingsbelob += b.Advisbelob;
-               }
-               
-               if (GruppeUdbetalingsbelob > 0)
-               {
-                    recKladde gkl = new recKladde
-                    {
-                        Dato = clsOverfoersel.bankdageplus((DateTime)saveBetid, -1),
-                        Bilag = BS1_SidsteNr,
-                        Tekst = "Overførsel",
-                        Afstemningskonto = "Bank",
-                        Belob = - GruppeUdbetalingsbelob,
-                        Kontonr = null,
-                        Faknr = null
-                    };
-                    Program.karKladde.Add(gkl);
-               }
+                }
 
                 Program.karStatus.save();
                 Program.karKladde.save();
@@ -334,9 +309,9 @@ namespace nsPuls3060
             return AntalBetalinger;
         }
 
-        public int? Nr2Debktonr(int? Nr) 
+        public int? Nr2Debktonr(int? Nr)
         {
-            if (Nr == null) return null; 
+            if (Nr == null) return null;
             try
             {
                 return int.Parse((from k in Program.karMedlemmer where k.Nr == Nr select k).First().Debktonr);
@@ -347,7 +322,7 @@ namespace nsPuls3060
                 return null;
             }
         }
-        
+
         public int? Nr2Krdktonr(int? Nr)
         {
             if (Nr == null) return null;
