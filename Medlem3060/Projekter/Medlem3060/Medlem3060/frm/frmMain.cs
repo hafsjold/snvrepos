@@ -130,6 +130,9 @@ namespace nsPuls3060
 #if (DEBUG)
 
 
+            clsSync objSync = new clsSync();
+            objSync.actionSync(1);
+            objSync.actionSync(2);
             //decimal tal = 50;
             //string uden1 = tal.ToString();
             //string uden2 = tal.ToString("0.00");

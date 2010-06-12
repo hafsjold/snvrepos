@@ -90,6 +90,9 @@ namespace nsPuls3060
     partial void InsertTblsftp(Tblsftp instance);
     partial void UpdateTblsftp(Tblsftp instance);
     partial void DeleteTblsftp(Tblsftp instance);
+    partial void InsertTblsync(Tblsync instance);
+    partial void UpdateTblsync(Tblsync instance);
+    partial void DeleteTblsync(Tblsync instance);
     partial void InsertTblSysinfo(TblSysinfo instance);
     partial void UpdateTblSysinfo(TblSysinfo instance);
     partial void DeleteTblSysinfo(TblSysinfo instance);
@@ -114,6 +117,9 @@ namespace nsPuls3060
     partial void InsertTempRykkerforslaglinie(TempRykkerforslaglinie instance);
     partial void UpdateTempRykkerforslaglinie(TempRykkerforslaglinie instance);
     partial void DeleteTempRykkerforslaglinie(TempRykkerforslaglinie instance);
+    partial void InsertTempsync(Tempsync instance);
+    partial void UpdateTempsync(Tempsync instance);
+    partial void DeleteTempsync(Tempsync instance);
     #endregion
 		
 		public DbData3060(string connection) : 
@@ -300,6 +306,14 @@ namespace nsPuls3060
 			}
 		}
 		
+		public System.Data.Linq.Table<Tblsync> Tblsync
+		{
+			get
+			{
+				return this.GetTable<Tblsync>();
+			}
+		}
+		
 		public System.Data.Linq.Table<TblSysinfo> TblSysinfo
 		{
 			get
@@ -361,6 +375,14 @@ namespace nsPuls3060
 			get
 			{
 				return this.GetTable<TempRykkerforslaglinie>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Tempsync> Tempsync
+		{
+			get
+			{
+				return this.GetTable<Tempsync>();
 			}
 		}
 	}
@@ -6029,6 +6051,140 @@ namespace nsPuls3060
 		}
 	}
 	
+	[Table(Name="tblsync")]
+	public partial class Tblsync : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private byte _Source;
+		
+		private int _Source_id;
+		
+		private byte _Field_id;
+		
+		private int _Checksum;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnSourceChanging(byte value);
+    partial void OnSourceChanged();
+    partial void OnSource_idChanging(int value);
+    partial void OnSource_idChanged();
+    partial void OnField_idChanging(byte value);
+    partial void OnField_idChanged();
+    partial void OnChecksumChanging(int value);
+    partial void OnChecksumChanged();
+    #endregion
+		
+		public Tblsync()
+		{
+			OnCreated();
+		}
+		
+		[Column(Name="source", Storage="_Source", DbType="TinyInt NOT NULL", IsPrimaryKey=true)]
+		public byte Source
+		{
+			get
+			{
+				return this._Source;
+			}
+			set
+			{
+				if ((this._Source != value))
+				{
+					this.OnSourceChanging(value);
+					this.SendPropertyChanging();
+					this._Source = value;
+					this.SendPropertyChanged("Source");
+					this.OnSourceChanged();
+				}
+			}
+		}
+		
+		[Column(Name="source_id", Storage="_Source_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Source_id
+		{
+			get
+			{
+				return this._Source_id;
+			}
+			set
+			{
+				if ((this._Source_id != value))
+				{
+					this.OnSource_idChanging(value);
+					this.SendPropertyChanging();
+					this._Source_id = value;
+					this.SendPropertyChanged("Source_id");
+					this.OnSource_idChanged();
+				}
+			}
+		}
+		
+		[Column(Name="field_id", Storage="_Field_id", DbType="TinyInt NOT NULL", IsPrimaryKey=true)]
+		public byte Field_id
+		{
+			get
+			{
+				return this._Field_id;
+			}
+			set
+			{
+				if ((this._Field_id != value))
+				{
+					this.OnField_idChanging(value);
+					this.SendPropertyChanging();
+					this._Field_id = value;
+					this.SendPropertyChanged("Field_id");
+					this.OnField_idChanged();
+				}
+			}
+		}
+		
+		[Column(Name="checksum", Storage="_Checksum", DbType="Int NOT NULL")]
+		public int Checksum
+		{
+			get
+			{
+				return this._Checksum;
+			}
+			set
+			{
+				if ((this._Checksum != value))
+				{
+					this.OnChecksumChanging(value);
+					this.SendPropertyChanging();
+					this._Checksum = value;
+					this.SendPropertyChanged("Checksum");
+					this.OnChecksumChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[Table(Name="tblSysinfo")]
 	public partial class TblSysinfo : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -7596,6 +7752,140 @@ namespace nsPuls3060
 						this._Rykkerforslagid = default(int);
 					}
 					this.SendPropertyChanged("TempRykkerforslag");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="tempsync")]
+	public partial class Tempsync : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private byte _Source;
+		
+		private int _Source_id;
+		
+		private byte _Field_id;
+		
+		private int _Checksum;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnSourceChanging(byte value);
+    partial void OnSourceChanged();
+    partial void OnSource_idChanging(int value);
+    partial void OnSource_idChanged();
+    partial void OnField_idChanging(byte value);
+    partial void OnField_idChanged();
+    partial void OnChecksumChanging(int value);
+    partial void OnChecksumChanged();
+    #endregion
+		
+		public Tempsync()
+		{
+			OnCreated();
+		}
+		
+		[Column(Name="source", Storage="_Source", DbType="TinyInt NOT NULL", IsPrimaryKey=true)]
+		public byte Source
+		{
+			get
+			{
+				return this._Source;
+			}
+			set
+			{
+				if ((this._Source != value))
+				{
+					this.OnSourceChanging(value);
+					this.SendPropertyChanging();
+					this._Source = value;
+					this.SendPropertyChanged("Source");
+					this.OnSourceChanged();
+				}
+			}
+		}
+		
+		[Column(Name="source_id", Storage="_Source_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Source_id
+		{
+			get
+			{
+				return this._Source_id;
+			}
+			set
+			{
+				if ((this._Source_id != value))
+				{
+					this.OnSource_idChanging(value);
+					this.SendPropertyChanging();
+					this._Source_id = value;
+					this.SendPropertyChanged("Source_id");
+					this.OnSource_idChanged();
+				}
+			}
+		}
+		
+		[Column(Name="field_id", Storage="_Field_id", DbType="TinyInt NOT NULL", IsPrimaryKey=true)]
+		public byte Field_id
+		{
+			get
+			{
+				return this._Field_id;
+			}
+			set
+			{
+				if ((this._Field_id != value))
+				{
+					this.OnField_idChanging(value);
+					this.SendPropertyChanging();
+					this._Field_id = value;
+					this.SendPropertyChanged("Field_id");
+					this.OnField_idChanged();
+				}
+			}
+		}
+		
+		[Column(Name="checksum", Storage="_Checksum", DbType="Int NOT NULL")]
+		public int Checksum
+		{
+			get
+			{
+				return this._Checksum;
+			}
+			set
+			{
+				if ((this._Checksum != value))
+				{
+					this.OnChecksumChanging(value);
+					this.SendPropertyChanging();
+					this._Checksum = value;
+					this.SendPropertyChanged("Checksum");
+					this.OnChecksumChanged();
 				}
 			}
 		}

@@ -276,6 +276,14 @@
       <Column Name="certificate" Member="Certificate" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="tblsync" Member="Tblsync">
+    <Type Name="Tblsync">
+      <Column Name="source" Member="Source" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="source_id" Member="Source_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="field_id" Member="Field_id" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="checksum" Member="Checksum" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Table Name="tblSysinfo" Member="TblSysinfo">
     <Type Name="TblSysinfo">
       <Column Name="vkey" Member="Vkey" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -356,6 +364,14 @@
       <Column Name="advistekst" Member="Advistekst" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
       <Column Name="advisbelob" Member="Advisbelob" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
       <Association Name="TempRykkerforslag_TempRykkerforslaglinie" Member="TempRykkerforslag" ThisKey="Rykkerforslagid" OtherKey="Id" Type="TempRykkerforslag" IsForeignKey="true" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="tempsync" Member="Tempsync">
+    <Type Name="Tempsync">
+      <Column Name="source" Member="Source" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="source_id" Member="Source_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="field_id" Member="Field_id" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="checksum" Member="Checksum" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>
