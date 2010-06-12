@@ -278,8 +278,6 @@ namespace nsPuls3060 {
             
             private global::System.Data.DataColumn columnEmail;
             
-            private global::System.Data.DataColumn columnKnr;
-            
             private global::System.Data.DataColumn columnKon;
             
             private global::System.Data.DataColumn columnFodtDato;
@@ -373,13 +371,6 @@ namespace nsPuls3060 {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn KnrColumn {
-                get {
-                    return this.columnKnr;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public global::System.Data.DataColumn KonColumn {
                 get {
                     return this.columnKon;
@@ -429,7 +420,7 @@ namespace nsPuls3060 {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public KartotekRow AddKartotekRow(short Nr, string Navn, string Kaldenavn, string Adresse, string Postnr, string Bynavn, string Telefon, string Email, short Knr, string Kon, System.DateTime FodtDato, string Bank) {
+            public KartotekRow AddKartotekRow(short Nr, string Navn, string Kaldenavn, string Adresse, string Postnr, string Bynavn, string Telefon, string Email, string Kon, System.DateTime FodtDato, string Bank) {
                 KartotekRow rowKartotekRow = ((KartotekRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Nr,
@@ -440,7 +431,6 @@ namespace nsPuls3060 {
                         Bynavn,
                         Telefon,
                         Email,
-                        Knr,
                         Kon,
                         FodtDato,
                         Bank};
@@ -477,7 +467,6 @@ namespace nsPuls3060 {
                 this.columnBynavn = base.Columns["Bynavn"];
                 this.columnTelefon = base.Columns["Telefon"];
                 this.columnEmail = base.Columns["Email"];
-                this.columnKnr = base.Columns["Knr"];
                 this.columnKon = base.Columns["Kon"];
                 this.columnFodtDato = base.Columns["FodtDato"];
                 this.columnBank = base.Columns["Bank"];
@@ -501,8 +490,6 @@ namespace nsPuls3060 {
                 base.Columns.Add(this.columnTelefon);
                 this.columnEmail = new global::System.Data.DataColumn("Email", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEmail);
-                this.columnKnr = new global::System.Data.DataColumn("Knr", typeof(short), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnKnr);
                 this.columnKon = new global::System.Data.DataColumn("Kon", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnKon);
                 this.columnFodtDato = new global::System.Data.DataColumn("FodtDato", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
@@ -757,21 +744,6 @@ namespace nsPuls3060 {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public short Knr {
-                get {
-                    try {
-                        return ((short)(this[this.tableKartotek.KnrColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Knr\' in table \'Kartotek\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableKartotek.KnrColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public string Kon {
                 get {
                     try {
@@ -874,16 +846,6 @@ namespace nsPuls3060 {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public void SetEmailNull() {
                 this[this.tableKartotek.EmailColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IsKnrNull() {
-                return this.IsNull(this.tableKartotek.KnrColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SetKnrNull() {
-                this[this.tableKartotek.KnrColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

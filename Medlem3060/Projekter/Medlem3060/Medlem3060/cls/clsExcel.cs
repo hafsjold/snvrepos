@@ -30,7 +30,7 @@ namespace nsPuls3060
 
             var MedlemmerAll = from h in Program.karMedlemmer
                                join d1 in Program.dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
-                               from x in details1.DefaultIfEmpty()  //new TblMedlem { Nr = -1, Knr = -1, Kon = "X", FodtDato = new DateTime(1900, 1, 1) })
+                               from x in details1.DefaultIfEmpty()  //new TblMedlem { Nr = -1, Kon = "X", FodtDato = new DateTime(1900, 1, 1) })
                                select new clsMedlemInternAll
                                {
                                    Nr = h.Nr,
@@ -41,7 +41,6 @@ namespace nsPuls3060
                                    Bynavn = h.Bynavn,
                                    Telefon = h.Telefon,
                                    Email = h.Email,
-                                   Knr = x.Knr,
                                    Kon = x.Kon,
                                    FodtDato = x.FodtDato,
                                    Bank = h.Bank,
@@ -122,12 +121,12 @@ namespace nsPuls3060
                     oRng.ShrinkToFit = false;
                     oRng.MergeCells = false;
 
-                    string BottomRight = "K" + row.ToString();
-                    oRng = oSheet.get_Range("K2", BottomRight);
+                    string BottomRight = "J" + row.ToString();
+                    oRng = oSheet.get_Range("J2", BottomRight);
                     oRng.NumberFormat = "dd-mm-yyyy";
 
                     BottomRight = "R" + row.ToString();
-                    oRng = oSheet.get_Range("N2", BottomRight);
+                    oRng = oSheet.get_Range("M2", BottomRight);
                     oRng.NumberFormat = "dd-mm-yyyy";
 
                     oSheet.Cells.EntireColumn.AutoFit();
@@ -186,7 +185,7 @@ namespace nsPuls3060
 
             var MedlemmerAll = from h in Program.karMedlemmer
                                join d1 in Program.dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
-                               from x in details1.DefaultIfEmpty()  //new TblMedlem { Nr = -1, Knr = -1, Kon = "X", FodtDato = new DateTime(1900, 1, 1) })
+                               from x in details1.DefaultIfEmpty()  //new TblMedlem { Nr = -1, Kon = "X", FodtDato = new DateTime(1900, 1, 1) })
                                select new clsMedlemExternAll
                                {
                                    Nr = h.Nr,

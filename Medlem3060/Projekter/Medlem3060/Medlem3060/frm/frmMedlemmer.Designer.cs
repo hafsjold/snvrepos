@@ -31,24 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMedlemmer));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.nrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.navnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kaldenavnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.postnrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bynavnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.telefonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.knrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.konDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fodtDatoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bankDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kartotekBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dsMedlem = new nsPuls3060.dsMedlem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panelAdd = new System.Windows.Forms.Panel();
-            this.I_DT_FodtDato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
-            this.I_DT_Indmeldelsesdato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
             this.cmdSave_I_Record = new System.Windows.Forms.Button();
             this.cmdCancel_I_Record = new System.Windows.Forms.Button();
             this.I_Bynavn = new System.Windows.Forms.TextBox();
@@ -60,7 +46,6 @@
             this.I_Kaldenavn = new System.Windows.Forms.TextBox();
             this.I_Navn = new System.Windows.Forms.TextBox();
             this.I_Kon = new System.Windows.Forms.MaskedTextBox();
-            this.I_Knr = new System.Windows.Forms.MaskedTextBox();
             this.I_Nr = new System.Windows.Forms.TextBox();
             this.label_I_label_Postnr_By = new System.Windows.Forms.Label();
             this.label_I_Email = new System.Windows.Forms.Label();
@@ -72,13 +57,10 @@
             this.label_I_Indmeldelsesdato = new System.Windows.Forms.Label();
             this.label_I_FodtDato = new System.Windows.Forms.Label();
             this.label_I_Kon = new System.Windows.Forms.Label();
-            this.label_I_Knr = new System.Windows.Forms.Label();
             this.I_Overskrift = new System.Windows.Forms.Label();
             this.label_I_Nr = new System.Windows.Forms.Label();
             this.panelUpdate = new System.Windows.Forms.Panel();
             this.U_NyAktivitet = new System.Windows.Forms.ComboBox();
-            this.U_DT_NyAktivitetDato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
-            this.U_DT_FodtDato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
             this.cmdSave_U_Record = new System.Windows.Forms.Button();
             this.cmdCancel_U_Record = new System.Windows.Forms.Button();
             this.U_Bynavn = new System.Windows.Forms.TextBox();
@@ -90,7 +72,6 @@
             this.U_Kaldenavn = new System.Windows.Forms.TextBox();
             this.U_Navn = new System.Windows.Forms.TextBox();
             this.U_Kon = new System.Windows.Forms.MaskedTextBox();
-            this.U_Knr = new System.Windows.Forms.MaskedTextBox();
             this.U_Nr = new System.Windows.Forms.TextBox();
             this.label_U_label_Postnr_By = new System.Windows.Forms.Label();
             this.label_U_Email = new System.Windows.Forms.Label();
@@ -102,7 +83,6 @@
             this.label_U_NyAktivitet = new System.Windows.Forms.Label();
             this.label_U_FodtDato = new System.Windows.Forms.Label();
             this.label_U_Kon = new System.Windows.Forms.Label();
-            this.label_U_Knr = new System.Windows.Forms.Label();
             this.U_Overskrift = new System.Windows.Forms.Label();
             this.label_U_Nr = new System.Windows.Forms.Label();
             this.panelDisplay = new System.Windows.Forms.Panel();
@@ -119,7 +99,6 @@
             this.Navn = new System.Windows.Forms.TextBox();
             this.FodtDato = new System.Windows.Forms.TextBox();
             this.Kon = new System.Windows.Forms.TextBox();
-            this.Knr = new System.Windows.Forms.TextBox();
             this.Nr = new System.Windows.Forms.TextBox();
             this.label_Postnr_By = new System.Windows.Forms.Label();
             this.label_Email = new System.Windows.Forms.Label();
@@ -130,7 +109,6 @@
             this.label_Navn = new System.Windows.Forms.Label();
             this.label_FodtDato = new System.Windows.Forms.Label();
             this.label_Kon = new System.Windows.Forms.Label();
-            this.label_Knr = new System.Windows.Forms.Label();
             this.Overskrift = new System.Windows.Forms.Label();
             this.label_Nr = new System.Windows.Forms.Label();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
@@ -147,6 +125,21 @@
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.toolStripImportMedlem = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.I_DT_FodtDato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
+            this.I_DT_Indmeldelsesdato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
+            this.U_DT_NyAktivitetDato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
+            this.U_DT_FodtDato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
+            this.nrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.navnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kaldenavnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.postnrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bynavnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.telefonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.konDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fodtDatoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bankDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kartotekBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsMedlem)).BeginInit();
@@ -176,7 +169,6 @@
             this.bynavnDataGridViewTextBoxColumn,
             this.telefonDataGridViewTextBoxColumn,
             this.emailDataGridViewTextBoxColumn,
-            this.knrDataGridViewTextBoxColumn,
             this.konDataGridViewTextBoxColumn,
             this.fodtDatoDataGridViewTextBoxColumn,
             this.bankDataGridViewTextBoxColumn});
@@ -191,90 +183,6 @@
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             this.dataGridView1.Sorted += new System.EventHandler(this.dataGridView1_Sorted);
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
-            // 
-            // nrDataGridViewTextBoxColumn
-            // 
-            this.nrDataGridViewTextBoxColumn.DataPropertyName = "Nr";
-            this.nrDataGridViewTextBoxColumn.HeaderText = "Nr";
-            this.nrDataGridViewTextBoxColumn.Name = "nrDataGridViewTextBoxColumn";
-            this.nrDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // navnDataGridViewTextBoxColumn
-            // 
-            this.navnDataGridViewTextBoxColumn.DataPropertyName = "Navn";
-            this.navnDataGridViewTextBoxColumn.HeaderText = "Navn";
-            this.navnDataGridViewTextBoxColumn.Name = "navnDataGridViewTextBoxColumn";
-            this.navnDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // kaldenavnDataGridViewTextBoxColumn
-            // 
-            this.kaldenavnDataGridViewTextBoxColumn.DataPropertyName = "Kaldenavn";
-            this.kaldenavnDataGridViewTextBoxColumn.HeaderText = "Kaldenavn";
-            this.kaldenavnDataGridViewTextBoxColumn.Name = "kaldenavnDataGridViewTextBoxColumn";
-            this.kaldenavnDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // adresseDataGridViewTextBoxColumn
-            // 
-            this.adresseDataGridViewTextBoxColumn.DataPropertyName = "Adresse";
-            this.adresseDataGridViewTextBoxColumn.HeaderText = "Adresse";
-            this.adresseDataGridViewTextBoxColumn.Name = "adresseDataGridViewTextBoxColumn";
-            this.adresseDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // postnrDataGridViewTextBoxColumn
-            // 
-            this.postnrDataGridViewTextBoxColumn.DataPropertyName = "Postnr";
-            this.postnrDataGridViewTextBoxColumn.HeaderText = "Postnr";
-            this.postnrDataGridViewTextBoxColumn.Name = "postnrDataGridViewTextBoxColumn";
-            this.postnrDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // bynavnDataGridViewTextBoxColumn
-            // 
-            this.bynavnDataGridViewTextBoxColumn.DataPropertyName = "Bynavn";
-            this.bynavnDataGridViewTextBoxColumn.HeaderText = "By";
-            this.bynavnDataGridViewTextBoxColumn.Name = "bynavnDataGridViewTextBoxColumn";
-            this.bynavnDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // telefonDataGridViewTextBoxColumn
-            // 
-            this.telefonDataGridViewTextBoxColumn.DataPropertyName = "Telefon";
-            this.telefonDataGridViewTextBoxColumn.HeaderText = "Telefon";
-            this.telefonDataGridViewTextBoxColumn.Name = "telefonDataGridViewTextBoxColumn";
-            this.telefonDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            this.emailDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // knrDataGridViewTextBoxColumn
-            // 
-            this.knrDataGridViewTextBoxColumn.DataPropertyName = "Knr";
-            this.knrDataGridViewTextBoxColumn.HeaderText = "Knr";
-            this.knrDataGridViewTextBoxColumn.Name = "knrDataGridViewTextBoxColumn";
-            this.knrDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // konDataGridViewTextBoxColumn
-            // 
-            this.konDataGridViewTextBoxColumn.DataPropertyName = "Kon";
-            this.konDataGridViewTextBoxColumn.HeaderText = "Køn";
-            this.konDataGridViewTextBoxColumn.Name = "konDataGridViewTextBoxColumn";
-            this.konDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // fodtDatoDataGridViewTextBoxColumn
-            // 
-            this.fodtDatoDataGridViewTextBoxColumn.DataPropertyName = "FodtDato";
-            this.fodtDatoDataGridViewTextBoxColumn.HeaderText = "Født Dato";
-            this.fodtDatoDataGridViewTextBoxColumn.Name = "fodtDatoDataGridViewTextBoxColumn";
-            this.fodtDatoDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // bankDataGridViewTextBoxColumn
-            // 
-            this.bankDataGridViewTextBoxColumn.DataPropertyName = "Bank";
-            this.bankDataGridViewTextBoxColumn.HeaderText = "Bank";
-            this.bankDataGridViewTextBoxColumn.Name = "bankDataGridViewTextBoxColumn";
-            this.bankDataGridViewTextBoxColumn.Visible = false;
             // 
             // kartotekBindingSource
             // 
@@ -323,7 +231,6 @@
             this.panelAdd.Controls.Add(this.I_Kaldenavn);
             this.panelAdd.Controls.Add(this.I_Navn);
             this.panelAdd.Controls.Add(this.I_Kon);
-            this.panelAdd.Controls.Add(this.I_Knr);
             this.panelAdd.Controls.Add(this.I_Nr);
             this.panelAdd.Controls.Add(this.label_I_label_Postnr_By);
             this.panelAdd.Controls.Add(this.label_I_Email);
@@ -335,7 +242,6 @@
             this.panelAdd.Controls.Add(this.label_I_Indmeldelsesdato);
             this.panelAdd.Controls.Add(this.label_I_FodtDato);
             this.panelAdd.Controls.Add(this.label_I_Kon);
-            this.panelAdd.Controls.Add(this.label_I_Knr);
             this.panelAdd.Controls.Add(this.I_Overskrift);
             this.panelAdd.Controls.Add(this.label_I_Nr);
             this.panelAdd.Location = new System.Drawing.Point(7, 399);
@@ -343,25 +249,6 @@
             this.panelAdd.Size = new System.Drawing.Size(258, 360);
             this.panelAdd.TabIndex = 1;
             this.panelAdd.Visible = false;
-            // 
-            // I_DT_FodtDato
-            // 
-            this.I_DT_FodtDato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.I_DT_FodtDato.Location = new System.Drawing.Point(91, 241);
-            this.I_DT_FodtDato.Name = "I_DT_FodtDato";
-            this.I_DT_FodtDato.Size = new System.Drawing.Size(78, 20);
-            this.I_DT_FodtDato.TabIndex = 10;
-            this.I_DT_FodtDato.Value = new System.DateTime(2010, 1, 12, 8, 47, 59, 886);
-            this.I_DT_FodtDato.Enter += new System.EventHandler(this.I_DT_FodtDato_Enter);
-            // 
-            // I_DT_Indmeldelsesdato
-            // 
-            this.I_DT_Indmeldelsesdato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.I_DT_Indmeldelsesdato.Location = new System.Drawing.Point(91, 289);
-            this.I_DT_Indmeldelsesdato.Name = "I_DT_Indmeldelsesdato";
-            this.I_DT_Indmeldelsesdato.Size = new System.Drawing.Size(78, 20);
-            this.I_DT_Indmeldelsesdato.TabIndex = 12;
-            this.I_DT_Indmeldelsesdato.Value = new System.DateTime(2010, 1, 12, 8, 47, 59, 886);
             // 
             // cmdSave_I_Record
             // 
@@ -453,14 +340,6 @@
             this.I_Kon.Name = "I_Kon";
             this.I_Kon.Size = new System.Drawing.Size(39, 20);
             this.I_Kon.TabIndex = 9;
-            // 
-            // I_Knr
-            // 
-            this.I_Knr.Location = new System.Drawing.Point(91, 194);
-            this.I_Knr.Mask = "0";
-            this.I_Knr.Name = "I_Knr";
-            this.I_Knr.Size = new System.Drawing.Size(39, 20);
-            this.I_Knr.TabIndex = 8;
             // 
             // I_Nr
             // 
@@ -561,15 +440,6 @@
             this.label_I_Kon.TabIndex = 0;
             this.label_I_Kon.Text = "Køn";
             // 
-            // label_I_Knr
-            // 
-            this.label_I_Knr.AutoSize = true;
-            this.label_I_Knr.Location = new System.Drawing.Point(12, 197);
-            this.label_I_Knr.Name = "label_I_Knr";
-            this.label_I_Knr.Size = new System.Drawing.Size(54, 13);
-            this.label_I_Knr.TabIndex = 0;
-            this.label_I_Knr.Text = "Kommune";
-            // 
             // I_Overskrift
             // 
             this.I_Overskrift.Dock = System.Windows.Forms.DockStyle.Top;
@@ -607,7 +477,6 @@
             this.panelUpdate.Controls.Add(this.U_Kaldenavn);
             this.panelUpdate.Controls.Add(this.U_Navn);
             this.panelUpdate.Controls.Add(this.U_Kon);
-            this.panelUpdate.Controls.Add(this.U_Knr);
             this.panelUpdate.Controls.Add(this.U_Nr);
             this.panelUpdate.Controls.Add(this.label_U_label_Postnr_By);
             this.panelUpdate.Controls.Add(this.label_U_Email);
@@ -619,7 +488,6 @@
             this.panelUpdate.Controls.Add(this.label_U_NyAktivitet);
             this.panelUpdate.Controls.Add(this.label_U_FodtDato);
             this.panelUpdate.Controls.Add(this.label_U_Kon);
-            this.panelUpdate.Controls.Add(this.label_U_Knr);
             this.panelUpdate.Controls.Add(this.U_Overskrift);
             this.panelUpdate.Controls.Add(this.label_U_Nr);
             this.panelUpdate.Location = new System.Drawing.Point(7, 757);
@@ -635,25 +503,6 @@
             this.U_NyAktivitet.Name = "U_NyAktivitet";
             this.U_NyAktivitet.Size = new System.Drawing.Size(148, 21);
             this.U_NyAktivitet.TabIndex = 19;
-            // 
-            // U_DT_NyAktivitetDato
-            // 
-            this.U_DT_NyAktivitetDato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.U_DT_NyAktivitetDato.Location = new System.Drawing.Point(170, 308);
-            this.U_DT_NyAktivitetDato.Name = "U_DT_NyAktivitetDato";
-            this.U_DT_NyAktivitetDato.Size = new System.Drawing.Size(78, 20);
-            this.U_DT_NyAktivitetDato.TabIndex = 18;
-            this.U_DT_NyAktivitetDato.Value = new System.DateTime(2010, 1, 12, 8, 47, 59, 886);
-            // 
-            // U_DT_FodtDato
-            // 
-            this.U_DT_FodtDato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.U_DT_FodtDato.Location = new System.Drawing.Point(91, 242);
-            this.U_DT_FodtDato.Name = "U_DT_FodtDato";
-            this.U_DT_FodtDato.Size = new System.Drawing.Size(78, 20);
-            this.U_DT_FodtDato.TabIndex = 10;
-            this.U_DT_FodtDato.Value = new System.DateTime(2010, 1, 12, 8, 47, 59, 886);
-            this.U_DT_FodtDato.Enter += new System.EventHandler(this.U_DT_FodtDato_Enter);
             // 
             // cmdSave_U_Record
             // 
@@ -745,14 +594,6 @@
             this.U_Kon.Name = "U_Kon";
             this.U_Kon.Size = new System.Drawing.Size(39, 20);
             this.U_Kon.TabIndex = 9;
-            // 
-            // U_Knr
-            // 
-            this.U_Knr.Location = new System.Drawing.Point(91, 194);
-            this.U_Knr.Mask = "0";
-            this.U_Knr.Name = "U_Knr";
-            this.U_Knr.Size = new System.Drawing.Size(39, 20);
-            this.U_Knr.TabIndex = 8;
             // 
             // U_Nr
             // 
@@ -853,15 +694,6 @@
             this.label_U_Kon.TabIndex = 0;
             this.label_U_Kon.Text = "Køn";
             // 
-            // label_U_Knr
-            // 
-            this.label_U_Knr.AutoSize = true;
-            this.label_U_Knr.Location = new System.Drawing.Point(12, 197);
-            this.label_U_Knr.Name = "label_U_Knr";
-            this.label_U_Knr.Size = new System.Drawing.Size(54, 13);
-            this.label_U_Knr.TabIndex = 0;
-            this.label_U_Knr.Text = "Kommune";
-            // 
             // U_Overskrift
             // 
             this.U_Overskrift.Dock = System.Windows.Forms.DockStyle.Top;
@@ -896,7 +728,6 @@
             this.panelDisplay.Controls.Add(this.Navn);
             this.panelDisplay.Controls.Add(this.FodtDato);
             this.panelDisplay.Controls.Add(this.Kon);
-            this.panelDisplay.Controls.Add(this.Knr);
             this.panelDisplay.Controls.Add(this.Nr);
             this.panelDisplay.Controls.Add(this.label_Postnr_By);
             this.panelDisplay.Controls.Add(this.label_Email);
@@ -907,7 +738,6 @@
             this.panelDisplay.Controls.Add(this.label_Navn);
             this.panelDisplay.Controls.Add(this.label_FodtDato);
             this.panelDisplay.Controls.Add(this.label_Kon);
-            this.panelDisplay.Controls.Add(this.label_Knr);
             this.panelDisplay.Controls.Add(this.Overskrift);
             this.panelDisplay.Controls.Add(this.label_Nr);
             this.panelDisplay.Location = new System.Drawing.Point(7, 7);
@@ -1033,15 +863,6 @@
             this.Kon.Size = new System.Drawing.Size(39, 20);
             this.Kon.TabIndex = 9;
             // 
-            // Knr
-            // 
-            this.Knr.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.kartotekBindingSource, "Knr", true));
-            this.Knr.Location = new System.Drawing.Point(91, 194);
-            this.Knr.Name = "Knr";
-            this.Knr.ReadOnly = true;
-            this.Knr.Size = new System.Drawing.Size(39, 20);
-            this.Knr.TabIndex = 8;
-            // 
             // Nr
             // 
             this.Nr.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.kartotekBindingSource, "Nr", true));
@@ -1133,15 +954,6 @@
             this.label_Kon.Size = new System.Drawing.Size(26, 13);
             this.label_Kon.TabIndex = 0;
             this.label_Kon.Text = "Køn";
-            // 
-            // label_Knr
-            // 
-            this.label_Knr.AutoSize = true;
-            this.label_Knr.Location = new System.Drawing.Point(12, 197);
-            this.label_Knr.Name = "label_Knr";
-            this.label_Knr.Size = new System.Drawing.Size(54, 13);
-            this.label_Knr.TabIndex = 0;
-            this.label_Knr.Text = "Kommune";
             // 
             // Overskrift
             // 
@@ -1303,6 +1115,121 @@
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // I_DT_FodtDato
+            // 
+            this.I_DT_FodtDato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.I_DT_FodtDato.Location = new System.Drawing.Point(91, 241);
+            this.I_DT_FodtDato.Name = "I_DT_FodtDato";
+            this.I_DT_FodtDato.Size = new System.Drawing.Size(78, 20);
+            this.I_DT_FodtDato.TabIndex = 10;
+            this.I_DT_FodtDato.Value = new System.DateTime(2010, 1, 12, 8, 47, 59, 886);
+            this.I_DT_FodtDato.Enter += new System.EventHandler(this.I_DT_FodtDato_Enter);
+            // 
+            // I_DT_Indmeldelsesdato
+            // 
+            this.I_DT_Indmeldelsesdato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.I_DT_Indmeldelsesdato.Location = new System.Drawing.Point(91, 289);
+            this.I_DT_Indmeldelsesdato.Name = "I_DT_Indmeldelsesdato";
+            this.I_DT_Indmeldelsesdato.Size = new System.Drawing.Size(78, 20);
+            this.I_DT_Indmeldelsesdato.TabIndex = 12;
+            this.I_DT_Indmeldelsesdato.Value = new System.DateTime(2010, 1, 12, 8, 47, 59, 886);
+            // 
+            // U_DT_NyAktivitetDato
+            // 
+            this.U_DT_NyAktivitetDato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.U_DT_NyAktivitetDato.Location = new System.Drawing.Point(170, 308);
+            this.U_DT_NyAktivitetDato.Name = "U_DT_NyAktivitetDato";
+            this.U_DT_NyAktivitetDato.Size = new System.Drawing.Size(78, 20);
+            this.U_DT_NyAktivitetDato.TabIndex = 18;
+            this.U_DT_NyAktivitetDato.Value = new System.DateTime(2010, 1, 12, 8, 47, 59, 886);
+            // 
+            // U_DT_FodtDato
+            // 
+            this.U_DT_FodtDato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.U_DT_FodtDato.Location = new System.Drawing.Point(91, 242);
+            this.U_DT_FodtDato.Name = "U_DT_FodtDato";
+            this.U_DT_FodtDato.Size = new System.Drawing.Size(78, 20);
+            this.U_DT_FodtDato.TabIndex = 10;
+            this.U_DT_FodtDato.Value = new System.DateTime(2010, 1, 12, 8, 47, 59, 886);
+            this.U_DT_FodtDato.Enter += new System.EventHandler(this.U_DT_FodtDato_Enter);
+            // 
+            // nrDataGridViewTextBoxColumn
+            // 
+            this.nrDataGridViewTextBoxColumn.DataPropertyName = "Nr";
+            this.nrDataGridViewTextBoxColumn.HeaderText = "Nr";
+            this.nrDataGridViewTextBoxColumn.Name = "nrDataGridViewTextBoxColumn";
+            this.nrDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // navnDataGridViewTextBoxColumn
+            // 
+            this.navnDataGridViewTextBoxColumn.DataPropertyName = "Navn";
+            this.navnDataGridViewTextBoxColumn.HeaderText = "Navn";
+            this.navnDataGridViewTextBoxColumn.Name = "navnDataGridViewTextBoxColumn";
+            this.navnDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // kaldenavnDataGridViewTextBoxColumn
+            // 
+            this.kaldenavnDataGridViewTextBoxColumn.DataPropertyName = "Kaldenavn";
+            this.kaldenavnDataGridViewTextBoxColumn.HeaderText = "Kaldenavn";
+            this.kaldenavnDataGridViewTextBoxColumn.Name = "kaldenavnDataGridViewTextBoxColumn";
+            this.kaldenavnDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // adresseDataGridViewTextBoxColumn
+            // 
+            this.adresseDataGridViewTextBoxColumn.DataPropertyName = "Adresse";
+            this.adresseDataGridViewTextBoxColumn.HeaderText = "Adresse";
+            this.adresseDataGridViewTextBoxColumn.Name = "adresseDataGridViewTextBoxColumn";
+            this.adresseDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // postnrDataGridViewTextBoxColumn
+            // 
+            this.postnrDataGridViewTextBoxColumn.DataPropertyName = "Postnr";
+            this.postnrDataGridViewTextBoxColumn.HeaderText = "Postnr";
+            this.postnrDataGridViewTextBoxColumn.Name = "postnrDataGridViewTextBoxColumn";
+            this.postnrDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // bynavnDataGridViewTextBoxColumn
+            // 
+            this.bynavnDataGridViewTextBoxColumn.DataPropertyName = "Bynavn";
+            this.bynavnDataGridViewTextBoxColumn.HeaderText = "By";
+            this.bynavnDataGridViewTextBoxColumn.Name = "bynavnDataGridViewTextBoxColumn";
+            this.bynavnDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // telefonDataGridViewTextBoxColumn
+            // 
+            this.telefonDataGridViewTextBoxColumn.DataPropertyName = "Telefon";
+            this.telefonDataGridViewTextBoxColumn.HeaderText = "Telefon";
+            this.telefonDataGridViewTextBoxColumn.Name = "telefonDataGridViewTextBoxColumn";
+            this.telefonDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // konDataGridViewTextBoxColumn
+            // 
+            this.konDataGridViewTextBoxColumn.DataPropertyName = "Kon";
+            this.konDataGridViewTextBoxColumn.HeaderText = "Køn";
+            this.konDataGridViewTextBoxColumn.Name = "konDataGridViewTextBoxColumn";
+            this.konDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // fodtDatoDataGridViewTextBoxColumn
+            // 
+            this.fodtDatoDataGridViewTextBoxColumn.DataPropertyName = "FodtDato";
+            this.fodtDatoDataGridViewTextBoxColumn.HeaderText = "Født Dato";
+            this.fodtDatoDataGridViewTextBoxColumn.Name = "fodtDatoDataGridViewTextBoxColumn";
+            this.fodtDatoDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // bankDataGridViewTextBoxColumn
+            // 
+            this.bankDataGridViewTextBoxColumn.DataPropertyName = "Bank";
+            this.bankDataGridViewTextBoxColumn.HeaderText = "Bank";
+            this.bankDataGridViewTextBoxColumn.Name = "bankDataGridViewTextBoxColumn";
+            this.bankDataGridViewTextBoxColumn.Visible = false;
+            // 
             // FrmMedlemmer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1363,11 +1290,9 @@
         private System.Windows.Forms.TextBox Email;
         private System.Windows.Forms.TextBox FodtDato;
         private System.Windows.Forms.TextBox Kon;
-        private System.Windows.Forms.TextBox Knr;
         private System.Windows.Forms.Label label_Email;
         private System.Windows.Forms.Label label_FodtDato;
         private System.Windows.Forms.Label label_Kon;
-        private System.Windows.Forms.Label label_Knr;
         private System.Windows.Forms.Label Overskrift;
         private System.Windows.Forms.ListView lvwLog;
         private System.Windows.Forms.ColumnHeader columnHeaderDato;
@@ -1393,7 +1318,6 @@
         private System.Windows.Forms.TextBox I_Kaldenavn;
         private System.Windows.Forms.TextBox I_Navn;
         private System.Windows.Forms.MaskedTextBox I_Kon;
-        private System.Windows.Forms.MaskedTextBox I_Knr;
         private System.Windows.Forms.TextBox I_Nr;
         private System.Windows.Forms.Label label_I_label_Postnr_By;
         private System.Windows.Forms.Label label_I_Email;
@@ -1403,7 +1327,6 @@
         private System.Windows.Forms.Label label_I_Navn;
         private System.Windows.Forms.Label label_I_FodtDato;
         private System.Windows.Forms.Label label_I_Kon;
-        private System.Windows.Forms.Label label_I_Knr;
         private System.Windows.Forms.Label I_Overskrift;
         private System.Windows.Forms.Label label_I_Nr;
         private System.Windows.Forms.Label label_I_Indmeldelsesdato;
@@ -1419,7 +1342,6 @@
         private System.Windows.Forms.TextBox U_Kaldenavn;
         private System.Windows.Forms.TextBox U_Navn;
         private System.Windows.Forms.MaskedTextBox U_Kon;
-        private System.Windows.Forms.MaskedTextBox U_Knr;
         private System.Windows.Forms.TextBox U_Nr;
         private System.Windows.Forms.Label label_U_label_Postnr_By;
         private System.Windows.Forms.Label label_U_Email;
@@ -1430,7 +1352,6 @@
         private System.Windows.Forms.Label label_U_NyAktivitet;
         private System.Windows.Forms.Label label_U_FodtDato;
         private System.Windows.Forms.Label label_U_Kon;
-        private System.Windows.Forms.Label label_U_Knr;
         private System.Windows.Forms.Label U_Overskrift;
         private System.Windows.Forms.Label label_U_Nr;
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddUpdateItem;
@@ -1455,7 +1376,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn bynavnDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn telefonDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn knrDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn konDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fodtDatoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn bankDataGridViewTextBoxColumn;

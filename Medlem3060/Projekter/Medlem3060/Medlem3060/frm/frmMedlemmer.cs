@@ -135,7 +135,6 @@ namespace nsPuls3060
             this.Telefon.ReadOnly = val;
             this.Bank.ReadOnly = val;
             this.Email.ReadOnly = val;
-            this.Knr.ReadOnly = val;
             this.Kon.ReadOnly = val;
             this.FodtDato.ReadOnly = val;
         }
@@ -201,7 +200,6 @@ namespace nsPuls3060
             this.I_Telefon.Text = null;
             this.I_Bank.Text = null;
             this.I_Email.Text = null;
-            this.I_Knr.Text = null;
             this.I_Kon.Text = null;
             this.I_DT_FodtDato.Value = null;
             this.I_DT_Indmeldelsesdato.Value = DateTime.Now;
@@ -219,7 +217,7 @@ namespace nsPuls3060
         private void cmdSave_I_Record_Click(object sender, EventArgs e)
         {
             int tblMedlem_nr = KarKortnr.nextval();
-            object[] val = new object[12];
+            object[] val = new object[11];
             val[0] = tblMedlem_nr;
             val[1] = (I_Navn.Text.Length == 0) ? "" : I_Navn.Text;
             val[2] = (I_Kaldenavn.Text.Length == 0) ? null : I_Kaldenavn.Text;
@@ -228,10 +226,9 @@ namespace nsPuls3060
             val[5] = (I_Bynavn.Text.Length == 0) ? null : I_Bynavn.Text;
             val[6] = (I_Telefon.Text.Length == 0) ? null : I_Telefon.Text;
             val[7] = (I_Email.Text.Length == 0) ? null : I_Email.Text;
-            val[8] = (I_Knr.Text.Length == 0) ? ((short?)null) : short.Parse(I_Knr.Text);
-            val[9] = (I_Kon.Text.Length == 0) ? null : I_Kon.Text;
-            val[10] = (I_DT_FodtDato.Value == null) ? ((DateTime?)null) : (DateTime)I_DT_FodtDato.Value;
-            val[11] = (I_Bank.Text.Length == 0) ? null : I_Bank.Text;
+            val[8] = (I_Kon.Text.Length == 0) ? null : I_Kon.Text;
+            val[9] = (I_DT_FodtDato.Value == null) ? ((DateTime?)null) : (DateTime)I_DT_FodtDato.Value;
+            val[10] = (I_Bank.Text.Length == 0) ? null : I_Bank.Text;
             this.dsMedlem.Kartotek.Rows.Add(val);
             this.dsMedlem.savedsMedlem();
             if (I_DT_Indmeldelsesdato.Value != null)
@@ -282,7 +279,6 @@ namespace nsPuls3060
             this.U_Bynavn.Text = this.Bynavn.Text;
             this.U_Telefon.Text = this.Telefon.Text;
             this.U_Email.Text = this.Email.Text;
-            this.U_Knr.Text = this.Knr.Text;
             this.U_Kon.Text = this.Kon.Text;
             this.U_DT_FodtDato.Value = (this.FodtDato.Text.Length == 0) ? (DateTime?)null : DateTime.Parse(this.FodtDato.Text);
             this.U_Bank.Text = this.Bank.Text;
@@ -315,7 +311,6 @@ namespace nsPuls3060
             val[5] = (U_Bynavn.Text.Length == 0) ? null : U_Bynavn.Text;
             val[6] = (U_Telefon.Text.Length == 0) ? null : U_Telefon.Text;
             val[7] = (U_Email.Text.Length == 0) ? null : U_Email.Text;
-            val[8] = (U_Knr.Text.Length == 0) ? ((short?)null) : short.Parse(U_Knr.Text);
             val[9] = (U_Kon.Text.Length == 0) ? null : U_Kon.Text;
             val[10] = (U_DT_FodtDato.Value == null) ? ((DateTime?)null) : (DateTime)U_DT_FodtDato.Value;
             val[11] = (U_Bank.Text.Length == 0) ? null : U_Bank.Text;
@@ -480,7 +475,7 @@ namespace nsPuls3060
                 {
                     tblMedlem_nr = KarKortnr.nextval();
 
-                    object[] val = new object[12];
+                    object[] val = new object[11];
                     val[0] = tblMedlem_nr;
                     val[1] = impMedlem.Navn;
                     val[2] = impMedlem.Kaldenavn;
@@ -489,10 +484,9 @@ namespace nsPuls3060
                     val[5] = impMedlem.Bynavn;
                     val[6] = impMedlem.Telefon;
                     val[7] = impMedlem.Email;
-                    val[8] = (short?)null; //Knr
-                    val[9] = impMedlem.Kon;
-                    val[10] = impMedlem.FodtDato;
-                    val[11] = null;
+                    val[8] = impMedlem.Kon;
+                    val[9] = impMedlem.FodtDato;
+                    val[10] = null;
                     this.dsMedlem.Kartotek.Rows.Add(val);
                     this.dsMedlem.savedsMedlem();
 

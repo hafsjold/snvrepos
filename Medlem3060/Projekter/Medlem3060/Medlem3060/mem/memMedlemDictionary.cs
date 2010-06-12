@@ -85,18 +85,17 @@ namespace nsPuls3060
             this.Add(new clsField(20, "Mobiltelefon", "", 0, 14, 0, "", "", false));
             this.Add(new clsField(21, "Født Dato", "FodtDato", 11, 0, 0, "", "", false));
             this.Add(new clsField(22, "Bank", "", 0, 16, 0, "", "", false));
-            this.Add(new clsField(23, "Kommune nr", "Knr", 9, 0, 0, "", "", false));
-            this.Add(new clsField(24, "Debitor saldo", "", 0, 24, 0, "", "", false));
-            this.Add(new clsField(25, "Kreditor saldo", "", 0, 25, 0, "", "", false));
-            this.Add(new clsField(26, "Debitor salg", "", 0, 26, 0, "", "", false));
-            this.Add(new clsField(27, "Kreditor Køb", "", 0, 27, 0, "", "", false));
-            this.Add(new clsField(28, "Ex1", "Kaldenavn", 3, 8, 0, "", "", false));
-            this.Add(new clsField(29, "Navn", "Navn", 2, 2, 0, "Navn_Skal_udfyldes", "Const", false));
-            this.Add(new clsField(30, "Ex2", "", 0, 15, 0, "", "", false));
-            this.Add(new clsField(31, "Ex3", "", 0, 19, 0, "", "", false));
-            this.Add(new clsField(32, "Adresse", "", 0, 3, 0, "Adresse_Skal_udfyldes", "Const", true));
-            this.Add(new clsField(33, "Leveringsadresse", "", 0, 18, 0, "", "", true));
-            this.Add(new clsField(34, "Noter", "", 0, 17, 0, "", "", true));
+            this.Add(new clsField(23, "Debitor saldo", "", 0, 24, 0, "", "", false));
+            this.Add(new clsField(24, "Kreditor saldo", "", 0, 25, 0, "", "", false));
+            this.Add(new clsField(25, "Debitor salg", "", 0, 26, 0, "", "", false));
+            this.Add(new clsField(26, "Kreditor Køb", "", 0, 27, 0, "", "", false));
+            this.Add(new clsField(27, "Ex1", "Kaldenavn", 3, 8, 0, "", "", false));
+            this.Add(new clsField(28, "Navn", "Navn", 2, 2, 0, "Navn_Skal_udfyldes", "Const", false));
+            this.Add(new clsField(29, "Ex2", "", 0, 15, 0, "", "", false));
+            this.Add(new clsField(30, "Ex3", "", 0, 19, 0, "", "", false));
+            this.Add(new clsField(31, "Adresse", "", 0, 3, 0, "Adresse_Skal_udfyldes", "Const", true));
+            this.Add(new clsField(32, "Leveringsadresse", "", 0, 18, 0, "", "", true));
+            this.Add(new clsField(33, "Noter", "", 0, 17, 0, "", "", true));
 
             m_nr_subnr = new Dictionary<string, int>();
             foreach (clsField f in this)

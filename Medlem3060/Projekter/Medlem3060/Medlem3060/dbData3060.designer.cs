@@ -3213,8 +3213,6 @@ namespace nsPuls3060
 		
 		private int _Nr;
 		
-		private System.Nullable<int> _Knr;
-		
 		private string _Kon;
 		
 		private System.Nullable<System.DateTime> _FodtDato;
@@ -3227,8 +3225,6 @@ namespace nsPuls3060
     partial void OnCreated();
     partial void OnNrChanging(int value);
     partial void OnNrChanged();
-    partial void OnKnrChanging(System.Nullable<int> value);
-    partial void OnKnrChanged();
     partial void OnKonChanging(string value);
     partial void OnKonChanged();
     partial void OnFodtDatoChanging(System.Nullable<System.DateTime> value);
@@ -3257,26 +3253,6 @@ namespace nsPuls3060
 					this._Nr = value;
 					this.SendPropertyChanged("Nr");
 					this.OnNrChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Knr", DbType="Int")]
-		public System.Nullable<int> Knr
-		{
-			get
-			{
-				return this._Knr;
-			}
-			set
-			{
-				if ((this._Knr != value))
-				{
-					this.OnKnrChanging(value);
-					this.SendPropertyChanging();
-					this._Knr = value;
-					this.SendPropertyChanged("Knr");
-					this.OnKnrChanged();
 				}
 			}
 		}

@@ -13,7 +13,7 @@ namespace nsPuls3060
         {
             var qry_medlemmer = from h in Program.karMedlemmer
                                 join d1 in Program.dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
-                                from x in details1.DefaultIfEmpty(new TblMedlem { Nr = -1, Knr = (int?)null, Kon = null, FodtDato = (DateTime?)null })
+                                from x in details1.DefaultIfEmpty(new TblMedlem { Nr = -1, Kon = null, FodtDato = (DateTime?)null })
                                 //where x.Nr == -1
                                 select new
                                 {
@@ -26,7 +26,6 @@ namespace nsPuls3060
                                     h.Telefon,
                                     h.Email,
                                     XNr = x == null ? (int?)null : x.Nr,
-                                    Knr = x == null ? (int?)null : x.Knr,
                                     Kon = x == null ? null : x.Kon,
                                     FodtDato = x == null ? (DateTime?)null : x.FodtDato,
                                     h.Bank
@@ -44,7 +43,6 @@ namespace nsPuls3060
                     m.Bynavn,
                     m.Telefon,
                     m.Email,
-                    m.Knr,
                     m.Kon,
                     m.FodtDato,
                     m.Bank
@@ -93,7 +91,6 @@ namespace nsPuls3060
                             };
                             Program.dbData3060.TblMedlem.InsertOnSubmit(m_rec);
                         }
-                        m_rec.Knr = (m.IsKnrNull()) ? (int?)null : m.Knr;
                         m_rec.Kon = (m.IsKonNull()) ? null : m.Kon;
                         m_rec.FodtDato = (m.IsFodtDatoNull()) ? (DateTime?)null : m.FodtDato;
                         m.AcceptChanges();
@@ -134,7 +131,6 @@ namespace nsPuls3060
                             };
                             Program.dbData3060.TblMedlem.InsertOnSubmit(m_rec);
                         }
-                        m_rec.Knr = (m.IsKnrNull()) ? (int?)null : m.Knr;
                         m_rec.Kon = (m.IsKonNull()) ? null : m.Kon;
                         m_rec.FodtDato = (m.IsFodtDatoNull()) ? (DateTime?)null : m.FodtDato;
                         m.AcceptChanges();

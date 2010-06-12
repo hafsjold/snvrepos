@@ -810,8 +810,6 @@ namespace nsPuls3060
         public string Email { get; set; }
         [Fieldattr(Heading = "Telefon")]
         public string Telefon { get; set; }
-        [Fieldattr(Heading = "Kom")]
-        public int? Knr { get; set; }
         [Fieldattr(Heading = "Køn")]
         public string Kon { get; set; }
         [Fieldattr(Heading = "Født")]

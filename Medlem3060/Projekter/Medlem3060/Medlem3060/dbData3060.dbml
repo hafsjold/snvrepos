@@ -139,7 +139,6 @@
   <Table Name="tblMedlem" Member="TblMedlem">
     <Type Name="TblMedlem">
       <Column Name="Nr" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Knr" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Kon" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
       <Column Name="FodtDato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="TblMedlem_TblMedlemLog" Member="TblMedlemLog" ThisKey="Nr" OtherKey="Nr" Type="TblMedlemLog" />

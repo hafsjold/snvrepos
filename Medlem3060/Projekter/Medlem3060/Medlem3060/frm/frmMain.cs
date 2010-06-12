@@ -188,7 +188,7 @@ namespace nsPuls3060
             //var qry_medlemmer = from k in objMedlemmer
             //                    join m in Program.dbData3060.TblMedlem on k.Nr equals m.Nr
             //                    where m.FodtDato > DateTime.Parse("1980-01-01")
-            //                    select new { k.Nr, k.Navn, k.Kaldenavn, k.Adresse, k.Postnr, k.Bynavn, k.Email, k.Telefon, m.Knr, m.Kon, m.FodtDato };
+            //                    select new { k.Nr, k.Navn, k.Kaldenavn, k.Adresse, k.Postnr, k.Bynavn, k.Email, k.Telefon, m.Kon, m.FodtDato };
             //
             //var antal = qry_medlemmer.Count();
             //foreach (var mx in qry_medlemmer) 
@@ -244,7 +244,7 @@ namespace nsPuls3060
             DateTime qryStart = DateTime.Now;
             var MedlemmerAll = from h in Program.karMedlemmer
                                join d1 in Program.dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
-                               from x in details1.DefaultIfEmpty(new TblMedlem { Nr = -1, Knr = -1, Kon = "X", FodtDato = new DateTime(1900, 1, 1) })
+                               from x in details1.DefaultIfEmpty(new TblMedlem { Nr = -1, Kon = "X", FodtDato = new DateTime(1900, 1, 1) })
                                select new clsMedlemAll
                                {
                                    Nr = h.Nr,
@@ -255,7 +255,6 @@ namespace nsPuls3060
                                    Bynavn = h.Bynavn,
                                    Telefon = h.Telefon,
                                    Email = h.Email,
-                                   Knr = (int)(x.Knr == null ? -1 : x.Knr),
                                    Kon = x.Kon == null ? "X" : x.Kon,
                                    FodtDato = (DateTime)(x.FodtDato == null ? new DateTime(1900, 01, 01) : x.FodtDato)
                                };
@@ -264,7 +263,6 @@ namespace nsPuls3060
                       select new
                       {
                           MNr = t.Nr,
-                          t.Knr,
                           t.Kon,
                           t.FodtDato,
                           t.Navn,
