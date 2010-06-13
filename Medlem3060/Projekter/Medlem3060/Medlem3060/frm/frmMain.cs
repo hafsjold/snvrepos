@@ -131,8 +131,10 @@ namespace nsPuls3060
 
 
             clsSync objSync = new clsSync();
-            objSync.actionSync(1);
-            objSync.actionSync(2);
+            objSync.medlemxml();
+            int xys = 1;
+            //objSync.actionSync(1);
+            //objSync.actionSync(2);
             //decimal tal = 50;
             //string uden1 = tal.ToString();
             //string uden2 = tal.ToString("0.00");
@@ -140,7 +142,6 @@ namespace nsPuls3060
             //bool tilmeldtpbs = clsPbs.gettilmeldtpbs(386);
             //clsSumma objSumma = new clsSumma();
             //objSumma.BogforUdBetalinger(11);
-            //int xys = 1;
             //string txt = @"p0: {0}, p1: {1},p5: {5}";
             //string ptxt = string.Format(txt, "x0", "x1", "x2", "x3", "x4", "x5", "x6");
             //DateTime dato = new DateTime(2010, 5, 20, 

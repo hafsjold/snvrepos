@@ -6063,7 +6063,7 @@ namespace nsPuls3060
 		
 		private byte _Field_id;
 		
-		private int _Checksum;
+		private string _Value;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -6075,8 +6075,8 @@ namespace nsPuls3060
     partial void OnSource_idChanged();
     partial void OnField_idChanging(byte value);
     partial void OnField_idChanged();
-    partial void OnChecksumChanging(int value);
-    partial void OnChecksumChanged();
+    partial void OnValueChanging(string value);
+    partial void OnValueChanged();
     #endregion
 		
 		public Tblsync()
@@ -6144,22 +6144,22 @@ namespace nsPuls3060
 			}
 		}
 		
-		[Column(Name="checksum", Storage="_Checksum", DbType="Int NOT NULL")]
-		public int Checksum
+		[Column(Name="value", Storage="_Value", DbType="NVarChar(255)")]
+		public string Value
 		{
 			get
 			{
-				return this._Checksum;
+				return this._Value;
 			}
 			set
 			{
-				if ((this._Checksum != value))
+				if ((this._Value != value))
 				{
-					this.OnChecksumChanging(value);
+					this.OnValueChanging(value);
 					this.SendPropertyChanging();
-					this._Checksum = value;
-					this.SendPropertyChanged("Checksum");
-					this.OnChecksumChanged();
+					this._Value = value;
+					this.SendPropertyChanged("Value");
+					this.OnValueChanged();
 				}
 			}
 		}
@@ -7789,7 +7789,7 @@ namespace nsPuls3060
 		
 		private byte _Field_id;
 		
-		private int _Checksum;
+		private string _Value;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -7801,8 +7801,8 @@ namespace nsPuls3060
     partial void OnSource_idChanged();
     partial void OnField_idChanging(byte value);
     partial void OnField_idChanged();
-    partial void OnChecksumChanging(int value);
-    partial void OnChecksumChanged();
+    partial void OnValueChanging(string value);
+    partial void OnValueChanged();
     #endregion
 		
 		public Tempsync()
@@ -7870,22 +7870,22 @@ namespace nsPuls3060
 			}
 		}
 		
-		[Column(Name="checksum", Storage="_Checksum", DbType="Int NOT NULL")]
-		public int Checksum
+		[Column(Name="value", Storage="_Value", DbType="NVarChar(255)")]
+		public string Value
 		{
 			get
 			{
-				return this._Checksum;
+				return this._Value;
 			}
 			set
 			{
-				if ((this._Checksum != value))
+				if ((this._Value != value))
 				{
-					this.OnChecksumChanging(value);
+					this.OnValueChanging(value);
 					this.SendPropertyChanging();
-					this._Checksum = value;
-					this.SendPropertyChanged("Checksum");
-					this.OnChecksumChanged();
+					this._Value = value;
+					this.SendPropertyChanged("Value");
+					this.OnValueChanged();
 				}
 			}
 		}
