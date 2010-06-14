@@ -10,8 +10,8 @@ namespace nsPuls3060
 {
     public class clsRest
     {
-        //private string m_baseurl = @"http://localhost:8080/rest/";
-        private string m_baseurl = @"http://testhafsjold.appspot.com/rest/";
+        private string m_baseurl = @"http://localhost:8084/rest/";
+        //private string m_baseurl = @"http://testhafsjold.appspot.com/rest/";
 
         public string HttpGet2(string url)
         {
@@ -48,6 +48,8 @@ namespace nsPuls3060
             HttpWebRequest Request = (HttpWebRequest)WebRequest.Create(fullurl);
             Request.Method = "PUT";
             Request.ContentType = "application/atom+xml";
+            Request.Headers.Add("authorization", "Basic Mogens Hafsjold");
+
             byte[] byteArray = Encoding.UTF8.GetBytes(XMLData);
 
             try
@@ -84,6 +86,8 @@ namespace nsPuls3060
             HttpWebRequest Request = (HttpWebRequest)WebRequest.Create(fullurl);
             Request.Method = "POST";
             Request.ContentType = "application/atom+xml";
+            Request.Headers.Add("authorization", "Basic Mogens Hafsjold");
+
             byte[] byteArray = Encoding.UTF8.GetBytes(XMLData);
 
             try

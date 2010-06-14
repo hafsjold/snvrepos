@@ -1,8 +1,11 @@
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
 
+import logging
 import rest
 from google.appengine.ext import db 
+
+from util import TestCrypt
 
 class Medlem(db.Model): 
     Nr = db.IntegerProperty()
@@ -27,11 +30,17 @@ class Medlemlog(db.Model):
 
 class MainHandler(webapp.RequestHandler):
     def get(self):
+        logging.info('%s: %s' % ('hafsjold', 'Dette er en test'))
+        TestCrypt('Mogens Hafsjold')
         self.response.out.write('Hello medlem3060!')
 
-application = webapp.WSGIApplication([('/', MainHandler),
-                                      ('/rest/.*', rest.Dispatcher)],
-                                      debug=True)
+application = webapp.WSGIApplication(
+                                     [
+                                      ('/', MainHandler),
+                                      ('/rest/.*', rest.Dispatcher)
+                                     ], 
+                                     debug=True
+                                    )
 rest.Dispatcher.base_url = "/rest"
 rest.Dispatcher.add_models_from_module(__name__)
 
