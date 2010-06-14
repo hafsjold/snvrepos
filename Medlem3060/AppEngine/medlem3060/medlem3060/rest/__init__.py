@@ -49,6 +49,7 @@ import base64
 from google.appengine.api import memcache
 from google.appengine.ext import webapp
 from google.appengine.ext import db
+from django.utils import simplejson
 from xml.dom import minidom
 from datetime import datetime
 
@@ -70,6 +71,7 @@ XML_CLEANSE_PATTERN2 = re.compile(r"[^a-zA-Z0-9]")
 XML_CLEANSE_REPL2 = r"_"
 
 EMPTY_VALUE = object()
+MULTI_UPDATE_KEY = object()
 
 KEY_PROPERTY_NAME = "key"
 KEY_PROPERTY_TYPE = "KeyProperty"
@@ -95,6 +97,8 @@ TRUE_NUMERIC_VALUE = "1"
 CONTENT_TYPE_HEADER = "Content-Type"
 XML_CONTENT_TYPE = "application/xml"
 TEXT_CONTENT_TYPE = "text/plain"
+JSON_CONTENT_TYPE = "application/json"
+METHOD_OVERRIDE_HEADER = "X-HTTP-Method-Override"
 
 XML_ENCODING = "utf-8"
 XSD_PREFIX = "xs"
@@ -123,9 +127,14 @@ XSD_SINGLE_MAX = "1"
 XSD_NO_MAX = "unbounded"
 
 QUERY_OFFSET_PARAM = "offset"
+QUERY_PAGE_SIZE_PARAM = "page_size"
+QUERY_ORDERING_PARAM = "ordering"
 QUERY_TERM_PATTERN = re.compile(r"^(f.._)(.+)$")
 QUERY_PREFIX = "WHERE "
 QUERY_JOIN = " AND "
+QUERY_ORDERBY = " ORDER BY "
+QUERY_ORDER_ASC = " ASC"
+QUERY_ORDER_DESC = " DESC"
 QUERY_LIST_TYPE = "fin_"
 
 QUERY_EXPRS = {
@@ -259,6 +268,37 @@ def get_node_text(node_list, do_strip=False):
         text = text.strip()
     return text
 
+def xml_to_json(xml_doc):
+    doc_el = xml_doc.documentElement
+    json_doc = {doc_el.nodeName : xml_node_to_json(doc_el)}
+
+    return simplejson.dumps(json_doc)
+
+def xml_node_to_json(xml_node):
+    if((len(xml_node.childNodes) == 1) and
+       (xml_node.childNodes[0].nodeType == xml_node.TEXT_NODE)):
+        return xml_node.childNodes[0].data
+    else:
+        json_node = {}
+        
+        for child_xml_node in xml_node.childNodes:
+            new_child_json_node = xml_node_to_json(child_xml_node)
+            cur_child_json_node = json_node.get(child_xml_node.nodeName, None)
+            if(cur_child_json_node is None):
+                cur_child_json_node = new_child_json_node
+            else:
+                # if we have more than one of the same type, turn the children into a list
+                if(not isinstance(cur_child_json_node, types.ListType)):
+                    cur_child_json_node = [cur_child_json_node]
+                cur_child_json_node.append(new_child_json_node)
+            json_node[child_xml_node.nodeName] = cur_child_json_node
+            
+        xml_node_attrs = xml_node.attributes
+        for attr_name in xml_node_attrs.keys():
+            json_node["@" + attr_name] = xml_node_attrs[attr_name].nodeValue
+
+        return json_node
+
 class PropertyHandler(object):
     """Base handler for Model properties which manages converting properties to and from xml.
 
@@ -370,7 +410,11 @@ class DateTimeHandler(PropertyHandler):
 
     def value_to_string(self, value):
         """Returns the datetime/date/time value converted to the relevant iso string value."""
-        return unicode(value.isoformat(*self.format_args))
+        value_str = value.isoformat(*self.format_args)
+        # undo python's idiotic formatting irregularity
+        if(self.allows_microseconds and not value.microsecond):
+            value_str += ".000000"
+        return unicode(value_str)
 
     def value_from_string(self, value):
         """Returns the datetime/date/time parsed from the relevant iso string value, or None if the string is empty."""
@@ -628,13 +672,21 @@ class ModelHandler(object):
         """Returns a newly created model instance with the given properties (as a keyword dict)."""
         return self.model_type(**props)
 
-    def get_all(self, limit, offset, query_expr, query_params):
+    def get_all(self, limit, offset, ordering, query_expr, query_params):
         """Returns all model instances of this type."""
         if(query_expr is None):
             query = self.model_type.all()
+            if(ordering):
+                query.order(ordering)
         else:
-            logging.info("FOO running query %s with params %s", query_expr, query_params)
+            if(ordering):
+                order_type = QUERY_ORDER_ASC
+                if(ordering[0] == "-"):
+                    ordering = ordering[1:]
+                    order_type = QUERY_ORDER_DESC
+                query_expr += QUERY_ORDERBY + ordering + order_type
             query = self.model_type.gql(query_expr, *query_params)
+                
         return query.fetch(limit, offset)
     
     def get_property_handler(self, prop_name):
@@ -716,7 +768,7 @@ class ModelHandler(object):
             any_el.attributes[XSD_ATTR_MAXOCCURS] = XSD_NO_MAX
 
 class Dispatcher(webapp.RequestHandler):
-    """RequestHandler which presents a REST based API for interacting with the datastore of a Google AppEngine
+    """RequestHandler which presents a REST based API for interacting with the datastore of a Google App Engine
     application.
 
     Integrating this handler with an existing application is designed to be as simple as possible.  The user merely
@@ -732,7 +784,7 @@ class Dispatcher(webapp.RequestHandler):
 
         base_url: URL prefix expected on requests
 
-        fetch_page_size: number of instances to return per get-all call (note, AppEngine has a builtin limit of 1000)
+        fetch_page_size: number of instances to return per get-all call (note, App Engine has a builtin limit of 1000)
         
     """
 
@@ -810,7 +862,7 @@ class Dispatcher(webapp.RequestHandler):
         if(not issubclass(model_type, db.Model)):
             raise ValueError("given model type %s is not a subclass of Model" % model_type)
         cls.model_handlers[xml_name] = ModelHandler(model_name, model_type)
-        logging.info("Added model %s with type %s", model_name, model_type)
+        logging.info("added model %s with type %s", model_name, model_type)
             
     add_models_from_module = classmethod(add_models_from_module)
     add_models = classmethod(add_models)
@@ -830,8 +882,7 @@ class Dispatcher(webapp.RequestHandler):
         if self.caching:
             out = memcache.get(self.request.url)
             if out:
-                self.response.headers[CONTENT_TYPE_HEADER] = XML_CONTENT_TYPE
-                self.response.out.write(out)
+                self.write_output(out)
             else:
                 self.get_impl()
                 out = self.response.out.getvalue()
@@ -843,9 +894,10 @@ class Dispatcher(webapp.RequestHandler):
     def get_impl(self):
         """Actual implementation of REST get.  Gets metadata (types, schemas), or actual Model instances.  
         
-        '/metadata/*'       -> See get_metadata() for details
-        '/<type>[?<query>]' -> gets all Model instances of given type, optionally querying (200, 404)
-        '/<type>/<key>'     -> gets Model instance with given key (200, 404)
+        '/metadata/*'          -> See get_metadata() for details
+        '/<type>[?<query>]'    -> gets all Model instances of given type, optionally querying (200, 404)
+        '/<type>/<key>'        -> gets Model instance with given key (200, 404)
+        '/<type>/<key>/<prop>' -> gets a single property from the Model instance with given key (200, 404)
         
         """
         
@@ -864,6 +916,14 @@ class Dispatcher(webapp.RequestHandler):
             if (len(path) > 0):
                 model_key = path.pop(0)
                 models = model_handler.get(model_key)
+
+                if (len(path) > 0):
+                    prop_name = path.pop(0)
+                    prop_handler = model_handler.get_property_handler(prop_name)
+                    prop_value = prop_handler.get_value(models)
+                    self.write_property_output(prop_value)
+                    return
+                
             else:
                 models = self.get_all_impl(model_handler, list_props)
 
@@ -873,9 +933,7 @@ class Dispatcher(webapp.RequestHandler):
                 
             out = self.models_to_xml(model_name, model_handler, models, list_props)
             
-        if out:
-            self.response.headers[CONTENT_TYPE_HEADER] = XML_CONTENT_TYPE
-            self.response.out.write(out)
+        self.write_output(out)
 
     def put(self, *_):
         """Does a REST put.
@@ -886,12 +944,33 @@ class Dispatcher(webapp.RequestHandler):
 
         path = self.split_path()
         model_name = path.pop(0)
-        model_key = path.pop(0)
+        model_key = None
+        if (len(path) > 0):
+            model_key = path.pop(0)
 
         self.update_impl(model_name, model_key, True)
-        
+
     def post(self, *_):
-        """Does a REST put.
+        """Does a REST post, handles alternate HTTP methods specified via the 'X-HTTP-Method-Override' header"""
+
+        real_method = self.request.headers.get(METHOD_OVERRIDE_HEADER, None)
+        if real_method:
+            real_method = real_method.upper()
+            if real_method == "PUT":
+                self.put()
+            elif real_method == "DELETE":
+                self.delete()
+            elif real_method == "POST":
+                self.post_impl()
+            elif real_method == "GET":
+                self.get()
+            else:
+                self.error(405)
+        else:
+            self.post_impl()
+        
+    def post_impl(self, *_):
+        """Actual implementation of REST post.
         
         '/<type>'       -> creates new Model instance, returns key as plain text (200, 400, 404)
         '/<type>/<key>' -> partially updates Model instance, returns key as plain text (200, 400, 404)
@@ -918,8 +997,20 @@ class Dispatcher(webapp.RequestHandler):
             return
 
         doc = minidom.parse(self.request.body_file)
+
+        is_list = False
+        model_els = [(model_key, doc.documentElement)]
+        if(str(doc.documentElement.nodeName) == LIST_EL_NAME):
+            is_list = True
+            model_els = []
+            for node in doc.documentElement.childNodes:
+                if(node.nodeType == node.ELEMENT_NODE):
+                    model_els.append((MULTI_UPDATE_KEY, node))
+
+        models = []
         try:
-            model = self.model_from_xml(doc.documentElement, model_name, model_handler, model_key, is_replace)
+            for model_el_key, model_el in model_els:
+                models.append(self.model_from_xml(model_el, model_name, model_handler, model_el_key, is_replace))
         except Exception:
             logging.exception("failed parsing model")
             self.error(400)
@@ -927,15 +1018,20 @@ class Dispatcher(webapp.RequestHandler):
         finally:
             doc.unlink()
 
-        model.put()
+        for model in models:
+            model.put()
 
+        # if input was not a list, convert single element models list back to single element
+        if(not is_list):
+            models = models[0]
+            
         # note, we specifically look in the query string (don't try to parse the POST body)
         if (self.request.query_string.find("type=full") >= 0):
-            self.response.headers[CONTENT_TYPE_HEADER] = XML_CONTENT_TYPE
-            self.response.out.write(self.models_to_xml(model_name, model_handler, model))
+            self.write_output(self.models_to_xml(model_name, model_handler, models))
+        elif (self.request.query_string.find("type=xml") >= 0):
+            self.write_output(self.keys_to_xml(model_handler, models))
         else:
-            self.response.headers[CONTENT_TYPE_HEADER] = TEXT_CONTENT_TYPE
-            self.response.out.write(unicode(model.key()))
+            self.write_output(self.keys_to_text(models))
         
     def delete(self, *_):
         """Does a REST delete.
@@ -990,7 +1086,7 @@ class Dispatcher(webapp.RequestHandler):
                 for model_name in self.model_handlers.iterkeys():
                     append_child(types_el, TYPE_EL_NAME, model_name)
 
-            return doc.toxml(XML_ENCODING)
+            return self.doc_to_output(doc)
         
         finally:
             if doc:
@@ -1000,14 +1096,24 @@ class Dispatcher(webapp.RequestHandler):
         """Actual implementation of REST query.  Gets Model instances based on criteria specified in the query
         parameters.
         """
-        
+
+        cur_fetch_page_size = MAX_FETCH_PAGE_SIZE
         fetch_offset = 0
+        ordering = None
         query_expr = None
         query_params = []
         
         for arg in self.request.arguments():
             if(arg == QUERY_OFFSET_PARAM):
                 fetch_offset = int(self.request.get(QUERY_OFFSET_PARAM))
+                continue
+            
+            if(arg == QUERY_PAGE_SIZE_PARAM):
+                cur_fetch_page_size = int(self.request.get(QUERY_PAGE_SIZE_PARAM))
+                continue
+            
+            if(arg == QUERY_ORDERING_PARAM):
+                ordering = self.request.get(QUERY_ORDERING_PARAM)
                 continue
             
             match = QUERY_TERM_PATTERN.match(arg)
@@ -1033,18 +1139,25 @@ class Dispatcher(webapp.RequestHandler):
                 else:
                     query_expr += QUERY_JOIN + query_sub_expr
 
-        tmp_fetch_page_size = self.fetch_page_size
+        cur_fetch_page_size = max(min(self.fetch_page_size, cur_fetch_page_size, MAX_FETCH_PAGE_SIZE), 1)
+
+        # if possible, attempt to fetch more than we really want so that we can determine if we have more results
+        tmp_fetch_page_size = cur_fetch_page_size
         if(tmp_fetch_page_size < MAX_FETCH_PAGE_SIZE):
             tmp_fetch_page_size += 1
 
-        models = model_handler.get_all(tmp_fetch_page_size, fetch_offset, query_expr, query_params)
+        models = model_handler.get_all(tmp_fetch_page_size, fetch_offset, ordering, query_expr, query_params)
 
-        next_fetch_offset = str(self.fetch_page_size + fetch_offset)
-        if((tmp_fetch_page_size > self.fetch_page_size) and (len(models) < tmp_fetch_page_size)):
+        next_fetch_offset = str(cur_fetch_page_size + fetch_offset)
+        if((tmp_fetch_page_size > cur_fetch_page_size) and (len(models) < tmp_fetch_page_size)):
             next_fetch_offset = ""
 
         list_props[QUERY_OFFSET_PARAM] = next_fetch_offset
         
+        # trim list to the actual size we want
+        if(len(models) > cur_fetch_page_size):
+            models = models[0:cur_fetch_page_size]
+
         return models
         
     def split_path(self):
@@ -1064,6 +1177,13 @@ class Dispatcher(webapp.RequestHandler):
             logging.error("invalid model name %s", model_name, exc_info=1)
             self.error(failure_code)
             return None
+
+    def doc_to_output(self, doc):
+
+        out_mime_type = self.request.accept.best_match([JSON_CONTENT_TYPE, XML_CONTENT_TYPE])
+        if(out_mime_type == JSON_CONTENT_TYPE):
+            return xml_to_json(doc)
+        return doc.toxml(XML_ENCODING)
     
     def models_to_xml(self, model_name, model_handler, models, list_props=None):
         """Returns a string of xml of the given models (may be list or single instance)."""
@@ -1083,20 +1203,52 @@ class Dispatcher(webapp.RequestHandler):
                 doc = impl.createDocument(None, model_name, None)
                 model_handler.write_xml_value(doc.documentElement, models)
 
-            return doc.toxml(XML_ENCODING)
+            return self.doc_to_output(doc)
         finally:
             if doc:
                 doc.unlink()
 
+    def keys_to_xml(self, model_handler, models):
+        """Returns a string of xml of the keys of the given models (may be list or single instance)."""
+        impl = minidom.getDOMImplementation()
+        doc = None
+        try:
+            if isinstance(models, (types.ListType, types.TupleType)):
+                doc = impl.createDocument(None, LIST_EL_NAME, None)
+                list_el = doc.documentElement
+                    
+                for model in models:
+                    append_child(list_el, KEY_PROPERTY_NAME, model_handler.key_handler.get_value_as_string(model))
+            else:
+                doc = impl.createDocument(None, KEY_PROPERTY_NAME, None)
+                doc.documentElement.appendChild(doc.createTextNode(model_handler.key_handler.get_value_as_string(models)))
+
+            return self.doc_to_output(doc)
+        finally:
+            if doc:
+                doc.unlink()
+
+    def keys_to_text(self, models):
+        """Returns a string of text of the keys of the given models (may be list or single instance)."""
+        if(not isinstance(models, (types.ListType, types.TupleType))):
+            models = [models]
+        return unicode(",".join([str(model.key()) for model in models]))
+                
     def model_from_xml(self, model_el, model_name, model_handler, key, is_replace):
         """Returns a model instance updated from the given model xml element."""
         if(model_name != str(model_el.nodeName)):
-            raise TypeError("wrong model name")
+            raise TypeError("wrong model name, found '%s', expected '%s'" % (model_el.nodeName, model_name))
 
         props = model_handler.read_xml_value(model_el)
 
         given_key = props.pop(KEY_PROPERTY_NAME, None)
 
+        if(key is MULTI_UPDATE_KEY):
+            if(given_key):
+                key = str(given_key)
+            else:
+                key = None
+        
         if(key):
             key = db.Key(key.strip())
             if(given_key and (given_key != key)):
@@ -1116,3 +1268,27 @@ class Dispatcher(webapp.RequestHandler):
             model = model_handler.create(props)
 
         return model
+
+    def write_output(self, out):
+        """Writes the output to the response."""
+        if out:
+            first_char = out[0]
+            content_type = TEXT_CONTENT_TYPE
+            if(first_char == '{'):
+                content_type = JSON_CONTENT_TYPE
+            elif(first_char == "<"):
+                content_type = XML_CONTENT_TYPE
+
+            self.response.headers[CONTENT_TYPE_HEADER] = content_type
+            self.response.out.write(out)
+
+    def write_property_output(self, prop_value):
+        """Writes the output of a single property to the response."""
+
+        content_type = self.request.accept.best_matches()[0]
+        if not content_type:
+            content_type = TEXT_CONTENT_TYPE
+        self.response.headers[CONTENT_TYPE_HEADER] = content_type
+        self.response.out.write(prop_value)
+            
+                
