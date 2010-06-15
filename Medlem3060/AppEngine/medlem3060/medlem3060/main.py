@@ -30,7 +30,6 @@ class Medlemlog(db.Model):
 
 class MainHandler(webapp.RequestHandler):
     def get(self):
-        logging.info('%s: %s' % ('hafsjold', 'Dette er en test'))
         TestCrypt('Mogens Hafsjold')
         self.response.out.write('Hello medlem3060!')
 

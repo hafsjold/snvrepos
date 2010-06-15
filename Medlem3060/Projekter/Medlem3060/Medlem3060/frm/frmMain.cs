@@ -129,7 +129,8 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
-
+            clsRest objRest = new clsRest();
+            //objRest.testencrypt();
             clsSync objSync = new clsSync();
             objSync.medlemxml();
             int xys = 1;
