@@ -304,6 +304,25 @@ namespace nsPuls3060
             xml.Save(@"c:\mysync.xml");     
         }
 
+        public void medlemxmldelete()
+        {
+            clsRest objRest = new clsRest();
+            string strxml = objRest.HttpGet2("Medlem");
+            
+            XElement list = XElement.Parse(strxml);
+            var medlem = from m in list.Elements("Medlem") 
+                         select new 
+                         {
+                             Key = (string)m.Element("key"),
+                             Nr = (string)m.Element("Nr")
+                         };
+            int antal = medlem.Count();
+            foreach (var m in medlem) 
+            {
+                string delstrxml = objRest.HttpDelete2("Medlem/" + m.Key);
+            }
+        }
+        
         public void medlemxml()
         {
 

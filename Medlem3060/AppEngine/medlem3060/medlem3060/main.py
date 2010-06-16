@@ -76,9 +76,93 @@ class LoginHandler(webapp.RequestHandler):
       self.response.headers['Set-Cookie'] = sessioncookie
       self.redirect('/')
 
+class FindmedlemHandler(webapp.RequestHandler):
+  def get(self):
+    template_values = {
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/findmedlem.html') 
+    self.response.out.write(template.render(path, template_values))
+  
+  def post(self):
+    Nr = self.request.get('nr') 
+    
+    query = Medlem.all()
+    query.filter('Nr =', int(Nr))
+    m = query[0]
+   
+    Navn = m.Navn 
+    Kaldenavn = m.Kaldenavn
+    Adresse = m.Adresse
+    Postnr = m.Postnr
+    Bynavn = m.Bynavn
+    Telefonnr = m.Telefon
+    Email = m.Email
+    Fodelsdato = m.FodtDato
+    logging.info('Nr: %s, Navn: %s, Kaldenavn: %s' % (Nr, Navn, Kaldenavn))
+    template_values = {
+      'kontingent_fra_dato': '1. januar 2010',
+      'kontingent_til_dato': '31. december 2010',
+      'kontingent': '150,00',
+      'Navn': Navn,
+      'Kaldenavn': Kaldenavn,
+      'Adresse': Adresse,
+      'Postnr': Postnr,
+      'Bynavn': Bynavn,
+      'Telefonnr': Telefonnr,
+      'Email': Email,
+      'Fodelsdato': Fodelsdato,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/nytmedlem.html') 
+    self.response.out.write(template.render(path, template_values))
+    
+class NytmedlemHandler(webapp.RequestHandler):
+  def get(self):
+    template_values = {
+      'kontingent_fra_dato': '1. januar 2010',
+      'kontingent_til_dato': '31. december 2010',
+      'kontingent': '150,00',
+      'Navn': '',
+      'Kaldenavn': '',
+      'Adresse': '',
+      'Postnr': '',
+      'Bynavn': '',
+      'Telefonnr': '',
+      'Email': '',
+      'Fodelsdato': '',
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/nytmedlem.html') 
+    self.response.out.write(template.render(path, template_values))
+    
+  def post(self):
+    Navn = self.request.get('Navn') 
+    Kaldenavn = self.request.get('Kaldenavn')
+    Adresse = self.request.get('Adresse')
+    Postnr = self.request.get('Postnr')
+    Bynavn = self.request.get('Bynavn')
+    Telefonnr = self.request.get('Telefonnr')
+    Email = self.request.get('Email')
+    Fodelsdato = self.request.get('Fodelsdato')
+    logging.info('Navn: %s, Kaldenavn: %s' % (Navn, Kaldenavn))
+    template_values = {
+      'kontingent_fra_dato': '1. januar 2010',
+      'kontingent_til_dato': '31. december 2010',
+      'kontingent': '150,00',
+      'Navn': Navn,
+      'Kaldenavn': Kaldenavn,
+      'Adresse': Adresse,
+      'Postnr': Postnr,
+      'Bynavn': Bynavn,
+      'Telefonnr': Telefonnr,
+      'Email': Email,
+      'Fodelsdato': Fodelsdato,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/nytmedlem.html') 
+    self.response.out.write(template.render(path, template_values))
 
 application = webapp.WSGIApplication([ ('/', MainHandler),
                                        (LOGIN_URL, LoginHandler),
+                                       ('/nytmedlem', NytmedlemHandler),
+                                       ('/findmedlem', FindmedlemHandler),
                                        ('/rest/.*', rest.Dispatcher) ],
                                      debug=True )
 rest.Dispatcher.base_url = "/rest"

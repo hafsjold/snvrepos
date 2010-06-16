@@ -10,8 +10,8 @@ namespace nsPuls3060
 {
     public class clsRest
     {
-        private string m_baseurl = @"http://localhost:8084/rest/";
-        //private string m_baseurl = @"http://medlem3060.appspot.com/rest/";
+        //private string m_baseurl = @"http://localhost:8084/rest/";
+        private string m_baseurl = @"http://medlem3060.appspot.com/rest/";
 
         public string HttpGet2(string url)
         {

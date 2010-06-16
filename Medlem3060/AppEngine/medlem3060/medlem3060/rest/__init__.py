@@ -1181,8 +1181,9 @@ class Dispatcher(webapp.RequestHandler):
     def doc_to_output(self, doc):
 
         out_mime_type = self.request.accept.best_match([JSON_CONTENT_TYPE, XML_CONTENT_TYPE])
-        if(out_mime_type == JSON_CONTENT_TYPE):
-            return xml_to_json(doc)
+        # MHA PATCH 15-06-2010
+        #if(out_mime_type == JSON_CONTENT_TYPE):
+        #    return xml_to_json(doc)
         return doc.toxml(XML_ENCODING)
     
     def models_to_xml(self, model_name, model_handler, models, list_props=None):
