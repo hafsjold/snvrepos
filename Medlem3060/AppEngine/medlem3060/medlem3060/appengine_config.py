@@ -24,6 +24,6 @@ def webapp_add_wsgi_middleware(app):
   except ImportError, err: 
     logging.info('Failed to import mha_middeleware: %s', err) 
   else: 
-    app = mha_middeleware.LoggingMiddleware (app)
+    app = mha_middeleware.Mha_Middeleware (app)
 
   return app 
