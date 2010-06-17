@@ -6,6 +6,7 @@ from google.appengine.ext.webapp import template
 import logging
 import rest
 import os
+import re
 
 
 from util import TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
@@ -26,6 +27,7 @@ class Medlem(db.Model):
     Telefon = db.PhoneNumberProperty()
     Kon = db.StringProperty()
     FodtDato  = db.DateProperty()
+    Bank = db.StringProperty()
 
 class Medlemlog(db.Model): 
     Medlem_key = db.ReferenceProperty(Medlem, collection_name="medlemlog_set")
@@ -87,53 +89,75 @@ class FindmedlemHandler(webapp.RequestHandler):
     Nr = self.request.get('nr') 
     
     query = Medlem.all()
-    query.filter('Nr =', int(Nr))
-    m = query[0]
-   
-    Navn = m.Navn 
-    Kaldenavn = m.Kaldenavn
-    Adresse = m.Adresse
-    Postnr = m.Postnr
-    Bynavn = m.Bynavn
-    Telefonnr = m.Telefon
-    Email = m.Email
-    Fodelsdato = m.FodtDato
-    logging.info('Nr: %s, Navn: %s, Kaldenavn: %s' % (Nr, Navn, Kaldenavn))
+    query.filter('Nr <', int(Nr))
+    medlem_list = query.fetch(1000)
+ 
     template_values = {
-      'kontingent_fra_dato': '1. januar 2010',
-      'kontingent_til_dato': '31. december 2010',
-      'kontingent': '150,00',
-      'Navn': Navn,
-      'Kaldenavn': Kaldenavn,
-      'Adresse': Adresse,
-      'Postnr': Postnr,
-      'Bynavn': Bynavn,
-      'Telefonnr': Telefonnr,
-      'Email': Email,
-      'Fodelsdato': Fodelsdato,
+      'medlem_list': medlem_list,
     }
-    path = os.path.join(os.path.dirname(__file__), 'templates/nytmedlem.html') 
+    path = os.path.join(os.path.dirname(__file__), 'templates/findmedlem.html') 
     self.response.out.write(template.render(path, template_values))
     
-class NytmedlemHandler(webapp.RequestHandler):
+class MedlemHandler(webapp.RequestHandler):
+  def getNrfromPath(self):
+    path = self.request.environ['PATH_INFO']
+    mo = re.match("/adm/medlem/([0-9]+)", path)
+    if mo:
+      if mo.groups()[0]:
+        return int(mo.groups()[0])
+      else:
+        return int(0)
+    else:
+      return int(0)
+  
   def get(self):
-    template_values = {
-      'kontingent_fra_dato': '1. januar 2010',
-      'kontingent_til_dato': '31. december 2010',
-      'kontingent': '150,00',
-      'Navn': '',
-      'Kaldenavn': '',
-      'Adresse': '',
-      'Postnr': '',
-      'Bynavn': '',
-      'Telefonnr': '',
-      'Email': '',
-      'Fodelsdato': '',
-    }
-    path = os.path.join(os.path.dirname(__file__), 'templates/nytmedlem.html') 
+    Nr = self.getNrfromPath()
+    logging.info('getNrfromPath = %s' % (Nr))
+    try:
+      m = Medlem.all().filter('Nr =', Nr)[0]
+    except:
+      m = False
+
+    if m:
+      template_values = {
+        'kontingent_fra_dato': '1. januar 2010',
+        'kontingent_til_dato': '31. december 2010',
+        'kontingent': '150,00',
+        'Nr': m.Nr,
+        'Navn': m.Navn,
+        'Kaldenavn': m.Kaldenavn,
+        'Adresse': m.Adresse,
+        'Postnr': m.Postnr,
+        'Bynavn': m.Bynavn,
+        'Telefonnr': m.Telefon,
+        'Email': m.Email,
+        'Kon': m.Kon,
+        'Fodelsdato': m.FodtDato,
+        'Bank': m.Bank,
+      }
+    else:
+      template_values = {
+        'kontingent_fra_dato': '1. januar 2010',
+        'kontingent_til_dato': '31. december 2010',
+        'kontingent': '150,00',
+        'Nr': '',
+        'Navn': '',
+        'Kaldenavn': '',
+        'Adresse': '',
+        'Postnr': '',
+        'Bynavn': '',
+        'Telefonnr': '',
+        'Email': '',
+        'Kon': '',
+        'Fodelsdato': '',
+        'Bank': '',
+      }
+    
+    path = os.path.join(os.path.dirname(__file__), 'templates/medlem.html') 
     self.response.out.write(template.render(path, template_values))
     
   def post(self):
+    Nr = self.request.get('Nr') 
     Navn = self.request.get('Navn') 
     Kaldenavn = self.request.get('Kaldenavn')
     Adresse = self.request.get('Adresse')
@@ -141,12 +165,15 @@ class NytmedlemHandler(webapp.RequestHandler):
     Bynavn = self.request.get('Bynavn')
     Telefonnr = self.request.get('Telefonnr')
     Email = self.request.get('Email')
+    Kon = self.request.get('Kon')
     Fodelsdato = self.request.get('Fodelsdato')
+    Bank = self.request.get('Bank')
     logging.info('Navn: %s, Kaldenavn: %s' % (Navn, Kaldenavn))
     template_values = {
       'kontingent_fra_dato': '1. januar 2010',
       'kontingent_til_dato': '31. december 2010',
       'kontingent': '150,00',
+      'Nr': Nr,
       'Navn': Navn,
       'Kaldenavn': Kaldenavn,
       'Adresse': Adresse,
@@ -154,15 +181,17 @@ class NytmedlemHandler(webapp.RequestHandler):
       'Bynavn': Bynavn,
       'Telefonnr': Telefonnr,
       'Email': Email,
+      'Kon': Kon,
       'Fodelsdato': Fodelsdato,
+      'Bank': Bank,
     }
-    path = os.path.join(os.path.dirname(__file__), 'templates/nytmedlem.html') 
+    path = os.path.join(os.path.dirname(__file__), 'templates/medlem.html') 
     self.response.out.write(template.render(path, template_values))
 
 application = webapp.WSGIApplication([ ('/', MainHandler),
                                        (LOGIN_URL, LoginHandler),
-                                       ('/nytmedlem', NytmedlemHandler),
-                                       ('/findmedlem', FindmedlemHandler),
+                                       ('/adm/medlem.*', MedlemHandler),
+                                       ('/adm/findmedlem', FindmedlemHandler),
                                        ('/rest/.*', rest.Dispatcher) ],
                                      debug=True )
 rest.Dispatcher.base_url = "/rest"

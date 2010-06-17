@@ -71,7 +71,7 @@ def CreateCookieData(user):
   if user:
     secret = '%d' % random.randint(10000, 32000)
     secret_index = memcache.incr('secret_index', delta=1, namespace=None, initial_value=0) 
-    if memcache.add('secret_index_%d' % secret_index, secret, time=60): 
+    if memcache.add('secret_index_%d' % secret_index, secret, time=360): 
       logging.info('rand = ' + secret)
     
     m = hashlib.sha224()

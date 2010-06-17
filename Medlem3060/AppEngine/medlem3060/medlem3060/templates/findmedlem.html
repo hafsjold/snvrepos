@@ -1,10 +1,22 @@
 <html>
+  <head>
+    <title>Find Medlem</title>
+  </head>
   <body>
     <form action="" method="post">
       <table width="100%" border="0">
         <tr><td>Nr:</td><td><input type="text" name="nr" size="5" maxlength="5" value=""></td></tr>
-        <tr><td>&nbsp;</td><td><input type="submit" value="Opdater"></td></tr>  
+        <tr><td>&nbsp;</td><td><input type="submit" value="Find"></td></tr>  
       </table>
     </form>
+    {% if medlem_list %}
+      <ul>
+        {% for medlem in medlem_list %}
+          <li>{{ medlem.Nr }} - {{ medlem.Navn }} - {{ medlem.Telefon }} - {{ medlem.FodtDato|timesince }} - {{ medlem.FodtDato|date:"j-n-Y" }} - {{ medlem.Email }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+        Ingen medlemmer.
+    {% endif %}
   </body>
 </html>
