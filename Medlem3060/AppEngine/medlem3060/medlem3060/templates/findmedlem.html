@@ -12,7 +12,7 @@
     {% if medlem_list %}
       <ul>
         {% for medlem in medlem_list %}
-          <li>{{ medlem.Nr }} - {{ medlem.Navn }} - {{ medlem.Telefon }} - {{ medlem.FodtDato|timesince }} - {{ medlem.FodtDato|date:"j-n-Y" }} - {{ medlem.Email }}</li>
+          <li><a href=/adm/medlem/{{ medlem.Nr }}>{{ medlem.Navn }}</a> - {{ medlem.Telefon }} - {{ medlem.FodtDato|timesince }} - {{ medlem.FodtDato|date:"j-n-Y" }} - {{ medlem.Email }}</li>
         {% endfor %}
       </ul>
     {% else %}
