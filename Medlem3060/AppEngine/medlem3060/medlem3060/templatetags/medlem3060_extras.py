@@ -1,0 +1,1 @@
+from google.appengine.ext import webappregister = webapp.template.create_template_register()def lowerx(value):    return value.lower()    register.filter('lowerx', lowerx)

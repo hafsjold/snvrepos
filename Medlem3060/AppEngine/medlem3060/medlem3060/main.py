@@ -8,8 +8,11 @@ import rest
 import os
 import re
 
-
 from util import TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
+
+webapp.template.register_template_library('templatetags.medlem3060_extras')
+rest.Dispatcher.base_url = "/rest"
+rest.Dispatcher.add_models_from_module(__name__)
 
 class User(db.Model): 
   account = db.StringProperty()
@@ -86,8 +89,8 @@ class FindmedlemHandler(webapp.RequestHandler):
     self.response.out.write(template.render(path, template_values))
   
   def post(self):
-    Nr = self.request.get('nr') 
-    
+    #Nr = self.request.get('nr') 
+    Nr = 625
     query = Medlem.all()
     query.filter('Nr <', int(Nr))
     medlem_list = query.fetch(1000)
@@ -194,8 +197,9 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/adm/findmedlem', FindmedlemHandler),
                                        ('/rest/.*', rest.Dispatcher) ],
                                      debug=True )
-rest.Dispatcher.base_url = "/rest"
-rest.Dispatcher.add_models_from_module(__name__)
+
+def templateTest(myvar):
+  return myvar
 
 def main():
     util.run_wsgi_app(application)

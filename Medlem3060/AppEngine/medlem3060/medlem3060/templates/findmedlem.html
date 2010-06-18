@@ -27,43 +27,60 @@ function MM_preloadImages() { //v3.0
     <title>Find Medlem</title>
   </head>
   <body bgcolor="#FFFFFF" text="#000000" onLoad="fonLoad(); MM_preloadImages('/images/vpil_f2.gif')">
-    <form action="" method="post">
-      <table width="100%" border="0">
-        <tr><td>Nr:</td><td><input type="text" name="nr" size="5" maxlength="5" value=""></td></tr>
-        <tr><td>&nbsp;</td><td><input type="submit" value="Find"></td></tr>  
-      </table>
-    </form>
+    <table>
+      <tr style=background-color:#FF0000>
+        <font color=#003399> 
+          <th align=center>Nr</th>
+          <th align=center>Navn</th>
+          <th align=center>Adresse</th>
+          <th align=center>By</th>
+          <th align=left> <a href="javascript:SelectHeading()" onMouseOut="MM_swapImgRestore();" onMouseOver="MM_swapImage('vpil','','/images/vpil_f2.gif',1)" ><img name="vpil" src="/images/vpil.gif" width="15" height="15" border="0"></a></th>
+        </font>
+      </tr>
+      
+      <form name="Search" method="post" action="">
+	    <tr valign=top style=background-color:{% cycle  #CFE3CC,#CBE2E4 as rowcolors %}>
+          <td align=left><input type="text" name="SNr" size="3" maxlength="5" value=""></td>
+          <td align=left><input type="text" name="SNavn" size="18" maxlength="35" value=""></td>
+          <td align=left><input type="text" name="SAdresse" size="18" maxlength="35" value=""></td>
+          <td align=left><input type="text" name="SBy" size="12" maxlength="25" value=""></td>
+          <td align=left valign="middle"> 
+            <input type="submit" name="Send" value="S">
+          </td>
+        </tr>
+      </form>
     {% if medlem_list %}
-      <ul>
-        {% for medlem in medlem_list %}
-          <li><a href="/adm/medlem/{{ medlem.Nr }}" onMouseOut="MM_swapImgRestore();" onMouseOver="MM_swapImage('vpil{{ medlem.Nr }}','','/images/vpil_f2.gif',1)" >
-                <img name="vpil{{ medlem.Nr }}" src="/images/vpil.gif" width="15" height="15" border="0"></a> 
-              {{ medlem.Navn }} - {{ medlem.Telefon }} - {{ medlem.FodtDato|timesince }} - {{ medlem.FodtDato|date:"j-n-Y" }} - {{ medlem.Email }}</li>
-        {% endfor %}
-      </ul>
-    {% else %}
-        Ingen medlemmer.
-    {% endif %}
+      {% for medlem in medlem_list %}
+      <tr valign=top style=background-color:{% cycle rowcolors %}>
+        <td align=left>{{medlem.Nr}}</td>
+        <td align=left>{{medlem.Navn}}</td>
+        <td align=left>{{medlem.Adresse}}</td>
+        <td align=left>{{medlem.Bynavn}}</td>
+        <td align=left valign="middle"><a href="javascript:SelectLine({{medlem.Nr}})" onMouseOut="MM_swapImgRestore();" onMouseOver="MM_swapImage('vpil{{ medlem.Nr }}','','/images/vpil_f2.gif',1)" ><img name="vpil{{ medlem.Nr }}" src="/images/vpil.gif" width="15" height="15" border="0"></a></td>
+      </tr>
+      {% endfor %}
+    {% endif %}    
+    </table>
   </body>
 <script language="javascript">
 <!--
-  // Add Person
+  // Add Medlem
   function SelectHeading(){
     var newwindow;
-	newwindow = window.open("/admin/PersonUpd.php?DoWhat=2&TopWin=<?=$TopWin?><?=$pPam?>","PersonUpd","status")
+	newwindow = window.open("/adm/medlem")
 	newwindow.focus();
   }
   
-  // Update Person
-  function SelectLine(id,lineid,navn){
+  // Update Medlem
+  function SelectLine(nr){
     var newwindow;
-	newwindow = window.open("/admin/PersonUpd.php?DoWhat=3&Id="+id+"&TopWin=<?=$TopWin?><?=$pPam?>","PersonUpd","status")
+	newwindow = window.open("/adm/medlem/"+nr)
 	newwindow.focus();
   }
 
   function fonLoad(){
 	var h = 270;
-	var w = 325;
+	var w = 525;
 	var l = 30;
 	if (l>25){
       w += 15;
