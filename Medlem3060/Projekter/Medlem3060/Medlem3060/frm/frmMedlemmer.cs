@@ -217,7 +217,7 @@ namespace nsPuls3060
         private void cmdSave_I_Record_Click(object sender, EventArgs e)
         {
             int tblMedlem_nr = KarKortnr.nextval();
-            object[] val = new object[11];
+            object[] val = new object[10];
             val[0] = tblMedlem_nr;
             val[1] = (I_Navn.Text.Length == 0) ? "" : I_Navn.Text;
             val[2] = (I_Kaldenavn.Text.Length == 0) ? null : I_Kaldenavn.Text;
@@ -311,9 +311,9 @@ namespace nsPuls3060
             val[5] = (U_Bynavn.Text.Length == 0) ? null : U_Bynavn.Text;
             val[6] = (U_Telefon.Text.Length == 0) ? null : U_Telefon.Text;
             val[7] = (U_Email.Text.Length == 0) ? null : U_Email.Text;
-            val[9] = (U_Kon.Text.Length == 0) ? null : U_Kon.Text;
-            val[10] = (U_DT_FodtDato.Value == null) ? ((DateTime?)null) : (DateTime)U_DT_FodtDato.Value;
-            val[11] = (U_Bank.Text.Length == 0) ? null : U_Bank.Text;
+            val[8] = (U_Kon.Text.Length == 0) ? null : U_Kon.Text;
+            val[9] = (U_DT_FodtDato.Value == null) ? ((DateTime?)null) : (DateTime)U_DT_FodtDato.Value;
+            val[10] = (U_Bank.Text.Length == 0) ? null : U_Bank.Text;
             row.BeginEdit();
             row.ItemArray = val;
             row.EndEdit();
@@ -475,7 +475,7 @@ namespace nsPuls3060
                 {
                     tblMedlem_nr = KarKortnr.nextval();
 
-                    object[] val = new object[11];
+                    object[] val = new object[10];
                     val[0] = tblMedlem_nr;
                     val[1] = impMedlem.Navn;
                     val[2] = impMedlem.Kaldenavn;
