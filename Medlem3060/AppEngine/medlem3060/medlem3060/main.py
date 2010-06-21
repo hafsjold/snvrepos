@@ -31,6 +31,21 @@ class Medlem(db.Model):
     Kon = db.StringProperty()
     FodtDato  = db.DateProperty()
     Bank = db.StringProperty()
+    Tags = db.ListProperty(basestring)
+    
+    def setNameTags(self):
+      tokens = [] 
+      for word in self.Navn.split():
+        tokens.append('N%s' % (word.strip('.,').lower()))
+      for word in self.Kaldenavn.split():
+        tokens.append('N%s' % (word.strip('.,').lower()))
+      for word in self.Adresse.split():
+        tokens.append('A%s' % (word.strip('.,').lower()))
+      for word in self.Bynavn.split():
+        tokens.append('B%s' % (word.strip('.,').lower()))
+      self.Tags = tokens
+      self.put()
+      logging.info('tokens: %s' % (tokens))
 
 class Medlemlog(db.Model): 
     Medlem_key = db.ReferenceProperty(Medlem, collection_name="medlemlog_set")
@@ -89,11 +104,25 @@ class FindmedlemHandler(webapp.RequestHandler):
     self.response.out.write(template.render(path, template_values))
   
   def post(self):
-    #Nr = self.request.get('nr') 
-    Nr = 625
+    SNr = self.request.get('SNr').strip() 
+    SNavn = self.request.get('SNavn').strip() 
+    SAdresse = self.request.get('SAdresse').strip()  
+    SBy = self.request.get('SBy').strip()  
+    
     query = Medlem.all()
-    query.filter('Nr <', int(Nr))
+    if SNr:
+      query = query.filter('Nr =', int(SNr))
+    if SNavn:
+      query = query.filter('Tags =', 'N%s' % (SNavn.lower()))
+    if SAdresse:
+      query = query.filter('Tags =', 'A%s' % (SAdresse.lower()))
+    if SBy:
+      query = query.filter('Tags =', 'B%s' % (SBy.lower()))
+ 
     medlem_list = query.fetch(1000)
+    
+    #for medlem in medlem_list:
+    #  medlem.setNameTags()
  
     template_values = {
       'medlem_list': medlem_list,
@@ -190,6 +219,20 @@ class MedlemHandler(webapp.RequestHandler):
     }
     path = os.path.join(os.path.dirname(__file__), 'templates/medlem.html') 
     self.response.out.write(template.render(path, template_values))
+    
+#class SearchIndexing(webapp.RequestHandler):
+#    """Handler for full text indexing task."""
+#    def post(self):
+#      key_str = self.request.get('key')
+#      only_index_str = self.request.get('only_index')
+#      if key_str:
+#        key = db.Key(key_str)
+#        entity = db.get(key)
+#        if not entity:
+#          self.response.set_status(200)   # Clear task because it's a bad key
+#        else:
+#          only_index = only_index_str.split(',') if only_index_str else None
+#          entity.index()
 
 application = webapp.WSGIApplication([ ('/', MainHandler),
                                        (LOGIN_URL, LoginHandler),
