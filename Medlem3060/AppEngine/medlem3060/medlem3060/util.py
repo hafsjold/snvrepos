@@ -14,6 +14,7 @@ import sha
 import time
 import logging
 
+
 COOKIE_NAME = 'medlem3060_session'
 LOGIN_URL = '/login'
 PUBLIC_URL = ['/login', '/nytmedlem']

@@ -2,6 +2,7 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
 from google.appengine.ext import db 
 from google.appengine.ext.webapp import template
+from google.appengine.api import users
 from google.appengine.api.labs import taskqueue
 
 import logging
@@ -217,6 +218,10 @@ class MedlemHandler(webapp.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'templates/medlem.html') 
     self.response.out.write(template.render(path, template_values))
     
+class LogoffHandler(webapp.RequestHandler):
+  def get(self):
+    self.redirect(users.create_logout_url("/"))
+
 class SearchIndexing(webapp.RequestHandler):
     """Handler for full text indexing task."""
     def post(self):
@@ -231,6 +236,7 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/adm/medlem.*', MedlemHandler),
                                        ('/adm/findmedlem', FindmedlemHandler),
                                        ('/rest/.*', rest.Dispatcher),
+                                       ('/logoff', LogoffHandler),
                                        ('/_ah/queue/default', SearchIndexing) ],
                                      debug=True )
 
