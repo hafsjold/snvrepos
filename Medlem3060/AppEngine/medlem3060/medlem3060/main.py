@@ -2,6 +2,7 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
 from google.appengine.ext import db 
 from google.appengine.ext.webapp import template
+from google.appengine.api.labs import taskqueue
 
 import logging
 import rest
@@ -11,8 +12,6 @@ import re
 from util import TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
 
 webapp.template.register_template_library('templatetags.medlem3060_extras')
-rest.Dispatcher.base_url = "/rest"
-rest.Dispatcher.add_models_from_module(__name__)
 
 class User(db.Model): 
   account = db.StringProperty()
@@ -102,6 +101,7 @@ class FindmedlemHandler(webapp.RequestHandler):
     }
     path = os.path.join(os.path.dirname(__file__), 'templates/findmedlem.html') 
     self.response.out.write(template.render(path, template_values))
+    ##taskqueue.add(url='/_ah/queue/default', params={'Nr':'all'})
   
   def post(self):
     SNr = self.request.get('SNr').strip() 
@@ -120,9 +120,6 @@ class FindmedlemHandler(webapp.RequestHandler):
       query = query.filter('Tags =', 'B%s' % (SBy.lower()))
  
     medlem_list = query.fetch(1000)
-    
-    #for medlem in medlem_list:
-    #  medlem.setNameTags()
  
     template_values = {
       'medlem_list': medlem_list,
@@ -220,26 +217,25 @@ class MedlemHandler(webapp.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'templates/medlem.html') 
     self.response.out.write(template.render(path, template_values))
     
-#class SearchIndexing(webapp.RequestHandler):
-#    """Handler for full text indexing task."""
-#    def post(self):
-#      key_str = self.request.get('key')
-#      only_index_str = self.request.get('only_index')
-#      if key_str:
-#        key = db.Key(key_str)
-#        entity = db.get(key)
-#        if not entity:
-#          self.response.set_status(200)   # Clear task because it's a bad key
-#        else:
-#          only_index = only_index_str.split(',') if only_index_str else None
-#          entity.index()
+class SearchIndexing(webapp.RequestHandler):
+    """Handler for full text indexing task."""
+    def post(self):
+      query = Medlem.all()
+      medlem_list = query.fetch(1000)
+      for medlem in medlem_list:
+        medlem.setNameTags()
+
 
 application = webapp.WSGIApplication([ ('/', MainHandler),
                                        (LOGIN_URL, LoginHandler),
                                        ('/adm/medlem.*', MedlemHandler),
                                        ('/adm/findmedlem', FindmedlemHandler),
-                                       ('/rest/.*', rest.Dispatcher) ],
+                                       ('/rest/.*', rest.Dispatcher),
+                                       ('/_ah/queue/default', SearchIndexing) ],
                                      debug=True )
+
+rest.Dispatcher.base_url = "/rest"
+rest.Dispatcher.add_models_from_module(__name__)
 
 def templateTest(myvar):
   return myvar

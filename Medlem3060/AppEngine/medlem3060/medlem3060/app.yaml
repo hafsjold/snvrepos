@@ -4,6 +4,10 @@ runtime: python
 api_version: 1
 
 handlers:
+- url: /_ah/queue/default
+  script: main.py
+  login: admin
+
 - url: /images
   static_dir: images
   
@@ -13,7 +17,7 @@ handlers:
 - url: /w3c
   static_dir: w3c
 
-- url: /adm
+- url: /adm/.*
   script: main.py
   login: admin
   

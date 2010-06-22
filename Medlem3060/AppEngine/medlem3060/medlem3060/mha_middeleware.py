@@ -1,6 +1,7 @@
 import logging
 from google.appengine.ext.webapp import template
 import os
+import re
 from util import AuthRest, COOKIE_NAME, LOGIN_URL, PUBLIC_URL, CreateCookieData, GetUserInfo, SetUserInfoCookie
 
 class Mha_Middeleware: 
@@ -19,12 +20,13 @@ class Mha_Middeleware:
     except:
       signed = False
     
-    googleAuth = True
+    user_is_admin = False
     try:
-      test_googleAuth = environ['USER_ID']
+      if environ['USER_IS_ADMIN'] == '1':
+        user_is_admin = True
     except:
-      googleAuth = False    
-    
+      user_is_admin = False
+
     try:
       userAuth, user  = GetUserInfo(environ['HTTP_COOKIE'])
     except:
@@ -33,10 +35,25 @@ class Mha_Middeleware:
     environ['userAuth'] = userAuth
     environ['user3060'] = user
     
-    logging.info('MHA-Request-Logging googleAuth: %s, signed: %s, userAuth: %s, user: %s' % (googleAuth, signed, userAuth, user))
+    logging.info('MHA-Request-Logging user_is_admin: %s, signed: %s, userAuth: %s, user: %s' % (user_is_admin, signed, userAuth, user))
     
-    if googleAuth != True:
-      if signed != True:
+    mo = re.match("^/rest/.*", environ['PATH_INFO'])    
+    if mo:
+      logging.info('re.match: True')
+      if user_is_admin != True:
+        try:
+          http_timestamp = environ['HTTP_TIMESTAMP']
+          http_signed = environ['HTTP_SIGNED']
+        except:
+          print 'Status: 404'
+          return
+        
+        if not AuthRest(http_timestamp, http_signed):
+          print 'Status: 400'
+          return
+    else:
+      logging.info('re.match: False')    
+      if user_is_admin != True:
         if userAuth != True:    
           if environ['PATH_INFO'] not in PUBLIC_URL:
             #display login screen
@@ -50,22 +67,10 @@ class Mha_Middeleware:
             path = os.path.join(os.path.dirname(__file__), 'templates/login.html') 
             print template.render(path, template_values)
             return    
-      else:
-        try:
-          http_timestamp = environ['HTTP_TIMESTAMP']
-          http_signed = environ['HTTP_SIGNED']
-        except:
-          print 'Status: 404'
-          return
-        
-        if not AuthRest(http_timestamp, http_signed):
-          print 'Status: 400'
-          return
-    
-    
+
     """This is the RESPONSE side of the middleware"""
     def _start_response(status, headers):
-      if googleAuth != True:
+      if user_is_admin != True:
         if signed != True:
           cookiefound = False
           for key, value in headers:
