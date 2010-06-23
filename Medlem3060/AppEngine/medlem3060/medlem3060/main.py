@@ -13,12 +13,32 @@ import re
 from util import TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
 
 webapp.template.register_template_library('templatetags.medlem3060_extras')
-
+  
+class UserGroup(db.Model): 
+  GroupName = db.StringProperty()
+  
 class User(db.Model): 
   account = db.StringProperty()
   password = db.StringProperty()
   email = db.EmailProperty()
+  UserGroup_key = db.ReferenceProperty(UserGroup, collection_name="usergroup_set")
   
+class Menu(db.Model):
+  Menutext = db.StringProperty()
+  Menulink = db.StringProperty()
+  Target = db.StringProperty()
+  Confirm = db.BooleanProperty()
+  Secure = db.BooleanProperty()
+
+class MenuUserGroupLink(db.Model): 
+  UserGroup_key = db.ReferenceProperty(UserGroup, collection_name="usergroup_menu_set")
+  Menu_key = db.ReferenceProperty(Menu, collection_name="menu_user_set")
+
+class MenuMenuLink(db.Model):
+  Parent_key = db.ReferenceProperty(Menu, collection_name="menu_parent_set")
+  Child_key = db.ReferenceProperty(Menu, collection_name="menu_child_set")
+  Menuseq = db.IntegerProperty()  
+    
 class Medlem(db.Model): 
     Nr = db.IntegerProperty()
     Navn  = db.StringProperty()
