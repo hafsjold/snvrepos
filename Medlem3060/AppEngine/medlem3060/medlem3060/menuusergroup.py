@@ -18,7 +18,7 @@ def createMenuAndUserGroup():
       ,Menulink = None
       ,Target = None
       ,Confirm = False
-      ,Secure = False)
+      ,Secure = True)
   p.put()
 
   c = Menu(key_name = '2'

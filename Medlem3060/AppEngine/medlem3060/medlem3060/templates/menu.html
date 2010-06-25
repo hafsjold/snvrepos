@@ -1,0 +1,64 @@
+﻿<HTML>
+<HEAD>
+<SCRIPT>
+var obj_open = null;
+var SubTree_clik = false;
+var windowindex = 0;
+
+function Confirm(childid)
+{
+  SubTree_clik = true;
+
+  var url;
+  var newwindow;
+  var windowname;
+
+  url = "confirm.php?menuid="+childid;
+  windowname = "Puls3060Adm"+(++windowindex);
+  newwindow = window.open(url,windowname,"status");
+  newwindow.resizeTo(300, 250);
+  newwindow.focus();
+}
+
+function SubTree(url, target)
+{
+  SubTree_clik = true;
+
+  if (target == 'new'){
+    var newwindow;
+    var windowname;
+    windowname= "Puls3060Adm"+(++windowindex);
+    newwindow = window.open(url,windowname,"status, scrollbars, resizeable");
+    newwindow.focus();
+  }
+  else
+    window.parent.document.all.main_window.src = url
+}
+
+function SubTreeShow(obj)
+{
+  if ( SubTree_clik == true )
+  {
+     SubTree_clik = false;
+     return;
+  }
+  if ( obj == obj_open )
+  {
+    obj_open.children[1].outerHTML='';
+    obj_open = null;
+  }
+  else
+  {
+    if ( obj_open != null ){obj_open.children[1].outerHTML='';}
+    obj.insertAdjacentHTML("BeforeEnd", document.all["Tree_"+obj.id].innerHTML);
+    obj_open = obj;
+  }
+}
+</SCRIPT>
+<link REL="STYLESHEET" HREF="/stylesheets/menu.css" TYPE="text/css">
+</HEAD>
+<BODY class=menu>
+{{Tree_Menu}}
+{{Menu}}
+</BODY>
+</HTML>

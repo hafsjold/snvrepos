@@ -21,8 +21,8 @@ class MenuUserGroupLink(db.Model):
   Menu_key = db.ReferenceProperty(Menu, collection_name="menu_user_set")
 
 class MenuMenuLink(db.Model):
-  Parent_key = db.ReferenceProperty(Menu, collection_name="menu_parent_set")
-  Child_key = db.ReferenceProperty(Menu, collection_name="menu_child_set")
+  Parent_key = db.ReferenceProperty(Menu, collection_name="menu_child_set")
+  Child_key = db.ReferenceProperty(Menu, collection_name="menu_parent_set")
   Menuseq = db.IntegerProperty()  
     
 class Medlem(db.Model): 
