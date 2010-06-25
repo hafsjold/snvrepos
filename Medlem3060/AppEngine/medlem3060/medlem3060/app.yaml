@@ -17,7 +17,7 @@ handlers:
 - url: /w3c
   static_dir: w3c
 
-- url: /adm/.*
+- url: /adm.*
   script: main.py
   login: admin
   

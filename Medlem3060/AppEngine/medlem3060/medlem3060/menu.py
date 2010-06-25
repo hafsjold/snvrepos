@@ -3,6 +3,7 @@ from google.appengine.ext.webapp import util
 from google.appengine.ext import db 
 from google.appengine.ext.webapp import template
 from google.appengine.api import users
+from google.appengine.api import memcache
 
 import logging
 import re
@@ -18,17 +19,31 @@ class IndexHandler(webapp.RequestHandler):
     
 class Main2Handler(webapp.RequestHandler):
   def get(self):
-    template_values = {}
+    template_values = {
+      'user' : self.request.environ['USER_EMAIL'],
+      'host' : self.request.environ['HTTP_HOST']
+    }
     path = os.path.join(os.path.dirname(__file__), 'templates/main.html') 
     self.response.out.write(template.render(path, template_values))
     
 class MenuHandler(webapp.RequestHandler):
   def get(self):
+    UserGroup_key = db.Key.from_path('UserGroup','1')
+    menu = memcache.get(UserGroup_key.id_or_name(), namespace='menu')
+    if menu is None:
+      menu =  self.getMenu(UserGroup_key)
+      memcache.add(UserGroup_key.id_or_name(), menu, namespace='menu')
+    template_values = {
+      'menu': menu
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/menu.html') 
+    self.response.out.write(template.render(path, template_values))
+
+  def getMenu(self, UserGroup_key):
     countMenu = 0
     tmpMenu = ''
     tmpTree_Menu = ''
     wrkTree_Menu = ''
-    UserGroup_key = db.Key.from_path('UserGroup','1')
     
     for objMenu in Menu.all():
       logging.info('Menutext: %s , menu_parent_set.count %s, menu_child_set.count %s' % (objMenu.Menutext, objMenu.menu_parent_set.count(), objMenu.menu_child_set.count()))
@@ -56,7 +71,7 @@ class MenuHandler(webapp.RequestHandler):
               childfound = True
             
             if childfound:
-              wrkTree_Menu += '  <tr><td><p ONCLICK="SubTree(' + "'" + objChildMenu.Child_key.Menulink + "', '" + objChildMenu.Child_key.Target + "'" + ')">&nbsp;<a href="' + '#' + '">' + objChildMenu.Child_key.Menutext + '</a></p></tr></td>\n'
+              wrkTree_Menu += '  <TR><TD><P ONCLICK="SubTree(' + "'" + objChildMenu.Child_key.Menulink + "', '" + objChildMenu.Child_key.Target + "'" + ')">&nbsp;<A HREF="' + '#' + '">' + objChildMenu.Child_key.Menutext + '</A></P></TR></TD>\n'
             
           if wrkTree_Menu == '':
             continue
@@ -65,12 +80,12 @@ class MenuHandler(webapp.RequestHandler):
         countMenu += 1
         if countMenu == 1: 
           tmpMenu += '<DIV ID="MainTree">\n'
-          tmpMenu +=  '<table border="0" width="100%" bordercolorlight="#FFFF99" bordercolordark="#FFFF99"  cellspacing="0" style="padding-top: 0; padding-bottom: 0">\n'
+          tmpMenu +=  '<TABLE BORDER="0" WIDTH="100%" BORDERCOLORLIGHT="#FFFF99" BORDERCOLORDARK="#FFFF99"  CELLSPACING="0" STYLE="padding-top: 0; padding-bottom: 0">\n'
         
         """Level-0 Start"""
         tmpTree_Menu += '<DIV ID="Tree_Menu' + objMenu.key().id_or_name() + '" STYLE="display: none">\n'
-        tmpTree_Menu += '<table border="0" width="100%" bordercolorlight="#FFFF99" bordercolordark="#FFFF99"  cellspacing="0" style="padding-top: 0; padding-bottom: 0">\n'
-        tmpMenu += '  <tr><td><p ID="Menu' + objMenu.key().id_or_name() + '" ONCLICK="SubTreeShow(this)"><a href="#">' + objMenu.Menutext + '</a></p></tr></td>\n'
+        tmpTree_Menu += '<TABLE BORDER="0" WIDTH="100%" BORDERCOLORLIGHT="#FFFF99" BORDERCOLORDARK="#FFFF99"  CELLSPACING="0" STYLE="padding-top: 0; padding-bottom: 0">\n'
+        tmpMenu += '  <TR><TD><P ID="Menu' + objMenu.key().id_or_name() + '" ONCLICK="SubTreeShow(this)"><A HREF="#">' + objMenu.Menutext + '</A></P></TR></TD>\n'
         
         tmpTree_Menu += wrkTree_Menu
         
@@ -83,9 +98,4 @@ class MenuHandler(webapp.RequestHandler):
     if countMenu > 0:
       tmpMenu += "</TABLE></DIV>\n"    
     
-    template_values = {
-      'Tree_Menu': tmpTree_Menu,
-      'Menu':tmpMenu
-    }
-    path = os.path.join(os.path.dirname(__file__), 'templates/menu.html') 
-    self.response.out.write(template.render(path, template_values))
+    return tmpMenu + tmpTree_Menu
