@@ -49,6 +49,20 @@ def createMenuAndUserGroup():
      ,Menuseq = 2)  
   l.put()
 
+  c = Menu(key_name = '4101'
+      ,Menutext = 'Create Menu'
+      ,Menulink = '/createmenu'
+      ,Target = None
+      ,Confirm = False
+      ,Secure = True)
+  c.put()
+
+  l = MenuMenuLink(key_name = '102'
+     ,Parent_key = p
+     ,Child_key = c
+     ,Menuseq = 3)  
+  l.put()
+  
   p = Menu(key_name = '201'
       ,Menutext = 'Logoff'
       ,Menulink = '/logoff'
@@ -75,4 +89,9 @@ def createMenuAndUserGroup():
   mu = MenuUserGroupLink(key_name = '3'
        ,UserGroup_key = g
        ,Menu_key = db.Key.from_path('Menu','33'))
-  mu.put()  
+  mu.put() 
+      
+  mu = MenuUserGroupLink(key_name = '4'
+       ,UserGroup_key = g
+       ,Menu_key = db.Key.from_path('Menu','4101'))
+  mu.put()    
