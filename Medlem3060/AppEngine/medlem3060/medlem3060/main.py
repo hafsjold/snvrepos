@@ -13,7 +13,7 @@ import re
 from models import UserGroup, User, Menu, MenuMenuLink, MenuUserGroupLink, Medlem, Medlemlog
 from util import TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
 from menuusergroup import deleteMenuAndUserGroup, createMenuAndUserGroup
-from menu import IndexHandler, Main2Handler, MenuHandler
+from menu import MenuHandler
 
 webapp.template.register_template_library('templatetags.medlem3060_extras')
 
@@ -203,9 +203,7 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        (LOGIN_URL, LoginHandler),
                                        ('/adm/medlem.*', MedlemHandler),
                                        ('/adm/findmedlem', FindmedlemHandler),
-                                       ('/adm', IndexHandler),
-                                       ('/adm/main', Main2Handler),
-                                       ('/adm/menu', MenuHandler),
+                                       ('/adm', MenuHandler),
                                        ('/rest/.*', rest.Dispatcher),
                                        ('/logoff', LogoffHandler),
                                        ('/createmenu', CreateMenu),
