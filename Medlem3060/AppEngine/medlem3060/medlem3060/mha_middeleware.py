@@ -11,8 +11,8 @@ class Mha_Middeleware:
  
   """This is the REQUEST side of the middleware"""
   def __call__(self, environ, start_response):
-    for key, value in environ.iteritems():
-      logging.info('%s: %s' % (key, value))
+    #for key, value in environ.iteritems():
+    #  logging.info('%s: %s' % (key, value))
     
     signed = True
     try:

@@ -49,6 +49,14 @@ def createMenuAndUserGroup():
      ,Menuseq = 2)  
   l.put()
 
+  p = Menu(key_name = '201'
+      ,Menutext = 'Logoff'
+      ,Menulink = '/logoff'
+      ,Target = None
+      ,Confirm = False
+      ,Secure = False)
+  p.put()
+
   """ UserGroup """
   g = UserGroup(key_name = '1'
       ,Menutext = 'Admin')

@@ -29,10 +29,11 @@ class Main2Handler(webapp.RequestHandler):
 class MenuHandler(webapp.RequestHandler):
   def get(self):
     UserGroup_key = db.Key.from_path('UserGroup','1')
-    menu = memcache.get(UserGroup_key.id_or_name(), namespace='menu')
+    menu = None
+    #menu = memcache.get(UserGroup_key.id_or_name(), namespace='menu')
     if menu is None:
       menu =  self.getMenu(UserGroup_key)
-      memcache.add(UserGroup_key.id_or_name(), menu, namespace='menu')
+      #memcache.add(UserGroup_key.id_or_name(), menu, namespace='menu')
     template_values = {
       'menu': menu
     }
@@ -55,6 +56,8 @@ class MenuHandler(webapp.RequestHandler):
             continue
         if objMenu.menu_child_set.count() == 0:
           """No child menues """
+          if objMenu.Menulink:
+            tmpMenu += '  <TR><TD><P ONCLICK="SubTree(' + "'" + objMenu.Menulink + "', '" + 'x' + "'" + ')"><A HREF="' + '#' + '">' + objMenu.Menutext + '</A></P></TR></TD>\n'
           continue
         else:
           wrkTree_Menu = ''

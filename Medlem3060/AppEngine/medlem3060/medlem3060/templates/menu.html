@@ -31,8 +31,10 @@ function SubTree(url, target)
     newwindow = window.open(url,windowname,"status, scrollbars, resizeable");
     newwindow.focus();
   }
-  else
-    window.parent.document.all.main_window.src = url
+  else{
+    //window.parent.document.all.main_window.src = url;
+    window.parent.src = url;
+  }
 }
 
 function SubTreeShow(obj)
