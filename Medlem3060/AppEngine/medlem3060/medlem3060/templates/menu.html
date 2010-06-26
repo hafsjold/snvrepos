@@ -33,7 +33,8 @@ function SubTree(url, target)
   }
   else{
     //window.parent.document.all.main_window.src = url;
-    window.parent.src = url;
+    window.close();
+    window.open(url);
   }
 }
 
@@ -59,7 +60,44 @@ function SubTreeShow(obj)
 </SCRIPT>
 <LINK REL="STYLESHEET" HREF="/stylesheets/menu.css" TYPE="text/css">
 </HEAD>
-<BODY CLASS=menu>
-{{menu}}
+<BODY STYLE="padding: 0; margin: 0">
+<TABLE BORDER="0" WIDTH="100%" HEIGHT="100%" BORDERCOLORLIGHT="#FFFF99" BORDERCOLORDARK="#FFFF99"  CELLSPACING="0">
+  <TD CLASS=menu WIDTH="20%" HEIGHT="100%" VALIGN="top" ALIGN="left" STYLE="padding: 5; margin: 0">
+  <DIV ID="menu">
+    {% block menu %}
+      {{menu}}
+    {% endblock %}
+  </DIV>
+  </TD>
+  <TD CLASS=admin VALIGN="top" ALIGN="left" STYLE="padding: 5; margin: 0">
+  <DIV ID="content">
+    {% block content %}
+      <pre>
+      </pre>
+      <center>
+        <a><img src=/images/puls3060logo.gif border=0></a>
+        <h1 class=login>Version 0.2.0</h1>
+        <p>Licensed to<p>
+          <b> 
+            Puls 3060<br>
+            co/Mogens Hafsjold<br>
+            Nørremarken 31<br>
+	          Espergærde
+          </b>
+        <p>
+        <table border=0>
+          <tr>
+            <th align=right>User</th>
+              <td>{{user}}</td>
+            </tr><tr>
+            <th align=right>Host</th>
+            <td>{{host}}</td>
+          </tr>
+        </table>
+      </center>
+    {% endblock %}
+  </DIV>
+  </TD>
+</TABLE>
 </BODY>
 </HTML>

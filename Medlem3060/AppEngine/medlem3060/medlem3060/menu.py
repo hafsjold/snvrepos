@@ -35,7 +35,9 @@ class MenuHandler(webapp.RequestHandler):
       menu =  self.getMenu(UserGroup_key)
       #memcache.add(UserGroup_key.id_or_name(), menu, namespace='menu')
     template_values = {
-      'menu': menu
+      'menu': menu,
+      'user' : self.request.environ['USER_EMAIL'],
+      'host' : self.request.environ['HTTP_HOST']
     }
     path = os.path.join(os.path.dirname(__file__), 'templates/menu.html') 
     self.response.out.write(template.render(path, template_values))

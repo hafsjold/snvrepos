@@ -59,7 +59,18 @@ body.admin {
     color: black;
 }
 
+td.admin {
+    background-color: #FFFFFF;
+    color: black;
+}
+
 body.menu {
+	background-color: #F0F000;
+	font-family: "Times New Roman", Times, serif;
+	color: Black;
+}
+
+td.menu {
 	background-color: #CFE3CC;
 	font-family: "Times New Roman", Times, serif;
 	color: Black;
