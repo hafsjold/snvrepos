@@ -19,7 +19,7 @@ handlers:
 
 - url: /adm.*
   script: main.py
-  login: admin
+  login: required
   
 - url: .*
   script: main.py

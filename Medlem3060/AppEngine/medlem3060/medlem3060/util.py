@@ -13,12 +13,32 @@ from tlslite import X509
 import sha
 import time
 import logging
-
+import re
 
 COOKIE_NAME = 'medlem3060_session'
 LOGIN_URL = '/login'
-PUBLIC_URL = ['/login', '/nytmedlem']
+PUBLIC_URL = ['/', '/login']
 
+def AuthUserGroupPath(path, usergroup):
+  authpath = [u'/adm']
+  if usergroup == '0':
+    authpath = [u'/adm'
+    ,u'/logoff'
+    ]
+  elif usergroup == '1':  
+    authpath = [u'/adm'
+      ,u'/logoff'
+      ,u'/adm/findmedlem'
+      ,u'/adm/medlem/[0-9]+'
+      ,u'/createmenu'  
+    ]
+  logging.info('AuthUserGroupPath path: %s, authpath: %s' % (path, authpath))
+  for p in authpath[:]:
+    mo = re.match(p + '$', path)
+    if mo:
+      return True
+  return False
+  
 def AuthRest(http_timestamp, http_signed):
   #logging.info('%s: %s' % ('http_timestamp', http_timestamp))
   #logging.info('%s: %s' % ('http_signed', http_signed))

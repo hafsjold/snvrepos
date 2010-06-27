@@ -1,5 +1,5 @@
 from google.appengine.ext import db 
-from models import UserGroup, Menu, MenuMenuLink, MenuUserGroupLink
+from models import UserGroup, User, Menu, MenuMenuLink, MenuUserGroupLink
 
 def deleteMenuAndUserGroup():
   for m in MenuUserGroupLink.all():
@@ -72,9 +72,19 @@ def createMenuAndUserGroup():
   p.put()
 
   """ UserGroup """
-  g = UserGroup(key_name = '1'
-      ,Menutext = 'Admin')
+  g = UserGroup(key_name = '0'
+      ,GroupName = 'Unknown')
   g.put()  
+
+  g = UserGroup(key_name = '1'
+      ,GroupName = 'Admin')
+  g.put()
+
+  qry = User.all().filter('email ==', 'mogens.hafsjold@gmail.com')
+  if qry.count() == 1:
+    u = qry.fetch(1)[0]
+    u.UserGroup_key = db.Key.from_path('UserGroup','1')
+    u.put()
   
   mu = MenuUserGroupLink(key_name = '1'
        ,UserGroup_key = g

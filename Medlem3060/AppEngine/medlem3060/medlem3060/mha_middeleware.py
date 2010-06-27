@@ -1,8 +1,12 @@
 import logging
 from google.appengine.ext.webapp import template
+from google.appengine.ext import db 
+from google.appengine.api import memcache
+
 import os
 import re
-from util import AuthRest, COOKIE_NAME, LOGIN_URL, PUBLIC_URL, CreateCookieData, GetUserInfo, SetUserInfoCookie
+from util import AuthRest, COOKIE_NAME, LOGIN_URL, PUBLIC_URL, CreateCookieData, GetUserInfo, SetUserInfoCookie, AuthUserGroupPath
+from models import UserGroup, User
 
 class Mha_Middeleware: 
 
@@ -11,15 +15,22 @@ class Mha_Middeleware:
  
   """This is the REQUEST side of the middleware"""
   def __call__(self, environ, start_response):
-    #for key, value in environ.iteritems():
-    #  logging.info('%s: %s' % (key, value))
+    for key, value in environ.iteritems():
+      logging.info('%s: %s' % (key, value))
     
     signed = True
     try:
       test_signed = environ['HTTP_SIGNED']
     except:
       signed = False
-    
+
+    google_user_id = False
+    try:
+      if environ['USER_ID']:
+        google_user_id = True
+    except:
+      google_user_id = False
+      
     user_is_admin = False
     try:
       if environ['USER_IS_ADMIN'] == '1':
@@ -34,8 +45,9 @@ class Mha_Middeleware:
     
     environ['userAuth'] = userAuth
     environ['user3060'] = user
+    environ['usergroup'] = '0'
     
-    logging.info('MHA-Request-Logging user_is_admin: %s, signed: %s, userAuth: %s, user: %s' % (user_is_admin, signed, userAuth, user))
+    logging.info('MHA-Request-Logging google_user_id: %s, user_is_admin: %s, signed: %s, userAuth: %s, user: %s' % (google_user_id, user_is_admin, signed, userAuth, user))
     
     mo = re.match("^/rest/.*", environ['PATH_INFO'])    
     if mo:
@@ -53,7 +65,7 @@ class Mha_Middeleware:
           return
     else:
       logging.info('re.match: False')    
-      if user_is_admin != True:
+      if google_user_id != True:
         if userAuth != True:    
           if environ['PATH_INFO'] not in PUBLIC_URL:
             #display login screen
@@ -67,10 +79,34 @@ class Mha_Middeleware:
             path = os.path.join(os.path.dirname(__file__), 'templates/login.html') 
             print template.render(path, template_values)
             return    
+      else:
+        """Find UserGroup"""
+        q = User.all().filter('account ==', environ['USER_ID'])
+        if q.count() == 0:
+          u = User(key_name = environ['USER_ID']
+             ,account = environ['USER_ID']
+             ,password = None
+             ,email = environ['USER_EMAIL']
+             ,UserGroup_key = db.Key.from_path('UserGroup','0'))
+          u.put()
+          usergroup = '0'
+        else:
+          u = q.fetch(1)[0]
+          usergroup = u.UserGroup_key.key().id_or_name()
+
+        environ['usergroup'] = usergroup
+        logging.info('usergroup %s' % (usergroup))
+
+        if not AuthUserGroupPath(environ['PATH_INFO'], usergroup):
+          print 'Status: 400'
+          return
+        else:
+          pass
+
 
     """This is the RESPONSE side of the middleware"""
     def _start_response(status, headers):
-      if user_is_admin != True:
+      if google_user_id != True:
         if signed != True:
           cookiefound = False
           for key, value in headers:

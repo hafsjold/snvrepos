@@ -21,7 +21,8 @@ webapp.template.register_template_library('templatetags.medlem3060_extras')
 class MainHandler(webapp.RequestHandler):
     def get(self):
         #TestCrypt('Mogens Hafsjold')
-        self.response.out.write('Hello medlem3060!')
+        #self.response.out.write('Hello medlem3060!')
+        self.redirect("/adm")
         
 class LoginHandler(webapp.RequestHandler):
   def get(self):

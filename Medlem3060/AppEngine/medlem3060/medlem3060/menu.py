@@ -13,14 +13,23 @@ from models import UserGroup, User, Menu, MenuMenuLink, MenuUserGroupLink
     
 class MenuHandler(webapp.RequestHandler):
   def get(self):
-    UserGroup_key = db.Key.from_path('UserGroup','1')
+    usergroup = '0'
+    try:
+      usergroup = self.request.environ['usergroup']
+    except:
+      usergroup = '0'
+    
+    UserGroup_key = db.Key.from_path('UserGroup',usergroup)
     menu = None
     menu = memcache.get(UserGroup_key.id_or_name(), namespace='menu')
-    if menu is None:
-      menu =  self.getMenu(UserGroup_key)
+    authpath = None
+    authpath = memcache.get(UserGroup_key.id_or_name(), namespace='authpath')
+    if menu is None or authpath is None:
+      menu, authpath =  self.getMenu(UserGroup_key)
       memcache.set(UserGroup_key.id_or_name(), menu, namespace='menu')
+      memcache.set(UserGroup_key.id_or_name(), authpath, namespace='authpath')
     template_values = {
-      'menu': menu,
+      'menu': menu, 
       'user' : self.request.environ['USER_EMAIL'],
       'host' : self.request.environ['HTTP_HOST']
     }
@@ -32,6 +41,7 @@ class MenuHandler(webapp.RequestHandler):
     tmpMenu = ''
     tmpTree_Menu = ''
     wrkTree_Menu = ''
+    wrkPath = []
     
     for objMenu in Menu.all():
       logging.info('Menutext: %s , menu_parent_set.count %s, menu_child_set.count %s' % (objMenu.Menutext, objMenu.menu_parent_set.count(), objMenu.menu_child_set.count()))
@@ -44,6 +54,7 @@ class MenuHandler(webapp.RequestHandler):
         if objMenu.menu_child_set.count() == 0:
           """No child menues """
           if objMenu.Menulink:
+            wrkPath.append(objMenu.Menulink)
             if objMenu.Target == 'new':
               tmpMenu += '        <TR><TD><P ONCLICK="SubTree(' + "'" + objMenu.Menulink + "', '" + 'new' + "'" + ')"><A HREF="' + '#' + '">' + objMenu.Menutext + '</A></P></TD></TR>\n'
             else:
@@ -64,6 +75,7 @@ class MenuHandler(webapp.RequestHandler):
               childfound = True
             
             if childfound:
+              wrkPath.append(objChildMenu.Child_key.Menulink)
               if objChildMenu.Child_key.Target == 'new':
                 wrkTree_Menu += '        <TR><TD><P ONCLICK="SubTree(' + "'" + objChildMenu.Child_key.Menulink + "', '" + objChildMenu.Child_key.Target + "'" + ')">&nbsp;<A HREF="' + '#' + '">' + objChildMenu.Child_key.Menutext + '</A></P></TD></TR>\n'
               else:
@@ -96,4 +108,4 @@ class MenuHandler(webapp.RequestHandler):
       tmpMenu += "      </TABLE>\n"
       tmpMenu += "    </DIV>\n"
     
-    return tmpMenu + tmpTree_Menu
+    return tmpMenu + tmpTree_Menu, wrkPath
