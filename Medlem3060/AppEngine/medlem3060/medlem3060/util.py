@@ -31,7 +31,8 @@ def AuthUserGroupPath(path, usergroup):
       ,u'/adm/findmedlem'
       ,u'/adm/medlem'
       ,u'/adm/medlem/[0-9]+'
-      ,u'/createmenu'  
+      ,u'/teknik/createmenu'
+      ,u'/teknik/flushcache'      
     ]
   logging.info('AuthUserGroupPath path: %s, authpath: %s' % (path, authpath))
   for p in authpath[:]:

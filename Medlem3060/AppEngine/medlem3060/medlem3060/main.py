@@ -200,7 +200,12 @@ class CreateMenu(webapp.RequestHandler):
       createMenuAndUserGroup()
       memcache.flush_all()
       self.redirect("/adm")
-     
+      
+class FlushCache(webapp.RequestHandler):
+    """Handler for Flush Cache"""
+    def get(self):
+      memcache.flush_all()
+      self.redirect("/adm")
 
 application = webapp.WSGIApplication([ ('/', MainHandler),
                                        (LOGIN_URL, LoginHandler),
@@ -209,7 +214,8 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/adm', MenuHandler),
                                        ('/rest/.*', rest.Dispatcher),
                                        ('/logoff', LogoffHandler),
-                                       ('/createmenu', CreateMenu),
+                                       ('/teknik/createmenu', CreateMenu),
+                                       ('/teknik/flushcache', FlushCache),
                                        ('/_ah/queue/default', SearchIndexing) ],
                                      debug=True )
 

@@ -21,13 +21,11 @@ def createMenuAndUserGroup():
   
   c = Menu(Menutext = 'Medlems Opdatering', Menulink = '/adm/findmedlem', Target = 'new', Confirm = False)
   c.put()
-
   l = MenuMenuLink(Parent_key = p, Child_key = c, Menuseq = 1)  
   l.put()
 
   c = Menu(Menutext = 'Opret nyt Medlem', Menulink = '/adm/medlem', Target = 'new', Confirm = False)
   c.put()
-
   l = MenuMenuLink(Parent_key = p, Child_key = c, Menuseq = 2)  
   l.put()
 
@@ -37,10 +35,14 @@ def createMenuAndUserGroup():
   l = MenuMenuLink(Parent_key = root, Child_key = p, Menuseq = 2)  
   l.put()
   
-  c = Menu(Menutext = 'Create Menu', Menulink = '/createmenu', Target = None, Confirm = False)
+  c = Menu(Menutext = 'Create Menu', Menulink = '/teknik/createmenu', Target = None, Confirm = False)
   c.put()
-
   l = MenuMenuLink(Parent_key = p, Child_key = c, Menuseq = 1)  
+  l.put()
+
+  c = Menu(Menutext = 'Flush Cache', Menulink = '/teknik/flushcache', Target = None, Confirm = False)
+  c.put()
+  l = MenuMenuLink(Parent_key = p, Child_key = c, Menuseq = 2)  
   l.put()
   
   p = Menu(Menutext = 'Logoff', Menulink = '/logoff', Target = None, Confirm = False)

@@ -17,6 +17,10 @@ handlers:
 - url: /w3c
   static_dir: w3c
 
+- url: /teknik.*
+  script: main.py
+  login: admin
+  
 - url: /adm.*
   script: main.py
   login: required
