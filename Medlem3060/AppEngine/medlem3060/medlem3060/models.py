@@ -14,11 +14,6 @@ class Menu(db.Model):
   Menulink = db.StringProperty()
   Target = db.StringProperty()
   Confirm = db.BooleanProperty()
-  Secure = db.BooleanProperty()
-
-class MenuUserGroupLink(db.Model): 
-  UserGroup_key = db.ReferenceProperty(UserGroup, collection_name="usergroup_menu_set")
-  Menu_key = db.ReferenceProperty(Menu, collection_name="menu_user_set")
 
 class MenuMenuLink(db.Model):
   Parent_key = db.ReferenceProperty(Menu, collection_name="menu_child_set")

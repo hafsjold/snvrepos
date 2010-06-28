@@ -11,7 +11,7 @@ import rest
 import os
 import re
 
-from models import UserGroup, User, Menu, MenuMenuLink, MenuUserGroupLink, Medlem, Medlemlog
+from models import UserGroup, User, Menu, MenuMenuLink, Medlem, Medlemlog
 from util import TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
 from menuusergroup import deleteMenuAndUserGroup, createMenuAndUserGroup
 from menu import MenuHandler

@@ -1,9 +1,7 @@
 from google.appengine.ext import db 
-from models import UserGroup, User, Menu, MenuMenuLink, MenuUserGroupLink
+from models import UserGroup, User, Menu, MenuMenuLink
 
 def deleteMenuAndUserGroup():
-  for m in MenuUserGroupLink.all():
-    m.delete()
   for m in MenuMenuLink.all():
     m.delete()
   for m in Menu.all():
@@ -13,71 +11,48 @@ def deleteMenuAndUserGroup():
 
 def createMenuAndUserGroup():
   """ Menu """
-  p = Menu(key_name = '1'
-      ,Menutext = 'Medlemmer'
-      ,Menulink = None
-      ,Target = None
-      ,Confirm = False
-      ,Secure = True)
+  root = Menu(Menutext = 'root', Menulink = None, Target = None)
+  root.put()
+  
+  p = Menu(Menutext = 'Medlemmer', Menulink = None, Target = None)
   p.put()
-
-  c = Menu(key_name = '2'
-      ,Menutext = 'Medlems Opdatering'
-      ,Menulink = '/adm/findmedlem'
-      ,Target = 'new'
-      ,Confirm = False
-      ,Secure = True)
-  c.put()
-
-  l = MenuMenuLink(key_name = '1'
-      ,Parent_key = p
-      ,Child_key = c
-      ,Menuseq = 1)  
-  l.put()
-
-  c = Menu(key_name = '33'
-      ,Menutext = 'Opret nyt Medlem'
-      ,Menulink = '/adm/medlem'
-      ,Target = 'new'
-      ,Confirm = False
-      ,Secure = True)
-  c.put()
-
-  l = MenuMenuLink(key_name = '3'
-     ,Parent_key = p
-     ,Child_key = c
-     ,Menuseq = 2)  
-  l.put()
-
-  c = Menu(key_name = '4101'
-      ,Menutext = 'Create Menu'
-      ,Menulink = '/createmenu'
-      ,Target = None
-      ,Confirm = False
-      ,Secure = True)
-  c.put()
-
-  l = MenuMenuLink(key_name = '102'
-     ,Parent_key = p
-     ,Child_key = c
-     ,Menuseq = 3)  
+  l = MenuMenuLink(Parent_key = root, Child_key = p, Menuseq = 1)  
   l.put()
   
-  p = Menu(key_name = '201'
-      ,Menutext = 'Logoff'
-      ,Menulink = '/logoff'
-      ,Target = None
-      ,Confirm = False
-      ,Secure = False)
-  p.put()
+  c = Menu(Menutext = 'Medlems Opdatering', Menulink = '/adm/findmedlem', Target = 'new', Confirm = False)
+  c.put()
 
+  l = MenuMenuLink(Parent_key = p, Child_key = c, Menuseq = 1)  
+  l.put()
+
+  c = Menu(Menutext = 'Opret nyt Medlem', Menulink = '/adm/medlem', Target = 'new', Confirm = False)
+  c.put()
+
+  l = MenuMenuLink(Parent_key = p, Child_key = c, Menuseq = 2)  
+  l.put()
+
+
+  p = Menu(Menutext = 'Teknik', Menulink = None, Target = None)
+  p.put()
+  l = MenuMenuLink(Parent_key = root, Child_key = p, Menuseq = 2)  
+  l.put()
+  
+  c = Menu(Menutext = 'Create Menu', Menulink = '/createmenu', Target = None, Confirm = False)
+  c.put()
+
+  l = MenuMenuLink(Parent_key = p, Child_key = c, Menuseq = 1)  
+  l.put()
+  
+  p = Menu(Menutext = 'Logoff', Menulink = '/logoff', Target = None, Confirm = False)
+  p.put()
+  l = MenuMenuLink(Parent_key = root, Child_key = p, Menuseq = 99)  
+  l.put()
+  
   """ UserGroup """
-  g = UserGroup(key_name = '0'
-      ,GroupName = 'Unknown')
+  g = UserGroup(key_name = '0', GroupName = 'Unknown')
   g.put()  
 
-  g = UserGroup(key_name = '1'
-      ,GroupName = 'Admin')
+  g = UserGroup(key_name = '1', GroupName = 'Admin')
   g.put()
 
   qry = User.all().filter('email ==', 'mogens.hafsjold@gmail.com')
@@ -85,23 +60,3 @@ def createMenuAndUserGroup():
     u = qry.fetch(1)[0]
     u.UserGroup_key = db.Key.from_path('UserGroup','1')
     u.put()
-  
-  mu = MenuUserGroupLink(key_name = '1'
-       ,UserGroup_key = g
-       ,Menu_key = db.Key.from_path('Menu','1'))
-  mu.put()
-    
-  mu = MenuUserGroupLink(key_name = '2'
-       ,UserGroup_key = g
-       ,Menu_key = db.Key.from_path('Menu','2'))
-  mu.put()  
-      
-  mu = MenuUserGroupLink(key_name = '3'
-       ,UserGroup_key = g
-       ,Menu_key = db.Key.from_path('Menu','33'))
-  mu.put() 
-      
-  mu = MenuUserGroupLink(key_name = '4'
-       ,UserGroup_key = g
-       ,Menu_key = db.Key.from_path('Menu','4101'))
-  mu.put()    

@@ -29,6 +29,7 @@ def AuthUserGroupPath(path, usergroup):
     authpath = [u'/adm'
       ,u'/logoff'
       ,u'/adm/findmedlem'
+      ,u'/adm/medlem'
       ,u'/adm/medlem/[0-9]+'
       ,u'/createmenu'  
     ]
