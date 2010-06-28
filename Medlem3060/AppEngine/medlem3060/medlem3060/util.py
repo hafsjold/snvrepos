@@ -19,7 +19,10 @@ COOKIE_NAME = 'medlem3060_session'
 LOGIN_URL = '/login'
 PUBLIC_URL = ['/', '/login']
 
-def AuthUserGroupPath(path, usergroup):
+def AuthUserGroupPath(path, usergroup, is_admin):
+  if is_admin:
+    return True
+    
   authpath = [u'/adm']
   if usergroup == '0':
     authpath = [u'/adm'
@@ -36,6 +39,7 @@ def AuthUserGroupPath(path, usergroup):
       ,u'/teknik/listuser'     
     ]
   logging.info('AuthUserGroupPath path: %s, authpath: %s' % (path, authpath))
+  
   for p in authpath[:]:
     mo = re.match(p + '$', path)
     if mo:

@@ -46,6 +46,7 @@ class Mha_Middeleware:
     environ['userAuth'] = userAuth
     environ['user3060'] = user
     environ['usergroup'] = '0'
+    environ['user_is_admin'] = user_is_admin
     
     logging.info('MHA-Request-Logging google_user_id: %s, user_is_admin: %s, signed: %s, userAuth: %s, user: %s' % (google_user_id, user_is_admin, signed, userAuth, user))
     
@@ -97,7 +98,7 @@ class Mha_Middeleware:
         environ['usergroup'] = usergroup
         logging.info('usergroup %s' % (usergroup))
 
-        if not AuthUserGroupPath(environ['PATH_INFO'], usergroup):
+        if not AuthUserGroupPath(environ['PATH_INFO'], usergroup, user_is_admin):
           print 'Status: 400'
           return
         else:

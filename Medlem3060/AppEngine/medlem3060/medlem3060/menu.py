@@ -19,13 +19,24 @@ class MenuHandler(webapp.RequestHandler):
       usergroup = self.request.environ['usergroup']
     except:
       usergroup = '0'
-    
+    user_is_admin = False
+    try:
+      user_is_admin = self.request.environ['user_is_admin'] 
+    except:
+      user_is_admin = False    
     UserGroup_key = db.Key.from_path('UserGroup',usergroup)
     menu = None
-    menu = memcache.get(UserGroup_key.id_or_name(), namespace='menu')
-    if menu is None:
-      menu =  self.getMenu(UserGroup_key)
-      memcache.set(UserGroup_key.id_or_name(), menu, namespace='menu')
+    if user_is_admin:
+      menu = memcache.get('Admin', namespace='menu')
+      if menu is None:
+        menu =  self.getMenu(UserGroup_key, True)
+        memcache.set('Admin', menu, namespace='menu')
+    else:
+      menu = memcache.get(UserGroup_key.id_or_name(), namespace='menu')
+      if menu is None:
+        menu =  self.getMenu(UserGroup_key, False)
+        memcache.set(UserGroup_key.id_or_name(), menu, namespace='menu')
+    
     template_values = {
       'menu': menu, 
       'user' : self.request.environ['USER_EMAIL'],
@@ -34,7 +45,7 @@ class MenuHandler(webapp.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'templates/menu.html') 
     self.response.out.write(template.render(path, template_values))
 
-  def getMenu(self, UserGroup_key):
+  def getMenu(self, UserGroup_key, user_is_admin ):
     countMenu = 0
     tmpMenu = ''
     wrkMenu = ''
@@ -49,7 +60,7 @@ class MenuHandler(webapp.RequestHandler):
       objMenu = objMenuLink.Child_key
       logging.info('Menutext: %s , menu_parent_set.count %s, menu_child_set.count %s' % (objMenu.Menutext, objMenu.menu_parent_set.count(), objMenu.menu_child_set.count()))
       if objMenu.Menulink:
-        if not AuthUserGroupPath(objMenu.Menulink, UserGroup_key.id_or_name()):
+        if not AuthUserGroupPath(objMenu.Menulink, UserGroup_key.id_or_name(), user_is_admin):
           continue
       if objMenu.menu_child_set.count() == 0:
         """No child menues """
@@ -64,7 +75,7 @@ class MenuHandler(webapp.RequestHandler):
           childfound = False
           logging.info('objChildMenu.Child_key: %s' % (objChildMenu.Child_key))
           if objChildMenu.Child_key.Menulink:
-            if not AuthUserGroupPath(objChildMenu.Child_key.Menulink, UserGroup_key.id_or_name()):
+            if not AuthUserGroupPath(objChildMenu.Child_key.Menulink, UserGroup_key.id_or_name(), user_is_admin):
               continue
             else:
               childfound = True
