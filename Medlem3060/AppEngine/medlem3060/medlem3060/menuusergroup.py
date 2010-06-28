@@ -44,6 +44,11 @@ def createMenuAndUserGroup():
   c.put()
   l = MenuMenuLink(Parent_key = p, Child_key = c, Menuseq = 2)  
   l.put()
+
+  c = Menu(Menutext = 'List User', Menulink = '/teknik/listuser', Target = 'new', Confirm = False)
+  c.put()
+  l = MenuMenuLink(Parent_key = p, Child_key = c, Menuseq = 3)  
+  l.put()
   
   p = Menu(Menutext = 'Logoff', Menulink = '/logoff', Target = None, Confirm = False)
   p.put()

@@ -101,3 +101,15 @@ class MenuHandler(webapp.RequestHandler):
       tmpMenu += "    </DIV>\n"
     
     return tmpMenu + tmpTree_Menu
+    
+class ListUserHandler(webapp.RequestHandler):
+  def get(self):
+    query = User.all()
+    usercount = query.count()
+    user_list = query.fetch(usercount)
+    template_values = {
+      'user_list': user_list,
+      'usercount': usercount
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/listuser.html') 
+    self.response.out.write(template.render(path, template_values))
