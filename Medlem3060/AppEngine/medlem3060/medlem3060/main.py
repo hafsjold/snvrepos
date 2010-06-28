@@ -14,7 +14,7 @@ import re
 from models import UserGroup, User, Menu, MenuMenuLink, Medlem, Medlemlog
 from util import TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
 from menuusergroup import deleteMenuAndUserGroup, createMenuAndUserGroup
-from menu import MenuHandler, ListUserHandler
+from menu import MenuHandler, ListUserHandler, UserHandler
 
 webapp.template.register_template_library('templatetags.medlem3060_extras')
 
@@ -217,6 +217,7 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/teknik/createmenu', CreateMenu),
                                        ('/teknik/flushcache', FlushCache),
                                        ('/teknik/listuser', ListUserHandler),
+                                       ('/teknik/user/.*',UserHandler),
                                        ('/_ah/queue/default', SearchIndexing) ],
                                      debug=True )
 

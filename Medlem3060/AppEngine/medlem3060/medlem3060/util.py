@@ -36,7 +36,15 @@ def AuthUserGroupPath(path, usergroup, is_admin):
       ,u'/adm/medlem/[0-9]+'
       ,u'/teknik/createmenu'
       ,u'/teknik/flushcache' 
-      ,u'/teknik/listuser'     
+      ,u'/teknik/listuser'
+      ,u'/teknik/user/.+'      
+    ]
+  elif usergroup == '2':  
+    authpath = [u'/adm'
+      ,u'/logoff'
+      ,u'/adm/findmedlem'
+      ,u'/adm/medlem'
+      ,u'/adm/medlem/[0-9]+'
     ]
   logging.info('AuthUserGroupPath path: %s, authpath: %s' % (path, authpath))
   

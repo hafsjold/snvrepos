@@ -43,7 +43,7 @@ function MM_preloadImages() { //v3.0
         <td align=left>{{user.account}}</td>
         <td align=left>{{user.email}}</td>
         <td align=left>{{user.UserGroup_key.GroupName}}</td>
-        <td align=left valign="middle"><a href="javascript:SelectLine({{user.account}})" onMouseOut="MM_swapImgRestore();" onMouseOver="MM_swapImage('vpil{{ user.account }}','','/images/vpil_f2.gif',1)" ><img name="vpil{{ user.account }}" src="/images/vpil.gif" width="15" height="15" border="0"></a></td>
+        <td align=left valign="middle"><a href="javascript:SelectLine('{{user.account}}')" onMouseOut="MM_swapImgRestore();" onMouseOver="MM_swapImage('vpil{{ user.account }}','','/images/vpil_f2.gif',1)" ><img name="vpil{{ user.account }}" src="/images/vpil.gif" width="15" height="15" border="0"></a></td>
       </tr>
       {% endfor %}
     {% endif %}    
@@ -51,22 +51,25 @@ function MM_preloadImages() { //v3.0
   </body>
 <script language="javascript">
 <!--
+  var windowindex = 0;
   // Update User
   function SelectLine(account){
     var newwindow;
-	newwindow = window.open("/teknik/user/"+account)
-	newwindow.focus();
+    var windowname;
+    windowname= "Puls3060Adm"+(++windowindex);
+	  newwindow = window.open("/teknik/user/"+account,windowname,"status, scrollbars, resizeable")
+	  newwindow.focus();
   }
 
   function fonLoad(){
-	var h = 150;
-	var w = 500;
-	var l = {{usercount}};
-	if (l>25){
-    w += 15;
-	  l = 25;
-	}
-	window.resizeTo(w, h+(l*25));
+	  var h = 150;
+	  var w = 500;
+	  var l = {{usercount}};
+	  if (l>25){
+      w += 15;
+	    l = 25;
+	  }
+	  window.resizeTo(w, h+(l*25));
   }
 // -->
 </script>

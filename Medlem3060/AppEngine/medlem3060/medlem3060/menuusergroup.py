@@ -2,14 +2,39 @@ from google.appengine.ext import db
 from models import UserGroup, User, Menu, MenuMenuLink
 
 def deleteMenuAndUserGroup():
-  for m in MenuMenuLink.all():
-    m.delete()
-  for m in Menu.all():
-    m.delete()
-  for m in UserGroup.all():
-    m.delete()
-
+  try:
+    for m in MenuMenuLink.all():
+      m.delete()
+  except:
+    pass
+  try:  
+    for m in Menu.all():
+      m.delete()
+  except:
+    pass
+  try:
+    for m in UserGroup.all():
+      m.delete()
+  except:
+    pass
+    
 def createMenuAndUserGroup():
+  """ UserGroup """
+  g = UserGroup(key_name = '0', GroupName = 'Unknown')
+  g.put()  
+
+  g = UserGroup(key_name = '1', GroupName = 'Admin')
+  g.put()
+  
+  g = UserGroup(key_name = '2', GroupName = 'SuperUser')
+  g.put()
+  
+  qry = User.all().filter('email ==', 'mogens.hafsjold@gmail.com')
+  if qry.count() == 1:
+    u = qry.fetch(1)[0]
+    u.UserGroup_key = db.Key.from_path('UserGroup','1')
+    u.put()
+    
   """ Menu """
   root = Menu(Menutext = 'root', Menulink = None, Target = None)
   root.put()

@@ -124,3 +124,55 @@ class ListUserHandler(webapp.RequestHandler):
     }
     path = os.path.join(os.path.dirname(__file__), 'templates/listuser.html') 
     self.response.out.write(template.render(path, template_values))
+
+class UserHandler(webapp.RequestHandler):
+  def getAccountfromPath(self):
+    path = self.request.environ['PATH_INFO']
+    mo = re.match("/teknik/user/(.+)", path)
+    if mo:
+      if mo.groups()[0]:
+        return mo.groups()[0]
+      else:
+        return ''
+    else:
+      return ''
+  
+  def get(self):
+    account = self.getAccountfromPath()
+    logging.info('getAccountfromPath = %s' % (account))
+    try:
+      user = User.all().filter('account ==', account)[0]
+    except:
+      user = False
+
+    logging.info('user = %s' % (user)) 
+    
+    usergroup = user.UserGroup_key.key().id_or_name()
+    grouphtml = '' 
+    for g in UserGroup.all().order('GroupName'):
+      if usergroup == g.key().id_or_name():
+        grouphtml += '<option selected value="%s">%s</option>' % (g.key().id_or_name(), g.GroupName) + '\n'
+      else:
+        grouphtml += '<option value="%s">%s</option>' % (g.key().id_or_name(), g.GroupName) + '\n'
+    
+    if user:
+      template_values = {
+        'id' : user.key().id_or_name(),
+        'user': user,
+        'grouphtml' : grouphtml,
+      }
+    else:
+      template_values = {
+      }
+    
+    path = os.path.join(os.path.dirname(__file__), 'templates/user.html') 
+    self.response.out.write(template.render(path, template_values))
+
+  def post(self):
+    id = self.request.get('id')
+    group = self.request.get('group')
+    userkey = db.Key.from_path('User', id) 
+    user = db.get(userkey)
+    user.UserGroup_key = db.Key.from_path('UserGroup', group)
+    db.put(user)
+    self.redirect('/teknik/listuser')

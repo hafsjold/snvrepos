@@ -92,8 +92,11 @@ class Mha_Middeleware:
           u.put()
           usergroup = '0'
         else:
-          u = q.fetch(1)[0]
-          usergroup = u.UserGroup_key.key().id_or_name()
+          try:
+            u = q.fetch(1)[0]
+            usergroup = u.UserGroup_key.key().id_or_name()
+          except:
+            usergroup = '0'
 
         environ['usergroup'] = usergroup
         logging.info('usergroup %s' % (usergroup))
