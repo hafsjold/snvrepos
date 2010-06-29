@@ -125,18 +125,18 @@ class ListUserHandler(webapp.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'templates/listuser.html') 
     self.response.out.write(template.render(path, template_values))
 
+  def post(self):
+    query = User.all()
+    usercount = query.count()
+    user_list = query.fetch(usercount)
+    template_values = {
+      'user_list': user_list,
+      'usercount': usercount
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/listuser.html') 
+    self.response.out.write(template.render(path, template_values))
+    
 class UserHandler(webapp.RequestHandler):
-  def getAccountfromPath(self):
-    path = self.request.environ['PATH_INFO']
-    mo = re.match("/teknik/user/(.+)", path)
-    if mo:
-      if mo.groups()[0]:
-        return mo.groups()[0]
-      else:
-        return ''
-    else:
-      return ''
-  
   def get(self):
     account = self.getAccountfromPath()
     logging.info('getAccountfromPath = %s' % (account))
@@ -148,15 +148,18 @@ class UserHandler(webapp.RequestHandler):
     logging.info('user = %s' % (user)) 
     
     usergroup = user.UserGroup_key.key().id_or_name()
-    grouphtml = '' 
+    grouphtml = ''
     for g in UserGroup.all().order('GroupName'):
       if usergroup == g.key().id_or_name():
         grouphtml += '<option selected value="%s">%s</option>' % (g.key().id_or_name(), g.GroupName) + '\n'
       else:
         grouphtml += '<option value="%s">%s</option>' % (g.key().id_or_name(), g.GroupName) + '\n'
+    grouphtml = '<select name="group" size="1">' + grouphtml + '</select>'
     
+    xonload = 'fonLoad();'
     if user:
       template_values = {
+        'xonload' : xonload,
         'id' : user.key().id_or_name(),
         'user': user,
         'grouphtml' : grouphtml,
@@ -170,9 +173,36 @@ class UserHandler(webapp.RequestHandler):
 
   def post(self):
     id = self.request.get('id')
+    Update = self.request.get('Update')    
+    Delete = self.request.get('Delete')
     group = self.request.get('group')
+    logging.info('UserHandler post - id: %s, Update: %s, Delete: %s' % (id,Update,Delete))
+    
     userkey = db.Key.from_path('User', id) 
+
     user = db.get(userkey)
-    user.UserGroup_key = db.Key.from_path('UserGroup', group)
-    db.put(user)
-    self.redirect('/teknik/listuser')
+    if Update:
+      user.UserGroup_key = db.Key.from_path('UserGroup', group)
+      db.put(user)
+    elif Delete:
+      db.delete(user)
+    
+    xonload = 'UpdateParentAndClose();'
+    template_values = {
+      'xonload' : xonload,
+    }
+
+    
+    path = os.path.join(os.path.dirname(__file__), 'templates/user.html') 
+    self.response.out.write(template.render(path, template_values))
+    
+  def getAccountfromPath(self):
+    path = self.request.environ['PATH_INFO']
+    mo = re.match("/teknik/user/(.+)", path)
+    if mo:
+      if mo.groups()[0]:
+        return mo.groups()[0]
+      else:
+        return ''
+    else:
+      return ''

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 </head>
 
-<body bgcolor="#FFFFFF" text="#000000" onLoad="fonLoad();">
+<body bgcolor="#FFFFFF" text="#000000" onLoad="{{xonload}}" >
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr> 
     <td width="30">&nbsp;</td>
@@ -33,9 +33,7 @@
           <tr>
             <td>Group:</td>
             <td>
-              <select name="group" size="1">
               {{grouphtml}}
-              </select>
             </td>
             <td>&nbsp;</td>
           </tr>          
@@ -55,9 +53,18 @@
 <script language="javascript">
 <!--
   function fonLoad(){
-	var h = 275;
-	var w = 450;
-	window.resizeTo(w, h);
+	  var h = 275;
+	  var w = 450;
+	  window.resizeTo(w, h);
+  }
+  
+  function UpdateParentAndClose(){
+    var ParentWindow;
+    var Reload;
+	  ParentWindow = top.opener;
+    Reload = ParentWindow.document.all['Reload'];
+	  Reload.submit();
+	  window.close();
   }
 // -->
 </script>
