@@ -179,6 +179,8 @@ class UserHandler(webapp.RequestHandler):
     logging.info('UserHandler post - id: %s, Update: %s, Delete: %s' % (id,Update,Delete))
     
     userkey = db.Key.from_path('User', id) 
+    #userkeystring = str(userkey)
+    #logging.info('WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW: %s' % userkeystring)
 
     user = db.get(userkey)
     if Update:
