@@ -64,27 +64,33 @@ function MM_preloadImages() { //v3.0
   </body>
 <script language="javascript">
 <!--
+  var windowindex = 0;
+
   // Add Medlem
   function SelectHeading(){
+    var windowname;
+    windowname= "findmedlem"+(++windowindex);
     var newwindow;
-	newwindow = window.open("/adm/medlem")
-	newwindow.focus();
+	  newwindow = window.open("/adm/medlem",windowname,"status, scrollbars, resizeable")
+	  newwindow.focus();
   }
   
   // Update Medlem
   function SelectLine(nr){
     var newwindow;
-	newwindow = window.open("/adm/medlem/"+nr)
-	newwindow.focus();
+    var windowname;
+    windowname= "findmedlem"+(++windowindex);
+	  newwindow = window.open("/adm/medlem/"+nr,windowname,"status, scrollbars, resizeable")
+	  newwindow.focus();
   }
 
   function fonLoad(){
 	var h = 270;
-	var w = 525;
+	var w = 575;
 	var l = 30;
-	if (l>25){
+	if (l>20){
       w += 15;
-	  l = 25;
+	  l = 20;
 	}
 	window.resizeTo(w, h+(l*25));
   }

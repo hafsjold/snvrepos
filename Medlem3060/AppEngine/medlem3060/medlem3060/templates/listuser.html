@@ -52,12 +52,12 @@ function MM_preloadImages() { //v3.0
   </body>
 <script language="javascript">
 <!--
-  var windowindex = 100;
+  var windowindex = 0;
   // Update User
   function SelectLine(account){
     var newwindow;
     var windowname;
-    windowname= "Puls3060Adm"+(++windowindex);
+    windowname= "listuser"+(++windowindex);
 	  newwindow = window.open("/teknik/user/"+account,windowname,"status, scrollbars, resizeable")
 	  newwindow.focus();
   }

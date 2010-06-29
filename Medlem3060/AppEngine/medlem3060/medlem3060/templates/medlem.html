@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 </head>
 
-<body bgcolor="#FFFFFF" text="#000000">
+<body bgcolor="#FFFFFF" text="#000000" onLoad="{{xonload}}" >
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr> 
     <td width="30">&nbsp;</td>
@@ -122,4 +122,23 @@
   </tr>
 </table>
 </body>
+<script language="javascript">
+<!--
+  function fonLoad(){
+	  var h = 675;
+	  var w = 650;
+	  window.resizeTo(w, h);
+  }
+  
+  function UpdateParentAndClose(){
+    var ParentWindow;
+    var Reload;
+	  ParentWindow = top.opener;
+    Reload = ParentWindow.document.all['Reload'];
+	  Reload.submit();
+    ParentWindow.focus();
+	  window.close();
+  }
+// -->
+</script>
 </html>

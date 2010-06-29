@@ -14,7 +14,7 @@ function Confirm(childid)
   var windowname;
 
   url = "confirm.php?menuid="+childid;
-  windowname = "Puls3060Adm"+(++windowindex);
+  windowname = "menu"+(++windowindex);
   newwindow = window.open(url,windowname,"status");
   newwindow.resizeTo(300, 250);
   newwindow.focus();
@@ -27,7 +27,7 @@ function SubTree(url, target)
   if (target == 'new'){
     var newwindow;
     var windowname;
-    windowname= "Puls3060Adm"+(++windowindex);
+    windowname= "menu"+(++windowindex);
     newwindow = window.open(url,windowname,"status, scrollbars, resizeable");
     newwindow.focus();
   }

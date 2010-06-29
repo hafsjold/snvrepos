@@ -110,9 +110,12 @@ class MedlemHandler(webapp.RequestHandler):
       m = Medlem.all().filter('Nr =', Nr)[0]
     except:
       m = False
-
+    
+    xonload = 'fonLoad();'
+    
     if m:
       template_values = {
+        'xonload' : xonload,
         'kontingent_fra_dato': '1. januar 2010',
         'kontingent_til_dato': '31. december 2010',
         'kontingent': '150,00',
@@ -130,6 +133,7 @@ class MedlemHandler(webapp.RequestHandler):
       }
     else:
       template_values = {
+        'xonload' : xonload,
         'kontingent_fra_dato': '1. januar 2010',
         'kontingent_til_dato': '31. december 2010',
         'kontingent': '150,00',
@@ -162,7 +166,9 @@ class MedlemHandler(webapp.RequestHandler):
     Fodelsdato = self.request.get('Fodelsdato')
     Bank = self.request.get('Bank')
     logging.info('Navn: %s, Kaldenavn: %s' % (Navn, Kaldenavn))
+    xonload = 'UpdateParentAndClose();'
     template_values = {
+      'xonload' : xonload,
       'kontingent_fra_dato': '1. januar 2010',
       'kontingent_til_dato': '31. december 2010',
       'kontingent': '150,00',
