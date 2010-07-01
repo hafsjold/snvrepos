@@ -2,9 +2,11 @@
 <head>
 <title>User</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link rel="stylesheet" href="/stylesheets/menu.css" type="text/css" media="screen" />
+<script src="/javascripts/jquery-1.4.2.js" type="text/javascript"></script>
 </head>
 
-<body bgcolor="#FFFFFF" text="#000000" onLoad="{{xonload}}" >
+<body bgcolor="#FFFFFF" text="#000000" onLoad="{{xonload}}">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr> 
     <td width="30">&nbsp;</td>
@@ -17,7 +19,7 @@
       <form name="UserUpdate" method="post" action="/teknik/user/{{id}}">
         <table width="100%" border="0">
           <tr> 
-            <td>User:</td>
+            <td class="testjQuery">User:</td>
             <td>
               <input type="hidden" name="id" value="{{id}}">            
               <input type="text" readonly name="account" size="30" value="{{user.account}}">
@@ -52,6 +54,10 @@
 </body>
 <script language="javascript">
 <!--
+  $(document).ready(function() {
+    $('.testjQuery').addClass('highlight');
+  });
+  
   function fonLoad(){
 	  var h = 275;
 	  var w = 450;
