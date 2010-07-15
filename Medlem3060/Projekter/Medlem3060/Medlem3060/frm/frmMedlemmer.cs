@@ -486,7 +486,6 @@ namespace nsPuls3060
                     val[7] = impMedlem.Email;
                     val[8] = impMedlem.Kon;
                     val[9] = impMedlem.FodtDato;
-                    val[10] = null;
                     this.dsMedlem.Kartotek.Rows.Add(val);
                     this.dsMedlem.savedsMedlem();
 
