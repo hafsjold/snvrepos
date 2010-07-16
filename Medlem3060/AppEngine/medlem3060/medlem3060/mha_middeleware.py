@@ -18,6 +18,12 @@ class Mha_Middeleware:
     for key, value in environ.iteritems():
       logging.info('%s: %s' % (key, value))
     
+    jobq = True
+    try:
+      test_jobq = environ['HTTP_X_APPENGINE_TASKNAME']
+    except:
+      jobq = False
+      
     signed = True
     try:
       test_signed = environ['HTTP_SIGNED']
@@ -48,7 +54,7 @@ class Mha_Middeleware:
     environ['usergroup'] = '0'
     environ['user_is_admin'] = user_is_admin
     
-    logging.info('MHA-Request-Logging google_user_id: %s, user_is_admin: %s, signed: %s, userAuth: %s, user: %s' % (google_user_id, user_is_admin, signed, userAuth, user))
+    logging.info('MHA-Request-Logging google_user_id: %s, user_is_admin: %s, signed: %s, userAuth: %s, user: %s, jobq: %s' % (google_user_id, user_is_admin, signed, userAuth, user, jobq))
     
     mo = re.match("^/rest/.*", environ['PATH_INFO'])    
     if mo:
@@ -64,6 +70,8 @@ class Mha_Middeleware:
         if not AuthRest(http_timestamp, http_signed):
           print 'Status: 400'
           return
+    elif jobq:
+      pass
     else:
       logging.info('re.match: False')    
       if google_user_id != True:
@@ -112,19 +120,20 @@ class Mha_Middeleware:
     def _start_response(status, headers):
       if google_user_id != True:
         if signed != True:
-          cookiefound = False
-          for key, value in headers:
-            if key == 'Set-Cookie':
-              cookiefound = True
+          if jobq != True:
+            cookiefound = False
+            for key, value in headers:
+              if key == 'Set-Cookie':
+                cookiefound = True
            
-          if cookiefound == False:
-            if userAuth == True:
-              sessioncookie = SetUserInfoCookie(COOKIE_NAME, CreateCookieData(user), '3600')
-              cookie = ['Set-Cookie', sessioncookie]
-              headers.append(cookie)
+            if cookiefound == False:
+              if userAuth == True:
+                sessioncookie = SetUserInfoCookie(COOKIE_NAME, CreateCookieData(user), '3600')
+                cookie = ['Set-Cookie', sessioncookie]
+                headers.append(cookie)
             
-          p3p = ['P3P', 'policyref="http://medlem3060.appspot.com/w3c/privacy_policy.p3p", CP="ALL DSP COR CURa ADMa DEVa TAIa IVAi IVDi CONi HISi TELi OUR IND PHY ONL FIN COM NAV INT DEM GOV"']
-          headers.append(p3p)
+            p3p = ['P3P', 'policyref="http://medlem3060.appspot.com/w3c/privacy_policy.p3p", CP="ALL DSP COR CURa ADMa DEVa TAIa IVAi IVDi CONi HISi TELi OUR IND PHY ONL FIN COM NAV INT DEM GOV"']
+            headers.append(p3p)
       
       logging.info('MHA-Response-Logging user: %s, signed: %s' % (user, signed))
       for key, value in headers:

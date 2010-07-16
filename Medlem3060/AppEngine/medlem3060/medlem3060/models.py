@@ -1,4 +1,5 @@
-from google.appengine.ext import db 
+from google.appengine.ext import db
+import logging
   
 class UserGroup(db.Model): 
   GroupName = db.StringProperty()
@@ -32,21 +33,47 @@ class Medlem(db.Model):
     Kon = db.StringProperty()
     FodtDato  = db.DateProperty()
     Bank = db.StringProperty()
-    Tags = db.ListProperty(basestring)
+    NavnTags = db.ListProperty(basestring)
+    AdresseTags = db.ListProperty(basestring)
+    BynavnTags = db.ListProperty(basestring)
+    
+    tokens = []
+    
+    def addtoken(self, token):
+      for found in (t for t in self.tokens if t == '%s' % (token)):
+        break
+      else:
+        self.tokens.append('%s' % (token))
     
     def setNameTags(self):
-      tokens = [] 
-      for word in self.Navn.split():
-        tokens.append('N%s' % (word.strip('.,').lower()))
-      for word in self.Kaldenavn.split():
-        tokens.append('N%s' % (word.strip('.,').lower()))
-      for word in self.Adresse.split():
-        tokens.append('A%s' % (word.strip('.,').lower()))
-      for word in self.Bynavn.split():
-        tokens.append('B%s' % (word.strip('.,').lower()))
-      self.Tags = tokens
+      self.tokens = [] 
+      for w in (self.Navn + ' ' + self.Kaldenavn).lower().replace('.',' ').replace(',',' ').split():
+        self.addtoken(w)
+        for l in range(1, len(w), 1):
+          for i in range(0, len(w) +1 - l, 1):
+            self.addtoken(w[i:i+l])
+      self.NavnTags = self.tokens
+      logging.info('%s' % (self.tokens))
+
+      self.tokens = []
+      for w in self.Adresse.lower().replace('.',' ').replace(',',' ').split():
+        self.addtoken(w)
+        for l in range(1, len(w), 1):
+          for i in range(0, len(w) +1 - l, 1):
+            self.addtoken(w[i:i+l])
+      self.AdresseTags = self.tokens
+      logging.info('%s' % (self.tokens))
+
+      self.tokens = [] 
+      for w in (self.Bynavn + ' ' + self.Postnr).lower().replace('.',' ').replace(',',' ').split():
+        self.addtoken(w)
+        for l in range(1, len(w), 1):
+          for i in range(0, len(w) +1 - l, 1):
+            self.addtoken(w[i:i+l])
+      self.BynavnTags = self.tokens
+      logging.info('%s' % (self.tokens))
+
       self.put()
-      logging.info('tokens: %s' % (tokens))
 
 class Medlemlog(db.Model): 
     Medlem_key = db.ReferenceProperty(Medlem, collection_name="medlemlog_set")

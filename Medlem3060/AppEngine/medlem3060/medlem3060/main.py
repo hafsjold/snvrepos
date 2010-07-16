@@ -65,7 +65,7 @@ class FindmedlemHandler(webapp.RequestHandler):
     }
     path = os.path.join(os.path.dirname(__file__), 'templates/findmedlem.html') 
     self.response.out.write(template.render(path, template_values))
-    #taskqueue.add(url='/_ah/queue/default', params={'Nr':'all'})
+
   
   def post(self):
     SNr = self.request.get('SNr').strip() 
@@ -77,13 +77,14 @@ class FindmedlemHandler(webapp.RequestHandler):
     if SNr:
       query = query.filter('Nr =', int(SNr))
     if SNavn:
-      query = query.filter('Tags =', 'N%s' % (SNavn.lower()))
+      query = query.filter('NavnTags =', '%s' % (SNavn.lower()))
     if SAdresse:
-      query = query.filter('Tags =', 'A%s' % (SAdresse.lower()))
+      query = query.filter('AdresseTags =', '%s' % (SAdresse.lower()))
     if SBy:
-      query = query.filter('Tags =', 'B%s' % (SBy.lower()))
+      query = query.filter('BynavnTags =', '%s' % (SBy.lower()))
  
-    medlem_list = query.fetch(1000)
+    query = query.order('Nr')
+    medlem_list = query.fetch(50)
  
     template_values = {
       'medlem_list': medlem_list,
@@ -191,13 +192,25 @@ class LogoffHandler(webapp.RequestHandler):
   def get(self):
     self.redirect(users.create_logout_url("/"))
 
+class ReindexHandler(webapp.RequestHandler):
+    """Handler for submiting SearchIndexing to JobQ"""
+    def get(self):
+      i_save = 1
+      for i in range(25, 1001, 25):
+        taskqueue.add(url='/_ah/queue/default', params={'NrStart':'%s' %(i_save),'NrEnd':'%s' % (i)})
+        i_save = i + 1
+      self.redirect("/adm")
+
 class SearchIndexing(webapp.RequestHandler):
     """Handler for full text indexing task."""
     def post(self):
+      NrStart = self.request.get('NrStart') 
+      NrEnd = self.request.get('NrEnd')
       query = Medlem.all()
+      query = query.filter('Nr >=', int(NrStart)).filter('Nr <=', int(NrEnd))
       medlem_list = query.fetch(1000)
-      for medlem in medlem_list:
-        medlem.setNameTags()
+      for med in medlem_list:
+        med.setNameTags()
 
 class CreateMenu(webapp.RequestHandler):
     """Handler for create Menu"""
@@ -213,6 +226,7 @@ class FlushCache(webapp.RequestHandler):
       memcache.flush_all()
       self.redirect("/adm")
 
+      
 application = webapp.WSGIApplication([ ('/', MainHandler),
                                        (LOGIN_URL, LoginHandler),
                                        ('/adm/medlem.*', MedlemHandler),
@@ -222,6 +236,7 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/logoff', LogoffHandler),
                                        ('/teknik/createmenu', CreateMenu),
                                        ('/teknik/flushcache', FlushCache),
+                                       ('/teknik/reindex', ReindexHandler),
                                        ('/teknik/listuser', ListUserHandler),
                                        ('/teknik/user/.*',UserHandler),
                                        ('/_ah/queue/default', SearchIndexing) ],

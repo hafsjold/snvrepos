@@ -36,6 +36,7 @@ def AuthUserGroupPath(path, usergroup, is_admin):
       ,u'/adm/medlem/[0-9]+'
       ,u'/teknik/createmenu'
       ,u'/teknik/flushcache' 
+      ,u'/teknik/reindex'
       ,u'/teknik/listuser'
       ,u'/teknik/user/.+'      
     ]
