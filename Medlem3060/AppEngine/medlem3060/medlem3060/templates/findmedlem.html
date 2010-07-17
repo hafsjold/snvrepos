@@ -27,13 +27,13 @@
           </td>
         </tr>
       </form>
-    {% if medlem_list %}
-      {% for medlem in medlem_list %}
+    {% if person_list %}
+      {% for person in person_list %}
       <tr  class="vpil" valign=top style=background-color:{% cycle rowcolors %}>
-        <td name="Nr" align=left>{{medlem.Nr}}</td>
-        <td align=left>{{medlem.Navn}}</td>
-        <td align=left>{{medlem.Adresse}}</td>
-        <td align=left>{{medlem.Bynavn}}</td>
+        <td name="Nr" align=left>{{person.Nr}}</td>
+        <td align=left>{{person.Navn}}</td>
+        <td align=left>{{person.Adresse}}</td>
+        <td align=left>{{person.Bynavn}}</td>
         <td align=left valign=middle><a act="update" href=#/></td>
       </tr>
       {% endfor %}

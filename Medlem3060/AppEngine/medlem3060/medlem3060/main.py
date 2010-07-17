@@ -11,7 +11,7 @@ import rest
 import os
 import re
 
-from models import UserGroup, User, Menu, MenuMenuLink, Medlem, Medlemlog, Person
+from models import UserGroup, User, Menu, MenuMenuLink, Medlemlog, Person
 from util import TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
 from menuusergroup import deleteMenuAndUserGroup, createMenuAndUserGroup
 from menu import MenuHandler, ListUserHandler, UserHandler
@@ -73,7 +73,7 @@ class FindmedlemHandler(webapp.RequestHandler):
     SAdresse = self.request.get('SAdresse').strip()  
     SBy = self.request.get('SBy').strip()  
     
-    query = Medlem.all()
+    query = Person.all()
     if SNr:
       query = query.filter('Nr =', int(SNr))
     if SNavn:
@@ -84,10 +84,10 @@ class FindmedlemHandler(webapp.RequestHandler):
       query = query.filter('BynavnTags =', '%s' % (SBy.lower()))
  
     query = query.order('Nr')
-    medlem_list = query.fetch(50)
+    person_list = query.fetch(50)
  
     template_values = {
-      'medlem_list': medlem_list,
+      'person_list': person_list,
     }
     path = os.path.join(os.path.dirname(__file__), 'templates/findmedlem.html') 
     self.response.out.write(template.render(path, template_values))
@@ -98,17 +98,18 @@ class MedlemHandler(webapp.RequestHandler):
     mo = re.match("/adm/medlem/([0-9]+)", path)
     if mo:
       if mo.groups()[0]:
-        return int(mo.groups()[0])
+        return mo.groups()[0]
       else:
-        return int(0)
+        return None
     else:
-      return int(0)
+      return None
   
   def get(self):
     Nr = self.getNrfromPath()
     logging.info('getNrfromPath = %s' % (Nr))
     try:
-      m = Medlem.all().filter('Nr =', Nr)[0]
+      k = db.Key.from_path('Persons','root','Person',Nr)
+      m = Person.get(k)
     except:
       m = False
     
@@ -195,23 +196,30 @@ class LogoffHandler(webapp.RequestHandler):
 class ReindexHandler(webapp.RequestHandler):
     """Handler for submiting SearchIndexing to JobQ"""
     def get(self):
-      i_save = 1
-      for i in range(25, 1001, 25):
-        taskqueue.add(url='/_ah/queue/default', params={'NrStart':'%s' %(i_save),'NrEnd':'%s' % (i)})
-        i_save = i + 1
+      root = db.Key.from_path('Persons','root')
+      query = db.Query(keys_only=True).ancestor(root)
+      i = 0
+      perkeys = ''
+      for per in query:
+        i +=1
+        perkeys += ' ' + str(per)
+        if i == 10:
+          taskqueue.add(url='/_ah/queue/default', params={'perkeys':perkeys})
+          i = 0
+          perkeys = ''
+      if i > 0:
+        taskqueue.add(url='/_ah/queue/default', params={'perkeys':perkeys})      
       self.redirect("/adm")
 
 class SearchIndexing(webapp.RequestHandler):
     """Handler for full text indexing task."""
     def post(self):
-      NrStart = self.request.get('NrStart') 
-      NrEnd = self.request.get('NrEnd')
-      query = Medlem.all()
-      query = query.filter('Nr >=', int(NrStart)).filter('Nr <=', int(NrEnd))
-      medlem_list = query.fetch(1000)
-      for med in medlem_list:
-        #med.setNameTags()
-        med.createPerson()
+      perkeys = self.request.get('perkeys') 
+      keys = [db.Key(k) for k in perkeys.split()]
+      persom_list = db.get(keys)
+      for per in persom_list:
+        per.setNameTags()
+
 
 class CreateMenu(webapp.RequestHandler):
     """Handler for create Menu"""

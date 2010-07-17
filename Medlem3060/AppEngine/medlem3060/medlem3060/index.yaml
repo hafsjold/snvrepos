@@ -10,21 +10,6 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
-- kind: Medlem
-  properties:
-  - name: AdresseTags
-  - name: Nr
-
-- kind: Medlem
-  properties:
-  - name: BynavnTags
-  - name: Nr
-
-- kind: Medlem
-  properties:
-  - name: NavnTags
-  - name: Nr
-
 - kind: MenuMenuLink
   properties:
   - name: Parent_key
@@ -35,3 +20,18 @@ indexes:
   - name: Parent_key
   - name: Menuseq
     direction: desc
+
+- kind: Person
+  properties:
+  - name: AdresseTags
+  - name: Nr
+
+- kind: Person
+  properties:
+  - name: BynavnTags
+  - name: Nr
+
+- kind: Person
+  properties:
+  - name: NavnTags
+  - name: Nr
