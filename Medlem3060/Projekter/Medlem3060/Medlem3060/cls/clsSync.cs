@@ -357,7 +357,8 @@ namespace nsPuls3060
                                new XElement("Telefon", m.Telefon),
                                new XElement("Email", m.Email),
                                new XElement("Kon", m.Kon),
-                               new XElement("FodtDato", ((DateTime)m.FodtDato).ToString("yyyy-M-d"))
+                               new XElement("FodtDato", ((DateTime)m.FodtDato).ToString("yyyy-M-d")),
+                               new XElement("Bank", m.Bank)
                          );
                 string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
                 string retur = objRest.HttpPost2("Medlem", strxml);

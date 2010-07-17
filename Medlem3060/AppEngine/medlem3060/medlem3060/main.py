@@ -5,6 +5,8 @@ from google.appengine.ext.webapp import template
 from google.appengine.api import users
 from google.appengine.api.labs import taskqueue
 from google.appengine.api import memcache
+from xml.dom import minidom
+from datetime import datetime
 
 import logging
 import rest
@@ -189,6 +191,64 @@ class MedlemHandler(webapp.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'templates/medlem.html') 
     self.response.out.write(template.render(path, template_values))
     
+class SyncMedlemHandler(webapp.RequestHandler):
+  def post(self):
+    doc = minidom.parse(self.request.body_file)
+    try:
+      Nr = doc.getElementsByTagName("Nr")[0].childNodes[0].data
+    except:
+      Nr = None
+    root = db.Key.from_path('Persons','root')
+    person = Person.get_or_insert('%s' % (Nr), parent=root)
+    try:
+      person.Navn = doc.getElementsByTagName("Navn")[0].childNodes[0].data
+    except:
+      person.Navn = None
+    try:
+      person.Kaldenavn = doc.getElementsByTagName("Kaldenavn")[0].childNodes[0].data
+    except:
+      Kaldenavn = None
+    try:
+      person.Adresse = doc.getElementsByTagName("Adresse")[0].childNodes[0].data
+    except:
+      person.Adresse = None
+    try:
+      person.Postnr = doc.getElementsByTagName("Postnr")[0].childNodes[0].data
+    except:
+      Postnr = None
+    try:
+      person.Bynavn = doc.getElementsByTagName("Bynavn")[0].childNodes[0].data
+    except:
+      person.Bynavn = None
+    try:
+      person.Email = doc.getElementsByTagName("Email")[0].childNodes[0].data
+    except:
+      person.Email = None
+    try:
+      person.Telefon = doc.getElementsByTagName("Telefon")[0].childNodes[0].data
+    except:
+      person.Telefon = None
+    try:
+      person.Kon = doc.getElementsByTagName("Kon")[0].childNodes[0].data
+    except:
+      person.Kon = None
+    try:
+      FodtDato = doc.getElementsByTagName("FodtDato")[0].childNodes[0].data
+      dt = datetime.strptime(FodtDato, "%Y-%m-%d")
+      person.FodtDato = dt.date()
+    except:
+      person.FodtDato = None
+    try:
+      person.Bank = doc.getElementsByTagName("Bank")[0].childNodes[0].data
+    except:
+      person.Bank = None
+    person.setNameTags()
+
+    logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    logging.info('%s - %s - %s - %s - %s - %s - %s - %s - %s - %s - %s' % (person.Nr, person.Navn, person.Kaldenavn, person.Adresse, person.Postnr, person.Bynavn, person.Email, person.Telefon, person.Kon, person.FodtDato, person.Bank))
+    logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    self.response.out.write('Status: 404')
+    
 class LogoffHandler(webapp.RequestHandler):
   def get(self):
     self.redirect(users.create_logout_url("/"))
@@ -242,6 +302,8 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/adm/findmedlem', FindmedlemHandler),
                                        ('/adm', MenuHandler),
                                        ('/rest/.*', rest.Dispatcher),
+                                       ('/sync/Medlem', SyncMedlemHandler),
+                                       ('/sync/.*', MenuHandler),
                                        ('/logoff', LogoffHandler),
                                        ('/teknik/createmenu', CreateMenu),
                                        ('/teknik/flushcache', FlushCache),

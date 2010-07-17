@@ -56,7 +56,7 @@ class Mha_Middeleware:
     
     logging.info('MHA-Request-Logging google_user_id: %s, user_is_admin: %s, signed: %s, userAuth: %s, user: %s, jobq: %s' % (google_user_id, user_is_admin, signed, userAuth, user, jobq))
     
-    mo = re.match("^/rest/.*", environ['PATH_INFO'])    
+    mo = re.match("^/(rest|sync)/.*", environ['PATH_INFO'])    
     if mo:
       logging.info('re.match: True')
       if user_is_admin != True:
