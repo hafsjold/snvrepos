@@ -11,7 +11,7 @@ import rest
 import os
 import re
 
-from models import UserGroup, User, Menu, MenuMenuLink, Medlem, Medlemlog
+from models import UserGroup, User, Menu, MenuMenuLink, Medlem, Medlemlog, Person
 from util import TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
 from menuusergroup import deleteMenuAndUserGroup, createMenuAndUserGroup
 from menu import MenuHandler, ListUserHandler, UserHandler
@@ -210,7 +210,8 @@ class SearchIndexing(webapp.RequestHandler):
       query = query.filter('Nr >=', int(NrStart)).filter('Nr <=', int(NrEnd))
       medlem_list = query.fetch(1000)
       for med in medlem_list:
-        med.setNameTags()
+        #med.setNameTags()
+        med.createPerson()
 
 class CreateMenu(webapp.RequestHandler):
     """Handler for create Menu"""

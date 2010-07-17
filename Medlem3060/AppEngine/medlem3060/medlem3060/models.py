@@ -39,6 +39,24 @@ class Medlem(db.Model):
     
     tokens = []
     
+    def createPerson(self):
+      root = db.Key.from_path('Persons','root')
+      person = Person.get_or_insert('%s' % (self.Nr), parent=root)
+      person.Navn  = self.Navn
+      person.Kaldenavn  = self.Kaldenavn
+      person.Adresse  = self.Adresse
+      person.Postnr  = self.Postnr
+      person.Bynavn  = self.Bynavn
+      person.Email = self.Email
+      person.Telefon = self.Telefon
+      person.Kon = self.Kon
+      person.FodtDato  = self.FodtDato
+      person.Bank = self.Bank
+      person.NavnTags = self.NavnTags
+      person.AdresseTags = self.AdresseTags
+      person.BynavnTags = self.BynavnTags
+      person.put()      
+    
     def addtoken(self, token):
       for found in (t for t in self.tokens if t == '%s' % (token)):
         break
@@ -83,3 +101,56 @@ class Medlemlog(db.Model):
     Logdato = db.DateTimeProperty()
     Akt_id = db.IntegerProperty()  
     Akt_dato = db.DateTimeProperty()
+    
+class Person(db.Model): 
+    Navn  = db.StringProperty()
+    Kaldenavn  = db.StringProperty()
+    Adresse  = db.StringProperty()
+    Postnr  = db.StringProperty()
+    Bynavn  = db.StringProperty()
+    Email = db.EmailProperty()
+    Telefon = db.PhoneNumberProperty()
+    Kon = db.StringProperty()
+    FodtDato  = db.DateProperty()
+    Bank = db.StringProperty()
+    NavnTags = db.ListProperty(basestring)
+    AdresseTags = db.ListProperty(basestring)
+    BynavnTags = db.ListProperty(basestring)
+    
+    tokens = []
+    
+    def addtoken(self, token):
+      for found in (t for t in self.tokens if t == '%s' % (token)):
+        break
+      else:
+        self.tokens.append('%s' % (token))
+    
+    def setNameTags(self):
+      self.tokens = [] 
+      for w in (self.Navn + ' ' + self.Kaldenavn).lower().replace('.',' ').replace(',',' ').split():
+        self.addtoken(w)
+        for l in range(1, len(w), 1):
+          for i in range(0, len(w) +1 - l, 1):
+            self.addtoken(w[i:i+l])
+      self.NavnTags = self.tokens
+      logging.info('%s' % (self.tokens))
+
+      self.tokens = []
+      for w in self.Adresse.lower().replace('.',' ').replace(',',' ').split():
+        self.addtoken(w)
+        for l in range(1, len(w), 1):
+          for i in range(0, len(w) +1 - l, 1):
+            self.addtoken(w[i:i+l])
+      self.AdresseTags = self.tokens
+      logging.info('%s' % (self.tokens))
+
+      self.tokens = [] 
+      for w in (self.Bynavn + ' ' + self.Postnr).lower().replace('.',' ').replace(',',' ').split():
+        self.addtoken(w)
+        for l in range(1, len(w), 1):
+          for i in range(0, len(w) +1 - l, 1):
+            self.addtoken(w[i:i+l])
+      self.BynavnTags = self.tokens
+      logging.info('%s' % (self.tokens))
+
+      self.put()
