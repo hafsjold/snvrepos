@@ -133,6 +133,7 @@ namespace nsPuls3060
             //objRest.testencrypt();
             clsSync objSync = new clsSync();
             objSync.medlemxml();
+            //objSync.medlemlogxml();
             //objSync.medlemxmldelete();
             int xys = 1;
             //objSync.actionSync(1);

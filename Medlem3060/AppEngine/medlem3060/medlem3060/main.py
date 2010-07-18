@@ -114,7 +114,9 @@ class MedlemHandler(webapp.RequestHandler):
       m = Person.get(k)
     except:
       m = False
-    
+      
+    query = db.Query(Medlemlog).ancestor(k).order('-Logdato')
+    log = query.fetch(100)
     xonload = 'fonLoad();'
     
     if m:
@@ -249,6 +251,50 @@ class SyncMedlemHandler(webapp.RequestHandler):
     logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     self.response.out.write('Status: 404')
     
+class SyncMedlemlogHandler(webapp.RequestHandler):
+  def post(self):
+    doc = minidom.parse(self.request.body_file)
+    try:
+      Source = doc.getElementsByTagName("Source")[0].childNodes[0].data
+    except:
+      Source = None
+    try:
+      Source_id = doc.getElementsByTagName("Source_id")[0].childNodes[0].data
+    except:
+      Source_id = None
+    try:
+      Nr = doc.getElementsByTagName("Nr")[0].childNodes[0].data
+    except:
+      Nr = None
+    
+    personroot = db.Key.from_path('Persons','root','Person','%s' % (Nr))
+    medlemlog = Medlemlog.get_or_insert('%s-%s' % (Source,Source_id), parent=personroot)
+    
+    medlemlog.Source = int(Source)
+    medlemlog.Source_id = int(Source_id)
+    medlemlog.Nr = int(Nr)
+    try:
+      Logdato = doc.getElementsByTagName("Logdato")[0].childNodes[0].data
+      medlemlog.Logdato = datetime.strptime(Logdato, "%Y-%m-%dT%H:%M:%S")
+    except:
+      medlemlog.Logdato = None
+    try:
+      medlemlog.Akt_id = int(doc.getElementsByTagName("Akt_id")[0].childNodes[0].data)
+    except:
+      medlemlog.Akt_id = None
+    try:
+      Akt_dato = doc.getElementsByTagName("Akt_dato")[0].childNodes[0].data
+      medlemlog.Akt_dato = datetime.strptime(Akt_dato, "%Y-%m-%dT%H:%M:%S")
+    except:
+      medlemlog.Akt_dato = None
+
+    medlemlog.put()
+
+    logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    logging.info('%s - %s - %s - %s - %s - %s' % (medlemlog.Source, medlemlog.Source_id, medlemlog.Nr, medlemlog.Logdato, medlemlog.Akt_id, medlemlog.Akt_dato))
+    logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    self.response.out.write('Status: 404')
+
 class LogoffHandler(webapp.RequestHandler):
   def get(self):
     self.redirect(users.create_logout_url("/"))
@@ -303,6 +349,7 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/adm', MenuHandler),
                                        ('/rest/.*', rest.Dispatcher),
                                        ('/sync/Medlem', SyncMedlemHandler),
+                                       ('/sync/Medlemlog', SyncMedlemlogHandler),
                                        ('/sync/.*', MenuHandler),
                                        ('/logoff', LogoffHandler),
                                        ('/teknik/createmenu', CreateMenu),
