@@ -420,11 +420,11 @@ namespace nsPuls3060
                               };
 
 
-            var medlemlog = qryMedlemLog.Union(qryFak)
+            var qrymedlemlogunion = qryMedlemLog.Union(qryFak)
                                         .Union(qryBetlin)
                                         .Union(qryBetlin40);
 
-
+            var medlemlog = from u in qrymedlemlogunion orderby u.Id select u;
 
 
             clsRest objRest = new clsRest();

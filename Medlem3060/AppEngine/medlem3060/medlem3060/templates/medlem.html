@@ -1,4 +1,4 @@
-<html>
+﻿<html>
   <head>
     <link rel="stylesheet" href="/stylesheets/medlem3060.css" type="text/css" media="screen" />
     <script src="/javascripts/jquery-1.4.2.js" type="text/javascript"></script>
@@ -15,20 +15,23 @@
   <tr> 
     <td width="30">&nbsp;</td>
     <td valign="top"> 
-      <p><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"><b><b><font face="Arial, Helvetica, sans-serif" size="3" color="#003399">Indmeldelse</font></b></b></font></p>
-      <p><font face="Arial, Helvetica, sans-serif" size="2" color="#000000"> Du 
-        kan melde dig ind i L&oslash;beklubben Puls 3060 ved at udfylde formularen 
-        p&aring; denne side og trykke p&aring; knappen &quot;Indmeldelse&quot;. 
-        Kontingentet for perioden {{kontingent_fra_dato}} til {{kontingent_til_dato}} er kr. {{kontingent}}</font></p>
       <form name="FormIndmeldelse" method="post" action="">
         <table width="100%" border="0">
+          <tr> 
+            <td>Er Medlem:</td>
+            <td> 
+              <input type="text" name="Ermedlem" size="15" maxlength="15" value="{{Ermedlem}}">
+            </td>
+            <td>&nbsp;</td>
+          </tr> 
           <tr> 
             <td>Nr:</td>
             <td> 
               <input type="text" name="Nr" size="5" maxlength="5" value="{{Nr}}">
             </td>
             <td>&nbsp;</td>
-          </tr>          <tr> 
+          </tr>          
+          <tr> 
             <td>Navn:</td>
             <td> 
               <input type="text" name="Navn" size="25" maxlength="25" value="{{Navn}}">
@@ -78,18 +81,18 @@
             <td> <font size="3">(navn@abc.dk)</font></td>
           </tr>
           <tr> 
-            <td>K&oslash;n:</td>
+            <td>Køn:</td>
             <td> 
               <input type="text" name="Kon" size="1" maxlength="1" value="{{Kon}}">
             </td>
             <td><font size="3">(M=mand, K=kvinde)</font></td>
           </tr>
           <tr> 
-            <td>F&oslash;dselsdato:</td>
+            <td>Fødselsdato:</td>
             <td> 
               <input type="text" name="Fodelsdato" size="10" maxlength="10" value="{{Fodelsdato|date:"j-n-Y"}}">
             </td>
-            <td><font size="3">(dd-mm-&aring;&aring;&aring;&aring;)</font></td>
+            <td><font size="3">(dd-mm-åååå)</font></td>
           </tr>          
           <tr> 
             <td>Bank:</td>
@@ -105,19 +108,29 @@
               <input type="reset" name="SletIndtastning" value="Slet indtastning">
           </tr>
         </table>
-        <p>Efter du har udfyldt ovenst&aring;ende formular og trykket p&aring; 
-          &quot;Indmeldelse&quot; vil du f&aring; tilsendt et giro-indbetalingskort, 
-          som efter betaling vil fungerer som Puls 3060 Medlemskort.</p>
       </form>
    </td>
     <td width="30">&nbsp;</td>
   </tr>
   <tr> 
     <td width="30">&nbsp;</td>
-    <td align="right"><br>
-      <font color=#a03952 face="Arial, Helvetica, sans-serif" size=2><i><b></b></i></font>
-      <br>
-      <br>
+    <td align="left">
+      <table>
+        <tr style=background-color:#FF0000>
+          <font color=#003399> 
+            <th align=center>Aktivitet</th>
+            <th align=center>Akt_dato</th>
+          </font>
+        </tr>
+      {% if log_list %}
+        {% for log in  log_list %}
+        <tr  valign=top style=background-color:{% cycle  #CFE3CC,#CBE2E4 as rowcolors %}>
+          <td align=left>{{log.Akt_id|aktivitet}}</td>
+          <td align=right>{{log.Akt_dato|date:"d-m-Y"}}</td>
+        </tr>
+        {% endfor %}
+      {% endif %}    
+      </table>
     </td>
     <td width="30">&nbsp;</td>
   </tr>
@@ -130,7 +143,7 @@
   });
   
   function fonLoad(){
-	  var h = 675;
+	  var h = 650;
 	  var w = 650;
 	  window.resizeTo(w, h);
   }

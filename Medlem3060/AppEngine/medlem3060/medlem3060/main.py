@@ -114,9 +114,8 @@ class MedlemHandler(webapp.RequestHandler):
       m = Person.get(k)
     except:
       m = False
-      
-    query = db.Query(Medlemlog).ancestor(k).order('-Logdato')
-    log = query.fetch(100)
+    Ermedlem = m.erMedlem()
+    log_list = db.Query(Medlemlog).ancestor(k).order('-Logdato')
     xonload = 'fonLoad();'
     
     if m:
@@ -136,6 +135,8 @@ class MedlemHandler(webapp.RequestHandler):
         'Kon': m.Kon,
         'Fodelsdato': m.FodtDato,
         'Bank': m.Bank,
+        'Ermedlem': Ermedlem,
+        'log_list': log_list,
       }
     else:
       template_values = {
@@ -154,6 +155,8 @@ class MedlemHandler(webapp.RequestHandler):
         'Kon': '',
         'Fodelsdato': '',
         'Bank': '',
+        'Ermedlem': None,
+        'log_list': None,
       }
     
     path = os.path.join(os.path.dirname(__file__), 'templates/medlem.html') 
