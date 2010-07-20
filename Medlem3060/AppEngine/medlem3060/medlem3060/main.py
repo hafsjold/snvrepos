@@ -7,6 +7,7 @@ from google.appengine.api.labs import taskqueue
 from google.appengine.api import memcache
 from xml.dom import minidom
 from datetime import datetime
+import time
 
 import logging
 import rest
@@ -20,6 +21,13 @@ from menu import MenuHandler, ListUserHandler, UserHandler
 
 webapp.template.register_template_library('templatetags.medlem3060_extras')
 
+def getFullKeyPath(pkey):
+  pkeyparent = pkey.parent()
+  if pkeyparent:
+    return '%s,%s,%s' % (getFullKeyPath(pkeyparent), pkey.kind(), pkey.id_or_name())
+  else:
+    return '%s,%s' % (pkey.kind(), pkey.id_or_name())
+    
 class MainHandler(webapp.RequestHandler):
     def get(self):
         #TestCrypt('Mogens Hafsjold')
@@ -65,6 +73,7 @@ class FindmedlemHandler(webapp.RequestHandler):
   def get(self):
     template_values = {
     }
+    #time.sleep(10)
     path = os.path.join(os.path.dirname(__file__), 'templates/findmedlem.html') 
     self.response.out.write(template.render(path, template_values))
 
@@ -197,6 +206,19 @@ class MedlemHandler(webapp.RequestHandler):
     self.response.out.write(template.render(path, template_values))
     
 class SyncMedlemHandler(webapp.RequestHandler):
+  def get(self):
+    root = db.Key.from_path('Persons','root')
+    qry = db.Query(Person).ancestor(root)
+    antal = qry.count()
+    logging.info('TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT Antal: %s' % (antal))
+    user_list = qry.fetch(2)
+    template_values = {
+      'user_list': qry,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/medlem.xml') 
+    self.response.out.write(template.render(path, template_values))
+
+
   def post(self):
     doc = minidom.parse(self.request.body_file)
     try:
@@ -205,48 +227,20 @@ class SyncMedlemHandler(webapp.RequestHandler):
       Nr = None
     root = db.Key.from_path('Persons','root')
     person = Person.get_or_insert('%s' % (Nr), parent=root)
-    try:
-      person.Navn = doc.getElementsByTagName("Navn")[0].childNodes[0].data
-    except:
-      person.Navn = None
-    try:
-      person.Kaldenavn = doc.getElementsByTagName("Kaldenavn")[0].childNodes[0].data
-    except:
-      Kaldenavn = None
-    try:
-      person.Adresse = doc.getElementsByTagName("Adresse")[0].childNodes[0].data
-    except:
-      person.Adresse = None
-    try:
-      person.Postnr = doc.getElementsByTagName("Postnr")[0].childNodes[0].data
-    except:
-      Postnr = None
-    try:
-      person.Bynavn = doc.getElementsByTagName("Bynavn")[0].childNodes[0].data
-    except:
-      person.Bynavn = None
-    try:
-      person.Email = doc.getElementsByTagName("Email")[0].childNodes[0].data
-    except:
-      person.Email = None
-    try:
-      person.Telefon = doc.getElementsByTagName("Telefon")[0].childNodes[0].data
-    except:
-      person.Telefon = None
-    try:
-      person.Kon = doc.getElementsByTagName("Kon")[0].childNodes[0].data
-    except:
-      person.Kon = None
+    
+    for n in ['Navn', 'Kaldenavn', 'Adresse', 'Postnr', 'Bynavn', 'Email', 'Telefon', 'Kon', 'Bank']:
+      try:
+        setattr(person, n, doc.getElementsByTagName(n)[0].childNodes[0].data)
+        logging.info('%s=%s' % (n, getattr(person, n)) )
+      except:
+        setattr(person, n, None)
     try:
       FodtDato = doc.getElementsByTagName("FodtDato")[0].childNodes[0].data
       dt = datetime.strptime(FodtDato, "%Y-%m-%d")
       person.FodtDato = dt.date()
     except:
       person.FodtDato = None
-    try:
-      person.Bank = doc.getElementsByTagName("Bank")[0].childNodes[0].data
-    except:
-      person.Bank = None
+
     person.setNameTags()
 
     logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
@@ -255,6 +249,18 @@ class SyncMedlemHandler(webapp.RequestHandler):
     self.response.out.write('Status: 404')
     
 class SyncMedlemlogHandler(webapp.RequestHandler):
+  def get(self):
+    root = db.Key.from_path('Persons','root')
+    qry = db.Query(Medlemlog).ancestor(root)
+    antal = qry.count()
+    logging.info('TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT Antal: %s' % (antal))
+    user_log = qry.fetch(2)
+    template_values = {
+      'user_log': qry,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/medlemlog.xml') 
+    self.response.out.write(template.render(path, template_values))
+    
   def post(self):
     doc = minidom.parse(self.request.body_file)
     try:
@@ -328,6 +334,7 @@ class SearchIndexing(webapp.RequestHandler):
       persom_list = db.get(keys)
       for per in persom_list:
         per.setNameTags()
+
 
 
 class CreateMenu(webapp.RequestHandler):
