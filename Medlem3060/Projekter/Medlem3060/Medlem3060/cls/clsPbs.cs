@@ -615,7 +615,7 @@ namespace nsPuls3060
             public string val = "";
         }
 
-        public void ExecuteSQLScript(string ScriptFile)
+        public static void ExecuteSQLScript(string ScriptFile)
         {
             string ln = null;
             string sqlCommand = "";
@@ -986,6 +986,29 @@ namespace nsPuls3060
 
                         Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.16.0.0'  WHERE [vkey] = 'VERSION';");
                         dbVersion = "2.16.0.0";
+                        dbts.Complete();
+                    }
+
+                    catch (System.Data.SqlServerCe.SqlCeException e)
+                    {
+                        dbts.Dispose();
+                        object x = e;
+                    }
+                }
+            }
+
+
+            if (dbVersion == "2.16.0.0")
+            {
+                using (var dbts = new TransactionScope())
+                {
+                    try
+                    {
+                        //version "2.16.0.0" --> "2.17.0.0" opgradering af SqlDatabasen
+                        ExecuteSQLScript(@"sql\script17.sql");
+
+                        Program.dbData3060.ExecuteCommand("UPDATE [tblSysinfo] SET [val] = '2.17.0.0'  WHERE [vkey] = 'VERSION';");
+                        dbVersion = "2.17.0.0";
                         dbts.Complete();
                     }
 

@@ -24,9 +24,19 @@ namespace nsPuls3060
             m_action = action;
             if (m_action == 1) Program.dbData3060.ExecuteCommand("DELETE FROM tblsync;");
             if (m_action == 2) Program.dbData3060.ExecuteCommand("DELETE FROM tempsync;");
-            actionMedlemSync();
-            actionMedlemlogSync();
+            if (m_action == 3) Program.dbData3060.ExecuteCommand("DELETE FROM tempsync2;");
+            if ((m_action == 1) | (m_action == 2))
+            {
+                actionMedlemSync();
+                actionMedlemlogSync();
+            } 
+            if (m_action == 3)
+            {
+                actionMedlemxmlSync();
+                actionMedlemlogxmlSync();
+            }
         }
+        
         private void actionMedlemSync()
         {
             var medlem = from m1 in Program.karMedlemmer
@@ -52,6 +62,7 @@ namespace nsPuls3060
                 //Nr
                 s = new Tblsync
                 {
+                    Nr = (int)m.Nr,
                     Source = (byte)tblsource.medlem,
                     Source_id = (int)m.Nr,
                     Field_id = (byte)tblfield.medlem_nr,
@@ -62,6 +73,7 @@ namespace nsPuls3060
                 //Navn
                 s = new Tblsync
                 {
+                    Nr = (int)m.Nr,
                     Source = (byte)tblsource.medlem,
                     Source_id = (int)m.Nr,
                     Field_id = (byte)tblfield.navn,
@@ -72,6 +84,7 @@ namespace nsPuls3060
                 //Kaldenavn
                 s = new Tblsync
                 {
+                    Nr = (int)m.Nr,
                     Source = (byte)tblsource.medlem,
                     Source_id = (int)m.Nr,
                     Field_id = (byte)tblfield.kaldenavn,
@@ -82,6 +95,7 @@ namespace nsPuls3060
                 //Adresse
                 s = new Tblsync
                 {
+                    Nr = (int)m.Nr,
                     Source = (byte)tblsource.medlem,
                     Source_id = (int)m.Nr,
                     Field_id = (byte)tblfield.adresse,
@@ -92,6 +106,7 @@ namespace nsPuls3060
                 //Postnr
                 s = new Tblsync
                 {
+                    Nr = (int)m.Nr,
                     Source = (byte)tblsource.medlem,
                     Source_id = (int)m.Nr,
                     Field_id = (byte)tblfield.postnr,
@@ -102,6 +117,7 @@ namespace nsPuls3060
                 //Bynavn
                 s = new Tblsync
                 {
+                    Nr = (int)m.Nr,
                     Source = (byte)tblsource.medlem,
                     Source_id = (int)m.Nr,
                     Field_id = (byte)tblfield.bynavn,
@@ -112,6 +128,7 @@ namespace nsPuls3060
                 //Telefon
                 s = new Tblsync
                 {
+                    Nr = (int)m.Nr,
                     Source = (byte)tblsource.medlem,
                     Source_id = (int)m.Nr,
                     Field_id = (byte)tblfield.telefon,
@@ -122,6 +139,7 @@ namespace nsPuls3060
                 //Email
                 s = new Tblsync
                 {
+                    Nr = (int)m.Nr,
                     Source = (byte)tblsource.medlem,
                     Source_id = (int)m.Nr,
                     Field_id = (byte)tblfield.email,
@@ -132,6 +150,7 @@ namespace nsPuls3060
                 //Kon
                 s = new Tblsync
                 {
+                    Nr = (int)m.Nr,
                     Source = (byte)tblsource.medlem,
                     Source_id = (int)m.Nr,
                     Field_id = (byte)tblfield.kon,
@@ -142,16 +161,18 @@ namespace nsPuls3060
                 //FodtDato
                 s = new Tblsync
                 {
+                    Nr = (int)m.Nr,
                     Source = (byte)tblsource.medlem,
                     Source_id = (int)m.Nr,
                     Field_id = (byte)tblfield.fodtdato,
-                    Value = getString(m.FodtDato)
+                    Value = getString(m.FodtDato, "yyyy-MM-dd")
                 };
                 action(s);
 
                 //Bank
                 s = new Tblsync
                 {
+                    Nr = (int)m.Nr,
                     Source = (byte)tblsource.medlem,
                     Source_id = (int)m.Nr,
                     Field_id = (byte)tblfield.bank,
@@ -225,6 +246,7 @@ namespace nsPuls3060
                 //Id
                 s = new Tblsync
                 {
+                    Nr = (int)l.Nr,
                     Source = l.Source,
                     Source_id = (int)l.Id,
                     Field_id = (byte)tblfield.medlemlog_id,
@@ -235,6 +257,7 @@ namespace nsPuls3060
                 //Nr
                 s = new Tblsync
                 {
+                    Nr = (int)l.Nr,
                     Source = l.Source,
                     Source_id = (int)l.Id,
                     Field_id = (byte)tblfield.medlemlog_nr,
@@ -245,16 +268,18 @@ namespace nsPuls3060
                 //Logdato
                 s = new Tblsync
                 {
+                    Nr = (int)l.Nr,
                     Source = l.Source,
                     Source_id = (int)l.Id,
                     Field_id = (byte)tblfield.logdato,
-                    Value = getString(l.Logdato)
+                    Value = getString(l.Logdato, "yyyy-MM-dd HH:mm:ss")
                 };
                 action(s);
 
                 //Akt_id
                 s = new Tblsync
                 {
+                    Nr = (int)l.Nr,
                     Source = l.Source,
                     Source_id = (int)l.Id,
                     Field_id = (byte)tblfield.akt_id,
@@ -265,10 +290,11 @@ namespace nsPuls3060
                 //Akt_dato
                 s = new Tblsync
                 {
+                    Nr = (int)l.Nr,
                     Source = l.Source,
                     Source_id = (int)l.Id,
                     Field_id = (byte)tblfield.akt_dato,
-                    Value = getString(l.Akt_dato)
+                    Value = getString(l.Akt_dato, "yyyy-MM-dd HH:mm:ss")
                 };
                 action(s);
             }
@@ -282,12 +308,26 @@ namespace nsPuls3060
             {
                 Tempsync ts = new Tempsync
                 {
+                    Nr = s.Nr,
                     Source = s.Source,
                     Source_id = s.Source_id,
                     Field_id = s.Field_id,
                     Value = s.Value
                 };
                 Program.dbData3060.Tempsync.InsertOnSubmit(ts);
+            }
+            if (m_action == 3)
+            {
+                Tempsync2 ts = new Tempsync2
+                {
+                    Nr = s.Nr,
+                    Source = s.Source,
+                    Source_id = s.Source_id,
+                    Field_id = s.Field_id,
+                    Value = s.Value
+                };
+                Program.dbData3060.Tempsync2.InsertOnSubmit(ts);
+
             }
         }
 
@@ -324,14 +364,16 @@ namespace nsPuls3060
             }
         }
 
-        public void getmedlemxml()
+        public void actionMedlemxmlSync()
         {
             clsRest objRest = new clsRest();
             string retur = objRest.HttpGet2("Medlem");
             XDocument xdoc = XDocument.Parse(retur);
             var list = from person in xdoc.Descendants("Person") select person;
             int antal = list.Count();
+            Tblsync s;
             foreach (var person in list) {
+
                 var Nr = person.Descendants("Nr").First().Value;
                 var Navn = person.Descendants("Navn").First().Value;
                 var Kaldenavn = person.Descendants("Kaldenavn").First().Value;
@@ -343,13 +385,202 @@ namespace nsPuls3060
                 var Kon = person.Descendants("Kon").First().Value;
                 var FodtDato = person.Descendants("FodtDato").First().Value;
                 var Bank = person.Descendants("Bank").First().Value;
-            } 
+                //Nr
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Nr),
+                    Source = (byte)tblsource.medlem,
+                    Source_id = int.Parse(Nr),
+                    Field_id = (byte)tblfield.medlem_nr,
+                    Value = Nr,
+                };
+                action(s);
+
+                //Navn
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Nr),
+                    Source = (byte)tblsource.medlem,
+                    Source_id = int.Parse(Nr),
+                    Field_id = (byte)tblfield.navn,
+                    Value = Navn
+                };
+                action(s);
+
+                //Kaldenavn
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Nr),
+                    Source = (byte)tblsource.medlem,
+                    Source_id = int.Parse(Nr),
+                    Field_id = (byte)tblfield.kaldenavn,
+                    Value = Kaldenavn
+                };
+                action(s);
+
+                //Adresse
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Nr),
+                    Source = (byte)tblsource.medlem,
+                    Source_id = int.Parse(Nr),
+                    Field_id = (byte)tblfield.adresse,
+                    Value = Adresse
+                };
+                action(s);
+
+                //Postnr
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Nr),
+                    Source = (byte)tblsource.medlem,
+                    Source_id = int.Parse(Nr),
+                    Field_id = (byte)tblfield.postnr,
+                    Value = Postnr
+                };
+                action(s);
+
+                //Bynavn
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Nr),
+                    Source = (byte)tblsource.medlem,
+                    Source_id = int.Parse(Nr),
+                    Field_id = (byte)tblfield.bynavn,
+                    Value = Bynavn
+                };
+                action(s);
+
+                //Telefon
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Nr),
+                    Source = (byte)tblsource.medlem,
+                    Source_id = int.Parse(Nr),
+                    Field_id = (byte)tblfield.telefon,
+                    Value = Telefon
+                };
+                action(s);
+
+                //Email
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Nr),
+                    Source = (byte)tblsource.medlem,
+                    Source_id = int.Parse(Nr),
+                    Field_id = (byte)tblfield.email,
+                    Value = Email
+                };
+                action(s);
+
+                //Kon
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Nr),
+                    Source = (byte)tblsource.medlem,
+                    Source_id = int.Parse(Nr),
+                    Field_id = (byte)tblfield.kon,
+                    Value = Kon
+                };
+                action(s);
+
+                //FodtDato
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Nr),
+                    Source = (byte)tblsource.medlem,
+                    Source_id = int.Parse(Nr),
+                    Field_id = (byte)tblfield.fodtdato,
+                    Value = FodtDato
+                };
+                action(s);
+
+                //Bank
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Nr),
+                    Source = (byte)tblsource.medlem,
+                    Source_id = int.Parse(Nr),
+                    Field_id = (byte)tblfield.bank,
+                    Value = Bank
+                };
+                action(s);
+            }
+            Program.dbData3060.SubmitChanges();
         }
 
-        public void getmedlemlogxml()
+        public void actionMedlemlogxmlSync()
         {
             clsRest objRest = new clsRest();
             string retur = objRest.HttpGet2("Medlemlog");
+            XDocument xdoc = XDocument.Parse(retur);
+            var list = from log in xdoc.Descendants("Medlemlog") select log;
+            int antal = list.Count();
+            Tblsync s;
+            foreach (var log in list)
+            {
+                var Source = log.Descendants("Source").First().Value;
+                var Source_id = log.Descendants("Source_id").First().Value;
+                var Nr = log.Descendants("Nr").First().Value;
+                var Logdato = log.Descendants("Logdato").First().Value;
+                var Akt_id = log.Descendants("Akt_id").First().Value;
+                var Akt_dato = log.Descendants("Akt_dato").First().Value;
+                //Id
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Nr),
+                    Source = byte.Parse(Source),
+                    Source_id = int.Parse(Source_id),
+                    Field_id = (byte)tblfield.medlemlog_id,
+                    Value = Source_id
+                };
+                action(s);
+
+                //Nr
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Nr),
+                    Source = byte.Parse(Source),
+                    Source_id = int.Parse(Source_id),
+                    Field_id = (byte)tblfield.medlemlog_nr,
+                    Value = Nr
+                };
+                action(s);
+
+                //Logdato
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Nr),
+                    Source = byte.Parse(Source),
+                    Source_id = int.Parse(Source_id),
+                    Field_id = (byte)tblfield.logdato,
+                    Value = Logdato
+                };
+                action(s);
+
+                //Akt_id
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Nr),
+                    Source = byte.Parse(Source),
+                    Source_id = int.Parse(Source_id),
+                    Field_id = (byte)tblfield.akt_id,
+                    Value = Akt_id
+                };
+                action(s);
+
+                //Akt_dato
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Nr),
+                    Source = byte.Parse(Source),
+                    Source_id = int.Parse(Source_id),
+                    Field_id = (byte)tblfield.akt_dato,
+                    Value = Akt_dato
+                };
+                action(s);
+            }
+            Program.dbData3060.SubmitChanges();
         }
        
         public void medlemxml()
@@ -477,13 +708,14 @@ namespace nsPuls3060
         //********************************************************************************
         private string getString(string Value)
         {
-            if (Value == null) return null;
+            if (Value == null) return "None";
+            if (Value.Length == 0) return "None";
             return Value;
         }
 
         private string getString(int? Value)
         {
-            if (Value == null) return null;
+            if (Value == null) return "None";
             return getString((int)Value);
         }
 
@@ -494,13 +726,24 @@ namespace nsPuls3060
 
         private string getString(DateTime? Value)
         {
-            if (Value == null) return null;
+            if (Value == null) return "None";
             return getString((DateTime)Value);
         }
 
         private string getString(DateTime Value)
         {
-            return Value.ToString();
+            return Value.ToString("yyyy-MM-dd");
+        }
+
+        private string getString(DateTime? Value, string Format)
+        {
+            if (Value == null) return "None";
+            return getString((DateTime)Value, Format);
+        }
+
+        private string getString(DateTime Value, string Format)
+        {
+            return Value.ToString(Format);
         }
 
         public enum tblsource : byte

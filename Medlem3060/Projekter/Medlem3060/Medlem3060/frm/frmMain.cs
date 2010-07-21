@@ -129,12 +129,17 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
-            clsRest objRest = new clsRest();
+
+            //clsRest objRest = new clsRest();
             //objRest.testencrypt();
             clsSync objSync = new clsSync();
+            objSync.actionSync(1);
+            objSync.actionSync(2);
+            objSync.actionSync(3);
+            clsPbs.ExecuteSQLScript(@"sql\scriptimpexp.sql");
             //objSync.medlemxml();
-            objSync.getmedlemxml();
-            //objSync.getmedlemlogxml();
+            //objSync.actionMedlemxmlSync();
+            //objSync.actionMedlemlogxmlSync();
             //objSync.medlemlogxml();
             //objSync.medlemxmldelete();
             int xys = 1;
