@@ -132,7 +132,9 @@ namespace nsPuls3060
             clsRest objRest = new clsRest();
             //objRest.testencrypt();
             clsSync objSync = new clsSync();
-            objSync.medlemxml();
+            //objSync.medlemxml();
+            objSync.getmedlemxml();
+            //objSync.getmedlemlogxml();
             //objSync.medlemlogxml();
             //objSync.medlemxmldelete();
             int xys = 1;

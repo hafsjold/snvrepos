@@ -323,7 +323,35 @@ namespace nsPuls3060
                 string delstrxml = objRest.HttpDelete2("Medlem/" + m.Key);
             }
         }
-        
+
+        public void getmedlemxml()
+        {
+            clsRest objRest = new clsRest();
+            string retur = objRest.HttpGet2("Medlem");
+            XDocument xdoc = XDocument.Parse(retur);
+            var list = from person in xdoc.Descendants("Person") select person;
+            int antal = list.Count();
+            foreach (var person in list) {
+                var Nr = person.Descendants("Nr").First().Value;
+                var Navn = person.Descendants("Navn").First().Value;
+                var Kaldenavn = person.Descendants("Kaldenavn").First().Value;
+                var Adresse = person.Descendants("Adresse").First().Value;
+                var Postnr = person.Descendants("Postnr").First().Value;
+                var Bynavn = person.Descendants("Bynavn").First().Value;
+                var Telefon = person.Descendants("Telefon").First().Value;
+                var Email = person.Descendants("Email").First().Value;
+                var Kon = person.Descendants("Kon").First().Value;
+                var FodtDato = person.Descendants("FodtDato").First().Value;
+                var Bank = person.Descendants("Bank").First().Value;
+            } 
+        }
+
+        public void getmedlemlogxml()
+        {
+            clsRest objRest = new clsRest();
+            string retur = objRest.HttpGet2("Medlemlog");
+        }
+       
         public void medlemxml()
         {
 
