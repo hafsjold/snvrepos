@@ -132,7 +132,8 @@ namespace nsPuls3060
 
             //clsRest objRest = new clsRest();
             //objRest.testencrypt();
-            //clsSync objSync = new clsSync();
+            clsSync objSync = new clsSync();
+            objSync.import();
             //objSync.actionSync(1);
             //objSync.actionSync(2);
             //objSync.actionSync(3);
@@ -142,7 +143,7 @@ namespace nsPuls3060
             //objSync.actionMedlemlogxmlSync();
             //objSync.medlemlogxml();
             //objSync.medlemxmldelete();
-            //int xys = 1;
+            int xys = 1;
             //objSync.actionSync(1);
             //objSync.actionSync(2);
             //decimal tal = 50;
@@ -514,9 +515,9 @@ namespace nsPuls3060
 
             clsPbs.ExecuteSQLScript(@"sql\scriptimpexp.sql"); //
 
-            //Udtræk og opdatering til Google AppEng
+            objSync.export(); //Eksporter opdatering til Google AppEng
 
-            //Udtræk opdateringer til Lokale Data
+            objSync.import(); //Importer opdateringer til Lokale Data
             
             //objSync.actionSync(1); //Hent Syncroniserede Data (tblSync)
         }

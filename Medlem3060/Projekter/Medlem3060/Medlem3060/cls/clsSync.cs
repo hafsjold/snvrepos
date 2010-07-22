@@ -15,7 +15,73 @@ namespace nsPuls3060
         public int? Akt_id;
         public DateTime? Akt_dato;
     }
-    
+
+    public class clsImportAppEngMedlem
+    {
+        public clsImportAppEngMedlem()
+        {
+            bNr = false;
+            bNavn = false;
+            bKaldenavn = false;
+            bAdresse = false;
+            bPostnr = false;
+            bBynavn = false;
+            bEmail = false;
+            bTelefon = false;
+            bKon = false;
+            bFodtDato = false;
+            bBank = false;
+        }
+
+        public string Act { get; set; }
+        public bool bNr { get; set; }
+        public bool bNavn { get; set; }
+        public bool bKaldenavn { get; set; }
+        public bool bAdresse { get; set; }
+        public bool bPostnr { get; set; }
+        public bool bBynavn { get; set; }
+        public bool bEmail { get; set; }
+        public bool bTelefon { get; set; }
+        public bool bKon { get; set; }
+        public bool bFodtDato { get; set; }
+        public bool bBank { get; set; }
+        public int? Nr { get; set; }
+        public string Navn { get; set; }
+        public string Kaldenavn { get; set; }
+        public string Adresse { get; set; }
+        public string Postnr { get; set; }
+        public string Bynavn { get; set; }
+        public string Email { get; set; }
+        public string Telefon { get; set; }
+        public string Kon { get; set; }
+        public DateTime? FodtDato { get; set; }
+        public string Bank { get; set; }
+    }
+
+    public class clsImportAppEngMedlemlog
+    {
+        public clsImportAppEngMedlemlog()
+        {
+            bId = false;
+            bNr = false;
+            bLogdato = false;
+            bAkt_id = false;
+            bAkt_dato = false;
+        }
+        public string Act { get; set; }
+        public bool bId { get; set; }
+        public bool bNr { get; set; }
+        public bool bLogdato { get; set; }
+        public bool bAkt_id { get; set; }
+        public bool bAkt_dato { get; set; }
+
+        public int? Id { get; set; }
+        public int? Nr { get; set; }
+        public DateTime? Logdato { get; set; }
+        public int? Akt_id { get; set; }
+        public DateTime? Akt_dato { get; set; }
+    }
+
     public class clsSync
     {
         private int m_action;
@@ -29,14 +95,14 @@ namespace nsPuls3060
             {
                 actionMedlemSync();
                 actionMedlemlogSync();
-            } 
+            }
             if (m_action == 3)
             {
                 actionMedlemxmlSync();
                 actionMedlemlogxmlSync();
             }
         }
-        
+
         private void actionMedlemSync()
         {
             var medlem = from m1 in Program.karMedlemmer
@@ -182,7 +248,7 @@ namespace nsPuls3060
             }
             Program.dbData3060.SubmitChanges();
         }
-        
+
         private void actionMedlemlogSync()
         {
             var qryMedlemLog = from m in Program.dbData3060.TblMedlemLog
@@ -237,9 +303,9 @@ namespace nsPuls3060
                                            .Union(qryBetlin)
                                            .Union(qryBetlin40);
 
-            
-            
-            
+
+
+
             Tblsync s;
             foreach (var l in medlemlog)
             {
@@ -331,7 +397,7 @@ namespace nsPuls3060
             }
         }
 
-        public void toxml() 
+        public void toxml()
         {
             XElement xml = new XElement("syncs",
                 from p in Program.dbData3060.Tempsync
@@ -342,23 +408,23 @@ namespace nsPuls3060
                     new XAttribute("v", p.Value),
                     new XAttribute("a", "add")
                     ));
-            xml.Save(@"c:\mysync.xml");     
+            xml.Save(@"c:\mysync.xml");
         }
 
         public void medlemxmldelete()
         {
             clsRest objRest = new clsRest();
             string strxml = objRest.HttpGet2("Medlem");
-            
+
             XElement list = XElement.Parse(strxml);
-            var medlem = from m in list.Elements("Medlem") 
-                         select new 
+            var medlem = from m in list.Elements("Medlem")
+                         select new
                          {
                              Key = (string)m.Element("key"),
                              Nr = (string)m.Element("Nr")
                          };
             int antal = medlem.Count();
-            foreach (var m in medlem) 
+            foreach (var m in medlem)
             {
                 string delstrxml = objRest.HttpDelete2("Medlem/" + m.Key);
             }
@@ -372,7 +438,8 @@ namespace nsPuls3060
             var list = from person in xdoc.Descendants("Person") select person;
             int antal = list.Count();
             Tblsync s;
-            foreach (var person in list) {
+            foreach (var person in list)
+            {
 
                 var Nr = person.Descendants("Nr").First().Value;
                 var Navn = person.Descendants("Navn").First().Value;
@@ -582,7 +649,7 @@ namespace nsPuls3060
             }
             Program.dbData3060.SubmitChanges();
         }
-       
+
         public void medlemxml()
         {
 
@@ -605,7 +672,7 @@ namespace nsPuls3060
                          };
             clsRest objRest = new clsRest();
             int antal = medlem.Count();
-            foreach (var m in medlem) 
+            foreach (var m in medlem)
             {
                 XElement xml = new XElement("Medlem",
                                  new XElement("key", ""),
@@ -623,8 +690,6 @@ namespace nsPuls3060
                          );
                 string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
                 string retur = objRest.HttpPost2("Medlem", strxml);
-
-            
             }
 
         }
@@ -777,6 +842,188 @@ namespace nsPuls3060
             medlemlog_nr = 17
         }
 
+        internal void export()
+        {
 
-    }
+        }
+
+        internal void import()
+        {
+            var imp = from t in Program.dbData3060.Tempimpexp
+                      where t.Ie == "i"
+                      && t.Source < 3
+                      && t.Act != "del"
+                      orderby t.Nr, t.Source, t.Source_id, t.Field_id
+                      select t;
+            int antal = imp.Count();
+            int Last_Nr = 0;
+            byte Last_Source = 0;
+            int Last_Source_id = 0;
+            bool bFirst = true;
+            bool bBreak = false;
+            clsImportAppEngMedlemlog objMedlemLog = null;
+            clsImportAppEngMedlem objMedlem = null;
+
+            foreach (var t in imp)
+            {
+                bBreak = ((t.Source_id != Last_Source_id) || (t.Source != Last_Source) || (t.Nr != Last_Nr));
+                if ((bBreak) && (!bFirst)) //Save Data   
+                {
+                    switch (Last_Source)
+                    {
+                        case 1:    //Medlem
+                            medlemupdate(objMedlem); //Save Medlem
+                            break;
+
+                        case 2:   //Medlemlog
+                            medlemlogupdate(objMedlemLog);//Save MedlemLog
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+                if ((bBreak) || (bFirst)) //Init Data
+                {
+                    switch (t.Source)
+                    {
+                        case 1:    //Medlem
+                            objMedlem = new clsImportAppEngMedlem();
+                            objMedlem.Nr = t.Nr;
+                            objMedlem.bNr = true;
+                            objMedlem.Act = t.Act;
+                            break;
+
+                        case 2:   //Medlemlog
+                            objMedlemLog = new clsImportAppEngMedlemlog();
+                            objMedlemLog.Act = t.Act;
+                            objMedlemLog.Id = t.Source_id;
+                            objMedlemLog.bId = true;
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+                // Get Data
+                switch (t.Source)
+                {
+                    case 1:    //Medlem
+                        switch (t.Field_id)
+                        {
+                            case 1:   //medlem_nr
+                                objMedlem.Nr = int.Parse(t.Value);
+                                objMedlem.bNr = true;
+                                break;
+                            case 2:   //navn
+                                objMedlem.Navn = t.Value;
+                                objMedlem.bNavn = true;
+                                break;
+                            case 3:   //kaldenavn
+                                objMedlem.Kaldenavn = t.Value;
+                                objMedlem.bKaldenavn = true;
+                                break;
+                            case 4:   //adresse
+                                objMedlem.bNr = true;
+                                objMedlem.Adresse = t.Value;
+                                break;
+                            case 5:   //postnr
+                                objMedlem.Postnr = t.Value;
+                                objMedlem.bPostnr = true;
+                                break;
+                            case 6:   //bynavn
+                                objMedlem.Bynavn = t.Value;
+                                objMedlem.bBynavn = true;
+                                break;
+                            case 7:   //telefon
+                                objMedlem.Telefon = t.Value;
+                                objMedlem.bTelefon = true;
+                                break;
+                            case 8:   //email
+                                objMedlem.Email = t.Value;
+                                objMedlem.bEmail = true;
+                                break;
+                            case 9:   //kon
+                                objMedlem.Kon = t.Value;
+                                objMedlem.bKon = true;
+                                break;
+                            case 10:   //fodtdato
+                                objMedlem.FodtDato = DateTime.Parse(t.Value);
+                                objMedlem.bFodtDato = true;
+                                break;
+                            case 11:   //bank
+                                objMedlem.Bank = t.Value;
+                                objMedlem.bBank = true;
+                                break;
+
+                            default:
+                                break;
+                        }
+                        break;
+
+                    case 2:   //Medlemlog
+                        switch (t.Field_id)
+                        {
+                            case 13:   //medlemlog_id
+                                objMedlemLog.Id = int.Parse(t.Value);
+                                objMedlemLog.bId = true;
+                                break;
+                            case 14:   //logdato
+                                objMedlemLog.Logdato = DateTime.Parse(t.Value);
+                                objMedlemLog.bLogdato = true;
+                                break;
+                            case 15:   //akt_id
+                                objMedlemLog.Akt_id = int.Parse(t.Value);
+                                objMedlemLog.bAkt_id = true;
+                                break;
+                            case 16:   //akt_dato
+                                objMedlemLog.Akt_dato = DateTime.Parse(t.Value);
+                                objMedlemLog.bAkt_dato = true;
+                                break;
+                            case 17:   //medlemlog_nr
+                                objMedlemLog.Nr = int.Parse(t.Value);
+                                objMedlemLog.bNr = true;
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+
+                // Save Status
+                Last_Nr = t.Nr;
+                Last_Source = t.Source;
+                Last_Source_id = t.Source_id;
+                bFirst = false;
+            }
+            if (!bFirst) //Save Data   
+            {
+                switch (Last_Source)
+                {
+                    case 1:    //Medlem
+                        medlemupdate(objMedlem); //Save Medlem
+                        break;
+
+                    case 2:   //Medlemlog
+                        medlemlogupdate(objMedlemLog);//Save MedlemLog
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
+
+        private void medlemupdate(clsImportAppEngMedlem objMedlem)
+        {
+            //throw new NotImplementedException();
+        }
+
+        private void medlemlogupdate(clsImportAppEngMedlemlog objMedlemLog)
+        {
+            //throw new NotImplementedException();
+        }    }
 }
