@@ -132,17 +132,17 @@ namespace nsPuls3060
 
             //clsRest objRest = new clsRest();
             //objRest.testencrypt();
-            clsSync objSync = new clsSync();
-            objSync.actionSync(1);
-            objSync.actionSync(2);
-            objSync.actionSync(3);
-            clsPbs.ExecuteSQLScript(@"sql\scriptimpexp.sql");
+            //clsSync objSync = new clsSync();
+            //objSync.actionSync(1);
+            //objSync.actionSync(2);
+            //objSync.actionSync(3);
+            //clsPbs.ExecuteSQLScript(@"sql\scriptimpexp.sql");
             //objSync.medlemxml();
             //objSync.actionMedlemxmlSync();
             //objSync.actionMedlemlogxmlSync();
             //objSync.medlemlogxml();
             //objSync.medlemxmldelete();
-            int xys = 1;
+            //int xys = 1;
             //objSync.actionSync(1);
             //objSync.actionSync(2);
             //decimal tal = 50;
@@ -504,6 +504,21 @@ namespace nsPuls3060
                 m_frmPbsnetdir.MdiParent = this;
                 m_frmPbsnetdir.Show();
             }
+        }
+
+        private void syncMedInternettetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clsSync objSync = new clsSync();
+            objSync.actionSync(3); //Hent Snapshut fra Google AppEng (Tempsync2)
+            objSync.actionSync(2); //Hent Snapshut fra Lokale Data (Tempsync)
+
+            clsPbs.ExecuteSQLScript(@"sql\scriptimpexp.sql"); //
+
+            //Udtræk og opdatering til Google AppEng
+
+            //Udtræk opdateringer til Lokale Data
+            
+            //objSync.actionSync(1); //Hent Syncroniserede Data (tblSync)
         }
 
     }

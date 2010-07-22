@@ -177,6 +177,7 @@ namespace nsPuls3060
         
         private static string mysecret = "2X4JYVdklF2YdsDxbWt8ygUaueUmgETSpwgOJ5wV0DpTrTSyEGFI4VobVi3fHQxfbh24aPdvbwPTRkZiRob9PEnbOAAlqnJ2iziBG0744kusyr6ykVUSkZLowBYrNsf2P1hojKOPLAIKSdKuPTRx5Ulrk91EnTd24JS2QLRFOD2sAcI9zEZ6ICsv5cWRzIeV4u0TlWmULmQGxN6s3mZA8d1KyxvwovqJwGN9aeVaMQQ5LHimm8gOXBIhmpmGKp9m";
 
+/*
         private static string mycert = @"-----BEGIN CERTIFICATE-----
 MIIGVTCCBT2gAwIBAgIKM3loxwAAAAAAMTANBgkqhkiG9w0BAQUFADBKMRIwEAYK
 CZImiZPyLGQBGRYCZGsxGjAYBgoJkiaJk/IsZAEZFgpidXVzamVuc2VuMRgwFgYD
@@ -213,7 +214,7 @@ rtsN6nde2tcIsRuv+q+oMSzKQo/o2qXGRyDQkx5rxo1fkrQXuzYaaPF52hALyEV9
 yGyIscsRPJFsC8wyhFiYNeOvjDH1Yli3UKzadqZSlU5IxI3ElfcvRz0lqGLXtuaS
 zRQFtWA5gB8qci4X8lH4vtyJVpiLUtHNZnfzIRo0ADxoLW+ggPgSZys=
 -----END CERTIFICATE-----";
-
+*/
         private static string mykey =
 @"-----BEGIN RSA PRIVATE KEY-----
 MIIEowIBAAKCAQEA0G2MsoKo/jc43syrGS/AKV81hrL/BBOHWALjG5efOKXSY8ZF
