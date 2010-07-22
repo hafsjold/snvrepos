@@ -146,7 +146,7 @@
   </Table>
   <Table Name="tblMedlemLog" Member="TblMedlemLog">
     <Type Name="TblMedlemLog">
-      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Nr" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="logdato" Member="Logdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="akt_id" Member="Akt_id" Type="System.Int32" DbType="Int" CanBeNull="true" />

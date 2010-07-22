@@ -238,6 +238,7 @@ namespace nsPuls3060
                     DateTime nu = DateTime.Now;
                     TblMedlemLog recLog = new TblMedlemLog
                     {
+                        Id = clsPbs.nextval("tblMedlemlog"),
                         Nr = tblMedlem_nr,
                         Logdato = new DateTime(nu.Year, nu.Month, nu.Day),
                         Akt_id = 10,
@@ -343,6 +344,7 @@ namespace nsPuls3060
                         DateTime aktdt = (DateTime)U_DT_NyAktivitetDato.Value;
                         TblMedlemLog recLog = new TblMedlemLog
                         {
+                            Id = clsPbs.nextval("tblMedlemlog"),
                             Nr = tblMedlem_nr,
                             Logdato = DateTime.Now,
                             Akt_id = Akt_id,
@@ -494,6 +496,7 @@ namespace nsPuls3060
                         DateTime nu = DateTime.Now;
                         TblMedlemLog recLog = new TblMedlemLog
                         {
+                            Id = clsPbs.nextval("tblMedlemlog"),
                             Nr = tblMedlem_nr,
                             Logdato = new DateTime(nu.Year, nu.Month, nu.Day),
                             Akt_id = 10,
