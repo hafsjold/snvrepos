@@ -229,17 +229,34 @@ class SyncMedlemHandler(webapp.RequestHandler):
     person = Person.get_or_insert('%s' % (Nr), parent=root)
     
     for n in ['Navn', 'Kaldenavn', 'Adresse', 'Postnr', 'Bynavn', 'Email', 'Telefon', 'Kon', 'Bank']:
+      val = None
+      bval = True
       try:
-        setattr(person, n, doc.getElementsByTagName(n)[0].childNodes[0].data)
-        logging.info('%s=%s' % (n, getattr(person, n)) )
+        val = doc.getElementsByTagName(n)[0].childNodes[0].data
       except:
-        setattr(person, n, None)
+        bval = False
+      
+      if bval:     
+        try:
+          setattr(person, n, val)
+          logging.info('%s=%s' % (n, getattr(person, n)) )
+        except:
+          setattr(person, n, None)
+    
+    FodtDato = None
+    bFodtDato = True
     try:
       FodtDato = doc.getElementsByTagName("FodtDato")[0].childNodes[0].data
-      dt = datetime.strptime(FodtDato, "%Y-%m-%d")
-      person.FodtDato = dt.date()
     except:
-      person.FodtDato = None
+      bFodtDato = False
+
+    if bFodtDato: 
+      try:
+        dt = datetime.strptime(FodtDato, "%Y-%m-%d")
+        person.FodtDato = dt.date()
+        logging.info('%s=%s' % ('FodtDato', getattr(person, 'FodtDato')) )
+      except:
+        person.FodtDato = None
 
     person.setNameTags()
 
@@ -263,46 +280,49 @@ class SyncMedlemlogHandler(webapp.RequestHandler):
     
   def post(self):
     doc = minidom.parse(self.request.body_file)
+    bkey = True
     try:
       Source = doc.getElementsByTagName("Source")[0].childNodes[0].data
     except:
-      Source = None
+      bkey = False
     try:
       Source_id = doc.getElementsByTagName("Source_id")[0].childNodes[0].data
     except:
-      Source_id = None
+      bkey = False
     try:
       Nr = doc.getElementsByTagName("Nr")[0].childNodes[0].data
     except:
-      Nr = None
+      bkey = False
     
-    personroot = db.Key.from_path('Persons','root','Person','%s' % (Nr))
-    medlemlog = Medlemlog.get_or_insert('%s-%s' % (Source,Source_id), parent=personroot)
+    if bkey:
+      personroot = db.Key.from_path('Persons','root','Person','%s' % (Nr))
+      medlemlog = Medlemlog.get_or_insert('%s-%s' % (Source,Source_id), parent=personroot)
     
-    medlemlog.Source = int(Source)
-    medlemlog.Source_id = int(Source_id)
-    medlemlog.Nr = int(Nr)
-    try:
-      Logdato = doc.getElementsByTagName("Logdato")[0].childNodes[0].data
-      medlemlog.Logdato = datetime.strptime(Logdato, "%Y-%m-%dT%H:%M:%S")
-    except:
-      medlemlog.Logdato = None
-    try:
-      medlemlog.Akt_id = int(doc.getElementsByTagName("Akt_id")[0].childNodes[0].data)
-    except:
-      medlemlog.Akt_id = None
-    try:
-      Akt_dato = doc.getElementsByTagName("Akt_dato")[0].childNodes[0].data
-      medlemlog.Akt_dato = datetime.strptime(Akt_dato, "%Y-%m-%dT%H:%M:%S")
-    except:
-      medlemlog.Akt_dato = None
+      medlemlog.Source = int(Source)
+      medlemlog.Source_id = int(Source_id)
+      medlemlog.Nr = int(Nr)
+      try:
+        Logdato = doc.getElementsByTagName("Logdato")[0].childNodes[0].data
+        medlemlog.Logdato = datetime.strptime(Logdato, "%Y-%m-%dT%H:%M:%S")
+      except:
+        pass
+      try:
+        medlemlog.Akt_id = int(doc.getElementsByTagName("Akt_id")[0].childNodes[0].data)
+      except:
+        pass
+      try:
+        Akt_dato = doc.getElementsByTagName("Akt_dato")[0].childNodes[0].data
+        medlemlog.Akt_dato = datetime.strptime(Akt_dato, "%Y-%m-%dT%H:%M:%S")
+      except:
+        pass
 
-    medlemlog.put()
+      medlemlog.put()
 
-    logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-    logging.info('%s - %s - %s - %s - %s - %s' % (medlemlog.Source, medlemlog.Source_id, medlemlog.Nr, medlemlog.Logdato, medlemlog.Akt_id, medlemlog.Akt_dato))
-    logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-    self.response.out.write('Status: 404')
+      logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+      logging.info('%s - %s - %s - %s - %s - %s' % (medlemlog.Source, medlemlog.Source_id, medlemlog.Nr, medlemlog.Logdato, medlemlog.Akt_id, medlemlog.Akt_dato))
+      logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+      self.response.out.write('Status: 404')
+    
 
 class LogoffHandler(webapp.RequestHandler):
   def get(self):

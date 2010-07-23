@@ -22,6 +22,7 @@ namespace nsPuls3060
         private static string m_path_to_lock_summasummarum_kontoplan;
         private static FileStream m_filestream_to_lock_summasummarum_kontoplan;
         private static DbData3060 m_dbData3060;
+        private static dsMedlem m_dsMedlemImport;
         private static KarMedlemmer m_KarMedlemmer;
         private static MemMedlemDictionary m_dicMedlem;
         private static MemAktivRegnskab m_memAktivRegnskab;
@@ -204,6 +205,18 @@ namespace nsPuls3060
             set
             {
                 m_dbData3060 = value;
+            }
+        }
+        public static dsMedlem dsMedlemImport
+        {
+            get
+            {
+                if (m_dsMedlemImport == null) m_dsMedlemImport = new dsMedlem();
+                return m_dsMedlemImport;
+            }
+            set
+            {
+                m_dsMedlemImport = value;
             }
         }
         public static KarMedlemmer karMedlemmer

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using System.ComponentModel;
+using System.Data;
 
 namespace nsPuls3060
 {
@@ -16,9 +18,9 @@ namespace nsPuls3060
         public DateTime? Akt_dato;
     }
 
-    public class clsImportAppEngMedlem
+    public class clsImEksportAppEngMedlem
     {
-        public clsImportAppEngMedlem()
+        public clsImEksportAppEngMedlem()
         {
             bNr = false;
             bNavn = false;
@@ -33,6 +35,7 @@ namespace nsPuls3060
             bBank = false;
         }
 
+        public ImpExp ieAction { get; set; }
         public string Act { get; set; }
         public bool bNr { get; set; }
         public bool bNavn { get; set; }
@@ -56,11 +59,74 @@ namespace nsPuls3060
         public string Kon { get; set; }
         public DateTime? FodtDato { get; set; }
         public string Bank { get; set; }
+        public void ExecuteImEksport()
+        {
+            if (ieAction == ImpExp.fdImport) Import();
+            else Eksport();
+        }
+        private void Eksport()
+        {
+            XElement xml = new XElement("Medlem", new XElement("Nr", Nr));
+            if (bNavn) xml.Add(new XElement("Navn", Navn));
+            if (bKaldenavn) xml.Add(new XElement("Kaldenavn", Kaldenavn));
+            if (bAdresse) xml.Add(new XElement("Adresse", Adresse));
+            if (bPostnr) xml.Add(new XElement("Postnr", Postnr));
+            if (bBynavn) xml.Add(new XElement("Bynavn", Bynavn));
+            if (bTelefon) xml.Add(new XElement("Telefon", Telefon));
+            if (bEmail) xml.Add(new XElement("Email", Email));
+            if (bKon) xml.Add(new XElement("Kon", Kon));
+            if (bFodtDato) xml.Add(new XElement("FodtDato", ((DateTime)FodtDato).ToString("yyyy-MM-dd")));
+            if (bBank) xml.Add(new XElement("Bank", Bank));
+            string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
+            clsRest objRest = new clsRest();
+            string retur = objRest.HttpPost2("Medlem", strxml);
+        }
+        private void Import()
+        {
+            object[] val = null;
+            try
+            {
+                DataRow row = Program.dsMedlemImport.Kartotek.Rows.Find(Nr);
+                val = row.ItemArray;
+                if (bNavn) val[1] = Navn;
+                if (bKaldenavn) val[2] = Kaldenavn;
+                if (bAdresse) val[3] = Adresse;
+                if (bPostnr) val[4] = Postnr;
+                if (bBynavn) val[5] = Bynavn;
+                if (bTelefon) val[6] = Telefon;
+                if (bEmail) val[7] = Email;
+                if (bKon) val[8] = Kon;
+                if (bFodtDato) val[9] = FodtDato;
+                if (bBank) val[10] = Bank;
+                
+                row.BeginEdit();
+                row.ItemArray = val;
+                row.EndEdit();
+            }
+            catch (MissingPrimaryKeyException e)
+            {
+                e.GetType();
+                val = new object[11];
+                val[0] = Nr;
+                if (bNavn) val[1] = Navn;
+                if (bKaldenavn) val[2] = Kaldenavn;
+                if (bAdresse) val[3] = Adresse;
+                if (bPostnr) val[4] = Postnr;
+                if (bBynavn) val[5] = Bynavn;
+                if (bTelefon) val[6] = Telefon;
+                if (bEmail) val[7] = Email;
+                if (bKon) val[8] = Kon;
+                if (bFodtDato) val[9] = FodtDato;
+                if (bBank) val[10] = Bank;
+                Program.dsMedlemImport.Kartotek.Rows.Add(val);
+            }
+            Program.dsMedlemImport.savedsMedlem();
+        }
     }
 
-    public class clsImportAppEngMedlemlog
+    public class clsImEksportAppEngMedlemlog
     {
-        public clsImportAppEngMedlemlog()
+        public clsImEksportAppEngMedlemlog()
         {
             bId = false;
             bNr = false;
@@ -68,18 +134,64 @@ namespace nsPuls3060
             bAkt_id = false;
             bAkt_dato = false;
         }
+        public ImpExp ieAction { get; set; }
         public string Act { get; set; }
+        public bool bSource { get; set; }
         public bool bId { get; set; }
         public bool bNr { get; set; }
         public bool bLogdato { get; set; }
         public bool bAkt_id { get; set; }
         public bool bAkt_dato { get; set; }
-
+        public byte? Source { get; set; }
         public int? Id { get; set; }
         public int? Nr { get; set; }
         public DateTime? Logdato { get; set; }
         public int? Akt_id { get; set; }
         public DateTime? Akt_dato { get; set; }
+        public void ExecuteImEksport()
+        {
+            if (ieAction == ImpExp.fdImport) Import();
+            else Eksport();
+        }
+        private void Eksport()
+        {
+            XElement xml = new XElement("Medlemlog", new XElement("Source", Source), new XElement("Source_id", Id), new XElement("Nr", Nr));
+            if (bLogdato) xml.Add(new XElement("Logdato", ((DateTime)Logdato).ToString("yyyy-MM-ddTHH:mm:ss")));
+            if (bAkt_id) xml.Add(new XElement("Akt_id", Akt_id));
+            if (bAkt_dato) xml.Add(new XElement("Akt_dato", ((DateTime)Akt_dato).ToString("yyyy-MM-ddTHH:mm:ss")));
+            string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
+            clsRest objRest = new clsRest();
+            string retur = objRest.HttpPost2("Medlemlog", strxml);
+        }
+        private void Import()
+        {
+            if (Source == 2)
+            {
+                TblMedlemLog recMedlemLog = null;
+                try
+                {
+                    recMedlemLog = (from m in Program.dbData3060.TblMedlemLog where m.Id == Id select m).First();
+                    if (bLogdato) recMedlemLog.Logdato = Logdato;
+                    if (bAkt_id) recMedlemLog.Akt_id = Akt_id;
+                    if (bAkt_dato) recMedlemLog.Akt_dato = Akt_dato;
+                }
+                catch
+                {
+                    recMedlemLog = new TblMedlemLog { Id = (int)Id, Nr = Nr };
+                    if (bLogdato) recMedlemLog.Logdato = Logdato;
+                    if (bAkt_id) recMedlemLog.Akt_id = Akt_id;
+                    if (bAkt_dato) recMedlemLog.Akt_dato = Akt_dato;
+                    Program.dbData3060.TblMedlemLog.InsertOnSubmit(recMedlemLog);
+                }
+                Program.dbData3060.SubmitChanges();
+            }
+        }
+    }
+
+    public enum ImpExp : int
+    {
+        fdImport = 1,
+        fdEksport = 2
     }
 
     public class clsSync
@@ -394,39 +506,6 @@ namespace nsPuls3060
                 };
                 Program.dbData3060.Tempsync2.InsertOnSubmit(ts);
 
-            }
-        }
-
-        public void toxml()
-        {
-            XElement xml = new XElement("syncs",
-                from p in Program.dbData3060.Tempsync
-                select new XElement("sync",
-                    new XAttribute("s", p.Source),
-                    new XAttribute("s_id", p.Source_id),
-                    new XAttribute("f_id", p.Field_id),
-                    new XAttribute("v", p.Value),
-                    new XAttribute("a", "add")
-                    ));
-            xml.Save(@"c:\mysync.xml");
-        }
-
-        public void medlemxmldelete()
-        {
-            clsRest objRest = new clsRest();
-            string strxml = objRest.HttpGet2("Medlem");
-
-            XElement list = XElement.Parse(strxml);
-            var medlem = from m in list.Elements("Medlem")
-                         select new
-                         {
-                             Key = (string)m.Element("key"),
-                             Nr = (string)m.Element("Nr")
-                         };
-            int antal = medlem.Count();
-            foreach (var m in medlem)
-            {
-                string delstrxml = objRest.HttpDelete2("Medlem/" + m.Key);
             }
         }
 
@@ -834,7 +913,6 @@ namespace nsPuls3060
             fodtdato = 10,
             bank = 11,
 
-            sourceid = 12,
             medlemlog_id = 13,
             logdato = 14,
             akt_id = 15,
@@ -842,28 +920,37 @@ namespace nsPuls3060
             medlemlog_nr = 17
         }
 
-        internal void export()
+        internal void importeksport(ImpExp ieAction)
         {
-
-        }
-
-        internal void import()
-        {
-            var imp = from t in Program.dbData3060.Tempimpexp
+            IOrderedQueryable<Tempimpexp> imp = null;
+            if (ieAction == ImpExp.fdImport)
+            {
+                imp = from t in Program.dbData3060.Tempimpexp
                       where t.Ie == "i"
                       && t.Source < 3
                       && t.Act != "del"
                       orderby t.Nr, t.Source, t.Source_id, t.Field_id
                       select t;
+            }
+            if (ieAction == ImpExp.fdEksport)
+            {
+                imp = from t in Program.dbData3060.Tempimpexp
+                      where t.Ie == "e"
+                      && t.Act != "del"
+                      orderby t.Nr, t.Source, t.Source_id, t.Field_id
+                      select t;
+            }
+
             int antal = imp.Count();
             int Last_Nr = 0;
             byte Last_Source = 0;
             int Last_Source_id = 0;
             bool bFirst = true;
             bool bBreak = false;
-            clsImportAppEngMedlemlog objMedlemLog = null;
-            clsImportAppEngMedlem objMedlem = null;
+            clsImEksportAppEngMedlemlog objMedlemLog = null;
+            clsImEksportAppEngMedlem objMedlem = null;
 
+            if (ieAction == ImpExp.fdImport) Program.dsMedlemImport.filldsMedlem();
             foreach (var t in imp)
             {
                 bBreak = ((t.Source_id != Last_Source_id) || (t.Source != Last_Source) || (t.Nr != Last_Nr));
@@ -888,15 +975,19 @@ namespace nsPuls3060
                     switch (t.Source)
                     {
                         case 1:    //Medlem
-                            objMedlem = new clsImportAppEngMedlem();
+                            objMedlem = new clsImEksportAppEngMedlem();
+                            objMedlem.ieAction = ieAction;
                             objMedlem.Nr = t.Nr;
                             objMedlem.bNr = true;
                             objMedlem.Act = t.Act;
                             break;
 
                         case 2:   //Medlemlog
-                            objMedlemLog = new clsImportAppEngMedlemlog();
+                            objMedlemLog = new clsImEksportAppEngMedlemlog();
+                            objMedlemLog.ieAction = ieAction;
                             objMedlemLog.Act = t.Act;
+                            objMedlemLog.Source = t.Source;
+                            objMedlemLog.bSource = true;
                             objMedlemLog.Id = t.Source_id;
                             objMedlemLog.bId = true;
                             break;
@@ -924,8 +1015,8 @@ namespace nsPuls3060
                                 objMedlem.bKaldenavn = true;
                                 break;
                             case 4:   //adresse
-                                objMedlem.bNr = true;
                                 objMedlem.Adresse = t.Value;
+                                objMedlem.bAdresse = true;
                                 break;
                             case 5:   //postnr
                                 objMedlem.Postnr = t.Value;
@@ -1015,15 +1106,17 @@ namespace nsPuls3060
                         break;
                 }
             }
+            if (ieAction == ImpExp.fdImport) Program.dsMedlemImport.savedsMedlem();
         }
 
-        private void medlemupdate(clsImportAppEngMedlem objMedlem)
+        private void medlemupdate(clsImEksportAppEngMedlem objMedlem)
         {
-            //throw new NotImplementedException();
+            objMedlem.ExecuteImEksport(); //throw new NotImplementedException();
         }
 
-        private void medlemlogupdate(clsImportAppEngMedlemlog objMedlemLog)
+        private void medlemlogupdate(clsImEksportAppEngMedlemlog objMedlemLog)
         {
-            //throw new NotImplementedException();
-        }    }
+            objMedlemLog.ExecuteImEksport();//throw new NotImplementedException();
+        }
+    }
 }
