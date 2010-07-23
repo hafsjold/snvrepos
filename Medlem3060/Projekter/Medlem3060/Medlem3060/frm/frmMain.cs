@@ -131,13 +131,13 @@ namespace nsPuls3060
 
 
             //clsRest objRest = new clsRest();
-            //objRest.testencrypt();
+            //objRest.HttpDelete2("Medlem");
             clsSync objSync = new clsSync();
-            //objSync.actionSync(1);
-            //objSync.actionSync(2);
-            //objSync.actionSync(3);
-            //clsPbs.ExecuteSQLScript(@"sql\scriptimpexp.sql");
-            objSync.importeksport(ImpExp.fdEksport);
+            objSync.actionSync(1);
+            objSync.actionSync(2);
+            objSync.actionSync(3);
+            clsPbs.ExecuteSQLScript(@"sql\scriptimpexp.sql");
+            //objSync.importeksport(ImpExp.fdEksport);
             //objSync.medlemxml();
             //objSync.actionMedlemxmlSync();
             //objSync.actionMedlemlogxmlSync();
@@ -516,10 +516,9 @@ namespace nsPuls3060
             clsPbs.ExecuteSQLScript(@"sql\scriptimpexp.sql"); //
 
             objSync.importeksport(ImpExp.fdEksport); //Eksporter opdatering til Google AppEng
-
-            //objSync.importeksport(ImpExp.fdImport); //Importer opdateringer til Lokale Data
+            objSync.importeksport(ImpExp.fdImport); //Importer opdateringer til Lokale Data
             
-            //objSync.actionSync(1); //Hent Syncroniserede Data (tblSync)
+            objSync.actionSync(1); //Hent Syncroniserede Data (tblSync)
         }
 
     }

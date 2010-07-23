@@ -963,6 +963,9 @@ namespace nsPuls3060
                             break;
 
                         case 2:   //Medlemlog
+                        case 3:   //fak
+                        case 4:   //betlin
+                        case 5:   //betlin40                            
                             medlemlogupdate(objMedlemLog);//Save MedlemLog
                             break;
 
@@ -983,6 +986,9 @@ namespace nsPuls3060
                             break;
 
                         case 2:   //Medlemlog
+                        case 3:   //fak
+                        case 4:   //betlin
+                        case 5:   //betlin40
                             objMedlemLog = new clsImEksportAppEngMedlemlog();
                             objMedlemLog.ieAction = ieAction;
                             objMedlemLog.Act = t.Act;
@@ -1053,6 +1059,9 @@ namespace nsPuls3060
                         break;
 
                     case 2:   //Medlemlog
+                    case 3:   //fak
+                    case 4:   //betlin
+                    case 5:   //betlin40
                         switch (t.Field_id)
                         {
                             case 13:   //medlemlog_id
@@ -1099,6 +1108,9 @@ namespace nsPuls3060
                         break;
 
                     case 2:   //Medlemlog
+                    case 3:   //fak
+                    case 4:   //betlin
+                    case 5:   //betlin40
                         medlemlogupdate(objMedlemLog);//Save MedlemLog
                         break;
 

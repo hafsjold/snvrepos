@@ -217,7 +217,18 @@ class SyncMedlemHandler(webapp.RequestHandler):
     }
     path = os.path.join(os.path.dirname(__file__), 'templates/medlem.xml') 
     self.response.out.write(template.render(path, template_values))
-
+  
+  def delete(self):
+    root = db.Key.from_path('Persons','root')
+    qry = db.Query().ancestor(root)
+    logging.info('XXXXXXXXXXXXXXXXXXXXXXDELETEXXXXXXXXXXXXXXXXXXXXX')
+    antal = 0
+    for rec in qry:
+      rec.delete()
+      antal += 1
+      logging.info('antal: %s' % (antal))
+    logging.info('XXXXXXXXXXXXXXXXXXXXXXDELETEXXXXXXXXXXXXXXXXXXXXX Antal: %s' % (antal))
+    self.response.out.write('Status: 403')
 
   def post(self):
     doc = minidom.parse(self.request.body_file)
