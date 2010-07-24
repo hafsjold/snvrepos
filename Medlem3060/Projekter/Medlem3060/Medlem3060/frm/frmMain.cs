@@ -511,19 +511,38 @@ namespace nsPuls3060
 
         private void syncMedInternettetToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.MainformProgressText.Visible = true;
+            this.MainformProgressText.Text = "Status Google AppEng";
+            this.MainformProgressText.Invalidate();
+            System.Windows.Forms.Application.DoEvents();
             clsSync objSync = new clsSync();
             objSync.actionSync(3); //Hent Snapshut fra Google AppEng (Tempsync2)
+            this.MainformProgressText.Text = "Status Lokale Data";
+            this.MainformProgressText.Invalidate();
+            System.Windows.Forms.Application.DoEvents();
             objSync.actionSync(2); //Hent Snapshut fra Lokale Data (Tempsync)
 
+            this.MainformProgressText.Text = "Merge Data";
+            this.MainformProgressText.Invalidate();
+            System.Windows.Forms.Application.DoEvents();
             Program.dbData3060.Tempimpexp.DeleteAllOnSubmit(Program.dbData3060.Tempimpexp);
             Program.dbData3060.SubmitChanges();
             clsPbs.ExecuteSQLScript(@"sql\scriptimpexp.sql"); //
             //Program.dbData3060.Refresh(RefreshMode.OverwriteCurrentValues, Program.dbData3060.Tempimpexp);
 
+            this.MainformProgressText.Text = "Opdater Google AppEng";
+            this.MainformProgressText.Invalidate();
+            System.Windows.Forms.Application.DoEvents();
             objSync.importeksport(ImpExp.fdEksport); //Eksporter opdatering til Google AppEng
+            this.MainformProgressText.Text = "Opdater Lokale Data";
+            this.MainformProgressText.Invalidate();
+            System.Windows.Forms.Application.DoEvents();
             objSync.importeksport(ImpExp.fdImport); //Importer opdateringer til Lokale Data
-            
+            this.MainformProgressText.Text = "Gem Sync Status";
+            this.MainformProgressText.Invalidate();
+            System.Windows.Forms.Application.DoEvents();
             objSync.actionSync(1); //Hent Syncroniserede Data (tblSync)
+            this.MainformProgressText.Text = "Sync afsluttet";
         }
 
     }

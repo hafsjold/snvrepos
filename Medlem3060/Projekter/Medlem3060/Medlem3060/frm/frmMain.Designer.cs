@@ -31,7 +31,8 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
+            this.MainformProgressBar = new System.Windows.Forms.ToolStripProgressBar();
+            this.MainformProgressText = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -45,6 +46,7 @@
             this.medlemmerTilRegnearkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medlemmerTilRegnearkEksternToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.emailRykkerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.syncMedInternettetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.betalingerFraPBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,7 +63,6 @@
             this.infoTekstToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.syncMedInternettetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -71,7 +72,8 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.toolStripStatusLabel2,
-            this.toolStripProgressBar1});
+            this.MainformProgressBar,
+            this.MainformProgressText});
             this.statusStrip1.Location = new System.Drawing.Point(0, 778);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1024, 22);
@@ -96,11 +98,21 @@
             this.toolStripStatusLabel2.Text = "C:\\Documents and Settings\\mha\\Dokumenter\\Medlem3060\\Databaser\\SQLCompact\\dbData30" +
                 "60.sdf";
             // 
-            // toolStripProgressBar1
+            // MainformProgressBar
             // 
-            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
-            this.toolStripProgressBar1.Visible = false;
+            this.MainformProgressBar.Name = "MainformProgressBar";
+            this.MainformProgressBar.Size = new System.Drawing.Size(100, 16);
+            this.MainformProgressBar.Visible = false;
+            // 
+            // MainformProgressText
+            // 
+            this.MainformProgressText.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.MainformProgressText.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
+            this.MainformProgressText.Name = "MainformProgressText";
+            this.MainformProgressText.Size = new System.Drawing.Size(119, 17);
+            this.MainformProgressText.Text = "MainformProgressText";
+            this.MainformProgressText.Visible = false;
             // 
             // menuStrip1
             // 
@@ -209,6 +221,13 @@
             this.emailRykkerToolStripMenuItem.Text = "E-mail rykker";
             this.emailRykkerToolStripMenuItem.Click += new System.EventHandler(this.emailRykkerToolStripMenuItem_Click);
             // 
+            // syncMedInternettetToolStripMenuItem
+            // 
+            this.syncMedInternettetToolStripMenuItem.Name = "syncMedInternettetToolStripMenuItem";
+            this.syncMedInternettetToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.syncMedInternettetToolStripMenuItem.Text = "Sync med Internettet";
+            this.syncMedInternettetToolStripMenuItem.Click += new System.EventHandler(this.syncMedInternettetToolStripMenuItem_Click);
+            // 
             // pBSToolStripMenuItem
             // 
             this.pBSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -291,28 +310,28 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(132, 22);
             this.toolStripMenuItem2.Text = "Regnskab";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.regnskabToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
             this.toolStripMenuItem1.Text = "Kreditor";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.kerditorToolStripMenuItem_Click);
             // 
             // pbsfilesToolStripMenuItem
             // 
             this.pbsfilesToolStripMenuItem.Name = "pbsfilesToolStripMenuItem";
-            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.pbsfilesToolStripMenuItem.Text = "Pbsfiles";
             this.pbsfilesToolStripMenuItem.Click += new System.EventHandler(this.pbsfilesToolStripMenuItem_Click);
             // 
             // infoTekstToolStripMenuItem
             // 
             this.infoTekstToolStripMenuItem.Name = "infoTekstToolStripMenuItem";
-            this.infoTekstToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.infoTekstToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.infoTekstToolStripMenuItem.Text = "Info tekst";
             this.infoTekstToolStripMenuItem.Click += new System.EventHandler(this.infoTekstToolStripMenuItem_Click);
             // 
@@ -330,13 +349,6 @@
             this.omToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
-            // 
-            // syncMedInternettetToolStripMenuItem
-            // 
-            this.syncMedInternettetToolStripMenuItem.Name = "syncMedInternettetToolStripMenuItem";
-            this.syncMedInternettetToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.syncMedInternettetToolStripMenuItem.Text = "Sync med Internettet";
-            this.syncMedInternettetToolStripMenuItem.Click += new System.EventHandler(this.syncMedInternettetToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -387,7 +399,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem pbsfilesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
         private System.Windows.Forms.ToolStripMenuItem hjælpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem omToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem opretGendannelsespunktToolStripMenuItem;
@@ -401,6 +412,8 @@
         private System.Windows.Forms.ToolStripMenuItem infoTekstToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolStripMenuItem syncMedInternettetToolStripMenuItem;
+        internal System.Windows.Forms.ToolStripProgressBar MainformProgressBar;
+        internal System.Windows.Forms.ToolStripStatusLabel MainformProgressText;
    }
 }
 

@@ -68,14 +68,14 @@ namespace nsPuls3060
 
                     if (pSheetName.Length > 0) oSheet.Name = pSheetName.Substring(0, pSheetName.Length > 34 ? 34 : pSheetName.Length);
                     int row = 1;
-                    this.toolStripProgressBar1.Value = 0;
-                    this.toolStripProgressBar1.Minimum = 0;
-                    this.toolStripProgressBar1.Maximum = (from h in Program.karMedlemmer select h).Count();
-                    this.toolStripProgressBar1.Step = 1;
-                    this.toolStripProgressBar1.Visible = true;
+                    this.MainformProgressBar.Value = 0;
+                    this.MainformProgressBar.Minimum = 0;
+                    this.MainformProgressBar.Maximum = (from h in Program.karMedlemmer select h).Count();
+                    this.MainformProgressBar.Step = 1;
+                    this.MainformProgressBar.Visible = true;
                     foreach (clsMedlemInternAll m in MedlemmerAll)
                     {
-                        this.toolStripProgressBar1.PerformStep();
+                        this.MainformProgressBar.PerformStep();
                         row++;
                         Type objectType = m.GetType();
                         PropertyInfo[] properties = objectType.GetProperties();
@@ -150,7 +150,7 @@ namespace nsPuls3060
                     oWB.SaveAs(SaveAs, Excel.XlFileFormat.xlWorkbookNormal, "", "", false, false, Excel.XlSaveAsAccessMode.xlExclusive, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
                     oWB.Saved = true;
                     oXL.Visible = true;
-                    this.toolStripProgressBar1.Visible = false;
+                    this.MainformProgressBar.Visible = false;
 
                     
                     //oXL.Quit();
@@ -217,14 +217,14 @@ namespace nsPuls3060
 
                     if (pSheetName.Length > 0) oSheet.Name = pSheetName.Substring(0, pSheetName.Length > 34 ? 34 : pSheetName.Length);
                     int row = 1;
-                    this.toolStripProgressBar1.Value = 0;
-                    this.toolStripProgressBar1.Minimum = 0;
-                    this.toolStripProgressBar1.Maximum = (from h in Program.karMedlemmer select h).Count();
-                    this.toolStripProgressBar1.Step = 1;
-                    this.toolStripProgressBar1.Visible = true;
+                    this.MainformProgressBar.Value = 0;
+                    this.MainformProgressBar.Minimum = 0;
+                    this.MainformProgressBar.Maximum = (from h in Program.karMedlemmer select h).Count();
+                    this.MainformProgressBar.Step = 1;
+                    this.MainformProgressBar.Visible = true;
                     foreach (clsMedlemExternAll m in MedlemmerAll)
                     {
-                        this.toolStripProgressBar1.PerformStep();
+                        this.MainformProgressBar.PerformStep();
                         row++;
                         Type objectType = m.GetType();
                         PropertyInfo[] properties = objectType.GetProperties();
@@ -295,7 +295,7 @@ namespace nsPuls3060
                     oWB.SaveAs(SaveAs, Excel.XlFileFormat.xlWorkbookNormal, "", "", false, false, Excel.XlSaveAsAccessMode.xlExclusive, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
                     oWB.Saved = true;
                     oXL.Visible = true;
-                    this.toolStripProgressBar1.Visible = false;
+                    this.MainformProgressBar.Visible = false;
 
                     this.sendMedlem(SaveAs);
 
@@ -398,14 +398,14 @@ namespace nsPuls3060
 
                     if (pSheetName.Length > 0) oSheetPoster.Name = pSheetName.Substring(0, pSheetName.Length > 34 ? 34 : pSheetName.Length);
                     int row = 1;
-                    this.toolStripProgressBar1.Value = 0;
-                    this.toolStripProgressBar1.Minimum = 0;
-                    this.toolStripProgressBar1.Maximum = (from h in Program.karPosteringer select h).Count();
-                    this.toolStripProgressBar1.Step = 1;
-                    this.toolStripProgressBar1.Visible = true;
+                    this.MainformProgressBar.Value = 0;
+                    this.MainformProgressBar.Minimum = 0;
+                    this.MainformProgressBar.Maximum = (from h in Program.karPosteringer select h).Count();
+                    this.MainformProgressBar.Step = 1;
+                    this.MainformProgressBar.Visible = true;
                     foreach (clsJournalposter m in JournalPoster)
                     {
-                        this.toolStripProgressBar1.PerformStep();
+                        this.MainformProgressBar.PerformStep();
                         row++;
                         Type objectType = m.GetType();
                         PropertyInfo[] properties = objectType.GetProperties();
@@ -556,7 +556,7 @@ namespace nsPuls3060
                     oWB.SaveAs(SaveAs, Excel.XlFileFormat.xlWorkbookNormal, "", "", false, false, Excel.XlSaveAsAccessMode.xlExclusive, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
                     oWB.Saved = true;
                     oXL.Visible = true;
-                    this.toolStripProgressBar1.Visible = false;
+                    this.MainformProgressBar.Visible = false;
 
                     this.sendPoster(SaveAs);
 
