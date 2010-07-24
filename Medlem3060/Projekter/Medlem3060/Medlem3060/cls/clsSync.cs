@@ -5,6 +5,7 @@ using System.Text;
 using System.Xml.Linq;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Linq;
 
 namespace nsPuls3060
 {
@@ -200,9 +201,38 @@ namespace nsPuls3060
         public void actionSync(int action)
         {
             m_action = action;
-            if (m_action == 1) Program.dbData3060.ExecuteCommand("DELETE FROM tblsync;");
-            if (m_action == 2) Program.dbData3060.ExecuteCommand("DELETE FROM tempsync;");
-            if (m_action == 3) Program.dbData3060.ExecuteCommand("DELETE FROM tempsync2;");
+            if (m_action == 1)
+            {
+                Program.dbData3060.Tblsync.DeleteAllOnSubmit(Program.dbData3060.Tblsync);
+            }
+            if (m_action == 2)
+            {
+                Program.dbData3060.Tempsync.DeleteAllOnSubmit(Program.dbData3060.Tempsync);
+            }
+            if (m_action == 3)
+            {
+                Program.dbData3060.Tempsync2.DeleteAllOnSubmit(Program.dbData3060.Tempsync2);
+            }
+            
+            Program.dbData3060.SubmitChanges();
+            /*
+            try
+            {
+                Program.dbData3060.SubmitChanges(ConflictMode.ContinueOnConflict);
+            }
+
+            catch (ChangeConflictException e)
+            {
+                // Automerge database values for members that client has not modified.
+                foreach (ObjectChangeConflict occ in Program.dbData3060.ChangeConflicts)
+                {
+                    occ.Resolve(RefreshMode.KeepChanges);
+                }
+            }
+            // Submit succeeds on second try.
+            Program.dbData3060.SubmitChanges(ConflictMode.FailOnFirstConflict);
+            */
+            
             if ((m_action == 1) | (m_action == 2))
             {
                 actionMedlemSync();
@@ -505,7 +535,6 @@ namespace nsPuls3060
                     Value = s.Value
                 };
                 Program.dbData3060.Tempsync2.InsertOnSubmit(ts);
-
             }
         }
 
@@ -950,7 +979,6 @@ namespace nsPuls3060
             clsImEksportAppEngMedlemlog objMedlemLog = null;
             clsImEksportAppEngMedlem objMedlem = null;
 
-            if (ieAction == ImpExp.fdImport) Program.dsMedlemImport.filldsMedlem();
             foreach (var t in imp)
             {
                 bBreak = ((t.Source_id != Last_Source_id) || (t.Source != Last_Source) || (t.Nr != Last_Nr));

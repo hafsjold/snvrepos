@@ -257,7 +257,9 @@ namespace nsPuls3060
             this.pgmRykker.Minimum = 0;
             this.pgmRykker.Value = 0;
             this.pgmRykker.Visible = true;
-            Program.dbData3060.ExecuteCommand("DELETE FROM tempRykkerforslag;");
+            Program.dbData3060.TempRykkerforslag.DeleteAllOnSubmit(Program.dbData3060.TempRykkerforslag);
+            Program.dbData3060.SubmitChanges();
+
             if ((imax == 0))
             {
                 this.Label_Rykkertekst.Text = "Der ikke noget at rykkere";

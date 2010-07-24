@@ -202,13 +202,13 @@ namespace nsPuls3060
                                };
 
 
-            using (new ExcelUILanguageHelper())
-            {
+            //using (new ExcelUILanguageHelper())
+            //{
                 try
                 {
                     //Start Excel and get Application object.
                     oXL = new Excel.Application();
-                    oXL.Visible = false;
+                    oXL.Visible = true;
                     //Get a new workbook.
 
                     oWB = oXL.Workbooks.Add((Missing.Value));
@@ -312,7 +312,7 @@ namespace nsPuls3060
 
                     MessageBox.Show(errorMessage, "Error");
                 }
-            }
+            //}
         }
 
         private string IUAP(string Type, string DK)

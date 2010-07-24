@@ -341,7 +341,8 @@ namespace nsPuls3060
             this.pgmFaktura.Minimum = 0;
             this.pgmFaktura.Value = 0;
             this.pgmFaktura.Visible = true;
-            Program.dbData3060.ExecuteCommand("DELETE FROM tempKontforslag;");
+            Program.dbData3060.TempKontforslag.DeleteAllOnSubmit(Program.dbData3060.TempKontforslag);
+            Program.dbData3060.SubmitChanges();
             if ((imax == 0))
             {
                 this.Label_Fakturatekst.Text = "Der ikke noget at fakturere";

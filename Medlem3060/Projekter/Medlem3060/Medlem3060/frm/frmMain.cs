@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Linq;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -133,11 +134,12 @@ namespace nsPuls3060
             //clsRest objRest = new clsRest();
             //objRest.HttpDelete2("Medlem");
             clsSync objSync = new clsSync();
-            objSync.actionSync(1);
+            //objSync.actionSync(1);
             objSync.actionSync(2);
             objSync.actionSync(3);
-            clsPbs.ExecuteSQLScript(@"sql\scriptimpexp.sql");
-            //objSync.importeksport(ImpExp.fdEksport);
+            clsPbs.ExecuteSQLScript(@"sql\scriptexp.sql");
+            //clsPbs.ExecuteSQLScript(@"sql\scriptimpexp.sql");
+            objSync.importeksport(ImpExp.fdEksport);
             //objSync.medlemxml();
             //objSync.actionMedlemxmlSync();
             //objSync.actionMedlemlogxmlSync();
@@ -513,7 +515,10 @@ namespace nsPuls3060
             objSync.actionSync(3); //Hent Snapshut fra Google AppEng (Tempsync2)
             objSync.actionSync(2); //Hent Snapshut fra Lokale Data (Tempsync)
 
+            Program.dbData3060.Tempimpexp.DeleteAllOnSubmit(Program.dbData3060.Tempimpexp);
+            Program.dbData3060.SubmitChanges();
             clsPbs.ExecuteSQLScript(@"sql\scriptimpexp.sql"); //
+            //Program.dbData3060.Refresh(RefreshMode.OverwriteCurrentValues, Program.dbData3060.Tempimpexp);
 
             objSync.importeksport(ImpExp.fdEksport); //Eksporter opdatering til Google AppEng
             objSync.importeksport(ImpExp.fdImport); //Importer opdateringer til Lokale Data

@@ -211,7 +211,11 @@ namespace nsPuls3060
         {
             get
             {
-                if (m_dsMedlemImport == null) m_dsMedlemImport = new dsMedlem();
+                if (m_dsMedlemImport == null)
+                {
+                    m_dsMedlemImport = new dsMedlem();
+                    m_dsMedlemImport.filldsMedlem();
+                }
                 return m_dsMedlemImport;
             }
             set

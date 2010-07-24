@@ -1,4 +1,5 @@
-﻿delete tempimpexp;
+﻿--Import + Export
+delete tempimpexp;
 GO
 --import add from tempsync2:
 insert into tempimpexp (ie, nr, source, source_id, field_id, value, act)
