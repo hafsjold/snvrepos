@@ -202,8 +202,8 @@ namespace nsPuls3060
                                };
 
 
-            //using (new ExcelUILanguageHelper())
-            //{
+            using (new ExcelUILanguageHelper())
+            {
                 try
                 {
                     //Start Excel and get Application object.
@@ -312,7 +312,7 @@ namespace nsPuls3060
 
                     MessageBox.Show(errorMessage, "Error");
                 }
-            //}
+            }
         }
 
         private string IUAP(string Type, string DK)
