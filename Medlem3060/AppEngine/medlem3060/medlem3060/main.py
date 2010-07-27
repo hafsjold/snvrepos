@@ -94,7 +94,7 @@ class FindmedlemHandler(webapp.RequestHandler):
     if SBy:
       query = query.filter('BynavnTags =', '%s' % (SBy.lower()))
  
-    query = query.order('Nr')
+    #query = query.order('Nr')
     person_list = query.fetch(50)
  
     template_values = {
@@ -363,7 +363,7 @@ class ReindexHandler(webapp.RequestHandler):
     """Handler for submiting SearchIndexing to JobQ"""
     def get(self):
       root = db.Key.from_path('Persons','root')
-      query = db.Query(keys_only=True).ancestor(root)
+      query = db.Query(Person, keys_only=True).ancestor(root)
       i = 0
       perkeys = ''
       for per in query:
@@ -382,8 +382,8 @@ class SearchIndexing(webapp.RequestHandler):
     def post(self):
       perkeys = self.request.get('perkeys') 
       keys = [db.Key(k) for k in perkeys.split()]
-      persom_list = db.get(keys)
-      for per in persom_list:
+      person_list = db.get(keys)
+      for per in person_list:
         per.setNameTags()
 
 
