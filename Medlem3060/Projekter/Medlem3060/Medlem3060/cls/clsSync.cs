@@ -67,20 +67,28 @@ namespace nsPuls3060
         }
         private void Eksport()
         {
-            XElement xml = new XElement("Medlem", new XElement("Nr", Nr));
-            if (bNavn) xml.Add(new XElement("Navn", Navn));
-            if (bKaldenavn) xml.Add(new XElement("Kaldenavn", Kaldenavn));
-            if (bAdresse) xml.Add(new XElement("Adresse", Adresse));
-            if (bPostnr) xml.Add(new XElement("Postnr", Postnr));
-            if (bBynavn) xml.Add(new XElement("Bynavn", Bynavn));
-            if (bTelefon) xml.Add(new XElement("Telefon", Telefon));
-            if (bEmail) xml.Add(new XElement("Email", Email));
-            if (bKon) xml.Add(new XElement("Kon", Kon));
-            if (bFodtDato) xml.Add(new XElement("FodtDato", ((DateTime)FodtDato).ToString("yyyy-MM-dd")));
-            if (bBank) xml.Add(new XElement("Bank", Bank));
-            string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
             clsRest objRest = new clsRest();
-            string retur = objRest.HttpPost2("Medlem", strxml);
+            if (Act == "del")
+            {
+                string retur = objRest.HttpDelete2("Medlem/" + Nr);
+            }
+            else
+            {
+                XElement xml = new XElement("Medlem", new XElement("Nr", Nr));
+                if (bNavn) xml.Add(new XElement("Navn", Navn));
+                if (bKaldenavn) xml.Add(new XElement("Kaldenavn", Kaldenavn));
+                if (bAdresse) xml.Add(new XElement("Adresse", Adresse));
+                if (bPostnr) xml.Add(new XElement("Postnr", Postnr));
+                if (bBynavn) xml.Add(new XElement("Bynavn", Bynavn));
+                if (bTelefon) xml.Add(new XElement("Telefon", Telefon));
+                if (bEmail) xml.Add(new XElement("Email", Email));
+                if (bKon) xml.Add(new XElement("Kon", Kon));
+                if (bFodtDato) xml.Add(new XElement("FodtDato", ((DateTime)FodtDato).ToString("yyyy-MM-dd")));
+                if (bBank) xml.Add(new XElement("Bank", Bank));
+                string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
+                string retur = objRest.HttpPost2("Medlem", strxml);
+            }
+
         }
         private void Import()
         {
@@ -99,7 +107,7 @@ namespace nsPuls3060
                 if (bKon) val[8] = Kon;
                 if (bFodtDato) val[9] = FodtDato;
                 if (bBank) val[10] = Bank;
-                
+
                 row.BeginEdit();
                 row.ItemArray = val;
                 row.EndEdit();
@@ -156,13 +164,20 @@ namespace nsPuls3060
         }
         private void Eksport()
         {
-            XElement xml = new XElement("Medlemlog", new XElement("Source", Source), new XElement("Source_id", Id), new XElement("Nr", Nr));
-            if (bLogdato) xml.Add(new XElement("Logdato", ((DateTime)Logdato).ToString("yyyy-MM-ddTHH:mm:ss")));
-            if (bAkt_id) xml.Add(new XElement("Akt_id", Akt_id));
-            if (bAkt_dato) xml.Add(new XElement("Akt_dato", ((DateTime)Akt_dato).ToString("yyyy-MM-ddTHH:mm:ss")));
-            string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
             clsRest objRest = new clsRest();
-            string retur = objRest.HttpPost2("Medlemlog", strxml);
+            if (Act == "del")
+            {
+                string retur = objRest.HttpDelete2("Medlemlog/" + Nr + "/" + Source + "/" + Id);
+            }
+            else
+            {
+                XElement xml = new XElement("Medlemlog", new XElement("Source", Source), new XElement("Source_id", Id), new XElement("Nr", Nr));
+                if (bLogdato) xml.Add(new XElement("Logdato", ((DateTime)Logdato).ToString("yyyy-MM-ddTHH:mm:ss")));
+                if (bAkt_id) xml.Add(new XElement("Akt_id", Akt_id));
+                if (bAkt_dato) xml.Add(new XElement("Akt_dato", ((DateTime)Akt_dato).ToString("yyyy-MM-ddTHH:mm:ss")));
+                string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
+                string retur = objRest.HttpPost2("Medlemlog", strxml);
+            }
         }
         private void Import()
         {
@@ -213,7 +228,7 @@ namespace nsPuls3060
             {
                 Program.dbData3060.Tempsync2.DeleteAllOnSubmit(Program.dbData3060.Tempsync2);
             }
-            
+
             Program.dbData3060.SubmitChanges();
             /*
             try
@@ -232,7 +247,7 @@ namespace nsPuls3060
             // Submit succeeds on second try.
             Program.dbData3060.SubmitChanges(ConflictMode.FailOnFirstConflict);
             */
-            
+
             if ((m_action == 1) | (m_action == 2))
             {
                 actionMedlemSync();
@@ -965,7 +980,6 @@ namespace nsPuls3060
             {
                 imp = from t in Program.dbData3060.Tempimpexp
                       where t.Ie == "e"
-                      && t.Act != "del"
                       orderby t.Nr, t.Source, t.Source_id, t.Field_id
                       select t;
             }

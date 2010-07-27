@@ -63,6 +63,7 @@
             this.infoTekstToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.syncResetInternettetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -188,7 +189,8 @@
             this.medlemmerTilRegnearkToolStripMenuItem,
             this.medlemmerTilRegnearkEksternToolStripMenuItem,
             this.emailRykkerToolStripMenuItem,
-            this.syncMedInternettetToolStripMenuItem});
+            this.syncMedInternettetToolStripMenuItem,
+            this.syncResetInternettetToolStripMenuItem});
             this.medlemToolStripMenuItem.Name = "medlemToolStripMenuItem";
             this.medlemToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.medlemToolStripMenuItem.Text = "Medlem";
@@ -350,6 +352,13 @@
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
+            // syncResetInternettetToolStripMenuItem
+            // 
+            this.syncResetInternettetToolStripMenuItem.Name = "syncResetInternettetToolStripMenuItem";
+            this.syncResetInternettetToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.syncResetInternettetToolStripMenuItem.Text = "Sync Reset Internettet";
+            this.syncResetInternettetToolStripMenuItem.Click += new System.EventHandler(this.syncResetInternettetToolStripMenuItem_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -414,6 +423,7 @@
         private System.Windows.Forms.ToolStripMenuItem syncMedInternettetToolStripMenuItem;
         internal System.Windows.Forms.ToolStripProgressBar MainformProgressBar;
         internal System.Windows.Forms.ToolStripStatusLabel MainformProgressText;
+        private System.Windows.Forms.ToolStripMenuItem syncResetInternettetToolStripMenuItem;
    }
 }
 

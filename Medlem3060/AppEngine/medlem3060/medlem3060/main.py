@@ -219,15 +219,18 @@ class SyncMedlemHandler(webapp.RequestHandler):
     self.response.out.write(template.render(path, template_values))
   
   def delete(self):
-    root = db.Key.from_path('Persons','root')
-    qry = db.Query().ancestor(root)
-    logging.info('XXXXXXXXXXXXXXXXXXXXXXDELETEXXXXXXXXXXXXXXXXXXXXX')
-    antal = 0
-    for rec in qry:
-      rec.delete()
-      antal += 1
-      logging.info('antal: %s' % (antal))
-    logging.info('XXXXXXXXXXXXXXXXXXXXXXDELETEXXXXXXXXXXXXXXXXXXXXX Antal: %s' % (antal))
+    path = self.request.environ['PATH_INFO']
+    mo = re.match("/sync/Medlem/([0-9]+)", path)
+    if mo:
+      if mo.groups()[0]:
+        try:
+          Nr = mo.groups()[0]
+          logging.info('DELETE Nr=%s' % (Nr))
+          k = db.Key.from_path('Persons','root','Person',Nr)
+          m = Person.get(k)
+          m.delete()
+        except:
+          pass
     self.response.out.write('Status: 403')
 
   def post(self):
@@ -288,6 +291,23 @@ class SyncMedlemlogHandler(webapp.RequestHandler):
     }
     path = os.path.join(os.path.dirname(__file__), 'templates/medlemlog.xml') 
     self.response.out.write(template.render(path, template_values))
+  
+  def delete(self):
+    path = self.request.environ['PATH_INFO']
+    mo = re.match("/sync/Medlemlog/([0-9]+)/([0-9]+)/([0-9]+)", path)
+    if mo:
+      if mo.groups()[0] and mo.groups()[1] and mo.groups()[2]:
+        try:
+          Nr = mo.groups()[0]
+          Source = mo.groups()[1]
+          Source_id = mo.groups()[2]
+          logging.info('DELETE Nr=%s Source=%s Source_id=%s' % (Nr,Source,Source_id))
+          k = db.Key.from_path('Persons','root','Person','%s' % (Nr),'%s-%s' % (Source,Source_id))
+          m = Medlemlog.get(k)
+          m.delete()
+        except:
+          pass
+    self.response.out.write('Status: 403')
     
   def post(self):
     doc = minidom.parse(self.request.body_file)
@@ -389,8 +409,10 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/adm/findmedlem', FindmedlemHandler),
                                        ('/adm', MenuHandler),
                                        ('/rest/.*', rest.Dispatcher),
-                                       ('/sync/Medlem', SyncMedlemHandler),
+                                       ('/sync/Medlemlog/.*', SyncMedlemlogHandler),
                                        ('/sync/Medlemlog', SyncMedlemlogHandler),
+                                       ('/sync/Medlem/.*', SyncMedlemHandler),
+                                       ('/sync/Medlem', SyncMedlemHandler),
                                        ('/sync/.*', MenuHandler),
                                        ('/logoff', LogoffHandler),
                                        ('/teknik/createmenu', CreateMenu),
