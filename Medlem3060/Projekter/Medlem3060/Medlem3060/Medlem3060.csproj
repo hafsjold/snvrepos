@@ -111,7 +111,7 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="clsRest.cs" />
+    <Compile Include="cls\clsRest.cs" />
     <Compile Include="cls\clsSync.cs" />
     <Compile Include="cls\clsInfotekst.cs" />
     <Compile Include="cls\clsPbs603.cs" />
