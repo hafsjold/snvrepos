@@ -5,6 +5,8 @@ from google.appengine.ext.webapp import template
 from google.appengine.api import users
 from google.appengine.api.labs import taskqueue
 from google.appengine.api import memcache
+from django.utils import simplejson
+
 from xml.dom import minidom
 from datetime import datetime
 import time
@@ -69,6 +71,15 @@ class LoginHandler(webapp.RequestHandler):
       self.response.headers['Set-Cookie'] = sessioncookie
       self.redirect('/')
 
+class Findmedlem3Handler(webapp.RequestHandler):
+  def get(self):
+    root = db.Key.from_path('Persons','root')
+    person_list = db.Query(Person).ancestor(root)
+    template_values = {
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/findmedlem3.html') 
+    self.response.out.write(template.render(path, template_values))
+    
 class FindmedlemHandler(webapp.RequestHandler):
   def get(self):
     template_values = {
@@ -204,6 +215,24 @@ class MedlemHandler(webapp.RequestHandler):
     }
     path = os.path.join(os.path.dirname(__file__), 'templates/medlem.html') 
     self.response.out.write(template.render(path, template_values))
+
+class MedlemJsonHandler(webapp.RequestHandler):
+  def get(self):
+    root = db.Key.from_path('Persons','root')
+    qry = db.Query(Person).ancestor(root)
+    antal = qry.count()
+    logging.info('TTTTTTTTTTTTTTT jData Antal: %s' % (antal))
+    FirstPage = True
+    jData = '{ "aaData": ['
+    for p in qry:
+      if not FirstPage:
+        jData += ','
+      FirstPage = False
+      jData += '["%s","%s","%s","%s","%s","%s"]' % (p.Nr,p.Navn,p.Adresse,p.Postnr,p.Bynavn,p.Telefon)
+    jData += '] }'
+    self.response.headers["Content-Type"] = "application/json"
+    self.response.out.write(jData)
+    #self.response.out.write('%s' % (simplejson.dumps(jData)))
     
 class SyncMedlemHandler(webapp.RequestHandler):
   def get(self):
@@ -211,7 +240,6 @@ class SyncMedlemHandler(webapp.RequestHandler):
     qry = db.Query(Person).ancestor(root)
     antal = qry.count()
     logging.info('TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT Antal: %s' % (antal))
-    user_list = qry.fetch(2)
     template_values = {
       'user_list': qry,
     }
@@ -405,8 +433,10 @@ class FlushCache(webapp.RequestHandler):
       
 application = webapp.WSGIApplication([ ('/', MainHandler),
                                        (LOGIN_URL, LoginHandler),
+                                       ('/adm/medlemjson', MedlemJsonHandler),
                                        ('/adm/medlem.*', MedlemHandler),
                                        ('/adm/findmedlem', FindmedlemHandler),
+                                       ('/adm/findmedlem3', Findmedlem3Handler),
                                        ('/adm', MenuHandler),
                                        ('/rest/.*', rest.Dispatcher),
                                        ('/sync/Medlemlog/.*', SyncMedlemlogHandler),

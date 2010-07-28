@@ -132,8 +132,8 @@ namespace nsPuls3060
 
 
             clsRest objRest = new clsRest();
-            objRest.HttpDelete2("Medlemlog/3/2/345");
-            clsSync objSync = new clsSync();
+            string resp = objRest.HttpGet2("Medlem");
+            //clsSync objSync = new clsSync();
             //objSync.actionSync(1);
             //objSync.actionSync(2);
             //objSync.actionSync(3);
