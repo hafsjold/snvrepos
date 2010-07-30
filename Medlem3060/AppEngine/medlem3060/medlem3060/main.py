@@ -218,18 +218,22 @@ class MedlemHandler(webapp.RequestHandler):
 
 class MedlemJsonHandler(webapp.RequestHandler):
   def get(self):
-    root = db.Key.from_path('Persons','root')
-    qry = db.Query(Person).ancestor(root)
-    antal = qry.count()
-    logging.info('TTTTTTTTTTTTTTT jData Antal: %s' % (antal))
-    FirstPage = True
-    jData = '{ "aaData": ['
-    for p in qry:
-      if not FirstPage:
-        jData += ','
-      FirstPage = False
-      jData += '["%s","%s","%s","%s","%s","%s"]' % (p.Nr,p.Navn,p.Adresse,p.Postnr,p.Bynavn,p.Telefon)
-    jData += '] }'
+    jData = memcache.get('jData', namespace='jData')
+    if jData is None:
+      root = db.Key.from_path('Persons','root')
+      qry = db.Query(Person).ancestor(root)
+      antal = qry.count()
+      logging.info('TTTTTTTTTTTTTTT jData Antal: %s' % (antal))
+      FirstPage = True
+      jData = '{ "aaData": ['
+      for p in qry:
+        if not FirstPage:
+          jData += ','
+        FirstPage = False
+        jData += '["%s","%s","%s","%s","%s","%s"]' % (p.Nr,p.Navn,p.Adresse,p.Postnr,p.Bynavn,p.Telefon)
+      jData += '] }'
+      memcache.set('jData', jData, namespace='jData')
+    
     self.response.headers["Content-Type"] = "application/json"
     self.response.out.write(jData)
     #self.response.out.write('%s' % (simplejson.dumps(jData)))

@@ -2,37 +2,81 @@
 <html>
   <head>
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" href="/stylesheets/medlem3060.css" type="text/css" media="screen" />
+		<style type="text/css" title="currentStyle">
+			@import "/stylesheets/demo_page.css";
+			@import "/stylesheets/demo_table.css";
+		</style>
     <script src="/javascripts/jquery-1.4.2.js" type="text/javascript"></script>
     <script src="/javascripts/jquery.dataTables.js" type="text/javascript"></script>
     <script type="text/javascript" charset="utf-8">
-			$(document).ready(function() {
-				$('#example').dataTable( {
-					"bProcessing": true,
-					"sAjaxSource": "/adm/medlemjson"
-				} );
-			} );
+  		  var oTable;
+        $(document).ready(function() {
+        oTable = $('#example').dataTable( {
+		      "sPaginationType": "full_numbers",
+          "sDom": '<"top"i>rt<"bottom"flp<"clear">',
+          "bAutoWidth": false, 
+          "bProcessing": true,
+          "fnRowCallback": function( nRow, aData, iDisplayIndex ) {
+            var id = aData[0];
+            $(nRow).attr("id",id);
+            $(nRow).click(
+              function()
+              {
+                alert('this: ' + $(this)[0].outerHTML); 
+              }
+            );
+            return nRow;
+          },
+          "sAjaxSource": "/adm/medlemjson"
+        } );
+
+        //$('#example tbody').click(function(){ 
+        //  alert('this: ' + $(this)[0].outerHTML); 
+        //}); 
+
+        $('.mogens').click(function(){ 
+          var testmha = oTable;
+          mhatest();
+          //alert('outerHTML: ' + $(this)[0].outerHTML); 
+        });      
+
+        /* Hide the 4'th column after initialisation*/
+			  oTable.fnSetColumnVis( 5, false );
+      } );
+      function mhatest(th){ 
+          var testmha = oTable;
+          //alert('testmha'); 
+      }
 		</script>
     <title>Find Medlem</title>
   </head>
-  <body bgcolor="#FFFFFF" text="#000000">
+  <body id="dt_example">
+    <div class="mogens">
+      <a id="mhaTest1234" ref=#>Test</a>
+    </div>
     <div id="dynamic">
-      <table cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+      <table width="850px" cellpadding="0" cellspacing="0" border="0" class="display" id="example">
 	      <thead>
           <tr >
-            <th width="100" align=left>Nr</th>
-            <th width="300" align=left>Navn</th>
-            <th width="300" align=left>Adresse</th>
-            <th width="50" align=left>Postnr</th>
-            <th width="100" align=left>By</th>
-            <th width="100" align=left>Telefon</th>
+            <th>Nr</th>
+            <th>Navn</th>
+            <th>Adresse</th>
+            <th>Postnr</th>
+            <th>By</th>
+            <th>Telefon</th>
           </tr>
         </thead>  
-        <tbody>
-		      <tr>
-			      <td colspan="5" class="dataTables_empty">Loading data from server</td>
-		      </tr>
-        </tbody>
+
+        <tfoot>
+          <tr >
+            <th>Nr</th>
+            <th>Navn</th>
+            <th>Adresse</th>
+            <th>Postnr</th>
+            <th>By</th>
+            <th>Telefon</th>
+          </tr>
+        </tfoot>  
       </table>
 	  </div>
   </body>
