@@ -17,8 +17,7 @@
           "bAutoWidth": false, 
           "bProcessing": true,
           "fnInitComplete":function( oSettings, json ) {
-            var xoData = oSettings.aoData;
-            $(xoData).each( function() {
+            $(oSettings.aoData).each( function() {
               var id = $(this)[0]._aData[0];
               var nRow = $(this)[0].nTr;
               $(nRow).attr("id",id);
