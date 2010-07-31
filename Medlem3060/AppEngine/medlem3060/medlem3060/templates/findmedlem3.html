@@ -1,30 +1,38 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
   <head>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<style type="text/css" title="currentStyle">
-			@import "/stylesheets/demo_page.css";
-			@import "/stylesheets/demo_table.css";
-		</style>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <style type="text/css" title="currentStyle">
+      @import "/stylesheets/demo_page.css";
+      @import "/stylesheets/demo_table.css";
+    </style>
     <script src="/javascripts/jquery-1.4.2.js" type="text/javascript"></script>
     <script src="/javascripts/jquery.dataTables.js" type="text/javascript"></script>
     <script type="text/javascript" charset="utf-8">
-  		  var oTable;
+        var oTable;
         $(document).ready(function() {
         oTable = $('#example').dataTable( {
-		      "sPaginationType": "full_numbers",
+          "sPaginationType": "full_numbers",
           "sDom": '<"top"i>rt<"bottom"flp<"clear">',
           "bAutoWidth": false, 
           "bProcessing": true,
+          "fnInitComplete":function( oSettings, json ) {
+            var xoData = oSettings.aoData;
+            $(xoData).each( function() {
+              var id = $(this)[0]._aData[0];
+              var nRow = $(this)[0].nTr;
+              $(nRow).attr("id",id);
+              $(nRow).click( function() { alert('this: ' + $(this)[0].outerHTML); } );
+            });
+          },
           "fnRowCallback": function( nRow, aData, iDisplayIndex ) {
-            var id = aData[0];
-            $(nRow).attr("id",id);
-            $(nRow).click(
-              function()
-              {
-                alert('this: ' + $(this)[0].outerHTML); 
-              }
-            );
+            //var id = aData[0];
+            //$(nRow).attr("id",id);
+            //if ( $.data( $(nRow).get(0), 'events' ) === null  || ( $.data( $(nRow).get(0), 'events' ) !== null && $.data( $(nRow).get(0), 'events' ).click === null ) )
+            //{
+            //  $(nRow).click( function() { alert('this: ' + $(this)[0].outerHTML); } );
+            //}
+            //var foo2 = $.data( $(nRow).get(0), 'events' ).click;
             return nRow;
           },
           "sAjaxSource": "/adm/medlemjson"
@@ -41,13 +49,14 @@
         });      
 
         /* Hide the 4'th column after initialisation*/
-			  oTable.fnSetColumnVis( 5, false );
+        oTable.fnSetColumnVis( 5, false );
       } );
-      function mhatest(th){ 
-          var testmha = oTable;
-          //alert('testmha'); 
+      function mhatest(){ 
+          var xRow = oTable.dataTableSettings[0].aoData[0].nTr;
+          var xEvents = $.data( $(xRow).get(0), 'events' )
+          alert('testmha'); 
       }
-		</script>
+    </script>
     <title>Find Medlem</title>
   </head>
   <body id="dt_example">
@@ -56,7 +65,7 @@
     </div>
     <div id="dynamic">
       <table width="850px" cellpadding="0" cellspacing="0" border="0" class="display" id="example">
-	      <thead>
+        <thead>
           <tr >
             <th>Nr</th>
             <th>Navn</th>
@@ -78,6 +87,6 @@
           </tr>
         </tfoot>  
       </table>
-	  </div>
+    </div>
   </body>
 </html>
