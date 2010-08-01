@@ -71,6 +71,13 @@ class LoginHandler(webapp.RequestHandler):
       self.response.headers['Set-Cookie'] = sessioncookie
       self.redirect('/')
 
+class Findmedlem4Handler(webapp.RequestHandler):
+  def get(self):
+    template_values = {
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/findmedlem4.html') 
+    self.response.out.write(template.render(path, template_values))
+    
 class Findmedlem3Handler(webapp.RequestHandler):
   def get(self):
     root = db.Key.from_path('Persons','root')
@@ -441,6 +448,7 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/adm/medlem.*', MedlemHandler),
                                        ('/adm/findmedlem', FindmedlemHandler),
                                        ('/adm/findmedlem3', Findmedlem3Handler),
+                                       ('/adm/findmedlem4', Findmedlem4Handler),
                                        ('/adm', MenuHandler),
                                        ('/rest/.*', rest.Dispatcher),
                                        ('/sync/Medlemlog/.*', SyncMedlemlogHandler),

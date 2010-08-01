@@ -10,12 +10,15 @@ handlers:
 
 - url: /images
   static_dir: images
+  expiration: "4d 5h"
 
 - url: /javascripts
   static_dir: javascripts
+  expiration: "1h"
   
 - url: /stylesheets
   static_dir: stylesheets
+  expiration: "1h"
   
 - url: /w3c
   static_dir: w3c

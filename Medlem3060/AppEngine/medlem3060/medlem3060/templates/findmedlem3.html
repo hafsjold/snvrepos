@@ -6,11 +6,14 @@
       @import "/stylesheets/demo_page.css";
       @import "/stylesheets/demo_table.css";
     </style>
+    <link type="text/css" href="/stylesheets/ui-lightness/jquery-ui-1.8.2.custom.css" rel="Stylesheet" />	
     <script src="/javascripts/jquery-1.4.2.js" type="text/javascript"></script>
     <script src="/javascripts/jquery.dataTables.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/javascripts/jquery-ui-1.8.2.custom.min.js"></script>
     <script type="text/javascript" charset="utf-8">
         var oTable;
         $(document).ready(function() {
+
         oTable = $('#example').dataTable( {
           "sPaginationType": "full_numbers",
           "sDom": '<"top"i>rt<"bottom"flp<"clear">',
@@ -49,7 +52,29 @@
 
         /* Hide the 4'th column after initialisation*/
         oTable.fnSetColumnVis( 5, false );
-      } );
+        
+        $('#mySliderDiv').slider({ 
+          orientation: 'horisontal',
+          min: 0,
+          max: 150,
+          value: 50 });
+      
+        $("#dialog-message").dialog({
+          autoOpen: false,
+			    modal: true,
+			    buttons: {
+				    Ok: function() {
+				     $(this).dialog('close');
+				    }
+			    }
+		    });
+
+        $('#mybutton').click(function(){ 
+     		  $("#dialog-message").dialog('open');
+        }); 
+      });
+        
+
       function mhatest(){ 
           var xRow = oTable.dataTableSettings[0].aoData[0].nTr;
           var xEvents = $.data( $(xRow).get(0), 'events' )
@@ -59,9 +84,12 @@
     <title>Find Medlem</title>
   </head>
   <body id="dt_example">
+    <h1 id="mybutton">mybutton</h1>
     <div class="mogens">
       <a id="mhaTest1234" ref=#>Test</a>
     </div>
+    <div id="mySliderDiv"></div>
+    
     <div id="dynamic">
       <table width="850px" cellpadding="0" cellspacing="0" border="0" class="display" id="example">
         <thead>
@@ -86,6 +114,15 @@
           </tr>
         </tfoot>  
       </table>
+    </div>
+    <div id="dialog-message" title="Download complete">
+	    <p>
+		    <span class="ui-icon ui-icon-circle-check" style="float:left; margin:0 7px 50px 0;"></span>
+		      Your files have downloaded successfully into the My Downloads folder.
+	    </p>
+	    <p>
+		    Currently using <b>36% of your storage space</b>.
+	    </p>
     </div>
   </body>
 </html>
