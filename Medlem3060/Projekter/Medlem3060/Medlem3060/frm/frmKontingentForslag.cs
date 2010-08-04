@@ -52,9 +52,9 @@ namespace nsPuls3060
             wt = m_initdate.AddMonths(13 - m_initdate.Month);
             this.DatoKontingentTil.Value = wt.AddDays(-wt.Day);
 
-            if ((this.DatoKontingentTil.Value - this.DatoBetaltKontingentTil.Value) < (new TimeSpan(61, 0, 0, 0))) //Nov + Dec
+            if ((this.DatoKontingentTil.Value - this.DatoBetaltKontingentTil.Value) < (new TimeSpan(184, 0, 0, 0))) //Jul + Aug + Sep + Okt + Nov + Dec
             {
-                this.DatoKontingentTil.Value.AddYears(1);
+                this.DatoKontingentTil.Value = this.DatoKontingentTil.Value.AddYears(1);
             }
             this.Aarskontingent.Text = "150";
             this.AarskontingentPbs.Text = "150";
@@ -128,7 +128,7 @@ namespace nsPuls3060
                 }
                 else //Er medlem
                 {
-                    if (m.kontingentBetaltTilDato != null)  //'Der findes en kontingent-betaling
+                    if ((m.kontingentBetaltTilDato != null)&& (m.kontingentBetaltTilDato > m.indmeldelsesDato))  //'Der findes en kontingent-betaling
                     {
                         if (m.kontingentBetaltTilDato > this.DatoBetaltKontingentTil.Value)   //der er betalt kontingent efter DatoBetaltKontingentTil
                         {
@@ -173,20 +173,26 @@ namespace nsPuls3060
                         case 5:
                         case 6:
                             KontingentTildato = new DateTime(KontingentFradato.Year, 12, 31);
-                            dkontingent = (tilmeldtpbs) ? double.Parse(this.AarskontingentPbs.Text) : double.Parse(this.Aarskontingent.Text);
-                            break;
-                        
-                        case 7:
-                        case 8:
-                        case 9:
-                        case 10:
-                            KontingentTildato = new DateTime(KontingentFradato.Year, 12, 31);
-                            dkontingent = (tilmeldtpbs) ? double.Parse(this.AarskontingentPbs.Text) / 2 : double.Parse(this.Aarskontingent.Text) / 2;
+                            if (indmeldelse)
+                            {
+                                dkontingent = double.Parse(this.AarskontingentPbs.Text);
+                            }
+                            else 
+                            {
+                                dkontingent = (tilmeldtpbs) ? double.Parse(this.AarskontingentPbs.Text) : double.Parse(this.Aarskontingent.Text);
+                            }
                             break;
                         
                         default:
                             KontingentTildato = new DateTime(KontingentFradato.Year + 1, 12, 31);
-                            dkontingent = (tilmeldtpbs) ? double.Parse(this.AarskontingentPbs.Text) : double.Parse(this.Aarskontingent.Text);
+                            if (indmeldelse)
+                            {
+                                dkontingent = double.Parse(this.AarskontingentPbs.Text) * 3 / 2;
+                            }
+                            else 
+                            {
+                                dkontingent = (tilmeldtpbs) ? double.Parse(this.AarskontingentPbs.Text) * 3 / 2 : double.Parse(this.Aarskontingent.Text) * 3 / 2;
+                            }
                             break;
                     }
                     ikontingent = (int)dkontingent;

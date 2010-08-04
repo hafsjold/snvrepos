@@ -2,15 +2,12 @@
 <html>
   <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link type="text/css" href="/stylesheets/ui-lightness/jquery-ui-1.8.2.custom.css" rel="Stylesheet" />	
     <style type="text/css" title="currentStyle">
       @import "/stylesheets/demo_page.css";
       @import "/stylesheets/demo_table.css";
     </style>
-    <link type="text/css" href="/stylesheets/ui-lightness/jquery-ui-1.8.2.custom.css" rel="Stylesheet" />	
-    <script src="/javascripts/jquery-1.4.2.js" type="text/javascript"></script>
-    <script src="/javascripts/jquery.dataTables.js" type="text/javascript"></script>
-    <script type="text/javascript" src="/javascripts/jquery-ui-1.8.2.custom.min.js"></script>
-	  <style type="text/css">
+    <style type="text/css">
 		  body { font-size: 62.5%; }
 		  label, input { display:block; }
 		  input.text { margin-bottom:12px; width:95%; padding: .4em; }
@@ -22,14 +19,27 @@
 		  .ui-dialog .ui-state-error { padding: .3em; }
 		  .validateTips { border: 1px solid transparent; padding: 0.3em; }
 	  </style>
-
+    <script src="/javascripts/jquery-1.4.2.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.dataTables.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/javascripts/jquery-ui-1.8.2.custom.min.js"></script>
+    <script type="text/javascript" src="/javascripts/jquery.ui.datepicker-da.js"></script>
     <script type="text/javascript" charset="utf-8">
         var oTable;
         $(document).ready(function() {
 
         oTable = $('#example').dataTable( {
+          "bJQueryUI": false,
+          "aoColumnDefs": [
+			        { "sWidth": "1em", "sClass": 'left', "aTargets": [ 0 ] },
+			        { "sClass": 'left', "sTitle": "Fulde navn", "aTargets": [ 1 ] },
+			        { "sClass": 'left', "aTargets": [ 2 ] },
+			        { "sWidth": "3em", "sClass": 'left', "sTitle": "Pnr", "aTargets": [ 3 ] },
+			        { "sWidth": "7em", "sClass": 'left', "bVisible": true, "aTargets": [ 4 ] },
+			        { "sWidth": "5em", "sClass": 'left', "aTargets": [ 5 ] },
+		      ],
+
           "sPaginationType": "full_numbers",
-          "sDom": '<"top"i>rt<"bottom"flp<"clear">',
+          //"sDom": '<"top"i>rt<"bottom"flp<"clear">',
           "bAutoWidth": false, 
           "bProcessing": true,
           "fnInitComplete":function( oSettings, json ) {
@@ -40,16 +50,18 @@
               $(nRow).click( function() { alert('this: ' + $(this)[0].outerHTML); } );
             });
           },
+          /*
           "fnRowCallback": function( nRow, aData, iDisplayIndex ) {
-            //var id = aData[0];
-            //$(nRow).attr("id",id);
-            //if ( $.data( $(nRow).get(0), 'events' ) === null  || ( $.data( $(nRow).get(0), 'events' ) !== null && $.data( $(nRow).get(0), 'events' ).click === null ) )
-            //{
-            //  $(nRow).click( function() { alert('this: ' + $(this)[0].outerHTML); } );
-            //}
-            //var foo2 = $.data( $(nRow).get(0), 'events' ).click;
+            var id = aData[0];
+            $(nRow).attr("id",id);
+            if ( $.data( $(nRow).get(0), 'events' ) === null  || ( $.data( $(nRow).get(0), 'events' ) !== null && $.data( $(nRow).get(0), 'events' ).click === null ) )
+            {
+              $(nRow).click( function() { alert('this: ' + $(this)[0].outerHTML); } );
+            }
+            var foo2 = $.data( $(nRow).get(0), 'events' ).click;
             return nRow;
           },
+          */
           "sAjaxSource": "/adm/medlemjson"
         } );
 
@@ -63,14 +75,14 @@
           //alert('outerHTML: ' + $(this)[0].outerHTML); 
         });      
 
-        /* Hide the 4'th column after initialisation*/
-        oTable.fnSetColumnVis( 5, false );
+        /* Hide the 6'th column after initialisation*/
+        //oTable.fnSetColumnVis( 5, false );
         
-        $('#mySliderDiv').slider({ 
-          orientation: 'horisontal',
-          min: 0,
-          max: 150,
-          value: 50 });
+        //$('#mySliderDiv').slider({ 
+        //  orientation: 'horisontal',
+        //  min: 0,
+        //  max: 150,
+        //  value: 50 });
       
         $("#dialog-form").dialog({
           autoOpen: false,
@@ -81,9 +93,12 @@
 				    }
 			    }
 		    });
-        $('#name').datepicker();
+        //$.datepicker.setDefaults($.datepicker.regional['da']); 
+        $('#name').datepicker({
+           changeMonth: true,
+           changeYear: true});
        
-        $('#mybutton').click(function(){
+        $('#mybutton').button().click(function(){
           //$("#name").val('Mogens Test');
           $("#email").val('mogens.test@gmail.com');
           $("#password").val('12345678');
@@ -101,7 +116,7 @@
     <title>Find Medlem</title>
   </head>
   <body id="dt_example">
-    <h1 id="mybutton">mybutton</h1>
+    <button id="mybutton">mybutton</button>
     <div class="mogens">
       <a id="mhaTest1234" ref=#>Test</a>
     </div>
@@ -119,17 +134,6 @@
             <th>Telefon</th>
           </tr>
         </thead>  
-
-        <tfoot>
-          <tr >
-            <th>Nr</th>
-            <th>Navn</th>
-            <th>Adresse</th>
-            <th>Postnr</th>
-            <th>By</th>
-            <th>Telefon</th>
-          </tr>
-        </tfoot>  
       </table>
     </div>
     <div id="dialog-form" title="Update user">

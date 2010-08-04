@@ -217,7 +217,7 @@ namespace nsPuls3060
         private void cmdSave_I_Record_Click(object sender, EventArgs e)
         {
             int tblMedlem_nr = KarKortnr.nextval();
-            object[] val = new object[10];
+            object[] val = new object[11];
             val[0] = tblMedlem_nr;
             val[1] = (I_Navn.Text.Length == 0) ? "" : I_Navn.Text;
             val[2] = (I_Kaldenavn.Text.Length == 0) ? null : I_Kaldenavn.Text;

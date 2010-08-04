@@ -213,17 +213,17 @@ namespace nsPuls3060
 
 
             //Undersøg om der er betalt kontingent
-            if (m_b30) //Findes der en betaling
+            if ((m_b30) && (m_kontingentBetaltTilDato > m_indmeldelsesDato))//Findes der en betaling efter indmelsesdato
             {
-                m_restanceTilDatoGamleMedlemmer = ((DateTime)m_kontingentBetaltTilDato).AddDays(m_BetalingsFristiDageGamleMedlemmer);
-                if (m_restanceTilDatoGamleMedlemmer >= pDate) //Er kontingentTilDato aktiv
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                    m_restanceTilDatoGamleMedlemmer = ((DateTime)m_kontingentBetaltTilDato).AddDays(m_BetalingsFristiDageGamleMedlemmer);
+                    if (m_restanceTilDatoGamleMedlemmer >= pDate) //Er kontingentTilDato aktiv
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
             }
             else
             { //Der findes ingen betalinger. Nyt medlem?

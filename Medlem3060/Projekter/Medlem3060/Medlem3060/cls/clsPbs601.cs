@@ -244,6 +244,7 @@ namespace nsPuls3060
         public void rykker_email(int lobnr)
         {
             int wleveranceid;
+            int? wSaveFaknr;
 
             {
                 var antal = (from c in Program.dbData3060.Tbltilpbs
@@ -292,7 +293,7 @@ namespace nsPuls3060
                           join f in Program.dbData3060.Tblfak on r.Faknr equals f.Faknr
                           join b in Program.dbData3060.Tblindbetalingskort on r.Faknr equals b.Faknr into indbetalingskort
                           from b in indbetalingskort.DefaultIfEmpty(new Tblindbetalingskort { Id = 0, Frapbsid = 0, Pbstranskode = null, Nr = 0, Faknr = null, Debitorkonto = null, Debgrpnr = null, Kortartkode = null, Fikreditornr = null, Indbetalerident = null, Dato = null, Belob = null, Pbssektionnr = null })
-                          orderby r.Nr
+                          orderby r.Faknr
                           select new clsRstdeb
                           {
                               Nr = k.Nr,
@@ -313,30 +314,34 @@ namespace nsPuls3060
                               Email = k.Email
                           };
 
+            wSaveFaknr = 0;
             foreach (var rstdeb in rstdebs)
             {
-                string infotekst = new clsInfotekst
+                if (rstdeb.Faknr != wSaveFaknr) //Løser problem med mere flere PBS Tblindbetalingskort records pr Faknr
                 {
-                    infotekst_id = rstdeb.Infotekst,
-                    numofcol = null,
-                    navn_medlem = rstdeb.Navn,
-                    kaldenavn = rstdeb.Kaldenavn,
-                    fradato = rstdeb.Fradato,
-                    tildato = rstdeb.Tildato,
-                    betalingsdato = rstdeb.Betalingsdato,
-                    advisbelob = rstdeb.Belob,
-                    ocrstring = rstdeb.OcrString,
-                    underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører"
-                }.getinfotekst();
+                    string infotekst = new clsInfotekst
+                    {
+                        infotekst_id = rstdeb.Infotekst,
+                        numofcol = null,
+                        navn_medlem = rstdeb.Navn,
+                        kaldenavn = rstdeb.Kaldenavn,
+                        fradato = rstdeb.Fradato,
+                        tildato = rstdeb.Tildato,
+                        betalingsdato = rstdeb.Betalingsdato,
+                        advisbelob = rstdeb.Belob,
+                        ocrstring = rstdeb.OcrString,
+                        underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører"
+                    }.getinfotekst();
 
-                if (infotekst.Length > 0)
-                {
-                    
-					//Send email
-                    sendRykkerEmail(rstdeb.Navn , rstdeb.Email, "Betaling af Puls 3060 Kontingent", infotekst);
+                    if (infotekst.Length > 0)
+                    {
 
+                        //Send email
+                        sendRykkerEmail(rstdeb.Navn, rstdeb.Email, "Betaling af Puls 3060 Kontingent", infotekst);
+
+                    }
                 }
-
+                wSaveFaknr = rstdeb.Faknr;
             } // -- End rstdebs
 
             rsttil.Udtrukket = DateTime.Now;
