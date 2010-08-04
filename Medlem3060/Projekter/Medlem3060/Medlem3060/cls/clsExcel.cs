@@ -199,6 +199,7 @@ namespace nsPuls3060
                                    Kon = x.Kon,
                                    FodtDato = x.FodtDato,
                                    erMedlem = (h.erMedlem()) ? 1 : 0,
+                                   erPBS = (clsPbs.gettilmeldtpbs(h.Nr)) ? 1 : 0,
                                };
 
 
@@ -374,6 +375,7 @@ namespace nsPuls3060
                                    Kon = "X",
                                    FodtDato = null,
                                    erMedlem = (h.erMedlem()) ? 1 : 0,
+                                   erPBS = (clsPbs.gettilmeldtpbs(h.Nr)) ? 1 : 0,
                                };
 
             var erMedlem = from h in MedlemmerAll

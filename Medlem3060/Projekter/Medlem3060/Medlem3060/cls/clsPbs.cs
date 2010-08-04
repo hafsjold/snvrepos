@@ -446,10 +446,10 @@ namespace nsPuls3060
         public static bool gettilmeldtpbs(int? Nr)
         {
             var pbsaftalestart = from s in Program.dbData3060.Tblaftalelin
-                                 where s.Nr == Nr & s.Pbstranskode == "0231"
+                                 where s.Nr == Nr & (s.Pbstranskode == "0230" | s.Pbstranskode == "0231")
                                  select s;
             var pbsaftaleslut = from s in Program.dbData3060.Tblaftalelin
-                                where s.Nr == Nr & s.Pbstranskode != "0231"
+                                where s.Nr == Nr & s.Pbstranskode != "0230" & s.Pbstranskode != "0231"
                                 select s;
 
             var pbsaftale = from a in pbsaftalestart

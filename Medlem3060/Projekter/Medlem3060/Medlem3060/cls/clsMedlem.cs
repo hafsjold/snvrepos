@@ -854,6 +854,8 @@ namespace nsPuls3060
         public DateTime? FodtDato { get; set; }
         [Fieldattr(Heading = "erMedlem")]
         public int? erMedlem { get; set; }
+        [Fieldattr(Heading = "tilmeldtPBS")]
+        public int? erPBS { get; set; }
     }
 
     public class clsJournalposter

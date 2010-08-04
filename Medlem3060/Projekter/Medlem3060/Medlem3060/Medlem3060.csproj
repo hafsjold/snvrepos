@@ -358,6 +358,9 @@
     <Content Include="sql\scriptexp.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="sql\scripaftalelin.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="sync.xsd">
       <SubType>
       </SubType>
