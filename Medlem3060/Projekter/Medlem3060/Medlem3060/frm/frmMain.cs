@@ -574,5 +574,10 @@ namespace nsPuls3060
             objSync.actionSync(1); //Hent Syncroniserede Data (tblSync)
             this.MainformProgressText.Text = "Sync Reset afsluttet";
         }
+
+        private void regnearkNotPBSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            excelNotPBS();
+        }
     }
 }

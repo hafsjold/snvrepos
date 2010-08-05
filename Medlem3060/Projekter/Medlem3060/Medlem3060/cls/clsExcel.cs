@@ -316,6 +316,171 @@ namespace nsPuls3060
             }
         }
 
+        private void excelNotPBS()
+        {
+            DateTime pReadDate = DateTime.Now;
+            string pSheetName = "MedlemNotPBS";
+
+            Excel.Application oXL = null; ;
+            Excel._Workbook oWB;
+            Excel._Worksheet oSheet;
+            Excel.Window oWindow;
+            Excel.Range oRng;
+
+            var rec_regnskab = Program.qryAktivRegnskab();
+            string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xls";
+
+            var MedlemmerAll = from h in Program.karMedlemmer
+                               join d1 in Program.dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
+                               from x in details1.DefaultIfEmpty()  //new TblMedlem { Nr = -1, Kon = "X", FodtDato = new DateTime(1900, 1, 1) })
+                               select new clsMedlemExternAll
+                               {
+                                   Nr = h.Nr,
+                                   Navn = h.Navn,
+                                   Kaldenavn = h.Kaldenavn,
+                                   Adresse = h.Adresse,
+                                   Postnr = h.Postnr,
+                                   Bynavn = h.Bynavn,
+                                   Telefon = h.Telefon,
+                                   Email = h.Email,
+                                   Kon = x.Kon,
+                                   FodtDato = x.FodtDato,
+                                   erMedlem = (h.erMedlem()) ? 1 : 0,
+                                   erPBS = (clsPbs.gettilmeldtpbs(h.Nr)) ? 1 : 0,
+                               };
+            
+            var MedlemmerNotPBS = from h in MedlemmerAll
+                               where h.erMedlem == 1 && h.erPBS == 0
+                               select new clsMedlemNotPBS
+                                {
+                                    Nr = h.Nr,
+                                    Navn = h.Navn,
+                                    Kaldenavn = h.Kaldenavn,
+                                    Adresse = h.Adresse,
+                                    Postnr = h.Postnr,
+                                    Bynavn = h.Bynavn,
+                                    Telefon = h.Telefon,
+                                    Email = h.Email,
+                                    Kon = h.Kon,
+                                    PBSnr = "03985644",
+                                    Debgrnr = "00001",
+                                    Kundenr = 032001610000000 + (int)h.Nr
+                                };
+
+            using (new ExcelUILanguageHelper())
+            {
+                try
+                {
+                    //Start Excel and get Application object.
+                    oXL = new Excel.Application();
+                    oXL.Visible = true;
+                    //Get a new workbook.
+
+                    oWB = oXL.Workbooks.Add((Missing.Value));
+                    oSheet = (Excel._Worksheet)oWB.ActiveSheet;
+                    oWindow = oXL.ActiveWindow;
+
+                    if (pSheetName.Length > 0) oSheet.Name = pSheetName.Substring(0, pSheetName.Length > 34 ? 34 : pSheetName.Length);
+                    int row = 1;
+                    this.MainformProgressBar.Value = 0;
+                    this.MainformProgressBar.Minimum = 0;
+                    this.MainformProgressBar.Maximum = (from h in Program.karMedlemmer select h).Count();
+                    this.MainformProgressBar.Step = 1;
+                    this.MainformProgressBar.Visible = true;
+                    foreach (clsMedlemNotPBS m in MedlemmerNotPBS)
+                    {
+                        this.MainformProgressBar.PerformStep();
+                        row++;
+                        Type objectType = m.GetType();
+                        PropertyInfo[] properties = objectType.GetProperties();
+                        int col = 0;
+                        foreach (PropertyInfo property in properties)
+                        {
+                            col++;
+                            string Name = property.Name;
+                            //string NamePropertyType = property.GetValue(m, null).GetType().ToString();
+                            oSheet.Cells[row, col] = property.GetValue(m, null);
+                            if (row == 2)
+                            {
+                                object[] CustomAttributes = property.GetCustomAttributes(false);
+                                foreach (var att in CustomAttributes)
+                                {
+                                    Type tp = att.GetType();
+                                    if (tp.ToString() == "nsPuls3060.Fieldattr")
+                                    {
+                                        Fieldattr attr = (Fieldattr)att;
+                                        string heading = attr.Heading;
+                                        oSheet.Cells[1, col] = heading;
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    oRng = (Excel.Range)oSheet.Rows[1, Missing.Value];
+                    oRng.Font.Name = "Arial";
+                    oRng.Font.Size = 12;
+                    oRng.Font.Strikethrough = false;
+                    oRng.Font.Superscript = false;
+                    oRng.Font.Subscript = false;
+                    oRng.Font.OutlineFont = false;
+                    oRng.Font.Shadow = false;
+                    oRng.Font.Bold = true;
+                    oRng.HorizontalAlignment = Excel.Constants.xlCenter;
+                    oRng.VerticalAlignment = Excel.Constants.xlBottom;
+                    oRng.WrapText = false;
+                    oRng.Orientation = 0;
+                    oRng.AddIndent = false;
+                    oRng.IndentLevel = 0;
+                    oRng.ShrinkToFit = false;
+                    oRng.MergeCells = false;
+
+                    string BottomRight = "L" + row.ToString();
+                    oRng = oSheet.get_Range("L2", BottomRight);
+                    oRng.NumberFormat = "##############";
+
+                    oSheet.Cells.EntireColumn.AutoFit();
+
+                    oWindow.SplitRow = 1;
+                    oWindow.SplitColumn = 2;
+                    oWindow.FreezePanes = true;
+
+                    oSheet.get_Range("A1", Missing.Value).Select();
+
+                    for (var i = oWB.Worksheets.Count; i > 0; i--)
+                    {
+                        Excel._Worksheet oSheetWrk = (Excel._Worksheet)oWB.Worksheets.get_Item(i);
+                        if (oSheetWrk.Name != "MedlemNotPBS")
+                        {
+                            oSheetWrk.Delete();
+                        }
+                    }
+
+
+                    oWB.SaveAs(SaveAs, Excel.XlFileFormat.xlWorkbookNormal, "", "", false, false, Excel.XlSaveAsAccessMode.xlExclusive, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
+                    oWB.Saved = true;
+                    oXL.Visible = true;
+                    this.MainformProgressBar.Visible = false;
+
+                    this.sendNotPBS(SaveAs);
+
+                    //oXL.Quit();
+                    //oXL = null;
+                }
+                catch (Exception theException)
+                {
+                    String errorMessage;
+                    errorMessage = "Error: ";
+                    errorMessage = String.Concat(errorMessage, theException.Message);
+                    errorMessage = String.Concat(errorMessage, " Line: ");
+                    errorMessage = String.Concat(errorMessage, theException.Source);
+
+                    MessageBox.Show(errorMessage, "Error");
+                }
+            }
+        }
+
+
         private string IUAP(string Type, string DK)
         {
             if (Type == "Drift")
@@ -615,7 +780,42 @@ namespace nsPuls3060
             if (success != true) throw new Exception(email.LastErrorText);
 
         }
+        private void sendNotPBS(string filename)
+        {
+            FileInfo f = new FileInfo(filename);
+            string local_filename = f.Name;
+            Chilkat.MailMan mailman = new Chilkat.MailMan();
+            bool success;
+            success = mailman.UnlockComponent("HAFSJOMAILQ_9QYSMgP0oR1h");
+            if (success != true) throw new Exception(mailman.LastErrorText);
 
+            //  Use the GMail SMTP server
+            mailman.SmtpHost = Program.Smtphost;
+            mailman.SmtpPort = int.Parse(Program.Smtpport);
+            mailman.SmtpSsl = bool.Parse(Program.Smtpssl);
+
+            //  Set the SMTP login/password.
+            mailman.SmtpUsername = Program.Smtpuser;
+            mailman.SmtpPassword = Program.Smtppasswd;
+
+            //  Create a new email object
+            Chilkat.Email email = new Chilkat.Email();
+
+            email.Subject = "Puls3060 Medlemmer ikke tilmeldt PBS: " + local_filename;
+            email.Body = "Puls3060 Medlemmer ikke tilmeldt PBS: " + local_filename;
+
+            //email.AddTo(Program.MailToName, Program.MailToAddr);
+            email.From = Program.MailFrom;
+            email.ReplyTo = Program.MailReply;
+            email.AddBcc(Program.MailToName, Program.MailToAddr);
+
+            email.AddFileAttachment(filename);
+            email.UnzipAttachments();
+
+            success = mailman.SendEmail(email);
+            if (success != true) throw new Exception(email.LastErrorText);
+
+        }
         private void sendPoster(string filename)
         {
             FileInfo f = new FileInfo(filename);

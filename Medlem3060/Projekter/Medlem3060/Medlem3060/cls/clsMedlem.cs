@@ -857,6 +857,34 @@ namespace nsPuls3060
         [Fieldattr(Heading = "tilmeldtPBS")]
         public int? erPBS { get; set; }
     }
+    
+    public class clsMedlemNotPBS
+    {
+        [Fieldattr(Heading = "Nr")]
+        public int? Nr { get; set; }
+        [Fieldattr(Heading = "Navn")]
+        public string Navn { get; set; }
+        [Fieldattr(Heading = "Kaldenavn")]
+        public string Kaldenavn { get; set; }
+        [Fieldattr(Heading = "Adresse")]
+        public string Adresse { get; set; }
+        [Fieldattr(Heading = "Postnr")]
+        public string Postnr { get; set; }
+        [Fieldattr(Heading = "By")]
+        public string Bynavn { get; set; }
+        [Fieldattr(Heading = "Email")]
+        public string Email { get; set; }
+        [Fieldattr(Heading = "Telefon")]
+        public string Telefon { get; set; }
+        [Fieldattr(Heading = "Køn")]
+        public string Kon { get; set; }
+        [Fieldattr(Heading = "PBSnr")]
+        public string PBSnr { get; set; }
+        [Fieldattr(Heading = "Deb.gr.nr")]
+        public string Debgrnr { get; set; }
+        [Fieldattr(Heading = "Kundenr")]
+        public Int64 Kundenr { get; set; }
+    }
 
     public class clsJournalposter
     {

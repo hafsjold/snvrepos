@@ -56,7 +56,7 @@ namespace nsPuls3060
             {
                 this.DatoKontingentTil.Value = this.DatoKontingentTil.Value.AddYears(1);
             }
-            this.Aarskontingent.Text = "150";
+            this.Aarskontingent.Text = "200";
             this.AarskontingentPbs.Text = "150";
 
             wt = m_initdate.AddMonths(1);
