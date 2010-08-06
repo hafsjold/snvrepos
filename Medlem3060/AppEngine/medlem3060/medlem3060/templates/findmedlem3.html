@@ -29,25 +29,29 @@
 
         oTable = $('#example').dataTable( {
           "bJQueryUI": false,
+          "sPaginationType": "full_numbers",
+          //"sDom": '<"top"i>rt<"bottom"flp<"clear">',
+          "bAutoWidth": false, 
+          "bProcessing": true,
+          //
           "aoColumnDefs": [
 			        { "sWidth": "1em", "sClass": 'left', "aTargets": [ 0 ] },
 			        { "sClass": 'left', "sTitle": "Fulde navn", "aTargets": [ 1 ] },
 			        { "sClass": 'left', "aTargets": [ 2 ] },
 			        { "sWidth": "3em", "sClass": 'left', "sTitle": "Pnr", "aTargets": [ 3 ] },
 			        { "sWidth": "7em", "sClass": 'left', "bVisible": true, "aTargets": [ 4 ] },
-			        { "sWidth": "5em", "sClass": 'left', "aTargets": [ 5 ] },
+			        { "sWidth": "5em", "sClass": 'left', "aTargets": [ 5 ] }
 		      ],
-
-          "sPaginationType": "full_numbers",
-          //"sDom": '<"top"i>rt<"bottom"flp<"clear">',
-          "bAutoWidth": false, 
-          "bProcessing": true,
+          //
           "fnInitComplete":function( oSettings, json ) {
             $(oSettings.aoData).each( function() {
               var id = $(this)[0]._aData[0];
               var nRow = $(this)[0].nTr;
               $(nRow).attr("id",id);
-              $(nRow).click( function() { alert('this: ' + $(this)[0].outerHTML); } );
+              $(nRow).click( function(){
+                var aPos = oTable.fnGetPosition( this ); 
+                medlemUpdate(aPos)
+              });
             });
           },
           /*
@@ -89,7 +93,9 @@
 			    modal: true,
 			    buttons: {
 				    Ok: function() {
-				     $(this).dialog('close');
+ 				      var pos = $("#pos").val();
+              oTable.fnUpdate( [$("#nr").val(),$("#navn").val(),$("#adresse").val(),$("#postnr").val(),$("#bynavn").val(),$("#telefon").val()], pos, 0); 
+              $(this).dialog('close');
 				    }
 			    }
 		    });
@@ -99,14 +105,30 @@
            changeYear: true});
        
         $('#mybutton').button().click(function(){
-          //$("#name").val('Mogens Test');
-          $("#email").val('mogens.test@gmail.com');
-          $("#password").val('12345678');
+          $("#nr").val('123');
+          $("#navn").val('Mogens Hafsjold');
+          $("#adresse").val('Nørremarken 31');
+          $("#postnr").val('3060');
+          $("#bynavn").val('Espergærde');
+          $("#telefon").val('4913 3540');
      		  $("#dialog-form").dialog('open');
         }); 
-      });
-        
 
+      });                
+      
+      function medlemUpdate(aPos) {
+        var aData = oTable.fnGetData( aPos ); 
+        $("#pos").val(aPos);
+        $("#nr").val(aData[0]);
+        $("#navn").val(aData[1]);
+        $("#adresse").val(aData[2]);
+        $("#postnr").val(aData[3]);
+        $("#bynavn").val(aData[4]);
+        $("#telefon").val(aData[5]);
+   	    $("#dialog-form").dialog('open');
+      } 
+      
+      
       function mhatest(){ 
           var xRow = oTable.dataTableSettings[0].aoData[0].nTr;
           var xEvents = $.data( $(xRow).get(0), 'events' )
@@ -117,10 +139,10 @@
   </head>
   <body id="dt_example">
     <button id="mybutton">mybutton</button>
+    
     <div class="mogens">
       <a id="mhaTest1234" ref=#>Test</a>
     </div>
-    <div id="mySliderDiv"></div>
     
     <div id="dynamic">
       <table width="850px" cellpadding="0" cellspacing="0" border="0" class="display" id="example">
@@ -133,18 +155,28 @@
             <th>By</th>
             <th>Telefon</th>
           </tr>
-        </thead>  
+        </thead>          
+        <tbody>
+        </tbody>  
       </table>
     </div>
+    
     <div id="dialog-form" title="Update user">
 	    <form>
 	      <fieldset>
-		      <label for="name">Name</label>
-		      <input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" />
-		      <label for="email">Email</label>
-		      <input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all" />
-		      <label for="password">Password</label>
-		      <input type="password" name="password" id="password" value="" class="text ui-widget-content ui-corner-all" />
+		      <input type="hidden" name="pos" id="pos"/>
+		      <label for="nr">Nr</label>
+		      <input type="text" name="nr" id="nr" class="text ui-widget-content ui-corner-all" />
+		      <label for="navn">Navn</label>
+		      <input type="text" name="navn" id="navn" class="text ui-widget-content ui-corner-all" />
+		      <label for="adresse">Adresse</label>
+		      <input type="text" name="adresse" id="adresse" value="" class="text ui-widget-content ui-corner-all" />
+		      <label for="postnr">Postnr</label>
+		      <input type="text" name="postnr" id="postnr" value="" class="text ui-widget-content ui-corner-all" />
+		      <label for="bynavn">By</label>
+		      <input type="text" name="bynavn" id="bynavn" value="" class="text ui-widget-content ui-corner-all" />
+		      <label for="telefon">Telefon</label>
+		      <input type="text" name="telefon" id="telefon" value="" class="text ui-widget-content ui-corner-all" />
 	      </fieldset>
 	    </form>
     </div>
