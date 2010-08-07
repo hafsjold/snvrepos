@@ -226,6 +226,7 @@ class MedlemHandler(webapp.RequestHandler):
 class MedlemJsonHandler(webapp.RequestHandler):
   def get(self):
     jData = memcache.get('jData', namespace='jData')
+    #jData = None
     if jData is None:
       root = db.Key.from_path('Persons','root')
       qry = db.Query(Person).ancestor(root)
@@ -237,7 +238,7 @@ class MedlemJsonHandler(webapp.RequestHandler):
         if not FirstPage:
           jData += ','
         FirstPage = False
-        jData += '["%s","%s","%s","%s","%s","%s"]' % (p.Nr,p.Navn,p.Adresse,p.Postnr,p.Bynavn,p.Telefon)
+        jData += '["%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s"]' % (p.Nr,p.Navn,p.Kaldenavn,p.Adresse,p.Postnr,p.Bynavn,p.Email,p.Telefon,p.Kon,p.FodtDato,p.Bank)
       jData += '] }'
       memcache.set('jData', jData, namespace='jData')
     

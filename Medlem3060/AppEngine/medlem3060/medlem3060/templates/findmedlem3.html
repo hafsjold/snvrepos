@@ -35,13 +35,18 @@
           "bProcessing": true,
           //
           "aoColumnDefs": [
-			        { "sWidth": "1em", "sClass": 'left', "aTargets": [ 0 ] },
-			        { "sClass": 'left', "sTitle": "Fulde navn", "aTargets": [ 1 ] },
-			        { "sClass": 'left', "aTargets": [ 2 ] },
-			        { "sWidth": "3em", "sClass": 'left', "sTitle": "Pnr", "aTargets": [ 3 ] },
-			        { "sWidth": "7em", "sClass": 'left', "bVisible": true, "aTargets": [ 4 ] },
-			        { "sWidth": "5em", "sClass": 'left', "aTargets": [ 5 ] }
-		      ],
+			        { "sWidth": "1em", "sClass": 'left', "sTitle": "Nr", "bVisible": true, "aTargets": [ 0 ] },
+			        { "sClass": 'left', "sTitle": "Navn", "bVisible": true, "aTargets": [ 1 ] },
+			        { "sClass": 'left', "sTitle": "Kaldenavn", "bVisible": false, "aTargets": [ 2 ] },
+			        { "sClass": 'left', "sTitle": "Adresse", "bVisible": true, "aTargets": [ 3 ] },
+			        { "sWidth": "3em", "sClass": 'left', "sTitle": "Pnr", "bVisible": false, "aTargets": [ 4 ] },
+			        { "sWidth": "7em", "sClass": 'left', "sTitle": "By", "bVisible": true, "aTargets": [ 5 ] },
+			        { "sClass": 'left', "sTitle": "Email", "bVisible": true, "aTargets": [ 6 ] },
+			        { "sWidth": "5em", "sClass": 'left', "sTitle": "Telefon", "bVisible": true, "aTargets": [ 7 ] },
+			        { "sWidth": "3em", "sClass": 'left', "sTitle": "Køn", "bVisible": false, "aTargets": [ 8 ] },
+			        { "sWidth": "8em", "sClass": 'left', "sTitle": "Født dato", "bVisible": false, "aTargets": [ 9 ] },
+			        { "sWidth": "10em", "sClass": 'left', "sTitle": "Bank", "bVisible": false, "aTargets": [ 10 ] }
+            ],
           //
           "fnInitComplete":function( oSettings, json ) {
             $(oSettings.aoData).each( function() {
@@ -69,51 +74,38 @@
           "sAjaxSource": "/adm/medlemjson"
         } );
 
-        //$('#example tbody').click(function(){ 
-        //  alert('this: ' + $(this)[0].outerHTML); 
-        //}); 
-
-        $('.mogens').click(function(){ 
-          var testmha = oTable;
-          mhatest();
-          //alert('outerHTML: ' + $(this)[0].outerHTML); 
-        });      
-
-        /* Hide the 6'th column after initialisation*/
-        //oTable.fnSetColumnVis( 5, false );
-        
-        //$('#mySliderDiv').slider({ 
-        //  orientation: 'horisontal',
-        //  min: 0,
-        //  max: 150,
-        //  value: 50 });
-      
         $("#dialog-form").dialog({
           autoOpen: false,
 			    modal: true,
+          width: 400,
 			    buttons: {
 				    Ok: function() {
  				      var pos = $("#pos").val();
-              oTable.fnUpdate( [$("#nr").val(),$("#navn").val(),$("#adresse").val(),$("#postnr").val(),$("#bynavn").val(),$("#telefon").val()], pos, 0); 
+              oTable.fnUpdate( [
+                 $("#nr").val()
+                ,$("#navn").val()
+                ,$("#kaldenavn").val()
+                ,$("#adresse").val()
+                ,$("#postnr").val()
+                ,$("#bynavn").val()
+                ,$("#email").val()
+                ,$("#telefon").val()
+                ,$("#kon").val()
+                ,$("#fodtdato").val()
+                ,$("#bank").val()
+                ], pos, 0); 
               $(this).dialog('close');
 				    }
 			    }
 		    });
-        //$.datepicker.setDefaults($.datepicker.regional['da']); 
-        $('#name').datepicker({
+ 
+        $('#fodtdato').datepicker({
+           dateFormat: 'yy-mm-dd',
            changeMonth: true,
-           changeYear: true});
+           changeYear: true,
+           yearRange: '1920:2010' 
+        });
        
-        $('#mybutton').button().click(function(){
-          $("#nr").val('123');
-          $("#navn").val('Mogens Hafsjold');
-          $("#adresse").val('Nørremarken 31');
-          $("#postnr").val('3060');
-          $("#bynavn").val('Espergærde');
-          $("#telefon").val('4913 3540');
-     		  $("#dialog-form").dialog('open');
-        }); 
-
       });                
       
       function medlemUpdate(aPos) {
@@ -121,39 +113,37 @@
         $("#pos").val(aPos);
         $("#nr").val(aData[0]);
         $("#navn").val(aData[1]);
-        $("#adresse").val(aData[2]);
-        $("#postnr").val(aData[3]);
-        $("#bynavn").val(aData[4]);
-        $("#telefon").val(aData[5]);
+        $("#kaldenavn").val(aData[2]);
+        $("#adresse").val(aData[3]);
+        $("#postnr").val(aData[4]);
+        $("#bynavn").val(aData[5]);
+        $("#email").val(aData[6]);
+        $("#telefon").val(aData[7]);
+        $("#kon").val(aData[8]);
+        $("#fodtdato").val(aData[9]);
+        $("#bank").val(aData[10]);
    	    $("#dialog-form").dialog('open');
       } 
       
-      
-      function mhatest(){ 
-          var xRow = oTable.dataTableSettings[0].aoData[0].nTr;
-          var xEvents = $.data( $(xRow).get(0), 'events' )
-          alert('testmha'); 
-      }
     </script>
     <title>Find Medlem</title>
   </head>
   <body id="dt_example">
-    <button id="mybutton">mybutton</button>
-    
-    <div class="mogens">
-      <a id="mhaTest1234" ref=#>Test</a>
-    </div>
-    
     <div id="dynamic">
       <table width="850px" cellpadding="0" cellspacing="0" border="0" class="display" id="example">
         <thead>
           <tr >
             <th>Nr</th>
             <th>Navn</th>
+            <th>Kaldenavn</th>
             <th>Adresse</th>
             <th>Postnr</th>
             <th>By</th>
+            <th>Email</th>
             <th>Telefon</th>
+            <th>Køn</th>
+            <th>FødtDato</th>
+            <th>Bank</th>
           </tr>
         </thead>          
         <tbody>
@@ -165,18 +155,17 @@
 	    <form>
 	      <fieldset>
 		      <input type="hidden" name="pos" id="pos"/>
-		      <label for="nr">Nr</label>
-		      <input type="text" name="nr" id="nr" class="text ui-widget-content ui-corner-all" />
-		      <label for="navn">Navn</label>
-		      <input type="text" name="navn" id="navn" class="text ui-widget-content ui-corner-all" />
-		      <label for="adresse">Adresse</label>
-		      <input type="text" name="adresse" id="adresse" value="" class="text ui-widget-content ui-corner-all" />
-		      <label for="postnr">Postnr</label>
-		      <input type="text" name="postnr" id="postnr" value="" class="text ui-widget-content ui-corner-all" />
-		      <label for="bynavn">By</label>
-		      <input type="text" name="bynavn" id="bynavn" value="" class="text ui-widget-content ui-corner-all" />
-		      <label for="telefon">Telefon</label>
-		      <input type="text" name="telefon" id="telefon" value="" class="text ui-widget-content ui-corner-all" />
+		      <label style="width:5em; float:left;" for="nr">Nr</label><input style="width:5em; float:rigth;" type="text" name="nr" id="nr" class="text ui-widget-content ui-corner-all" />
+		      <label style="width:5em; float:left;" for="navn">Navn</label><input style="width:20em; float:rigth;" type="text" name="navn" id="navn" class="text ui-widget-content ui-corner-all" />
+		      <label style="width:5em; float:left;" for="kaldenavn">Kaldenavn</label><input style="width:20em; float:rigth;" type="text" name="kaldenavn" id="kaldenavn" class="text ui-widget-content ui-corner-all" />
+		      <label style="width:5em; float:left;" for="adresse">Adresse</label><input style="width:20em; float:rigth;" type="text" name="adresse" id="adresse" value="" class="text ui-widget-content ui-corner-all" />
+		      <label style="width:5em; float:left;" for="postnr">Postnr</label><input style="width:10em; float:rigth;" type="text" name="postnr" id="postnr" value="" class="text ui-widget-content ui-corner-all" />
+		      <label style="width:5em; float:left;" for="bynavn">By</label><input style="width:20em; float:rigth;" type="text" name="bynavn" id="bynavn" value="" class="text ui-widget-content ui-corner-all" />
+		      <label style="width:5em; float:left;" for="email">Email</label><input style="width:20em; float:rigth;" type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all" />
+		      <label style="width:5em; float:left;" for="telefon">Telefon</label><input style="width:10em; float:rigth;" type="text" name="telefon" id="telefon" value="" class="text ui-widget-content ui-corner-all" />
+		      <label style="width:5em; float:left;" for="kon">Køn</label><input style="width:1em; float:rigth;" type="text" name="kon" id="kon" value="" class="text ui-widget-content ui-corner-all" />
+		      <label style="width:5em; float:left;" for="fodtdato">FødtDato</label><input style="width:10em; float:rigth;" type="text" name="fodtdato" id="fodtdato" value="" class="text ui-widget-content ui-corner-all" />
+		      <label style="width:5em; float:left;" for="bank">Bank</label><input style="width:10em; float:rigth;" type="text" name="bank" id="bank" value="" class="text ui-widget-content ui-corner-all" />
 	      </fieldset>
 	    </form>
     </div>
