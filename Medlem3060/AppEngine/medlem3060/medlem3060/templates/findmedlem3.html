@@ -94,6 +94,25 @@
                 ,$("#fodtdato").val()
                 ,$("#bank").val()
                 ], pos, 0); 
+              
+              $.ajax({
+                url: "/adm/updatemedlem",
+                type: 'POST',
+                data: {
+                   Nr: $("#nr").val()
+                  ,Navn: $("#navn").val()
+                  ,Kaldenavn: $("#kaldenavn").val()
+                  ,Adresse: $("#adresse").val()
+                  ,Postnr: $("#postnr").val()
+                  ,Bynavn: $("#bynavn").val()
+                  ,Email: $("#email").val()
+                  ,Telefon: $("#telefon").val()
+                  ,Kon: $("#kon").val()
+                  ,FodtDato: $("#fodtdato").val()
+                  ,Bank: $("#bank").val()
+                }
+              });              
+              
               $(this).dialog('close');
 				    }
 			    }

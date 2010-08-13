@@ -120,7 +120,33 @@ class FindmedlemHandler(webapp.RequestHandler):
     }
     path = os.path.join(os.path.dirname(__file__), 'templates/findmedlem.html') 
     self.response.out.write(template.render(path, template_values))
-    
+
+class UpdatemedlemHandler(webapp.RequestHandler):
+  def post(self):
+    Nr = self.request.get('Nr') 
+    try:
+      k = db.Key.from_path('Persons','root','Person',Nr)
+      m = Person.get(k)
+      m.Navn = self.request.get('Navn') 
+      m.Kaldenavn = self.request.get('Kaldenavn')
+      m.Adresse = self.request.get('Adresse')
+      m.Postnr = self.request.get('Postnr')
+      m.Bynavn = self.request.get('Bynavn')
+      m.Telefonnr = self.request.get('Telefonnr')
+      m.Email = self.request.get('Email')
+      m.Kon = self.request.get('Kon')
+      dt = datetime.strptime(self.request.get('FodtDato'), "%Y-%m-%d")
+      m.FodtDato = dt.date()
+      logging.info('%s=%s' % ('FodtDato', getattr(m, 'FodtDato')) )
+      m.Bank = self.request.get('Bank')
+      m.put()
+      memcache.delete('jData', namespace='jData')
+      logging.info('UpdatemedlemHandler OK Navn: %s, Kaldenavn: %s' % (self.request.get('Navn'), self.request.get('Kaldenavn')))
+      self.response.out.write('OK from Server')
+    except:
+      logging.info('UpdatemedlemHandler ERROR Navn: %s, Kaldenavn: %s' % (self.request.get('Navn'), self.request.get('Kaldenavn')))
+      self.response.out.write('ERROR from Server')
+   
 class MedlemHandler(webapp.RequestHandler):
   def getNrfromPath(self):
     path = self.request.environ['PATH_INFO']
@@ -449,6 +475,7 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/adm/medlem.*', MedlemHandler),
                                        ('/adm/findmedlem', FindmedlemHandler),
                                        ('/adm/findmedlem3', Findmedlem3Handler),
+                                       ('/adm/updatemedlem', UpdatemedlemHandler),
                                        ('/adm/findmedlem4', Findmedlem4Handler),
                                        ('/adm', MenuHandler),
                                        ('/rest/.*', rest.Dispatcher),

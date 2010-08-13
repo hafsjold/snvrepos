@@ -10,9 +10,12 @@ namespace nsPuls3060
 {
     public class clsRest
     {
+#if (DEBUG)        
         private string m_baseurl = @"http://localhost:8084/sync/";
-        //private string m_baseurl = @"http://medlem3060.appspot.com/sync/";
-
+        //private string m_baseurl = @"http://testmedlem3060.appspot.com/sync/";
+#else
+        private string m_baseurl = @"http://medlem3060.appspot.com/sync/";
+#endif
         public string HttpGet2(string url)
         {
             string fullurl = m_baseurl + url;
