@@ -24,10 +24,11 @@
     <script type="text/javascript" src="/javascripts/jquery-ui-1.8.2.custom.min.js"></script>
     <script type="text/javascript" src="/javascripts/jquery.ui.datepicker-da.js"></script>
     <script type="text/javascript" charset="utf-8">
-        var oTable;
+        var oPersonTable;
+        var oMedlemlogTable;
         $(document).ready(function() {
 
-        oTable = $('#example').dataTable( {
+        oPersonTable = $('#person').dataTable( {
           "bJQueryUI": false,
           "sPaginationType": "full_numbers",
           //"sDom": '<"top"i>rt<"bottom"flp<"clear">',
@@ -54,7 +55,7 @@
               var nRow = $(this)[0].nTr;
               $(nRow).attr("id",id);
               $(nRow).click( function(){
-                var aPos = oTable.fnGetPosition( this ); 
+                var aPos = oPersonTable.fnGetPosition( this ); 
                 medlemUpdate(aPos)
               });
             });
@@ -73,6 +74,23 @@
           */
           "sAjaxSource": "/adm/medlemjson"
         } );
+        
+        oMedlemlogTable = $('#medlemlog').dataTable( {
+          "bJQueryUI": false,
+          "sPaginationType": "full_numbers",
+          "bAutoWidth": false, 
+          "bProcessing": true,
+          //
+          "aoColumnDefs": [
+			        { "sWidth": "1em", "sClass": 'left', "sTitle": "Nr", "bVisible": true, "aTargets": [ 0 ] },
+			        { "sWidth": "1em", "sClass": 'left', "sTitle": "Source", "bVisible": false, "aTargets": [ 1 ] },
+			        { "sWidth": "1em", "sClass": 'left', "sTitle": "Source_id", "bVisible": false, "aTargets": [ 2 ] },
+			        { "sWidth": "10em", "sClass": 'left', "sTitle": "Logdato", "bVisible": true, "aTargets": [ 3 ] },
+			        { "sWidth": "1em", "sClass": 'left', "sTitle": "Akt_id", "bVisible": true, "aTargets": [ 4 ] },
+			        { "sWidth": "10em", "sClass": 'left', "sTitle": "Akt_dato", "bVisible": true, "aTargets": [ 5 ] }
+            ],
+          "sAjaxSource": "/adm/medlemlogjson"
+        } );
 
         $("#dialog-form").dialog({
           autoOpen: false,
@@ -81,7 +99,7 @@
 			    buttons: {
 				    Ok: function() {
  				      var pos = $("#pos").val();
-              oTable.fnUpdate( [
+              oPersonTable.fnUpdate( [
                  $("#nr").val()
                 ,$("#navn").val()
                 ,$("#kaldenavn").val()
@@ -128,7 +146,7 @@
       });                
       
       function medlemUpdate(aPos) {
-        var aData = oTable.fnGetData( aPos ); 
+        var aData = oPersonTable.fnGetData( aPos ); 
         $("#pos").val(aPos);
         $("#nr").val(aData[0]);
         $("#navn").val(aData[1]);
@@ -149,7 +167,7 @@
   </head>
   <body id="dt_example">
     <div id="dynamic">
-      <table width="850px" cellpadding="0" cellspacing="0" border="0" class="display" id="example">
+      <table width="850px" cellpadding="0" cellspacing="0" border="0" class="display" id="person">
         <thead>
           <tr >
             <th>Nr</th>
@@ -163,6 +181,23 @@
             <th>Køn</th>
             <th>FødtDato</th>
             <th>Bank</th>
+          </tr>
+        </thead>          
+        <tbody>
+        </tbody>  
+      </table>
+    </div>
+    
+    <div id="dynamic_2">
+      <table width="850px" cellpadding="0" cellspacing="0" border="0" class="display" id="medlemlog">
+        <thead>
+          <tr >
+            <th>Nr</th>
+            <th>Source</th>
+            <th>Source_id</th>
+            <th>Logdato</th>
+            <th>Akt_id</th>
+            <th>Akt_dato</th>
           </tr>
         </thead>          
         <tbody>

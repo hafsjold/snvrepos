@@ -270,7 +270,28 @@ class MedlemJsonHandler(webapp.RequestHandler):
     
     self.response.headers["Content-Type"] = "application/json"
     self.response.out.write(jData)
-    #self.response.out.write('%s' % (simplejson.dumps(jData)))
+
+class MedlemlogJsonHandler(webapp.RequestHandler):
+  def get(self):
+    jLogData = memcache.get('jLogData', namespace='jLogData')
+    #jLogData = None
+    if jLogData is None:
+      root = db.Key.from_path('Persons','root')
+      qry = db.Query(Medlemlog).ancestor(root)
+      antal = qry.count()
+      logging.info('TTTTTTTTTTTTTTT jLogData Antal: %s' % (antal))
+      FirstPage = True
+      jLogData = '{ "aaData": ['
+      for p in qry:
+        if not FirstPage:
+          jLogData += ','
+        FirstPage = False
+        jLogData += '["%s","%s","%s","%s","%s","%s"]' % (p.Nr,p.Source,p.Source_id,p.Logdato,p.Akt_id,p.Akt_dato)
+      jLogData += '] }'
+      memcache.set('jLogData', jLogData, namespace='jLogData')
+    
+    self.response.headers["Content-Type"] = "application/json"
+    self.response.out.write(jLogData)
     
 class SyncMedlemHandler(webapp.RequestHandler):
   def get(self):
@@ -472,6 +493,7 @@ class FlushCache(webapp.RequestHandler):
 application = webapp.WSGIApplication([ ('/', MainHandler),
                                        (LOGIN_URL, LoginHandler),
                                        ('/adm/medlemjson', MedlemJsonHandler),
+                                       ('/adm/medlemlogjson', MedlemlogJsonHandler),
                                        ('/adm/medlem.*', MedlemHandler),
                                        ('/adm/findmedlem', FindmedlemHandler),
                                        ('/adm/findmedlem3', Findmedlem3Handler),
