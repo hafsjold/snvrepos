@@ -26,29 +26,35 @@
     <script type="text/javascript" charset="utf-8">
         var oPersonTable;
         var oMedlemlogTable;
+        var Aktivitet = {
+	        10:'Indmeldelses dato',
+	        20:'PBS opkrævnings dato',
+	        30:'Kontingent betalt til dato',
+	        40:'PBS betaling tilbageført',
+	        50:'Udmeldelses dato',
+        };
+        
         $(document).ready(function() {
 
         oPersonTable = $('#person').dataTable( {
           "bJQueryUI": false,
           "sPaginationType": "full_numbers",
-          //"sDom": '<"top"i>rt<"bottom"flp<"clear">',
           "bAutoWidth": false, 
           "bProcessing": true,
-          //
+          "bStateSave": true,
           "aoColumnDefs": [
 			        { "sWidth": "1em", "sClass": 'left', "sTitle": "Nr", "bVisible": true, "aTargets": [ 0 ] },
 			        { "sClass": 'left', "sTitle": "Navn", "bVisible": true, "aTargets": [ 1 ] },
 			        { "sClass": 'left', "sTitle": "Kaldenavn", "bVisible": false, "aTargets": [ 2 ] },
 			        { "sClass": 'left', "sTitle": "Adresse", "bVisible": true, "aTargets": [ 3 ] },
-			        { "sWidth": "3em", "sClass": 'left', "sTitle": "Pnr", "bVisible": false, "aTargets": [ 4 ] },
-			        { "sWidth": "7em", "sClass": 'left', "sTitle": "By", "bVisible": true, "aTargets": [ 5 ] },
-			        { "sClass": 'left', "sTitle": "Email", "bVisible": true, "aTargets": [ 6 ] },
-			        { "sWidth": "5em", "sClass": 'left', "sTitle": "Telefon", "bVisible": true, "aTargets": [ 7 ] },
+			        { "sWidth": "3em", "sClass": 'left', "sTitle": "Pnr", "bVisible": true, "aTargets": [ 4 ] },
+			        { "sWidth": "7em", "sClass": 'left', "sTitle": "By", "bVisible": false, "aTargets": [ 5 ] },
+			        { "sClass": 'left', "sTitle": "Email", "bVisible": false, "aTargets": [ 6 ] },
+			        { "sWidth": "5em", "sClass": 'left', "sTitle": "Telefon", "bVisible": false, "aTargets": [ 7 ] },
 			        { "sWidth": "3em", "sClass": 'left', "sTitle": "Køn", "bVisible": false, "aTargets": [ 8 ] },
 			        { "sWidth": "8em", "sClass": 'left', "sTitle": "Født dato", "bVisible": false, "aTargets": [ 9 ] },
 			        { "sWidth": "10em", "sClass": 'left', "sTitle": "Bank", "bVisible": false, "aTargets": [ 10 ] }
             ],
-          //
           "fnInitComplete":function( oSettings, json ) {
             $(oSettings.aoData).each( function() {
               var id = $(this)[0]._aData[0];
@@ -76,18 +82,19 @@
         } );
         
         oMedlemlogTable = $('#medlemlog').dataTable( {
-          "bJQueryUI": false,
-          "sPaginationType": "full_numbers",
-          "bAutoWidth": false, 
+          "sDom": 'rt',
+          "bJQueryUI": true,
+          "bAutoWidth": false,
+          "bPaginate": false,          
           "bProcessing": true,
-          //
+          "bStateSave": true,
           "aoColumnDefs": [
-			        { "sWidth": "1em", "sClass": 'left', "sTitle": "Nr", "bVisible": true, "aTargets": [ 0 ] },
+			        { "sWidth": "1em", "sClass": 'left', "sTitle": "Nr", "bVisible": false, "aTargets": [ 0 ] },
 			        { "sWidth": "1em", "sClass": 'left', "sTitle": "Source", "bVisible": false, "aTargets": [ 1 ] },
 			        { "sWidth": "1em", "sClass": 'left', "sTitle": "Source_id", "bVisible": false, "aTargets": [ 2 ] },
-			        { "sWidth": "10em", "sClass": 'left', "sTitle": "Logdato", "bVisible": true, "aTargets": [ 3 ] },
-			        { "sWidth": "1em", "sClass": 'left', "sTitle": "Akt_id", "bVisible": true, "aTargets": [ 4 ] },
-			        { "sWidth": "10em", "sClass": 'left', "sTitle": "Akt_dato", "bVisible": true, "aTargets": [ 5 ] }
+			        { "sWidth": "10em", "sClass": 'left', "sTitle": "Logdato", "bVisible": false, "aTargets": [ 3 ] },
+			        { "sWidth": "13em", "sClass": 'left', "sTitle": "Aktivitet", "bVisible": true, "fnRender": function ( oObj ) {return Aktivitet[oObj.aData[4]];}, "aTargets": [ 4 ] },
+			        { "sWidth": "6em", "sClass": 'left', "sTitle": "Dato", "bVisible": true, "fnRender": function ( oObj ) {return oObj.aData[5].substring(0,10);}, "aTargets": [ 5 ] }
             ],
           "sAjaxSource": "/adm/medlemlogjson"
         } );
@@ -147,6 +154,19 @@
       
       function medlemUpdate(aPos) {
         var aData = oPersonTable.fnGetData( aPos ); 
+        $("#xnr").val(aData[0]);
+        $("#xnavn").val(aData[1]);
+        $("#xkaldenavn").val(aData[2]);
+        $("#xadresse").val(aData[3]);
+        $("#xpostnr").val(aData[4]);
+        $("#xbynavn").val(aData[5]);
+        $("#xemail").val(aData[6]);
+        $("#xtelefon").val(aData[7]);
+        $("#xkon").val(aData[8]);
+        $("#xfodtdato").val(aData[9]);
+        $("#xbank").val(aData[10]);
+        oMedlemlogTable.fnFilter('^' + aData[0] + '$',0,true,false);
+        oMedlemlogTable.fnSort( [ [3,'desc'], [4,'desc'] ] ); 
         $("#pos").val(aPos);
         $("#nr").val(aData[0]);
         $("#navn").val(aData[1]);
@@ -159,15 +179,55 @@
         $("#kon").val(aData[8]);
         $("#fodtdato").val(aData[9]);
         $("#bank").val(aData[10]);
-   	    $("#dialog-form").dialog('open');
+   	    //$("#dialog-form").dialog('open');
       } 
       
     </script>
     <title>Find Medlem</title>
   </head>
   <body id="dt_example">
-    <div id="dynamic">
-      <table width="850px" cellpadding="0" cellspacing="0" border="0" class="display" id="person">
+    <div id="dynamic_2" style="width=200; float:left;">
+		  <label style="width:6em; float:left;" for="xnr">Nr</label>
+      <input style="width:3em; float:rigth;" type="text" name="xnr" id="xnr" class="text ui-widget-content ui-corner-all" />
+		  <label style="width:6em; float:left;" for="xnavn">Navn</label>
+      <input style="width:15em; float:rigth;" type="text" name="xnavn" id="xnavn" class="text ui-widget-content ui-corner-all" />
+      <label style="width:6em; float:left;" for="xkaldenavn">Kaldenavn</label>
+      <input style="width:15em; float:rigth;" type="text" name="xkaldenavn" id="xkaldenavn" class="text ui-widget-content ui-corner-all" />
+      <label style="width:6em; float:left;" for="xadresse">Adresse</label>
+      <input style="width:15em; float:rigth;" type="text" name="xadresse" id="xadresse" value="" class="text ui-widget-content ui-corner-all" />
+      <label style="width:6em; float:left;" for="xpostnr">Postnr</label>
+      <input style="width:3em; float:rigth;" type="text" name="xpostnr" id="xpostnr" value="" class="text ui-widget-content ui-corner-all" />
+      <label style="width:6em; float:left;" for="xbynavn">By</label>
+      <input style="width:10em; float:rigth;" type="text" name="xbynavn" id="xbynavn" value="" class="text ui-widget-content ui-corner-all" />
+      <label style="width:6em; float:left;" for="xemail">Email</label>
+      <input style="width:15em; float:rigth;" type="text" name="xemail" id="xemail" value="" class="text ui-widget-content ui-corner-all" />
+      <label style="width:6em; float:left;" for="xtelefon">Telefon</label>
+      <input style="width:5em; float:rigth;" type="text" name="xtelefon" id="xtelefon" value="" class="text ui-widget-content ui-corner-all" />
+      <label style="width:6em; float:left;" for="xkon">Køn</label>
+      <input style="width:1em; float:rigth;" type="text" name="xkon" id="xkon" value="" class="text ui-widget-content ui-corner-all" />
+		  <label style="width:6em; float:left;" for="xfodtdato">FødtDato</label>
+      <input style="width:5em; float:rigth;" type="text" name="xfodtdato" id="xfodtdato" value="" class="text ui-widget-content ui-corner-all" />
+      <label style="width:6em; float:left;" for="xbank">Bank</label>
+      <input style="width:10em; float:rigth;" type="text" name="xbank" id="xbank" value="" class="text ui-widget-content ui-corner-all" />
+
+      <table class="display" id="medlemlog">
+        <thead>
+          <tr >
+            <th>Nr</th>
+            <th>Source</th>
+            <th>Source_id</th>
+            <th>Logdato</th>
+            <th>Akt_id</th>
+            <th>Akt_dato</th>
+          </tr>
+        </thead>          
+        <tbody>
+        </tbody>  
+      </table>
+    </div>
+
+    <div id="dynamic" style="float:left;">
+      <table class="display" id="person">
         <thead>
           <tr >
             <th>Nr</th>
@@ -181,23 +241,6 @@
             <th>Køn</th>
             <th>FødtDato</th>
             <th>Bank</th>
-          </tr>
-        </thead>          
-        <tbody>
-        </tbody>  
-      </table>
-    </div>
-    
-    <div id="dynamic_2">
-      <table width="850px" cellpadding="0" cellspacing="0" border="0" class="display" id="medlemlog">
-        <thead>
-          <tr >
-            <th>Nr</th>
-            <th>Source</th>
-            <th>Source_id</th>
-            <th>Logdato</th>
-            <th>Akt_id</th>
-            <th>Akt_dato</th>
           </tr>
         </thead>          
         <tbody>
