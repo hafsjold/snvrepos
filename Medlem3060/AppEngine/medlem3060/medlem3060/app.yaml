@@ -18,7 +18,6 @@ handlers:
   
 - url: /stylesheets
   static_dir: stylesheets
-  expiration: "1h"
   
 - url: /w3c
   static_dir: w3c

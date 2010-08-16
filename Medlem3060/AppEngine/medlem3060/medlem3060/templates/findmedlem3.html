@@ -8,12 +8,12 @@
       @import "/stylesheets/demo_table.css";
     </style>
     <style type="text/css">
-		  body { font-size: 62.5%; }
-		  label, input { display:block; }
-		  input.text { margin-bottom:12px; width:95%; padding: .4em; }
-		  fieldset { padding:0; border:0; margin-top:25px; }
+      #dynamic_2 label, #dialog-form label { width:6em; float:left;  display:block;}
+		  #dynamic_2 input, #dialog-form input { width:13em; float:rigth; display:block; }
+		  input.text {margin-bottom:2px; padding: .2em; }
+		  fieldset { padding:0; border:0; margin-top:50px;}
 		  h1 { font-size: 1.2em; margin: .6em 0; }
-		  div#users-contain { width: 350px; margin: 20px 0; }
+		  div#users-contain { width: 200px; margin: 20px 0; }
 		  div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
 		  div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
 		  .ui-dialog .ui-state-error { padding: .3em; }
@@ -39,9 +39,11 @@
         oPersonTable = $('#person').dataTable( {
           "bJQueryUI": false,
           "sPaginationType": "full_numbers",
+          //"sDom": 'firtlp',
           "bAutoWidth": false, 
           "bProcessing": true,
           "bStateSave": true,
+          "aLengthMenu": [[20, 40, 100, -1],[20, 40, 100, "Alle"]],
           "aoColumnDefs": [
 			        { "sWidth": "1em", "sClass": 'left', "sTitle": "Nr", "bVisible": true, "aTargets": [ 0 ] },
 			        { "sClass": 'left', "sTitle": "Navn", "bVisible": true, "aTargets": [ 1 ] },
@@ -86,15 +88,15 @@
           "bJQueryUI": true,
           "bAutoWidth": false,
           "bPaginate": false,          
-          "bProcessing": true,
+          "bProcessing": false,
           "bStateSave": true,
           "aoColumnDefs": [
 			        { "sWidth": "1em", "sClass": 'left', "sTitle": "Nr", "bVisible": false, "aTargets": [ 0 ] },
 			        { "sWidth": "1em", "sClass": 'left', "sTitle": "Source", "bVisible": false, "aTargets": [ 1 ] },
 			        { "sWidth": "1em", "sClass": 'left', "sTitle": "Source_id", "bVisible": false, "aTargets": [ 2 ] },
 			        { "sWidth": "10em", "sClass": 'left', "sTitle": "Logdato", "bVisible": false, "aTargets": [ 3 ] },
-			        { "sWidth": "13em", "sClass": 'left', "sTitle": "Aktivitet", "bVisible": true, "fnRender": function ( oObj ) {return Aktivitet[oObj.aData[4]];}, "aTargets": [ 4 ] },
-			        { "sWidth": "6em", "sClass": 'left', "sTitle": "Dato", "bVisible": true, "fnRender": function ( oObj ) {return oObj.aData[5].substring(0,10);}, "aTargets": [ 5 ] }
+			        { "sWidth": "11em", "sClass": 'left', "sTitle": "Aktivitet", "bVisible": true, "fnRender": function ( oObj ) {return Aktivitet[oObj.aData[4]];}, "aTargets": [ 4 ] },
+			        { "sWidth": "5em", "sClass": 'left', "sTitle": "Dato", "bVisible": true, "fnRender": function ( oObj ) {return oObj.aData[5].substring(0,10);}, "aTargets": [ 5 ] }
             ],
           "sAjaxSource": "/adm/medlemlogjson"
         } );
@@ -102,7 +104,7 @@
         $("#dialog-form").dialog({
           autoOpen: false,
 			    modal: true,
-          width: 400,
+          width: 300,
 			    buttons: {
 				    Ok: function() {
  				      var pos = $("#pos").val();
@@ -186,30 +188,20 @@
     <title>Find Medlem</title>
   </head>
   <body id="dt_example">
-    <div id="dynamic_2" style=";width:30%;; float:left;">
-		  <label style="width:6em; float:left;" for="xnr">Nr</label>
-      <input style="width:3em; float:rigth;" type="text" name="xnr" id="xnr" class="text ui-widget-content ui-corner-all" />
-		  <label style="width:6em; float:left;" for="xnavn">Navn</label>
-      <input style="width:15em; float:rigth;" type="text" name="xnavn" id="xnavn" class="text ui-widget-content ui-corner-all" />
-      <label style="width:6em; float:left;" for="xkaldenavn">Kaldenavn</label>
-      <input style="width:15em; float:rigth;" type="text" name="xkaldenavn" id="xkaldenavn" class="text ui-widget-content ui-corner-all" />
-      <label style="width:6em; float:left;" for="xadresse">Adresse</label>
-      <input style="width:15em; float:rigth;" type="text" name="xadresse" id="xadresse" value="" class="text ui-widget-content ui-corner-all" />
-      <label style="width:6em; float:left;" for="xpostnr">Postnr</label>
-      <input style="width:3em; float:rigth;" type="text" name="xpostnr" id="xpostnr" value="" class="text ui-widget-content ui-corner-all" />
-      <label style="width:6em; float:left;" for="xbynavn">By</label>
-      <input style="width:10em; float:rigth;" type="text" name="xbynavn" id="xbynavn" value="" class="text ui-widget-content ui-corner-all" />
-      <label style="width:6em; float:left;" for="xemail">Email</label>
-      <input style="width:15em; float:rigth;" type="text" name="xemail" id="xemail" value="" class="text ui-widget-content ui-corner-all" />
-      <label style="width:6em; float:left;" for="xtelefon">Telefon</label>
-      <input style="width:5em; float:rigth;" type="text" name="xtelefon" id="xtelefon" value="" class="text ui-widget-content ui-corner-all" />
-      <label style="width:6em; float:left;" for="xkon">Køn</label>
-      <input style="width:1em; float:rigth;" type="text" name="xkon" id="xkon" value="" class="text ui-widget-content ui-corner-all" />
-		  <label style="width:6em; float:left;" for="xfodtdato">FødtDato</label>
-      <input style="width:5em; float:rigth;" type="text" name="xfodtdato" id="xfodtdato" value="" class="text ui-widget-content ui-corner-all" />
-      <label style="width:6em; float:left;" for="xbank">Bank</label>
-      <input style="width:10em; float:rigth;" type="text" name="xbank" id="xbank" value="" class="text ui-widget-content ui-corner-all" />
-
+    <div id="dynamic_2" style=";width:35%;; float:left;">
+		  <fieldset>
+        <label for="xnr">Nr</label><input style="width:3em;" type="text" name="xnr" id="xnr" class="text ui-widget-content ui-corner-all" />
+		    <label for="xnavn">Navn</label><input type="text" name="xnavn" id="xnavn" class="text ui-widget-content ui-corner-all" />
+        <label for="xkaldenavn">Kaldenavn</label><input type="text" name="xkaldenavn" id="xkaldenavn" class="text ui-widget-content ui-corner-all" />
+        <label for="xadresse">Adresse</label><input type="text" name="xadresse" id="xadresse" value="" class="text ui-widget-content ui-corner-all" />
+        <label for="xpostnr">Postnr</label><input style="width:3em;" type="text" name="xpostnr" id="xpostnr" value="" class="text ui-widget-content ui-corner-all" />
+        <label for="xbynavn">By</label><input style="width:7em;" type="text" name="xbynavn" id="xbynavn" value="" class="text ui-widget-content ui-corner-all" />
+        <label for="xemail">Email</label><input type="text" name="xemail" id="xemail" value="" class="text ui-widget-content ui-corner-all" />
+        <label for="xtelefon">Telefon</label><input style="width:5em;" type="text" name="xtelefon" id="xtelefon" value="" class="text ui-widget-content ui-corner-all" />
+        <label for="xkon">Køn</label><input style="width:1em;" type="text" name="xkon" id="xkon" value="" class="text ui-widget-content ui-corner-all" />
+		    <label for="xfodtdato">FødtDato</label><input style="width:5em;" type="text" name="xfodtdato" id="xfodtdato" value="" class="text ui-widget-content ui-corner-all" />
+        <label for="xbank">Bank</label><input type="text" name="xbank" id="xbank" value="" class="text ui-widget-content ui-corner-all" />
+      </fieldset>
       <table class="display" id="medlemlog">
         <thead>
           <tr >
@@ -226,7 +218,7 @@
       </table>
     </div>
 
-    <div id="dynamic" style="float:left;width:65%;">
+    <div id="dynamic" style="float:left;width:60%;">
       <table class="display" id="person">
         <thead>
           <tr >
@@ -252,17 +244,17 @@
 	    <form>
 	      <fieldset>
 		      <input type="hidden" name="pos" id="pos"/>
-		      <label style="width:5em; float:left;" for="nr">Nr</label><input style="width:5em; float:rigth;" type="text" name="nr" id="nr" class="text ui-widget-content ui-corner-all" />
-		      <label style="width:5em; float:left;" for="navn">Navn</label><input style="width:20em; float:rigth;" type="text" name="navn" id="navn" class="text ui-widget-content ui-corner-all" />
-		      <label style="width:5em; float:left;" for="kaldenavn">Kaldenavn</label><input style="width:20em; float:rigth;" type="text" name="kaldenavn" id="kaldenavn" class="text ui-widget-content ui-corner-all" />
-		      <label style="width:5em; float:left;" for="adresse">Adresse</label><input style="width:20em; float:rigth;" type="text" name="adresse" id="adresse" value="" class="text ui-widget-content ui-corner-all" />
-		      <label style="width:5em; float:left;" for="postnr">Postnr</label><input style="width:10em; float:rigth;" type="text" name="postnr" id="postnr" value="" class="text ui-widget-content ui-corner-all" />
-		      <label style="width:5em; float:left;" for="bynavn">By</label><input style="width:20em; float:rigth;" type="text" name="bynavn" id="bynavn" value="" class="text ui-widget-content ui-corner-all" />
-		      <label style="width:5em; float:left;" for="email">Email</label><input style="width:20em; float:rigth;" type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all" />
-		      <label style="width:5em; float:left;" for="telefon">Telefon</label><input style="width:10em; float:rigth;" type="text" name="telefon" id="telefon" value="" class="text ui-widget-content ui-corner-all" />
-		      <label style="width:5em; float:left;" for="kon">Køn</label><input style="width:1em; float:rigth;" type="text" name="kon" id="kon" value="" class="text ui-widget-content ui-corner-all" />
-		      <label style="width:5em; float:left;" for="fodtdato">FødtDato</label><input style="width:10em; float:rigth;" type="text" name="fodtdato" id="fodtdato" value="" class="text ui-widget-content ui-corner-all" />
-		      <label style="width:5em; float:left;" for="bank">Bank</label><input style="width:10em; float:rigth;" type="text" name="bank" id="bank" value="" class="text ui-widget-content ui-corner-all" />
+		      <label for="nr">Nr</label><input style="width:5em;" type="text" name="nr" id="nr" class="text ui-widget-content ui-corner-all" />
+		      <label for="navn">Navn</label><input type="text" name="navn" id="navn" class="text ui-widget-content ui-corner-all" />
+		      <label for="kaldenavn">Kaldenavn</label><input type="text" name="kaldenavn" id="kaldenavn" class="text ui-widget-content ui-corner-all" />
+		      <label for="adresse">Adresse</label><input type="text" name="adresse" id="adresse" value="" class="text ui-widget-content ui-corner-all" />
+		      <label for="postnr">Postnr</label><input style="width:10em;" type="text" name="postnr" id="postnr" value="" class="text ui-widget-content ui-corner-all" />
+		      <label float:left;" for="bynavn">By</label><input type="text" name="bynavn" id="bynavn" value="" class="text ui-widget-content ui-corner-all" />
+		      <label float:left;" for="email">Email</label><input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all" />
+		      <label for="telefon">Telefon</label><input style="width:10em;" type="text" name="telefon" id="telefon" value="" class="text ui-widget-content ui-corner-all" />
+		      <label for="kon">Køn</label><input style="width:1em;" type="text" name="kon" id="kon" value="" class="text ui-widget-content ui-corner-all" />
+		      <label for="fodtdato">FødtDato</label><input style="width:10em;" type="text" name="fodtdato" id="fodtdato" value="" class="text ui-widget-content ui-corner-all" />
+		      <label for="bank">Bank</label><input type="text" name="bank" id="bank" value="" class="text ui-widget-content ui-corner-all" />
 	      </fieldset>
 	    </form>
     </div>
