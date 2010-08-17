@@ -5,13 +5,13 @@
     <link type="text/css" href="/stylesheets/ui-lightness/jquery-ui-1.8.2.custom.css" rel="Stylesheet" />	
     <style type="text/css" title="currentStyle">
       @import "/stylesheets/demo_page.css";
-      @import "/stylesheets/demo_table.css";
+      @import "/stylesheets/demo_table_jui.css";
     </style>
     <style type="text/css">
-      #dynamic_2 label, #dialog-form label { width:6em; float:left;  display:block;}
+      #dynamic_2 label, #dialog-form label { width:7em; float:left;  display:block;  color: #1c94c4; font-weight:bold;}
 		  #dynamic_2 input, #dialog-form input { width:13em; float:rigth; display:block; }
 		  input.text {margin-bottom:2px; padding: .2em; }
-		  fieldset { padding:0; border:0; margin-top:50px;}
+		  fieldset { padding:0; border:0;}
 		  h1 { font-size: 1.2em; margin: .6em 0; }
 		  div#users-contain { width: 200px; margin: 20px 0; }
 		  div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
@@ -37,7 +37,7 @@
         $(document).ready(function() {
 
         oPersonTable = $('#person').dataTable( {
-          "bJQueryUI": false,
+          "bJQueryUI": true,
           "sPaginationType": "full_numbers",
           //"sDom": 'firtlp',
           "bAutoWidth": false, 
@@ -187,8 +187,8 @@
     </script>
     <title>Find Medlem</title>
   </head>
-  <body id="dt_example">
-    <div id="dynamic_2" style=";width:35%;; float:left;">
+  <body id="dt_example" style="margin-top:10px;">
+    <div id="dynamic_2" style="width:35%; float:left; margin-left:1%;">
 		  <fieldset>
         <label for="xnr">Nr</label><input style="width:3em;" type="text" name="xnr" id="xnr" class="text ui-widget-content ui-corner-all" />
 		    <label for="xnavn">Navn</label><input type="text" name="xnavn" id="xnavn" class="text ui-widget-content ui-corner-all" />

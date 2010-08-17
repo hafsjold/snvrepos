@@ -44,16 +44,10 @@ def createMenuAndUserGroup():
   l = MenuMenuLink(Parent_key = root, Child_key = p, Menuseq = 1)  
   l.put()
   
-  c = Menu(Menutext = 'Medlems Opdatering', Menulink = '/adm/findmedlem', Target = 'new', Confirm = False)
+  c = Menu(Menutext = 'Medlems Opdatering', Menulink = '/adm/findmedlem3', Target = 'new', Confirm = False)
   c.put()
   l = MenuMenuLink(Parent_key = p, Child_key = c, Menuseq = 1)  
   l.put()
-
-  c = Menu(Menutext = 'Opret nyt Medlem', Menulink = '/adm/medlem', Target = 'new', Confirm = False)
-  c.put()
-  l = MenuMenuLink(Parent_key = p, Child_key = c, Menuseq = 2)  
-  l.put()
-
 
   p = Menu(Menutext = 'Teknik', Menulink = None, Target = None)
   p.put()

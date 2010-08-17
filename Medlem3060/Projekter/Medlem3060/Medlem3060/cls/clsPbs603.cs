@@ -297,14 +297,14 @@ namespace nsPuls3060
                                 // -******************************************************************************************************
                             }
                             else if (sektion == "0219")
-                            {  //  Sektion 0217 Aktive aftaler om Elektronisk Indbetalingskort
+                            {  //  Sektion 0219 Aktive aftaler om Elektronisk Indbetalingskort
                                 if ((rec.Substring(0, 5) == "BS012") && (rec.Substring(13, 4) == "0219"))
                                 {  //  Sektion Start
                                     //  BEHANDL: Sektion Start
                                     dummy = 1;
 
                                 }
-                                else if ((rec.Substring(0, 5) == "BS022") && (rec.Substring(13, 4) == "0230"))
+                                else if ((rec.Substring(0, 5) == "BS042") && (rec.Substring(13, 4) == "0230"))
                                 {  //  Aktiv aftale om Elektronisk Indbetalingskort
                                     //  BEHANDL: Aktiv aftale om Elektronisk Indbetalingskort
                                     dummy = 1;

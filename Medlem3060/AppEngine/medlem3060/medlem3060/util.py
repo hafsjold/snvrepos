@@ -34,7 +34,9 @@ def AuthUserGroupPath(path, usergroup, is_admin):
   elif usergroup == '1':  
     authpath = [u'/adm'
       ,u'/logoff'
-      ,u'/adm/findmedlem'
+      ,u'/adm/findmedlem3'
+      ,u'/adm/medlemjson'
+      ,u'/adm/medlemlogjson'
       ,u'/adm/medlem'
       ,u'/adm/medlem/[0-9]+'
       ,u'/teknik/createmenu'
@@ -46,7 +48,9 @@ def AuthUserGroupPath(path, usergroup, is_admin):
   elif usergroup == '2':  
     authpath = [u'/adm'
       ,u'/logoff'
-      ,u'/adm/findmedlem'
+      ,u'/adm/medlemjson'
+      ,u'/adm/medlemlogjson'
+      ,u'/adm/findmedlem3'
       ,u'/adm/medlem'
       ,u'/adm/medlem/[0-9]+'
     ]
