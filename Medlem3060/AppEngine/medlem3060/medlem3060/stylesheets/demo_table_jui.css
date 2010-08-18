@@ -245,6 +245,15 @@ tr.even {
 	background-color: #effafa;
 }
 
+.odd_mark {
+	background-color: #dc143c;
+	cursor: pointer;
+}
+
+.even_mark {
+	background-color: #dc143c;
+	cursor: pointer;
+}
 
 
 

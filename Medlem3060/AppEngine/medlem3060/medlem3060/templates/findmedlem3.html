@@ -64,8 +64,36 @@
               $(nRow).attr("id",id);
               $(nRow).click( function(){
                 var aPos = oPersonTable.fnGetPosition( this ); 
-                medlemUpdate(aPos)
+                medlemUpdate(aPos);
               });
+              $(nRow).hover( 
+			          function(){
+                  if ($(this).hasClass('even'))
+                  {
+                    //alert('has even');
+                    $(this).toggleClass('even');
+                    $(this).toggleClass('even_mark');
+                  }
+                  if ($(this).hasClass('odd'))
+                  {
+                    //alert('has odd');
+                    $(this).toggleClass('odd');
+                    $(this).toggleClass('odd_mark');
+                  }
+                },
+				        function(){
+                  if ($(this).hasClass('even_mark'))
+                  {
+                    $(this).toggleClass('even');
+                    $(this).toggleClass('even_mark');
+                  }
+                  if ($(this).hasClass('odd_mark'))
+                  {
+                    $(this).toggleClass('odd');
+                    $(this).toggleClass('odd_mark');
+                  }
+                }
+			        );
             });
           },
           /*
@@ -156,6 +184,9 @@
       
       function medlemUpdate(aPos) {
         var aData = oPersonTable.fnGetData( aPos ); 
+        oMedlemlogTable.fnFilter('^' + aData[0] + '$',0,true,false);
+        oMedlemlogTable.fnSort( [ [3,'desc'], [4,'desc'] ] ); 
+        erMedlem();
         $("#xnr").val(aData[0]);
         $("#xnavn").val(aData[1]);
         $("#xkaldenavn").val(aData[2]);
@@ -167,8 +198,7 @@
         $("#xkon").val(aData[8]);
         $("#xfodtdato").val(aData[9]);
         $("#xbank").val(aData[10]);
-        oMedlemlogTable.fnFilter('^' + aData[0] + '$',0,true,false);
-        oMedlemlogTable.fnSort( [ [3,'desc'], [4,'desc'] ] ); 
+        
         $("#pos").val(aPos);
         $("#nr").val(aData[0]);
         $("#navn").val(aData[1]);
@@ -182,7 +212,16 @@
         $("#fodtdato").val(aData[9]);
         $("#bank").val(aData[10]);
    	    //$("#dialog-form").dialog('open');
-      } 
+      }
+
+      function erMedlem() {
+        var aiDisplayMedlemlog = oMedlemlogTable.dataTableSettings[1].aiDisplay;
+        var logdata;
+        for (i in aiDisplayMedlemlog)
+        {
+          logdata = oMedlemlogTable.fnGetData( aiDisplayMedlemlog[i] ); 
+        }
+      }      
       
     </script>
     <title>Find Medlem</title>

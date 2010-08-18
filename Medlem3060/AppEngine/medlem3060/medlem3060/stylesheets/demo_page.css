@@ -80,6 +80,12 @@
 	text-decoration: underline;
 }
 
+//#person tbody tr:hover {
+//	color: #f7ae39;
+//	cursor: pointer;
+//}
+
+
 #dt_example ul {
 	color: #4E6CA3;
 }
