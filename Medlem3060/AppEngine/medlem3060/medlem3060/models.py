@@ -146,7 +146,7 @@ class Person(db.Model):
             m_b30 = False
 
       #Undersoeg om der er betalt kontingent
-      if m_b30: #Findes der en betaling
+      if m_b30 and m_kontingentBetaltTilDato > m_indmeldelsesDato: #Findes der en betaling efter indmelsesdato
         m_restanceTilDatoGamleMedlemmer = m_kontingentBetaltTilDato + timedelta(days=m_BetalingsFristiDageGamleMedlemmer)
         if m_restanceTilDatoGamleMedlemmer >= pDate: #Er kontingentTilDato aktiv
           return True

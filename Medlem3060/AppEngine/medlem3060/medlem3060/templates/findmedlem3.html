@@ -9,16 +9,16 @@
     </style>
     <style type="text/css">
       #dynamic_2 label, #dialog-form label { width:7em; float:left;  display:block;  color: #1c94c4; font-weight:bold;}
-		  #dynamic_2 input, #dialog-form input { width:13em; float:rigth; display:block; }
-		  input.text {margin-bottom:2px; padding: .2em; }
-		  fieldset { padding:0; border:0;}
-		  h1 { font-size: 1.2em; margin: .6em 0; }
-		  div#users-contain { width: 200px; margin: 20px 0; }
-		  div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
-		  div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
-		  .ui-dialog .ui-state-error { padding: .3em; }
-		  .validateTips { border: 1px solid transparent; padding: 0.3em; }
-	  </style>
+      #dynamic_2 input, #dialog-form input { width:13em; float:rigth; display:block; }
+      input.text {margin-bottom:2px; padding: .2em; }
+      fieldset { padding:0; border:0;}
+      h1 { font-size: 1.2em; margin: .6em 0; }
+      div#users-contain { width: 200px; margin: 20px 0; }
+      div#users-contain table { margin: 1em 0; border-collapse: collapse; width: 100%; }
+      div#users-contain table td, div#users-contain table th { border: 1px solid #eee; padding: .6em 10px; text-align: left; }
+      .ui-dialog .ui-state-error { padding: .3em; }
+      .validateTips { border: 1px solid transparent; padding: 0.3em; }
+   </style>
     <script src="/javascripts/jquery-1.4.2.js" type="text/javascript"></script>
     <script src="/javascripts/jquery.dataTables.js" type="text/javascript"></script>
     <script type="text/javascript" src="/javascripts/jquery-ui-1.8.2.custom.min.js"></script>
@@ -27,11 +27,11 @@
         var oPersonTable;
         var oMedlemlogTable;
         var Aktivitet = {
-	        10:'Indmeldelses dato',
-	        20:'PBS opkrævnings dato',
-	        30:'Kontingent betalt til dato',
-	        40:'PBS betaling tilbageført',
-	        50:'Udmeldelses dato',
+          10:'Indmeldelses dato',
+          20:'PBS opkrævnings dato',
+          30:'Kontingent betalt til dato',
+          40:'PBS betaling tilbageført',
+          50:'Udmeldelses dato',
         };
         
         $(document).ready(function() {
@@ -45,69 +45,56 @@
           "bStateSave": true,
           "aLengthMenu": [[20, 40, 100, -1],[20, 40, 100, "Alle"]],
           "aoColumnDefs": [
-			        { "sWidth": "1em", "sClass": 'left', "sTitle": "Nr", "bVisible": true, "aTargets": [ 0 ] },
-			        { "sClass": 'left', "sTitle": "Navn", "bVisible": true, "aTargets": [ 1 ] },
-			        { "sClass": 'left', "sTitle": "Kaldenavn", "bVisible": false, "aTargets": [ 2 ] },
-			        { "sClass": 'left', "sTitle": "Adresse", "bVisible": true, "aTargets": [ 3 ] },
-			        { "sWidth": "3em", "sClass": 'left', "sTitle": "Pnr", "bVisible": true, "aTargets": [ 4 ] },
-			        { "sWidth": "7em", "sClass": 'left', "sTitle": "By", "bVisible": false, "aTargets": [ 5 ] },
-			        { "sClass": 'left', "sTitle": "Email", "bVisible": false, "aTargets": [ 6 ] },
-			        { "sWidth": "5em", "sClass": 'left', "sTitle": "Telefon", "bVisible": false, "aTargets": [ 7 ] },
-			        { "sWidth": "3em", "sClass": 'left', "sTitle": "Køn", "bVisible": false, "aTargets": [ 8 ] },
-			        { "sWidth": "8em", "sClass": 'left', "sTitle": "Født dato", "bVisible": false, "aTargets": [ 9 ] },
-			        { "sWidth": "10em", "sClass": 'left', "sTitle": "Bank", "bVisible": false, "aTargets": [ 10 ] }
+              { "sWidth": "1em", "sClass": 'left', "sTitle": "Nr", "bVisible": true, "aTargets": [ 0 ] },
+              { "sClass": 'left', "sTitle": "Navn", "bVisible": true, "aTargets": [ 1 ] },
+              { "sClass": 'left', "sTitle": "Kaldenavn", "bVisible": false, "aTargets": [ 2 ] },
+              { "sClass": 'left', "sTitle": "Adresse", "bVisible": true, "aTargets": [ 3 ] },
+              { "sWidth": "3em", "sClass": 'left', "sTitle": "Pnr", "bVisible": true, "aTargets": [ 4 ] },
+              { "sWidth": "7em", "sClass": 'left', "sTitle": "By", "bVisible": false, "aTargets": [ 5 ] },
+              { "sClass": 'left', "sTitle": "Email", "bVisible": false, "aTargets": [ 6 ] },
+              { "sWidth": "5em", "sClass": 'left', "sTitle": "Telefon", "bVisible": false, "aTargets": [ 7 ] },
+              { "sWidth": "3em", "sClass": 'left', "sTitle": "Køn", "bVisible": false, "aTargets": [ 8 ] },
+              { "sWidth": "8em", "sClass": 'left', "sTitle": "Født dato", "bVisible": false, "aTargets": [ 9 ] },
+              { "sWidth": "10em", "sClass": 'left', "sTitle": "Bank", "bVisible": false, "aTargets": [ 10 ] },
+              { "sWidth": "2em", "sClass": 'left', "sTitle": "erMedlem", "bVisible": false, "aTargets": [ 11 ] }
             ],
           "fnInitComplete":function( oSettings, json ) {
             $(oSettings.aoData).each( function() {
               var id = $(this)[0]._aData[0];
+              var erMedlem = $(this)[0]._aData[11];
               var nRow = $(this)[0].nTr;
+              if (erMedlem == 'False') {
+                $(nRow).addClass('ikkeMedlem');
+              };
               $(nRow).attr("id",id);
               $(nRow).click( function(){
                 var aPos = oPersonTable.fnGetPosition( this ); 
                 medlemUpdate(aPos);
               });
               $(nRow).hover( 
-			          function(){
+                function(){
                   if ($(this).hasClass('even'))
                   {
-                    //alert('has even');
-                    $(this).toggleClass('even');
-                    $(this).toggleClass('even_mark');
+                    $(this).removeClass('even').addClass('even_mark');
                   }
                   if ($(this).hasClass('odd'))
                   {
-                    //alert('has odd');
-                    $(this).toggleClass('odd');
-                    $(this).toggleClass('odd_mark');
+                    $(this).removeClass('odd').addClass('odd_mark');
                   }
                 },
-				        function(){
+                function(){
                   if ($(this).hasClass('even_mark'))
                   {
-                    $(this).toggleClass('even');
-                    $(this).toggleClass('even_mark');
+                    $(this).removeClass('even_mark').addClass('even');
                   }
                   if ($(this).hasClass('odd_mark'))
                   {
-                    $(this).toggleClass('odd');
-                    $(this).toggleClass('odd_mark');
+                    $(this).removeClass('odd_mark').addClass('odd');
                   }
                 }
-			        );
+              );
             });
           },
-          /*
-          "fnRowCallback": function( nRow, aData, iDisplayIndex ) {
-            var id = aData[0];
-            $(nRow).attr("id",id);
-            if ( $.data( $(nRow).get(0), 'events' ) === null  || ( $.data( $(nRow).get(0), 'events' ) !== null && $.data( $(nRow).get(0), 'events' ).click === null ) )
-            {
-              $(nRow).click( function() { alert('this: ' + $(this)[0].outerHTML); } );
-            }
-            var foo2 = $.data( $(nRow).get(0), 'events' ).click;
-            return nRow;
-          },
-          */
           "sAjaxSource": "/adm/medlemjson"
         } );
         
@@ -119,24 +106,24 @@
           "bProcessing": false,
           "bStateSave": true,
           "aoColumnDefs": [
-			        { "sWidth": "1em", "sClass": 'left', "sTitle": "Nr", "bVisible": false, "aTargets": [ 0 ] },
-			        { "sWidth": "1em", "sClass": 'left', "sTitle": "Source", "bVisible": false, "aTargets": [ 1 ] },
-			        { "sWidth": "1em", "sClass": 'left', "sTitle": "Source_id", "bVisible": false, "aTargets": [ 2 ] },
-			        { "sWidth": "10em", "sClass": 'left', "sTitle": "Logdato", "bVisible": false, "aTargets": [ 3 ] },
-			        { "sWidth": "11em", "sClass": 'left', "sTitle": "Aktivitet", "bVisible": true, "fnRender": function ( oObj ) {return Aktivitet[oObj.aData[4]];}, "aTargets": [ 4 ] },
-			        { "sWidth": "5em", "sClass": 'left', "sTitle": "Dato", "bVisible": true, "fnRender": function ( oObj ) {return oObj.aData[5].substring(0,10);}, "aTargets": [ 5 ] },
-			        { "sWidth": "1em", "sClass": 'left', "sTitle": "Akt_id", "bVisible": false, "aTargets": [ 6 ] }
-            ],
+              { "sWidth": "1em", "sClass": 'left', "sTitle": "Nr", "bVisible": false, "aTargets": [ 0 ] },
+              { "sWidth": "1em", "sClass": 'left', "sTitle": "Source", "bVisible": false, "aTargets": [ 1 ] },
+              { "sWidth": "1em", "sClass": 'left', "sTitle": "Source_id", "bVisible": false, "aTargets": [ 2 ] },
+              { "sWidth": "10em", "sClass": 'left', "sTitle": "Logdato", "bVisible": false, "aTargets": [ 3 ] },
+              { "sWidth": "11em", "sClass": 'left', "sTitle": "Aktivitet", "bVisible": true, "fnRender": function ( oObj ) {return Aktivitet[oObj.aData[4]];}, "aTargets": [ 4 ] },
+              { "sWidth": "5em", "sClass": 'left', "sTitle": "Dato", "bVisible": true, "fnRender": function ( oObj ) {return oObj.aData[5].substring(0,10);}, "aTargets": [ 5 ] },
+              { "sWidth": "1em", "sClass": 'left', "sTitle": "Akt_id", "bVisible": false, "aTargets": [ 6 ] }
+             ],
           "sAjaxSource": "/adm/medlemlogjson"
         } );
 
         $("#dialog-form").dialog({
           autoOpen: false,
-			    modal: true,
+          modal: true,
           width: 300,
-			    buttons: {
-				    Ok: function() {
- 				      var pos = $("#pos").val();
+          buttons: {
+            Ok: function() {
+              var pos = $("#pos").val();
               oPersonTable.fnUpdate( [
                  $("#nr").val()
                 ,$("#navn").val()
@@ -170,9 +157,9 @@
               });              
               
               $(this).dialog('close');
-				    }
-			    }
-		    });
+            }
+          }
+        });
  
         $('#fodtdato').datepicker({
            dateFormat: 'yy-mm-dd',
@@ -188,10 +175,12 @@
         oMedlemlogTable.fnFilter('^' + aData[0] + '$',0,true,false);
         oMedlemlogTable.fnSort( [ [3,'desc'], [4,'desc'] ] ); 
         if (erMedlem()){
-          $("#xerMedlem").val('Ja');
+          $("#erMedlem").text(aData[1]);
+          $("#erMedlem").removeClass('ikkeMedlem').addClass('Medlem');
         }
         else {
-          $("#xerMedlem").val('Nej');
+          $("#erMedlem").text(aData[1]);
+          $("#erMedlem").removeClass('Medlem').addClass('ikkeMedlem');
         }
         $("#xnr").val(aData[0]);
         $("#xnavn").val(aData[1]);
@@ -219,9 +208,23 @@
         $("#bank").val(aData[10]);
    	    //$("#dialog-form").dialog('open');
       }
+      
+      function stringToDateNumber(string) {
+        var matches; 
+        if (matches = string.match(/^(\d{4,4})-(\d{2,2})-(\d{2,2})$/)) {
+          return (new Date(matches[1], matches[2] - 1, matches[3])).valueOf();
+        } 
+        else if (matches = string.match(/^(\d{4,4})-(\d{2,2})-(\d{2,2}) (\d{2,2}):(\d{2,2}):(\d{2,2})$/)){
+          return (new Date(matches[1], matches[2] - 1, matches[3], matches[4], matches[5], matches[6])).valueOf();
+        }
+        else {
+          return null;
+        };
+      }
 
       function erMedlem() {
-        var pDate = new Date();
+        var debugoMedlemlogTable = oMedlemlogTable;
+        var pDate = new Date().valueOf();
         var aiDisplayMedlemlog = oMedlemlogTable.dataTableSettings[1].aiDisplay;
         var logdata;
         var m_indmeldelsesDato = null;
@@ -232,10 +235,11 @@
         var m_opkrævningsDato = null;
         var m_BetalingsFristiDageGamleMedlemmer = 30;
         var m_BetalingsFristiDageNyeMedlemmer = 35;
-        var m_kontingentTilDato31 = new Date(0);
-        var m_kontingentBetaltDato31 = new Date(0);
-        var m_restanceTilDatoGamleMedlemmer = new Date(0);
-        var restanceTilDatoNyeMedlemmer = new Date(0);
+        mindate = Date.parse( "01/01/1970 00:00:00" );
+        var m_kontingentTilDato31 = mindate;
+        var m_kontingentBetaltDato31 = mindate;
+        var m_restanceTilDatoGamleMedlemmer = mindate;
+        var restanceTilDatoNyeMedlemmer = mindate;
         var  m_b10 = false; // Seneste Indmelses dato fundet
         var  m_b20 = false; // Seneste PBS opkrævnings dato fundet
         var  m_b30 = false; // Seneste Kontingent betalt til dato fundet
@@ -246,18 +250,8 @@
         for (i in aiDisplayMedlemlog)
         {
           logdata = oMedlemlogTable.fnGetData( aiDisplayMedlemlog[i] );
-          var str1 = logdata[3];;  
-          var str2 = logdata[5];  
-          var dt1  = str1.substring(8,10);  
-          var mon1 = str1.substring(5,7);  
-          var yr1  = str1.substring(0,4);   
-          var dt2  = str2.substring(8,10);  
-          var mon2 = str2.substring(5,7);  
-          var yr2  = str2.substring(0,4);  
-          temp1 = mon1 +"/"+ dt1 +"/"+ yr1; 
-          temp2 = mon2 +"/"+ dt2 +"/"+ yr2; 
-          var Logdato = Date.parse(temp1); 
-          var Akt_dato = Date.parse(temp2); 
+          var Logdato = stringToDateNumber(logdata[3]);
+          var Akt_dato= stringToDateNumber(logdata[5]);
           var Akt_id = parseInt(logdata[6]);
           switch(Akt_id)
           {
@@ -265,7 +259,7 @@
               if (!m_b10)
               {
                 m_b10 = true;
-                m_indmeldelsesDato = new Date(Akt_dato);
+                m_indmeldelsesDato = Akt_dato;
               }
               break;
 
@@ -273,7 +267,7 @@
               if (!m_b20)
               {
                 m_b20 = true;
-                m_opkrævningsDato = new Date(Akt_dato);
+                m_opkrævningsDato = Akt_dato;
               }
               break;
 
@@ -281,14 +275,14 @@
               if ((m_b30) && (!m_b31)) // Næst seneste Kontingent betalt til dato
               {
                 m_b31 = true;
-                m_kontingentBetaltDato31 = new Date(Logdato);
-                m_kontingentTilDato31 = new Date(Akt_dato);
+                m_kontingentBetaltDato31 = Logdato;
+                m_kontingentTilDato31 = Akt_dato;
               }
               if ((!m_b30) && (!m_b31)) // Seneste Kontingent betalt til dato
               {
                 m_b30 = true;
-                m_kontingentBetalingsDato = new Date(Logdato);
-                m_kontingentBetaltTilDato = new Date(Akt_dato);
+                m_kontingentBetalingsDato = Logdato;
+                m_kontingentBetaltTilDato = Akt_dato;
               }
               break;
 
@@ -296,7 +290,7 @@
               if (!m_b40)
               {
                 m_b40 = true;
-                m_kontingentTilbageførtDato = new Date(Akt_dato);
+                m_kontingentTilbageførtDato = Akt_dato;
               }
               break;
 
@@ -304,7 +298,7 @@
               if (!m_b50)
               {
                 m_b50 = true;
-                m_udmeldelsesDato = new Date(Akt_dato);
+                m_udmeldelsesDato = Akt_dato;
               }
               break;          
           }
@@ -350,7 +344,7 @@
         //Undersøg om der er betalt kontingent
         if ((m_b30) && (m_kontingentBetaltTilDato > m_indmeldelsesDato))//Findes der en betaling efter indmelsesdato
         {
-          m_restanceTilDatoGamleMedlemmer = new Date(m_kontingentBetaltTilDato.valueOf() + m_BetalingsFristiDageGamleMedlemmer * 24 * 3600 * 1000);
+          m_restanceTilDatoGamleMedlemmer = m_kontingentBetaltTilDato + m_BetalingsFristiDageGamleMedlemmer * 24 * 3600 * 1000;
           if (m_restanceTilDatoGamleMedlemmer >= pDate) //Er kontingentTilDato aktiv
           {
             return true;
@@ -362,7 +356,7 @@
         }
         else
         { //Der findes ingen betalinger. Nyt medlem?
-          restanceTilDatoNyeMedlemmer = new Date(m_indmeldelsesDato.valueOf() + m_BetalingsFristiDageNyeMedlemmer * 24 * 3600 * 1000);
+          restanceTilDatoNyeMedlemmer = m_indmeldelsesDato + m_BetalingsFristiDageNyeMedlemmer * 24 * 3600 * 1000;
           if (restanceTilDatoNyeMedlemmer >= pDate)
           { //Er kontingentTilDato aktiv
             return true;
@@ -380,10 +374,10 @@
   </head>
   <body id="dt_example" style="margin-top:10px;">
     <div id="dynamic_2" style="width:35%; float:left; margin-left:1%;">
-		  <fieldset>
-        <label for="xerMedlem">erMedlem</label><input style="width:3em;" type="text" name="xerMedlem" id="xerMedlem" class="text ui-widget-content ui-corner-all" />
+      <div id="erMedlem"></div>
+      <fieldset>
         <label for="xnr">Nr</label><input style="width:3em;" type="text" name="xnr" id="xnr" class="text ui-widget-content ui-corner-all" />
-		    <label for="xnavn">Navn</label><input type="text" name="xnavn" id="xnavn" class="text ui-widget-content ui-corner-all" />
+        <label for="xnavn">Navn</label><input type="text" name="xnavn" id="xnavn" class="text ui-widget-content ui-corner-all" />
         <label for="xkaldenavn">Kaldenavn</label><input type="text" name="xkaldenavn" id="xkaldenavn" class="text ui-widget-content ui-corner-all" />
         <label for="xadresse">Adresse</label><input type="text" name="xadresse" id="xadresse" value="" class="text ui-widget-content ui-corner-all" />
         <label for="xpostnr">Postnr</label><input style="width:3em;" type="text" name="xpostnr" id="xpostnr" value="" class="text ui-widget-content ui-corner-all" />
@@ -391,7 +385,7 @@
         <label for="xemail">Email</label><input type="text" name="xemail" id="xemail" value="" class="text ui-widget-content ui-corner-all" />
         <label for="xtelefon">Telefon</label><input style="width:5em;" type="text" name="xtelefon" id="xtelefon" value="" class="text ui-widget-content ui-corner-all" />
         <label for="xkon">Køn</label><input style="width:1em;" type="text" name="xkon" id="xkon" value="" class="text ui-widget-content ui-corner-all" />
-		    <label for="xfodtdato">FødtDato</label><input style="width:5em;" type="text" name="xfodtdato" id="xfodtdato" value="" class="text ui-widget-content ui-corner-all" />
+        <label for="xfodtdato">FødtDato</label><input style="width:5em;" type="text" name="xfodtdato" id="xfodtdato" value="" class="text ui-widget-content ui-corner-all" />
         <label for="xbank">Bank</label><input type="text" name="xbank" id="xbank" value="" class="text ui-widget-content ui-corner-all" />
       </fieldset>
       <table class="display" id="medlemlog">
@@ -426,6 +420,7 @@
             <th>Køn</th>
             <th>FødtDato</th>
             <th>Bank</th>
+            <th>erMedlem</th>
           </tr>
         </thead>          
         <tbody>
@@ -434,22 +429,22 @@
     </div>
     
     <div id="dialog-form" title="Update user">
-	    <form>
-	      <fieldset>
-		      <input type="hidden" name="pos" id="pos"/>
-		      <label for="nr">Nr</label><input style="width:5em;" type="text" name="nr" id="nr" class="text ui-widget-content ui-corner-all" />
-		      <label for="navn">Navn</label><input type="text" name="navn" id="navn" class="text ui-widget-content ui-corner-all" />
-		      <label for="kaldenavn">Kaldenavn</label><input type="text" name="kaldenavn" id="kaldenavn" class="text ui-widget-content ui-corner-all" />
-		      <label for="adresse">Adresse</label><input type="text" name="adresse" id="adresse" value="" class="text ui-widget-content ui-corner-all" />
-		      <label for="postnr">Postnr</label><input style="width:10em;" type="text" name="postnr" id="postnr" value="" class="text ui-widget-content ui-corner-all" />
-		      <label float:left;" for="bynavn">By</label><input type="text" name="bynavn" id="bynavn" value="" class="text ui-widget-content ui-corner-all" />
-		      <label float:left;" for="email">Email</label><input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all" />
-		      <label for="telefon">Telefon</label><input style="width:10em;" type="text" name="telefon" id="telefon" value="" class="text ui-widget-content ui-corner-all" />
-		      <label for="kon">Køn</label><input style="width:1em;" type="text" name="kon" id="kon" value="" class="text ui-widget-content ui-corner-all" />
-		      <label for="fodtdato">FødtDato</label><input style="width:10em;" type="text" name="fodtdato" id="fodtdato" value="" class="text ui-widget-content ui-corner-all" />
-		      <label for="bank">Bank</label><input type="text" name="bank" id="bank" value="" class="text ui-widget-content ui-corner-all" />
-	      </fieldset>
-	    </form>
+      <form>
+        <fieldset>
+          <input type="hidden" name="pos" id="pos"/>
+          <label for="nr">Nr</label><input style="width:5em;" type="text" name="nr" id="nr" class="text ui-widget-content ui-corner-all" />
+          <label for="navn">Navn</label><input type="text" name="navn" id="navn" class="text ui-widget-content ui-corner-all" />
+          <label for="kaldenavn">Kaldenavn</label><input type="text" name="kaldenavn" id="kaldenavn" class="text ui-widget-content ui-corner-all" />
+          <label for="adresse">Adresse</label><input type="text" name="adresse" id="adresse" value="" class="text ui-widget-content ui-corner-all" />
+          <label for="postnr">Postnr</label><input style="width:10em;" type="text" name="postnr" id="postnr" value="" class="text ui-widget-content ui-corner-all" />
+          <label float:left;" for="bynavn">By</label><input type="text" name="bynavn" id="bynavn" value="" class="text ui-widget-content ui-corner-all" />
+          <label float:left;" for="email">Email</label><input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all" />
+          <label for="telefon">Telefon</label><input style="width:10em;" type="text" name="telefon" id="telefon" value="" class="text ui-widget-content ui-corner-all" />
+          <label for="kon">Køn</label><input style="width:1em;" type="text" name="kon" id="kon" value="" class="text ui-widget-content ui-corner-all" />
+          <label for="fodtdato">FødtDato</label><input style="width:10em;" type="text" name="fodtdato" id="fodtdato" value="" class="text ui-widget-content ui-corner-all" />
+          <label for="bank">Bank</label><input type="text" name="bank" id="bank" value="" class="text ui-widget-content ui-corner-all" />
+        </fieldset>
+      </form>
     </div>
   </body>
 </html>

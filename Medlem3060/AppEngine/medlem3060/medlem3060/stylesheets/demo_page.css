@@ -97,3 +97,17 @@
 .css_left {
 	float: left;
 }
+
+#erMedlem { 
+  display:block;  
+  font-weight:bold;
+  text-align: center;
+  font-size: 150%;
+  padding-bottom: 15px;
+}
+.Medlem { 
+  color:blue; 
+}
+.ikkeMedlem { 
+  color:red; 
+}

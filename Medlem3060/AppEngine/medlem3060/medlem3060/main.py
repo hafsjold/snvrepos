@@ -264,7 +264,7 @@ class MedlemJsonHandler(webapp.RequestHandler):
         if not FirstPage:
           jData += ','
         FirstPage = False
-        jData += '["%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s"]' % (p.Nr,p.Navn,p.Kaldenavn,p.Adresse,p.Postnr,p.Bynavn,p.Email,p.Telefon,p.Kon,p.FodtDato,p.Bank)
+        jData += '["%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s"]' % (p.Nr,p.Navn,p.Kaldenavn,p.Adresse,p.Postnr,p.Bynavn,p.Email,p.Telefon,p.Kon,p.FodtDato,p.Bank,p.erMedlem())
       jData += '] }'
       memcache.set('jData', jData, namespace='jData')
     
