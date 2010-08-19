@@ -286,7 +286,7 @@ class MedlemlogJsonHandler(webapp.RequestHandler):
         if not FirstPage:
           jLogData += ','
         FirstPage = False
-        jLogData += '["%s","%s","%s","%s","%s","%s"]' % (p.Nr,p.Source,p.Source_id,p.Logdato,p.Akt_id,p.Akt_dato)
+        jLogData += '["%s","%s","%s","%s","%s","%s","%s"]' % (p.Nr,p.Source,p.Source_id,p.Logdato,p.Akt_id,p.Akt_dato,p.Akt_id)
       jLogData += '] }'
       memcache.set('jLogData', jLogData, namespace='jLogData')
     
