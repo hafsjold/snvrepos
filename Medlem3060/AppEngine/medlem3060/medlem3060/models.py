@@ -42,50 +42,19 @@ class Person(db.Model):
     Kon = db.StringProperty()
     FodtDato  = db.DateProperty()
     Bank = db.StringProperty()
+    MedlemtilDato = db.DateTimeProperty()
     NavnTags = db.ListProperty(basestring)
     AdresseTags = db.ListProperty(basestring)
     BynavnTags = db.ListProperty(basestring)
     
-    tokens = []
-    
-    def addtoken(self, token):
-      for found in (t for t in self.tokens if t == '%s' % (token)):
-        break
-      else:
-        self.tokens.append('%s' % (token))
-    
     def setNameTags(self):
       self.Nr = int(self.key().name())
-      self.tokens = [] 
-      for w in (self.Navn + ' ' + self.Kaldenavn).lower().replace('.',' ').replace(',',' ').split():
-        self.addtoken(w)
-        for l in range(1, len(w), 1):
-          for i in range(0, len(w) +1 - l, 1):
-            self.addtoken(w[i:i+l])
-      self.NavnTags = self.tokens
-      logging.info('%s' % (self.tokens))
-
-      self.tokens = []
-      for w in self.Adresse.lower().replace('.',' ').replace(',',' ').split():
-        self.addtoken(w)
-        for l in range(1, len(w), 1):
-          for i in range(0, len(w) +1 - l, 1):
-            self.addtoken(w[i:i+l])
-      self.AdresseTags = self.tokens
-      logging.info('%s' % (self.tokens))
-
-      self.tokens = [] 
-      for w in (self.Bynavn + ' ' + self.Postnr).lower().replace('.',' ').replace(',',' ').split():
-        self.addtoken(w)
-        for l in range(1, len(w), 1):
-          for i in range(0, len(w) +1 - l, 1):
-            self.addtoken(w[i:i+l])
-      self.BynavnTags = self.tokens
-      logging.info('%s' % (self.tokens))
-
-      self.put()
+      self.MedlemtilDato = self.erMedlem()
+      self.NavnTags = []
+      self.AdresseTags = []
+      self.BynavnTags = []
       
-    def erMedlem(self):
+    def erMedlem(self, bMedlemTilDato=True):
       m_b10 = False
       m_b20 = False
       m_b30 = False
@@ -94,8 +63,8 @@ class Person(db.Model):
       m_b50 = False
       
       pDate = datetime.now()
-      m_BetalingsFristiDageGamleMedlemmer = 30
-      m_BetalingsFristiDageNyeMedlemmer = 30
+      m_BetalingsFristiDageGamleMedlemmer = 31
+      m_BetalingsFristiDageNyeMedlemmer = 61
 
       qrylog = db.Query(Medlemlog).ancestor(self.key()).order('-Logdato')
       for MedlemLog in qrylog:
@@ -130,10 +99,16 @@ class Person(db.Model):
       if m_b10: #Findes der en indmeldelse
         if m_b50:  #Findes der en udmeldelse
             if m_udmeldelsesDato >= m_indmeldelsesDato: #Er udmeldelsen aktiv
-                if m_udmeldelsesDato <= pDate: #Er udmeldelsen aktiv
-                  return False
+                if bMedlemTilDato:
+                  return m_udmeldelsesDato
+                else:
+                  if m_udmeldelsesDato <= pDate: #Er udmeldelsen aktiv
+                    return False
       else:  #Der findes ingen indmeldelse
-        return False
+        if bMedlemTilDato:
+          return datetime.now() - timedelta(days=(365 * 30))
+        else:
+          return False
         
       #Find aktive betalingsrecord
       if m_b40: #Findes der en kontingent tilbagefoert
@@ -148,13 +123,19 @@ class Person(db.Model):
       #Undersoeg om der er betalt kontingent
       if m_b30 and m_kontingentBetaltTilDato > m_indmeldelsesDato: #Findes der en betaling efter indmelsesdato
         m_restanceTilDatoGamleMedlemmer = m_kontingentBetaltTilDato + timedelta(days=m_BetalingsFristiDageGamleMedlemmer)
-        if m_restanceTilDatoGamleMedlemmer >= pDate: #Er kontingentTilDato aktiv
-          return True
+        if bMedlemTilDato:
+          return m_restanceTilDatoGamleMedlemmer
         else:
-          return False
+          if m_restanceTilDatoGamleMedlemmer >= pDate: #Er kontingentTilDato aktiv
+            return True
+          else:
+            return False
       else: #Der findes ingen betalinger. Nyt medlem?
         restanceTilDatoNyeMedlemmer = m_indmeldelsesDato + timedelta(days=m_BetalingsFristiDageNyeMedlemmer)
-        if restanceTilDatoNyeMedlemmer >= pDate: #Er kontingentTilDato aktiv
-          return True
-        else:
-          return False
+        if bMedlemTilDato:
+          return restanceTilDatoNyeMedlemmer
+        else:  
+          if restanceTilDatoNyeMedlemmer >= pDate: #Er kontingentTilDato aktiv
+            return True
+          else:
+            return False

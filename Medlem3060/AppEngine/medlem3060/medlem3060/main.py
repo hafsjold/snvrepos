@@ -264,7 +264,7 @@ class MedlemJsonHandler(webapp.RequestHandler):
         if not FirstPage:
           jData += ','
         FirstPage = False
-        jData += '["%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s"]' % (p.Nr,p.Navn,p.Kaldenavn,p.Adresse,p.Postnr,p.Bynavn,p.Email,p.Telefon,p.Kon,p.FodtDato,p.Bank,p.erMedlem())
+        jData += '["%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s"]' % (p.Nr,p.Navn,p.Kaldenavn,p.Adresse,p.Postnr,p.Bynavn,p.Email,p.Telefon,p.Kon,p.FodtDato,p.Bank,p.MedlemtilDato)
       jData += '] }'
       memcache.set('jData', jData, namespace='jData')
     
@@ -360,6 +360,7 @@ class SyncMedlemHandler(webapp.RequestHandler):
         person.FodtDato = None
 
     person.setNameTags()
+    person.put()
 
     logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     logging.info('%s - %s - %s - %s - %s - %s - %s - %s - %s - %s - %s' % (person.Nr, person.Navn, person.Kaldenavn, person.Adresse, person.Postnr, person.Bynavn, person.Email, person.Telefon, person.Kon, person.FodtDato, person.Bank))
@@ -456,7 +457,7 @@ class ReindexHandler(webapp.RequestHandler):
       for per in query:
         i +=1
         perkeys += ' ' + str(per)
-        if i == 10:
+        if i == 100:
           taskqueue.add(url='/_ah/queue/default', params={'perkeys':perkeys})
           i = 0
           perkeys = ''
@@ -472,6 +473,7 @@ class SearchIndexing(webapp.RequestHandler):
       person_list = db.get(keys)
       for per in person_list:
         per.setNameTags()
+        per.put()
 
 
 

@@ -936,7 +936,7 @@ namespace nsPuls3060
 
         public enum tblsource : byte
         {
-            medlem = 1,
+            medlem = 254,
             medlemlog = 2,
             fak = 3,
             betlin = 4,

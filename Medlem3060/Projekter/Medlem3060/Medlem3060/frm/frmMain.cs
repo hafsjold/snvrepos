@@ -132,7 +132,7 @@ namespace nsPuls3060
 
 
             clsRest objRest = new clsRest();
-            string resp = objRest.HttpGet2("Medlem");
+            //string resp = objRest.HttpGet2("Medlem");
             //clsSync objSync = new clsSync();
             //objSync.actionSync(1);
             //objSync.actionSync(2);

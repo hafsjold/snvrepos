@@ -38,12 +38,14 @@
 
         oPersonTable = $('#person').dataTable( {
           "bJQueryUI": true,
-          "sPaginationType": "full_numbers",
-          //"sDom": 'firtlp',
+          "sDom": '<"H"lfr>t<"F"ip>',
           "bAutoWidth": false, 
           "bProcessing": true,
           "bStateSave": true,
           "aLengthMenu": [[20, 40, 100, -1],[20, 40, 100, "Alle"]],
+          "sPaginationType": "full_numbers",
+          "bPaginate": true,  
+          //"sScrollY": "450px",
           "aoColumnDefs": [
               { "sWidth": "1em", "sClass": 'left', "sTitle": "Nr", "bVisible": true, "aTargets": [ 0 ] },
               { "sClass": 'left', "sTitle": "Navn", "bVisible": true, "aTargets": [ 1 ] },
@@ -56,20 +58,21 @@
               { "sWidth": "3em", "sClass": 'left', "sTitle": "Køn", "bVisible": false, "aTargets": [ 8 ] },
               { "sWidth": "8em", "sClass": 'left', "sTitle": "Født dato", "bVisible": false, "aTargets": [ 9 ] },
               { "sWidth": "10em", "sClass": 'left', "sTitle": "Bank", "bVisible": false, "aTargets": [ 10 ] },
-              { "sWidth": "2em", "sClass": 'left', "sTitle": "erMedlem", "bVisible": false, "aTargets": [ 11 ] }
+              { "sWidth": "2em", "sClass": 'left', "sTitle": "erMedlem", "bVisible": false, "fnRender": function ( oObj ) {return format_erMedlem(oObj.aData[11]);}, "aTargets": [ 11 ] }
             ],
           "fnInitComplete":function( oSettings, json ) {
             $(oSettings.aoData).each( function() {
               var id = $(this)[0]._aData[0];
               var erMedlem = $(this)[0]._aData[11];
               var nRow = $(this)[0].nTr;
-              if (erMedlem == 'False') {
+              if (erMedlem == 'ikkeMedlem') {
                 $(nRow).addClass('ikkeMedlem');
               };
               $(nRow).attr("id",id);
               $(nRow).click( function(){
                 var aPos = oPersonTable.fnGetPosition( this ); 
                 medlemUpdate(aPos);
+                $('#dynamic_2').removeClass('skjul')
               });
               $(nRow).hover( 
                 function(){
@@ -104,7 +107,16 @@
           "bAutoWidth": false,
           "bPaginate": false,          
           "bProcessing": false,
-          "bStateSave": true,
+          "bStateSave": false,
+		      "aoSearchCols": [
+			      { "sSearch": "^000$", "bEscapeRegex": false },
+			        null,
+			        null,
+			        null,
+			        null,
+			        null,
+			        null
+		      ],
           "aoColumnDefs": [
               { "sWidth": "1em", "sClass": 'left', "sTitle": "Nr", "bVisible": false, "aTargets": [ 0 ] },
               { "sWidth": "1em", "sClass": 'left', "sTitle": "Source", "bVisible": false, "aTargets": [ 1 ] },
@@ -170,6 +182,14 @@
        
       });                
       
+      function format_erMedlem(string) {
+        dato = stringToDateNumber(string);
+        if (dato == null) return 'ikkeMedlem';
+        pDate = new Date().valueOf();
+        if (dato > pDate) return 'erMedlem';
+        return 'ikkeMedlem';
+      }
+      
       function medlemUpdate(aPos) {
         var aData = oPersonTable.fnGetData( aPos ); 
         oMedlemlogTable.fnFilter('^' + aData[0] + '$',0,true,false);
@@ -233,8 +253,8 @@
         var m_kontingentBetalingsDato = null;
         var m_kontingentBetaltTilDato = null;
         var m_opkrævningsDato = null;
-        var m_BetalingsFristiDageGamleMedlemmer = 30;
-        var m_BetalingsFristiDageNyeMedlemmer = 35;
+        var m_BetalingsFristiDageGamleMedlemmer = 31;
+        var m_BetalingsFristiDageNyeMedlemmer = 61;
         mindate = Date.parse( "01/01/1970 00:00:00" );
         var m_kontingentTilDato31 = mindate;
         var m_kontingentBetaltDato31 = mindate;
@@ -373,7 +393,7 @@
     <title>Find Medlem</title>
   </head>
   <body id="dt_example" style="margin-top:10px;">
-    <div id="dynamic_2" style="width:35%; float:left; margin-left:1%;">
+    <div id="dynamic_2" class="skjul" style="width:35%; float:left; margin-left:1%;">
       <div id="erMedlem"></div>
       <fieldset>
         <label for="xnr">Nr</label><input style="width:3em;" type="text" name="xnr" id="xnr" class="text ui-widget-content ui-corner-all" />

@@ -106,8 +106,11 @@
   padding-bottom: 15px;
 }
 .Medlem { 
-  color:blue; 
+  color:blue;
 }
 .ikkeMedlem { 
   color:red; 
+}
+.skjul{
+	visibility: hidden;
 }
