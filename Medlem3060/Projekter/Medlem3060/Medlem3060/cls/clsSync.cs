@@ -1000,14 +1000,14 @@ namespace nsPuls3060
                 {
                     switch (Last_Source)
                     {
-                        case 1:    //Medlem
+                        case (byte)tblsource.medlem:    //Medlem
                             medlemupdate(objMedlem); //Save Medlem
                             break;
 
-                        case 2:   //Medlemlog
-                        case 3:   //fak
-                        case 4:   //betlin
-                        case 5:   //betlin40                            
+                        case (byte)tblsource.medlemlog:   //Medlemlog
+                        case (byte)tblsource.fak:         //fak
+                        case (byte)tblsource.betlin:      //betlin
+                        case (byte)tblsource.betlin40:    //betlin40
                             medlemlogupdate(objMedlemLog);//Save MedlemLog
                             break;
 
