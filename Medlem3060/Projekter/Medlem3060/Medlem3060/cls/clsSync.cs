@@ -1019,7 +1019,7 @@ namespace nsPuls3060
                 {
                     switch (t.Source)
                     {
-                        case 1:    //Medlem
+                        case (byte)tblsource.medlem:    //Medlem
                             objMedlem = new clsImEksportAppEngMedlem();
                             objMedlem.ieAction = ieAction;
                             objMedlem.Nr = t.Nr;
@@ -1027,10 +1027,10 @@ namespace nsPuls3060
                             objMedlem.Act = t.Act;
                             break;
 
-                        case 2:   //Medlemlog
-                        case 3:   //fak
-                        case 4:   //betlin
-                        case 5:   //betlin40
+                        case (byte)tblsource.medlemlog:   //Medlemlog
+                        case (byte)tblsource.fak:         //fak
+                        case (byte)tblsource.betlin:      //betlin
+                        case (byte)tblsource.betlin40:    //betlin40
                             objMedlemLog = new clsImEksportAppEngMedlemlog();
                             objMedlemLog.ieAction = ieAction;
                             objMedlemLog.Act = t.Act;
@@ -1047,7 +1047,7 @@ namespace nsPuls3060
                 // Get Data
                 switch (t.Source)
                 {
-                    case 1:    //Medlem
+                    case (byte)tblsource.medlem:    //Medlem
                         switch (t.Field_id)
                         {
                             case 1:   //medlem_nr
@@ -1100,10 +1100,10 @@ namespace nsPuls3060
                         }
                         break;
 
-                    case 2:   //Medlemlog
-                    case 3:   //fak
-                    case 4:   //betlin
-                    case 5:   //betlin40
+                    case (byte)tblsource.medlemlog:   //Medlemlog
+                    case (byte)tblsource.fak:         //fak
+                    case (byte)tblsource.betlin:      //betlin
+                    case (byte)tblsource.betlin40:    //betlin40
                         switch (t.Field_id)
                         {
                             case 13:   //medlemlog_id
@@ -1145,14 +1145,14 @@ namespace nsPuls3060
             {
                 switch (Last_Source)
                 {
-                    case 1:    //Medlem
+                    case (byte)tblsource.medlem:    //Medlem
                         medlemupdate(objMedlem); //Save Medlem
                         break;
 
-                    case 2:   //Medlemlog
-                    case 3:   //fak
-                    case 4:   //betlin
-                    case 5:   //betlin40
+                    case (byte)tblsource.medlemlog:   //Medlemlog
+                    case (byte)tblsource.fak:         //fak
+                    case (byte)tblsource.betlin:      //betlin
+                    case (byte)tblsource.betlin40:    //betlin40
                         medlemlogupdate(objMedlemLog);//Save MedlemLog
                         break;
 
