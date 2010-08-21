@@ -112,6 +112,10 @@
 .ikkeMedlem { 
   color:red; 
 }
+.ikkeBetalt { 
+  color: maroon;
+  font-weight: bold;
+}
 .skjul{
 	visibility: hidden;
 }

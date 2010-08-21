@@ -43,10 +43,13 @@ class Person(db.Model):
     FodtDato  = db.DateProperty()
     Bank = db.StringProperty()
     MedlemtilDato = db.DateTimeProperty()
+    MedlemAabenBetalingsdato = db.DateTimeProperty()
     
     def setNameTags(self):
       self.Nr = int(self.key().name())
-      self.MedlemtilDato = self.erMedlem()
+      recMedlemsStatus = MedlemsStatus(self.key())
+      self.MedlemtilDato = recMedlemsStatus.MedlemTildato()
+      self.MedlemAabenBetalingsdato = recMedlemsStatus.MedlemAabenBetalingsdato()
       
     def erMedlem(self, bMedlemTilDato=True):
       m_b10 = False
@@ -133,3 +136,92 @@ class Person(db.Model):
             return True
           else:
             return False
+            
+class MedlemsStatus():
+  def __init__(self, key):
+    self.key = key
+    self.b10 = False
+    self.indmeldelsesDato = None
+    self.b20 = False
+    self.opkraevningsDato = None
+    self.b30 = False
+    self.kontingentBetalingsDato = None
+    self.kontingentBetaltTilDato = None 
+    self.b31 = False
+    self.kontingentBetaltDato31 = None
+    self.kontingentTilDato31 = None
+    self.b40 = False
+    self.kontingentTilbagefoertDato = None
+    self.b50 = False
+    self.udmeldelsesDato = None          
+    self.BetalingsFristiDageGamleMedlemmer = 31
+    self.BetalingsFristiDageNyeMedlemmer = 61
+    qrylog = db.Query(Medlemlog).ancestor(self.key).order('-Logdato')
+    for MedlemLog in qrylog:
+      logging.info('XXXXXXXXXXXMedlemsStatusXXXXXXXXXXXXXXX %s - %s - %s' % (MedlemLog.Logdato, MedlemLog.Akt_id, MedlemLog.Akt_dato))
+      if MedlemLog.Akt_id == 10: #Seneste Indmelses dato
+        if not self.b10:
+          self.b10 = True
+          self.indmeldelsesDato = MedlemLog.Akt_dato
+      elif MedlemLog.Akt_id == 20: #Seneste PBS opkraevnings dato
+        if not self.b20:
+          self.b20 = True
+          self.opkraevningsDato = MedlemLog.Akt_dato
+      elif MedlemLog.Akt_id == 30: # Kontingent betalt til dato
+        if self.b30 and not self.b31: #Naest seneste Kontingent betalt til dato
+          self.b31 = True
+          self.kontingentBetaltDato31 = MedlemLog.Logdato
+          self.kontingentTilDato31 = MedlemLog.Akt_dato
+        if not self.b30 and not self.b31: #Seneste Kontingent betalt til dato
+          self.b30 = True
+          self.kontingentBetalingsDato = MedlemLog.Logdato
+          self.kontingentBetaltTilDato = MedlemLog.Akt_dato            
+      elif MedlemLog.Akt_id == 40: #Seneste PBS betaling tilbagefoert
+        if not self.b40:
+          self.b40 = True
+          self.kontingentTilbagefoertDato = MedlemLog.Akt_dato            
+      elif MedlemLog.Akt_id == 50: #Udmeldelses dato
+        if not self.b50:
+          self.b50 = True
+          self.udmeldelsesDato = MedlemLog.Akt_dato
+          
+  def MedlemTildato(self):
+    #Undersoeg vedr ind- og udmeldelse
+    if self.b10: #Findes der en indmeldelse
+      if self.b50:  #Findes der en udmeldelse
+        if self.udmeldelsesDato >= self.indmeldelsesDato: #Er udmeldelsen aktiv
+          return self.udmeldelsesDato
+    else:  #Der findes ingen indmeldelse
+      return datetime.now() - timedelta(days=(365 * 30))
+
+    #Find aktive betalingsrecord
+    if self.b40: #Findes der en kontingent tilbagefoert
+      if self.kontingentTilbagefoertDato >= self.kontingentBetalingsDato: #Kontingenttilbagefoert er aktiv
+        #''!!!Kontingent er tilbagefoert !!!!!!!!!
+        if self.b31:
+          self.kontingentBetalingsDato = self.kontingentBetaltDato31
+          self.kontingentBetaltTilDato = self.kontingentTilDato31
+        else:
+          self.b30 = False
+
+    #Undersoeg om der er betalt kontingent
+    if self.b30 and self.kontingentBetaltTilDato > self.indmeldelsesDato: #Findes der en betaling efter indmelsesdato
+      restanceTilDatoGamleMedlemmer = self.kontingentBetaltTilDato + timedelta(days=self.BetalingsFristiDageGamleMedlemmer)
+      return restanceTilDatoGamleMedlemmer
+    else: #Der findes ingen betalinger. Nyt medlem?
+      restanceTilDatoNyeMedlemmer = self.indmeldelsesDato + timedelta(days=self.BetalingsFristiDageNyeMedlemmer)
+      return restanceTilDatoNyeMedlemmer
+
+  def MedlemAabenBetalingsdato(self):
+    #Undersoeg om der findes ubetalt opkraevning hvis medlem
+    if self.b20:
+      if self.b30:
+        if self.kontingentBetaltTilDato < self.opkraevningsDato:
+          return self.opkraevningsDato
+        else:
+          return None
+      else:
+        return self.opkraevningsDato
+    else:
+      return None
+    

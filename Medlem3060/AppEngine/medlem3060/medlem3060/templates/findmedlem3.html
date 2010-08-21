@@ -42,7 +42,7 @@
           "bAutoWidth": false, 
           "bProcessing": true,
           "bStateSave": true,
-          "aLengthMenu": [[20, 40, 100, -1],[20, 40, 100, "Alle"]],
+          "aLengthMenu": [[10, 20, 40, 100, -1],[10, 20, 40, 100, "Alle"]],
           "sPaginationType": "full_numbers",
           "bPaginate": true,  
           //"sScrollY": "450px",
@@ -58,15 +58,22 @@
               { "sWidth": "3em", "sClass": 'left', "sTitle": "Køn", "bVisible": false, "aTargets": [ 8 ] },
               { "sWidth": "8em", "sClass": 'left', "sTitle": "Født dato", "bVisible": false, "aTargets": [ 9 ] },
               { "sWidth": "10em", "sClass": 'left', "sTitle": "Bank", "bVisible": false, "aTargets": [ 10 ] },
-              { "sWidth": "2em", "sClass": 'left', "sTitle": "erMedlem", "bVisible": false, "fnRender": function ( oObj ) {return format_erMedlem(oObj.aData[11]);}, "aTargets": [ 11 ] }
-            ],
+              { "sWidth": "2em", "sClass": 'left', "sTitle": "erMedlem", "bVisible": false, "fnRender": function ( oObj ) {return format_erMedlem(oObj.aData[11]);}, "aTargets": [ 11 ] },
+              { "sWidth": "2em", "sClass": 'left', "sTitle": "ikkeBetalt", "bVisible": false, "fnRender": function ( oObj ) {return format_ikkeBetalt(oObj.aData[12]);}, "aTargets": [ 12 ] }
+              ],
           "fnInitComplete":function( oSettings, json ) {
             $(oSettings.aoData).each( function() {
               var id = $(this)[0]._aData[0];
               var erMedlem = $(this)[0]._aData[11];
+              var ikkeBetalt = $(this)[0]._aData[12];
               var nRow = $(this)[0].nTr;
               if (erMedlem == 'ikkeMedlem') {
                 $(nRow).addClass('ikkeMedlem');
+              };
+              if (erMedlem == 'erMedlem') {
+                if (ikkeBetalt == 'ikkeBetalt') {
+                  $(nRow).addClass('ikkeBetalt');
+                };
               };
               $(nRow).attr("id",id);
               $(nRow).click( function(){
@@ -188,6 +195,14 @@
         pDate = new Date().valueOf();
         if (dato > pDate) return 'erMedlem';
         return 'ikkeMedlem';
+      }
+      
+      function format_ikkeBetalt(string) {
+        dato = stringToDateNumber(string);
+        if (dato == null) return 'None';
+        pDate = new Date().valueOf();
+        if (dato > pDate) return 'None';
+        return 'ikkeBetalt';
       }
       
       function medlemUpdate(aPos) {
@@ -440,6 +455,7 @@
             <th>FødtDato</th>
             <th>Bank</th>
             <th>erMedlem</th>
+            <th>ikkeBetalt</th>
           </tr>
         </thead>          
         <tbody>
