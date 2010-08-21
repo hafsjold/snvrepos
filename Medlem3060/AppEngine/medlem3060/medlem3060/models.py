@@ -43,16 +43,10 @@ class Person(db.Model):
     FodtDato  = db.DateProperty()
     Bank = db.StringProperty()
     MedlemtilDato = db.DateTimeProperty()
-    NavnTags = db.ListProperty(basestring)
-    AdresseTags = db.ListProperty(basestring)
-    BynavnTags = db.ListProperty(basestring)
     
     def setNameTags(self):
       self.Nr = int(self.key().name())
       self.MedlemtilDato = self.erMedlem()
-      self.NavnTags = []
-      self.AdresseTags = []
-      self.BynavnTags = []
       
     def erMedlem(self, bMedlemTilDato=True):
       m_b10 = False

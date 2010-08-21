@@ -47,12 +47,12 @@
           "bPaginate": true,  
           //"sScrollY": "450px",
           "aoColumnDefs": [
-              { "sWidth": "1em", "sClass": 'left', "sTitle": "Nr", "bVisible": true, "aTargets": [ 0 ] },
+              { "sWidth": "3em", "sClass": 'left', "sTitle": "Nr", "bVisible": true, "aTargets": [ 0 ] },
               { "sClass": 'left', "sTitle": "Navn", "bVisible": true, "aTargets": [ 1 ] },
               { "sClass": 'left', "sTitle": "Kaldenavn", "bVisible": false, "aTargets": [ 2 ] },
               { "sClass": 'left', "sTitle": "Adresse", "bVisible": true, "aTargets": [ 3 ] },
-              { "sWidth": "3em", "sClass": 'left', "sTitle": "Pnr", "bVisible": true, "aTargets": [ 4 ] },
-              { "sWidth": "7em", "sClass": 'left', "sTitle": "By", "bVisible": false, "aTargets": [ 5 ] },
+              { "sWidth": "3em", "sClass": 'left', "sTitle": "Pnr", "bVisible": false, "aTargets": [ 4 ] },
+              { "sWidth": "7em", "sClass": 'left', "sTitle": "By", "bVisible": true, "aTargets": [ 5 ] },
               { "sClass": 'left', "sTitle": "Email", "bVisible": false, "aTargets": [ 6 ] },
               { "sWidth": "5em", "sClass": 'left', "sTitle": "Telefon", "bVisible": false, "aTargets": [ 7 ] },
               { "sWidth": "3em", "sClass": 'left', "sTitle": "Køn", "bVisible": false, "aTargets": [ 8 ] },
@@ -202,17 +202,17 @@
           $("#erMedlem").text(aData[1]);
           $("#erMedlem").removeClass('Medlem').addClass('ikkeMedlem');
         }
-        $("#xnr").val(aData[0]);
-        $("#xnavn").val(aData[1]);
-        $("#xkaldenavn").val(aData[2]);
-        $("#xadresse").val(aData[3]);
-        $("#xpostnr").val(aData[4]);
-        $("#xbynavn").val(aData[5]);
-        $("#xemail").val(aData[6]);
-        $("#xtelefon").val(aData[7]);
-        $("#xkon").val(aData[8]);
-        $("#xfodtdato").val(aData[9]);
-        $("#xbank").val(aData[10]);
+        $("#xnr").text(aData[0]);
+        $("#xnavn").text(aData[1]);
+        $("#xkaldenavn").text(aData[2]);
+        $("#xadresse").text(aData[3]);
+        $("#xpostnr").text(aData[4]);
+        $("#xbynavn").text(aData[5]);
+        $("#xemail").text(aData[6]);
+        $("#xtelefon").text(aData[7]);
+        $("#xkon").text(aData[8]);
+        $("#xfodtdato").text(aData[9]);
+        $("#xbank").text(aData[10]);
         
         $("#pos").val(aPos);
         $("#nr").val(aData[0]);
@@ -395,19 +395,18 @@
   <body id="dt_example" style="margin-top:10px;">
     <div id="dynamic_2" class="skjul" style="width:35%; float:left; margin-left:1%;">
       <div id="erMedlem"></div>
-      <fieldset>
-        <label for="xnr">Nr</label><input style="width:3em;" type="text" name="xnr" id="xnr" class="text ui-widget-content ui-corner-all" />
-        <label for="xnavn">Navn</label><input type="text" name="xnavn" id="xnavn" class="text ui-widget-content ui-corner-all" />
-        <label for="xkaldenavn">Kaldenavn</label><input type="text" name="xkaldenavn" id="xkaldenavn" class="text ui-widget-content ui-corner-all" />
-        <label for="xadresse">Adresse</label><input type="text" name="xadresse" id="xadresse" value="" class="text ui-widget-content ui-corner-all" />
-        <label for="xpostnr">Postnr</label><input style="width:3em;" type="text" name="xpostnr" id="xpostnr" value="" class="text ui-widget-content ui-corner-all" />
-        <label for="xbynavn">By</label><input style="width:7em;" type="text" name="xbynavn" id="xbynavn" value="" class="text ui-widget-content ui-corner-all" />
-        <label for="xemail">Email</label><input type="text" name="xemail" id="xemail" value="" class="text ui-widget-content ui-corner-all" />
-        <label for="xtelefon">Telefon</label><input style="width:5em;" type="text" name="xtelefon" id="xtelefon" value="" class="text ui-widget-content ui-corner-all" />
-        <label for="xkon">Køn</label><input style="width:1em;" type="text" name="xkon" id="xkon" value="" class="text ui-widget-content ui-corner-all" />
-        <label for="xfodtdato">FødtDato</label><input style="width:5em;" type="text" name="xfodtdato" id="xfodtdato" value="" class="text ui-widget-content ui-corner-all" />
-        <label for="xbank">Bank</label><input type="text" name="xbank" id="xbank" value="" class="text ui-widget-content ui-corner-all" />
-      </fieldset>
+      <div class="medlem_label ui-state-default">Nr</div> <div id="xnr" class="medlem_text"></div>
+      <div class="medlem_label ui-state-default">Navn</div> <div id="xnavn" class="medlem_text"></div>
+      <div class="medlem_label ui-state-default">Kaldenavn</div> <div id="xkaldenavn" class="medlem_text"></div>
+      <div class="medlem_label ui-state-default">Adresse</div> <div id="xadresse" class="medlem_text"></div>
+      <div class="medlem_label ui-state-default">Postnr</div> <div id="xpostnr" class="medlem_text"></div>
+      <div class="medlem_label ui-state-default">By</div> <div id="xbynavn" class="medlem_text"></div>
+      <div class="medlem_label ui-state-default">Email</div> <div id="xemail" class="medlem_text"></div>
+      <div class="medlem_label ui-state-default">Telefon</div> <div id="xtelefon" class="medlem_text"></div>
+      <div class="medlem_label ui-state-default">Køn</div> <div id="xkon" class="medlem_text"></div>
+      <div class="medlem_label ui-state-default">FødtDato</div> <div id="xfodtdato" class="medlem_text"></div>
+      <div class="medlem_label ui-state-default" style="padding-bottom:0px;">Bank</div> <div id="xbank" class="medlem_text" style="padding-bottom:0px;"></div>
+
       <table class="display" id="medlemlog">
         <thead>
           <tr >

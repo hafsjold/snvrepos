@@ -103,7 +103,8 @@
   font-weight:bold;
   text-align: center;
   font-size: 150%;
-  padding-bottom: 15px;
+  padding-bottom: 12px;
+  padding-top: 9px;
 }
 .Medlem { 
   color:blue;
@@ -113,4 +114,26 @@
 }
 .skjul{
 	visibility: hidden;
+}
+.medlem_label{
+   width:27%; 
+   float:left; 
+   display:block; 
+   clear: both;
+   padding-bottom: 2px;
+   padding-left: 5px;
+   padding-right: 5px;
+   padding-top: 2px;
+   margin: 1px 1px 1px 2px;
+}
+.medlem_text{
+	width:61%;
+	float:left; 
+	display:block;
+	background-color: #effbff;
+	padding-bottom: 3px;
+   padding-left: 10px;
+   padding-right: 10px;
+   padding-top: 3px;
+   margin: 1px 1px 1px 1px;
 }
