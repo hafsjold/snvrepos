@@ -22,6 +22,10 @@ class MenuMenuLink(db.Model):
   Child_key = db.ReferenceProperty(Menu, collection_name="menu_parent_set")
   Menuseq = db.IntegerProperty()  
 
+class NrSerie(db.Model):
+    Name  = db.StringProperty() 
+    NextNumber = db.IntegerProperty()
+    
 class Medlemlog(db.Model): 
     Source = db.IntegerProperty()
     Source_id = db.IntegerProperty()

@@ -16,7 +16,7 @@ import rest
 import os
 import re
 
-from models import UserGroup, User, Menu, MenuMenuLink, Medlemlog, Person
+from models import UserGroup, User, NrSerie, Menu, MenuMenuLink, Medlemlog, Person
 from util import TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
 from menuusergroup import deleteMenuAndUserGroup, createMenuAndUserGroup
 from menu import MenuHandler, ListUserHandler, UserHandler
@@ -123,9 +123,29 @@ class FindmedlemHandler(webapp.RequestHandler):
 
 class UpdatemedlemHandler(webapp.RequestHandler):
   def post(self):
-    Nr = self.request.get('Nr') 
-    try:
-      k = db.Key.from_path('Persons','root','Person',Nr)
+    Nr = self.request.get('Nr')
+    jData = '{ '    
+
+    k = db.Key.from_path('Persons','root','Person',Nr)
+    #
+    recNrSerie = NrSerie.get_or_insert('tblMedlemlog')
+    Source_id = recNrSerie.NextNumber
+    recNrSerie.NextNumber += 1
+    recNrSerie.put()
+    #
+    p = Medlemlog.get_or_insert('2-%s' % (Source_id), parent=k)
+    p.Source = 2
+    p.Source_id = Source_id
+    p.Nr = int(Nr)
+    p.Logdato = datetime.now()
+    p.Akt_id = int(self.request.get('Akt_id'))
+    Akt_dato = self.request.get('Akt_dato')
+    logging.info('Akt_dato: %s' % (Akt_dato))
+    p.Akt_dato = datetime.strptime(Akt_dato, "%Y-%m-%d")
+    p.put()
+    jData += '"MedlemlogTablePos":"%s"' % (self.request.get('MedlemlogTablePos'))
+    jData += ',"MedlemlogData":["%s","%s","%s","%s","%s","%s","%s"]' % (p.Nr,p.Source,p.Source_id,p.Logdato,p.Akt_id,p.Akt_dato,p.Akt_id)
+    try:       
       m = Person.get(k)
       m.Navn = self.request.get('Navn') 
       m.Kaldenavn = self.request.get('Kaldenavn')
@@ -140,9 +160,14 @@ class UpdatemedlemHandler(webapp.RequestHandler):
       logging.info('%s=%s' % ('FodtDato', getattr(m, 'FodtDato')) )
       m.Bank = self.request.get('Bank')
       m.put()
+      jData += ',"PersonTablePos":"%s"' % (self.request.get('PersonTablePos'))
+      jData += ',"PersonTableData": ["%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s"]' % (m.Nr,m.Navn,m.Kaldenavn,m.Adresse,m.Postnr,m.Bynavn,m.Email,m.Telefon,m.Kon,m.FodtDato,m.Bank,m.MedlemtilDato,m.MedlemAabenBetalingsdato)
+      jData += ' }'
       memcache.delete('jData', namespace='jData')
       logging.info('UpdatemedlemHandler OK Navn: %s, Kaldenavn: %s' % (self.request.get('Navn'), self.request.get('Kaldenavn')))
-      self.response.out.write('OK from Server')
+      logging.info('%s' % (jData))
+      self.response.headers["Content-Type"] = "application/json"
+      self.response.out.write(jData)      
     except:
       logging.info('UpdatemedlemHandler ERROR Navn: %s, Kaldenavn: %s' % (self.request.get('Navn'), self.request.get('Kaldenavn')))
       self.response.out.write('ERROR from Server')
@@ -476,13 +501,22 @@ class SearchIndexing(webapp.RequestHandler):
         per.put()
 
 
-
 class CreateMenu(webapp.RequestHandler):
     """Handler for create Menu"""
     def get(self):
       deleteMenuAndUserGroup()
       createMenuAndUserGroup()
       memcache.flush_all()
+      recNrSerie = NrSerie.get_or_insert('tblMedlemlog')
+      recNrSerie.Name = 'tblMedlemlog'
+      if not recNrSerie.NextNumber:
+        recNrSerie.NextNumber = 2000
+      recNrSerie.put()
+      recNrSerie = NrSerie.get_or_insert('tblMedlem')
+      recNrSerie.Name = 'tblMedlem'
+      if not recNrSerie.NextNumber:
+        recNrSerie.NextNumber = 850
+      recNrSerie.put()      
       self.redirect("/adm")
       
 class FlushCache(webapp.RequestHandler):
