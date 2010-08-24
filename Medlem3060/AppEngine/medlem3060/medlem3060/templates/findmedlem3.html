@@ -229,19 +229,21 @@
                     else 
                     {
                       oPersonTable.fnUpdate( data.PersonTableData, data.PersonTablePos, 0);
+                      var aData = oPersonTable.fnGetData(data.PersonTablePos); 
+                      var nNode = oPersonTable.fnGetNodes(data.PersonTablePos); 
+                      var erMedlem = aData[11];
+                      var ikkeBetalt = aData[12];
+                      $(nNode).removeClass('ikkeMedlem').removeClass('ikkeBetalt')
+                      if (erMedlem == 'ikkeMedlem') {
+                        $(nNode).addClass('ikkeMedlem');
+                      };
+                      if (erMedlem == 'erMedlem') {
+                        if (ikkeBetalt == 'ikkeBetalt') {
+                          $(nNode).addClass('ikkeBetalt');
+                        };
+                      };
                     }
-                    
-                    $("#xnr").text(data.PersonTableData[0]);
-                    $("#xnavn").text(data.PersonTableData[1]);
-                    $("#xkaldenavn").text(data.PersonTableData[2]);
-                    $("#xadresse").text(data.PersonTableData[3]);
-                    $("#xpostnr").text(data.PersonTableData[4]);
-                    $("#xbynavn").text(data.PersonTableData[5]);
-                    $("#xemail").text(data.PersonTableData[6]);
-                    $("#xtelefon").text(data.PersonTableData[7]);
-                    $("#xkon").text(data.PersonTableData[8]);
-                    $("#xfodtdato").text(data.PersonTableData[9]);
-                    $("#xbank").text(data.PersonTableData[10]);      
+                    medlemDisplay(data.PersonTablePos); 
                   }
                 });
                 $(this).dialog('close');
@@ -296,6 +298,14 @@
       }
       
       function medlemDisplay(aPos) {
+        var aPos_old = $("#xpos").text();
+        if (aPos_old.length > 0) {
+          var nNode_old = oPersonTable.fnGetNodes(aPos_old);
+          $(nNode_old).removeAttr('style');
+        }
+        var nNode = oPersonTable.fnGetNodes(aPos);
+        $(nNode).css('background-color','#14dc52');
+        
         var aData = oPersonTable.fnGetData( aPos ); 
         $("#xpos").text(aPos);
         oMedlemlogTable.fnFilter('^' + aData[0] + '$',0,true,false);

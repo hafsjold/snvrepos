@@ -172,7 +172,7 @@ class UpdatemedlemHandler(webapp.RequestHandler):
       m.Adresse = self.request.get('Adresse')
       m.Postnr = self.request.get('Postnr')
       m.Bynavn = self.request.get('Bynavn')
-      m.Telefonnr = self.request.get('Telefonnr')
+      m.Telefon = self.request.get('Telefon')
       m.Email = self.request.get('Email')
       m.Kon = self.request.get('Kon')
       dt = datetime.strptime(self.request.get('FodtDato'), "%Y-%m-%d")
