@@ -162,7 +162,7 @@ class MedlemsStatus():
     self.BetalingsFristiDageNyeMedlemmer = 61
     qrylog = db.Query(Medlemlog).ancestor(self.key).order('-Logdato')
     for MedlemLog in qrylog:
-      logging.info('XXXXXXXXXXXMedlemsStatusXXXXXXXXXXXXXXX %s - %s - %s' % (MedlemLog.Logdato, MedlemLog.Akt_id, MedlemLog.Akt_dato))
+      logging.info('XXXXXXXXXXXMedlemsStatusXXXXXXXXXXXXXXX %s - %s - %s - %s - %s - %s' % (MedlemLog.Nr, MedlemLog.Source , MedlemLog.Source_id , MedlemLog.Logdato, MedlemLog.Akt_id, MedlemLog.Akt_dato))
       if MedlemLog.Akt_id == 10: #Seneste Indmelses dato
         if not self.b10:
           self.b10 = True

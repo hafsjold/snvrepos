@@ -217,10 +217,20 @@
                     ,Akt_dato: $("#akt_dato").val()
                   },
                   success: function(data) {
-                    var idx = oMedlemlogTable.fnAddData(data.MedlemlogData );
-                    var MedlemlogTablePos = idx[0];
-                    oPersonTable.fnUpdate( data.PersonTableData, data.PersonTablePos, 0);
-
+                    if (data.bMedlemlog == 'true') {
+                      Lidx = oMedlemlogTable.fnAddData(data.MedlemlogData );
+                      var MedlemlogTablePos = Lidx[0];
+                    }
+                    if (isNaN(data.PersonTablePos) )
+                    {
+                      Pidx = oPersonTable.fnAddData(data.PersonTableData );
+                      $("#xpos").text(Pidx[0]);
+                    } 
+                    else 
+                    {
+                      oPersonTable.fnUpdate( data.PersonTableData, data.PersonTablePos, 0);
+                    }
+                    
                     $("#xnr").text(data.PersonTableData[0]);
                     $("#xnavn").text(data.PersonTableData[1]);
                     $("#xkaldenavn").text(data.PersonTableData[2]);
@@ -257,6 +267,9 @@
            changeMonth: true,
            changeYear: true,
            yearRange: '1920:2010' 
+        });
+        $(xadd).click( function(){
+          medlemAdd();
         });
         
         $(xupdate).click( function(){
@@ -308,6 +321,27 @@
         $("#xbank").text(aData[10]);
       }
 
+      function medlemAdd() {
+        $("#pos").val('*');
+        $("#nr").val('*');
+        $("#navn").val('');
+        $("#kaldenavn").val('');
+        $("#adresse").val('');
+        $("#postnr").val('');
+        $("#bynavn").val('');
+        $("#email").val('');
+        $("#telefon").val('');
+        $("#kon").val('');
+        $("#fodtdato").val('');
+        $("#bank").val('');
+        $("#ermedlem").val('');
+        $("#ikkebetalt").val('');
+        $("#label_akt_dato").text('Indmeldelse');
+        $("#akt_dato").val('');
+        $("#akt_id").val('10');
+        $("#dialog-form").dialog('open');
+      }   
+      
       function medlemUpdate(aPos) {
         var aData = oPersonTable.fnGetData( aPos ); 
         $("#pos").val(aPos);

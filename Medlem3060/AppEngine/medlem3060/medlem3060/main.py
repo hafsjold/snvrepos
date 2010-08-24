@@ -123,30 +123,50 @@ class FindmedlemHandler(webapp.RequestHandler):
 
 class UpdatemedlemHandler(webapp.RequestHandler):
   def post(self):
+    jData = '{ '
     Nr = self.request.get('Nr')
-    jData = '{ '    
+    if Nr == '*':
+      recNrSerie = NrSerie.get_or_insert('tblMedlem')
+      Nr = '%s' % (recNrSerie.NextNumber)
+      recNrSerie.NextNumber += 1
+      recNrSerie.put()    
 
-    k = db.Key.from_path('Persons','root','Person',Nr)
-    #
-    recNrSerie = NrSerie.get_or_insert('tblMedlemlog')
-    Source_id = recNrSerie.NextNumber
-    recNrSerie.NextNumber += 1
-    recNrSerie.put()
-    #
-    p = Medlemlog.get_or_insert('2-%s' % (Source_id), parent=k)
-    p.Source = 2
-    p.Source_id = Source_id
-    p.Nr = int(Nr)
-    p.Logdato = datetime.now()
-    p.Akt_id = int(self.request.get('Akt_id'))
+    #Test for Valid dato
+    bAkt_dato = False
     Akt_dato = self.request.get('Akt_dato')
-    logging.info('Akt_dato: %s' % (Akt_dato))
-    p.Akt_dato = datetime.strptime(Akt_dato, "%Y-%m-%d")
-    p.put()
-    jData += '"MedlemlogTablePos":"%s"' % (self.request.get('MedlemlogTablePos'))
-    jData += ',"MedlemlogData":["%s","%s","%s","%s","%s","%s","%s"]' % (p.Nr,p.Source,p.Source_id,p.Logdato,p.Akt_id,p.Akt_dato,p.Akt_id)
+    if Akt_dato:
+      try:
+        Testdato = datetime.strptime(Akt_dato, "%Y-%m-%d")
+        bAkt_dato = True
+      except:
+        bAkt_dato = False
+        
+    if bAkt_dato:
+      recNrSerie = NrSerie.get_or_insert('tblMedlemlog')
+      Source_id = recNrSerie.NextNumber
+      recNrSerie.NextNumber += 1
+      recNrSerie.put()
+
+      k = db.Key.from_path('Persons','root','Person','%s' % (Nr))
+      p = Medlemlog.get_or_insert('2-%s' % (Source_id), parent=k)
+      p.Source = 2
+      p.Source_id = Source_id
+      p.Nr = int(Nr)
+      p.Logdato = datetime.now()
+      p.Akt_id = int(self.request.get('Akt_id'))
+      Akt_dato = self.request.get('Akt_dato')
+      logging.info('Akt_dato: %s' % (Akt_dato))
+      p.Akt_dato = datetime.strptime(Akt_dato, "%Y-%m-%d")
+      p.put()
+      jData += '"bMedlemlog":"true"'
+      jData += ',"MedlemlogTablePos":"%s"' % (self.request.get('MedlemlogTablePos'))
+      jData += ',"MedlemlogData":["%s","%s","%s","%s","%s","%s","%s"]' % (p.Nr,p.Source,p.Source_id,p.Logdato,p.Akt_id,p.Akt_dato,p.Akt_id)
+    else:
+      jData += '"bMedlemlog":"false"'
+     
+    root = db.Key.from_path('Persons','root')
+    m = Person.get_or_insert('%s' % (Nr), parent=root)
     try:       
-      m = Person.get(k)
       m.Navn = self.request.get('Navn') 
       m.Kaldenavn = self.request.get('Kaldenavn')
       m.Adresse = self.request.get('Adresse')
@@ -159,6 +179,7 @@ class UpdatemedlemHandler(webapp.RequestHandler):
       m.FodtDato = dt.date()
       logging.info('%s=%s' % ('FodtDato', getattr(m, 'FodtDato')) )
       m.Bank = self.request.get('Bank')
+      m.setNameTags()
       m.put()
       jData += ',"PersonTablePos":"%s"' % (self.request.get('PersonTablePos'))
       jData += ',"PersonTableData": ["%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s"]' % (m.Nr,m.Navn,m.Kaldenavn,m.Adresse,m.Postnr,m.Bynavn,m.Email,m.Telefon,m.Kon,m.FodtDato,m.Bank,m.MedlemtilDato,m.MedlemAabenBetalingsdato)
@@ -472,6 +493,15 @@ class LogoffHandler(webapp.RequestHandler):
   def get(self):
     self.redirect(users.create_logout_url("/"))
 
+class ReindexHandlerXXXXXXXXXXX(webapp.RequestHandler):
+    """Handler for submiting SearchIndexing to JobQ"""
+    def get(self):
+      Nr = '852'
+      k = db.Key.from_path('Persons','root','Person',Nr)
+      perkeys = str(k)
+      taskqueue.add(url='/_ah/queue/default', params={'perkeys':perkeys})      
+      self.redirect("/adm")
+      
 class ReindexHandler(webapp.RequestHandler):
     """Handler for submiting SearchIndexing to JobQ"""
     def get(self):
@@ -489,7 +519,7 @@ class ReindexHandler(webapp.RequestHandler):
       if i > 0:
         taskqueue.add(url='/_ah/queue/default', params={'perkeys':perkeys})      
       self.redirect("/adm")
-
+      
 class SearchIndexing(webapp.RequestHandler):
     """Handler for full text indexing task."""
     def post(self):
@@ -499,6 +529,9 @@ class SearchIndexing(webapp.RequestHandler):
       for per in person_list:
         per.setNameTags()
         per.put()
+
+      memcache.delete('jData', namespace='jData')
+
 
 
 class CreateMenu(webapp.RequestHandler):
