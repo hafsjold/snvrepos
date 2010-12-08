@@ -216,7 +216,9 @@ namespace nsPuls3060
 
             foreach (var rstmedlem in rstmedlems)
             {
-                winfotekst = (rstmedlem.Indmeldelse) ? 11 : 10;
+                if (rstmedlem.Indmeldelse) winfotekst = 11;
+                else winfotekst = (rstmedlem.Tilmeldtpbs) ? 10 : 12;
+
                 Tblfak rec_fak = new Tblfak
                 {
                     Betalingsdato = rstmedlem.Betalingsdato,
