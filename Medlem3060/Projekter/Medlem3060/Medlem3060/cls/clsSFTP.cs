@@ -25,8 +25,8 @@ namespace nsPuls3060
         public clsSFTP()
         {
 #if (DEBUG)
-            m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "TestHD36" select s).First();
-            //m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Test" select s).First();
+            //m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "TestHD36" select s).First();
+            m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Test" select s).First();
             //m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Produktion" select s).First();
 #else
             m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Produktion" select s).First();
@@ -179,7 +179,10 @@ namespace nsPuls3060
                 if (qry_pbsfiles.Count() > 0)
                 {
                     Tblpbsfiles m_rec_pbsfiles = qry_pbsfiles.First();
-                    if (m_rec_pbsfiles.Filename.Length > 0) TilPBSFilename = m_rec_pbsfiles.Filename;
+                    if (m_rec_pbsfiles.Filename != null)
+                    {
+                        if (m_rec_pbsfiles.Filename.Length > 0) TilPBSFilename = m_rec_pbsfiles.Filename;
+                    }
                     bool success;
 
                     var qry_pbsfile =
