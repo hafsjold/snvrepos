@@ -25,8 +25,8 @@ namespace nsPuls3060
         public clsSFTP()
         {
 #if (DEBUG)
-            //m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "TestHD35" select s).First();
-            m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Test" select s).First();
+            m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "TestHD36" select s).First();
+            //m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Test" select s).First();
             //m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Produktion" select s).First();
 #else
             m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Produktion" select s).First();
@@ -35,8 +35,8 @@ namespace nsPuls3060
             m_sftp = new SFtp();
             bool success = m_sftp.UnlockComponent("HAFSJOSSH_6pspJCMP1QnW");
             if (!success) throw new Exception(m_sftp.LastErrorText);
-            m_sftp.ConnectTimeoutMs = 5000;
-            m_sftp.IdleTimeoutMs = 15000;
+            m_sftp.ConnectTimeoutMs = 60000;
+            m_sftp.IdleTimeoutMs = 55000;
             success = m_sftp.Connect(m_rec_sftp.Host, int.Parse(m_rec_sftp.Port));
             if (!success) throw new Exception(m_sftp.LastErrorText);
 
@@ -141,6 +141,86 @@ namespace nsPuls3060
             return TilPBSFilename;
         }
 
+        public void ReWriteTilSFtp(int ppbsfilesid)
+        {
+            string TilPBSFilename = "Unknown";
+            int FilesSize;
+
+            var rec_regnskab = Program.qryAktivRegnskab();
+
+            var qry_selectfiles =
+                from h in Program.dbData3060.Tblpbsforsendelse
+                join d1 in Program.dbData3060.Tblpbsfiles on h.Id equals d1.Pbsforsendelseid into details1
+                from d1 in details1.DefaultIfEmpty()
+                where d1.Id == ppbsfilesid
+                join d2 in Program.dbData3060.Tbltilpbs on h.Id equals d2.Pbsforsendelseid into details2
+                from d2 in details2.DefaultIfEmpty()
+                select new
+                {
+                    tilpbsid = (int?)d2.Id,
+                    d2.Leverancespecifikation,
+                    d2.Delsystem,
+                    d2.Leverancetype,
+                    Bilagdato = (DateTime?)d2.Bilagdato,
+                    Pbsforsendelseid = (int?)d2.Pbsforsendelseid,
+                    Udtrukket = (DateTime?)d2.Udtrukket,
+                    pbsfilesid = (int?)d1.Id,
+                    Leveranceid = (int)h.Leveranceid,
+                };
+
+            int antal = qry_selectfiles.Count();
+            if (antal > 0)
+            {
+                var rec_selecfiles = qry_selectfiles.First();
+
+                var qry_pbsfiles = from h in Program.dbData3060.Tblpbsfiles
+                                   where h.Id == rec_selecfiles.pbsfilesid
+                                   select h;
+                if (qry_pbsfiles.Count() > 0)
+                {
+                    Tblpbsfiles m_rec_pbsfiles = qry_pbsfiles.First();
+                    if (m_rec_pbsfiles.Filename.Length > 0) TilPBSFilename = m_rec_pbsfiles.Filename;
+                    bool success;
+
+                    var qry_pbsfile =
+                        from h in m_rec_pbsfiles.Tblpbsfile
+                        orderby h.Seqnr
+                        select h;
+
+                    string TilPBSFile = "";
+                    int i = 0;
+                    foreach (var rec_pbsfile in qry_pbsfile)
+                    {
+                        if (i++ > 0) TilPBSFile += "\r\n";
+                        TilPBSFile += rec_pbsfile.Data;
+                    }
+                    char[] c_TilPBSFile = TilPBSFile.ToCharArray();
+                    byte[] b_TilPBSFile = System.Text.Encoding.GetEncoding("windows-1252").GetBytes(c_TilPBSFile);
+                    FilesSize = b_TilPBSFile.Length;
+
+                    sendAttachedFile(TilPBSFilename, b_TilPBSFile, true);
+
+                    string fullpath = m_rec_sftp.Inbound + "/" + TilPBSFilename;
+                    string handle = m_sftp.OpenFile(fullpath, "writeOnly", "createTruncate");
+                    if (handle == null) throw new Exception(m_sftp.LastErrorText);
+
+                    success = m_sftp.WriteFileBytes(handle, b_TilPBSFile);
+                    if (!success) throw new Exception(m_sftp.LastErrorText);
+
+                    success = m_sftp.CloseHandle(handle);
+                    if (success != true) throw new Exception(m_sftp.LastErrorText);
+
+                    m_rec_pbsfiles.Type = 8;
+                    m_rec_pbsfiles.Path = m_rec_sftp.Inbound;
+                    m_rec_pbsfiles.Filename = TilPBSFilename;
+                    m_rec_pbsfiles.Size = FilesSize;
+                    m_rec_pbsfiles.Atime = DateTime.Now;
+                    m_rec_pbsfiles.Mtime = DateTime.Now;
+                    m_rec_pbsfiles.Transmittime = DateTime.Now;
+                    Program.dbData3060.SubmitChanges();
+                }
+            }
+        }
 
         public int ReadFraSFtp()
         {

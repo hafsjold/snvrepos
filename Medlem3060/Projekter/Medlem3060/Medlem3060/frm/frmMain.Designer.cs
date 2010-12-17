@@ -45,6 +45,7 @@
             this.vedligeholdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medlemmerTilRegnearkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medlemmerTilRegnearkEksternToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.regnearkNotPBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.emailRykkerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.syncMedInternettetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.syncResetInternettetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,7 +65,7 @@
             this.infoTekstToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.regnearkNotPBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reSendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -218,6 +219,13 @@
             this.medlemmerTilRegnearkEksternToolStripMenuItem.Text = "Regneark eksternt";
             this.medlemmerTilRegnearkEksternToolStripMenuItem.Click += new System.EventHandler(this.excelExterntToolStripMenuItem_Click);
             // 
+            // regnearkNotPBSToolStripMenuItem
+            // 
+            this.regnearkNotPBSToolStripMenuItem.Name = "regnearkNotPBSToolStripMenuItem";
+            this.regnearkNotPBSToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.regnearkNotPBSToolStripMenuItem.Text = "Regneark notPBS";
+            this.regnearkNotPBSToolStripMenuItem.Click += new System.EventHandler(this.regnearkNotPBSToolStripMenuItem_Click);
+            // 
             // emailRykkerToolStripMenuItem
             // 
             this.emailRykkerToolStripMenuItem.Name = "emailRykkerToolStripMenuItem";
@@ -313,7 +321,8 @@
             this.toolStripMenuItem2,
             this.toolStripMenuItem1,
             this.pbsfilesToolStripMenuItem,
-            this.infoTekstToolStripMenuItem});
+            this.infoTekstToolStripMenuItem,
+            this.reSendToolStripMenuItem});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
             this.systemToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.systemToolStripMenuItem.Text = "System";
@@ -321,28 +330,28 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(132, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem2.Text = "Regnskab";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.regnskabToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem1.Text = "Kreditor";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.kerditorToolStripMenuItem_Click);
             // 
             // pbsfilesToolStripMenuItem
             // 
             this.pbsfilesToolStripMenuItem.Name = "pbsfilesToolStripMenuItem";
-            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.pbsfilesToolStripMenuItem.Text = "Pbsfiles";
             this.pbsfilesToolStripMenuItem.Click += new System.EventHandler(this.pbsfilesToolStripMenuItem_Click);
             // 
             // infoTekstToolStripMenuItem
             // 
             this.infoTekstToolStripMenuItem.Name = "infoTekstToolStripMenuItem";
-            this.infoTekstToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.infoTekstToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.infoTekstToolStripMenuItem.Text = "Info tekst";
             this.infoTekstToolStripMenuItem.Click += new System.EventHandler(this.infoTekstToolStripMenuItem_Click);
             // 
@@ -361,12 +370,12 @@
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
-            // regnearkNotPBSToolStripMenuItem
+            // reSendToolStripMenuItem
             // 
-            this.regnearkNotPBSToolStripMenuItem.Name = "regnearkNotPBSToolStripMenuItem";
-            this.regnearkNotPBSToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.regnearkNotPBSToolStripMenuItem.Text = "Regneark notPBS";
-            this.regnearkNotPBSToolStripMenuItem.Click += new System.EventHandler(this.regnearkNotPBSToolStripMenuItem_Click);
+            this.reSendToolStripMenuItem.Name = "reSendToolStripMenuItem";
+            this.reSendToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.reSendToolStripMenuItem.Text = "ReSend";
+            this.reSendToolStripMenuItem.Click += new System.EventHandler(this.reSendToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -434,6 +443,7 @@
         internal System.Windows.Forms.ToolStripStatusLabel MainformProgressText;
         private System.Windows.Forms.ToolStripMenuItem syncResetInternettetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem regnearkNotPBSToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reSendToolStripMenuItem;
    }
 }
 

@@ -130,8 +130,9 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
-
-            clsRest objRest = new clsRest();
+            //clsSFTP objSFTP = new clsSFTP();
+            //objSFTP.ReWriteTilSFtp(986);
+            //clsRest objRest = new clsRest();
             //string resp = objRest.HttpGet2("Medlem");
             //clsSync objSync = new clsSync();
             //objSync.actionSync(1);
@@ -578,6 +579,16 @@ namespace nsPuls3060
         private void regnearkNotPBSToolStripMenuItem_Click(object sender, EventArgs e)
         {
             excelNotPBS();
+        }
+
+        private void reSendToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("Resend til PBS"))
+            {
+                FrmResend m_frmResend = new FrmResend();
+                m_frmResend.MdiParent = this;
+                m_frmResend.Show();
+            }
         }
     }
 }
