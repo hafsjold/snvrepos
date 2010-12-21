@@ -23,6 +23,8 @@ namespace nsPuls3060
             txtpbsfilesid.Enabled = false;
             clsSFTP objSFTP = new clsSFTP();
             objSFTP.ReWriteTilSFtp(pbsfilesid);
+            objSFTP.DisconnectSFtp();
+            objSFTP = null;
             button1.Text = "Udført";
         }
     }

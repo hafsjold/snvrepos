@@ -397,6 +397,8 @@ namespace nsPuls3060
                     this.pgmFaktura.Value = (imax * 3);
                     clsSFTP objSFTP = new clsSFTP();
                     TilPBSFilename = objSFTP.WriteTilSFtp(m_lobnr);
+                    objSFTP.DisconnectSFtp();
+                    objSFTP = null;
                 }
                 this.pgmFaktura.Value = (imax * 4);
                 cmdFakturer.Text = "Afslut";

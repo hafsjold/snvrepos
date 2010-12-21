@@ -20,6 +20,8 @@ namespace nsPuls3060
         {
             clsSFTP objSFTP = new clsSFTP();
             objSFTP.ReadDirFraSFtp();
+            objSFTP.DisconnectSFtp();
+            objSFTP = null;
             this.bsMemPbsnetdir.DataSource = Program.memPbsnetdir;
         }
     }

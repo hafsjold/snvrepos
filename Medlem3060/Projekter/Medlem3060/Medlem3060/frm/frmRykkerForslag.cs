@@ -304,6 +304,8 @@ namespace nsPuls3060
                         this.pgmRykker.Value = (imax * 3);
                         clsSFTP objSFTP = new clsSFTP();
                         objSFTP.WriteTilSFtp(m_lobnr);
+                        objSFTP.DisconnectSFtp();
+                        objSFTP = null;
                     }
                     else //RYKKERE som emails
                     {

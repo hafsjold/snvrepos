@@ -32,7 +32,7 @@
     <PublisherName>Hafsjold</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>2.2.0.%2a</ApplicationVersion>
+    <ApplicationVersion>2.3.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -58,7 +58,7 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ChilkatDotNet2, Version=9.0.7.0, Culture=neutral, PublicKeyToken=eb5fc1fc52ef09bd, processorArchitecture=x86">
+    <Reference Include="ChilkatDotNet2, Version=9.1.1.0, Culture=neutral, PublicKeyToken=eb5fc1fc52ef09bd, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\ChilkatDotNet2.dll</HintPath>
     </Reference>

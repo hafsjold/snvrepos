@@ -39,7 +39,6 @@ namespace nsPuls3060
             m_sftp.IdleTimeoutMs = 55000;
             success = m_sftp.Connect(m_rec_sftp.Host, int.Parse(m_rec_sftp.Port));
             if (!success) throw new Exception(m_sftp.LastErrorText);
-
             Chilkat.SshKey key = new Chilkat.SshKey();
 
             string privKey = m_rec_sftp.Certificate;
@@ -55,6 +54,11 @@ namespace nsPuls3060
             //  After authenticating, the SFTP subsystem must be initialized:
             success = m_sftp.InitializeSftp();
             if (!success) throw new Exception(m_sftp.LastErrorText);
+        }
+
+        public void DisconnectSFtp()
+        {
+            m_sftp.Disconnect();
         }
 
         public string WriteTilSFtp(int lobnr)

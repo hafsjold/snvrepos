@@ -376,11 +376,13 @@ namespace nsPuls3060
             string smallString = null;
             int AntalImportFiler = 0;
 
-            clsSFTP objSFTP = new clsSFTP();
             clsPbs602 objPbs602 = new clsPbs602();
             clsPbs603 objPbs603 = new clsPbs603();
 
+            clsSFTP objSFTP = new clsSFTP();
             AntalImportFiler = objSFTP.ReadFraSFtp();  //Læs direkte SFTP
+            objSFTP.DisconnectSFtp();
+            objSFTP = null;
             //AntalImportFiler = objPbs602.ReadFraPbsFile(); //Læs fra Directory FraPBS
 
             int Antal602Filer = objPbs602.betalinger_fra_pbs();
