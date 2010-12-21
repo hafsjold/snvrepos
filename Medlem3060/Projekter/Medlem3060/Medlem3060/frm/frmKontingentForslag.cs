@@ -130,15 +130,15 @@ namespace nsPuls3060
                 {
                     if ((m.kontingentBetaltTilDato != null)&& (m.kontingentBetaltTilDato > m.indmeldelsesDato))  //'Der findes en kontingent-betaling
                     {
-                        if (m.kontingentBetaltTilDato > this.DatoBetaltKontingentTil.Value)   //der er betalt kontingent efter DatoBetaltKontingentTil
+                        if (m.kontingentBetaltTilDato.Value.Date > this.DatoBetaltKontingentTil.Value)   //der er betalt kontingent efter DatoBetaltKontingentTil
                         {
                             bSelected = false;
                         }
                         else
                         {
-                            if (m.kontingentBetaltTilDato >= m.indmeldelsesDato)
+                            if (m.kontingentBetaltTilDato.Value.Date >= m.indmeldelsesDato)
                             {
-                                KontingentFradato = ((DateTime)m.kontingentBetaltTilDato).AddDays(1);
+                                KontingentFradato = ((DateTime)m.kontingentBetaltTilDato.Value.Date).AddDays(1);
                             }
                         }
                     }
