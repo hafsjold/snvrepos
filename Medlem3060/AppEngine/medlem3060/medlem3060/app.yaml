@@ -12,6 +12,10 @@ handlers:
   static_dir: images
   expiration: "4d 5h"
 
+- url: /software
+  static_dir: software
+  expiration: "4d 5h"
+  
 - url: /javascripts
   static_dir: javascripts
   expiration: "1h"
