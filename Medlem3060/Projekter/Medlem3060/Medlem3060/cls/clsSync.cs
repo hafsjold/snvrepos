@@ -204,6 +204,202 @@ namespace nsPuls3060
         }
     }
 
+    public class clsImEksportAppEngKreditor
+    {
+        public clsImEksportAppEngKreditor()
+        {
+            bId = false;
+            bDatalevnr = false;
+            bDatalevnavn = false;
+            bPbsnr = false;
+            bDelsystem = false;
+            bRegnr = false;
+            bKontonr = false;
+            bDebgrpnr = false;
+            bSektionnr = false;
+            bTranskodebetaling = false;
+        }
+
+        public ImpExp ieAction { get; set; }
+        public string Act { get; set; }
+        public bool bId { get; set; }
+        public bool bDatalevnr { get; set; }
+        public bool bDatalevnavn { get; set; }
+        public bool bPbsnr { get; set; }
+        public bool bDelsystem { get; set; }
+        public bool bRegnr { get; set; }
+        public bool bKontonr { get; set; }
+        public bool bDebgrpnr { get; set; }
+        public bool bSektionnr { get; set; }
+        public bool bTranskodebetaling { get; set; }
+        public int? Id { get; set; }
+        public string Datalevnr { get; set; }
+        public string Datalevnavn { get; set; }
+        public string Pbsnr { get; set; }
+        public string Delsystem { get; set; }
+        public string Regnr { get; set; }
+        public string Kontonr { get; set; }
+        public string Debgrpnr { get; set; }
+        public string Sektionnr { get; set; }
+        public string Transkodebetaling { get; set; }
+        public void ExecuteImEksport()
+        {
+            if (ieAction == ImpExp.fdImport) Import();
+            else Eksport();
+        }
+        private void Eksport()
+        {
+            clsRest objRest = new clsRest();
+            if (Act == "del")
+            {
+                string retur = objRest.HttpDelete2("Kreditor/" + Id);
+            }
+            else
+            {
+                XElement xml = new XElement("Kreditor", new XElement("Id", Id));
+                if (bDatalevnr) xml.Add(new XElement("Datalevnr", Datalevnr));
+                if (bDatalevnavn) xml.Add(new XElement("Datalevnavn", Datalevnavn));
+                if (bPbsnr) xml.Add(new XElement("Pbsnr", Pbsnr));
+                if (bDelsystem) xml.Add(new XElement("Delsystem", Delsystem));
+                if (bRegnr) xml.Add(new XElement("Regnr", Regnr));
+                if (bDebgrpnr) xml.Add(new XElement("Debgrpnr", Debgrpnr));
+                if (bKontonr) xml.Add(new XElement("Kontonr", Kontonr));
+                if (bSektionnr) xml.Add(new XElement("Sektionnr", Sektionnr));
+                if (bTranskodebetaling) xml.Add(new XElement("Transkodebetaling", Transkodebetaling));
+                string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
+                string retur = objRest.HttpPost2("Kreditor", strxml);
+            }
+
+        }
+        private void Import()
+        {
+            Tblkreditor recKreditor = null;
+            try
+            {
+                recKreditor = (from k in Program.dbData3060.Tblkreditor where k.Id == Id select k).First();
+                if (bDatalevnr) recKreditor.Datalevnr = Datalevnr;
+                if (bDatalevnavn) recKreditor.Datalevnavn = Datalevnavn;
+                if (bPbsnr) recKreditor.Pbsnr = Pbsnr;
+                if (bDelsystem) recKreditor.Delsystem = Delsystem;
+                if (bRegnr) recKreditor.Regnr = Regnr;
+                if (bDebgrpnr) recKreditor.Debgrpnr = Debgrpnr;
+                if (bKontonr) recKreditor.Kontonr = Kontonr;
+                if (bSektionnr) recKreditor.Sektionnr = Sektionnr;
+                if (bTranskodebetaling) recKreditor.Transkodebetaling = Transkodebetaling;
+            }
+            catch
+            {
+                recKreditor = new Tblkreditor { Id = (int)Id };
+                if (bDatalevnr) recKreditor.Datalevnr = Datalevnr;
+                if (bDatalevnavn) recKreditor.Datalevnavn = Datalevnavn;
+                if (bPbsnr) recKreditor.Pbsnr = Pbsnr;
+                if (bDelsystem) recKreditor.Delsystem = Delsystem;
+                if (bRegnr) recKreditor.Regnr = Regnr;
+                if (bDebgrpnr) recKreditor.Debgrpnr = Debgrpnr;
+                if (bKontonr) recKreditor.Kontonr = Kontonr;
+                if (bSektionnr) recKreditor.Sektionnr = Sektionnr;
+                if (bTranskodebetaling) recKreditor.Transkodebetaling = Transkodebetaling;
+                Program.dbData3060.Tblkreditor.InsertOnSubmit(recKreditor);
+            }
+            Program.dbData3060.SubmitChanges();
+        }
+    }
+
+    public class clsImEksportAppEngSftp
+    {
+        public clsImEksportAppEngSftp()
+        {
+            bId = false;
+            bNavn = false;
+            bHost = false;
+            bPort = false;
+            bUser = false;
+            bOutbound = false;
+            bInbound = false;
+            bPincode = false;
+            bCertificate = false;
+        }
+
+        public ImpExp ieAction { get; set; }
+        public string Act { get; set; }
+        public bool bId { get; set; }
+        public bool bNavn { get; set; }
+        public bool bHost { get; set; }
+        public bool bPort { get; set; }
+        public bool bUser { get; set; }
+        public bool bOutbound { get; set; }
+        public bool bInbound { get; set; }
+        public bool bPincode { get; set; }
+        public bool bCertificate { get; set; }
+        public int? Id { get; set; }
+        public string Navn { get; set; }
+        public string Host { get; set; }
+        public string Port { get; set; }
+        public string User { get; set; }
+        public string Outbound { get; set; }
+        public string Inbound { get; set; }
+        public string Pincode { get; set; }
+        public string Certificate { get; set; }
+        public void ExecuteImEksport()
+        {
+            if (ieAction == ImpExp.fdImport) Import();
+            else Eksport();
+        }
+        private void Eksport()
+        {
+            clsRest objRest = new clsRest();
+            if (Act == "del")
+            {
+                string retur = objRest.HttpDelete2("Sftp/" + Id);
+            }
+            else
+            {
+                XElement xml = new XElement("Sftp", new XElement("Id", Id));
+                if (bNavn) xml.Add(new XElement("Navn", Navn));
+                if (bHost) xml.Add(new XElement("Host", Host));
+                if (bPort) xml.Add(new XElement("Port", Port));
+                if (bUser) xml.Add(new XElement("User", User));
+                if (bOutbound) xml.Add(new XElement("Outbound", Outbound));
+                if (bInbound) xml.Add(new XElement("Inbound", Inbound));
+                if (bPincode) xml.Add(new XElement("Pincode", Pincode));
+                if (bCertificate) xml.Add(new XElement("Certificate", Certificate));
+                string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
+                string retur = objRest.HttpPost2("Sftp", strxml);
+            }
+
+        }
+        private void Import()
+        {
+            Tblsftp recSftp = null;
+            try
+            {
+                recSftp = (from k in Program.dbData3060.Tblsftp where k.Id == Id select k).First();
+                if (bNavn) recSftp.Navn = Navn;
+                if (bHost) recSftp.Host = Host;
+                if (bPort) recSftp.Port = Port;
+                if (bUser) recSftp.User = User;
+                if (bOutbound) recSftp.Outbound = Outbound;
+                if (bInbound) recSftp.Inbound = Inbound;
+                if (bPincode) recSftp.Pincode = Pincode;
+                if (bCertificate) recSftp.Certificate = Certificate;
+            }
+            catch
+            {
+                recSftp = new Tblsftp { Id = (int)Id };
+                if (bNavn) recSftp.Navn = Navn;
+                if (bHost) recSftp.Host = Host;
+                if (bPort) recSftp.Port = Port;
+                if (bUser) recSftp.User = User;
+                if (bOutbound) recSftp.Outbound = Outbound;
+                if (bInbound) recSftp.Inbound = Inbound;
+                if (bPincode) recSftp.Pincode = Pincode;
+                if (bCertificate) recSftp.Certificate = Certificate; 
+                Program.dbData3060.Tblsftp.InsertOnSubmit(recSftp);
+            }
+            Program.dbData3060.SubmitChanges();
+        }
+    }
+
     public enum ImpExp : int
     {
         fdImport = 1,
@@ -252,11 +448,15 @@ namespace nsPuls3060
             {
                 actionMedlemSync();
                 actionMedlemlogSync();
+                actionKreditorSync();
+                actionSftpSync();
             }
             if (m_action == 3)
             {
                 actionMedlemxmlSync();
                 actionMedlemlogxmlSync();
+                actionKreditorxmlSync();
+                actionSftpxmlSync();
             }
         }
 
@@ -524,6 +724,244 @@ namespace nsPuls3060
             Program.dbData3060.SubmitChanges();
         }
 
+        private void actionKreditorSync()
+        {
+            var kreditor = from k in Program.dbData3060.Tblkreditor select k;
+            Tblsync s;
+            foreach (var k in kreditor)
+            {
+                //Id
+                s = new Tblsync
+                {
+                    Nr = (int)k.Id,
+                    Source = (byte)tblsource.kreditor,
+                    Source_id = (int)k.Id,
+                    Field_id = (byte)tblfield.kreditor_id,
+                    Value = getString(k.Id),
+                };
+                action(s);
+
+                //Datalevnr
+                s = new Tblsync
+                {
+                    Nr = (int)k.Id,
+                    Source = (byte)tblsource.kreditor,
+                    Source_id = (int)k.Id,
+                    Field_id = (byte)tblfield.datalevnr,
+                    Value = getString(k.Datalevnr)
+                };
+                action(s);
+
+                //Datalevnavn
+                s = new Tblsync
+                {
+                    Nr = (int)k.Id,
+                    Source = (byte)tblsource.kreditor,
+                    Source_id = (int)k.Id,
+                    Field_id = (byte)tblfield.datalevnavn,
+                    Value = getString(k.Datalevnavn)
+                };
+                action(s);
+
+                //Pbsnr
+                s = new Tblsync
+                {
+                    Nr = (int)k.Id,
+                    Source = (byte)tblsource.kreditor,
+                    Source_id = (int)k.Id,
+                    Field_id = (byte)tblfield.pbsnr,
+                    Value = getString(k.Pbsnr)
+                };
+                action(s);
+
+                //Delsystem
+                s = new Tblsync
+                {
+                    Nr = (int)k.Id,
+                    Source = (byte)tblsource.kreditor,
+                    Source_id = (int)k.Id,
+                    Field_id = (byte)tblfield.delsystem,
+                    Value = getString(k.Delsystem)
+                };
+                action(s);
+
+                //Regnr
+                s = new Tblsync
+                {
+                    Nr = (int)k.Id,
+                    Source = (byte)tblsource.kreditor,
+                    Source_id = (int)k.Id,
+                    Field_id = (byte)tblfield.regnr,
+                    Value = getString(k.Regnr)
+                };
+                action(s);
+
+                //Kontonr
+                s = new Tblsync
+                {
+                    Nr = (int)k.Id,
+                    Source = (byte)tblsource.kreditor,
+                    Source_id = (int)k.Id,
+                    Field_id = (byte)tblfield.kontonr,
+                    Value = getString(k.Kontonr)
+                };
+                action(s);
+
+                //Debgrpnr
+                s = new Tblsync
+                {
+                    Nr = (int)k.Id,
+                    Source = (byte)tblsource.kreditor,
+                    Source_id = (int)k.Id,
+                    Field_id = (byte)tblfield.debgrpnr,
+                    Value = getString(k.Debgrpnr)
+                };
+                action(s);
+
+                //Sektionnr
+                s = new Tblsync
+                {
+                    Nr = (int)k.Id,
+                    Source = (byte)tblsource.kreditor,
+                    Source_id = (int)k.Id,
+                    Field_id = (byte)tblfield.sektionnr,
+                    Value = getString(k.Sektionnr)
+                };
+                action(s);
+
+                //Transkodebetaling
+                s = new Tblsync
+                {
+                    Nr = (int)k.Id,
+                    Source = (byte)tblsource.kreditor,
+                    Source_id = (int)k.Id,
+                    Field_id = (byte)tblfield.transkodebetaling,
+                    Value = getString(k.Transkodebetaling)
+                };
+                action(s);
+
+            }
+            Program.dbData3060.SubmitChanges();
+        }
+
+        private void actionSftpSync()
+        {
+            var sftp = from f in Program.dbData3060.Tblsftp select f;
+            Tblsync s;
+            foreach (var f in sftp)
+            {
+                //Id
+                s = new Tblsync
+                {
+                    Nr = (int)f.Id,
+                    Source = (byte)tblsource.sftp,
+                    Source_id = (int)f.Id,
+                    Field_id = (byte)tblfield.sftp_id,
+                    Value = getString(f.Id),
+                };
+                action(s);
+                Program.dbData3060.SubmitChanges();
+
+                //Navn
+                s = new Tblsync
+                {
+                    Nr = (int)f.Id,
+                    Source = (byte)tblsource.sftp,
+                    Source_id = (int)f.Id,
+                    Field_id = (byte)tblfield.sftp_navn,
+                    Value = getString(f.Navn)
+                };
+                action(s);
+                Program.dbData3060.SubmitChanges();
+
+                //Host
+                s = new Tblsync
+                {
+                    Nr = (int)f.Id,
+                    Source = (byte)tblsource.sftp,
+                    Source_id = (int)f.Id,
+                    Field_id = (byte)tblfield.host,
+                    Value = getString(f.Host)
+                };
+                action(s);
+                Program.dbData3060.SubmitChanges();
+
+                //Port
+                s = new Tblsync
+                {
+                    Nr = (int)f.Id,
+                    Source = (byte)tblsource.sftp,
+                    Source_id = (int)f.Id,
+                    Field_id = (byte)tblfield.port,
+                    Value = getString(f.Port)
+                };
+                action(s);
+                Program.dbData3060.SubmitChanges();
+
+                //User
+                s = new Tblsync
+                {
+                    Nr = (int)f.Id,
+                    Source = (byte)tblsource.sftp,
+                    Source_id = (int)f.Id,
+                    Field_id = (byte)tblfield.user,
+                    Value = getString(f.User)
+                };
+                action(s);
+                Program.dbData3060.SubmitChanges();
+
+                //Outbound
+                s = new Tblsync
+                {
+                    Nr = (int)f.Id,
+                    Source = (byte)tblsource.sftp,
+                    Source_id = (int)f.Id,
+                    Field_id = (byte)tblfield.outbound,
+                    Value = getString(f.Outbound)
+                };
+                action(s);
+                Program.dbData3060.SubmitChanges();
+
+                //Inbound
+                s = new Tblsync
+                {
+                    Nr = (int)f.Id,
+                    Source = (byte)tblsource.sftp,
+                    Source_id = (int)f.Id,
+                    Field_id = (byte)tblfield.inbound,
+                    Value = getString(f.Inbound)
+                };
+                action(s);
+                Program.dbData3060.SubmitChanges();
+
+                //Pincode
+                s = new Tblsync
+                {
+                    Nr = (int)f.Id,
+                    Source = (byte)tblsource.sftp,
+                    Source_id = (int)f.Id,
+                    Field_id = (byte)tblfield.pincode,
+                    Value = getString(f.Pincode)
+                };
+                action(s);
+                Program.dbData3060.SubmitChanges();
+
+                //Certificate
+                s = new Tblsync
+                {
+                    Nr = (int)f.Id,
+                    Source = (byte)tblsource.sftp,
+                    Source_id = (int)f.Id,
+                    Field_id = (byte)tblfield.certificate,
+                    Value = getString(f.Certificate)
+                };
+                action(s);
+                Program.dbData3060.SubmitChanges();
+
+            }
+            Program.dbData3060.SubmitChanges();
+        }
+
         private void action(Tblsync s)
         {
             if (m_action == 1) Program.dbData3060.Tblsync.InsertOnSubmit(s);
@@ -773,6 +1211,264 @@ namespace nsPuls3060
             Program.dbData3060.SubmitChanges();
         }
 
+        public void actionKreditorxmlSync()
+        {
+            clsRest objRest = new clsRest();
+            string retur = objRest.HttpGet2("Kreditor");
+            XDocument xdoc = XDocument.Parse(retur);
+            var list = from kreditor in xdoc.Descendants("Kreditor") select kreditor;
+            int antal = list.Count();
+            Tblsync s;
+            foreach (var kreditor in list)
+            {
+
+                var Id = kreditor.Descendants("Id").First().Value;
+                var Datalevnr = kreditor.Descendants("Datalevnr").First().Value;
+                var Datalevnavn = kreditor.Descendants("Datalevnavn").First().Value;
+                var Pbsnr = kreditor.Descendants("Pbsnr").First().Value;
+                var Delsystem = kreditor.Descendants("Delsystem").First().Value;
+                var Regnr = kreditor.Descendants("Regnr").First().Value;
+                var Kontonr = kreditor.Descendants("Kontonr").First().Value;
+                var Debgrpnr = kreditor.Descendants("Debgrpnr").First().Value;
+                var Sektionnr = kreditor.Descendants("Sektionnr").First().Value;
+                var Transkodebetaling = kreditor.Descendants("Transkodebetaling").First().Value;
+                //Id
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Id),
+                    Source = (byte)tblsource.kreditor,
+                    Source_id = int.Parse(Id),
+                    Field_id = (byte)tblfield.kreditor_id,
+                    Value = Id,
+                };
+                action(s);
+
+                //Datalevnr
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Id),
+                    Source = (byte)tblsource.kreditor,
+                    Source_id = int.Parse(Id),
+                    Field_id = (byte)tblfield.datalevnr,
+                    Value = Datalevnr
+                };
+                action(s);
+
+                //Datalevnavn
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Id),
+                    Source = (byte)tblsource.kreditor,
+                    Source_id = int.Parse(Id),
+                    Field_id = (byte)tblfield.datalevnavn,
+                    Value = Datalevnavn
+                };
+                action(s);
+
+                //Pbsnr
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Id),
+                    Source = (byte)tblsource.kreditor,
+                    Source_id = int.Parse(Id),
+                    Field_id = (byte)tblfield.pbsnr,
+                    Value = Pbsnr
+                };
+                action(s);
+
+                //Delsystem
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Id),
+                    Source = (byte)tblsource.kreditor,
+                    Source_id = int.Parse(Id),
+                    Field_id = (byte)tblfield.delsystem,
+                    Value = Delsystem
+                };
+                action(s);
+
+                //Regnr
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Id),
+                    Source = (byte)tblsource.kreditor,
+                    Source_id = int.Parse(Id),
+                    Field_id = (byte)tblfield.regnr,
+                    Value = Regnr
+                };
+                action(s);
+
+                //Kontonr
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Id),
+                    Source = (byte)tblsource.kreditor,
+                    Source_id = int.Parse(Id),
+                    Field_id = (byte)tblfield.kontonr,
+                    Value = Kontonr
+                };
+                action(s);
+
+                //Debgrpnr
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Id),
+                    Source = (byte)tblsource.kreditor,
+                    Source_id = int.Parse(Id),
+                    Field_id = (byte)tblfield.debgrpnr,
+                    Value = Debgrpnr
+                };
+                action(s);
+
+                //Sektionnr
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Id),
+                    Source = (byte)tblsource.kreditor,
+                    Source_id = int.Parse(Id),
+                    Field_id = (byte)tblfield.sektionnr,
+                    Value = Sektionnr
+                };
+                action(s);
+
+                //Transkodebetaling
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Id),
+                    Source = (byte)tblsource.kreditor,
+                    Source_id = int.Parse(Id),
+                    Field_id = (byte)tblfield.transkodebetaling,
+                    Value = Transkodebetaling
+                };
+                action(s);
+
+            }
+            Program.dbData3060.SubmitChanges();
+        }
+
+        public void actionSftpxmlSync()
+        {
+            clsRest objRest = new clsRest();
+            string retur = objRest.HttpGet2("Sftp");
+            XDocument xdoc = XDocument.Parse(retur);
+            var list = from sftp in xdoc.Descendants("Sftp") select sftp;
+            int antal = list.Count();
+            Tblsync s;
+            foreach (var sftp in list)
+            {
+
+                var Id = sftp.Descendants("Id").First().Value;
+                var Navn = sftp.Descendants("Navn").First().Value;
+                var Host = sftp.Descendants("Host").First().Value;
+                var Port = sftp.Descendants("Port").First().Value;
+                var User = sftp.Descendants("User").First().Value;
+                var Outbound = sftp.Descendants("Outbound").First().Value;
+                var Inbound = sftp.Descendants("Inbound").First().Value;
+                var Pincode = sftp.Descendants("Pincode").First().Value;
+                var Certificate = sftp.Descendants("Certificate").First().Value;
+                //Id
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Id),
+                    Source = (byte)tblsource.sftp,
+                    Source_id = int.Parse(Id),
+                    Field_id = (byte)tblfield.sftp_id,
+                    Value = Id,
+                };
+                action(s);
+
+                //Navn
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Id),
+                    Source = (byte)tblsource.sftp,
+                    Source_id = int.Parse(Id),
+                    Field_id = (byte)tblfield.sftp_navn,
+                    Value = Navn
+                };
+                action(s);
+
+                //Host
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Id),
+                    Source = (byte)tblsource.sftp,
+                    Source_id = int.Parse(Id),
+                    Field_id = (byte)tblfield.host,
+                    Value = Host
+                };
+                action(s);
+
+                //Port
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Id),
+                    Source = (byte)tblsource.sftp,
+                    Source_id = int.Parse(Id),
+                    Field_id = (byte)tblfield.port,
+                    Value = Port
+                };
+                action(s);
+
+                //User
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Id),
+                    Source = (byte)tblsource.sftp,
+                    Source_id = int.Parse(Id),
+                    Field_id = (byte)tblfield.user,
+                    Value = User
+                };
+                action(s);
+
+                //Outbound
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Id),
+                    Source = (byte)tblsource.sftp,
+                    Source_id = int.Parse(Id),
+                    Field_id = (byte)tblfield.outbound,
+                    Value = Outbound
+                };
+                action(s);
+
+                //Inbound
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Id),
+                    Source = (byte)tblsource.sftp,
+                    Source_id = int.Parse(Id),
+                    Field_id = (byte)tblfield.inbound,
+                    Value = Inbound
+                };
+                action(s);
+
+                //Pincode
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Id),
+                    Source = (byte)tblsource.sftp,
+                    Source_id = int.Parse(Id),
+                    Field_id = (byte)tblfield.pincode,
+                    Value = Pincode
+                };
+                action(s);
+
+                //Certificate
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Id),
+                    Source = (byte)tblsource.sftp,
+                    Source_id = int.Parse(Id),
+                    Field_id = (byte)tblfield.certificate,
+                    Value = Certificate
+                };
+                action(s);
+
+            }
+            Program.dbData3060.SubmitChanges();
+        }
+
         public void medlemxml()
         {
 
@@ -891,6 +1587,58 @@ namespace nsPuls3060
 
 
             }
+
+        }
+
+        public void kreditorxml()
+        {
+            var kreditor = from k in Program.dbData3060.Tblkreditor
+                         select k;
+            clsRest objRest = new clsRest();
+            int antal = kreditor.Count();
+            foreach (var k in kreditor)
+            {
+                XElement xml = new XElement("Kreditor",
+                                 new XElement("key", ""),
+                                 new XElement("Id", k.Id),
+                                 new XElement("Datalevnr", k.Datalevnr),
+                                 new XElement("Datalevnavn", k.Datalevnavn),
+                                 new XElement("Pbsnr", k.Pbsnr),
+                                 new XElement("Delsystem", k.Delsystem),
+                                 new XElement("Regnr", k.Regnr),
+                                 new XElement("Kontonr", k.Kontonr) ,
+                                 new XElement("Debgrpnr", k.Debgrpnr),
+                                 new XElement("Sektionnr", k.Sektionnr),
+                                 new XElement("Transkodebetaling", k.Transkodebetaling)
+                                 );
+                string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
+                string retur = objRest.HttpPost2("Kreditor", strxml);
+            }
+        }
+
+        public void sftpxml()
+        {
+            var sftp = from s in Program.dbData3060.Tblsftp
+                         select s;
+            clsRest objRest = new clsRest();
+            int antal = sftp.Count();
+            foreach (var s in sftp)
+            {
+                XElement xml = new XElement("Sftp",
+                                 new XElement("key", ""),
+                                 new XElement("Id", s.Id),
+                                 new XElement("Navn", s.Navn),
+                                 new XElement("Host", s.Host),
+                                 new XElement("Port", s.Port),
+                                 new XElement("User", s.User),
+                                 new XElement("Outbound", s.Outbound),
+                                 new XElement("Inbound", s.Inbound),
+                                 new XElement("Pincode", s.Pincode),
+                                 new XElement("Certificate", s.Certificate)
+                                 );
+                string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
+                string retur = objRest.HttpPost2("Sftp", strxml);
+            }
         }
         //********************************************************************************
         //********************************************************************************
@@ -898,6 +1646,7 @@ namespace nsPuls3060
         {
             if (Value == null) return "None";
             if (Value.Length == 0) return "None";
+            if (Value.Length > 255) return Value.Substring(0,255);
             return Value;
         }
 
@@ -941,6 +1690,8 @@ namespace nsPuls3060
             fak = 3,
             betlin = 4,
             betlin40 = 5,
+            kreditor = 6,
+            sftp = 7
         }
 
         public enum tblfield : byte
@@ -961,7 +1712,28 @@ namespace nsPuls3060
             logdato = 14,
             akt_id = 15,
             akt_dato = 16,
-            medlemlog_nr = 17
+            medlemlog_nr = 17,
+
+            kreditor_id = 20,
+            datalevnr = 21,
+            datalevnavn = 22,
+            pbsnr = 23,
+            delsystem = 24,
+            regnr = 25,
+            kontonr = 26,
+            debgrpnr = 27,
+            sektionnr = 28,
+            transkodebetaling = 29,
+
+            sftp_id = 30,
+            sftp_navn = 31,
+            host = 32,
+            port = 33,
+            user = 34,
+            outbound = 35,
+            inbound = 36,
+            pincode = 37,
+            certificate = 38
         }
 
         internal void importeksport(ImpExp ieAction)
@@ -992,6 +1764,8 @@ namespace nsPuls3060
             bool bBreak = false;
             clsImEksportAppEngMedlemlog objMedlemLog = null;
             clsImEksportAppEngMedlem objMedlem = null;
+            clsImEksportAppEngKreditor objKreditor = null;
+            clsImEksportAppEngSftp objSftp = null;
 
             foreach (var t in imp)
             {
@@ -1000,8 +1774,8 @@ namespace nsPuls3060
                 {
                     switch (Last_Source)
                     {
-                        case (byte)tblsource.medlem:    //Medlem
-                            medlemupdate(objMedlem); //Save Medlem
+                        case (byte)tblsource.medlem:  //Medlem
+                            medlemupdate(objMedlem);  //Save Medlem
                             break;
 
                         case (byte)tblsource.medlemlog:   //Medlemlog
@@ -1009,6 +1783,14 @@ namespace nsPuls3060
                         case (byte)tblsource.betlin:      //betlin
                         case (byte)tblsource.betlin40:    //betlin40
                             medlemlogupdate(objMedlemLog);//Save MedlemLog
+                            break;
+
+                        case (byte)tblsource.kreditor:   //kreditor
+                            kreditorupdate(objKreditor); //Save kreditor
+                            break;
+
+                        case (byte)tblsource.sftp:  //sftp
+                            sftpupdate(objSftp);    //Save sftp
                             break;
 
                         default:
@@ -1038,6 +1820,22 @@ namespace nsPuls3060
                             objMedlemLog.bSource = true;
                             objMedlemLog.Id = t.Source_id;
                             objMedlemLog.bId = true;
+                            break;
+
+                        case (byte)tblsource.kreditor:    //Kreditor
+                            objKreditor = new clsImEksportAppEngKreditor();
+                            objKreditor.ieAction = ieAction;
+                            objKreditor.Id  = t.Nr;
+                            objKreditor.bId = true;
+                            objKreditor.Act = t.Act;
+                            break;
+
+                        case (byte)tblsource.sftp:        //Sftp
+                            objSftp = new clsImEksportAppEngSftp();
+                            objSftp.ieAction = ieAction;
+                            objSftp.Id = t.Nr;
+                            objSftp.bId = true;
+                            objSftp.Act = t.Act;
                             break;
 
                         default:
@@ -1130,6 +1928,100 @@ namespace nsPuls3060
                                 break;
                         }
                         break;
+//****************************************************************
+                    case (byte)tblsource.kreditor:    //Kreditor
+                        switch (t.Field_id)
+                        {
+                            case 20:   //kreditor_id
+                                objKreditor.Id = int.Parse(t.Value);
+                                objKreditor.bId = true;
+                                break;
+                            case 21:   //datalevnr
+                                objKreditor.Datalevnr = t.Value;
+                                objKreditor.bDatalevnr = true;
+                                break;
+                            case 22:   //datalevnavn
+                                objKreditor.Datalevnavn = t.Value;
+                                objKreditor.bDatalevnavn = true;
+                                break;
+                            case 23:   //pbsnr
+                                objKreditor.Pbsnr = t.Value;
+                                objKreditor.bPbsnr = true;
+                                break;
+                            case 24:   //delsystem
+                                objKreditor.Delsystem = t.Value;
+                                objKreditor.bDelsystem = true;
+                                break;
+                            case 25:   //regnr
+                                objKreditor.Regnr = t.Value;
+                                objKreditor.bRegnr = true;
+                                break;
+                            case 26:   //kontonr
+                                objKreditor.Kontonr = t.Value;
+                                objKreditor.bKontonr = true;
+                                break;
+                            case 27:   //debgrpnr
+                                objKreditor.Debgrpnr = t.Value;
+                                objKreditor.bDebgrpnr = true;
+                                break;
+                            case 28:   //sektionnr
+                                objKreditor.Sektionnr = t.Value;
+                                objKreditor.bSektionnr = true;
+                                break;
+                            case 29:   //transkodebetaling
+                                objKreditor.Transkodebetaling = t.Value;
+                                objKreditor.bTranskodebetaling = true;
+                                break;
+
+                            default:
+                                break;
+                        }
+                        break;
+                    //****************************************************************
+                    case (byte)tblsource.sftp:    //Sftp
+                        switch (t.Field_id)
+                        {
+                            case 30:   //sftp_id
+                                objSftp.Id = int.Parse(t.Value);
+                                objSftp.bId = true;
+                                break;
+                            case 31:   //sftp_navn
+                                objSftp.Navn = t.Value;
+                                objSftp.bNavn = true;
+                                break;
+                            case 32:   //host
+                                objSftp.Host = t.Value;
+                                objSftp.bHost = true;
+                                break;
+                            case 33:   //port
+                                objSftp.Port = t.Value;
+                                objSftp.bPort = true;
+                                break;
+                            case 34:   //user
+                                objSftp.User = t.Value;
+                                objSftp.bUser = true;
+                                break;
+                            case 35:   //outbound
+                                objSftp.Outbound = t.Value;
+                                objSftp.bOutbound = true;
+                                break;
+                            case 36:   //inbound
+                                objSftp.Inbound = t.Value;
+                                objSftp.bInbound = true;
+                                break;
+                            case 37:   //pincode
+                                objSftp.Pincode = t.Value;
+                                objSftp.bPincode = true;
+                                break;
+                            case 38:   //certificate
+                                objSftp.Certificate = t.Value;
+                                objSftp.bCertificate = true;
+                                break;
+
+                            default:
+                                break;
+                        }
+                        break;
 
                     default:
                         break;
@@ -1146,7 +2038,7 @@ namespace nsPuls3060
                 switch (Last_Source)
                 {
                     case (byte)tblsource.medlem:    //Medlem
-                        medlemupdate(objMedlem); //Save Medlem
+                        medlemupdate(objMedlem);    //Save Medlem
                         break;
 
                     case (byte)tblsource.medlemlog:   //Medlemlog
@@ -1154,6 +2046,14 @@ namespace nsPuls3060
                     case (byte)tblsource.betlin:      //betlin
                     case (byte)tblsource.betlin40:    //betlin40
                         medlemlogupdate(objMedlemLog);//Save MedlemLog
+                        break;
+
+                    case (byte)tblsource.kreditor:    //Kreditor
+                        kreditorupdate(objKreditor);  //Save Kreditor
+                        break;
+
+                    case (byte)tblsource.sftp:        //Sftp
+                        sftpupdate(objSftp);          //Save Kreditor
                         break;
 
                     default:
@@ -1171,6 +2071,16 @@ namespace nsPuls3060
         private void medlemlogupdate(clsImEksportAppEngMedlemlog objMedlemLog)
         {
             objMedlemLog.ExecuteImEksport();//throw new NotImplementedException();
+        }
+        
+        private void kreditorupdate(clsImEksportAppEngKreditor objKreditor)
+        {
+            objKreditor.ExecuteImEksport();//throw new NotImplementedException();
+        }
+        
+        private void sftpupdate(clsImEksportAppEngSftp objSftp)
+        {
+            objSftp.ExecuteImEksport();//throw new NotImplementedException();
         }
     }
 }

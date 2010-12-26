@@ -16,7 +16,7 @@ import rest
 import os
 import re
 
-from models import UserGroup, User, NrSerie, Menu, MenuMenuLink, Medlemlog, Person
+from models import UserGroup, User, NrSerie, Kreditor, Sftp, Menu, MenuMenuLink, Medlemlog, Person
 from util import TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
 from menuusergroup import deleteMenuAndUserGroup, createMenuAndUserGroup
 from menu import MenuHandler, ListUserHandler, UserHandler
@@ -487,7 +487,122 @@ class SyncMedlemlogHandler(webapp.RequestHandler):
       logging.info('%s - %s - %s - %s - %s - %s' % (medlemlog.Source, medlemlog.Source_id, medlemlog.Nr, medlemlog.Logdato, medlemlog.Akt_id, medlemlog.Akt_dato))
       logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
       self.response.out.write('Status: 404')
+
+class SyncKreditorHandler(webapp.RequestHandler):
+  def get(self):
+    root = db.Key.from_path('Persons','root')
+    qry = db.Query(Kreditor).ancestor(root)
+    antal = qry.count()
+    logging.info('TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT Antal: %s' % (antal))
+    template_values = {
+      'kreditor_list': qry,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/kreditor.xml') 
+    self.response.out.write(template.render(path, template_values))
+  
+  def delete(self):
+    path = self.request.environ['PATH_INFO']
+    mo = re.match("/sync/Kreditor/([0-9]+)", path)
+    if mo:
+      if mo.groups()[0]:
+        try:
+          Id = mo.groups()[0]
+          logging.info('DELETE Id=%s' % (Id))
+          k = db.Key.from_path('Persons','root','Kreditor',Id)
+          m = Kreditor.get(k)
+          m.delete()
+        except:
+          pass
+    self.response.out.write('Status: 403')
+
+  def post(self):
+    doc = minidom.parse(self.request.body_file)
+    try:
+      Id = doc.getElementsByTagName("Id")[0].childNodes[0].data
+    except:
+      Id = None
+    root = db.Key.from_path('Persons','root')
+    kreditor = Kreditor.get_or_insert('%s' % (Id), parent=root)
     
+    for n in ['Datalevnr', 'Datalevnavn', 'Pbsnr', 'Delsystem', 'Regnr', 'Kontonr', 'Debgrpnr', 'Sektionnr', 'Transkodebetaling']:
+      val = None
+      bval = True
+      try:
+        val = doc.getElementsByTagName(n)[0].childNodes[0].data
+      except:
+        bval = False
+      
+      if bval:     
+        try:
+          setattr(kreditor, n, val)
+          logging.info('%s=%s' % (n, getattr(kreditor, n)) )
+        except:
+          setattr(kreditor, n, None)
+    
+    kreditor.put()
+
+    logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    logging.info('%s - %s - %s - %s - %s - %s - %s - %s - %s - %s' % (kreditor.Id, kreditor.Datalevnr, kreditor.Datalevnavn, kreditor.Pbsnr, kreditor.Delsystem, kreditor.Regnr, kreditor.Kontonr, kreditor.Debgrpnr, kreditor.Sektionnr, kreditor.Transkodebetaling))
+    logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    self.response.out.write('Status: 404')
+
+class SyncSftpHandler(webapp.RequestHandler):
+  def get(self):
+    root = db.Key.from_path('Persons','root')
+    qry = db.Query(Sftp).ancestor(root)
+    antal = qry.count()
+    logging.info('TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT Antal: %s' % (antal))
+    template_values = {
+      'sftp_list': qry,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/sftp.xml') 
+    self.response.out.write(template.render(path, template_values))
+  
+  def delete(self):
+    path = self.request.environ['PATH_INFO']
+    mo = re.match("/sync/Sftp/([0-9]+)", path)
+    if mo:
+      if mo.groups()[0]:
+        try:
+          Id = mo.groups()[0]
+          logging.info('DELETE Id=%s' % (Id))
+          k = db.Key.from_path('Persons','root','Sftp',Id)
+          m = Sftp.get(k)
+          m.delete()
+        except:
+          pass
+    self.response.out.write('Status: 403')
+
+  def post(self):
+    doc = minidom.parse(self.request.body_file)
+    try:
+      Id = doc.getElementsByTagName("Id")[0].childNodes[0].data
+    except:
+      Id = None
+    root = db.Key.from_path('Persons','root')
+    sftp = Sftp.get_or_insert('%s' % (Id), parent=root)
+    
+    for n in ['Navn', 'Host', 'Port', 'User', 'Outbound', 'Inbound', 'Pincode', 'Certificate']:
+      val = None
+      bval = True
+      try:
+        val = doc.getElementsByTagName(n)[0].childNodes[0].data
+      except:
+        bval = False
+      
+      if bval:     
+        try:
+          setattr(sftp, n, val)
+          logging.info('%s=%s' % (n, getattr(sftp, n)) )
+        except:
+          setattr(sftp, n, None)
+    
+    sftp.put()
+
+    logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    logging.info('%s - %s - %s - %s - %s - %s - %s - %s - %s' % (sftp.Id, sftp.Navn, sftp.Host, sftp.Port, sftp.User, sftp.Outbound, sftp.Inbound, sftp.Pincode, sftp.Certificate))
+    logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    self.response.out.write('Status: 404')
 
 class LogoffHandler(webapp.RequestHandler):
   def get(self):
@@ -574,6 +689,10 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/sync/Medlemlog', SyncMedlemlogHandler),
                                        ('/sync/Medlem/.*', SyncMedlemHandler),
                                        ('/sync/Medlem', SyncMedlemHandler),
+                                       ('/sync/Kreditor/.*', SyncKreditorHandler),
+                                       ('/sync/Kreditor', SyncKreditorHandler),
+                                       ('/sync/Sftp/.*', SyncSftpHandler),
+                                       ('/sync/Sftp', SyncSftpHandler),                                       
                                        ('/sync/.*', MenuHandler),
                                        ('/logoff', LogoffHandler),
                                        ('/teknik/createmenu', CreateMenu),

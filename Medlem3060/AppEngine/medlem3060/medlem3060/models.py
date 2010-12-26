@@ -25,6 +25,29 @@ class MenuMenuLink(db.Model):
 class NrSerie(db.Model):
     Name  = db.StringProperty() 
     NextNumber = db.IntegerProperty()
+
+class Kreditor(db.Model): 
+    Id = db.IntegerProperty()
+    Datalevnr = db.StringProperty()
+    Datalevnavn = db.StringProperty()      
+    Pbsnr = db.StringProperty()
+    Delsystem = db.StringProperty() 
+    Regnr = db.StringProperty() 
+    Kontonr = db.StringProperty() 
+    Debgrpnr = db.StringProperty() 
+    Sektionnr = db.StringProperty() 
+    Transkodebetaling = db.StringProperty() 
+
+class Sftp(db.Model): 
+    Id = db.IntegerProperty()
+    Navn = db.StringProperty()
+    Host = db.StringProperty()
+    Port = db.StringProperty()
+    User = db.StringProperty()
+    Outbound = db.StringProperty()
+    Inbound = db.StringProperty()
+    Pincode = db.StringProperty()
+    Certificate = db.StringProperty()
     
 class Medlemlog(db.Model): 
     Source = db.IntegerProperty()
