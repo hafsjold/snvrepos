@@ -48,6 +48,16 @@ class Sftp(db.Model):
     Inbound = db.StringProperty()
     Pincode = db.StringProperty()
     Certificate = db.TextProperty()
+
+class Infotekst(db.Model): 
+    Id = db.IntegerProperty()
+    Navn = db.StringProperty()
+    Msgtext = db.TextProperty()
+    
+class Sysinfo(db.Model):
+    Id = db.IntegerProperty() 
+    Vkey = db.StringProperty()
+    Val = db.StringProperty()
     
 class Medlemlog(db.Model): 
     Source = db.IntegerProperty()

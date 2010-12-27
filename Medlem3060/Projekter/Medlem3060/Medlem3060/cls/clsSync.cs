@@ -400,6 +400,124 @@ namespace nsPuls3060
         }
     }
 
+    public class clsImEksportAppEngInfotekst
+    {
+        public clsImEksportAppEngInfotekst()
+        {
+            bId = false;
+            bNavn = false;
+            bMsgtext = false;
+        }
+
+        public ImpExp ieAction { get; set; }
+        public string Act { get; set; }
+        public bool bId { get; set; }
+        public bool bNavn { get; set; }
+        public bool bMsgtext { get; set; }
+        public int? Id { get; set; }
+        public string Navn { get; set; }
+        public string Msgtext { get; set; }
+        public void ExecuteImEksport()
+        {
+            if (ieAction == ImpExp.fdImport) Import();
+            else Eksport();
+        }
+        private void Eksport()
+        {
+            clsRest objRest = new clsRest();
+            if (Act == "del")
+            {
+                string retur = objRest.HttpDelete2("Infotekst/" + Id);
+            }
+            else
+            {
+                XElement xml = new XElement("Infotekst", new XElement("Id", Id));
+                if (bNavn) xml.Add(new XElement("Navn", Navn));
+                if (bMsgtext) xml.Add(new XElement("Msgtext", Msgtext));
+                string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
+                string retur = objRest.HttpPost2("Infotekst", strxml);
+            }
+
+        }
+        private void Import()
+        {
+            Tblinfotekst recInfotekst = null;
+            try
+            {
+                recInfotekst = (from k in Program.dbData3060.Tblinfotekst where k.Id == Id select k).First();
+                if (bNavn) recInfotekst.Navn = Navn;
+                if (bMsgtext) recInfotekst.Msgtext = Msgtext;
+            }
+            catch
+            {
+                recInfotekst = new Tblinfotekst { Id = (int)Id };
+                if (bNavn) recInfotekst.Navn = Navn;
+                if (bMsgtext) recInfotekst.Msgtext = Msgtext;
+                Program.dbData3060.Tblinfotekst.InsertOnSubmit(recInfotekst);
+            }
+            Program.dbData3060.SubmitChanges();
+        }
+    }
+
+    public class clsImEksportAppEngSysinfo
+    {
+        public clsImEksportAppEngSysinfo()
+        {
+            bId = false;
+            bVkey = false;
+            bVal = false;
+        }
+
+        public ImpExp ieAction { get; set; }
+        public string Act { get; set; }
+        public bool bId { get; set; }
+        public bool bVkey { get; set; }
+        public bool bVal { get; set; }
+        public int? Id { get; set; }
+        public string Vkey { get; set; }
+        public string Val { get; set; }
+        public void ExecuteImEksport()
+        {
+            if (ieAction == ImpExp.fdImport) Import();
+            else Eksport();
+        }
+        private void Eksport()
+        {
+            clsRest objRest = new clsRest();
+            if (Act == "del")
+            {
+                string retur = objRest.HttpDelete2("Sysinfo/" + Id);
+            }
+            else
+            {
+                XElement xml = new XElement("Sysinfo", new XElement("Id", Id));
+                if (bVkey) xml.Add(new XElement("Vkey", Vkey));
+                if (bVal) xml.Add(new XElement("Val", Val));
+                string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
+                string retur = objRest.HttpPost2("Sysinfo", strxml);
+            }
+
+        }
+        private void Import()
+        {
+            TblSysinfo recSysinfo = null;
+            try
+            {
+                recSysinfo = (from k in Program.dbData3060.TblSysinfo where k.Id == Id select k).First();
+                if (bVkey) recSysinfo.Vkey = Vkey;
+                if (bVal) recSysinfo.Val = Val;
+            }
+            catch
+            {
+                recSysinfo = new TblSysinfo { Id = (int)Id };
+                if (bVkey) recSysinfo.Vkey = Vkey;
+                if (bVal) recSysinfo.Val = Val;
+                Program.dbData3060.TblSysinfo.InsertOnSubmit(recSysinfo);
+            }
+            Program.dbData3060.SubmitChanges();
+        }
+    }
+
     public enum ImpExp : int
     {
         fdImport = 1,
@@ -450,6 +568,8 @@ namespace nsPuls3060
                 actionMedlemlogSync();
                 actionKreditorSync();
                 actionSftpSync();
+                actionInfotekstSync();
+                actionSysinfoSync();
             }
             if (m_action == 3)
             {
@@ -457,6 +577,8 @@ namespace nsPuls3060
                 actionMedlemlogxmlSync();
                 actionKreditorxmlSync();
                 actionSftpxmlSync();
+                actionInfotekstxmlSync();
+                actionSysinfoxmlSync();
             }
         }
 
@@ -957,6 +1079,92 @@ namespace nsPuls3060
                 };
                 action(s);
                 Program.dbData3060.SubmitChanges();
+
+            }
+            Program.dbData3060.SubmitChanges();
+        }
+
+        private void actionInfotekstSync()
+        {
+            var infotekst = from f in Program.dbData3060.Tblinfotekst select f;
+            Tblsync s;
+            foreach (var f in infotekst)
+            {
+                //Id
+                s = new Tblsync
+                {
+                    Nr = (int)f.Id,
+                    Source = (byte)tblsource.infotekst,
+                    Source_id = (int)f.Id,
+                    Field_id = (byte)tblfield.infotekst_id,
+                    Value = getString(f.Id),
+                };
+                action(s);
+
+                //Navn
+                s = new Tblsync
+                {
+                    Nr = (int)f.Id,
+                    Source = (byte)tblsource.infotekst,
+                    Source_id = (int)f.Id,
+                    Field_id = (byte)tblfield.infotekst_navn,
+                    Value = getString(f.Navn)
+                };
+                action(s);
+
+                //Msgtext
+                s = new Tblsync
+                {
+                    Nr = (int)f.Id,
+                    Source = (byte)tblsource.infotekst,
+                    Source_id = (int)f.Id,
+                    Field_id = (byte)tblfield.msgtext,
+                    Value = getString(f.Msgtext)
+                };
+                action(s);
+
+            }
+            Program.dbData3060.SubmitChanges();
+        }
+
+        private void actionSysinfoSync()
+        {
+            var sysinfo = from f in Program.dbData3060.TblSysinfo select f;
+            Tblsync s;
+            foreach (var f in sysinfo)
+            {
+                //Id
+                s = new Tblsync
+                {
+                    Nr = (int)f.Id,
+                    Source = (byte)tblsource.sysinfo,
+                    Source_id = (int)f.Id,
+                    Field_id = (byte)tblfield.sysinfo_id,
+                    Value = getString(f.Id),
+                };
+                action(s);
+
+                //Vkey
+                s = new Tblsync
+                {
+                    Nr = (int)f.Id,
+                    Source = (byte)tblsource.sysinfo,
+                    Source_id = (int)f.Id,
+                    Field_id = (byte)tblfield.vkey,
+                    Value = getString(f.Vkey)
+                };
+                action(s);
+
+                //Val
+                s = new Tblsync
+                {
+                    Nr = (int)f.Id,
+                    Source = (byte)tblsource.sysinfo,
+                    Source_id = (int)f.Id,
+                    Field_id = (byte)tblfield.val,
+                    Value = getString(f.Val)
+                };
+                action(s);
 
             }
             Program.dbData3060.SubmitChanges();
@@ -1469,6 +1677,109 @@ namespace nsPuls3060
             Program.dbData3060.SubmitChanges();
         }
 
+        public void actionInfotekstxmlSync()
+        {
+            clsRest objRest = new clsRest();
+            string retur = objRest.HttpGet2("Infotekst");
+            XDocument xdoc = XDocument.Parse(retur);
+            var list = from infotekst in xdoc.Descendants("Infotekst") select infotekst;
+            int antal = list.Count();
+            Tblsync s;
+            foreach (var infotekst in list)
+            {
+
+                var Id = infotekst.Descendants("Id").First().Value;
+                var Navn = infotekst.Descendants("Navn").First().Value;
+                var Msgtext = infotekst.Descendants("Msgtext").First().Value;
+
+                //Id
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Id),
+                    Source = (byte)tblsource.infotekst,
+                    Source_id = int.Parse(Id),
+                    Field_id = (byte)tblfield.infotekst_id,
+                    Value = Id,
+                };
+                action(s);
+
+                //Navn
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Id),
+                    Source = (byte)tblsource.infotekst,
+                    Source_id = int.Parse(Id),
+                    Field_id = (byte)tblfield.infotekst_navn,
+                    Value = Navn
+                };
+                action(s);
+
+                //Msgtext
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Id),
+                    Source = (byte)tblsource.infotekst,
+                    Source_id = int.Parse(Id),
+                    Field_id = (byte)tblfield.msgtext,
+                    Value = Msgtext
+                };
+                action(s);
+
+            }
+            Program.dbData3060.SubmitChanges();
+        }
+
+        public void actionSysinfoxmlSync()
+        {
+            clsRest objRest = new clsRest();
+            string retur = objRest.HttpGet2("Sysinfo");
+            XDocument xdoc = XDocument.Parse(retur);
+            var list = from sysinfo in xdoc.Descendants("Sysinfo") select sysinfo;
+            int antal = list.Count();
+            Tblsync s;
+            foreach (var sysinfo in list)
+            {
+                var Id = sysinfo.Descendants("Id").First().Value;
+                var Vkey = sysinfo.Descendants("Vkey").First().Value;
+                var Val = sysinfo.Descendants("Val").First().Value;
+
+                //Id
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Id),
+                    Source = (byte)tblsource.sysinfo,
+                    Source_id = int.Parse(Id),
+                    Field_id = (byte)tblfield.sysinfo_id,
+                    Value = Id,
+                };
+                action(s);
+
+                //Vkey
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Id),
+                    Source = (byte)tblsource.sysinfo,
+                    Source_id = int.Parse(Id),
+                    Field_id = (byte)tblfield.vkey,
+                    Value = Vkey
+                };
+                action(s);
+
+                //Val
+                s = new Tblsync
+                {
+                    Nr = int.Parse(Id),
+                    Source = (byte)tblsource.sysinfo,
+                    Source_id = int.Parse(Id),
+                    Field_id = (byte)tblfield.val,
+                    Value = Val
+                };
+                action(s);
+
+            }
+            Program.dbData3060.SubmitChanges();
+        }
+
         public void medlemxml()
         {
 
@@ -1640,6 +1951,44 @@ namespace nsPuls3060
                 string retur = objRest.HttpPost2("Sftp", strxml);
             }
         }
+
+        public void infotekstxml()
+        {
+            var infotekst = from i in Program.dbData3060.Tblinfotekst
+                            select i;
+            clsRest objRest = new clsRest();
+            int antal = infotekst.Count();
+            foreach (var i in infotekst)
+            {
+                XElement xml = new XElement("Infotekst",
+                                 new XElement("key", ""),
+                                 new XElement("Id", i.Id),
+                                 new XElement("Navn", i.Navn),
+                                 new XElement("Msgtext", i.Msgtext)
+                                 );
+                string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
+                string retur = objRest.HttpPost2("Infotekst", strxml);
+            }
+        }
+
+        public void sysinfoxml()
+        {
+            var sysinfo = from s in Program.dbData3060.TblSysinfo
+                          select s;
+            clsRest objRest = new clsRest();
+            int antal = sysinfo.Count();
+            foreach (var s in sysinfo)
+            {
+                XElement xml = new XElement("Sysinfo",
+                                 new XElement("key", ""),
+                                 new XElement("Id", s.Id),
+                                 new XElement("Vkey", s.Vkey),
+                                 new XElement("Val", s.Val)
+                                 );
+                string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
+                string retur = objRest.HttpPost2("Sysinfo", strxml);
+            }
+        }        
         
         //********************************************************************************
         //********************************************************************************
@@ -1692,7 +2041,9 @@ namespace nsPuls3060
             betlin = 4,
             betlin40 = 5,
             kreditor = 6,
-            sftp = 7
+            sftp = 7,
+            infotekst = 8,
+            sysinfo = 9
         }
 
         public enum tblfield : byte
@@ -1734,7 +2085,15 @@ namespace nsPuls3060
             outbound = 35,
             inbound = 36,
             pincode = 37,
-            certificate = 38
+            certificate = 38,
+
+            infotekst_id = 40,
+            infotekst_navn = 41,
+            msgtext = 42,
+
+            sysinfo_id = 50,
+            vkey = 51,
+            val = 52,
         }
 
         internal void importeksport(ImpExp ieAction)
@@ -1767,6 +2126,8 @@ namespace nsPuls3060
             clsImEksportAppEngMedlem objMedlem = null;
             clsImEksportAppEngKreditor objKreditor = null;
             clsImEksportAppEngSftp objSftp = null;
+            clsImEksportAppEngInfotekst objInfotekst = null;
+            clsImEksportAppEngSysinfo objSysinfo = null;
 
             foreach (var t in imp)
             {
@@ -1792,6 +2153,14 @@ namespace nsPuls3060
 
                         case (byte)tblsource.sftp:  //sftp
                             sftpupdate(objSftp);    //Save sftp
+                            break;
+
+                        case (byte)tblsource.infotekst:    //infotekst
+                            infotekstupdate(objInfotekst); //Save infotekst
+                            break;
+
+                        case (byte)tblsource.sysinfo:     //sysinfo
+                            sysinfoupdate(objSysinfo);    //Save sysinfo
                             break;
 
                         default:
@@ -1837,6 +2206,22 @@ namespace nsPuls3060
                             objSftp.Id = t.Nr;
                             objSftp.bId = true;
                             objSftp.Act = t.Act;
+                            break;
+
+                        case (byte)tblsource.infotekst:    //Infotekst
+                            objInfotekst = new clsImEksportAppEngInfotekst();
+                            objInfotekst.ieAction = ieAction;
+                            objInfotekst.Id = t.Nr;
+                            objInfotekst.bId = true;
+                            objInfotekst.Act = t.Act;
+                            break;
+
+                        case (byte)tblsource.sysinfo:     //Sysinfo
+                            objSysinfo = new clsImEksportAppEngSysinfo();
+                            objSysinfo.ieAction = ieAction;
+                            objSysinfo.Id = t.Nr;
+                            objSysinfo.bId = true;
+                            objSysinfo.Act = t.Act;
                             break;
 
                         default:
@@ -2024,6 +2409,48 @@ namespace nsPuls3060
                         }
                         break;
 
+                    case (byte)tblsource.infotekst:    //Infotekst
+                        switch (t.Field_id)
+                        {
+                            case 40:   //infotekst_id
+                                objInfotekst.Id = int.Parse(t.Value);
+                                objInfotekst.bId = true;
+                                break;
+                            case 41:   //infotekst_navn
+                                objInfotekst.Navn = t.Value;
+                                objInfotekst.bNavn = true;
+                                break;
+                            case 42:   //msgtext
+                                objInfotekst.Msgtext = t.Value;
+                                objInfotekst.bMsgtext = true;
+                                break;
+
+                            default:
+                                break;
+                        }
+                        break;
+
+                    case (byte)tblsource.sysinfo:    //Sysinfo
+                        switch (t.Field_id)
+                        {
+                            case 50:   //sysinfo_id
+                                objSysinfo.Id = int.Parse(t.Value);
+                                objSysinfo.bId = true;
+                                break;
+                            case 51:   //vkey
+                                objSysinfo.Vkey = t.Value;
+                                objSysinfo.bVkey = true;
+                                break;
+                            case 52:   //val
+                                objSysinfo.Val = t.Value;
+                                objSysinfo.bVal = true;
+                                break;
+
+                            default:
+                                break;
+                        }
+                        break;
+
                     default:
                         break;
                 }
@@ -2082,6 +2509,16 @@ namespace nsPuls3060
         private void sftpupdate(clsImEksportAppEngSftp objSftp)
         {
             objSftp.ExecuteImEksport();//throw new NotImplementedException();
+        }
+
+        private void infotekstupdate(clsImEksportAppEngInfotekst objInfotekst)
+        {
+            objInfotekst.ExecuteImEksport();//throw new NotImplementedException();
+        }
+
+        private void sysinfoupdate(clsImEksportAppEngSysinfo objSysinfo)
+        {
+            objSysinfo.ExecuteImEksport();//throw new NotImplementedException();
         }
     }
 }

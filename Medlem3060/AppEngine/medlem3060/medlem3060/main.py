@@ -16,7 +16,7 @@ import rest
 import os
 import re
 
-from models import UserGroup, User, NrSerie, Kreditor, Sftp, Menu, MenuMenuLink, Medlemlog, Person
+from models import UserGroup, User, NrSerie, Kreditor, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlemlog, Person
 from util import TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
 from menuusergroup import deleteMenuAndUserGroup, createMenuAndUserGroup
 from menu import MenuHandler, ListUserHandler, UserHandler
@@ -606,6 +606,124 @@ class SyncSftpHandler(webapp.RequestHandler):
     logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     self.response.out.write('Status: 404')
 
+class SyncInfotekstHandler(webapp.RequestHandler):
+  def get(self):
+    root = db.Key.from_path('Persons','root')
+    qry = db.Query(Infotekst).ancestor(root)
+    antal = qry.count()
+    logging.info('TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT Antal: %s' % (antal))
+    template_values = {
+      'infotekst_list': qry,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/infotekst.xml') 
+    self.response.out.write(template.render(path, template_values))
+  
+  def delete(self):
+    path = self.request.environ['PATH_INFO']
+    mo = re.match("/sync/Infotekst/([0-9]+)", path)
+    if mo:
+      if mo.groups()[0]:
+        try:
+          Id = mo.groups()[0]
+          logging.info('DELETE Id=%s' % (Id))
+          k = db.Key.from_path('Persons','root','Infotekst',Id)
+          m = Infotekst.get(k)
+          m.delete()
+        except:
+          pass
+    self.response.out.write('Status: 403')
+
+  def post(self):
+    doc = minidom.parse(self.request.body_file)
+    try:
+      Id = doc.getElementsByTagName("Id")[0].childNodes[0].data
+    except:
+      Id = None
+    root = db.Key.from_path('Persons','root')
+    infotekst = Infotekst.get_or_insert('%s' % (Id), parent=root)
+    
+    for n in ['Navn', 'Msgtext']:
+      val = None
+      bval = True
+      try:
+        val = doc.getElementsByTagName(n)[0].childNodes[0].data
+      except:
+        bval = False
+      
+      if bval:     
+        try:
+          setattr(infotekst, n, val)
+          logging.info('%s=%s' % (n, getattr(infotekst, n)) )
+        except:
+          setattr(infotekst, n, None)
+    
+    infotekst.Id = int(Id)
+    infotekst.put()
+
+    logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    logging.info('%s - %s - %s' % (infotekst.Id, infotekst.Navn, infotekst.Msgtext))
+    logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    self.response.out.write('Status: 404')
+
+class SyncSysinfoHandler(webapp.RequestHandler):
+  def get(self):
+    root = db.Key.from_path('Persons','root')
+    qry = db.Query(Sysinfo).ancestor(root)
+    antal = qry.count()
+    logging.info('TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT Antal: %s' % (antal))
+    template_values = {
+      'sysinfo_list': qry,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/sysinfo.xml') 
+    self.response.out.write(template.render(path, template_values))
+  
+  def delete(self):
+    path = self.request.environ['PATH_INFO']
+    mo = re.match("/sync/Sysinfo/([0-9]+)", path)
+    if mo:
+      if mo.groups()[0]:
+        try:
+          Id = mo.groups()[0]
+          logging.info('DELETE Id=%s' % (Id))
+          k = db.Key.from_path('Persons','root','Sysinfo',Id)
+          m = Sysinfo.get(k)
+          m.delete()
+        except:
+          pass
+    self.response.out.write('Status: 403')
+
+  def post(self):
+    doc = minidom.parse(self.request.body_file)
+    try:
+      Id = doc.getElementsByTagName("Id")[0].childNodes[0].data
+    except:
+      Id = None
+    root = db.Key.from_path('Persons','root')
+    sysinfo = Sysinfo.get_or_insert('%s' % (Id), parent=root)
+    
+    for n in ['Vkey', 'Val']:
+      val = None
+      bval = True
+      try:
+        val = doc.getElementsByTagName(n)[0].childNodes[0].data
+      except:
+        bval = False
+      
+      if bval:     
+        try:
+          setattr(sysinfo, n, val)
+          logging.info('%s=%s' % (n, getattr(sysinfo, n)) )
+        except:
+          setattr(sysinfo, n, None)
+    
+    sysinfo.Id = int(Id)
+    sysinfo.put()
+
+    logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    logging.info('%s - %s - %s' % (sysinfo.Id, sysinfo.Vkey, sysinfo.Val))
+    logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
+    self.response.out.write('Status: 404')
+
 class LogoffHandler(webapp.RequestHandler):
   def get(self):
     self.redirect(users.create_logout_url("/"))
@@ -694,7 +812,11 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/sync/Kreditor/.*', SyncKreditorHandler),
                                        ('/sync/Kreditor', SyncKreditorHandler),
                                        ('/sync/Sftp/.*', SyncSftpHandler),
-                                       ('/sync/Sftp', SyncSftpHandler),                                       
+                                       ('/sync/Sftp', SyncSftpHandler),
+                                       ('/sync/Infotekst/.*', SyncInfotekstHandler),
+                                       ('/sync/Infotekst', SyncInfotekstHandler),       
+                                       ('/sync/Sysinfo/.*', SyncSysinfoHandler),
+                                       ('/sync/Sysinfo', SyncSysinfoHandler),                                              
                                        ('/sync/.*', MenuHandler),
                                        ('/logoff', LogoffHandler),
                                        ('/teknik/createmenu', CreateMenu),

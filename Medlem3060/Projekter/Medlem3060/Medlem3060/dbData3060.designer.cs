@@ -6190,7 +6190,7 @@ namespace nsPuls3060
 			}
 		}
 		
-		[Column(Name="value", Storage="_Value", DbType="NVarChar(255)")]
+		[Column(Name="value", Storage="_Value", DbType="NVarChar(4000)")]
 		public string Value
 		{
 			get
@@ -6241,6 +6241,8 @@ namespace nsPuls3060
 		
 		private string _Val;
 		
+		private int _Id;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -6249,6 +6251,8 @@ namespace nsPuls3060
     partial void OnVkeyChanged();
     partial void OnValChanging(string value);
     partial void OnValChanged();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
     #endregion
 		
 		public TblSysinfo()
@@ -6292,6 +6296,26 @@ namespace nsPuls3060
 					this._Val = value;
 					this.SendPropertyChanged("Val");
 					this.OnValChanged();
+				}
+			}
+		}
+		
+		[Column(Name="id", Storage="_Id", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
 				}
 			}
 		}
