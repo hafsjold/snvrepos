@@ -1640,13 +1640,14 @@ namespace nsPuls3060
                 string retur = objRest.HttpPost2("Sftp", strxml);
             }
         }
+        
         //********************************************************************************
         //********************************************************************************
+
         private string getString(string Value)
         {
             if (Value == null) return "None";
             if (Value.Length == 0) return "None";
-            if (Value.Length > 255) return Value.Substring(0,255);
             return Value;
         }
 
@@ -1928,7 +1929,7 @@ namespace nsPuls3060
                                 break;
                         }
                         break;
-//****************************************************************
+
                     case (byte)tblsource.kreditor:    //Kreditor
                         switch (t.Field_id)
                         {
@@ -1977,7 +1978,7 @@ namespace nsPuls3060
                                 break;
                         }
                         break;
-                    //****************************************************************
+
                     case (byte)tblsource.sftp:    //Sftp
                         switch (t.Field_id)
                         {
