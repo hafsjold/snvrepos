@@ -539,6 +539,7 @@ class SyncKreditorHandler(webapp.RequestHandler):
         except:
           setattr(kreditor, n, None)
     
+    kreditor.Id = int(Id)
     kreditor.put()
 
     logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
@@ -597,6 +598,7 @@ class SyncSftpHandler(webapp.RequestHandler):
         except:
           setattr(sftp, n, None)
     
+    sftp.Id = int(Id)
     sftp.put()
 
     logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')

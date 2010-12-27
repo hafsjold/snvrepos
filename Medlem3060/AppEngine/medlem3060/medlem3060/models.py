@@ -47,7 +47,7 @@ class Sftp(db.Model):
     Outbound = db.StringProperty()
     Inbound = db.StringProperty()
     Pincode = db.StringProperty()
-    Certificate = db.StringProperty()
+    Certificate = db.TextProperty()
     
 class Medlemlog(db.Model): 
     Source = db.IntegerProperty()
