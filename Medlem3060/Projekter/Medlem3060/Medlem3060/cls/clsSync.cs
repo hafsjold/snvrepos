@@ -112,7 +112,8 @@ namespace nsPuls3060
                 row.ItemArray = val;
                 row.EndEdit();
             }
-            catch (MissingPrimaryKeyException e)
+            //catch (MissingPrimaryKeyException e)
+            catch (NullReferenceException e)
             {
                 e.GetType();
                 val = new object[11];
@@ -2103,9 +2104,9 @@ namespace nsPuls3060
             {
                 imp = from t in Program.dbData3060.Tempimpexp
                       where t.Ie == "i"
-                      && t.Source < 3
+                      && (t.Source == 2 || t.Source == 254)
                       && t.Act != "del"
-                      orderby t.Nr, t.Source, t.Source_id, t.Field_id
+                      orderby t.Nr, t.Source descending, t.Source_id, t.Field_id
                       select t;
             }
             if (ieAction == ImpExp.fdEksport)

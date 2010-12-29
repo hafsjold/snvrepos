@@ -16,7 +16,7 @@ import rest
 import os
 import re
 
-from models import UserGroup, User, NrSerie, Kreditor, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlemlog, Person
+from models import UserGroup, User, NrSerie, Kreditor, Tilpbs, Fak, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlemlog, Person
 from util import TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
 from menuusergroup import deleteMenuAndUserGroup, createMenuAndUserGroup
 from menu import MenuHandler, ListUserHandler, UserHandler
@@ -161,6 +161,7 @@ class UpdatemedlemHandler(webapp.RequestHandler):
       jData += '"bMedlemlog":"true"'
       jData += ',"MedlemlogTablePos":"%s"' % (self.request.get('MedlemlogTablePos'))
       jData += ',"MedlemlogData":["%s","%s","%s","%s","%s","%s","%s"]' % (p.Nr,p.Source,p.Source_id,p.Logdato,p.Akt_id,p.Akt_dato,p.Akt_id)
+      memcache.delete('jLogData', namespace='jLogData')
     else:
       jData += '"bMedlemlog":"false"'
      
@@ -193,6 +194,12 @@ class UpdatemedlemHandler(webapp.RequestHandler):
       logging.info('UpdatemedlemHandler ERROR Navn: %s, Kaldenavn: %s' % (self.request.get('Navn'), self.request.get('Kaldenavn')))
       self.response.out.write('ERROR from Server')
    
+class TestHandler(webapp.RequestHandler):
+  def get(self):
+    template_values = {}
+    path = os.path.join(os.path.dirname(__file__), 'templates/test.html') 
+    self.response.out.write(template.render(path, template_values))
+
 class MedlemHandler(webapp.RequestHandler):
   def getNrfromPath(self):
     path = self.request.environ['PATH_INFO']
@@ -362,6 +369,7 @@ class SyncMedlemHandler(webapp.RequestHandler):
           k = db.Key.from_path('Persons','root','Person',Nr)
           m = Person.get(k)
           m.delete()
+          memcache.delete('jData', namespace='jData')
         except:
           pass
     self.response.out.write('Status: 403')
@@ -394,6 +402,7 @@ class SyncMedlemHandler(webapp.RequestHandler):
     bFodtDato = True
     try:
       FodtDato = doc.getElementsByTagName("FodtDato")[0].childNodes[0].data
+ 
     except:
       bFodtDato = False
 
@@ -407,7 +416,8 @@ class SyncMedlemHandler(webapp.RequestHandler):
 
     person.setNameTags()
     person.put()
-
+    memcache.delete('jData', namespace='jData')
+    
     logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     logging.info('%s - %s - %s - %s - %s - %s - %s - %s - %s - %s - %s' % (person.Nr, person.Navn, person.Kaldenavn, person.Adresse, person.Postnr, person.Bynavn, person.Email, person.Telefon, person.Kon, person.FodtDato, person.Bank))
     logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
@@ -439,6 +449,7 @@ class SyncMedlemlogHandler(webapp.RequestHandler):
           k = db.Key.from_path('Persons','root','Person','%s' % (Nr),'%s-%s' % (Source,Source_id))
           m = Medlemlog.get(k)
           m.delete()
+          memcache.delete('jLogData', namespace='jLogData')
         except:
           pass
     self.response.out.write('Status: 403')
@@ -482,6 +493,7 @@ class SyncMedlemlogHandler(webapp.RequestHandler):
         pass
 
       medlemlog.put()
+      memcache.delete('jLogData', namespace='jLogData')
 
       logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
       logging.info('%s - %s - %s - %s - %s - %s' % (medlemlog.Source, medlemlog.Source_id, medlemlog.Nr, medlemlog.Logdato, medlemlog.Akt_id, medlemlog.Akt_dato))
@@ -799,6 +811,7 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/adm/medlemjson', MedlemJsonHandler),
                                        ('/adm/medlemlogjson', MedlemlogJsonHandler),
                                        ('/adm/medlem.*', MedlemHandler),
+                                       ('/adm/test.*', TestHandler),
                                        ('/adm/findmedlem', FindmedlemHandler),
                                        ('/adm/findmedlem3', Findmedlem3Handler),
                                        ('/adm/updatemedlem', UpdatemedlemHandler),

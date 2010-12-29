@@ -38,6 +38,27 @@ class Kreditor(db.Model):
     Sektionnr = db.StringProperty() 
     Transkodebetaling = db.StringProperty() 
 
+class Tilpbs(db.Model): 
+    Id = db.IntegerProperty()
+    Delsystem = db.StringProperty()
+    Leverancetype = db.StringProperty()
+    Bilagdato = db.DateTimeProperty()
+    Pbsforsendelseid = db.IntegerProperty()
+    Udtrukket = db.DateTimeProperty()
+    Leverancespecifikation = db.StringProperty()
+    Leverancedannelsesdato = db.DateTimeProperty()
+
+class Fak(db.Model): 
+    Id = db.IntegerProperty()
+    Tilpbsid = db.IntegerProperty()
+    Betalingsdato = db.DateTimeProperty()
+    Nr = db.IntegerProperty()
+    Faknr = db.IntegerProperty()
+    Advisbelob = db.FloatProperty()
+    Infotekst = db.IntegerProperty()
+    Fradato = db.DateTimeProperty()
+    Tildato = db.DateTimeProperty()
+    
 class Sftp(db.Model): 
     Id = db.IntegerProperty()
     Navn = db.StringProperty()
