@@ -22,6 +22,7 @@
     <script type="text/javascript" charset="utf-8">
         var oPersonTable;
         var oMedlemlogTable;
+        var oKontingentTable;
         var arrAktivitet = {
           10:'Indmeldelses dato',
           20:'PBS opkrævnings dato',
@@ -132,6 +133,24 @@
           "sAjaxSource": "/adm/medlemlogjson"
         } );
         
+        oKontingentTable = $('#kontingent').dataTable( {
+          "sDom": 'rt',
+          "bJQueryUI": true,
+          "bAutoWidth": false,
+          "bPaginate": false,          
+          "bProcessing": false,
+          "bStateSave": false,
+          "aoColumnDefs": [
+              { "sWidth": "3em", "sClass": 'left', "sTitle": "Nr", "bVisible": true, "aTargets": [ 0 ] },
+              { "sClass": 'left', "sTitle": "Navn", "bVisible": true, "aTargets": [ 1 ] },
+              { "sWidth": "10em", "sClass": 'left', "sTitle": "Fradato", "bVisible": true, "aTargets": [ 2 ] },
+              { "sWidth": "10em", "sClass": 'left', "sTitle": "Kontingent", "bVisible": true, "fnRender": function ( oObj ) { var NumVal = parseFloat(oObj.aData[3]); var StrVal = NumVal.toFixed(2); return StrVal.replace('.', ','); }, "aTargets": [ 3 ] },
+              { "sWidth": "10em", "sClass": 'left', "sTitle": "Tildato", "bVisible": true, "aTargets": [ 4 ] },
+              { "sWidth": "1em", "sClass": 'left', "sTitle": "Kont_id", "bVisible": false, "aTargets": [ 5 ] }
+             ],
+          "sAjaxSource": "/adm/kontingentjson"
+        } );
+
         var pos = $("#pos"),
           nr = $("#nr"),
           navn = $("#navn"),
@@ -215,11 +234,16 @@
                     ,MedlemlogTablePos: 0 
                     ,Akt_id: $("#akt_id").val()
                     ,Akt_dato: $("#akt_dato").val()
+                    ,KontingentTablePos: 0 
                   },
                   success: function(data) {
                     if (data.bMedlemlog == 'true') {
                       Lidx = oMedlemlogTable.fnAddData(data.MedlemlogData );
                       var MedlemlogTablePos = Lidx[0];
+                    }
+                    if (data.bKontingent == 'true') {
+                      Kidx = oKontingentTable.fnAddData(data.KontingentData );
+                      var KontingentTablePos = Kidx[0];
                     }
                     if (isNaN(data.PersonTablePos) )
                     {
@@ -613,6 +637,23 @@
             <th>Bank</th>
             <th>erMedlem</th>
             <th>ikkeBetalt</th>
+          </tr>
+        </thead>          
+        <tbody>
+        </tbody>  
+      </table>
+    </div>
+
+    <div id="dynamic" style="float:left;width:60%;">
+      <table class="display" id="kontingent">
+        <thead>
+          <tr >
+            <th>Nr</th>
+            <th>Navn</th>
+            <th>Fradato</th>
+            <th>Kontingent</th>
+            <th>Tildato</th>
+            <th>Kont_id</th>
           </tr>
         </thead>          
         <tbody>

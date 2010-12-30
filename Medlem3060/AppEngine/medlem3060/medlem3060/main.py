@@ -8,7 +8,7 @@ from google.appengine.api import memcache
 from django.utils import simplejson
 
 from xml.dom import minidom
-from datetime import datetime
+from datetime import datetime, date
 import time
 
 import logging
@@ -16,7 +16,7 @@ import rest
 import os
 import re
 
-from models import UserGroup, User, NrSerie, Kreditor, Tilpbs, Fak, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlemlog, Person
+from models import UserGroup, User, NrSerie, Kreditor, Kontingent, Tilpbs, Fak, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlemlog, Person
 from util import TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
 from menuusergroup import deleteMenuAndUserGroup, createMenuAndUserGroup
 from menu import MenuHandler, ListUserHandler, UserHandler
@@ -162,9 +162,31 @@ class UpdatemedlemHandler(webapp.RequestHandler):
       jData += ',"MedlemlogTablePos":"%s"' % (self.request.get('MedlemlogTablePos'))
       jData += ',"MedlemlogData":["%s","%s","%s","%s","%s","%s","%s"]' % (p.Nr,p.Source,p.Source_id,p.Logdato,p.Akt_id,p.Akt_dato,p.Akt_id)
       memcache.delete('jLogData', namespace='jLogData')
+      
+      Akt_id = self.request.get('Akt_id')
+      if Akt_id == '10':
+        recNrSerie = NrSerie.get_or_insert('Kontingent')
+        Kontingent_id = recNrSerie.NextNumber
+        recNrSerie.NextNumber += 1
+        recNrSerie.put()
+        t = db.Key.from_path('Persons','root','Person','%s' % (Nr))
+        q = Kontingent.get_or_insert('%s' % (Kontingent_id), parent=t)      
+        q.Id = int(Kontingent_id)
+        q.Nr = int(Nr)
+        dtFradato = datetime.strptime(Akt_dato, "%Y-%m-%d")
+        q.Fradato = date(dtFradato.year, dtFradato.month, dtFradato.day)
+        q.beregnKontingent()
+        q.put()
+        Navn = self.request.get('Navn')
+        jData += ',"bKontingent":"true"'
+        jData += ',"KontingentTablePos":"%s"' % (self.request.get('KontingentTablePos'))
+        jData += ',"KontingentData":["%s","%s","%s","%s","%s","%s"]' % (q.Nr, Navn, q.Fradato, q.Advisbelob, q.Tildato, q.Id)
+        memcache.delete('jKontingentData', namespace='jKontingentData')
+      else:   
+        jData += ',"bKontingent":"false"'
     else:
       jData += '"bMedlemlog":"false"'
-     
+    
     root = db.Key.from_path('Persons','root')
     m = Person.get_or_insert('%s' % (Nr), parent=root)
     try:       
@@ -345,6 +367,30 @@ class MedlemlogJsonHandler(webapp.RequestHandler):
     
     self.response.headers["Content-Type"] = "application/json"
     self.response.out.write(jLogData)
+
+class KontingentJsonHandler(webapp.RequestHandler):
+  def get(self):
+    jKontingentData = memcache.get('jKontingentData', namespace='jKontingentData')
+    #jKontingentData = None
+    if jKontingentData is None:
+      root = db.Key.from_path('Persons','root')
+      qry = db.Query(Kontingent).ancestor(root)
+      antal = qry.count()
+      logging.info('TTTTTTTTTTTTTTT jKontingentData Antal: %s' % (antal))
+      FirstPage = True
+      jKontingentData = '{ "aaData": ['
+      for q in qry:
+        if not FirstPage:
+          jKontingentData += ','
+        FirstPage = False
+        m = q.parent()
+        jKontingentData += '["%s","%s","%s","%s","%s","%s"]' % (q.Nr, m.Navn, q.Fradato, q.Advisbelob, q.Tildato, q.Id)
+      
+      jKontingentData += '] }'
+      memcache.set('jKontingentData', jKontingentData, namespace='jKontingentData')
+    
+    self.response.headers["Content-Type"] = "application/json"
+    self.response.out.write(jKontingentData)
     
 class SyncMedlemHandler(webapp.RequestHandler):
   def get(self):
@@ -797,6 +843,11 @@ class CreateMenu(webapp.RequestHandler):
       if not recNrSerie.NextNumber:
         recNrSerie.NextNumber = 850
       recNrSerie.put()      
+      recNrSerie = NrSerie.get_or_insert('Kontingent')
+      recNrSerie.Name = 'Kontingent'
+      if not recNrSerie.NextNumber:
+        recNrSerie.NextNumber = 1
+      recNrSerie.put()    
       self.redirect("/adm")
       
 class FlushCache(webapp.RequestHandler):
@@ -810,6 +861,7 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        (LOGIN_URL, LoginHandler),
                                        ('/adm/medlemjson', MedlemJsonHandler),
                                        ('/adm/medlemlogjson', MedlemlogJsonHandler),
+                                       ('/adm/kontingentjson', KontingentJsonHandler),
                                        ('/adm/medlem.*', MedlemHandler),
                                        ('/adm/test.*', TestHandler),
                                        ('/adm/findmedlem', FindmedlemHandler),

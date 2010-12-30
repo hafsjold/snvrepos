@@ -1,6 +1,6 @@
 from google.appengine.ext import db
 import logging
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
   
 class UserGroup(db.Model): 
   GroupName = db.StringProperty()
@@ -42,7 +42,7 @@ class Tilpbs(db.Model):
     Id = db.IntegerProperty()
     Delsystem = db.StringProperty()
     Leverancetype = db.StringProperty()
-    Bilagdato = db.DateTimeProperty()
+    Bilagdato = db.DateProperty()
     Pbsforsendelseid = db.IntegerProperty()
     Udtrukket = db.DateTimeProperty()
     Leverancespecifikation = db.StringProperty()
@@ -51,13 +51,28 @@ class Tilpbs(db.Model):
 class Fak(db.Model): 
     Id = db.IntegerProperty()
     Tilpbsid = db.IntegerProperty()
-    Betalingsdato = db.DateTimeProperty()
+    Betalingsdato = db.DateProperty()
     Nr = db.IntegerProperty()
     Faknr = db.IntegerProperty()
     Advisbelob = db.FloatProperty()
     Infotekst = db.IntegerProperty()
-    Fradato = db.DateTimeProperty()
-    Tildato = db.DateTimeProperty()
+    Fradato = db.DateProperty()
+    Tildato = db.DateProperty()
+
+class Kontingent(db.Model): 
+    Id = db.IntegerProperty()
+    Nr = db.IntegerProperty()
+    Advisbelob = db.FloatProperty()
+    Fradato = db.DateProperty()
+    Tildato = db.DateProperty()
+    
+    def beregnKontingent(self):
+      if self.Fradato.month <= 6:
+        self.Tildato = date(self.Fradato.year, 12, 31)
+        self.Advisbelob = 150.0
+      else:
+        self.Tildato = date(self.Fradato.year + 1, 12, 31)
+        self.Advisbelob = 225.0         
     
 class Sftp(db.Model): 
     Id = db.IntegerProperty()
