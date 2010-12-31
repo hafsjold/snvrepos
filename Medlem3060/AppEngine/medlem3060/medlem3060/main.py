@@ -20,6 +20,7 @@ from models import UserGroup, User, NrSerie, Kreditor, Kontingent, Tilpbs, Fak, 
 from util import TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
 from menuusergroup import deleteMenuAndUserGroup, createMenuAndUserGroup
 from menu import MenuHandler, ListUserHandler, UserHandler
+from pbs601 import TestHandler
 
 webapp.template.register_template_library('templatetags.medlem3060_extras')
 
@@ -216,11 +217,7 @@ class UpdatemedlemHandler(webapp.RequestHandler):
       logging.info('UpdatemedlemHandler ERROR Navn: %s, Kaldenavn: %s' % (self.request.get('Navn'), self.request.get('Kaldenavn')))
       self.response.out.write('ERROR from Server')
    
-class TestHandler(webapp.RequestHandler):
-  def get(self):
-    template_values = {}
-    path = os.path.join(os.path.dirname(__file__), 'templates/test.html') 
-    self.response.out.write(template.render(path, template_values))
+
 
 class MedlemHandler(webapp.RequestHandler):
   def getNrfromPath(self):
