@@ -12,15 +12,14 @@ classid="clsid:3352B5B9-82E8-4FFD-9EB1-1A3E60056904"
 standby="Loading Chilkat Crypt2..."
 type="application/x-oleobject"
 codebase="/software/ChilkatCrypt2.cab">
-</object>
-<p id="something">This text will get updated by Javascript.</p>
 
+<p id="somethingCrypt">This text will get updated by Javascript.</p>
 </body>
 <script language="javascript">
 <!--
-  var p = document.getElementById("something");
+  var p1 = document.getElementById("somethingCrypt");
   document.crypt2.UnlockComponent("Anything for 30-day trial.");
-  p.innerHTML = "Chilkat Crypt2 Version = " + document.crypt2.Version;
+  p1.innerHTML = "Chilkat Crypt2 Version = " + document.crypt2.Version;
 
   $(document).ready(function() {
     fonLoad();

@@ -830,21 +830,43 @@ class CreateMenu(webapp.RequestHandler):
       deleteMenuAndUserGroup()
       createMenuAndUserGroup()
       memcache.flush_all()
+      
+      recNrSerie = NrSerie.get_or_insert('Tilpbs')
+      recNrSerie.Name = 'Tilpbs'
+      if not recNrSerie.NextNumber:
+        recNrSerie.NextNumber = 3000
+      recNrSerie.put()
+      
+      recNrSerie = NrSerie.get_or_insert('Fak')
+      recNrSerie.Name = 'Fak'
+      if not recNrSerie.NextNumber:
+        recNrSerie.NextNumber = 4000
+      recNrSerie.put()
+      
+      recNrSerie = NrSerie.get_or_insert('faknr')
+      recNrSerie.Name = 'faknr'
+      if not recNrSerie.NextNumber:
+        recNrSerie.NextNumber = 5000
+      recNrSerie.put()
+      
       recNrSerie = NrSerie.get_or_insert('tblMedlemlog')
       recNrSerie.Name = 'tblMedlemlog'
       if not recNrSerie.NextNumber:
         recNrSerie.NextNumber = 2000
       recNrSerie.put()
+      
       recNrSerie = NrSerie.get_or_insert('tblMedlem')
       recNrSerie.Name = 'tblMedlem'
       if not recNrSerie.NextNumber:
         recNrSerie.NextNumber = 850
       recNrSerie.put()      
+      
       recNrSerie = NrSerie.get_or_insert('Kontingent')
       recNrSerie.Name = 'Kontingent'
       if not recNrSerie.NextNumber:
         recNrSerie.NextNumber = 1
       recNrSerie.put()    
+      
       self.redirect("/adm")
       
 class FlushCache(webapp.RequestHandler):
