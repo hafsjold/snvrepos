@@ -27,6 +27,31 @@ def nextval(nrserie):
   recNrSerie.put()  
   return nr
 
+class Pbs601Error(Exception):
+  def __init__(self, value):
+    self.value = value
+  def __str__(self):
+    return repr(self.value)
+
+class clsRstdeb(object):
+  def __init__(self, f):
+    key = db.Key.from_path('Persons','root','Person','%s' % (f.Nr))
+    k = Person.get(key)
+    self.Nr = k.Nr
+    self.Kundenr = 32001610000000 + k.Nr
+    self.Kaldenavn = k.Kaldenavn
+    self.Navn = k.Navn
+    self.Adresse = k.Adresse
+    self.Postnr = k.Postnr
+    self.Faknr = f.Faknr
+    self.Betalingsdato = f.Betalingsdato
+    self.Fradato = f.Fradato
+    self.Tildato = f.Tildato
+    self.Infotekst = f.Infotekst
+    self.Tilpbsid = f.Tilpbsid
+    self.Advistekst = None
+    self.Belob = f.Advisbelob
+    self.OcrString = None
 
 class TestHandler(webapp.RequestHandler):
   def get(self):
@@ -69,6 +94,297 @@ class TestHandler(webapp.RequestHandler):
 
     return antal
 
+  def faktura_og_rykker_601_action(lobnr):
+    rec = ''
+    #lintype lin
+    #infolintype infolin
+    recnr = 0
+    fortegn = 0
+    wleveranceid = 0
+    seq = 0
+    # Betalingsoplysninger
+    h_linie = 'LØBEKLUBBEN PULS 3060'
+    # Tekst til hovedlinie på advis
+    belobint = 0
+    advistekst = ''
+    advisbelob = 0
+    # Tællere
+    antal042 = 0
+    # Antal 042: Antal foranstående 042 records
+    belob042 = 0
+    # Beløb: Nettobeløb i 042 records
+    antal052 = 0
+    # Antal 052: Antal foranstående 052 records
+    antal022 = 0
+    # Antal 022: Antal foranstående 022 records
+    antalsek = 0
+    # Antal sektioner i leverancen
+    antal042tot = 0
+    # Antal 042: Antal foranstående 042 records
+    belob042tot = 0
+    # Beløb: Nettobeløb i 042 records
+    antal052tot = 0
+    # Antal 052: Antal foranstående 052 records
+    antal022tot = 0
+    # Antal 022: Antal foranstående 022 records
+    # TODO: On Error GoTo Warning!!!: The statement is not translatable 
+    #lobnr = 275 '--debug
+
+    tilpbskey = db.Key.from_path('rootTilpbs','root','Tilpbs','%s' % (lobnr))
+    rsttil = Tilpbs.get(tilpbskey)
+    if not rsttil: 
+      raise Pbs601Error("101 - Der er ingen PBS forsendelse for id: " + lobnr)    
+ 
+    if rsttil.Pbsforsendelseid:
+       raise Pbs601Error("102 - Pbsforsendelse for id: " + lobnr + " er allerede sendt")
+ 
+    qry = db.Query(Fak).ancestor(tilpbskey)
+    if qry.count() == 0:
+      raise Pbs601Error("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr)
+
+    if not rsttil.Udtrukket:
+      rsttil.Udtrukket = DateTime.Now
+    if not rsttil.Bilagdato:
+      rsttil.Bilagdato = rsttil.Udtrukket
+    if not rsttil.Delsystem:
+      rsttil.Delsystem = "BS1"  # ????????????????
+    if not rsttil.Leverancetype:
+      rsttil.Leverancetype = ""
+    rsttil.put()
+
+    wleveranceid = nextval("leveranceid")
+
+    qry = Kreditor.all()
+    qry.filter("Delsystem =", rsttil.Delsystem)
+    rstkrd = qry.fetch(1)[0]
+
+    # Leverance Start - 0601 Betalingsoplysninger
+    # - rstkrd.Datalevnr - Dataleverandørnr.: Dataleverandørens SE-nummer
+    # - rsttil.Delsystem - Delsystem:  Dataleverandør delsystem
+    # - "0601"           - Leverancetype: 0601 (Betalingsoplysninger)
+    # - wleveranceid     - Leveranceidentifikation: Løbenummer efter eget valg
+    # - rsttil!udtrukket - Dato: 000000 eller leverancens dannelsesdato
+    rec += write002(rstkrd.Datalevnr, rsttil.Delsystem, "0601", '%s' % (wleveranceid), rsttil.Udtrukket) + "\r\n"
+
+    # Sektion start - sektion 0112/0117
+    # -  rstkrd.Pbsnr       - PBS-nr.: Kreditors PBS-nummer
+    # -  rstkrd.Sektionnr   - Sektionsnr.: 0112/0117 (Betalinger med lang advistekst)
+    # -  rstkrd.Debgrpnr    - Debitorgruppenr.: Debitorgruppenummer
+    # -  rstkrd.Datalevnavn - Leveranceidentifikation: Brugers identifikation hos dataleverandør
+    # -  rsttil.Udtrukket   - Dato: 000000 eller leverancens dannelsesdato
+    # -  rstkrd.Regnr       - Reg.nr.: Overførselsregistreringsnummer
+    # -  rstkrd.Kontonr     - Kontonr.: Overførselskontonummer
+    # -  h_linie            - H-linie: Tekst til hovedlinie på advis
+    rec += write012(rstkrd.Pbsnr, rstkrd.Sektionnr, rstkrd.Debgrpnr, rstkrd.Datalevnavn, rsttil.Udtrukket, rstkrd.Regnr, rstkrd.Kontonr, h_linie) + "\r\n"
+    antalsek++
+
+    qry = db.Query(Fak).ancestor(tilpbskey)
+    rstfaks = qry.fetch()
+
+    for rstfak in rstfaks:
+      rstdeb = clsRstdeb(rstfak)
+      
+      # Debitornavn
+      # - rstkrd.Sektionnr -
+      # - rstkrd.Pbsnr     - PBS-nr.: Kreditors PBS-nummer
+      # - "0240"           - Transkode: 0240 (Navn/adresse på debitor)
+      # - 1                - Recordnr.: 001
+      # - rstkrd.Debgrpnr  - Debitorgruppenr.: Debitorgruppenummer
+      # - rstdeb.Kundenr   - Kundenr.: Debitors kundenummer hos kreditor
+      # - 0                - Aftalenr.: 000000000 eller 999999999
+      # - rstdeb.Navn      - Navn: Debitors navn
+      rec += write022(rstkrd.Sektionnr, rstkrd.Pbsnr, "0240", 1, rstkrd.Debgrpnr, '%s' % (rstdeb.Kundenr), 0, rstdeb.Navn) + "\r\n"
+      antal022++
+      antal022tot++
+
+      # Split adresse i 2 felter hvis længde > 35
+      rstdeb_Adresse1 = None
+      rstdeb_Adresse2 = None
+      bStart_Adresse1 = True
+      bStart_Adresse2 = True
+      if rstdeb.Adresse.len() <= 35:
+        rstdeb_Adresse1 = rstdeb.Adresse
+      else:
+        words = rstdeb.Adresse.split(' ')
+        for word in words:
+          if bStart_Adresse1:
+            rstdeb_Adresse1 = word
+            bStart_Adresse1 = False
+          else:
+            if (rstdeb_Adresse1.len() + 1 + word.len()) <= 35:
+              rstdeb_Adresse1 += " " + word
+            else:
+              if bStart_Adresse2:
+                rstdeb_Adresse2 = word
+                bStart_Adresse2 = False
+              else:
+                rstdeb_Adresse2 += " " + word
+
+      # Debitoradresse 1/adresse 2
+      # - rstkrd.Sektionnr -
+      # - rstkrd.Pbsnr     - PBS-nr.: Kreditors PBS-nummer
+      # - "0240"           - Transkode: 0240 (Navn/adresse på debitor)
+      # - 2                - Recordnr.: 002
+      # - rstkrd.Debgrpnr  - Debitorgruppenr.: Debitorgruppenummer
+      # - rstdeb.Kundenr   - Kundenr.: Debitors kundenummer hos kreditor
+      # - 0                - Aftalenr.: 000000000 eller 999999999
+      # - rstdeb.Adresse   - Adresse 1: Adresselinie 1
+      rec += write022(rstkrd.Sektionnr, rstkrd.Pbsnr, "0240", 2, rstkrd.Debgrpnr, '%s' % (rstdeb.Kundenr), 0, rstdeb_Adresse1) + "\r\n"
+      antal022++
+      antal022tot++
+
+      if not bStart_Adresse2:
+        # Debitoradresse 1/adresse 3
+        # - rstkrd.Sektionnr -
+        # - rstkrd.Pbsnr     - PBS-nr.: Kreditors PBS-nummer
+        # - "0240"           - Transkode: 0240 (Navn/adresse på debitor)
+        # - 2                - Recordnr.: 002
+        # - rstkrd.Debgrpnr  - Debitorgruppenr.: Debitorgruppenummer
+        # - rstdeb.Kundenr   - Kundenr.: Debitors kundenummer hos kreditor
+        # - 0                - Aftalenr.: 000000000 eller 999999999
+        # - rstdeb.Adresse   - Adresse 1: Adresselinie 1
+        rec += write022(rstkrd.Sektionnr, rstkrd.Pbsnr, "0240", 3, rstkrd.Debgrpnr, '%s' % (rstdeb.Kundenr), 0, rstdeb_Adresse2) + "\r\n"
+        antal022++
+        antal022tot++
+
+      # Debitorpostnummer
+      # - rstkrd.Sektionnr -
+      # - rstkrd.Pbsnr     - PBS-nr.: Kreditors PBS-nummer
+      # - "0240"           - Transkode: 0240 (Navn/adresse på debitor)
+      # - 3                - Recordnr.: 003
+      # - rstkrd.Debgrpnr  - Debitorgruppenr.: Debitorgruppenummer
+      # - rstdeb.Kundenr   - Kundenr.: Debitors kundenummer hos kreditor
+      # - 0                - Aftalenr.: 000000000 eller 999999999
+      # - rstdeb.Postnr    - Postnr.: Postnummer
+      rec += write022(rstkrd.Sektionnr, rstkrd.Pbsnr, "0240", 9, rstkrd.Debgrpnr, '%s' % (rstdeb.Kundenr), 0, rstdeb.Postnr.ToString()) + "\r\n"
+      antal022++
+      antal022tot++
+
+      # Forfald betaling
+      if rstdeb.Belob > 0.0:
+        fortegn = 1
+        # Fortegnskode: 1 = træk
+        belobint = int(round(rstdeb.Belob * 100)) 
+        belob042 += belobint
+        belob042tot += belobint
+      elif rstdeb.Belob < 0.0:
+        fortegn = 2
+        # Fortegnskode: 2 = indsættelse
+        belobint = int(round(rstdeb.Belob * (-100))) 
+        belob042 -= belobint
+        belob042tot -= belobint
+      else:
+        fortegn = 0  # Fortegnskode: 0 = 0-beløb
+        belobint = 0
+
+      # - rstkrd.Sektionnr         -
+      # - rstkrd.Pbsnr             - PBS-nr.: Kreditors PBS-nummer
+      # - rstkrd.Transkodebetaling - Transkode: 0280/0285 (Betaling)
+      # - rstkrd.Debgrpnr          - Debitorgruppenr.: Debitorgruppenummer
+      # - rstdeb.Kundenr           - Kundenr.: Debitors kundenummer hos kreditor
+      # - 0                        - Aftalenr.: 000000000 eller 999999999
+      # - rstdeb.Betalingsdato     -
+      # - fortegn                  -
+      # - belobint                 - Beløb: Beløb i øre uden fortegn
+      # - rstdeb.Faknr             - faknr: Information vedrørende betalingen.
+      rec += write042(rstkrd.Sektionnr, rstkrd.Pbsnr, rstkrd.Transkodebetaling, rstkrd.Debgrpnr, '%s' % (rstdeb.Kundenr), 0, (DateTime)rstdeb.Betalingsdato, fortegn,belobint, (int)rstdeb.Faknr) + "\r\n"
+      antal042++
+      antal042tot++
+
+      recnr = 0
+      firstAdvistekst = True      
+      if (rstdeb.Advistekst) and (rstdeb.Advistekst.len() > 0):
+        arradvis = rstdeb.Advistekst.split("\r\n")
+        for advis in arradvis:
+          if firstAdvistekst:
+            recnr++
+            advistekst = advis
+            advisbelob = int(rstdeb.Belob)
+            firstAdvistekst = False
+          else:
+            recnr++
+            advistekst = advis
+            advisbelob = 0
+
+          # Tekst til advis
+          antal052++
+          antal052tot++
+
+          # - rstkrd!sektionnr  -
+          # - rstkrd!pbsnr      - PBS-nr.: Kreditors PBS-nummer
+          # - "0241"            - Transkode: 0241 (Tekstlinie)
+          # - recnr             - Recordnr.: 001-999
+          # - rstkrd!debgrpnr   - Debitorgruppenr.: Debitorgruppenummer
+          # - rstdeb!kundenr    - Kundenr.: Debitors kundenummer hos kreditor
+          # - 0                 - Aftalenr.: 000000000 eller 999999999
+          # - advistekst        - Advistekst 1: Tekstlinie på advis
+          # - 0.0               - Advisbeløb 1: Beløb på advis
+          # - ""                - Advistekst 2: Tekstlinie på advis
+          # - 0.0               - Advisbeløb 2: Beløb på advis
+          rec += write052(rstkrd.Sektionnr, rstkrd.Pbsnr, "0241", recnr, rstkrd.Debgrpnr, '%s' % (rstdeb.Kundenr), 0, advistekst, advisbelob, "", 0) + "\r\n"
+      
+      param = clsInfotekstParam()
+      param.infotekst_id = rstdeb.Infotekst
+      param.numofcol = 60
+      param.navn_medlem = rstdeb.Navn
+      param.kaldenavn = rstdeb.Kaldenavn 
+      param.fradato = rstdeb.Fradato 
+      param.tildato = rstdeb.Tildato 
+      param.betalingsdato = rstdeb.Betalingsdato
+      param.advisbelob = rstdeb.Belob 
+      param.ocrstring = None
+      param.underskrift_navn= "\r\nMogens Hafsjold\r\nRegnskabsfører"
+      param.bankkonto = None
+      param.advistekst = None
+      infotekst = clsInfotekst(param).getinfotekst() 
+
+      if (infotekst) and (infotekst.len() > 0):
+        arradvis = infotekst.split("\r\n")
+        for advisline in arradvis:
+          recnr++
+          antal052++
+          antal052tot++
+
+          # - rstkrd!sektionnr     -
+          # - rstkrd!pbsnr         - PBS-nr.: Kreditors PBS-nummer
+          # - "0241"               - Transkode: 0241 (Tekstlinie)
+          # - recnr                - Recordnr.: 001-999
+          # - rstkrd!debgrpnr      - Debitorgruppenr.: Debitorgruppenummer
+          # - rstdeb!kundenr       - Kundenr.: Debitors kundenummer hos kreditor
+          # - 0                    - Aftalenr.: 000000000 eller 999999999
+          # - infolin.getinfotekst - Advistekst 1: Tekstlinie på advis
+          # - 0.0                  - Advisbeløb 1: Beløb på advis
+          # - ""                   - Advistekst 2: Tekstlinie på advis
+          # - 0.0                  - Advisbeløb 2: Beløb på advis
+          rec += write052(rstkrd.Sektionnr, rstkrd.Pbsnr, "0241", recnr, rstkrd.Debgrpnr, '%s' % (rstdeb.Kundenr), 0, advisline, 0, "", 0) + "\r\n"
+
+    # End rstdebs
+
+    # Sektion slut - sektion 0112/117
+    # - rstkrd!pbsnr     - PBS-nr.: Kreditors PBS-nummer
+    # - rstkrd!sektionnr - Sektionsnr.: 0112/0117 (Betalinger)
+    # - rstkrd!debgrpnr  - Debitorgruppenr.: Debitorgruppenummer
+    # - antal042         - Antal 042: Antal foranstående 042 records
+    # - belob042         - Beløb: Nettobeløb i 042 records
+    # - antal052         - Antal 052: Antal foranstående 052 records
+    # - antal022         - Antal 022: Antal foranstående 022 records
+    rec += write092(rstkrd.Pbsnr, rstkrd.Sektionnr, rstkrd.Debgrpnr, antal042, belob042, antal052, antal022) + "\r\n"
+
+    # Leverance slut  - 0601 Betalingsoplysninger
+    # - rstkrd.Datalevnr - Dataleverandørnr.: Dataleverandørens SE-nummer
+    # - rstkrd.Delsystem - Delsystem:  Dataleverandør delsystem
+    # - "0601"           - Leverancetype: 0601 (Betalingsoplysninger)
+    # - antalsek         - Antal sektioner: Antal sektioner i leverancen
+    # - antal042tot      - Antal 042: Antal foranstående 042 records
+    # - belob042tot      - Beløb: Nettobeløb i 042 records
+    # - antal052tot      - Antal 052: Antal foranstående 052 records
+    # - antal022tot      - Antal 022: Antal foranstående 022 records
+    rec += write992(rstkrd.Datalevnr, rstkrd.Delsystem, "0601", antalsek, antal042tot, belob042tot, antal052tot, antal022tot) + "\r\n"
+
+    rsttil.Udtrukket = datetime.now()
+    rsttil.Leverancespecifikation = '%s' % (wleveranceid)
+    return rec
+    
  
   def write002(self, datalevnr, delsystem, levtype, levident, levdato):
     rec = "BS002"

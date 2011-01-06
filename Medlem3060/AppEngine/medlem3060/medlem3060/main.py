@@ -849,6 +849,12 @@ class CreateMenu(webapp.RequestHandler):
         recNrSerie.NextNumber = 5000
       recNrSerie.put()
       
+      recNrSerie = NrSerie.get_or_insert('leveranceid')
+      recNrSerie.Name = 'leveranceid'
+      if not recNrSerie.NextNumber:
+        recNrSerie.NextNumber = 2000
+      recNrSerie.put()
+      
       recNrSerie = NrSerie.get_or_insert('tblMedlemlog')
       recNrSerie.Name = 'tblMedlemlog'
       if not recNrSerie.NextNumber:
