@@ -87,7 +87,8 @@ class clsInfotekst(object):
 
     #RegexOptions options = ((RegexOptions.IgnorePatternWhitespace | RegexOptions.Multiline) | RegexOptions.IgnoreCase)
     #Regex regexParam = new Regex(@"(\#\#[^\#]+\#\#)", options)
-    p = re.compile(r'(\#\#[^\#]+\#\#)')
+    options = re.VERBOSE | re.MULTILINE | re.IGNORECASE
+    p = re.compile(r'(\#\#[^\#]+\#\#)', options)
 
     MsgtextSub = ""
     if infotext:
