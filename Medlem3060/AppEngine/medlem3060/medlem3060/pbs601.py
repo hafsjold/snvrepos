@@ -57,8 +57,8 @@ class clsRstdeb(object):
 
 class TestHandler(webapp.RequestHandler):
   def get(self):
-    (lobnr, antal) = self.kontingent_fakturer_bs1()
-    rec = self.faktura_og_rykker_601_action(lobnr)
+    #(lobnr, antal) = self.kontingent_fakturer_bs1()
+    rec = self.faktura_og_rykker_601_action(3023)
     logging.info('WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW rec: %s' % (rec))
     template_values = {}
     path = os.path.join(os.path.dirname(__file__), 'templates/test.html') 
@@ -211,15 +211,13 @@ class TestHandler(webapp.RequestHandler):
           if bStart_Adresse1:
             rstdeb_Adresse1 = word
             bStart_Adresse1 = False
+          elif (bStart_Adresse2) and ((len(rstdeb_Adresse1) + 1 + len(word)) <= 35):
+            rstdeb_Adresse1 += " " + word
+          elif bStart_Adresse2:
+            rstdeb_Adresse2 = word
+            bStart_Adresse2 = False
           else:
-            if (rstdeb_Adresse1.len() + 1 + word.len()) <= 35:
-              rstdeb_Adresse1 += " " + word
-            else:
-              if bStart_Adresse2:
-                rstdeb_Adresse2 = word
-                bStart_Adresse2 = False
-              else:
-                rstdeb_Adresse2 += " " + word
+            rstdeb_Adresse2 += " " + word
 
       # Debitoradresse 1/adresse 2
       # - rstkrd.Sektionnr -
@@ -337,9 +335,12 @@ class TestHandler(webapp.RequestHandler):
       param.underskrift_navn= "\r\nMogens Hafsjold\r\nRegnskabsfører"
       param.bankkonto = None
       param.advistekst = None
-      infotekst = clsInfotekst(param).getinfotekst() 
-
-      if (infotekst) and (infotekst.len() > 0):
+      
+      objInfotekst  = clsInfotekst(param)
+      infotekst = objInfotekst.getinfotekst() 
+      logging.info('QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQinfotekst: %s' % (infotekst))
+      
+      if (infotekst) and (len(infotekst) > 0):
         arradvis = infotekst.split("\r\n")
         for advisline in arradvis:
           recnr += 1

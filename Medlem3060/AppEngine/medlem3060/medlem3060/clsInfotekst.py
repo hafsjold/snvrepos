@@ -1,5 +1,8 @@
 ﻿# coding=utf-8 
+from google.appengine.ext import db 
 import re
+
+from models import UserGroup, User, NrSerie, Kreditor, Kontingent, Tilpbs, Fak, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlemlog, Person
 
 class clsInfotekstParam: 
   pass
@@ -33,7 +36,7 @@ class clsInfotekst(object):
 
 
   def delegate(self, match):
-    v = '%s' % (match)
+    v = '%s' % (match.group())
     vl = v.lower()
     if vl == "##navn_medlem##":
       if self.navn_medlem: 
@@ -92,7 +95,7 @@ class clsInfotekst(object):
       if not self.numofcol:
         return MsgtextSub
       else:
-        return self.splittextincolumns(MsgtextSub, numofcol)
+        return self.splittextincolumns(MsgtextSub, self.numofcol)
     return ""
 
   
@@ -106,12 +109,12 @@ class clsInfotekst(object):
     workline = ""
     linecount = 0
     wordcount = 0
-    crlf = ["\r\n", "\n"]
-    bltp = ['\t', ' ']
+    crlf = "\r\n"
+    bltp = ' '
 
     inputtextlines = inputtext.split(crlf)
     for currentline in inputtextlines:
-      if currentline.len() <= maxlinewith:
+      if len(currentline) <= maxlinewith:
         outputtext += currentline + "\r\n"
         linecount += 1
       else:
@@ -119,21 +122,21 @@ class clsInfotekst(object):
         wordcount = 0
         currentlines = currentline.split(bltp)
         for currentword in currentlines:
-          if currentword.len() > 0:
+          if len(currentword) > 0:
             if currentlinelength == 0:
               workline += currentword
-              currentlinelength = currentword.Length
+              currentlinelength = len(currentword)
               wordcount += 1
             else:
-              if (currentlinelength + 1 + currentword.len) <= maxlinewith:
+              if (currentlinelength + 1 + len(currentword)) <= maxlinewith:
                 workline += " " + currentword
-                currentlinelength += 1 + currentword.Length
+                currentlinelength += 1 + len(currentword)
                 wordcount += 1
               else:
-                outputtext += expandline(workline, wordcount, maxlinewith) + "\r\n"
+                outputtext += self.expandline(workline, wordcount, maxlinewith) + "\r\n"
                 linecount += 1
                 workline = currentword
-                currentlinelength = currentword.Length
+                currentlinelength = len(currentword)
                 wordcount = 1
 
         if currentlinelength > 0:
@@ -149,8 +152,8 @@ class clsInfotekst(object):
     firstword = True
     splitchar = ' '
 
-    blanksmissingcount = outputlinewith - inputline.len()
-    blankscount = Math.Abs(blanksmissingcount / (wordsinline - 1))
+    blanksmissingcount = outputlinewith - len(inputline)
+    blankscount = abs(blanksmissingcount / (wordsinline - 1))
     blankscountmodulo = blanksmissingcount % (wordsinline - 1)
     inputwords = inputline.split(splitchar)
     for inputword in inputwords:
@@ -158,10 +161,10 @@ class clsInfotekst(object):
         outputline = inputword
       else:
         if blankscountmodulo > 0:
-          outputline += inputword.PadLeft(inputword.len() + blankscount + 2, ' ')
+          outputline += inputword.rjust(len(inputword) + blankscount + 2, ' ')
           blankscountmodulo -= 1
         else:
-          outputline += inputword.PadLeft(inputword.len() + blankscount + 1, ' ')
+          outputline += inputword.rjust(len(inputword) + blankscount + 1, ' ')
       firstword = False
  
     return outputline
