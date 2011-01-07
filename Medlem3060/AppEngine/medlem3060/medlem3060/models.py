@@ -1,3 +1,4 @@
+﻿# coding=utf-8 
 from google.appengine.ext import db
 import logging
 from datetime import datetime, timedelta, date

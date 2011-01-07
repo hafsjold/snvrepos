@@ -1,4 +1,8 @@
-class clsInfotekstParam(object):
+﻿# coding=utf-8 
+import re
+
+class clsInfotekstParam: 
+  pass
 
 class clsInfotekst(object):
   def __init__(self, p):
@@ -28,7 +32,7 @@ class clsInfotekst(object):
       self.advistekst = p.advistekst
 
 
-  def self.delegate(match):
+  def delegate(self, match):
     v = '%s' % (match)
     vl = v.lower()
     if vl == "##navn_medlem##":
@@ -41,16 +45,17 @@ class clsInfotekst(object):
         return self.navn_medlem
     elif vl ==  "##fradato##":
       if self.fradato: 
-        return string.Format("{0:d. MMMM yyyy}", self.fradato)
+         return self.fradato.strftime("%d. %B %Y")
     elif vl ==  "##tildato##":
       if self.tildato: 
-        return string.Format("{0:d. MMMM yyyy}", self.tildato)
+        return self.tildato.strftime("%d. %B %Y")
     elif vl ==  "##betalingsdato##":
       if self.betalingsdato: 
-        return string.Format("{0:dddd}", self.betalingsdato) + " den " + string.Format("{0:d. MMMM}", self.betalingsdato)
+        return self.betalingsdato.strftime("%A") + " den " + self.betalingsdato.strftime("%d. %B")
     elif vl ==  "##advisbelob##":
       if self.advisbelob:
-        return String.Format("{0:###0.00}", self.advisbelob).Replace('.', ',')
+        advisbelob_formated =  '%.2f' % (self.advisbelob)
+        return advisbelob_formated.replace('.', ',')
     elif vl ==  "##ocrstring##":
       if self.ocrstring:
         return self.ocrstring
@@ -68,7 +73,6 @@ class clsInfotekst(object):
 
 
   def getinfotekst(self):
-    {
     crlf = "\r\n"
     infotext = None
     try:
@@ -109,7 +113,7 @@ class clsInfotekst(object):
     for currentline in inputtextlines:
       if currentline.len() <= maxlinewith:
         outputtext += currentline + "\r\n"
-        linecount++
+        linecount += 1
       else:
         currentlinelength = 0
         wordcount = 0
@@ -119,15 +123,15 @@ class clsInfotekst(object):
             if currentlinelength == 0:
               workline += currentword
               currentlinelength = currentword.Length
-              wordcount++
+              wordcount += 1
             else:
               if (currentlinelength + 1 + currentword.len) <= maxlinewith:
                 workline += " " + currentword
                 currentlinelength += 1 + currentword.Length
-                wordcount++
+                wordcount += 1
               else:
                 outputtext += expandline(workline, wordcount, maxlinewith) + "\r\n"
-                linecount++
+                linecount += 1
                 workline = currentword
                 currentlinelength = currentword.Length
                 wordcount = 1
@@ -135,17 +139,17 @@ class clsInfotekst(object):
         if currentlinelength > 0:
           outputtext += workline + "\r\n"
           workline = ""
-          linecount++
+          linecount += 1
 
     return outputtext
 
        
-  def expandline(self, inputline, wordsinline, outputlinewith)
+  def expandline(self, inputline, wordsinline, outputlinewith):
     outputline = ""
     firstword = True
     splitchar = ' '
 
-    blanksmissingcount = outputlinewith - inputline.lengt
+    blanksmissingcount = outputlinewith - inputline.len()
     blankscount = Math.Abs(blanksmissingcount / (wordsinline - 1))
     blankscountmodulo = blanksmissingcount % (wordsinline - 1)
     inputwords = inputline.split(splitchar)
@@ -155,8 +159,8 @@ class clsInfotekst(object):
       else:
         if blankscountmodulo > 0:
           outputline += inputword.PadLeft(inputword.len() + blankscount + 2, ' ')
-          blankscountmodulo--
-        else
+          blankscountmodulo -= 1
+        else:
           outputline += inputword.PadLeft(inputword.len() + blankscount + 1, ' ')
       firstword = False
  

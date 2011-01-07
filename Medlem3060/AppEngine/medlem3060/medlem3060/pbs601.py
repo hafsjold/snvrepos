@@ -1,4 +1,4 @@
-# coding=iso-8859-15 
+ï»¿# coding=utf-8 
 from google.appengine.ext import webapp
 from google.appengine.ext import db 
 from google.appengine.ext.webapp import template
@@ -7,6 +7,8 @@ from models import UserGroup, User, NrSerie, Kreditor, Kontingent, Tilpbs, Fak, 
 from datetime import datetime, date, timedelta
 import logging
 import os
+
+from clsInfotekst import clsInfotekstParam, clsInfotekst
 
 def lpad (oVal, Length, PadChar):
   Val = '%s' % (oVal)
@@ -55,9 +57,9 @@ class clsRstdeb(object):
 
 class TestHandler(webapp.RequestHandler):
   def get(self):
-    mha = self.write042('0117', '12345678', '1234', '00001', 123456789012345, 121234567, datetime.now(), 0, 150.0, 1234)
-    logging.info('QQQQQQQQQQQQQQQQQQQQQQQQQQ write042: %s' % (mha))
-    antal = self.kontingent_fakturer_bs1()
+    (lobnr, antal) = self.kontingent_fakturer_bs1()
+    rec = self.faktura_og_rykker_601_action(lobnr)
+    logging.info('WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW rec: %s' % (rec))
     template_values = {}
     path = os.path.join(os.path.dirname(__file__), 'templates/test.html') 
     self.response.out.write(template.render(path, template_values))
@@ -92,9 +94,9 @@ class TestHandler(webapp.RequestHandler):
       f.Tildato = q.Tildato
       f.put()
 
-    return antal
+    return (lobnr, antal)
 
-  def faktura_og_rykker_601_action(lobnr):
+  def faktura_og_rykker_601_action(self, lobnr):
     rec = ''
     #lintype lin
     #infolintype infolin
@@ -103,30 +105,30 @@ class TestHandler(webapp.RequestHandler):
     wleveranceid = 0
     seq = 0
     # Betalingsoplysninger
-    h_linie = 'LØBEKLUBBEN PULS 3060'
-    # Tekst til hovedlinie på advis
+    h_linie = u'LÃ˜BEKLUBBEN PULS 3060'
+    # Tekst til hovedlinie pÃ¥ advis
     belobint = 0
     advistekst = ''
     advisbelob = 0
-    # Tællere
+    # TÃ¦llere
     antal042 = 0
-    # Antal 042: Antal foranstående 042 records
+    # Antal 042: Antal foranstÃ¥ende 042 records
     belob042 = 0
-    # Beløb: Nettobeløb i 042 records
+    # BelÃ¸b: NettobelÃ¸b i 042 records
     antal052 = 0
-    # Antal 052: Antal foranstående 052 records
+    # Antal 052: Antal foranstÃ¥ende 052 records
     antal022 = 0
-    # Antal 022: Antal foranstående 022 records
+    # Antal 022: Antal foranstÃ¥ende 022 records
     antalsek = 0
     # Antal sektioner i leverancen
     antal042tot = 0
-    # Antal 042: Antal foranstående 042 records
+    # Antal 042: Antal foranstÃ¥ende 042 records
     belob042tot = 0
-    # Beløb: Nettobeløb i 042 records
+    # BelÃ¸b: NettobelÃ¸b i 042 records
     antal052tot = 0
-    # Antal 052: Antal foranstående 052 records
+    # Antal 052: Antal foranstÃ¥ende 052 records
     antal022tot = 0
-    # Antal 022: Antal foranstående 022 records
+    # Antal 022: Antal foranstÃ¥ende 022 records
     # TODO: On Error GoTo Warning!!!: The statement is not translatable 
     #lobnr = 275 '--debug
 
@@ -143,9 +145,9 @@ class TestHandler(webapp.RequestHandler):
       raise Pbs601Error("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr)
 
     if not rsttil.Udtrukket:
-      rsttil.Udtrukket = DateTime.Now
+      rsttil.Udtrukket = datetime.now()
     if not rsttil.Bilagdato:
-      rsttil.Bilagdato = rsttil.Udtrukket
+      rsttil.Bilagdato = date.today()
     if not rsttil.Delsystem:
       rsttil.Delsystem = "BS1"  # ????????????????
     if not rsttil.Leverancetype:
@@ -159,27 +161,26 @@ class TestHandler(webapp.RequestHandler):
     rstkrd = qry.fetch(1)[0]
 
     # Leverance Start - 0601 Betalingsoplysninger
-    # - rstkrd.Datalevnr - Dataleverandørnr.: Dataleverandørens SE-nummer
-    # - rsttil.Delsystem - Delsystem:  Dataleverandør delsystem
+    # - rstkrd.Datalevnr - DataleverandÃ¸rnr.: DataleverandÃ¸rens SE-nummer
+    # - rsttil.Delsystem - Delsystem:  DataleverandÃ¸r delsystem
     # - "0601"           - Leverancetype: 0601 (Betalingsoplysninger)
-    # - wleveranceid     - Leveranceidentifikation: Løbenummer efter eget valg
+    # - wleveranceid     - Leveranceidentifikation: LÃ¸benummer efter eget valg
     # - rsttil!udtrukket - Dato: 000000 eller leverancens dannelsesdato
-    rec += write002(rstkrd.Datalevnr, rsttil.Delsystem, "0601", '%s' % (wleveranceid), rsttil.Udtrukket) + "\r\n"
+    rec += self.write002(rstkrd.Datalevnr, rsttil.Delsystem, "0601", '%s' % (wleveranceid), rsttil.Udtrukket) + "\r\n"
 
     # Sektion start - sektion 0112/0117
     # -  rstkrd.Pbsnr       - PBS-nr.: Kreditors PBS-nummer
     # -  rstkrd.Sektionnr   - Sektionsnr.: 0112/0117 (Betalinger med lang advistekst)
     # -  rstkrd.Debgrpnr    - Debitorgruppenr.: Debitorgruppenummer
-    # -  rstkrd.Datalevnavn - Leveranceidentifikation: Brugers identifikation hos dataleverandør
+    # -  rstkrd.Datalevnavn - Leveranceidentifikation: Brugers identifikation hos dataleverandÃ¸r
     # -  rsttil.Udtrukket   - Dato: 000000 eller leverancens dannelsesdato
-    # -  rstkrd.Regnr       - Reg.nr.: Overførselsregistreringsnummer
-    # -  rstkrd.Kontonr     - Kontonr.: Overførselskontonummer
-    # -  h_linie            - H-linie: Tekst til hovedlinie på advis
-    rec += write012(rstkrd.Pbsnr, rstkrd.Sektionnr, rstkrd.Debgrpnr, rstkrd.Datalevnavn, rsttil.Udtrukket, rstkrd.Regnr, rstkrd.Kontonr, h_linie) + "\r\n"
-    antalsek++
+    # -  rstkrd.Regnr       - Reg.nr.: OverfÃ¸rselsregistreringsnummer
+    # -  rstkrd.Kontonr     - Kontonr.: OverfÃ¸rselskontonummer
+    # -  h_linie            - H-linie: Tekst til hovedlinie pÃ¥ advis
+    rec += self.write012(rstkrd.Pbsnr, rstkrd.Sektionnr, rstkrd.Debgrpnr, rstkrd.Datalevnavn, rsttil.Udtrukket, rstkrd.Regnr, rstkrd.Kontonr, h_linie) + "\r\n"
+    antalsek += 1
 
-    qry = db.Query(Fak).ancestor(tilpbskey)
-    rstfaks = qry.fetch()
+    rstfaks = db.Query(Fak).ancestor(tilpbskey)
 
     for rstfak in rstfaks:
       rstdeb = clsRstdeb(rstfak)
@@ -187,22 +188,22 @@ class TestHandler(webapp.RequestHandler):
       # Debitornavn
       # - rstkrd.Sektionnr -
       # - rstkrd.Pbsnr     - PBS-nr.: Kreditors PBS-nummer
-      # - "0240"           - Transkode: 0240 (Navn/adresse på debitor)
+      # - "0240"           - Transkode: 0240 (Navn/adresse pÃ¥ debitor)
       # - 1                - Recordnr.: 001
       # - rstkrd.Debgrpnr  - Debitorgruppenr.: Debitorgruppenummer
       # - rstdeb.Kundenr   - Kundenr.: Debitors kundenummer hos kreditor
       # - 0                - Aftalenr.: 000000000 eller 999999999
       # - rstdeb.Navn      - Navn: Debitors navn
-      rec += write022(rstkrd.Sektionnr, rstkrd.Pbsnr, "0240", 1, rstkrd.Debgrpnr, '%s' % (rstdeb.Kundenr), 0, rstdeb.Navn) + "\r\n"
-      antal022++
-      antal022tot++
+      rec += self.write022(rstkrd.Sektionnr, rstkrd.Pbsnr, "0240", 1, rstkrd.Debgrpnr, '%s' % (rstdeb.Kundenr), 0, rstdeb.Navn) + "\r\n"
+      antal022 += 1
+      antal022tot += 1
 
-      # Split adresse i 2 felter hvis længde > 35
+      # Split adresse i 2 felter hvis lÃ¦ngde > 35
       rstdeb_Adresse1 = None
       rstdeb_Adresse2 = None
       bStart_Adresse1 = True
       bStart_Adresse2 = True
-      if rstdeb.Adresse.len() <= 35:
+      if len(rstdeb.Adresse) <= 35:
         rstdeb_Adresse1 = rstdeb.Adresse
       else:
         words = rstdeb.Adresse.split(' ')
@@ -223,58 +224,58 @@ class TestHandler(webapp.RequestHandler):
       # Debitoradresse 1/adresse 2
       # - rstkrd.Sektionnr -
       # - rstkrd.Pbsnr     - PBS-nr.: Kreditors PBS-nummer
-      # - "0240"           - Transkode: 0240 (Navn/adresse på debitor)
+      # - "0240"           - Transkode: 0240 (Navn/adresse pÃ¥ debitor)
       # - 2                - Recordnr.: 002
       # - rstkrd.Debgrpnr  - Debitorgruppenr.: Debitorgruppenummer
       # - rstdeb.Kundenr   - Kundenr.: Debitors kundenummer hos kreditor
       # - 0                - Aftalenr.: 000000000 eller 999999999
       # - rstdeb.Adresse   - Adresse 1: Adresselinie 1
-      rec += write022(rstkrd.Sektionnr, rstkrd.Pbsnr, "0240", 2, rstkrd.Debgrpnr, '%s' % (rstdeb.Kundenr), 0, rstdeb_Adresse1) + "\r\n"
-      antal022++
-      antal022tot++
+      rec += self.write022(rstkrd.Sektionnr, rstkrd.Pbsnr, "0240", 2, rstkrd.Debgrpnr, '%s' % (rstdeb.Kundenr), 0, rstdeb_Adresse1) + "\r\n"
+      antal022 += 1
+      antal022tot += 1
 
       if not bStart_Adresse2:
         # Debitoradresse 1/adresse 3
         # - rstkrd.Sektionnr -
         # - rstkrd.Pbsnr     - PBS-nr.: Kreditors PBS-nummer
-        # - "0240"           - Transkode: 0240 (Navn/adresse på debitor)
+        # - "0240"           - Transkode: 0240 (Navn/adresse pÃ¥ debitor)
         # - 2                - Recordnr.: 002
         # - rstkrd.Debgrpnr  - Debitorgruppenr.: Debitorgruppenummer
         # - rstdeb.Kundenr   - Kundenr.: Debitors kundenummer hos kreditor
         # - 0                - Aftalenr.: 000000000 eller 999999999
         # - rstdeb.Adresse   - Adresse 1: Adresselinie 1
-        rec += write022(rstkrd.Sektionnr, rstkrd.Pbsnr, "0240", 3, rstkrd.Debgrpnr, '%s' % (rstdeb.Kundenr), 0, rstdeb_Adresse2) + "\r\n"
-        antal022++
-        antal022tot++
+        rec += self.write022(rstkrd.Sektionnr, rstkrd.Pbsnr, "0240", 3, rstkrd.Debgrpnr, '%s' % (rstdeb.Kundenr), 0, rstdeb_Adresse2) + "\r\n"
+        antal022 += 1
+        antal022tot += 1
 
       # Debitorpostnummer
       # - rstkrd.Sektionnr -
       # - rstkrd.Pbsnr     - PBS-nr.: Kreditors PBS-nummer
-      # - "0240"           - Transkode: 0240 (Navn/adresse på debitor)
+      # - "0240"           - Transkode: 0240 (Navn/adresse pÃ¥ debitor)
       # - 3                - Recordnr.: 003
       # - rstkrd.Debgrpnr  - Debitorgruppenr.: Debitorgruppenummer
       # - rstdeb.Kundenr   - Kundenr.: Debitors kundenummer hos kreditor
       # - 0                - Aftalenr.: 000000000 eller 999999999
       # - rstdeb.Postnr    - Postnr.: Postnummer
-      rec += write022(rstkrd.Sektionnr, rstkrd.Pbsnr, "0240", 9, rstkrd.Debgrpnr, '%s' % (rstdeb.Kundenr), 0, rstdeb.Postnr.ToString()) + "\r\n"
-      antal022++
-      antal022tot++
+      rec += self.write022(rstkrd.Sektionnr, rstkrd.Pbsnr, "0240", 9, rstkrd.Debgrpnr, '%s' % (rstdeb.Kundenr), 0, rstdeb.Postnr) + "\r\n"
+      antal022 += 1
+      antal022tot += 1
 
       # Forfald betaling
       if rstdeb.Belob > 0.0:
         fortegn = 1
-        # Fortegnskode: 1 = træk
+        # Fortegnskode: 1 = trÃ¦k
         belobint = int(round(rstdeb.Belob * 100)) 
         belob042 += belobint
         belob042tot += belobint
       elif rstdeb.Belob < 0.0:
         fortegn = 2
-        # Fortegnskode: 2 = indsættelse
+        # Fortegnskode: 2 = indsÃ¦ttelse
         belobint = int(round(rstdeb.Belob * (-100))) 
         belob042 -= belobint
         belob042tot -= belobint
       else:
-        fortegn = 0  # Fortegnskode: 0 = 0-beløb
+        fortegn = 0  # Fortegnskode: 0 = 0-belÃ¸b
         belobint = 0
 
       # - rstkrd.Sektionnr         -
@@ -285,11 +286,11 @@ class TestHandler(webapp.RequestHandler):
       # - 0                        - Aftalenr.: 000000000 eller 999999999
       # - rstdeb.Betalingsdato     -
       # - fortegn                  -
-      # - belobint                 - Beløb: Beløb i øre uden fortegn
-      # - rstdeb.Faknr             - faknr: Information vedrørende betalingen.
-      rec += write042(rstkrd.Sektionnr, rstkrd.Pbsnr, rstkrd.Transkodebetaling, rstkrd.Debgrpnr, '%s' % (rstdeb.Kundenr), 0, (DateTime)rstdeb.Betalingsdato, fortegn,belobint, (int)rstdeb.Faknr) + "\r\n"
-      antal042++
-      antal042tot++
+      # - belobint                 - BelÃ¸b: BelÃ¸b i Ã¸re uden fortegn
+      # - rstdeb.Faknr             - faknr: Information vedrÃ¸rende betalingen.
+      rec += self.write042(rstkrd.Sektionnr, rstkrd.Pbsnr, rstkrd.Transkodebetaling, rstkrd.Debgrpnr, '%s' % (rstdeb.Kundenr), 0, rstdeb.Betalingsdato, fortegn,belobint, rstdeb.Faknr) + "\r\n"
+      antal042 += 1
+      antal042tot += 1
 
       recnr = 0
       firstAdvistekst = True      
@@ -297,18 +298,18 @@ class TestHandler(webapp.RequestHandler):
         arradvis = rstdeb.Advistekst.split("\r\n")
         for advis in arradvis:
           if firstAdvistekst:
-            recnr++
+            recnr += 1
             advistekst = advis
             advisbelob = int(rstdeb.Belob)
             firstAdvistekst = False
           else:
-            recnr++
+            recnr += 1
             advistekst = advis
             advisbelob = 0
 
           # Tekst til advis
-          antal052++
-          antal052tot++
+          antal052 += 1
+          antal052tot += 1
 
           # - rstkrd!sektionnr  -
           # - rstkrd!pbsnr      - PBS-nr.: Kreditors PBS-nummer
@@ -317,11 +318,11 @@ class TestHandler(webapp.RequestHandler):
           # - rstkrd!debgrpnr   - Debitorgruppenr.: Debitorgruppenummer
           # - rstdeb!kundenr    - Kundenr.: Debitors kundenummer hos kreditor
           # - 0                 - Aftalenr.: 000000000 eller 999999999
-          # - advistekst        - Advistekst 1: Tekstlinie på advis
-          # - 0.0               - Advisbeløb 1: Beløb på advis
-          # - ""                - Advistekst 2: Tekstlinie på advis
-          # - 0.0               - Advisbeløb 2: Beløb på advis
-          rec += write052(rstkrd.Sektionnr, rstkrd.Pbsnr, "0241", recnr, rstkrd.Debgrpnr, '%s' % (rstdeb.Kundenr), 0, advistekst, advisbelob, "", 0) + "\r\n"
+          # - advistekst        - Advistekst 1: Tekstlinie pÃ¥ advis
+          # - 0.0               - AdvisbelÃ¸b 1: BelÃ¸b pÃ¥ advis
+          # - ""                - Advistekst 2: Tekstlinie pÃ¥ advis
+          # - 0.0               - AdvisbelÃ¸b 2: BelÃ¸b pÃ¥ advis
+          rec += self.write052(rstkrd.Sektionnr, rstkrd.Pbsnr, "0241", recnr, rstkrd.Debgrpnr, '%s' % (rstdeb.Kundenr), 0, advistekst, advisbelob, "", 0) + "\r\n"
       
       param = clsInfotekstParam()
       param.infotekst_id = rstdeb.Infotekst
@@ -333,7 +334,7 @@ class TestHandler(webapp.RequestHandler):
       param.betalingsdato = rstdeb.Betalingsdato
       param.advisbelob = rstdeb.Belob 
       param.ocrstring = None
-      param.underskrift_navn= "\r\nMogens Hafsjold\r\nRegnskabsfører"
+      param.underskrift_navn= "\r\nMogens Hafsjold\r\nRegnskabsfÃ¸rer"
       param.bankkonto = None
       param.advistekst = None
       infotekst = clsInfotekst(param).getinfotekst() 
@@ -341,9 +342,9 @@ class TestHandler(webapp.RequestHandler):
       if (infotekst) and (infotekst.len() > 0):
         arradvis = infotekst.split("\r\n")
         for advisline in arradvis:
-          recnr++
-          antal052++
-          antal052tot++
+          recnr += 1
+          antal052 += 1
+          antal052tot += 1
 
           # - rstkrd!sektionnr     -
           # - rstkrd!pbsnr         - PBS-nr.: Kreditors PBS-nummer
@@ -352,11 +353,11 @@ class TestHandler(webapp.RequestHandler):
           # - rstkrd!debgrpnr      - Debitorgruppenr.: Debitorgruppenummer
           # - rstdeb!kundenr       - Kundenr.: Debitors kundenummer hos kreditor
           # - 0                    - Aftalenr.: 000000000 eller 999999999
-          # - infolin.getinfotekst - Advistekst 1: Tekstlinie på advis
-          # - 0.0                  - Advisbeløb 1: Beløb på advis
-          # - ""                   - Advistekst 2: Tekstlinie på advis
-          # - 0.0                  - Advisbeløb 2: Beløb på advis
-          rec += write052(rstkrd.Sektionnr, rstkrd.Pbsnr, "0241", recnr, rstkrd.Debgrpnr, '%s' % (rstdeb.Kundenr), 0, advisline, 0, "", 0) + "\r\n"
+          # - infolin.getinfotekst - Advistekst 1: Tekstlinie pÃ¥ advis
+          # - 0.0                  - AdvisbelÃ¸b 1: BelÃ¸b pÃ¥ advis
+          # - ""                   - Advistekst 2: Tekstlinie pÃ¥ advis
+          # - 0.0                  - AdvisbelÃ¸b 2: BelÃ¸b pÃ¥ advis
+          rec += self.write052(rstkrd.Sektionnr, rstkrd.Pbsnr, "0241", recnr, rstkrd.Debgrpnr, '%s' % (rstdeb.Kundenr), 0, advisline, 0, "", 0) + "\r\n"
 
     # End rstdebs
 
@@ -364,22 +365,22 @@ class TestHandler(webapp.RequestHandler):
     # - rstkrd!pbsnr     - PBS-nr.: Kreditors PBS-nummer
     # - rstkrd!sektionnr - Sektionsnr.: 0112/0117 (Betalinger)
     # - rstkrd!debgrpnr  - Debitorgruppenr.: Debitorgruppenummer
-    # - antal042         - Antal 042: Antal foranstående 042 records
-    # - belob042         - Beløb: Nettobeløb i 042 records
-    # - antal052         - Antal 052: Antal foranstående 052 records
-    # - antal022         - Antal 022: Antal foranstående 022 records
-    rec += write092(rstkrd.Pbsnr, rstkrd.Sektionnr, rstkrd.Debgrpnr, antal042, belob042, antal052, antal022) + "\r\n"
+    # - antal042         - Antal 042: Antal foranstÃ¥ende 042 records
+    # - belob042         - BelÃ¸b: NettobelÃ¸b i 042 records
+    # - antal052         - Antal 052: Antal foranstÃ¥ende 052 records
+    # - antal022         - Antal 022: Antal foranstÃ¥ende 022 records
+    rec += self.write092(rstkrd.Pbsnr, rstkrd.Sektionnr, rstkrd.Debgrpnr, antal042, belob042, antal052, antal022) + "\r\n"
 
     # Leverance slut  - 0601 Betalingsoplysninger
-    # - rstkrd.Datalevnr - Dataleverandørnr.: Dataleverandørens SE-nummer
-    # - rstkrd.Delsystem - Delsystem:  Dataleverandør delsystem
+    # - rstkrd.Datalevnr - DataleverandÃ¸rnr.: DataleverandÃ¸rens SE-nummer
+    # - rstkrd.Delsystem - Delsystem:  DataleverandÃ¸r delsystem
     # - "0601"           - Leverancetype: 0601 (Betalingsoplysninger)
     # - antalsek         - Antal sektioner: Antal sektioner i leverancen
-    # - antal042tot      - Antal 042: Antal foranstående 042 records
-    # - belob042tot      - Beløb: Nettobeløb i 042 records
-    # - antal052tot      - Antal 052: Antal foranstående 052 records
-    # - antal022tot      - Antal 022: Antal foranstående 022 records
-    rec += write992(rstkrd.Datalevnr, rstkrd.Delsystem, "0601", antalsek, antal042tot, belob042tot, antal052tot, antal022tot) + "\r\n"
+    # - antal042tot      - Antal 042: Antal foranstÃ¥ende 042 records
+    # - belob042tot      - BelÃ¸b: NettobelÃ¸b i 042 records
+    # - antal052tot      - Antal 052: Antal foranstÃ¥ende 052 records
+    # - antal022tot      - Antal 022: Antal foranstÃ¥ende 022 records
+    rec += self.write992(rstkrd.Datalevnr, rstkrd.Delsystem, "0601", antalsek, antal042tot, belob042tot, antal052tot, antal022tot) + "\r\n"
 
     rsttil.Udtrukket = datetime.now()
     rsttil.Leverancespecifikation = '%s' % (wleveranceid)
@@ -409,7 +410,7 @@ class TestHandler(webapp.RequestHandler):
       rec += lpad(debgrpnr, 5, '0')
       # Debitorgruppenr.: Debitorgruppenummer
       rec += rpad(levident, 15, ' ')
-      # Leveranceidentifikation: Brugers identifikation hos dataleverandør
+      # Leveranceidentifikation: Brugers identifikation hos dataleverandÃ¸r
       rec += rpad("", 9, ' ')
       # Filler
       # Dato: 000000 eller leverancens dannelsesdato
@@ -420,7 +421,7 @@ class TestHandler(webapp.RequestHandler):
       rec += lpad(debgrpnr, 5, '0')
       # Debitorgruppenr.: Debitorgruppenummer
       rec += rpad(levident, 15, ' ')
-      # Leveranceidentifikation: Brugers identifikation hos dataleverandør
+      # Leveranceidentifikation: Brugers identifikation hos dataleverandÃ¸r
       rec += rpad("", 4, ' ')
       # Filler
       # Dato: 00000000 eller leverancens dannelsesdato
@@ -431,18 +432,18 @@ class TestHandler(webapp.RequestHandler):
       rec += lpad(debgrpnr, 5, '0')
       # Debitorgruppenr.: Debitorgruppenummer
       rec += rpad(levident, 15, ' ')
-      # Leveranceidentifikation: Brugers identifikation hos dataleverandør
+      # Leveranceidentifikation: Brugers identifikation hos dataleverandÃ¸r
       rec += rpad("", 4, ' ')
       # Filler
       # Dato: 00000000 eller leverancens dannelsesdato
       rec += lpad(levdato.strftime("%d%m%Y"), 8, '?')
 
     rec += lpad(regnr, 4, '0')
-    # Reg.nr.: Overførselsregistreringsnummer
+    # Reg.nr.: OverfÃ¸rselsregistreringsnummer
     rec += lpad(kontonr, 10, '0')
-    # Kontonr.: Overførselskontonummer
+    # Kontonr.: OverfÃ¸rselskontonummer
     rec += h_linie
-    # H-linie: Tekst til hovedlinie på advis
+    # H-linie: Tekst til hovedlinie pÃ¥ advis
     return rec
     
   def write022(self, sektionnr, pbsnr, transkode, recordnr, debgrpnr, personid, aftalenr, Data):
@@ -551,43 +552,43 @@ class TestHandler(webapp.RequestHandler):
     if sektionnr == "0112":
       if advisbelob1 != 0:
         rec += rpad(advistekst1, 38, ' ')
-        # Advistekst 1: Tekstlinie på advis
-        # Advisbeløb 1: Beløb på advis
+        # Advistekst 1: Tekstlinie pÃ¥ advis
+        # AdvisbelÃ¸b 1: BelÃ¸b pÃ¥ advis
         advisbelob1_formated =  '%.2f' % (advisbelob1)
         rec += rpad(advisbelob1_formated.replace('.', ','), 9, ' ')
       else:
-        # Advistekst 1: Tekstlinie på advis
+        # Advistekst 1: Tekstlinie pÃ¥ advis
         rec += advistekst1
     elif sektionnr == "0117":
       if advisbelob1 != 0:
         rec += rpad(advistekst1, 38, ' ')
-        # Advistekst 1: Tekstlinie på advis
-        # Advisbeløb 1: Beløb på advis
+        # Advistekst 1: Tekstlinie pÃ¥ advis
+        # AdvisbelÃ¸b 1: BelÃ¸b pÃ¥ advis
         advisbelob1_formated = '%.2f' % (advisbelob1)
         rec += rpad(advisbelob1_formated.replace('.', ','), 9, ' ')
       else:
-        # Advistekst 1: Tekstlinie på advis
+        # Advistekst 1: Tekstlinie pÃ¥ advis
         rec += advistekst1
     else:
       if advisbelob1 != 0:
         rec += rpad(advistekst1, 29, ' ')
-        # Advistekst 1: Tekstlinie på advis
-        # Advisbeløb 1: Beløb på advis
+        # Advistekst 1: Tekstlinie pÃ¥ advis
+        # AdvisbelÃ¸b 1: BelÃ¸b pÃ¥ advis
         advisbelob1_formated = '%.2f' % (advisbelob1)
         rec += rpad(advisbelob1_formated.replace('.', ','), 9, ' ')
       else:
-        # Advistekst 1: Tekstlinie på advis
+        # Advistekst 1: Tekstlinie pÃ¥ advis
         rec += rpad(advistekst1, 38, ' ')
 
       rec += '0'
       if advisbelob2 != 0:
         rec += rpad(advistekst2, 29, ' ')
-        # Advistekst 2: Tekstlinie på advis
-        # Advisbeløb 1: Beløb på advis
+        # Advistekst 2: Tekstlinie pÃ¥ advis
+        # AdvisbelÃ¸b 1: BelÃ¸b pÃ¥ advis
         advisbelob2_formated = '%.2f' % (advisbelob1)
         rec += rpad(advisbelob2_formated.replace('.', ','), 9, ' ')
       elif advistekst2 != null:
-        # Advistekst 2: Tekstlinie på advis
+        # Advistekst 2: Tekstlinie pÃ¥ advis
         rec += advistekst2
 
     return rec

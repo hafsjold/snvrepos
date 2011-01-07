@@ -1,3 +1,4 @@
+﻿# coding=utf-8 
 import sys
 from certificates import MYSECRET, MYCERT, MYKEY
 import Cookie
