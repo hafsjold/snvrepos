@@ -1,7 +1,7 @@
 ﻿# coding=utf-8 
 from google.appengine.ext import db 
 import re
-
+import logging
 from models import UserGroup, User, NrSerie, Kreditor, Kontingent, Tilpbs, Fak, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlemlog, Person
 
 class clsInfotekstParam: 
@@ -110,7 +110,8 @@ class clsInfotekst(object):
     workline = ""
     linecount = 0
     wordcount = 0
-    crlf = "\r\n"
+    #crlf = "\r\n"
+    crlf = "\n"
     bltp = ' '
 
     inputtextlines = inputtext.split(crlf)

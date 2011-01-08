@@ -60,9 +60,11 @@ class TestHandler(webapp.RequestHandler):
     #(lobnr, antal) = self.kontingent_fakturer_bs1()
     rec = self.faktura_og_rykker_601_action(3023)
     logging.info('WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW rec: %s' % (rec))
-    template_values = {}
-    path = os.path.join(os.path.dirname(__file__), 'templates/test.html') 
-    self.response.out.write(template.render(path, template_values))
+    self.response.headers["Content-Type"] = "application/json"
+    self.response.out.write(rec.encode('windows-1252'))  
+    ##template_values = {}
+    ##path = os.path.join(os.path.dirname(__file__), 'templates/test.html') 
+    ##self.response.out.write(template.render(path, template_values))
 
 
   def kontingent_fakturer_bs1(self):
