@@ -51,7 +51,7 @@ class Tilpbs(db.Model):
 
 class Fak(db.Model): 
     Id = db.IntegerProperty()
-    Tilpbsid = db.IntegerProperty()
+    TilPbsref = db.ReferenceProperty(Tilpbs, collection_name='Fakturaer')
     Betalingsdato = db.DateProperty()
     Nr = db.IntegerProperty()
     Faknr = db.IntegerProperty()

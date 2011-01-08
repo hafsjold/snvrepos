@@ -57,14 +57,14 @@ class clsRstdeb(object):
 
 class TestHandler(webapp.RequestHandler):
   def get(self):
-    #(lobnr, antal) = self.kontingent_fakturer_bs1()
-    rec = self.faktura_og_rykker_601_action(3023)
-    logging.info('WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW rec: %s' % (rec))
-    self.response.headers["Content-Type"] = "application/json"
-    self.response.out.write(rec.encode('windows-1252'))  
-    ##template_values = {}
-    ##path = os.path.join(os.path.dirname(__file__), 'templates/test.html') 
-    ##self.response.out.write(template.render(path, template_values))
+    (lobnr, antal) = self.kontingent_fakturer_bs1()
+    ##rec = self.faktura_og_rykker_601_action(lobnr)
+    ##logging.info('WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW rec: %s' % (rec))
+    ##self.response.headers["Content-Type"] = "application/json"
+    ##self.response.out.write(rec.encode('windows-1252'))  
+    emplate_values = {}
+    ath = os.path.join(os.path.dirname(__file__), 'templates/test.html') 
+    elf.response.out.write(template.render(path, template_values))
 
 
   def kontingent_fakturer_bs1(self):
@@ -82,10 +82,11 @@ class TestHandler(webapp.RequestHandler):
     antal = qry.count()
     for q in qry:
       fakid = nextval('Fak')
-      k = db.Key.from_path('rootTilpbs','root','Tilpbs','%s' % (lobnr))
-      f = Fak.get_or_insert('%s' % (fakid), parent=k)
+      keyPerson = db.Key.from_path('Persons','root','Person','%s' % (q.Nr))
+      keyTilpbs = db.Key.from_path('rootTilpbs','root','Tilpbs','%s' % (lobnr))
+      f = Fak.get_or_insert('%s' % (fakid), parent=keyPerson)
       f.Id = fakid
-      f.Tilpbsid = lobnr
+      f.TilPbsref = t
       dt = datetime.now() + timedelta(days=7)
       f.Betalingsdato = dt.date()
       f.Nr = q.Nr
@@ -137,14 +138,14 @@ class TestHandler(webapp.RequestHandler):
     tilpbskey = db.Key.from_path('rootTilpbs','root','Tilpbs','%s' % (lobnr))
     rsttil = Tilpbs.get(tilpbskey)
     if not rsttil: 
-      raise Pbs601Error("101 - Der er ingen PBS forsendelse for id: " + lobnr)    
+      raise Pbs601Error('101 - Der er ingen PBS forsendelse for id: %s' % (lobnr))    
  
     if rsttil.Pbsforsendelseid:
-       raise Pbs601Error("102 - Pbsforsendelse for id: " + lobnr + " er allerede sendt")
+       raise Pbs601Error('102 - Pbsforsendelse for id: %s er allerede sendt' % (lobnr))
  
-    qry = db.Query(Fak).ancestor(tilpbskey)
+    qry = rsttil.Fakturaer
     if qry.count() == 0:
-      raise Pbs601Error("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr)
+      raise Pbs601Error('103 - Der er ingen pbs transaktioner for tilpbsid: %s' % (lobnr))
 
     if not rsttil.Udtrukket:
       rsttil.Udtrukket = datetime.now()
