@@ -123,13 +123,7 @@
     </Compile>
     <Compile Include="cls\clsGoogle.cs" />
     <Compile Include="cls\clsSFTP.cs" />
-    <Compile Include="cls\clsRecovery.cs" />
     <Compile Include="cls\clsSumma.cs" />
-    <Compile Include="dbRecovery3060.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbRecovery3060.dbml</DependentUpon>
-    </Compile>
     <Compile Include="dsMedlem.cs">
       <DependentUpon>dsMedlem.xsd</DependentUpon>
       <SubType>Component</SubType>
@@ -254,9 +248,6 @@
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="dbRecovery3060.dbml.layout">
-      <DependentUpon>dbRecovery3060.dbml</DependentUpon>
-    </None>
     <EmbeddedResource Include="frm\frmBetalingsForslag.resx">
       <DependentUpon>frmBetalingsForslag.cs</DependentUpon>
     </EmbeddedResource>
@@ -344,11 +335,6 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="dbRecovery3060.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>dbRecovery3060.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
     <None Include="HafsjoldDataApSSignature.pfx" />
     <None Include="Properties\DataSources\MemPbsnetdir.datasource" />
     <None Include="Properties\DataSources\Tblinfotekst.datasource" />

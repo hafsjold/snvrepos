@@ -445,17 +445,6 @@ namespace nsPuls3060
             DialogResult res = (new AboutBox()).ShowDialog();
         }
 
-        private void opretGendannelsespunktToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            clsRecovery objRecovery = new clsRecovery();
-            objRecovery.createRecoveryPoint();
-
-        }
-
-        private void tilbageTilGendannelsesPunktToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void excelInterntToolStripMenuItem_Click(object sender, EventArgs e)
         {
