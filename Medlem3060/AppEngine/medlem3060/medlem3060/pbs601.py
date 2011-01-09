@@ -50,7 +50,7 @@ class clsRstdeb(object):
     self.Fradato = f.Fradato
     self.Tildato = f.Tildato
     self.Infotekst = f.Infotekst
-    self.Tilpbsid = f.Tilpbsid
+    self.TilPbsref = f.TilPbsref
     self.Advistekst = None
     self.Belob = f.Advisbelob
     self.OcrString = None
@@ -58,13 +58,13 @@ class clsRstdeb(object):
 class TestHandler(webapp.RequestHandler):
   def get(self):
     (lobnr, antal) = self.kontingent_fakturer_bs1()
-    ##rec = self.faktura_og_rykker_601_action(lobnr)
-    ##logging.info('WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW rec: %s' % (rec))
-    ##self.response.headers["Content-Type"] = "application/json"
-    ##self.response.out.write(rec.encode('windows-1252'))  
-    emplate_values = {}
-    ath = os.path.join(os.path.dirname(__file__), 'templates/test.html') 
-    elf.response.out.write(template.render(path, template_values))
+    rec = self.faktura_og_rykker_601_action(lobnr)
+    logging.info('WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW rec: %s' % (rec))
+    self.response.headers["Content-Type"] = "application/json"
+    self.response.out.write(rec.encode('windows-1252'))  
+    ##template_values = {}
+    ##path = os.path.join(os.path.dirname(__file__), 'templates/test.html') 
+    ##self.response.out.write(template.render(path, template_values))
 
 
   def kontingent_fakturer_bs1(self):
@@ -86,7 +86,7 @@ class TestHandler(webapp.RequestHandler):
       keyTilpbs = db.Key.from_path('rootTilpbs','root','Tilpbs','%s' % (lobnr))
       f = Fak.get_or_insert('%s' % (fakid), parent=keyPerson)
       f.Id = fakid
-      f.TilPbsref = t
+      f.TilPbsref = keyTilpbs
       dt = datetime.now() + timedelta(days=7)
       f.Betalingsdato = dt.date()
       f.Nr = q.Nr
@@ -183,9 +183,7 @@ class TestHandler(webapp.RequestHandler):
     rec += self.write012(rstkrd.Pbsnr, rstkrd.Sektionnr, rstkrd.Debgrpnr, rstkrd.Datalevnavn, rsttil.Udtrukket, rstkrd.Regnr, rstkrd.Kontonr, h_linie) + "\r\n"
     antalsek += 1
 
-    rstfaks = db.Query(Fak).ancestor(tilpbskey)
-
-    for rstfak in rstfaks:
+    for rstfak in rsttil.Fakturaer:
       rstdeb = clsRstdeb(rstfak)
       
       # Debitornavn

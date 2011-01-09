@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{22A0E251-FF96-4077-91F3-373065297E4D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>nsPuls3060</RootNamespace>
+    <AssemblyName>Medlem3062</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ManifestCertificateThumbprint>089051A85531BAB9D5DA74DD6A102F482D7E399E</ManifestCertificateThumbprint>
+    <ManifestKeyFile>Medlem3060_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>true</SignManifests>
+    <PublishUrl>C:\Documents and Settings\mha\Dokumenter\Medlem3060\3060Install\Medlem3062\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <TargetCulture>en</TargetCulture>
+    <ProductName>Medlem3062</ProductName>
+    <PublisherName>Hafsjold</PublisherName>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ChilkatDotNet2, Version=9.1.1.0, Culture=neutral, PublicKeyToken=eb5fc1fc52ef09bd, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\ChilkatDotNet2.dll</HintPath>
+    </Reference>
+    <Reference Include="Excel, Version=2.0.1.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.GData.AccessControl, Version=1.6.0.0, Culture=neutral, PublicKeyToken=b4b8eb9a7afc8328, processorArchitecture=MSIL" />
+    <Reference Include="Google.GData.Client, Version=1.6.0.0, Culture=neutral, PublicKeyToken=04a59ca9b0273830, processorArchitecture=MSIL" />
+    <Reference Include="Google.GData.Contacts, Version=1.6.0.0, Culture=neutral, PublicKeyToken=7e065189dd4b982f, processorArchitecture=MSIL" />
+    <Reference Include="Google.GData.Extensions, Version=1.6.0.0, Culture=neutral, PublicKeyToken=0b4c5df2ebf20876, processorArchitecture=MSIL" />
+    <Reference Include="Interop.Excel, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.Microsoft.Office.Core, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Interop.Microsoft.Office.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.VBIDE, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Interop.VBIDE.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cls\clsRest.cs" />
+    <Compile Include="cls\clsSync.cs" />
+    <Compile Include="cls\clsInfotekst.cs" />
+    <Compile Include="cls\clsPbs603.cs" />
+    <Compile Include="cls\clsOverfoersel.cs" />
+    <Compile Include="cls\clsImportMedlem.cs" />
+    <Compile Include="cls\clsExcel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="cls\clsGoogle.cs" />
+    <Compile Include="cls\clsSFTP.cs" />
+    <Compile Include="cls\clsRecovery.cs" />
+    <Compile Include="cls\clsSumma.cs" />
+    <Compile Include="dbRecovery3060.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbRecovery3060.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="dsMedlem.cs">
+      <DependentUpon>dsMedlem.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="frm\frmResend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmResend.Designer.cs">
+      <DependentUpon>frmResend.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm\frmPbsnetdir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmPbsnetdir.Designer.cs">
+      <DependentUpon>frmPbsnetdir.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm\frmInfotekst.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmInfotekst.Designer.cs">
+      <DependentUpon>frmInfotekst.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm\frmBetalingsForslag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmBetalingsForslag.Designer.cs">
+      <DependentUpon>frmBetalingsForslag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm\frmPbsfiles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmPbsfiles.Designer.cs">
+      <DependentUpon>frmPbsfiles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm\frmKontingentForslag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmKontingentForslag.Designer.cs">
+      <DependentUpon>frmKontingentForslag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm\frmRegnskab.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmRegnskab.Designer.cs">
+      <DependentUpon>frmRegnskab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm\BetterDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\BetterDialog.designer.cs">
+      <DependentUpon>BetterDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cls\clsCsv.cs" />
+    <Compile Include="cls\clsMedlem.cs" />
+    <Compile Include="kar\karFakturastr_k.cs" />
+    <Compile Include="kar\karFakturavarer_k.cs" />
+    <Compile Include="kar\karFakturaer_k.cs" />
+    <Compile Include="kar\karPosteringer.cs" />
+    <Compile Include="kar\karKontoplan.cs" />
+    <Compile Include="kar\karPosteringsjournal.cs" />
+    <Compile Include="kar\karKladde.cs" />
+    <Compile Include="mem\memPbsnetdir.cs" />
+    <Compile Include="mem\memAktivRegnskab.cs" />
+    <Compile Include="frm\frmKreditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmKreditor.Designer.cs">
+      <DependentUpon>frmKreditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm\frmSelectRegnskab.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmSelectRegnskab.Designer.cs">
+      <DependentUpon>frmSelectRegnskab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="kar\karMedlemmer.cs" />
+    <Compile Include="cls\clsPbs.cs" />
+    <Compile Include="cls\clsPbs601.cs" />
+    <Compile Include="cls\clsPbs602.cs" />
+    <Compile Include="cls\clsUtil.cs" />
+    <Compile Include="dbData3060.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbData3060.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="mem\memMedlemDictionary.cs" />
+    <Compile Include="dsMedlem.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsMedlem.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="frm\frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cls\clsRegistry.cs" />
+    <Compile Include="frm\frmMedlemmer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmMedlemmer.Designer.cs">
+      <DependentUpon>frmMedlemmer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="kar\karDkkonti.cs" />
+    <Compile Include="kar\karFakturaer_s.cs" />
+    <Compile Include="kar\karFakturastr_s.cs" />
+    <Compile Include="kar\karFakturavarer_s.cs" />
+    <Compile Include="kar\karKortnr.cs" />
+    <Compile Include="kar\karRegnskab.cs" />
+    <Compile Include="kar\karStatus.cs" />
+    <Compile Include="NullableDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="app.config" />
+    <None Include="mem\app.config" />
+    <None Include="dbData3060.dbml.layout">
+      <DependentUpon>dbData3060.dbml</DependentUpon>
+    </None>
+    <EmbeddedResource Include="AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="dbRecovery3060.dbml.layout">
+      <DependentUpon>dbRecovery3060.dbml</DependentUpon>
+    </None>
+    <EmbeddedResource Include="frm\frmBetalingsForslag.resx">
+      <DependentUpon>frmBetalingsForslag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\BetterDialog.resx">
+      <DependentUpon>BetterDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmInfotekst.resx">
+      <DependentUpon>frmInfotekst.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmKontingentForslag.resx">
+      <DependentUpon>frmKontingentForslag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmKreditor.resx">
+      <DependentUpon>frmKreditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmMedlemmer.resx">
+      <DependentUpon>frmMedlemmer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmPbsfiles.resx">
+      <DependentUpon>frmPbsfiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmPbsnetdir.resx">
+      <DependentUpon>frmPbsnetdir.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmRegnskab.resx">
+      <DependentUpon>frmRegnskab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmResend.resx">
+      <DependentUpon>frmResend.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmSelectRegnskab.resx">
+      <DependentUpon>frmSelectRegnskab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmRykkerForslag.resx">
+      <DependentUpon>frmRykkerForslag.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="dbData3060.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>dbData3060.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dsMedlem.xsc">
+      <DependentUpon>dsMedlem.xsd</DependentUpon>
+    </None>
+    <None Include="dsMedlem.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsMedlem.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dsMedlem.xss">
+      <DependentUpon>dsMedlem.xsd</DependentUpon>
+    </None>
+    <None Include="Medlem3060_TemporaryKey.pfx" />
+    <None Include="Properties\DataSources\Tblkreditor.datasource" />
+    <None Include="Properties\DataSources\TblRegnskab.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="frm\frmRykkerForslag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmRykkerForslag.Designer.cs">
+      <DependentUpon>frmRykkerForslag.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="dbRecovery3060.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>dbRecovery3060.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\DataSources\MemPbsnetdir.datasource" />
+    <None Include="Properties\DataSources\Tblinfotekst.datasource" />
+    <None Include="Properties\DataSources\Tblpbsfiles.datasource" />
+    <None Include="Resources\Add.bmp" />
+    <Content Include="Resources\info.png" />
+    <Content Include="Resources\logopart.jpg" />
+    <None Include="Resources\Summa.ico" />
+    <None Include="Resources\Summakartotek.png" />
+    <None Include="Resources\Upd.bmp" />
+    <Content Include="sql\script17.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sql\scriptimpexp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sql\scriptexp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sql\scripaftalelin.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="sync.xsd">
+      <SubType>
+      </SubType>
+    </None>
+    <Content Include="sql\script15.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sql\script13.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="sql\script14.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SQL.Server.Compact.3.5">
+      <Visible>False</Visible>
+      <ProductName>SQL Server Compact 3.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
