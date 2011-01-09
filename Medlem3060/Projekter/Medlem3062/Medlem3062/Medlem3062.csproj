@@ -13,10 +13,11 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <ManifestCertificateThumbprint>089051A85531BAB9D5DA74DD6A102F482D7E399E</ManifestCertificateThumbprint>
-    <ManifestKeyFile>Medlem3060_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestCertificateThumbprint>9C6E91E08F005549F55927834743B903CE09C713</ManifestCertificateThumbprint>
+    <ManifestKeyFile>HafsjoldDataApSSignature.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
     <SignManifests>true</SignManifests>
+    <ManifestTimestampUrl>http://timestamp.verisign.com/scripts/timstamp.dll</ManifestTimestampUrl>
     <PublishUrl>C:\Documents and Settings\mha\Dokumenter\Medlem3060\3060Install\Medlem3062\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -31,7 +32,7 @@
     <ProductName>Medlem3062</ProductName>
     <PublisherName>Hafsjold</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -321,7 +322,6 @@
     <None Include="dsMedlem.xss">
       <DependentUpon>dsMedlem.xsd</DependentUpon>
     </None>
-    <None Include="Medlem3060_TemporaryKey.pfx" />
     <None Include="Properties\DataSources\Tblkreditor.datasource" />
     <None Include="Properties\DataSources\TblRegnskab.datasource" />
     <None Include="Properties\Settings.settings">
@@ -349,6 +349,7 @@
       <LastGenOutput>dbRecovery3060.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
+    <None Include="HafsjoldDataApSSignature.pfx" />
     <None Include="Properties\DataSources\MemPbsnetdir.datasource" />
     <None Include="Properties\DataSources\Tblinfotekst.datasource" />
     <None Include="Properties\DataSources\Tblpbsfiles.datasource" />
