@@ -130,6 +130,8 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
+            clsConvert objConvert = new clsConvert();
+            objConvert.cvnFak();
             //clsSFTP objSFTP = new clsSFTP();
             //objSFTP.ReWriteTilSFtp(986);
             //clsRest objRest = new clsRest();

@@ -124,6 +124,7 @@
     <Compile Include="cls\clsGoogle.cs" />
     <Compile Include="cls\clsSFTP.cs" />
     <Compile Include="cls\clsSumma.cs" />
+    <Compile Include="cls\clsConvert.cs" />
     <Compile Include="dsMedlem.cs">
       <DependentUpon>dsMedlem.xsd</DependentUpon>
       <SubType>Component</SubType>
