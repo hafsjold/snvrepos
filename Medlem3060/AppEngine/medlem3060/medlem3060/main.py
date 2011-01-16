@@ -17,7 +17,7 @@ import rest
 import os
 import re
 
-from models import UserGroup, User, NrSerie, Kreditor, Kontingent, Tilpbs, Fak, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlemlog, Person
+from models import UserGroup, User, NrSerie, Kreditor, Kontingent, Tilpbs, Fak, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Medlemlog, Person
 from util import TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
 from menuusergroup import deleteMenuAndUserGroup, createMenuAndUserGroup
 from menu import MenuHandler, ListUserHandler, UserHandler

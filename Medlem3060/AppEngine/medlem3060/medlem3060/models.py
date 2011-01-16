@@ -37,30 +37,195 @@ class Kreditor(db.Model):
     Kontonr = db.StringProperty() 
     Debgrpnr = db.StringProperty() 
     Sektionnr = db.StringProperty() 
-    Transkodebetaling = db.StringProperty() 
+    Transkodebetaling = db.StringProperty()
 
+class Pbsforsendelse(db.Model): 
+    #key = db.Key.from_path('rootPbsforsendelse','root', 'Pbsforsendelse', '%s' % (Id))
+    Id = db.IntegerProperty() 
+    Delsystem = db.StringProperty()
+    Leverancetype = db.StringProperty()
+    Oprettetaf = db.StringProperty()
+    Oprettet =  db.DateTimeProperty()
+    Leveranceid = db.IntegerProperty() 
+    
+class Pbsfiles(db.Model): 
+    #key = db.Key.from_path('rootPbsfiles','root', 'Pbsfiles', '%s' % (Id))
+    Id = db.IntegerProperty() 
+    Type = db.IntegerProperty() 
+    Path = db.StringProperty()
+    Filename = db.StringProperty()
+    Size = db.IntegerProperty() 
+    Atime = db.DateTimeProperty()
+    Mtime = db.DateTimeProperty()
+    Perm = db.StringProperty()
+    Uid = db.IntegerProperty() 
+    Gid = db.IntegerProperty() 
+    Transmittime = db.DateTimeProperty()
+    Pbsforsendelseref = db.ReferenceProperty(Pbsforsendelse, collection_name='listPbsfiles')
+
+class Pbsfile(db.Model): 
+    #key = db.Key.from_path('rootPbsfile','root', 'Pbsfile', '%s' % (Id))
+    Id = db.IntegerProperty() 
+    Pbsfilesref = db.ReferenceProperty(Pbsfiles, collection_name='listPbsfile')
+    Data = db.TextProperty()
+    
 class Tilpbs(db.Model): 
+    #key = db.Key.from_path('rootTilpbs','root', 'Tilpbs', '%s' % (Id))
     Id = db.IntegerProperty()
     Delsystem = db.StringProperty()
     Leverancetype = db.StringProperty()
     Bilagdato = db.DateProperty()
-    Pbsforsendelseid = db.IntegerProperty()
+    Pbsforsendelseref = db.ReferenceProperty(Pbsforsendelse, collection_name='listTilpbs')
     Udtrukket = db.DateTimeProperty()
     Leverancespecifikation = db.StringProperty()
     Leverancedannelsesdato = db.DateTimeProperty()
 
-class Fak(db.Model): 
+class Fak(db.Model):
+    #key = db.Key.from_path('Persons','root','Person','%s' % (Nr), 'Fak', '%s' % (Id))
     Id = db.IntegerProperty()
-    TilPbsref = db.ReferenceProperty(Tilpbs, collection_name='Fakturaer')
+    TilPbsref = db.ReferenceProperty(Tilpbs, collection_name='listFak')
     Betalingsdato = db.DateProperty()
     Nr = db.IntegerProperty()
     Faknr = db.IntegerProperty()
+    Advistekst = db.TextProperty()
     Advisbelob = db.FloatProperty()
     Infotekst = db.IntegerProperty()
+    Bogfkonto = db.IntegerProperty(default=1800)
+    Vnr = db.IntegerProperty(default=1)
     Fradato = db.DateProperty()
     Tildato = db.DateProperty()
+    SFakID = db.IntegerProperty()
+    SFaknr = db.IntegerProperty()
+    Rykkerdato = db.DateTimeProperty()
+    Maildato =  db.DateTimeProperty()
+    Rykkerstop =  db.BooleanProperty(default=False)
+    Betalt =  db.BooleanProperty(default=False)
+    Tilmeldtpbs = db.BooleanProperty(default=False)
+    Indmeldelse = db.BooleanProperty(default=False)
+    
+    def addMedlog(self):
+      fakroot = db.Key.from_path('Persons','root','Person','%s' % (self.Nr), 'Fak', '%s' % (self.Id))
+      medlog = Medlog.get_or_insert('%s' % (self.Id), parent=fakroot)
+      medlog.Id = self.Id
+      medlog.Source = 'Fak'
+      medlog.Source_id = self.Id
+      medlog.Nr = self.Nr
+      medlog.Logdato = self.TilPbsref.Udtrukket
+      medlog.Akt_id = 20
+      medlog.Akt_dato = Betalingsdato
+      medlog.put()
 
-class Kontingent(db.Model): 
+class Overforsel(db.Model):
+    #key = db.Key.from_path('Persons','root','Person','%s' % (Nr), 'Overforsel', '%s' % (Id))
+    Id = db.IntegerProperty()
+    TilPbsref = db.ReferenceProperty(Tilpbs, collection_name='listOverforsel')
+    Nr = db.IntegerProperty()
+    SFaknr = db.IntegerProperty()
+    SFakID =  db.IntegerProperty()
+    Advistekst =  db.StringProperty()
+    Advisbelob = db.FloatProperty()
+    Emailtekst = db.TextProperty()
+    Emailsent = db.BooleanProperty(default=False)
+    Bankregnr = db.StringProperty()
+    Bankkontonr = db.StringProperty()
+    Betalingsdato = db.DateProperty()
+    
+class Rykker(db.Model):
+    #key = db.Key.from_path('Persons','root','Person','%s' % (Nr), 'Rykker', '%s' % (Id))
+    Id = db.IntegerProperty()
+    TilPbsref = db.ReferenceProperty(Tilpbs, collection_name='listRykker')
+    betalingsdato = db.DateProperty()
+    Nr = db.IntegerProperty()
+    faknr = db.IntegerProperty()
+    advistekst = db.TextProperty()
+    advisbelob = db.FloatProperty()
+    infotekst = db.IntegerProperty()
+    rykkerdato = db.DateProperty()
+    maildato = db.DateProperty()
+    
+class Frapbs(db.Model):
+    #key = db.Key.from_path('rootFrapbs','root', 'Frapbs', '%s' % (Id))
+    Id = db.IntegerProperty()
+    Delsystem = db.StringProperty()
+    Leverancetype = db.StringProperty()
+    Bilagdato = db.DateProperty()
+    Pbsforsendelseref = db.ReferenceProperty(Pbsforsendelse, collection_name='listFrapbs')
+    Udtrukket = db.DateTimeProperty()
+    Leverancespecifikation = db.StringProperty()
+    Leverancedannelsesdato = db.DateTimeProperty()
+      
+class Bet(db.Model):
+    #key = db.Key.from_path('rootBet','root', 'Bet', '%s' % (Id))
+    Id = db.IntegerProperty()
+    Frapbsref = db.ReferenceProperty(Frapbs, collection_name='listBet')
+    Pbssektionnr = db.StringProperty()
+    Transkode = db.StringProperty()
+    Bogforingsdato = db.DateProperty()
+    Indbetalingsbelob = db.FloatProperty()
+    Summabogfort = db.BooleanProperty(default=False)
+    
+class Betlin(db.Model):
+    #key = db.Key.from_path('Persons','root','Person','%s' % (Nr), 'Betlin', '%s' % (Id))
+    Id = db.IntegerProperty()
+    Betref = db.ReferenceProperty(Bet, collection_name='listBetlin')
+    Pbssektionnr = db.StringProperty()
+    Pbstranskode = db.StringProperty()
+    Nr = db.IntegerProperty()
+    Faknr = db.IntegerProperty()
+    Debitorkonto = db.StringProperty()
+    Aftalenr = db.IntegerProperty()
+    Betalingsdato = db.DateProperty()
+    Belob = db.FloatProperty()
+    Indbetalingsdato = db.DateProperty()
+    Bogforingsdato = db.DateProperty()
+    Indbetalingsbelob = db.FloatProperty()
+    Pbskortart = db.StringProperty()
+    Pbsgebyrbelob = db.FloatProperty()
+    Pbsarkivnr = db.StringProperty()
+    
+    def addMedlog(self):
+      fakroot = db.Key.from_path('Persons','root','Person','%s' % (self.Nr), 'Betlin', '%s' % (self.Id))
+      medlog = Medlog.get_or_insert('%s' % (self.Id), parent=fakroot)
+      medlog.Id = self.Id
+      medlog.Source = 'Betlin'
+      medlog.Source_id = self.Id
+      medlog.Nr = self.Nr
+      medlog.Logdato = self.Betref.FraPbsref.Udtrukket
+      medlog.Akt_id = 30
+      medlog.Akt_dato = Indbetalingsdato
+      medlog.put()
+
+class Aftalelin(db.Model):
+    #key = db.Key.from_path('Persons','root','Person','%s' % (Nr), 'Aftalelin', '%s' % (Id))
+    Id = db.IntegerProperty()
+    Frapbsref = db.ReferenceProperty(Frapbs, collection_name='listAftalelin')
+    pbstranskode = db.StringProperty()
+    Nr = db.IntegerProperty()
+    debitorkonto = db.StringProperty()
+    debgrpnr = db.StringProperty()
+    aftalenr = db.IntegerProperty()
+    aftalestartdato = db.DateProperty()
+    aftaleslutdato = db.DateProperty()
+    pbssektionnr = db.StringProperty()
+    
+class Indbetalingskort(db.Model):
+    #key = db.Key.from_path('Persons','root','Person','%s' % (Nr), 'Indbetalingskort', '%s' % (Id))
+    Id = db.IntegerProperty()
+    Frapbsref = db.ReferenceProperty(Frapbs, collection_name='listIndbetalingskort')
+    pbstranskode = db.StringProperty()
+    Nr = db.IntegerProperty()
+    Faknr = db.IntegerProperty()
+    Debitorkonto = db.StringProperty()
+    Debgrpnr = db.StringProperty()
+    Kortartkode = db.StringProperty()
+    Fikreditornr = db.StringProperty()
+    Indbetalerident = db.StringProperty()
+    Dato = db.DateProperty()
+    Belob = db.FloatProperty()
+    Pbssektionnr = db.StringProperty()
+      
+class Kontingent(db.Model):
+    #key = db.Key.from_path('Persons','root','Person','%s' % (Nr), 'Kontingent', '%s' % (Id)) 
     Id = db.IntegerProperty()
     Nr = db.IntegerProperty()
     Advisbelob = db.FloatProperty()
@@ -95,8 +260,19 @@ class Sysinfo(db.Model):
     Id = db.IntegerProperty() 
     Vkey = db.StringProperty()
     Val = db.StringProperty()
+
+class Medlog(db.Model): 
+    #key = db.Key.from_path('Persons','root','Person','%s' % (Nr), Source, '%s' % Source_id,'Medlog', '%s' % (Id)) 
+    Id = db.IntegerProperty() 
+    Source = db.StringProperty()
+    Source_id = db.IntegerProperty()
+    Nr = db.IntegerProperty()
+    Logdato = db.DateTimeProperty()
+    Akt_id = db.IntegerProperty()  
+    Akt_dato = db.DateTimeProperty()
     
 class Medlemlog(db.Model): 
+    #key = db.Key.from_path('Persons','root','Person','%s' % (Nr), 'Medlemlog', '%s-%s' % (Source,Source_id)) 
     Source = db.IntegerProperty()
     Source_id = db.IntegerProperty()
     Nr = db.IntegerProperty()
@@ -105,6 +281,7 @@ class Medlemlog(db.Model):
     Akt_dato = db.DateTimeProperty()
     
 class Person(db.Model):
+    #key = db.Key.from_path('Persons','root','Person','%s' % (Nr)) 
     Nr = db.IntegerProperty()
     Navn  = db.StringProperty()
     Kaldenavn  = db.StringProperty()

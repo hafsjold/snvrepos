@@ -3,7 +3,7 @@ from google.appengine.ext import webapp
 from google.appengine.ext import db 
 from google.appengine.ext.webapp import template
 
-from models import UserGroup, User, NrSerie, Kreditor, Kontingent, Tilpbs, Fak, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlemlog, Person
+from models import UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Pbsfiles, Pbsfile, Tilpbs, Fak, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Medlemlog, Person
 from datetime import datetime, date, timedelta
 import logging
 import os
@@ -143,7 +143,7 @@ class TestHandler(webapp.RequestHandler):
     if rsttil.Pbsforsendelseid:
        raise Pbs601Error('102 - Pbsforsendelse for id: %s er allerede sendt' % (lobnr))
  
-    qry = rsttil.Fakturaer
+    qry = rsttil.listFak
     if qry.count() == 0:
       raise Pbs601Error('103 - Der er ingen pbs transaktioner for tilpbsid: %s' % (lobnr))
 
@@ -183,7 +183,7 @@ class TestHandler(webapp.RequestHandler):
     rec += self.write012(rstkrd.Pbsnr, rstkrd.Sektionnr, rstkrd.Debgrpnr, rstkrd.Datalevnavn, rsttil.Udtrukket, rstkrd.Regnr, rstkrd.Kontonr, h_linie) + "\r\n"
     antalsek += 1
 
-    for rstfak in rsttil.Fakturaer:
+    for rstfak in rsttil.listFak:
       rstdeb = clsRstdeb(rstfak)
       
       # Debitornavn
