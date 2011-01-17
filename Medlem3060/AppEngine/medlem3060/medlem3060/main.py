@@ -390,6 +390,91 @@ class KontingentJsonHandler(webapp.RequestHandler):
     self.response.headers["Content-Type"] = "application/json"
     self.response.out.write(jKontingentData)
     
+    
+class SyncConvertHandler(webapp.RequestHandler):
+  def post(self):
+    doc = minidom.parse(self.request.body_file)
+    ModelName  = doc.documentElement.tagName
+    
+    if ModelName == 'Fak':
+      try:
+        Id = doc.getElementsByTagName("Id")[0].childNodes[0].data
+      except:
+        Id = None
+      try:
+        Nr = doc.getElementsByTagName("Nr")[0].childNodes[0].data
+      except:
+        Nr = None
+      root = db.Key.from_path('Persons','root','Person','%s' % (Nr))
+      rec = Fak.get_or_insert('%s' % (Id), parent=root)
+      
+      for attr_name, value in Fak.__dict__.iteritems():
+        if isinstance(value, db.Property):
+          attr_type = value.__class__.__name__        
+          val = self.attr_val(doc, attr_name, attr_type)
+          logging.info('%s=%s' % (attr_name, val))
+          try:
+            setattr(rec, attr_name, val)
+          except:
+            setattr(rec, attr_name, None)
+          
+          logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
+      rec.put()
+    
+    self.response.out.write('Status: 404')
+    
+  def attr_val(self, doc, attr_name, attr_type):
+    try:
+      strval = doc.getElementsByTagName(attr_name)[0].childNodes[0].data
+    except:
+      strval = None
+    
+    if attr_type == 'IntegerProperty':
+      try:
+        return int(strval)
+      except:
+        return None
+    elif attr_type == 'FloatProperty':
+      try:
+        return float(strval)
+      except:
+        return None
+    elif attr_type == 'BooleanProperty':
+      try:
+        return strval.lower() in ["yes", "true", "t", "1"] 
+      except:
+        return None 
+    elif attr_type == 'TextProperty':
+      try:
+        return strval
+      except:
+        return None 
+    elif attr_type == 'DateProperty':
+      try:
+        dt = datetime.strptime(strval, "%Y-%m-%dT%H:%M:%S")
+        return dt.date()
+      except:
+        return None
+    elif attr_type == 'DateTimeProperty':
+      try:
+        return datetime.strptime(strval, "%Y-%m-%dT%H:%M:%S")
+      except:
+        return None        
+    elif attr_type == 'ReferenceProperty':
+      if attr_name == 'TilPbsref':
+        try:
+          strval = doc.getElementsByTagName('Tilpbsid')[0].childNodes[0].data
+          return db.Key.from_path('rootTilpbs','root', 'Tilpbs', '%s' % (strval))
+        except:
+          return None
+      else:
+        return None      
+    else:
+      try:
+        return strval
+      except:
+        return None 
+        
 class SyncMedlemHandler(webapp.RequestHandler):
   def get(self):
     root = db.Key.from_path('Persons','root')
@@ -896,6 +981,7 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/adm/findmedlem4', Findmedlem4Handler),
                                        ('/adm', MenuHandler),
                                        ('/rest/.*', rest.Dispatcher),
+                                       ('/sync/Convert/.*', SyncConvertHandler),
                                        ('/sync/Medlemlog/.*', SyncMedlemlogHandler),
                                        ('/sync/Medlemlog', SyncMedlemlogHandler),
                                        ('/sync/Medlem/.*', SyncMedlemHandler),

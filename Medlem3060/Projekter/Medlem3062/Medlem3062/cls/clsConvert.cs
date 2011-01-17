@@ -15,12 +15,12 @@ namespace nsPuls3060
     {
         public void cvnFak()
         {
-            string Model = "Fak";
+            string ModelName = "Fak";
             var qry = from r in Program.dbData3060.Tblfak select r;
             foreach (var r in qry)
             {
                 clsRest objRest = new clsRest();
-                XElement xml = new XElement(Model);
+                XElement xml = new XElement(ModelName);
                 Type objectType = r.GetType();
                 PropertyInfo[] properties = objectType.GetProperties();
                 foreach (PropertyInfo property in properties)
@@ -31,7 +31,7 @@ namespace nsPuls3060
                     xml.Add(new XElement(Name, Val));
                 }
                 string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
-                string retur = objRest.HttpPost2(Model, strxml);
+                string retur = objRest.HttpPost2("Convert/" + ModelName, strxml);
             }
         }
     }
