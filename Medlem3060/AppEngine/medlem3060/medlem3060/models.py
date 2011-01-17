@@ -110,9 +110,12 @@ class Fak(db.Model):
       medlog.Source = 'Fak'
       medlog.Source_id = self.Id
       medlog.Nr = self.Nr
-      medlog.Logdato = self.TilPbsref.Udtrukket
+      try:
+        medlog.Logdato = self.TilPbsref.Udtrukket
+      except:
+        pass
       medlog.Akt_id = 20
-      medlog.Akt_dato = Betalingsdato
+      medlog.Akt_dato = self.Betalingsdato
       medlog.put()
 
 class Overforsel(db.Model):
@@ -191,8 +194,8 @@ class Betlin(db.Model):
       medlog.Source_id = self.Id
       medlog.Nr = self.Nr
       medlog.Logdato = self.Betref.FraPbsref.Udtrukket
-      medlog.Akt_id = 30
-      medlog.Akt_dato = Indbetalingsdato
+      medlog.Akt_id = int(30)
+      medlog.Akt_dato = self.Indbetalingsdato
       medlog.put()
 
 class Aftalelin(db.Model):
@@ -269,7 +272,7 @@ class Medlog(db.Model):
     Nr = db.IntegerProperty()
     Logdato = db.DateTimeProperty()
     Akt_id = db.IntegerProperty()  
-    Akt_dato = db.DateTimeProperty()
+    Akt_dato = db.DateProperty()
     
 class Medlemlog(db.Model): 
     #key = db.Key.from_path('Persons','root','Person','%s' % (Nr), 'Medlemlog', '%s-%s' % (Source,Source_id)) 

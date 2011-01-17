@@ -420,6 +420,7 @@ class SyncConvertHandler(webapp.RequestHandler):
           
           logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
       rec.put()
+      rec.addMedlog()
     
     self.response.out.write('Status: 404')
     
