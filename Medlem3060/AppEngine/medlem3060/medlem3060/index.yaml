@@ -16,6 +16,12 @@ indexes:
   - name: Logdato
     direction: desc
 
+- kind: Medlog
+  ancestor: yes
+  properties:
+  - name: Logdato
+    direction: desc
+    
 - kind: MenuMenuLink
   properties:
   - name: Parent_key
@@ -26,3 +32,7 @@ indexes:
   - name: Parent_key
   - name: Menuseq
     direction: desc
+    
+- kind: Fak
+  properties:
+  - name: Faknr

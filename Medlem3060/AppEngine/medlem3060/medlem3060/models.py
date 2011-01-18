@@ -199,8 +199,11 @@ class Betlin(db.Model):
         except:
           pass
         if self.Pbstranskode in ['0236','0297']:
-          medlog.Akt_id = 30
-          medlog.Akt_dato = self.Indbetalingsdato
+          qry = Fak.all()
+          qry.filter('Faknr =', self.Faknr)
+          for fakrec in qry:
+            medlog.Akt_dato = fakrec.Tildato
+            medlog.Akt_id = 30
         elif self.Pbstranskode in ['0237']:
           medlog.Akt_id = 40
           medlog.Akt_dato = self.Betalingsdato

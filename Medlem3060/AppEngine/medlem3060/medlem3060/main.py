@@ -145,14 +145,15 @@ class UpdatemedlemHandler(webapp.RequestHandler):
         
     if bAkt_dato:
       recNrSerie = NrSerie.get_or_insert('tblMedlemlog')
-      Source_id = recNrSerie.NextNumber
+      Id = recNrSerie.NextNumber
       recNrSerie.NextNumber += 1
       recNrSerie.put()
 
       k = db.Key.from_path('Persons','root','Person','%s' % (Nr))
-      p = Medlemlog.get_or_insert('2-%s' % (Source_id), parent=k)
-      p.Source = 2
-      p.Source_id = Source_id
+      p = Medlog.get_or_insert('%s' % (Id), parent=k)
+      p.Id = Id
+      p.Source = 'Medlog'
+      p.Source_id = Id
       p.Nr = int(Nr)
       p.Logdato = datetime.now()
       p.Akt_id = int(self.request.get('Akt_id'))
@@ -241,7 +242,7 @@ class MedlemHandler(webapp.RequestHandler):
     except:
       m = False
     Ermedlem = m.erMedlem()
-    log_list = db.Query(Medlemlog).ancestor(k).order('-Logdato')
+    log_list = db.Query(Medlog).ancestor(k).order('-Logdato')
     xonload = 'fonLoad();'
     
     if m:
@@ -350,7 +351,7 @@ class MedlemlogJsonHandler(webapp.RequestHandler):
     #jLogData = None
     if jLogData is None:
       root = db.Key.from_path('Persons','root')
-      qry = db.Query(Medlemlog).ancestor(root)
+      qry = db.Query(Medlog).ancestor(root)
       antal = qry.count()
       logging.info('TTTTTTTTTTTTTTT jLogData Antal: %s' % (antal))
       FirstPage = True

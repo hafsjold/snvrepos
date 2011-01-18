@@ -140,9 +140,9 @@ namespace nsPuls3060
             //objConvert.cvnPbsfiles();
             //objConvert.cvnFrapbs();
             //objConvert.cvnBet();
-            //objConvert.cvnBetlin();
+            objConvert.cvnBetlin();
             //objConvert.cvnAftalelin();
-            objConvert.cvnIndbetalingskort();
+            //objConvert.cvnIndbetalingskort();
 
             //clsSFTP objSFTP = new clsSFTP();
             //objSFTP.ReWriteTilSFtp(986);

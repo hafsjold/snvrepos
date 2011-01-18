@@ -29,6 +29,11 @@ namespace nsPuls3060
                     object Val = property.GetValue(r, null);
                     //string NamePropertyType = property.GetValue(r, null).GetType().Name;
                     xml.Add(new XElement(Name, Val));
+                    if (Name == "Id")
+                    {
+                        xml.Add(new XElement("Source_id", Val));
+                        xml.Add(new XElement("Source", "Medlog"));        
+                    }
                 }
                 string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
                 string retur = objRest.HttpPost2("Convert/" + ModelName, strxml);
