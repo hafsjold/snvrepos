@@ -17,7 +17,7 @@ import rest
 import os
 import re
 
-from models import UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Tilpbs, Fak, Overforsel, Rykker, Pbsfiles, Pbsfile, Frapbs, Bet, Betlin, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Medlemlog, Person
+from models import UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Tilpbs, Fak, Overforsel, Rykker, Pbsfiles, Pbsfile, Frapbs, Bet, Betlin, Aftalelin, Indbetalingskort, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Medlemlog, Person
 from util import TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
 from menuusergroup import deleteMenuAndUserGroup, createMenuAndUserGroup
 from menu import MenuHandler, ListUserHandler, UserHandler
@@ -659,6 +659,58 @@ class SyncConvertHandler(webapp.RequestHandler):
             logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
       rec.put()
       rec.addMedlog()      
+
+    elif ModelName == 'Aftalelin':
+      try:
+        Id = doc.getElementsByTagName("Id")[0].childNodes[0].data
+      except:
+        Id = None
+      try:
+        Nr = doc.getElementsByTagName("Nr")[0].childNodes[0].data
+      except:
+        Nr = None
+      root = db.Key.from_path('Persons','root','Person','%s' % (Nr))
+      rec = Aftalelin.get_or_insert('%s' % (Id), parent=root)
+      
+      for attr_name, value in Aftalelin.__dict__.iteritems():
+        if isinstance(value, db.Property):
+          attr_type = value.__class__.__name__        
+          if not attr_type in ['_ReverseReferenceProperty']:
+            val = self.attr_val(doc, attr_name, attr_type)
+            logging.info('%s=%s' % (attr_name, val))
+            try:
+              setattr(rec, attr_name, val)
+            except:
+              setattr(rec, attr_name, None)
+          
+            logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
+      rec.put()
+
+    elif ModelName == 'Indbetalingskort':
+      try:
+        Id = doc.getElementsByTagName("Id")[0].childNodes[0].data
+      except:
+        Id = None
+      try:
+        Nr = doc.getElementsByTagName("Nr")[0].childNodes[0].data
+      except:
+        Nr = None
+      root = db.Key.from_path('Persons','root','Person','%s' % (Nr))
+      rec = Indbetalingskort.get_or_insert('%s' % (Id), parent=root)
+      
+      for attr_name, value in Indbetalingskort.__dict__.iteritems():
+        if isinstance(value, db.Property):
+          attr_type = value.__class__.__name__        
+          if not attr_type in ['_ReverseReferenceProperty']:
+            val = self.attr_val(doc, attr_name, attr_type)
+            logging.info('%s=%s' % (attr_name, val))
+            try:
+              setattr(rec, attr_name, val)
+            except:
+              setattr(rec, attr_name, None)
+          
+            logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
+      rec.put()
       
     self.response.out.write('Status: 404')
     

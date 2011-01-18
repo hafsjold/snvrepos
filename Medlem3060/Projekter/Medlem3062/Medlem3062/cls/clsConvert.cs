@@ -253,5 +253,48 @@ namespace nsPuls3060
             }
         }
 
+        public void cvnAftalelin()
+        {
+            string ModelName = "Aftalelin";
+            var qry = from r in Program.dbData3060.Tblaftalelin select r;
+            foreach (var r in qry)
+            {
+                clsRest objRest = new clsRest();
+                XElement xml = new XElement(ModelName);
+                Type objectType = r.GetType();
+                PropertyInfo[] properties = objectType.GetProperties();
+                foreach (PropertyInfo property in properties)
+                {
+                    string Name = property.Name;
+                    object Val = property.GetValue(r, null);
+                    //string NamePropertyType = property.GetValue(r, null).GetType().Name;
+                    xml.Add(new XElement(Name, Val));
+                }
+                string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
+                string retur = objRest.HttpPost2("Convert/" + ModelName, strxml);
+            }
+        }
+
+        public void cvnIndbetalingskort()
+        {
+            string ModelName = "Indbetalingskort";
+            var qry = from r in Program.dbData3060.Tblindbetalingskort select r;
+            foreach (var r in qry)
+            {
+                clsRest objRest = new clsRest();
+                XElement xml = new XElement(ModelName);
+                Type objectType = r.GetType();
+                PropertyInfo[] properties = objectType.GetProperties();
+                foreach (PropertyInfo property in properties)
+                {
+                    string Name = property.Name;
+                    object Val = property.GetValue(r, null);
+                    //string NamePropertyType = property.GetValue(r, null).GetType().Name;
+                    xml.Add(new XElement(Name, Val));
+                }
+                string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
+                string retur = objRest.HttpPost2("Convert/" + ModelName, strxml);
+            }
+        }
     }
 }
