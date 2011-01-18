@@ -137,14 +137,14 @@ class Rykker(db.Model):
     #key = db.Key.from_path('Persons','root','Person','%s' % (Nr), 'Rykker', '%s' % (Id))
     Id = db.IntegerProperty()
     TilPbsref = db.ReferenceProperty(Tilpbs, collection_name='listRykker')
-    betalingsdato = db.DateProperty()
+    Betalingsdato = db.DateProperty()
     Nr = db.IntegerProperty()
-    faknr = db.IntegerProperty()
-    advistekst = db.TextProperty()
-    advisbelob = db.FloatProperty()
-    infotekst = db.IntegerProperty()
-    rykkerdato = db.DateProperty()
-    maildato = db.DateProperty()
+    Faknr = db.IntegerProperty()
+    Advistekst = db.TextProperty()
+    Advisbelob = db.FloatProperty()
+    Infotekst = db.IntegerProperty()
+    Rykkerdato = db.DateProperty()
+    Maildato = db.DateProperty()
     
 class Frapbs(db.Model):
     #key = db.Key.from_path('rootFrapbs','root', 'Frapbs', '%s' % (Id))
@@ -187,16 +187,24 @@ class Betlin(db.Model):
     Pbsarkivnr = db.StringProperty()
     
     def addMedlog(self):
-      fakroot = db.Key.from_path('Persons','root','Person','%s' % (self.Nr), 'Betlin', '%s' % (self.Id))
-      medlog = Medlog.get_or_insert('%s' % (self.Id), parent=fakroot)
-      medlog.Id = self.Id
-      medlog.Source = 'Betlin'
-      medlog.Source_id = self.Id
-      medlog.Nr = self.Nr
-      medlog.Logdato = self.Betref.FraPbsref.Udtrukket
-      medlog.Akt_id = int(30)
-      medlog.Akt_dato = self.Indbetalingsdato
-      medlog.put()
+      if self.Pbstranskode in ['0236','0237','0297']:      
+        fakroot = db.Key.from_path('Persons','root','Person','%s' % (self.Nr), 'Betlin', '%s' % (self.Id))
+        medlog = Medlog.get_or_insert('%s' % (self.Id), parent=fakroot)
+        medlog.Id = self.Id
+        medlog.Source = 'Betlin'
+        medlog.Source_id = self.Id
+        medlog.Nr = self.Nr
+        try:
+          medlog.Logdato = self.Betref.Frapbsref.Udtrukket
+        except:
+          pass
+        if self.Pbstranskode in ['0236','0297']:
+          medlog.Akt_id = 30
+          medlog.Akt_dato = self.Indbetalingsdato
+        elif self.Pbstranskode in ['0237']:
+          medlog.Akt_id = 40
+          medlog.Akt_dato = self.Betalingsdato
+        medlog.put()
 
 class Aftalelin(db.Model):
     #key = db.Key.from_path('Persons','root','Person','%s' % (Nr), 'Aftalelin', '%s' % (Id))

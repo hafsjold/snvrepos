@@ -131,7 +131,17 @@ namespace nsPuls3060
 #if (DEBUG)
 
             clsConvert objConvert = new clsConvert();
-            objConvert.cvnFak();
+            //objConvert.cvnMedlog();
+            //objConvert.cvnPbsforsendelse(); 
+            //objConvert.cvnTilpbs();
+            //objConvert.cvnFak();
+            //objConvert.cvnRykker();
+            objConvert.cvnOverforsel();
+            //objConvert.cvnPbsfiles();
+            //objConvert.cvnFrapbs();
+            //objConvert.cvnBet();
+            //objConvert.cvnBetlin();
+
             //clsSFTP objSFTP = new clsSFTP();
             //objSFTP.ReWriteTilSFtp(986);
             //clsRest objRest = new clsRest();

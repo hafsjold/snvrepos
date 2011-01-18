@@ -17,7 +17,7 @@ import rest
 import os
 import re
 
-from models import UserGroup, User, NrSerie, Kreditor, Kontingent, Tilpbs, Fak, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Medlemlog, Person
+from models import UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Tilpbs, Fak, Overforsel, Rykker, Pbsfiles, Pbsfile, Frapbs, Bet, Betlin, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Medlemlog, Person
 from util import TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
 from menuusergroup import deleteMenuAndUserGroup, createMenuAndUserGroup
 from menu import MenuHandler, ListUserHandler, UserHandler
@@ -396,7 +396,77 @@ class SyncConvertHandler(webapp.RequestHandler):
     doc = minidom.parse(self.request.body_file)
     ModelName  = doc.documentElement.tagName
     
-    if ModelName == 'Fak':
+    if ModelName == 'Medlog':
+      try:
+        Id = doc.getElementsByTagName("Id")[0].childNodes[0].data
+      except:
+        Id = None
+      try:
+        Nr = doc.getElementsByTagName("Nr")[0].childNodes[0].data
+      except:
+        Nr = None
+      root = db.Key.from_path('Persons','root','Person','%s' % (Nr))
+      rec = Medlog.get_or_insert('%s' % (Id), parent=root)
+      
+      for attr_name, value in Medlog.__dict__.iteritems():
+        if isinstance(value, db.Property):
+          attr_type = value.__class__.__name__        
+          if not attr_type in ['_ReverseReferenceProperty']:
+            val = self.attr_val(doc, attr_name, attr_type)
+            logging.info('%s=%s' % (attr_name, val))
+            try:
+              setattr(rec, attr_name, val)
+            except:
+              setattr(rec, attr_name, None)
+          
+            logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
+      rec.put()
+      
+    elif ModelName == 'Pbsforsendelse':
+      try:
+        Id = doc.getElementsByTagName("Id")[0].childNodes[0].data
+      except:
+        Id = None
+      root = db.Key.from_path('rootPbsforsendelse','root')
+      rec = Pbsforsendelse.get_or_insert('%s' % (Id), parent=root)
+      
+      for attr_name, value in Pbsforsendelse.__dict__.iteritems():
+        if isinstance(value, db.Property):
+          attr_type = value.__class__.__name__        
+          if not attr_type in ['_ReverseReferenceProperty']:
+            val = self.attr_val(doc, attr_name, attr_type)
+            logging.info('%s=%s' % (attr_name, val))
+            try:
+              setattr(rec, attr_name, val)
+            except:
+              setattr(rec, attr_name, None)
+          
+            logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
+      rec.put()
+
+    elif ModelName == 'Tilpbs':
+      try:
+        Id = doc.getElementsByTagName("Id")[0].childNodes[0].data
+      except:
+        Id = None
+      root = db.Key.from_path('rootTilpbs','root')
+      rec = Tilpbs.get_or_insert('%s' % (Id), parent=root)
+      
+      for attr_name, value in Tilpbs.__dict__.iteritems():
+        if isinstance(value, db.Property):
+          attr_type = value.__class__.__name__        
+          if not attr_type in ['_ReverseReferenceProperty']:
+            val = self.attr_val(doc, attr_name, attr_type)
+            logging.info('%s=%s' % (attr_name, val))
+            try:
+              setattr(rec, attr_name, val)
+            except:
+              setattr(rec, attr_name, None)
+          
+            logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
+      rec.put()
+      
+    elif ModelName == 'Fak':
       try:
         Id = doc.getElementsByTagName("Id")[0].childNodes[0].data
       except:
@@ -411,17 +481,185 @@ class SyncConvertHandler(webapp.RequestHandler):
       for attr_name, value in Fak.__dict__.iteritems():
         if isinstance(value, db.Property):
           attr_type = value.__class__.__name__        
-          val = self.attr_val(doc, attr_name, attr_type)
-          logging.info('%s=%s' % (attr_name, val))
-          try:
-            setattr(rec, attr_name, val)
-          except:
-            setattr(rec, attr_name, None)
+          if not attr_type in ['_ReverseReferenceProperty']:
+            val = self.attr_val(doc, attr_name, attr_type)
+            logging.info('%s=%s' % (attr_name, val))
+            try:
+              setattr(rec, attr_name, val)
+            except:
+              setattr(rec, attr_name, None)
           
-          logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
+            logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
       rec.put()
       rec.addMedlog()
-    
+      
+    elif ModelName == 'Rykker':
+      try:
+        Id = doc.getElementsByTagName("Id")[0].childNodes[0].data
+      except:
+        Id = None
+      try:
+        Nr = doc.getElementsByTagName("Nr")[0].childNodes[0].data
+      except:
+        Nr = None
+      root = db.Key.from_path('Persons','root','Person','%s' % (Nr))
+      rec = Rykker.get_or_insert('%s' % (Id), parent=root)
+      
+      for attr_name, value in Rykker.__dict__.iteritems():
+        if isinstance(value, db.Property):
+          attr_type = value.__class__.__name__        
+          if not attr_type in ['_ReverseReferenceProperty']:
+            val = self.attr_val(doc, attr_name, attr_type)
+            logging.info('%s=%s' % (attr_name, val))
+            try:
+              setattr(rec, attr_name, val)
+            except:
+              setattr(rec, attr_name, None)
+          
+            logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
+      rec.put()
+      
+    elif ModelName == 'Overforsel':
+      try:
+        Id = doc.getElementsByTagName("Id")[0].childNodes[0].data
+      except:
+        Id = None
+      try:
+        Nr = doc.getElementsByTagName("Nr")[0].childNodes[0].data
+      except:
+        Nr = None
+      root = db.Key.from_path('Persons','root','Person','%s' % (Nr))
+      rec = Overforsel.get_or_insert('%s' % (Id), parent=root)
+      
+      for attr_name, value in Overforsel.__dict__.iteritems():
+        if isinstance(value, db.Property):
+          attr_type = value.__class__.__name__        
+          if not attr_type in ['_ReverseReferenceProperty']:
+            val = self.attr_val(doc, attr_name, attr_type)
+            logging.info('%s=%s' % (attr_name, val))
+            try:
+              setattr(rec, attr_name, val)
+            except:
+              setattr(rec, attr_name, None)
+          
+            logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
+      rec.put()
+      
+    elif ModelName == 'Pbsfiles':
+      try:
+        Id = doc.getElementsByTagName("Id")[0].childNodes[0].data
+      except:
+        Id = None
+      root = db.Key.from_path('rootPbsfiles','root')
+      rec = Pbsfiles.get_or_insert('%s' % (Id), parent=root)
+      
+      for attr_name, value in Pbsfiles.__dict__.iteritems():
+        if isinstance(value, db.Property):
+          attr_type = value.__class__.__name__        
+          if not attr_type in ['_ReverseReferenceProperty']:
+            val = self.attr_val(doc, attr_name, attr_type)
+            logging.info('%s=%s' % (attr_name, val))
+            try:
+              setattr(rec, attr_name, val)
+            except:
+              setattr(rec, attr_name, None)
+          
+            logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
+      rec.put()
+
+    elif ModelName == 'Pbsfile':
+      try:
+        Id = doc.getElementsByTagName("Id")[0].childNodes[0].data
+      except:
+        Id = None
+      root = db.Key.from_path('rootPbsfile','root')
+      rec = Pbsfile.get_or_insert('%s' % (Id), parent=root)
+      
+      for attr_name, value in Pbsfile.__dict__.iteritems():
+        if isinstance(value, db.Property):
+          attr_type = value.__class__.__name__        
+          if not attr_type in ['_ReverseReferenceProperty']:
+            val = self.attr_val(doc, attr_name, attr_type)
+            logging.info('%s=%s' % (attr_name, val))
+            try:
+              setattr(rec, attr_name, val)
+            except:
+              setattr(rec, attr_name, None)
+          
+            logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
+      rec.put()
+
+    elif ModelName == 'Frapbs':
+      try:
+        Id = doc.getElementsByTagName("Id")[0].childNodes[0].data
+      except:
+        Id = None
+      root = db.Key.from_path('rootFrapbs','root')
+      rec = Frapbs.get_or_insert('%s' % (Id), parent=root)
+      
+      for attr_name, value in Frapbs.__dict__.iteritems():
+        if isinstance(value, db.Property):
+          attr_type = value.__class__.__name__        
+          if not attr_type in ['_ReverseReferenceProperty']:
+            val = self.attr_val(doc, attr_name, attr_type)
+            logging.info('%s=%s' % (attr_name, val))
+            try:
+              setattr(rec, attr_name, val)
+            except:
+              setattr(rec, attr_name, None)
+          
+            logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
+      rec.put()
+
+    elif ModelName == 'Bet':
+      try:
+        Id = doc.getElementsByTagName("Id")[0].childNodes[0].data
+      except:
+        Id = None
+      root = db.Key.from_path('rootBet','root')
+      rec = Bet.get_or_insert('%s' % (Id), parent=root)
+      
+      for attr_name, value in Bet.__dict__.iteritems():
+        if isinstance(value, db.Property):
+          attr_type = value.__class__.__name__        
+          if not attr_type in ['_ReverseReferenceProperty']:
+            val = self.attr_val(doc, attr_name, attr_type)
+            logging.info('%s=%s' % (attr_name, val))
+            try:
+              setattr(rec, attr_name, val)
+            except:
+              setattr(rec, attr_name, None)
+          
+            logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
+      rec.put()
+      
+    elif ModelName == 'Betlin':
+      try:
+        Id = doc.getElementsByTagName("Id")[0].childNodes[0].data
+      except:
+        Id = None
+      try:
+        Nr = doc.getElementsByTagName("Nr")[0].childNodes[0].data
+      except:
+        Nr = None
+      root = db.Key.from_path('Persons','root','Person','%s' % (Nr))
+      rec = Betlin.get_or_insert('%s' % (Id), parent=root)
+      
+      for attr_name, value in Betlin.__dict__.iteritems():
+        if isinstance(value, db.Property):
+          attr_type = value.__class__.__name__        
+          if not attr_type in ['_ReverseReferenceProperty']:
+            val = self.attr_val(doc, attr_name, attr_type)
+            logging.info('%s=%s' % (attr_name, val))
+            try:
+              setattr(rec, attr_name, val)
+            except:
+              setattr(rec, attr_name, None)
+          
+            logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
+      rec.put()
+      rec.addMedlog()      
+      
     self.response.out.write('Status: 404')
     
   def attr_val(self, doc, attr_name, attr_type):
@@ -452,13 +690,13 @@ class SyncConvertHandler(webapp.RequestHandler):
         return None 
     elif attr_type == 'DateProperty':
       try:
-        dt = datetime.strptime(strval, "%Y-%m-%dT%H:%M:%S")
+        dt = datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S")
         return dt.date()
       except:
         return None
     elif attr_type == 'DateTimeProperty':
       try:
-        return datetime.strptime(strval, "%Y-%m-%dT%H:%M:%S")
+        return datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S")
       except:
         return None        
     elif attr_type == 'ReferenceProperty':
@@ -468,8 +706,33 @@ class SyncConvertHandler(webapp.RequestHandler):
           return db.Key.from_path('rootTilpbs','root', 'Tilpbs', '%s' % (strval))
         except:
           return None
+      elif attr_name == 'Pbsforsendelseref':
+        try:
+          strval = doc.getElementsByTagName('Pbsforsendelseid')[0].childNodes[0].data
+          return db.Key.from_path('rootPbsforsendelse','root', 'Pbsforsendelse', '%s' % (strval))
+        except:
+          return None
+      elif attr_name == 'Pbsfilesref':
+        try:
+          strval = doc.getElementsByTagName('Pbsfilesid')[0].childNodes[0].data
+          return db.Key.from_path('rootPbsfiles','root', 'Pbsfiles', '%s' % (strval))
+        except:
+          return None
+      if attr_name == 'Frapbsref':
+        try:
+          strval = doc.getElementsByTagName('Frapbsid')[0].childNodes[0].data
+          return db.Key.from_path('rootFrapbs','root', 'Frapbs', '%s' % (strval))
+        except:
+          return None
+      if attr_name == 'Betref':
+        try:
+          strval = doc.getElementsByTagName('Betid')[0].childNodes[0].data
+          return db.Key.from_path('rootBet','root', 'Bet', '%s' % (strval))
+        except:
+          return None
       else:
-        return None      
+        return None  
+ 
     else:
       try:
         return strval
