@@ -204,10 +204,12 @@ class Betlin(db.Model):
           for fakrec in qry:
             medlog.Akt_dato = fakrec.Tildato
             medlog.Akt_id = 30
+            medlog.put()
         elif self.Pbstranskode in ['0237']:
           medlog.Akt_id = 40
           medlog.Akt_dato = self.Betalingsdato
-        medlog.put()
+          medlog.put()
+
 
 class Aftalelin(db.Model):
     #key = db.Key.from_path('Persons','root','Person','%s' % (Nr), 'Aftalelin', '%s' % (Id))
@@ -329,34 +331,34 @@ class Person(db.Model):
       m_BetalingsFristiDageGamleMedlemmer = 31
       m_BetalingsFristiDageNyeMedlemmer = 61
 
-      qrylog = db.Query(Medlemlog).ancestor(self.key()).order('-Logdato')
-      for MedlemLog in qrylog:
-        logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXX %s - %s - %s' % (MedlemLog.Logdato, MedlemLog.Akt_id, MedlemLog.Akt_dato))
-        if MedlemLog.Akt_id == 10: #Seneste Indmelses dato
+      qrylog = db.Query(Medlog).ancestor(self.key()).order('-Logdato')
+      for Mlog in qrylog:
+        logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXX %s - %s - %s' % (Mlog.Logdato, Mlog.Akt_id, Mlog.Akt_dato))
+        if Mlog.Akt_id == 10: #Seneste Indmelses dato
           if not m_b10:
             m_b10 = True
-            m_indmeldelsesDato = MedlemLog.Akt_dato
-        elif MedlemLog.Akt_id == 20: #Seneste PBS opkraevnings dato
+            m_indmeldelsesDato = Mlog.Akt_dato
+        elif Mlog.Akt_id == 20: #Seneste PBS opkraevnings dato
           if not m_b20:
             m_b20 = True
-            m_opkraevningsDato = MedlemLog.Akt_dato
-        elif MedlemLog.Akt_id == 30: # Kontingent betalt til dato
+            m_opkraevningsDato = Mlog.Akt_dato
+        elif Mlog.Akt_id == 30: # Kontingent betalt til dato
           if m_b30 and not m_b31: #Naest seneste Kontingent betalt til dato
             m_b31 = True
-            m_kontingentBetaltDato31 = MedlemLog.Logdato
-            m_kontingentTilDato31 = MedlemLog.Akt_dato
+            m_kontingentBetaltDato31 = Mlog.Logdato
+            m_kontingentTilDato31 = Mlog.Akt_dato
           if not m_b30 and not m_b31: #Seneste Kontingent betalt til dato
             m_b30 = True
-            m_kontingentBetalingsDato = MedlemLog.Logdato
-            m_kontingentBetaltTilDato = MedlemLog.Akt_dato            
-        elif MedlemLog.Akt_id == 40: #Seneste PBS betaling tilbagefoert
+            m_kontingentBetalingsDato = Mlog.Logdato
+            m_kontingentBetaltTilDato = Mlog.Akt_dato            
+        elif Mlog.Akt_id == 40: #Seneste PBS betaling tilbagefoert
           if not m_b40:
             m_b40 = True
-            m_kontingentTilbagefoertDato = MedlemLog.Akt_dato            
-        elif MedlemLog.Akt_id == 50: #Udmeldelses dato
+            m_kontingentTilbagefoertDato = Mlog.Akt_dato            
+        elif Mlog.Akt_id == 50: #Udmeldelses dato
           if not m_b50:
             m_b50 = True
-            m_udmeldelsesDato = MedlemLog.Akt_dato
+            m_udmeldelsesDato = Mlog.Akt_dato
 
       #Undersoeg vedr ind- og udmeldelse
       if m_b10: #Findes der en indmeldelse
@@ -422,34 +424,34 @@ class MedlemsStatus():
     self.udmeldelsesDato = None          
     self.BetalingsFristiDageGamleMedlemmer = 31
     self.BetalingsFristiDageNyeMedlemmer = 61
-    qrylog = db.Query(Medlemlog).ancestor(self.key).order('-Logdato')
-    for MedlemLog in qrylog:
-      logging.info('XXXXXXXXXXXMedlemsStatusXXXXXXXXXXXXXXX %s - %s - %s - %s - %s - %s' % (MedlemLog.Nr, MedlemLog.Source , MedlemLog.Source_id , MedlemLog.Logdato, MedlemLog.Akt_id, MedlemLog.Akt_dato))
-      if MedlemLog.Akt_id == 10: #Seneste Indmelses dato
+    qrylog = db.Query(Medlog).ancestor(self.key).order('-Logdato')
+    for Mlog in qrylog:
+      logging.info('XXXXXXXXXXXMedlemsStatusXXXXXXXXXXXXXXX %s - %s - %s - %s - %s - %s' % (Mlog.Nr, Mlog.Source , Mlog.Source_id , Mlog.Logdato, Mlog.Akt_id, Mlog.Akt_dato))
+      if Mlog.Akt_id == 10: #Seneste Indmelses dato
         if not self.b10:
           self.b10 = True
-          self.indmeldelsesDato = MedlemLog.Akt_dato
-      elif MedlemLog.Akt_id == 20: #Seneste PBS opkraevnings dato
+          self.indmeldelsesDato = Mlog.Akt_dato
+      elif Mlog.Akt_id == 20: #Seneste PBS opkraevnings dato
         if not self.b20:
           self.b20 = True
-          self.opkraevningsDato = MedlemLog.Akt_dato
-      elif MedlemLog.Akt_id == 30: # Kontingent betalt til dato
+          self.opkraevningsDato = Mlog.Akt_dato
+      elif Mlog.Akt_id == 30: # Kontingent betalt til dato
         if self.b30 and not self.b31: #Naest seneste Kontingent betalt til dato
           self.b31 = True
-          self.kontingentBetaltDato31 = MedlemLog.Logdato
-          self.kontingentTilDato31 = MedlemLog.Akt_dato
+          self.kontingentBetaltDato31 = Mlog.Logdato
+          self.kontingentTilDato31 = Mlog.Akt_dato
         if not self.b30 and not self.b31: #Seneste Kontingent betalt til dato
           self.b30 = True
-          self.kontingentBetalingsDato = MedlemLog.Logdato
-          self.kontingentBetaltTilDato = MedlemLog.Akt_dato            
-      elif MedlemLog.Akt_id == 40: #Seneste PBS betaling tilbagefoert
+          self.kontingentBetalingsDato = Mlog.Logdato
+          self.kontingentBetaltTilDato = Mlog.Akt_dato            
+      elif Mlog.Akt_id == 40: #Seneste PBS betaling tilbagefoert
         if not self.b40:
           self.b40 = True
-          self.kontingentTilbagefoertDato = MedlemLog.Akt_dato            
-      elif MedlemLog.Akt_id == 50: #Udmeldelses dato
+          self.kontingentTilbagefoertDato = Mlog.Akt_dato            
+      elif Mlog.Akt_id == 50: #Udmeldelses dato
         if not self.b50:
           self.b50 = True
-          self.udmeldelsesDato = MedlemLog.Akt_dato
+          self.udmeldelsesDato = Mlog.Akt_dato
           
   def MedlemTildato(self):
     #Undersoeg vedr ind- og udmeldelse

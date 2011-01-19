@@ -131,18 +131,18 @@ namespace nsPuls3060
 #if (DEBUG)
 
             clsConvert objConvert = new clsConvert();
-            //objConvert.cvnMedlog();
-            //objConvert.cvnPbsforsendelse(); 
-            //objConvert.cvnTilpbs();
-            //objConvert.cvnFak();
-            //objConvert.cvnRykker();
-            //objConvert.cvnOverforsel();
-            //objConvert.cvnPbsfiles();
-            //objConvert.cvnFrapbs();
-            //objConvert.cvnBet();
+            objConvert.cvnMedlog();
+            objConvert.cvnPbsforsendelse(); 
+            objConvert.cvnTilpbs();
+            objConvert.cvnFak();
+            objConvert.cvnRykker();
+            objConvert.cvnOverforsel();
+            objConvert.cvnPbsfiles();
+            objConvert.cvnFrapbs();
+            objConvert.cvnBet();
             objConvert.cvnBetlin();
-            //objConvert.cvnAftalelin();
-            //objConvert.cvnIndbetalingskort();
+            objConvert.cvnAftalelin();
+            objConvert.cvnIndbetalingskort();
 
             //clsSFTP objSFTP = new clsSFTP();
             //objSFTP.ReWriteTilSFtp(986);
