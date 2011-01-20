@@ -129,8 +129,8 @@ class UpdatemedlemHandler(webapp.RequestHandler):
     Nr = self.request.get('Nr')
     if Nr == '*':
       recNrSerie = NrSerie.get_or_insert('tblMedlem')
-      Nr = '%s' % (recNrSerie.NextNumber)
-      recNrSerie.NextNumber += 1
+      recNrSerie.Sidstbrugtenr += 1
+      Nr = '%s' % (recNrSerie.Sidstbrugtenr)
       recNrSerie.put()    
 
     #Test for Valid dato
@@ -145,8 +145,8 @@ class UpdatemedlemHandler(webapp.RequestHandler):
         
     if bAkt_dato:
       recNrSerie = NrSerie.get_or_insert('tblMedlemlog')
-      Id = recNrSerie.NextNumber
-      recNrSerie.NextNumber += 1
+      recNrSerie.Sidstbrugtenr += 1
+      Id = recNrSerie.Sidstbrugtenr
       recNrSerie.put()
 
       k = db.Key.from_path('Persons','root','Person','%s' % (Nr))
@@ -169,8 +169,8 @@ class UpdatemedlemHandler(webapp.RequestHandler):
       Akt_id = self.request.get('Akt_id')
       if Akt_id == '10':
         recNrSerie = NrSerie.get_or_insert('Kontingent')
-        Kontingent_id = recNrSerie.NextNumber
-        recNrSerie.NextNumber += 1
+        recNrSerie.Sidstbrugtenr += 1
+        Kontingent_id = recNrSerie.Sidstbrugtenr
         recNrSerie.put()
         t = db.Key.from_path('Persons','root','Person','%s' % (Nr))
         q = Kontingent.get_or_insert('%s' % (Kontingent_id), parent=t)      
@@ -778,6 +778,49 @@ class SyncConvertHandler(webapp.RequestHandler):
           
             logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
       rec.put()
+
+    elif ModelName == 'Kreditor':
+      try:
+        Id = doc.getElementsByTagName("Id")[0].childNodes[0].data
+      except:
+        Id = None
+      root = db.Key.from_path('rootKreditor','root')
+      rec = Kreditor.get_or_insert('%s' % (Id), parent=root)
+      
+      for attr_name, value in Kreditor.__dict__.iteritems():
+        if isinstance(value, db.Property):
+          attr_type = value.__class__.__name__        
+          if not attr_type in ['_ReverseReferenceProperty']:
+            val = self.attr_val(doc, attr_name, attr_type)
+            logging.info('%s=%s' % (attr_name, val))
+            try:
+              setattr(rec, attr_name, val)
+            except:
+              setattr(rec, attr_name, None)
+          
+            logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
+      rec.put()
+
+    elif ModelName == 'NrSerie':
+      try:
+        Nrserienavn = doc.getElementsByTagName("Nrserienavn")[0].childNodes[0].data
+      except:
+        Nrserienavn = None
+      rec = NrSerie.get_or_insert('%s' % (Nrserienavn))
+      
+      for attr_name, value in NrSerie.__dict__.iteritems():
+        if isinstance(value, db.Property):
+          attr_type = value.__class__.__name__        
+          if not attr_type in ['_ReverseReferenceProperty']:
+            val = self.attr_val(doc, attr_name, attr_type)
+            logging.info('%s=%s' % (attr_name, val))
+            try:
+              setattr(rec, attr_name, val)
+            except:
+              setattr(rec, attr_name, None)
+          
+            logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
+      rec.put()
       
     self.response.out.write('Status: 404')
     
@@ -987,45 +1030,39 @@ class CreateMenu(webapp.RequestHandler):
       memcache.flush_all()
       
       recNrSerie = NrSerie.get_or_insert('Tilpbs')
-      recNrSerie.Name = 'Tilpbs'
-      if not recNrSerie.NextNumber:
-        recNrSerie.NextNumber = 3000
+      recNrSerie.Nrserienavn = 'Tilpbs'
+      if not recNrSerie.Sidstbrugtenr:
+        recNrSerie.Sidstbrugtenr = 3000
       recNrSerie.put()
       
       recNrSerie = NrSerie.get_or_insert('Fak')
-      recNrSerie.Name = 'Fak'
-      if not recNrSerie.NextNumber:
-        recNrSerie.NextNumber = 4000
+      recNrSerie.Nrserienavn = 'Fak'
+      if not recNrSerie.Sidstbrugtenr:
+        recNrSerie.Sidstbrugtenr = 4000
       recNrSerie.put()
       
       recNrSerie = NrSerie.get_or_insert('faknr')
-      recNrSerie.Name = 'faknr'
-      if not recNrSerie.NextNumber:
-        recNrSerie.NextNumber = 5000
+      recNrSerie.Nrserienavn = 'faknr'
+      if not recNrSerie.Sidstbrugtenr:
+        recNrSerie.Sidstbrugtenr = 5000
       recNrSerie.put()
       
       recNrSerie = NrSerie.get_or_insert('leveranceid')
-      recNrSerie.Name = 'leveranceid'
-      if not recNrSerie.NextNumber:
-        recNrSerie.NextNumber = 2000
-      recNrSerie.put()
-      
-      recNrSerie = NrSerie.get_or_insert('tblMedlemlog')
-      recNrSerie.Name = 'tblMedlemlog'
-      if not recNrSerie.NextNumber:
-        recNrSerie.NextNumber = 2000
+      recNrSerie.Nrserienavn = 'leveranceid'
+      if not recNrSerie.Sidstbrugtenr:
+        recNrSerie.Sidstbrugtenr = 2000
       recNrSerie.put()
       
       recNrSerie = NrSerie.get_or_insert('tblMedlem')
-      recNrSerie.Name = 'tblMedlem'
-      if not recNrSerie.NextNumber:
-        recNrSerie.NextNumber = 850
+      recNrSerie.Nrserienavn = 'tblMedlem'
+      if not recNrSerie.Sidstbrugtenr:
+        recNrSerie.Sidstbrugtenr = 850
       recNrSerie.put()      
       
       recNrSerie = NrSerie.get_or_insert('Kontingent')
-      recNrSerie.Name = 'Kontingent'
-      if not recNrSerie.NextNumber:
-        recNrSerie.NextNumber = 1
+      recNrSerie.Nrserienavn = 'Kontingent'
+      if not recNrSerie.Sidstbrugtenr:
+        recNrSerie.Sidstbrugtenr = 1
       recNrSerie.put()
 
       self.redirect("/adm")

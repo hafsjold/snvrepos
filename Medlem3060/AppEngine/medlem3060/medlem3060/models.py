@@ -24,10 +24,12 @@ class MenuMenuLink(db.Model):
   Menuseq = db.IntegerProperty()  
 
 class NrSerie(db.Model):
-    Name  = db.StringProperty() 
-    NextNumber = db.IntegerProperty()
+    #key = db.Key.from_path('NrSerie', '%s' % (Nrserienavn))
+    Nrserienavn  = db.StringProperty() 
+    Sidstbrugtenr = db.IntegerProperty()
 
 class Kreditor(db.Model): 
+    #key = db.Key.from_path('rootKreditor','root', 'Kreditor', '%s' % (Id))
     Id = db.IntegerProperty()
     Datalevnr = db.StringProperty()
     Datalevnavn = db.StringProperty()      

@@ -21,11 +21,10 @@ def rpad (oVal, Length, PadChar):
 def nextval(nrserie):
   recNrSerie = NrSerie.get_or_insert(nrserie)
   nr = 1
-  if recNrSerie.NextNumber:
-    nr = recNrSerie.NextNumber
+  if recNrSerie.Sidstbrugtenr:
+    nr = recNrSerie.Sidstbrugtenr + 1
   else:
-    recNrSerie.NextNumber = nr
-  recNrSerie.NextNumber += 1
+    recNrSerie.Sidstbrugtenr = nr
   recNrSerie.put()  
   return nr
 
