@@ -10,12 +10,6 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
-- kind: Medlemlog
-  ancestor: yes
-  properties:
-  - name: Logdato
-    direction: desc
-
 - kind: Medlog
   ancestor: yes
   properties:

@@ -3,7 +3,7 @@ from google.appengine.ext import webapp
 from google.appengine.ext import db 
 from google.appengine.ext.webapp import template
 
-from models import UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Pbsfiles, Pbsfile, Tilpbs, Fak, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Medlemlog, Person
+from models import UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Pbsfiles, Pbsfile, Tilpbs, Fak, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
 from datetime import datetime, date, timedelta
 import logging
 import os

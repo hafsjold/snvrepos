@@ -17,7 +17,7 @@ import rest
 import os
 import re
 
-from models import UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Tilpbs, Fak, Overforsel, Rykker, Pbsfiles, Pbsfile, Frapbs, Bet, Betlin, Aftalelin, Indbetalingskort, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Medlemlog, Person
+from models import UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Tilpbs, Fak, Overforsel, Rykker, Pbsfiles, Pbsfile, Frapbs, Bet, Betlin, Aftalelin, Indbetalingskort, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
 from util import TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
 from menuusergroup import deleteMenuAndUserGroup, createMenuAndUserGroup
 from menu import MenuHandler, ListUserHandler, UserHandler
@@ -712,6 +712,72 @@ class SyncConvertHandler(webapp.RequestHandler):
           
             logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
       rec.put()
+
+    elif ModelName == 'Sftp':
+      try:
+        Id = doc.getElementsByTagName("Id")[0].childNodes[0].data
+      except:
+        Id = None
+      root = db.Key.from_path('rootSftp','root')
+      rec = Sftp.get_or_insert('%s' % (Id), parent=root)
+      
+      for attr_name, value in Sftp.__dict__.iteritems():
+        if isinstance(value, db.Property):
+          attr_type = value.__class__.__name__        
+          if not attr_type in ['_ReverseReferenceProperty']:
+            val = self.attr_val(doc, attr_name, attr_type)
+            logging.info('%s=%s' % (attr_name, val))
+            try:
+              setattr(rec, attr_name, val)
+            except:
+              setattr(rec, attr_name, None)
+          
+            logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
+      rec.put()
+
+    elif ModelName == 'Infotekst':
+      try:
+        Id = doc.getElementsByTagName("Id")[0].childNodes[0].data
+      except:
+        Id = None
+      root = db.Key.from_path('rootInfotekst','root')
+      rec = Infotekst.get_or_insert('%s' % (Id), parent=root)
+      
+      for attr_name, value in Infotekst.__dict__.iteritems():
+        if isinstance(value, db.Property):
+          attr_type = value.__class__.__name__        
+          if not attr_type in ['_ReverseReferenceProperty']:
+            val = self.attr_val(doc, attr_name, attr_type)
+            logging.info('%s=%s' % (attr_name, val))
+            try:
+              setattr(rec, attr_name, val)
+            except:
+              setattr(rec, attr_name, None)
+          
+            logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
+      rec.put()
+
+    elif ModelName == 'Sysinfo':
+      try:
+        Vkey = doc.getElementsByTagName("Vkey")[0].childNodes[0].data
+      except:
+        Vkey = None
+      root = db.Key.from_path('rootSysinfo','root')
+      rec = Sysinfo.get_or_insert('%s' % (Vkey), parent=root)
+      
+      for attr_name, value in Sysinfo.__dict__.iteritems():
+        if isinstance(value, db.Property):
+          attr_type = value.__class__.__name__        
+          if not attr_type in ['_ReverseReferenceProperty']:
+            val = self.attr_val(doc, attr_name, attr_type)
+            logging.info('%s=%s' % (attr_name, val))
+            try:
+              setattr(rec, attr_name, val)
+            except:
+              setattr(rec, attr_name, None)
+          
+            logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
+      rec.put()
       
     self.response.out.write('Status: 404')
     
@@ -869,319 +935,6 @@ class SyncMedlemHandler(webapp.RequestHandler):
     logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     self.response.out.write('Status: 404')
     
-class SyncMedlemlogHandler(webapp.RequestHandler):
-  def get(self):
-    root = db.Key.from_path('Persons','root')
-    qry = db.Query(Medlemlog).ancestor(root)
-    antal = qry.count()
-    logging.info('TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT Antal: %s' % (antal))
-    user_log = qry.fetch(2)
-    template_values = {
-      'user_log': qry,
-    }
-    path = os.path.join(os.path.dirname(__file__), 'templates/medlemlog.xml') 
-    self.response.out.write(template.render(path, template_values))
-  
-  def delete(self):
-    path = self.request.environ['PATH_INFO']
-    mo = re.match("/sync/Medlemlog/([0-9]+)/([0-9]+)/([0-9]+)", path)
-    if mo:
-      if mo.groups()[0] and mo.groups()[1] and mo.groups()[2]:
-        try:
-          Nr = mo.groups()[0]
-          Source = mo.groups()[1]
-          Source_id = mo.groups()[2]
-          logging.info('DELETE Nr=%s Source=%s Source_id=%s' % (Nr,Source,Source_id))
-          k = db.Key.from_path('Persons','root','Person','%s' % (Nr),'%s-%s' % (Source,Source_id))
-          m = Medlemlog.get(k)
-          m.delete()
-          memcache.delete('jLogData', namespace='jLogData')
-        except:
-          pass
-    self.response.out.write('Status: 403')
-    
-  def post(self):
-    doc = minidom.parse(self.request.body_file)
-    bkey = True
-    try:
-      Source = doc.getElementsByTagName("Source")[0].childNodes[0].data
-    except:
-      bkey = False
-    try:
-      Source_id = doc.getElementsByTagName("Source_id")[0].childNodes[0].data
-    except:
-      bkey = False
-    try:
-      Nr = doc.getElementsByTagName("Nr")[0].childNodes[0].data
-    except:
-      bkey = False
-    
-    if bkey:
-      personroot = db.Key.from_path('Persons','root','Person','%s' % (Nr))
-      medlemlog = Medlemlog.get_or_insert('%s-%s' % (Source,Source_id), parent=personroot)
-    
-      medlemlog.Source = int(Source)
-      medlemlog.Source_id = int(Source_id)
-      medlemlog.Nr = int(Nr)
-      try:
-        Logdato = doc.getElementsByTagName("Logdato")[0].childNodes[0].data
-        medlemlog.Logdato = datetime.strptime(Logdato, "%Y-%m-%dT%H:%M:%S")
-      except:
-        pass
-      try:
-        medlemlog.Akt_id = int(doc.getElementsByTagName("Akt_id")[0].childNodes[0].data)
-      except:
-        pass
-      try:
-        Akt_dato = doc.getElementsByTagName("Akt_dato")[0].childNodes[0].data
-        medlemlog.Akt_dato = datetime.strptime(Akt_dato, "%Y-%m-%dT%H:%M:%S")
-      except:
-        pass
-
-      medlemlog.put()
-      memcache.delete('jLogData', namespace='jLogData')
-
-      logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-      logging.info('%s - %s - %s - %s - %s - %s' % (medlemlog.Source, medlemlog.Source_id, medlemlog.Nr, medlemlog.Logdato, medlemlog.Akt_id, medlemlog.Akt_dato))
-      logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-      self.response.out.write('Status: 404')
-
-class SyncKreditorHandler(webapp.RequestHandler):
-  def get(self):
-    root = db.Key.from_path('Persons','root')
-    qry = db.Query(Kreditor).ancestor(root)
-    antal = qry.count()
-    logging.info('TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT Antal: %s' % (antal))
-    template_values = {
-      'kreditor_list': qry,
-    }
-    path = os.path.join(os.path.dirname(__file__), 'templates/kreditor.xml') 
-    self.response.out.write(template.render(path, template_values))
-  
-  def delete(self):
-    path = self.request.environ['PATH_INFO']
-    mo = re.match("/sync/Kreditor/([0-9]+)", path)
-    if mo:
-      if mo.groups()[0]:
-        try:
-          Id = mo.groups()[0]
-          logging.info('DELETE Id=%s' % (Id))
-          k = db.Key.from_path('Persons','root','Kreditor',Id)
-          m = Kreditor.get(k)
-          m.delete()
-        except:
-          pass
-    self.response.out.write('Status: 403')
-
-  def post(self):
-    doc = minidom.parse(self.request.body_file)
-    try:
-      Id = doc.getElementsByTagName("Id")[0].childNodes[0].data
-    except:
-      Id = None
-    root = db.Key.from_path('Persons','root')
-    kreditor = Kreditor.get_or_insert('%s' % (Id), parent=root)
-    
-    for n in ['Datalevnr', 'Datalevnavn', 'Pbsnr', 'Delsystem', 'Regnr', 'Kontonr', 'Debgrpnr', 'Sektionnr', 'Transkodebetaling']:
-      val = None
-      bval = True
-      try:
-        val = doc.getElementsByTagName(n)[0].childNodes[0].data
-      except:
-        bval = False
-      
-      if bval:     
-        try:
-          setattr(kreditor, n, val)
-          logging.info('%s=%s' % (n, getattr(kreditor, n)) )
-        except:
-          setattr(kreditor, n, None)
-    
-    kreditor.Id = int(Id)
-    kreditor.put()
-
-    logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-    logging.info('%s - %s - %s - %s - %s - %s - %s - %s - %s - %s' % (kreditor.Id, kreditor.Datalevnr, kreditor.Datalevnavn, kreditor.Pbsnr, kreditor.Delsystem, kreditor.Regnr, kreditor.Kontonr, kreditor.Debgrpnr, kreditor.Sektionnr, kreditor.Transkodebetaling))
-    logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-    self.response.out.write('Status: 404')
-
-class SyncSftpHandler(webapp.RequestHandler):
-  def get(self):
-    root = db.Key.from_path('Persons','root')
-    qry = db.Query(Sftp).ancestor(root)
-    antal = qry.count()
-    logging.info('TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT Antal: %s' % (antal))
-    template_values = {
-      'sftp_list': qry,
-    }
-    path = os.path.join(os.path.dirname(__file__), 'templates/sftp.xml') 
-    self.response.out.write(template.render(path, template_values))
-  
-  def delete(self):
-    path = self.request.environ['PATH_INFO']
-    mo = re.match("/sync/Sftp/([0-9]+)", path)
-    if mo:
-      if mo.groups()[0]:
-        try:
-          Id = mo.groups()[0]
-          logging.info('DELETE Id=%s' % (Id))
-          k = db.Key.from_path('Persons','root','Sftp',Id)
-          m = Sftp.get(k)
-          m.delete()
-        except:
-          pass
-    self.response.out.write('Status: 403')
-
-  def post(self):
-    doc = minidom.parse(self.request.body_file)
-    try:
-      Id = doc.getElementsByTagName("Id")[0].childNodes[0].data
-    except:
-      Id = None
-    root = db.Key.from_path('Persons','root')
-    sftp = Sftp.get_or_insert('%s' % (Id), parent=root)
-    
-    for n in ['Navn', 'Host', 'Port', 'User', 'Outbound', 'Inbound', 'Pincode', 'Certificate']:
-      val = None
-      bval = True
-      try:
-        val = doc.getElementsByTagName(n)[0].childNodes[0].data
-      except:
-        bval = False
-      
-      if bval:     
-        try:
-          setattr(sftp, n, val)
-          logging.info('%s=%s' % (n, getattr(sftp, n)) )
-        except:
-          setattr(sftp, n, None)
-    
-    sftp.Id = int(Id)
-    sftp.put()
-
-    logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-    logging.info('%s - %s - %s - %s - %s - %s - %s - %s - %s' % (sftp.Id, sftp.Navn, sftp.Host, sftp.Port, sftp.User, sftp.Outbound, sftp.Inbound, sftp.Pincode, sftp.Certificate))
-    logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-    self.response.out.write('Status: 404')
-
-class SyncInfotekstHandler(webapp.RequestHandler):
-  def get(self):
-    root = db.Key.from_path('Persons','root')
-    qry = db.Query(Infotekst).ancestor(root)
-    antal = qry.count()
-    logging.info('TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT Antal: %s' % (antal))
-    template_values = {
-      'infotekst_list': qry,
-    }
-    path = os.path.join(os.path.dirname(__file__), 'templates/infotekst.xml') 
-    self.response.out.write(template.render(path, template_values))
-  
-  def delete(self):
-    path = self.request.environ['PATH_INFO']
-    mo = re.match("/sync/Infotekst/([0-9]+)", path)
-    if mo:
-      if mo.groups()[0]:
-        try:
-          Id = mo.groups()[0]
-          logging.info('DELETE Id=%s' % (Id))
-          k = db.Key.from_path('Persons','root','Infotekst',Id)
-          m = Infotekst.get(k)
-          m.delete()
-        except:
-          pass
-    self.response.out.write('Status: 403')
-
-  def post(self):
-    doc = minidom.parse(self.request.body_file)
-    try:
-      Id = doc.getElementsByTagName("Id")[0].childNodes[0].data
-    except:
-      Id = None
-    root = db.Key.from_path('Persons','root')
-    infotekst = Infotekst.get_or_insert('%s' % (Id), parent=root)
-    
-    for n in ['Navn', 'Msgtext']:
-      val = None
-      bval = True
-      try:
-        val = doc.getElementsByTagName(n)[0].childNodes[0].data
-      except:
-        bval = False
-      
-      if bval:     
-        try:
-          setattr(infotekst, n, val)
-          logging.info('%s=%s' % (n, getattr(infotekst, n)) )
-        except:
-          setattr(infotekst, n, None)
-    
-    infotekst.Id = int(Id)
-    infotekst.put()
-
-    logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-    logging.info('%s - %s - %s' % (infotekst.Id, infotekst.Navn, infotekst.Msgtext))
-    logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-    self.response.out.write('Status: 404')
-
-class SyncSysinfoHandler(webapp.RequestHandler):
-  def get(self):
-    root = db.Key.from_path('Persons','root')
-    qry = db.Query(Sysinfo).ancestor(root)
-    antal = qry.count()
-    logging.info('TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT Antal: %s' % (antal))
-    template_values = {
-      'sysinfo_list': qry,
-    }
-    path = os.path.join(os.path.dirname(__file__), 'templates/sysinfo.xml') 
-    self.response.out.write(template.render(path, template_values))
-  
-  def delete(self):
-    path = self.request.environ['PATH_INFO']
-    mo = re.match("/sync/Sysinfo/([0-9]+)", path)
-    if mo:
-      if mo.groups()[0]:
-        try:
-          Id = mo.groups()[0]
-          logging.info('DELETE Id=%s' % (Id))
-          k = db.Key.from_path('Persons','root','Sysinfo',Id)
-          m = Sysinfo.get(k)
-          m.delete()
-        except:
-          pass
-    self.response.out.write('Status: 403')
-
-  def post(self):
-    doc = minidom.parse(self.request.body_file)
-    try:
-      Id = doc.getElementsByTagName("Id")[0].childNodes[0].data
-    except:
-      Id = None
-    root = db.Key.from_path('Persons','root')
-    sysinfo = Sysinfo.get_or_insert('%s' % (Id), parent=root)
-    
-    for n in ['Vkey', 'Val']:
-      val = None
-      bval = True
-      try:
-        val = doc.getElementsByTagName(n)[0].childNodes[0].data
-      except:
-        bval = False
-      
-      if bval:     
-        try:
-          setattr(sysinfo, n, val)
-          logging.info('%s=%s' % (n, getattr(sysinfo, n)) )
-        except:
-          setattr(sysinfo, n, None)
-    
-    sysinfo.Id = int(Id)
-    sysinfo.put()
-
-    logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-    logging.info('%s - %s - %s' % (sysinfo.Id, sysinfo.Vkey, sysinfo.Val))
-    logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
-    self.response.out.write('Status: 404')
-
 class LogoffHandler(webapp.RequestHandler):
   def get(self):
     self.redirect(users.create_logout_url("/"))
@@ -1224,7 +977,6 @@ class SearchIndexing(webapp.RequestHandler):
         per.put()
 
       memcache.delete('jData', namespace='jData')
-
 
 
 class CreateMenu(webapp.RequestHandler):
@@ -1274,8 +1026,8 @@ class CreateMenu(webapp.RequestHandler):
       recNrSerie.Name = 'Kontingent'
       if not recNrSerie.NextNumber:
         recNrSerie.NextNumber = 1
-      recNrSerie.put()    
-      
+      recNrSerie.put()
+
       self.redirect("/adm")
       
 class FlushCache(webapp.RequestHandler):
@@ -1299,18 +1051,8 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/adm', MenuHandler),
                                        ('/rest/.*', rest.Dispatcher),
                                        ('/sync/Convert/.*', SyncConvertHandler),
-                                       ('/sync/Medlemlog/.*', SyncMedlemlogHandler),
-                                       ('/sync/Medlemlog', SyncMedlemlogHandler),
                                        ('/sync/Medlem/.*', SyncMedlemHandler),
-                                       ('/sync/Medlem', SyncMedlemHandler),
-                                       ('/sync/Kreditor/.*', SyncKreditorHandler),
-                                       ('/sync/Kreditor', SyncKreditorHandler),
-                                       ('/sync/Sftp/.*', SyncSftpHandler),
-                                       ('/sync/Sftp', SyncSftpHandler),
-                                       ('/sync/Infotekst/.*', SyncInfotekstHandler),
-                                       ('/sync/Infotekst', SyncInfotekstHandler),       
-                                       ('/sync/Sysinfo/.*', SyncSysinfoHandler),
-                                       ('/sync/Sysinfo', SyncSysinfoHandler),                                              
+                                       ('/sync/Medlem', SyncMedlemHandler),                                     
                                        ('/sync/.*', MenuHandler),
                                        ('/logoff', LogoffHandler),
                                        ('/teknik/createmenu', CreateMenu),

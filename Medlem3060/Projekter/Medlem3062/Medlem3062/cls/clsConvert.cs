@@ -301,5 +301,72 @@ namespace nsPuls3060
                 string retur = objRest.HttpPost2("Convert/" + ModelName, strxml);
             }
         }
+
+        public void cvnSftp()
+        {
+            string ModelName = "Sftp";
+            var qry = from r in Program.dbData3060.Tblsftp select r;
+            foreach (var r in qry)
+            {
+                clsRest objRest = new clsRest();
+                XElement xml = new XElement(ModelName);
+                Type objectType = r.GetType();
+                PropertyInfo[] properties = objectType.GetProperties();
+                foreach (PropertyInfo property in properties)
+                {
+                    string Name = property.Name;
+                    object Val = property.GetValue(r, null);
+                    //string NamePropertyType = property.GetValue(r, null).GetType().Name;
+                    xml.Add(new XElement(Name, Val));
+                }
+                string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
+                string retur = objRest.HttpPost2("Convert/" + ModelName, strxml);
+            }
+        }
+
+        public void cvnInfotekst()
+        {
+            string ModelName = "Infotekst";
+            var qry = from r in Program.dbData3060.Tblinfotekst select r;
+            foreach (var r in qry)
+            {
+                clsRest objRest = new clsRest();
+                XElement xml = new XElement(ModelName);
+                Type objectType = r.GetType();
+                PropertyInfo[] properties = objectType.GetProperties();
+                foreach (PropertyInfo property in properties)
+                {
+                    string Name = property.Name;
+                    object Val = property.GetValue(r, null);
+                    //string NamePropertyType = property.GetValue(r, null).GetType().Name;
+                    xml.Add(new XElement(Name, Val));
+                }
+                string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
+                string retur = objRest.HttpPost2("Convert/" + ModelName, strxml);
+            }
+        }
+
+        public void cvnSysinfo()
+        {
+            string ModelName = "Sysinfo";
+            var qry = from r in Program.dbData3060.TblSysinfo select r;
+            foreach (var r in qry)
+            {
+                clsRest objRest = new clsRest();
+                XElement xml = new XElement(ModelName);
+                Type objectType = r.GetType();
+                PropertyInfo[] properties = objectType.GetProperties();
+                foreach (PropertyInfo property in properties)
+                {
+                    string Name = property.Name;
+                    object Val = property.GetValue(r, null);
+                    //string NamePropertyType = property.GetValue(r, null).GetType().Name;
+                    xml.Add(new XElement(Name, Val));
+                }
+                string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
+                string retur = objRest.HttpPost2("Convert/" + ModelName, strxml);
+            }
+        }
+
     }
 }

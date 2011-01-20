@@ -256,7 +256,8 @@ class Kontingent(db.Model):
         self.Tildato = date(self.Fradato.year + 1, 12, 31)
         self.Advisbelob = 225.0         
     
-class Sftp(db.Model): 
+class Sftp(db.Model):
+    #key = db.Key.from_path('rootSftp','root', 'Sftp', '%s' % (Id)) 
     Id = db.IntegerProperty()
     Navn = db.StringProperty()
     Host = db.StringProperty()
@@ -268,12 +269,13 @@ class Sftp(db.Model):
     Certificate = db.TextProperty()
 
 class Infotekst(db.Model): 
+    #key = db.Key.from_path('rootInfotekst','root', 'Infotekst', '%s' % (Id)) 
     Id = db.IntegerProperty()
     Navn = db.StringProperty()
     Msgtext = db.TextProperty()
     
 class Sysinfo(db.Model):
-    Id = db.IntegerProperty() 
+    #key = db.Key.from_path('rootSysinfo','root', 'Sysinfo', '%s' % (Vkey)) 
     Vkey = db.StringProperty()
     Val = db.StringProperty()
 
@@ -288,15 +290,6 @@ class Medlog(db.Model):
     Akt_id = db.IntegerProperty()  
     Akt_dato = db.DateProperty()
     
-class Medlemlog(db.Model): 
-    #key = db.Key.from_path('Persons','root','Person','%s' % (Nr), 'Medlemlog', '%s-%s' % (Source,Source_id)) 
-    Source = db.IntegerProperty()
-    Source_id = db.IntegerProperty()
-    Nr = db.IntegerProperty()
-    Logdato = db.DateTimeProperty()
-    Akt_id = db.IntegerProperty()  
-    Akt_dato = db.DateTimeProperty()
-    
 class Person(db.Model):
     #key = db.Key.from_path('Persons','root','Person','%s' % (Nr)) 
     Nr = db.IntegerProperty()
@@ -310,8 +303,8 @@ class Person(db.Model):
     Kon = db.StringProperty()
     FodtDato  = db.DateProperty()
     Bank = db.StringProperty()
-    MedlemtilDato = db.DateTimeProperty()
-    MedlemAabenBetalingsdato = db.DateTimeProperty()
+    MedlemtilDato = db.DateProperty()
+    MedlemAabenBetalingsdato = db.DateProperty()
     
     def setNameTags(self):
       self.Nr = int(self.key().name())
