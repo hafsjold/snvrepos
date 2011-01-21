@@ -130,7 +130,11 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
-            clsConvert objConvert = new clsConvert();
+            dsMedlem objMedlem = new dsMedlem();
+            objMedlem.filldsMedlemFromAppEng();
+            dsMedlem.KartotekDataTable xxx = objMedlem.Kartotek;
+            int cxd = 2;
+            //clsConvert objConvert = new clsConvert();
             //objConvert.cvnMedlog();
             //objConvert.cvnPbsforsendelse(); 
             //objConvert.cvnTilpbs();
@@ -147,7 +151,7 @@ namespace nsPuls3060
             //objConvert.cvnInfotekst();
             //objConvert.cvnSysinfo();
             //objConvert.cvnKreditor();
-            objConvert.cvnNrSerie();
+            //objConvert.cvnNrSerie();
 
             //clsSFTP objSFTP = new clsSFTP();
             //objSFTP.ReWriteTilSFtp(986);

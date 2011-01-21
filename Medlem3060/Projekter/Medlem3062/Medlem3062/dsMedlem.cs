@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Data;
+using System.Xml.Linq;
 
 namespace nsPuls3060
 {
@@ -51,7 +52,7 @@ namespace nsPuls3060
                 MyRow.AcceptChanges();
             }
         }
-        
+
         public void savedsMedlem()
         {
             foreach (KartotekRow m in tableKartotek.Rows)
@@ -140,6 +141,53 @@ namespace nsPuls3060
             Program.karDkkonti.save();
             Program.karKortnr.save();
             Program.karMedlemmer.Save();
+        }
+
+        public void filldsMedlemFromAppEng()
+        {
+            clsRest objRest = new clsRest();
+            string retur = objRest.HttpGet2("Medlem");
+            XDocument xdoc = XDocument.Parse(retur);
+            var list = from person in xdoc.Descendants("Person") select person;
+            int antal = list.Count();
+            foreach (var person in list)
+            {
+
+                if ((person.Descendants("Nr").First().Value != null) && (person.Descendants("Nr").First().Value != "None"))
+                {
+                    var Nr = person.Descendants("Nr").First().Value;
+                    var Navn = person.Descendants("Navn").First().Value;
+                    var Kaldenavn = person.Descendants("Kaldenavn").First().Value;
+                    var Adresse = person.Descendants("Adresse").First().Value;
+                    var Postnr = person.Descendants("Postnr").First().Value;
+                    var Bynavn = person.Descendants("Bynavn").First().Value;
+                    var Telefon = person.Descendants("Telefon").First().Value;
+                    if (Telefon == "None") Telefon = null;
+                    var Email = person.Descendants("Email").First().Value;
+                    if (Email == "None") Email = null;
+                    var Kon = person.Descendants("Kon").First().Value;
+                    var FodtDato = person.Descendants("FodtDato").First().Value;
+                    var Bank = person.Descendants("Bank").First().Value;
+                    if (Bank == "None") Bank = null;
+
+                    KartotekRow MyRow = (KartotekRow)tableKartotek.Rows.Add(
+                      Nr,
+                      Navn,
+                      Kaldenavn,
+                      Adresse,
+                      Postnr,
+                      Bynavn,
+                      Telefon,
+                      Email,
+                      Kon,
+                      FodtDato,
+                      Bank
+                    );
+
+                    MyRow.AcceptChanges();
+
+                }
+            }
         }
     }
 }

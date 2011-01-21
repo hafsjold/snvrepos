@@ -9,16 +9,6 @@ using System.Data.Linq;
 
 namespace nsPuls3060
 {
-    public class clsLog2
-    {
-        public byte Source;
-        public int? Id;
-        public int? Nr;
-        public DateTime? Logdato;
-        public int? Akt_id;
-        public DateTime? Akt_dato;
-    }
-
     public class clsImEksportAppEngMedlem
     {
         public clsImEksportAppEngMedlem()
@@ -512,6 +502,8 @@ namespace nsPuls3060
             }
             Program.dbData3060.SubmitChanges();
         }
+
+
 
         public void medlemxml()
         {
