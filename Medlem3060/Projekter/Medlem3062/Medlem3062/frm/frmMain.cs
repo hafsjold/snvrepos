@@ -130,9 +130,12 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
-            dsMedlem objMedlem = new dsMedlem();
-            objMedlem.filldsMedlemFromAppEng();
-            dsMedlem.KartotekDataTable xxx = objMedlem.Kartotek;
+            dsMedlem objMedlem= new dsMedlem();
+            objMedlem.filldsMedlem();
+            objMedlem.fillPerson();
+
+            var tbl1 = ((System.Data.DataTable)objMedlem.tblSyncMedlem).AsEnumerable().Except(((System.Data.DataTable)objMedlem.tblSyncPerson).AsEnumerable(), DataRowComparer.Default);
+
             int cxd = 2;
             //clsConvert objConvert = new clsConvert();
             //objConvert.cvnMedlog();

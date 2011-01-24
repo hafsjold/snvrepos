@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Data;
 using System.Xml.Linq;
+using System.Collections.Generic;
 
 namespace nsPuls3060
 {
@@ -50,6 +51,31 @@ namespace nsPuls3060
                   );
 
                 MyRow.AcceptChanges();
+
+
+                var Nr = m.Nr;
+                var Navn = m.Navn.Trim();
+                var Kaldenavn = m.Kaldenavn.Trim();
+                var Adresse = m.Adresse.Trim();
+                var Postnr = m.Postnr.Trim();
+                var Bynavn = m.Bynavn.Trim();
+                var Telefon = m.Telefon.Trim();
+                var Email = m.Email.Trim();
+                var Bank = m.Bank.Trim();
+               
+                tblSyncMedlemRow SyncMedlemRow = (tblSyncMedlemRow)tabletblSyncMedlem.Rows.Add(
+                      Nr,
+                      Navn,
+                      Kaldenavn,
+                      Adresse,
+                      Postnr,
+                      Bynavn,
+                      Telefon,
+                      Email,
+                      Bank
+                );
+
+                SyncMedlemRow.AcceptChanges();
             }
         }
 
@@ -143,7 +169,7 @@ namespace nsPuls3060
             Program.karMedlemmer.Save();
         }
 
-        public void filldsMedlemFromAppEng()
+        public void fillPerson()
         {
             clsRest objRest = new clsRest();
             string retur = objRest.HttpGet2("Medlem");
@@ -155,22 +181,22 @@ namespace nsPuls3060
 
                 if ((person.Descendants("Nr").First().Value != null) && (person.Descendants("Nr").First().Value != "None"))
                 {
-                    var Nr = person.Descendants("Nr").First().Value;
-                    var Navn = person.Descendants("Navn").First().Value;
-                    var Kaldenavn = person.Descendants("Kaldenavn").First().Value;
-                    var Adresse = person.Descendants("Adresse").First().Value;
-                    var Postnr = person.Descendants("Postnr").First().Value;
-                    var Bynavn = person.Descendants("Bynavn").First().Value;
-                    var Telefon = person.Descendants("Telefon").First().Value;
-                    if (Telefon == "None") Telefon = null;
-                    var Email = person.Descendants("Email").First().Value;
-                    if (Email == "None") Email = null;
-                    var Kon = person.Descendants("Kon").First().Value;
-                    var FodtDato = person.Descendants("FodtDato").First().Value;
-                    var Bank = person.Descendants("Bank").First().Value;
-                    if (Bank == "None") Bank = null;
+                    var Nr = person.Descendants("Nr").First().Value.Trim();
+                    var Navn = person.Descendants("Navn").First().Value.Trim();
+                    var Kaldenavn = person.Descendants("Kaldenavn").First().Value.Trim();
+                    var Adresse = person.Descendants("Adresse").First().Value.Trim();
+                    var Postnr = person.Descendants("Postnr").First().Value.Trim();
+                    var Bynavn = person.Descendants("Bynavn").First().Value.Trim();
+                    var Telefon = person.Descendants("Telefon").First().Value.Trim();
+                    if (Telefon == "None") Telefon = "";
+                    var Email = person.Descendants("Email").First().Value.Trim();
+                    if (Email == "None") Email = "";
+                    var Kon = person.Descendants("Kon").First().Value.Trim();
+                    var FodtDato = person.Descendants("FodtDato").First().Value.Trim();
+                    var Bank = person.Descendants("Bank").First().Value.Trim();
+                    if (Bank == "None") Bank = "";
 
-                    KartotekRow MyRow = (KartotekRow)tableKartotek.Rows.Add(
+                    tblPersonRow PersonRow = (tblPersonRow)tabletblPerson.Rows.Add(
                       Nr,
                       Navn,
                       Kaldenavn,
@@ -184,10 +210,23 @@ namespace nsPuls3060
                       Bank
                     );
 
-                    MyRow.AcceptChanges();
+                    PersonRow.AcceptChanges();
 
+                    tblSyncPersonRow SyncPersonRow = (tblSyncPersonRow)tabletblSyncPerson.Rows.Add(
+                      Nr,
+                      Navn,
+                      Kaldenavn,
+                      Adresse,
+                      Postnr,
+                      Bynavn,
+                      Telefon,
+                      Email,
+                      Bank
+                    );
+                    SyncPersonRow.AcceptChanges();
                 }
             }
         }
     }
+
 }

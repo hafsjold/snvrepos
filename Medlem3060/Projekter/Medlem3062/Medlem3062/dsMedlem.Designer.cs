@@ -27,6 +27,16 @@ namespace nsPuls3060 {
         
         private KartotekDataTable tableKartotek;
         
+        private tblPersonDataTable tabletblPerson;
+        
+        private tblMedlogDataTable tabletblMedlog;
+        
+        private tblSyncMedlemDataTable tabletblSyncMedlem;
+        
+        private tblSyncPersonDataTable tabletblSyncPerson;
+        
+        private global::System.Data.DataRelation relationFK_Person_Medlog;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -56,6 +66,18 @@ namespace nsPuls3060 {
                 if ((ds.Tables["Kartotek"] != null)) {
                     base.Tables.Add(new KartotekDataTable(ds.Tables["Kartotek"]));
                 }
+                if ((ds.Tables["tblPerson"] != null)) {
+                    base.Tables.Add(new tblPersonDataTable(ds.Tables["tblPerson"]));
+                }
+                if ((ds.Tables["tblMedlog"] != null)) {
+                    base.Tables.Add(new tblMedlogDataTable(ds.Tables["tblMedlog"]));
+                }
+                if ((ds.Tables["tblSyncMedlem"] != null)) {
+                    base.Tables.Add(new tblSyncMedlemDataTable(ds.Tables["tblSyncMedlem"]));
+                }
+                if ((ds.Tables["tblSyncPerson"] != null)) {
+                    base.Tables.Add(new tblSyncPersonDataTable(ds.Tables["tblSyncPerson"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -80,6 +102,42 @@ namespace nsPuls3060 {
         public KartotekDataTable Kartotek {
             get {
                 return this.tableKartotek;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public tblPersonDataTable tblPerson {
+            get {
+                return this.tabletblPerson;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public tblMedlogDataTable tblMedlog {
+            get {
+                return this.tabletblMedlog;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public tblSyncMedlemDataTable tblSyncMedlem {
+            get {
+                return this.tabletblSyncMedlem;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public tblSyncPersonDataTable tblSyncPerson {
+            get {
+                return this.tabletblSyncPerson;
             }
         }
         
@@ -145,6 +203,18 @@ namespace nsPuls3060 {
                 if ((ds.Tables["Kartotek"] != null)) {
                     base.Tables.Add(new KartotekDataTable(ds.Tables["Kartotek"]));
                 }
+                if ((ds.Tables["tblPerson"] != null)) {
+                    base.Tables.Add(new tblPersonDataTable(ds.Tables["tblPerson"]));
+                }
+                if ((ds.Tables["tblMedlog"] != null)) {
+                    base.Tables.Add(new tblMedlogDataTable(ds.Tables["tblMedlog"]));
+                }
+                if ((ds.Tables["tblSyncMedlem"] != null)) {
+                    base.Tables.Add(new tblSyncMedlemDataTable(ds.Tables["tblSyncMedlem"]));
+                }
+                if ((ds.Tables["tblSyncPerson"] != null)) {
+                    base.Tables.Add(new tblSyncPersonDataTable(ds.Tables["tblSyncPerson"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -181,6 +251,31 @@ namespace nsPuls3060 {
                     this.tableKartotek.InitVars();
                 }
             }
+            this.tabletblPerson = ((tblPersonDataTable)(base.Tables["tblPerson"]));
+            if ((initTable == true)) {
+                if ((this.tabletblPerson != null)) {
+                    this.tabletblPerson.InitVars();
+                }
+            }
+            this.tabletblMedlog = ((tblMedlogDataTable)(base.Tables["tblMedlog"]));
+            if ((initTable == true)) {
+                if ((this.tabletblMedlog != null)) {
+                    this.tabletblMedlog.InitVars();
+                }
+            }
+            this.tabletblSyncMedlem = ((tblSyncMedlemDataTable)(base.Tables["tblSyncMedlem"]));
+            if ((initTable == true)) {
+                if ((this.tabletblSyncMedlem != null)) {
+                    this.tabletblSyncMedlem.InitVars();
+                }
+            }
+            this.tabletblSyncPerson = ((tblSyncPersonDataTable)(base.Tables["tblSyncPerson"]));
+            if ((initTable == true)) {
+                if ((this.tabletblSyncPerson != null)) {
+                    this.tabletblSyncPerson.InitVars();
+                }
+            }
+            this.relationFK_Person_Medlog = this.Relations["FK_Person_Medlog"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -192,10 +287,50 @@ namespace nsPuls3060 {
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableKartotek = new KartotekDataTable();
             base.Tables.Add(this.tableKartotek);
+            this.tabletblPerson = new tblPersonDataTable();
+            base.Tables.Add(this.tabletblPerson);
+            this.tabletblMedlog = new tblMedlogDataTable();
+            base.Tables.Add(this.tabletblMedlog);
+            this.tabletblSyncMedlem = new tblSyncMedlemDataTable();
+            base.Tables.Add(this.tabletblSyncMedlem);
+            this.tabletblSyncPerson = new tblSyncPersonDataTable();
+            base.Tables.Add(this.tabletblSyncPerson);
+            global::System.Data.ForeignKeyConstraint fkc;
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_Person_Medlog", new global::System.Data.DataColumn[] {
+                        this.tabletblPerson.NrColumn}, new global::System.Data.DataColumn[] {
+                        this.tabletblMedlog.NrColumn});
+            this.tabletblMedlog.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.Cascade;
+            fkc.DeleteRule = global::System.Data.Rule.Cascade;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
+            this.relationFK_Person_Medlog = new global::System.Data.DataRelation("FK_Person_Medlog", new global::System.Data.DataColumn[] {
+                        this.tabletblPerson.NrColumn}, new global::System.Data.DataColumn[] {
+                        this.tabletblMedlog.NrColumn}, false);
+            this.Relations.Add(this.relationFK_Person_Medlog);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         private bool ShouldSerializeKartotek() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private bool ShouldSerializetblPerson() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private bool ShouldSerializetblMedlog() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private bool ShouldSerializetblSyncMedlem() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private bool ShouldSerializetblSyncPerson() {
             return false;
         }
         
@@ -253,6 +388,14 @@ namespace nsPuls3060 {
         }
         
         public delegate void KartotekRowChangeEventHandler(object sender, KartotekRowChangeEvent e);
+        
+        public delegate void tblPersonRowChangeEventHandler(object sender, tblPersonRowChangeEvent e);
+        
+        public delegate void tblMedlogRowChangeEventHandler(object sender, tblMedlogRowChangeEvent e);
+        
+        public delegate void tblSyncMedlemRowChangeEventHandler(object sender, tblSyncMedlemRowChangeEvent e);
+        
+        public delegate void tblSyncPersonRowChangeEventHandler(object sender, tblSyncPersonRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -620,6 +763,1369 @@ namespace nsPuls3060 {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class tblPersonDataTable : global::System.Data.TypedTableBase<tblPersonRow> {
+            
+            private global::System.Data.DataColumn columnNr;
+            
+            private global::System.Data.DataColumn columnNavn;
+            
+            private global::System.Data.DataColumn columnKaldenavn;
+            
+            private global::System.Data.DataColumn columnAdresse;
+            
+            private global::System.Data.DataColumn columnPostnr;
+            
+            private global::System.Data.DataColumn columnBynavn;
+            
+            private global::System.Data.DataColumn columnTelefon;
+            
+            private global::System.Data.DataColumn columnEmail;
+            
+            private global::System.Data.DataColumn columnKon;
+            
+            private global::System.Data.DataColumn columnFodtDato;
+            
+            private global::System.Data.DataColumn columnBank;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblPersonDataTable() {
+                this.TableName = "tblPerson";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal tblPersonDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected tblPersonDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn NrColumn {
+                get {
+                    return this.columnNr;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn NavnColumn {
+                get {
+                    return this.columnNavn;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn KaldenavnColumn {
+                get {
+                    return this.columnKaldenavn;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn AdresseColumn {
+                get {
+                    return this.columnAdresse;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn PostnrColumn {
+                get {
+                    return this.columnPostnr;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn BynavnColumn {
+                get {
+                    return this.columnBynavn;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn TelefonColumn {
+                get {
+                    return this.columnTelefon;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn EmailColumn {
+                get {
+                    return this.columnEmail;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn KonColumn {
+                get {
+                    return this.columnKon;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn FodtDatoColumn {
+                get {
+                    return this.columnFodtDato;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn BankColumn {
+                get {
+                    return this.columnBank;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblPersonRow this[int index] {
+                get {
+                    return ((tblPersonRow)(this.Rows[index]));
+                }
+            }
+            
+            public event tblPersonRowChangeEventHandler tblPersonRowChanging;
+            
+            public event tblPersonRowChangeEventHandler tblPersonRowChanged;
+            
+            public event tblPersonRowChangeEventHandler tblPersonRowDeleting;
+            
+            public event tblPersonRowChangeEventHandler tblPersonRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void AddtblPersonRow(tblPersonRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblPersonRow AddtblPersonRow(short Nr, string Navn, string Kaldenavn, string Adresse, string Postnr, string Bynavn, string Telefon, string Email, string Kon, System.DateTime FodtDato, string Bank) {
+                tblPersonRow rowtblPersonRow = ((tblPersonRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        Nr,
+                        Navn,
+                        Kaldenavn,
+                        Adresse,
+                        Postnr,
+                        Bynavn,
+                        Telefon,
+                        Email,
+                        Kon,
+                        FodtDato,
+                        Bank};
+                rowtblPersonRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowtblPersonRow);
+                return rowtblPersonRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblPersonRow FindByNr(short Nr) {
+                return ((tblPersonRow)(this.Rows.Find(new object[] {
+                            Nr})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public override global::System.Data.DataTable Clone() {
+                tblPersonDataTable cln = ((tblPersonDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new tblPersonDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal void InitVars() {
+                this.columnNr = base.Columns["Nr"];
+                this.columnNavn = base.Columns["Navn"];
+                this.columnKaldenavn = base.Columns["Kaldenavn"];
+                this.columnAdresse = base.Columns["Adresse"];
+                this.columnPostnr = base.Columns["Postnr"];
+                this.columnBynavn = base.Columns["Bynavn"];
+                this.columnTelefon = base.Columns["Telefon"];
+                this.columnEmail = base.Columns["Email"];
+                this.columnKon = base.Columns["Kon"];
+                this.columnFodtDato = base.Columns["FodtDato"];
+                this.columnBank = base.Columns["Bank"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            private void InitClass() {
+                this.columnNr = new global::System.Data.DataColumn("Nr", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNr);
+                this.columnNavn = new global::System.Data.DataColumn("Navn", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNavn);
+                this.columnKaldenavn = new global::System.Data.DataColumn("Kaldenavn", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnKaldenavn);
+                this.columnAdresse = new global::System.Data.DataColumn("Adresse", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAdresse);
+                this.columnPostnr = new global::System.Data.DataColumn("Postnr", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPostnr);
+                this.columnBynavn = new global::System.Data.DataColumn("Bynavn", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBynavn);
+                this.columnTelefon = new global::System.Data.DataColumn("Telefon", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTelefon);
+                this.columnEmail = new global::System.Data.DataColumn("Email", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEmail);
+                this.columnKon = new global::System.Data.DataColumn("Kon", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnKon);
+                this.columnFodtDato = new global::System.Data.DataColumn("FodtDato", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFodtDato);
+                this.columnBank = new global::System.Data.DataColumn("Bank", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBank);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnNr}, true));
+                this.columnNr.AllowDBNull = false;
+                this.columnNr.Unique = true;
+                this.columnNavn.AllowDBNull = false;
+                this.columnKon.MaxLength = 1;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblPersonRow NewtblPersonRow() {
+                return ((tblPersonRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new tblPersonRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Type GetRowType() {
+                return typeof(tblPersonRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.tblPersonRowChanged != null)) {
+                    this.tblPersonRowChanged(this, new tblPersonRowChangeEvent(((tblPersonRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.tblPersonRowChanging != null)) {
+                    this.tblPersonRowChanging(this, new tblPersonRowChangeEvent(((tblPersonRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.tblPersonRowDeleted != null)) {
+                    this.tblPersonRowDeleted(this, new tblPersonRowChangeEvent(((tblPersonRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.tblPersonRowDeleting != null)) {
+                    this.tblPersonRowDeleting(this, new tblPersonRowChangeEvent(((tblPersonRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void RemovetblPersonRow(tblPersonRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                dsMedlem ds = new dsMedlem();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "tblPersonDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class tblMedlogDataTable : global::System.Data.TypedTableBase<tblMedlogRow> {
+            
+            private global::System.Data.DataColumn columnId;
+            
+            private global::System.Data.DataColumn columnSource;
+            
+            private global::System.Data.DataColumn columnSource_id;
+            
+            private global::System.Data.DataColumn columnNr;
+            
+            private global::System.Data.DataColumn columnLogdato;
+            
+            private global::System.Data.DataColumn columnAkt_id;
+            
+            private global::System.Data.DataColumn columnAkt_dato;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblMedlogDataTable() {
+                this.TableName = "tblMedlog";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal tblMedlogDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected tblMedlogDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn IdColumn {
+                get {
+                    return this.columnId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn SourceColumn {
+                get {
+                    return this.columnSource;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Source_idColumn {
+                get {
+                    return this.columnSource_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn NrColumn {
+                get {
+                    return this.columnNr;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn LogdatoColumn {
+                get {
+                    return this.columnLogdato;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Akt_idColumn {
+                get {
+                    return this.columnAkt_id;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn Akt_datoColumn {
+                get {
+                    return this.columnAkt_dato;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblMedlogRow this[int index] {
+                get {
+                    return ((tblMedlogRow)(this.Rows[index]));
+                }
+            }
+            
+            public event tblMedlogRowChangeEventHandler tblMedlogRowChanging;
+            
+            public event tblMedlogRowChangeEventHandler tblMedlogRowChanged;
+            
+            public event tblMedlogRowChangeEventHandler tblMedlogRowDeleting;
+            
+            public event tblMedlogRowChangeEventHandler tblMedlogRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void AddtblMedlogRow(tblMedlogRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblMedlogRow AddtblMedlogRow(int Id, string Source, int Source_id, tblPersonRow parenttblPersonRowByFK_Person_Medlog, System.DateTime Logdato, int Akt_id, string Akt_dato) {
+                tblMedlogRow rowtblMedlogRow = ((tblMedlogRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        Id,
+                        Source,
+                        Source_id,
+                        null,
+                        Logdato,
+                        Akt_id,
+                        Akt_dato};
+                if ((parenttblPersonRowByFK_Person_Medlog != null)) {
+                    columnValuesArray[3] = parenttblPersonRowByFK_Person_Medlog[0];
+                }
+                rowtblMedlogRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowtblMedlogRow);
+                return rowtblMedlogRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblMedlogRow FindByIdNrSource_idSource(int Id, short Nr, int Source_id, string Source) {
+                return ((tblMedlogRow)(this.Rows.Find(new object[] {
+                            Id,
+                            Nr,
+                            Source_id,
+                            Source})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public override global::System.Data.DataTable Clone() {
+                tblMedlogDataTable cln = ((tblMedlogDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new tblMedlogDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal void InitVars() {
+                this.columnId = base.Columns["Id"];
+                this.columnSource = base.Columns["Source"];
+                this.columnSource_id = base.Columns["Source_id"];
+                this.columnNr = base.Columns["Nr"];
+                this.columnLogdato = base.Columns["Logdato"];
+                this.columnAkt_id = base.Columns["Akt_id"];
+                this.columnAkt_dato = base.Columns["Akt_dato"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            private void InitClass() {
+                this.columnId = new global::System.Data.DataColumn("Id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnId);
+                this.columnSource = new global::System.Data.DataColumn("Source", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSource);
+                this.columnSource_id = new global::System.Data.DataColumn("Source_id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSource_id);
+                this.columnNr = new global::System.Data.DataColumn("Nr", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNr);
+                this.columnLogdato = new global::System.Data.DataColumn("Logdato", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLogdato);
+                this.columnAkt_id = new global::System.Data.DataColumn("Akt_id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAkt_id);
+                this.columnAkt_dato = new global::System.Data.DataColumn("Akt_dato", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAkt_dato);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnId,
+                                this.columnNr,
+                                this.columnSource_id,
+                                this.columnSource}, true));
+                this.columnId.AllowDBNull = false;
+                this.columnSource.AllowDBNull = false;
+                this.columnSource_id.AllowDBNull = false;
+                this.columnNr.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblMedlogRow NewtblMedlogRow() {
+                return ((tblMedlogRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new tblMedlogRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Type GetRowType() {
+                return typeof(tblMedlogRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.tblMedlogRowChanged != null)) {
+                    this.tblMedlogRowChanged(this, new tblMedlogRowChangeEvent(((tblMedlogRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.tblMedlogRowChanging != null)) {
+                    this.tblMedlogRowChanging(this, new tblMedlogRowChangeEvent(((tblMedlogRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.tblMedlogRowDeleted != null)) {
+                    this.tblMedlogRowDeleted(this, new tblMedlogRowChangeEvent(((tblMedlogRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.tblMedlogRowDeleting != null)) {
+                    this.tblMedlogRowDeleting(this, new tblMedlogRowChangeEvent(((tblMedlogRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void RemovetblMedlogRow(tblMedlogRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                dsMedlem ds = new dsMedlem();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "tblMedlogDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class tblSyncMedlemDataTable : global::System.Data.TypedTableBase<tblSyncMedlemRow> {
+            
+            private global::System.Data.DataColumn columnNr;
+            
+            private global::System.Data.DataColumn columnNavn;
+            
+            private global::System.Data.DataColumn columnKaldenavn;
+            
+            private global::System.Data.DataColumn columnAdresse;
+            
+            private global::System.Data.DataColumn columnPostnr;
+            
+            private global::System.Data.DataColumn columnBynavn;
+            
+            private global::System.Data.DataColumn columnTelefon;
+            
+            private global::System.Data.DataColumn columnEmail;
+            
+            private global::System.Data.DataColumn columnBank;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblSyncMedlemDataTable() {
+                this.TableName = "tblSyncMedlem";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal tblSyncMedlemDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected tblSyncMedlemDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn NrColumn {
+                get {
+                    return this.columnNr;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn NavnColumn {
+                get {
+                    return this.columnNavn;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn KaldenavnColumn {
+                get {
+                    return this.columnKaldenavn;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn AdresseColumn {
+                get {
+                    return this.columnAdresse;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn PostnrColumn {
+                get {
+                    return this.columnPostnr;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn BynavnColumn {
+                get {
+                    return this.columnBynavn;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn TelefonColumn {
+                get {
+                    return this.columnTelefon;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn EmailColumn {
+                get {
+                    return this.columnEmail;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn BankColumn {
+                get {
+                    return this.columnBank;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblSyncMedlemRow this[int index] {
+                get {
+                    return ((tblSyncMedlemRow)(this.Rows[index]));
+                }
+            }
+            
+            public event tblSyncMedlemRowChangeEventHandler tblSyncMedlemRowChanging;
+            
+            public event tblSyncMedlemRowChangeEventHandler tblSyncMedlemRowChanged;
+            
+            public event tblSyncMedlemRowChangeEventHandler tblSyncMedlemRowDeleting;
+            
+            public event tblSyncMedlemRowChangeEventHandler tblSyncMedlemRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void AddtblSyncMedlemRow(tblSyncMedlemRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblSyncMedlemRow AddtblSyncMedlemRow(short Nr, string Navn, string Kaldenavn, string Adresse, string Postnr, string Bynavn, string Telefon, string Email, string Bank) {
+                tblSyncMedlemRow rowtblSyncMedlemRow = ((tblSyncMedlemRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        Nr,
+                        Navn,
+                        Kaldenavn,
+                        Adresse,
+                        Postnr,
+                        Bynavn,
+                        Telefon,
+                        Email,
+                        Bank};
+                rowtblSyncMedlemRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowtblSyncMedlemRow);
+                return rowtblSyncMedlemRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblSyncMedlemRow FindByNr(short Nr) {
+                return ((tblSyncMedlemRow)(this.Rows.Find(new object[] {
+                            Nr})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public override global::System.Data.DataTable Clone() {
+                tblSyncMedlemDataTable cln = ((tblSyncMedlemDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new tblSyncMedlemDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal void InitVars() {
+                this.columnNr = base.Columns["Nr"];
+                this.columnNavn = base.Columns["Navn"];
+                this.columnKaldenavn = base.Columns["Kaldenavn"];
+                this.columnAdresse = base.Columns["Adresse"];
+                this.columnPostnr = base.Columns["Postnr"];
+                this.columnBynavn = base.Columns["Bynavn"];
+                this.columnTelefon = base.Columns["Telefon"];
+                this.columnEmail = base.Columns["Email"];
+                this.columnBank = base.Columns["Bank"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            private void InitClass() {
+                this.columnNr = new global::System.Data.DataColumn("Nr", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNr);
+                this.columnNavn = new global::System.Data.DataColumn("Navn", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNavn);
+                this.columnKaldenavn = new global::System.Data.DataColumn("Kaldenavn", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnKaldenavn);
+                this.columnAdresse = new global::System.Data.DataColumn("Adresse", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAdresse);
+                this.columnPostnr = new global::System.Data.DataColumn("Postnr", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPostnr);
+                this.columnBynavn = new global::System.Data.DataColumn("Bynavn", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBynavn);
+                this.columnTelefon = new global::System.Data.DataColumn("Telefon", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTelefon);
+                this.columnEmail = new global::System.Data.DataColumn("Email", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEmail);
+                this.columnBank = new global::System.Data.DataColumn("Bank", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBank);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnNr}, true));
+                this.columnNr.AllowDBNull = false;
+                this.columnNr.Unique = true;
+                this.columnNavn.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblSyncMedlemRow NewtblSyncMedlemRow() {
+                return ((tblSyncMedlemRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new tblSyncMedlemRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Type GetRowType() {
+                return typeof(tblSyncMedlemRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.tblSyncMedlemRowChanged != null)) {
+                    this.tblSyncMedlemRowChanged(this, new tblSyncMedlemRowChangeEvent(((tblSyncMedlemRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.tblSyncMedlemRowChanging != null)) {
+                    this.tblSyncMedlemRowChanging(this, new tblSyncMedlemRowChangeEvent(((tblSyncMedlemRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.tblSyncMedlemRowDeleted != null)) {
+                    this.tblSyncMedlemRowDeleted(this, new tblSyncMedlemRowChangeEvent(((tblSyncMedlemRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.tblSyncMedlemRowDeleting != null)) {
+                    this.tblSyncMedlemRowDeleting(this, new tblSyncMedlemRowChangeEvent(((tblSyncMedlemRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void RemovetblSyncMedlemRow(tblSyncMedlemRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                dsMedlem ds = new dsMedlem();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "tblSyncMedlemDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class tblSyncPersonDataTable : global::System.Data.TypedTableBase<tblSyncPersonRow> {
+            
+            private global::System.Data.DataColumn columnNr;
+            
+            private global::System.Data.DataColumn columnNavn;
+            
+            private global::System.Data.DataColumn columnKaldenavn;
+            
+            private global::System.Data.DataColumn columnAdresse;
+            
+            private global::System.Data.DataColumn columnPostnr;
+            
+            private global::System.Data.DataColumn columnBynavn;
+            
+            private global::System.Data.DataColumn columnTelefon;
+            
+            private global::System.Data.DataColumn columnEmail;
+            
+            private global::System.Data.DataColumn columnBank;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblSyncPersonDataTable() {
+                this.TableName = "tblSyncPerson";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal tblSyncPersonDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected tblSyncPersonDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn NrColumn {
+                get {
+                    return this.columnNr;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn NavnColumn {
+                get {
+                    return this.columnNavn;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn KaldenavnColumn {
+                get {
+                    return this.columnKaldenavn;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn AdresseColumn {
+                get {
+                    return this.columnAdresse;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn PostnrColumn {
+                get {
+                    return this.columnPostnr;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn BynavnColumn {
+                get {
+                    return this.columnBynavn;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn TelefonColumn {
+                get {
+                    return this.columnTelefon;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn EmailColumn {
+                get {
+                    return this.columnEmail;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataColumn BankColumn {
+                get {
+                    return this.columnBank;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblSyncPersonRow this[int index] {
+                get {
+                    return ((tblSyncPersonRow)(this.Rows[index]));
+                }
+            }
+            
+            public event tblSyncPersonRowChangeEventHandler tblSyncPersonRowChanging;
+            
+            public event tblSyncPersonRowChangeEventHandler tblSyncPersonRowChanged;
+            
+            public event tblSyncPersonRowChangeEventHandler tblSyncPersonRowDeleting;
+            
+            public event tblSyncPersonRowChangeEventHandler tblSyncPersonRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void AddtblSyncPersonRow(tblSyncPersonRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblSyncPersonRow AddtblSyncPersonRow(short Nr, string Navn, string Kaldenavn, string Adresse, string Postnr, string Bynavn, string Telefon, string Email, string Bank) {
+                tblSyncPersonRow rowtblSyncPersonRow = ((tblSyncPersonRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        Nr,
+                        Navn,
+                        Kaldenavn,
+                        Adresse,
+                        Postnr,
+                        Bynavn,
+                        Telefon,
+                        Email,
+                        Bank};
+                rowtblSyncPersonRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowtblSyncPersonRow);
+                return rowtblSyncPersonRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblSyncPersonRow FindByNr(short Nr) {
+                return ((tblSyncPersonRow)(this.Rows.Find(new object[] {
+                            Nr})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public override global::System.Data.DataTable Clone() {
+                tblSyncPersonDataTable cln = ((tblSyncPersonDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new tblSyncPersonDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal void InitVars() {
+                this.columnNr = base.Columns["Nr"];
+                this.columnNavn = base.Columns["Navn"];
+                this.columnKaldenavn = base.Columns["Kaldenavn"];
+                this.columnAdresse = base.Columns["Adresse"];
+                this.columnPostnr = base.Columns["Postnr"];
+                this.columnBynavn = base.Columns["Bynavn"];
+                this.columnTelefon = base.Columns["Telefon"];
+                this.columnEmail = base.Columns["Email"];
+                this.columnBank = base.Columns["Bank"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            private void InitClass() {
+                this.columnNr = new global::System.Data.DataColumn("Nr", typeof(short), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNr);
+                this.columnNavn = new global::System.Data.DataColumn("Navn", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNavn);
+                this.columnKaldenavn = new global::System.Data.DataColumn("Kaldenavn", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnKaldenavn);
+                this.columnAdresse = new global::System.Data.DataColumn("Adresse", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAdresse);
+                this.columnPostnr = new global::System.Data.DataColumn("Postnr", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPostnr);
+                this.columnBynavn = new global::System.Data.DataColumn("Bynavn", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBynavn);
+                this.columnTelefon = new global::System.Data.DataColumn("Telefon", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTelefon);
+                this.columnEmail = new global::System.Data.DataColumn("Email", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEmail);
+                this.columnBank = new global::System.Data.DataColumn("Bank", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnBank);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnNr}, true));
+                this.columnNr.AllowDBNull = false;
+                this.columnNr.Unique = true;
+                this.columnNavn.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblSyncPersonRow NewtblSyncPersonRow() {
+                return ((tblSyncPersonRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new tblSyncPersonRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override global::System.Type GetRowType() {
+                return typeof(tblSyncPersonRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.tblSyncPersonRowChanged != null)) {
+                    this.tblSyncPersonRowChanged(this, new tblSyncPersonRowChangeEvent(((tblSyncPersonRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.tblSyncPersonRowChanging != null)) {
+                    this.tblSyncPersonRowChanging(this, new tblSyncPersonRowChangeEvent(((tblSyncPersonRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.tblSyncPersonRowDeleted != null)) {
+                    this.tblSyncPersonRowDeleted(this, new tblSyncPersonRowChangeEvent(((tblSyncPersonRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.tblSyncPersonRowDeleting != null)) {
+                    this.tblSyncPersonRowDeleting(this, new tblSyncPersonRowChangeEvent(((tblSyncPersonRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void RemovetblSyncPersonRow(tblSyncPersonRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                dsMedlem ds = new dsMedlem();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "tblSyncPersonDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
@@ -880,6 +2386,836 @@ namespace nsPuls3060 {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public partial class tblPersonRow : global::System.Data.DataRow {
+            
+            private tblPersonDataTable tabletblPerson;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal tblPersonRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tabletblPerson = ((tblPersonDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public short Nr {
+                get {
+                    return ((short)(this[this.tabletblPerson.NrColumn]));
+                }
+                set {
+                    this[this.tabletblPerson.NrColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Navn {
+                get {
+                    return ((string)(this[this.tabletblPerson.NavnColumn]));
+                }
+                set {
+                    this[this.tabletblPerson.NavnColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Kaldenavn {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblPerson.KaldenavnColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Kaldenavn\' in table \'tblPerson\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblPerson.KaldenavnColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Adresse {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblPerson.AdresseColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Adresse\' in table \'tblPerson\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblPerson.AdresseColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Postnr {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblPerson.PostnrColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Postnr\' in table \'tblPerson\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblPerson.PostnrColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Bynavn {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblPerson.BynavnColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Bynavn\' in table \'tblPerson\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblPerson.BynavnColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Telefon {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblPerson.TelefonColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Telefon\' in table \'tblPerson\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblPerson.TelefonColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Email {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblPerson.EmailColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Email\' in table \'tblPerson\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblPerson.EmailColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Kon {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblPerson.KonColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Kon\' in table \'tblPerson\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblPerson.KonColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public System.DateTime FodtDato {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tabletblPerson.FodtDatoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'FodtDato\' in table \'tblPerson\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblPerson.FodtDatoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Bank {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblPerson.BankColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Bank\' in table \'tblPerson\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblPerson.BankColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsKaldenavnNull() {
+                return this.IsNull(this.tabletblPerson.KaldenavnColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetKaldenavnNull() {
+                this[this.tabletblPerson.KaldenavnColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsAdresseNull() {
+                return this.IsNull(this.tabletblPerson.AdresseColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetAdresseNull() {
+                this[this.tabletblPerson.AdresseColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsPostnrNull() {
+                return this.IsNull(this.tabletblPerson.PostnrColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetPostnrNull() {
+                this[this.tabletblPerson.PostnrColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsBynavnNull() {
+                return this.IsNull(this.tabletblPerson.BynavnColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetBynavnNull() {
+                this[this.tabletblPerson.BynavnColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsTelefonNull() {
+                return this.IsNull(this.tabletblPerson.TelefonColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetTelefonNull() {
+                this[this.tabletblPerson.TelefonColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsEmailNull() {
+                return this.IsNull(this.tabletblPerson.EmailColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetEmailNull() {
+                this[this.tabletblPerson.EmailColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsKonNull() {
+                return this.IsNull(this.tabletblPerson.KonColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetKonNull() {
+                this[this.tabletblPerson.KonColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsFodtDatoNull() {
+                return this.IsNull(this.tabletblPerson.FodtDatoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetFodtDatoNull() {
+                this[this.tabletblPerson.FodtDatoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsBankNull() {
+                return this.IsNull(this.tabletblPerson.BankColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetBankNull() {
+                this[this.tabletblPerson.BankColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblMedlogRow[] GettblMedlogRows() {
+                if ((this.Table.ChildRelations["FK_Person_Medlog"] == null)) {
+                    return new tblMedlogRow[0];
+                }
+                else {
+                    return ((tblMedlogRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Person_Medlog"])));
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public partial class tblMedlogRow : global::System.Data.DataRow {
+            
+            private tblMedlogDataTable tabletblMedlog;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal tblMedlogRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tabletblMedlog = ((tblMedlogDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int Id {
+                get {
+                    return ((int)(this[this.tabletblMedlog.IdColumn]));
+                }
+                set {
+                    this[this.tabletblMedlog.IdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Source {
+                get {
+                    return ((string)(this[this.tabletblMedlog.SourceColumn]));
+                }
+                set {
+                    this[this.tabletblMedlog.SourceColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int Source_id {
+                get {
+                    return ((int)(this[this.tabletblMedlog.Source_idColumn]));
+                }
+                set {
+                    this[this.tabletblMedlog.Source_idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public short Nr {
+                get {
+                    return ((short)(this[this.tabletblMedlog.NrColumn]));
+                }
+                set {
+                    this[this.tabletblMedlog.NrColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public System.DateTime Logdato {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tabletblMedlog.LogdatoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Logdato\' in table \'tblMedlog\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblMedlog.LogdatoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public int Akt_id {
+                get {
+                    try {
+                        return ((int)(this[this.tabletblMedlog.Akt_idColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Akt_id\' in table \'tblMedlog\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblMedlog.Akt_idColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Akt_dato {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblMedlog.Akt_datoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Akt_dato\' in table \'tblMedlog\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblMedlog.Akt_datoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblPersonRow PersonRow {
+                get {
+                    return ((tblPersonRow)(this.GetParentRow(this.Table.ParentRelations["FK_Person_Medlog"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_Person_Medlog"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsLogdatoNull() {
+                return this.IsNull(this.tabletblMedlog.LogdatoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetLogdatoNull() {
+                this[this.tabletblMedlog.LogdatoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsAkt_idNull() {
+                return this.IsNull(this.tabletblMedlog.Akt_idColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetAkt_idNull() {
+                this[this.tabletblMedlog.Akt_idColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsAkt_datoNull() {
+                return this.IsNull(this.tabletblMedlog.Akt_datoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetAkt_datoNull() {
+                this[this.tabletblMedlog.Akt_datoColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public partial class tblSyncMedlemRow : global::System.Data.DataRow {
+            
+            private tblSyncMedlemDataTable tabletblSyncMedlem;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal tblSyncMedlemRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tabletblSyncMedlem = ((tblSyncMedlemDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public short Nr {
+                get {
+                    return ((short)(this[this.tabletblSyncMedlem.NrColumn]));
+                }
+                set {
+                    this[this.tabletblSyncMedlem.NrColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Navn {
+                get {
+                    return ((string)(this[this.tabletblSyncMedlem.NavnColumn]));
+                }
+                set {
+                    this[this.tabletblSyncMedlem.NavnColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Kaldenavn {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblSyncMedlem.KaldenavnColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Kaldenavn\' in table \'tblSyncMedlem\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblSyncMedlem.KaldenavnColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Adresse {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblSyncMedlem.AdresseColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Adresse\' in table \'tblSyncMedlem\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblSyncMedlem.AdresseColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Postnr {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblSyncMedlem.PostnrColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Postnr\' in table \'tblSyncMedlem\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblSyncMedlem.PostnrColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Bynavn {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblSyncMedlem.BynavnColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Bynavn\' in table \'tblSyncMedlem\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblSyncMedlem.BynavnColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Telefon {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblSyncMedlem.TelefonColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Telefon\' in table \'tblSyncMedlem\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblSyncMedlem.TelefonColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Email {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblSyncMedlem.EmailColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Email\' in table \'tblSyncMedlem\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblSyncMedlem.EmailColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Bank {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblSyncMedlem.BankColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Bank\' in table \'tblSyncMedlem\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblSyncMedlem.BankColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsKaldenavnNull() {
+                return this.IsNull(this.tabletblSyncMedlem.KaldenavnColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetKaldenavnNull() {
+                this[this.tabletblSyncMedlem.KaldenavnColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsAdresseNull() {
+                return this.IsNull(this.tabletblSyncMedlem.AdresseColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetAdresseNull() {
+                this[this.tabletblSyncMedlem.AdresseColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsPostnrNull() {
+                return this.IsNull(this.tabletblSyncMedlem.PostnrColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetPostnrNull() {
+                this[this.tabletblSyncMedlem.PostnrColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsBynavnNull() {
+                return this.IsNull(this.tabletblSyncMedlem.BynavnColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetBynavnNull() {
+                this[this.tabletblSyncMedlem.BynavnColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsTelefonNull() {
+                return this.IsNull(this.tabletblSyncMedlem.TelefonColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetTelefonNull() {
+                this[this.tabletblSyncMedlem.TelefonColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsEmailNull() {
+                return this.IsNull(this.tabletblSyncMedlem.EmailColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetEmailNull() {
+                this[this.tabletblSyncMedlem.EmailColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsBankNull() {
+                return this.IsNull(this.tabletblSyncMedlem.BankColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetBankNull() {
+                this[this.tabletblSyncMedlem.BankColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public partial class tblSyncPersonRow : global::System.Data.DataRow {
+            
+            private tblSyncPersonDataTable tabletblSyncPerson;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal tblSyncPersonRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tabletblSyncPerson = ((tblSyncPersonDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public short Nr {
+                get {
+                    return ((short)(this[this.tabletblSyncPerson.NrColumn]));
+                }
+                set {
+                    this[this.tabletblSyncPerson.NrColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Navn {
+                get {
+                    return ((string)(this[this.tabletblSyncPerson.NavnColumn]));
+                }
+                set {
+                    this[this.tabletblSyncPerson.NavnColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Kaldenavn {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblSyncPerson.KaldenavnColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Kaldenavn\' in table \'tblSyncPerson\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblSyncPerson.KaldenavnColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Adresse {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblSyncPerson.AdresseColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Adresse\' in table \'tblSyncPerson\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblSyncPerson.AdresseColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Postnr {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblSyncPerson.PostnrColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Postnr\' in table \'tblSyncPerson\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblSyncPerson.PostnrColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Bynavn {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblSyncPerson.BynavnColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Bynavn\' in table \'tblSyncPerson\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblSyncPerson.BynavnColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Telefon {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblSyncPerson.TelefonColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Telefon\' in table \'tblSyncPerson\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblSyncPerson.TelefonColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Email {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblSyncPerson.EmailColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Email\' in table \'tblSyncPerson\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblSyncPerson.EmailColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public string Bank {
+                get {
+                    try {
+                        return ((string)(this[this.tabletblSyncPerson.BankColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Bank\' in table \'tblSyncPerson\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabletblSyncPerson.BankColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsKaldenavnNull() {
+                return this.IsNull(this.tabletblSyncPerson.KaldenavnColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetKaldenavnNull() {
+                this[this.tabletblSyncPerson.KaldenavnColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsAdresseNull() {
+                return this.IsNull(this.tabletblSyncPerson.AdresseColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetAdresseNull() {
+                this[this.tabletblSyncPerson.AdresseColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsPostnrNull() {
+                return this.IsNull(this.tabletblSyncPerson.PostnrColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetPostnrNull() {
+                this[this.tabletblSyncPerson.PostnrColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsBynavnNull() {
+                return this.IsNull(this.tabletblSyncPerson.BynavnColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetBynavnNull() {
+                this[this.tabletblSyncPerson.BynavnColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsTelefonNull() {
+                return this.IsNull(this.tabletblSyncPerson.TelefonColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetTelefonNull() {
+                this[this.tabletblSyncPerson.TelefonColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsEmailNull() {
+                return this.IsNull(this.tabletblSyncPerson.EmailColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetEmailNull() {
+                this[this.tabletblSyncPerson.EmailColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public bool IsBankNull() {
+                return this.IsNull(this.tabletblSyncPerson.BankColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public void SetBankNull() {
+                this[this.tabletblSyncPerson.BankColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
@@ -897,6 +3233,130 @@ namespace nsPuls3060 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             public KartotekRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class tblPersonRowChangeEvent : global::System.EventArgs {
+            
+            private tblPersonRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblPersonRowChangeEvent(tblPersonRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblPersonRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class tblMedlogRowChangeEvent : global::System.EventArgs {
+            
+            private tblMedlogRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblMedlogRowChangeEvent(tblMedlogRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblMedlogRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class tblSyncMedlemRowChangeEvent : global::System.EventArgs {
+            
+            private tblSyncMedlemRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblSyncMedlemRowChangeEvent(tblSyncMedlemRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblSyncMedlemRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "2.0.0.0")]
+        public class tblSyncPersonRowChangeEvent : global::System.EventArgs {
+            
+            private tblSyncPersonRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblSyncPersonRowChangeEvent(tblSyncPersonRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public tblSyncPersonRow Row {
                 get {
                     return this.eventRow;
                 }

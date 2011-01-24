@@ -13,6 +13,7 @@ using System.Text.RegularExpressions;
 
 namespace nsPuls3060
 {
+    
     public class ColumnSorter : IComparer
     {
         private int m_CurrentColumn;
