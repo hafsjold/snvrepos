@@ -37,7 +37,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="tblPerson" msprop:Generator_UserTableName="tblPerson" msprop:Generator_RowDeletedName="tblPersonRowDeleted" msprop:Generator_TableClassName="tblPersonDataTable" msprop:Generator_RowChangedName="tblPersonRowChanged" msprop:Generator_RowClassName="tblPersonRow" msprop:Generator_RowChangingName="tblPersonRowChanging" msprop:Generator_RowEvArgName="tblPersonRowChangeEvent" msprop:Generator_RowEvHandlerName="tblPersonRowChangeEventHandler" msprop:Generator_TablePropName="tblPerson" msprop:Generator_TableVarName="tabletblPerson" msprop:Generator_RowDeletingName="tblPersonRowDeleting">
+        <xs:element name="tblPerson" msprop:Generator_UserTableName="tblPerson" msprop:Generator_RowDeletedName="tblPersonRowDeleted" msprop:Generator_RowChangedName="tblPersonRowChanged" msprop:Generator_RowClassName="tblPersonRow" msprop:Generator_RowChangingName="tblPersonRowChanging" msprop:Generator_RowEvArgName="tblPersonRowChangeEvent" msprop:Generator_RowEvHandlerName="tblPersonRowChangeEventHandler" msprop:Generator_TableClassName="tblPersonDataTable" msprop:Generator_TableVarName="tabletblPerson" msprop:Generator_RowDeletingName="tblPersonRowDeleting" msprop:Generator_TablePropName="tblPerson">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Nr" msprop:Generator_UserColumnName="Nr" msprop:Generator_ColumnPropNameInRow="Nr" msprop:Generator_ColumnVarNameInTable="columnNr" msprop:Generator_ColumnPropNameInTable="NrColumn" type="xs:short" />
@@ -60,7 +60,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="tblMedlog" msprop:Generator_UserTableName="tblMedlog" msprop:Generator_RowDeletedName="tblMedlogRowDeleted" msprop:Generator_TableClassName="tblMedlogDataTable" msprop:Generator_RowChangedName="tblMedlogRowChanged" msprop:Generator_RowClassName="tblMedlogRow" msprop:Generator_RowChangingName="tblMedlogRowChanging" msprop:Generator_RowEvArgName="tblMedlogRowChangeEvent" msprop:Generator_RowEvHandlerName="tblMedlogRowChangeEventHandler" msprop:Generator_TablePropName="tblMedlog" msprop:Generator_TableVarName="tabletblMedlog" msprop:Generator_RowDeletingName="tblMedlogRowDeleting">
+        <xs:element name="tblMedlog" msprop:Generator_UserTableName="tblMedlog" msprop:Generator_RowDeletedName="tblMedlogRowDeleted" msprop:Generator_RowChangedName="tblMedlogRowChanged" msprop:Generator_RowClassName="tblMedlogRow" msprop:Generator_RowChangingName="tblMedlogRowChanging" msprop:Generator_RowEvArgName="tblMedlogRowChangeEvent" msprop:Generator_RowEvHandlerName="tblMedlogRowChangeEventHandler" msprop:Generator_TableClassName="tblMedlogDataTable" msprop:Generator_TableVarName="tabletblMedlog" msprop:Generator_RowDeletingName="tblMedlogRowDeleting" msprop:Generator_TablePropName="tblMedlog">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msprop:Generator_UserColumnName="Id" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInTable="IdColumn" type="xs:int" />
@@ -69,11 +69,11 @@
               <xs:element name="Nr" msprop:Generator_UserColumnName="Nr" msprop:Generator_ColumnPropNameInRow="Nr" msprop:Generator_ColumnVarNameInTable="columnNr" msprop:Generator_ColumnPropNameInTable="NrColumn" type="xs:short" />
               <xs:element name="Logdato" msprop:Generator_UserColumnName="Logdato" msprop:Generator_ColumnPropNameInRow="Logdato" msprop:Generator_ColumnVarNameInTable="columnLogdato" msprop:Generator_ColumnPropNameInTable="LogdatoColumn" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Akt_id" msprop:Generator_UserColumnName="Akt_id" msprop:Generator_ColumnPropNameInRow="Akt_id" msprop:Generator_ColumnVarNameInTable="columnAkt_id" msprop:Generator_ColumnPropNameInTable="Akt_idColumn" type="xs:int" minOccurs="0" />
-              <xs:element name="Akt_dato" msprop:Generator_UserColumnName="Akt_dato" msprop:Generator_ColumnPropNameInRow="Akt_dato" msprop:Generator_ColumnVarNameInTable="columnAkt_dato" msprop:Generator_ColumnPropNameInTable="Akt_datoColumn" type="xs:string" minOccurs="0" />
+              <xs:element name="Akt_dato" msprop:Generator_UserColumnName="Akt_dato" msprop:Generator_ColumnPropNameInRow="Akt_dato" msprop:Generator_ColumnVarNameInTable="columnAkt_dato" msprop:Generator_ColumnPropNameInTable="Akt_datoColumn" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="tblSyncMedlem" msprop:Generator_UserTableName="tblSyncMedlem" msprop:Generator_RowDeletedName="tblSyncMedlemRowDeleted" msprop:Generator_TableClassName="tblSyncMedlemDataTable" msprop:Generator_RowChangedName="tblSyncMedlemRowChanged" msprop:Generator_RowClassName="tblSyncMedlemRow" msprop:Generator_RowChangingName="tblSyncMedlemRowChanging" msprop:Generator_RowEvArgName="tblSyncMedlemRowChangeEvent" msprop:Generator_RowEvHandlerName="tblSyncMedlemRowChangeEventHandler" msprop:Generator_TablePropName="tblSyncMedlem" msprop:Generator_TableVarName="tabletblSyncMedlem" msprop:Generator_RowDeletingName="tblSyncMedlemRowDeleting">
+        <xs:element name="tblSyncMedlem" msprop:Generator_UserTableName="tblSyncMedlem" msprop:Generator_RowDeletedName="tblSyncMedlemRowDeleted" msprop:Generator_RowChangedName="tblSyncMedlemRowChanged" msprop:Generator_RowClassName="tblSyncMedlemRow" msprop:Generator_RowChangingName="tblSyncMedlemRowChanging" msprop:Generator_RowEvArgName="tblSyncMedlemRowChangeEvent" msprop:Generator_RowEvHandlerName="tblSyncMedlemRowChangeEventHandler" msprop:Generator_TableClassName="tblSyncMedlemDataTable" msprop:Generator_TableVarName="tabletblSyncMedlem" msprop:Generator_RowDeletingName="tblSyncMedlemRowDeleting" msprop:Generator_TablePropName="tblSyncMedlem">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Nr" msprop:Generator_UserColumnName="Nr" msprop:Generator_ColumnPropNameInRow="Nr" msprop:Generator_ColumnVarNameInTable="columnNr" msprop:Generator_ColumnPropNameInTable="NrColumn" type="xs:short" />
@@ -88,7 +88,7 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="tblSyncPerson" msprop:Generator_UserTableName="tblSyncPerson" msprop:Generator_RowDeletedName="tblSyncPersonRowDeleted" msprop:Generator_TableClassName="tblSyncPersonDataTable" msprop:Generator_RowChangedName="tblSyncPersonRowChanged" msprop:Generator_RowClassName="tblSyncPersonRow" msprop:Generator_RowChangingName="tblSyncPersonRowChanging" msprop:Generator_RowEvArgName="tblSyncPersonRowChangeEvent" msprop:Generator_RowEvHandlerName="tblSyncPersonRowChangeEventHandler" msprop:Generator_TablePropName="tblSyncPerson" msprop:Generator_TableVarName="tabletblSyncPerson" msprop:Generator_RowDeletingName="tblSyncPersonRowDeleting">
+        <xs:element name="tblSyncPerson" msprop:Generator_UserTableName="tblSyncPerson" msprop:Generator_RowDeletedName="tblSyncPersonRowDeleted" msprop:Generator_RowChangedName="tblSyncPersonRowChanged" msprop:Generator_RowClassName="tblSyncPersonRow" msprop:Generator_RowChangingName="tblSyncPersonRowChanging" msprop:Generator_RowEvArgName="tblSyncPersonRowChangeEvent" msprop:Generator_RowEvHandlerName="tblSyncPersonRowChangeEventHandler" msprop:Generator_TableClassName="tblSyncPersonDataTable" msprop:Generator_TableVarName="tabletblSyncPerson" msprop:Generator_RowDeletingName="tblSyncPersonRowDeleting" msprop:Generator_TablePropName="tblSyncPerson">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Nr" msprop:Generator_UserColumnName="Nr" msprop:Generator_ColumnPropNameInRow="Nr" msprop:Generator_ColumnVarNameInTable="columnNr" msprop:Generator_ColumnPropNameInTable="NrColumn" type="xs:short" />
@@ -128,9 +128,5 @@
       <xs:selector xpath=".//mstns:tblSyncPerson" />
       <xs:field xpath="mstns:Nr" />
     </xs:unique>
-    <xs:keyref name="FK_Person_Medlog" refer="tblPerson_Constraint1" msprop:rel_Generator_UserRelationName="FK_Person_Medlog" msprop:rel_Generator_RelationVarName="relationFK_Person_Medlog" msprop:rel_Generator_UserChildTable="tblMedlog" msprop:rel_Generator_UserParentTable="tblPerson" msprop:rel_Generator_ParentPropName="PersonRow" msprop:rel_Generator_ChildPropName="GettblMedlogRows" msdata:AcceptRejectRule="Cascade">
-      <xs:selector xpath=".//mstns:tblMedlog" />
-      <xs:field xpath="mstns:Nr" />
-    </xs:keyref>
   </xs:element>
 </xs:schema>

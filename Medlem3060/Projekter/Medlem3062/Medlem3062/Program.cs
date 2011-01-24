@@ -23,6 +23,7 @@ namespace nsPuls3060
         private static FileStream m_filestream_to_lock_summasummarum_kontoplan;
         private static DbData3060 m_dbData3060;
         private static dsMedlem m_dsMedlemImport;
+        private static dsMedlem m_dsMedlemGlobal;
         private static KarMedlemmer m_KarMedlemmer;
         private static MemMedlemDictionary m_dicMedlem;
         private static MemAktivRegnskab m_memAktivRegnskab;
@@ -205,6 +206,32 @@ namespace nsPuls3060
             set
             {
                 m_dbData3060 = value;
+            }
+        }
+        public static dsMedlem dsMedlemGlobal
+        {
+            get
+            {
+                if (m_dsMedlemGlobal == null)
+                {
+                    m_dsMedlemGlobal = new dsMedlem();
+                    m_dsMedlemGlobal.fillMedlog();
+                }
+                return m_dsMedlemGlobal;
+            }
+        }
+        public static dsMedlem.tblMedlogDataTable tblMedlog
+        {
+            get
+            {
+                return dsMedlemGlobal.tblMedlog;
+            }
+        }
+        public static dsMedlem.tblPersonDataTable tblPerson
+        {
+            get
+            {
+                return dsMedlemGlobal.tblPerson;
             }
         }
         public static dsMedlem dsMedlemImport
@@ -458,55 +485,18 @@ namespace nsPuls3060
                 };
             }
         }
-        public static IQueryable<clsLog> qryLog()
+        public static IEnumerable<clsLog> qryLog()
         {
-            var qryMedlemLog = from m in Program.dbData3060.TblMedlemLog
-                               select new clsLog
-                               {
-                                   Id = (int?)m.Id,
-                                   Nr = (int?)m.Nr,
-                                   Logdato = (DateTime?)m.Logdato,
-                                   Akt_id = (int?)m.Akt_id,
-                                   Akt_dato = (DateTime?)m.Akt_dato
-                               };
-            var qryFak = from f in Program.dbData3060.Tblfak
-                         join p in Program.dbData3060.Tbltilpbs on f.Tilpbsid equals p.Id
-                         select new clsLog
-                         {
-                             Id = (int?)f.Id,
-                             Nr = (int?)f.Nr,
-                             Logdato = (DateTime)p.Bilagdato,
-                             Akt_id = (int?)20,
-                             Akt_dato = (DateTime?)f.Betalingsdato
-                         };
 
-            var qryBetlin = from b in Program.dbData3060.Tblbetlin
-                            join f in Program.dbData3060.Tblfak on b.Faknr equals f.Faknr
-                            where b.Pbstranskode == "0236" || b.Pbstranskode == "0297"
-                            select new clsLog
-                            {
-                                Id = (int?)b.Id,
-                                Nr = (int?)b.Nr,
-                                Logdato = (DateTime?)b.Indbetalingsdato,
-                                Akt_id = (int?)30,
-                                Akt_dato = (DateTime?)f.Tildato
-                            };
-
-            var qryBetlin40 = from b in Program.dbData3060.Tblbetlin
-                              where b.Pbstranskode == "0237"
-                              select new clsLog
-                              {
-                                  Id = (int?)b.Id,
-                                  Nr = (int?)b.Nr,
-                                  Logdato = (DateTime?)(((DateTime)b.Betalingsdato).AddSeconds(-30)),  //Workaround for problem med samme felt (b.Betalingsdato) 2 gange
-                                  Akt_id = (int?)40,
-                                  Akt_dato = (DateTime?)b.Betalingsdato
-                              };
-
-
-            var qryLogResult = qryMedlemLog.Union(qryFak)
-                                           .Union(qryBetlin)
-                                           .Union(qryBetlin40);
+            IEnumerable<clsLog> qryLogResult = from m in Program.tblMedlog.AsEnumerable()
+                                select new clsLog
+                                {
+                                  Id = (int?)m.Id,
+                                  Nr = (int?)m.Nr,
+                                  Logdato = (DateTime?)m.Logdato,
+                                  Akt_id = (int?)m.Akt_id,
+                                  Akt_dato = (DateTime?)m.Akt_dato
+                                };
 
             return qryLogResult;
         }

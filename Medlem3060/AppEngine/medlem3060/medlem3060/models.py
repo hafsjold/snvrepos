@@ -322,7 +322,8 @@ class Person(db.Model):
       m_b40 = False
       m_b50 = False
       
-      pDate = datetime.now()
+      dt = datetime.now()
+      pDate = dt.date()
       m_BetalingsFristiDageGamleMedlemmer = 31
       m_BetalingsFristiDageNyeMedlemmer = 61
 
@@ -366,7 +367,8 @@ class Person(db.Model):
                     return False
       else:  #Der findes ingen indmeldelse
         if bMedlemTilDato:
-          return datetime.now() - timedelta(days=(365 * 30))
+          dt = datetime.now() - timedelta(days=(365 * 30))
+          return dt.date()
         else:
           return False
         
@@ -455,7 +457,8 @@ class MedlemsStatus():
         if self.udmeldelsesDato >= self.indmeldelsesDato: #Er udmeldelsen aktiv
           return self.udmeldelsesDato
     else:  #Der findes ingen indmeldelse
-      return datetime.now() - timedelta(days=(365 * 30))
+      dt = datetime.now() - timedelta(days=(365 * 30)) 
+      return dt.date()
 
     #Find aktive betalingsrecord
     if self.b40: #Findes der en kontingent tilbagefoert

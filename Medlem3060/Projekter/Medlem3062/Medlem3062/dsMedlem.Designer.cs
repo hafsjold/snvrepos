@@ -35,8 +35,6 @@ namespace nsPuls3060 {
         
         private tblSyncPersonDataTable tabletblSyncPerson;
         
-        private global::System.Data.DataRelation relationFK_Person_Medlog;
-        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -275,7 +273,6 @@ namespace nsPuls3060 {
                     this.tabletblSyncPerson.InitVars();
                 }
             }
-            this.relationFK_Person_Medlog = this.Relations["FK_Person_Medlog"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -295,18 +292,6 @@ namespace nsPuls3060 {
             base.Tables.Add(this.tabletblSyncMedlem);
             this.tabletblSyncPerson = new tblSyncPersonDataTable();
             base.Tables.Add(this.tabletblSyncPerson);
-            global::System.Data.ForeignKeyConstraint fkc;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_Person_Medlog", new global::System.Data.DataColumn[] {
-                        this.tabletblPerson.NrColumn}, new global::System.Data.DataColumn[] {
-                        this.tabletblMedlog.NrColumn});
-            this.tabletblMedlog.Constraints.Add(fkc);
-            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.Cascade;
-            fkc.DeleteRule = global::System.Data.Rule.Cascade;
-            fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            this.relationFK_Person_Medlog = new global::System.Data.DataRelation("FK_Person_Medlog", new global::System.Data.DataColumn[] {
-                        this.tabletblPerson.NrColumn}, new global::System.Data.DataColumn[] {
-                        this.tabletblMedlog.NrColumn}, false);
-            this.Relations.Add(this.relationFK_Person_Medlog);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1257,19 +1242,16 @@ namespace nsPuls3060 {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public tblMedlogRow AddtblMedlogRow(int Id, string Source, int Source_id, tblPersonRow parenttblPersonRowByFK_Person_Medlog, System.DateTime Logdato, int Akt_id, string Akt_dato) {
+            public tblMedlogRow AddtblMedlogRow(int Id, string Source, int Source_id, short Nr, System.DateTime Logdato, int Akt_id, System.DateTime Akt_dato) {
                 tblMedlogRow rowtblMedlogRow = ((tblMedlogRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Id,
                         Source,
                         Source_id,
-                        null,
+                        Nr,
                         Logdato,
                         Akt_id,
                         Akt_dato};
-                if ((parenttblPersonRowByFK_Person_Medlog != null)) {
-                    columnValuesArray[3] = parenttblPersonRowByFK_Person_Medlog[0];
-                }
                 rowtblMedlogRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtblMedlogRow);
                 return rowtblMedlogRow;
@@ -1321,7 +1303,7 @@ namespace nsPuls3060 {
                 base.Columns.Add(this.columnLogdato);
                 this.columnAkt_id = new global::System.Data.DataColumn("Akt_id", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAkt_id);
-                this.columnAkt_dato = new global::System.Data.DataColumn("Akt_dato", typeof(string), null, global::System.Data.MappingType.Element);
+                this.columnAkt_dato = new global::System.Data.DataColumn("Akt_dato", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAkt_dato);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId,
@@ -2643,16 +2625,6 @@ namespace nsPuls3060 {
             public void SetBankNull() {
                 this[this.tabletblPerson.BankColumn] = global::System.Convert.DBNull;
             }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public tblMedlogRow[] GettblMedlogRows() {
-                if ((this.Table.ChildRelations["FK_Person_Medlog"] == null)) {
-                    return new tblMedlogRow[0];
-                }
-                else {
-                    return ((tblMedlogRow[])(base.GetChildRows(this.Table.ChildRelations["FK_Person_Medlog"])));
-                }
-            }
         }
         
         /// <summary>
@@ -2740,10 +2712,10 @@ namespace nsPuls3060 {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Akt_dato {
+            public System.DateTime Akt_dato {
                 get {
                     try {
-                        return ((string)(this[this.tabletblMedlog.Akt_datoColumn]));
+                        return ((global::System.DateTime)(this[this.tabletblMedlog.Akt_datoColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'Akt_dato\' in table \'tblMedlog\' is DBNull.", e);
@@ -2751,16 +2723,6 @@ namespace nsPuls3060 {
                 }
                 set {
                     this[this.tabletblMedlog.Akt_datoColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public tblPersonRow PersonRow {
-                get {
-                    return ((tblPersonRow)(this.GetParentRow(this.Table.ParentRelations["FK_Person_Medlog"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_Person_Medlog"]);
                 }
             }
             

@@ -900,7 +900,24 @@ class SyncConvertHandler(webapp.RequestHandler):
         return strval
       except:
         return None 
-        
+
+class SyncMedlogHandler(webapp.RequestHandler):
+  def get(self):
+    jLogXmlData = memcache.get('jLogXmlData', namespace='jLogXmlData')
+    if jLogXmlData is None:
+      root = db.Key.from_path('Persons','root')
+      qry = db.Query(Medlog).ancestor(root)
+      antal = qry.count()
+      logging.info('TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT Antal: %s' % (antal))
+      template_values = {
+        'user_log': qry,
+      }
+      path = os.path.join(os.path.dirname(__file__), 'templates/medlog.xml')
+      jLogXmlData = template.render(path, template_values)
+      memcache.set('jLogXmlData', jLogXmlData, namespace='jLogXmlData')      
+    
+    self.response.out.write(jLogXmlData)
+    
 class SyncMedlemHandler(webapp.RequestHandler):
   def get(self):
     root = db.Key.from_path('Persons','root')
@@ -1089,7 +1106,9 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/rest/.*', rest.Dispatcher),
                                        ('/sync/Convert/.*', SyncConvertHandler),
                                        ('/sync/Medlem/.*', SyncMedlemHandler),
-                                       ('/sync/Medlem', SyncMedlemHandler),                                     
+                                       ('/sync/Medlem', SyncMedlemHandler),
+                                       ('/sync/Medlog/.*', SyncMedlogHandler),
+                                       ('/sync/Medlog', SyncMedlogHandler),                                       
                                        ('/sync/.*', MenuHandler),
                                        ('/logoff', LogoffHandler),
                                        ('/teknik/createmenu', CreateMenu),

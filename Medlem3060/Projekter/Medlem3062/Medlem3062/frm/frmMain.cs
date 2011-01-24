@@ -63,6 +63,7 @@ namespace nsPuls3060
                 this.toolStripStatusLabel2.Alignment = ToolStripItemAlignment.Right;
 
                 object ReadKontoplan = Program.karKontoplan;
+                object ReadMedlog = Program.dsMedlemGlobal;
                 Program.path_to_lock_summasummarum_kontoplan = rec_regnskab.Placering + "kontoplan.dat";
                 Program.filestream_to_lock_summasummarum_kontoplan = new FileStream(Program.path_to_lock_summasummarum_kontoplan, FileMode.Open, FileAccess.Read, FileShare.None);
             }
@@ -133,8 +134,41 @@ namespace nsPuls3060
             dsMedlem objMedlem= new dsMedlem();
             objMedlem.filldsMedlem();
             objMedlem.fillPerson();
+            var PersonNotInSyncMedlem = ((System.Data.DataTable)objMedlem.tblSyncMedlem).AsEnumerable().Except(((System.Data.DataTable)objMedlem.tblSyncPerson).AsEnumerable(), DataRowComparer.Default);
+            int antalPersonNotInSyncMedlem = PersonNotInSyncMedlem.Count();
+            foreach( var p in PersonNotInSyncMedlem) 
+            {
+                short Nr = p.Field<short>("Nr");
+                DataRow row1 = null;
+                DataRow row2 = null;
+                try
+                {
+                    row1 = objMedlem.Kartotek.Rows.Find(Nr);
+                    row2 = objMedlem.tblPerson.Rows.Find(Nr);
+                    if (row2 == null)
+                    {
+                        row2 = objMedlem.tblPerson.Rows.Add(row1.ItemArray);
+                    }
+                    else
+                    {
+                        row2.BeginEdit();
+                        row2.ItemArray = row1.ItemArray;
+                        row2.EndEdit();
+                    }
 
-            var tbl1 = ((System.Data.DataTable)objMedlem.tblSyncMedlem).AsEnumerable().Except(((System.Data.DataTable)objMedlem.tblSyncPerson).AsEnumerable(), DataRowComparer.Default);
+                }
+                catch (MissingPrimaryKeyException)
+                {
+
+                }
+            }
+            objMedlem.savePerson();
+            
+            var MedlemNotInSyncPerson = ((System.Data.DataTable)objMedlem.tblSyncPerson).AsEnumerable().Except(((System.Data.DataTable)objMedlem.tblSyncMedlem).AsEnumerable(), DataRowComparer.Default);
+            int antalMedlemNotInSyncPerson = MedlemNotInSyncPerson.Count();
+
+            objMedlem.fillMedlog();
+
 
             int cxd = 2;
             //clsConvert objConvert = new clsConvert();

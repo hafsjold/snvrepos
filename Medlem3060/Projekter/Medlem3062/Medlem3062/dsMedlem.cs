@@ -227,6 +227,97 @@ namespace nsPuls3060
                 }
             }
         }
+
+        public void savePerson()
+        {
+            foreach (tblPersonRow p in tabletblPerson.Rows)
+            {
+                clsRest objRest = null;
+                XElement xml = null;
+                string retur = null;
+                string strxml = null;
+                switch (p.RowState)
+                {
+                    case DataRowState.Added:
+                        objRest = new clsRest();
+                        xml = new XElement("Medlem", new XElement("Nr", p.Nr));
+                        xml.Add(new XElement("Navn", p.Navn));
+                        xml.Add(new XElement("Kaldenavn", p.Kaldenavn));
+                        xml.Add(new XElement("Adresse", p.Adresse));
+                        xml.Add(new XElement("Postnr", p.Postnr));
+                        xml.Add(new XElement("Bynavn", p.Bynavn));
+                        xml.Add(new XElement("Telefon", p.Telefon));
+                        xml.Add(new XElement("Email", p.Email));
+                        xml.Add(new XElement("Kon", p.Kon));
+                        xml.Add(new XElement("FodtDato", ((DateTime)p.FodtDato).ToString("yyyy-MM-dd")));
+                        xml.Add(new XElement("Bank", p.Bank));
+                        strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
+                        retur = objRest.HttpPost2("Medlem", strxml);
+                        p.AcceptChanges();
+                        break;
+
+                    case DataRowState.Deleted:
+                        objRest = new clsRest();
+                        retur = objRest.HttpDelete2("Medlem/" + p.Nr);
+                        p.AcceptChanges();
+                        break;
+
+                    case DataRowState.Modified:
+                        objRest = new clsRest();
+                        xml = new XElement("Medlem", new XElement("Nr", p.Nr));
+                        xml.Add(new XElement("Navn", p.Navn));
+                        xml.Add(new XElement("Kaldenavn", p.Kaldenavn));
+                        xml.Add(new XElement("Adresse", p.Adresse));
+                        xml.Add(new XElement("Postnr", p.Postnr));
+                        xml.Add(new XElement("Bynavn", p.Bynavn));
+                        xml.Add(new XElement("Telefon", p.Telefon));
+                        xml.Add(new XElement("Email", p.Email));
+                        xml.Add(new XElement("Kon", p.Kon));
+                        xml.Add(new XElement("FodtDato", ((DateTime)p.FodtDato).ToString("yyyy-MM-dd")));
+                        xml.Add(new XElement("Bank", p.Bank));
+                        strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
+                        retur = objRest.HttpPost2("Medlem", strxml); 
+                        p.AcceptChanges();
+                        break;
+                }
+            }
+        }
+
+        public void fillMedlog()
+        {
+            clsRest objRest = new clsRest();
+            string retur = objRest.HttpGet2("Medlog");
+            XDocument xdoc = XDocument.Parse(retur);
+            var list = from medlog in xdoc.Descendants("Medlog") select medlog;
+            int antal = list.Count();
+            foreach (var medlog in list)
+            {
+
+                if ((medlog.Descendants("Nr").First().Value != null) && (medlog.Descendants("Nr").First().Value != "None") && (medlog.Descendants("Nr").First().Value.Length <= 4))
+                {
+                    var Id = medlog.Descendants("Id").First().Value.Trim();
+                    var Source = medlog.Descendants("Source").First().Value.Trim();
+                    var Source_id = medlog.Descendants("Source_id").First().Value.Trim();
+                    var Nr = medlog.Descendants("Nr").First().Value.Trim();
+                    var Logdato = medlog.Descendants("Logdato").First().Value.Trim();
+                    var Akt_id = medlog.Descendants("Akt_id").First().Value.Trim();
+                    var Akt_dato = medlog.Descendants("Akt_dato").First().Value.Trim();
+
+                    tblMedlogRow MedlogRow = (tblMedlogRow)tabletblMedlog.Rows.Add(
+                      Id,
+                      Source,
+                      Source_id,
+                      Nr,
+                      Logdato,
+                      Akt_id,
+                      Akt_dato
+                    );
+
+                    MedlogRow.AcceptChanges();
+                }
+            }
+        }
+
     }
 
 }
