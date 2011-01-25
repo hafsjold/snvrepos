@@ -29,16 +29,22 @@ namespace nsPuls3060
             this.lvwLog.Sort();
         }
 
+        private void dsMedlem_Initialized(object sender, EventArgs e)
+        {
+            this.dsMedlem = Program.dsMedlemGlobal;
+            this.kartotekBindingSource.DataSource = this.dsMedlem;
+        }
 
         private void frmMedlemmer_Load(object sender, EventArgs e)
         {
-            this.dsMedlem.filldsMedlem();
+            //this.dsMedlem.filldsMedlem();
             this.dataGridView1.AutoResizeColumns();
         }
 
         private void frmMedlemmer_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.dsMedlem.savedsMedlem();
+            this.dsMedlem.savePerson();
+            //this.dsMedlem.savedsMedlem();
             Properties.Settings.Default.Save();
         }
 
@@ -216,7 +222,7 @@ namespace nsPuls3060
 
         private void cmdSave_I_Record_Click(object sender, EventArgs e)
         {
-            int tblMedlem_nr = KarKortnr.nextval();
+            int tblMedlem_nr = clsPbs.nextval("tblMedlem");
             object[] val = new object[11];
             val[0] = tblMedlem_nr;
             val[1] = (I_Navn.Text.Length == 0) ? "" : I_Navn.Text;
@@ -230,22 +236,21 @@ namespace nsPuls3060
             val[9] = (I_DT_FodtDato.Value == null) ? ((DateTime?)null) : (DateTime)I_DT_FodtDato.Value;
             val[10] = (I_Bank.Text.Length == 0) ? null : I_Bank.Text;
             this.dsMedlem.Kartotek.Rows.Add(val);
+            this.dsMedlem.tblPerson.Rows.Add(val);
             this.dsMedlem.savedsMedlem();
+            this.dsMedlem.savePerson();
             if (I_DT_Indmeldelsesdato.Value != null)
             {
                 try
                 {
                     DateTime nu = DateTime.Now;
-                    TblMedlemLog recLog = new TblMedlemLog
-                    {
-                        Id = clsPbs.nextval("tblMedlemlog"),
-                        Nr = tblMedlem_nr,
-                        Logdato = new DateTime(nu.Year, nu.Month, nu.Day),
-                        Akt_id = 10,
-                        Akt_dato = (DateTime)I_DT_Indmeldelsesdato.Value
-                    };
-                    Program.dbData3060.TblMedlemLog.InsertOnSubmit(recLog);
-                    Program.dbData3060.SubmitChanges();
+                    object[] logval = new object[4];
+                    logval[0] = tblMedlem_nr;
+                    logval[1] = new DateTime(nu.Year, nu.Month, nu.Day);
+                    logval[2] = 10;
+                    logval[3] = (DateTime)I_DT_Indmeldelsesdato.Value;
+                    this.dsMedlem.tblMedlog.Rows.Add(logval);
+                    this.dsMedlem.saveMedlog();
                 }
                 catch (Exception)
                 {
@@ -303,7 +308,7 @@ namespace nsPuls3060
         private void cmdSave_U_Record_Click(object sender, EventArgs e)
         {
             int tblMedlem_nr = int.Parse(this.U_Nr.Text);
-            DataRow row = this.dsMedlem.Kartotek.Rows.Find(tblMedlem_nr);
+            DataRow row = this.dsMedlem.tblPerson.Rows.Find(tblMedlem_nr);
             object[] val = row.ItemArray;
             val[1] = (U_Navn.Text.Length == 0) ? "" : U_Navn.Text;
             val[2] = (U_Kaldenavn.Text.Length == 0) ? null : U_Kaldenavn.Text;
@@ -318,7 +323,13 @@ namespace nsPuls3060
             row.BeginEdit();
             row.ItemArray = val;
             row.EndEdit();
+            this.dsMedlem.savePerson();
+            row = this.dsMedlem.Kartotek.Rows.Find(tblMedlem_nr);
+            row.BeginEdit();
+            row.ItemArray = val;
+            row.EndEdit();
             this.dsMedlem.savedsMedlem();
+
             if (U_DT_NyAktivitetDato.Value != null)
             {
                 int Akt_id;
@@ -342,16 +353,14 @@ namespace nsPuls3060
                     try
                     {
                         DateTime aktdt = (DateTime)U_DT_NyAktivitetDato.Value;
-                        TblMedlemLog recLog = new TblMedlemLog
-                        {
-                            Id = clsPbs.nextval("tblMedlemlog"),
-                            Nr = tblMedlem_nr,
-                            Logdato = DateTime.Now,
-                            Akt_id = Akt_id,
-                            Akt_dato = new DateTime(aktdt.Year, aktdt.Month, aktdt.Day)
-                        };
-                        Program.dbData3060.TblMedlemLog.InsertOnSubmit(recLog);
-                        Program.dbData3060.SubmitChanges();
+                        DateTime nu = DateTime.Now;
+                        object[] logval = new object[4];
+                        logval[0] = tblMedlem_nr;
+                        logval[1] = new DateTime(nu.Year, nu.Month, nu.Day);
+                        logval[2] = Akt_id;
+                        logval[3] = new DateTime(aktdt.Year, aktdt.Month, aktdt.Day);
+                        this.dsMedlem.tblMedlog.Rows.Add(logval);
+                        this.dsMedlem.saveMedlog();
                     }
                     catch (Exception)
                     {
@@ -526,6 +535,7 @@ namespace nsPuls3060
 
 
         }
+
 
     }
 }

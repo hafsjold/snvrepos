@@ -21,7 +21,7 @@ from models import UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendels
 from util import TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
 from menuusergroup import deleteMenuAndUserGroup, createMenuAndUserGroup
 from menu import MenuHandler, ListUserHandler, UserHandler
-from pbs601 import TestHandler
+from pbs601 import TestHandler, nextval
 
 webapp.template.register_template_library('templatetags.medlem3060_extras')
 
@@ -211,6 +211,7 @@ class UpdatemedlemHandler(webapp.RequestHandler):
       jData += ',"PersonTableData": ["%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s"]' % (m.Nr,m.Navn,m.Kaldenavn,m.Adresse,m.Postnr,m.Bynavn,m.Email,m.Telefon,m.Kon,m.FodtDato,m.Bank,m.MedlemtilDato,m.MedlemAabenBetalingsdato)
       jData += ' }'
       memcache.delete('jData', namespace='jData')
+      memcache.delete('jMedlemXmlData', namespace='jMedlemXmlData')    
       logging.info('UpdatemedlemHandler OK Navn: %s, Kaldenavn: %s' % (self.request.get('Navn'), self.request.get('Kaldenavn')))
       logging.info('%s' % (jData))
       self.response.headers["Content-Type"] = "application/json"
@@ -917,7 +918,70 @@ class SyncMedlogHandler(webapp.RequestHandler):
       memcache.set('jLogXmlData', jLogXmlData, namespace='jLogXmlData')      
     
     self.response.out.write(jLogXmlData)
+
+  def post(self):
+    doc = minidom.parse(self.request.body_file)
+    ModelName  = doc.documentElement.tagName
     
+    if ModelName == 'Medlog':
+      try:
+        Id = nextval('tblMedlog')
+      except:
+        Id = None
+      try:
+        Nr = doc.getElementsByTagName("Nr")[0].childNodes[0].data
+      except:
+        Nr = None
+      root = db.Key.from_path('Persons','root','Person','%s' % (Nr))
+      rec = Medlog.get_or_insert('%s' % (Id), parent=root)
+      
+      for attr_name, value in Medlog.__dict__.iteritems():
+        if isinstance(value, db.Property):
+          attr_type = value.__class__.__name__        
+          if not attr_type in ['_ReverseReferenceProperty']:
+            val = self.attr_val(doc, attr_name, attr_type)
+            logging.info('%s=%s' % (attr_name, val))
+            try:
+              setattr(rec, attr_name, val)
+            except:
+              setattr(rec, attr_name, None)
+          
+            logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
+      rec.put()
+    
+    self.response.out.write('Status: 404')
+    
+  def attr_val(self, doc, attr_name, attr_type):
+    try:
+      strval = doc.getElementsByTagName(attr_name)[0].childNodes[0].data
+    except:
+      strval = None
+    
+    if attr_type == 'IntegerProperty':
+      try:
+        return int(strval)
+      except:
+        return None
+    elif attr_type == 'DateProperty':
+      try:
+        dt = datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S")
+        return dt.date()
+      except:
+        return None
+    elif attr_type == 'DateTimeProperty':
+      try:
+        return datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S")
+      except:
+        return None        
+      else:
+        return None  
+ 
+    else:
+      try:
+        return strval
+      except:
+        return None 
+      
 class SyncMedlemHandler(webapp.RequestHandler):
   def get(self):
     jMedlemXmlData = memcache.get('jMedlemXmlData', namespace='jMedlemXmlData')
@@ -994,12 +1058,29 @@ class SyncMedlemHandler(webapp.RequestHandler):
     person.setNameTags()
     person.put()
     memcache.delete('jData', namespace='jData')
+    memcache.delete('jMedlemXmlData', namespace='jMedlemXmlData')    
     
     logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     logging.info('%s - %s - %s - %s - %s - %s - %s - %s - %s - %s - %s' % (person.Nr, person.Navn, person.Kaldenavn, person.Adresse, person.Postnr, person.Bynavn, person.Email, person.Telefon, person.Kon, person.FodtDato, person.Bank))
     logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     self.response.out.write('Status: 404')
-    
+
+class SyncNrSerieHandler(webapp.RequestHandler):
+  def get(self):
+    path = self.request.environ['PATH_INFO']
+    logging.info('path: %s' % (path))
+    mo = re.match("/sync/NrSerie/([0-9a-zA-Z]+)", path)
+    if mo:
+      if mo.groups()[0]:
+        try:
+          nrserie = mo.groups()[0]
+          logging.info('nrserie: %s' % (nrserie))
+          nextnr = nextval('%s' % (nrserie))
+          logging.info('NrSerie=%s, nextnr=%s' % (nrserie,nextnr))
+          self.response.out.write('%s' % (nextnr))
+        except:
+          self.response.out.write('Error')
+          
 class LogoffHandler(webapp.RequestHandler):
   def get(self):
     self.redirect(users.create_logout_url("/"))
@@ -1110,6 +1191,7 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/adm', MenuHandler),
                                        ('/rest/.*', rest.Dispatcher),
                                        ('/sync/Convert/.*', SyncConvertHandler),
+                                       ('/sync/NrSerie/.*', SyncNrSerieHandler),
                                        ('/sync/Medlem/.*', SyncMedlemHandler),
                                        ('/sync/Medlem', SyncMedlemHandler),
                                        ('/sync/Medlog/.*', SyncMedlogHandler),

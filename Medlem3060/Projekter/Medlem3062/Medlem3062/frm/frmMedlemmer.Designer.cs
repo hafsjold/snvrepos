@@ -31,6 +31,17 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMedlemmer));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.nrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.navnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kaldenavnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.postnrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bynavnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.telefonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.konDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fodtDatoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bankDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kartotekBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dsMedlem = new nsPuls3060.dsMedlem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -129,17 +140,6 @@
             this.I_DT_Indmeldelsesdato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
             this.U_DT_NyAktivitetDato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
             this.U_DT_FodtDato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
-            this.nrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.navnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kaldenavnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.postnrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bynavnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.telefonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.konDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fodtDatoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bankDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kartotekBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsMedlem)).BeginInit();
@@ -184,15 +184,93 @@
             this.dataGridView1.Sorted += new System.EventHandler(this.dataGridView1_Sorted);
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
+            // nrDataGridViewTextBoxColumn
+            // 
+            this.nrDataGridViewTextBoxColumn.DataPropertyName = "Nr";
+            this.nrDataGridViewTextBoxColumn.HeaderText = "Nr";
+            this.nrDataGridViewTextBoxColumn.Name = "nrDataGridViewTextBoxColumn";
+            this.nrDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // navnDataGridViewTextBoxColumn
+            // 
+            this.navnDataGridViewTextBoxColumn.DataPropertyName = "Navn";
+            this.navnDataGridViewTextBoxColumn.HeaderText = "Navn";
+            this.navnDataGridViewTextBoxColumn.Name = "navnDataGridViewTextBoxColumn";
+            this.navnDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // kaldenavnDataGridViewTextBoxColumn
+            // 
+            this.kaldenavnDataGridViewTextBoxColumn.DataPropertyName = "Kaldenavn";
+            this.kaldenavnDataGridViewTextBoxColumn.HeaderText = "Kaldenavn";
+            this.kaldenavnDataGridViewTextBoxColumn.Name = "kaldenavnDataGridViewTextBoxColumn";
+            this.kaldenavnDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // adresseDataGridViewTextBoxColumn
+            // 
+            this.adresseDataGridViewTextBoxColumn.DataPropertyName = "Adresse";
+            this.adresseDataGridViewTextBoxColumn.HeaderText = "Adresse";
+            this.adresseDataGridViewTextBoxColumn.Name = "adresseDataGridViewTextBoxColumn";
+            this.adresseDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // postnrDataGridViewTextBoxColumn
+            // 
+            this.postnrDataGridViewTextBoxColumn.DataPropertyName = "Postnr";
+            this.postnrDataGridViewTextBoxColumn.HeaderText = "Postnr";
+            this.postnrDataGridViewTextBoxColumn.Name = "postnrDataGridViewTextBoxColumn";
+            this.postnrDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // bynavnDataGridViewTextBoxColumn
+            // 
+            this.bynavnDataGridViewTextBoxColumn.DataPropertyName = "Bynavn";
+            this.bynavnDataGridViewTextBoxColumn.HeaderText = "By";
+            this.bynavnDataGridViewTextBoxColumn.Name = "bynavnDataGridViewTextBoxColumn";
+            this.bynavnDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // telefonDataGridViewTextBoxColumn
+            // 
+            this.telefonDataGridViewTextBoxColumn.DataPropertyName = "Telefon";
+            this.telefonDataGridViewTextBoxColumn.HeaderText = "Telefon";
+            this.telefonDataGridViewTextBoxColumn.Name = "telefonDataGridViewTextBoxColumn";
+            this.telefonDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // konDataGridViewTextBoxColumn
+            // 
+            this.konDataGridViewTextBoxColumn.DataPropertyName = "Kon";
+            this.konDataGridViewTextBoxColumn.HeaderText = "Køn";
+            this.konDataGridViewTextBoxColumn.Name = "konDataGridViewTextBoxColumn";
+            this.konDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // fodtDatoDataGridViewTextBoxColumn
+            // 
+            this.fodtDatoDataGridViewTextBoxColumn.DataPropertyName = "FodtDato";
+            this.fodtDatoDataGridViewTextBoxColumn.HeaderText = "Født Dato";
+            this.fodtDatoDataGridViewTextBoxColumn.Name = "fodtDatoDataGridViewTextBoxColumn";
+            this.fodtDatoDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // bankDataGridViewTextBoxColumn
+            // 
+            this.bankDataGridViewTextBoxColumn.DataPropertyName = "Bank";
+            this.bankDataGridViewTextBoxColumn.HeaderText = "Bank";
+            this.bankDataGridViewTextBoxColumn.Name = "bankDataGridViewTextBoxColumn";
+            this.bankDataGridViewTextBoxColumn.Visible = false;
+            // 
             // kartotekBindingSource
             // 
-            this.kartotekBindingSource.DataMember = "Kartotek";
+            this.kartotekBindingSource.DataMember = "tblPerson";
             this.kartotekBindingSource.DataSource = this.dsMedlem;
             // 
             // dsMedlem
             // 
             this.dsMedlem.DataSetName = "dsMedlem";
             this.dsMedlem.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.dsMedlem.Initialized += new System.EventHandler(this.dsMedlem_Initialized);
             // 
             // splitContainer1
             // 
@@ -1004,7 +1082,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(309, 25);
+            this.bindingNavigator1.Size = new System.Drawing.Size(307, 25);
             this.bindingNavigator1.TabIndex = 1;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -1152,83 +1230,6 @@
             this.U_DT_FodtDato.TabIndex = 10;
             this.U_DT_FodtDato.Value = new System.DateTime(2010, 1, 12, 8, 47, 59, 886);
             this.U_DT_FodtDato.Enter += new System.EventHandler(this.U_DT_FodtDato_Enter);
-            // 
-            // nrDataGridViewTextBoxColumn
-            // 
-            this.nrDataGridViewTextBoxColumn.DataPropertyName = "Nr";
-            this.nrDataGridViewTextBoxColumn.HeaderText = "Nr";
-            this.nrDataGridViewTextBoxColumn.Name = "nrDataGridViewTextBoxColumn";
-            this.nrDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // navnDataGridViewTextBoxColumn
-            // 
-            this.navnDataGridViewTextBoxColumn.DataPropertyName = "Navn";
-            this.navnDataGridViewTextBoxColumn.HeaderText = "Navn";
-            this.navnDataGridViewTextBoxColumn.Name = "navnDataGridViewTextBoxColumn";
-            this.navnDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // kaldenavnDataGridViewTextBoxColumn
-            // 
-            this.kaldenavnDataGridViewTextBoxColumn.DataPropertyName = "Kaldenavn";
-            this.kaldenavnDataGridViewTextBoxColumn.HeaderText = "Kaldenavn";
-            this.kaldenavnDataGridViewTextBoxColumn.Name = "kaldenavnDataGridViewTextBoxColumn";
-            this.kaldenavnDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // adresseDataGridViewTextBoxColumn
-            // 
-            this.adresseDataGridViewTextBoxColumn.DataPropertyName = "Adresse";
-            this.adresseDataGridViewTextBoxColumn.HeaderText = "Adresse";
-            this.adresseDataGridViewTextBoxColumn.Name = "adresseDataGridViewTextBoxColumn";
-            this.adresseDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // postnrDataGridViewTextBoxColumn
-            // 
-            this.postnrDataGridViewTextBoxColumn.DataPropertyName = "Postnr";
-            this.postnrDataGridViewTextBoxColumn.HeaderText = "Postnr";
-            this.postnrDataGridViewTextBoxColumn.Name = "postnrDataGridViewTextBoxColumn";
-            this.postnrDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // bynavnDataGridViewTextBoxColumn
-            // 
-            this.bynavnDataGridViewTextBoxColumn.DataPropertyName = "Bynavn";
-            this.bynavnDataGridViewTextBoxColumn.HeaderText = "By";
-            this.bynavnDataGridViewTextBoxColumn.Name = "bynavnDataGridViewTextBoxColumn";
-            this.bynavnDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // telefonDataGridViewTextBoxColumn
-            // 
-            this.telefonDataGridViewTextBoxColumn.DataPropertyName = "Telefon";
-            this.telefonDataGridViewTextBoxColumn.HeaderText = "Telefon";
-            this.telefonDataGridViewTextBoxColumn.Name = "telefonDataGridViewTextBoxColumn";
-            this.telefonDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            this.emailDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // konDataGridViewTextBoxColumn
-            // 
-            this.konDataGridViewTextBoxColumn.DataPropertyName = "Kon";
-            this.konDataGridViewTextBoxColumn.HeaderText = "Køn";
-            this.konDataGridViewTextBoxColumn.Name = "konDataGridViewTextBoxColumn";
-            this.konDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // fodtDatoDataGridViewTextBoxColumn
-            // 
-            this.fodtDatoDataGridViewTextBoxColumn.DataPropertyName = "FodtDato";
-            this.fodtDatoDataGridViewTextBoxColumn.HeaderText = "Født Dato";
-            this.fodtDatoDataGridViewTextBoxColumn.Name = "fodtDatoDataGridViewTextBoxColumn";
-            this.fodtDatoDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // bankDataGridViewTextBoxColumn
-            // 
-            this.bankDataGridViewTextBoxColumn.DataPropertyName = "Bank";
-            this.bankDataGridViewTextBoxColumn.HeaderText = "Bank";
-            this.bankDataGridViewTextBoxColumn.Name = "bankDataGridViewTextBoxColumn";
-            this.bankDataGridViewTextBoxColumn.Visible = false;
             // 
             // FrmMedlemmer
             // 

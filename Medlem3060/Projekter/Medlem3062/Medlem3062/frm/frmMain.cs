@@ -131,6 +131,8 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
+            int nextNr = clsPbs.nextval("tblMedlem");
+
             dsMedlem objMedlem= new dsMedlem();
             objMedlem.filldsMedlem();
             objMedlem.fillPerson();

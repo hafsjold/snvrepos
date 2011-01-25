@@ -312,6 +312,34 @@ namespace nsPuls3060
             }
         }
 
+        public void saveMedlog()
+        {
+            foreach (tblMedlogRow l in tabletblMedlog.Rows)
+            {
+                clsRest objRest = null;
+                XElement xml = null;
+                string retur = null;
+                string strxml = null;
+                switch (l.RowState)
+                {
+                    case DataRowState.Added:
+                        objRest = new clsRest();
+                        int Id = clsPbs.nextval("tblMedlog");
+                        xml = new XElement("Medlog");
+                        xml.Add(new XElement("Id", Id));
+                        xml.Add(new XElement("Source_id", Id));
+                        xml.Add(new XElement("Source", "Medlog"));
+                        xml.Add(new XElement("Nr", l.Nr));
+                        xml.Add(new XElement("Logdato", l.Logdato));
+                        xml.Add(new XElement("Akt_id", l.Akt_id));
+                        xml.Add(new XElement("Akt_dato", l.Akt_dato));
+                        strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
+                        retur = objRest.HttpPost2("Medlog", strxml);
+                        l.AcceptChanges();
+                        break;
+                }
+            }
+        }
     }
 
 }

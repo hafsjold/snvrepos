@@ -366,79 +366,15 @@ namespace nsPuls3060
 
         public static int nextval(string nrserienavn)
         {
+            clsRest objRest = new clsRest();
+            string strNextnr = objRest.HttpGet2("NrSerie/" + nrserienavn);
             try
             {
-                var rst = (from c in Program.dbData3060.Tblnrserie
-                           where c.Nrserienavn == nrserienavn
-                           select c).First();
-
-                if (rst.Sidstbrugtenr != null)
-                {
-                    rst.Sidstbrugtenr += 1;
-                    return rst.Sidstbrugtenr.Value;
-                }
-                else
-                {
-                    rst.Sidstbrugtenr = 0;
-                    return rst.Sidstbrugtenr.Value;
-                }
-            }
-            catch (System.InvalidOperationException)
-            {
-                Tblnrserie rec_nrserie = new Tblnrserie
-                {
-                    Nrserienavn = nrserienavn,
-                    Sidstbrugtenr = 0
-                };
-                Program.dbData3060.Tblnrserie.InsertOnSubmit(rec_nrserie);
-                Program.dbData3060.SubmitChanges();
-
-                return 0;
-            }
-        }
-
-        public static int nextvaltest(string nrserienavn)
-        {
-            try
-            {
-                var rst = (from c in Program.dbData3060.Tblnrserie
-                           where c.Nrserienavn == nrserienavn
-                           select c).First();
-
-                if (rst.Sidstbrugtenr != null)
-                {
-                    return rst.Sidstbrugtenr.Value + 1;
-                }
-                else
-                {
-                    return 0;
-                }
+                return int.Parse(strNextnr);
             }
             catch (System.InvalidOperationException)
             {
                 return 0;
-            }
-        }
-
-        public static void nextvalset(string nrserienavn, int value)
-        {
-            try
-            {
-                var rst = (from c in Program.dbData3060.Tblnrserie
-                           where c.Nrserienavn == nrserienavn
-                           select c).First();
-
-                rst.Sidstbrugtenr = value;
-            }
-            catch (System.InvalidOperationException)
-            {
-                Tblnrserie rec_nrserie = new Tblnrserie
-                {
-                    Nrserienavn = nrserienavn,
-                    Sidstbrugtenr = value
-                };
-                Program.dbData3060.Tblnrserie.InsertOnSubmit(rec_nrserie);
-                Program.dbData3060.SubmitChanges();
             }
         }
 

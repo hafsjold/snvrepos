@@ -217,6 +217,7 @@ namespace nsPuls3060
                     m_dsMedlemGlobal = new dsMedlem();
                     m_dsMedlemGlobal.fillPerson();
                     m_dsMedlemGlobal.fillMedlog();
+                    m_dsMedlemGlobal.filldsMedlem();
                 }
                 return m_dsMedlemGlobal;
             }
