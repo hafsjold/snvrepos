@@ -1120,12 +1120,6 @@ namespace nsPuls3060 {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class tblMedlogDataTable : global::System.Data.TypedTableBase<tblMedlogRow> {
             
-            private global::System.Data.DataColumn columnId;
-            
-            private global::System.Data.DataColumn columnSource;
-            
-            private global::System.Data.DataColumn columnSource_id;
-            
             private global::System.Data.DataColumn columnNr;
             
             private global::System.Data.DataColumn columnLogdato;
@@ -1162,27 +1156,6 @@ namespace nsPuls3060 {
             protected tblMedlogDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn IdColumn {
-                get {
-                    return this.columnId;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn SourceColumn {
-                get {
-                    return this.columnSource;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public global::System.Data.DataColumn Source_idColumn {
-                get {
-                    return this.columnSource_id;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1242,12 +1215,9 @@ namespace nsPuls3060 {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public tblMedlogRow AddtblMedlogRow(int Id, string Source, int Source_id, short Nr, System.DateTime Logdato, int Akt_id, System.DateTime Akt_dato) {
+            public tblMedlogRow AddtblMedlogRow(short Nr, System.DateTime Logdato, int Akt_id, System.DateTime Akt_dato) {
                 tblMedlogRow rowtblMedlogRow = ((tblMedlogRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        Id,
-                        Source,
-                        Source_id,
                         Nr,
                         Logdato,
                         Akt_id,
@@ -1255,15 +1225,6 @@ namespace nsPuls3060 {
                 rowtblMedlogRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowtblMedlogRow);
                 return rowtblMedlogRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public tblMedlogRow FindByIdNrSource_idSource(int Id, short Nr, int Source_id, string Source) {
-                return ((tblMedlogRow)(this.Rows.Find(new object[] {
-                            Id,
-                            Nr,
-                            Source_id,
-                            Source})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1280,9 +1241,6 @@ namespace nsPuls3060 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             internal void InitVars() {
-                this.columnId = base.Columns["Id"];
-                this.columnSource = base.Columns["Source"];
-                this.columnSource_id = base.Columns["Source_id"];
                 this.columnNr = base.Columns["Nr"];
                 this.columnLogdato = base.Columns["Logdato"];
                 this.columnAkt_id = base.Columns["Akt_id"];
@@ -1291,12 +1249,6 @@ namespace nsPuls3060 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             private void InitClass() {
-                this.columnId = new global::System.Data.DataColumn("Id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnId);
-                this.columnSource = new global::System.Data.DataColumn("Source", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSource);
-                this.columnSource_id = new global::System.Data.DataColumn("Source_id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnSource_id);
                 this.columnNr = new global::System.Data.DataColumn("Nr", typeof(short), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNr);
                 this.columnLogdato = new global::System.Data.DataColumn("Logdato", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
@@ -1305,14 +1257,6 @@ namespace nsPuls3060 {
                 base.Columns.Add(this.columnAkt_id);
                 this.columnAkt_dato = new global::System.Data.DataColumn("Akt_dato", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAkt_dato);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnId,
-                                this.columnNr,
-                                this.columnSource_id,
-                                this.columnSource}, true));
-                this.columnId.AllowDBNull = false;
-                this.columnSource.AllowDBNull = false;
-                this.columnSource_id.AllowDBNull = false;
                 this.columnNr.AllowDBNull = false;
             }
             
@@ -2639,36 +2583,6 @@ namespace nsPuls3060 {
             internal tblMedlogRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
                 this.tabletblMedlog = ((tblMedlogDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int Id {
-                get {
-                    return ((int)(this[this.tabletblMedlog.IdColumn]));
-                }
-                set {
-                    this[this.tabletblMedlog.IdColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public string Source {
-                get {
-                    return ((string)(this[this.tabletblMedlog.SourceColumn]));
-                }
-                set {
-                    this[this.tabletblMedlog.SourceColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public int Source_id {
-                get {
-                    return ((int)(this[this.tabletblMedlog.Source_idColumn]));
-                }
-                set {
-                    this[this.tabletblMedlog.Source_idColumn] = value;
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

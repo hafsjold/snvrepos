@@ -16,7 +16,6 @@ namespace nsPuls3060
 {
     public class clsLog
     {
-        public int? Id;
         public int? Nr;
         public DateTime? Logdato;
         public int? Akt_id;

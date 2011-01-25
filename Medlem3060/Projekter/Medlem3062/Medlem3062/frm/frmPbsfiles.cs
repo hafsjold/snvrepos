@@ -59,7 +59,6 @@ namespace nsPuls3060
             var qry = from i in Program.qryLog()
                       select new
                       {
-                          Id = i.Id,
                           Logdato = i.Logdato,
                           Nr = i.Nr,
                           Akt_id = i.Akt_id,

@@ -215,6 +215,7 @@ namespace nsPuls3060
                 if (m_dsMedlemGlobal == null)
                 {
                     m_dsMedlemGlobal = new dsMedlem();
+                    m_dsMedlemGlobal.fillPerson();
                     m_dsMedlemGlobal.fillMedlog();
                 }
                 return m_dsMedlemGlobal;
@@ -491,7 +492,6 @@ namespace nsPuls3060
             IEnumerable<clsLog> qryLogResult = from m in Program.tblMedlog.AsEnumerable()
                                 select new clsLog
                                 {
-                                  Id = (int?)m.Id,
                                   Nr = (int?)m.Nr,
                                   Logdato = (DateTime?)m.Logdato,
                                   Akt_id = (int?)m.Akt_id,

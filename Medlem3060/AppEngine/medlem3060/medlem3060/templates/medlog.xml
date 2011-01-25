@@ -3,9 +3,6 @@
   {% if user_log %}
     {% for log in user_log %}
     <Medlog>
-      <Id>{{log.Id}}</Id> 
-      <Source>{{log.Source}}</Source> 
-      <Source_id>{{log.Source_id}}</Source_id> 
       <Nr>{{log.Nr}}</Nr> 
       <Logdato>{{log.Logdato}}</Logdato> 
       <Akt_id>{{log.Akt_id}}</Akt_id> 

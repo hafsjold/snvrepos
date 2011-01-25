@@ -920,15 +920,20 @@ class SyncMedlogHandler(webapp.RequestHandler):
     
 class SyncMedlemHandler(webapp.RequestHandler):
   def get(self):
-    root = db.Key.from_path('Persons','root')
-    qry = db.Query(Person).ancestor(root)
-    antal = qry.count()
-    logging.info('TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT Antal: %s' % (antal))
-    template_values = {
-      'user_list': qry,
-    }
-    path = os.path.join(os.path.dirname(__file__), 'templates/medlem.xml') 
-    self.response.out.write(template.render(path, template_values))
+    jMedlemXmlData = memcache.get('jMedlemXmlData', namespace='jMedlemXmlData')
+    if jMedlemXmlData is None:
+      root = db.Key.from_path('Persons','root')
+      qry = db.Query(Person).ancestor(root)
+      antal = qry.count()
+      logging.info('TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT Antal: %s' % (antal))
+      template_values = {
+        'user_list': qry,
+      }
+      path = os.path.join(os.path.dirname(__file__), 'templates/medlem.xml') 
+      jMedlemXmlData = template.render(path, template_values)
+      memcache.set('jMedlemXmlData', jMedlemXmlData, namespace='jMedlemXmlData')      
+    
+    self.response.out.write(jMedlemXmlData)
   
   def delete(self):
     path = self.request.environ['PATH_INFO']

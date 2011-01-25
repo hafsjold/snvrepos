@@ -295,18 +295,12 @@ namespace nsPuls3060
 
                 if ((medlog.Descendants("Nr").First().Value != null) && (medlog.Descendants("Nr").First().Value != "None") && (medlog.Descendants("Nr").First().Value.Length <= 4))
                 {
-                    var Id = medlog.Descendants("Id").First().Value.Trim();
-                    var Source = medlog.Descendants("Source").First().Value.Trim();
-                    var Source_id = medlog.Descendants("Source_id").First().Value.Trim();
                     var Nr = medlog.Descendants("Nr").First().Value.Trim();
                     var Logdato = medlog.Descendants("Logdato").First().Value.Trim();
                     var Akt_id = medlog.Descendants("Akt_id").First().Value.Trim();
                     var Akt_dato = medlog.Descendants("Akt_dato").First().Value.Trim();
 
                     tblMedlogRow MedlogRow = (tblMedlogRow)tabletblMedlog.Rows.Add(
-                      Id,
-                      Source,
-                      Source_id,
                       Nr,
                       Logdato,
                       Akt_id,
