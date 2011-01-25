@@ -22,7 +22,6 @@ namespace nsPuls3060
         private static string m_path_to_lock_summasummarum_kontoplan;
         private static FileStream m_filestream_to_lock_summasummarum_kontoplan;
         private static DbData3060 m_dbData3060;
-        private static dsMedlem m_dsMedlemImport;
         private static dsMedlem m_dsMedlemGlobal;
         private static KarMedlemmer m_KarMedlemmer;
         private static MemMedlemDictionary m_dicMedlem;
@@ -234,22 +233,6 @@ namespace nsPuls3060
             get
             {
                 return dsMedlemGlobal.tblPerson;
-            }
-        }
-        public static dsMedlem dsMedlemImport
-        {
-            get
-            {
-                if (m_dsMedlemImport == null)
-                {
-                    m_dsMedlemImport = new dsMedlem();
-                    m_dsMedlemImport.filldsMedlem();
-                }
-                return m_dsMedlemImport;
-            }
-            set
-            {
-                m_dsMedlemImport = value;
             }
         }
         public static KarMedlemmer karMedlemmer

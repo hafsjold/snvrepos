@@ -44,8 +44,6 @@
             this.medlemmerTilRegnearkEksternToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.regnearkNotPBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.emailRykkerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.syncMedInternettetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.syncResetInternettetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.betalingerFraPBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -166,9 +164,7 @@
             this.medlemmerTilRegnearkToolStripMenuItem,
             this.medlemmerTilRegnearkEksternToolStripMenuItem,
             this.regnearkNotPBSToolStripMenuItem,
-            this.emailRykkerToolStripMenuItem,
-            this.syncMedInternettetToolStripMenuItem,
-            this.syncResetInternettetToolStripMenuItem});
+            this.emailRykkerToolStripMenuItem});
             this.medlemToolStripMenuItem.Name = "medlemToolStripMenuItem";
             this.medlemToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.medlemToolStripMenuItem.Text = "Medlem";
@@ -207,20 +203,6 @@
             this.emailRykkerToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.emailRykkerToolStripMenuItem.Text = "E-mail rykker";
             this.emailRykkerToolStripMenuItem.Click += new System.EventHandler(this.emailRykkerToolStripMenuItem_Click);
-            // 
-            // syncMedInternettetToolStripMenuItem
-            // 
-            this.syncMedInternettetToolStripMenuItem.Name = "syncMedInternettetToolStripMenuItem";
-            this.syncMedInternettetToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.syncMedInternettetToolStripMenuItem.Text = "Sync med Internettet";
-            this.syncMedInternettetToolStripMenuItem.Click += new System.EventHandler(this.syncMedInternettetToolStripMenuItem_Click);
-            // 
-            // syncResetInternettetToolStripMenuItem
-            // 
-            this.syncResetInternettetToolStripMenuItem.Name = "syncResetInternettetToolStripMenuItem";
-            this.syncResetInternettetToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.syncResetInternettetToolStripMenuItem.Text = "Sync Reset Internettet";
-            this.syncResetInternettetToolStripMenuItem.Click += new System.EventHandler(this.syncResetInternettetToolStripMenuItem_Click);
             // 
             // pBSToolStripMenuItem
             // 
@@ -410,10 +392,8 @@
         private System.Windows.Forms.ToolStripMenuItem emailRykkerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem infoTekstToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem syncMedInternettetToolStripMenuItem;
         internal System.Windows.Forms.ToolStripProgressBar MainformProgressBar;
         internal System.Windows.Forms.ToolStripStatusLabel MainformProgressText;
-        private System.Windows.Forms.ToolStripMenuItem syncResetInternettetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem regnearkNotPBSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reSendToolStripMenuItem;
    }
