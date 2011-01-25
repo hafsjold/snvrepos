@@ -13,6 +13,29 @@ namespace nsPuls3060
 {
     class clsConvert
     {
+        public void cvnPerson()
+        {
+            string ModelName = "Person";
+            var qry = from r in Program.dsMedlemGlobal.Kartotek.AsEnumerable()
+                      select new {r.Nr, r.Navn, r.Kaldenavn, r.Adresse, r.Postnr, r.Bynavn, r.Telefon, r.Email, r.FodtDato, r.Kon, r.Bank};
+            foreach (var r in qry)
+            {
+                clsRest objRest = new clsRest();
+                XElement xml = new XElement(ModelName);
+                Type objectType = r.GetType();
+                PropertyInfo[] properties = objectType.GetProperties();
+                foreach (PropertyInfo property in properties)
+                {
+                    string Name = property.Name;
+                    object Val = property.GetValue(r, null);
+                    //string NamePropertyType = property.GetValue(r, null).GetType().Name;
+                    xml.Add(new XElement(Name, Val));
+                }
+                string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
+                string retur = objRest.HttpPost2("Convert/" + ModelName, strxml);
+            }
+        }
+
         public void cvnMedlog()
         {
             string ModelName = "Medlog";
@@ -39,6 +62,7 @@ namespace nsPuls3060
                 string retur = objRest.HttpPost2("Convert/" + ModelName, strxml);
             }
         }
+
         public void cvnPbsforsendelse()
         {
             string ModelName = "Pbsforsendelse";

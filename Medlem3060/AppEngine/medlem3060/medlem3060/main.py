@@ -397,6 +397,29 @@ class SyncConvertHandler(webapp.RequestHandler):
   def post(self):
     doc = minidom.parse(self.request.body_file)
     ModelName  = doc.documentElement.tagName
+    logging.info('ModelName==>%s<=' % (ModelName))
+
+    if ModelName == 'Person':
+      try:
+        Nr = doc.getElementsByTagName("Nr")[0].childNodes[0].data
+      except:
+        Nr = None
+      root = db.Key.from_path('Persons','root')
+      rec = Person.get_or_insert('%s' % (Nr), parent=root)
+      
+      for attr_name, value in Person.__dict__.iteritems():
+        if isinstance(value, db.Property):
+          attr_type = value.__class__.__name__        
+          if not attr_type in ['_ReverseReferenceProperty']:
+            val = self.attr_val(doc, attr_name, attr_type)
+            logging.info('%s=%s' % (attr_name, val))
+            try:
+              setattr(rec, attr_name, val)
+            except:
+              setattr(rec, attr_name, None)
+          
+            logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
+      rec.put()
     
     if ModelName == 'Medlog':
       try:

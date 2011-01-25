@@ -131,8 +131,7 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
-            int nextNr = clsPbs.nextval("tblMedlem");
-
+            /*
             dsMedlem objMedlem= new dsMedlem();
             objMedlem.filldsMedlem();
             objMedlem.fillPerson();
@@ -171,9 +170,10 @@ namespace nsPuls3060
 
             objMedlem.fillMedlog();
 
-
+            */
             int cxd = 2;
-            //clsConvert objConvert = new clsConvert();
+            clsConvert objConvert = new clsConvert();
+            objConvert.cvnPerson();
             //objConvert.cvnMedlog();
             //objConvert.cvnPbsforsendelse(); 
             //objConvert.cvnTilpbs();
@@ -196,21 +196,7 @@ namespace nsPuls3060
             //objSFTP.ReWriteTilSFtp(986);
             //clsRest objRest = new clsRest();
             //string resp = objRest.HttpGet2("Medlem");
-            //clsSync objSync = new clsSync();
-            //objSync.actionSync(1);
-            //objSync.actionSync(2);
-            //objSync.actionSync(3);
-            //clsPbs.ExecuteSQLScript(@"sql\scriptexp.sql");
-            //clsPbs.ExecuteSQLScript(@"sql\scriptimpexp.sql");
-            //objSync.importeksport(ImpExp.fdEksport);
-            //objSync.medlemxml();
-            //objSync.actionMedlemxmlSync();
-            //objSync.actionMedlemlogxmlSync();
-            //objSync.medlemlogxml();
-            //objSync.medlemxmldelete();
             int xys = 1;
-            //objSync.actionSync(1);
-            //objSync.actionSync(2);
             //decimal tal = 50;
             //string uden1 = tal.ToString();
             //string uden2 = tal.ToString("0.00");
