@@ -16,6 +16,7 @@ import logging
 import rest
 import os
 import re
+import sys  
 
 from models import UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Tilpbs, Fak, Overforsel, Rykker, Pbsfiles, Pbsfile, Frapbs, Bet, Betlin, Aftalelin, Indbetalingskort, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
 from util import TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
@@ -24,6 +25,8 @@ from menu import MenuHandler, ListUserHandler, UserHandler
 from pbs601 import TestHandler, nextval
 
 webapp.template.register_template_library('templatetags.medlem3060_extras')
+
+logging.info( '%s' % sys.path)
 
 def getFullKeyPath(pkey):
   pkeyparent = pkey.parent()
