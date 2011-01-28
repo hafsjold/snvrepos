@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.Reflection;
 using System.IO;
 using Excel;
+using System.Data.Common;
+using System.Data.SQLite;
 
 
 namespace nsPuls3060
@@ -131,6 +133,7 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
+            SQLiteConnection.CreateFile("c:\\mydatabasefile.db3");
             /*
             dsMedlem objMedlem= new dsMedlem();
             objMedlem.filldsMedlem();
@@ -172,8 +175,8 @@ namespace nsPuls3060
 
             */
             int cxd = 2;
-            clsConvert objConvert = new clsConvert();
-            objConvert.cvnPerson();
+            //clsConvert objConvert = new clsConvert();
+            //objConvert.cvnPerson();
             //objConvert.cvnMedlog();
             //objConvert.cvnPbsforsendelse(); 
             //objConvert.cvnTilpbs();
