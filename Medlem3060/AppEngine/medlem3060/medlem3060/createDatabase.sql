@@ -339,22 +339,23 @@ CREATE TABLE [tbluser] (
 CREATE UNIQUE INDEX [UQ__tbluser__000000000000C433] ON [tbluser] ([account] ASC);
 
 CREATE TABLE [tblmenu] (
-  [menutext] nvarchar NOT NULL PRIMARY KEY ON CONFLICT REPLACE
+  [id] INTEGER NOT NULL PRIMARY KEY ON CONFLICT REPLACE
+, [menutext] nvarchar
 , [menulink] nvarchar
 , [target] nvarchar
 , [confirm] bit
 , [key] nvarchar DEFAULT NULL
 );
-CREATE UNIQUE INDEX [UQ__tblmenu__000000000000C433] ON [tblmenu] ([menutext] ASC);
+CREATE UNIQUE INDEX [UQ__tblmenu__000000000000C433] ON [tblmenu] ([id] ASC);
 
 create table [tblmenumenulink] (
-  [parent] nvarchar
-, [child] nvarchar
+  [id] INTEGER NOT NULL PRIMARY KEY ON CONFLICT REPLACE
+, [parentid] nvarchar
+, [childid] nvarchar
 , [menuseq] int
 , [key] nvarchar DEFAULT NULL
-, CONSTRAINT [PK_tblmenumenulink] PRIMARY KEY ([parent], [child]) ON CONFLICT REPLACE
 );
-CREATE UNIQUE INDEX [UQ__tblmenumenulink__000000000000C433] ON [tblmenumenulink] ([parent] ASC, [child] ASC);
+CREATE UNIQUE INDEX [UQ__tblmenumenulink__000000000000C433] ON [tblmenumenulink] ([id] ASC);
 
 CREATE TABLE [tblkontingent] (
   [id] INTEGER NOT NULL PRIMARY KEY ON CONFLICT REPLACE AUTOINCREMENT
@@ -365,6 +366,8 @@ CREATE TABLE [tblkontingent] (
 , [key] nvarchar DEFAULT NULL
 );
 CREATE UNIQUE INDEX [UQ__tblkontingent__00000000000006E4] ON [tblkontingent] ([id] ASC);
+
+PRAGMA ignore_check_constraints = true;
 
 
 

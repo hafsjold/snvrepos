@@ -17,6 +17,23 @@ def deleteMenuAndUserGroup():
       m.delete()
   except:
     pass
+
+def createMenu(Id, Menutext, Menulink = None, Target = None, Confirm = None):
+  m = Menu.get_or_insert('%s' % (Id))
+  m.Id = Id
+  m.Menutext = Menutext
+  m.Menulink = Menulink
+  m.Target = Target
+  m.Confirm = Confirm
+  return m
+  
+def createMenuMenuLink(Id, Parent_key, Child_key = None, Menuseq = None):
+  l = MenuMenuLink.get_or_insert('%s' % (Id))
+  l.Id = Id
+  l.Parent_key = Parent_key
+  l.Child_key = Child_key
+  l.Menuseq = Menuseq
+  return l  
     
 def createMenuAndUserGroup():
   """ UserGroup """
@@ -36,47 +53,47 @@ def createMenuAndUserGroup():
     u.put()
     
   """ Menu """
-  root = Menu(Menutext = 'root', Menulink = None, Target = None)
+  root = createMenu(Id = 10, Menutext = 'root', Menulink = None, Target = None, Confirm = None)
   root.put()
   
-  p = Menu(Menutext = 'Medlemmer', Menulink = None, Target = None)
+  p = createMenu(Id = 20, Menutext = 'Medlemmer', Menulink = None, Target = None)
   p.put()
-  l = MenuMenuLink(Parent_key = root, Child_key = p, Menuseq = 1)  
+  l = createMenuMenuLink(Id = 10, Parent_key = root, Child_key = p, Menuseq = 1)  
   l.put()
   
-  c = Menu(Menutext = 'Medlems Opdatering', Menulink = '/adm/findmedlem3', Target = 'new', Confirm = False)
+  c = createMenu(Id = 30, Menutext = 'Medlems Opdatering', Menulink = '/adm/findmedlem3', Target = 'new', Confirm = False)
   c.put()
-  l = MenuMenuLink(Parent_key = p, Child_key = c, Menuseq = 1)  
+  l = createMenuMenuLink(Id = 20, Parent_key = p, Child_key = c, Menuseq = 1)  
   l.put()
 
-  p = Menu(Menutext = 'Teknik', Menulink = None, Target = None)
+  p = createMenu(Id = 40, Menutext = 'Teknik', Menulink = None, Target = None)
   p.put()
-  l = MenuMenuLink(Parent_key = root, Child_key = p, Menuseq = 2)  
+  l = createMenuMenuLink(Id = 30, Parent_key = root, Child_key = p, Menuseq = 2)  
   l.put()
   
-  c = Menu(Menutext = 'Create Menu', Menulink = '/teknik/createmenu', Target = None, Confirm = False)
+  c = createMenu(Id = 50, Menutext = 'Create Menu', Menulink = '/teknik/createmenu', Target = None, Confirm = False)
   c.put()
-  l = MenuMenuLink(Parent_key = p, Child_key = c, Menuseq = 1)  
+  l = createMenuMenuLink(Id = 40, Parent_key = p, Child_key = c, Menuseq = 1)  
   l.put()
 
-  c = Menu(Menutext = 'Flush Cache', Menulink = '/teknik/flushcache', Target = None, Confirm = False)
+  c = createMenu(Id = 60, Menutext = 'Flush Cache', Menulink = '/teknik/flushcache', Target = None, Confirm = False)
   c.put()
-  l = MenuMenuLink(Parent_key = p, Child_key = c, Menuseq = 2)  
+  l = createMenuMenuLink(Id = 50, Parent_key = p, Child_key = c, Menuseq = 2)  
   l.put()
 
-  c = Menu(Menutext = 'Reindex Medlem', Menulink = '/teknik/reindex', Target = None, Confirm = False)
+  c = createMenu(Id = 70, Menutext = 'Reindex Medlem', Menulink = '/teknik/reindex', Target = None, Confirm = False)
   c.put()
-  l = MenuMenuLink(Parent_key = p, Child_key = c, Menuseq = 3)  
+  l = createMenuMenuLink(Id = 60, Parent_key = p, Child_key = c, Menuseq = 3)  
   l.put()  
   
-  c = Menu(Menutext = 'List User', Menulink = '/teknik/listuser', Target = 'new', Confirm = False)
+  c = createMenu(Id = 80, Menutext = 'List User', Menulink = '/teknik/listuser', Target = 'new', Confirm = False)
   c.put()
-  l = MenuMenuLink(Parent_key = p, Child_key = c, Menuseq = 4)  
+  l = createMenuMenuLink(Id = 70, Parent_key = p, Child_key = c, Menuseq = 4)  
   l.put()
   
-  p = Menu(Menutext = 'Logoff', Menulink = '/logoff', Target = None, Confirm = False)
+  p = createMenu(Id = 90, Menutext = 'Logoff', Menulink = '/logoff', Target = None, Confirm = False)
   p.put()
-  l = MenuMenuLink(Parent_key = root, Child_key = p, Menuseq = 99)  
+  l = createMenuMenuLink(Id = 80, Parent_key = root, Child_key = p, Menuseq = 99)  
   l.put()
   
   """ UserGroup """

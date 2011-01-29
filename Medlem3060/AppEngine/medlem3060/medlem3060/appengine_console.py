@@ -119,8 +119,8 @@ class MenuBackup(Mapper):
   def __init__(self, cur):
     self.cur = cur
   def map(self, e):
-    t = (e.Menutext, e.Menulink, e.Target, e.Confirm, e.key().__str__() )
-    self.cur.execute('insert into tblmenu ([menutext], [menulink], [target], [confirm],[key]) values(?,?,?,?,?)', t)
+    t = (e.Id, e.Menutext, e.Menulink, e.Target, e.Confirm, e.key().__str__() )
+    self.cur.execute('insert into tblmenu ([id],[menutext], [menulink], [target], [confirm],[key]) values(?,?,?,?,?,?)', t)
     return ([], [])
 
 class MenuMenuLinkBackup(Mapper):
@@ -129,15 +129,15 @@ class MenuMenuLinkBackup(Mapper):
     self.cur = cur
   def map(self, e):
     if e.Parent_key:
-      ParentMenutext = e.Parent_key.Menutext
+      ParentId = e.Parent_key.Id
     else:
-      ParentMenutext = None
+      ParentId = None
     if e.Child_key:
-      ChildMenutext = e.Child_key.Menutext
+      ChildId = e.Child_key.Id
     else:
-      ChildMenutext = None
-    t = (ParentMenutext, ChildMenutext, e.Menuseq, e.key().__str__() )
-    self.cur.execute('insert into tblmenumenulink ([parent], [child], [menuseq], [key]) values(?,?,?,?)', t)
+      ChildId = None
+    t = (e.Id, ParentId, ChildId, e.Menuseq, e.key().__str__() )
+    self.cur.execute('insert into tblmenumenulink ([id], [parentid], [childid], [menuseq], [key]) values(?,?,?,?,?)', t)
     return ([], [])
     
 class PersonBackup(Mapper):
@@ -333,8 +333,9 @@ def createDatabase(database_name):
   sql_script_file = open(sql_script_path, "r")
   sql_script = sql_script_file.read()
   sql_script_file.close()
-  database_path = os.path.join(os.path.dirname(__file__), '%s.sql3' % (database_name))
+  database_path = os.path.join(os.path.dirname(__file__), '%s.db3' % (database_name))
   conn = sqlite3.connect(database_path)
+  conn.isolation_level = "EXCLUSIVE"
   conn.executescript(sql_script)
   conn.commit()
   return conn
@@ -387,7 +388,6 @@ def mha(database_name):
   mapper.run() 
   conn.commit()  
   
-def mhaxx():  
   mapper = PbsforsendelseBackup(cur)
   mapper.run() 
   conn.commit()

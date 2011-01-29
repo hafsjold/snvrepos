@@ -13,12 +13,16 @@ class User(db.Model):
   UserGroup_key = db.ReferenceProperty(UserGroup, collection_name="usergroup_set")
   
 class Menu(db.Model):
+  #key = db.Key.from_path('Menu', '%s' % (Id))
+  Id = db.IntegerProperty()
   Menutext = db.StringProperty()
   Menulink = db.StringProperty()
   Target = db.StringProperty()
   Confirm = db.BooleanProperty()
 
 class MenuMenuLink(db.Model):
+  #key = db.Key.from_path('MenuMenuLink', '%s' % (Id))
+  Id = db.IntegerProperty()
   Parent_key = db.ReferenceProperty(Menu, collection_name="menu_child_set")
   Child_key = db.ReferenceProperty(Menu, collection_name="menu_parent_set")
   Menuseq = db.IntegerProperty()  
@@ -211,7 +215,6 @@ class Betlin(db.Model):
           medlog.Akt_id = 40
           medlog.Akt_dato = self.Betalingsdato
           medlog.put()
-
 
 class Aftalelin(db.Model):
     #key = db.Key.from_path('Persons','root','Person','%s' % (Nr), 'Aftalelin', '%s' % (Id))
