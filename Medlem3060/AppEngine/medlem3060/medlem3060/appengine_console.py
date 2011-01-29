@@ -95,6 +95,51 @@ class MyModelDeleter(Mapper):
   def map(self, entity):
     return ([], [entity]) 
 
+
+class UserGroupBackup(Mapper):
+  KIND = UserGroup
+  def __init__(self, cur):
+    self.cur = cur
+  def map(self, e):
+    t = (e.GroupName, e.key().__str__() )
+    self.cur.execute('insert into tblusergroup ([groupname], [key]) values(?,?)', t)
+    return ([], [])
+
+class UserBackup(Mapper):
+  KIND = User
+  def __init__(self, cur):
+    self.cur = cur
+  def map(self, e):
+    t = (e.account, e.password, e.email, e.UserGroup_key.GroupName, e.key().__str__() )
+    self.cur.execute('insert into tbluser ([account], [password], [email], [groupname], [key]) values(?,?,?,?,?)', t)
+    return ([], [])
+
+class MenuBackup(Mapper):
+  KIND = Menu
+  def __init__(self, cur):
+    self.cur = cur
+  def map(self, e):
+    t = (e.Menutext, e.Menulink, e.Target, e.Confirm, e.key().__str__() )
+    self.cur.execute('insert into tblmenu ([menutext], [menulink], [target], [confirm],[key]) values(?,?,?,?,?)', t)
+    return ([], [])
+
+class MenuMenuLinkBackup(Mapper):
+  KIND = MenuMenuLink
+  def __init__(self, cur):
+    self.cur = cur
+  def map(self, e):
+    if e.Parent_key:
+      ParentMenutext = e.Parent_key.Menutext
+    else:
+      ParentMenutext = None
+    if e.Child_key:
+      ChildMenutext = e.Child_key.Menutext
+    else:
+      ChildMenutext = None
+    t = (ParentMenutext, ChildMenutext, e.Menuseq, e.key().__str__() )
+    self.cur.execute('insert into tblmenumenulink ([parent], [child], [menuseq], [key]) values(?,?,?,?)', t)
+    return ([], [])
+    
 class PersonBackup(Mapper):
   KIND = Person
   def __init__(self, cur):
@@ -102,6 +147,15 @@ class PersonBackup(Mapper):
   def map(self, e):
     t = (e.Nr, e.Navn, e.Kaldenavn, e.Adresse, e.Postnr, e.Bynavn, e.Email, e.Telefon, e.Kon, e.FodtDato, e.Bank, e.MedlemtilDato, e.MedlemAabenBetalingsdato, e.key().__str__() )
     self.cur.execute('insert into tblperson ([Nr], [navn], [kaldenavn], [adresse], [postnr], [bynavn], [email], [telefon], [kon], [fodtdato], [bank], [medlemtildato], [medlemaabenbetalingsdato], [key]) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)', t)
+    return ([], [])
+
+class MedlogBackup(Mapper):
+  KIND = Medlog
+  def __init__(self, cur):
+    self.cur = cur
+  def map(self, e):
+    t = (e.Id, e.Source, e.Source_id, e.Nr, e.Logdato, e.Akt_id, e.Akt_dato, e.key().__str__() )
+    self.cur.execute('insert into tblmedlog ([id], [Source], [Source_id], [Nr], [logdato], [akt_id], [akt_dato], [key]) values(?,?,?,?,?,?,?,?)', t)
     return ([], [])
     
 class PbsforsendelseBackup(Mapper):
@@ -224,7 +278,56 @@ class KreditorBackup(Mapper):
     t = (e.Id, e.Datalevnr, e.Datalevnavn, e.Pbsnr, e.Delsystem, e.Regnr, e.Kontonr, e.Debgrpnr, e.Sektionnr, e.Transkodebetaling, e.key().__str__())
     self.cur.execute('insert into tblkreditor (id, datalevnr, datalevnavn, pbsnr, delsystem, regnr, kontonr, debgrpnr, sektionnr, transkodebetaling, [key]) values(?,?,?,?,?,?,?,?,?,?,?)', t)
     return ([], []) 
+    
+class SysinfoBackup(Mapper):
+  KIND = Sysinfo
+  def __init__(self, cur):
+    self.cur = cur
+  def map(self, e):
+    t = (e.Vkey, e.Val, e.key().__str__())
+    self.cur.execute('insert into tblsysinfo ([vkey], [val], [key]) values(?,?,?)', t)
+    return ([], []) 
 
+class InfotekstBackup(Mapper):
+  KIND = Infotekst
+  def __init__(self, cur):
+    self.cur = cur
+  def map(self, e):
+    t = (e.Id, e.Navn, e.Msgtext, e.key().__str__())
+    self.cur.execute('insert into tblinfotekst ([id], [navn], [msgtext], [key]) values(?,?,?,?)', t)
+    return ([], []) 
+
+class SftpBackup(Mapper):
+  KIND = Sftp
+  def __init__(self, cur):
+    self.cur = cur
+  def map(self, e):
+    t = (e.Id, e.Navn, e.Host, e.Port, e.User, e.Outbound, e.Inbound, e.Pincode, e.Certificate, e.key().__str__())
+    self.cur.execute('insert into tblSftp ([id], [navn], [host], [port], [user], [outbound], [inbound], [pincode], [certificate], [key]) values(?,?,?,?,?,?,?,?,?,?)', t)
+    return ([], []) 
+    
+class NrSerieBackup(Mapper):
+  KIND = NrSerie
+  def __init__(self, cur):
+    self.cur = cur
+  def map(self, e):
+    if not e.Nrserienavn:
+      Nrserienavn = e.key().name()
+    else:
+      Nrserienavn = e.Nrserienavn
+    t = (Nrserienavn, e.Sidstbrugtenr, e.key().__str__())
+    self.cur.execute('insert into tblnrserie ([nrserienavn], [sidstbrugtenr], [key]) values(?,?,?)', t)
+    return ([], []) 
+
+class KontingentBackup(Mapper):
+  KIND = Kontingent
+  def __init__(self, cur):
+    self.cur = cur
+  def map(self, e):
+    t = (e.Id, e.Nr, e.Advisbelob, e.Fradato, e.Tildato, e.key().__str__())
+    self.cur.execute('insert into tblkontingent ([id], [Nr], [advisbelob], [fradato], [tildato], [key]) values(?,?,?,?,?,?)', t)
+    return ([], []) 
+    
 def createDatabase(database_name):
   sql_script_path = os.path.join(os.path.dirname(__file__), 'createDatabase.sql')
   sql_script_file = open(sql_script_path, "r")
@@ -240,10 +343,51 @@ def mha(database_name):
   conn = createDatabase(database_name)
   cur = conn.cursor()
   
+  mapper = UserGroupBackup(cur)
+  mapper.run() 
+  conn.commit()
+  
+  mapper = UserBackup(cur)
+  mapper.run() 
+  conn.commit()
+  
+  mapper = MenuBackup(cur)
+  mapper.run() 
+  conn.commit()
+  
+  mapper = MenuMenuLinkBackup(cur)
+  mapper.run() 
+  conn.commit()
+  
   mapper = PersonBackup(cur)
   mapper.run() 
   conn.commit()
   
+  mapper = MedlogBackup(cur)
+  mapper.run() 
+  conn.commit()
+      
+  mapper = SysinfoBackup(cur)
+  mapper.run() 
+  conn.commit()
+      
+  mapper = InfotekstBackup(cur)
+  mapper.run() 
+  conn.commit()  
+      
+  mapper = SftpBackup(cur)
+  mapper.run() 
+  conn.commit()  
+
+  mapper = NrSerieBackup(cur)
+  mapper.run() 
+  conn.commit()  
+
+  mapper = KontingentBackup(cur)
+  mapper.run() 
+  conn.commit()  
+  
+def mhaxx():  
   mapper = PbsforsendelseBackup(cur)
   mapper.run() 
   conn.commit()

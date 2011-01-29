@@ -16,6 +16,22 @@ CREATE TABLE [tblPerson] (
 );
 CREATE UNIQUE INDEX [UQ__tblPerson__000000000000E23D] ON [tblPerson] ([Nr] ASC);
 
+CREATE TABLE [tblMedlog] (
+  [id] INTEGER NOT NULL
+, [Source] nvarchar NOT NULL
+, [Source_id] int NOT NULL
+, [Nr] int NOT NULL
+, [logdato] datetime DEFAULT NULL
+, [akt_id] int DEFAULT NULL
+, [akt_dato] date DEFAULT NULL
+, [key] nvarchar DEFAULT NULL
+, CONSTRAINT [PK_tblMedlog] PRIMARY KEY ([source], [source_id]) ON CONFLICT REPLACE
+, CONSTRAINT [FK_Log_Person] FOREIGN KEY ([Nr]) REFERENCES [tblPerson]([Nr]) DEFERRABLE INITIALLY DEFERRED
+);
+CREATE UNIQUE INDEX [UQ__tblMedlog__000000000000D215] ON [tblMedlog] ([source] ASC, [source_id] ASC);
+CREATE INDEX [tblMedlog_ix1] ON [tblMedlog] ([Nr] ASC);
+
+
 CREATE TABLE [tblpbsforsendelse] (
   [id] INTEGER NOT NULL PRIMARY KEY ON CONFLICT REPLACE AUTOINCREMENT
 , [delsystem] nvarchar(3) NOT NULL
@@ -37,7 +53,7 @@ CREATE TABLE [tbltilpbs] (
 , [leverancespecifikation] nvarchar(10) DEFAULT NULL
 , [leverancedannelsesdato] datetime DEFAULT NULL
 , [key] nvarchar DEFAULT NULL
-, CONSTRAINT [FK_tblPBSForsendelse_tbltilpbs] FOREIGN KEY ([pbsforsendelseid]) REFERENCES [tblpbsforsendelse]([id]) ON DELETE CASCADE ON UPDATE CASCADE
+, CONSTRAINT [FK_tblPBSForsendelse_tbltilpbs] FOREIGN KEY ([pbsforsendelseid]) REFERENCES [tblpbsforsendelse]([id]) ON DELETE CASCADE ON UPDATE CASCADE DEFERRABLE INITIALLY DEFERRED
 );
 CREATE UNIQUE INDEX [UQ__tbltilpbs__0000000000000265] ON [tbltilpbs] ([id] ASC);
 
@@ -63,7 +79,7 @@ CREATE TABLE [tblfak] (
 , [tilmeldtpbs] bit NOT NULL DEFAULT 0
 , [indmeldelse] bit NOT NULL DEFAULT 0
 , [key] nvarchar DEFAULT NULL
-, CONSTRAINT [FK_tbltilpbs_tblfak] FOREIGN KEY ([tilpbsid]) REFERENCES [tbltilpbs]([id]) ON DELETE CASCADE ON UPDATE CASCADE
+, CONSTRAINT [FK_tbltilpbs_tblfak] FOREIGN KEY ([tilpbsid]) REFERENCES [tbltilpbs]([id]) ON DELETE CASCADE ON UPDATE CASCADE DEFERRABLE INITIALLY DEFERRED
 );
 CREATE UNIQUE INDEX [UQ__tblfak__00000000000001E3] ON [tblfak] ([id] ASC);
 CREATE INDEX [medlem_fak] ON [tblfak] ([Nr] ASC,[faknr] ASC);
@@ -82,7 +98,7 @@ CREATE TABLE [tbloverforsel] (
 , [bankkontonr] nvarchar(10) DEFAULT NULL
 , [betalingsdato] datetime DEFAULT NULL
 , [key] nvarchar DEFAULT NULL
-, CONSTRAINT [FK_tbltilpbs_tbloverfoersel] FOREIGN KEY ([tilpbsid]) REFERENCES [tbltilpbs]([id]) ON DELETE CASCADE ON UPDATE CASCADE
+, CONSTRAINT [FK_tbltilpbs_tbloverfoersel] FOREIGN KEY ([tilpbsid]) REFERENCES [tbltilpbs]([id]) ON DELETE CASCADE ON UPDATE CASCADE DEFERRABLE INITIALLY DEFERRED
 );
 CREATE UNIQUE INDEX [UQ__tbloverforsel__00000000000006B2] ON [tbloverforsel] ([id] ASC);
 
@@ -98,7 +114,7 @@ CREATE TABLE [tblrykker] (
 , [rykkerdato] datetime DEFAULT NULL
 , [maildato] datetime DEFAULT NULL
 , [key] nvarchar DEFAULT NULL
-, CONSTRAINT [FK_tbltilpbs_tblrykker] FOREIGN KEY ([tilpbsid]) REFERENCES [tbltilpbs]([id]) ON DELETE CASCADE ON UPDATE CASCADE
+, CONSTRAINT [FK_tbltilpbs_tblrykker] FOREIGN KEY ([tilpbsid]) REFERENCES [tbltilpbs]([id]) ON DELETE CASCADE ON UPDATE CASCADE DEFERRABLE INITIALLY DEFERRED
 );
 CREATE UNIQUE INDEX [UQ__tblrykker__00000000000001E7] ON [tblrykker] ([id] ASC);
 CREATE INDEX [tblmedlem_tblrykker] ON [tblrykker] ([Nr] ASC,[faknr] ASC);
@@ -117,7 +133,7 @@ CREATE TABLE [tblpbsfiles] (
 , [transmittime] datetime DEFAULT NULL
 , [pbsforsendelseid] int DEFAULT NULL
 , [key] nvarchar DEFAULT NULL
-, CONSTRAINT [pbsforsendelse_tblpbsfiles] FOREIGN KEY ([pbsforsendelseid]) REFERENCES [tblpbsforsendelse]([id]) ON DELETE CASCADE ON UPDATE CASCADE
+, CONSTRAINT [pbsforsendelse_tblpbsfiles] FOREIGN KEY ([pbsforsendelseid]) REFERENCES [tblpbsforsendelse]([id]) ON DELETE CASCADE ON UPDATE CASCADE DEFERRABLE INITIALLY DEFERRED
 );
 CREATE UNIQUE INDEX [UQ__tblpbsfiles__0000000000000233] ON [tblpbsfiles] ([id] ASC);
 
@@ -141,7 +157,7 @@ CREATE TABLE [tblfrapbs] (
 , [leverancespecifikation] nvarchar(50) DEFAULT NULL
 , [leverancedannelsesdato] datetime DEFAULT NULL
 , [key] nvarchar DEFAULT NULL
-, CONSTRAINT [FK_tblPBSForsendelse_tblfrapbs] FOREIGN KEY ([pbsforsendelseid]) REFERENCES [tblpbsforsendelse]([id]) ON DELETE CASCADE ON UPDATE CASCADE
+, CONSTRAINT [FK_tblPBSForsendelse_tblfrapbs] FOREIGN KEY ([pbsforsendelseid]) REFERENCES [tblpbsforsendelse]([id]) ON DELETE CASCADE ON UPDATE CASCADE DEFERRABLE INITIALLY DEFERRED
 );
 CREATE UNIQUE INDEX [UQ__tblfrapbs__00000000000001ED] ON [tblfrapbs] ([id] ASC);
 
@@ -176,7 +192,7 @@ CREATE TABLE [tblbetlin] (
 , [pbsgebyrbelob] numeric(18,2) DEFAULT NULL
 , [pbsarkivnr] nvarchar(22) DEFAULT NULL
 , [key] nvarchar DEFAULT NULL
-, CONSTRAINT [FK_tblbet_tblbetlin] FOREIGN KEY ([betid]) REFERENCES [tblbet]([id]) ON DELETE CASCADE ON UPDATE CASCADE
+, CONSTRAINT [FK_tblbet_tblbetlin] FOREIGN KEY ([betid]) REFERENCES [tblbet]([id]) ON DELETE CASCADE ON UPDATE CASCADE DEFERRABLE INITIALLY DEFERRED
 );
 CREATE UNIQUE INDEX [UQ__tblbetlin__00000000000001D9] ON [tblbetlin] ([id] ASC);
 CREATE INDEX [medlem_betaling] ON [tblbetlin] ([Nr] ASC,[faknr] ASC);
@@ -212,7 +228,7 @@ CREATE TABLE [tblindbetalingskort] (
 , [belob] numeric(18,2) DEFAULT NULL
 , [pbssektionnr] nvarchar(5) NOT NULL
 , [key] nvarchar DEFAULT NULL
-, CONSTRAINT [FK_tblfrapbs_tblindbetalingskort] FOREIGN KEY ([frapbsid]) REFERENCES [tblfrapbs]([id]) ON DELETE CASCADE ON UPDATE CASCADE
+, CONSTRAINT [FK_tblfrapbs_tblindbetalingskort] FOREIGN KEY ([frapbsid]) REFERENCES [tblfrapbs]([id]) ON DELETE CASCADE ON UPDATE CASCADE DEFERRABLE INITIALLY DEFERRED
 );
 CREATE UNIQUE INDEX [UQ__tblindbetalingskort__00000000000D11D9] ON [tblindbetalingskort] ([id] ASC);
 
@@ -245,27 +261,6 @@ CREATE TABLE [tblkreditor] (
 , [key] nvarchar DEFAULT NULL
 );
 CREATE UNIQUE INDEX [UQ__tblkreditor__0000000000000201] ON [tblkreditor] ([id] ASC);
-
-CREATE TABLE [tblMedlem] (
-  [Nr] INTEGER NOT NULL PRIMARY KEY ON CONFLICT REPLACE
-, [Kon] nvarchar(1) DEFAULT NULL
-, [FodtDato] datetime DEFAULT NULL
-, [key] nvarchar DEFAULT NULL
-);
-CREATE UNIQUE INDEX [UQ__tblMedlem__000000000000020B] ON [tblMedlem] ([Nr] ASC);
-
-CREATE TABLE [tblMedlemLog] (
-  [id] INTEGER NOT NULL PRIMARY KEY ON CONFLICT REPLACE
-, [Nr] int DEFAULT NULL
-, [logdato] datetime DEFAULT NULL
-, [akt_id] int DEFAULT NULL
-, [akt_dato] datetime DEFAULT NULL
-, [key] nvarchar DEFAULT NULL
-, CONSTRAINT [FK_Log_Medlem] FOREIGN KEY ([Nr]) REFERENCES [tblMedlem]([Nr])
-, CONSTRAINT [FK_tblAktivitet_Log] FOREIGN KEY ([akt_id]) REFERENCES [tblAktivitet]([id])
-);
-CREATE INDEX [tblMedlemLog_ix1] ON [tblMedlemLog] ([Nr] ASC);
-CREATE UNIQUE INDEX [UQ__tblMedlemLog__0000000000000215] ON [tblMedlemLog] ([id] ASC);
 
 CREATE TABLE [tblnrserie] (
   [nrserienavn] nvarchar(30) NOT NULL PRIMARY KEY ON CONFLICT REPLACE
@@ -306,9 +301,8 @@ CREATE TABLE [tblsftp] (
 CREATE UNIQUE INDEX [UQ__tblsftp__00000000000006E4] ON [tblsftp] ([id] ASC);
 
 CREATE TABLE [tblSysinfo] (
-  [vkey] nvarchar(10) NOT NULL
+  [vkey] nvarchar(10) NOT NULL PRIMARY KEY ON CONFLICT REPLACE
 , [val] nvarchar(100) NOT NULL
-, [id] INTEGER NOT NULL PRIMARY KEY ON CONFLICT REPLACE AUTOINCREMENT
 , [key] nvarchar DEFAULT NULL
 );
 CREATE UNIQUE INDEX [UQ__tblSysinfo__000000000000068A] ON [tblSysinfo] ([vkey] ASC);
@@ -327,3 +321,53 @@ CREATE TABLE [tblpbsnetdir] (
 , [key] nvarchar DEFAULT NULL
 );
 CREATE UNIQUE INDEX [UQ__tblpbsnetdir__0000000000000433] ON [tblpbsnetdir] ([id] ASC);
+
+CREATE TABLE [tblusergroup] (
+  [groupname] nvarchar NOT NULL PRIMARY KEY ON CONFLICT REPLACE
+, [key] nvarchar DEFAULT NULL
+);
+CREATE UNIQUE INDEX [UQ__tblusergroup__000000000000C433] ON [tblusergroup] ([groupname] ASC);
+  
+CREATE TABLE [tbluser] (
+  [account] nvarchar NOT NULL PRIMARY KEY ON CONFLICT REPLACE
+, [password] nvarchar
+, [email] nvarchar
+, [groupname] nvarchar
+, [key] nvarchar DEFAULT NULL
+, CONSTRAINT [FK_tbluser_tblusergroup] FOREIGN KEY ([groupname]) REFERENCES [tblusergroup]([groupname]) ON DELETE CASCADE ON UPDATE CASCADE DEFERRABLE INITIALLY DEFERRED
+);
+CREATE UNIQUE INDEX [UQ__tbluser__000000000000C433] ON [tbluser] ([account] ASC);
+
+CREATE TABLE [tblmenu] (
+  [menutext] nvarchar NOT NULL PRIMARY KEY ON CONFLICT REPLACE
+, [menulink] nvarchar
+, [target] nvarchar
+, [confirm] bit
+, [key] nvarchar DEFAULT NULL
+);
+CREATE UNIQUE INDEX [UQ__tblmenu__000000000000C433] ON [tblmenu] ([menutext] ASC);
+
+create table [tblmenumenulink] (
+  [parent] nvarchar
+, [child] nvarchar
+, [menuseq] int
+, [key] nvarchar DEFAULT NULL
+, CONSTRAINT [PK_tblmenumenulink] PRIMARY KEY ([parent], [child]) ON CONFLICT REPLACE
+);
+CREATE UNIQUE INDEX [UQ__tblmenumenulink__000000000000C433] ON [tblmenumenulink] ([parent] ASC, [child] ASC);
+
+CREATE TABLE [tblkontingent] (
+  [id] INTEGER NOT NULL PRIMARY KEY ON CONFLICT REPLACE AUTOINCREMENT
+, [Nr] int DEFAULT NULL
+, [advisbelob] numeric(18,2) DEFAULT NULL
+, [fradato] date DEFAULT NULL
+, [tildato] date DEFAULT NULL
+, [key] nvarchar DEFAULT NULL
+);
+CREATE UNIQUE INDEX [UQ__tblkontingent__00000000000006E4] ON [tblkontingent] ([id] ASC);
+
+
+
+
+
+
