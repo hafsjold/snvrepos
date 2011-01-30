@@ -32,18 +32,12 @@ from menuusergroup import deleteMenuAndUserGroup, createMenuAndUserGroup
 from menu import MenuHandler, ListUserHandler, UserHandler
 from pbs601 import TestHandler, nextval
  
-
+app_id = 'testmedlem3060' 
+host = '%s.appspot.com' % app_id
+ 
 def auth_func():     
   #return raw_input('Username:'), getpass.getpass('Password:')
   return 'mogens.hafsjold@gmail.com', getpass.getpass('Password:')  
-  
-if len(sys.argv) < 2:
-  print "Usage: %s app_id [host]" % (sys.argv[0],) 
-app_id = sys.argv[1] 
-if len(sys.argv) > 2:
-  host = sys.argv[2] 
-else:
-  host = '%s.appspot.com' % app_id  
   
 class Mapper(object):
   # Subclasses should replace this with a model class (eg, model.Person).
