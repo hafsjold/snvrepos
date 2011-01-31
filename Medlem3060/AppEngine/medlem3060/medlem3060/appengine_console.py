@@ -1,8 +1,21 @@
 import code
 import getpass 
 
-import sys  
-sys.path = ['C:\\Documents and Settings\\mha\\Dokumenter\\Medlem3060\\AppEngine\\medlem3060\\medlem3060', 'C:\\Programmer\\Google\\google_appengine', 'C:\\Programmer\\Google\\google_appengine\\lib\\antlr3', 'C:\\Programmer\\Google\\google_appengine\\lib\\django', 'C:\\Programmer\\Google\\google_appengine\\lib\\fancy_urllib', 'C:\\Programmer\\Google\\google_appengine\\lib\\ipaddr', 'C:\\Programmer\\Google\\google_appengine\\lib\\webob', 'C:\\Programmer\\Google\\google_appengine\\lib\\yaml\\lib', 'C:\\Programmer\\Google\\google_appengine', 'C:\\WINDOWS\\system32\\python25.zip', 'C:\\Python25\\DLLs', 'C:\\Python25\\lib', 'C:\\Python25\\lib\\plat-win', 'C:\\Python25\\lib\\lib-tk', 'C:\\Python25', 'C:\\Python25\\lib\\site-packages']
+import sys
+import os
+
+DIR_PATH = os.getcwd()
+EXTRA_PATHS = [
+  DIR_PATH,
+  os.path.join(DIR_PATH, 'lib', 'antlr3'),
+  os.path.join(DIR_PATH, 'lib', 'django'),
+  os.path.join(DIR_PATH, 'lib', 'fancy_urllib'),
+  os.path.join(DIR_PATH, 'lib', 'ipaddr'),
+  os.path.join(DIR_PATH, 'lib', 'webob'),
+  os.path.join(DIR_PATH, 'lib', 'yaml', 'lib'),
+]
+sys.path = EXTRA_PATHS + sys.path
+#sys.path = ['C:\\Documents and Settings\\mha\\Dokumenter\\Medlem3060\\AppEngine\\medlem3060\\medlem3060', 'C:\\Programmer\\Google\\google_appengine', 'C:\\Programmer\\Google\\google_appengine\\lib\\antlr3', 'C:\\Programmer\\Google\\google_appengine\\lib\\django', 'C:\\Programmer\\Google\\google_appengine\\lib\\fancy_urllib', 'C:\\Programmer\\Google\\google_appengine\\lib\\ipaddr', 'C:\\Programmer\\Google\\google_appengine\\lib\\webob', 'C:\\Programmer\\Google\\google_appengine\\lib\\yaml\\lib', 'C:\\Programmer\\Google\\google_appengine', 'C:\\WINDOWS\\system32\\python25.zip', 'C:\\Python25\\DLLs', 'C:\\Python25\\lib', 'C:\\Python25\\lib\\plat-win', 'C:\\Python25\\lib\\lib-tk', 'C:\\Python25', 'C:\\Python25\\lib\\site-packages']
 
 from google.appengine.ext.remote_api import remote_api_stub 
 
@@ -337,7 +350,7 @@ def createDatabase(database_name):
   return conn
 
 def backup(database_name=app_id):
-  dt = datetime.now().strftime("%d%m%Y%H%M")
+  dt = datetime.now().strftime("-%Y%m%d-%H%M")
   conn = createDatabase(database_name+dt)
   cur = conn.cursor()
   
