@@ -133,7 +133,7 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
-            SQLiteConnection.CreateFile("c:\\mydatabasefile.db3");
+            //SQLiteConnection.CreateFile("c:\\mydatabasefile.db3");
             /*
             dsMedlem objMedlem= new dsMedlem();
             objMedlem.filldsMedlem();
@@ -175,25 +175,25 @@ namespace nsPuls3060
 
             */
             int cxd = 2;
-            //clsConvert objConvert = new clsConvert();
+            clsConvert objConvert = new clsConvert();
             //objConvert.cvnPerson();
             //objConvert.cvnMedlog();
             //objConvert.cvnPbsforsendelse(); 
-            //objConvert.cvnTilpbs();
-            //objConvert.cvnFak();
-            //objConvert.cvnRykker();
-            //objConvert.cvnOverforsel();
-            //objConvert.cvnPbsfiles();
-            //objConvert.cvnFrapbs();
-            //objConvert.cvnBet();
-            //objConvert.cvnBetlin();
-            //objConvert.cvnAftalelin();
-            //objConvert.cvnIndbetalingskort();
-            //objConvert.cvnSftp();
-            //objConvert.cvnInfotekst();
-            //objConvert.cvnSysinfo();
-            //objConvert.cvnKreditor();
-            //objConvert.cvnNrSerie();
+            objConvert.cvnTilpbs();
+            objConvert.cvnFak();
+            objConvert.cvnRykker();
+            objConvert.cvnOverforsel();
+            objConvert.cvnPbsfiles();
+            objConvert.cvnFrapbs();
+            objConvert.cvnBet();
+            objConvert.cvnBetlin();
+            objConvert.cvnAftalelin();
+            objConvert.cvnIndbetalingskort();
+            objConvert.cvnSftp();
+            objConvert.cvnInfotekst();
+            objConvert.cvnSysinfo();
+            objConvert.cvnKreditor();
+            objConvert.cvnNrSerie();
 
             //clsSFTP objSFTP = new clsSFTP();
             //objSFTP.ReWriteTilSFtp(986);
