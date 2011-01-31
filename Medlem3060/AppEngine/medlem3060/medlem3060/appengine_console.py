@@ -15,8 +15,6 @@ EXTRA_PATHS = [
   os.path.join(DIR_PATH, 'lib', 'yaml', 'lib'),
 ]
 sys.path = EXTRA_PATHS + sys.path
-#sys.path = ['C:\\Documents and Settings\\mha\\Dokumenter\\Medlem3060\\AppEngine\\medlem3060\\medlem3060', 'C:\\Programmer\\Google\\google_appengine', 'C:\\Programmer\\Google\\google_appengine\\lib\\antlr3', 'C:\\Programmer\\Google\\google_appengine\\lib\\django', 'C:\\Programmer\\Google\\google_appengine\\lib\\fancy_urllib', 'C:\\Programmer\\Google\\google_appengine\\lib\\ipaddr', 'C:\\Programmer\\Google\\google_appengine\\lib\\webob', 'C:\\Programmer\\Google\\google_appengine\\lib\\yaml\\lib', 'C:\\Programmer\\Google\\google_appengine', 'C:\\WINDOWS\\system32\\python25.zip', 'C:\\Python25\\DLLs', 'C:\\Python25\\lib', 'C:\\Python25\\lib\\plat-win', 'C:\\Python25\\lib\\lib-tk', 'C:\\Python25', 'C:\\Python25\\lib\\site-packages']
-#
 
 from google.appengine.ext.remote_api import remote_api_stub 
 
