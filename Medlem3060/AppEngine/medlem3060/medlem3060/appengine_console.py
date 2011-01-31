@@ -34,10 +34,12 @@ from pbs601 import TestHandler, nextval
  
 app_id = 'testmedlem3060' 
 host = '%s.appspot.com' % app_id
+Username = 'mogens.hafsjold@gmail.com'
+Pw = 'MoHa3060'
  
 def auth_func():     
   #return raw_input('Username:'), getpass.getpass('Password:')
-  return 'mogens.hafsjold@gmail.com', getpass.getpass('Password:')  
+  return Username, Pw 
   
 class Mapper(object):
   # Subclasses should replace this with a model class (eg, model.Person).
@@ -334,8 +336,9 @@ def createDatabase(database_name):
   conn.commit()
   return conn
 
-def mha(database_name):
-  conn = createDatabase(database_name)
+def backup(database_name=app_id):
+  dt = datetime.now().strftime("%d%m%Y%H%M")
+  conn = createDatabase(database_name+dt)
   cur = conn.cursor()
   
   mapper = UserGroupBackup(cur)
@@ -437,6 +440,5 @@ def mha(database_name):
   conn.close()
   
 remote_api_stub.ConfigureRemoteDatastore(app_id, '/_ah/remote_api', auth_func, host)
-
-
-code.interact('App Engine interactive console for %s' % (app_id,), None, locals())   
+backup()
+#code.interact('App Engine interactive console for %s' % (app_id,), None, locals())   
