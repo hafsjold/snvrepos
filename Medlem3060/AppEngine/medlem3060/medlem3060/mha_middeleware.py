@@ -68,6 +68,7 @@ class Mha_Middeleware:
           return
         
         if not AuthRest(http_timestamp, http_signed):
+          #logging.info('XXXXXXXXXXXDEBUG1XXXXXXXXXXXXXXXXXXXXXXXX')
           print 'Status: 400'
           return
     elif jobq:

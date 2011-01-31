@@ -162,7 +162,7 @@ class UpdatemedlemHandler(webapp.RequestHandler):
       p.Akt_id = int(self.request.get('Akt_id'))
       Akt_dato = self.request.get('Akt_dato')
       logging.info('Akt_dato: %s' % (Akt_dato))
-      p.Akt_dato = datetime.strptime(Akt_dato, "%Y-%m-%d")
+      p.Akt_dato = datetime.strptime(Akt_dato, "%Y-%m-%d").date()
       p.put()
       jData += '"bMedlemlog":"true"'
       jData += ',"MedlemlogTablePos":"%s"' % (self.request.get('MedlemlogTablePos'))
