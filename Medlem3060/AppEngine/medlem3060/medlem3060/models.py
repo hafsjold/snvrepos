@@ -215,6 +215,8 @@ class Betlin(db.Model):
           medlog.Akt_id = 40
           medlog.Akt_dato = self.Betalingsdato
           medlog.put()
+        else:
+          medlog.delete()
 
 class Aftalelin(db.Model):
     #key = db.Key.from_path('Persons','root','Person','%s' % (Nr), 'Aftalelin', '%s' % (Id))
