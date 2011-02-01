@@ -18,11 +18,11 @@ import os
 import re
 import sys  
 
-from models import UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Tilpbs, Fak, Overforsel, Rykker, Pbsfiles, Pbsfile, Frapbs, Bet, Betlin, Aftalelin, Indbetalingskort, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
+from models import nextval, UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Tilpbs, Fak, Overforsel, Rykker, Pbsfiles, Pbsfile, Frapbs, Bet, Betlin, Aftalelin, Indbetalingskort, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
 from util import TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
 from menuusergroup import deleteMenuAndUserGroup, createMenuAndUserGroup
 from menu import MenuHandler, ListUserHandler, UserHandler
-from pbs601 import TestHandler, nextval
+from pbs601 import TestHandler
 
 webapp.template.register_template_library('templatetags.medlem3060_extras')
 
@@ -37,9 +37,15 @@ def getFullKeyPath(pkey):
     
 class MainHandler(webapp.RequestHandler):
     def get(self):
-        #TestCrypt('Mogens Hafsjold')
-        #self.response.out.write('Hello medlem3060!')
-        self.redirect("/adm")
+      try:
+        menu_count = Menu.all().count()
+      except:
+        menu_count = 0
+      if menu_count == 0:
+        deleteMenuAndUserGroup()
+        createMenuAndUserGroup()
+        memcache.flush_all()
+      self.redirect("/adm")
         
 class LoginHandler(webapp.RequestHandler):
   def get(self):
@@ -131,10 +137,7 @@ class UpdatemedlemHandler(webapp.RequestHandler):
     jData = '{ '
     Nr = self.request.get('Nr')
     if Nr == '*':
-      recNrSerie = NrSerie.get_or_insert('tblMedlem')
-      recNrSerie.Sidstbrugtenr += 1
-      Nr = '%s' % (recNrSerie.Sidstbrugtenr)
-      recNrSerie.put()    
+      Nr = nextval('tblMedlem')
 
     #Test for Valid dato
     bAkt_dato = False
@@ -147,11 +150,7 @@ class UpdatemedlemHandler(webapp.RequestHandler):
         bAkt_dato = False
         
     if bAkt_dato:
-      recNrSerie = NrSerie.get_or_insert('tblMedlemlog')
-      recNrSerie.Sidstbrugtenr += 1
-      Id = recNrSerie.Sidstbrugtenr
-      recNrSerie.put()
-
+      Id = nextval('tblMedlemlog')
       k = db.Key.from_path('Persons','root','Person','%s' % (Nr))
       p = Medlog.get_or_insert('%s' % (Id), parent=k)
       p.Id = Id
@@ -171,10 +170,7 @@ class UpdatemedlemHandler(webapp.RequestHandler):
       
       Akt_id = self.request.get('Akt_id')
       if Akt_id == '10':
-        recNrSerie = NrSerie.get_or_insert('Kontingent')
-        recNrSerie.Sidstbrugtenr += 1
-        Kontingent_id = recNrSerie.Sidstbrugtenr
-        recNrSerie.put()
+        Kontingent_id = nextval('Kontingent')
         t = db.Key.from_path('Persons','root','Person','%s' % (Nr))
         q = Kontingent.get_or_insert('%s' % (Kontingent_id), parent=t)      
         q.Id = int(Kontingent_id)
@@ -1157,43 +1153,7 @@ class CreateMenu(webapp.RequestHandler):
       deleteMenuAndUserGroup()
       createMenuAndUserGroup()
       memcache.flush_all()
-      
-      recNrSerie = NrSerie.get_or_insert('Tilpbs')
-      recNrSerie.Nrserienavn = 'Tilpbs'
-      if not recNrSerie.Sidstbrugtenr:
-        recNrSerie.Sidstbrugtenr = 3000
-      recNrSerie.put()
-      
-      recNrSerie = NrSerie.get_or_insert('Fak')
-      recNrSerie.Nrserienavn = 'Fak'
-      if not recNrSerie.Sidstbrugtenr:
-        recNrSerie.Sidstbrugtenr = 4000
-      recNrSerie.put()
-      
-      recNrSerie = NrSerie.get_or_insert('faknr')
-      recNrSerie.Nrserienavn = 'faknr'
-      if not recNrSerie.Sidstbrugtenr:
-        recNrSerie.Sidstbrugtenr = 5000
-      recNrSerie.put()
-      
-      recNrSerie = NrSerie.get_or_insert('leveranceid')
-      recNrSerie.Nrserienavn = 'leveranceid'
-      if not recNrSerie.Sidstbrugtenr:
-        recNrSerie.Sidstbrugtenr = 2000
-      recNrSerie.put()
-      
-      recNrSerie = NrSerie.get_or_insert('tblMedlem')
-      recNrSerie.Nrserienavn = 'tblMedlem'
-      if not recNrSerie.Sidstbrugtenr:
-        recNrSerie.Sidstbrugtenr = 850
-      recNrSerie.put()      
-      
-      recNrSerie = NrSerie.get_or_insert('Kontingent')
-      recNrSerie.Nrserienavn = 'Kontingent'
-      if not recNrSerie.Sidstbrugtenr:
-        recNrSerie.Sidstbrugtenr = 1
-      recNrSerie.put()
-
+    
       self.redirect("/adm")
       
 class FlushCache(webapp.RequestHandler):

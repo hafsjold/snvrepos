@@ -11,9 +11,9 @@ namespace nsPuls3060
     public class clsRest
     {
 #if (DEBUG)        
-        private string m_baseurl = @"http://hd36:8080/sync/";
+        //private string m_baseurl = @"http://hd36:8080/sync/";
         //private string m_baseurl = @"http://localhost:8084/sync/";
-        //private string m_baseurl = @"http://testmedlem3060.appspot.com/sync/";
+        private string m_baseurl = @"http://testmedlem3060.appspot.com/sync/";
 #else
         private string m_baseurl = @"http://medlem3060.appspot.com/sync/";
 #endif

@@ -11,6 +11,12 @@ indexes:
 # your application using appcfg.py.
 
 - kind: Medlog
+  properties:
+  - name: Source
+  - name: Id
+    direction: desc
+
+- kind: Medlog
   ancestor: yes
   properties:
   - name: Logdato

@@ -9,7 +9,7 @@ import logging
 import re
 import os
 
-from models import UserGroup, User, Menu, MenuMenuLink
+from models import nextval, UserGroup, User, Menu, MenuMenuLink
 from util import AuthUserGroupPath
     
 class MenuHandler(webapp.RequestHandler):

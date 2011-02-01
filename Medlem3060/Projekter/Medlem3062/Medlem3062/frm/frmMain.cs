@@ -176,9 +176,9 @@ namespace nsPuls3060
             */
             int cxd = 2;
             clsConvert objConvert = new clsConvert();
-            //objConvert.cvnPerson();
-            //objConvert.cvnMedlog();
-            //objConvert.cvnPbsforsendelse(); 
+            objConvert.cvnPerson();
+            objConvert.cvnMedlog();
+            objConvert.cvnPbsforsendelse(); 
             objConvert.cvnTilpbs();
             objConvert.cvnFak();
             objConvert.cvnRykker();

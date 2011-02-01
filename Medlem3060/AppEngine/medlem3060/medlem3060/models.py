@@ -205,19 +205,22 @@ class Betlin(db.Model):
         except:
           pass
         if self.Pbstranskode in ['0236','0297']:
-          qry = Fak.all()
-          qry.filter('Faknr =', self.Faknr)
+          qry = Fak.all().filter('Faknr =', self.Faknr)
           for fakrec in qry:
-            medlog.Akt_dato = fakrec.Tildato
-            medlog.Akt_id = 30
-            medlog.put()
+            if fakrec.Nr == self.Nr:
+              medlog.Akt_dato = fakrec.Tildato
+              medlog.Akt_id = 30
+              medlog.put()
+              return
         elif self.Pbstranskode in ['0237']:
           medlog.Akt_id = 40
           medlog.Akt_dato = self.Betalingsdato
           medlog.put()
-        else:
-          medlog.delete()
+          return
 
+        medlog.delete()
+        return
+          
 class Aftalelin(db.Model):
     #key = db.Key.from_path('Persons','root','Person','%s' % (Nr), 'Aftalelin', '%s' % (Id))
     Id = db.IntegerProperty()
@@ -495,4 +498,37 @@ class MedlemsStatus():
         return self.opkraevningsDato
     else:
       return None
-    
+
+def nextval(nrserie):
+  recNrSerie = NrSerie.get_or_insert(nrserie)
+  nr = 1
+  if recNrSerie.Sidstbrugtenr:
+    nr = recNrSerie.Sidstbrugtenr + 1
+  else:
+    if nrserie == 'tblMedlem':
+      try:
+        nr = db.GqlQuery("SELECT * FROM Person ORDER BY Nr DESC LIMIT 1").fetch(1)[0].Nr + 1
+      except:
+        nr = 1
+    elif nrserie == 'faknr':
+      try:
+        nr = db.GqlQuery("SELECT * FROM Fak ORDER BY Faknr  DESC LIMIT 1").fetch(1)[0].Faknr  + 1
+      except:
+        nr = 1
+    elif nrserie == 'tblMedlog':
+      try:
+        nr = db.GqlQuery("SELECT * FROM Medlog WHERE Source  = 'Medlog' ORDER BY Id DESC LIMIT 1").fetch(1)[0].Id  + 1
+      except:
+        nr = 1       
+    elif nrserie == 'Kontingent':
+      try:
+        nr = db.GqlQuery("SELECT * FROM Kontingent ORDER BY Id DESC LIMIT 1").fetch(1)[0].Id  + 1
+      except:
+        nr = 1
+    else:
+      nr = 1    
+  
+  recNrSerie.Sidstbrugtenr = nr
+  recNrSerie.Nrserienavn = nrserie
+  recNrSerie.put()  
+  return nr      

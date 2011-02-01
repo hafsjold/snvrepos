@@ -3,7 +3,7 @@ from google.appengine.ext import webapp
 from google.appengine.ext import db 
 from google.appengine.ext.webapp import template
 
-from models import UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Pbsfiles, Pbsfile, Tilpbs, Fak, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
+from models import nextval, UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Pbsfiles, Pbsfile, Tilpbs, Fak, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
 from datetime import datetime, date, timedelta
 import logging
 import os
@@ -18,15 +18,6 @@ def rpad (oVal, Length, PadChar):
   Val = '%s' % (oVal)
   return Val.ljust(Length, PadChar)
   
-def nextval(nrserie):
-  recNrSerie = NrSerie.get_or_insert(nrserie)
-  nr = 1
-  if recNrSerie.Sidstbrugtenr:
-    nr = recNrSerie.Sidstbrugtenr + 1
-  else:
-    recNrSerie.Sidstbrugtenr = nr
-  recNrSerie.put()  
-  return nr
 
 class Pbs601Error(Exception):
   def __init__(self, value):
@@ -67,7 +58,7 @@ class TestHandler(webapp.RequestHandler):
 
 
   def kontingent_fakturer_bs1(self):
-    lobnr = nextval('Tilpbs')
+    lobnr = nextval('tblpbs_id_seq')
     rootTilpbs = db.Key.from_path('rootTilpbs','root')
     t = Tilpbs.get_or_insert('%s' % (lobnr), parent=rootTilpbs)
     t.Id = lobnr
@@ -80,7 +71,7 @@ class TestHandler(webapp.RequestHandler):
     qry = db.Query(Kontingent).ancestor(root)
     antal = qry.count()
     for q in qry:
-      fakid = nextval('Fak')
+      fakid = nextval('tblfak_id_seq')
       keyPerson = db.Key.from_path('Persons','root','Person','%s' % (q.Nr))
       keyTilpbs = db.Key.from_path('rootTilpbs','root','Tilpbs','%s' % (lobnr))
       f = Fak.get_or_insert('%s' % (fakid), parent=keyPerson)
