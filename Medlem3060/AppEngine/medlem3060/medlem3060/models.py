@@ -27,10 +27,6 @@ class MenuMenuLink(db.Model):
   Child_key = db.ReferenceProperty(Menu, collection_name="menu_parent_set")
   Menuseq = db.IntegerProperty()  
 
-class NrSerie(db.Model):
-    #key = db.Key.from_path('NrSerie', '%s' % (Nrserienavn))
-    Nrserienavn  = db.StringProperty() 
-    Sidstbrugtenr = db.IntegerProperty()
 
 class Kreditor(db.Model): 
     #key = db.Key.from_path('rootKreditor','root', 'Kreditor', '%s' % (Id))
@@ -499,36 +495,87 @@ class MedlemsStatus():
     else:
       return None
 
+      
+class NrSerie(db.Model):
+    #key = db.Key.from_path('NrSerie', '%s' % (Nrserienavn))
+    Nrserienavn  = db.StringProperty() 
+    Sidstbrugtenr = db.IntegerProperty()
+    
 def nextval(nrserie):
-  recNrSerie = NrSerie.get_or_insert(nrserie)
-  nr = 1
-  if recNrSerie.Sidstbrugtenr:
-    nr = recNrSerie.Sidstbrugtenr + 1
-  else:
-    if nrserie == 'tblMedlem':
-      try:
-        nr = db.GqlQuery("SELECT * FROM Person ORDER BY Nr DESC LIMIT 1").fetch(1)[0].Nr + 1
-      except:
-        nr = 1
-    elif nrserie == 'faknr':
-      try:
-        nr = db.GqlQuery("SELECT * FROM Fak ORDER BY Faknr  DESC LIMIT 1").fetch(1)[0].Faknr  + 1
-      except:
-        nr = 1
-    elif nrserie == 'tblMedlog':
-      try:
-        nr = db.GqlQuery("SELECT * FROM Medlog WHERE Source  = 'Medlog' ORDER BY Id DESC LIMIT 1").fetch(1)[0].Id  + 1
-      except:
-        nr = 1       
-    elif nrserie == 'Kontingent':
-      try:
-        nr = db.GqlQuery("SELECT * FROM Kontingent ORDER BY Id DESC LIMIT 1").fetch(1)[0].Id  + 1
-      except:
-        nr = 1
-    else:
-      nr = 1    
+  if not nrserie in NrSeries:
+    return 0
   
-  recNrSerie.Sidstbrugtenr = nr
+  recNrSerie = NrSerie.get_by_key_name(nrserie)
+  if recNrSerie is None:
+    recNrSerie = NrSerieSetup(nrserie)
+  
+  if recNrSerie.Sidstbrugtenr:
+    nr = TestRange(nrserie, recNrSerie.Sidstbrugtenr +1)
+    recNrSerie.Sidstbrugtenr = nr
+    recNrSerie.put()  
+  else:
+    nr = 1    
+  return nr
+
+def NrSerieSetupAll():
+  for k, v in NrSeries.iteritems():
+    print k, NrSerieSetup(k).Sidstbrugtenr 
+
+def NrSerieSetup(nrserie):
+  if not nrserie in NrSeries:
+    return None
+  table = NrSeries[nrserie][0]
+  field = NrSeries[nrserie][1]
+  minval = NrSeries[nrserie][2]
+  maxval = NrSeries[nrserie][3]
+
+  try:
+    maxval = TestRange(nrserie)
+  except:
+    maxval = minval
+  
+  recNrSerie = NrSerie.get_or_insert(nrserie)
   recNrSerie.Nrserienavn = nrserie
-  recNrSerie.put()  
-  return nr      
+  recNrSerie.Sidstbrugtenr = maxval
+  recNrSerie.put()
+  return recNrSerie
+  
+NrSeries= {
+   'Personid'        :['Person','Nr',600, 999]
+  ,'Medlogid'        :['Medlog','Id',800, 9999]
+  ,'Kontingentid'    :['Kontingent','Id',1,999]
+  ,'Fakid'           :['Fak','Id',30320,39999]  
+  ,'faknr'           :['Fak','Faknr',10320,19999] 
+  ,'leveranceid'     :['Pbsforsendelse','Pbsforsendelse',590,9999] 
+  ,'Pbsforsendelseid':['Pbsforsendelse','Id',800,9999]  
+  ,'Tilpbsid'        :['Tilpbs','Id',602,9999]  
+  ,'Pbsfilesid'      :['Pbsfilesid','Id',700,9999]  
+  ,'Frapbsid'        :['Frapbs','Id',140,9999]  
+  ,'Betid'           :['Bet','Id',70,9999]  
+  ,'Betlinid'        :['Betlin','Id',360,9999]  
+}
+
+def TestRange(nrserie, startval = 0):
+  if not nrserie in NrSeries:
+    return None
+  table = NrSeries[nrserie][0]
+  field = NrSeries[nrserie][1]
+  minval = NrSeries[nrserie][2]
+  maxval = NrSeries[nrserie][3]
+  if startval == 0:
+    start = minval
+  else:
+    start = startval
+  dif = 100
+  if nrserie == 'Medlogid':
+    sql = "SELECT * FROM %s WHERE Source = 'Medlog' AND %s >= %s AND %s <= %s" % (table ,field, start, field, start + dif) 
+  else:
+    sql = "SELECT * FROM %s WHERE %s >= %s AND %s <= %s" % (table ,field, start, field, start + dif) 
+  p = db.GqlQuery(sql).fetch(dif + 2)
+  usedId = [getattr(p, field) for p in p]
+  def f(x):
+    return not x in usedId
+  p2 = sorted(filter(f,range(start,start + dif)))
+  return p2[0]
+    
+  

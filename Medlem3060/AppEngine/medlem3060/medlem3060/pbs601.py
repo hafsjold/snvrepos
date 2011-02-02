@@ -1,4 +1,4 @@
-﻿# coding=utf-8 
+# coding=utf-8 
 from google.appengine.ext import webapp
 from google.appengine.ext import db 
 from google.appengine.ext.webapp import template
@@ -48,17 +48,18 @@ class clsRstdeb(object):
 class TestHandler(webapp.RequestHandler):
   def get(self):
     (lobnr, antal) = self.kontingent_fakturer_bs1()
-    rec = self.faktura_og_rykker_601_action(lobnr)
-    logging.info('WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW rec: %s' % (rec))
-    self.response.headers["Content-Type"] = "application/json"
-    self.response.out.write(rec.encode('windows-1252'))  
+    pbsforsendelseId  = self.faktura_og_rykker_601_action(lobnr)
+    
+    logging.info('WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW pbsforsendelseId: %s' % (pbsforsendelseId))
+    #self.response.headers["Content-Type"] = "application/json"
+    #self.response.out.write(rec.encode('windows-1252'))  
     ##template_values = {}
     ##path = os.path.join(os.path.dirname(__file__), 'templates/test.html') 
     ##self.response.out.write(template.render(path, template_values))
 
 
   def kontingent_fakturer_bs1(self):
-    lobnr = nextval('tblpbs_id_seq')
+    lobnr = nextval('Tilpbsid')
     rootTilpbs = db.Key.from_path('rootTilpbs','root')
     t = Tilpbs.get_or_insert('%s' % (lobnr), parent=rootTilpbs)
     t.Id = lobnr
@@ -71,7 +72,7 @@ class TestHandler(webapp.RequestHandler):
     qry = db.Query(Kontingent).ancestor(root)
     antal = qry.count()
     for q in qry:
-      fakid = nextval('tblfak_id_seq')
+      fakid = nextval('Fakid')
       keyPerson = db.Key.from_path('Persons','root','Person','%s' % (q.Nr))
       keyTilpbs = db.Key.from_path('rootTilpbs','root','Tilpbs','%s' % (lobnr))
       f = Fak.get_or_insert('%s' % (fakid), parent=keyPerson)
@@ -130,7 +131,7 @@ class TestHandler(webapp.RequestHandler):
     if not rsttil: 
       raise Pbs601Error('101 - Der er ingen PBS forsendelse for id: %s' % (lobnr))    
  
-    if rsttil.Pbsforsendelseid:
+    if rsttil.Pbsforsendelseref:
        raise Pbs601Error('102 - Pbsforsendelse for id: %s er allerede sendt' % (lobnr))
  
     qry = rsttil.listFak
@@ -145,9 +146,10 @@ class TestHandler(webapp.RequestHandler):
       rsttil.Delsystem = "BS1"  # ????????????????
     if not rsttil.Leverancetype:
       rsttil.Leverancetype = ""
-    rsttil.put()
-
+    
     wleveranceid = nextval("leveranceid")
+
+
 
     qry = Kreditor.all()
     qry.filter("Delsystem =", rsttil.Delsystem)
@@ -374,11 +376,38 @@ class TestHandler(webapp.RequestHandler):
     # - antal022tot      - Antal 022: Antal foranstående 022 records
     rec += self.write992(rstkrd.Datalevnr, rstkrd.Delsystem, "0601", antalsek, antal042tot, belob042tot, antal052tot, antal022tot) + "\r\n"
 
+    
+    pbsforsendelseid  = nextval('Pbsforsendelseid')    
+    root_pbsforsendelse = db.Key.from_path('rootPbsforsendelse','root')    
+    rec_pbsforsendelse = Pbsforsendelse.get_or_insert('%s' % (pbsforsendelseid), parent=root_pbsforsendelse)
+    rec_pbsforsendelse.Id = pbsforsendelseid
+    rec_pbsforsendelse.Delsystem = rsttil.Delsystem
+    rec_pbsforsendelse.Leverancetype = rsttil.Leverancetype
+    rec_pbsforsendelse.Oprettetaf = 'Fak'
+    rec_pbsforsendelse.Oprettet = datetime.now()
+    rec_pbsforsendelse.Leveranceid = wleveranceid
+    rec_pbsforsendelse.put()
+    
     rsttil.Udtrukket = datetime.now()
     rsttil.Leverancespecifikation = '%s' % (wleveranceid)
-    return rec
+    rsttil.Pbsforsendelseref = rec_pbsforsendelse.key()
+    rsttil.put()
+
+    pbsfilesid  = nextval('Pbsfilesid')    
+    root_pbsfiles = db.Key.from_path('rootPbsfiles','root')    
+    rec_pbsfiles = Pbsfiles.get_or_insert('%s' % (pbsfilesid), parent=root_pbsfiles)
+    rec_pbsfiles.Id = pbsfilesid
+    rec_pbsfiles.Pbsforsendelseref = rec_pbsforsendelse.key()
+    rec_pbsfiles.put()
     
- 
+    root_pbsfile = db.Key.from_path('rootPbsfile','root')    
+    rec_pbsfile = Pbsfile.get_or_insert('%s' % (pbsfilesid), parent=root_pbsfile)
+    rec_pbsfile.Id = pbsfilesid
+    rec_pbsfile.Pbsfilesref = rec_pbsfiles.key()        
+    rec_pbsfile.Data = rec
+    rec_pbsfile.put()
+    return rec_pbsforsendelse.Id   
+    
   def write002(self, datalevnr, delsystem, levtype, levident, levdato):
     rec = "BS002"
     rec += lpad(datalevnr, 8, '?')

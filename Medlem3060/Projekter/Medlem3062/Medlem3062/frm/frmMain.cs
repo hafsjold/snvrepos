@@ -193,7 +193,6 @@ namespace nsPuls3060
             objConvert.cvnInfotekst();
             objConvert.cvnSysinfo();
             objConvert.cvnKreditor();
-            objConvert.cvnNrSerie();
 
             //clsSFTP objSFTP = new clsSFTP();
             //objSFTP.ReWriteTilSFtp(986);

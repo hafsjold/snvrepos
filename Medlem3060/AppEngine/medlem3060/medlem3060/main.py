@@ -137,7 +137,7 @@ class UpdatemedlemHandler(webapp.RequestHandler):
     jData = '{ '
     Nr = self.request.get('Nr')
     if Nr == '*':
-      Nr = nextval('tblMedlem')
+      Nr = nextval('Personid')
 
     #Test for Valid dato
     bAkt_dato = False
@@ -170,7 +170,7 @@ class UpdatemedlemHandler(webapp.RequestHandler):
       
       Akt_id = self.request.get('Akt_id')
       if Akt_id == '10':
-        Kontingent_id = nextval('Kontingent')
+        Kontingent_id = nextval('Kontingentid')
         t = db.Key.from_path('Persons','root','Person','%s' % (Nr))
         q = Kontingent.get_or_insert('%s' % (Kontingent_id), parent=t)      
         q.Id = int(Kontingent_id)
@@ -947,7 +947,7 @@ class SyncMedlogHandler(webapp.RequestHandler):
     
     if ModelName == 'Medlog':
       try:
-        Id = nextval('tblMedlog')
+        Id = nextval('Medlogid')
       except:
         Id = None
       try:
