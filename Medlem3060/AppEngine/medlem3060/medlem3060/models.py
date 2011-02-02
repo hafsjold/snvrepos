@@ -500,10 +500,16 @@ class NrSerie(db.Model):
     #key = db.Key.from_path('NrSerie', '%s' % (Nrserienavn))
     Nrserienavn  = db.StringProperty() 
     Sidstbrugtenr = db.IntegerProperty()
+
+class NrSerieError(Exception):
+  def __init__(self, value):
+    self.value = value
+  def __str__(self):
+    return repr(self.value)
     
 def nextval(nrserie):
   if not nrserie in NrSeries:
-    return 0
+    raise NrSerieError('Nummer Serie %s findes ikke' % (nrserie))
   
   recNrSerie = NrSerie.get_by_key_name(nrserie)
   if recNrSerie is None:
@@ -523,7 +529,7 @@ def NrSerieSetupAll():
 
 def NrSerieSetup(nrserie):
   if not nrserie in NrSeries:
-    return None
+    raise NrSerieError('Nummer Serie %s findes ikke' % (nrserie))
   table = NrSeries[nrserie][0]
   field = NrSeries[nrserie][1]
   minval = NrSeries[nrserie][2]
@@ -539,25 +545,11 @@ def NrSerieSetup(nrserie):
   recNrSerie.Sidstbrugtenr = maxval
   recNrSerie.put()
   return recNrSerie
-  
-NrSeries= {
-   'Personid'        :['Person','Nr',600, 999]
-  ,'Medlogid'        :['Medlog','Id',800, 9999]
-  ,'Kontingentid'    :['Kontingent','Id',1,999]
-  ,'Fakid'           :['Fak','Id',30320,39999]  
-  ,'faknr'           :['Fak','Faknr',10320,19999] 
-  ,'leveranceid'     :['Pbsforsendelse','Pbsforsendelse',590,9999] 
-  ,'Pbsforsendelseid':['Pbsforsendelse','Id',800,9999]  
-  ,'Tilpbsid'        :['Tilpbs','Id',602,9999]  
-  ,'Pbsfilesid'      :['Pbsfilesid','Id',700,9999]  
-  ,'Frapbsid'        :['Frapbs','Id',140,9999]  
-  ,'Betid'           :['Bet','Id',70,9999]  
-  ,'Betlinid'        :['Betlin','Id',360,9999]  
-}
+
 
 def TestRange(nrserie, startval = 0):
   if not nrserie in NrSeries:
-    return None
+    raise NrSerieError('Nummer Serie %s findes ikke' % (nrserie))
   table = NrSeries[nrserie][0]
   field = NrSeries[nrserie][1]
   minval = NrSeries[nrserie][2]
@@ -577,5 +569,25 @@ def TestRange(nrserie, startval = 0):
     return not x in usedId
   p2 = sorted(filter(f,range(start,start + dif)))
   return p2[0]
-    
-  
+   
+NrSeries= {
+   'Personid'          :['Person','Nr',600, 999]
+  ,'Medlogid'          :['Medlog','Id',800, 9999]
+  ,'Kontingentid'      :['Kontingent','Id',1,999]
+  ,'Fakid'             :['Fak','Id',30320,39999]  
+  ,'Overforselid'      :['Overforsel','Id',18,9999]  
+  ,'Rykkerid'          :['Rykker','Id',30663,39999]  
+  ,'faknr'             :['Fak','Faknr',10320,19999] 
+  ,'leveranceid'       :['Pbsforsendelse','Pbsforsendelse',590,9999] 
+  ,'Pbsforsendelseid'  :['Pbsforsendelse','Id',800,9999]  
+  ,'Tilpbsid'          :['Tilpbs','Id',602,9999]  
+  ,'Pbsfilesid'        :['Pbsfilesid','Id',700,9999]  
+  ,'Frapbsid'          :['Frapbs','Id',140,9999]  
+  ,'Betid'             :['Bet','Id',70,9999]  
+  ,'Betlinid'          :['Betlin','Id',360,9999]
+  ,'Aftalelinid'       :['Aftalelin','Id',235,9999]    
+  ,'Indbetalingskortid':['Indbetalingskort','Id',82,9999]    
+  ,'Kreditorid'        :['Kreditor','Id',5,9999]  
+  ,'Menuid'            :['Menu','Id',200,9999]  
+  ,'MenuMenuLinkid'    :['MenuMenuLink','Id',200,9999]  
+} 
