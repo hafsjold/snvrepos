@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<list>
+  {% if datatilpbs_list %}
+    {% for d in datatilpbs_list %}
+    <Datatilpbs>
+      <Id>{{d.Pbsfileref.Id}}</Id> 
+      <Data>{{d.Pbsfileref.Data|escape}}</Data> 
+    </Datatilpbs>
+    {% endfor %}
+  {% endif %}    
+</list>

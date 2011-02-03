@@ -12,6 +12,7 @@ using System.IO;
 using Excel;
 using System.Data.Common;
 using System.Data.SQLite;
+using System.Xml.Linq;
 
 
 namespace nsPuls3060
@@ -133,6 +134,16 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
+            clsRest objRest = new clsRest();
+            string retur = objRest.HttpGet2("datatilpbs");
+            XDocument xdoc = XDocument.Parse(retur);
+            var list = from datatilpbs in xdoc.Descendants("Datatilpbs") select datatilpbs;
+            foreach (var datatilpbs in list)
+            {
+                var Id = datatilpbs.Descendants("Id").First().Value;
+                var Data = datatilpbs.Descendants("Data").First().Value;
+            }
+            
             //SQLiteConnection.CreateFile("c:\\mydatabasefile.db3");
             /*
             dsMedlem objMedlem= new dsMedlem();
@@ -173,7 +184,6 @@ namespace nsPuls3060
 
             objMedlem.fillMedlog();
 
-            */
             int cxd = 2;
             clsConvert objConvert = new clsConvert();
             objConvert.cvnPerson();
@@ -193,6 +203,7 @@ namespace nsPuls3060
             objConvert.cvnInfotekst();
             objConvert.cvnSysinfo();
             objConvert.cvnKreditor();
+            */
 
             //clsSFTP objSFTP = new clsSFTP();
             //objSFTP.ReWriteTilSFtp(986);

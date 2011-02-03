@@ -48,7 +48,7 @@ class Pbsforsendelse(db.Model):
     Leverancetype = db.StringProperty()
     Oprettetaf = db.StringProperty()
     Oprettet =  db.DateTimeProperty()
-    Leveranceid = db.IntegerProperty() 
+    Leveranceid = db.IntegerProperty()
     
 class Pbsfiles(db.Model): 
     #key = db.Key.from_path('rootPbsfiles','root', 'Pbsfiles', '%s' % (Id))
@@ -63,14 +63,39 @@ class Pbsfiles(db.Model):
     Uid = db.IntegerProperty() 
     Gid = db.IntegerProperty() 
     Transmittime = db.DateTimeProperty()
+    Idlev = db.IntegerProperty()   
     Pbsforsendelseref = db.ReferenceProperty(Pbsforsendelse, collection_name='listPbsfiles')
 
+    
 class Pbsfile(db.Model): 
     #key = db.Key.from_path('rootPbsfile','root', 'Pbsfile', '%s' % (Id))
     Id = db.IntegerProperty() 
     Pbsfilesref = db.ReferenceProperty(Pbsfiles, collection_name='listPbsfile')
     Data = db.TextProperty()
+    Txtlines = db.IntegerProperty()
     
+    def add_to_sendqueue(self):
+      Id = nextval('Sendqueueid')
+      recSendqueue = Sendqueue.get_or_insert('%s' % Id)
+      recSendqueue.Id = Id
+      recSendqueue.Pbsfileref = self
+      recSendqueue.Onhold = False
+      recSendqueue.put()
+      return Id  
+      
+    def countTxtlines(self):
+      if self.Data:
+        self.Txtlines = self.Data.count("\n") + 1
+      else:
+        self.Txtlines = 0
+      
+class Sendqueue(db.Model):
+    #key = db.Key.from_path('Sendqueue', '%s' % (Id))
+    Id = db.IntegerProperty()
+    Pbsfileref = db.ReferenceProperty(Pbsfile, collection_name='listSendqueue')
+    Send_to_pbs = db.BooleanProperty(default=False)
+    Onhold = db.BooleanProperty(default=True)
+        
 class Tilpbs(db.Model): 
     #key = db.Key.from_path('rootTilpbs','root', 'Tilpbs', '%s' % (Id))
     Id = db.IntegerProperty()
@@ -253,6 +278,7 @@ class Kontingent(db.Model):
     Advisbelob = db.FloatProperty()
     Fradato = db.DateProperty()
     Tildato = db.DateProperty()
+    Faktureret = db.BooleanProperty(default=False)
     
     def beregnKontingent(self):
       if self.Fradato.month <= 6:
@@ -260,7 +286,7 @@ class Kontingent(db.Model):
         self.Advisbelob = 150.0
       else:
         self.Tildato = date(self.Fradato.year + 1, 12, 31)
-        self.Advisbelob = 225.0         
+        self.Advisbelob = 225.0  
     
 class Sftp(db.Model):
     #key = db.Key.from_path('rootSftp','root', 'Sftp', '%s' % (Id)) 
@@ -559,29 +585,47 @@ def TestRange(nrserie, startval = 0):
   else:
     start = startval
   dif = 100
-  if nrserie == 'Medlogid':
-    sql = "SELECT * FROM %s WHERE Source = 'Medlog' AND %s >= %s AND %s <= %s" % (table ,field, start, field, start + dif) 
-  else:
-    sql = "SELECT * FROM %s WHERE %s >= %s AND %s <= %s" % (table ,field, start, field, start + dif) 
-  p = db.GqlQuery(sql).fetch(dif + 2)
-  usedId = [getattr(p, field) for p in p]
-  def f(x):
-    return not x in usedId
-  p2 = sorted(filter(f,range(start,start + dif)))
+  if nrserie == 'idlev':
+    if start > maxval:
+      return minval
+    else:
+      return start
+      
+  pf = []
+  while len(pf) == 0:
+    if nrserie == 'Medlogid':
+      sql = "SELECT * FROM %s WHERE Source = 'Medlog' AND %s >= %s AND %s <= %s" % (table ,field, start, field, start + dif) 
+    else:
+      sql = "SELECT * FROM %s WHERE %s >= %s AND %s <= %s" % (table ,field, start, field, start + dif) 
+    try:
+      p = db.GqlQuery(sql).fetch(dif + 2)
+      usedId = [getattr(p, field) for p in p]
+    except:
+      return minval
+    def f(x):
+      return not x in usedId
+    pf = filter(f,range(start,start + dif))
+    if len(pf) == 0:
+      start += dif
+    if start > maxval:
+      return maxval    
+  
+  p2 = sorted(pf)
+  logging.info('nrserie %s : %s' % (nrserie, NrSeries[nrserie]))
   return p2[0]
    
 NrSeries= {
    'Personid'          :['Person','Nr',600, 999]
   ,'Medlogid'          :['Medlog','Id',800, 9999]
   ,'Kontingentid'      :['Kontingent','Id',1,999]
-  ,'Fakid'             :['Fak','Id',30320,39999]  
+  ,'Fakid'             :['Fak','Id',31070,39999]  
   ,'Overforselid'      :['Overforsel','Id',18,9999]  
   ,'Rykkerid'          :['Rykker','Id',30663,39999]  
-  ,'faknr'             :['Fak','Faknr',10320,19999] 
+  ,'faknr'             :['Fak','Faknr',11084,19999] 
   ,'leveranceid'       :['Pbsforsendelse','Pbsforsendelse',590,9999] 
   ,'Pbsforsendelseid'  :['Pbsforsendelse','Id',800,9999]  
   ,'Tilpbsid'          :['Tilpbs','Id',602,9999]  
-  ,'Pbsfilesid'        :['Pbsfilesid','Id',700,9999]  
+  ,'Pbsfilesid'        :['Pbsfiles','Id',1130,9999]  
   ,'Frapbsid'          :['Frapbs','Id',140,9999]  
   ,'Betid'             :['Bet','Id',70,9999]  
   ,'Betlinid'          :['Betlin','Id',360,9999]
@@ -590,4 +634,7 @@ NrSeries= {
   ,'Kreditorid'        :['Kreditor','Id',5,9999]  
   ,'Menuid'            :['Menu','Id',200,9999]  
   ,'MenuMenuLinkid'    :['MenuMenuLink','Id',200,9999]  
-} 
+  ,'Sendqueueid'       :['Sendqueue','Id',1,9999] 
+  ,'idlev'             :['idlev','idlev',0,99]    
+}
+ 

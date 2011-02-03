@@ -18,11 +18,11 @@ import os
 import re
 import sys  
 
-from models import nextval, UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Tilpbs, Fak, Overforsel, Rykker, Pbsfiles, Pbsfile, Frapbs, Bet, Betlin, Aftalelin, Indbetalingskort, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
+from models import nextval, UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Tilpbs, Fak, Overforsel, Rykker, Pbsfiles, Pbsfile, Sendqueue, Frapbs, Bet, Betlin, Aftalelin, Indbetalingskort, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
 from util import TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
 from menuusergroup import deleteMenuAndUserGroup, createMenuAndUserGroup
 from menu import MenuHandler, ListUserHandler, UserHandler
-from pbs601 import TestHandler
+from pbs601 import TestHandler, DatatilpbsHandler
 
 webapp.template.register_template_library('templatetags.medlem3060_extras')
 
@@ -373,7 +373,7 @@ class KontingentJsonHandler(webapp.RequestHandler):
     #jKontingentData = None
     if jKontingentData is None:
       root = db.Key.from_path('Persons','root')
-      qry = db.Query(Kontingent).ancestor(root)
+      qry = db.Query(Kontingent).ancestor(root).filter('Faktureret =',False)
       antal = qry.count()
       logging.info('TTTTTTTTTTTTTTT jKontingentData Antal: %s' % (antal))
       FirstPage = True
@@ -1181,7 +1181,8 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/sync/Medlem/.*', SyncMedlemHandler),
                                        ('/sync/Medlem', SyncMedlemHandler),
                                        ('/sync/Medlog/.*', SyncMedlogHandler),
-                                       ('/sync/Medlog', SyncMedlogHandler),                                       
+                                       ('/sync/Medlog', SyncMedlogHandler), 
+                                       ('/sync/datatilpbs', DatatilpbsHandler),                                       
                                        ('/sync/.*', MenuHandler),
                                        ('/logoff', LogoffHandler),
                                        ('/teknik/createmenu', CreateMenu),
