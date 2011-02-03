@@ -161,3 +161,11 @@ def SetUserInfoCookie(key, value='', max_age=None,
       cookies[key][var_name.replace('_', '-')] = str(var_value)
   header_value = cookies[key].output(header='').lstrip()
   return header_value 
+  
+def lpad (oVal, Length, PadChar):
+  Val = '%s' % (oVal)
+  return Val.rjust(Length, PadChar)
+
+def rpad (oVal, Length, PadChar):
+  Val = '%s' % (oVal)
+  return Val.ljust(Length, PadChar)

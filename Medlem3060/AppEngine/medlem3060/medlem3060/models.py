@@ -2,6 +2,7 @@
 from google.appengine.ext import db
 import logging
 from datetime import datetime, timedelta, date
+from util import lpad, rpad
   
 class UserGroup(db.Model): 
   GroupName = db.StringProperty()
@@ -72,8 +73,18 @@ class Pbsfile(db.Model):
     Id = db.IntegerProperty() 
     Pbsfilesref = db.ReferenceProperty(Pbsfiles, collection_name='listPbsfile')
     Data = db.TextProperty()
-    Txtlines = db.IntegerProperty()
     
+    @property
+    def SendData(self):
+      delsystem = self.Pbsfilesref.Pbsforsendelseref.Delsystem
+      transmisionsdato = datetime.now()
+      idlev = self.Pbsfilesref.Idlev
+      leveranceid = self.Pbsfilesref.Pbsforsendelseref.Leveranceid
+      antal = self.Data.count("\n") + 1
+      pbcnet00 = write00(self, delsystem, transmisionsdato, idlev, leveranceid)
+      pbcnet90 = write90(self, delsystem, transmisionsdato, idlev, leveranceid, antal)
+      return pbcnet00 + "\n" + self.Data + "\n" + pbcnet90
+      
     def add_to_sendqueue(self):
       Id = nextval('Sendqueueid')
       recSendqueue = Sendqueue.get_or_insert('%s' % Id)
@@ -82,12 +93,7 @@ class Pbsfile(db.Model):
       recSendqueue.Onhold = False
       recSendqueue.put()
       return Id  
-      
-    def countTxtlines(self):
-      if self.Data:
-        self.Txtlines = self.Data.count("\n") + 1
-      else:
-        self.Txtlines = 0
+
       
 class Sendqueue(db.Model):
     #key = db.Key.from_path('Sendqueue', '%s' % (Id))
@@ -638,3 +644,25 @@ NrSeries= {
   ,'idlev'             :['idlev','idlev',0,99]    
 }
  
+def write00(self, delsystem, transmisionsdato, idlev, idfri):
+  rec = "PBCNET00"
+  rec += lpad(delsystem, 3, '?')
+  rec += rpad("", 1, ' ')
+  rec += lpad(transmisionsdato.strftime("%y%m%d"), 6, '?')
+  rec += lpad(idlev, 2, '0')
+  rec += rpad("", 2, ' ')
+  rec += lpad(idfri, 6, '0')
+  rec += rpad("", 8, ' ')
+  rec += rpad("", 8, ' ')
+  return rec;
+
+def write90(self, delsystem, transmisionsdato, idlev, idfri, antal):
+  rec = "PBCNET90"
+  rec += lpad(delsystem, 3, '?')
+  rec += rpad("", 1, ' ')
+  rec += lpad(transmisionsdato.strftime("%y%m%d"), 6, '?')
+  rec += lpad(idlev, 2, '0')
+  rec += rpad("", 2, ' ')
+  rec += lpad(idfri, 6, '0')
+  rec += lpad(antal, 6, '0')
+  return rec

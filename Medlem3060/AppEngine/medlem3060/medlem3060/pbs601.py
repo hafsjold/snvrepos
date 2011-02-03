@@ -4,19 +4,12 @@ from google.appengine.ext import db
 from google.appengine.ext.webapp import template
 
 from models import nextval, UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Pbsfiles, Pbsfile, Sendqueue, Tilpbs, Fak, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
+from util import lpad, rpad
 from datetime import datetime, date, timedelta
 import logging
 import os
 
 from clsInfotekst import clsInfotekstParam, clsInfotekst
-
-def lpad (oVal, Length, PadChar):
-  Val = '%s' % (oVal)
-  return Val.rjust(Length, PadChar)
-
-def rpad (oVal, Length, PadChar):
-  Val = '%s' % (oVal)
-  return Val.ljust(Length, PadChar)
   
 
 class Pbs601Error(Exception):
@@ -50,11 +43,20 @@ class DatatilpbsHandler(webapp.RequestHandler):
     qry = db.Query(Sendqueue).filter('Send_to_pbs =', False).filter('Onhold =', False)  
     antal = qry.count()
     logging.info('TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT Antal: %s' % (antal))
-    template_values = {
-      'datatilpbs_list': qry,
-    }
-    path = os.path.join(os.path.dirname(__file__), 'templates/datatilpbs.xml')
-    self.response.out.write(template.render(path, template_values))   
+    if antal > 0:
+      sendqueue = qry.fetch(1)[0]
+      pbsfile = sendqueue.Pbsfileref
+      #sendqueue.Onhold = True
+      sendqueue.put()
+      sftp = db.Query(Sftp).filter('Navn =', 'Test').fetch(1)[0]  
+      
+      template_values = {
+        'sendqueue': sendqueue,
+        'sftp': sftp,
+        'pbsfile': pbsfile,
+      }
+      path = os.path.join(os.path.dirname(__file__), 'templates/datatilpbs.xml')
+      self.response.out.write(template.render(path, template_values))   
     
 class TestHandler(webapp.RequestHandler):
   def get(self):
@@ -434,29 +436,6 @@ class TestHandler(webapp.RequestHandler):
     
     sendqueueid = rec_pbsfile.add_to_sendqueue()
     return sendqueueid   
-
-  def write00(self, delsystem, transmisionsdato, idlev, idfri):
-    rec = "PBCNET00"
-    rec += lpad(delsystem, 3, '?')
-    rec += rpad("", 1, ' ')
-    rec += lpad(transmisiondato.strftime("%y%m%d"), 6, '?')
-    rec += lpad(idlev, 2, '0')
-    rec += rpad("", 2, ' ')
-    rec += lpad(idfri, 6, '0')
-    rec += rpad("", 8, ' ')
-    rec += rpad("", 8, ' ')
-    return rec;
-
-  def write90(self, delsystem, transmisiondato, idlev, idfri, antal):
-    rec = "PBCNET90"
-    rec += lpad(delsystem, 3, '?')
-    rec += rpad("", 1, ' ')
-    rec += lpad(transmisiondato.strftime("%y%m%d"), 6, '?')
-    rec += lpad(idlev, 2, '0')
-    rec += rpad("", 2, ' ')
-    rec += lpad(idfri, 6, '0')
-    rec += lpad(antal, 6, '0')
-    return rec
     
   def write002(self, datalevnr, delsystem, levtype, levident, levdato):
     rec = "BS002"

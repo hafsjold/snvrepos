@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8" ?> 
-<list>
-  {% if datatilpbs_list %}
-    {% for d in datatilpbs_list %}
-    <Datatilpbs>
-      <Id>{{d.Pbsfileref.Id}}</Id> 
-      <Data>{{d.Pbsfileref.Data|escape}}</Data> 
-    </Datatilpbs>
-    {% endfor %}
-  {% endif %}    
-</list>
+<Datatilpbs>
+  <Sendqueue>
+    <Id>{{sendqueue.Id}}</Id>
+  </Sendqueue>
+  <Sftp>
+    <Id>{{sftp.Id}}</Id> 
+    <Navn>{{sftp.Navn}}</Navn> 
+    <Host>{{sftp.Host}}</Host> 
+    <Port>{{sftp.Port}}</Port> 
+    <User>{{sftp.User}}</User> 
+    <Outbound>{{sftp.Outbound}}</Outbound> 
+    <Inbound>{{sftp.Inbound}}</Inbound> 
+    <Pincode>{{sftp.Pincode}}</Pincode> 
+    <Certificate>{{sftp.Certificate}}</Certificate> 
+  </Sftp>
+  <Pbsfile>
+    <Id>{{pbsfile.Id}}</Id> 
+    <SendData>{{pbsfile.SendData|escape}}</SendData> 
+  </Pbsfile>
+</Datatilpbs>
+
