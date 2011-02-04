@@ -134,13 +134,32 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
+            SQLiteConnection conn = new SQLiteConnection(@"Data Source=c:\mydatabasefile.db3");
+            conn.Open();
+            SQLiteCommand comm = new SQLiteCommand();
+            comm.Connection = conn;
+            comm.CommandText = "CREATE TABLE IF NOT EXISTS StoreXML (Id integer, xmlString string);";
+            comm.ExecuteNonQuery();
+            comm.CommandText = "INSERT INTO StoreXML (Id, xmlString) values(10, @xmlData);";
+            
+            DbParameter pxmlData = comm.CreateParameter();
+            pxmlData.ParameterName = "xmlData";
+            pxmlData.DbType = DbType.String;
+            comm.Parameters.Add(pxmlData);
+
             clsRest objRest = new clsRest();
             string retur = objRest.HttpGet2("datatilpbs");
             XDocument xmldata = XDocument.Parse(retur);
             clsAppEngSFTP objAppEngSFTP = new clsAppEngSFTP(xmldata);
             XElement xmlPbsfilesUpdate = objAppEngSFTP.WriteTilSFtp();
+
+            string data = xmlPbsfilesUpdate.ToString();
+            pxmlData.Value = data;
+            comm.ExecuteNonQuery();
+
+            XDocument newxmldata = XDocument.Parse(data);
+
             
-            //SQLiteConnection.CreateFile("c:\\mydatabasefile.db3");
             /*
             dsMedlem objMedlem= new dsMedlem();
             objMedlem.filldsMedlem();
