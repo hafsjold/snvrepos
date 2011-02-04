@@ -136,30 +136,81 @@ namespace nsPuls3060
 
             SQLiteConnection conn = new SQLiteConnection(@"Data Source=c:\mydatabasefile.db3");
             conn.Open();
-            SQLiteCommand comm = new SQLiteCommand();
-            comm.Connection = conn;
-            comm.CommandText = "CREATE TABLE IF NOT EXISTS StoreXML (Id integer, xmlString string);";
-            comm.ExecuteNonQuery();
-            comm.CommandText = "INSERT INTO StoreXML (Id, xmlString) values(10, @xmlData);";
+            SQLiteCommand sqltablecmd = new SQLiteCommand();
+            sqltablecmd.Connection = conn;
+            sqltablecmd.CommandText = 
+              @"CREATE TABLE IF NOT EXISTS [StoreXML] ( " +
+              @"[id] GUID NOT NULL ON CONFLICT REPLACE, " +
+              @"[created] DATETIME NOT NULL DEFAULT (datetime('now')), " +
+              @"[target] VARCHAR DEFAULT (NULL), " +
+              @"[ontarget] BOOLEAN DEFAULT (0), " +
+              @"[source] VARCHAR DEFAULT (NULL), " +
+              @"[data] TEXT DEFAULT (NULL), " +
+              @"CONSTRAINT [sqlite_autoindex_StoreXML_1] PRIMARY KEY ([id]));";
+            sqltablecmd.ExecuteNonQuery();
+
+            SQLiteCommand sqlupdcmd = new SQLiteCommand();
+            sqlupdcmd.Connection = conn;
+            sqlupdcmd.CommandText = @"UPDATE StoreXML SET ontarget = @pOntarget WHERE id = @upId;";
+            DbParameter upId = sqlupdcmd.CreateParameter();
+            upId.ParameterName = "upId";
+            upId.DbType = DbType.Guid;
+            sqlupdcmd.Parameters.Add(upId);
+            DbParameter upOntarget = sqlupdcmd.CreateParameter();
+            upOntarget.ParameterName = "pOntarget";
+            upOntarget.DbType = DbType.Boolean;
+            sqlupdcmd.Parameters.Add(upOntarget);
             
-            DbParameter pxmlData = comm.CreateParameter();
-            pxmlData.ParameterName = "xmlData";
-            pxmlData.DbType = DbType.String;
-            comm.Parameters.Add(pxmlData);
+            SQLiteCommand sqlinsertcmd = new SQLiteCommand();
+            sqlinsertcmd.Connection = conn;
+            sqlinsertcmd.CommandText = @"INSERT INTO StoreXML (id, target, ontarget, source, data) values(@pId, @pTarget, @pOntarget, @pSource, @pData);";
+            DbParameter pId = sqlinsertcmd.CreateParameter();
+            pId.ParameterName = "pId";
+            pId.DbType = DbType.Guid;
+            sqlinsertcmd.Parameters.Add(pId);
+            DbParameter pTarget = sqlinsertcmd.CreateParameter();
+            pTarget.ParameterName = "pTarget";
+            pTarget.DbType = DbType.String;
+            sqlinsertcmd.Parameters.Add(pTarget);
+            DbParameter pOntarget = sqlinsertcmd.CreateParameter();
+            pOntarget.ParameterName = "pOntarget";
+            pOntarget.DbType = DbType.Boolean;
+            sqlinsertcmd.Parameters.Add(pOntarget);
+            DbParameter pSource = sqlinsertcmd.CreateParameter();
+            pSource.ParameterName = "pSource";
+            pSource.DbType = DbType.String;
+            sqlinsertcmd.Parameters.Add(pSource);
+            DbParameter pData = sqlinsertcmd.CreateParameter();
+            pData.ParameterName = "pData";
+            pData.DbType = DbType.String;
+            sqlinsertcmd.Parameters.Add(pData);
 
             clsRest objRest = new clsRest();
             string retur = objRest.HttpGet2("datatilpbs");
             XDocument xmldata = XDocument.Parse(retur);
+
+            Guid id1 = Guid.NewGuid();
+            pId.Value = id1;
+            pTarget.Value = "PBSTest";
+            pOntarget.Value = false;
+            pData.Value = xmldata.ToString();
+            pSource.Value = "testmedlem3060";
+            sqlinsertcmd.ExecuteNonQuery();
+
             clsAppEngSFTP objAppEngSFTP = new clsAppEngSFTP(xmldata);
             XElement xmlPbsfilesUpdate = objAppEngSFTP.WriteTilSFtp();
 
-            string data = xmlPbsfilesUpdate.ToString();
-            pxmlData.Value = data;
-            comm.ExecuteNonQuery();
+            upId.Value = id1;
+            upOntarget.Value = true;
+            sqlupdcmd.ExecuteNonQuery();
 
-            XDocument newxmldata = XDocument.Parse(data);
+            pId.Value = Guid.NewGuid();
+            pTarget.Value = "testmedlem3060";
+            pOntarget.Value = false;
+            pData.Value = xmlPbsfilesUpdate.ToString();
+            pSource.Value = "PBSTest";
+            sqlinsertcmd.ExecuteNonQuery();
 
-            
             /*
             dsMedlem objMedlem= new dsMedlem();
             objMedlem.filldsMedlem();
