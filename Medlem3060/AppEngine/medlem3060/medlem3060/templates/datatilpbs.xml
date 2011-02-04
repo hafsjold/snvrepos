@@ -16,7 +16,8 @@
   </Sftp>
   <Pbsfile>
     <Id>{{pbsfile.Id}}</Id> 
+    <TilPBSFilename>{{pbsfile.TilPBSFilename}}</TilPBSFilename> 
+    <Transmisionsdato>{{pbsfile.Transmisionsdato}}</Transmisionsdato> 
     <SendData>{{pbsfile.SendData|escape}}</SendData> 
   </Pbsfile>
 </Datatilpbs>
-

@@ -136,13 +136,9 @@ namespace nsPuls3060
 
             clsRest objRest = new clsRest();
             string retur = objRest.HttpGet2("datatilpbs");
-            XDocument xdoc = XDocument.Parse(retur);
-            var list = from datatilpbs in xdoc.Descendants("Datatilpbs") select datatilpbs;
-            foreach (var datatilpbs in list)
-            {
-                var Id = datatilpbs.Descendants("Id").First().Value;
-                var Data = datatilpbs.Descendants("Data").First().Value;
-            }
+            XDocument xmldata = XDocument.Parse(retur);
+            clsAppEngSFTP objAppEngSFTP = new clsAppEngSFTP(xmldata);
+            XElement xmlPbsfilesUpdate = objAppEngSFTP.WriteTilSFtp();
             
             //SQLiteConnection.CreateFile("c:\\mydatabasefile.db3");
             /*

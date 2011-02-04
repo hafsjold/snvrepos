@@ -126,6 +126,7 @@
     <Compile Include="cls\clsSFTP.cs" />
     <Compile Include="cls\clsSumma.cs" />
     <Compile Include="cls\clsConvert.cs" />
+    <Compile Include="cls\clsAppEngSFTP.cs" />
     <Compile Include="dbData3060.cs">
       <DependentUpon>dbData3060.dbml</DependentUpon>
     </Compile>

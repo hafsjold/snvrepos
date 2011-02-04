@@ -73,17 +73,39 @@ class Pbsfile(db.Model):
     Id = db.IntegerProperty() 
     Pbsfilesref = db.ReferenceProperty(Pbsfiles, collection_name='listPbsfile')
     Data = db.TextProperty()
+
+    @property
+    def Transmisionsdato(self):
+      if self.Pbsfilesref.Transmittime:
+        return self.Pbsfilesref.Transmittime.date()
+      else:
+        return datetime.now()
     
     @property
     def SendData(self):
       delsystem = self.Pbsfilesref.Pbsforsendelseref.Delsystem
-      transmisionsdato = datetime.now()
+      transmisionsdato = self.Transmisionsdato
       idlev = self.Pbsfilesref.Idlev
       leveranceid = self.Pbsfilesref.Pbsforsendelseref.Leveranceid
       antal = self.Data.count("\n") + 1
       pbcnet00 = write00(self, delsystem, transmisionsdato, idlev, leveranceid)
       pbcnet90 = write90(self, delsystem, transmisionsdato, idlev, leveranceid, antal)
       return pbcnet00 + "\n" + self.Data + "\n" + pbcnet90
+      
+    @property
+    def TilPBSFilename(self):
+      if self.Pbsfilesref.Filename:
+        return self.Pbsfilesref.Filename
+      else:
+        delsystem = self.Pbsfilesref.Pbsforsendelseref.Delsystem
+        transmisionsdato = self.Transmisionsdato
+        idlev = self.Pbsfilesref.Idlev
+        filename = "D"
+        filename += lpad(transmisionsdato.strftime("%y%m%d"), 6, '?')
+        filename += lpad(idlev, 2, '0')
+        filename += "."
+        filename += rpad(delsystem, 3, '_')
+        return filename
       
     def add_to_sendqueue(self):
       Id = nextval('Sendqueueid')
