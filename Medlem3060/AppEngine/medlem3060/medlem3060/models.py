@@ -1,8 +1,29 @@
 ﻿# coding=utf-8 
 from google.appengine.ext import db
 import logging
-from datetime import datetime, timedelta, date
+from datetime import datetime, timedelta, date, tzinfo
 from util import lpad, rpad
+
+class GMT1(tzinfo):
+    def __init__(self, dt):         # DST starts last Sunday in March
+        d = datetime(dt.year, 4, 1)   # ends last Sunday in October
+        self.dston = d - timedelta(days=d.weekday() + 1)
+        d = datetime(dt.year, 11, 1)
+        self.dstoff = d - timedelta(days=d.weekday() + 1)
+    def utcoffset(self, dt):
+        return timedelta(hours=1) + self.dst(dt)
+    def dst(self, dt):
+        if self.dston <=  dt.replace(tzinfo=None) < self.dstoff:
+            return timedelta(hours=1)
+        else:
+            return timedelta(0)
+    def tzname(self,dt):
+         return "GMT +1"
+         
+def myNow():
+  gmt1 = GMT1(datetime.utcnow())
+  dt1 = datetime.now(gmt1)
+  return dt1.replace(tzinfo=None)
   
 class UserGroup(db.Model): 
   GroupName = db.StringProperty()
@@ -79,7 +100,7 @@ class Pbsfile(db.Model):
       if self.Pbsfilesref.Transmittime:
         return self.Pbsfilesref.Transmittime.date()
       else:
-        return datetime.now()
+        return myNow()
     
     @property
     def SendData(self):

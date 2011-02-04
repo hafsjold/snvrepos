@@ -134,82 +134,22 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
-            SQLiteConnection conn = new SQLiteConnection(@"Data Source=c:\mydatabasefile.db3");
-            conn.Open();
-            SQLiteCommand sqltablecmd = new SQLiteCommand();
-            sqltablecmd.Connection = conn;
-            sqltablecmd.CommandText = 
-              @"CREATE TABLE IF NOT EXISTS [StoreXML] ( " +
-              @"[id] GUID NOT NULL ON CONFLICT REPLACE, " +
-              @"[created] DATETIME NOT NULL DEFAULT (datetime('now')), " +
-              @"[target] VARCHAR DEFAULT (NULL), " +
-              @"[ontarget] BOOLEAN DEFAULT (0), " +
-              @"[source] VARCHAR DEFAULT (NULL), " +
-              @"[data] TEXT DEFAULT (NULL), " +
-              @"CONSTRAINT [sqlite_autoindex_StoreXML_1] PRIMARY KEY ([id]));";
-            sqltablecmd.ExecuteNonQuery();
-
-            SQLiteCommand sqlupdcmd = new SQLiteCommand();
-            sqlupdcmd.Connection = conn;
-            sqlupdcmd.CommandText = @"UPDATE StoreXML SET ontarget = @pOntarget WHERE id = @upId;";
-            DbParameter upId = sqlupdcmd.CreateParameter();
-            upId.ParameterName = "upId";
-            upId.DbType = DbType.Guid;
-            sqlupdcmd.Parameters.Add(upId);
-            DbParameter upOntarget = sqlupdcmd.CreateParameter();
-            upOntarget.ParameterName = "pOntarget";
-            upOntarget.DbType = DbType.Boolean;
-            sqlupdcmd.Parameters.Add(upOntarget);
-            
-            SQLiteCommand sqlinsertcmd = new SQLiteCommand();
-            sqlinsertcmd.Connection = conn;
-            sqlinsertcmd.CommandText = @"INSERT INTO StoreXML (id, target, ontarget, source, data) values(@pId, @pTarget, @pOntarget, @pSource, @pData);";
-            DbParameter pId = sqlinsertcmd.CreateParameter();
-            pId.ParameterName = "pId";
-            pId.DbType = DbType.Guid;
-            sqlinsertcmd.Parameters.Add(pId);
-            DbParameter pTarget = sqlinsertcmd.CreateParameter();
-            pTarget.ParameterName = "pTarget";
-            pTarget.DbType = DbType.String;
-            sqlinsertcmd.Parameters.Add(pTarget);
-            DbParameter pOntarget = sqlinsertcmd.CreateParameter();
-            pOntarget.ParameterName = "pOntarget";
-            pOntarget.DbType = DbType.Boolean;
-            sqlinsertcmd.Parameters.Add(pOntarget);
-            DbParameter pSource = sqlinsertcmd.CreateParameter();
-            pSource.ParameterName = "pSource";
-            pSource.DbType = DbType.String;
-            sqlinsertcmd.Parameters.Add(pSource);
-            DbParameter pData = sqlinsertcmd.CreateParameter();
-            pData.ParameterName = "pData";
-            pData.DbType = DbType.String;
-            sqlinsertcmd.Parameters.Add(pData);
-
             clsRest objRest = new clsRest();
             string retur = objRest.HttpGet2("datatilpbs");
             XDocument xmldata = XDocument.Parse(retur);
 
-            Guid id1 = Guid.NewGuid();
-            pId.Value = id1;
-            pTarget.Value = "PBSTest";
-            pOntarget.Value = false;
-            pData.Value = xmldata.ToString();
-            pSource.Value = "testmedlem3060";
-            sqlinsertcmd.ExecuteNonQuery();
+            Guid id1 = clsSQLite.insertStoreXML("PBSTest", false, "testmedlem3060", xmldata.ToString());
 
             clsAppEngSFTP objAppEngSFTP = new clsAppEngSFTP(xmldata);
             XElement xmlPbsfilesUpdate = objAppEngSFTP.WriteTilSFtp();
 
-            upId.Value = id1;
-            upOntarget.Value = true;
-            sqlupdcmd.ExecuteNonQuery();
+            clsSQLite.updateStoreXML(id1, true);
 
-            pId.Value = Guid.NewGuid();
-            pTarget.Value = "testmedlem3060";
-            pOntarget.Value = false;
-            pData.Value = xmlPbsfilesUpdate.ToString();
-            pSource.Value = "PBSTest";
-            sqlinsertcmd.ExecuteNonQuery();
+            Guid id2 = clsSQLite.insertStoreXML("testmedlem3060", false, "PBSTest", xmlPbsfilesUpdate.ToString());
+
+            // ToDo: update App Eng Tables
+
+            clsSQLite.updateStoreXML(id2, true);
 
             /*
             dsMedlem objMedlem= new dsMedlem();
