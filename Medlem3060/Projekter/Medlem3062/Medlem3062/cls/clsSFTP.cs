@@ -93,7 +93,7 @@ namespace nsPuls3060
             if (antal > 0)
             {
                 var rec_selecfiles = qry_selectfiles.First();
-                
+
                 var qry_pbsfiles = from h in Program.dbData3060.Tblpbsfiles
                                    where h.Id == rec_selecfiles.pbsfilesid
                                    select h;
@@ -260,8 +260,8 @@ namespace nsPuls3060
                             Path = dirListing.OriginalPath,
                             Filename = fileObj.Filename,
                             Size = (int)fileObj.Size32,
-                            Atime = fileObj.LastAccessTime,
-                            Mtime = fileObj.LastModifiedTime,
+                            Atime = Unspecified2Utc2Local(fileObj.LastAccessTime),
+                            Mtime = Unspecified2Utc2Local(fileObj.LastModifiedTime),
                             Gid = fileObj.Gid,
                             Uid = fileObj.Uid,
                             Perm = fileObj.Permissions.ToString()
@@ -329,7 +329,8 @@ namespace nsPuls3060
                     for (int idx = 0; idx < lines.Count(); idx++)
                     {
                         ln = lines[idx].TrimEnd('\r');
-                        try { ln0_6 = ln.Substring(0, 6); } catch { ln0_6 = ""; }
+                        try { ln0_6 = ln.Substring(0, 6); }
+                        catch { ln0_6 = ""; }
                         if (((seqnr == 0) && !(ln0_6 == "PBCNET")) || (seqnr > 0)) { seqnr++; }
                         if (ln.Length > 0)
                         {
@@ -355,6 +356,26 @@ namespace nsPuls3060
             return AntalFiler;
         }
 
+        public DateTime Unspecified2Utc2Local(DateTime dt)
+        {
+            if (dt.Kind == DateTimeKind.Unspecified)
+            {
+                DateTime dt2 = new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second, dt.Millisecond, DateTimeKind.Utc);
+                DateTime dt3 = TimeZoneInfo.ConvertTimeToUtc(dt2);
+                return dt3;
+            }
+            else
+                return dt;
+        }
+        
+        public DateTime Unspecified2Local(DateTime dt)
+        {
+            if (dt.Kind == DateTimeKind.Unspecified)
+                return new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second, dt.Millisecond, DateTimeKind.Local);
+            else
+                return dt;
+        }
+        
         public void ReadDirFraSFtp()
         {
             string homedir = m_sftp.RealPath(".", "");
@@ -386,8 +407,8 @@ namespace nsPuls3060
                             Path = dirListing.OriginalPath,
                             Filename = fileObj.Filename,
                             Size = (int)fileObj.Size32,
-                            Atime = fileObj.LastAccessTime,
-                            Mtime = fileObj.LastModifiedTime,
+                            Atime = Unspecified2Utc2Local(fileObj.LastAccessTime),
+                            Mtime = Unspecified2Utc2Local(fileObj.LastModifiedTime),
                             Gid = fileObj.Gid,
                             Uid = fileObj.Uid,
                             Perm = fileObj.Permissions.ToString()
@@ -497,7 +518,7 @@ namespace nsPuls3060
             }
             else
                 filename = "Unknown";
-            
+
             return filename;
         }
 

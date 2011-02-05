@@ -2,54 +2,9 @@
 from google.appengine.ext import db
 import logging
 from datetime import datetime, timedelta, date, tzinfo
-from util import lpad, rpad
+from util import lpad, rpad, utc, cet
 
-def first_sunday_on_or_after(dt):
-  days_to_go = 6 - dt.weekday()
-  if days_to_go:
-    dt += timedelta(days_to_go)
-  return dt
-
-class CET(tzinfo):
-  def __init__(self):
-    self.stdoffset = timedelta(hours=1)
-    self.reprname = 'Central European Time '
-    self.stdname = 'CET'
-    self.dstname = 'CST'
-
-  def __repr__(self):
-    return self.reprname
-
-  def tzname(self, dt):
-    if self.dst(dt):
-      return self.dstname
-    else:
-      return self.stdname
-
-  def utcoffset(self, dt):
-    return self.stdoffset + self.dst(dt)
-
-  def dst(self, dt):
-    if dt is None or dt.tzinfo is None:
-      # An exception may be sensible here, in one or both cases.
-      # It depends on how you want to treat them.  The default
-      # fromutc() implementation (called by the default astimezone()
-      # implementation) passes a datetime with dt.tzinfo is self.
-      return ZERO
-    assert dt.tzinfo is self
-
-    dststart = datetime(1, 3, 25, 2)
-    dstend = datetime(1, 10, 25, 1)
-    start = first_sunday_on_or_after(dststart.replace(year=dt.year))
-    end = first_sunday_on_or_after(dstend.replace(year=dt.year))
-
-    # Can't compare naive to aware objects, so strip the timezone from
-    # dt first.
-    if start <= dt.replace(tzinfo=None) < end:
-      return timedelta(hours=1)
-    else:
-      return timedelta(0)
-         
+       
 class UserGroup(db.Model): 
   GroupName = db.StringProperty()
   
@@ -123,9 +78,9 @@ class Pbsfile(db.Model):
     @property
     def Transmisionsdato(self):
       if self.Pbsfilesref.Transmittime:
-        return self.Pbsfilesref.Transmittime.date()
+        return self.Pbsfilesref.Transmittime.replace(tzinfo = utc).astimezone(cet)
       else:
-        return datetime.now(CET())
+        return datetime.now(cet)
     
     @property
     def SendData(self):
@@ -426,7 +381,7 @@ class Person(db.Model):
       m_b40 = False
       m_b50 = False
       
-      dt = datetime.now()
+      dt = datetime.now(cet).replace(tzinfo = None)
       pDate = dt.date()
       m_BetalingsFristiDageGamleMedlemmer = 31
       m_BetalingsFristiDageNyeMedlemmer = 61
@@ -471,7 +426,7 @@ class Person(db.Model):
                     return False
       else:  #Der findes ingen indmeldelse
         if bMedlemTilDato:
-          dt = datetime.now() - timedelta(days=(365 * 30))
+          dt = datetime.now(cet).replace(tzinfo = None) - timedelta(days=(365 * 30))
           return dt.date()
         else:
           return False
@@ -561,7 +516,7 @@ class MedlemsStatus():
         if self.udmeldelsesDato >= self.indmeldelsesDato: #Er udmeldelsen aktiv
           return self.udmeldelsesDato
     else:  #Der findes ingen indmeldelse
-      dt = datetime.now() - timedelta(days=(365 * 30)) 
+      dt = datetime.now(cet).replace(tzinfo = None) - timedelta(days=(365 * 30)) 
       return dt.date()
 
     #Find aktive betalingsrecord

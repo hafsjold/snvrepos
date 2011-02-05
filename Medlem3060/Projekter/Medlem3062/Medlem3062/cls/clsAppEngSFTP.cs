@@ -32,6 +32,7 @@ namespace nsPuls3060
         private string m_Outbound;
         private string m_Inbound;
 
+        private string m_SendqueueId;
         private string m_PbsfileId;
         private string m_TilPBSFilename;
         private DateTime m_Transmisionsdato;
@@ -51,6 +52,7 @@ namespace nsPuls3060
             m_Outbound = m_xdoc.Descendants("Sftp").Descendants("Outbound").First().Value;
             m_Inbound = m_xdoc.Descendants("Sftp").Descendants("Inbound").First().Value;
 
+            m_SendqueueId = m_xdoc.Descendants("Sendqueue").Descendants("Id").First().Value;
             m_PbsfileId = m_xdoc.Descendants("Pbsfile").Descendants("Id").First().Value;
             m_TilPBSFilename = m_xdoc.Descendants("Pbsfile").Descendants("TilPBSFilename").First().Value;
             m_Transmisionsdato = DateTime.Parse(m_xdoc.Descendants("Pbsfile").Descendants("Transmisionsdato").First().Value);
@@ -85,7 +87,7 @@ namespace nsPuls3060
             m_sftp.Disconnect();
         }
 
-        public XElement WriteTilSFtp()
+        public string WriteTilSFtp()
         {
             bool success;
             string TilPBSFilename = m_TilPBSFilename;
@@ -108,6 +110,7 @@ namespace nsPuls3060
             if (success != true) throw new Exception(m_sftp.LastErrorText);
 
             XElement xmlPbsfilesUpdate = new XElement("Pbsfiles");
+            xmlPbsfilesUpdate.Add(new XElement("SendqueueId", m_SendqueueId));
             xmlPbsfilesUpdate.Add(new XElement("PbsfileId", m_PbsfileId));
             xmlPbsfilesUpdate.Add(new XElement("Type", 8));
             xmlPbsfilesUpdate.Add(new XElement("Path", m_Inbound));
@@ -117,7 +120,7 @@ namespace nsPuls3060
             xmlPbsfilesUpdate.Add(new XElement("Mtime", DateTime.Now));
             xmlPbsfilesUpdate.Add(new XElement("Transmittime", m_Transmisionsdato));
 
-            return xmlPbsfilesUpdate;
+            return xmlPbsfilesUpdate.ToString();
         }
 
         public int ReadFraSFtp()
@@ -151,8 +154,8 @@ namespace nsPuls3060
                             Path = dirListing.OriginalPath,
                             Filename = fileObj.Filename,
                             Size = (int)fileObj.Size32,
-                            Atime = fileObj.LastAccessTime,
-                            Mtime = fileObj.LastModifiedTime,
+                            Atime = Unspecified2Utc2Local(fileObj.LastAccessTime),
+                            Mtime = Unspecified2Utc2Local(fileObj.LastModifiedTime),
                             Gid = fileObj.Gid,
                             Uid = fileObj.Uid,
                             Perm = fileObj.Permissions.ToString()
@@ -242,6 +245,26 @@ namespace nsPuls3060
             return AntalFiler;
         }
 
+        public DateTime Unspecified2Utc2Local(DateTime dt)
+        {
+            if (dt.Kind == DateTimeKind.Unspecified)
+            {
+                DateTime dt2 = new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second, dt.Millisecond, DateTimeKind.Utc);
+                DateTime dt3 = TimeZoneInfo.ConvertTimeToUtc(dt2);
+                return dt3;
+            }
+            else
+                return dt;
+        }
+
+        public DateTime Unspecified2Local(DateTime dt)
+        {
+            if (dt.Kind == DateTimeKind.Unspecified)
+                return new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second, dt.Millisecond, DateTimeKind.Local);
+            else
+                return dt;
+        }
+        
         public void ReadDirFraSFtp()
         {
             string homedir = m_sftp.RealPath(".", "");
@@ -273,8 +296,8 @@ namespace nsPuls3060
                             Path = dirListing.OriginalPath,
                             Filename = fileObj.Filename,
                             Size = (int)fileObj.Size32,
-                            Atime = fileObj.LastAccessTime,
-                            Mtime = fileObj.LastModifiedTime,
+                            Atime = Unspecified2Utc2Local(fileObj.LastAccessTime),
+                            Mtime = Unspecified2Utc2Local(fileObj.LastModifiedTime),
                             Gid = fileObj.Gid,
                             Uid = fileObj.Uid,
                             Perm = fileObj.Permissions.ToString()

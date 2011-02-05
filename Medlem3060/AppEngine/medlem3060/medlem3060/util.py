@@ -15,12 +15,50 @@ import sha
 import time
 import logging
 import re
+from datetime import datetime, timedelta, date, tzinfo
 
 COOKIE_NAME = 'medlem3060_session'
 LOGIN_URL = '/login'
 PUBLIC_URL = ['/', '/login']
 
+class UTC(tzinfo):
+  """Implementation of the Central European Time timezone."""
+  def utcoffset(self, dt):
+    return timedelta(hours=0)
 
+  def dst(self, dt):
+    return timedelta(hours=0)
+
+  def tzname(self, dt):
+    return "UTC"
+utc = UTC()
+      
+class CET(tzinfo):
+  """Implementation of the Central European Time timezone."""
+  def utcoffset(self, dt):
+    return timedelta(hours=1) + self.dst(dt)
+
+  def _FirstSunday(self, dt):
+    """First Sunday on or after dt."""
+    return dt + timedelta(days=(6-dt.weekday()))
+
+  def dst(self, dt):
+    # 02 on the last Sunday in March
+    dst_start = self._FirstSunday(datetime(dt.year, 3, 25, 2))
+    # 01 on the last Sunday in October
+    dst_end = self._FirstSunday(datetime(dt.year, 10, 25, 1))
+
+    if dst_start <= dt.replace(tzinfo=None) < dst_end:
+      return timedelta(hours=1)
+    else:
+      return timedelta(hours=0)
+
+  def tzname(self, dt):
+    if self.dst(dt) == timedelta(hours=0):
+      return "CET"
+    else:
+      return "CEST" 
+cet = CET()
 
 
 def AuthUserGroupPath(path, usergroup, is_admin):

@@ -9,7 +9,8 @@ from google.appengine.api import memcache
 from django.utils import simplejson
 
 from xml.dom import minidom
-from datetime import datetime, date
+from datetime import datetime, timedelta, date, tzinfo
+
 import time
 
 import logging
@@ -19,7 +20,7 @@ import re
 import sys  
 
 from models import nextval, UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Tilpbs, Fak, Overforsel, Rykker, Pbsfiles, Pbsfile, Sendqueue, Frapbs, Bet, Betlin, Aftalelin, Indbetalingskort, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
-from util import TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
+from util import utc, cet,TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
 from menuusergroup import deleteMenuAndUserGroup, createMenuAndUserGroup
 from menu import MenuHandler, ListUserHandler, UserHandler
 from pbs601 import TestHandler, DatatilpbsHandler
@@ -881,7 +882,13 @@ class SyncConvertHandler(webapp.RequestHandler):
         return None
     elif attr_type == 'DateTimeProperty':
       try:
-        return datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S")
+        dt = datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S")
+        if strval[-6:] == '+01:00':
+          return dt.replace(tzinfo = cet)
+        elif strval[-6:] == '+00:00':
+          return dt.replace(tzinfo = utc)
+        else:          
+          return dt
       except:
         return None        
     elif attr_type == 'ReferenceProperty':
@@ -1182,7 +1189,8 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/sync/Medlem', SyncMedlemHandler),
                                        ('/sync/Medlog/.*', SyncMedlogHandler),
                                        ('/sync/Medlog', SyncMedlogHandler), 
-                                       ('/sync/datatilpbs', DatatilpbsHandler),                                       
+                                       ('/sync/datatilpbs', DatatilpbsHandler),   
+                                       ('/sync/datatilpbs/.*', DatatilpbsHandler),                                       
                                        ('/sync/.*', MenuHandler),
                                        ('/logoff', LogoffHandler),
                                        ('/teknik/createmenu', CreateMenu),

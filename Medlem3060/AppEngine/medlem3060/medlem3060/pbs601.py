@@ -4,10 +4,11 @@ from google.appengine.ext import db
 from google.appengine.ext.webapp import template
 
 from models import nextval, UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Pbsfiles, Pbsfile, Sendqueue, Tilpbs, Fak, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
-from util import lpad, rpad
+from util import lpad, rpad, utc, cet
 from datetime import datetime, date, timedelta
 import logging
 import os
+from xml.dom import minidom
 
 from clsInfotekst import clsInfotekstParam, clsInfotekst
   
@@ -49,14 +50,104 @@ class DatatilpbsHandler(webapp.RequestHandler):
       #sendqueue.Onhold = True
       sendqueue.put()
       sftp = db.Query(Sftp).filter('Navn =', 'Test').fetch(1)[0]  
-      
       template_values = {
+        'status': True,
         'sendqueue': sendqueue,
         'sftp': sftp,
         'pbsfile': pbsfile,
       }
-      path = os.path.join(os.path.dirname(__file__), 'templates/datatilpbs.xml')
-      self.response.out.write(template.render(path, template_values))   
+    else:
+      template_values = {
+        'status': False,
+      }
+    
+    path = os.path.join(os.path.dirname(__file__), 'templates/datatilpbs.xml')
+    self.response.out.write(template.render(path, template_values))
+    
+  
+  def post(self):
+    doc = minidom.parse(self.request.body_file)
+    tagName  = doc.documentElement.tagName
+    logging.info('tagName==>%s<=' % (tagName))
+    
+    if tagName == 'Pbsfiles':
+      try:
+        PbsfileId = doc.getElementsByTagName("PbsfileId")[0].childNodes[0].data
+      except:
+        PbsfileId = None
+      rootPbsfiles = db.Key.from_path('rootPbsfiles','root')
+      rec = Pbsfiles.get_or_insert('%s' % (PbsfileId), parent=rootPbsfiles)
+      try:
+        Type = int(doc.getElementsByTagName("Type")[0].childNodes[0].data)
+        rec.Type = Type
+      except:
+        pass
+      try:
+        Path = doc.getElementsByTagName("Path")[0].childNodes[0].data
+        rec.Path = Path
+      except:
+        pass      
+      try:
+        Filename = doc.getElementsByTagName("Filename")[0].childNodes[0].data
+        rec.Filename = Filename
+      except:
+        pass     
+      try:
+        Size = int(doc.getElementsByTagName("Size")[0].childNodes[0].data)
+        rec.Size = Size
+      except:
+        pass     
+      try:
+        strval = doc.getElementsByTagName("Atime")[0].childNodes[0].data
+        dt = datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S")
+        if strval[-6:] == '+01:00':
+          Atime = dt.replace(tzinfo = cet)
+        elif strval[-6:] == '+00:00':
+          Atime =  dt.replace(tzinfo = utc)
+        else:          
+          Atime =  dt
+        rec.Atime = Atime
+      except:
+        pass     
+      try:
+        strval = doc.getElementsByTagName("Mtime")[0].childNodes[0].data
+        dt = datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S")
+        if strval[-6:] == '+01:00':
+          Mtime = dt.replace(tzinfo = cet)
+        elif strval[-6:] == '+00:00':
+          Mtime =  dt.replace(tzinfo = utc)
+        else:          
+          Mtime =  dt
+        rec.Mtime = Mtime
+      except:
+        pass     
+      try:
+        strval = doc.getElementsByTagName("Transmittime")[0].childNodes[0].data
+        dt = datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S")
+        if strval[-6:] == '+01:00':
+          Transmittime = dt.replace(tzinfo = cet)
+        elif strval[-6:] == '+00:00':
+          Transmittime =  dt.replace(tzinfo = utc)
+        else:          
+          Transmittime =  dt
+        rec.Transmittime = Transmittime
+      except:
+        pass     
+      rec.put()
+      
+      try:
+        SendqueueId = doc.getElementsByTagName("SendqueueId")[0].childNodes[0].data
+      except:
+        SendqueueId = None
+      keySendqueue = db.Key.from_path('Sendqueue', '%s' % (SendqueueId))        
+      recSendqueue = Sendqueue.get(keySendqueue)      
+      recSendqueue.Send_to_pbs = True
+      recSendqueue.put()
+      
+      self.response.out.write('Status: 404')
+
+    self.response.out.write('Status: 400')
+
     
 class TestHandler(webapp.RequestHandler):
   def get(self):
@@ -98,7 +189,7 @@ class TestHandler(webapp.RequestHandler):
       f = Fak.get_or_insert('%s' % (fakid), parent=keyPerson)
       f.Id = fakid
       f.TilPbsref = keyTilpbs
-      dt = datetime.now() + timedelta(days=7)
+      dt = datetime.now(cet) + timedelta(days=7)
       f.Betalingsdato = dt.date()
       f.Nr = q.Nr
       f.Faknr = nextval('faknr')

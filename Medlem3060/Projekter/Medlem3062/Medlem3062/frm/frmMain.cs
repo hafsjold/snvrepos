@@ -133,24 +133,28 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
-
+            
             clsRest objRest = new clsRest();
-            string retur = objRest.HttpGet2("datatilpbs");
-            XDocument xmldata = XDocument.Parse(retur);
+            string strxmldata = objRest.HttpGet2("datatilpbs");
+            XDocument xmldata = XDocument.Parse(strxmldata);
+            string Status = xmldata.Descendants("Status").First().Value;
 
-            Guid id1 = clsSQLite.insertStoreXML("PBSTest", false, "testmedlem3060", xmldata.ToString());
+            if (Status == "True")
+            {
+                Guid id1 = clsSQLite.insertStoreXML("PBSTest", false, "testmedlem3060", strxmldata);
 
-            clsAppEngSFTP objAppEngSFTP = new clsAppEngSFTP(xmldata);
-            XElement xmlPbsfilesUpdate = objAppEngSFTP.WriteTilSFtp();
+                clsAppEngSFTP objAppEngSFTP = new clsAppEngSFTP(xmldata);
+                string strxmlPbsfilesUpdate = objAppEngSFTP.WriteTilSFtp();
+                strxmlPbsfilesUpdate = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + strxmlPbsfilesUpdate;
 
-            clsSQLite.updateStoreXML(id1, true);
 
-            Guid id2 = clsSQLite.insertStoreXML("testmedlem3060", false, "PBSTest", xmlPbsfilesUpdate.ToString());
+                clsSQLite.updateStoreXML(id1, true);
 
-            // ToDo: update App Eng Tables
+                Guid id2 = clsSQLite.insertStoreXML("testmedlem3060", false, "PBSTest", strxmlPbsfilesUpdate);
 
-            clsSQLite.updateStoreXML(id2, true);
-
+                strxmldata = objRest.HttpPost2("datatilpbs", strxmlPbsfilesUpdate);
+                clsSQLite.updateStoreXML(id2, true);
+            }
             /*
             dsMedlem objMedlem= new dsMedlem();
             objMedlem.filldsMedlem();
@@ -189,7 +193,7 @@ namespace nsPuls3060
             int antalMedlemNotInSyncPerson = MedlemNotInSyncPerson.Count();
 
             objMedlem.fillMedlog();
-
+            
             int cxd = 2;
             clsConvert objConvert = new clsConvert();
             objConvert.cvnPerson();

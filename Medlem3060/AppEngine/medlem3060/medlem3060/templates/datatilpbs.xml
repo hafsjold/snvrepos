@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?> 
 <Datatilpbs>
+  <Status>{{status}}</Status>
+{% if status %}
   <Sendqueue>
     <Id>{{sendqueue.Id}}</Id>
   </Sendqueue>
@@ -19,5 +21,6 @@
     <TilPBSFilename>{{pbsfile.TilPBSFilename}}</TilPBSFilename> 
     <Transmisionsdato>{{pbsfile.Transmisionsdato}}</Transmisionsdato> 
     <SendData>{{pbsfile.SendData|escape}}</SendData> 
-  </Pbsfile>
+  </Pbsfile> 
+{% endif %}   
 </Datatilpbs>
