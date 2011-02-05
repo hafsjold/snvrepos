@@ -4,27 +4,52 @@ import logging
 from datetime import datetime, timedelta, date, tzinfo
 from util import lpad, rpad
 
-class GMT1(tzinfo):
-    def __init__(self, dt):         # DST starts last Sunday in March
-        d = datetime(dt.year, 4, 1)   # ends last Sunday in October
-        self.dston = d - timedelta(days=d.weekday() + 1)
-        d = datetime(dt.year, 11, 1)
-        self.dstoff = d - timedelta(days=d.weekday() + 1)
-    def utcoffset(self, dt):
-        return timedelta(hours=1) + self.dst(dt)
-    def dst(self, dt):
-        if self.dston <=  dt.replace(tzinfo=None) < self.dstoff:
-            return timedelta(hours=1)
-        else:
-            return timedelta(0)
-    def tzname(self,dt):
-         return "GMT +1"
+def first_sunday_on_or_after(dt):
+  days_to_go = 6 - dt.weekday()
+  if days_to_go:
+    dt += timedelta(days_to_go)
+  return dt
+
+class CET(tzinfo):
+  def __init__(self):
+    self.stdoffset = timedelta(hours=1)
+    self.reprname = 'Central European Time '
+    self.stdname = 'CET'
+    self.dstname = 'CST'
+
+  def __repr__(self):
+    return self.reprname
+
+  def tzname(self, dt):
+    if self.dst(dt):
+      return self.dstname
+    else:
+      return self.stdname
+
+  def utcoffset(self, dt):
+    return self.stdoffset + self.dst(dt)
+
+  def dst(self, dt):
+    if dt is None or dt.tzinfo is None:
+      # An exception may be sensible here, in one or both cases.
+      # It depends on how you want to treat them.  The default
+      # fromutc() implementation (called by the default astimezone()
+      # implementation) passes a datetime with dt.tzinfo is self.
+      return ZERO
+    assert dt.tzinfo is self
+
+    dststart = datetime(1, 3, 25, 2)
+    dstend = datetime(1, 10, 25, 1)
+    start = first_sunday_on_or_after(dststart.replace(year=dt.year))
+    end = first_sunday_on_or_after(dstend.replace(year=dt.year))
+
+    # Can't compare naive to aware objects, so strip the timezone from
+    # dt first.
+    if start <= dt.replace(tzinfo=None) < end:
+      return timedelta(hours=1)
+    else:
+      return timedelta(0)
          
-def myNow():
-  gmt1 = GMT1(datetime.utcnow())
-  dt1 = datetime.now(gmt1)
-  return dt1.replace(tzinfo=None)
-  
 class UserGroup(db.Model): 
   GroupName = db.StringProperty()
   
@@ -100,7 +125,7 @@ class Pbsfile(db.Model):
       if self.Pbsfilesref.Transmittime:
         return self.Pbsfilesref.Transmittime.date()
       else:
-        return myNow()
+        return datetime.now(CET())
     
     @property
     def SendData(self):
