@@ -115,16 +115,31 @@ class Pbsfile(db.Model):
       recSendqueue.Pbsfileref = self
       recSendqueue.Onhold = False
       recSendqueue.put()
-      return Id  
+      return Id 
+    
+    def add_to_recievequeue(self):
+      Id = nextval('Recievequeueid')
+      recRecievequeue = Recievequeue.get_or_insert('%s' % Id)
+      recRecievequeue.Id = Id
+      recRecievequeue.Pbsfileref = self
+      recRecievequeue.Onhold = False
+      recRecievequeue.put()
+      return Id        
 
-      
 class Sendqueue(db.Model):
     #key = db.Key.from_path('Sendqueue', '%s' % (Id))
     Id = db.IntegerProperty()
     Pbsfileref = db.ReferenceProperty(Pbsfile, collection_name='listSendqueue')
     Send_to_pbs = db.BooleanProperty(default=False)
     Onhold = db.BooleanProperty(default=True)
-        
+
+class Recievequeue(db.Model):
+    #key = db.Key.from_path('Recievequeue', '%s' % (Id))
+    Id = db.IntegerProperty()
+    Pbsfileref = db.ReferenceProperty(Pbsfile, collection_name='listRecievequeue')
+    Recieved_from_pbs = db.BooleanProperty(default=False)
+    Onhold = db.BooleanProperty(default=True)
+    
 class Tilpbs(db.Model): 
     #key = db.Key.from_path('rootTilpbs','root', 'Tilpbs', '%s' % (Id))
     Id = db.IntegerProperty()
@@ -664,6 +679,7 @@ NrSeries= {
   ,'Menuid'            :['Menu','Id',200,9999]  
   ,'MenuMenuLinkid'    :['MenuMenuLink','Id',200,9999]  
   ,'Sendqueueid'       :['Sendqueue','Id',1,9999] 
+  ,'Recievequeueid'    :['Recievequeue','Id',1,9999] 
   ,'idlev'             :['idlev','idlev',0,99]    
 }
  

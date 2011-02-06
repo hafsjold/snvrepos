@@ -133,6 +133,7 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
+            string Name = Program.AppEngName;
             clsAppEngSFTP objAppEngSFTP = new clsAppEngSFTP();
             objAppEngSFTP.ReadFraSFtp();
             

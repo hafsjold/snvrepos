@@ -20,7 +20,7 @@ namespace nsPuls3060
     public class clsAppEngSFTP
     {
         private SFtp m_sftp;
-
+        
         private string m_SftpId;
         private string m_SftpNavn;
         private string m_Host;
@@ -40,19 +40,13 @@ namespace nsPuls3060
         public clsAppEngSFTP()
         {
             clsRest objRest = new clsRest();
-#if (DEBUG)
-            //string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "sftp/TestHD36");
-            string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "sftp/Test");
-            //string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "sftp/Produktion");
-#else
-            string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "sftp/Produktion");
-#endif
+            string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "sftp/" + Program.sftpName);
             XDocument xdoc = XDocument.Parse(strxmldata);
 
             string Status = xdoc.Descendants("Status").First().Value;
             if (Status != "True")
             {
-                throw new Exception("Getting sftp-data for clsAppEngSFTP failed.");
+                throw new Exception("Getting sftp-data for " + Program.AppEngName + " failed.");
             }
 
             m_SftpId = xdoc.Descendants("Id").First().Value;
@@ -97,7 +91,7 @@ namespace nsPuls3060
 
         public bool WriteTilSFtp(XDocument xdoc)
         {
-            Guid id1 = clsSQLite.insertStoreXML("PBSTest", false, "testmedlem3060", xdoc.ToString());
+            Guid id1 = clsSQLite.insertStoreXML(Program.sftpName, false, Program.AppEngName, xdoc.ToString());
 
             m_SendqueueId = xdoc.Descendants("Sendqueue").Descendants("Id").First().Value;
             m_PbsfileId = xdoc.Descendants("Pbsfile").Descendants("Id").First().Value;
@@ -139,7 +133,7 @@ namespace nsPuls3060
             xmlPbsfilesUpdate.Add(new XElement("Transmittime", m_Transmisionsdato));
             string strxmlPbsfilesUpdate = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xmlPbsfilesUpdate.ToString(); ;
 
-            Guid id2 = clsSQLite.insertStoreXML("testmedlem3060", false, "PBSTest", strxmlPbsfilesUpdate);
+            Guid id2 = clsSQLite.insertStoreXML(Program.AppEngName, false, Program.sftpName, strxmlPbsfilesUpdate);
 
             clsRest objRest = new clsRest();
             string strxmldata = objRest.HttpPost2(clsRest.urlBaseType.data, "tilpbs", strxmlPbsfilesUpdate);
@@ -242,7 +236,7 @@ namespace nsPuls3060
                     xmlPbsfilesAdd.Add(new XElement("Data", filecontens4));
                     string strxmlPbsfilesAdd = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xmlPbsfilesAdd.ToString();
 
-                    Guid id1 = clsSQLite.insertStoreXML("testmedlem3060", false, "PBSTest", strxmlPbsfilesAdd);
+                    Guid id1 = clsSQLite.insertStoreXML(Program.AppEngName, false, Program.sftpName, strxmlPbsfilesAdd);
                     
                     clsRest objRest = new clsRest();
                     string strxmldata = objRest.HttpPost2(clsRest.urlBaseType.data, "frapbs", strxmlPbsfilesAdd);

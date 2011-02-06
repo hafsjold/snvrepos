@@ -9,6 +9,21 @@ namespace nsPuls3060
 {
     static class Program
     {
+#if (DEBUG)
+        //private static string m_baseUrl = @"http://hd36:8080";
+        private static string m_baseUrl = @"http://localhost:8084";
+        //private static string m_baseUrl = @"http://testmedlem3060.appspot.com";
+#else
+        private static string m_baseUrl = @"http://medlem3060.appspot.com";
+#endif
+
+#if (DEBUG)
+        //private static string m_sftpName = "TestHD36";
+        private static string m_sftpName = "Test";
+        //private static string m_sftpName = "Produktion";
+#else
+        private static string m_sftpName = "Produktion";
+#endif
         private static string m_Smtphost;
         private static string m_Smtpport;
         private static string m_Smtpssl;
@@ -42,6 +57,35 @@ namespace nsPuls3060
         private static KarFakturastr_k m_KarFakturastr_k;
         private static KarFakturavarer_k m_KarFakturavarer_k;
 
+        public static string AppEngName
+        {
+            get
+            {
+                try
+                {
+                    string[] lines = Regex.Split(m_baseUrl, "//");
+                    return lines[1];
+                }
+                catch (Exception e)
+                {
+                    return m_baseUrl;
+                }
+            }
+        }
+        public static string baseUrl
+        {
+            get
+            {
+                return m_baseUrl;
+            }
+        }
+        public static string sftpName
+        {
+            get
+            {
+                return m_sftpName;
+            }
+        }
         public static string Smtphost
         {
             get

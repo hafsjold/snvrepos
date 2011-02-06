@@ -10,13 +10,6 @@ namespace nsPuls3060
 {
     public class clsRest
     {
-#if (DEBUG)        
-        //private string m_baseurl = @"http://hd36:8080";
-        private string m_baseurl = @"http://localhost:8084";
-        //private string m_baseurl = @"http://testmedlem3060.appspot.com";
-#else
-        private string m_baseurl = @"http://medlem3060.appspot.com";
-#endif
 
         public enum urlBaseType
         {
@@ -27,9 +20,9 @@ namespace nsPuls3060
         private string baseurl(urlBaseType part) 
         {
             if (part == urlBaseType.data)
-              return m_baseurl + "/data/";
+              return Program.baseUrl + "/data/";
             else
-              return m_baseurl + "/sync/";
+              return Program.baseUrl + "/sync/";
         }
 
         public string HttpGet2(urlBaseType part, string url)

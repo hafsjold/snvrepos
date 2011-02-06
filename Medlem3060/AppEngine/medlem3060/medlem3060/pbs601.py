@@ -3,7 +3,7 @@ from google.appengine.ext import webapp
 from google.appengine.ext import db 
 from google.appengine.ext.webapp import template
 
-from models import nextval, UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Pbsfiles, Pbsfile, Sendqueue, Tilpbs, Fak, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
+from models import nextval, UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Pbsfiles, Pbsfile, Sendqueue, Recievequeue, Tilpbs, Fak, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
 from util import lpad, rpad, utc, cet
 from datetime import datetime, date, timedelta
 import logging
@@ -159,8 +159,9 @@ class DatafrapbsHandler(webapp.RequestHandler):
       
       file_rec.Data = Dataval
       file_rec.put()
-      
-    template_values = {
+      file_rec.add_to_recievequeue()      
+
+      template_values = {
       'status': status,
     }
     path = os.path.join(os.path.dirname(__file__), 'templates/status.xml')
