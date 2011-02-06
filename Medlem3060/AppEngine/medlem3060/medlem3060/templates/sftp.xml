@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?> 
-<list>
-  {% if sftp_list %}
-    {% for sftp in sftp_list %}
-    <Sftp>
-      <Id>{{sftp.Id}}</Id> 
-      <Navn>{{sftp.Navn}}</Navn> 
-      <Host>{{sftp.Host}}</Host> 
-      <Port>{{sftp.Port}}</Port>
-      <User>{{sftp.User}}</User> 
-      <Outbound>{{sftp.Outbound}}</Outbound> 
-      <Inbound>{{sftp.Inbound}}</Inbound> 
-      <Pincode>{{sftp.Pincode}}</Pincode> 
-      <Certificate>{{sftp.Certificate}}</Certificate>
-    </Sftp>
-    {% endfor %}
-  {% endif %}    
-</list>
+<Sftp>
+  <Status>{{status}}</Status>
+  {% if status %}
+  <Id>{{sftp.Id}}</Id> 
+  <Navn>{{sftp.Navn}}</Navn> 
+  <Host>{{sftp.Host}}</Host> 
+  <Port>{{sftp.Port}}</Port>
+  <User>{{sftp.User}}</User> 
+  <Outbound>{{sftp.Outbound}}</Outbound> 
+  <Inbound>{{sftp.Inbound}}</Inbound> 
+  <Pincode>{{sftp.Pincode|escape}}</Pincode> 
+  <Certificate>{{sftp.Certificate|escape}}</Certificate>
+  {% endif %}  
+</Sftp>
+
+  

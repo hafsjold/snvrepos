@@ -5,18 +5,7 @@
   <Sendqueue>
     <Id>{{sendqueue.Id}}</Id>
   </Sendqueue>
-  <Sftp>
-    <Id>{{sftp.Id}}</Id> 
-    <Navn>{{sftp.Navn}}</Navn> 
-    <Host>{{sftp.Host}}</Host> 
-    <Port>{{sftp.Port}}</Port> 
-    <User>{{sftp.User}}</User> 
-    <Outbound>{{sftp.Outbound}}</Outbound> 
-    <Inbound>{{sftp.Inbound}}</Inbound> 
-    <Pincode>{{sftp.Pincode}}</Pincode> 
-    <Certificate>{{sftp.Certificate}}</Certificate> 
-  </Sftp>
-  <Pbsfile>
+   <Pbsfile>
     <Id>{{pbsfile.Id}}</Id> 
     <TilPBSFilename>{{pbsfile.TilPBSFilename}}</TilPBSFilename> 
     <Transmisionsdato>{{pbsfile.Transmisionsdato}}</Transmisionsdato> 

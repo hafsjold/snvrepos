@@ -23,7 +23,7 @@ from models import nextval, UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsf
 from util import utc, cet,TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
 from menuusergroup import deleteMenuAndUserGroup, createMenuAndUserGroup
 from menu import MenuHandler, ListUserHandler, UserHandler
-from pbs601 import TestHandler, DatatilpbsHandler
+from pbs601 import TestHandler, DatatilpbsHandler, DatafrapbsHandler, DatasftpHandler
 
 webapp.template.register_template_library('templatetags.medlem3060_extras')
 
@@ -1190,6 +1190,8 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/sync/Medlog/.*', SyncMedlogHandler),
                                        ('/sync/Medlog', SyncMedlogHandler), 
                                        ('/data/tilpbs', DatatilpbsHandler),   
+                                       ('/data/frapbs', DatafrapbsHandler),   
+                                       ('/data/sftp/.*', DatasftpHandler),   
                                        ('/sync/.*', MenuHandler),
                                        ('/logoff', LogoffHandler),
                                        ('/teknik/createmenu', CreateMenu),

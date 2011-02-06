@@ -8,6 +8,7 @@ from util import lpad, rpad, utc, cet
 from datetime import datetime, date, timedelta
 import logging
 import os
+import re
 from xml.dom import minidom
 
 from clsInfotekst import clsInfotekstParam, clsInfotekst
@@ -38,7 +39,134 @@ class clsRstdeb(object):
     self.Advistekst = None
     self.Belob = f.Advisbelob
     self.OcrString = None
+    
+    
+class DatasftpHandler(webapp.RequestHandler):
+  def get(self):
+    path = self.request.environ['PATH_INFO']
+    mo = re.match("/data/sftp/(.*)", path)
+    if mo:
+      if mo.groups()[0]:
+        Navn = mo.groups()[0]
+      else:
+        Navn =  None
+    else:
+      Navn =  None
+    logging.info('FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF Navn: %s' % (Navn))
+    
+    try:
+      template_values = {
+        'status': True,
+        'sftp': db.Query(Sftp).filter('Navn =', Navn).fetch(1)[0] ,
+      }
+    except:
+      template_values = {
+        'status': False,
+      }
+    
+    path = os.path.join(os.path.dirname(__file__), 'templates/sftp.xml')
+    self.response.out.write(template.render(path, template_values))
+    
+class DatafrapbsHandler(webapp.RequestHandler):
+  def post(self):
+    status = False
+    doc = minidom.parse(self.request.body_file)
+    tagName  = doc.documentElement.tagName
+    logging.info('tagName==>%s<=' % (tagName))
+    
+    if tagName == 'Pbsfiles':
+      try:
+        PbsfileId = doc.getElementsByTagName("PbsfileId")[0].childNodes[0].data
+      except:
+        PbsfileId = None
+      if PbsfileId == '*':
+        PbsfileId = nextval('Pbsfilesid')
+      rootPbsfiles = db.Key.from_path('rootPbsfiles','root')
+      rec = Pbsfiles.get_or_insert('%s' % (PbsfileId), parent=rootPbsfiles)
+      rec.Id = PbsfileId
+      try:
+        Type = int(doc.getElementsByTagName("Type")[0].childNodes[0].data)
+        rec.Type = Type
+      except:
+        pass
+      try:
+        Path = doc.getElementsByTagName("Path")[0].childNodes[0].data
+        rec.Path = Path
+      except:
+        pass      
+      try:
+        Filename = doc.getElementsByTagName("Filename")[0].childNodes[0].data
+        rec.Filename = Filename
+      except:
+        pass     
+      try:
+        Size = int(doc.getElementsByTagName("Size")[0].childNodes[0].data)
+        rec.Size = Size
+      except:
+        pass     
+      try:
+        strval = doc.getElementsByTagName("Atime")[0].childNodes[0].data
+        dt = datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S")
+        if strval[-6:] == '+01:00':
+          Atime = dt.replace(tzinfo = cet)
+        elif strval[-6:] == '+00:00':
+          Atime =  dt.replace(tzinfo = utc)
+        else:          
+          Atime =  dt
+        rec.Atime = Atime
+      except:
+        pass     
+      try:
+        strval = doc.getElementsByTagName("Mtime")[0].childNodes[0].data
+        dt = datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S")
+        if strval[-6:] == '+01:00':
+          Mtime = dt.replace(tzinfo = cet)
+        elif strval[-6:] == '+00:00':
+          Mtime =  dt.replace(tzinfo = utc)
+        else:          
+          Mtime =  dt
+        rec.Mtime = Mtime
+      except:
+        pass     
+      try:
+        strval = doc.getElementsByTagName("Transmittime")[0].childNodes[0].data
+        dt = datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S")
+        if strval[-6:] == '+01:00':
+          Transmittime = dt.replace(tzinfo = cet)
+        elif strval[-6:] == '+00:00':
+          Transmittime =  dt.replace(tzinfo = utc)
+        else:          
+          Transmittime =  dt
+        rec.Transmittime = Transmittime
+      except:
+        pass     
+      rec.put() 
 
+      rootPbsfile = db.Key.from_path('rootPbsfile','root')
+      file_rec = Pbsfile.get_or_insert('%s' % (PbsfileId), parent=rootPbsfile)
+      file_rec.Id = PbsfileId
+      logging.info('Debug 1')
+      file_rec.Pbsfilesref = rec.key()
+      logging.info('Debug 2')
+
+      try:
+        Dataval = doc.getElementsByTagName("Data")[0].childNodes[0].data
+        logging.info('Debug 3: %s' % (Dataval))      
+        status = True
+      except:
+        Dataval = None
+        logging.info('Debug 3: %s' % (Dataval)) 
+      
+      file_rec.Data = Dataval
+      file_rec.put()
+      
+    template_values = {
+      'status': status,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/status.xml')
+    self.response.out.write(template.render(path, template_values))
+    
+    
 class DatatilpbsHandler(webapp.RequestHandler):
   def get(self):
     qry = db.Query(Sendqueue).filter('Send_to_pbs =', False).filter('Onhold =', False)  
@@ -49,11 +177,9 @@ class DatatilpbsHandler(webapp.RequestHandler):
       pbsfile = sendqueue.Pbsfileref
       #sendqueue.Onhold = True
       sendqueue.put()
-      sftp = db.Query(Sftp).filter('Navn =', 'Test').fetch(1)[0]  
       template_values = {
         'status': True,
         'sendqueue': sendqueue,
-        'sftp': sftp,
         'pbsfile': pbsfile,
       }
     else:
@@ -66,6 +192,7 @@ class DatatilpbsHandler(webapp.RequestHandler):
     
   
   def post(self):
+    status = False
     doc = minidom.parse(self.request.body_file)
     tagName  = doc.documentElement.tagName
     logging.info('tagName==>%s<=' % (tagName))
@@ -143,10 +270,13 @@ class DatatilpbsHandler(webapp.RequestHandler):
       recSendqueue = Sendqueue.get(keySendqueue)      
       recSendqueue.Send_to_pbs = True
       recSendqueue.put()
-      
-      self.response.out.write('Status: 404')
+      status = True
 
-    self.response.out.write('Status: 400')
+    template_values = {
+      'status': status,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/status.xml')
+    self.response.out.write(template.render(path, template_values))
 
     
 class TestHandler(webapp.RequestHandler):

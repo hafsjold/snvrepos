@@ -20,8 +20,7 @@ namespace nsPuls3060
     public class clsAppEngSFTP
     {
         private SFtp m_sftp;
-        private Tblpbsfile m_rec_pbsfile;
-        private XDocument m_xdoc;
+
         private string m_SftpId;
         private string m_SftpNavn;
         private string m_Host;
@@ -38,25 +37,34 @@ namespace nsPuls3060
         private DateTime m_Transmisionsdato;
         private string m_SendData;
 
-        private clsAppEngSFTP() { }
-        public clsAppEngSFTP(XDocument xdoc)
+        public clsAppEngSFTP()
         {
-            m_xdoc = xdoc;
-            m_SftpId = m_xdoc.Descendants("Sftp").Descendants("Id").First().Value;
-            m_SftpNavn = m_xdoc.Descendants("Sftp").Descendants("Navn").First().Value;
-            m_Host = m_xdoc.Descendants("Sftp").Descendants("Host").First().Value;
-            m_Port = m_xdoc.Descendants("Sftp").Descendants("Port").First().Value;
-            m_Certificate = m_xdoc.Descendants("Sftp").Descendants("Certificate").First().Value;
-            m_Pincode = m_xdoc.Descendants("Sftp").Descendants("Pincode").First().Value;
-            m_User = m_xdoc.Descendants("Sftp").Descendants("User").First().Value;
-            m_Outbound = m_xdoc.Descendants("Sftp").Descendants("Outbound").First().Value;
-            m_Inbound = m_xdoc.Descendants("Sftp").Descendants("Inbound").First().Value;
+            clsRest objRest = new clsRest();
+#if (DEBUG)
+            //string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "sftp/TestHD36");
+            string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "sftp/Test");
+            //string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "sftp/Produktion");
+#else
+            string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "sftp/Produktion");
+#endif
+            XDocument xdoc = XDocument.Parse(strxmldata);
 
-            m_SendqueueId = m_xdoc.Descendants("Sendqueue").Descendants("Id").First().Value;
-            m_PbsfileId = m_xdoc.Descendants("Pbsfile").Descendants("Id").First().Value;
-            m_TilPBSFilename = m_xdoc.Descendants("Pbsfile").Descendants("TilPBSFilename").First().Value;
-            m_Transmisionsdato = DateTime.Parse(m_xdoc.Descendants("Pbsfile").Descendants("Transmisionsdato").First().Value);
-            m_SendData = m_xdoc.Descendants("Pbsfile").Descendants("SendData").First().Value;
+            string Status = xdoc.Descendants("Status").First().Value;
+            if (Status != "True")
+            {
+                throw new Exception("Getting sftp-data for clsAppEngSFTP failed.");
+            }
+
+            m_SftpId = xdoc.Descendants("Id").First().Value;
+            m_SftpNavn = xdoc.Descendants("Navn").First().Value;
+            m_Host = xdoc.Descendants("Host").First().Value;
+            m_Port = xdoc.Descendants("Port").First().Value;
+            m_Certificate = xdoc.Descendants("Certificate").First().Value;
+            m_Pincode = xdoc.Descendants("Pincode").First().Value;
+            m_User = xdoc.Descendants("User").First().Value;
+            m_Outbound = xdoc.Descendants("Outbound").First().Value;
+            m_Inbound = xdoc.Descendants("Inbound").First().Value;
+
 
             m_sftp = new SFtp();
             bool success = m_sftp.UnlockComponent("HAFSJOSSH_6pspJCMP1QnW");
@@ -87,8 +95,16 @@ namespace nsPuls3060
             m_sftp.Disconnect();
         }
 
-        public string WriteTilSFtp()
+        public bool WriteTilSFtp(XDocument xdoc)
         {
+            Guid id1 = clsSQLite.insertStoreXML("PBSTest", false, "testmedlem3060", xdoc.ToString());
+
+            m_SendqueueId = xdoc.Descendants("Sendqueue").Descendants("Id").First().Value;
+            m_PbsfileId = xdoc.Descendants("Pbsfile").Descendants("Id").First().Value;
+            m_TilPBSFilename = xdoc.Descendants("Pbsfile").Descendants("TilPBSFilename").First().Value;
+            m_Transmisionsdato = DateTime.Parse(xdoc.Descendants("Pbsfile").Descendants("Transmisionsdato").First().Value);
+            m_SendData = xdoc.Descendants("Pbsfile").Descendants("SendData").First().Value;
+
             bool success;
             string TilPBSFilename = m_TilPBSFilename;
             string TilPBSFile = m_SendData;
@@ -109,6 +125,8 @@ namespace nsPuls3060
             success = m_sftp.CloseHandle(handle);
             if (success != true) throw new Exception(m_sftp.LastErrorText);
 
+            clsSQLite.updateStoreXML(id1, true);
+
             XElement xmlPbsfilesUpdate = new XElement("Pbsfiles");
             xmlPbsfilesUpdate.Add(new XElement("SendqueueId", m_SendqueueId));
             xmlPbsfilesUpdate.Add(new XElement("PbsfileId", m_PbsfileId));
@@ -119,8 +137,23 @@ namespace nsPuls3060
             xmlPbsfilesUpdate.Add(new XElement("Atime", DateTime.Now));
             xmlPbsfilesUpdate.Add(new XElement("Mtime", DateTime.Now));
             xmlPbsfilesUpdate.Add(new XElement("Transmittime", m_Transmisionsdato));
+            string strxmlPbsfilesUpdate = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xmlPbsfilesUpdate.ToString(); ;
 
-            return xmlPbsfilesUpdate.ToString();
+            Guid id2 = clsSQLite.insertStoreXML("testmedlem3060", false, "PBSTest", strxmlPbsfilesUpdate);
+
+            clsRest objRest = new clsRest();
+            string strxmldata = objRest.HttpPost2(clsRest.urlBaseType.data, "tilpbs", strxmlPbsfilesUpdate);
+            XDocument xmldata = XDocument.Parse(strxmldata);
+            string Status = xmldata.Descendants("Status").First().Value;
+            if (Status == "True")
+            {
+                clsSQLite.updateStoreXML(id2, true);
+                return true;
+            }
+            else 
+            {
+                return false; 
+            }
         }
 
         public int ReadFraSFtp()
@@ -148,14 +181,15 @@ namespace nsPuls3060
                     fileObj = dirListing.GetFileObject(i);
                     if (!fileObj.IsDirectory)
                     {
+                        DateTime testLastAccessTime = fileObj.LastAccessTime;
                         recPbsnetdir rec = new recPbsnetdir
                         {
                             Type = 8,
                             Path = dirListing.OriginalPath,
                             Filename = fileObj.Filename,
                             Size = (int)fileObj.Size32,
-                            Atime = Unspecified2Utc2Local(fileObj.LastAccessTime),
-                            Mtime = Unspecified2Utc2Local(fileObj.LastModifiedTime),
+                            Atime = Unspecified2Utc(fileObj.LastAccessTime),
+                            Mtime = Unspecified2Utc(fileObj.LastModifiedTime),
                             Gid = fileObj.Gid,
                             Uid = fileObj.Uid,
                             Perm = fileObj.Permissions.ToString()
@@ -177,21 +211,6 @@ namespace nsPuls3060
             {
                 foreach (var rec_pbsnetdir in leftqry_pbsnetdir)
                 {
-                    Tblpbsfiles m_rec_pbsfiles = new Tblpbsfiles
-                    {
-                        Type = rec_pbsnetdir.Type,
-                        Path = rec_pbsnetdir.Path,
-                        Filename = rec_pbsnetdir.Filename,
-                        Size = rec_pbsnetdir.Size,
-                        Atime = rec_pbsnetdir.Atime,
-                        Mtime = rec_pbsnetdir.Mtime,
-                        Perm = rec_pbsnetdir.Perm,
-                        Uid = rec_pbsnetdir.Uid,
-                        Gid = rec_pbsnetdir.Gid
-                    };
-                    Program.dbData3060.Tblpbsfiles.InsertOnSubmit(m_rec_pbsfiles);
-
-                    //***********************************************************************
                     //  Open a file on the server:
                     string fullpath = rec_pbsnetdir.Path + "/" + rec_pbsnetdir.Filename;
                     string filehandle = m_sftp.OpenFile(fullpath, "readOnly", "openExisting");
@@ -211,47 +230,42 @@ namespace nsPuls3060
                     string filecontens3 = filecontens2.TrimEnd('\r');
                     string filecontens4 = filecontens3.TrimEnd('\n');
 
-                    string[] lines = filecontens4.Split('\n');
-                    string ln = null;
-                    int seqnr = 0;
-                    string ln0_6;
-                    for (int idx = 0; idx < lines.Count(); idx++)
-                    {
-                        ln = lines[idx].TrimEnd('\r');
-                        try { ln0_6 = ln.Substring(0, 6); }
-                        catch { ln0_6 = ""; }
-                        if (((seqnr == 0) && !(ln0_6 == "PBCNET")) || (seqnr > 0)) { seqnr++; }
-                        if (ln.Length > 0)
-                        {
-                            m_rec_pbsfile = new Tblpbsfile
-                            {
-                                Seqnr = seqnr,
-                                Data = ln
-                            };
-                            m_rec_pbsfiles.Tblpbsfile.Add(m_rec_pbsfile);
-                        }
-                    }
+                    XElement xmlPbsfilesAdd = new XElement("Pbsfiles");
+                    xmlPbsfilesAdd.Add(new XElement("PbsfileId", '*'));
+                    xmlPbsfilesAdd.Add(new XElement("Type", rec_pbsnetdir.Type));
+                    xmlPbsfilesAdd.Add(new XElement("Path", rec_pbsnetdir.Path));
+                    xmlPbsfilesAdd.Add(new XElement("Filename", rec_pbsnetdir.Filename));
+                    xmlPbsfilesAdd.Add(new XElement("Size", rec_pbsnetdir.Size));
+                    xmlPbsfilesAdd.Add(new XElement("Atime", rec_pbsnetdir.Atime));
+                    xmlPbsfilesAdd.Add(new XElement("Mtime", rec_pbsnetdir.Mtime));
+                    xmlPbsfilesAdd.Add(new XElement("Transmittime", DateTime.Now));
+                    xmlPbsfilesAdd.Add(new XElement("Data", filecontens4));
+                    string strxmlPbsfilesAdd = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xmlPbsfilesAdd.ToString();
 
-                    m_rec_pbsfiles.Transmittime = DateTime.Now;
-                    Program.dbData3060.SubmitChanges();
+                    Guid id1 = clsSQLite.insertStoreXML("testmedlem3060", false, "PBSTest", strxmlPbsfilesAdd);
+                    
+                    clsRest objRest = new clsRest();
+                    string strxmldata = objRest.HttpPost2(clsRest.urlBaseType.data, "frapbs", strxmlPbsfilesAdd);
+                    XDocument xmldata = XDocument.Parse(strxmldata);
+                    string Status = xmldata.Descendants("Status").First().Value;
+                    if (Status == "True")
+                    {
+                        clsSQLite.updateStoreXML(id1, true);
+                    }
 
                     //  Close the file.
                     success = m_sftp.CloseHandle(filehandle);
                     if (success != true) throw new Exception(m_sftp.LastErrorText);
-                    //***********************************************************************************
                 }
             }
-            Program.dbData3060.SubmitChanges();
             return AntalFiler;
         }
 
-        public DateTime Unspecified2Utc2Local(DateTime dt)
+        public DateTime Unspecified2Utc(DateTime dt)
         {
             if (dt.Kind == DateTimeKind.Unspecified)
             {
-                DateTime dt2 = new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second, dt.Millisecond, DateTimeKind.Utc);
-                DateTime dt3 = TimeZoneInfo.ConvertTimeToUtc(dt2);
-                return dt3;
+                return new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second, dt.Millisecond, DateTimeKind.Utc);
             }
             else
                 return dt;
@@ -264,7 +278,7 @@ namespace nsPuls3060
             else
                 return dt;
         }
-        
+
         public void ReadDirFraSFtp()
         {
             string homedir = m_sftp.RealPath(".", "");
@@ -296,8 +310,8 @@ namespace nsPuls3060
                             Path = dirListing.OriginalPath,
                             Filename = fileObj.Filename,
                             Size = (int)fileObj.Size32,
-                            Atime = Unspecified2Utc2Local(fileObj.LastAccessTime),
-                            Mtime = Unspecified2Utc2Local(fileObj.LastModifiedTime),
+                            Atime = Unspecified2Utc(fileObj.LastAccessTime),
+                            Mtime = Unspecified2Utc(fileObj.LastModifiedTime),
                             Gid = fileObj.Gid,
                             Uid = fileObj.Uid,
                             Perm = fileObj.Permissions.ToString()

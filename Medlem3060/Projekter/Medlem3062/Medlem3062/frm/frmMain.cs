@@ -133,28 +133,20 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
+            clsAppEngSFTP objAppEngSFTP = new clsAppEngSFTP();
+            objAppEngSFTP.ReadFraSFtp();
             
+            /*
             clsRest objRest = new clsRest();
             string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "tilpbs");
             XDocument xmldata = XDocument.Parse(strxmldata);
             string Status = xmldata.Descendants("Status").First().Value;
-
             if (Status == "True")
             {
-                Guid id1 = clsSQLite.insertStoreXML("PBSTest", false, "testmedlem3060", strxmldata);
-
-                clsAppEngSFTP objAppEngSFTP = new clsAppEngSFTP(xmldata);
-                string strxmlPbsfilesUpdate = objAppEngSFTP.WriteTilSFtp();
-                strxmlPbsfilesUpdate = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + strxmlPbsfilesUpdate;
-
-
-                clsSQLite.updateStoreXML(id1, true);
-
-                Guid id2 = clsSQLite.insertStoreXML("testmedlem3060", false, "PBSTest", strxmlPbsfilesUpdate);
-
-                strxmldata = objRest.HttpPost2(clsRest.urlBaseType.data, "tilpbs", strxmlPbsfilesUpdate);
-                clsSQLite.updateStoreXML(id2, true);
+                clsAppEngSFTP objAppEngSFTP = new clsAppEngSFTP();
+                objAppEngSFTP.WriteTilSFtp(xmldata);
             }
+            */
             /*
             dsMedlem objMedlem= new dsMedlem();
             objMedlem.filldsMedlem();
