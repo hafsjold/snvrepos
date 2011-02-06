@@ -11,15 +11,30 @@ namespace nsPuls3060
     public class clsRest
     {
 #if (DEBUG)        
-        //private string m_baseurl = @"http://hd36:8080/sync/";
-        private string m_baseurl = @"http://localhost:8084/sync/";
-        //private string m_baseurl = @"http://testmedlem3060.appspot.com/sync/";
+        //private string m_baseurl = @"http://hd36:8080";
+        private string m_baseurl = @"http://localhost:8084";
+        //private string m_baseurl = @"http://testmedlem3060.appspot.com";
 #else
-        private string m_baseurl = @"http://medlem3060.appspot.com/sync/";
+        private string m_baseurl = @"http://medlem3060.appspot.com";
 #endif
-        public string HttpGet2(string url)
+
+        public enum urlBaseType
         {
-            string fullurl = m_baseurl + url;
+            sync = 0,
+            data = 1,
+        }
+
+        private string baseurl(urlBaseType part) 
+        {
+            if (part == urlBaseType.data)
+              return m_baseurl + "/data/";
+            else
+              return m_baseurl + "/sync/";
+        }
+
+        public string HttpGet2(urlBaseType part, string url)
+        {
+            string fullurl = baseurl(part) + url;
             HttpWebRequest Request = (HttpWebRequest)WebRequest.Create(fullurl);
             SignRequest(ref Request);
 
@@ -47,9 +62,9 @@ namespace nsPuls3060
 
         }
 
-        public string HttpPut2(string url, string XMLData)
+        public string HttpPut2(urlBaseType part,string url, string XMLData)
         {
-            string fullurl = m_baseurl + url;
+            string fullurl = baseurl(part) + url;
             HttpWebRequest Request = (HttpWebRequest)WebRequest.Create(fullurl);
             Request.Method = "PUT";
             Request.ContentType = "application/atom+xml";
@@ -86,9 +101,9 @@ namespace nsPuls3060
 
         }
 
-        public string HttpPost2(string url, string XMLData)
+        public string HttpPost2(urlBaseType part, string url, string XMLData)
         {
-            string fullurl = m_baseurl + url;
+            string fullurl = baseurl(part) + url;
             HttpWebRequest Request = (HttpWebRequest)WebRequest.Create(fullurl);
             Request.Method = "POST";
             Request.ContentType = "application/atom+xml";
@@ -122,9 +137,9 @@ namespace nsPuls3060
             }
         }
 
-        public string HttpDelete2(string url)
+        public string HttpDelete2(urlBaseType part, string url)
         {
-            string fullurl = m_baseurl + url;
+            string fullurl = baseurl(part) + url;
             HttpWebRequest Request = (HttpWebRequest)WebRequest.Create(fullurl);
             Request.Method = "DELETE";
             SignRequest(ref Request);

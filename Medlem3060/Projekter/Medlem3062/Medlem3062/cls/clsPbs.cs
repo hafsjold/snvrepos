@@ -367,7 +367,7 @@ namespace nsPuls3060
         public static int nextval(string nrserienavn)
         {
             clsRest objRest = new clsRest();
-            string strNextnr = objRest.HttpGet2("NrSerie/" + nrserienavn);
+            string strNextnr = objRest.HttpGet2(clsRest.urlBaseType.sync, "NrSerie/" + nrserienavn);
             try
             {
                 return int.Parse(strNextnr);

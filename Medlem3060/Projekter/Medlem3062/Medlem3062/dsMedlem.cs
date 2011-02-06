@@ -172,7 +172,7 @@ namespace nsPuls3060
         public void fillPerson()
         {
             clsRest objRest = new clsRest();
-            string retur = objRest.HttpGet2("Medlem");
+            string retur = objRest.HttpGet2(clsRest.urlBaseType.sync,"Medlem");
             XDocument xdoc = XDocument.Parse(retur);
             var list = from person in xdoc.Descendants("Person") select person;
             int antal = list.Count();
@@ -252,13 +252,13 @@ namespace nsPuls3060
                         xml.Add(new XElement("FodtDato", ((DateTime)p.FodtDato).ToString("yyyy-MM-dd")));
                         xml.Add(new XElement("Bank", p.Bank));
                         strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
-                        retur = objRest.HttpPost2("Medlem", strxml);
+                        retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Medlem", strxml);
                         p.AcceptChanges();
                         break;
 
                     case DataRowState.Deleted:
                         objRest = new clsRest();
-                        retur = objRest.HttpDelete2("Medlem/" + p.Nr);
+                        retur = objRest.HttpDelete2(clsRest.urlBaseType.sync, "Medlem/" + p.Nr);
                         p.AcceptChanges();
                         break;
 
@@ -276,7 +276,7 @@ namespace nsPuls3060
                         xml.Add(new XElement("FodtDato", ((DateTime)p.FodtDato).ToString("yyyy-MM-dd")));
                         xml.Add(new XElement("Bank", p.Bank));
                         strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
-                        retur = objRest.HttpPost2("Medlem", strxml); 
+                        retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Medlem", strxml); 
                         p.AcceptChanges();
                         break;
                 }
@@ -286,7 +286,7 @@ namespace nsPuls3060
         public void fillMedlog()
         {
             clsRest objRest = new clsRest();
-            string retur = objRest.HttpGet2("Medlog");
+            string retur = objRest.HttpGet2(clsRest.urlBaseType.sync, "Medlog");
             XDocument xdoc = XDocument.Parse(retur);
             var list = from medlog in xdoc.Descendants("Medlog") select medlog;
             int antal = list.Count();
@@ -334,7 +334,7 @@ namespace nsPuls3060
                         xml.Add(new XElement("Akt_id", l.Akt_id));
                         xml.Add(new XElement("Akt_dato", l.Akt_dato));
                         strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
-                        retur = objRest.HttpPost2("Medlog", strxml);
+                        retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Medlog", strxml);
                         l.AcceptChanges();
                         break;
                 }
