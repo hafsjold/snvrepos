@@ -130,6 +130,7 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
+            clsSQLite.createDB();
             //clsSFTP objSFTP = new clsSFTP();
             //objSFTP.ReWriteTilSFtp(986);
             //clsRest objRest = new clsRest();

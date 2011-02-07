@@ -11,6 +11,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.Win32;
 using Microsoft.VisualBasic;
+using System.Xml.Linq;
 
 
 namespace nsPuls3060
@@ -116,6 +117,20 @@ namespace nsPuls3060
                         if (i++ > 0) TilPBSFile += "\r\n";
                         TilPBSFile += rec_pbsfile.Data;
                     }
+                    //*******************************************************************************************
+                    XElement xmlPbsfilesAdd = new XElement("Pbsfiles");
+                    xmlPbsfilesAdd.Add(new XElement("PbsfileId", rec_selecfiles.pbsfilesid));
+                    xmlPbsfilesAdd.Add(new XElement("Type", 8));
+                    xmlPbsfilesAdd.Add(new XElement("Path", m_rec_sftp.Inbound));
+                    xmlPbsfilesAdd.Add(new XElement("Filename", TilPBSFilename));
+                    xmlPbsfilesAdd.Add(new XElement("Size", TilPBSFile.Length));
+                    xmlPbsfilesAdd.Add(new XElement("Atime", DateTime.Now));
+                    xmlPbsfilesAdd.Add(new XElement("Mtime", DateTime.Now));
+                    xmlPbsfilesAdd.Add(new XElement("Transmittime", DateTime.Now));
+                    xmlPbsfilesAdd.Add(new XElement("Data", TilPBSFile));
+                    string strxmlPbsfilesAdd = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xmlPbsfilesAdd.ToString();
+                    Guid id1 = clsSQLite.insertStoreXML(m_rec_sftp.Navn, false, "LocalDatabase", strxmlPbsfilesAdd);
+                    //*******************************************************************************************
                     char[] c_TilPBSFile = TilPBSFile.ToCharArray();
                     byte[] b_TilPBSFile = System.Text.Encoding.GetEncoding("windows-1252").GetBytes(c_TilPBSFile);
                     FilesSize = b_TilPBSFile.Length;
@@ -140,6 +155,8 @@ namespace nsPuls3060
                     m_rec_pbsfiles.Mtime = DateTime.Now;
                     m_rec_pbsfiles.Transmittime = DateTime.Now;
                     Program.dbData3060.SubmitChanges();
+                    clsSQLite.updateStoreXML(id1, true);
+
                 }
             }
             return TilPBSFilename;
@@ -260,8 +277,8 @@ namespace nsPuls3060
                             Path = dirListing.OriginalPath,
                             Filename = fileObj.Filename,
                             Size = (int)fileObj.Size32,
-                            Atime = fileObj.LastAccessTime,
-                            Mtime = fileObj.LastModifiedTime,
+                            Atime = Unspecified2Utc(fileObj.LastAccessTime),
+                            Mtime = Unspecified2Utc(fileObj.LastModifiedTime),
                             Gid = fileObj.Gid,
                             Uid = fileObj.Uid,
                             Perm = fileObj.Permissions.ToString()
@@ -321,6 +338,19 @@ namespace nsPuls3060
                     string filecontens2 = filecontens.TrimEnd('\n');
                     string filecontens3 = filecontens2.TrimEnd('\r');
                     string filecontens4 = filecontens3.TrimEnd('\n');
+                    
+                    XElement xmlPbsfilesAdd = new XElement("Pbsfiles");
+                    xmlPbsfilesAdd.Add(new XElement("PbsfileId", '*'));
+                    xmlPbsfilesAdd.Add(new XElement("Type", rec_pbsnetdir.Type));
+                    xmlPbsfilesAdd.Add(new XElement("Path", rec_pbsnetdir.Path));
+                    xmlPbsfilesAdd.Add(new XElement("Filename", rec_pbsnetdir.Filename));
+                    xmlPbsfilesAdd.Add(new XElement("Size", rec_pbsnetdir.Size));
+                    xmlPbsfilesAdd.Add(new XElement("Atime", rec_pbsnetdir.Atime));
+                    xmlPbsfilesAdd.Add(new XElement("Mtime", rec_pbsnetdir.Mtime));
+                    xmlPbsfilesAdd.Add(new XElement("Transmittime", DateTime.Now));
+                    xmlPbsfilesAdd.Add(new XElement("Data", filecontens4));
+                    string strxmlPbsfilesAdd = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xmlPbsfilesAdd.ToString();
+                    Guid id1 = clsSQLite.insertStoreXML("LocalDatabase", false, m_rec_sftp.Navn, strxmlPbsfilesAdd);
 
                     string[] lines = filecontens4.Split('\n');
                     string ln = null;
@@ -348,11 +378,30 @@ namespace nsPuls3060
                     //  Close the file.
                     success = m_sftp.CloseHandle(filehandle);
                     if (success != true) throw new Exception(m_sftp.LastErrorText);
+                    clsSQLite.updateStoreXML(id1, true);
                     //***********************************************************************************
                 }
             }
             Program.dbData3060.SubmitChanges();
             return AntalFiler;
+        }
+
+        public DateTime Unspecified2Utc(DateTime dt)
+        {
+            if (dt.Kind == DateTimeKind.Unspecified)
+            {
+                return new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second, dt.Millisecond, DateTimeKind.Utc);
+            }
+            else
+                return dt;
+        }
+
+        public DateTime Unspecified2Local(DateTime dt)
+        {
+            if (dt.Kind == DateTimeKind.Unspecified)
+                return new DateTime(dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, dt.Second, dt.Millisecond, DateTimeKind.Local);
+            else
+                return dt;
         }
 
         public void ReadDirFraSFtp()
@@ -386,8 +435,8 @@ namespace nsPuls3060
                             Path = dirListing.OriginalPath,
                             Filename = fileObj.Filename,
                             Size = (int)fileObj.Size32,
-                            Atime = fileObj.LastAccessTime,
-                            Mtime = fileObj.LastModifiedTime,
+                            Atime = Unspecified2Utc(fileObj.LastAccessTime),
+                            Mtime = Unspecified2Utc(fileObj.LastModifiedTime),
                             Gid = fileObj.Gid,
                             Uid = fileObj.Uid,
                             Perm = fileObj.Permissions.ToString()
