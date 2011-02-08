@@ -11,6 +11,12 @@ import os
 import re
 from xml.dom import minidom
 
+class Pbs602Error(Exception):
+  def __init__(self, value):
+    self.value = value
+  def __str__(self):
+    return repr(self.value)
+
 class pbs602Handler(webapp.RequestHandler):
   def get(self):
     antal = self.betalinger_fra_pbs()
@@ -31,11 +37,11 @@ class pbs602Handler(webapp.RequestHandler):
     wpbsfilesid = None
     wleveranceid = None
     AntalFiler = 0
-    crlf = "\n"
+    crlf = '\n'
     #  wpbsfilesid = 3450  #'--test test
-    #  leverancetype = "0602"
-    #  sektion = "0211"
-    #  rec = "BS0420398564402360000000100000000001231312345678910120310000000012755000000125                         3112031112030000000012755"
+    #  leverancetype = '0602'
+    #  sektion = '0211'
+    #  rec = 'BS0420398564402360000000100000000001231312345678910120310000000012755000000125                         3112031112030000000012755'
 
     qry = db.Query(Recievequeue).filter('Recieved_from_pbs =',False).filter('Onhold =',False)
     for q in qry:
@@ -47,227 +53,349 @@ class pbs602Handler(webapp.RequestHandler):
         if datalines[-1][:6] == 'PBCNET':
           del datalines[-1]
       #Test for BS 0602 record
-      if datalines[0][16:20] == "0602" and datalines[0][:2] == "BS":
+      if datalines[0][16:20] == '0602' and datalines[0][:2] == 'BS':
         rstpbsfiles = {
           'Id': q.Pbsfileref.Pbsfilesref.Id,
           'Path': q.Pbsfileref.Pbsfilesref.Path,
           'Filename': q.Pbsfileref.Pbsfilesref.Filename,
           'leverancetype': datalines[0][16:20],
           'delsystem': datalines[0][:2],}
-""" 
+ 
         try:
-        {
           wpbsfilesid = rstpbsfiles.Id
           AntalFiler += 1
-          leverancetype = ""
-          sektion = ""
-          leverancespecifikation = ""
+          leverancetype = ''
+          sektion = ''
+          leverancespecifikation = ''
           Seqnr = 0
           for rec in datalines:
             Seqnr += 1
             # -- Bestem Leverance Type
-            if (Seqnr == 1)
-            {
-              if ((rec.Substring(0, 5) == "BS002"))
-              {
+            if Seqnr == 1:
+              if rec[0:5] == 'BS002':
                 # -- Leverance Start
-                leverancetype = rec.Substring(16, 4)
-                leverancespecifikation = rec.Substring(20, 10)
-                leverancedannelsesdato = DateTime.Parse("20" + rec.Substring(53, 2) + "-" + rec.Substring(51, 2) + "-" + rec.Substring(49, 2))
-              }
-              else
-              {
-                throw new Exception("241 - Første record er ikke en Leverance start record")
-              }
-              if ((leverancetype == "0602"))
-              {
+                leverancetype = rec[16:20]
+                leverancespecifikation = rec[20:30]
+                leverancedannelsesdato = DateTime.Parse('20' + rec[53:55] + '-' + rec[51:53] + '-' + rec[49:51])
+              else:
+                raise Pbs602Error('241 - Første record er ikke en Leverance start record')
+
+              if leverancetype == '0602':
                 # -- Leverance 0602
-                var antal = (from c in Program.dbData3060.Tblfrapbs
-                           where c.Leverancespecifikation == leverancespecifikation
-                           select c).Count()
-                if (antal > 0) { throw new Exception("242 - Leverance med pbsfilesid: " + wpbsfilesid + " og leverancespecifikation: " + leverancespecifikation + " er indlæst tidligere") }
-q
-                wleveranceid = clsPbs.nextval("leveranceid")
-                m_rec_pbsforsendelse = new Tblpbsforsendelse
-                {
-                  Delsystem = "BS1",
-                  Leverancetype = "0602",
-                  Oprettetaf = "Bet",
-                  Oprettet = DateTime.Now,
-                  Leveranceid = wleveranceid
-                }
-                Program.dbData3060.Tblpbsforsendelse.InsertOnSubmit(m_rec_pbsforsendelse)
+                qry = Frapbs.all().filter('Leverancespecifikation =', leverancespecifikation)
+                antal = qry.count()
+                if antal > 0:
+                  raise Pbs602Error('242 - Leverance med pbsfilesid: ' + wpbsfilesid + ' og leverancespecifikation: ' + leverancespecifikation + ' er indlæst tidligere')
 
-                m_rec_frapbs = new Tblfrapbs
-                {
-                  Delsystem = "BS1",
-                  Leverancetype = "0602",
-                  Leverancespecifikation = leverancespecifikation,
-                  Leverancedannelsesdato = leverancedannelsesdato,
-                  Udtrukket = DateTime.Now
-                }
-                m_rec_pbsforsendelse.Tblfrapbs.Add(m_rec_frapbs)
-
-                m_rec_pbsfiles = (from c in Program.dbData3060.Tblpbsfiles
-                                where c.Id == rstpbsfiles.Id
-                                select c).First()
-                m_rec_pbsforsendelse.Tblpbsfiles.Add(m_rec_pbsfiles)
-              }
-            }
-            if ((leverancetype == "0602"))
-            {
+                wleveranceid = nextval('leveranceid')
+                pbsforsendelseid  = nextval('Pbsforsendelseid')    
+                root_pbsforsendelse = db.Key.from_path('rootPbsforsendelse','root')    
+                rec_pbsforsendelse = Pbsforsendelse.get_or_insert('%s' % (pbsforsendelseid), parent=root_pbsforsendelse)
+                rec_pbsforsendelse.Id = pbsforsendelseid
+                rec_pbsforsendelse.Delsystem = 'BS1'
+                rec_pbsforsendelse.Leverancetype = '0602'
+                rec_pbsforsendelse.Oprettetaf = 'Bet'
+                rec_pbsforsendelse.Oprettet = datetime.now()
+                rec_pbsforsendelse.Leveranceid = wleveranceid
+                rec_pbsforsendelse.put()
+                
+                frapbsid  = nextval('Frapbsid') 
+                root_frapbs = db.Key.from_path('rootFrapbs','root')    
+                self.rec_frapbs = Frapbs.get_or_insert('%s' % (frapbsid), parent=root_frapbs)
+                self.rec_frapbs.Id = frapbsid
+                self.rec_frapbs.Delsystem = 'BS1'
+                self.rec_frapbs.Leverancetype = '0602'
+                self.rec_frapbs.LBilagdato = None
+                self.rec_frapbs.Pbsforsendelseref = rec_pbsforsendelse.key()
+                self.rec_frapbs.Leverancespecifikation = leverancespecifikation
+                self.rec_frapbs.Leverancedannelsesdato = leverancedannelsesdato
+                self.rec_frapbs.Udtrukket = DateTime.Now                
+                self.rec_frapbs.put()
+                
+                rec_pbsfiles = get(q.Pbsfileref)
+                rec_pbsfiles.Pbsforsendelseref = rec_pbsforsendelse.key()
+                rec_pbsfiles.put()
+              
+              
+            if leverancetype == '0602':
               # -- Leverance 0602*********
               # -- Bestem Sektions Type
-              if ((sektion == ""))
-              {
-                if ((rec.Substring(0, 5) == "BS012"))
-                {
+              if sektion == '':
+                if rec[0:5] == 'BS012':
                   # -- Sektion Start
-                  sektion = rec.Substring(13, 4)
-                }
-                else if (!((rec.Substring(0, 5) == "BS992") || (rec.Substring(0, 5) == "BS002")))
-                {
-                  throw new Exception("243 - Første record er ikke en Sektions start record")
-                }
-              }
-              if ((rec.Substring(0, 5) == "BS002"))
-              {
+                  sektion = rec[13:17]
+                elif not rec[0:5] == 'BS992' or rec[0:5] == 'BS002':
+                  raise Pbs602Error('243 - Første record er ikke en Sektions start record')
+              
+              if rec[0:5] == 'BS002':
                 # -- Leverance start
                 # -- BEHANDL: Leverance start
-              }
-              else if ((sektion == "0211"))
-              {
+                pass
+              elif sektion == '0211':
                 # -- Sektion 0211 Betalingsinformation
-                if (((rec.Substring(0, 5) == "BS012")
-                          && (rec.Substring(13, 4) == "0211")))
-                {
+                if rec[0:5] == 'BS012' and rec[13:17] == '0211':
                   # -- Sektion Start
                   # -- BEHANDL: Sektion Start
-                }
-                else if (((rec.Substring(0, 5) == "BS042")
-                          && (rec.Substring(13, 4) == "0236")))
-                {
-                  # -- Gennemf?rt automatisk betaling
-                  # -- BEHANDL: Gennemf?rt automatisk betaling
-                  read042(sektion, "0236", rec)
-                }
-                else if (((rec.Substring(0, 5) == "BS042")
-                          && (rec.Substring(13, 4) == "0237")))
-                {
+                  pass
+                elif rec[0:5] == 'BS042' and rec[13:17] == '0236':
+                  # -- Gennemført automatisk betaling
+                  # -- BEHANDL: Gennemført automatisk betaling
+                  read042(self, sektion, '0236', rec)
+                elif rec[0:5] == 'BS042' and rec[13:17] == '0237':
                   # -- Afvist betaling
                   # -- BEHANDL: Afvist betaling
-                  read042(sektion, "0237", rec)
-                }
-                else if (((rec.Substring(0, 5) == "BS042")
-                          && (rec.Substring(13, 4) == "0238")))
-                {
+                  read042(self, sektion, '0237', rec)
+                elif rec[0:5] == 'BS042' and rec[13:17] == '0238':
                   # -- Afmeldt betaling
                   # -- BEHANDL: Afmeldt betaling
-                  read042(sektion, "0238", rec)
-                }
-                else if (((rec.Substring(0, 5) == "BS042")
-                          && (rec.Substring(13, 4) == "0239")))
-                {
+                  read042(self, sektion, '0238', rec)
+                elif rec[0:5] == 'BS042' and rec[13:17] == '0239':
                   # -- Tilbagef?rt betaling
                   # -- BEHANDL: Tilbagef?rt betaling
-                  read042(sektion, "0239", rec)
-                }
-                else if (((rec.Substring(0, 5) == "BS092")
-                          && (rec.Substring(13, 4) == "0211")))
-                {
+                  read042(self, sektion, '0239', rec)
+                elif rec[0:5] == 'BS092' and rec[13:17] == '0211':
                   # -- Sektion Slut
                   # -- BEHANDL: Sektion Slut
-                  sektion = ""
-                }
-                else
-                {
-                  throw new Exception("244 - Rec# " + Seqnr + " ukendt: " + rec)
-                }
-              }
-              else if ((sektion == "0215"))
-              {
+                  sektion = ''
+                else:
+                  raise Pbs602Error('244 - Rec# ' + Seqnr + ' ukendt: ' + rec)
+
+              elif sektion == '0215':
                 # -- Sektion 0215 FI-Betalingsinformation
-                if (((rec.Substring(0, 5) == "BS012")
-                          && (rec.Substring(13, 4) == "0215")))
-                {
+                if rec[0:5] == 'BS012' and rec[13:17] == '0215':
                   # -- Sektion Start
                   # -- BEHANDL: Sektion Start
-                }
-                else if (((rec.Substring(0, 5) == "BS042")
-                          && (rec.Substring(13, 4) == "0297")))
-                {
-                  # -- Gennemf?rt FI-betaling
-                  # -- BEHANDL: Gennemf?rt FI-betaling
-                  read042(sektion, "0297", rec)
-                }
-                else if (((rec.Substring(0, 5) == "BS042")
-                          && (rec.Substring(13, 4) == "0299")))
-                {
-                  # -- Tilbagef?rt FI-betaling
+                  pass
+                elif rec[0:5] == 'BS042' and rec[13:17] == '0297':
+                  # -- Gennemført FI-betaling
+                  # -- BEHANDL: Gennemført FI-betaling
+                  read042(self, sektion, '0297', rec)
+                elif rec[0:5] == 'BS042' and rec[13:17] == '0299':
+                  # -- Tilbageført FI-betaling
                   # -- BEHANDL: Tilbagef?rt FI-betaling
-                  read042(sektion, "0299", rec)
-                }
-                else if (((rec.Substring(0, 5) == "BS092")
-                          && (rec.Substring(13, 4) == "0215")))
-                {
+                  read042(self, sektion, '0299', rec)
+                elif rec[0:5] == 'BS092' and rec[13:17] == '0215':
                   # -- Sektion Slut
                   # -- BEHANDL: Sektion Slut
-                  sektion = ""
-                }
-                else
-                {
-                  throw new Exception("245 - Rec# " + Seqnr + " ukendt: " + rec)
-                }
-              }
-              else if ((rec.Substring(0, 5) == "BS992"))
-              {
+                  sektion = ''
+                else:
+                  raise Pbs602Error('245 - Rec# ' + Seqnr + ' ukendt: ' + rec)
+
+              elif rec[0:5] == 'BS992':
                 # -- Leverance slut
                 # -- BEHANDL: Leverance Slut
-                leverancetype = ""
-              }
-              else
-              {
-                throw new Exception("246 - Rec# " + Seqnr + " ukendt: " + rec)
-              }
-            }
-            else
-            {
-              throw new Exception("247 - Rec# " + Seqnr + " ukendt: " + rec)
-            }
-          }  # slut rstpbsfile
+                leverancetype = ''
+              else:
+                raise Pbs602Error('246 - Rec# ' + Seqnr + ' ukendt: ' + rec)
+
+            else:
+              raise Pbs602Error('247 - Rec# ' + Seqnr + ' ukendt: ' + rec)
+            
+          # slut rstpbsfile
 
           # -- Update indbetalingsbelob
-          foreach (Tblbet rec_bet in m_rec_frapbs.Tblbet)
-          {
-            var SumIndbetalingsbelob = (
-              from c in rec_bet.Tblbetlin
-              group c by c.Betid into g
-              select new { Betid = g.Key, SumIndbetalingsbelob = g.Sum(c => c.Indbetalingsbelob) }
-              ).First().SumIndbetalingsbelob
+          for rec_bet in self.rec_frapbs.listBet:
+            SumIndbetalingsbelob = 0.0
+            for rec_betlin in rec_bet.listBetlin:
+              SumIndbetalingsbelob += rec_betlin.Indbetalingsbelob
+              rec_bet.Indbetalingsbelob = SumIndbetalingsbelob
+              rec_bet.put()
 
-            rec_bet.Indbetalingsbelob = SumIndbetalingsbelob
-          }
+          
+        except  Exception, e:
+          msg = '%s%' % e
+          if msg[:3] == '241':   
+            #241 - Første record er ikke en Leverance start record
+            AntalFiler -= 1
+          elif msg[:3] == '242':   
+            #242 - Leverancen er indlæst tidligere
+            AntalFiler -= 1
+          elif msg[:3] == '243':   
+            #243 - Første record er ikke en Sektions start record
+            AntalFiler -= 1
+          elif msg[:3] == '244':   
+            #244 - Record ukendt
+            AntalFiler -= 1
+          elif msg[:3] == '245':   
+            #245 - Record ukendt
+            AntalFiler -= 1
+          elif msg[:3] == '246':   
+            #246 - Record ukendt
+            AntalFiler -= 1
+          elif msg[:3] == '247':   
+            #247 - Record ukendt
+            AntalFiler -= 1
+          else: 
+            throw
 
-        }
-        catch (Exception e)
-        {
-          switch (e.Message.Substring(0, 3))
-          {
-            case "241":   #241 - Første record er ikke en Leverance start record
-            case "242":   #242 - Leverancen er indlæst tidligere
-            case "243":   #243 - Første record er ikke en Sektions start record
-            case "244":   #244 - Record ukendt
-            case "245":   #245 - Record ukendt
-            case "246":   #246 - Record ukendt
-            case "247":   #247 - Record ukendt
-              AntalFiler--
-              break
+    # slut rstpbsfiles
+    return AntalFiler
+    
+  def read042(self, sektion, transkode, rec):
+    fortegn = None
+    belobmun = None
+    belob = None
 
-            default:
-              throw
-          }
-"""  
-#        }
-#    }  # slut rstpbsfiles
-#    Program.dbData3060.SubmitChanges()
-#    return AntalFiler
+    # --  pbssektionnr
+    # --  pbstranskode
+    # - transkode 0236, gennemført automatisk betaling
+    # - transkode 0237, afvist automatisk betaling
+    # - transkode 0238, afmeldt automatisk betaling
+    # - transkode 0239, tilbageført betaling
+    
+    # --  debitorkonto
+    if sektion == '0211':
+      Nr = int.Parse(rec[33:40] )
+      Debitorkonto = rec[25:40] 
+    elif sektion == '0215':
+      Nr = int.Parse(rec[37:44] )
+      Debitorkonto = rec[29:44] 
+    else:
+      Nr = None
+      Debitorkonto = None    
+    
+    betlinid  = nextval('Betlinid') 
+    root_betlin = db.Key.from_path('Persons','root','Person','%s' % (Nr))    
+    rec_betlin = Betlin.get_or_insert('%s' % (betlinid), parent=root_betlin)
+    rec_betlin.Id = betlinid
+    rec_betlin.Pbssektionnr = sektion
+    rec_betlin.Pbstranskode = transkode   
+    rec_betlin.Nr = Nr   
+    rec_betlin.Debitorkonto = Debitorkonto   
+
+    # --  aftalenr
+    if sektion == '0211':
+      rec_betlin.Aftalenr = int.Parse(rec[40:49] )
+    else:
+      rec_betlin.Aftalenr = None
+
+    # --  pbskortart
+    if sektion == '0215':
+      rec_betlin.Pbskortart = rec[44:46] 
+    else:
+      rec_betlin.Pbskortart = None
+
+    # --  pbsgebyrbelob
+    if sektion == '0215':
+      fortegn = int.Parse(rec[46:46+1] )
+      belob = int.Parse(rec[47:47+5] )
+      belobmun = (belob / 100)
+      if fortegn == 0:
+        rec_betlin.Pbsgebyrbelob = 0
+      elif fortegn == 1:
+        rec_betlin.Pbsgebyrbelob = belobmun
+      else:
+        rec_betlin.Pbsgebyrbelob = 0
+    else:
+      rec_betlin.Pbsgebyrbelob = 0
+
+    # --  betalingsdato
+    if sektion == '0211':
+      if rec[49:55]  != '000000':
+        rec_betlin.Betalingsdato = datetime.strptime('20' + rec[53:55]  + '-' + rec[51:53]  + '-' + rec[49:51], "%Y-%m-%d")
+      else:
+        rec_betlin.Betalingsdato = None
+    elif sektion == '0215':
+      if rec[52:58]  != '000000':
+        rec_betlin.Betalingsdato = datetime.strptime('20' + rec[56:58] + '-' + rec[54:56] + '-' + rec[52:54], "%Y-%m-%d")
+      else:
+        rec_betlin.Betalingsdato = None
+    else:
+      rec_betlin.Betalingsdato = None
+
+    # --  belob
+    if sektion == '0211':
+      fortegn = int.Parse(rec[55:56] )
+      belob = int.Parse(rec[56:69] )
+      belobmun = (belob / 100)
+      if fortegn == 0:
+        rec_betlin.Belob = 0
+      elif fortegn == 1:
+        rec_betlin.Belob = belobmun
+      elif fortegn == 2:
+        rec_betlin.Belob = (belobmun * -1)
+      else:
+        rec_betlin.Belob = None
+    elif sektion == '0215':
+      fortegn = int.Parse(rec[58:59] )
+      belob = int.Parse(rec[59:72] )
+      belobmun = (belob / 100)
+      if fortegn == 0:
+        rec_betlin.Belob = 0
+      elif fortegn == 1:
+        rec_betlin.Belob = belobmun
+      else:
+        rec_betlin.Belob = None
+    else:
+      rec_betlin.Belob = None
+
+    # --  faknr
+    if sektion == '0211':
+      rec_betlin.Faknr = int.Parse('0' + rec[69:78] .Trim())
+    elif sektion == '0215':
+      rec_betlin.Faknr = int.Parse('0' + rec[72:81] .Trim())
+    else:
+      rec_betlin.Faknr = None
+
+    # --  pbsarkivnr
+    if sektion == '0215':
+      rec_betlin.Pbsarkivnr = rec[81:103] 
+    else:
+      rec_betlin.Pbsarkivnr = None
+
+    # --  indbetalingsdato
+    if rec[103:109]  != '000000':
+      rec_betlin.Indbetalingsdato = datetime.strptime('20' + rec[107:109] + '-' + rec[105:107] + '-' + rec[103:105], "%Y-%m-%d")
+    else:
+      rec_betlin.Indbetalingsdato = None
+
+    # --  bogforingsdato
+    if rec[109:115]  != '000000':
+      rec_betlin.Bogforingsdato = datetime.strptime('20' + rec[113:115] + '-' + rec[111:113]  + '-' + rec[109:111], "%Y-%m-%d")
+    else:
+      rec_betlin.Bogforingsdato = None
+
+    # --  indbetalingsbelob
+    if sektion == '0211':
+      fortegn = int.Parse(rec[55:56] )
+      belob = int.Parse(rec[115:128] )
+      belobmun = (belob / 100)
+      if fortegn == 0:
+        rec_betlin.Indbetalingsbelob = 0
+      elif fortegn == 1:
+        rec_betlin.Indbetalingsbelob = belobmun
+      elif fortegn == 2:
+        rec_betlin.Indbetalingsbelob = (belobmun * -1)
+      else:
+        rec_betlin.Indbetalingsbelob = None
+    elif sektion == '0215':
+      fortegn = int.Parse(rec[58:59] )
+      belob = int.Parse(rec[115:128] )
+      belobmun = (belob / 100)
+      if fortegn == 0:
+        rec_betlin.Indbetalingsbelob = 0
+      elif fortegn == 1:
+        rec_betlin.Indbetalingsbelob = belobmun
+      else:
+        rec_betlin.Indbetalingsbelob = None
+    else:
+      rec_betlin.Indbetalingsbelob = None
+
+
+    # Find or Create tblbet record
+    try:
+      rec_bet = Bet.all().filter('Pbssektionnr=', sektion).filter('Transkode=', transkode).filter('Bogforingsdato=', rec_betlin.Bogforingsdato).fetch(1)[0]
+    except:
+      betid  = nextval('Betid') 
+      root_bet = db.Key.from_path('rootBet','root')    
+      rec_bet = Bet.get_or_insert('%s' % (betid), parent=root_bet)
+      rec_bet.Id = betid
+      rec_bet.Pbssektionnr = sektion
+      rec_bet.Transkode = transkode
+      rec_bet.Bogforingsdato = rec_betlin.Bogforingsdato
+      rec_bet.Frapbsref = self.rec_frapbs.key()
+      rec_bet.put()
+
+    # Add tblbetlin
+    rec_betlin.Betref = rec_bet.key()
+    rec_bet.put()
