@@ -280,7 +280,7 @@ class DatatilpbsHandler(webapp.RequestHandler):
     self.response.out.write(template.render(path, template_values))
 
     
-class TestHandler(webapp.RequestHandler):
+class pbs601Handler(webapp.RequestHandler):
   def get(self):
     (lobnr, antal) = self.kontingent_fakturer_bs1()
     if lobnr:

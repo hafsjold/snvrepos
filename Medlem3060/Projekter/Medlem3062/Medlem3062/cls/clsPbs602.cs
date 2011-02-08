@@ -617,7 +617,7 @@ namespace nsPuls3060
             }
 
 
-            // Find or Create tblber record
+            // Find or Create tblbet record
             try
             {
                 m_rec_bet = (from c in m_rec_frapbs.Tblbet
