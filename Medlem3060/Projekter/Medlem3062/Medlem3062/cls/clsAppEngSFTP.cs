@@ -46,7 +46,7 @@ namespace nsPuls3060
             string Status = xdoc.Descendants("Status").First().Value;
             if (Status != "True")
             {
-                throw new Exception("Getting sftp-data for " + Program.AppEngName + " failed.");
+                throw new Exception("Getting sftp-data for " + Program.sftpName + " failed.");
             }
 
             m_SftpId = xdoc.Descendants("Id").First().Value;

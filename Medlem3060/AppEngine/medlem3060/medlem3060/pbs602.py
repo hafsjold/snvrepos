@@ -1,9 +1,9 @@
-﻿# coding=utf-8 
+# coding=utf-8 
 from google.appengine.ext import webapp
 from google.appengine.ext import db 
 from google.appengine.ext.webapp import template
 
-from models import nextval, UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Pbsfiles, Pbsfile, Sendqueue, Recievequeue, Tilpbs, Fak, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
+from models import nextval, UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Pbsfiles, Pbsfile, Sendqueue, Recievequeue, Tilpbs, Fak, Frapbs, Bet, Betlin, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
 from util import lpad, rpad, utc, cet
 from datetime import datetime, date, timedelta
 import logging
@@ -54,15 +54,8 @@ class pbs602Handler(webapp.RequestHandler):
           del datalines[-1]
       #Test for BS 0602 record
       if datalines[0][16:20] == '0602' and datalines[0][:2] == 'BS':
-        rstpbsfiles = {
-          'Id': q.Pbsfileref.Pbsfilesref.Id,
-          'Path': q.Pbsfileref.Pbsfilesref.Path,
-          'Filename': q.Pbsfileref.Pbsfilesref.Filename,
-          'leverancetype': datalines[0][16:20],
-          'delsystem': datalines[0][:2],}
- 
         try:
-          wpbsfilesid = rstpbsfiles.Id
+          wpbsfilesid = q.Pbsfileref.Pbsfilesref.Id
           AntalFiler += 1
           leverancetype = ''
           sektion = ''
@@ -76,16 +69,17 @@ class pbs602Handler(webapp.RequestHandler):
                 # -- Leverance Start
                 leverancetype = rec[16:20]
                 leverancespecifikation = rec[20:30]
-                leverancedannelsesdato = DateTime.Parse('20' + rec[53:55] + '-' + rec[51:53] + '-' + rec[49:51])
+                leverancedannelsesdato = datetime.strptime('20' + rec[53:55] + '-' + rec[51:53] + '-' + rec[49:51], "%Y-%m-%d")
               else:
-                raise Pbs602Error('241 - Første record er ikke en Leverance start record')
+                raise Pbs602Error('241 - Foerste record er ikke en Leverance start record')
 
               if leverancetype == '0602':
                 # -- Leverance 0602
                 qry = Frapbs.all().filter('Leverancespecifikation =', leverancespecifikation)
                 antal = qry.count()
                 if antal > 0:
-                  raise Pbs602Error('242 - Leverance med pbsfilesid: ' + wpbsfilesid + ' og leverancespecifikation: ' + leverancespecifikation + ' er indlæst tidligere')
+                  pass
+                  #raise Pbs602Error('242 - Leverance med pbsfilesid: %s og leverancespecifikation: %s er indlaest tidligere' % (wpbsfilesid, leverancespecifikation))
 
                 wleveranceid = nextval('leveranceid')
                 pbsforsendelseid  = nextval('Pbsforsendelseid')    
@@ -109,10 +103,10 @@ class pbs602Handler(webapp.RequestHandler):
                 self.rec_frapbs.Pbsforsendelseref = rec_pbsforsendelse.key()
                 self.rec_frapbs.Leverancespecifikation = leverancespecifikation
                 self.rec_frapbs.Leverancedannelsesdato = leverancedannelsesdato
-                self.rec_frapbs.Udtrukket = DateTime.Now                
+                self.rec_frapbs.Udtrukket = datetime.now()                
                 self.rec_frapbs.put()
                 
-                rec_pbsfiles = get(q.Pbsfileref)
+                rec_pbsfiles = db.get(q.Pbsfileref.key())
                 rec_pbsfiles.Pbsforsendelseref = rec_pbsforsendelse.key()
                 rec_pbsfiles.put()
               
@@ -124,8 +118,8 @@ class pbs602Handler(webapp.RequestHandler):
                 if rec[0:5] == 'BS012':
                   # -- Sektion Start
                   sektion = rec[13:17]
-                elif not rec[0:5] == 'BS992' or rec[0:5] == 'BS002':
-                  raise Pbs602Error('243 - Første record er ikke en Sektions start record')
+                elif not (rec[0:5] == 'BS992' or rec[0:5] == 'BS002'):
+                  raise Pbs602Error('243 - Foerste record er ikke en Sektions start record')
               
               if rec[0:5] == 'BS002':
                 # -- Leverance start
@@ -140,19 +134,19 @@ class pbs602Handler(webapp.RequestHandler):
                 elif rec[0:5] == 'BS042' and rec[13:17] == '0236':
                   # -- Gennemført automatisk betaling
                   # -- BEHANDL: Gennemført automatisk betaling
-                  read042(self, sektion, '0236', rec)
+                  self.read042(sektion, '0236', rec)
                 elif rec[0:5] == 'BS042' and rec[13:17] == '0237':
                   # -- Afvist betaling
                   # -- BEHANDL: Afvist betaling
-                  read042(self, sektion, '0237', rec)
+                  self.read042(sektion, '0237', rec)
                 elif rec[0:5] == 'BS042' and rec[13:17] == '0238':
                   # -- Afmeldt betaling
                   # -- BEHANDL: Afmeldt betaling
-                  read042(self, sektion, '0238', rec)
+                  self.read042(sektion, '0238', rec)
                 elif rec[0:5] == 'BS042' and rec[13:17] == '0239':
                   # -- Tilbagef?rt betaling
                   # -- BEHANDL: Tilbagef?rt betaling
-                  read042(self, sektion, '0239', rec)
+                  self.read042(sektion, '0239', rec)
                 elif rec[0:5] == 'BS092' and rec[13:17] == '0211':
                   # -- Sektion Slut
                   # -- BEHANDL: Sektion Slut
@@ -169,11 +163,11 @@ class pbs602Handler(webapp.RequestHandler):
                 elif rec[0:5] == 'BS042' and rec[13:17] == '0297':
                   # -- Gennemført FI-betaling
                   # -- BEHANDL: Gennemført FI-betaling
-                  read042(self, sektion, '0297', rec)
+                  self.read042(sektion, '0297', rec)
                 elif rec[0:5] == 'BS042' and rec[13:17] == '0299':
                   # -- Tilbageført FI-betaling
                   # -- BEHANDL: Tilbagef?rt FI-betaling
-                  read042(self, sektion, '0299', rec)
+                  self.read042(sektion, '0299', rec)
                 elif rec[0:5] == 'BS092' and rec[13:17] == '0215':
                   # -- Sektion Slut
                   # -- BEHANDL: Sektion Slut
@@ -202,8 +196,8 @@ class pbs602Handler(webapp.RequestHandler):
               rec_bet.put()
 
           
-        except  Exception, e:
-          msg = '%s%' % e
+        except Pbs602Error, e:
+          msg = '%s' % e.value
           if msg[:3] == '241':   
             #241 - Første record er ikke en Leverance start record
             AntalFiler -= 1
@@ -226,7 +220,7 @@ class pbs602Handler(webapp.RequestHandler):
             #247 - Record ukendt
             AntalFiler -= 1
           else: 
-            throw
+            raise Pbs602Error(msg)
 
     # slut rstpbsfiles
     return AntalFiler
@@ -245,10 +239,10 @@ class pbs602Handler(webapp.RequestHandler):
     
     # --  debitorkonto
     if sektion == '0211':
-      Nr = int.Parse(rec[33:40] )
+      Nr = int(rec[33:40] )
       Debitorkonto = rec[25:40] 
     elif sektion == '0215':
-      Nr = int.Parse(rec[37:44] )
+      Nr = int(rec[37:44] )
       Debitorkonto = rec[29:44] 
     else:
       Nr = None
@@ -265,7 +259,7 @@ class pbs602Handler(webapp.RequestHandler):
 
     # --  aftalenr
     if sektion == '0211':
-      rec_betlin.Aftalenr = int.Parse(rec[40:49] )
+      rec_betlin.Aftalenr = int(rec[40:49] )
     else:
       rec_betlin.Aftalenr = None
 
@@ -277,27 +271,27 @@ class pbs602Handler(webapp.RequestHandler):
 
     # --  pbsgebyrbelob
     if sektion == '0215':
-      fortegn = int.Parse(rec[46:46+1] )
-      belob = int.Parse(rec[47:47+5] )
-      belobmun = (belob / 100)
+      fortegn = int(rec[46:46+1] )
+      belob = int(rec[47:47+5] )
+      belobmun = float(belob / 100)
       if fortegn == 0:
-        rec_betlin.Pbsgebyrbelob = 0
+        rec_betlin.Pbsgebyrbelob = float(0)
       elif fortegn == 1:
         rec_betlin.Pbsgebyrbelob = belobmun
       else:
-        rec_betlin.Pbsgebyrbelob = 0
+        rec_betlin.Pbsgebyrbelob = float(0)
     else:
-      rec_betlin.Pbsgebyrbelob = 0
+      rec_betlin.Pbsgebyrbelob = float(0)
 
     # --  betalingsdato
     if sektion == '0211':
       if rec[49:55]  != '000000':
-        rec_betlin.Betalingsdato = datetime.strptime('20' + rec[53:55]  + '-' + rec[51:53]  + '-' + rec[49:51], "%Y-%m-%d")
+        rec_betlin.Betalingsdato = datetime.strptime('20' + rec[53:55]  + '-' + rec[51:53]  + '-' + rec[49:51], "%Y-%m-%d").date()
       else:
         rec_betlin.Betalingsdato = None
     elif sektion == '0215':
       if rec[52:58]  != '000000':
-        rec_betlin.Betalingsdato = datetime.strptime('20' + rec[56:58] + '-' + rec[54:56] + '-' + rec[52:54], "%Y-%m-%d")
+        rec_betlin.Betalingsdato = datetime.strptime('20' + rec[56:58] + '-' + rec[54:56] + '-' + rec[52:54], "%Y-%m-%d").date()
       else:
         rec_betlin.Betalingsdato = None
     else:
@@ -305,11 +299,11 @@ class pbs602Handler(webapp.RequestHandler):
 
     # --  belob
     if sektion == '0211':
-      fortegn = int.Parse(rec[55:56] )
-      belob = int.Parse(rec[56:69] )
-      belobmun = (belob / 100)
+      fortegn = int(rec[55:56] )
+      belob = int(rec[56:69] )
+      belobmun = float(belob / 100)
       if fortegn == 0:
-        rec_betlin.Belob = 0
+        rec_betlin.Belob = float(0)
       elif fortegn == 1:
         rec_betlin.Belob = belobmun
       elif fortegn == 2:
@@ -317,11 +311,11 @@ class pbs602Handler(webapp.RequestHandler):
       else:
         rec_betlin.Belob = None
     elif sektion == '0215':
-      fortegn = int.Parse(rec[58:59] )
-      belob = int.Parse(rec[59:72] )
-      belobmun = (belob / 100)
+      fortegn = int(rec[58:59] )
+      belob = int(rec[59:72] )
+      belobmun = float(belob / 100)
       if fortegn == 0:
-        rec_betlin.Belob = 0
+        rec_betlin.Belob = float(0)
       elif fortegn == 1:
         rec_betlin.Belob = belobmun
       else:
@@ -331,9 +325,9 @@ class pbs602Handler(webapp.RequestHandler):
 
     # --  faknr
     if sektion == '0211':
-      rec_betlin.Faknr = int.Parse('0' + rec[69:78] .Trim())
+      rec_betlin.Faknr = int('0' + rec[69:78].strip())
     elif sektion == '0215':
-      rec_betlin.Faknr = int.Parse('0' + rec[72:81] .Trim())
+      rec_betlin.Faknr = int('0' + rec[72:81].strip())
     else:
       rec_betlin.Faknr = None
 
@@ -345,21 +339,21 @@ class pbs602Handler(webapp.RequestHandler):
 
     # --  indbetalingsdato
     if rec[103:109]  != '000000':
-      rec_betlin.Indbetalingsdato = datetime.strptime('20' + rec[107:109] + '-' + rec[105:107] + '-' + rec[103:105], "%Y-%m-%d")
+      rec_betlin.Indbetalingsdato = datetime.strptime('20' + rec[107:109] + '-' + rec[105:107] + '-' + rec[103:105], "%Y-%m-%d").date()
     else:
       rec_betlin.Indbetalingsdato = None
 
     # --  bogforingsdato
     if rec[109:115]  != '000000':
-      rec_betlin.Bogforingsdato = datetime.strptime('20' + rec[113:115] + '-' + rec[111:113]  + '-' + rec[109:111], "%Y-%m-%d")
+      rec_betlin.Bogforingsdato = datetime.strptime('20' + rec[113:115] + '-' + rec[111:113]  + '-' + rec[109:111], "%Y-%m-%d").date()
     else:
       rec_betlin.Bogforingsdato = None
 
     # --  indbetalingsbelob
     if sektion == '0211':
-      fortegn = int.Parse(rec[55:56] )
-      belob = int.Parse(rec[115:128] )
-      belobmun = (belob / 100)
+      fortegn = int(rec[55:56] )
+      belob = int(rec[115:128] )
+      belobmun = float(belob / 100)
       if fortegn == 0:
         rec_betlin.Indbetalingsbelob = 0
       elif fortegn == 1:
@@ -369,11 +363,11 @@ class pbs602Handler(webapp.RequestHandler):
       else:
         rec_betlin.Indbetalingsbelob = None
     elif sektion == '0215':
-      fortegn = int.Parse(rec[58:59] )
-      belob = int.Parse(rec[115:128] )
-      belobmun = (belob / 100)
+      fortegn = int(rec[58:59] )
+      belob = int(rec[115:128] )
+      belobmun = float(belob / 100)
       if fortegn == 0:
-        rec_betlin.Indbetalingsbelob = 0
+        rec_betlin.Indbetalingsbelob = float(0)
       elif fortegn == 1:
         rec_betlin.Indbetalingsbelob = belobmun
       else:

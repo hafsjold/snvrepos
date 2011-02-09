@@ -18,8 +18,8 @@ namespace nsPuls3060
 #endif
 
 #if (DEBUG)
-        //private static string m_sftpName = "TestHD36";
-        private static string m_sftpName = "Test";
+        private static string m_sftpName = "TestHD36";
+        //private static string m_sftpName = "Test";
         //private static string m_sftpName = "Produktion";
 #else
         private static string m_sftpName = "Produktion";
