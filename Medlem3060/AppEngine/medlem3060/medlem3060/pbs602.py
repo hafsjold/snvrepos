@@ -375,12 +375,11 @@ class pbs602Handler(webapp.RequestHandler):
 
 
     # Find or Create Bet record
-    rec_bet = None
     for wrec_bet in self.rec_frapbs.listBet:
       if wrec_bet.Pbssektionnr == sektion and wrec_bet.Transkode == transkode and wrec_bet.Bogforingsdato == rec_betlin.Bogforingsdato:
         rec_bet = wrec_bet
         break
-    if not rec_bet:
+    else:
       betid  = nextval('Betid') 
       root_bet = db.Key.from_path('rootBet','root')    
       rec_bet = Bet.get_or_insert('%s' % (betid), parent=root_bet)
