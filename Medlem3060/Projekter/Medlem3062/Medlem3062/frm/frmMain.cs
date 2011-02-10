@@ -185,7 +185,8 @@ namespace nsPuls3060
             int antalMedlemNotInSyncPerson = MedlemNotInSyncPerson.Count();
 
             objMedlem.fillMedlog();
-            
+            */
+            /*
             int cxd = 2;
             clsConvert objConvert = new clsConvert();
             objConvert.cvnPerson();
@@ -206,7 +207,7 @@ namespace nsPuls3060
             objConvert.cvnSysinfo();
             objConvert.cvnKreditor();
             */
-
+            /*
             //clsSFTP objSFTP = new clsSFTP();
             //objSFTP.ReWriteTilSFtp(986);
             //clsRest objRest = new clsRest();

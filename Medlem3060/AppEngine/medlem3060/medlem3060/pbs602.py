@@ -79,7 +79,7 @@ class pbs602Handler(webapp.RequestHandler):
                 antal = qry.count()
                 if antal > 0:
                   pass
-                  #raise Pbs602Error('242 - Leverance med pbsfilesid: %s og leverancespecifikation: %s er indlaest tidligere' % (wpbsfilesid, leverancespecifikation))
+                  raise Pbs602Error('242 - Leverance med pbsfilesid: %s og leverancespecifikation: %s er indlaest tidligere' % (wpbsfilesid, leverancespecifikation))
 
                 wleveranceid = nextval('leveranceid')
                 pbsforsendelseid  = nextval('Pbsforsendelseid')    
@@ -92,6 +92,9 @@ class pbs602Handler(webapp.RequestHandler):
                 rec_pbsforsendelse.Oprettet = datetime.now()
                 rec_pbsforsendelse.Leveranceid = wleveranceid
                 rec_pbsforsendelse.put()
+
+                q.Pbsfileref.Pbsfilesref.Pbsforsendelseref = rec_pbsforsendelse.key()
+                q.Pbsfileref.Pbsfilesref.put()
                 
                 frapbsid  = nextval('Frapbsid') 
                 root_frapbs = db.Key.from_path('rootFrapbs','root')    
@@ -105,12 +108,7 @@ class pbs602Handler(webapp.RequestHandler):
                 self.rec_frapbs.Leverancedannelsesdato = leverancedannelsesdato
                 self.rec_frapbs.Udtrukket = datetime.now()                
                 self.rec_frapbs.put()
-                
-                rec_pbsfiles = db.get(q.Pbsfileref.key())
-                rec_pbsfiles.Pbsforsendelseref = rec_pbsforsendelse.key()
-                rec_pbsfiles.put()
-              
-              
+
             if leverancetype == '0602':
               # -- Leverance 0602*********
               # -- Bestem Sektions Type
@@ -187,13 +185,13 @@ class pbs602Handler(webapp.RequestHandler):
             
           # slut rstpbsfile
 
-          # -- Update indbetalingsbelob
+          # -- Update indbetalingsbelob in Bet
           for rec_bet in self.rec_frapbs.listBet:
             SumIndbetalingsbelob = 0.0
             for rec_betlin in rec_bet.listBetlin:
               SumIndbetalingsbelob += rec_betlin.Indbetalingsbelob
-              rec_bet.Indbetalingsbelob = SumIndbetalingsbelob
-              rec_bet.put()
+            rec_bet.Indbetalingsbelob = SumIndbetalingsbelob
+            rec_bet.put()
 
           
         except Pbs602Error, e:
@@ -376,10 +374,13 @@ class pbs602Handler(webapp.RequestHandler):
       rec_betlin.Indbetalingsbelob = None
 
 
-    # Find or Create tblbet record
-    try:
-      rec_bet = Bet.all().filter('Pbssektionnr=', sektion).filter('Transkode=', transkode).filter('Bogforingsdato=', rec_betlin.Bogforingsdato).fetch(1)[0]
-    except:
+    # Find or Create Bet record
+    rec_bet = None
+    for wrec_bet in self.rec_frapbs.listBet:
+      if wrec_bet.Pbssektionnr == sektion and wrec_bet.Transkode == transkode and wrec_bet.Bogforingsdato == rec_betlin.Bogforingsdato:
+        rec_bet = wrec_bet
+        break
+    if not rec_bet:
       betid  = nextval('Betid') 
       root_bet = db.Key.from_path('rootBet','root')    
       rec_bet = Bet.get_or_insert('%s' % (betid), parent=root_bet)
@@ -387,9 +388,10 @@ class pbs602Handler(webapp.RequestHandler):
       rec_bet.Pbssektionnr = sektion
       rec_bet.Transkode = transkode
       rec_bet.Bogforingsdato = rec_betlin.Bogforingsdato
-      rec_bet.Frapbsref = self.rec_frapbs.key()
-      rec_bet.put()
-
-    # Add tblbetlin
-    rec_betlin.Betref = rec_bet.key()
+      
+    rec_bet.Frapbsref = self.rec_frapbs.key()
     rec_bet.put()
+
+    # Add Betlin
+    rec_betlin.Betref = rec_bet.key()
+    rec_betlin.put()
