@@ -25,6 +25,7 @@ from menuusergroup import deleteMenuAndUserGroup, createMenuAndUserGroup
 from menu import MenuHandler, ListUserHandler, UserHandler
 from pbs601 import pbs601Handler, DatatilpbsHandler, DatafrapbsHandler, DatasftpHandler
 from pbs602 import pbs602Handler
+from pbs603 import pbs603Handler
 
 
 webapp.template.register_template_library('templatetags.medlem3060_extras')
@@ -1180,6 +1181,7 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/adm/medlem.*', MedlemHandler),
                                        ('/adm/pbs601.*', pbs601Handler),
                                        ('/adm/pbs602.*', pbs602Handler),
+                                       ('/adm/pbs603.*', pbs603Handler),
                                        ('/adm/findmedlem', FindmedlemHandler),
                                        ('/adm/findmedlem3', Findmedlem3Handler),
                                        ('/adm/updatemedlem', UpdatemedlemHandler),

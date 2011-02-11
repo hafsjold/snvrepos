@@ -158,7 +158,7 @@ class pbs602Handler(webapp.RequestHandler):
                   # -- BEHANDL: Sektion Slut
                   sektion = ''
                 else:
-                  raise Pbs602Error('244 - Rec# ' + Seqnr + ' ukendt: ' + rec)
+                  raise Pbs602Error('244 - Rec# %s ukendt: %s' % (Seqnr, rec))
 
               elif sektion == '0215':
                 # -- Sektion 0215 FI-Betalingsinformation
@@ -179,17 +179,17 @@ class pbs602Handler(webapp.RequestHandler):
                   # -- BEHANDL: Sektion Slut
                   sektion = ''
                 else:
-                  raise Pbs602Error('245 - Rec# ' + Seqnr + ' ukendt: ' + rec)
+                  raise Pbs602Error('245 - Rec# %s ukendt: %s' % (Seqnr, rec))
 
               elif rec[0:5] == 'BS992':
                 # -- Leverance slut
                 # -- BEHANDL: Leverance Slut
                 leverancetype = ''
               else:
-                raise Pbs602Error('246 - Rec# ' + Seqnr + ' ukendt: ' + rec)
+                raise Pbs602Error('246 - Rec# %s ukendt: %s' % (Seqnr, rec))
 
             else:
-              raise Pbs602Error('247 - Rec# ' + Seqnr + ' ukendt: ' + rec)
+              raise Pbs602Error('247 - Rec# %s ukendt: %s' % (Seqnr, rec))
             
           # slut rstpbsfile
 
@@ -226,6 +226,7 @@ class pbs602Handler(webapp.RequestHandler):
             #247 - Record ukendt
             AntalFiler -= 1
           else: 
+            AntalFiler -= 1
             raise Pbs602Error(msg)
 
     # slut rstpbsfiles
