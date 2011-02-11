@@ -19,12 +19,12 @@ class Pbs602Error(Exception):
 
 class pbs602Handler(webapp.RequestHandler):
   
-  self.m_rec_recievequeue = None
-  self.m_rec_pbsforsendelse = None
-  self.m_rec_pbsfiles = None
-  self.m_rec_frapbs = None
-  self.m_rec_bet = None
-  self.m_rec_betlin = None
+  m_rec_recievequeue = None
+  m_rec_pbsforsendelse = None
+  m_rec_pbsfiles = None
+  m_rec_frapbs = None
+  m_rec_bet = None
+  m_rec_betlin = None
 
   def get(self):
     antal = self.betalinger_fra_pbs()

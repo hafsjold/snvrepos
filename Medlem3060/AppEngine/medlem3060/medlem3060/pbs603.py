@@ -3,7 +3,7 @@ from google.appengine.ext import webapp
 from google.appengine.ext import db 
 from google.appengine.ext.webapp import template
 
-from models import nextval, UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse:, Pbsfiles, Pbsfile, Sendqueue, Recievequeue, Tilpbs, Fak, Frapbs, Bet, Betlin, Aftalelin, Indbetalingskort, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
+from models import nextval, UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Pbsfiles, Pbsfile, Sendqueue, Recievequeue, Tilpbs, Fak, Frapbs, Bet, Betlin, Aftalelin, Indbetalingskort, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
 from util import lpad, rpad, utc, cet
 from datetime import datetime, date, timedelta
 import logging
@@ -19,12 +19,12 @@ class Pbs603Error(Exception):
 
 class pbs603Handler(webapp.RequestHandler):
 
-  self.m_rec_recievequeue = None
-  self.m_rec_pbsforsendelse = None
-  self.m_rec_pbsfiles = None
-  self.m_rec_frapbs = None
-  self.m_rec_aftalelin = None
-  self.m_rec_indbetalingskort = None
+  m_rec_recievequeue = None
+  m_rec_pbsforsendelse = None
+  m_rec_pbsfiles = None
+  m_rec_frapbs = None
+  m_rec_aftalelin = None
+  m_rec_indbetalingskort = None
 
   def get(self):
     antal = self.aftaleoplysninger_fra_pbs()
@@ -164,7 +164,7 @@ class pbs603Handler(webapp.RequestHandler):
                   #  Aftaler afmeldt af betalingsservice
                   #  BEHANDL: aftaler afmeldt af betalingsservice
                   self.readaftale042(sektion, '0234', rec)
-                elif rec[:5] == 'BS092' and rec[13:17] == '0212'
+                elif rec[:5] == 'BS092' and rec[13:17] == '0212':
                   #  Sektion Slut
                   #  BEHANDL: Sektion Slut
                   sektion = ''
@@ -196,7 +196,7 @@ class pbs603Handler(webapp.RequestHandler):
                 # -******************************************************************************************************
               elif sektion == '0215':
                 #  Sektion 0215 Debitornavn/-adresse
-                if rec[:5] == 'BS012' and rec[13:17) == '0215':
+                if rec[:5] == 'BS012' and rec[13:17] == '0215':
                   #  Sektion Start
                   #  BEHANDL: Sektion Start
                   pass
@@ -204,7 +204,7 @@ class pbs603Handler(webapp.RequestHandler):
                   #  Navn/adresse på debitor
                   #  BEHANDL: Navn/adresse på debitor
                   pass
-                elif rec[:5] == 'BS092' and rec[13:17) == '0215':
+                elif rec[:5] == 'BS092' and rec[13:17] == '0215':
                   #  Sektion Slut
                   #  BEHANDL: Sektion Slut
                   sektion = ''
@@ -222,7 +222,7 @@ class pbs603Handler(webapp.RequestHandler):
                   #  Oplysninger fra indbetalingskort
                   #  BEHANDL: Oplysninger fra indbetalingskort
                   self.readgirokort042(sektion, '0295', rec)
-                elif rec[:5] == 'BS092' and rec[13:17] == '0217'
+                elif rec[:5] == 'BS092' and rec[13:17] == '0217':
                   #  Sektion Slut
                   #  BEHANDL: Sektion Slut
                   sektion = ''
@@ -240,7 +240,7 @@ class pbs603Handler(webapp.RequestHandler):
                   #  Aktiv aftale om Elektronisk Indbetalingskort
                   #  BEHANDL: Aktiv aftale om Elektronisk Indbetalingskort
                   pass
-                elif rec[:5] == 'BS092' and rec[(13:17) == '0219':
+                elif rec[:5] == 'BS092' and rec[13:17] == '0219':
                   #  Sektion Slut
                   #  BEHANDL: Sektion Slut
                   sektion = ''
@@ -259,42 +259,42 @@ class pbs603Handler(webapp.RequestHandler):
               raise Pbs603Error('251 - Rec# %s ukendt: %s' % (Seqnr, rec))
 
      
-      except Pbs603Error, e:
-        msg = '%s' % e.value
-        if msg[:3] == '241':   
+        except Pbs603Error, e:
+          msg = '%s' % e.value
+          if msg[:3] == '241':   
             #241 - Første record er ikke en Leverance start record
             AntalFiler -= 1
-        elif msg[:3] == '242':  
+          elif msg[:3] == '242':  
             #242 - Leverancen er indlæst tidligere
             AntalFiler -= 1
-        elif msg[:3] == '243':   
+          elif msg[:3] == '243':   
             #243 - Første record er ikke en Sektions start record
             AntalFiler -= 1
-        elif msg[:3] == '244':   
+          elif msg[:3] == '244':   
             #244 - Record ukendt
             AntalFiler -= 1
-        elif msg[:3] == '245':   
+          elif msg[:3] == '245':   
             #245 - Record ukendt
             AntalFiler -= 1
-        elif msg[:3] == '246':   
+          elif msg[:3] == '246':   
             #246 - Record ukendt
             AntalFiler -= 1
-        elif msg[:3] == '247':   
+          elif msg[:3] == '247':   
             #247 - Record ukendt
             AntalFiler -= 1
-        elif msg[:3] == '248':   
+          elif msg[:3] == '248':   
             #248 - Record ukendt
             AntalFiler -= 1
-        elif msg[:3] == '249':   
+          elif msg[:3] == '249':   
             #249 - Record ukendt
             AntalFiler -= 1
-        elif msg[:3] == '250':   
+          elif msg[:3] == '250':   
             #250 - Record ukendt
             AntalFiler -= 1
-        elif msg[:3] == '251':   
+          elif msg[:3] == '251':   
             #251 - Record ukendt
             AntalFiler -= 1
-        else:
+          else:
             AntalFiler -= 1
             raise Pbs602Error(msg)
 
@@ -345,7 +345,7 @@ class pbs603Handler(webapp.RequestHandler):
     else:
       self.m_rec_aftalelin.Aftaleslutdato = None
 
-    qry = Person.all().filter('Nr =, self.m_rec_aftalelin.Nr)
+    qry = Person.all().filter('Nr =', self.m_rec_aftalelin.Nr)
     if qry.count() == 1:
       # Add tblaftalelin
       self.m_rec_aftalelin.put()
@@ -403,7 +403,7 @@ class pbs603Handler(webapp.RequestHandler):
     #  Faknr
     self.m_rec_indbetalingskort.Faknr = int(rec[88:97])
 
-    qry = Person.all().filter('Nr =, self.m_rec_indbetalingskort.Nr)
+    qry = Person.all().filter('Nr =', self.m_rec_indbetalingskort.Nr)
     if qry.count() == 1:
       # Add tblindbetalingskort
       self.m_rec_indbetalingskort.put()
