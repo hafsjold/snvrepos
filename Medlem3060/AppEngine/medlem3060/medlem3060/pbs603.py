@@ -19,11 +19,12 @@ class Pbs603Error(Exception):
 
 class pbs603Handler(webapp.RequestHandler):
 
-    self.m_rec_pbsforsendelse: = None
-    self.m_rec_pbsfiles = None
-    self.m_rec_frapbs = None
-    self.m_rec_aftalelin = None
-    self.m_rec_indbetalingskort = None
+  self.m_rec_recievequeue = None
+  self.m_rec_pbsforsendelse: = None
+  self.m_rec_pbsfiles = None
+  self.m_rec_frapbs = None
+  self.m_rec_aftalelin = None
+  self.m_rec_indbetalingskort = None
 
   def get(self):
     antal = self.aftaleoplysninger_fra_pbs()
@@ -57,7 +58,7 @@ class pbs603Handler(webapp.RequestHandler):
     int DebugCount = qrypbsfiles.Count()
     foreach (var rstpbsfiles in qrypbsfiles)
     {
-      #try
+      try:
       {
         wpbsfilesid = rstpbsfiles.Id
         AntalFiler += 1
@@ -81,12 +82,12 @@ class pbs603Handler(webapp.RequestHandler):
             {  #  Leverance Start
               leverance = rec[16:20]
               leverancespecifikation = rec[20:30]
-              leverancedannelse:sdato = datetime.strptime('20' + rec[53:55] + '-' + rec[51:53] + '-' + rec[49:51], "%Y-%m-%d").date()
+              leverancedannelsesdato = datetime.strptime('20' + rec[53:55] + '-' + rec[51:53] + '-' + rec[49:51], "%Y-%m-%d")
 
             }
             else:
             {
-              throw new Exception('241 - Første record er ikke en Leverance start record')
+              raise Pbs603Error('241 - Foerste record er ikke en Leverance start record')
             }
 
             if (leverance == '0603')
@@ -95,7 +96,8 @@ class pbs603Handler(webapp.RequestHandler):
               var antal = (from c in Program.dbData3060.Tblfrapbs
                        where c.Leverancespecifikation == leverancespecifikation
                        select c).Count()
-              if (antal > 0) { throw new Exception('242 - Leverance med pbsfilesid: ' + wpbsfilesid + ' og leverancespecifikation: ' + leverancespecifikation + ' er indlæst tidligere') }
+              if antal > 0: 
+                raise Pbs603Error('242 - Leverance med pbsfilesid: %s og leverancespecifikation: %s er indlaest tidligere' % (wpbsfilesid, leverancespecifikation))
 
               wleveranceid = clsPbs.nextval('leveranceid')
               self.m_rec_pbsforsendelse: = new Tblpbsforsendelse:
@@ -113,7 +115,7 @@ class pbs603Handler(webapp.RequestHandler):
                 Delsystem = 'BS1',
                 Leverancetype = '0603',
                 Leverancespecifikation = leverancespecifikation,
-                Leverancedannelse:sdato = leverancedannelse:sdato,
+                Leverancedannelse:sdato = leverancedannelsesdato,
                 Udtrukket = DateTime.Now
               }
               self.m_rec_pbsforsendelse:.Tblfrapbs.Add(self.m_rec_frapbs)
@@ -139,7 +141,7 @@ class pbs603Handler(webapp.RequestHandler):
               {
                 if (!((rec[:5] == 'BS992') or (rec[:5] == 'BS002')))
                 {
-                  throw new Exception('243 - Første record er ikke en Sektions start record')
+                  raise Pbs603Error('243 - Foerste record er ikke en Sektions start record')
                 }
               }
             }
@@ -172,7 +174,7 @@ class pbs603Handler(webapp.RequestHandler):
               }
               else:
               {
-                throw new Exception('244 - Rec# ' + rstpbsfile.Seqnr + ' ukendt: ' + rec)
+                raise Pbs603Error('244 - Rec# ' + rstpbsfile.Seqnr + ' ukendt: ' + rec)
               }
               # -******************************************************************************************************
               # -******************************************************************************************************
@@ -216,7 +218,7 @@ class pbs603Handler(webapp.RequestHandler):
               }
               else:
               {
-                throw new Exception('245 - Rec# ' + rstpbsfile.Seqnr + ' ukendt: ' + rec)
+                raise Pbs603Error('245 - Rec# ' + rstpbsfile.Seqnr + ' ukendt: ' + rec)
               }
               # -******************************************************************************************************
               # -******************************************************************************************************
@@ -248,7 +250,7 @@ class pbs603Handler(webapp.RequestHandler):
               }
               else:
               {
-                throw new Exception('246 - Rec# ' + rstpbsfile.Seqnr + ' ukendt: ' + rec)
+                raise Pbs603Error('246 - Rec# ' + rstpbsfile.Seqnr + ' ukendt: ' + rec)
               }
               # -******************************************************************************************************
               # -******************************************************************************************************
@@ -274,7 +276,7 @@ class pbs603Handler(webapp.RequestHandler):
               }
               else:
               {
-                throw new Exception('247 - Rec# ' + rstpbsfile.Seqnr + ' ukendt: ' + rec)
+                raise Pbs603Error('247 - Rec# ' + rstpbsfile.Seqnr + ' ukendt: ' + rec)
               }
               # -******************************************************************************************************
               # -******************************************************************************************************
@@ -300,7 +302,7 @@ class pbs603Handler(webapp.RequestHandler):
               }
               else:
               {
-                throw new Exception('248 - Rec# ' + rstpbsfile.Seqnr + ' ukendt: ' + rec)
+                raise Pbs603Error('248 - Rec# ' + rstpbsfile.Seqnr + ' ukendt: ' + rec)
               }
               # -******************************************************************************************************
               # -******************************************************************************************************
@@ -326,7 +328,7 @@ class pbs603Handler(webapp.RequestHandler):
               }
               else:
               {
-                throw new Exception('249 - Rec# ' + rstpbsfile.Seqnr + ' ukendt: ' + rec)
+                raise Pbs603Error('249 - Rec# ' + rstpbsfile.Seqnr + ' ukendt: ' + rec)
               }
               # -******************************************************************************************************
               # -******************************************************************************************************
@@ -338,42 +340,58 @@ class pbs603Handler(webapp.RequestHandler):
             }
             else:
             {
-              throw new Exception('250 - Rec# ' + rstpbsfile.Seqnr + ' ukendt: ' + rec)
+              raise Pbs603Error('250 - Rec# ' + rstpbsfile.Seqnr + ' ukendt: ' + rec)
             }
           }
          
           else:
           {
-            throw new Exception('251 - Rec# ' + rstpbsfile.Seqnr + ' ukendt: ' + rec)
+            raise Pbs603Error('251 - Rec# ' + rstpbsfile.Seqnr + ' ukendt: ' + rec)
           }
 
         }
 
       }
-      /*  
-      catch (Exception e)
-      {
-        switch (e.Message[:3])
-        {
-          case '241':   #241 - Første record er ikke en Leverance start record
-          case '242':   #242 - Leverancen er indlæst tidligere
-          case '243':   #243 - Første record er ikke en Sektions start record
-          case '244':   #244 - Record ukendt
-          case '245':   #245 - Record ukendt
-          case '246':   #246 - Record ukendt
-          case '247':   #247 - Record ukendt
-          case '248':   #248 - Record ukendt
-          case '249':   #249 - Record ukendt
-          case '250':   #250 - Record ukendt
-          case '251':   #251 - Record ukendt
-            AntalFiler--
-            break
+     
+      except Pbs603Error, e:
+        msg = '%s' % e.value
+        if msg[:3] == '241':   
+          #241 - Første record er ikke en Leverance start record
+          AntalFiler -= 1
+        elif msg[:3] == '242':  
+          #242 - Leverancen er indlæst tidligere
+          AntalFiler -= 1
+        elif msg[:3] == '243':   
+          #243 - Første record er ikke en Sektions start record
+          AntalFiler -= 1
+        elif msg[:3] == '244':   
+          #244 - Record ukendt
+          AntalFiler -= 1
+        elif msg[:3] == '245':   
+          #245 - Record ukendt
+          AntalFiler -= 1
+        elif msg[:3] == '246':   
+          #246 - Record ukendt
+          AntalFiler -= 1
+        elif msg[:3] == '247':   
+          #247 - Record ukendt
+          AntalFiler -= 1
+        elif msg[:3] == '248':   
+          #248 - Record ukendt
+          AntalFiler -= 1
+        elif msg[:3] == '249':   
+          #249 - Record ukendt
+          AntalFiler -= 1
+        elif msg[:3] == '250':   
+          #250 - Record ukendt
+          AntalFiler -= 1
+        elif msg[:3] == '251':   
+          #251 - Record ukendt
+          AntalFiler -= 1
+        else:
+          AntalFiler -= 1
+          raise Pbs602Error(msg)
 
-          default:
-            throw
-        }
-      }
-      */
     }
     if (dummy == 1) dummy = 2
     Program.dbData3060.SubmitChanges()
