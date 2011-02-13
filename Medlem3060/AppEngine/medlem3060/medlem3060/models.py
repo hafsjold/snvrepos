@@ -565,6 +565,52 @@ class MedlemsStatus():
     else:
       return None
 
+  def KontingentForslag(self, tildato = None):
+      #Undersoeg vedr ind- og udmeldelse
+    if self.b10: #Findes der en indmeldelse
+      if self.b50:  #Findes der en udmeldelse
+        if self.udmeldelsesDato >= self.indmeldelsesDato: #Er udmeldelsen aktiv
+          return None, None
+    else:  #Der findes ingen indmeldelse
+      return None, None
+
+    #Find aktive betalingsrecord
+    if self.b40: #Findes der en kontingent tilbagefoert
+      if self.kontingentTilbagefoertDato >= self.kontingentBetalingsDato: #Kontingenttilbagefoert er aktiv
+        #''!!!Kontingent er tilbagefoert !!!!!!!!!
+        if self.b31:
+          self.kontingentBetalingsDato = self.kontingentBetaltDato31
+          self.kontingentBetaltTilDato = self.kontingentTilDato31
+        else:
+          self.b30 = False
+    
+    #Undersoeg om der er betalt kontingent
+    if self.b30 and self.kontingentBetaltTilDato > self.indmeldelsesDato: #Findes der en betaling efter indmelsesdato
+      MedlemTildato = self.kontingentBetaltTilDato + timedelta(days=self.BetalingsFristiDageGamleMedlemmer)
+      KontingentFradato = self.kontingentBetaltTilDato + timedelta(days=1)
+      Indmeldelse = False
+    else: #Der findes ingen betalinger. Nyt medlem?
+      MedlemTildato = self.indmeldelsesDato + timedelta(days=self.BetalingsFristiDageNyeMedlemmer)
+      KontingentFradato = self.indmeldelsesDato + timedelta(days=1)
+      Indmeldelse = True
+    
+    #undersøg medlemskab
+    if not MedlemTildato >= datetime.now().date():
+      return None, None
+    
+    #Undersoeg om der findes ubetalt opkraevning
+    if self.MedlemAabenBetalingsdato():    
+      return None, None
+    
+    #Undersøg om der er betalt kontingent efter tildato
+    if tildato == None:
+      dt = datetime.now() + timedelta(days=30)
+      tildato = dt.date()
+    if self.b30 and self.kontingentBetaltTilDato > tildato:
+      return None, None
+
+    return KontingentFradato, Indmeldelse
+  
       
 class NrSerie(db.Model):
     #key = db.Key.from_path('NrSerie', '%s' % (Nrserienavn))

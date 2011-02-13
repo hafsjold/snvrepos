@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections;
+using System.Xml.Linq;
 
 namespace nsPuls3060
 {
@@ -16,7 +17,7 @@ namespace nsPuls3060
         ColumnSorter lvwKontingent_ColumnSorter;
         private string DragDropKey;
         private DateTime m_initdate;
-        private int m_lobnr  = 0;
+        private int m_lobnr = 0;
 
 
         public FrmKontingentForslag()
@@ -84,7 +85,6 @@ namespace nsPuls3060
         {
             getKontingentForslag();
         }
-
         private void getKontingentForslag()
         {
             DateTime KontingentFradato = DateTime.MinValue;
@@ -96,13 +96,10 @@ namespace nsPuls3060
             double dkontingent;
             int ikontingent;
 
-            var qry_medlemmer = from h in Program.karMedlemmer
-                                select h;
-
             this.lvwMedlem.Items.Clear();
             this.lvwKontingent.Items.Clear();
 
-            var antal = qry_medlemmer.Count();
+            var antal = 2;
             this.pgmForslag.Show();
             this.pgmForslag.Maximum = antal;
             this.pgmForslag.Minimum = 0;
@@ -115,56 +112,35 @@ namespace nsPuls3060
 
             pgmForslag.PerformStep();
 
-            foreach (var m in qry_medlemmer)
+            clsRest objRest = new clsRest();
+            string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "kontingentforslag");
+            XDocument xmldata = XDocument.Parse(strxmldata);
+            string Status = xmldata.Descendants("Status").First().Value;
+            if (Status == "True")
             {
-                bool bSelected = true;
-                AntalMedlemmer++;
-                tilmeldtpbs = false;
-                indmeldelse = false;
+                var list = from forslag in xmldata.Descendants("KontingentForslag") select forslag;
+                antal = list.Count();
 
-                if (!m.erMedlem()) //er ikke medlem
+                foreach (var forslag in list)
                 {
-                    bSelected = false;
-                }
-                else //Er medlem
-                {
-                    if ((m.kontingentBetaltTilDato != null)&& (m.kontingentBetaltTilDato > m.indmeldelsesDato))  //'Der findes en kontingent-betaling
-                    {
-                        if (m.kontingentBetaltTilDato.Value.Date > this.DatoBetaltKontingentTil.Value)   //der er betalt kontingent efter DatoBetaltKontingentTil
-                        {
-                            bSelected = false;
-                        }
-                        else
-                        {
-                            if (m.kontingentBetaltTilDato.Value.Date >= m.indmeldelsesDato)
-                            {
-                                KontingentFradato = ((DateTime)m.kontingentBetaltTilDato.Value.Date).AddDays(1);
-                            }
-                        }
-                    }
-                    else  //Der findes ingen kontingent-betaling
-                    {
-                        KontingentFradato = (DateTime)m.indmeldelsesDato;
-                        indmeldelse = true;
-                    }
-                }
+                    AntalMedlemmer++;
+                    tilmeldtpbs = false;
+                    indmeldelse = false;
 
-                if (bSelected)
-                {
-                    if (m.opkrævningsDato != null) //Der findes en opkrævning
-                    {
-                        if (((DateTime)m.opkrævningsDato) > KontingentFradato)
-                        {
-                            bSelected = false;
-                        }
-                    }
-                }
+                    var wNr = forslag.Descendants("Nr").First().Value.Trim();
+                    var wNavn = forslag.Descendants("Navn").First().Value.Trim();
+                    var wAdresse = forslag.Descendants("Adresse").First().Value.Trim();
+                    var wPostnr = forslag.Descendants("Postnr").First().Value.Trim();
+                    KontingentFradato = DateTime.Parse(forslag.Descendants("KontingentFradato").First().Value.Trim());
+                    tilmeldtpbs = (forslag.Descendants("Indmeldelse").First().Value.Trim() == "True") ? true : false;
+                    tilmeldtpbs = (forslag.Descendants("Tilmeldtpbs").First().Value.Trim() == "True") ? true : false;
 
-                if (bSelected)
-                {
+
+
+
                     AntalForslag++;
-                    tilmeldtpbs = clsPbs.gettilmeldtpbs(m.Nr);
-                    switch (KontingentFradato.Month )
+                    //tilmeldtpbs = clsPbs.gettilmeldtpbs(m.Nr);
+                    switch (KontingentFradato.Month)
                     {
                         case 1:
                         case 2:
@@ -177,19 +153,19 @@ namespace nsPuls3060
                             {
                                 dkontingent = double.Parse(this.AarskontingentPbs.Text);
                             }
-                            else 
+                            else
                             {
                                 dkontingent = (tilmeldtpbs) ? double.Parse(this.AarskontingentPbs.Text) : double.Parse(this.Aarskontingent.Text);
                             }
                             break;
-                        
+
                         default:
                             KontingentTildato = new DateTime(KontingentFradato.Year + 1, 12, 31);
                             if (indmeldelse)
                             {
                                 dkontingent = double.Parse(this.AarskontingentPbs.Text) * 3 / 2;
                             }
-                            else 
+                            else
                             {
                                 dkontingent = (tilmeldtpbs) ? double.Parse(this.AarskontingentPbs.Text) * 3 / 2 : double.Parse(this.Aarskontingent.Text) * 3 / 2;
                             }
@@ -197,21 +173,21 @@ namespace nsPuls3060
                     }
                     ikontingent = (int)dkontingent;
 
-                    ListViewItem it = lvwKontingent.Items.Add(m.Nr.ToString(), m.Navn, 0);
+                    ListViewItem it = lvwKontingent.Items.Add(wNr, wNavn, 0);
                     //it.Tag = m;
-                    it.SubItems.Add(m.Nr.ToString());
-                    it.SubItems.Add(m.Adresse);
-                    it.SubItems.Add(m.Postnr);
+                    it.SubItems.Add(wNr);
+                    it.SubItems.Add(wAdresse);
+                    it.SubItems.Add(wPostnr);
                     it.SubItems.Add(string.Format("{0:dd-MM-yyy}", KontingentFradato));
                     it.SubItems.Add(ikontingent.ToString());
                     it.SubItems.Add(string.Format("{0:dd-MM-yyy}", KontingentTildato));
                     it.SubItems.Add((indmeldelse) ? "J" : "N");
                     it.SubItems.Add((tilmeldtpbs) ? "J" : "N");
-                }
-                pgmForslag.PerformStep();
-            }
-            this.lvwKontingent.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 
+                    pgmForslag.PerformStep();
+                }
+                this.lvwKontingent.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            }
             if (AntalForslag == 0)
             {
                 this.Label_Forslagstekst.Text = "Der er ingen forslag";
@@ -228,6 +204,7 @@ namespace nsPuls3060
             this.pgmForslag.Visible = false;
 
         }
+
         private void lvwMedlem_ItemDrag(object sender, ItemDragEventArgs e)
         {
             Random random = new Random();
@@ -347,8 +324,6 @@ namespace nsPuls3060
             this.pgmFaktura.Minimum = 0;
             this.pgmFaktura.Value = 0;
             this.pgmFaktura.Visible = true;
-            Program.dbData3060.TempKontforslag.DeleteAllOnSubmit(Program.dbData3060.TempKontforslag);
-            Program.dbData3060.SubmitChanges();
             if ((imax == 0))
             {
                 this.Label_Fakturatekst.Text = "Der ikke noget at fakturere";
@@ -356,12 +331,10 @@ namespace nsPuls3060
             }
             else
             {
-                TempKontforslag rec_tempKontforslag = new TempKontforslag
-                {
-                    Betalingsdato = clsOverfoersel.bankdageplus(this.DatoKontingentForfald.Value,0),
-                    Bsh = this.DelsystemBSH.Checked
-                };
-                Program.dbData3060.TempKontforslag.InsertOnSubmit(rec_tempKontforslag);
+                XElement headxml = new XElement("TempKontforslag");
+                headxml.Add(new XElement("Betalingsdato", clsOverfoersel.bankdageplus(this.DatoKontingentForfald.Value, 0)));
+                headxml.Add(new XElement("Bsh", this.DelsystemBSH.Checked));
+
                 var i = 0;
                 foreach (ListViewItem lvi in lvwKontingent.Items)
                 {
@@ -373,19 +346,16 @@ namespace nsPuls3060
                     indmeldelse = (lvi.SubItems[7].Text == "J") ? true : false;
                     tilmeldtpbs = (lvi.SubItems[8].Text == "J") ? true : false;
 
-                    TempKontforslaglinie rec_tempKontforslaglinie = new TempKontforslaglinie
-                    {
-                        Nr = int.Parse(keyval),
-                        Advisbelob = (decimal)advisbelob,
-                        Fradato = fradato,
-                        Tildato = tildato,
-                        Indmeldelse = indmeldelse,
-                        Tilmeldtpbs = tilmeldtpbs,
-                    };
-                    rec_tempKontforslag.TempKontforslaglinie.Add(rec_tempKontforslaglinie);
+                    XElement linxml = new XElement("TempKontforslaglinie");
+                    linxml.Add(new XElement("Nr", int.Parse(keyval)));
+                    linxml.Add(new XElement("Advisbelob", (decimal)advisbelob));
+                    linxml.Add(new XElement("Fradato", fradato));
+                    linxml.Add(new XElement("Tildato", tildato));
+                    linxml.Add(new XElement("Indmeldelse", indmeldelse));
+                    linxml.Add(new XElement("Tilmeldtpbs", tilmeldtpbs));
+                    headxml.Add(new XElement(linxml));
                 }
-                Program.dbData3060.SubmitChanges();
-
+                /*
                 clsPbs601 objPbs601 = new clsPbs601();
                 nsPuls3060.clsPbs601.SetLobnr += new nsPuls3060.clsPbs601.Pbs601DelegateHandler(On_clsPbs601_SetLobnr);
 
@@ -400,6 +370,7 @@ namespace nsPuls3060
                     objSFTP.DisconnectSFtp();
                     objSFTP = null;
                 }
+                */
                 this.pgmFaktura.Value = (imax * 4);
                 cmdFakturer.Text = "Afslut";
                 this.DelsystemBSH.Visible = false;
@@ -408,7 +379,7 @@ namespace nsPuls3060
                 this.pgmFaktura.Visible = false;
             }
         }
-        
+
         private void On_clsPbs601_SetLobnr(int lobnr)
         {
             m_lobnr = lobnr;

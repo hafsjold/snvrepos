@@ -26,6 +26,7 @@ from menu import MenuHandler, ListUserHandler, UserHandler
 from pbs601 import pbs601Handler, DatatilpbsHandler, DatafrapbsHandler, DatasftpHandler
 from pbs602 import pbs602Handler
 from pbs603 import pbs603Handler
+from kontingentforslag import KontingentForslagHandler
 
 
 webapp.template.register_template_library('templatetags.medlem3060_extras')
@@ -1196,7 +1197,8 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/sync/Medlog', SyncMedlogHandler), 
                                        ('/data/tilpbs', DatatilpbsHandler),   
                                        ('/data/frapbs', DatafrapbsHandler),   
-                                       ('/data/sftp/.*', DatasftpHandler),   
+                                       ('/data/sftp/.*', DatasftpHandler),
+                                       ('/data/kontingentforslag', KontingentForslagHandler),   
                                        ('/sync/.*', MenuHandler),
                                        ('/logoff', LogoffHandler),
                                        ('/teknik/createmenu', CreateMenu),

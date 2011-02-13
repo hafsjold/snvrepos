@@ -12,7 +12,6 @@ import re
 from xml.dom import minidom
 
 from clsInfotekst import clsInfotekstParam, clsInfotekst
-  
 
 class Pbs601Error(Exception):
   def __init__(self, value):
@@ -39,8 +38,7 @@ class clsRstdeb(object):
     self.Advistekst = None
     self.Belob = f.Advisbelob
     self.OcrString = None
-    
-    
+        
 class DatasftpHandler(webapp.RequestHandler):
   def get(self):
     path = self.request.environ['PATH_INFO']
@@ -166,8 +164,7 @@ class DatafrapbsHandler(webapp.RequestHandler):
     }
     path = os.path.join(os.path.dirname(__file__), 'templates/status.xml')
     self.response.out.write(template.render(path, template_values))
-    
-    
+        
 class DatatilpbsHandler(webapp.RequestHandler):
   def get(self):
     qry = db.Query(Sendqueue).filter('Send_to_pbs =', False).filter('Onhold =', False)  
@@ -279,7 +276,6 @@ class DatatilpbsHandler(webapp.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'templates/status.xml')
     self.response.out.write(template.render(path, template_values))
 
-    
 class pbs601Handler(webapp.RequestHandler):
   def get(self):
     (lobnr, antal) = self.kontingent_fakturer_bs1()
@@ -290,13 +286,6 @@ class pbs601Handler(webapp.RequestHandler):
     else:
       self.response.out.write('Intet at fakturere')
     
-    #self.response.headers["Content-Type"] = "application/json"
-    #self.response.out.write(rec.encode('windows-1252'))  
-    ##template_values = {}
-    ##path = os.path.join(os.path.dirname(__file__), 'templates/test.html') 
-    ##self.response.out.write(template.render(path, template_values))
-
-
   def kontingent_fakturer_bs1(self):
     root = db.Key.from_path('Persons','root')
     qry = db.Query(Kontingent).ancestor(root).filter('Faktureret =',False)

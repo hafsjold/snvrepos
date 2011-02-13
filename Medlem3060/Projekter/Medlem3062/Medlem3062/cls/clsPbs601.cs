@@ -174,7 +174,6 @@ namespace nsPuls3060
             return wantalrykkere;
         }
 
-
         public int kontingent_fakturer_bs1()
         {
             int lobnr;
@@ -798,7 +797,6 @@ namespace nsPuls3060
             Program.dbData3060.SubmitChanges();
         }
 
-
         private string write002(string datalevnr, string delsystem, string levtype, string levident, System.DateTime levdato)
         {
             string rec = null;
@@ -1115,6 +1113,7 @@ namespace nsPuls3060
 
             return rec;
         }
+
         private string write992(string datalevnr, string delsystem, string levtype, long antal1, long antal2, long belob2, long antal3, long antal4)
         {
 
@@ -1145,6 +1144,7 @@ namespace nsPuls3060
             string Val = oVal.ToString();
             return Val.PadRight(Length, PadChar);
         }
+        
         public void sendRykkerEmail(string ToName, string ToAddr, string subject, string body)
         {
             Chilkat.MailMan mailman = new Chilkat.MailMan();
