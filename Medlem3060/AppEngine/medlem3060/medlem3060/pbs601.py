@@ -353,7 +353,10 @@ class pbs601Handler(webapp.RequestHandler):
       f.Infotekst = winfotekst
       f.Fradato = Fradato
       f.Tildato = Tildato
+      f.Tilmeldtpbs = Tilmeldtpbs
+      f.Indmeldelse = Indmeldelse
       f.put()
+      f.addMedlog()
       antal += 1
     
     return (lobnr, antal)
@@ -715,7 +718,6 @@ class pbs601Handler(webapp.RequestHandler):
     rec_pbsfile.Id = pbsfilesid
     rec_pbsfile.Pbsfilesref = rec_pbsfiles.key()        
     rec_pbsfile.Data = rec
-    rec_pbsfile.countTxtlines()
     rec_pbsfile.put()
     
     sendqueueid = rec_pbsfile.add_to_sendqueue()
