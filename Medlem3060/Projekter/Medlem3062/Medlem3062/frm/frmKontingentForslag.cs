@@ -355,6 +355,10 @@ namespace nsPuls3060
                     linxml.Add(new XElement("Tilmeldtpbs", tilmeldtpbs));
                     headxml.Add(new XElement(linxml));
                 }
+                clsRest objRest = new clsRest();
+                string strheadxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + headxml.ToString();
+                string result = objRest.HttpPost2(clsRest.urlBaseType.data, "pbs601", strheadxml);
+
                 /*
                 clsPbs601 objPbs601 = new clsPbs601();
                 nsPuls3060.clsPbs601.SetLobnr += new nsPuls3060.clsPbs601.Pbs601DelegateHandler(On_clsPbs601_SetLobnr);

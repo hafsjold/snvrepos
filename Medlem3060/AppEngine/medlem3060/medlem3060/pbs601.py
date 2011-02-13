@@ -278,15 +278,88 @@ class DatatilpbsHandler(webapp.RequestHandler):
 
 class pbs601Handler(webapp.RequestHandler):
   def get(self):
-    (lobnr, antal) = self.kontingent_fakturer_bs1()
+    (lobnr, antal) = self.online_kontingent_fakturer_bs1()
     if lobnr:
       sendqueueid  = self.faktura_og_rykker_601_action(lobnr)
       logging.info('WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW sendqueueid: %s' % (sendqueueid))
       self.response.out.write('%s faktureret' % (antal))
     else:
       self.response.out.write('Intet at fakturere')
+
+  def post(self):
+    doc = minidom.parse(self.request.body_file)
+    if doc.documentElement.tagName == 'TempKontforslag':
+      (lobnr, antal) = self.kontingent_fakturer_bs1(doc)   
+   
+    if lobnr:
+      sendqueueid  = self.faktura_og_rykker_601_action(lobnr)
+      logging.info('WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW sendqueueid: %s' % (sendqueueid))
+      self.response.out.write('%s faktureret' % (antal))
+    else:
+      self.response.out.write('Intet at fakturere')      
+  
+  def kontingent_fakturer_bs1(self, doc):
+    antal = 0
+    strval = doc.getElementsByTagName("Betalingsdato")[0].childNodes[0].data 
+    Betalingsdato = datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S").date() 
+    strval = doc.getElementsByTagName("Bsh")[0].childNodes[0].data 
+    Bsh = strval.lower() in ["yes", "true", "t", "1"]
     
-  def kontingent_fakturer_bs1(self):
+    lobnr = nextval('Tilpbsid')
+    rootTilpbs = db.Key.from_path('rootTilpbs','root')
+    t = Tilpbs.get_or_insert('%s' % (lobnr), parent=rootTilpbs)
+    t.Id = lobnr
+    if Bsh:
+      t.Delsystem = "BSH"
+    else:
+      t.Delsystem = "BS1"
+    t.Leverancetype = "0601"
+    t.Udtrukket = datetime.now()
+    t.put()
+    
+    TempKontforslaglinies = doc.getElementsByTagName("TempKontforslaglinie")
+    for TempKontforslaglinie in TempKontforslaglinies:
+      strval = TempKontforslaglinie.getElementsByTagName("Nr")[0].childNodes[0].data 
+      Nr = int(strval)
+      strval = TempKontforslaglinie.getElementsByTagName("Advisbelob")[0].childNodes[0].data
+      Advisbelob = float(strval)      
+      strval = TempKontforslaglinie.getElementsByTagName("Fradato")[0].childNodes[0].data
+      Fradato = datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S").date()       
+      strval = TempKontforslaglinie.getElementsByTagName("Tildato")[0].childNodes[0].data 
+      Tildato = datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S").date()  
+      strval = TempKontforslaglinie.getElementsByTagName("Indmeldelse")[0].childNodes[0].data
+      Indmeldelse = strval.lower() in ["yes", "true", "t", "1"]
+      strval = TempKontforslaglinie.getElementsByTagName("Tilmeldtpbs")[0].childNodes[0].data 
+      Tilmeldtpbs = strval.lower() in ["yes", "true", "t", "1"]
+      
+      if Indmeldelse:
+        winfotekst = 11
+      else:
+        if Tilmeldtpbs:
+          winfotekst = 10
+        else:
+          winfotekst = 12
+      
+      fakid = nextval('Fakid')
+      keyPerson = db.Key.from_path('Persons','root','Person','%s' % (Nr))
+      keyTilpbs = db.Key.from_path('rootTilpbs','root','Tilpbs','%s' % (lobnr))
+      f = Fak.get_or_insert('%s' % (fakid), parent=keyPerson)
+      f.Id = fakid
+      f.TilPbsref = keyTilpbs
+      f.Betalingsdato = Betalingsdato
+      f.Nr = Nr
+      f.Faknr = nextval('faknr')
+      f.Advisbelob = Advisbelob
+      f.Infotekst = winfotekst
+      f.Fradato = Fradato
+      f.Tildato = Tildato
+      f.put()
+      antal += 1
+    
+    return (lobnr, antal)
+    
+
+  def online_kontingent_fakturer_bs1(self):
     root = db.Key.from_path('Persons','root')
     qry = db.Query(Kontingent).ancestor(root).filter('Faktureret =',False)
     antal = qry.count()
