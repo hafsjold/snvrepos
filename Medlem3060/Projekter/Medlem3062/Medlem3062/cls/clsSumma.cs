@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Linq;
 
 namespace nsPuls3060
 {
@@ -18,13 +19,34 @@ namespace nsPuls3060
             {
                 if (rec_regnskab.DatoLaas > Startdato) Startdato = rec_regnskab.DatoLaas;
             }
+            int AntalOrdre = 0;
+            clsRest objRest = new clsRest();
+            string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "order2summa");
+            XDocument xmldata = XDocument.Parse(strxmldata);
+            string Status = xmldata.Descendants("Status").First().Value;
+            if (Status != "True") return AntalOrdre;
+            
+            var qry_ord = from forslag in xmldata.Descendants("Fak") select forslag;
+            AntalOrdre = qry_ord.Count();
+            
+            /*
             var qry_ord = from f in Program.dbData3060.Tblfak
                           where f.SFakID == null && Startdato <= f.Betalingsdato && f.Betalingsdato <= Slutdato
                           join b in Program.dbData3060.Tblbetlin on f.Faknr equals b.Faknr
                           where b.Pbstranskode == "0236" || b.Pbstranskode == "0297"
-                          select new { f.Id, Pbsfaknr = f.Faknr, f.Nr, f.Advisbelob, f.Betalingsdato, f.Vnr, f.Bogfkonto, b.Indbetalingsdato };
+                          select new { 
+                              f.Id, 
+                              Pbsfaknr = f.Faknr,
+                              f.Nr,
+                              f.Advisbelob,
+                              f.Betalingsdato,
+                              f.Vnr,
+                              f.Bogfkonto, 
+                              b.Indbetalingsdato
+                          };
 
-            int AntalOrdre = qry_ord.Count();
+            AntalOrdre = qry_ord.Count();
+            */
 
             if (AntalOrdre > 0)
             {
@@ -51,11 +73,27 @@ namespace nsPuls3060
                 Program.karFakturastr_s = null;
                 Program.karFakturavarer_s = null;
 
+                XElement SFakIDupdatexml = new XElement("SFakIDupdate");
+
                 foreach (var o in qry_ord)
                 {
+                    string Key = o.Descendants("Key").First().Value;
+                    string strval = o.Descendants("Id").First().Value;
+                    int Id = int.Parse(strval);
+                    strval = o.Descendants("Nr").First().Value;
+                    int Nr = int.Parse(strval);
+                    strval = o.Descendants("Advisbelob").First().Value;
+                    double Advisbelob = double.Parse(strval.Replace('.', ','));
+                    strval = o.Descendants("Pbsfaknr").First().Value;
+                    int Pbsfaknr = int.Parse(strval);
+                    strval = o.Descendants("Vnr").First().Value;
+                    int Vnr = int.Parse(strval);
+                    strval = o.Descendants("Bogfkonto").First().Value;
+                    int Bogfkonto = int.Parse(strval);
+
                     SidsteSFakID++;
                     SidsteRec_no++;
-                    int orebelob = (int)o.Advisbelob * 100;
+                    int orebelob = (int)Advisbelob * 100;
 
                     ordtype_s ord = new ordtype_s
                     (
@@ -63,12 +101,12 @@ namespace nsPuls3060
                         ToDay,                 //(o.Betalingsdato > o.Indbetalingsdato) ? (DateTime)o.Betalingsdato : (DateTime)o.Indbetalingsdato, //dato
                         ToDay,                 //(DateTime)o.Betalingsdato, //forfaldsdato
                         orebelob,              //fakbeløb i øre
-                        (int)Nr2Debktonr(o.Nr) //debitornr
+                        (int)Nr2Debktonr(Nr) //debitornr
                     );
                     recFakturaer_s rec = new recFakturaer_s { rec_no = SidsteRec_no, rec_data = ord };
                     Program.karFakturaer_s.Add(rec);
 
-                    var m_rec = (from m in Program.karMedlemmer where m.Nr == o.Nr select m).First();
+                    var m_rec = (from m in Program.karMedlemmer where m.Nr == Nr select m).First();
                     recFakturastr_s rec_Fakturastr_s = new recFakturastr_s
                     {
                         Fakid = SidsteSFakID.ToString(),
@@ -76,7 +114,7 @@ namespace nsPuls3060
                         Adresse = m_rec.Adresse,
                         Postnr = m_rec.Postnr,
                         Bynavn = m_rec.Bynavn,
-                        Faknr = (int)o.Pbsfaknr,
+                        Faknr = (int)Pbsfaknr,
                         Email = m_rec.Email
                     };
                     Program.karFakturastr_s.Add(rec_Fakturastr_s);
@@ -84,26 +122,30 @@ namespace nsPuls3060
                     recFakturavarer_s rec_Fakturavarer_s = new recFakturavarer_s
                     {
                         Fakid = SidsteSFakID.ToString(),
-                        Varenr = (int)o.Vnr,
+                        Varenr = (int)Vnr,
                         VareTekst = "Puls 3060 kontingent",
-                        Bogfkonto = (int)o.Bogfkonto,
+                        Bogfkonto = (int)Bogfkonto,
                         Antal = 1,
-                        Fakturabelob = (double)o.Advisbelob
+                        Fakturabelob = (double)Advisbelob
                     };
                     Program.karFakturavarer_s.Add(rec_Fakturavarer_s);
 
                     try
                     {
-                        Tblfak rec_fak = (from f in Program.dbData3060.Tblfak
-                                          where f.Id == o.Id
-                                          select f).First();
-                        rec_fak.SFakID = SidsteSFakID;
+                        XElement fakxml = new XElement("Fak");
+                        fakxml.Add(new XElement("Key", Key));
+                        fakxml.Add(new XElement("Id", Id));
+                        fakxml.Add(new XElement("SFakID", SidsteSFakID));
+                        SFakIDupdatexml.Add(new XElement(fakxml));
                     }
                     catch (System.InvalidOperationException)
                     {
                         throw;
                     }
                 }
+                string strSFakIDupdatexml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + SFakIDupdatexml.ToString();
+                string result = objRest.HttpPost2(clsRest.urlBaseType.data, "order2summa", strSFakIDupdatexml);
+
                 Program.karFakturaer_s.save();
                 Program.karFakturastr_s.save();
                 Program.karFakturavarer_s.save();
@@ -123,7 +165,6 @@ namespace nsPuls3060
                     Program.karStatus.Add(rec_Status);
                 }
                 Program.karStatus.save();
-                Program.dbData3060.SubmitChanges();
             }
             return AntalOrdre;
         }

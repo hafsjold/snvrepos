@@ -27,6 +27,7 @@ from pbs601 import pbs601Handler, DatatilpbsHandler, DatafrapbsHandler, Datasftp
 from pbs602 import pbs602Handler
 from pbs603 import pbs603Handler
 from kontingentforslag import KontingentForslagHandler
+from summa import Order2SummaHandler
 
 
 webapp.template.register_template_library('templatetags.medlem3060_extras')
@@ -1199,7 +1200,8 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/data/tilpbs', DatatilpbsHandler),   
                                        ('/data/frapbs', DatafrapbsHandler),   
                                        ('/data/sftp/.*', DatasftpHandler),
-                                       ('/data/kontingentforslag', KontingentForslagHandler),   
+                                       ('/data/kontingentforslag', KontingentForslagHandler), 
+                                       ('/data/order2summa', Order2SummaHandler),             
                                        ('/sync/.*', MenuHandler),
                                        ('/logoff', LogoffHandler),
                                        ('/teknik/createmenu', CreateMenu),

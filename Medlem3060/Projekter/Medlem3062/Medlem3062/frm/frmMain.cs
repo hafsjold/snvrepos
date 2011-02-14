@@ -120,6 +120,7 @@ namespace nsPuls3060
                 m_frmKontingentForslag.Show();
             }
         }
+        
         private void pbsfilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //if (!FocusChild("Pbsfiles"))
@@ -133,8 +134,8 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
-            clsAppEngSFTP objAppEngSFTP = new clsAppEngSFTP();
-            objAppEngSFTP.ReadFraSFtp();
+            //clsAppEngSFTP objAppEngSFTP = new clsAppEngSFTP();
+            //objAppEngSFTP.ReadFraSFtp();
             
             /*
             clsRest objRest = new clsRest();
@@ -434,28 +435,51 @@ namespace nsPuls3060
             this.Close();
         }
 
+        private void SendModtagPBSfilertoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string bigString = null;
+            string smallString = null;
+
+            clsAppEngSFTP objAppEngSFTP = new clsAppEngSFTP();
+            
+            //Send til PBS
+            string Status = "True";
+            int AntalFilerSendt = 0;
+            clsRest objRest = new clsRest();
+            while (Status == "True")
+            {
+                string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "tilpbs");
+                XDocument xmldata = XDocument.Parse(strxmldata);
+                Status = xmldata.Descendants("Status").First().Value;
+                if (Status == "True")
+                {
+                    bool bSendt = objAppEngSFTP.WriteTilSFtp(xmldata);
+                    if (bSendt) AntalFilerSendt++;
+                } 
+            }
+            
+            //Modtag fra PBS
+            int AntalFilerModtaget = objAppEngSFTP.ReadFraSFtp();
+
+            bigString = String.Format("{0} filer sendt til PBS.\n{1} filer modtaget fra PBS", AntalFilerSendt, AntalFilerModtaget);
+            DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
+                "Send/Modtag PBS filer", //titleString 
+                bigString, //bigString 
+                smallString, //smallString
+                null, //leftButton
+                "OK", //rightButton
+                global::nsPuls3060.Properties.Resources.Message_info); //iconSet
+        }
+        
         private void betalingerFraPBSToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string bigString = null;
             string smallString = null;
-            int AntalImportFiler = 0;
-
-            clsPbs602 objPbs602 = new clsPbs602();
-            clsPbs603 objPbs603 = new clsPbs603();
-
-            clsSFTP objSFTP = new clsSFTP();
-            AntalImportFiler = objSFTP.ReadFraSFtp();  //Læs direkte SFTP
-            objSFTP.DisconnectSFtp();
-            objSFTP = null;
-            //AntalImportFiler = objPbs602.ReadFraPbsFile(); //Læs fra Directory FraPBS
-
-            int Antal602Filer = objPbs602.betalinger_fra_pbs();
-            int Antal603Filer = objPbs603.aftaleoplysninger_fra_pbs();
 
             clsSumma objSumma = new clsSumma();
             int AntalOrdre = objSumma.Order2Summa();
 
-            bigString = String.Format("Antal indlæste filer fra PBS: {0} \nAntal nye 602 filer: {1}\nAntal nye 603 filer: {3}\nAntal nye ordre: {2}.", AntalImportFiler, Antal602Filer, AntalOrdre, Antal603Filer);
+            bigString = String.Format("Antal nye ordre: {0}.",AntalOrdre);
             if (AntalOrdre > 0)
             {
                 smallString = String.Format("Åben SummaSummarum\nTryk på ikonet Bilag i venstre side\nbogfør de {0} nye ordre.", AntalOrdre);
@@ -508,7 +532,6 @@ namespace nsPuls3060
         {
             DialogResult res = (new AboutBox()).ShowDialog();
         }
-
 
         private void excelInterntToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -579,5 +602,7 @@ namespace nsPuls3060
                 m_frmResend.Show();
             }
         }
+
+
     }
 }

@@ -174,6 +174,10 @@ class Fak(db.Model):
     Tilmeldtpbs = db.BooleanProperty(default=False)
     Indmeldelse = db.BooleanProperty(default=False)
     
+    @property
+    def Key(self):
+      return self.key()
+
     def addMedlog(self):
       fakroot = db.Key.from_path('Persons','root','Person','%s' % (self.Nr), 'Fak', '%s' % (self.Id))
       medlog = Medlog.get_or_insert('%s' % (self.Id), parent=fakroot)
@@ -256,6 +260,16 @@ class Betlin(db.Model):
     Pbskortart = db.StringProperty()
     Pbsgebyrbelob = db.FloatProperty()
     Pbsarkivnr = db.StringProperty()
+    Fakref = db.ReferenceProperty(Fak, collection_name='listBetlin')
+
+    def linkFak(self):
+      if not self.Fakref:
+        qry = Fak.all().filter('Faknr =', self.Faknr)
+        for fakrec in qry:
+          if fakrec.Nr == self.Nr:
+            self.Fakref = fakrec.key()
+            self.put()
+            break
     
     def addMedlog(self):
       if self.Pbstranskode in ['0236','0237','0297']:      

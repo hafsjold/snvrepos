@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<list>
+  <Status>{{status}}</Status>
+  {% if status %}
+  {% if betlines %}
+  {% for b in betlines %}
+  <Fak>
+    <Key>{{b.Fakref.Key}}</Key> 
+    <Id>{{b.Fakref.Id}}</Id> 
+    <Pbsfaknr>{{b.Fakref.Faknr}}</Pbsfaknr> 
+    <Nr>{{b.Fakref.Nr}}</Nr> 
+    <Advisbelob>{{b.Fakref.Advisbelob}}</Advisbelob>
+    <Betalingsdato>{{b.Fakref.Betalingsdato}}</Betalingsdato> 
+    <Vnr>{{b.Fakref.Vnr}}</Vnr> 
+    <Bogfkonto>{{b.Fakref.Bogfkonto}}</Bogfkonto> 
+    <Indbetalingsdato>{{b.Indbetalingsdato}}</Indbetalingsdato> 
+  </Fak>
+  {% endfor %}
+  {% endif %}    
+  {% endif %} 
+</list>
+
