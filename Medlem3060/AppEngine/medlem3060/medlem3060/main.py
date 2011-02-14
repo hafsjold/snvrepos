@@ -1145,6 +1145,13 @@ class ReindexHandler(webapp.RequestHandler):
       if i > 0:
         taskqueue.add(url='/_ah/queue/default', params={'perkeys':perkeys})      
       self.redirect("/adm")
+
+class LinkbetlineHandler(webapp.RequestHandler):
+    def get(self):
+      qry = Betlin.all()
+      for betlin in qry:
+        betlin.linkFak()
+      self.redirect("/adm")        
       
 class SearchIndexing(webapp.RequestHandler):
     """Handler for full text indexing task."""
@@ -1209,6 +1216,7 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/teknik/reindex', ReindexHandler),
                                        ('/teknik/listuser', ListUserHandler),
                                        ('/teknik/user/.*',UserHandler),
+                                       ('/data/linkbetline',LinkbetlineHandler),
                                        ('/_ah/queue/default', SearchIndexing) ],
                                      debug=True )
 

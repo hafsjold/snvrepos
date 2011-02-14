@@ -91,6 +91,11 @@ def createMenuAndUserGroup():
   l = createMenuMenuLink(Id = 70, Parent_key = p, Child_key = c, Menuseq = 4)  
   l.put()
   
+  c = createMenu(Id = 81, Menutext = 'Link Betlin til Fak', Menulink = '/data/linkbetline', Target = None, Confirm = False)
+  c.put()
+  l = createMenuMenuLink(Id = 71, Parent_key = p, Child_key = c, Menuseq = 4)  
+  l.put()
+  
   p = createMenu(Id = 90, Menutext = 'Logoff', Menulink = '/logoff', Target = None, Confirm = False)
   p.put()
   l = createMenuMenuLink(Id = 80, Parent_key = root, Child_key = p, Menuseq = 99)  

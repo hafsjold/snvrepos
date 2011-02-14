@@ -120,7 +120,7 @@ namespace nsPuls3060
                 m_frmKontingentForslag.Show();
             }
         }
-        
+
         private void pbsfilesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             //if (!FocusChild("Pbsfiles"))
@@ -136,7 +136,7 @@ namespace nsPuls3060
 #if (DEBUG)
             //clsAppEngSFTP objAppEngSFTP = new clsAppEngSFTP();
             //objAppEngSFTP.ReadFraSFtp();
-            
+
             /*
             clsRest objRest = new clsRest();
             string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "tilpbs");
@@ -189,24 +189,7 @@ namespace nsPuls3060
             */
             /*
             int cxd = 2;
-            clsConvert objConvert = new clsConvert();
-            objConvert.cvnPerson();
-            objConvert.cvnMedlog();
-            objConvert.cvnPbsforsendelse(); 
-            objConvert.cvnTilpbs();
-            objConvert.cvnFak();
-            objConvert.cvnRykker();
-            objConvert.cvnOverforsel();
-            objConvert.cvnPbsfiles();
-            objConvert.cvnFrapbs();
-            objConvert.cvnBet();
-            objConvert.cvnBetlin();
-            objConvert.cvnAftalelin();
-            objConvert.cvnIndbetalingskort();
-            objConvert.cvnSftp();
-            objConvert.cvnInfotekst();
-            objConvert.cvnSysinfo();
-            objConvert.cvnKreditor();
+
             */
             /*
             //clsSFTP objSFTP = new clsSFTP();
@@ -441,7 +424,7 @@ namespace nsPuls3060
             string smallString = null;
 
             clsAppEngSFTP objAppEngSFTP = new clsAppEngSFTP();
-            
+
             //Send til PBS
             string Status = "True";
             int AntalFilerSendt = 0;
@@ -455,9 +438,9 @@ namespace nsPuls3060
                 {
                     bool bSendt = objAppEngSFTP.WriteTilSFtp(xmldata);
                     if (bSendt) AntalFilerSendt++;
-                } 
+                }
             }
-            
+
             //Modtag fra PBS
             int AntalFilerModtaget = objAppEngSFTP.ReadFraSFtp();
 
@@ -470,7 +453,7 @@ namespace nsPuls3060
                 "OK", //rightButton
                 global::nsPuls3060.Properties.Resources.Message_info); //iconSet
         }
-        
+
         private void betalingerFraPBSToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string bigString = null;
@@ -479,7 +462,7 @@ namespace nsPuls3060
             clsSumma objSumma = new clsSumma();
             int AntalOrdre = objSumma.Order2Summa();
 
-            bigString = String.Format("Antal nye ordre: {0}.",AntalOrdre);
+            bigString = String.Format("Antal nye ordre: {0}.", AntalOrdre);
             if (AntalOrdre > 0)
             {
                 smallString = String.Format("Åben SummaSummarum\nTryk på ikonet Bilag i venstre side\nbogfør de {0} nye ordre.", AntalOrdre);
@@ -601,6 +584,35 @@ namespace nsPuls3060
                 m_frmResend.MdiParent = this;
                 m_frmResend.Show();
             }
+        }
+
+        private void data2AppEngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clsConvert objConvert = new clsConvert();
+            objConvert.cvnPerson();
+            objConvert.cvnMedlog();
+            objConvert.cvnPbsforsendelse();
+            objConvert.cvnTilpbs();
+            objConvert.cvnFak();
+            objConvert.cvnRykker();
+            objConvert.cvnOverforsel();
+            objConvert.cvnPbsfiles();
+            objConvert.cvnFrapbs();
+            objConvert.cvnBet();
+            objConvert.cvnBetlin();
+            objConvert.cvnAftalelin();
+            objConvert.cvnIndbetalingskort();
+            objConvert.cvnSftp();
+            objConvert.cvnInfotekst();
+            objConvert.cvnSysinfo();
+            objConvert.cvnKreditor();
+            DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
+              "data2AppEng", //titleString 
+              "Konvertering slut", //bigString 
+              "", //smallString
+              null, //leftButton
+              "OK", //rightButton
+              global::nsPuls3060.Properties.Resources.Message_info); //iconSet
         }
 
 
