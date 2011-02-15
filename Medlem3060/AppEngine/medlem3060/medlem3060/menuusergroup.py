@@ -81,7 +81,7 @@ def createMenuAndUserGroup():
   l = createMenuMenuLink(Id = 50, Parent_key = p, Child_key = c, Menuseq = 2)  
   l.put()
 
-  c = createMenu(Id = 70, Menutext = 'Reindex Medlem', Menulink = '/teknik/reindex', Target = None, Confirm = False)
+  c = createMenu(Id = 70, Menutext = 'Reindex Medlem', Menulink = '/data/reindex', Target = None, Confirm = False)
   c.put()
   l = createMenuMenuLink(Id = 60, Parent_key = p, Child_key = c, Menuseq = 3)  
   l.put()  

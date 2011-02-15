@@ -348,6 +348,7 @@ namespace nsPuls3060
             objConvert.cvnSysinfo();
             objConvert.cvnKreditor();
             objConvert.linkFak();
+            objConvert.reindexPerson();
             DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
               "data2AppEng", //titleString 
               "Konvertering slut", //bigString 
