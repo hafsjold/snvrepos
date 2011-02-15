@@ -59,10 +59,9 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.pbsfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoTekstToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reSendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.data2AppEngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.data2AppEngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -289,7 +288,6 @@
             this.toolStripMenuItem1,
             this.pbsfilesToolStripMenuItem,
             this.infoTekstToolStripMenuItem,
-            this.reSendToolStripMenuItem,
             this.data2AppEngToolStripMenuItem});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
             this.systemToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
@@ -323,6 +321,13 @@
             this.infoTekstToolStripMenuItem.Text = "Info tekst";
             this.infoTekstToolStripMenuItem.Click += new System.EventHandler(this.infoTekstToolStripMenuItem_Click);
             // 
+            // data2AppEngToolStripMenuItem
+            // 
+            this.data2AppEngToolStripMenuItem.Name = "data2AppEngToolStripMenuItem";
+            this.data2AppEngToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.data2AppEngToolStripMenuItem.Text = "Data2AppEng";
+            this.data2AppEngToolStripMenuItem.Click += new System.EventHandler(this.data2AppEngToolStripMenuItem_Click);
+            // 
             // hjælpToolStripMenuItem
             // 
             this.hjælpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -337,13 +342,6 @@
             this.omToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
-            // 
-            // data2AppEngToolStripMenuItem
-            // 
-            this.data2AppEngToolStripMenuItem.Name = "data2AppEngToolStripMenuItem";
-            this.data2AppEngToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.data2AppEngToolStripMenuItem.Text = "Data2AppEng";
-            this.data2AppEngToolStripMenuItem.Click += new System.EventHandler(this.data2AppEngToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -406,7 +404,6 @@
         internal System.Windows.Forms.ToolStripProgressBar MainformProgressBar;
         internal System.Windows.Forms.ToolStripStatusLabel MainformProgressText;
         private System.Windows.Forms.ToolStripMenuItem regnearkNotPBSToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reSendToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SendModtagPBSfilertoolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem data2AppEngToolStripMenuItem;
    }

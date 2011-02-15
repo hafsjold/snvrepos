@@ -17,7 +17,7 @@ using System.Xml.Linq;
 namespace nsPuls3060
 {
 
-    public class clsAppEngSFTP
+    public class clsSFTP
     {
         private SFtp m_sftp;
         
@@ -37,7 +37,7 @@ namespace nsPuls3060
         private DateTime m_Transmisionsdato;
         private string m_SendData;
 
-        public clsAppEngSFTP()
+        public clsSFTP()
         {
             clsRest objRest = new clsRest();
             string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "sftp/" + Program.sftpName);

@@ -18,7 +18,7 @@ namespace nsPuls3060
 
         private void FrmPbsnetdir_Load(object sender, EventArgs e)
         {
-            clsAppEngSFTP objAppEngSFTP = new clsAppEngSFTP();
+            clsSFTP objAppEngSFTP = new clsSFTP();
             objAppEngSFTP.ReadDirFraSFtp();
             objAppEngSFTP.DisconnectSFtp();
             objAppEngSFTP = null;

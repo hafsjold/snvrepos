@@ -175,7 +175,7 @@ namespace nsPuls3060
             string bigString = null;
             string smallString = null;
 
-            clsAppEngSFTP objAppEngSFTP = new clsAppEngSFTP();
+            clsSFTP objAppEngSFTP = new clsSFTP();
 
             //Send til PBS
             string Status = "True";
