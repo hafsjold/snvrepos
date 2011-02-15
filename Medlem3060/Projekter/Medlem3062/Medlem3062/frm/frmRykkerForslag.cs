@@ -302,10 +302,10 @@ namespace nsPuls3060
                     {
                         objPbs601.faktura_og_rykker_601_action(m_lobnr, fakType.fdrykker);
                         this.pgmRykker.Value = (imax * 3);
-                        clsSFTP objSFTP = new clsSFTP();
-                        objSFTP.WriteTilSFtp(m_lobnr);
-                        objSFTP.DisconnectSFtp();
-                        objSFTP = null;
+                        //clsSFTP objSFTP = new clsSFTP();
+                        //objSFTP.WriteTilSFtp(m_lobnr);
+                        //objSFTP.DisconnectSFtp();
+                        //objSFTP = null;
                     }
                     else //RYKKERE som emails
                     {

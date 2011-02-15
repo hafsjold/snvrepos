@@ -285,10 +285,10 @@ namespace nsPuls3060
                 {
                     objOverfoersel.krdfaktura_overfoersel_action(m_lobnr);
                     this.pgmBetal.Value = (imax * 3);
-                    clsSFTP objSFTP = new clsSFTP();
-                    TilPBSFilename = objSFTP.WriteTilSFtp(m_lobnr);
-                    objSFTP.DisconnectSFtp();
-                    objSFTP = null;
+                    //clsSFTP objSFTP = new clsSFTP();
+                    //TilPBSFilename = objSFTP.WriteTilSFtp(m_lobnr);
+                    //objSFTP.DisconnectSFtp();
+                    //objSFTP = null;
                     objOverfoersel.overfoersel_mail(m_lobnr);
                     clsSumma objSumma = new clsSumma();
                     objSumma.BogforUdBetalinger(m_lobnr);

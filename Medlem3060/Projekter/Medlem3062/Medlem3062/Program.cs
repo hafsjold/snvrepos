@@ -90,7 +90,11 @@ namespace nsPuls3060
         {
             get
             {
-                if (m_Smtphost == null) m_Smtphost = (Program.dbData3060.ExecuteQuery<clsPbs.clsSysinfo>("SELECT * FROM [tblSysinfo] WHERE [vkey] = N'SMTPHOST';")).First().val;
+                if (m_Smtphost == null)
+                {
+                    clsRest objRest = new clsRest();
+                    m_Smtphost = objRest.HttpGet2(clsRest.urlBaseType.sync, "Sysinfo/SMTPHOST");
+                }
                 return m_Smtphost;
             }
             set
@@ -102,7 +106,11 @@ namespace nsPuls3060
         {
             get
             {
-                if (m_Smtpport == null) m_Smtpport = (Program.dbData3060.ExecuteQuery<clsPbs.clsSysinfo>("SELECT * FROM [tblSysinfo] WHERE [vkey] = N'SMTPPORT';")).First().val;
+                if (m_Smtpport == null)
+                {
+                    clsRest objRest = new clsRest();
+                    m_Smtpport = objRest.HttpGet2(clsRest.urlBaseType.sync, "Sysinfo/SMTPPORT");
+                } 
                 return m_Smtpport;
             }
             set
@@ -114,7 +122,11 @@ namespace nsPuls3060
         {
             get
             {
-                if (m_Smtpssl == null) m_Smtpssl = (Program.dbData3060.ExecuteQuery<clsPbs.clsSysinfo>("SELECT * FROM [tblSysinfo] WHERE [vkey] = N'Smtpssl';")).First().val;
+                if (m_Smtpssl == null)
+                {
+                    clsRest objRest = new clsRest();
+                    m_Smtpssl = objRest.HttpGet2(clsRest.urlBaseType.sync, "Sysinfo/SMTPSSL");
+                } 
                 return m_Smtpssl;
             }
             set
@@ -126,7 +138,11 @@ namespace nsPuls3060
         {
             get
             {
-                if (m_Smtpuser == null) m_Smtpuser = (Program.dbData3060.ExecuteQuery<clsPbs.clsSysinfo>("SELECT * FROM [tblSysinfo] WHERE [vkey] = N'Smtpuser';")).First().val;
+                if (m_Smtpuser == null)
+                {
+                    clsRest objRest = new clsRest();
+                    m_Smtpuser = objRest.HttpGet2(clsRest.urlBaseType.sync, "Sysinfo/SMTPUSER");
+                } 
                 return m_Smtpuser;
             }
             set
@@ -138,7 +154,11 @@ namespace nsPuls3060
         {
             get
             {
-                if (m_Smtppasswd == null) m_Smtppasswd = (Program.dbData3060.ExecuteQuery<clsPbs.clsSysinfo>("SELECT * FROM [tblSysinfo] WHERE [vkey] = N'Smtppasswd';")).First().val;
+                if (m_Smtppasswd == null)
+                {
+                    clsRest objRest = new clsRest();
+                    m_Smtppasswd = objRest.HttpGet2(clsRest.urlBaseType.sync, "Sysinfo/SMTPPASSWD");
+                } 
                 return m_Smtppasswd;
             }
             set
@@ -150,7 +170,11 @@ namespace nsPuls3060
         {
             get
             {
-                if (m_MailToName == null) m_MailToName = (Program.dbData3060.ExecuteQuery<clsPbs.clsSysinfo>("SELECT * FROM [tblSysinfo] WHERE [vkey] = N'MailToName';")).First().val;
+                if (m_MailToName == null)
+                {
+                    clsRest objRest = new clsRest();
+                    m_MailToName = objRest.HttpGet2(clsRest.urlBaseType.sync, "Sysinfo/MAILTONAME");
+                } 
                 return m_MailToName;
             }
             set
@@ -162,7 +186,12 @@ namespace nsPuls3060
         {
             get
             {
-                if (m_MailToAddr == null) m_MailToAddr = (Program.dbData3060.ExecuteQuery<clsPbs.clsSysinfo>("SELECT * FROM [tblSysinfo] WHERE [vkey] = N'MailToAddr';")).First().val;
+                if (m_MailToAddr == null) 
+                {
+                    clsRest objRest = new clsRest();
+                    m_MailToAddr = objRest.HttpGet2(clsRest.urlBaseType.sync, "Sysinfo/MAILTOADDR");
+                }
+                
                 return m_MailToAddr;
             }
             set
@@ -174,7 +203,11 @@ namespace nsPuls3060
         {
             get
             {
-                if (m_MailFrom == null) m_MailFrom = (Program.dbData3060.ExecuteQuery<clsPbs.clsSysinfo>("SELECT * FROM [tblSysinfo] WHERE [vkey] = N'MailFrom';")).First().val;
+                if (m_MailFrom == null)
+                {
+                    clsRest objRest = new clsRest();
+                    m_MailFrom = objRest.HttpGet2(clsRest.urlBaseType.sync, "Sysinfo/MAILFROM");
+                } 
                 return m_MailFrom;
             }
             set
@@ -186,7 +219,11 @@ namespace nsPuls3060
         {
             get
             {
-                if (m_MailReply == null) m_MailReply = (Program.dbData3060.ExecuteQuery<clsPbs.clsSysinfo>("SELECT * FROM [tblSysinfo] WHERE [vkey] = N'MailReply';")).First().val;
+                if (m_MailReply == null)
+                {
+                    clsRest objRest = new clsRest();
+                    m_MailReply = objRest.HttpGet2(clsRest.urlBaseType.sync, "Sysinfo/MAILREPLY");
+                } 
                 return m_MailReply;
             }
             set
@@ -258,8 +295,11 @@ namespace nsPuls3060
                 if (m_dsMedlemGlobal == null)
                 {
                     m_dsMedlemGlobal = new dsMedlem();
-                    //m_dsMedlemGlobal.fillPerson();
-                    //m_dsMedlemGlobal.fillMedlog();
+                    if (isAppEngOnline)
+                    {
+                        m_dsMedlemGlobal.fillPerson();
+                        m_dsMedlemGlobal.fillMedlog();
+                    }
                     m_dsMedlemGlobal.filldsMedlem();
                 }
                 return m_dsMedlemGlobal;
@@ -518,19 +558,28 @@ namespace nsPuls3060
         {
 
             IEnumerable<clsLog> qryLogResult = from m in Program.tblMedlog.AsEnumerable()
-                                select new clsLog
-                                {
-                                  Nr = (int?)m.Nr,
-                                  Logdato = (DateTime?)m.Logdato,
-                                  Akt_id = (int?)m.Akt_id,
-                                  Akt_dato = (DateTime?)m.Akt_dato
-                                };
+                                               select new clsLog
+                                               {
+                                                   Nr = (int?)m.Nr,
+                                                   Logdato = (DateTime?)m.Logdato,
+                                                   Akt_id = (int?)m.Akt_id,
+                                                   Akt_dato = (DateTime?)m.Akt_dato
+                                               };
 
             return qryLogResult;
         }
 
         public static FrmMain frmMain { get; set; }
-
+        public static bool isAppEngOnline
+        {
+            get
+            {
+                clsRest objRest = new clsRest();
+                string retur = objRest.HttpGet2(clsRest.urlBaseType.data, "online");
+                if (retur == "Status: 200") return true;
+                else return false;
+            }
+        }
         public static bool ValidatekBank(string Bank)
         {
             if (Bank == null) return false;
@@ -554,6 +603,7 @@ namespace nsPuls3060
             }
             return false;
         }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

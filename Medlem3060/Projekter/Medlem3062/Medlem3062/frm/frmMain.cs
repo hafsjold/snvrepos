@@ -134,6 +134,17 @@ namespace nsPuls3060
 #if (DEBUG)
             //clsAppEngSFTP objAppEngSFTP = new clsAppEngSFTP();
             //objAppEngSFTP.ReadFraSFtp();
+            bool test1 = Program.isAppEngOnline;
+            string test = Program.MailFrom;
+            test = Program.Smtphost;
+            test = Program.Smtpport;
+            test = Program.Smtpssl;
+            test = Program.Smtpuser;
+            test = Program.Smtppasswd;
+            test = Program.MailToName;
+            test = Program.MailToAddr;
+            test = Program.MailFrom;
+            test = Program.MailReply;
 
 
 #endif
@@ -317,16 +328,6 @@ namespace nsPuls3060
             excelNotPBS();
         }
 
-        private void reSendToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!FocusChild("Resend til PBS"))
-            {
-                FrmResend m_frmResend = new FrmResend();
-                m_frmResend.MdiParent = this;
-                m_frmResend.Show();
-            }
-        }
-
         private void data2AppEngToolStripMenuItem_Click(object sender, EventArgs e)
         {
             clsConvert objConvert = new clsConvert();
@@ -348,6 +349,7 @@ namespace nsPuls3060
             objConvert.cvnSysinfo();
             objConvert.cvnKreditor();
             objConvert.linkFak();
+            objConvert.NrSerieSetupAll();
             objConvert.reindexPerson();
             DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
               "data2AppEng", //titleString 

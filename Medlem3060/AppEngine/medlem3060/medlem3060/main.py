@@ -19,7 +19,7 @@ import os
 import re
 import sys  
 
-from models import nextval, UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Tilpbs, Fak, Overforsel, Rykker, Pbsfiles, Pbsfile, Sendqueue, Frapbs, Bet, Betlin, Aftalelin, Indbetalingskort, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
+from models import NrSerieSetupAll, nextval, UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Tilpbs, Fak, Overforsel, Rykker, Pbsfiles, Pbsfile, Sendqueue, Frapbs, Bet, Betlin, Aftalelin, Indbetalingskort, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
 from util import utc, cet,TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
 from menuusergroup import deleteMenuAndUserGroup, createMenuAndUserGroup
 from menu import MenuHandler, ListUserHandler, UserHandler
@@ -1099,6 +1099,30 @@ class SyncMedlemHandler(webapp.RequestHandler):
     logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     self.response.out.write('Status: 404')
 
+class SyncSysinfoHandler(webapp.RequestHandler):
+  def get(self):
+    path = self.request.environ['PATH_INFO']
+    mo = re.match("/sync/Sysinfo/([0-9a-zA-Z]+)", path)
+    if mo:
+      if mo.groups()[0]:
+        try:
+          vkey = mo.groups()[0]
+          key = db.Key.from_path('rootSysinfo','root', 'Sysinfo', '%s' % (vkey)) 
+          rec = db.get(key)
+          if rec:          
+            if rec.Val:
+              self.response.out.write('%s' % (rec.Val))
+            else:  
+              self.response.out.write('Error')
+          else:
+            self.response.out.write('Error')
+        except:
+          self.response.out.write('Error')
+      else:
+        self.response.out.write('Error')
+    else:
+      self.response.out.write('Error')
+        
 class SyncNrSerieHandler(webapp.RequestHandler):
   def get(self):
     path = self.request.environ['PATH_INFO']
@@ -1180,7 +1204,15 @@ class FlushCache(webapp.RequestHandler):
     def get(self):
       memcache.flush_all()
       self.redirect("/adm")
+      
+class NrSerieSetupAllHandler(webapp.RequestHandler):
+    def get(self):
+      NrSerieSetupAll()
+      self.redirect("/adm")
 
+class OnlineHandler(webapp.RequestHandler):
+    def get(self):
+      self.response.out.write('Status: 200')
       
 application = webapp.WSGIApplication([ ('/', MainHandler),
                                        (LOGIN_URL, LoginHandler),
@@ -1200,6 +1232,7 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/rest/.*', rest.Dispatcher),
                                        ('/sync/Convert/.*', SyncConvertHandler),
                                        ('/sync/NrSerie/.*', SyncNrSerieHandler),
+                                       ('/sync/Sysinfo/.*', SyncSysinfoHandler),
                                        ('/sync/Medlem/.*', SyncMedlemHandler),
                                        ('/sync/Medlem', SyncMedlemHandler),
                                        ('/sync/Medlog/.*', SyncMedlogHandler),
@@ -1217,6 +1250,8 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/teknik/listuser', ListUserHandler),
                                        ('/teknik/user/.*',UserHandler),
                                        ('/data/linkfak',LinkFakHandler),
+                                       ('/data/nrseriesetupall',NrSerieSetupAllHandler),
+                                       ('/data/online',OnlineHandler),
                                        ('/_ah/queue/default', SearchIndexing) ],
                                      debug=True )
 

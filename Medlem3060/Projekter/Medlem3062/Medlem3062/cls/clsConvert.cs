@@ -442,6 +442,12 @@ namespace nsPuls3060
             string retur = objRest.HttpGet2(clsRest.urlBaseType.data, "linkfak");
         }
 
+        public void NrSerieSetupAll()
+        {
+            clsRest objRest = new clsRest();
+            string retur = objRest.HttpGet2(clsRest.urlBaseType.data, "nrseriesetupall");
+        }
+        
         public void reindexPerson()
         {
             clsRest objRest = new clsRest();

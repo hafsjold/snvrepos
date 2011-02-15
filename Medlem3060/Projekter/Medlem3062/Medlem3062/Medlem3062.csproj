@@ -124,7 +124,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="cls\clsGoogle.cs" />
-    <Compile Include="cls\clsSFTP.cs" />
     <Compile Include="cls\clsSumma.cs" />
     <Compile Include="cls\clsConvert.cs" />
     <Compile Include="cls\clsAppEngSFTP.cs" />
@@ -134,12 +133,6 @@
     <Compile Include="dsMedlem.cs">
       <DependentUpon>dsMedlem.xsd</DependentUpon>
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="frm\frmResend.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frm\frmResend.Designer.cs">
-      <DependentUpon>frmResend.cs</DependentUpon>
     </Compile>
     <Compile Include="frm\frmPbsnetdir.cs">
       <SubType>Form</SubType>
@@ -284,9 +277,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm\frmRegnskab.resx">
       <DependentUpon>frmRegnskab.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frm\frmResend.resx">
-      <DependentUpon>frmResend.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm\frmSelectRegnskab.resx">
       <DependentUpon>frmSelectRegnskab.cs</DependentUpon>

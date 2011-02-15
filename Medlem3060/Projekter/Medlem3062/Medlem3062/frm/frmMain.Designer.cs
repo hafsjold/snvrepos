@@ -323,13 +323,6 @@
             this.infoTekstToolStripMenuItem.Text = "Info tekst";
             this.infoTekstToolStripMenuItem.Click += new System.EventHandler(this.infoTekstToolStripMenuItem_Click);
             // 
-            // reSendToolStripMenuItem
-            // 
-            this.reSendToolStripMenuItem.Name = "reSendToolStripMenuItem";
-            this.reSendToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.reSendToolStripMenuItem.Text = "ReSend";
-            this.reSendToolStripMenuItem.Click += new System.EventHandler(this.reSendToolStripMenuItem_Click);
-            // 
             // hjælpToolStripMenuItem
             // 
             this.hjælpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
