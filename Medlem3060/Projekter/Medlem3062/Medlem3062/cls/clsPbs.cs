@@ -399,18 +399,6 @@ namespace nsPuls3060
             else return false;
         }
 
-        public static bool getbetaltudmeldt(int? Nr)
-        {
-            var qry = from l in Program.dbData3060.TblMedlemLog
-                      where l.Nr == Nr
-                      orderby l.Logdato descending
-                      select l;
-
-            if (qry.Count() > 0) return true;
-            else return false;
-        }
-
-
         public bool ReadRegnskaber()
         {
             string RegnskabId;

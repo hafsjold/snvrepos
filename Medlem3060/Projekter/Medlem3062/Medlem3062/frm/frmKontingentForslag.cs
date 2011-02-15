@@ -304,7 +304,7 @@ namespace nsPuls3060
         private void cmdFakturer_Click(object sender, EventArgs e)
         {
             string TilPBSFilename = "Unknown";
-            int AntalFakturaer;
+            //int AntalFakturaer;
             int imax;
             string keyval;
             DateTime fradato;

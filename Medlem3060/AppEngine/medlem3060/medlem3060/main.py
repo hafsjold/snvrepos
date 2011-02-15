@@ -1146,7 +1146,7 @@ class ReindexHandler(webapp.RequestHandler):
         taskqueue.add(url='/_ah/queue/default', params={'perkeys':perkeys})      
       self.redirect("/adm")
 
-class LinkbetlineHandler(webapp.RequestHandler):
+class LinkFakHandler(webapp.RequestHandler):
     def get(self):
       qry = Betlin.all()
       for betlin in qry:
@@ -1216,7 +1216,7 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/teknik/reindex', ReindexHandler),
                                        ('/teknik/listuser', ListUserHandler),
                                        ('/teknik/user/.*',UserHandler),
-                                       ('/data/linkbetline',LinkbetlineHandler),
+                                       ('/data/linkfak',LinkFakHandler),
                                        ('/_ah/queue/default', SearchIndexing) ],
                                      debug=True )
 

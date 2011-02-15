@@ -66,7 +66,7 @@ namespace nsPuls3060
                     string[] lines = Regex.Split(m_baseUrl, "//");
                     return lines[1];
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     return m_baseUrl;
                 }

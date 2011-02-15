@@ -436,5 +436,11 @@ namespace nsPuls3060
             }
         }
 
+        public void linkFak()
+        {
+            clsRest objRest = new clsRest();
+            string retur = objRest.HttpGet2(clsRest.urlBaseType.data, "linkfak");
+        }
+
     }
 }
