@@ -30,9 +30,9 @@ class KontingentForslagHandler(webapp.RequestHandler):
     person_list = db.Query(Person).ancestor(root)
     for rec_person in person_list:
       objMedlemsStatus = MedlemsStatus(rec_person.key())
-      (KontingentFradato, Indmeldelse) = objMedlemsStatus.KontingentForslag()
+      (KontingentFradato, Indmeldelse, Tilmeldtpbs) = objMedlemsStatus.KontingentForslag()
       if KontingentFradato:
-        objForslag = clsForslag(rec_person, KontingentFradato, Indmeldelse, False)
+        objForslag = clsForslag(rec_person, KontingentFradato, Indmeldelse, Tilmeldtpbs)
         forslag.append(objForslag)
         antal += 1
     
@@ -42,4 +42,23 @@ class KontingentForslagHandler(webapp.RequestHandler):
       'forslag': forslag,
     }
     path = os.path.join(os.path.dirname(__file__), 'templates/kontingentforslag.xml')
+    self.response.out.write(template.render(path, template_values))  
+
+class PersonListHandler(webapp.RequestHandler):
+  def get(self):
+    forslag = []
+    antal = 0
+    root = db.Key.from_path('Persons','root')
+    person_list = db.Query(Person).ancestor(root)
+    for rec_person in person_list:
+      objMedlemsStatus = MedlemsStatus(rec_person.key())
+      forslag.append(objMedlemsStatus)
+      antal += 1
+    
+    status = (antal > 0)    
+    template_values = {
+      'status': status,
+      'forslag': forslag,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/personlist.xml')
     self.response.out.write(template.render(path, template_values))  

@@ -510,6 +510,9 @@ class MedlemsStatus():
     self.BetalingsFristiDageGamleMedlemmer = 31
     self.BetalingsFristiDageNyeMedlemmer = 61
     qrylog = db.Query(Medlog).ancestor(self.key).order('-Logdato')
+    self.tilmeldtpbs = False
+    qryaftalelin = db.Query(Aftalelin).ancestor(self.key).order('-Aftalestartdato').order('-Aftaleslutdato')
+    
     for Mlog in qrylog:
       logging.info('XXXXXXXXXXXMedlemsStatusXXXXXXXXXXXXXXX %s - %s - %s - %s - %s - %s' % (Mlog.Nr, Mlog.Source , Mlog.Source_id , Mlog.Logdato, Mlog.Akt_id, Mlog.Akt_dato))
       if Mlog.Akt_id == 10: #Seneste Indmelses dato
@@ -537,7 +540,40 @@ class MedlemsStatus():
         if not self.b50:
           self.b50 = True
           self.udmeldelsesDato = Mlog.Akt_dato
-          
+    
+    for aftale in qryaftalelin:
+      if not aftale.Aftaleslutdato:
+        self.tilmeldtpbs = True
+      break
+  
+  @property
+  def person(self):
+    return db.get(self.key)
+    
+  @property
+  def erMedlem(self):
+    return self.MedlemTildato() > datetime.now(cet).replace(tzinfo = None).date()
+    
+  @property
+  def indmeldelsesDato(self):
+    return self.indmeldelsesDato
+    
+  @property
+  def udmeldelsesDato(self):
+    return self.udmeldelsesDato
+    
+  @property
+  def kontingentBetaltTilDato(self):
+    return self.kontingentBetaltTilDato
+    
+  @property
+  def opkraevningsDato(self):
+    return self.opkraevningsDato
+    
+  @property
+  def kontingentTilbagefoertDato(self):
+    return self.kontingentTilbagefoertDato
+    
   def MedlemTildato(self):
     #Undersoeg vedr ind- og udmeldelse
     if self.b10: #Findes der en indmeldelse
@@ -584,9 +620,9 @@ class MedlemsStatus():
     if self.b10: #Findes der en indmeldelse
       if self.b50:  #Findes der en udmeldelse
         if self.udmeldelsesDato >= self.indmeldelsesDato: #Er udmeldelsen aktiv
-          return None, None
+          return None, None, None
     else:  #Der findes ingen indmeldelse
-      return None, None
+      return None, None, None
 
     #Find aktive betalingsrecord
     if self.b40: #Findes der en kontingent tilbagefoert
@@ -610,20 +646,20 @@ class MedlemsStatus():
     
     #undersøg medlemskab
     if not MedlemTildato >= datetime.now().date():
-      return None, None
+      return None, None, None
     
     #Undersoeg om der findes ubetalt opkraevning
     if self.MedlemAabenBetalingsdato():    
-      return None, None
+      return None, None, None
     
     #Undersøg om der er betalt kontingent efter tildato
     if tildato == None:
       dt = datetime.now() + timedelta(days=30)
       tildato = dt.date()
     if self.b30 and self.kontingentBetaltTilDato > tildato:
-      return None, None
+      return None, None, None
 
-    return KontingentFradato, Indmeldelse
+    return KontingentFradato, Indmeldelse, self.tilmeldtpbs
   
       
 class NrSerie(db.Model):

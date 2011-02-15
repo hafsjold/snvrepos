@@ -26,7 +26,7 @@ from menu import MenuHandler, ListUserHandler, UserHandler
 from pbs601 import pbs601Handler, DatatilpbsHandler, DatafrapbsHandler, DatasftpHandler
 from pbs602 import pbs602Handler
 from pbs603 import pbs603Handler
-from kontingentforslag import KontingentForslagHandler
+from kontingentforslag import KontingentForslagHandler, PersonListHandler
 from summa import Order2SummaHandler
 
 
@@ -1241,6 +1241,7 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/data/frapbs', DatafrapbsHandler),   
                                        ('/data/sftp/.*', DatasftpHandler),
                                        ('/data/kontingentforslag', KontingentForslagHandler), 
+                                       ('/data/personlist', PersonListHandler), 
                                        ('/data/order2summa', Order2SummaHandler),             
                                        ('/sync/.*', MenuHandler),
                                        ('/logoff', LogoffHandler),

@@ -532,10 +532,5 @@ namespace nsPuls3060
             return true;
         }
 
-        public class clsSysinfo
-        {
-            public string vkey = "";
-            public string val = "";
-        }
     }
 }
