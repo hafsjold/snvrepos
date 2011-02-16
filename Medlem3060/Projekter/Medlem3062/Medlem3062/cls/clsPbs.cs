@@ -378,27 +378,6 @@ namespace nsPuls3060
             }
         }
 
-        public static bool gettilmeldtpbs(int? Nr)
-        {
-            var pbsaftalestart = from s in Program.dbData3060.Tblaftalelin
-                                 where s.Nr == Nr & (s.Pbstranskode == "0230" | s.Pbstranskode == "0231")
-                                 select s;
-            var pbsaftaleslut = from s in Program.dbData3060.Tblaftalelin
-                                where s.Nr == Nr & s.Pbstranskode != "0230" & s.Pbstranskode != "0231"
-                                select s;
-
-            var pbsaftale = from a in pbsaftalestart
-                            join s in pbsaftaleslut on a.Aftalenr equals s.Aftalenr into pbsaftaleslut2
-                            from s in pbsaftaleslut2.DefaultIfEmpty()
-                            where s.Id == null
-                            orderby a.Aftalestartdato descending
-                            select a;
-
-            int antal = pbsaftale.Count();
-            if (antal > 0) return true;
-            else return false;
-        }
-
         public bool ReadRegnskaber()
         {
             string RegnskabId;

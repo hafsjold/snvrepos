@@ -493,6 +493,7 @@ class Person(db.Model):
 class MedlemsStatus():
   def __init__(self, key):
     self.key = key
+    self.person = db.get(key)
     self.b10 = False
     self.indmeldelsesDato = None
     self.b20 = False
@@ -510,6 +511,8 @@ class MedlemsStatus():
     self.BetalingsFristiDageGamleMedlemmer = 31
     self.BetalingsFristiDageNyeMedlemmer = 61
     qrylog = db.Query(Medlog).ancestor(self.key).order('-Logdato')
+    self.KontingentFradato = None
+    self.Indmeldelse = False
     self.tilmeldtpbs = False
     qryaftalelin = db.Query(Aftalelin).ancestor(self.key).order('-Aftalestartdato').order('-Aftaleslutdato')
     
@@ -545,10 +548,22 @@ class MedlemsStatus():
       if not aftale.Aftaleslutdato:
         self.tilmeldtpbs = True
       break
-  
+
+  @property
+  def KontingentFradato(self):
+    return self.KontingentFradato
+
+  @property
+  def Indmeldelse(self):
+    return self.Indmeldelse
+
+  @property
+  def Tilmeldtpbs(self):
+    return self.tilmeldtpbs
+      
   @property
   def person(self):
-    return db.get(self.key)
+    return self.person
     
   @property
   def erMedlem(self):
@@ -616,13 +631,13 @@ class MedlemsStatus():
       return None
 
   def KontingentForslag(self, tildato = None):
-      #Undersoeg vedr ind- og udmeldelse
+    #Undersoeg vedr ind- og udmeldelse
     if self.b10: #Findes der en indmeldelse
       if self.b50:  #Findes der en udmeldelse
         if self.udmeldelsesDato >= self.indmeldelsesDato: #Er udmeldelsen aktiv
-          return None, None, None
+          return False
     else:  #Der findes ingen indmeldelse
-      return None, None, None
+      return False
 
     #Find aktive betalingsrecord
     if self.b40: #Findes der en kontingent tilbagefoert
@@ -637,29 +652,29 @@ class MedlemsStatus():
     #Undersoeg om der er betalt kontingent
     if self.b30 and self.kontingentBetaltTilDato > self.indmeldelsesDato: #Findes der en betaling efter indmelsesdato
       MedlemTildato = self.kontingentBetaltTilDato + timedelta(days=self.BetalingsFristiDageGamleMedlemmer)
-      KontingentFradato = self.kontingentBetaltTilDato + timedelta(days=1)
-      Indmeldelse = False
+      self.KontingentFradato = self.kontingentBetaltTilDato + timedelta(days=1)
+      self.Indmeldelse = False
     else: #Der findes ingen betalinger. Nyt medlem?
       MedlemTildato = self.indmeldelsesDato + timedelta(days=self.BetalingsFristiDageNyeMedlemmer)
-      KontingentFradato = self.indmeldelsesDato + timedelta(days=1)
-      Indmeldelse = True
+      self.KontingentFradato = self.indmeldelsesDato + timedelta(days=1)
+      self.Indmeldelse = True
     
     #undersøg medlemskab
     if not MedlemTildato >= datetime.now().date():
-      return None, None, None
+      return False
     
     #Undersoeg om der findes ubetalt opkraevning
     if self.MedlemAabenBetalingsdato():    
-      return None, None, None
+      return False
     
     #Undersøg om der er betalt kontingent efter tildato
     if tildato == None:
       dt = datetime.now() + timedelta(days=30)
       tildato = dt.date()
     if self.b30 and self.kontingentBetaltTilDato > tildato:
-      return None, None, None
+      return False
 
-    return KontingentFradato, Indmeldelse, self.tilmeldtpbs
+    return True
   
       
 class NrSerie(db.Model):

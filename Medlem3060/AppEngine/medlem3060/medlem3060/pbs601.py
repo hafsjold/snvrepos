@@ -4,7 +4,7 @@ from google.appengine.ext import db
 from google.appengine.ext.webapp import template
 
 from models import nextval, UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Pbsfiles, Pbsfile, Sendqueue, Recievequeue, Tilpbs, Fak, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
-from util import lpad, rpad, utc, cet
+from util import PassXmlDoc, lpad, rpad, utc, cet
 from datetime import datetime, date, timedelta
 import logging
 import os
@@ -65,7 +65,7 @@ class DatasftpHandler(webapp.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'templates/sftp.xml')
     self.response.out.write(template.render(path, template_values))
     
-class DatafrapbsHandler(webapp.RequestHandler):
+class DatafrapbsHandler(webapp.RequestHandler, PassXmlDoc):
   def post(self):
     status = False
     doc = minidom.parse(self.request.body_file)
@@ -74,88 +74,42 @@ class DatafrapbsHandler(webapp.RequestHandler):
     
     if tagName == 'Pbsfiles':
       try:
-        PbsfileId = doc.getElementsByTagName("PbsfileId")[0].childNodes[0].data
+        Id = doc.getElementsByTagName("Id")[0].childNodes[0].data
       except:
-        PbsfileId = None
-      if PbsfileId == '*':
-        PbsfileId = nextval('Pbsfilesid')
+        Id = None
+      if Id == None:
+        Id = nextval('Pbsfilesid')
       rootPbsfiles = db.Key.from_path('rootPbsfiles','root')
-      rec = Pbsfiles.get_or_insert('%s' % (PbsfileId), parent=rootPbsfiles)
-      rec.Id = PbsfileId
-      try:
-        Type = int(doc.getElementsByTagName("Type")[0].childNodes[0].data)
-        rec.Type = Type
-      except:
-        pass
-      try:
-        Path = doc.getElementsByTagName("Path")[0].childNodes[0].data
-        rec.Path = Path
-      except:
-        pass      
-      try:
-        Filename = doc.getElementsByTagName("Filename")[0].childNodes[0].data
-        rec.Filename = Filename
-      except:
-        pass     
-      try:
-        Size = int(doc.getElementsByTagName("Size")[0].childNodes[0].data)
-        rec.Size = Size
-      except:
-        pass     
-      try:
-        strval = doc.getElementsByTagName("Atime")[0].childNodes[0].data
-        dt = datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S")
-        if strval[-6:] == '+01:00':
-          Atime = dt.replace(tzinfo = cet)
-        elif strval[-6:] == '+00:00':
-          Atime =  dt.replace(tzinfo = utc)
-        else:          
-          Atime =  dt
-        rec.Atime = Atime
-      except:
-        pass     
-      try:
-        strval = doc.getElementsByTagName("Mtime")[0].childNodes[0].data
-        dt = datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S")
-        if strval[-6:] == '+01:00':
-          Mtime = dt.replace(tzinfo = cet)
-        elif strval[-6:] == '+00:00':
-          Mtime =  dt.replace(tzinfo = utc)
-        else:          
-          Mtime =  dt
-        rec.Mtime = Mtime
-      except:
-        pass     
-      try:
-        strval = doc.getElementsByTagName("Transmittime")[0].childNodes[0].data
-        dt = datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S")
-        if strval[-6:] == '+01:00':
-          Transmittime = dt.replace(tzinfo = cet)
-        elif strval[-6:] == '+00:00':
-          Transmittime =  dt.replace(tzinfo = utc)
-        else:          
-          Transmittime =  dt
-        rec.Transmittime = Transmittime
-      except:
-        pass     
+      rec = Pbsfiles.get_or_insert('%s' % (Id), parent=rootPbsfiles)
+      rec.Id = Id
+      for attr_name, value in Pbsfiles.__dict__.iteritems():
+        if isinstance(value, db.Property) and not attr_name in ['Id']:
+          attr_type = value.__class__.__name__        
+          if not attr_type in ['_ReverseReferenceProperty']:
+            val = self.attr_val(doc, attr_name, attr_type)
+            logging.info('%s=%s' % (attr_name, val))
+            try:
+              setattr(rec, attr_name, val)
+            except:
+              setattr(rec, attr_name, None)      
       rec.put() 
 
       rootPbsfile = db.Key.from_path('rootPbsfile','root')
-      file_rec = Pbsfile.get_or_insert('%s' % (PbsfileId), parent=rootPbsfile)
-      file_rec.Id = PbsfileId
+      file_rec = Pbsfile.get_or_insert('%s' % (Id), parent=rootPbsfile)
+      file_rec.Id = Id
       logging.info('Debug 1')
       file_rec.Pbsfilesref = rec.key()
       logging.info('Debug 2')
 
       try:
-        Dataval = doc.getElementsByTagName("Data")[0].childNodes[0].data
-        logging.info('Debug 3: %s' % (Dataval))      
+        Data = doc.getElementsByTagName("Data")[0].childNodes[0].data
+        logging.info('Debug 3: %s' % (Data))      
         status = True
       except:
-        Dataval = None
-        logging.info('Debug 3: %s' % (Dataval)) 
+        Data = None
+        logging.info('Debug 3: %s' % (Data)) 
       
-      file_rec.Data = Dataval
+      file_rec.Data = Data
       file_rec.put()
       file_rec.add_to_recievequeue()      
 
@@ -165,7 +119,7 @@ class DatafrapbsHandler(webapp.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'templates/status.xml')
     self.response.out.write(template.render(path, template_values))
         
-class DatatilpbsHandler(webapp.RequestHandler):
+class DatatilpbsHandler(webapp.RequestHandler, PassXmlDoc):
   def get(self):
     qry = db.Query(Sendqueue).filter('Send_to_pbs =', False).filter('Onhold =', False)  
     antal = qry.count()
@@ -197,67 +151,22 @@ class DatatilpbsHandler(webapp.RequestHandler):
     
     if tagName == 'Pbsfiles':
       try:
-        PbsfileId = doc.getElementsByTagName("PbsfileId")[0].childNodes[0].data
+        PbsfileId = doc.getElementsByTagName("Id")[0].childNodes[0].data
       except:
-        PbsfileId = None
+        Id = None
       rootPbsfiles = db.Key.from_path('rootPbsfiles','root')
-      rec = Pbsfiles.get_or_insert('%s' % (PbsfileId), parent=rootPbsfiles)
-      try:
-        Type = int(doc.getElementsByTagName("Type")[0].childNodes[0].data)
-        rec.Type = Type
-      except:
-        pass
-      try:
-        Path = doc.getElementsByTagName("Path")[0].childNodes[0].data
-        rec.Path = Path
-      except:
-        pass      
-      try:
-        Filename = doc.getElementsByTagName("Filename")[0].childNodes[0].data
-        rec.Filename = Filename
-      except:
-        pass     
-      try:
-        Size = int(doc.getElementsByTagName("Size")[0].childNodes[0].data)
-        rec.Size = Size
-      except:
-        pass     
-      try:
-        strval = doc.getElementsByTagName("Atime")[0].childNodes[0].data
-        dt = datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S")
-        if strval[-6:] == '+01:00':
-          Atime = dt.replace(tzinfo = cet)
-        elif strval[-6:] == '+00:00':
-          Atime =  dt.replace(tzinfo = utc)
-        else:          
-          Atime =  dt
-        rec.Atime = Atime
-      except:
-        pass     
-      try:
-        strval = doc.getElementsByTagName("Mtime")[0].childNodes[0].data
-        dt = datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S")
-        if strval[-6:] == '+01:00':
-          Mtime = dt.replace(tzinfo = cet)
-        elif strval[-6:] == '+00:00':
-          Mtime =  dt.replace(tzinfo = utc)
-        else:          
-          Mtime =  dt
-        rec.Mtime = Mtime
-      except:
-        pass     
-      try:
-        strval = doc.getElementsByTagName("Transmittime")[0].childNodes[0].data
-        dt = datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S")
-        if strval[-6:] == '+01:00':
-          Transmittime = dt.replace(tzinfo = cet)
-        elif strval[-6:] == '+00:00':
-          Transmittime =  dt.replace(tzinfo = utc)
-        else:          
-          Transmittime =  dt
-        rec.Transmittime = Transmittime
-      except:
-        pass     
+      rec = Pbsfiles.get_or_insert('%s' % (Id), parent=rootPbsfiles)
+      for attr_name, value in Pbsfiles.__dict__.iteritems():
+        if isinstance(value, db.Property):
+          attr_type = value.__class__.__name__        
+          if not attr_type in ['_ReverseReferenceProperty']:
+            val = self.attr_val(doc, attr_name, attr_type)
+            logging.info('%s=%s' % (attr_name, val))
+            if not val == None:
+              try:
+                setattr(rec, attr_name, val)
+              except:
+                pass 
       rec.put()
       
       try:
@@ -276,7 +185,7 @@ class DatatilpbsHandler(webapp.RequestHandler):
     path = os.path.join(os.path.dirname(__file__), 'templates/status.xml')
     self.response.out.write(template.render(path, template_values))
 
-class pbs601Handler(webapp.RequestHandler):
+class pbs601Handler(webapp.RequestHandler, PassXmlDoc):
   def get(self):
     (lobnr, antal) = self.online_kontingent_fakturer_bs1()
     if lobnr:
@@ -300,11 +209,9 @@ class pbs601Handler(webapp.RequestHandler):
   
   def kontingent_fakturer_bs1(self, doc):
     antal = 0
-    strval = doc.getElementsByTagName("Betalingsdato")[0].childNodes[0].data 
-    Betalingsdato = datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S").date() 
-    strval = doc.getElementsByTagName("Bsh")[0].childNodes[0].data 
-    Bsh = strval.lower() in ["yes", "true", "t", "1"]
-    
+    Betalingsdato = self.attr_val(doc, 'Betalingsdato', 'DateProperty')
+    Bsh = self.attr_val(doc, 'Bsh', 'BooleanProperty')
+
     lobnr = nextval('Tilpbsid')
     rootTilpbs = db.Key.from_path('rootTilpbs','root')
     t = Tilpbs.get_or_insert('%s' % (lobnr), parent=rootTilpbs)
@@ -319,18 +226,12 @@ class pbs601Handler(webapp.RequestHandler):
     
     TempKontforslaglinies = doc.getElementsByTagName("TempKontforslaglinie")
     for TempKontforslaglinie in TempKontforslaglinies:
-      strval = TempKontforslaglinie.getElementsByTagName("Nr")[0].childNodes[0].data 
-      Nr = int(strval)
-      strval = TempKontforslaglinie.getElementsByTagName("Advisbelob")[0].childNodes[0].data
-      Advisbelob = float(strval)      
-      strval = TempKontforslaglinie.getElementsByTagName("Fradato")[0].childNodes[0].data
-      Fradato = datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S").date()       
-      strval = TempKontforslaglinie.getElementsByTagName("Tildato")[0].childNodes[0].data 
-      Tildato = datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S").date()  
-      strval = TempKontforslaglinie.getElementsByTagName("Indmeldelse")[0].childNodes[0].data
-      Indmeldelse = strval.lower() in ["yes", "true", "t", "1"]
-      strval = TempKontforslaglinie.getElementsByTagName("Tilmeldtpbs")[0].childNodes[0].data 
-      Tilmeldtpbs = strval.lower() in ["yes", "true", "t", "1"]
+      Nr = self.attr_val(TempKontforslaglinie, 'Nr', 'IntegerProperty')
+      Advisbelob = self.attr_val(TempKontforslaglinie, 'Advisbelob', 'FloatProperty')
+      Fradato = self.attr_val(TempKontforslaglinie, 'Fradato', 'DateProperty')
+      Tildato = self.attr_val(TempKontforslaglinie, 'Tildato', 'DateProperty')
+      Indmeldelse = self.attr_val(TempKontforslaglinie, 'Indmeldelse', 'BooleanProperty')
+      Tilmeldtpbs = self.attr_val(TempKontforslaglinie, 'Tilmeldtpbs', 'BooleanProperty')
       
       if Indmeldelse:
         winfotekst = 11

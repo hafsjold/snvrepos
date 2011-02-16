@@ -29,6 +29,7 @@ namespace nsPuls3060
         {
             string fullurl = baseurl(part) + url;
             HttpWebRequest Request = (HttpWebRequest)WebRequest.Create(fullurl);
+            Request.Timeout = 180000; // 180 sec
             SignRequest(ref Request);
 
             try
@@ -59,6 +60,7 @@ namespace nsPuls3060
         {
             string fullurl = baseurl(part) + url;
             HttpWebRequest Request = (HttpWebRequest)WebRequest.Create(fullurl);
+            Request.Timeout = 180000; // 180 sec
             Request.Method = "PUT";
             Request.ContentType = "application/atom+xml";
             SignRequest(ref Request);
@@ -98,6 +100,7 @@ namespace nsPuls3060
         {
             string fullurl = baseurl(part) + url;
             HttpWebRequest Request = (HttpWebRequest)WebRequest.Create(fullurl);
+            Request.Timeout = 180000; // 180 sec
             Request.Method = "POST";
             Request.ContentType = "application/atom+xml";
             SignRequest(ref Request);
@@ -134,6 +137,7 @@ namespace nsPuls3060
         {
             string fullurl = baseurl(part) + url;
             HttpWebRequest Request = (HttpWebRequest)WebRequest.Create(fullurl);
+            Request.Timeout = 180000; // 180 sec
             Request.Method = "DELETE";
             SignRequest(ref Request);
 

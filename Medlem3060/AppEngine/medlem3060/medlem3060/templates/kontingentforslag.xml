@@ -5,10 +5,10 @@
   {% if forslag %}
   {% for f in forslag %}
   <KontingentForslag>
-    <Nr>{{f.Nr}}</Nr> 
-    <Navn>{{f.Navn}}</Navn> 
-    <Adresse>{{f.Adresse}}</Adresse>
-    <Postnr>{{f.Postnr}}</Postnr> 
+    <Nr>{{f.person.Nr}}</Nr> 
+    <Navn>{{f.person.Navn}}</Navn> 
+    <Adresse>{{f.person.Adresse}}</Adresse>
+    <Postnr>{{f.person.Postnr}}</Postnr> 
     <KontingentFradato>{{f.KontingentFradato}}</KontingentFradato> 
     <Indmeldelse>{{f.Indmeldelse}}</Indmeldelse> 
     <Tilmeldtpbs>{{f.Tilmeldtpbs}}</Tilmeldtpbs> 

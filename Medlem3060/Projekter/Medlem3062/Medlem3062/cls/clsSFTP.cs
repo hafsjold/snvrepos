@@ -91,7 +91,7 @@ namespace nsPuls3060
 
         public bool WriteTilSFtp(XDocument xdoc)
         {
-            Guid id1 = clsSQLite.insertStoreXML(Program.sftpName, false, Program.AppEngName, xdoc.ToString());
+            Guid id1 = clsSQLite.insertStoreXML(Program.sftpName, false, Program.AppEngName, xdoc.ToString(),"");
 
             m_SendqueueId = xdoc.Descendants("Sendqueue").Descendants("Id").First().Value;
             m_PbsfileId = xdoc.Descendants("Pbsfile").Descendants("Id").First().Value;
@@ -123,7 +123,7 @@ namespace nsPuls3060
 
             XElement xmlPbsfilesUpdate = new XElement("Pbsfiles");
             xmlPbsfilesUpdate.Add(new XElement("SendqueueId", m_SendqueueId));
-            xmlPbsfilesUpdate.Add(new XElement("PbsfileId", m_PbsfileId));
+            xmlPbsfilesUpdate.Add(new XElement("Id", m_PbsfileId));
             xmlPbsfilesUpdate.Add(new XElement("Type", 8));
             xmlPbsfilesUpdate.Add(new XElement("Path", m_Inbound));
             xmlPbsfilesUpdate.Add(new XElement("Filename", TilPBSFilename));
@@ -133,7 +133,7 @@ namespace nsPuls3060
             xmlPbsfilesUpdate.Add(new XElement("Transmittime", m_Transmisionsdato));
             string strxmlPbsfilesUpdate = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xmlPbsfilesUpdate.ToString(); ;
 
-            Guid id2 = clsSQLite.insertStoreXML(Program.AppEngName, false, Program.sftpName, strxmlPbsfilesUpdate);
+            Guid id2 = clsSQLite.insertStoreXML(Program.AppEngName, false, Program.sftpName, strxmlPbsfilesUpdate, "");
 
             clsRest objRest = new clsRest();
             string strxmldata = objRest.HttpPost2(clsRest.urlBaseType.data, "tilpbs", strxmlPbsfilesUpdate);
@@ -225,7 +225,6 @@ namespace nsPuls3060
                     string filecontens4 = filecontens3.TrimEnd('\n');
 
                     XElement xmlPbsfilesAdd = new XElement("Pbsfiles");
-                    xmlPbsfilesAdd.Add(new XElement("PbsfileId", '*'));
                     xmlPbsfilesAdd.Add(new XElement("Type", rec_pbsnetdir.Type));
                     xmlPbsfilesAdd.Add(new XElement("Path", rec_pbsnetdir.Path));
                     xmlPbsfilesAdd.Add(new XElement("Filename", rec_pbsnetdir.Filename));
@@ -236,7 +235,7 @@ namespace nsPuls3060
                     xmlPbsfilesAdd.Add(new XElement("Data", filecontens4));
                     string strxmlPbsfilesAdd = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xmlPbsfilesAdd.ToString();
 
-                    Guid id1 = clsSQLite.insertStoreXML(Program.AppEngName, false, Program.sftpName, strxmlPbsfilesAdd);
+                    Guid id1 = clsSQLite.insertStoreXML(Program.AppEngName, false, Program.sftpName, strxmlPbsfilesAdd, "");
                     
                     clsRest objRest = new clsRest();
                     string strxmldata = objRest.HttpPost2(clsRest.urlBaseType.data, "frapbs", strxmlPbsfilesAdd);

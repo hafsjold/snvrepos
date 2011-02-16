@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Reflection;
 using System.IO;
 using Excel;
+using System.Xml.Linq;
 
 namespace nsPuls3060
 {
@@ -28,30 +29,33 @@ namespace nsPuls3060
             var rec_regnskab = Program.qryAktivRegnskab();
             string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xls";
 
-            var MedlemmerAll = from h in Program.karMedlemmer
-                               join d1 in Program.dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
-                               from x in details1.DefaultIfEmpty()  //new TblMedlem { Nr = -1, Kon = "X", FodtDato = new DateTime(1900, 1, 1) })
+            clsRest objRest = new clsRest();
+            string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "personlist");
+            XDocument xmldata = XDocument.Parse(strxmldata);
+            string Status = xmldata.Descendants("Status").First().Value;
+            if (Status != "True") return;
+            var MedlemmerAll = from h in xmldata.Descendants("Person")
+                               orderby clsPassXmlDoc.attr_val_int(h, "Nr")
                                select new clsMedlemInternAll
                                {
-                                   Nr = h.Nr,
-                                   Navn = h.Navn,
-                                   Kaldenavn = h.Kaldenavn,
-                                   Adresse = h.Adresse,
-                                   Postnr = h.Postnr,
-                                   Bynavn = h.Bynavn,
-                                   Telefon = h.Telefon,
-                                   Email = h.Email,
-                                   Kon = x.Kon,
-                                   FodtDato = x.FodtDato,
-                                   Bank = h.Bank,
-                                   erMedlem = (h.erMedlem()) ? 1 : 0,
-                                   indmeldelsesDato = h.indmeldelsesDato,
-                                   udmeldelsesDato = h.udmeldelsesDato,
-                                   kontingentBetaltTilDato = h.kontingentBetaltTilDato,
-                                   opkrævningsDato = h.opkrævningsDato,
-                                   kontingentTilbageførtDato = h.kontingentTilbageførtDato,
+                                   Nr = clsPassXmlDoc.attr_val_int(h,"Nr"),
+                                   Navn = clsPassXmlDoc.attr_val_string(h, "Navn"),
+                                   Kaldenavn = clsPassXmlDoc.attr_val_string(h, "Kaldenavn"),
+                                   Adresse = clsPassXmlDoc.attr_val_string(h, "Adresse"),
+                                   Postnr = clsPassXmlDoc.attr_val_string(h, "Postnr"),
+                                   Bynavn = clsPassXmlDoc.attr_val_string(h, "Bynavn"),
+                                   Telefon = clsPassXmlDoc.attr_val_string(h, "Telefon"),
+                                   Email = clsPassXmlDoc.attr_val_string(h, "Email"),
+                                   Kon = clsPassXmlDoc.attr_val_string(h, "Kon"),
+                                   FodtDato = clsPassXmlDoc.attr_val_date(h, "FodtDato"),
+                                   Bank = clsPassXmlDoc.attr_val_string(h, "Bank"),
+                                   erMedlem = (clsPassXmlDoc.attr_val_bool(h, "erMedlem")) ? 1 : 0,
+                                   indmeldelsesDato = clsPassXmlDoc.attr_val_date(h, "indmeldelsesDato"),
+                                   udmeldelsesDato = clsPassXmlDoc.attr_val_date(h, "udmeldelsesDato"),
+                                   kontingentBetaltTilDato = clsPassXmlDoc.attr_val_date(h, "kontingentBetaltTilDato"),
+                                   opkrævningsDato = clsPassXmlDoc.attr_val_date(h, "opkraevningsDato"),
+                                   kontingentTilbageførtDato = clsPassXmlDoc.attr_val_date(h, "kontingentTilbagefoertDato"),
                                };
-
 
             using (new ExcelUILanguageHelper())
             {
@@ -152,7 +156,7 @@ namespace nsPuls3060
                     oXL.Visible = true;
                     this.MainformProgressBar.Visible = false;
 
-                    
+
                     //oXL.Quit();
                     //oXL = null;
                 }
@@ -183,23 +187,27 @@ namespace nsPuls3060
             var rec_regnskab = Program.qryAktivRegnskab();
             string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xls";
 
-            var MedlemmerAll = from h in Program.karMedlemmer
-                               join d1 in Program.dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
-                               from x in details1.DefaultIfEmpty()  //new TblMedlem { Nr = -1, Kon = "X", FodtDato = new DateTime(1900, 1, 1) })
+            clsRest objRest = new clsRest();
+            string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "personlist");
+            XDocument xmldata = XDocument.Parse(strxmldata);
+            string Status = xmldata.Descendants("Status").First().Value;
+            if (Status != "True") return;
+            var MedlemmerAll = from h in xmldata.Descendants("Person")
+                               orderby clsPassXmlDoc.attr_val_int(h, "Nr")
                                select new clsMedlemExternAll
                                {
-                                   Nr = h.Nr,
-                                   Navn = h.Navn,
-                                   Kaldenavn = h.Kaldenavn,
-                                   Adresse = h.Adresse,
-                                   Postnr = h.Postnr,
-                                   Bynavn = h.Bynavn,
-                                   Telefon = h.Telefon,
-                                   Email = h.Email,
-                                   Kon = x.Kon,
-                                   FodtDato = x.FodtDato,
-                                   erMedlem = (h.erMedlem()) ? 1 : 0,
-                                   erPBS = (clsPbs.gettilmeldtpbs(h.Nr)) ? 1 : 0,
+                                   Nr = clsPassXmlDoc.attr_val_int(h, "Nr"),
+                                   Navn = clsPassXmlDoc.attr_val_string(h, "Navn"),
+                                   Kaldenavn = clsPassXmlDoc.attr_val_string(h, "Kaldenavn"),
+                                   Adresse = clsPassXmlDoc.attr_val_string(h, "Adresse"),
+                                   Postnr = clsPassXmlDoc.attr_val_string(h, "Postnr"),
+                                   Bynavn = clsPassXmlDoc.attr_val_string(h, "Bynavn"),
+                                   Telefon = clsPassXmlDoc.attr_val_string(h, "Telefon"),
+                                   Email = clsPassXmlDoc.attr_val_string(h, "Email"),
+                                   Kon = clsPassXmlDoc.attr_val_string(h, "Kon"),
+                                   FodtDato = clsPassXmlDoc.attr_val_date(h, "FodtDato"),
+                                   erMedlem = (clsPassXmlDoc.attr_val_bool(h, "erMedlem")) ? 1 : 0,
+                                   erPBS = (clsPassXmlDoc.attr_val_bool(h, "Tilmeldtpbs")) ? 1 : 0,
                                };
 
 
@@ -330,42 +338,47 @@ namespace nsPuls3060
             var rec_regnskab = Program.qryAktivRegnskab();
             string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xls";
 
-            var MedlemmerAll = from h in Program.karMedlemmer
-                               join d1 in Program.dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
-                               from x in details1.DefaultIfEmpty()  //new TblMedlem { Nr = -1, Kon = "X", FodtDato = new DateTime(1900, 1, 1) })
+            clsRest objRest = new clsRest();
+            string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "personlist");
+            XDocument xmldata = XDocument.Parse(strxmldata);
+            string Status = xmldata.Descendants("Status").First().Value;
+            if (Status != "True") return;
+            var MedlemmerAll = from h in xmldata.Descendants("Person")
+                               orderby clsPassXmlDoc.attr_val_int(h, "Nr")
                                select new clsMedlemExternAll
                                {
-                                   Nr = h.Nr,
-                                   Navn = h.Navn,
-                                   Kaldenavn = h.Kaldenavn,
-                                   Adresse = h.Adresse,
-                                   Postnr = h.Postnr,
-                                   Bynavn = h.Bynavn,
-                                   Telefon = h.Telefon,
-                                   Email = h.Email,
-                                   Kon = x.Kon,
-                                   FodtDato = x.FodtDato,
-                                   erMedlem = (h.erMedlem()) ? 1 : 0,
-                                   erPBS = (clsPbs.gettilmeldtpbs(h.Nr)) ? 1 : 0,
+                                   Nr = clsPassXmlDoc.attr_val_int(h, "Nr"),
+                                   Navn = clsPassXmlDoc.attr_val_string(h, "Navn"),
+                                   Kaldenavn = clsPassXmlDoc.attr_val_string(h, "Kaldenavn"),
+                                   Adresse = clsPassXmlDoc.attr_val_string(h, "Adresse"),
+                                   Postnr = clsPassXmlDoc.attr_val_string(h, "Postnr"),
+                                   Bynavn = clsPassXmlDoc.attr_val_string(h, "Bynavn"),
+                                   Telefon = clsPassXmlDoc.attr_val_string(h, "Telefon"),
+                                   Email = clsPassXmlDoc.attr_val_string(h, "Email"),
+                                   Kon = clsPassXmlDoc.attr_val_string(h, "Kon"),
+                                   FodtDato = clsPassXmlDoc.attr_val_date(h, "FodtDato"),
+                                   erMedlem = (clsPassXmlDoc.attr_val_bool(h, "erMedlem")) ? 1 : 0,
+                                   erPBS = (clsPassXmlDoc.attr_val_bool(h, "Tilmeldtpbs")) ? 1 : 0,
                                };
             
+
             var MedlemmerNotPBS = from h in MedlemmerAll
-                               where h.erMedlem == 1 && h.erPBS == 0
-                               select new clsMedlemNotPBS
-                                {
-                                    Nr = h.Nr,
-                                    Navn = h.Navn,
-                                    Kaldenavn = h.Kaldenavn,
-                                    Adresse = h.Adresse,
-                                    Postnr = h.Postnr,
-                                    Bynavn = h.Bynavn,
-                                    Telefon = h.Telefon,
-                                    Email = h.Email,
-                                    Kon = h.Kon,
-                                    PBSnr = "03985644",
-                                    Debgrnr = "00001",
-                                    Kundenr = 032001610000000 + (int)h.Nr
-                                };
+                                  where h.erMedlem == 1 && h.erPBS == 0
+                                  select new clsMedlemNotPBS
+                                   {
+                                       Nr = h.Nr,
+                                       Navn = h.Navn,
+                                       Kaldenavn = h.Kaldenavn,
+                                       Adresse = h.Adresse,
+                                       Postnr = h.Postnr,
+                                       Bynavn = h.Bynavn,
+                                       Telefon = h.Telefon,
+                                       Email = h.Email,
+                                       Kon = h.Kon,
+                                       PBSnr = "03985644",
+                                       Debgrnr = "00001",
+                                       Kundenr = 032001610000000 + (int)h.Nr
+                                   };
 
             using (new ExcelUILanguageHelper())
             {
@@ -510,39 +523,46 @@ namespace nsPuls3060
 
 
             var JournalPoster = from h in Program.karPosteringer
-                               join d1 in Program.karKontoplan on h.Konto equals d1.Kontonr into details1
-                               from x in details1.DefaultIfEmpty()
-                               orderby h.Nr
-                               select new clsJournalposter
-                               {
-                                   ds = (x.Type == "Drift") ? "D" : "S",
-                                   k = IUAP(x.Type, x.DK),
-                                   Konto = h.Konto.ToString() + "-" + x.Kontonavn,
-                                   Dato = h.Dato,
-                                   Bilag = h.Bilag,
-                                   Nr = h.Nr,
-                                   Id = h.Id,
-                                   Tekst = h.Tekst,
-                                   Beløb = h.Bruttobeløb,
-                               };
+                                join d1 in Program.karKontoplan on h.Konto equals d1.Kontonr into details1
+                                from x in details1.DefaultIfEmpty()
+                                orderby h.Nr
+                                select new clsJournalposter
+                                {
+                                    ds = (x.Type == "Drift") ? "D" : "S",
+                                    k = IUAP(x.Type, x.DK),
+                                    Konto = h.Konto.ToString() + "-" + x.Kontonavn,
+                                    Dato = h.Dato,
+                                    Bilag = h.Bilag,
+                                    Nr = h.Nr,
+                                    Id = h.Id,
+                                    Tekst = h.Tekst,
+                                    Beløb = h.Bruttobeløb,
+                                };
 
-            var MedlemmerAll = from h in Program.karMedlemmer
+            clsRest objRest = new clsRest();
+            string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "personlist");
+            XDocument xmldata = XDocument.Parse(strxmldata);
+            string Status = xmldata.Descendants("Status").First().Value;
+            if (Status != "True") return;
+            var MedlemmerAll = from h in xmldata.Descendants("Person")
+                               orderby clsPassXmlDoc.attr_val_int(h, "Nr")
                                select new clsMedlemExternAll
                                {
-                                   Nr = h.Nr,
-                                   Navn = h.Navn,
-                                   Kaldenavn = h.Kaldenavn,
-                                   Adresse = h.Adresse,
-                                   Postnr = h.Postnr,
-                                   Bynavn = h.Bynavn,
-                                   Telefon = h.Telefon,
-                                   Email = h.Email,
-                                   Kon = "X",
-                                   FodtDato = null,
-                                   erMedlem = (h.erMedlem()) ? 1 : 0,
-                                   erPBS = (clsPbs.gettilmeldtpbs(h.Nr)) ? 1 : 0,
+                                   Nr = clsPassXmlDoc.attr_val_int(h, "Nr"),
+                                   Navn = clsPassXmlDoc.attr_val_string(h, "Navn"),
+                                   Kaldenavn = clsPassXmlDoc.attr_val_string(h, "Kaldenavn"),
+                                   Adresse = clsPassXmlDoc.attr_val_string(h, "Adresse"),
+                                   Postnr = clsPassXmlDoc.attr_val_string(h, "Postnr"),
+                                   Bynavn = clsPassXmlDoc.attr_val_string(h, "Bynavn"),
+                                   Telefon = clsPassXmlDoc.attr_val_string(h, "Telefon"),
+                                   Email = clsPassXmlDoc.attr_val_string(h, "Email"),
+                                   Kon = clsPassXmlDoc.attr_val_string(h, "Kon"),
+                                   FodtDato = clsPassXmlDoc.attr_val_date(h, "FodtDato"),
+                                   erMedlem = (clsPassXmlDoc.attr_val_bool(h, "erMedlem")) ? 1 : 0,
+                                   erPBS = (clsPassXmlDoc.attr_val_bool(h, "Tilmeldtpbs")) ? 1 : 0,
                                };
-
+ 
+            
             var erMedlem = from h in MedlemmerAll
                            where h.erMedlem == 1
                            select h;
@@ -655,19 +675,19 @@ namespace nsPuls3060
                         System.Type.Missing, //PageFieldWrapCount 
                         System.Type.Missing, //ReadData 
                         System.Type.Missing);//Connection 
-                    
+
                     _pvtField = (PivotField)_pivot.PivotFields("ds");
                     _pvtField.Orientation = XlPivotFieldOrientation.xlRowField;
-                    
+
                     _pvtField = (PivotField)_pivot.PivotFields("k");
                     _pvtField.Orientation = XlPivotFieldOrientation.xlRowField;
-                    
+
                     _pvtField = (PivotField)_pivot.PivotFields("Konto");
                     _pvtField.Orientation = XlPivotFieldOrientation.xlRowField;
-                    
+
                     _pvtField = (PivotField)_pivot.PivotFields("Dato");
                     _pvtField.Orientation = XlPivotFieldOrientation.xlColumnField;
-                    
+
                     _pvtField = (PivotField)_pivot.PivotFields("Beløb");
                     _pvtField.Orientation = XlPivotFieldOrientation.xlDataField;
                     _pvtField.Function = XlConsolidationFunction.xlSum;
@@ -676,7 +696,7 @@ namespace nsPuls3060
                     oSheetRegnskab.Name = "Regnskab";
                     oRng = oSheetRegnskab.get_Range("D3", Missing.Value);
                     oRng.Select();
-                    bool[] Periods = { false, false, false, false, true, false, false};
+                    bool[] Periods = { false, false, false, false, true, false, false };
                     oRng.Group(true, true, Missing.Value, Periods);
 
                     oRng = oSheetRegnskab.get_Range("D4", "P4");
@@ -706,20 +726,20 @@ namespace nsPuls3060
                     oSheetRegnskab.PageSetup.BlackAndWhite = false;
                     oSheetRegnskab.PageSetup.Zoom = 100;
                     oSheetRegnskab.PageSetup.PrintErrors = XlPrintErrors.xlPrintErrorsDisplayed;
-                    
+
                     oWB.ShowPivotTableFieldList = false;
 
                     for (var i = oWB.Worksheets.Count; i > 0; i--)
                     {
                         Excel._Worksheet oSheetWrk = (Excel._Worksheet)oWB.Worksheets.get_Item(i);
-                        if ((oSheetWrk.Name != "Regnskab") && (oSheetWrk.Name != "Poster")) 
+                        if ((oSheetWrk.Name != "Regnskab") && (oSheetWrk.Name != "Poster"))
                         {
                             oSheetWrk.Delete();
                         }
                     }
 
                     oSheetRegnskab.get_Range("A1", Missing.Value).Select();
-                    
+
                     oWB.SaveAs(SaveAs, Excel.XlFileFormat.xlWorkbookNormal, "", "", false, false, Excel.XlSaveAsAccessMode.xlExclusive, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
                     oWB.Saved = true;
                     oXL.Visible = true;
@@ -844,7 +864,7 @@ namespace nsPuls3060
             email.From = Program.MailFrom;
             email.ReplyTo = Program.MailReply;
             email.AddBcc(Program.MailToName, Program.MailToAddr);
-            
+
             email.AddFileAttachment(filename);
             email.UnzipAttachments();
 

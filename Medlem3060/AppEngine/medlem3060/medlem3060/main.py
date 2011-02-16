@@ -20,7 +20,7 @@ import re
 import sys  
 
 from models import NrSerieSetupAll, nextval, UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Tilpbs, Fak, Overforsel, Rykker, Pbsfiles, Pbsfile, Sendqueue, Frapbs, Bet, Betlin, Aftalelin, Indbetalingskort, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
-from util import utc, cet,TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
+from util import PassXmlDoc, utc, cet,TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
 from menuusergroup import deleteMenuAndUserGroup, createMenuAndUserGroup
 from menu import MenuHandler, ListUserHandler, UserHandler
 from pbs601 import pbs601Handler, DatatilpbsHandler, DatafrapbsHandler, DatasftpHandler
@@ -396,9 +396,9 @@ class KontingentJsonHandler(webapp.RequestHandler):
     
     self.response.headers["Content-Type"] = "application/json"
     self.response.out.write(jKontingentData)
+
     
-    
-class SyncConvertHandler(webapp.RequestHandler):
+class SyncConvertHandler(webapp.RequestHandler, PassXmlDoc):
   def post(self):
     doc = minidom.parse(self.request.body_file)
     ModelName  = doc.documentElement.tagName
@@ -853,88 +853,7 @@ class SyncConvertHandler(webapp.RequestHandler):
       
     self.response.out.write('Status: 404')
     
-  def attr_val(self, doc, attr_name, attr_type):
-    try:
-      strval = doc.getElementsByTagName(attr_name)[0].childNodes[0].data
-    except:
-      strval = None
-    
-    if attr_type == 'IntegerProperty':
-      try:
-        return int(strval)
-      except:
-        return None
-    elif attr_type == 'FloatProperty':
-      try:
-        return float(strval)
-      except:
-        return None
-    elif attr_type == 'BooleanProperty':
-      try:
-        return strval.lower() in ["yes", "true", "t", "1"] 
-      except:
-        return None 
-    elif attr_type == 'TextProperty':
-      try:
-        return strval
-      except:
-        return None 
-    elif attr_type == 'DateProperty':
-      try:
-        dt = datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S")
-        return dt.date()
-      except:
-        return None
-    elif attr_type == 'DateTimeProperty':
-      try:
-        dt = datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S")
-        if strval[-6:] == '+01:00':
-          return dt.replace(tzinfo = cet)
-        elif strval[-6:] == '+00:00':
-          return dt.replace(tzinfo = utc)
-        else:          
-          return dt
-      except:
-        return None        
-    elif attr_type == 'ReferenceProperty':
-      if attr_name == 'TilPbsref':
-        try:
-          strval = doc.getElementsByTagName('Tilpbsid')[0].childNodes[0].data
-          return db.Key.from_path('rootTilpbs','root', 'Tilpbs', '%s' % (strval))
-        except:
-          return None
-      elif attr_name == 'Pbsforsendelseref':
-        try:
-          strval = doc.getElementsByTagName('Pbsforsendelseid')[0].childNodes[0].data
-          return db.Key.from_path('rootPbsforsendelse','root', 'Pbsforsendelse', '%s' % (strval))
-        except:
-          return None
-      elif attr_name == 'Pbsfilesref':
-        try:
-          strval = doc.getElementsByTagName('Pbsfilesid')[0].childNodes[0].data
-          return db.Key.from_path('rootPbsfiles','root', 'Pbsfiles', '%s' % (strval))
-        except:
-          return None
-      if attr_name == 'Frapbsref':
-        try:
-          strval = doc.getElementsByTagName('Frapbsid')[0].childNodes[0].data
-          return db.Key.from_path('rootFrapbs','root', 'Frapbs', '%s' % (strval))
-        except:
-          return None
-      if attr_name == 'Betref':
-        try:
-          strval = doc.getElementsByTagName('Betid')[0].childNodes[0].data
-          return db.Key.from_path('rootBet','root', 'Bet', '%s' % (strval))
-        except:
-          return None
-      else:
-        return None  
- 
-    else:
-      try:
-        return strval
-      except:
-        return None 
+
 
 class SyncMedlogHandler(webapp.RequestHandler):
   def get(self):
@@ -1162,20 +1081,13 @@ class ReindexHandler(webapp.RequestHandler):
       for per in query:
         i +=1
         perkeys += ' ' + str(per)
-        if i == 100:
+        if i == 10:
           taskqueue.add(url='/_ah/queue/default', params={'perkeys':perkeys})
           i = 0
           perkeys = ''
       if i > 0:
         taskqueue.add(url='/_ah/queue/default', params={'perkeys':perkeys})      
       self.redirect("/adm")
-
-class LinkFakHandler(webapp.RequestHandler):
-    def get(self):
-      qry = Betlin.all()
-      for betlin in qry:
-        betlin.linkFak()
-      self.redirect("/adm")        
       
 class SearchIndexing(webapp.RequestHandler):
     """Handler for full text indexing task."""
@@ -1189,6 +1101,12 @@ class SearchIndexing(webapp.RequestHandler):
 
       memcache.delete('jData', namespace='jData')
 
+class LinkFakHandler(webapp.RequestHandler):
+    def get(self):
+      qry = Betlin.all()
+      for betlin in qry:
+        betlin.linkFak()
+      self.redirect("/adm")   
 
 class CreateMenu(webapp.RequestHandler):
     """Handler for create Menu"""
@@ -1230,7 +1148,7 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/adm/findmedlem4', Findmedlem4Handler),
                                        ('/adm', MenuHandler),
                                        ('/rest/.*', rest.Dispatcher),
-                                       ('/sync/Convert/.*', SyncConvertHandler),
+                                       ('/sync/Convert', SyncConvertHandler),
                                        ('/sync/NrSerie/.*', SyncNrSerieHandler),
                                        ('/sync/Sysinfo/.*', SyncSysinfoHandler),
                                        ('/sync/Medlem/.*', SyncMedlemHandler),

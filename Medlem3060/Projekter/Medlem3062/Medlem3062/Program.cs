@@ -11,8 +11,8 @@ namespace nsPuls3060
     {
 #if (DEBUG)
         //private static string m_baseUrl = @"http://hd36:8080";
-        private static string m_baseUrl = @"http://localhost:8084";
-        //private static string m_baseUrl = @"http://testmedlem3060.appspot.com";
+        //private static string m_baseUrl = @"http://localhost:8084";
+        private static string m_baseUrl = @"http://testmedlem3060.appspot.com";
 #else
         private static string m_baseUrl = @"http://medlem3060.appspot.com";
 #endif

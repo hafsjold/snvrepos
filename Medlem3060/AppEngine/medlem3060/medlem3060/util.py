@@ -16,6 +16,7 @@ import time
 import logging
 import re
 from datetime import datetime, timedelta, date, tzinfo
+from xml.dom import minidom
 
 COOKIE_NAME = 'medlem3060_session'
 LOGIN_URL = '/login'
@@ -60,6 +61,89 @@ class CET(tzinfo):
       return "CEST" 
 cet = CET()
 
+class PassXmlDoc():
+  def attr_val(self, doc, attr_name, attr_type):
+    try:
+      strval = doc.getElementsByTagName(attr_name)[0].childNodes[0].data
+    except:
+      strval = None
+    
+    if attr_type == 'IntegerProperty':
+      try:
+        return int(strval)
+      except:
+        return None
+    elif attr_type == 'FloatProperty':
+      try:
+        return float(strval)
+      except:
+        return None
+    elif attr_type == 'BooleanProperty':
+      try:
+        return strval.lower() in ["yes", "true", "t", "1"] 
+      except:
+        return None 
+    elif attr_type == 'TextProperty':
+      try:
+        return strval
+      except:
+        return None 
+    elif attr_type == 'DateProperty':
+      try:
+        dt = datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S")
+        return dt.date()
+      except:
+        return None
+    elif attr_type == 'DateTimeProperty':
+      try:
+        dt = datetime.strptime(strval[:19], "%Y-%m-%dT%H:%M:%S")
+        if strval[-6:] == '+01:00':
+          return dt.replace(tzinfo = cet)
+        elif strval[-6:] == '+00:00':
+          return dt.replace(tzinfo = utc)
+        else:          
+          return dt
+      except:
+        return None        
+    elif attr_type == 'ReferenceProperty':
+      if attr_name == 'TilPbsref':
+        try:
+          strval = doc.getElementsByTagName('Tilpbsid')[0].childNodes[0].data
+          return db.Key.from_path('rootTilpbs','root', 'Tilpbs', '%s' % (strval))
+        except:
+          return None
+      elif attr_name == 'Pbsforsendelseref':
+        try:
+          strval = doc.getElementsByTagName('Pbsforsendelseid')[0].childNodes[0].data
+          return db.Key.from_path('rootPbsforsendelse','root', 'Pbsforsendelse', '%s' % (strval))
+        except:
+          return None
+      elif attr_name == 'Pbsfilesref':
+        try:
+          strval = doc.getElementsByTagName('Pbsfilesid')[0].childNodes[0].data
+          return db.Key.from_path('rootPbsfiles','root', 'Pbsfiles', '%s' % (strval))
+        except:
+          return None
+      if attr_name == 'Frapbsref':
+        try:
+          strval = doc.getElementsByTagName('Frapbsid')[0].childNodes[0].data
+          return db.Key.from_path('rootFrapbs','root', 'Frapbs', '%s' % (strval))
+        except:
+          return None
+      if attr_name == 'Betref':
+        try:
+          strval = doc.getElementsByTagName('Betid')[0].childNodes[0].data
+          return db.Key.from_path('rootBet','root', 'Bet', '%s' % (strval))
+        except:
+          return None
+      else:
+        return None  
+ 
+    else:
+      try:
+        return strval
+      except:
+        return None     
 
 def AuthUserGroupPath(path, usergroup, is_admin):
   if is_admin:

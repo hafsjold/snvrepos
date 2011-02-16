@@ -32,7 +32,8 @@ namespace nsPuls3060
                     xml.Add(new XElement(Name, Val));
                 }
                 string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
-                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert/" + ModelName, strxml);
+                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert", strxml);
+                if (retur != "Status: 404") clsSQLite.insertStoreXML(Program.AppEngName, false, "sync/Convert", strxml, retur);
             }
         }
 
@@ -59,7 +60,8 @@ namespace nsPuls3060
                     }
                 }
                 string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
-                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert/" + ModelName, strxml);
+                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert", strxml);
+                if (retur != "Status: 404") clsSQLite.insertStoreXML(Program.AppEngName, false, "sync/Convert", strxml, retur);
             }
         }
 
@@ -81,7 +83,8 @@ namespace nsPuls3060
                     xml.Add(new XElement(Name, Val));
                 }
                 string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
-                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert/" + ModelName, strxml);
+                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert", strxml);
+                if (retur != "Status: 404") clsSQLite.insertStoreXML(Program.AppEngName, false, "sync/Convert", strxml, retur);
             }
         }
 
@@ -103,7 +106,8 @@ namespace nsPuls3060
                     xml.Add(new XElement(Name, Val));
                 }
                 string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
-                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert/" + ModelName, strxml);
+                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert", strxml);
+                if (retur != "Status: 404") clsSQLite.insertStoreXML(Program.AppEngName, false, "sync/Convert", strxml, retur);
             }
         }
 
@@ -125,7 +129,8 @@ namespace nsPuls3060
                     xml.Add(new XElement(Name, Val));
                 }
                 string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
-                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert/" + ModelName, strxml);
+                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert", strxml);
+                if (retur != "Status: 404") clsSQLite.insertStoreXML(Program.AppEngName, false, "sync/Convert", strxml, retur);
             }
         }
 
@@ -147,7 +152,8 @@ namespace nsPuls3060
                     xml.Add(new XElement(Name, Val));
                 }
                 string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
-                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert/" + ModelName, strxml);
+                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert", strxml);
+                if (retur != "Status: 404") clsSQLite.insertStoreXML(Program.AppEngName, false, "sync/Convert", strxml, retur);
             }
         }
 
@@ -169,7 +175,8 @@ namespace nsPuls3060
                     xml.Add(new XElement(Name, Val));
                 }
                 string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
-                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert/" + ModelName, strxml);
+                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert", strxml);
+                if (retur != "Status: 404") clsSQLite.insertStoreXML(Program.AppEngName, false, "sync/Convert", strxml, retur);
             }
         }
 
@@ -191,7 +198,8 @@ namespace nsPuls3060
                     xml.Add(new XElement(Name, Val));
                 }
                 string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
-                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert/" + ModelName, strxml);
+                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert", strxml);
+                if (retur != "Status: 404") clsSQLite.insertStoreXML(Program.AppEngName, false, "sync/Convert", strxml, retur);
 
                 var qry2 = from r2 in Program.dbData3060.Tblpbsfile
                            where r2.Pbsfilesid == r.Id
@@ -212,7 +220,8 @@ namespace nsPuls3060
                 xml2.Add(new XElement("Data", TilPBSFile));
 
                 string strxml2 = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml2.ToString();
-                string retur2 = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert/" + "Pbsfile", strxml2);
+                string retur2 = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert", strxml2);
+                if (retur2 != "Status: 404") clsSQLite.insertStoreXML(Program.AppEngName, false, "sync/Convert", strxml2, retur2);
             }
         }
 
@@ -234,7 +243,8 @@ namespace nsPuls3060
                     xml.Add(new XElement(Name, Val));
                 }
                 string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
-                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert/" + ModelName, strxml);
+                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert", strxml);
+                if (retur != "Status: 404") clsSQLite.insertStoreXML(Program.AppEngName, false, "sync/Convert", strxml, retur);
             }
         }
 
@@ -256,7 +266,8 @@ namespace nsPuls3060
                     xml.Add(new XElement(Name, Val));
                 }
                 string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
-                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert/" + ModelName, strxml);
+                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert", strxml);
+                if (retur != "Status: 404") clsSQLite.insertStoreXML(Program.AppEngName, false, "sync/Convert", strxml, retur);
             }
         }
 
@@ -278,7 +289,8 @@ namespace nsPuls3060
                     xml.Add(new XElement(Name, Val));
                 }
                 string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
-                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert/" + ModelName, strxml);
+                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert", strxml);
+                if (retur != "Status: 404") clsSQLite.insertStoreXML(Program.AppEngName, false, "sync/Convert", strxml, retur);
             }
         }
 
@@ -300,7 +312,8 @@ namespace nsPuls3060
                     xml.Add(new XElement(Name, Val));
                 }
                 string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
-                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert/" + ModelName, strxml);
+                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert", strxml);
+                if (retur != "Status: 404") clsSQLite.insertStoreXML(Program.AppEngName, false, "sync/Convert", strxml, retur);
             }
         }
 
@@ -322,7 +335,8 @@ namespace nsPuls3060
                     xml.Add(new XElement(Name, Val));
                 }
                 string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
-                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert/" + ModelName, strxml);
+                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert", strxml);
+                if (retur != "Status: 404") clsSQLite.insertStoreXML(Program.AppEngName, false, "sync/Convert", strxml, retur);
             }
         }
 
@@ -344,7 +358,8 @@ namespace nsPuls3060
                     xml.Add(new XElement(Name, Val));
                 }
                 string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
-                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert/" + ModelName, strxml);
+                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert", strxml);
+                if (retur != "Status: 404") clsSQLite.insertStoreXML(Program.AppEngName, false, "sync/Convert", strxml, retur);
             }
         }
 
@@ -366,7 +381,8 @@ namespace nsPuls3060
                     xml.Add(new XElement(Name, Val));
                 }
                 string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
-                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert/" + ModelName, strxml);
+                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert", strxml);
+                if (retur != "Status: 404") clsSQLite.insertStoreXML(Program.AppEngName, false, "sync/Convert", strxml, retur);
             }
         }
 
@@ -388,7 +404,8 @@ namespace nsPuls3060
                     xml.Add(new XElement(Name, Val));
                 }
                 string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
-                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert/" + ModelName, strxml);
+                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert", strxml);
+                if (retur != "Status: 404") clsSQLite.insertStoreXML(Program.AppEngName, false, "sync/Convert", strxml, retur);
             }
         }
 
@@ -410,7 +427,8 @@ namespace nsPuls3060
                     xml.Add(new XElement(Name, Val));
                 }
                 string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
-                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert/" + ModelName, strxml);
+                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert", strxml);
+                if (retur != "Status: 404") clsSQLite.insertStoreXML(Program.AppEngName, false, "sync/Convert", strxml, retur);
             }
         }
 
@@ -432,7 +450,8 @@ namespace nsPuls3060
                     xml.Add(new XElement(Name, Val));
                 }
                 string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
-                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert/" + ModelName, strxml);
+                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert", strxml);
+                if (retur != "Status: 404") clsSQLite.insertStoreXML(Program.AppEngName, false, "sync/Convert", strxml, retur);
             }
         }
 

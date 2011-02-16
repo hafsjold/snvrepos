@@ -129,7 +129,7 @@ namespace nsPuls3060
                     xmlPbsfilesAdd.Add(new XElement("Transmittime", DateTime.Now));
                     xmlPbsfilesAdd.Add(new XElement("Data", TilPBSFile));
                     string strxmlPbsfilesAdd = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xmlPbsfilesAdd.ToString();
-                    Guid id1 = clsSQLite.insertStoreXML(m_rec_sftp.Navn, false, "LocalDatabase", strxmlPbsfilesAdd);
+                    Guid id1 = clsSQLite.insertStoreXML(m_rec_sftp.Navn, false, "LocalDatabase", strxmlPbsfilesAdd, "");
                     //*******************************************************************************************
                     char[] c_TilPBSFile = TilPBSFile.ToCharArray();
                     byte[] b_TilPBSFile = System.Text.Encoding.GetEncoding("windows-1252").GetBytes(c_TilPBSFile);
@@ -350,7 +350,7 @@ namespace nsPuls3060
                     xmlPbsfilesAdd.Add(new XElement("Transmittime", DateTime.Now));
                     xmlPbsfilesAdd.Add(new XElement("Data", filecontens4));
                     string strxmlPbsfilesAdd = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xmlPbsfilesAdd.ToString();
-                    Guid id1 = clsSQLite.insertStoreXML("LocalDatabase", false, m_rec_sftp.Navn, strxmlPbsfilesAdd);
+                    Guid id1 = clsSQLite.insertStoreXML("LocalDatabase", false, m_rec_sftp.Navn, strxmlPbsfilesAdd, "");
 
                     string[] lines = filecontens4.Split('\n');
                     string ln = null;

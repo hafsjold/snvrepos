@@ -11,29 +11,16 @@ import os
 import re
 from xml.dom import minidom
 
-class clsForslag(object):
-  def __init__(self, person, kontingentfradato, indmeldelse, tilmeldtpbs):
-    self.Nr = person.Nr
-    self.Navn = person.Navn
-    self.Adresse = person.Adresse
-    self.Postnr = person.Postnr
-    self.KontingentFradato = kontingentfradato
-    self.Indmeldelse = indmeldelse
-    self.Tilmeldtpbs = tilmeldtpbs
-    logging.info('%s %s' % (person.Nr,person.Navn))
-        
 class KontingentForslagHandler(webapp.RequestHandler):
   def get(self):
     forslag = []
     antal = 0
     root = db.Key.from_path('Persons','root')
-    person_list = db.Query(Person).ancestor(root)
-    for rec_person in person_list:
-      objMedlemsStatus = MedlemsStatus(rec_person.key())
-      (KontingentFradato, Indmeldelse, Tilmeldtpbs) = objMedlemsStatus.KontingentForslag()
-      if KontingentFradato:
-        objForslag = clsForslag(rec_person, KontingentFradato, Indmeldelse, Tilmeldtpbs)
-        forslag.append(objForslag)
+    person_key_list = db.Query(Person, keys_only=True).ancestor(root)
+    for key_person in person_key_list:
+      objMedlemsStatus = MedlemsStatus(key_person)
+      if objMedlemsStatus.KontingentForslag():
+        forslag.append(objMedlemsStatus)
         antal += 1
     
     status = (antal > 0)    
@@ -49,9 +36,9 @@ class PersonListHandler(webapp.RequestHandler):
     forslag = []
     antal = 0
     root = db.Key.from_path('Persons','root')
-    person_list = db.Query(Person).ancestor(root)
-    for rec_person in person_list:
-      objMedlemsStatus = MedlemsStatus(rec_person.key())
+    person_key_list = db.Query(Person, keys_only=True).ancestor(root)
+    for key_person in person_key_list:
+      objMedlemsStatus = MedlemsStatus(key_person)
       forslag.append(objMedlemsStatus)
       antal += 1
     

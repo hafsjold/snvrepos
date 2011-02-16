@@ -14,13 +14,15 @@
     <Telefon>{{f.person.Telefon}}</Telefon> 
     <Email>{{f.person.Email}}</Email> 
     <FodtDato>{{f.person.FodtDato}}</FodtDato> 
+    <Kon>{{f.person.Kon}}</Kon> 
     <Bank>{{f.person.Bank}}</Bank> 
     <erMedlem>{{f.erMedlem}}</erMedlem> 
     <indmeldelsesDato>{{f.indmeldelsesDato}}</indmeldelsesDato> 
     <udmeldelsesDato>{{f.udmeldelsesDato}}</udmeldelsesDato> 
     <kontingentBetaltTilDato>{{f.kontingentBetaltTilDato}}</kontingentBetaltTilDato> 
     <opkraevningsDato>{{f.opkraevningsDato}}</opkraevningsDato> 
-    <kontingentTilbagefoertDato>{{f.kontingentTilbagefoertDato}}</kontingentTilbagefoertDato> 
+    <kontingentTilbagefoertDato>{{f.kontingentTilbagefoertDato}}</kontingentTilbagefoertDato>
+    <Tilmeldtpbs>{{f.Tilmeldtpbs}}</Tilmeldtpbs> 
   </Person>
   {% endfor %}
   {% endif %}    

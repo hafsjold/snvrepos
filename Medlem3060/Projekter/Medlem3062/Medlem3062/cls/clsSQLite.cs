@@ -15,7 +15,8 @@ namespace nsPuls3060
 
         static clsSQLite()
         {
-            m_conn = new SQLiteConnection(@"Data Source=c:\mydatabasefile.db3");
+            string ds = global::nsPuls3060.Properties.Settings.Default.DataBasePath.Replace(".sdf", ".db3");
+            m_conn = new SQLiteConnection(@"Data Source=" + ds);
             m_conn.Open();
             createDB();
         }
@@ -32,15 +33,16 @@ namespace nsPuls3060
               @"[ontarget] BOOLEAN DEFAULT (0), " +
               @"[source] VARCHAR DEFAULT (NULL), " +
               @"[data] TEXT DEFAULT (NULL), " +
+              @"[error] TEXT DEFAULT (NULL), " +
               @"CONSTRAINT [sqlite_autoindex_StoreXML_1] PRIMARY KEY ([id]));";
             sqltablecmd.ExecuteNonQuery();
         }
 
-        public static Guid insertStoreXML(String pvTarget, Boolean pvOntarget, string pvSource, string pvData)
+        public static Guid insertStoreXML(String pvTarget, Boolean pvOntarget, string pvSource, string pvData, string pvError)
         {
             SQLiteCommand sqlinsertcmd = new SQLiteCommand();
             sqlinsertcmd.Connection = m_conn;
-            sqlinsertcmd.CommandText = @"INSERT INTO StoreXML (id, target, ontarget, source, data) values(@pId, @pTarget, @pOntarget, @pSource, @pData);";
+            sqlinsertcmd.CommandText = @"INSERT INTO StoreXML (id, target, ontarget, source, data, error) values(@pId, @pTarget, @pOntarget, @pSource, @pData, @pError);";
 
             Guid guidId = Guid.NewGuid();
 
@@ -73,6 +75,12 @@ namespace nsPuls3060
             pData.DbType = DbType.String;
             pData.Value = pvData;
             sqlinsertcmd.Parameters.Add(pData);
+
+            DbParameter pError = sqlinsertcmd.CreateParameter();
+            pError.ParameterName = "pError";
+            pError.DbType = DbType.String;
+            pError.Value = pvError;
+            sqlinsertcmd.Parameters.Add(pError);
 
             sqlinsertcmd.ExecuteNonQuery();
 
