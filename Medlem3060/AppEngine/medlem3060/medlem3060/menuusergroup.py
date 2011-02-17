@@ -91,7 +91,7 @@ def createMenuAndUserGroup():
   l = createMenuMenuLink(Id = 70, Parent_key = p, Child_key = c, Menuseq = 4)  
   l.put()
   
-  c = createMenu(Id = 81, Menutext = 'Link Fak til Betlin', Menulink = '/data/linkfak', Target = None, Confirm = False)
+  c = createMenu(Id = 81, Menutext = 'Link Fak til Betlin og Rykker', Menulink = '/data/linkfak', Target = None, Confirm = False)
   c.put()
   l = createMenuMenuLink(Id = 71, Parent_key = p, Child_key = c, Menuseq = 4)  
   l.put()

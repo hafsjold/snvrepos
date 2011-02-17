@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<list>
+  <Status>{{status}}</Status>
+  {% if status %}
+  {% if forslag %}
+  {% for f in forslag %}
+  <Overforsel>
+    <SFakID>{{f.SFakID}}</SFakID> 
+    {% if allFields %}
+    <Id>{{f.Id}}</Id> 
+    <TilPbsid>{{f.TilPbsref.Id}}</TilPbsid> 
+    <Nr>{{f.Nr}}</Nr> 
+    <SFaknr>{{f.SFaknr}}</SFaknr>
+    <Advistekst>{{f.Advistekst}}</Advistekst> 
+    <Advisbelob>{{f.Advisbelob}}</Advisbelob> 
+    <Emailtekst>{{f.Emailtekst}}</Emailtekst> 
+    <Bankregnr>{{f.Bankregnr}}</Bankregnr> 
+    <Bankkontonr>{{f.Bankkontonr}}</Bankkontonr> 
+    {% endif %}    
+  </Overforsel>
+  {% endfor %}
+  {% endif %}    
+  {% endif %} 
+</list>

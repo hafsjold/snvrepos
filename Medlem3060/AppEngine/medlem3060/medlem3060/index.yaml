@@ -45,3 +45,8 @@ indexes:
   - name: Parent_key
   - name: Menuseq
     direction: desc
+
+- kind: Overforsel
+  ancestor: yes
+  properties:
+  - name: SFakID

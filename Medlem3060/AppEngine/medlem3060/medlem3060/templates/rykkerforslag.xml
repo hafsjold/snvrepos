@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<list>
+  <Status>{{status}}</Status>
+  {% if status %}
+  {% if forslag %}
+  {% for f in forslag %}
+  <RykkerForslag>
+    <Nr>{{f.person.Nr}}</Nr> 
+    <Navn>{{f.person.Navn}}</Navn> 
+    <Adresse>{{f.person.Adresse}}</Adresse>
+    <Postnr>{{f.person.Postnr}}</Postnr> 
+    <Betalingsdato>{{f.Betalingsdato}}</Betalingsdato> 
+    <Advisbelob>{{f.Advisbelob}}</Advisbelob> 
+    <Faknr>{{f.Faknr}}</Faknr> 
+  </RykkerForslag>
+  {% endfor %}
+  {% endif %}    
+  {% endif %} 
+</list>

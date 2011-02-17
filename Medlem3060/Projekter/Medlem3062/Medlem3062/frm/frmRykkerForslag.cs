@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections;
+using System.Xml.Linq;
 
 namespace nsPuls3060
 {
@@ -54,43 +55,49 @@ namespace nsPuls3060
             IEnumerable<clsqry_medlemmer> qry_medlemmer;
             if (this.RykketTidligere.Checked)
             {
-                qry_medlemmer = from h in Program.karMedlemmer
-                                join f in Program.dbData3060.Tblfak on h.Nr equals f.Nr
-                                where f.SFaknr == null &&
-                                      f.Rykkerstop == false &&
-                                      (int)(from q in Program.dbData3060.Tblrykker where q.Faknr == f.Faknr select q).Count() > 0
-                                orderby f.Fradato, f.Id
+                clsRest objRest = new clsRest();
+                string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "tidligererykker");
+                XDocument xmldata = XDocument.Parse(strxmldata);
+                string Status = xmldata.Descendants("Status").First().Value;
+                if (Status != "True") return;
+                qry_medlemmer = from h in xmldata.Descendants("RykkerForslag")
+                                orderby clsPassXmlDoc.attr_val_int(h, "Nr")
                                 select new clsqry_medlemmer
-                                {
-                                    Nr = h.Nr,
-                                    Navn = h.Navn,
-                                    Adresse = h.Adresse,
-                                    Postnr = h.Postnr,
-                                    Betalingsdato = f.Betalingsdato,
-                                    Advisbelob = f.Advisbelob,
-                                    Faknr = f.Faknr
-                                };
+                               {
+                                   Nr = clsPassXmlDoc.attr_val_int(h, "Nr"),
+                                   Navn = clsPassXmlDoc.attr_val_string(h, "Navn"),
+                                   Adresse = clsPassXmlDoc.attr_val_string(h, "Adresse"),
+                                   Postnr = clsPassXmlDoc.attr_val_string(h, "Postnr"),
+                                   Betalingsdato = clsPassXmlDoc.attr_val_date(h, "Betalingsdato"),
+                                   Advisbelob = (decimal)clsPassXmlDoc.attr_val_double(h, "Advisbelob"),
+                                   Faknr = clsPassXmlDoc.attr_val_int(h, "Faknr")
+                               };
+
+
             }
             else
             {
-                qry_medlemmer = from h in Program.karMedlemmer
-                                join f in Program.dbData3060.Tblfak on h.Nr equals f.Nr
-                                where f.SFaknr == null &&
-                                      f.Rykkerstop == false &&
-                                      f.Betalingsdato.Value.AddDays(7) <= DateTime.Today &&
-                                      (int)(from q in Program.dbData3060.Tblrykker where q.Faknr == f.Faknr select q).Count() == 0
-                                orderby f.Fradato, f.Id
+
+                clsRest objRest = new clsRest();
+                string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "rykkerforslag");
+                XDocument xmldata = XDocument.Parse(strxmldata);
+                string Status = xmldata.Descendants("Status").First().Value;
+                if (Status != "True") return;
+                qry_medlemmer = from h in xmldata.Descendants("RykkerForslag")
+                                orderby clsPassXmlDoc.attr_val_int(h, "Nr")
                                 select new clsqry_medlemmer
                                 {
-                                    Nr = h.Nr,
-                                    Navn = h.Navn,
-                                    Adresse = h.Adresse,
-                                    Postnr = h.Postnr,
-                                    Betalingsdato = f.Betalingsdato,
-                                    Advisbelob = f.Advisbelob,
-                                    Faknr = f.Faknr
+                                    Nr = clsPassXmlDoc.attr_val_int(h, "Nr"),
+                                    Navn = clsPassXmlDoc.attr_val_string(h, "Navn"),
+                                    Adresse = clsPassXmlDoc.attr_val_string(h, "Adresse"),
+                                    Postnr = clsPassXmlDoc.attr_val_string(h, "Postnr"),
+                                    Betalingsdato = clsPassXmlDoc.attr_val_date(h, "Betalingsdato"),
+                                    Advisbelob = (decimal)clsPassXmlDoc.attr_val_double(h, "Advisbelob"),
+                                    Faknr = clsPassXmlDoc.attr_val_int(h, "Faknr")
                                 };
             }
+
+
             this.lvwMedlem.Items.Clear();
             this.lvwRykker.Items.Clear();
 
@@ -109,9 +116,6 @@ namespace nsPuls3060
 
             foreach (var m in qry_medlemmer)
             {
-                clsMedlem medlem = (from k in Program.karMedlemmer where k.Nr == m.Nr select k).First();
-                if (medlem.kanRykkes())
-                {
                     AntalForslag++;
                     ListViewItem it = lvwMedlem.Items.Add(m.Nr.ToString(), m.Navn, 0);
                     //it.Tag = m;
@@ -122,7 +126,6 @@ namespace nsPuls3060
                     it.SubItems.Add(m.Advisbelob.ToString());
                     it.SubItems.Add(m.Faknr.ToString());
                     pgmForslag.PerformStep();
-                }
             }
             this.lvwMedlem.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 

@@ -175,6 +175,10 @@ class Fak(db.Model):
     Indmeldelse = db.BooleanProperty(default=False)
     
     @property
+    def person(self):
+      return self.parent()
+
+    @property
     def Key(self):
       return self.key()
 
@@ -220,7 +224,17 @@ class Rykker(db.Model):
     Infotekst = db.IntegerProperty()
     Rykkerdato = db.DateProperty()
     Maildato = db.DateProperty()
-    
+    Fakref = db.ReferenceProperty(Fak, collection_name='listRykker')
+
+    def linkFak(self):
+      if not self.Fakref:
+        qry = Fak.all().filter('Faknr =', self.Faknr)
+        for fakrec in qry:
+          if fakrec.Nr == self.Nr:
+            self.Fakref = fakrec.key()
+            self.put()
+            break
+            
 class Frapbs(db.Model):
     #key = db.Key.from_path('rootFrapbs','root', 'Frapbs', '%s' % (Id))
     Id = db.IntegerProperty()
@@ -676,6 +690,38 @@ class MedlemsStatus():
 
     return True
   
+  def kanRykkes(self):
+    dt = datetime.now(cet).replace(tzinfo = None)
+    pDate = dt.date()
+    #Undersøg vedr ind- og udmeldelse
+    if self.b10: #Findes der en indmeldelse
+      if self.b50: #Findes der en udmeldelse
+        if self.udmeldelsesDato >= self.indmeldelsesDato: #Er udmeldelsen aktiv
+          if self.udmeldelsesDato <= pDate: #Er udmeldelsen aktiv
+            return False
+    else: #Der findes ingen indmeldelse
+      return False
+
+    #Find aktive betalingsrecord
+    if self.b40: #Findes der en kontingent tilbageført
+      if self.kontingentTilbagefoertDato >= self.kontingentBetalingsDato: #Kontingenttilbageført er aktiv
+        #''!!!Kontingent er tilbageført !!!!!!!!!
+        if self.b31:
+          self.kontingentBetalingsDato = self.kontingentBetaltDato31
+          self.kontingentBetaltTilDato = self.kontingentTilDato31
+        else:
+          self.b30 = False
+
+    #Undersøg om der er betalt kontingent
+    if self.b30: #Findes der en betaling
+      if self.kontingentBetaltTilDato >= pDate: #Er kontingentTilDato aktiv
+        return False
+      else:
+        return True
+    else:
+      #Der findes ingen betalinger
+      return True
+
       
 class NrSerie(db.Model):
     #key = db.Key.from_path('NrSerie', '%s' % (Nrserienavn))

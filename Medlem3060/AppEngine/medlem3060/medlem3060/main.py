@@ -28,6 +28,8 @@ from pbs602 import pbs602Handler
 from pbs603 import pbs603Handler
 from kontingentforslag import KontingentForslagHandler, PersonListHandler
 from summa import Order2SummaHandler
+from rykkerforslag import RykkerForslagHandler, TidligereRykkerHandler
+from overforsel import OverforselHandler
 
 
 webapp.template.register_template_library('templatetags.medlem3060_extras')
@@ -1125,6 +1127,11 @@ class LinkFakHandler(webapp.RequestHandler):
       qry = Betlin.all()
       for betlin in qry:
         betlin.linkFak()
+        
+      qry = Rykker.all()
+      for rykker in qry:
+        rykker.linkFak()
+      
       self.redirect("/adm")   
 
 class CreateMenu(webapp.RequestHandler):
@@ -1178,6 +1185,9 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/data/frapbs', DatafrapbsHandler),   
                                        ('/data/sftp/.*', DatasftpHandler),
                                        ('/data/kontingentforslag', KontingentForslagHandler), 
+                                       ('/data/rykkerforslag', RykkerForslagHandler), 
+                                       ('/data/tidligererykker', TidligereRykkerHandler), 
+                                       ('/data/overforsel', OverforselHandler), 
                                        ('/data/kreditor', KreditorHandler), 
                                        ('/data/infotekst', InfotekstHandler), 
                                        ('/data/personlist', PersonListHandler), 

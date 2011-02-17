@@ -7,9 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections;
+using System.Xml.Linq;
 
 namespace nsPuls3060
 {
+    public class clsOverfor
+    {
+        public int? SFakID;
+    }
+
     public partial class FrmBetalingsForslag : Form
     {
         ColumnSorter lvwKreditor_ColumnSorter;
@@ -58,12 +64,23 @@ namespace nsPuls3060
             int AntalKreditorer = 0;
             int AntalForslag = 0;
 
+            clsRest objRest = new clsRest();
+            string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "overforsel");
+            XDocument xmldata = XDocument.Parse(strxmldata);
+            string Status = xmldata.Descendants("Status").First().Value;
+            if (Status != "True") return;
+            var qry_overforsel = from h in xmldata.Descendants("Overforsel")
+                                 select new clsOverfor
+                                 {
+                                     SFakID = clsPassXmlDoc.attr_val_int(h, "SFakID"),
+                                 };
+
             var qry_Kreditor = from h in Program.karFakturaer_k
                                where h.saldo > 0
                                join m in Program.karMedlemmer on h.kreditornr.ToString() equals m.Krdktonr
                                where Program.ValidatekBank(m.Bank)
-                               join f in Program.dbData3060.Tbloverforsel on h.fakid equals f.SFakID into overforsel
-                               from f in overforsel.DefaultIfEmpty(new Tbloverforsel { Id = 0, Tilpbsid = null, Nr = null, SFaknr = null, SFakID = null, Advistekst = null, Advisbelob = null, Emailtekst = null, Emailsent = null, Bankregnr = null, Bankkontonr = null, Betalingsdato = null })
+                               join f in qry_overforsel on h.fakid equals f.SFakID into overforsel
+                               from f in overforsel.DefaultIfEmpty(new clsOverfor { SFakID = null })
                                where f.SFakID == null
                                select new
                                {
@@ -104,7 +121,7 @@ namespace nsPuls3060
                 it.SubItems.Add(m.Adresse);
                 it.SubItems.Add(m.Postnr);
                 it.SubItems.Add(m.faknr.ToString());
-                it.SubItems.Add((((decimal)m.saldo)/100).ToString());
+                it.SubItems.Add((((decimal)m.saldo) / 100).ToString());
                 it.SubItems.Add(m.Bank);
                 pgmForslag.PerformStep();
             }
@@ -268,10 +285,10 @@ namespace nsPuls3060
                         Nr = Nr,
                         Fakid = int.Parse(keyval),
                         Advisbelob = (decimal)advisbelob,
-                        Bankregnr = Bank.Substring(0,4),
-                        Bankkontonr = Bank.Substring(5,10),
+                        Bankregnr = Bank.Substring(0, 4),
+                        Bankkontonr = Bank.Substring(5, 10),
                         Faknr = faknr,
-                     };
+                    };
                     rec_tempBetalforslag.TempBetalforslaglinie.Add(rec_tempBetalforslaglinie);
                 }
                 Program.dbData3060.SubmitChanges();
