@@ -18,7 +18,7 @@ namespace nsPuls3060
 
         private void FrmKreditor_Load(object sender, EventArgs e)
         {
-            this.bsKreditor.DataSource = Program.dbData3060.Tblkreditor;
+            this.bsKreditor.DataSource = Program.memKreditor;
 
         }
 

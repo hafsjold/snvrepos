@@ -181,6 +181,8 @@
     <Compile Include="kar\karKontoplan.cs" />
     <Compile Include="kar\karPosteringsjournal.cs" />
     <Compile Include="kar\karKladde.cs" />
+    <Compile Include="mem\memInfotekst.cs" />
+    <Compile Include="mem\memKreditor.cs" />
     <Compile Include="mem\memRegnskab.cs" />
     <Compile Include="mem\memPbsnetdir.cs" />
     <Compile Include="mem\memAktivRegnskab.cs" />
@@ -307,8 +309,6 @@
     <None Include="dsMedlem.xss">
       <DependentUpon>dsMedlem.xsd</DependentUpon>
     </None>
-    <None Include="Properties\DataSources\Tblkreditor.datasource" />
-    <None Include="Properties\DataSources\TblRegnskab.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -330,8 +330,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="HafsjoldDataApSSignature.pfx" />
+    <None Include="Properties\DataSources\MemInfotekst.datasource" />
+    <None Include="Properties\DataSources\MemKreditor.datasource" />
     <None Include="Properties\DataSources\MemPbsnetdir.datasource" />
-    <None Include="Properties\DataSources\Tblinfotekst.datasource" />
+    <None Include="Properties\DataSources\MemRegnskab.datasource" />
     <None Include="Properties\DataSources\Tblpbsfiles.datasource" />
     <None Include="Resources\Add.bmp" />
     <Content Include="Resources\info.png" />

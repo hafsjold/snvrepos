@@ -41,6 +41,8 @@ namespace nsPuls3060
         private static KarMedlemmer m_KarMedlemmer;
         private static MemMedlemDictionary m_dicMedlem;
         private static MemRegnskab m_memRegnskab;
+        private static MemKreditor m_memKreditor;
+        private static MemInfotekst m_memInfotekst;
         private static MemAktivRegnskab m_memAktivRegnskab;
         private static MemPbsnetdir m_memPbsnetdir;
         private static KarDkkonti m_KarDkkonti;
@@ -354,6 +356,30 @@ namespace nsPuls3060
             set
             {
                 m_memRegnskab = value;
+            }
+        }
+        public static MemKreditor memKreditor
+        {
+            get
+            {
+                if (m_memKreditor == null) m_memKreditor = new MemKreditor();
+                return m_memKreditor;
+            }
+            set
+            {
+                m_memKreditor = value;
+            }
+        }
+        public static MemInfotekst memInfotekst
+        {
+            get
+            {
+                if (m_memInfotekst == null) m_memInfotekst = new MemInfotekst();
+                return m_memInfotekst;
+            }
+            set
+            {
+                m_memInfotekst = value;
             }
         }
         public static MemAktivRegnskab memAktivRegnskab

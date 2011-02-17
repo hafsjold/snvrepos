@@ -854,6 +854,15 @@ class SyncConvertHandler(webapp.RequestHandler, PassXmlDoc):
     self.response.out.write('Status: 404')
     
 
+class KreditorHandler(webapp.RequestHandler, PassXmlDoc):
+  def get(self):
+    root = db.Key.from_path('rootKreditor','root')
+    qry = db.Query(Kreditor).ancestor(root)
+    template_values = {
+      'kreditor_list': qry,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/kreditor.xml')
+    self.response.out.write(template.render(path, template_values))  
 
 class SyncMedlogHandler(webapp.RequestHandler):
   def get(self):
@@ -1159,6 +1168,7 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/data/frapbs', DatafrapbsHandler),   
                                        ('/data/sftp/.*', DatasftpHandler),
                                        ('/data/kontingentforslag', KontingentForslagHandler), 
+                                       ('/data/kreditor', KreditorHandler), 
                                        ('/data/personlist', PersonListHandler), 
                                        ('/data/order2summa', Order2SummaHandler),             
                                        ('/sync/.*', MenuHandler),

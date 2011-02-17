@@ -120,7 +120,7 @@
             // 
             // bsInfotekst
             // 
-            this.bsInfotekst.DataSource = typeof(nsPuls3060.Tblinfotekst);
+            this.bsInfotekst.DataSource = typeof(nsPuls3060.MemInfotekst);
             // 
             // bindingNavigatorCountItem
             // 

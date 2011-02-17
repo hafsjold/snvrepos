@@ -40,7 +40,6 @@
             this.label_Eksportmappe = new System.Windows.Forms.Label();
             this.label1_Afsluttet = new System.Windows.Forms.Label();
             this.Rid = new System.Windows.Forms.TextBox();
-            this.bsRegnskab = new System.Windows.Forms.BindingSource(this.components);
             this.Navn = new System.Windows.Forms.TextBox();
             this.Oprettet = new System.Windows.Forms.TextBox();
             this.Start = new System.Windows.Forms.TextBox();
@@ -60,10 +59,11 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.epRegnskab = new System.Windows.Forms.ErrorProvider(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.bsRegnskab)).BeginInit();
+            this.bsRegnskab = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bnRegnskab)).BeginInit();
             this.bnRegnskab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epRegnskab)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRegnskab)).BeginInit();
             this.SuspendLayout();
             // 
             // label_Rid
@@ -155,10 +155,6 @@
             this.Rid.Size = new System.Drawing.Size(43, 20);
             this.Rid.TabIndex = 1;
             // 
-            // bsRegnskab
-            // 
-            this.bsRegnskab.DataSource = typeof(nsPuls3060.TblRegnskab);
-            // 
             // Navn
             // 
             this.Navn.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsRegnskab, "Navn", true));
@@ -245,7 +241,7 @@
             this.bindingNavigatorMoveNextItem,
             this.bindingNavigatorMoveLastItem,
             this.bindingNavigatorSeparator2});
-            this.bnRegnskab.Location = new System.Drawing.Point(0, 319);
+            this.bnRegnskab.Location = new System.Drawing.Point(0, 325);
             this.bnRegnskab.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bnRegnskab.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.bnRegnskab.MoveNextItem = this.bindingNavigatorMoveNextItem;
@@ -328,6 +324,10 @@
             this.epRegnskab.ContainerControl = this;
             this.epRegnskab.DataSource = this.bsRegnskab;
             // 
+            // bsRegnskab
+            // 
+            this.bsRegnskab.DataSource = typeof(nsPuls3060.MemRegnskab);
+            // 
             // FrmRegnskab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -364,11 +364,11 @@
             this.WindowState = global::nsPuls3060.Properties.Settings.Default.frmRegnskabState;
             this.Load += new System.EventHandler(this.FrmRegnskab_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmRegnskab_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.bsRegnskab)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bnRegnskab)).EndInit();
             this.bnRegnskab.ResumeLayout(false);
             this.bnRegnskab.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epRegnskab)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRegnskab)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
