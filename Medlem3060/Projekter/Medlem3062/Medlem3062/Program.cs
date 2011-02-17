@@ -11,8 +11,8 @@ namespace nsPuls3060
     {
 #if (DEBUG)
         //private static string m_baseUrl = @"http://hd36:8080";
-        //private static string m_baseUrl = @"http://localhost:8084";
-        private static string m_baseUrl = @"http://testmedlem3060.appspot.com";
+        private static string m_baseUrl = @"http://localhost:8084";
+        //private static string m_baseUrl = @"http://testmedlem3060.appspot.com";
 #else
         private static string m_baseUrl = @"http://medlem3060.appspot.com";
 #endif
@@ -40,6 +40,7 @@ namespace nsPuls3060
         private static dsMedlem m_dsMedlemGlobal;
         private static KarMedlemmer m_KarMedlemmer;
         private static MemMedlemDictionary m_dicMedlem;
+        private static MemRegnskab m_memRegnskab;
         private static MemAktivRegnskab m_memAktivRegnskab;
         private static MemPbsnetdir m_memPbsnetdir;
         private static KarDkkonti m_KarDkkonti;
@@ -343,6 +344,18 @@ namespace nsPuls3060
                 m_dicMedlem = value;
             }
         }
+        public static MemRegnskab memRegnskab
+        {
+            get
+            {
+                if (m_memRegnskab == null) m_memRegnskab = new MemRegnskab();
+                return m_memRegnskab;
+            }
+            set
+            {
+                m_memRegnskab = value;
+            }
+        }
         public static MemAktivRegnskab memAktivRegnskab
         {
             get
@@ -536,18 +549,18 @@ namespace nsPuls3060
             }
         }
 
-        public static TblRegnskab qryAktivRegnskab()
+        public static recMemRegnskab qryAktivRegnskab()
         {
             try
             {
                 return (from a in Program.memAktivRegnskab
-                        join r in Program.dbData3060.TblRegnskab on a.Rid equals r.Rid
+                        join r in Program.memRegnskab on a.Rid equals r.Rid
                         select r).First();
 
             }
             catch (System.InvalidOperationException)
             {
-                return new TblRegnskab
+                return new recMemRegnskab
                 {
                     Rid = 999,
                     Navn = "Vælg et eksisterende regnskab"

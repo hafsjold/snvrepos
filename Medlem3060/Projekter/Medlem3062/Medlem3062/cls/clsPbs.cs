@@ -360,7 +360,7 @@ namespace nsPuls3060
 
     class clsPbs
     {
-        private TblRegnskab m_rec_Regnskab;
+        private recMemRegnskab m_rec_Regnskab;
 
         public clsPbs() { }
 
@@ -416,52 +416,24 @@ namespace nsPuls3060
                             try
                             {
                                 m_rec_Regnskab =
-                                    (from d in Program.dbData3060.TblRegnskab
+                                    (from d in Program.memRegnskab //.dbData3060.TblRegnskab
                                      where d.Rid.ToString() == RegnskabId
                                      select d).First();
 
                             }
                             catch (System.InvalidOperationException)
                             {
-                                m_rec_Regnskab = new TblRegnskab
+                                m_rec_Regnskab = new recMemRegnskab()
                                 {
                                     Rid = int.Parse(RegnskabId)
                                 };
-                                Program.dbData3060.TblRegnskab.InsertOnSubmit(m_rec_Regnskab);
-                                Program.dbData3060.SubmitChanges();
+                                Program.memRegnskab.Add(m_rec_Regnskab);
                             }
                             RegnskabMappe = Datamappe + sub_dir.Name + @"\";
                             m_rec_Regnskab.Placering = RegnskabMappe;
 
                             m_rec_Regnskab.Eksportmappe = Eksportmappe + @"\";
 
-                            if (m_rec_Regnskab.FraPBS == null)
-                            {
-                                DirectoryInfo infoEksportmappe = new DirectoryInfo(m_rec_Regnskab.Eksportmappe);
-                                if (infoEksportmappe.Exists)
-                                {
-                                    m_rec_Regnskab.FraPBS = Eksportmappe + @"\FraPBS\";
-                                    DirectoryInfo infoFraPBS = new DirectoryInfo(m_rec_Regnskab.FraPBS);
-                                    if (!infoFraPBS.Exists)
-                                    {
-                                        infoFraPBS.Create();
-                                    }
-                                }
-                            }
-
-                            if (m_rec_Regnskab.TilPBS == null)
-                            {
-                                DirectoryInfo infoEksportmappe = new DirectoryInfo(m_rec_Regnskab.Eksportmappe);
-                                if (infoEksportmappe.Exists)
-                                {
-                                    m_rec_Regnskab.TilPBS = Eksportmappe + @"\TilPBS\";
-                                    DirectoryInfo infoTilPBS = new DirectoryInfo(m_rec_Regnskab.TilPBS);
-                                    if (!infoTilPBS.Exists)
-                                    {
-                                        infoTilPBS.Create();
-                                    }
-                                }
-                            }
                             string[] files = new string[2];
                             files[0] = RegnskabMappe + "regnskab.dat";
                             files[1] = RegnskabMappe + "status.dat";
