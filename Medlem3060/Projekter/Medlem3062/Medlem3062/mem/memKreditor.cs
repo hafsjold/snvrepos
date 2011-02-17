@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Xml.Linq;
+using System.Reflection;
 
 namespace nsPuls3060
 {
@@ -48,7 +49,27 @@ namespace nsPuls3060
                 this.Add(rec);
             }
         }
-        public void save() { }
+        public void save()
+        {
+            string ModelName = "Kreditor";
+            var qry = from r in Program.memKreditor select r;
+            foreach (var r in qry)
+            {
+                clsRest objRest = new clsRest();
+                XElement xml = new XElement(ModelName);
+                Type objectType = r.GetType();
+                PropertyInfo[] properties = objectType.GetProperties();
+                foreach (PropertyInfo property in properties)
+                {
+                    string Name = property.Name;
+                    object Val = property.GetValue(r, null);
+                    xml.Add(new XElement(Name, Val));
+                }
+                string strxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + xml.ToString();
+                string retur = objRest.HttpPost2(clsRest.urlBaseType.sync, "Convert", strxml);
+                if (retur != "Status: 404") clsSQLite.insertStoreXML(Program.AppEngName, false, "sync/Convert", strxml, retur);
+            }
+        }
     }
 }
 

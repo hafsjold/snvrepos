@@ -394,7 +394,6 @@ namespace nsPuls3060
             }
             catch (System.NullReferenceException)
             {
-                Program.dbData3060.ExecuteCommand("DELETE FROM TblRegnskab;");
                 return false;
             }
             DirectoryInfo dir = new DirectoryInfo(Datamappe);
@@ -416,7 +415,7 @@ namespace nsPuls3060
                             try
                             {
                                 m_rec_Regnskab =
-                                    (from d in Program.memRegnskab //.dbData3060.TblRegnskab
+                                    (from d in Program.memRegnskab
                                      where d.Rid.ToString() == RegnskabId
                                      select d).First();
 

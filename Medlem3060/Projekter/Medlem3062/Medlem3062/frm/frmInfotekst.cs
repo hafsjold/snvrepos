@@ -18,7 +18,12 @@ namespace nsPuls3060
 
         private void FrmInfotekst_Load(object sender, EventArgs e)
         {
-            this.bsInfotekst.DataSource = Program.dbData3060.Tblinfotekst;
+            this.bsInfotekst.DataSource = Program.memInfotekst;
+        }
+
+        private void FrmInfotekst_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Program.memInfotekst.save();
         }
     }
 }

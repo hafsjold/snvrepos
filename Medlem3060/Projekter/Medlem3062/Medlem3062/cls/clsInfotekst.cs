@@ -34,7 +34,7 @@ namespace nsPuls3060
             string[] crlf = { "\r\n" };
             string infotext = null;
 
-            try { infotext = (from i in Program.dbData3060.Tblinfotekst where i.Id == infotekst_id select i).First().Msgtext; }
+            try { infotext = (from i in Program.memInfotekst where i.Id == infotekst_id select i).First().Msgtext; }
             catch (System.InvalidOperationException) { }
 
             RegexOptions options = ((RegexOptions.IgnorePatternWhitespace | RegexOptions.Multiline) | RegexOptions.IgnoreCase);

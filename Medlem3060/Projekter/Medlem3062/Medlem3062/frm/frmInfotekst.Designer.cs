@@ -264,6 +264,7 @@
             this.Name = "FrmInfotekst";
             this.Text = "Info tekst";
             this.Load += new System.EventHandler(this.FrmInfotekst_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmInfotekst_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.bNavInfotekst)).EndInit();
             this.bNavInfotekst.ResumeLayout(false);
             this.bNavInfotekst.PerformLayout();

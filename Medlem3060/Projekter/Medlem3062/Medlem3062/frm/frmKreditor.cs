@@ -19,12 +19,12 @@ namespace nsPuls3060
         private void FrmKreditor_Load(object sender, EventArgs e)
         {
             this.bsKreditor.DataSource = Program.memKreditor;
-
         }
 
         private void FrmKreditor_FormClosing(object sender, FormClosingEventArgs e)
         {
             Properties.Settings.Default.Save();
+            Program.memKreditor.save();
         }
     }
 }

@@ -864,6 +864,16 @@ class KreditorHandler(webapp.RequestHandler, PassXmlDoc):
     path = os.path.join(os.path.dirname(__file__), 'templates/kreditor.xml')
     self.response.out.write(template.render(path, template_values))  
 
+class InfotekstHandler(webapp.RequestHandler, PassXmlDoc):
+  def get(self):
+    root = db.Key.from_path('rootInfotekst','root')
+    qry = db.Query(Infotekst).ancestor(root)
+    template_values = {
+      'infotekst_list': qry,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/infotekst.xml')
+    self.response.out.write(template.render(path, template_values))  
+    
 class SyncMedlogHandler(webapp.RequestHandler):
   def get(self):
     jLogXmlData = memcache.get('jLogXmlData', namespace='jLogXmlData')
@@ -1169,6 +1179,7 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/data/sftp/.*', DatasftpHandler),
                                        ('/data/kontingentforslag', KontingentForslagHandler), 
                                        ('/data/kreditor', KreditorHandler), 
+                                       ('/data/infotekst', InfotekstHandler), 
                                        ('/data/personlist', PersonListHandler), 
                                        ('/data/order2summa', Order2SummaHandler),             
                                        ('/sync/.*', MenuHandler),
