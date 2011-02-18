@@ -1,9 +1,9 @@
-# coding=utf-8 
+﻿# coding=utf-8 
 from google.appengine.ext import webapp
 from google.appengine.ext import db 
 from google.appengine.ext.webapp import template
 
-from models import nextval, UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Pbsfiles, Pbsfile, Sendqueue, Recievequeue, Tilpbs, Fak, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
+from models import nextval, UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Pbsfiles, Pbsfile, Sendqueue, Recievequeue, Tilpbs, Fak, Indbetalingskort, Rykker, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
 from util import PassXmlDoc, lpad, rpad, utc, cet
 from datetime import datetime, date, timedelta
 import logging
@@ -19,6 +19,13 @@ class Pbs601Error(Exception):
   def __str__(self):
     return repr(self.value)
 
+class clsRykkerEmail(object):
+  def __init__(self, navn, email, emne, tekst):
+    self.Navn = navn
+    self.Email = email
+    self.Emne = emne
+    self.Tekst = tekst
+    
 class clsRstdeb(object):
   def __init__(self, f):
     key = db.Key.from_path('Persons','root','Person','%s' % (f.Nr))
@@ -38,7 +45,8 @@ class clsRstdeb(object):
     self.Advistekst = None
     self.Belob = f.Advisbelob
     self.OcrString = None
-        
+
+   
 class DatasftpHandler(webapp.RequestHandler):
   def get(self):
     path = self.request.environ['PATH_INFO']
@@ -187,9 +195,9 @@ class DatatilpbsHandler(webapp.RequestHandler, PassXmlDoc):
 
 class pbs601Handler(webapp.RequestHandler, PassXmlDoc):
   def get(self):
-    (lobnr, antal) = self.online_kontingent_fakturer_bs1()
+    (lobnr, antal, delsystem) = self.online_kontingent_fakturer_bs1()
     if lobnr:
-      sendqueueid  = self.faktura_og_rykker_601_action(lobnr)
+      sendqueueid  = self.faktura_og_rykker_601_action(lobnr, delsystem)
       logging.info('WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW sendqueueid: %s' % (sendqueueid))
       self.response.out.write('%s faktureret' % (antal))
     else:
@@ -198,16 +206,41 @@ class pbs601Handler(webapp.RequestHandler, PassXmlDoc):
   def post(self):
     doc = minidom.parse(self.request.body_file)
     if doc.documentElement.tagName == 'TempKontforslag':
-      (lobnr, antal) = self.kontingent_fakturer_bs1(doc)   
+      self.TempKontforslag(doc)
+    elif doc.documentElement.tagName == 'TempRykkerforslag':
+      self.TempRykkerforslag(doc)     
+  
+  def TempKontforslag(self, doc):
+    if doc.documentElement.tagName == 'TempKontforslag':
+      (lobnr, antal, delsystem) = self.kontingent_fakturer_bs1(doc)   
    
     if lobnr:
-      sendqueueid  = self.faktura_og_rykker_601_action(lobnr)
+      sendqueueid  = self.faktura_og_rykker_601_action(lobnr, delsystem)
       logging.info('WWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW sendqueueid: %s' % (sendqueueid))
       self.response.out.write('%s faktureret' % (antal))
     else:
-      self.response.out.write('Intet at fakturere')      
+      self.response.out.write('Intet at fakturere') 
+      
+  def TempRykkerforslag(self, doc):
+    status = False
+    listRykkerEmail = []
+    if doc.documentElement.tagName == 'TempRykkerforslag':
+      (lobnr, antal, delsystem) = self.rykkere_bsh(doc) 
+    if lobnr:
+      if antal > 0:
+        listRykkerEmail = self.rykker_email(lobnr)
+        status = True    
+
+    template_values = {
+      'status': status,
+      'rykkeremail': listRykkerEmail,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/rykkeremail.xml')
+    self.response.out.write(template.render(path, template_values))
+      
   
   def kontingent_fakturer_bs1(self, doc):
+    delsystem = "BS1"
     antal = 0
     Betalingsdato = self.attr_val(doc, 'Betalingsdato', 'DateProperty')
     Bsh = self.attr_val(doc, 'Bsh', 'BooleanProperty')
@@ -218,8 +251,10 @@ class pbs601Handler(webapp.RequestHandler, PassXmlDoc):
     t.Id = lobnr
     if Bsh:
       t.Delsystem = "BSH"
+      delsystem = "BSH"
     else:
       t.Delsystem = "BS1"
+      delsystem = "BS1"
     t.Leverancetype = "0601"
     t.Udtrukket = datetime.now()
     t.put()
@@ -260,10 +295,63 @@ class pbs601Handler(webapp.RequestHandler, PassXmlDoc):
       f.addMedlog()
       antal += 1
     
-    return (lobnr, antal)
+    return (lobnr, antal, delsystem)
     
+  def rykkere_bsh(self, doc):
+    delsystem = "BSH"
+    antal = 0
+    Betalingsdato = self.attr_val(doc, 'Betalingsdato', 'DateProperty')
+    Bsh = self.attr_val(doc, 'Bsh', 'BooleanProperty')
 
+    lobnr = nextval('Tilpbsid')
+    rootTilpbs = db.Key.from_path('rootTilpbs','root')
+    t = Tilpbs.get_or_insert('%s' % (lobnr), parent=rootTilpbs)
+    t.Id = lobnr
+    if Bsh:
+      delsystem = "BSH"
+      t.Delsystem = "BSH"
+    else:
+      t.Delsystem = "EML"
+      delsystem = "EML"
+    t.Leverancetype = "0601"
+    t.Udtrukket = datetime.now()
+    t.put()
+    
+    TempRykkerforslaglinies = doc.getElementsByTagName("TempRykkerforslaglinie")
+    for TempRykkerforslaglinie in TempRykkerforslaglinies:
+      Nr = self.attr_val(TempRykkerforslaglinie, 'Nr', 'IntegerProperty')
+      Advisbelob = self.attr_val(TempRykkerforslaglinie, 'Advisbelob', 'FloatProperty')
+      Faknr = self.attr_val(TempRykkerforslaglinie, 'Faknr', 'IntegerProperty')
+      
+      rykkerid = nextval('Rykkerid')
+      keyRykker = db.Key.from_path('Persons','root','Person','%s' % (Nr))
+      keyTilpbs = db.Key.from_path('rootTilpbs','root','Tilpbs','%s' % (lobnr))
+      r = Rykker.get_or_insert('%s' % (rykkerid), parent=keyRykker)
+      r.Id = rykkerid
+      r.TilPbsref = keyTilpbs
+      r.Betalingsdato = Betalingsdato
+      r.Nr = Nr
+      r.Faknr = Faknr
+      r.Advisbelob = Advisbelob
+      r.Rykkerdato = datetime.now().date()
+      r.linkFak()
+      if Bsh:
+        if r.Fakref.Indmeldelse:
+          r.Infotekst = 21
+        else:  
+          r.Infotekst = 20
+      else:
+        if r.Fakref.Tilmeldtpbs:
+          r.Infotekst = 31
+        else:
+          r.Infotekst = 30      
+      r.put()
+      antal += 1
+    
+    return (lobnr, antal, delsystem)
+    
   def online_kontingent_fakturer_bs1(self):
+    delsystem = "BSH"
     root = db.Key.from_path('Persons','root')
     qry = db.Query(Kontingent).ancestor(root).filter('Faktureret =',False)
     antal = qry.count()
@@ -298,9 +386,9 @@ class pbs601Handler(webapp.RequestHandler, PassXmlDoc):
       q.Faktureret = True
       q.put()
       
-    return (lobnr, antal)
+    return (lobnr, antal, delsystem)
 
-  def faktura_og_rykker_601_action(self, lobnr):
+  def faktura_og_rykker_601_action(self, lobnr, delsystem):
     rec = ''
     crlf = "\n"
     #crlf = "\r\n"
@@ -623,6 +711,81 @@ class pbs601Handler(webapp.RequestHandler, PassXmlDoc):
     
     sendqueueid = rec_pbsfile.add_to_sendqueue()
     return sendqueueid   
+
+  
+  def rykker_email(self, lobnr):
+    listRykkerEmail = []
+    tilpbskey = db.Key.from_path('rootTilpbs','root','Tilpbs','%s' % (lobnr))
+    rsttil = Tilpbs.get(tilpbskey)
+    if not rsttil: 
+      raise Pbs601Error('101 - Der er ingen PBS forsendelse for id: %s' % (lobnr))    
+
+    if rsttil.Pbsforsendelseref:
+       raise Pbs601Error('102 - Pbsforsendelse for id: %s er allerede sendt' % (lobnr))
+    
+    qry = rsttil.listRykker
+    if qry.count() == 0:
+      raise Pbs601Error('103 - Der er ingen pbs transaktioner for tilpbsid: %s' % (lobnr))
+
+    if not rsttil.Udtrukket:
+      rsttil.Udtrukket = datetime.now()
+    if not rsttil.Bilagdato:
+      rsttil.Bilagdato = date.today()
+    if not rsttil.Delsystem:
+      rsttil.Delsystem = "EML"
+    if not rsttil.Leverancetype:
+      rsttil.Leverancetype = ""
+      
+    wleveranceid = nextval("leveranceid")
+    pbsforsendelseid  = nextval('Pbsforsendelseid')    
+    root_pbsforsendelse = db.Key.from_path('rootPbsforsendelse','root')    
+    rec_pbsforsendelse = Pbsforsendelse.get_or_insert('%s' % (pbsforsendelseid), parent=root_pbsforsendelse)
+    rec_pbsforsendelse.Id = pbsforsendelseid
+    rec_pbsforsendelse.Delsystem = rsttil.Delsystem
+    rec_pbsforsendelse.Leverancetype = rsttil.Leverancetype
+    rec_pbsforsendelse.Oprettetaf = 'Ryk'
+    rec_pbsforsendelse.Oprettet = datetime.now()
+    rec_pbsforsendelse.Leveranceid = wleveranceid
+    rec_pbsforsendelse.put()
+
+    for rec_rykker in rsttil.listRykker:
+      person = rec_rykker.parent()       
+      param = clsInfotekstParam()
+      param.infotekst_id = rec_rykker.Infotekst
+      param.numofcol = None
+      param.navn_medlem = person.Navn
+      param.kaldenavn = person.Kaldenavn
+      param.fradato = rec_rykker.Fakref.Fradato 
+      param.tildato = rec_rykker.Fakref.Tildato 
+      param.betalingsdato = rec_rykker.Fakref.Betalingsdato
+      param.advisbelob = rec_rykker.Fakref.Advisbelob 
+      
+      qry = Indbetalingskort.all().filter('Faknr =', rec_rykker.Faknr)
+      for b in qry:
+        param.ocrstring = '>' + b.Kortartkode + '< ' + b.Indbetalerident + '+' + b.Fikreditornr + '<'
+        break
+      else:
+        param.ocrstring = None
+      
+      param.underskrift_navn= u"\r\nMogens Hafsjold\r\nRegnskabsfører"
+      param.bankkonto = None
+      param.advistekst = None
+      
+      objInfotekst  = clsInfotekst(param)
+      infotekst = objInfotekst.getinfotekst() 
+      logging.info('QQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQQ infotekst: %s' % (infotekst))
+
+      if (infotekst) and (len(infotekst) > 0):
+        #Send email
+        objRykkerEmail = clsRykkerEmail(person.Navn, person.Email, 'Betaling af Puls 3060 Kontingent', infotekst)
+        listRykkerEmail.append(objRykkerEmail)
+
+    rsttil.Udtrukket = datetime.now()
+    rsttil.Leverancespecifikation = '%s' % (wleveranceid)
+    rsttil.Pbsforsendelseref = rec_pbsforsendelse.key()
+    rsttil.put()
+    return listRykkerEmail
+
     
   def write002(self, datalevnr, delsystem, levtype, levident, levdato):
     rec = "BS002"

@@ -52,15 +52,15 @@ namespace nsPuls3060
         private void getRykkerForslag()
         {
             int AntalForslag = 0;
+            string Status = "False";
             IEnumerable<clsqry_medlemmer> qry_medlemmer;
             if (this.RykketTidligere.Checked)
             {
                 clsRest objRest = new clsRest();
                 string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "tidligererykker");
                 XDocument xmldata = XDocument.Parse(strxmldata);
-                string Status = xmldata.Descendants("Status").First().Value;
-                if (Status != "True") return;
-                qry_medlemmer = from h in xmldata.Descendants("RykkerForslag")
+                Status = xmldata.Descendants("Status").First().Value;
+                    qry_medlemmer = from h in xmldata.Descendants("RykkerForslag")
                                 orderby clsPassXmlDoc.attr_val_int(h, "Nr")
                                 select new clsqry_medlemmer
                                {
@@ -72,8 +72,6 @@ namespace nsPuls3060
                                    Advisbelob = (decimal)clsPassXmlDoc.attr_val_double(h, "Advisbelob"),
                                    Faknr = clsPassXmlDoc.attr_val_int(h, "Faknr")
                                };
-
-
             }
             else
             {
@@ -81,8 +79,7 @@ namespace nsPuls3060
                 clsRest objRest = new clsRest();
                 string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "rykkerforslag");
                 XDocument xmldata = XDocument.Parse(strxmldata);
-                string Status = xmldata.Descendants("Status").First().Value;
-                if (Status != "True") return;
+                Status = xmldata.Descendants("Status").First().Value;
                 qry_medlemmer = from h in xmldata.Descendants("RykkerForslag")
                                 orderby clsPassXmlDoc.attr_val_int(h, "Nr")
                                 select new clsqry_medlemmer
@@ -97,11 +94,9 @@ namespace nsPuls3060
                                 };
             }
 
-
+            var antal = qry_medlemmer.Count();
             this.lvwMedlem.Items.Clear();
             this.lvwRykker.Items.Clear();
-
-            var antal = qry_medlemmer.Count();
             this.pgmForslag.Show();
             this.pgmForslag.Maximum = antal;
             this.pgmForslag.Minimum = 0;
@@ -260,8 +255,6 @@ namespace nsPuls3060
             this.pgmRykker.Minimum = 0;
             this.pgmRykker.Value = 0;
             this.pgmRykker.Visible = true;
-            Program.dbData3060.TempRykkerforslag.DeleteAllOnSubmit(Program.dbData3060.TempRykkerforslag);
-            Program.dbData3060.SubmitChanges();
 
             if ((imax == 0))
             {
@@ -270,12 +263,10 @@ namespace nsPuls3060
             }
             else
             {
-                TempRykkerforslag rec_tempRykkerforslag = new TempRykkerforslag
-                {
-                    Betalingsdato = clsOverfoersel.bankdageplus(DateTime.Today, 5),
-                    Bsh = this.DelsystemBSH.Checked
-                };
-                Program.dbData3060.TempRykkerforslag.InsertOnSubmit(rec_tempRykkerforslag);
+                XElement headxml = new XElement("TempRykkerforslag");
+                headxml.Add(new XElement("Betalingsdato", clsOverfoersel.bankdageplus(DateTime.Today, 5)));
+                headxml.Add(new XElement("Bsh", this.DelsystemBSH.Checked));
+
                 var i = 0;
                 foreach (ListViewItem lvi in lvwRykker.Items)
                 {
@@ -284,27 +275,24 @@ namespace nsPuls3060
                     advisbelob = double.Parse(lvi.SubItems[5].Text);
                     faknr = int.Parse(lvi.SubItems[6].Text);
 
-                    TempRykkerforslaglinie rec_tempRykkerforslaglinie = new TempRykkerforslaglinie
-                    {
-                        Nr = int.Parse(keyval),
-                        Advisbelob = (decimal)advisbelob,
-                        Faknr = faknr
-                    };
-                    rec_tempRykkerforslag.TempRykkerforslaglinie.Add(rec_tempRykkerforslaglinie);
+                    XElement linxml = new XElement("TempRykkerforslaglinie");
+                    linxml.Add(new XElement("Nr", int.Parse(keyval)));
+                    linxml.Add(new XElement("Advisbelob", (decimal)advisbelob));
+                    linxml.Add(new XElement("Faknr", faknr));
+                    headxml.Add(new XElement(linxml));
+
                 }
-                Program.dbData3060.SubmitChanges();
-
-                clsPbs601 objPbs601 = new clsPbs601();
-                nsPuls3060.clsPbs601.SetLobnr += new nsPuls3060.clsPbs601.Pbs601DelegateHandler(On_clsPbs601_SetLobnr);
-
-                AntalRykkere = objPbs601.rykkere_bsh();
-                this.pgmRykker.Value = imax * 2;
-                if ((AntalRykkere > 0))
+                clsRest objRest = new clsRest();
+                string strheadxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + headxml.ToString();
+                string strxmldata = objRest.HttpPost2(clsRest.urlBaseType.data, "pbs601", strheadxml);
+                XDocument xmldata = XDocument.Parse(strxmldata);
+                string Status = xmldata.Descendants("Status").First().Value;
+                if (Status == "True") 
                 {
                     if (this.DelsystemBSH.Checked) //RYKKERE med Indbetalingskort
                     {
-                        objPbs601.faktura_og_rykker_601_action(m_lobnr, fakType.fdrykker);
-                        this.pgmRykker.Value = (imax * 3);
+                        //objPbs601.faktura_og_rykker_601_action(m_lobnr, fakType.fdrykker);
+                        //this.pgmRykker.Value = (imax * 3);
                         //clsSFTP objSFTP = new clsSFTP();
                         //objSFTP.WriteTilSFtp(m_lobnr);
                         //objSFTP.DisconnectSFtp();
@@ -312,22 +300,15 @@ namespace nsPuls3060
                     }
                     else //RYKKERE som emails
                     {
-                        objPbs601.rykker_email(m_lobnr);
+                        //objPbs601.rykker_email(m_lobnr);
                         this.pgmRykker.Value = (imax * 3);
                     }
                 }
+
                 this.pgmRykker.Value = (imax * 4);
                 cmdRykkere.Text = "Afslut";
 
-                try
-                {
-                    var rec_tilpbs = (from t in Program.dbData3060.Tbltilpbs where t.Id == m_lobnr select t).First();
-                    TilPBSFilename = "PBS" + rec_tilpbs.Leverancespecifikation + ".lst";
-                }
-                catch (System.InvalidOperationException)
-                {
-                    TilPBSFilename = "PBSNotFound.lst";
-                }
+                TilPBSFilename = "PBSNotFound.lst";
                 this.Label_Rykkertekst.Text = ("Leverance til PBS er gemt i filen " + TilPBSFilename);
                 this.Label_Rykkertekst.Visible = true;
                 this.pgmRykker.Visible = false;

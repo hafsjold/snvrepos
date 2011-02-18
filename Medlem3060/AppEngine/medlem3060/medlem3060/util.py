@@ -22,6 +22,9 @@ COOKIE_NAME = 'medlem3060_session'
 LOGIN_URL = '/login'
 PUBLIC_URL = ['/', '/login']
 
+WEEKDAY = [u'mandag', u'tirsdag', u'onsdag', u'torsdag', u'fredag', u'lørdag', u'søndag']
+MONTH = [u'januar', u'februar', u'marts', u'april', u'maj', u'juni', u'juli', u'august', u'september', u'oktober', u'november', u'december']
+
 class UTC(tzinfo):
   """Implementation of the Central European Time timezone."""
   def utcoffset(self, dt):
@@ -85,7 +88,7 @@ class PassXmlDoc():
         return None 
     elif attr_type == 'TextProperty':
       try:
-        return strval
+        return strval #db.Text(strval, encoding='utf-8') 
       except:
         return None 
     elif attr_type == 'DateProperty':

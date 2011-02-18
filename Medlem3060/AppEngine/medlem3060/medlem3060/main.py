@@ -773,19 +773,10 @@ class SyncConvertHandler(webapp.RequestHandler, PassXmlDoc):
         Id = None
       root = db.Key.from_path('rootInfotekst','root')
       rec = Infotekst.get_or_insert('%s' % (Id), parent=root)
-      
-      for attr_name, value in Infotekst.__dict__.iteritems():
-        if isinstance(value, db.Property):
-          attr_type = value.__class__.__name__        
-          if not attr_type in ['_ReverseReferenceProperty']:
-            val = self.attr_val(doc, attr_name, attr_type)
-            logging.info('%s=%s' % (attr_name, val))
-            try:
-              setattr(rec, attr_name, val)
-            except:
-              setattr(rec, attr_name, None)
-          
-            logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
+      rec.Id = int(Id)
+      rec.Navn = doc.getElementsByTagName("Navn")[0].childNodes[0].data
+      txt = doc.getElementsByTagName("Msgtext")[0].childNodes[0].data
+      rec.Msgtext = doc.getElementsByTagName("Msgtext")[0].childNodes[0].data 
       rec.put()
 
     elif ModelName == 'Sysinfo':

@@ -100,7 +100,7 @@ namespace nsPuls3060
         {
             string fullurl = baseurl(part) + url;
             HttpWebRequest Request = (HttpWebRequest)WebRequest.Create(fullurl);
-            Request.Timeout = 180000; // 180 sec
+            Request.Timeout = 300000;  //180000; // 180 sec
             Request.Method = "POST";
             Request.ContentType = "application/atom+xml";
             SignRequest(ref Request);
