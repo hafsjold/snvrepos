@@ -114,7 +114,6 @@
     <Compile Include="cls\clsSQLite.cs" />
     <Compile Include="cls\clsRest.cs" />
     <Compile Include="cls\clsInfotekst.cs" />
-    <Compile Include="cls\clsPbs603.cs" />
     <Compile Include="cls\clsOverfoersel.cs" />
     <Compile Include="cls\clsImportMedlem.cs" />
     <Compile Include="cls\clsExcel.cs">
