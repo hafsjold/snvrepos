@@ -321,7 +321,7 @@ namespace nsPuls3060
                 {
                     recKladde gkl = new recKladde
                     {
-                        Dato = clsOverfoersel.bankdageplus((DateTime)b.Betalingsdato, -1),
+                        Dato = clsUtil.bankdageplus((DateTime)b.Betalingsdato, -1),
                         Bilag = ++BS1_SidsteNr,
                         Tekst = "Overførsel",
                         Afstemningskonto = "Bank",
@@ -332,7 +332,7 @@ namespace nsPuls3060
                     Program.karKladde.Add(gkl);
                     recKladde kl = new recKladde
                     {
-                        Dato = clsOverfoersel.bankdageplus((DateTime)b.Betalingsdato, -1),
+                        Dato = clsUtil.bankdageplus((DateTime)b.Betalingsdato, -1),
                         Bilag = BS1_SidsteNr,
                         Tekst = "KF" + b.SFaknr + " " + b.Navn,
                         Afstemningskonto = null,

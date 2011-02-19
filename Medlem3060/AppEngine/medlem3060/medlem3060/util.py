@@ -25,6 +25,56 @@ PUBLIC_URL = ['/', '/login']
 WEEKDAY = [u'mandag', u'tirsdag', u'onsdag', u'torsdag', u'fredag', u'lørdag', u'søndag']
 MONTH = [u'januar', u'februar', u'marts', u'april', u'maj', u'juni', u'juli', u'august', u'september', u'oktober', u'november', u'december']
 
+def bankdageplus(pfradato, antdage):
+  fradato = date(pfradato.year, pfradato.month, pfradato.day)
+  dato = None
+  antal = 0
+  fridag = False
+  negativ = False
+  paaskedag = [  date(2009, 4, 12)
+               , date(2010, 4, 4) 
+               , date(2011, 4, 24) 
+               , date(2012, 4, 8) 
+               , date(2013, 3, 31) 
+               , date(2014, 4, 20) 
+               , date(2015, 4, 5) 
+               , date(2016, 3, 27) 
+               , date(2017, 4, 16) 
+               , date(2018, 4, 1) 
+               , date(2019, 4, 21) 
+               , date(2020, 4, 12) 
+              ]
+  if antdage < 0:
+    negativ = True
+    dato = fradato + timedelta(days=1)
+  else:
+    negativ = False
+    dato = fradato + timedelta(days=-1)
+
+  while antal <= abs(antdage):
+    if negativ: dato += timedelta(days=-1)
+    else: dato += timedelta(days=1)
+
+    if dato.weekday() == 5: fridag = True #lørdag
+    elif dato.weekday() == 6: fridag = True #søndag
+    elif dato.month == 1 and dato.day == 1: fridag = True #1. nytårsdag
+    elif (dato + timedelta(days=3)) in paaskedag: fridag = True #skærtorsdag
+    elif (dato + timedelta(days=2)) in paaskedag: fridag = True #langfredag
+    elif (dato + timedelta(days=-1)) in paaskedag: fridag = True #2. påskedag
+    elif (dato + timedelta(days=-26)) in paaskedag: fridag = True #st. bededag (fredag)
+    elif (dato + timedelta(days=-39)) in paaskedag: fridag = True #kristi himmelfartsdag (torsdag)
+    elif (dato + timedelta(days=-40)) in paaskedag: fridag = True #fredag efter kristi himmelfartsdag
+    elif (dato + timedelta(days=-50)) in paaskedag: fridag = True #2. pinsedag
+    elif dato.month == 6 and dato.day == 5: fridag = True #grundlovsdag
+    elif dato.month == 12 and dato.day == 24: fridag = True #juleaften
+    elif dato.month == 12 and dato.day == 25: fridag = True #1. juledag
+    elif dato.month == 12 and dato.day == 26: fridag = True #2. juledag
+    elif dato.month == 12 and dato.day == 31: fridag = True #nytårsaftens dag
+    else: fridag = False
+    if not fridag: antal += 1
+
+  return dato
+  
 class UTC(tzinfo):
   """Implementation of the Central European Time timezone."""
   def utcoffset(self, dt):

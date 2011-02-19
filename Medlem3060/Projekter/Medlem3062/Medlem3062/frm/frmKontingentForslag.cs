@@ -61,7 +61,7 @@ namespace nsPuls3060
             this.AarskontingentPbs.Text = "150";
 
             wt = m_initdate.AddMonths(1);
-            this.DatoKontingentForfald.Value = clsOverfoersel.bankdageplus(wt.AddDays(-wt.Day + 2), 0);
+            this.DatoKontingentForfald.Value = clsUtil.bankdageplus(wt.AddDays(-wt.Day + 2), 0);
 
         }
 
@@ -72,12 +72,12 @@ namespace nsPuls3060
 
             if (this.DelsystemBSH.Checked)
             {
-                this.DatoKontingentForfald.Value = clsOverfoersel.bankdageplus(wt, 5);
+                this.DatoKontingentForfald.Value = clsUtil.bankdageplus(wt, 5);
             }
             else
             {
                 wt = m_initdate.AddMonths(1);
-                this.DatoKontingentForfald.Value = clsOverfoersel.bankdageplus(wt.AddDays(-wt.Day + 2), 0);
+                this.DatoKontingentForfald.Value = clsUtil.bankdageplus(wt.AddDays(-wt.Day + 2), 0);
             }
         }
 
@@ -332,7 +332,7 @@ namespace nsPuls3060
             else
             {
                 XElement headxml = new XElement("TempKontforslag");
-                headxml.Add(new XElement("Betalingsdato", clsOverfoersel.bankdageplus(this.DatoKontingentForfald.Value, 0)));
+                headxml.Add(new XElement("Betalingsdato", clsUtil.bankdageplus(this.DatoKontingentForfald.Value, 0)));
                 headxml.Add(new XElement("Bsh", this.DelsystemBSH.Checked));
 
                 var i = 0;

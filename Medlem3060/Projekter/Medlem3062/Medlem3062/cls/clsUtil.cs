@@ -127,6 +127,64 @@ namespace nsPuls3060
         const double J_correction_01_01_4712BC = 1721119.5;
         const double J_correction_01_01_1900 = -693899;
 
+        public static DateTime bankdageplus(DateTime pfradato, int antdage)
+        {
+            DateTime fradato = new DateTime(pfradato.Year, pfradato.Month, pfradato.Day);
+            DateTime dato;
+            int antal = 0;
+            bool fridag;
+            bool negativ;
+            DateTime[] paaskedag = {   new DateTime(2009, 4, 12)
+                                     , new DateTime(2010, 4, 4) 
+                                     , new DateTime(2011, 4, 24) 
+                                     , new DateTime(2012, 4, 8) 
+                                     , new DateTime(2013, 3, 31) 
+                                     , new DateTime(2014, 4, 20) 
+                                     , new DateTime(2015, 4, 5) 
+                                     , new DateTime(2016, 3, 27) 
+                                     , new DateTime(2017, 4, 16) 
+                                     , new DateTime(2018, 4, 1) 
+                                     , new DateTime(2019, 4, 21) 
+                                     , new DateTime(2020, 4, 12) 
+                                   };
+            if (antdage < 0)
+            {
+                negativ = true;
+                dato = fradato.AddDays(1);
+            }
+            else
+            {
+                negativ = false;
+                dato = fradato.AddDays(-1);
+            }
+
+            while (antal <= Math.Abs(antdage))
+            {
+                if (negativ) dato = dato.AddDays(-1);
+                else dato = dato.AddDays(1);
+
+                if (dato.DayOfWeek == DayOfWeek.Saturday) fridag = true; //lørdag
+                else if (dato.DayOfWeek == DayOfWeek.Sunday) fridag = true; //søndag
+                else if ((dato.Month == 1) && (dato.Day == 1)) fridag = true; //1. nytårsdag
+                else if ((from p in paaskedag select p).Contains(dato.AddDays(3))) fridag = true; //skærtorsdag
+                else if ((from p in paaskedag select p).Contains(dato.AddDays(2))) fridag = true; //langfredag
+                else if ((from p in paaskedag select p).Contains(dato.AddDays(-1))) fridag = true; //2. påskedag
+                else if ((from p in paaskedag select p).Contains(dato.AddDays(-26))) fridag = true; //st. bededag (fredag)
+                else if ((from p in paaskedag select p).Contains(dato.AddDays(-39))) fridag = true; //kristi himmelfartsdag (torsdag)
+                else if ((from p in paaskedag select p).Contains(dato.AddDays(-40))) fridag = true; //fredag efter kristi himmelfartsdag
+                else if ((from p in paaskedag select p).Contains(dato.AddDays(-50))) fridag = true; //2. pinsedag
+                else if ((dato.Month == 6) && (dato.Day == 5)) fridag = true; //grundlovsdag
+                else if ((dato.Month == 12) && (dato.Day == 24)) fridag = true; //juleaften
+                else if ((dato.Month == 12) && (dato.Day == 25)) fridag = true; //1. juledag
+                else if ((dato.Month == 12) && (dato.Day == 26)) fridag = true; //2. juledag
+                else if ((dato.Month == 12) && (dato.Day == 31)) fridag = true; //nytårsaftens dag
+                else fridag = false;
+                if (!fridag) ++antal;
+            }
+
+            return dato;
+        }
+
         [DllImport("user32.dll")]
         public static extern bool SetForegroundWindow(IntPtr hWnd);
 

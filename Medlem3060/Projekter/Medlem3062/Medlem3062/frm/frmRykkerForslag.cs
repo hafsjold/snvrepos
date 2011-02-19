@@ -239,7 +239,6 @@ namespace nsPuls3060
         private void cmdRykkere_Click(object sender, EventArgs e)
         {
             string TilPBSFilename;
-            int AntalRykkere;
             int imax;
             string keyval;
             int faknr;
@@ -264,7 +263,7 @@ namespace nsPuls3060
             else
             {
                 XElement headxml = new XElement("TempRykkerforslag");
-                headxml.Add(new XElement("Betalingsdato", clsOverfoersel.bankdageplus(DateTime.Today, 5)));
+                headxml.Add(new XElement("Betalingsdato", clsUtil.bankdageplus(DateTime.Today, 5)));
                 headxml.Add(new XElement("Bsh", this.DelsystemBSH.Checked));
 
                 var i = 0;
@@ -300,7 +299,6 @@ namespace nsPuls3060
                     }
                     else //RYKKERE som emails
                     {
-                        //clsPbs601 objPbs601 = new clsPbs601();
                         var qry_email = from rykkeremail in xmldata.Descendants("RykkerEmail")
                                         select new
                                         {
