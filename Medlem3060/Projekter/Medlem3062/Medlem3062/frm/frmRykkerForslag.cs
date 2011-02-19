@@ -60,7 +60,7 @@ namespace nsPuls3060
                 string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "tidligererykker");
                 XDocument xmldata = XDocument.Parse(strxmldata);
                 Status = xmldata.Descendants("Status").First().Value;
-                    qry_medlemmer = from h in xmldata.Descendants("RykkerForslag")
+                qry_medlemmer = from h in xmldata.Descendants("RykkerForslag")
                                 orderby clsPassXmlDoc.attr_val_int(h, "Nr")
                                 select new clsqry_medlemmer
                                {
@@ -111,16 +111,16 @@ namespace nsPuls3060
 
             foreach (var m in qry_medlemmer)
             {
-                    AntalForslag++;
-                    ListViewItem it = lvwMedlem.Items.Add(m.Nr.ToString(), m.Navn, 0);
-                    //it.Tag = m;
-                    it.SubItems.Add(m.Nr.ToString());
-                    it.SubItems.Add(m.Adresse);
-                    it.SubItems.Add(m.Postnr);
-                    it.SubItems.Add(string.Format("{0:yyyy-MM-dd}", m.Betalingsdato));
-                    it.SubItems.Add(m.Advisbelob.ToString());
-                    it.SubItems.Add(m.Faknr.ToString());
-                    pgmForslag.PerformStep();
+                AntalForslag++;
+                ListViewItem it = lvwMedlem.Items.Add(m.Nr.ToString(), m.Navn, 0);
+                //it.Tag = m;
+                it.SubItems.Add(m.Nr.ToString());
+                it.SubItems.Add(m.Adresse);
+                it.SubItems.Add(m.Postnr);
+                it.SubItems.Add(string.Format("{0:yyyy-MM-dd}", m.Betalingsdato));
+                it.SubItems.Add(m.Advisbelob.ToString());
+                it.SubItems.Add(m.Faknr.ToString());
+                pgmForslag.PerformStep();
             }
             this.lvwMedlem.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
 
@@ -287,7 +287,7 @@ namespace nsPuls3060
                 string strxmldata = objRest.HttpPost2(clsRest.urlBaseType.data, "pbs601", strheadxml);
                 XDocument xmldata = XDocument.Parse(strxmldata);
                 string Status = xmldata.Descendants("Status").First().Value;
-                if (Status == "True") 
+                if (Status == "True")
                 {
                     if (this.DelsystemBSH.Checked) //RYKKERE med Indbetalingskort
                     {
@@ -300,26 +300,73 @@ namespace nsPuls3060
                     }
                     else //RYKKERE som emails
                     {
-                        //objPbs601.rykker_email(m_lobnr);
-                        this.pgmRykker.Value = (imax * 3);
+                        //clsPbs601 objPbs601 = new clsPbs601();
+                        var qry_email = from rykkeremail in xmldata.Descendants("RykkerEmail")
+                                        select new
+                                        {
+                                            Navn = clsPassXmlDoc.attr_val_string(rykkeremail, "Navn"),
+                                            Email = clsPassXmlDoc.attr_val_string(rykkeremail, "Email"),
+                                            Emne = clsPassXmlDoc.attr_val_string(rykkeremail, "Emne"),
+                                            Tekst = clsPassXmlDoc.attr_val_string(rykkeremail, "Tekst"),
+                                        };
+                        foreach (var rykkeremail in qry_email)
+                        {
+                            sendRykkerEmail(rykkeremail.Navn, rykkeremail.Email, rykkeremail.Emne, rykkeremail.Tekst);
+                        }
                     }
+                    this.pgmRykker.Value = (imax * 3);
                 }
-
-                this.pgmRykker.Value = (imax * 4);
-                cmdRykkere.Text = "Afslut";
-
-                TilPBSFilename = "PBSNotFound.lst";
-                this.Label_Rykkertekst.Text = ("Leverance til PBS er gemt i filen " + TilPBSFilename);
-                this.Label_Rykkertekst.Visible = true;
-                this.pgmRykker.Visible = false;
             }
-        }
 
-        private void On_clsPbs601_SetLobnr(int lobnr)
+            this.pgmRykker.Value = (imax * 4);
+            cmdRykkere.Text = "Afslut";
+
+            TilPBSFilename = "PBSNotFound.lst";
+            this.Label_Rykkertekst.Text = ("Leverance til PBS er gemt i filen " + TilPBSFilename);
+            this.Label_Rykkertekst.Visible = true;
+            this.pgmRykker.Visible = false;
+        }
+        
+        public void sendRykkerEmail(string ToName, string ToAddr, string subject, string body)
         {
-            m_lobnr = lobnr;
+            Chilkat.MailMan mailman = new Chilkat.MailMan();
+            bool success;
+            success = mailman.UnlockComponent("HAFSJOMAILQ_9QYSMgP0oR1h");
+            if (success != true) throw new Exception(mailman.LastErrorText);
+
+            //  Use the GMail SMTP server
+            mailman.SmtpHost = Program.Smtphost;
+            mailman.SmtpPort = int.Parse(Program.Smtpport);
+            mailman.SmtpSsl = bool.Parse(Program.Smtpssl);
+
+            //  Set the SMTP login/password.
+            mailman.SmtpUsername = Program.Smtpuser;
+            mailman.SmtpPassword = Program.Smtppasswd;
+
+            //  Create a new email object
+            Chilkat.Email email = new Chilkat.Email();
+
+
+#if (DEBUG)
+            email.AddTo(Program.MailToName, Program.MailToAddr);
+            email.Subject = "TEST " + subject + " skal sendes til: " + ToName + " " + ToAddr;
+#else
+            email.AddTo(ToName, ToAddr);
+            email.Subject = subject;
+            email.AddCC("Claus Knudsen", "claus@puls3060.dk");
+            email.AddBcc(Program.MailToName, Program.MailToAddr);
+#endif
+            email.Body = body;
+            email.From = Program.MailFrom;
+            email.ReplyTo = Program.MailReply;
+
+            success = mailman.SendEmail(email);
+            if (success != true) throw new Exception(email.LastErrorText);
+
         }
     }
+
+
 
     public class clsqry_medlemmer
     {
