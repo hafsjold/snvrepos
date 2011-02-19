@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<list>
+  <Status>{{status}}</Status>
+  <Lobnr>{{lobnr}}</Lobnr>
+  <Antal>{{antal}}</Antal>
+  <Sendqueueid>{{sendqueueid}}</Sendqueueid>
+</list>
+
+
+
+  

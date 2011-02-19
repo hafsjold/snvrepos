@@ -136,9 +136,14 @@ class PassXmlDoc():
         return strval.lower() in ["yes", "true", "t", "1"] 
       except:
         return None 
+    elif attr_type == 'StringProperty':
+      try:
+        return strval 
+      except:
+        return None 
     elif attr_type == 'TextProperty':
       try:
-        return strval #db.Text(strval, encoding='utf-8') 
+        return strval 
       except:
         return None 
     elif attr_type == 'DateProperty':

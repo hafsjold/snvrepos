@@ -25,10 +25,10 @@ namespace nsPuls3060
             XDocument xmldata = XDocument.Parse(strxmldata);
             string Status = xmldata.Descendants("Status").First().Value;
             if (Status != "True") return AntalOrdre;
-            
+
             var qry_ord = from forslag in xmldata.Descendants("Fak") select forslag;
             AntalOrdre = qry_ord.Count();
-            
+
             /*
             var qry_ord = from f in Program.dbData3060.Tblfak
                           where f.SFakID == null && Startdato <= f.Betalingsdato && f.Betalingsdato <= Slutdato
@@ -288,64 +288,83 @@ namespace nsPuls3060
 
         public int BogforUdBetalinger(int lobnr)
         {
-            var bogf = from f in Program.karFakturaer_k
-                       where f.saldo != 0
-                       join o in Program.dbData3060.Tbloverforsel on f.fakid equals o.SFakID
-                       where o.Tilpbsid == lobnr
-                       join m in Program.karMedlemmer on o.Nr equals m.Nr
-                       orderby o.Betalingsdato ascending
-                       select new
-                       {
-                           Fakid = o.Id,
-                           m.Navn,
-                           o.SFaknr,
-                           o.Betalingsdato,
-                           o.Advisbelob
-                       };
-            int AntalBetalinger = bogf.Count();
-            if (bogf.Count() > 0)
+            int AntalBetalinger = 0;
+            clsRest objRest = new clsRest();
+            string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "udbetaling2summa/" + lobnr.ToString());
+            XDocument xmldata = XDocument.Parse(strxmldata);
+            string Status2 = xmldata.Descendants("Status").First().Value;
+            if (Status2 == "True")
             {
-                int BS1_SidsteNr = 0;
-                try
+                var overforsel = from o in xmldata.Descendants("Overforsel")
+                                   select new
+                                   {
+                                       Id = clsPassXmlDoc.attr_val_int(o, "Id"),
+                                       Nr = clsPassXmlDoc.attr_val_int(o, "Nr"),
+                                       SFaknr = clsPassXmlDoc.attr_val_int(o, "SFaknr"),
+                                       SFakID = clsPassXmlDoc.attr_val_int(o, "SFakID"),
+                                       Tilpbsid = clsPassXmlDoc.attr_val_int(o, "Tilpbsid"),
+                                       Betalingsdato = clsPassXmlDoc.attr_val_datetime(o, "Betalingsdato"),
+                                       Advisbelob = (decimal)clsPassXmlDoc.attr_val_double(o, "Advisbelob"),
+                                   };
+                
+                var bogf = from f in Program.karFakturaer_k
+                           where f.saldo != 0
+                           join o in overforsel on f.fakid equals o.SFakID
+                           where o.Tilpbsid == lobnr
+                           join m in Program.karMedlemmer on o.Nr equals m.Nr
+                           orderby o.Betalingsdato ascending
+                           select new
+                           {
+                               Fakid = o.Id,
+                               m.Navn,
+                               o.SFaknr,
+                               o.Betalingsdato,
+                               o.Advisbelob
+                           };
+                AntalBetalinger = bogf.Count();
+                if (bogf.Count() > 0)
                 {
-                    recStatus rec_Status = (from s in Program.karStatus where s.key == "BS1_SidsteNr" select s).First();
-                    BS1_SidsteNr = int.Parse(rec_Status.value);
-                }
-                catch (System.InvalidOperationException)
-                {
-                }
-
-                Program.karKladde = null;
-
-                foreach (var b in bogf)
-                {
-                    recKladde gkl = new recKladde
+                    int BS1_SidsteNr = 0;
+                    try
                     {
-                        Dato = clsUtil.bankdageplus((DateTime)b.Betalingsdato, -1),
-                        Bilag = ++BS1_SidsteNr,
-                        Tekst = "Overførsel",
-                        Afstemningskonto = "Bank",
-                        Belob = -b.Advisbelob,
-                        Kontonr = null,
-                        Faknr = null
-                    };
-                    Program.karKladde.Add(gkl);
-                    recKladde kl = new recKladde
+                        recStatus rec_Status = (from s in Program.karStatus where s.key == "BS1_SidsteNr" select s).First();
+                        BS1_SidsteNr = int.Parse(rec_Status.value);
+                    }
+                    catch (System.InvalidOperationException)
                     {
-                        Dato = clsUtil.bankdageplus((DateTime)b.Betalingsdato, -1),
-                        Bilag = BS1_SidsteNr,
-                        Tekst = "KF" + b.SFaknr + " " + b.Navn,
-                        Afstemningskonto = null,
-                        Belob = -b.Advisbelob,
-                        Kontonr = 65100,
-                        Faknr = b.SFaknr
-                    };
-                    Program.karKladde.Add(kl);
-                }
+                    }
 
-                Program.karStatus.save();
-                Program.karKladde.save();
-                Program.dbData3060.SubmitChanges();
+                    Program.karKladde = null;
+
+                    foreach (var b in bogf)
+                    {
+                        recKladde gkl = new recKladde
+                        {
+                            Dato = clsUtil.bankdageplus((DateTime)b.Betalingsdato, -1),
+                            Bilag = ++BS1_SidsteNr,
+                            Tekst = "Overførsel",
+                            Afstemningskonto = "Bank",
+                            Belob = -b.Advisbelob,
+                            Kontonr = null,
+                            Faknr = null
+                        };
+                        Program.karKladde.Add(gkl);
+                        recKladde kl = new recKladde
+                        {
+                            Dato = clsUtil.bankdageplus((DateTime)b.Betalingsdato, -1),
+                            Bilag = BS1_SidsteNr,
+                            Tekst = "KF" + b.SFaknr + " " + b.Navn,
+                            Afstemningskonto = null,
+                            Belob = -b.Advisbelob,
+                            Kontonr = 65100,
+                            Faknr = b.SFaknr
+                        };
+                        Program.karKladde.Add(kl);
+                    }
+
+                    Program.karStatus.save();
+                    Program.karKladde.save();
+                }
             }
             return AntalBetalinger;
         }

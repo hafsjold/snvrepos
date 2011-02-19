@@ -129,7 +129,21 @@ class DatafrapbsHandler(webapp.RequestHandler, PassXmlDoc):
         
 class DatatilpbsHandler(webapp.RequestHandler, PassXmlDoc):
   def get(self):
-    qry = db.Query(Sendqueue).filter('Send_to_pbs =', False).filter('Onhold =', False)  
+    path = self.request.environ['PATH_INFO']
+    mo = re.match("/data/tilpbs/([0-9]+)", path)
+    if mo:
+      if mo.groups()[0]:
+        sendqueueid = int(mo.groups()[0])
+      else:
+        sendqueueid = None
+    else:
+      sendqueueid = None
+      
+    if sendqueueid:
+      qry = db.Query(Sendqueue).filter('Id =', sendqueueid)
+    else:
+      qry = db.Query(Sendqueue).filter('Send_to_pbs =', False).filter('Onhold =', False) 
+
     antal = qry.count()
     logging.info('TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT Antal: %s' % (antal))
     if antal > 0:

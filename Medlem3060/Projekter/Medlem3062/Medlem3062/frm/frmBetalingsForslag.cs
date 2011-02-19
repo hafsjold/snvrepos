@@ -22,7 +22,6 @@ namespace nsPuls3060
         ColumnSorter lvwKrdFaktura_ColumnSorter;
         private string DragDropKey;
         private DateTime m_initdate;
-        private int m_lobnr = 0;
 
 
         public FrmBetalingsForslag()
@@ -238,7 +237,6 @@ namespace nsPuls3060
         private void cmdBetal_Click(object sender, EventArgs e)
         {
             string TilPBSFilename = "Unknown";
-            int AntalBetalinger;
             int imax;
             string keyval;
             int Nr;
@@ -265,11 +263,9 @@ namespace nsPuls3060
             }
             else
             {
-                TempBetalforslag rec_tempBetalforslag = new TempBetalforslag
-                {
-                    Betalingsdato = DateTime.Now,
-                };
-                Program.dbData3060.TempBetalforslag.InsertOnSubmit(rec_tempBetalforslag);
+                XElement headxml = new XElement("TempBetalforslag");
+                headxml.Add(new XElement("Betalingsdato", DateTime.Now));
+
                 var i = 0;
                 foreach (ListViewItem lvi in lvwKrdFaktura.Items)
                 {
@@ -280,35 +276,41 @@ namespace nsPuls3060
                     advisbelob = decimal.Parse(lvi.SubItems[5].Text);
                     Bank = lvi.SubItems[6].Text;
 
-                    TempBetalforslaglinie rec_tempBetalforslaglinie = new TempBetalforslaglinie
-                    {
-                        Nr = Nr,
-                        Fakid = int.Parse(keyval),
-                        Advisbelob = (decimal)advisbelob,
-                        Bankregnr = Bank.Substring(0, 4),
-                        Bankkontonr = Bank.Substring(5, 10),
-                        Faknr = faknr,
-                    };
-                    rec_tempBetalforslag.TempBetalforslaglinie.Add(rec_tempBetalforslaglinie);
+                    XElement linxml = new XElement("TempBetalforslaglinie");
+                    linxml.Add(new XElement("Nr", Nr));
+                    linxml.Add(new XElement("Fakid", int.Parse(keyval)));
+                    linxml.Add(new XElement("Advisbelob", (decimal)advisbelob));
+                    linxml.Add(new XElement("Bankregnr", Bank.Substring(0, 4)));
+                    linxml.Add(new XElement("Bankkontonr", Bank.Substring(5, 10)));
+                    linxml.Add(new XElement("Faknr", faknr));
+                    headxml.Add(new XElement(linxml));
                 }
-                Program.dbData3060.SubmitChanges();
-
-                clsOverfoersel objOverfoersel = new clsOverfoersel();
-                nsPuls3060.clsOverfoersel.SetLobnr += new nsPuls3060.clsOverfoersel.OverfoerselDelegateHandler(On_clsOverfoersel_SetLobnr);
-
-                AntalBetalinger = objOverfoersel.kreditor_fakturer_os1();
+                clsRest objRest = new clsRest();
+                string strheadxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + headxml.ToString();
+                string result = objRest.HttpPost2(clsRest.urlBaseType.data, "overforsel", strheadxml);
+                XDocument xmldata = XDocument.Parse(result);
+                string Status = xmldata.Descendants("Status").First().Value;
                 this.pgmBetal.Value = imax * 2;
-                if ((AntalBetalinger > 0))
+                if (Status == "True")
                 {
-                    objOverfoersel.krdfaktura_overfoersel_action(m_lobnr);
                     this.pgmBetal.Value = (imax * 3);
-                    //clsSFTP objSFTP = new clsSFTP();
-                    //TilPBSFilename = objSFTP.WriteTilSFtp(m_lobnr);
-                    //objSFTP.DisconnectSFtp();
-                    //objSFTP = null;
-                    objOverfoersel.overfoersel_mail(m_lobnr);
+                    int lobnr = int.Parse(xmldata.Descendants("Lobnr").First().Value);
+                    int antal = int.Parse(xmldata.Descendants("Antal").First().Value);
+                    int sendqueueid = int.Parse(xmldata.Descendants("Sendqueueid").First().Value);
+
+                    string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "tilpbs/" + sendqueueid.ToString());
+                    XDocument xmldata2 = XDocument.Parse(strxmldata);
+                    string Status2 = xmldata2.Descendants("Status").First().Value;
+                    if (Status2 == "True")
+                    {
+                        clsSFTP objAppEngSFTP = new clsSFTP();
+                        bool bSendt = objAppEngSFTP.WriteTilSFtp(xmldata2);
+                        if (bSendt) overfoersel_mail(lobnr);
+                        objAppEngSFTP.DisconnectSFtp();
+                        objAppEngSFTP = null;
+                    }
                     clsSumma objSumma = new clsSumma();
-                    objSumma.BogforUdBetalinger(m_lobnr);
+                    objSumma.BogforUdBetalinger(lobnr);
                 }
                 this.pgmBetal.Value = (imax * 4);
                 cmdBetal.Text = "Afslut";
@@ -318,9 +320,68 @@ namespace nsPuls3060
             }
         }
 
-        private void On_clsOverfoersel_SetLobnr(int lobnr)
+        public void overfoersel_mail(int lobnr)
         {
-            m_lobnr = lobnr;
+            Chilkat.MailMan mailman = new Chilkat.MailMan();
+            bool success;
+            success = mailman.UnlockComponent("HAFSJOMAILQ_9QYSMgP0oR1h");
+            if (success != true) throw new Exception(mailman.LastErrorText);
+
+            //  Use the GMail SMTP server
+            mailman.SmtpHost = Program.Smtphost;
+            mailman.SmtpPort = int.Parse(Program.Smtpport);
+            mailman.SmtpSsl = bool.Parse(Program.Smtpssl);
+
+            //  Set the SMTP login/password.
+            mailman.SmtpUsername = Program.Smtpuser;
+            mailman.SmtpPassword = Program.Smtppasswd;
+
+            XElement headxml = new XElement("OverforselMail");
+            headxml.Add(new XElement("Lobnr", lobnr));
+            clsRest objRest = new clsRest();
+            string strheadxml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + headxml.ToString();
+            string result = objRest.HttpPost2(clsRest.urlBaseType.data, "overforselmail", strheadxml);
+            XDocument xmldata = XDocument.Parse(result);
+            string Status = xmldata.Descendants("Status").First().Value;
+            if (Status == "True")
+            {
+                var qry_email = from overforselemail in xmldata.Descendants("OverforselEmail")
+                                select new
+                                {
+                                    Navn = clsPassXmlDoc.attr_val_string(overforselemail, "Navn"),
+                                    Email = clsPassXmlDoc.attr_val_string(overforselemail, "Email"),
+                                    Tekst = clsPassXmlDoc.attr_val_string(overforselemail, "Tekst"),
+                                };
+                foreach (var msg in qry_email)
+                {
+                    //  Create a new email object
+                    Chilkat.Email email = new Chilkat.Email();
+
+#if (DEBUG)
+                email.Subject = "TEST Bankoverførsel fra Puls 3060: skal sendes til " + Program.MailToName + " " + Program.MailToAddr;
+                email.AddTo(Program.MailToName, Program.MailToAddr);
+#else
+                    email.Subject = "Bankoverførsel fra Puls 3060";
+                    if (msg.Email.Length > 0)
+                    {
+                        email.AddTo(msg.Navn, msg.Email);
+                        email.AddBcc(Program.MailToName, Program.MailToAddr);
+                    }
+                    else
+                    {
+                        email.Subject += ": skal sendes til " + msg.Navn;
+                        email.AddTo(Program.MailToName, Program.MailToAddr);
+                    }
+#endif
+                    email.Body = msg.Tekst;
+                    email.From = Program.MailFrom;
+                    email.ReplyTo = Program.MailReply;
+
+                    success = mailman.SendEmail(email);
+                    if (success != true) throw new Exception(email.LastErrorText);
+                }
+            }
         }
+
     }
 }

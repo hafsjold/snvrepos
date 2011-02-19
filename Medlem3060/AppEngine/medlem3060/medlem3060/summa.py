@@ -11,6 +11,40 @@ import os
 import re
 from xml.dom import minidom
 
+
+class UdBetaling2SummaHandler(webapp.RequestHandler):
+  def get(self):
+    overforsel = []
+    status = False
+    path = self.request.environ['PATH_INFO']
+    mo = re.match("/data/udbetaling2summa/.([0-9]+)", path)
+    if mo:
+      if mo.groups()[0]:
+        lobnr = int(mo.groups()[0])
+      else:
+        lobnr = None
+    else:
+      lobnr = None
+    if lobnr:
+      tilpbskey = db.Key.from_path('rootTilpbs','root','Tilpbs','%s' % (lobnr))
+      rsttil = Tilpbs.get(tilpbskey)
+      if not rsttil: 
+        #raise PbsOverforselError('101 - Der er ingen PBS forsendelse for id: %s' % (lobnr))
+        status = False
+      else:
+        for rec in rsttil.listOverforsel:
+          overforsel.append(rec)
+          status = True
+          
+    template_values = {
+      'allFields': True,
+      'status': status,
+      'forslag': overforsel,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/overforsel.xml')
+    self.response.out.write(template.render(path, template_values))
+        
+
 class Order2SummaHandler(webapp.RequestHandler):
   def get(self):
     betlines = []
