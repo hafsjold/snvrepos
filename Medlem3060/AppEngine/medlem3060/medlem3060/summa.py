@@ -11,8 +11,8 @@ import os
 import re
 from xml.dom import minidom
 
-
-class UdBetaling2SummaHandler(webapp.RequestHandler):
+      
+class Udbetaling2SummaHandler(webapp.RequestHandler):
   def get(self):
     overforsel = []
     status = False
