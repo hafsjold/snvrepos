@@ -11,11 +11,12 @@ namespace nsPuls3060
     public partial class dsMedlem
     {
 
+        
         public void filldsMedlem()
         {
             var qry_medlemmer = from h in Program.karMedlemmer
-                                join d1 in Program.dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
-                                from x in details1.DefaultIfEmpty(new TblMedlem { Nr = -1, Kon = null, FodtDato = (DateTime?)null })
+                                //join d1 in Program.dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
+                                //from x in details1.DefaultIfEmpty(new TblMedlem { Nr = -1, Kon = null, FodtDato = (DateTime?)null })
                                 //where x.Nr == -1
                                 select new
                                 {
@@ -27,9 +28,9 @@ namespace nsPuls3060
                                     h.Bynavn,
                                     h.Telefon,
                                     h.Email,
-                                    XNr = x == null ? (int?)null : x.Nr,
-                                    Kon = x == null ? null : x.Kon,
-                                    FodtDato = x == null ? (DateTime?)null : x.FodtDato,
+                                    //XNr = x == null ? (int?)null : x.Nr,
+                                    Kon = (string)null,
+                                    FodtDato = (DateTime?)null,
                                     h.Bank
                                 };
 
@@ -102,7 +103,7 @@ namespace nsPuls3060
                         k_rec.setKreditor();
                         k_rec.getNewCvsString();
                         Program.karMedlemmer.Add(k_rec);
-
+                        /*
                         TblMedlem m_rec;
                         try
                         {
@@ -120,6 +121,7 @@ namespace nsPuls3060
                         }
                         m_rec.Kon = (m.IsKonNull()) ? null : m.Kon;
                         m_rec.FodtDato = (m.IsFodtDatoNull()) ? (DateTime?)null : m.FodtDato;
+                        */
                         m.AcceptChanges();
                         break;
 
@@ -142,6 +144,7 @@ namespace nsPuls3060
                         k_rec.Email = (m.IsEmailNull()) ? null : m.Email;
                         k_rec.Bank = (m.IsBankNull()) ? null : m.Bank;
                         k_rec.setKreditor();
+                        /*
                         Program.karMedlemmer.Update(Nr_Key);
 
                         try
@@ -160,6 +163,7 @@ namespace nsPuls3060
                         }
                         m_rec.Kon = (m.IsKonNull()) ? null : m.Kon;
                         m_rec.FodtDato = (m.IsFodtDatoNull()) ? (DateTime?)null : m.FodtDato;
+                        */
                         m.AcceptChanges();
                         break;
                 }

@@ -179,6 +179,7 @@
     <Compile Include="kar\karKontoplan.cs" />
     <Compile Include="kar\karPosteringsjournal.cs" />
     <Compile Include="kar\karKladde.cs" />
+    <Compile Include="mem\memAktivitet.cs" />
     <Compile Include="mem\memInfotekst.cs" />
     <Compile Include="mem\memKreditor.cs" />
     <Compile Include="mem\memRegnskab.cs" />

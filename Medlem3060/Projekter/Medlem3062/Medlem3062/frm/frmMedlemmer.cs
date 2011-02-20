@@ -79,7 +79,7 @@ namespace nsPuls3060
                                     .OrderByDescending(u => u.Logdato);
 
                 var qry = from l in qrylog
-                          join a in Program.dbData3060.TblAktivitet on l.Akt_id equals a.Id
+                          join a in Program.memAktivitet on l.Akt_id equals a.Id
                           select new { l.Akt_dato, a.Akt_tekst };
 
 
@@ -484,7 +484,7 @@ namespace nsPuls3060
             {
                 foreach (recImportMedlem impMedlem in objImportMedlem)
                 {
-                    tblMedlem_nr = KarKortnr.nextval();
+                    tblMedlem_nr = KarKortnr.nextval(); //?????????????????????????????????
 
                     object[] val = new object[10];
                     val[0] = tblMedlem_nr;
@@ -498,21 +498,20 @@ namespace nsPuls3060
                     val[8] = impMedlem.Kon;
                     val[9] = impMedlem.FodtDato;
                     this.dsMedlem.Kartotek.Rows.Add(val);
+                    this.dsMedlem.tblPerson.Rows.Add(val);
                     this.dsMedlem.savedsMedlem();
+                    this.dsMedlem.savePerson();
 
                     try
                     {
                         DateTime nu = DateTime.Now;
-                        TblMedlemLog recLog = new TblMedlemLog
-                        {
-                            Id = clsPbs.nextval("tblMedlemlog"),
-                            Nr = tblMedlem_nr,
-                            Logdato = new DateTime(nu.Year, nu.Month, nu.Day),
-                            Akt_id = 10,
-                            Akt_dato = Indmeldelsesdato
-                        };
-                        Program.dbData3060.TblMedlemLog.InsertOnSubmit(recLog);
-                        Program.dbData3060.SubmitChanges();
+                        object[] logval = new object[4];
+                        logval[0] = tblMedlem_nr;
+                        logval[1] = new DateTime(nu.Year, nu.Month, nu.Day);
+                        logval[2] = 10;
+                        logval[3] = Indmeldelsesdato.Date;
+                        this.dsMedlem.tblMedlog.Rows.Add(logval);
+                        this.dsMedlem.saveMedlog();
                     }
                     catch (Exception)
                     {

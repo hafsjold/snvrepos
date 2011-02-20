@@ -16,9 +16,30 @@ namespace nsPuls3060
         public void cvnPerson()
         {
             string ModelName = "Person";
-            var qry = from r in Program.dsMedlemGlobal.Kartotek.AsEnumerable()
-                      select new {r.Nr, r.Navn, r.Kaldenavn, r.Adresse, r.Postnr, r.Bynavn, r.Telefon, r.Email, r.FodtDato, r.Kon, r.Bank};
-            foreach (var r in qry)
+            var qry_medlemmer = from h in Program.karMedlemmer
+                                join d1 in Program.dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
+                                from x in details1.DefaultIfEmpty(new TblMedlem { Nr = -1, Kon = null, FodtDato = (DateTime?)null })
+                                //where x.Nr == -1
+                                select new
+                                {
+                                    h.Nr,
+                                    h.Navn,
+                                    h.Kaldenavn,
+                                    h.Adresse,
+                                    h.Postnr,
+                                    h.Bynavn,
+                                    h.Telefon,
+                                    h.Email,
+                                    XNr = x == null ? (int?)null : x.Nr,
+                                    Kon = x == null ? null : x.Kon,
+                                    FodtDato = x == null ? (DateTime?)null : x.FodtDato,
+                                    h.Bank
+                                };
+
+            //var qry = from r in Program.dsMedlemGlobal.Kartotek.AsEnumerable()
+            //          select new {r.Nr, r.Navn, r.Kaldenavn, r.Adresse, r.Postnr, r.Bynavn, r.Telefon, r.Email, r.FodtDato, r.Kon, r.Bank};
+            
+            foreach (var r in qry_medlemmer)
             {
                 clsRest objRest = new clsRest();
                 XElement xml = new XElement(ModelName);
