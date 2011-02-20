@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<list>
+  <Status>{{status}}</Status>
+  {% if status %}
+  {% if betalinger %}
+  {% for b in betalinger %}
+  <BogforIndBetalinger>
+    <Frapbsid>{{b.Betref.Frapbsref.Id}}</Frapbsid> 
+    <Betid>{{b.Betref.Id}}</Betid> 
+    <Fakid>{{b.Fakref.Id}}</Fakid> 
+    <Betlinid>{{b.Id}}</Betlinid> 
+    <Nr>{{b.Nr}}</Nr> 
+    <Leverancespecifikation>{{b.Betref.Frapbsref.Leverancespecifikation}}</Leverancespecifikation> 
+    <GruppeIndbetalingsbelob>{{b.Betref.Indbetalingsbelob}}</GruppeIndbetalingsbelob>
+    <Betalingsdato>{{b.Betalingsdato}}</Betalingsdato> 
+    <Indbetalingsdato>{{b.Indbetalingsdato}}</Indbetalingsdato> 
+    <Indbetalingsbelob>{{b.Indbetalingsbelob}}</Indbetalingsbelob> 
+    <SFakID>{{b.Fakref.SFakID}}</SFakID> 
+    <SFaknr>{{b.Fakref.SFaknr}}</SFaknr> 
+  </BogforIndBetalinger>
+  {% endfor %}
+  {% endif %}    
+  {% endif %} 
+</list>
+

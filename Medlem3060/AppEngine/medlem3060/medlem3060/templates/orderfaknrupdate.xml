@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<list>
+  <Status>{{status}}</Status>
+  {% if status %}
+  {% if faks %}
+  {% for f in faks %}
+  <Fak>
+    <Key>{{f.Key}}</Key> 
+    <Id>{{f.Id}}</Id> 
+    <SFakID>{{f.SFakID}}</SFakID> 
+    <SFaknr>{{f.SFaknr}}</SFaknr> 
+  </Fak>
+  {% endfor %}
+  {% endif %}    
+  {% endif %} 
+</list>
+

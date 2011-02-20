@@ -27,7 +27,7 @@ from pbs601 import pbs601Handler, DatatilpbsHandler, DatafrapbsHandler, Datasftp
 from pbs602 import pbs602Handler
 from pbs603 import pbs603Handler
 from kontingentforslag import KontingentForslagHandler, PersonListHandler
-from summa import Order2SummaHandler, Udbetaling2SummaHandler
+from summa import Order2SummaHandler, Udbetaling2SummaHandler, OrderFaknrUpdateHandler, BogforIndBetalingerHandler
 from rykkerforslag import RykkerForslagHandler, TidligereRykkerHandler
 from overforsel import OverforselHandler
 
@@ -1183,7 +1183,9 @@ application = webapp.WSGIApplication([ ('/', MainHandler),
                                        ('/data/kreditor', KreditorHandler), 
                                        ('/data/infotekst', InfotekstHandler), 
                                        ('/data/personlist', PersonListHandler), 
-                                       ('/data/order2summa', Order2SummaHandler),             
+                                       ('/data/order2summa', Order2SummaHandler),
+                                       ('/data/orderfaknrupdate', OrderFaknrUpdateHandler),
+                                       ('/data/bogforindbetalinger', BogforIndBetalingerHandler),
                                        ('/data/udbetaling2summa/.*', Udbetaling2SummaHandler),             
                                        ('/sync/.*', MenuHandler),
                                        ('/logoff', LogoffHandler),

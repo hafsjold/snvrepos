@@ -29,25 +29,6 @@ namespace nsPuls3060
             var qry_ord = from forslag in xmldata.Descendants("Fak") select forslag;
             AntalOrdre = qry_ord.Count();
 
-            /*
-            var qry_ord = from f in Program.dbData3060.Tblfak
-                          where f.SFakID == null && Startdato <= f.Betalingsdato && f.Betalingsdato <= Slutdato
-                          join b in Program.dbData3060.Tblbetlin on f.Faknr equals b.Faknr
-                          where b.Pbstranskode == "0236" || b.Pbstranskode == "0297"
-                          select new { 
-                              f.Id, 
-                              Pbsfaknr = f.Faknr,
-                              f.Nr,
-                              f.Advisbelob,
-                              f.Betalingsdato,
-                              f.Vnr,
-                              f.Bogfkonto, 
-                              b.Indbetalingsdato
-                          };
-
-            AntalOrdre = qry_ord.Count();
-            */
-
             if (AntalOrdre > 0)
             {
                 DateTime nu = DateTime.Now;
@@ -171,119 +152,160 @@ namespace nsPuls3060
 
         public int OrderFaknrUpdate()
         {
-            var qry = from k in Program.karFakturaer_s
-                      where k.faknr > 0
-                      join f in Program.dbData3060.Tblfak on k.fakid equals f.SFakID
-                      where f.SFaknr == null
-                      select new { f.Id, SFaknr = k.faknr };
-
-            int AntalFakturaer = qry.Count();
-            if (qry.Count() > 0)
+            clsRest objRest = new clsRest();
+            string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "orderfaknrupdate");
+            XDocument xmldata = XDocument.Parse(strxmldata);
+            string Status = xmldata.Descendants("Status").First().Value;
+            if (Status != "True")
             {
-                foreach (var k in qry)
+                var qry_fak = from h in xmldata.Descendants("Fak")
+                              select new
+                              {
+                                  Key = clsPassXmlDoc.attr_val_string(h, "Key"),
+                                  Id = clsPassXmlDoc.attr_val_int(h, "Id"),
+                                  SFakID = clsPassXmlDoc.attr_val_int(h, "SFakID"),
+                                  SFaknr = clsPassXmlDoc.attr_val_int(h, "SFaknr"),
+                              };
+                var qry = from k in Program.karFakturaer_s
+                          where k.faknr > 0
+                          join f in qry_fak on k.fakid equals f.SFakID
+                          where f.SFaknr == null
+                          select new
+                          {
+                              f.Key,
+                              f.Id,
+                              SFaknr = k.faknr,
+                          };
+
+                int AntalFakturaer = qry.Count();
+                if (AntalFakturaer > 0)
                 {
-                    try
+                    XElement SFaknrupdatexml = new XElement("SFaknrupdate");
+                    foreach (var k in qry)
                     {
-                        Tblfak rec_fak = (from f in Program.dbData3060.Tblfak
-                                          where f.Id == k.Id
-                                          select f).First();
-                        rec_fak.SFaknr = k.SFaknr;
+                        XElement fakxml = new XElement("Fak");
+                        fakxml.Add(new XElement("Key", k.Key));
+                        fakxml.Add(new XElement("Id", k.Id));
+                        fakxml.Add(new XElement("SFaknr", k.SFaknr));
+                        SFaknrupdatexml.Add(new XElement(fakxml));
                     }
-                    catch (System.InvalidOperationException)
-                    {
-                        throw;
-                    }
+                    string strSFaknrupdatexml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + SFaknrupdatexml.ToString();
+                    string result = objRest.HttpPost2(clsRest.urlBaseType.data, "orderfaknrupdate", strSFaknrupdatexml);
                 }
-                Program.dbData3060.SubmitChanges();
+                return AntalFakturaer;
             }
-            return AntalFakturaer;
+            return 0;
         }
 
         public int BogforIndBetalinger()
         {
-            int saveBetid = 0;
-            var bogf = from s in Program.karFakturaer_s
-                       //where s.saldo != 0
-                       join f in Program.dbData3060.Tblfak on s.fakid equals f.SFakID
-                       where f.SFaknr != null
-                       join m in Program.karMedlemmer on f.Nr equals m.Nr
-                       join bl in Program.dbData3060.Tblbetlin on f.Faknr equals bl.Faknr
-                       join b in Program.dbData3060.Tblbet on bl.Betid equals b.Id
-                       where b.Summabogfort != true
-                       join p in Program.dbData3060.Tblfrapbs on b.Frapbsid equals p.Id
-                       orderby p.Id, b.Id, bl.Id
-                       select new
-                       {
-                           Frapbsid = p.Id,
-                           p.Leverancespecifikation,
-                           Betid = b.Id,
-                           GruppeIndbetalingsbelob = b.Indbetalingsbelob,
-                           Betlinid = bl.Id,
-                           Fakid = f.Id,
-                           bl.Betalingsdato,
-                           bl.Indbetalingsdato,
-                           m.Navn,
-                           bl.Indbetalingsbelob,
-                           f.SFaknr
-                       };
-            int AntalBetalinger = bogf.Count();
-            if (bogf.Count() > 0)
+
+            clsRest objRest = new clsRest();
+            string strxmldata = objRest.HttpGet2(clsRest.urlBaseType.data, "bogforindbetalinger");
+            XDocument xmldata = XDocument.Parse(strxmldata);
+            string Status = xmldata.Descendants("Status").First().Value;
+            if (Status != "True")
             {
-                DateTime nu = DateTime.Now;
-                DateTime ToDay = new DateTime(nu.Year, nu.Month, nu.Day); ;
-
-                int BS1_SidsteNr = 0;
-                try
+                int saveBetid = 0;
+                var qry_bet = from h in xmldata.Descendants("BogforIndBetalinger")
+                              select new
+                            {
+                                Frapbsid = clsPassXmlDoc.attr_val_int(h, "Frapbsid"),
+                                Betid = (int)clsPassXmlDoc.attr_val_int(h, "Betid"),
+                                Fakid = clsPassXmlDoc.attr_val_int(h, "Fakid"),
+                                Betlinid = clsPassXmlDoc.attr_val_int(h, "Betlinid"),
+                                Nr = clsPassXmlDoc.attr_val_int(h, "Nr"),
+                                Leverancespecifikation = clsPassXmlDoc.attr_val_string(h, "Leverancespecifikation"),
+                                GruppeIndbetalingsbelob = (decimal)clsPassXmlDoc.attr_val_double(h, "GruppeIndbetalingsbelob"),
+                                Betalingsdato = clsPassXmlDoc.attr_val_date(h, "Betalingsdato"),
+                                Indbetalingsdato = clsPassXmlDoc.attr_val_date(h, "Indbetalingsdato"),
+                                Indbetalingsbelob = (decimal)clsPassXmlDoc.attr_val_double(h, "Indbetalingsbelob"),
+                                SFakID = (int)clsPassXmlDoc.attr_val_int(h, "SFakID"),
+                                SFaknr = clsPassXmlDoc.attr_val_int(h, "SFaknr"),
+                            };
+                var bogf = from s in Program.karFakturaer_s
+                           //where s.saldo != 0
+                           join f in qry_bet on s.fakid equals f.SFakID
+                           where f.SFaknr != null
+                           join m in Program.karMedlemmer on f.Nr equals m.Nr
+                           orderby f.Frapbsid, f.Betid, f.Betlinid
+                           select new
+                           {
+                               f.Frapbsid,
+                               f.Leverancespecifikation,
+                               f.Betid,
+                               f.GruppeIndbetalingsbelob,
+                               f.Betlinid,
+                               f.Fakid,
+                               f.Betalingsdato,
+                               f.Indbetalingsdato,
+                               m.Navn,
+                               f.Indbetalingsbelob,
+                               f.SFaknr
+                           };
+                int AntalBetalinger = bogf.Count();
+                if (bogf.Count() > 0)
                 {
-                    recStatus rec_Status = (from s in Program.karStatus where s.key == "BS1_SidsteNr" select s).First();
-                    BS1_SidsteNr = int.Parse(rec_Status.value);
-                }
-                catch (System.InvalidOperationException)
-                {
-                }
+                    DateTime nu = DateTime.Now;
+                    DateTime ToDay = new DateTime(nu.Year, nu.Month, nu.Day); ;
 
-                Program.karKladde = null;
-
-
-                foreach (var b in bogf)
-                {
-                    if (saveBetid != b.Betid) // ny gruppe
+                    int BS1_SidsteNr = 0;
+                    try
                     {
-                        saveBetid = b.Betid;
-                        recKladde gkl = new recKladde
-                        {
-                            Dato = ToDay,    //(b.Betalingsdato > b.Indbetalingsdato) ? (DateTime)b.Betalingsdato : (DateTime)b.Indbetalingsdato,
-                            Bilag = ++BS1_SidsteNr,
-                            Tekst = "Indbetalingskort K 81131945-" + ((DateTime)b.Indbetalingsdato).Day + "." + ((DateTime)b.Indbetalingsdato).Month,
-                            Afstemningskonto = "Bank",
-                            Belob = b.GruppeIndbetalingsbelob,
-                            Kontonr = null,
-                            Faknr = null
-                        };
-                        Program.karKladde.Add(gkl);
-
-                        var rec_bet = (from ub in Program.dbData3060.Tblbet where ub.Id == b.Betid select ub).First();
-                        rec_bet.Summabogfort = true;
-
+                        recStatus rec_Status = (from s in Program.karStatus where s.key == "BS1_SidsteNr" select s).First();
+                        BS1_SidsteNr = int.Parse(rec_Status.value);
+                    }
+                    catch (System.InvalidOperationException)
+                    {
                     }
 
-                    recKladde kl = new recKladde
+                    Program.karKladde = null;
+
+                    XElement SummabogfortUpdatexml = new XElement("SummabogfortUpdate");
+                    foreach (var b in bogf)
                     {
-                        Dato = ToDay,  //(b.Betalingsdato > b.Indbetalingsdato) ? (DateTime)b.Betalingsdato : (DateTime)b.Indbetalingsdato,
-                        Bilag = BS1_SidsteNr,
-                        Tekst = "F" + b.SFaknr + " " + b.Navn,
-                        Afstemningskonto = null,
-                        Belob = b.Indbetalingsbelob,
-                        Kontonr = 56100,
-                        Faknr = b.SFaknr
-                    };
-                    Program.karKladde.Add(kl);
+                        if (saveBetid != b.Betid) // ny gruppe
+                        {
+                            saveBetid = b.Betid;
+                            recKladde gkl = new recKladde
+                            {
+                                Dato = ToDay,    //(b.Betalingsdato > b.Indbetalingsdato) ? (DateTime)b.Betalingsdato : (DateTime)b.Indbetalingsdato,
+                                Bilag = ++BS1_SidsteNr,
+                                Tekst = "Indbetalingskort K 81131945-" + ((DateTime)b.Indbetalingsdato).Day + "." + ((DateTime)b.Indbetalingsdato).Month,
+                                Afstemningskonto = "Bank",
+                                Belob = b.GruppeIndbetalingsbelob,
+                                Kontonr = null,
+                                Faknr = null
+                            };
+                            Program.karKladde.Add(gkl);
+                            
+                            XElement betxml = new XElement("Bet");
+                            betxml.Add(new XElement("Id", b.Betid));
+                            betxml.Add(new XElement("Summabogfort", true));
+                            SummabogfortUpdatexml.Add(new XElement(betxml));
+                        }
+
+                        recKladde kl = new recKladde
+                        {
+                            Dato = ToDay,  //(b.Betalingsdato > b.Indbetalingsdato) ? (DateTime)b.Betalingsdato : (DateTime)b.Indbetalingsdato,
+                            Bilag = BS1_SidsteNr,
+                            Tekst = "F" + b.SFaknr + " " + b.Navn,
+                            Afstemningskonto = null,
+                            Belob = b.Indbetalingsbelob,
+                            Kontonr = 56100,
+                            Faknr = b.SFaknr
+                        };
+                        Program.karKladde.Add(kl);
+                    }
+                    string strSummabogfortUpdatexml = @"<?xml version=""1.0"" encoding=""utf-8"" ?> " + SummabogfortUpdatexml.ToString();
+                    string result = objRest.HttpPost2(clsRest.urlBaseType.data, "bogforindbetalinger", strSummabogfortUpdatexml);
+                    
+                    Program.karStatus.save();
+                    Program.karKladde.save();
                 }
-                Program.karStatus.save();
-                Program.karKladde.save();
-                Program.dbData3060.SubmitChanges();
+                return AntalBetalinger;
             }
-            return AntalBetalinger;
+            return 0;
         }
 
         public int BogforUdBetalinger(int lobnr)
@@ -296,17 +318,17 @@ namespace nsPuls3060
             if (Status2 == "True")
             {
                 var overforsel = from o in xmldata.Descendants("Overforsel")
-                                   select new
-                                   {
-                                       Id = clsPassXmlDoc.attr_val_int(o, "Id"),
-                                       Nr = clsPassXmlDoc.attr_val_int(o, "Nr"),
-                                       SFaknr = clsPassXmlDoc.attr_val_int(o, "SFaknr"),
-                                       SFakID = clsPassXmlDoc.attr_val_int(o, "SFakID"),
-                                       Tilpbsid = clsPassXmlDoc.attr_val_int(o, "Tilpbsid"),
-                                       Betalingsdato = clsPassXmlDoc.attr_val_datetime(o, "Betalingsdato"),
-                                       Advisbelob = (decimal)clsPassXmlDoc.attr_val_double(o, "Advisbelob"),
-                                   };
-                
+                                 select new
+                                 {
+                                     Id = clsPassXmlDoc.attr_val_int(o, "Id"),
+                                     Nr = clsPassXmlDoc.attr_val_int(o, "Nr"),
+                                     SFaknr = clsPassXmlDoc.attr_val_int(o, "SFaknr"),
+                                     SFakID = clsPassXmlDoc.attr_val_int(o, "SFakID"),
+                                     Tilpbsid = clsPassXmlDoc.attr_val_int(o, "Tilpbsid"),
+                                     Betalingsdato = clsPassXmlDoc.attr_val_datetime(o, "Betalingsdato"),
+                                     Advisbelob = (decimal)clsPassXmlDoc.attr_val_double(o, "Advisbelob"),
+                                 };
+
                 var bogf = from f in Program.karFakturaer_k
                            where f.saldo != 0
                            join o in overforsel on f.fakid equals o.SFakID

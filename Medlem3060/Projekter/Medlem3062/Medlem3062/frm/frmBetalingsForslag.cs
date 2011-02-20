@@ -254,8 +254,6 @@ namespace nsPuls3060
             this.pgmBetal.Minimum = 0;
             this.pgmBetal.Value = 0;
             this.pgmBetal.Visible = true;
-            Program.dbData3060.TempBetalforslag.DeleteAllOnSubmit(Program.dbData3060.TempBetalforslag);
-            Program.dbData3060.SubmitChanges();
             if ((imax == 0))
             {
                 this.Label_Betaltekst.Text = "Der ikke noget at betale";

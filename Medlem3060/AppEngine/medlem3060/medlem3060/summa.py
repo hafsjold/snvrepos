@@ -4,14 +4,70 @@ from google.appengine.ext import db
 from google.appengine.ext.webapp import template
 
 from models import MedlemsStatus, nextval, UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Pbsfiles, Pbsfile, Sendqueue, Recievequeue, Tilpbs, Fak, Frapbs, Bet, Betlin, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
-from util import lpad, rpad, utc, cet
+from util import PassXmlDoc, lpad, rpad, utc, cet
 from datetime import datetime, date, timedelta
 import logging
 import os
 import re
 from xml.dom import minidom
 
+class BogforIndBetalingerHandler(webapp.RequestHandler, PassXmlDoc):
+  def get(self):
+    betalinger = []
+    status = False
+    qry = Bet.all().filter('Summabogfort !=', True)
+    for bet in qry:
+      for betlin in bet.listBetlin:
+        if betlin.Fakref:
+          if betlin.Fakref.SFaknr > 0:
+            betalinger.append(betlin)
+            status = True
+    template_values = {
+      'status': status,
+      'betalinger': betalinger,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/bogforindbetalinger.xml')
+    self.response.out.write(template.render(path, template_values)) 
+
+  def post(self):
+    doc = minidom.parse(self.request.body_file)
+    if doc.documentElement.tagName == 'SummabogfortUpdate':
+      bets = doc.getElementsByTagName("Bet")
+      for bet in bets:
+        Id = attr_val(bet, 'Id', 'IntegerProperty') 
+        Summabogfort = attr_val(bet, 'Summabogfort', 'BooleanProperty') 
+        Key = db.Key.from_path('rootBet','root', 'Bet', '%s' % (Id))
+        betrec = db.get(Key)
+        betrec.Summabogfort = Summabogfort
+        betrec.put()
+        logging.info('JJJJJJJJJJJJJJJJJ Id: %s, Summabogfort: %s JJJJJJJJJJJJJJJJJJJ' % (Id, Summabogfort))
       
+class OrderFaknrUpdateHandler(webapp.RequestHandler, PassXmlDoc):
+  def get(self):
+    status = False
+    faks = Fak.all().filter('SFakID >', 0).filter('SFaknr =', None)
+    if faks:
+      status = True
+    template_values = {
+      'status': status,
+      'faks': faks,
+    }
+    path = os.path.join(os.path.dirname(__file__), 'templates/orderfaknrupdate.xml')
+    self.response.out.write(template.render(path, template_values))  
+
+  def post(self):
+    doc = minidom.parse(self.request.body_file)
+    if doc.documentElement.tagName == 'SFaknrupdate':
+      faks = doc.getElementsByTagName("Fak")
+      for fak in faks:
+        Key = fak.getElementsByTagName("Key")[0].childNodes[0].data
+        Id = attr_val(fak, 'Id', 'IntegerProperty')         
+        SFaknr = attr_val(fak, 'SFaknr', 'IntegerProperty')         
+        fakrec = db.get(Key)
+        fakrec.SFaknr = SFaknr
+        fakrec.put()
+        logging.info('JJJJJJJJJJJJJJJJJ Id: %s, Key: %s, SFaknr: %s JJJJJJJJJJJJJJJJJJJ' % (Id, Key, SFaknr))
+        
 class Udbetaling2SummaHandler(webapp.RequestHandler):
   def get(self):
     overforsel = []
