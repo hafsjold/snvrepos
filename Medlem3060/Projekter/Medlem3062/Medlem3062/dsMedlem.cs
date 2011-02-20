@@ -331,7 +331,7 @@ namespace nsPuls3060
                 {
                     case DataRowState.Added:
                         objRest = new clsRest();
-                        int Id = clsPbs.nextval("tblMedlog");
+                        int Id = clsPbs.nextval("Medlogid");
                         xml = new XElement("Medlog");
                         xml.Add(new XElement("Id", Id));
                         xml.Add(new XElement("Source_id", Id));

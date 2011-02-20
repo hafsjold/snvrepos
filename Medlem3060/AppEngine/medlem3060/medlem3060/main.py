@@ -19,7 +19,7 @@ import os
 import re
 import sys  
 
-from models import NrSerieSetupAll, nextval, UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Tilpbs, Fak, Overforsel, Rykker, Pbsfiles, Pbsfile, Sendqueue, Frapbs, Bet, Betlin, Aftalelin, Indbetalingskort, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
+from models import deleteMemcache, NrSerieSetupAll, nextval, UserGroup, User, NrSerie, Kreditor, Kontingent, Pbsforsendelse, Tilpbs, Fak, Overforsel, Rykker, Pbsfiles, Pbsfile, Sendqueue, Frapbs, Bet, Betlin, Aftalelin, Indbetalingskort, Sftp, Infotekst, Sysinfo, Menu, MenuMenuLink, Medlog, Person
 from util import PassXmlDoc, utc, cet,TestCrypt, COOKIE_NAME, LOGIN_URL, CreateCookieData, SetUserInfoCookie
 from menuusergroup import deleteMenuAndUserGroup, createMenuAndUserGroup
 from menu import MenuHandler, ListUserHandler, UserHandler
@@ -174,7 +174,7 @@ class UpdatemedlemHandler(webapp.RequestHandler):
       jData += '"bMedlemlog":"true"'
       jData += ',"MedlemlogTablePos":"%s"' % (self.request.get('MedlemlogTablePos'))
       jData += ',"MedlemlogData":["%s","%s","%s","%s","%s","%s","%s"]' % (p.Nr,p.Source,p.Source_id,p.Logdato,p.Akt_id,p.Akt_dato,p.Akt_id)
-      memcache.delete('jLogData', namespace='jLogData')
+      deleteMemcache('Medlog')
       
       Akt_id = self.request.get('Akt_id')
       if Akt_id == '10':
@@ -191,7 +191,7 @@ class UpdatemedlemHandler(webapp.RequestHandler):
         jData += ',"bKontingent":"true"'
         jData += ',"KontingentTablePos":"%s"' % (self.request.get('KontingentTablePos'))
         jData += ',"KontingentData":["%s","%s","%s","%s","%s","%s"]' % (q.Nr, Navn, q.Fradato, q.Advisbelob, q.Tildato, q.Id)
-        memcache.delete('jKontingentData', namespace='jKontingentData')
+        deleteMemcache('Kontingent')
       else:   
         jData += ',"bKontingent":"false"'
     else:
@@ -217,8 +217,7 @@ class UpdatemedlemHandler(webapp.RequestHandler):
       jData += ',"PersonTablePos":"%s"' % (self.request.get('PersonTablePos'))
       jData += ',"PersonTableData": ["%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s","%s"]' % (m.Nr,m.Navn,m.Kaldenavn,m.Adresse,m.Postnr,m.Bynavn,m.Email,m.Telefon,m.Kon,m.FodtDato,m.Bank,m.MedlemtilDato,m.MedlemAabenBetalingsdato)
       jData += ' }'
-      memcache.delete('jData', namespace='jData')
-      memcache.delete('jMedlemXmlData', namespace='jMedlemXmlData')    
+      deleteMemcache('Person')  
       logging.info('UpdatemedlemHandler OK Navn: %s, Kaldenavn: %s' % (self.request.get('Navn'), self.request.get('Kaldenavn')))
       logging.info('%s' % (jData))
       self.response.headers["Content-Type"] = "application/json"
@@ -913,6 +912,7 @@ class SyncMedlogHandler(webapp.RequestHandler):
           
             logging.info('==>%s<==>%s<==' % (attr_name, attr_type))
       rec.put()
+      deleteMemcache('Medlog')     
     
     self.response.out.write('Status: 404')
     
@@ -975,7 +975,7 @@ class SyncMedlemHandler(webapp.RequestHandler):
           k = db.Key.from_path('Persons','root','Person',Nr)
           m = Person.get(k)
           m.delete()
-          memcache.delete('jData', namespace='jData')
+          deleteMemcache('Person')  
         except:
           pass
     self.response.out.write('Status: 403')
@@ -1022,8 +1022,7 @@ class SyncMedlemHandler(webapp.RequestHandler):
 
     person.setNameTags()
     person.put()
-    memcache.delete('jData', namespace='jData')
-    memcache.delete('jMedlemXmlData', namespace='jMedlemXmlData')    
+    deleteMemcache('Person')    
     
     logging.info('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
     logging.info('%s - %s - %s - %s - %s - %s - %s - %s - %s - %s - %s' % (person.Nr, person.Navn, person.Kaldenavn, person.Adresse, person.Postnr, person.Bynavn, person.Email, person.Telefon, person.Kon, person.FodtDato, person.Bank))
@@ -1111,7 +1110,7 @@ class SearchIndexing(webapp.RequestHandler):
         per.setNameTags()
         per.put()
 
-      memcache.delete('jData', namespace='jData')
+      deleteMemcache('Medlog')
 
 class LinkFakHandler(webapp.RequestHandler):
     def get(self):

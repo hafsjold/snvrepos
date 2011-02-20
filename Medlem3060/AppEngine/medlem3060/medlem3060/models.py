@@ -4,7 +4,17 @@ import logging
 from datetime import datetime, timedelta, date, tzinfo
 from util import lpad, rpad, utc, cet
 
-       
+def deleteMemcache(modelname):
+  if modelname:
+    if modelname == 'Person':
+      memcache.delete('jData', namespace='jData')
+      memcache.delete('jMedlemXmlData', namespace='jMedlemXmlData') 
+    elif modelname == 'Medlog':
+      memcache.delete('jLogData', namespace='jLogData') 
+      memcache.delete('jLogXmlData', namespace='jLogXmlData')
+    elif modelname == 'Kontingent':
+      memcache.delete('jKontingentData', namespace='jKontingentData')
+      
 class UserGroup(db.Model): 
   GroupName = db.StringProperty()
   
