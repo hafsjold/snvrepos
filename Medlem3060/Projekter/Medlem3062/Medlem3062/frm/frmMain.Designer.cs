@@ -62,6 +62,7 @@
             this.data2AppEngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.syncMedlemmerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -141,19 +142,19 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(110, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // afslutToolStripMenuItem
             // 
             this.afslutToolStripMenuItem.Name = "afslutToolStripMenuItem";
-            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.afslutToolStripMenuItem.Text = "Afslut";
             this.afslutToolStripMenuItem.Click += new System.EventHandler(this.afslutToolStripMenuItem_Click);
             // 
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.testToolStripMenuItem.Text = "Test";
             this.testToolStripMenuItem.Visible = false;
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
@@ -165,7 +166,8 @@
             this.medlemmerTilRegnearkToolStripMenuItem,
             this.medlemmerTilRegnearkEksternToolStripMenuItem,
             this.regnearkNotPBSToolStripMenuItem,
-            this.emailRykkerToolStripMenuItem});
+            this.emailRykkerToolStripMenuItem,
+            this.syncMedlemmerToolStripMenuItem});
             this.medlemToolStripMenuItem.Name = "medlemToolStripMenuItem";
             this.medlemToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.medlemToolStripMenuItem.Text = "Medlem";
@@ -343,6 +345,13 @@
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
+            // syncMedlemmerToolStripMenuItem
+            // 
+            this.syncMedlemmerToolStripMenuItem.Name = "syncMedlemmerToolStripMenuItem";
+            this.syncMedlemmerToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.syncMedlemmerToolStripMenuItem.Text = "Sync Medlemmer";
+            this.syncMedlemmerToolStripMenuItem.Click += new System.EventHandler(this.syncMedlemmerToolStripMenuItem_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -406,6 +415,7 @@
         private System.Windows.Forms.ToolStripMenuItem regnearkNotPBSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SendModtagPBSfilertoolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem data2AppEngToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem syncMedlemmerToolStripMenuItem;
    }
 }
 

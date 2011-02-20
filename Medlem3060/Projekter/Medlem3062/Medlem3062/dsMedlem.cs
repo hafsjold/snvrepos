@@ -103,6 +103,7 @@ namespace nsPuls3060
                         k_rec.setKreditor();
                         k_rec.getNewCvsString();
                         Program.karMedlemmer.Add(k_rec);
+                        
                         /*
                         TblMedlem m_rec;
                         try
@@ -122,6 +123,7 @@ namespace nsPuls3060
                         m_rec.Kon = (m.IsKonNull()) ? null : m.Kon;
                         m_rec.FodtDato = (m.IsFodtDatoNull()) ? (DateTime?)null : m.FodtDato;
                         */
+                        
                         m.AcceptChanges();
                         break;
 
@@ -144,9 +146,9 @@ namespace nsPuls3060
                         k_rec.Email = (m.IsEmailNull()) ? null : m.Email;
                         k_rec.Bank = (m.IsBankNull()) ? null : m.Bank;
                         k_rec.setKreditor();
-                        /*
                         Program.karMedlemmer.Update(Nr_Key);
 
+                        /*
                         try
                         {
                             m_rec = (from k in Program.dbData3060.TblMedlem
@@ -164,6 +166,7 @@ namespace nsPuls3060
                         m_rec.Kon = (m.IsKonNull()) ? null : m.Kon;
                         m_rec.FodtDato = (m.IsFodtDatoNull()) ? (DateTime?)null : m.FodtDato;
                         */
+                        
                         m.AcceptChanges();
                         break;
                 }

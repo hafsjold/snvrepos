@@ -133,17 +133,7 @@ namespace nsPuls3060
 #if (DEBUG)
             //clsAppEngSFTP objAppEngSFTP = new clsAppEngSFTP();
             //objAppEngSFTP.ReadFraSFtp();
-            bool test1 = Program.isAppEngOnline;
-            string test = Program.MailFrom;
-            test = Program.Smtphost;
-            test = Program.Smtpport;
-            test = Program.Smtpssl;
-            test = Program.Smtpuser;
-            test = Program.Smtppasswd;
-            test = Program.MailToName;
-            test = Program.MailToAddr;
-            test = Program.MailFrom;
-            test = Program.MailReply;
+
 
 
 #endif
@@ -357,6 +347,89 @@ namespace nsPuls3060
               null, //leftButton
               "OK", //rightButton
               global::nsPuls3060.Properties.Resources.Message_info); //iconSet
+        }
+
+        
+        private void syncMedlemmerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Person -> Medlemmer sync/update
+            var MedlemNotInSyncPerson = ((System.Data.DataTable)Program.dsMedlemGlobal.tblSyncPerson).AsEnumerable().Except(((System.Data.DataTable)Program.dsMedlemGlobal.tblSyncMedlem).AsEnumerable(), DataRowComparer.Default);
+            int antalMedlemNotInSyncPerson = MedlemNotInSyncPerson.Count();
+            if (antalMedlemNotInSyncPerson > 0)
+            {
+                foreach (var p in MedlemNotInSyncPerson)
+                {
+                    short Nr = p.Field<short>("Nr");
+                    DataRow row1 = null;
+                    DataRow row2 = null;
+                    try
+                    {
+                        row1 = Program.dsMedlemGlobal.tblPerson.Rows.Find(Nr);
+                        row2 = Program.dsMedlemGlobal.Kartotek.Rows.Find(Nr);
+                        if (row2 == null)
+                        {
+                            row2 = Program.dsMedlemGlobal.Kartotek.Rows.Add(row1.ItemArray);
+                        }
+                        else
+                        {
+                            row2.BeginEdit();
+                            row2.ItemArray = row1.ItemArray;
+                            row2.EndEdit();
+                        }
+
+                    }
+                    catch (MissingPrimaryKeyException)
+                    {
+
+                    }
+                }
+                Program.dsMedlemGlobal.savedsMedlem();
+            }
+
+            // Medlemmer -> Person sync/update
+            var PersonNotInSyncMedlem = ((System.Data.DataTable)Program.dsMedlemGlobal.tblSyncMedlem).AsEnumerable().Except(((System.Data.DataTable)Program.dsMedlemGlobal.tblSyncPerson).AsEnumerable(), DataRowComparer.Default);
+            int antalPersonNotInSyncMedlem = PersonNotInSyncMedlem.Count();
+            if (antalPersonNotInSyncMedlem > 0)
+            {
+                foreach (var p in PersonNotInSyncMedlem)
+                {
+                    short Nr = p.Field<short>("Nr");
+                    DataRow row1 = null;
+                    DataRow row2 = null;
+                    try
+                    {
+                        row1 = Program.dsMedlemGlobal.Kartotek.Rows.Find(Nr);
+                        row2 = Program.dsMedlemGlobal.tblPerson.Rows.Find(Nr);
+                        if (row2 == null)
+                        {
+                            object[] val = row1.ItemArray;
+                            val[8] = "X";
+                            val[9] = new DateTime(1900, 1, 1);
+                            row2 = Program.dsMedlemGlobal.tblPerson.Rows.Add(val);
+                        }
+                        else
+                        {
+                            object[] val = row2.ItemArray;
+                            for (var i = 0; i < val.Count(); i++)
+                            {
+                                if ((i != 8) && (i != 9))
+                                {
+                                    val[i] = row1.ItemArray[i];
+                                }
+                            }
+                            row2.BeginEdit();
+                            row2.ItemArray = val;
+                            row2.EndEdit();
+                        }
+
+                    }
+                    catch (MissingPrimaryKeyException)
+                    {
+
+                    }
+                }
+                Program.dsMedlemGlobal.savePerson();
+            }
         }
     }
 }
