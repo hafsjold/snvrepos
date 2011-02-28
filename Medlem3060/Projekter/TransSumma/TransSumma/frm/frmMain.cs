@@ -389,19 +389,19 @@ namespace nsPuls3060
 
         private void importerTransaktionerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            int lastBilag = 0;
+            int? lastBilag = null;
+            string Kontonavn = null;
             Tblbilag recBilag = null;
-            KarPosteringer karPosteringer = new KarPosteringer();
-            var qry = from p in Program.karPosteringer
+            var qryPosteringer = from p in Program.karPosteringer
                       join b in Program.dbDataTransSumma.Tbltrans on new { p.Regnskabid, p.Id, p.Nr } equals new { b.Regnskabid, b.Id, b.Nr } into tbltrans
                       from b in tbltrans.DefaultIfEmpty(new Tbltrans { Pid = 0, Regnskabid = null, Id = null, Nr = null })
                       where b.Pid == 0
                       orderby p.Regnskabid, p.Bilag, p.Id, p.Nr
                       select p;
-            int antal = qry.Count();
-            foreach (var p in qry)
+            int antal = qryPosteringer.Count();
+            foreach (var p in qryPosteringer)
             {
-                if ((lastBilag != p.Bilag) && (!(p.Bilag == 0)))
+                if ((!(p.Bilag == null)) && (lastBilag != p.Bilag))
                 {
                     try
                     {
@@ -422,14 +422,27 @@ namespace nsPuls3060
                     }
                 }
 
+                try
+                {
+                    Kontonavn = (from b in Program.karKontoplan where b.Kontonr == p.Konto select b.Kontonavn).First();
+                }
+                catch 
+                {
+                    Kontonavn = null;
+                }
+
                 Tbltrans recTrans = new Tbltrans
                 {
                     Regnskabid = p.Regnskabid,
                     Tekst = p.Tekst,
                     Kontonr = p.Konto,
+                    Kontonavn = Kontonavn,
                     Id = p.Id,
                     Nr = p.Nr,
-                    Belob = p.Bruttobeløb,
+                    Belob = p.Nettobeløb + p.Momsbeløb,
+                    Moms = p.Momsbeløb,
+                    Debet = (p.Nettobeløb >= 0) ? p.Nettobeløb : (decimal?)null,
+                    Kredit = (p.Nettobeløb < 0) ? - p.Nettobeløb : (decimal?)null,
                 };
                 Program.dbDataTransSumma.Tbltrans.InsertOnSubmit(recTrans);
                 if (!(p.Bilag == 0)) recBilag.Tbltrans.Add(recTrans);
@@ -437,6 +450,54 @@ namespace nsPuls3060
             }
             Program.dbDataTransSumma.SubmitChanges();
 
+            
+            lastBilag = 0;
+            var qryKladder = from k in Program.karKladder
+                      join b in Program.dbDataTransSumma.Tblkladder on new { k.Regnskabid, k.Id } equals new { b.Regnskabid, b.Id } into tblkladder
+                      from b in tblkladder.DefaultIfEmpty(new Tblkladder { Pid = 0, Regnskabid = null, Id = null })
+                      where b.Pid == 0
+                      orderby k.Regnskabid, k.Bilag, k.Id
+                      select k;
+            antal = qryKladder.Count();
+            foreach (var k in qryKladder)
+            {
+                if ((!(k.Bilag == null)) && (lastBilag != k.Bilag))
+                {
+                    try
+                    {
+                        recBilag = (from b in Program.dbDataTransSumma.Tblbilag
+                                    where b.Regnskabid == k.Regnskabid && b.Bilag == k.Bilag
+                                    select b).First();
+                    }
+                    catch
+                    {
+                        recBilag = new Tblbilag
+                        {
+                            Regnskabid = k.Regnskabid,
+                            Bilag = k.Bilag,
+                            Dato = k.Dato,
+                            Udskriv = true,
+                        };
+                        Program.dbDataTransSumma.Tblbilag.InsertOnSubmit(recBilag);
+                    }
+                }
+
+                Tblkladder recKladder = new Tblkladder
+                {
+                    Regnskabid = k.Regnskabid,
+                    Tekst = k.Tekst,
+                    Afstemningskonto = k.Afstemningskonto,
+                    Belob = k.Belob,
+                    Konto = k.Konto,
+                    Momskode = k.Momskode,
+                    Faktura = k.Faktura,
+                    Id = k.Id,
+                };
+                Program.dbDataTransSumma.Tblkladder.InsertOnSubmit(recKladder);
+                if (!(k.Bilag == 0)) recBilag.Tblkladder.Add(recKladder);
+                lastBilag = k.Bilag;
+            }
+            Program.dbDataTransSumma.SubmitChanges();
         }
     }
 }

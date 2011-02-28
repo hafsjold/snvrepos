@@ -29,7 +29,7 @@ namespace nsPuls3060
         public int int60;
         public int belob;
         public int int68;
-        public int int72;
+        public int moms;
         public int int76;
         public int Nr;
         public int Id;
@@ -93,7 +93,7 @@ namespace nsPuls3060
             }
         }
 
-        public int Bilag
+        public int? Bilag
         {
             get
             {
@@ -101,7 +101,7 @@ namespace nsPuls3060
             }
             set
             {
-                m_rec_data.bilag = value;
+                m_rec_data.bilag = (int)value;
             }
         }
 
@@ -117,7 +117,7 @@ namespace nsPuls3060
             }
         }
 
-        public decimal Bruttobeløb
+        public decimal Nettobeløb
         {
             get
             {
@@ -126,6 +126,18 @@ namespace nsPuls3060
             set
             {
                 m_rec_data.belob = (int)(value * 100);
+            }
+        }
+        
+        public decimal Momsbeløb
+        {
+            get
+            {
+                return ((decimal)(m_rec_data.moms)) / 100;
+            }
+            set
+            {
+                m_rec_data.moms = (int)(value * 100);
             }
         }
 
@@ -178,6 +190,8 @@ namespace nsPuls3060
             var rec_regnskab = Program.qryAktivRegnskab();
             m_path = rec_regnskab.Placering;
             m_regnskabid = rec_regnskab.Rid;
+            //m_path = @"F:\summatest\3";
+            //m_regnskabid = 8;
             open();
         }
 
@@ -223,6 +237,7 @@ namespace nsPuls3060
                             this.Add(rec);
                         }
                     }
+                    bs.Close();
                 } //File end
             }
         }

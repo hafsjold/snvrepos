@@ -19,7 +19,7 @@ namespace nsPuls3060
         public decimal? Belob { get; set; }
         public int? Konto { get; set; }
         public string Momskode { get; set; }
-        public string Faktura { get; set; }
+        public int? Faktura { get; set; }
         public int? Id { get; set; }
         public int? Regnskabid { get; set; }
 
@@ -35,6 +35,9 @@ namespace nsPuls3060
             var rec_regnskab = Program.qryAktivRegnskab();
             m_path = rec_regnskab.Placering + "kladder.dat";
             m_regnskabid = rec_regnskab.Rid;
+            //m_path = @"F:\summatest\3\kladder.dat";
+            //m_regnskabid = 8;
+
             open();
         }
 
@@ -76,13 +79,14 @@ namespace nsPuls3060
                         Belob = Microsoft.VisualBasic.Information.IsNumeric(value[4]) ? decimal.Parse(value[4]) : (decimal?)null,
                         Konto = Microsoft.VisualBasic.Information.IsNumeric(value[5]) ? int.Parse(value[5]) : (int?)null,
                         Momskode = value[6],
-                        Faktura = value[7],
+                        Faktura = Microsoft.VisualBasic.Information.IsNumeric(value[7]) ? int.Parse(value[7]) : (int?)null,
                         Id = Microsoft.VisualBasic.Information.IsNumeric(value[8]) ? int.Parse(value[8]) : (int?)null,
                         Regnskabid = m_regnskabid,
                     };
                     this.Add(rec);
                 }
             }
+            ts.Close();
         }
 
     }

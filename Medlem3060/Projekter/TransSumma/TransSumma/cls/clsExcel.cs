@@ -536,7 +536,7 @@ namespace nsPuls3060
                                     Nr = h.Nr,
                                     Id = h.Id,
                                     Tekst = h.Tekst,
-                                    Beløb = h.Bruttobeløb,
+                                    Beløb = h.Nettobeløb,
                                 };
 
             clsRest objRest = new clsRest();
