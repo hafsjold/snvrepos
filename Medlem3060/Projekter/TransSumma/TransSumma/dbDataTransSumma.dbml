@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="dbDataTransSumma" Class="DbDataTransSumma" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="tblRegnskab" Member="TblRegnskab">
+    <Type Name="TblRegnskab">
+      <Column Name="rid" Member="Rid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Navn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Oprettet" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Start" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Slut" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DatoLaas" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Firmanavn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Placering" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Eksportmappe" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Afsluttet" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>

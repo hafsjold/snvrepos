@@ -120,13 +120,10 @@
     </Compile>
     <Compile Include="cls\clsSumma.cs" />
     <Compile Include="cls\clsSFTP.cs" />
-    <Compile Include="dbData3060.cs">
-      <DependentUpon>dbData3060.dbml</DependentUpon>
-    </Compile>
-    <Compile Include="dbData3060.designer.cs">
-      <DependentUpon>dbData3060.dbml</DependentUpon>
+    <Compile Include="dbDataTransSumma.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>dbDataTransSumma.dbml</DependentUpon>
     </Compile>
     <Compile Include="dsMedlem.cs">
       <DependentUpon>dsMedlem.xsd</DependentUpon>
@@ -230,12 +227,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="app.config" />
     <None Include="mem\app.config" />
-    <None Include="dbData3060.dbml.layout">
-      <DependentUpon>dbData3060.dbml</DependentUpon>
-    </None>
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="dbDataTransSumma.dbml.layout">
+      <DependentUpon>dbDataTransSumma.dbml</DependentUpon>
+    </None>
     <EmbeddedResource Include="frm\frmBetalingsForslag.resx">
       <DependentUpon>frmBetalingsForslag.cs</DependentUpon>
     </EmbeddedResource>
@@ -280,11 +277,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="dbData3060.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>dbData3060.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
     <None Include="dsMedlem.xsc">
       <DependentUpon>dsMedlem.xsd</DependentUpon>
     </None>
@@ -316,6 +308,11 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="dbDataTransSumma.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>dbDataTransSumma.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
     <None Include="HafsjoldDataApSSignature.pfx" />
     <None Include="Properties\DataSources\MemInfotekst.datasource" />
     <None Include="Properties\DataSources\MemKreditor.datasource" />

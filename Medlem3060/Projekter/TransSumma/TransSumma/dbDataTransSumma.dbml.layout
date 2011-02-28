@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="dbDataTransSumma">
+  <DataContextMoniker Name="/DbDataTransSumma" />
+  <nestedChildShapes>
+    <classShape Id="b72d8afb-0457-438d-ae87-dd56639d1d0b" absoluteBounds="2.25, 0.875, 2, 2.4109318033854166">
+      <DataClassMoniker Name="/DbDataTransSumma/TblRegnskab" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5abba653-b1fd-4c80-88af-266aaddea0bb" absoluteBounds="2.265, 1.335, 1.9700000000000002, 1.8509318033854165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

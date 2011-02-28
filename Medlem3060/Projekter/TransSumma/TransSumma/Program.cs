@@ -37,7 +37,7 @@ namespace nsPuls3060
 
         private static string m_path_to_lock_summasummarum_kontoplan;
         private static FileStream m_filestream_to_lock_summasummarum_kontoplan;
-        private static DbData3060 m_dbData3060;
+        private static DbDataTransSumma m_dbDataTransSumma;
         private static dsMedlem m_dsMedlemGlobal;
         private static KarMedlemmer m_KarMedlemmer;
         private static MemMedlemDictionary m_dicMedlem;
@@ -258,11 +258,11 @@ namespace nsPuls3060
                 m_filestream_to_lock_summasummarum_kontoplan = value;
             }
         }
-        public static DbData3060 dbData3060
+        public static DbDataTransSumma dbDataTransSumma
         {
             get
             {
-                if (m_dbData3060 == null)
+                if (m_dbDataTransSumma == null)
                 {
                     if (!File.Exists(global::nsPuls3060.Properties.Settings.Default.DataBasePath))
                     {
@@ -283,13 +283,13 @@ namespace nsPuls3060
                             global::nsPuls3060.Properties.Settings.Default.Save();
                         }
                     }
-                    m_dbData3060 = new DbData3060(global::nsPuls3060.Properties.Settings.Default.DataBasePath);
+                    m_dbDataTransSumma = new DbDataTransSumma(global::nsPuls3060.Properties.Settings.Default.DataBasePath);
                 }
-                return m_dbData3060;
+                return m_dbDataTransSumma;
             }
             set
             {
-                m_dbData3060 = value;
+                m_dbDataTransSumma = value;
             }
         }
         public static dsMedlem dsMedlemGlobal
