@@ -1,17 +1,81 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="dbDataTransSumma" Class="DbDataTransSumma" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Table Name="tblRegnskab" Member="TblRegnskab">
-    <Type Name="TblRegnskab">
+  <Table Name="tblbankkonto" Member="Tblbankkonto">
+    <Type Name="Tblbankkonto">
+      <Column Name="pid" Member="Pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="saldo" Member="Saldo" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="skjul" Member="Skjul" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="dato" Member="Dato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="tekst" Member="Tekst" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="belob" Member="Belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="tblbilag" Member="Tblbilag">
+    <Type Name="Tblbilag">
+      <Column Name="pid" Member="Pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="regnskabid" Member="Regnskabid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="bilag" Member="Bilag" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dato" Member="Dato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="udskriv" Member="Udskriv" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Tblbilag_Tblkladder" Member="Tblkladder" ThisKey="Pid" OtherKey="Bilagpid" Type="Tblkladder" />
+      <Association Name="Tblbilag_Tbltrans" Member="Tbltrans" ThisKey="Pid" OtherKey="Bilagpid" Type="Tbltrans" />
+    </Type>
+  </Table>
+  <Table Name="tblkladder" Member="Tblkladder">
+    <Type Name="Tblkladder">
+      <Column Name="pid" Member="Pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="regnskabid" Member="Regnskabid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="bilagpid" Member="Bilagpid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tekst" Member="Tekst" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="afstemningskonto" Member="Afstemningskonto" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="belob" Member="Belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="konto" Member="Konto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="momskode" Member="Momskode" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="faktura" Member="Faktura" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Tblbilag_Tblkladder" Member="Tblbilag" ThisKey="Bilagpid" OtherKey="Pid" Type="Tblbilag" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="tblkonto" Member="Tblkonto">
+    <Type Name="Tblkonto">
+      <Column Name="kontonr" Member="Kontonr" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="kontonavn" Member="Kontonavn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="type" Member="Type" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="momskode" Member="Momskode" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="saldo" Member="Saldo" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="tblregnskab" Member="Tblregnskab">
+    <Type Name="Tblregnskab">
       <Column Name="rid" Member="Rid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Navn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Oprettet" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Start" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Slut" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DatoLaas" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Firmanavn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Placering" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Eksportmappe" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Afsluttet" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="navn" Member="Navn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="oprettet" Member="Oprettet" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="start" Member="Start" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="slut" Member="Slut" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="datoLaas" Member="DatoLaas" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="firmanavn" Member="Firmanavn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="placering" Member="Placering" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="eksportmappe" Member="Eksportmappe" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="afsluttet" Member="Afsluttet" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="tbltrans" Member="Tbltrans">
+    <Type Name="Tbltrans">
+      <Column Name="pid" Member="Pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="regnskabid" Member="Regnskabid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="skjul" Member="Skjul" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bilagpid" Member="Bilagpid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tekst" Member="Tekst" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="kontonr" Member="Kontonr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="kontonavn" Member="Kontonavn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="moms" Member="Moms" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="debet" Member="Debet" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="kredit" Member="Kredit" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="nr" Member="Nr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="belob" Member="Belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="afstem" Member="Afstem" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Tblbilag_Tbltrans" Member="Tblbilag" ThisKey="Bilagpid" OtherKey="Pid" Type="Tblbilag" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

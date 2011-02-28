@@ -9,7 +9,7 @@
       <Value Profile="(Default)">61</Value>
     </Setting>
     <Setting Name="DataBasePath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Documents and Settings\mha\Dokumenter\Medlem3060\Databaser\SQLCompact\dbData3060.sdf</Value>
+      <Value Profile="(Default)">C:\Documents and Settings\mha\Dokumenter\Medlem3060\Databaser\SQLCompact\dbDataTransSumma.sdf</Value>
     </Setting>
     <Setting Name="frmMainPoint" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">100, 100</Value>

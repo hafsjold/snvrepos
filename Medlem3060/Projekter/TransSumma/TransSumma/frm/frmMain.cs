@@ -121,10 +121,7 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
-            //clsAppEngSFTP objAppEngSFTP = new clsAppEngSFTP();
-            //objAppEngSFTP.ReadFraSFtp();
-
-
+            KarKladder recKladder = new KarKladder(); 
 
 #endif
         }
@@ -388,6 +385,58 @@ namespace nsPuls3060
                 }
                 Program.dsMedlemGlobal.savePerson();
             }
+        }
+
+        private void importerTransaktionerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int lastBilag = 0;
+            Tblbilag recBilag = null;
+            KarPosteringer karPosteringer = new KarPosteringer();
+            var qry = from p in Program.karPosteringer
+                      join b in Program.dbDataTransSumma.Tbltrans on new { p.Regnskabid, p.Id, p.Nr } equals new { b.Regnskabid, b.Id, b.Nr } into tbltrans
+                      from b in tbltrans.DefaultIfEmpty(new Tbltrans { Pid = 0, Regnskabid = null, Id = null, Nr = null })
+                      where b.Pid == 0
+                      orderby p.Regnskabid, p.Bilag, p.Id, p.Nr
+                      select p;
+            int antal = qry.Count();
+            foreach (var p in qry)
+            {
+                if ((lastBilag != p.Bilag) && (!(p.Bilag == 0)))
+                {
+                    try
+                    {
+                        recBilag = (from b in Program.dbDataTransSumma.Tblbilag
+                                    where b.Regnskabid == p.Regnskabid && b.Bilag == p.Bilag
+                                    select b).First();
+                    }
+                    catch
+                    {
+                        recBilag = new Tblbilag
+                        {
+                            Regnskabid = p.Regnskabid,
+                            Bilag = p.Bilag,
+                            Dato = p.Dato,
+                            Udskriv = true,
+                        };
+                        Program.dbDataTransSumma.Tblbilag.InsertOnSubmit(recBilag);
+                    }
+                }
+
+                Tbltrans recTrans = new Tbltrans
+                {
+                    Regnskabid = p.Regnskabid,
+                    Tekst = p.Tekst,
+                    Kontonr = p.Konto,
+                    Id = p.Id,
+                    Nr = p.Nr,
+                    Belob = p.Bruttobeløb,
+                };
+                Program.dbDataTransSumma.Tbltrans.InsertOnSubmit(recTrans);
+                if (!(p.Bilag == 0)) recBilag.Tbltrans.Add(recTrans);
+                lastBilag = p.Bilag;
+            }
+            Program.dbDataTransSumma.SubmitChanges();
+
         }
     }
 }

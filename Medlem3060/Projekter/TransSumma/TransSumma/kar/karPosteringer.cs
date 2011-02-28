@@ -43,6 +43,7 @@ namespace nsPuls3060
         private int m_rec_no;
         private posttype m_rec_data;
         private string m_rec_txt;
+        private int? m_regnskabid;
 
         public int rec_no
         {
@@ -128,7 +129,7 @@ namespace nsPuls3060
             }
         }
 
-        public int Nr
+        public int? Nr
         {
             get
             {
@@ -136,11 +137,11 @@ namespace nsPuls3060
             }
             set
             {
-                m_rec_data.Nr = value;
+                m_rec_data.Nr = (int)value;
             }
         }
 
-        public int Id
+        public int? Id
         {
             get
             {
@@ -148,21 +149,35 @@ namespace nsPuls3060
             }
             set
             {
-                m_rec_data.Id = value;
+                m_rec_data.Id = (int)value;
             }
         }
-
+        
+        public int? Regnskabid
+        {
+            get
+            {
+                return m_regnskabid;
+            }
+            set
+            {
+                m_regnskabid = (int)value;
+            }
+        }
+        
         public recPosteringer() { }
     }
 
     public class KarPosteringer : List<recPosteringer>
     {
         private string m_path { get; set; }
+        private int m_regnskabid;
 
         public KarPosteringer()
         {
             var rec_regnskab = Program.qryAktivRegnskab();
             m_path = rec_regnskab.Placering;
+            m_regnskabid = rec_regnskab.Rid;
             open();
         }
 
@@ -202,7 +217,8 @@ namespace nsPuls3060
                             {
                                 rec_no = n++,
                                 rec_data = ord,
-                                Tekst = Tekst
+                                Tekst = Tekst,
+                                Regnskabid = m_regnskabid
                             };
                             this.Add(rec);
                         }

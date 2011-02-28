@@ -18,7 +18,7 @@
     <GenerateManifests>true</GenerateManifests>
     <SignManifests>true</SignManifests>
     <ManifestTimestampUrl>http://timestamp.verisign.com/scripts/timstamp.dll</ManifestTimestampUrl>
-    <PublishUrl>C:\Documents and Settings\mha\Dokumenter\Medlem3060\3060Install\TransSummaMedlem3062\</PublishUrl>
+    <PublishUrl>C:\Documents and Settings\mha\Dokumenter\Medlem3060\3060Install\TransSumma\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -167,6 +167,7 @@
     </Compile>
     <Compile Include="cls\clsCsv.cs" />
     <Compile Include="cls\clsMedlem.cs" />
+    <Compile Include="kar\karKladder.cs" />
     <Compile Include="kar\karFakturastr_k.cs" />
     <Compile Include="kar\karFakturavarer_k.cs" />
     <Compile Include="kar\karFakturaer_k.cs" />

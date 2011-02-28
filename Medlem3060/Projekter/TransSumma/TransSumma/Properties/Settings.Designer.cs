@@ -49,8 +49,8 @@ namespace nsPuls3060.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Documents and Settings\\mha\\Dokumenter\\Medlem3060\\Databaser\\SQLCompact\\dbData30" +
-            "60.sdf")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Documents and Settings\\mha\\Dokumenter\\Medlem3060\\Databaser\\SQLCompact\\dbDataTr" +
+            "ansSumma.sdf")]
         public string DataBasePath {
             get {
                 return ((string)(this["DataBasePath"]));

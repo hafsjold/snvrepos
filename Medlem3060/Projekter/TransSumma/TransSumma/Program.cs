@@ -57,6 +57,7 @@ namespace nsPuls3060
         private static KarKladde m_KarKladde;
         private static KarKontoplan m_KarKontoplan;
         private static KarPosteringer m_KarPosteringer;
+        private static KarKladder m_KarKladder;
         private static KarFakturaer_k m_KarFakturaer_k;
         private static KarFakturastr_k m_KarFakturastr_k;
         private static KarFakturavarer_k m_KarFakturavarer_k;
@@ -535,6 +536,19 @@ namespace nsPuls3060
                 m_KarPosteringer = value;
             }
         }
+        public static KarKladder karKladder
+        {
+            get
+            {
+                if (m_KarKladder == null) m_KarKladder = new KarKladder();
+                return m_KarKladder;
+            }
+            set
+            {
+                m_KarKladder = value;
+            }
+        }
+
         public static KarFakturaer_k karFakturaer_k
         {
             get
