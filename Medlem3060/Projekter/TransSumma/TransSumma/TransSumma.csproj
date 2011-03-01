@@ -79,6 +79,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\Interop.VBIDE.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -91,6 +93,8 @@
     <Reference Include="System.Data.SQLite.Linq, Version=2.0.38.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL" />
     <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -128,6 +132,12 @@
     <Compile Include="dsMedlem.cs">
       <DependentUpon>dsMedlem.xsd</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="frm\frmUdskrivbilag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmUdskrivbilag.Designer.cs">
+      <DependentUpon>frmUdskrivbilag.cs</DependentUpon>
     </Compile>
     <Compile Include="frm\frmPbsnetdir.cs">
       <SubType>Form</SubType>
@@ -235,6 +245,9 @@
     <None Include="dbDataTransSumma.dbml.layout">
       <DependentUpon>dbDataTransSumma.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="frm\frmUdskrivbilag.resx">
+      <DependentUpon>frmUdskrivbilag.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm\frmBetalingsForslag.resx">
       <DependentUpon>frmBetalingsForslag.cs</DependentUpon>
     </EmbeddedResource>
@@ -274,6 +287,7 @@
     <EmbeddedResource Include="frm\frmRykkerForslag.resx">
       <DependentUpon>frmRykkerForslag.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="rptKonto.rdlc" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -320,6 +334,7 @@
     <None Include="Properties\DataSources\MemKreditor.datasource" />
     <None Include="Properties\DataSources\MemPbsnetdir.datasource" />
     <None Include="Properties\DataSources\MemRegnskab.datasource" />
+    <None Include="Properties\DataSources\Tblbankkonto.datasource" />
     <None Include="Resources\Add.bmp" />
     <Content Include="Resources\info.png" />
     <Content Include="Resources\logopart.jpg" />

@@ -13,6 +13,7 @@ using Excel;
 using System.Data.Common;
 using System.Data.SQLite;
 using System.Xml.Linq;
+using System.Data.Linq.SqlClient;
 
 
 namespace nsPuls3060
@@ -121,6 +122,18 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
+            string strLike = "%ATP%";
+            string tekst;
+            var query = from c in Program.dbDataTransSumma.Tbltrans
+                        where SqlMethods.Like(c.Tekst, strLike)
+                        select c;
+            int antal = query.Count();
+            foreach (var c in query)
+            {
+                tekst = c.Tekst;
+            }
+
+ 
             KarBankafstemning recBankafstemning = new KarBankafstemning();
             recBankafstemning.load();
 
@@ -500,5 +513,17 @@ namespace nsPuls3060
             }
             Program.dbDataTransSumma.SubmitChanges();
         }
+
+        private void pbsfilesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("Udskrivbilag"))
+            {
+                FrmUdskrivbilag m_frmUdskrivbilag = new FrmUdskrivbilag();
+                m_frmUdskrivbilag.MdiParent = this;
+                m_frmUdskrivbilag.Show();
+            }
+        }
+
+
     }
 }

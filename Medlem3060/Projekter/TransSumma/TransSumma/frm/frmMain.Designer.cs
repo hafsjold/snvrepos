@@ -55,6 +55,7 @@
             this.betalingsForslagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.regnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.posterTilExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importerTransaktionerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,7 +64,6 @@
             this.data2AppEngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importerTransaktionerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -292,6 +292,13 @@
             this.posterTilExcelToolStripMenuItem.Text = "Poster til Regneark";
             this.posterTilExcelToolStripMenuItem.Click += new System.EventHandler(this.posterTilExcelToolStripMenuItem_Click);
             // 
+            // importerTransaktionerToolStripMenuItem
+            // 
+            this.importerTransaktionerToolStripMenuItem.Name = "importerTransaktionerToolStripMenuItem";
+            this.importerTransaktionerToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.importerTransaktionerToolStripMenuItem.Text = "Importer Transaktioner";
+            this.importerTransaktionerToolStripMenuItem.Click += new System.EventHandler(this.importerTransaktionerToolStripMenuItem_Click);
+            // 
             // systemToolStripMenuItem
             // 
             this.systemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -307,33 +314,35 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(132, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem2.Text = "Regnskab";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.regnskabToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem1.Text = "Kreditor";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.kerditorToolStripMenuItem_Click);
             // 
             // pbsfilesToolStripMenuItem
             // 
             this.pbsfilesToolStripMenuItem.Name = "pbsfilesToolStripMenuItem";
-            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pbsfilesToolStripMenuItem.Text = "Udskriv bilag";
+            this.pbsfilesToolStripMenuItem.Click += new System.EventHandler(this.pbsfilesToolStripMenuItem_Click);
             // 
             // infoTekstToolStripMenuItem
             // 
             this.infoTekstToolStripMenuItem.Name = "infoTekstToolStripMenuItem";
-            this.infoTekstToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.infoTekstToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.infoTekstToolStripMenuItem.Text = "Info tekst";
             this.infoTekstToolStripMenuItem.Click += new System.EventHandler(this.infoTekstToolStripMenuItem_Click);
             // 
             // data2AppEngToolStripMenuItem
             // 
             this.data2AppEngToolStripMenuItem.Name = "data2AppEngToolStripMenuItem";
-            this.data2AppEngToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.data2AppEngToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             // 
             // hjælpToolStripMenuItem
             // 
@@ -349,13 +358,6 @@
             this.omToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
-            // 
-            // importerTransaktionerToolStripMenuItem
-            // 
-            this.importerTransaktionerToolStripMenuItem.Name = "importerTransaktionerToolStripMenuItem";
-            this.importerTransaktionerToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.importerTransaktionerToolStripMenuItem.Text = "Importer Transaktioner";
-            this.importerTransaktionerToolStripMenuItem.Click += new System.EventHandler(this.importerTransaktionerToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
