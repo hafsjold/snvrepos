@@ -121,7 +121,8 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
-            KarKladder recKladder = new KarKladder(); 
+            KarBankafstemning recBankafstemning = new KarBankafstemning();
+            recBankafstemning.load();
 
 #endif
         }

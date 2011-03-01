@@ -30,6 +30,9 @@ namespace nsPuls3060
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertTblbankafsteminit(Tblbankafsteminit instance);
+    partial void UpdateTblbankafsteminit(Tblbankafsteminit instance);
+    partial void DeleteTblbankafsteminit(Tblbankafsteminit instance);
     partial void InsertTblbankkonto(Tblbankkonto instance);
     partial void UpdateTblbankkonto(Tblbankkonto instance);
     partial void DeleteTblbankkonto(Tblbankkonto instance);
@@ -42,6 +45,9 @@ namespace nsPuls3060
     partial void InsertTblkonto(Tblkonto instance);
     partial void UpdateTblkonto(Tblkonto instance);
     partial void DeleteTblkonto(Tblkonto instance);
+    partial void InsertTblnrserie(Tblnrserie instance);
+    partial void UpdateTblnrserie(Tblnrserie instance);
+    partial void DeleteTblnrserie(Tblnrserie instance);
     partial void InsertTblregnskab(Tblregnskab instance);
     partial void UpdateTblregnskab(Tblregnskab instance);
     partial void DeleteTblregnskab(Tblregnskab instance);
@@ -72,6 +78,14 @@ namespace nsPuls3060
 				base(connection, mappingSource)
 		{
 			OnCreated();
+		}
+		
+		public System.Data.Linq.Table<Tblbankafsteminit> Tblbankafsteminit
+		{
+			get
+			{
+				return this.GetTable<Tblbankafsteminit>();
+			}
 		}
 		
 		public System.Data.Linq.Table<Tblbankkonto> Tblbankkonto
@@ -106,6 +120,14 @@ namespace nsPuls3060
 			}
 		}
 		
+		public System.Data.Linq.Table<Tblnrserie> Tblnrserie
+		{
+			get
+			{
+				return this.GetTable<Tblnrserie>();
+			}
+		}
+		
 		public System.Data.Linq.Table<Tblregnskab> Tblregnskab
 		{
 			get
@@ -120,6 +142,196 @@ namespace nsPuls3060
 			{
 				return this.GetTable<Tbltrans>();
 			}
+		}
+	}
+	
+	[Table(Name="tblbankafsteminit")]
+	public partial class Tblbankafsteminit : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Bid;
+		
+		private int _Rid;
+		
+		private int _Tid;
+		
+		private int _Tnr;
+		
+		private EntitySet<Tblkladder> _Tblkladder;
+		
+		private EntitySet<Tbltrans> _Tbltrans;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnBidChanging(int value);
+    partial void OnBidChanged();
+    partial void OnRidChanging(int value);
+    partial void OnRidChanged();
+    partial void OnTidChanging(int value);
+    partial void OnTidChanged();
+    partial void OnTnrChanging(int value);
+    partial void OnTnrChanged();
+    #endregion
+		
+		public Tblbankafsteminit()
+		{
+			this._Tblkladder = new EntitySet<Tblkladder>(new Action<Tblkladder>(this.attach_Tblkladder), new Action<Tblkladder>(this.detach_Tblkladder));
+			this._Tbltrans = new EntitySet<Tbltrans>(new Action<Tbltrans>(this.attach_Tbltrans), new Action<Tbltrans>(this.detach_Tbltrans));
+			OnCreated();
+		}
+		
+		[Column(Name="bid", Storage="_Bid", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Bid
+		{
+			get
+			{
+				return this._Bid;
+			}
+			set
+			{
+				if ((this._Bid != value))
+				{
+					this.OnBidChanging(value);
+					this.SendPropertyChanging();
+					this._Bid = value;
+					this.SendPropertyChanged("Bid");
+					this.OnBidChanged();
+				}
+			}
+		}
+		
+		[Column(Name="rid", Storage="_Rid", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Rid
+		{
+			get
+			{
+				return this._Rid;
+			}
+			set
+			{
+				if ((this._Rid != value))
+				{
+					this.OnRidChanging(value);
+					this.SendPropertyChanging();
+					this._Rid = value;
+					this.SendPropertyChanged("Rid");
+					this.OnRidChanged();
+				}
+			}
+		}
+		
+		[Column(Name="tid", Storage="_Tid", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Tid
+		{
+			get
+			{
+				return this._Tid;
+			}
+			set
+			{
+				if ((this._Tid != value))
+				{
+					this.OnTidChanging(value);
+					this.SendPropertyChanging();
+					this._Tid = value;
+					this.SendPropertyChanged("Tid");
+					this.OnTidChanged();
+				}
+			}
+		}
+		
+		[Column(Name="tnr", Storage="_Tnr", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Tnr
+		{
+			get
+			{
+				return this._Tnr;
+			}
+			set
+			{
+				if ((this._Tnr != value))
+				{
+					this.OnTnrChanging(value);
+					this.SendPropertyChanging();
+					this._Tnr = value;
+					this.SendPropertyChanged("Tnr");
+					this.OnTnrChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Tblbankafsteminit_Tblkladder", Storage="_Tblkladder", ThisKey="Bid", OtherKey="Bilagpid")]
+		public EntitySet<Tblkladder> Tblkladder
+		{
+			get
+			{
+				return this._Tblkladder;
+			}
+			set
+			{
+				this._Tblkladder.Assign(value);
+			}
+		}
+		
+		[Association(Name="Tblbankafsteminit_Tbltrans", Storage="_Tbltrans", ThisKey="Bid", OtherKey="Bilagpid")]
+		public EntitySet<Tbltrans> Tbltrans
+		{
+			get
+			{
+				return this._Tbltrans;
+			}
+			set
+			{
+				this._Tbltrans.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Tblkladder(Tblkladder entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tblbankafsteminit = this;
+		}
+		
+		private void detach_Tblkladder(Tblkladder entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tblbankafsteminit = null;
+		}
+		
+		private void attach_Tbltrans(Tbltrans entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tblbankafsteminit = this;
+		}
+		
+		private void detach_Tbltrans(Tbltrans entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tblbankafsteminit = null;
 		}
 	}
 	
@@ -141,6 +353,8 @@ namespace nsPuls3060
 		
 		private System.Nullable<decimal> _Belob;
 		
+		private EntitySet<Tbltrans> _Tbltrans;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -161,10 +375,11 @@ namespace nsPuls3060
 		
 		public Tblbankkonto()
 		{
+			this._Tbltrans = new EntitySet<Tbltrans>(new Action<Tbltrans>(this.attach_Tbltrans), new Action<Tbltrans>(this.detach_Tbltrans));
 			OnCreated();
 		}
 		
-		[Column(Name="pid", Storage="_Pid", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		[Column(Name="pid", Storage="_Pid", DbType="Int NOT NULL", IsPrimaryKey=true)]
 		public int Pid
 		{
 			get
@@ -284,6 +499,19 @@ namespace nsPuls3060
 			}
 		}
 		
+		[Association(Name="Tblbankkonto_Tbltrans", Storage="_Tbltrans", ThisKey="Pid", OtherKey="Afstem")]
+		public EntitySet<Tbltrans> Tbltrans
+		{
+			get
+			{
+				return this._Tbltrans;
+			}
+			set
+			{
+				this._Tbltrans.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -302,6 +530,18 @@ namespace nsPuls3060
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_Tbltrans(Tbltrans entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tblbankkonto = this;
+		}
+		
+		private void detach_Tbltrans(Tbltrans entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tblbankkonto = null;
 		}
 	}
 	
@@ -545,6 +785,8 @@ namespace nsPuls3060
 		
 		private System.Nullable<int> _Id;
 		
+		private EntityRef<Tblbankafsteminit> _Tblbankafsteminit;
+		
 		private EntityRef<Tblbilag> _Tblbilag;
 		
     #region Extensibility Method Definitions
@@ -575,6 +817,7 @@ namespace nsPuls3060
 		
 		public Tblkladder()
 		{
+			this._Tblbankafsteminit = default(EntityRef<Tblbankafsteminit>);
 			this._Tblbilag = default(EntityRef<Tblbilag>);
 			OnCreated();
 		}
@@ -779,6 +1022,40 @@ namespace nsPuls3060
 			}
 		}
 		
+		[Association(Name="Tblbankafsteminit_Tblkladder", Storage="_Tblbankafsteminit", ThisKey="Bilagpid", OtherKey="Bid", IsForeignKey=true)]
+		public Tblbankafsteminit Tblbankafsteminit
+		{
+			get
+			{
+				return this._Tblbankafsteminit.Entity;
+			}
+			set
+			{
+				Tblbankafsteminit previousValue = this._Tblbankafsteminit.Entity;
+				if (((previousValue != value) 
+							|| (this._Tblbankafsteminit.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Tblbankafsteminit.Entity = null;
+						previousValue.Tblkladder.Remove(this);
+					}
+					this._Tblbankafsteminit.Entity = value;
+					if ((value != null))
+					{
+						value.Tblkladder.Add(this);
+						this._Bilagpid = value.Bid;
+					}
+					else
+					{
+						this._Bilagpid = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Tblbankafsteminit");
+				}
+			}
+		}
+		
 		[Association(Name="Tblbilag_Tblkladder", Storage="_Tblbilag", ThisKey="Bilagpid", OtherKey="Pid", IsForeignKey=true)]
 		public Tblbilag Tblbilag
 		{
@@ -967,6 +1244,92 @@ namespace nsPuls3060
 					this._Saldo = value;
 					this.SendPropertyChanged("Saldo");
 					this.OnSaldoChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[Table(Name="tblnrserie")]
+	public partial class Tblnrserie : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _Nrserienavn;
+		
+		private System.Nullable<int> _Sidstbrugtenr;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnNrserienavnChanging(string value);
+    partial void OnNrserienavnChanged();
+    partial void OnSidstbrugtenrChanging(System.Nullable<int> value);
+    partial void OnSidstbrugtenrChanged();
+    #endregion
+		
+		public Tblnrserie()
+		{
+			OnCreated();
+		}
+		
+		[Column(Name="nrserienavn", Storage="_Nrserienavn", DbType="NVarChar(30) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string Nrserienavn
+		{
+			get
+			{
+				return this._Nrserienavn;
+			}
+			set
+			{
+				if ((this._Nrserienavn != value))
+				{
+					this.OnNrserienavnChanging(value);
+					this.SendPropertyChanging();
+					this._Nrserienavn = value;
+					this.SendPropertyChanged("Nrserienavn");
+					this.OnNrserienavnChanged();
+				}
+			}
+		}
+		
+		[Column(Name="sidstbrugtenr", Storage="_Sidstbrugtenr", DbType="Int")]
+		public System.Nullable<int> Sidstbrugtenr
+		{
+			get
+			{
+				return this._Sidstbrugtenr;
+			}
+			set
+			{
+				if ((this._Sidstbrugtenr != value))
+				{
+					this.OnSidstbrugtenrChanging(value);
+					this.SendPropertyChanging();
+					this._Sidstbrugtenr = value;
+					this.SendPropertyChanged("Sidstbrugtenr");
+					this.OnSidstbrugtenrChanged();
 				}
 			}
 		}
@@ -1304,6 +1667,10 @@ namespace nsPuls3060
 		
 		private System.Nullable<int> _Afstem;
 		
+		private EntityRef<Tblbankkonto> _Tblbankkonto;
+		
+		private EntityRef<Tblbankafsteminit> _Tblbankafsteminit;
+		
 		private EntityRef<Tblbilag> _Tblbilag;
 		
     #region Extensibility Method Definitions
@@ -1342,6 +1709,8 @@ namespace nsPuls3060
 		
 		public Tbltrans()
 		{
+			this._Tblbankkonto = default(EntityRef<Tblbankkonto>);
+			this._Tblbankafsteminit = default(EntityRef<Tblbankafsteminit>);
 			this._Tblbilag = default(EntityRef<Tblbilag>);
 			OnCreated();
 		}
@@ -1622,6 +1991,74 @@ namespace nsPuls3060
 					this._Afstem = value;
 					this.SendPropertyChanged("Afstem");
 					this.OnAfstemChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Tblbankkonto_Tbltrans", Storage="_Tblbankkonto", ThisKey="Afstem", OtherKey="Pid", IsForeignKey=true)]
+		public Tblbankkonto Tblbankkonto
+		{
+			get
+			{
+				return this._Tblbankkonto.Entity;
+			}
+			set
+			{
+				Tblbankkonto previousValue = this._Tblbankkonto.Entity;
+				if (((previousValue != value) 
+							|| (this._Tblbankkonto.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Tblbankkonto.Entity = null;
+						previousValue.Tbltrans.Remove(this);
+					}
+					this._Tblbankkonto.Entity = value;
+					if ((value != null))
+					{
+						value.Tbltrans.Add(this);
+						this._Afstem = value.Pid;
+					}
+					else
+					{
+						this._Afstem = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Tblbankkonto");
+				}
+			}
+		}
+		
+		[Association(Name="Tblbankafsteminit_Tbltrans", Storage="_Tblbankafsteminit", ThisKey="Bilagpid", OtherKey="Bid", IsForeignKey=true)]
+		public Tblbankafsteminit Tblbankafsteminit
+		{
+			get
+			{
+				return this._Tblbankafsteminit.Entity;
+			}
+			set
+			{
+				Tblbankafsteminit previousValue = this._Tblbankafsteminit.Entity;
+				if (((previousValue != value) 
+							|| (this._Tblbankafsteminit.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Tblbankafsteminit.Entity = null;
+						previousValue.Tbltrans.Remove(this);
+					}
+					this._Tblbankafsteminit.Entity = value;
+					if ((value != null))
+					{
+						value.Tbltrans.Add(this);
+						this._Bilagpid = value.Bid;
+					}
+					else
+					{
+						this._Bilagpid = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Tblbankafsteminit");
 				}
 			}
 		}
