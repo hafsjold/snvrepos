@@ -18,6 +18,8 @@ namespace nsPuls3060
         ColumnSorter lvwAfstemBank_ColumnSorter;
         ColumnSorter lvwAfstemTrans_ColumnSorter;
         private string DragDropKey;
+        private decimal sumAfstemBank;
+        private decimal sumAfstemTrans;
 
 
         public FrmBankafstemning()
@@ -56,7 +58,7 @@ namespace nsPuls3060
             lvwAfstemTrans_ColumnSorter.CurrentColumn = e.Column;
             this.lvwAfstemTrans.Sort();
         }
-        
+
         private void FrmBankafstemning_Load(object sender, EventArgs e)
         {
         }
@@ -81,7 +83,7 @@ namespace nsPuls3060
                                Pid = b.Pid,
                                Dato = b.Dato,
                                Tekst = b.Tekst,
-                               Belob = b.Belob 
+                               Belob = b.Belob
                            };
             }
             else
@@ -101,6 +103,9 @@ namespace nsPuls3060
 
             var antal = qry_bank.Count();
             this.lvwBank.Items.Clear();
+            this.lvwAfstemBank.Items.Clear();
+            this.lvwSumBank.Items.Clear();
+            this.sumAfstemBank = 0;
 
 
             foreach (var b in qry_bank)
@@ -111,8 +116,19 @@ namespace nsPuls3060
                 it.SubItems.Add(b.Tekst);
                 it.SubItems.Add(b.Belob.ToString());
             }
-            this.lvwBank.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            this.lvwBank.AutoResizeColumn(0, ColumnHeaderAutoResizeStyle.ColumnContent);
+            this.lvwBank.AutoResizeColumn(1, ColumnHeaderAutoResizeStyle.ColumnContent);
+            this.lvwBank.AutoResizeColumn(2, ColumnHeaderAutoResizeStyle.ColumnContent);
 
+            this.columnHeaderABDato.Width = this.columnHeaderBDato.Width;
+            this.columnHeaderABTekst.Width = this.columnHeaderBTekst.Width;
+            this.columnHeaderABBelob.Width = this.columnHeaderBBelob.Width;
+
+            this.columnHeaderSBDato.Width = this.columnHeaderBDato.Width;
+            this.columnHeaderSBTekst.Width = this.columnHeaderBTekst.Width;
+            this.columnHeaderSBBelob.Width = this.columnHeaderBBelob.Width;
+
+            lvwAfstemBank_Sum();
 
         }
         private void getTrans()
@@ -153,6 +169,10 @@ namespace nsPuls3060
 
             var antal = qry_trans.Count();
             this.lvwTrans.Items.Clear();
+            this.lvwAfstemTrans.Items.Clear();
+            this.lvwSumTrans.Items.Clear();
+            this.sumAfstemTrans = 0;
+
 
             foreach (var t in qry_trans)
             {
@@ -163,7 +183,22 @@ namespace nsPuls3060
                 it.SubItems.Add(t.Tekst);
                 it.SubItems.Add(t.Belob.ToString());
             }
-            this.lvwTrans.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            this.lvwTrans.AutoResizeColumn(0, ColumnHeaderAutoResizeStyle.ColumnContent);
+            this.lvwTrans.AutoResizeColumn(1, ColumnHeaderAutoResizeStyle.HeaderSize);
+            this.lvwTrans.AutoResizeColumn(2, ColumnHeaderAutoResizeStyle.ColumnContent);
+            this.lvwTrans.AutoResizeColumn(3, ColumnHeaderAutoResizeStyle.ColumnContent);
+
+            this.columnHeaderATDato.Width = this.columnHeaderTDato.Width;
+            this.columnHeaderATBilag.Width = this.columnHeaderTBilag.Width;
+            this.columnHeaderATTekst.Width = this.columnHeaderTTekst.Width;
+            this.columnHeaderATBelob.Width = this.columnHeaderTBelob.Width;
+
+            this.columnHeaderSTDato.Width = this.columnHeaderTDato.Width;
+            this.columnHeaderSTBilag.Width = this.columnHeaderTBilag.Width;
+            this.columnHeaderSTTekst.Width = this.columnHeaderTTekst.Width;
+            this.columnHeaderSTBelob.Width = this.columnHeaderTBelob.Width;
+
+            lvwAfstemTrans_Sum();
 
         }
 
@@ -179,10 +214,11 @@ namespace nsPuls3060
             if (e.Data.GetDataPresent(DataFormats.Text))
                 if (e.Data.GetData(DataFormats.Text).ToString() == DragDropKey)
                 {
-                    if (DragDropKey.StartsWith("AB")) 
-                    { 
-                        e.Effect = DragDropEffects.Move; 
-                    } else 
+                    if (DragDropKey.StartsWith("AB"))
+                    {
+                        e.Effect = DragDropEffects.Move;
+                    }
+                    else
                     {
                         e.Effect = DragDropEffects.None;
                     }
@@ -213,7 +249,20 @@ namespace nsPuls3060
             {
                 lvi.Remove();
             }
-            this.lvwBank.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            this.lvwBank.AutoResizeColumn(0, ColumnHeaderAutoResizeStyle.ColumnContent);
+            this.lvwBank.AutoResizeColumn(1, ColumnHeaderAutoResizeStyle.ColumnContent);
+            this.lvwBank.AutoResizeColumn(2, ColumnHeaderAutoResizeStyle.ColumnContent);
+
+            this.columnHeaderABDato.Width = this.columnHeaderBDato.Width;
+            this.columnHeaderABTekst.Width = this.columnHeaderBTekst.Width;
+            this.columnHeaderABBelob.Width = this.columnHeaderBBelob.Width;
+
+            this.columnHeaderSBDato.Width = this.columnHeaderBDato.Width;
+            this.columnHeaderSBTekst.Width = this.columnHeaderBTekst.Width;
+            this.columnHeaderSBBelob.Width = this.columnHeaderBBelob.Width;
+            
+            lvwAfstemBank_Sum();
+
         }
 
         private void lvwTrans_ItemDrag(object sender, ItemDragEventArgs e)
@@ -228,7 +277,7 @@ namespace nsPuls3060
             if (e.Data.GetDataPresent(DataFormats.Text))
                 if (e.Data.GetData(DataFormats.Text).ToString() == DragDropKey)
                 {
-                    if (DragDropKey.StartsWith("A"))
+                    if (DragDropKey.StartsWith("AT"))
                     {
                         e.Effect = DragDropEffects.Move;
                     }
@@ -248,7 +297,7 @@ namespace nsPuls3060
 
         private void lvwTrans_DragDrop(object sender, DragEventArgs e)
         {
-            foreach (ListViewItem lvi in lvwBank.SelectedItems)
+            foreach (ListViewItem lvi in lvwAfstemTrans.SelectedItems)
             {
                 ListViewItem it = lvwTrans.Items.Add(lvi.Name, lvi.Text, 0);
 
@@ -259,11 +308,26 @@ namespace nsPuls3060
 
                 }
             }
-            foreach (ListViewItem lvi in lvwBank.SelectedItems)
+            foreach (ListViewItem lvi in lvwAfstemTrans.SelectedItems)
             {
                 lvi.Remove();
             }
-            this.lvwTrans.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            this.lvwTrans.AutoResizeColumn(0, ColumnHeaderAutoResizeStyle.ColumnContent);
+            this.lvwTrans.AutoResizeColumn(1, ColumnHeaderAutoResizeStyle.HeaderSize);
+            this.lvwTrans.AutoResizeColumn(2, ColumnHeaderAutoResizeStyle.ColumnContent);
+            this.lvwTrans.AutoResizeColumn(3, ColumnHeaderAutoResizeStyle.ColumnContent);
+
+            this.columnHeaderATDato.Width = this.columnHeaderTDato.Width;
+            this.columnHeaderATBilag.Width = this.columnHeaderTBilag.Width;
+            this.columnHeaderATTekst.Width = this.columnHeaderTTekst.Width;
+            this.columnHeaderATBelob.Width = this.columnHeaderTBelob.Width;
+
+            this.columnHeaderSTDato.Width = this.columnHeaderTDato.Width;
+            this.columnHeaderSTBilag.Width = this.columnHeaderTBilag.Width;
+            this.columnHeaderSTTekst.Width = this.columnHeaderTTekst.Width;
+            this.columnHeaderSTBelob.Width = this.columnHeaderTBelob.Width;
+
+            lvwAfstemTrans_Sum();
         }
 
 
@@ -316,8 +380,16 @@ namespace nsPuls3060
                 {
                     lvi.Remove();
                 }
-            } 
-            this.lvwAfstemBank.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            }
+            this.columnHeaderABDato.Width = this.columnHeaderBDato.Width;
+            this.columnHeaderABTekst.Width = this.columnHeaderBTekst.Width;
+            this.columnHeaderABBelob.Width = this.columnHeaderBBelob.Width;
+
+            this.columnHeaderSBDato.Width = this.columnHeaderBDato.Width;
+            this.columnHeaderSBTekst.Width = this.columnHeaderBTekst.Width;
+            this.columnHeaderSBBelob.Width = this.columnHeaderBBelob.Width;
+
+            lvwAfstemBank_Sum();
         }
 
         private void lvwAfstemTrans_ItemDrag(object sender, ItemDragEventArgs e)
@@ -370,14 +442,76 @@ namespace nsPuls3060
                     lvi.Remove();
                 }
             }
-            this.lvwAfstemTrans.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            this.columnHeaderATDato.Width = this.columnHeaderTDato.Width;
+            this.columnHeaderATBilag.Width = this.columnHeaderTBilag.Width;
+            this.columnHeaderATTekst.Width = this.columnHeaderTTekst.Width;
+            this.columnHeaderATBelob.Width = this.columnHeaderTBelob.Width;
+            
+            this.columnHeaderSTDato.Width = this.columnHeaderTDato.Width;
+            this.columnHeaderSTBilag.Width = this.columnHeaderTBilag.Width;
+            this.columnHeaderSTTekst.Width = this.columnHeaderTTekst.Width;
+            this.columnHeaderSTBelob.Width = this.columnHeaderTBelob.Width;
+            
+            lvwAfstemTrans_Sum();
+        }
+
+        private decimal lvwAfstemBank_Sum()
+        {
+            sumAfstemBank = 0;
+            decimal belob = 0;
+            foreach (ListViewItem lvi in lvwAfstemBank.Items)
+            {
+                string SubTekst = lvi.SubItems[2].Text;
+                try
+                {
+                    belob = decimal.Parse(SubTekst);
+                }
+                catch
+                {
+
+                    belob = 0;
+                }
+                sumAfstemBank += belob;
+            }
+            this.lvwSumBank.Items.Clear();
+            ListViewItem it = lvwSumBank.Items.Add("1", "", 0);
+            //it.Tag = t;
+            it.SubItems.Add("");
+            it.SubItems.Add(sumAfstemBank.ToString());
+            return sumAfstemBank;
+        }
+
+        private decimal lvwAfstemTrans_Sum()
+        {
+            sumAfstemTrans = 0;
+            decimal belob = 0;
+            foreach (ListViewItem lvi in lvwAfstemTrans.Items)
+            {
+                string SubTekst = lvi.SubItems[3].Text;
+                try
+                {
+                    belob = decimal.Parse(SubTekst);
+                }
+                catch
+                {
+
+                    belob = 0;
+                }
+                sumAfstemTrans += belob;
+            }
+            this.lvwSumTrans.Items.Clear();
+            ListViewItem it = lvwSumTrans.Items.Add("1", "", 0);
+            //it.Tag = t;
+            it.SubItems.Add("");
+            it.SubItems.Add("");
+            it.SubItems.Add(sumAfstemTrans.ToString());
+            return sumAfstemTrans;
         }
 
         private void cmdCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
     }
 
     public class clsqry_bank

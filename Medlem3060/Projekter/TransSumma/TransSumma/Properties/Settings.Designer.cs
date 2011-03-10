@@ -311,5 +311,29 @@ namespace nsPuls3060.Properties {
                 this["frmPbsnetdirPoint"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("274")]
+        public int BankafstemningSplitterDistancr {
+            get {
+                return ((int)(this["BankafstemningSplitterDistancr"]));
+            }
+            set {
+                this["BankafstemningSplitterDistancr"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("660, 496")]
+        public global::System.Drawing.Size BankafstemningSize {
+            get {
+                return ((global::System.Drawing.Size)(this["BankafstemningSize"]));
+            }
+            set {
+                this["BankafstemningSize"] = value;
+            }
+        }
     }
 }
