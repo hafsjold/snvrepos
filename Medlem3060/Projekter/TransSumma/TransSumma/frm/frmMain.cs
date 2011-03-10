@@ -122,7 +122,7 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
-            string strLike = "%ATP%";
+/*            string strLike = "%ATP%";
             string tekst;
             var query = from c in Program.dbDataTransSumma.Tbltrans
                         where SqlMethods.Like(c.Tekst, strLike)
@@ -132,7 +132,7 @@ namespace nsPuls3060
             {
                 tekst = c.Tekst;
             }
-
+*/
  
             KarBankafstemning recBankafstemning = new KarBankafstemning();
             recBankafstemning.load();
@@ -283,13 +283,13 @@ namespace nsPuls3060
             }
         }
 
-        private void emailRykkerToolStripMenuItem_Click(object sender, EventArgs e)
+        private void BankafstemningToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!FocusChild("Rykker Forslag"))
+            if (!FocusChild("Bankafstemning"))
             {
-                FrmRykkerForslag m_frmRykkerForslag = new FrmRykkerForslag();
-                m_frmRykkerForslag.MdiParent = this;
-                m_frmRykkerForslag.Show();
+                FrmBankafstemning m_frmBankafstemning = new FrmBankafstemning();
+                m_frmBankafstemning.MdiParent = this;
+                m_frmBankafstemning.Show();
             }
         }
 

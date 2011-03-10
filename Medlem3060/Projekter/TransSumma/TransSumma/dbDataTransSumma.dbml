@@ -1,13 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="dbDataTransSumma" Class="DbDataTransSumma" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="tblafstem" Member="Tblafstem">
+    <Type Name="Tblafstem">
+      <Column Name="pid" Member="Pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="udskriv" Member="Udskriv" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Tblafstem_Tblbankkonto" Member="Tblbankkonto" ThisKey="Pid" OtherKey="Afstem" Type="Tblbankkonto" />
+      <Association Name="Tblafstem_Tbltrans" Member="Tbltrans" ThisKey="Pid" OtherKey="Afstem" Type="Tbltrans" />
+    </Type>
+  </Table>
   <Table Name="tblbankafsteminit" Member="Tblbankafsteminit">
     <Type Name="Tblbankafsteminit">
       <Column Name="bid" Member="Bid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="rid" Member="Rid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="tid" Member="Tid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="tnr" Member="Tnr" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Association Name="Tblbankafsteminit_Tblkladder" Member="Tblkladder" ThisKey="Bid" OtherKey="Bilagpid" Type="Tblkladder" />
-      <Association Name="Tblbankafsteminit_Tbltrans" Member="Tbltrans" ThisKey="Bid" OtherKey="Bilagpid" Type="Tbltrans" />
     </Type>
   </Table>
   <Table Name="tblbankkonto" Member="Tblbankkonto">
@@ -18,7 +24,8 @@
       <Column Name="dato" Member="Dato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="tekst" Member="Tekst" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="belob" Member="Belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Association Name="Tblbankkonto_Tbltrans" Member="Tbltrans" ThisKey="Pid" OtherKey="Afstem" Type="Tbltrans" />
+      <Column Name="afstem" Member="Afstem" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Tblafstem_Tblbankkonto" Member="Tblafstem" ThisKey="Afstem" OtherKey="Pid" Type="Tblafstem" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="tblbilag" Member="Tblbilag">
@@ -44,7 +51,6 @@
       <Column Name="momskode" Member="Momskode" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
       <Column Name="faktura" Member="Faktura" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="id" Member="Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Tblbankafsteminit_Tblkladder" Member="Tblbankafsteminit" ThisKey="Bilagpid" OtherKey="Bid" Type="Tblbankafsteminit" IsForeignKey="true" />
       <Association Name="Tblbilag_Tblkladder" Member="Tblbilag" ThisKey="Bilagpid" OtherKey="Pid" Type="Tblbilag" IsForeignKey="true" />
     </Type>
   </Table>
@@ -93,8 +99,7 @@
       <Column Name="nr" Member="Nr" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="belob" Member="Belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="afstem" Member="Afstem" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Tblbankkonto_Tbltrans" Member="Tblbankkonto" ThisKey="Afstem" OtherKey="Pid" Type="Tblbankkonto" IsForeignKey="true" />
-      <Association Name="Tblbankafsteminit_Tbltrans" Member="Tblbankafsteminit" ThisKey="Bilagpid" OtherKey="Bid" Type="Tblbankafsteminit" IsForeignKey="true" />
+      <Association Name="Tblafstem_Tbltrans" Member="Tblafstem" ThisKey="Afstem" OtherKey="Pid" Type="Tblafstem" IsForeignKey="true" />
       <Association Name="Tblbilag_Tbltrans" Member="Tblbilag" ThisKey="Bilagpid" OtherKey="Pid" Type="Tblbilag" IsForeignKey="true" />
     </Type>
   </Table>

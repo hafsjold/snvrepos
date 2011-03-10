@@ -284,8 +284,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm\frmRykkerForslag.resx">
-      <DependentUpon>frmRykkerForslag.cs</DependentUpon>
+    <EmbeddedResource Include="frm\frmBankafstemning.resx">
+      <DependentUpon>frmBankafstemning.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="rptKonto.rdlc" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -313,11 +313,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="frm\frmRykkerForslag.cs">
+    <Compile Include="frm\frmBankafstemning.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frm\frmRykkerForslag.Designer.cs">
-      <DependentUpon>frmRykkerForslag.cs</DependentUpon>
+    <Compile Include="frm\frmBankafstemning.Designer.cs">
+      <DependentUpon>frmBankafstemning.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
