@@ -44,7 +44,7 @@
             this.medlemmerTilRegnearkEksternToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.regnearkNotPBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BankafstemningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.syncMedlemmerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nyeKladderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.SendModtagPBSfilertoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -168,7 +168,7 @@
             this.medlemmerTilRegnearkEksternToolStripMenuItem,
             this.regnearkNotPBSToolStripMenuItem,
             this.BankafstemningToolStripMenuItem,
-            this.syncMedlemmerToolStripMenuItem});
+            this.nyeKladderToolStripMenuItem});
             this.medlemToolStripMenuItem.Name = "medlemToolStripMenuItem";
             this.medlemToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.medlemToolStripMenuItem.Text = "Medlem";
@@ -208,12 +208,12 @@
             this.BankafstemningToolStripMenuItem.Text = "Bankafstemning";
             this.BankafstemningToolStripMenuItem.Click += new System.EventHandler(this.BankafstemningToolStripMenuItem_Click);
             // 
-            // syncMedlemmerToolStripMenuItem
+            // nyeKladderToolStripMenuItem
             // 
-            this.syncMedlemmerToolStripMenuItem.Name = "syncMedlemmerToolStripMenuItem";
-            this.syncMedlemmerToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.syncMedlemmerToolStripMenuItem.Text = "Sync Medlemmer";
-            this.syncMedlemmerToolStripMenuItem.Click += new System.EventHandler(this.syncMedlemmerToolStripMenuItem_Click);
+            this.nyeKladderToolStripMenuItem.Name = "nyeKladderToolStripMenuItem";
+            this.nyeKladderToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.nyeKladderToolStripMenuItem.Text = "Nye Kladder";
+            this.nyeKladderToolStripMenuItem.Click += new System.EventHandler(this.nyeKladderToolStripMenuItem_Click);
             // 
             // pBSToolStripMenuItem
             // 
@@ -422,8 +422,8 @@
         private System.Windows.Forms.ToolStripMenuItem regnearkNotPBSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SendModtagPBSfilertoolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem data2AppEngToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem syncMedlemmerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importerTransaktionerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nyeKladderToolStripMenuItem;
     }
 }
 

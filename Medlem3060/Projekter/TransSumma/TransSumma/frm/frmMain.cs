@@ -134,8 +134,10 @@ namespace nsPuls3060
             }
 */
  
-            KarBankafstemning recBankafstemning = new KarBankafstemning();
-            recBankafstemning.load();
+            //KarBankafstemning recBankafstemning = new KarBankafstemning();
+            //recBankafstemning.load();
+            KarBankkontoudtog recBankkontoudtog = new KarBankkontoudtog();
+            recBankkontoudtog.load();
 
 #endif
         }
@@ -521,6 +523,16 @@ namespace nsPuls3060
                 FrmUdskrivbilag m_frmUdskrivbilag = new FrmUdskrivbilag();
                 m_frmUdskrivbilag.MdiParent = this;
                 m_frmUdskrivbilag.Show();
+            }
+        }
+
+        private void nyeKladderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("Nye Kladder"))
+            {
+                FrmNyekladder m_frmNyekladder = new FrmNyekladder();
+                m_frmNyekladder.MdiParent = this;
+                m_frmNyekladder.Show();
             }
         }
 

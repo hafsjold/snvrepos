@@ -133,6 +133,12 @@
       <DependentUpon>dsMedlem.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="frm\frmNyekladder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmNyekladder.Designer.cs">
+      <DependentUpon>frmNyekladder.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm\frmUdskrivbilag.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,6 +183,7 @@
     </Compile>
     <Compile Include="cls\clsCsv.cs" />
     <Compile Include="cls\clsMedlem.cs" />
+    <Compile Include="kar\karBankkontoudtog.cs" />
     <Compile Include="kar\karBankafstemning.cs" />
     <Compile Include="kar\karKladder.cs" />
     <Compile Include="kar\karFakturastr_k.cs" />
@@ -245,6 +252,9 @@
     <None Include="dbDataTransSumma.dbml.layout">
       <DependentUpon>dbDataTransSumma.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="frm\frmNyekladder.resx">
+      <DependentUpon>frmNyekladder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm\frmUdskrivbilag.resx">
       <DependentUpon>frmUdskrivbilag.cs</DependentUpon>
     </EmbeddedResource>
@@ -335,6 +345,7 @@
     <None Include="Properties\DataSources\MemPbsnetdir.datasource" />
     <None Include="Properties\DataSources\MemRegnskab.datasource" />
     <None Include="Properties\DataSources\Tblbankkonto.datasource" />
+    <None Include="Properties\DataSources\Tblwbilag.datasource" />
     <None Include="Resources\Add.bmp" />
     <Content Include="Resources\info.png" />
     <Content Include="Resources\logopart.jpg" />

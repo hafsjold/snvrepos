@@ -247,14 +247,33 @@ namespace nsPuls3060
 
         public static int nextval(string nrserienavn)
         {
-            clsRest objRest = new clsRest();
-            string strNextnr = objRest.HttpGet2(clsRest.urlBaseType.sync, "NrSerie/" + nrserienavn);
             try
             {
-                return int.Parse(strNextnr);
+                var rst = (from c in Program.dbDataTransSumma.Tblnrserie
+                           where c.Nrserienavn == nrserienavn
+                           select c).First();
+
+                if (rst.Sidstbrugtenr != null)
+                {
+                    rst.Sidstbrugtenr += 1;
+                    return rst.Sidstbrugtenr.Value;
+                }
+                else
+                {
+                    rst.Sidstbrugtenr = 0;
+                    return rst.Sidstbrugtenr.Value;
+                }
             }
             catch (System.InvalidOperationException)
             {
+                Tblnrserie rec_nrserie = new Tblnrserie
+                {
+                    Nrserienavn = nrserienavn,
+                    Sidstbrugtenr = 0
+                };
+                Program.dbDataTransSumma.Tblnrserie.InsertOnSubmit(rec_nrserie);
+                Program.dbDataTransSumma.SubmitChanges();
+
                 return 0;
             }
         }

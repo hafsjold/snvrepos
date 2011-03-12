@@ -76,7 +76,7 @@ namespace nsPuls3060
             if (this.RykketTidligere.Checked)
             {
                 qry_bank = from b in Program.dbDataTransSumma.Tblbankkonto
-                           where b.Afstem > 0
+                           where b.Afstem > 0 && (b.Skjul == null || b.Skjul == false)
                            orderby b.Dato
                            select new clsqry_bank
                            {
@@ -90,7 +90,7 @@ namespace nsPuls3060
             {
 
                 qry_bank = from b in Program.dbDataTransSumma.Tblbankkonto
-                           where b.Afstem == null
+                           where b.Afstem == null && (b.Skjul == null || b.Skjul == false)
                            orderby b.Dato
                            select new clsqry_bank
                            {
@@ -260,7 +260,7 @@ namespace nsPuls3060
             this.columnHeaderSBDato.Width = this.columnHeaderBDato.Width;
             this.columnHeaderSBTekst.Width = this.columnHeaderBTekst.Width;
             this.columnHeaderSBBelob.Width = this.columnHeaderBBelob.Width;
-            
+
             lvwAfstemBank_Sum();
 
         }
@@ -446,12 +446,12 @@ namespace nsPuls3060
             this.columnHeaderATBilag.Width = this.columnHeaderTBilag.Width;
             this.columnHeaderATTekst.Width = this.columnHeaderTTekst.Width;
             this.columnHeaderATBelob.Width = this.columnHeaderTBelob.Width;
-            
+
             this.columnHeaderSTDato.Width = this.columnHeaderTDato.Width;
             this.columnHeaderSTBilag.Width = this.columnHeaderTBilag.Width;
             this.columnHeaderSTTekst.Width = this.columnHeaderTTekst.Width;
             this.columnHeaderSTBelob.Width = this.columnHeaderTBelob.Width;
-            
+
             lvwAfstemTrans_Sum();
         }
 
@@ -478,6 +478,7 @@ namespace nsPuls3060
             //it.Tag = t;
             it.SubItems.Add("");
             it.SubItems.Add(sumAfstemBank.ToString());
+            cmdAfstemt_Enable();
             return sumAfstemBank;
         }
 
@@ -505,12 +506,61 @@ namespace nsPuls3060
             it.SubItems.Add("");
             it.SubItems.Add("");
             it.SubItems.Add(sumAfstemTrans.ToString());
+            cmdAfstemt_Enable();
             return sumAfstemTrans;
+        }
+
+        private void cmdAfstemt_Enable()
+        {
+            decimal delta = sumAfstemBank - sumAfstemTrans;
+            if (delta == 0)
+            {
+                cmdAfstemt.Enabled = true;
+            }
+            else
+            {
+                cmdAfstemt.Enabled = false;
+            }
         }
 
         private void cmdCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void cmdAfstemt_Click(object sender, EventArgs e)
+        {
+            int count = 0;
+            Tblafstem recAfstem = new Tblafstem
+            {
+                Udskriv = true
+            };
+
+            foreach (ListViewItem lvi in lvwAfstemBank.Items)
+            {
+                string keyval = lvi.Name;
+                int pid = int.Parse(keyval);
+                Tblbankkonto recBankkonto = (from b in Program.dbDataTransSumma.Tblbankkonto where b.Pid == pid select b).First();
+                recAfstem.Tblbankkonto.Add(recBankkonto);
+                count++;
+            }
+            foreach (ListViewItem lvi in lvwAfstemTrans.Items)
+            {
+                string keyval = lvi.Name;
+                int pid = int.Parse(keyval);
+                Tbltrans recTrans = (from b in Program.dbDataTransSumma.Tbltrans where b.Pid == pid select b).First();
+                recAfstem.Tbltrans.Add(recTrans);
+                count++;
+            }
+            if (count > 0)
+            {
+                Program.dbDataTransSumma.Tblafstem.InsertOnSubmit(recAfstem);
+                Program.dbDataTransSumma.SubmitChanges();
+                this.lvwAfstemBank.Items.Clear();
+                this.lvwAfstemTrans.Items.Clear();
+                this.lvwSumBank.Items.Clear();
+                this.lvwSumTrans.Items.Clear();
+            }
         }
     }
 

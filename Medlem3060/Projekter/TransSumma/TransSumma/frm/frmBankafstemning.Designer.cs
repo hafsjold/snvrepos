@@ -39,8 +39,10 @@
             this.columnHeaderABDato = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderABTekst = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderABBelob = new System.Windows.Forms.ColumnHeader();
-            this.RykketTidligere = new System.Windows.Forms.CheckBox();
-            this.cmdForslag = new System.Windows.Forms.Button();
+            this.lvwSumBank = new System.Windows.Forms.ListView();
+            this.columnHeaderSBDato = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderSBTekst = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderSBBelob = new System.Windows.Forms.ColumnHeader();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.lvwTrans = new System.Windows.Forms.ListView();
             this.columnHeaderTDato = new System.Windows.Forms.ColumnHeader();
@@ -58,10 +60,9 @@
             this.columnHeaderSTBilag = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderSTTekst = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderSTBelob = new System.Windows.Forms.ColumnHeader();
-            this.lvwSumBank = new System.Windows.Forms.ListView();
-            this.columnHeaderSBDato = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderSBTekst = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderSBBelob = new System.Windows.Forms.ColumnHeader();
+            this.RykketTidligere = new System.Windows.Forms.CheckBox();
+            this.cmdAfstemt = new System.Windows.Forms.Button();
+            this.cmdForslag = new System.Windows.Forms.Button();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -205,25 +206,37 @@
             this.columnHeaderABBelob.Text = "Beløb";
             this.columnHeaderABBelob.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // RykketTidligere
+            // lvwSumBank
             // 
-            this.RykketTidligere.AutoSize = true;
-            this.RykketTidligere.Location = new System.Drawing.Point(34, 71);
-            this.RykketTidligere.Name = "RykketTidligere";
-            this.RykketTidligere.Size = new System.Drawing.Size(99, 17);
-            this.RykketTidligere.TabIndex = 8;
-            this.RykketTidligere.Text = "Rykket tidligere";
-            this.RykketTidligere.UseVisualStyleBackColor = true;
+            this.lvwSumBank.AllowDrop = true;
+            this.lvwSumBank.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderSBDato,
+            this.columnHeaderSBTekst,
+            this.columnHeaderSBBelob});
+            this.lvwSumBank.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lvwSumBank.GridLines = true;
+            this.lvwSumBank.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvwSumBank.Location = new System.Drawing.Point(0, 0);
+            this.lvwSumBank.Name = "lvwSumBank";
+            this.lvwSumBank.Size = new System.Drawing.Size(344, 17);
+            this.lvwSumBank.TabIndex = 9;
+            this.lvwSumBank.UseCompatibleStateImageBehavior = false;
+            this.lvwSumBank.View = System.Windows.Forms.View.Details;
             // 
-            // cmdForslag
+            // columnHeaderSBDato
             // 
-            this.cmdForslag.Location = new System.Drawing.Point(306, 71);
-            this.cmdForslag.Name = "cmdForslag";
-            this.cmdForslag.Size = new System.Drawing.Size(61, 25);
-            this.cmdForslag.TabIndex = 3;
-            this.cmdForslag.Text = "Forslag";
-            this.cmdForslag.UseVisualStyleBackColor = true;
-            this.cmdForslag.Click += new System.EventHandler(this.cmdForslag_Click);
+            this.columnHeaderSBDato.Text = "";
+            // 
+            // columnHeaderSBTekst
+            // 
+            this.columnHeaderSBTekst.Text = "";
+            this.columnHeaderSBTekst.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeaderSBTekst.Width = 192;
+            // 
+            // columnHeaderSBBelob
+            // 
+            this.columnHeaderSBBelob.Text = "";
+            this.columnHeaderSBBelob.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // splitContainer3
             // 
@@ -300,6 +313,7 @@
             // 
             this.splitContainer5.Panel2.Controls.Add(this.lvwSumTrans);
             this.splitContainer5.Panel2.Controls.Add(this.RykketTidligere);
+            this.splitContainer5.Panel2.Controls.Add(this.cmdAfstemt);
             this.splitContainer5.Panel2.Controls.Add(this.cmdForslag);
             this.splitContainer5.Size = new System.Drawing.Size(481, 277);
             this.splitContainer5.SplitterDistance = 135;
@@ -383,37 +397,36 @@
             this.columnHeaderSTBelob.Text = "";
             this.columnHeaderSTBelob.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // lvwSumBank
+            // RykketTidligere
             // 
-            this.lvwSumBank.AllowDrop = true;
-            this.lvwSumBank.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeaderSBDato,
-            this.columnHeaderSBTekst,
-            this.columnHeaderSBBelob});
-            this.lvwSumBank.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lvwSumBank.GridLines = true;
-            this.lvwSumBank.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvwSumBank.Location = new System.Drawing.Point(0, 0);
-            this.lvwSumBank.Name = "lvwSumBank";
-            this.lvwSumBank.Size = new System.Drawing.Size(344, 17);
-            this.lvwSumBank.TabIndex = 9;
-            this.lvwSumBank.UseCompatibleStateImageBehavior = false;
-            this.lvwSumBank.View = System.Windows.Forms.View.Details;
+            this.RykketTidligere.AutoSize = true;
+            this.RykketTidligere.Location = new System.Drawing.Point(34, 71);
+            this.RykketTidligere.Name = "RykketTidligere";
+            this.RykketTidligere.Size = new System.Drawing.Size(99, 17);
+            this.RykketTidligere.TabIndex = 8;
+            this.RykketTidligere.Text = "Rykket tidligere";
+            this.RykketTidligere.UseVisualStyleBackColor = true;
             // 
-            // columnHeaderSBDato
+            // cmdAfstemt
             // 
-            this.columnHeaderSBDato.Text = "";
+            this.cmdAfstemt.Enabled = false;
+            this.cmdAfstemt.Location = new System.Drawing.Point(306, 23);
+            this.cmdAfstemt.Name = "cmdAfstemt";
+            this.cmdAfstemt.Size = new System.Drawing.Size(61, 25);
+            this.cmdAfstemt.TabIndex = 3;
+            this.cmdAfstemt.Text = "Afstemt";
+            this.cmdAfstemt.UseVisualStyleBackColor = true;
+            this.cmdAfstemt.Click += new System.EventHandler(this.cmdAfstemt_Click);
             // 
-            // columnHeaderSBTekst
+            // cmdForslag
             // 
-            this.columnHeaderSBTekst.Text = "";
-            this.columnHeaderSBTekst.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.columnHeaderSBTekst.Width = 192;
-            // 
-            // columnHeaderSBBelob
-            // 
-            this.columnHeaderSBBelob.Text = "";
-            this.columnHeaderSBBelob.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.cmdForslag.Location = new System.Drawing.Point(139, 71);
+            this.cmdForslag.Name = "cmdForslag";
+            this.cmdForslag.Size = new System.Drawing.Size(61, 25);
+            this.cmdForslag.TabIndex = 3;
+            this.cmdForslag.Text = "Hent";
+            this.cmdForslag.UseVisualStyleBackColor = true;
+            this.cmdForslag.Click += new System.EventHandler(this.cmdForslag_Click);
             // 
             // FrmBankafstemning
             // 
@@ -483,5 +496,6 @@
         private System.Windows.Forms.ColumnHeader columnHeaderSBDato;
         private System.Windows.Forms.ColumnHeader columnHeaderSBTekst;
         private System.Windows.Forms.ColumnHeader columnHeaderSBBelob;
+        private System.Windows.Forms.Button cmdAfstemt;
     }
 }
