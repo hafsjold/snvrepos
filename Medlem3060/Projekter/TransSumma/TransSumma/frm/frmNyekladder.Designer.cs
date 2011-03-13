@@ -47,26 +47,8 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tblwbilagBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.openToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.saveToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.printToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.cutToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.copyToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.pasteToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.helpToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.tblwkladderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tblwkladderDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -75,6 +57,17 @@
             this.datoDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.karKontoplanBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.karAfstemningskontiBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.PiddataGridViewTextBox = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BilagpiddataGridViewTextBox = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TekstdataGridViewTextBox = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AfstemdataGridViewTextBox = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.BelobdataGridViewTextBox = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KontodataGridViewTextBox = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.MKdataGridViewComboBox = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.FaknrdataGridViewTextBox = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             bilagLabel = new System.Windows.Forms.Label();
             datoLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tblwbilagBindingSource)).BeginInit();
@@ -89,12 +82,14 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.karKontoplanBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.karAfstemningskontiBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // bilagLabel
             // 
             bilagLabel.AutoSize = true;
-            bilagLabel.Location = new System.Drawing.Point(217, 11);
+            bilagLabel.Location = new System.Drawing.Point(162, 11);
             bilagLabel.Name = "bilagLabel";
             bilagLabel.Size = new System.Drawing.Size(33, 13);
             bilagLabel.TabIndex = 3;
@@ -133,16 +128,7 @@
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
             this.tblwbilagBindingNavigatorSaveItem,
-            this.newToolStripButton,
-            this.openToolStripButton,
-            this.saveToolStripButton,
-            this.printToolStripButton,
-            this.toolStripSeparator,
-            this.cutToolStripButton,
-            this.copyToolStripButton,
-            this.pasteToolStripButton,
-            this.toolStripSeparator1,
-            this.helpToolStripButton});
+            this.newToolStripButton});
             this.tblwbilagBindingNavigator.Location = new System.Drawing.Point(0, 0);
             this.tblwbilagBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.tblwbilagBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -150,7 +136,7 @@
             this.tblwbilagBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.tblwbilagBindingNavigator.Name = "tblwbilagBindingNavigator";
             this.tblwbilagBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.tblwbilagBindingNavigator.Size = new System.Drawing.Size(530, 25);
+            this.tblwbilagBindingNavigator.Size = new System.Drawing.Size(521, 25);
             this.tblwbilagBindingNavigator.TabIndex = 0;
             this.tblwbilagBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -256,79 +242,7 @@
             this.newToolStripButton.Name = "newToolStripButton";
             this.newToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.newToolStripButton.Text = "&New";
-            // 
-            // openToolStripButton
-            // 
-            this.openToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.openToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripButton.Image")));
-            this.openToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.openToolStripButton.Name = "openToolStripButton";
-            this.openToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.openToolStripButton.Text = "&Open";
-            // 
-            // saveToolStripButton
-            // 
-            this.saveToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.saveToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripButton.Image")));
-            this.saveToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.saveToolStripButton.Name = "saveToolStripButton";
-            this.saveToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.saveToolStripButton.Text = "&Save";
-            // 
-            // printToolStripButton
-            // 
-            this.printToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.printToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("printToolStripButton.Image")));
-            this.printToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.printToolStripButton.Name = "printToolStripButton";
-            this.printToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.printToolStripButton.Text = "&Print";
-            // 
-            // toolStripSeparator
-            // 
-            this.toolStripSeparator.Name = "toolStripSeparator";
-            this.toolStripSeparator.Size = new System.Drawing.Size(6, 25);
-            // 
-            // cutToolStripButton
-            // 
-            this.cutToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.cutToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("cutToolStripButton.Image")));
-            this.cutToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cutToolStripButton.Name = "cutToolStripButton";
-            this.cutToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.cutToolStripButton.Text = "C&ut";
-            // 
-            // copyToolStripButton
-            // 
-            this.copyToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.copyToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("copyToolStripButton.Image")));
-            this.copyToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.copyToolStripButton.Name = "copyToolStripButton";
-            this.copyToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.copyToolStripButton.Text = "&Copy";
-            // 
-            // pasteToolStripButton
-            // 
-            this.pasteToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.pasteToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("pasteToolStripButton.Image")));
-            this.pasteToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.pasteToolStripButton.Name = "pasteToolStripButton";
-            this.pasteToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.pasteToolStripButton.Text = "&Paste";
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // helpToolStripButton
-            // 
-            this.helpToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.helpToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("helpToolStripButton.Image")));
-            this.helpToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.helpToolStripButton.Name = "helpToolStripButton";
-            this.helpToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.helpToolStripButton.Text = "He&lp";
+            this.newToolStripButton.Click += new System.EventHandler(this.newToolStripButton_Click);
             // 
             // tblwkladderBindingSource
             // 
@@ -341,86 +255,26 @@
             this.tblwkladderDataGridView.AutoGenerateColumns = false;
             this.tblwkladderDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblwkladderDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn10,
-            this.dataGridViewTextBoxColumn11,
+            this.PiddataGridViewTextBox,
+            this.BilagpiddataGridViewTextBox,
+            this.TekstdataGridViewTextBox,
+            this.AfstemdataGridViewTextBox,
+            this.BelobdataGridViewTextBox,
+            this.KontodataGridViewTextBox,
+            this.MKdataGridViewComboBox,
+            this.FaknrdataGridViewTextBox,
             this.dataGridViewTextBoxColumn12});
             this.tblwkladderDataGridView.ContextMenuStrip = this.contextMenuStrip1;
             this.tblwkladderDataGridView.DataSource = this.tblwkladderBindingSource;
             this.tblwkladderDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblwkladderDataGridView.Location = new System.Drawing.Point(0, 0);
             this.tblwkladderDataGridView.Name = "tblwkladderDataGridView";
-            this.tblwkladderDataGridView.Size = new System.Drawing.Size(530, 174);
+            this.tblwkladderDataGridView.Size = new System.Drawing.Size(521, 174);
             this.tblwkladderDataGridView.TabIndex = 2;
+            this.tblwkladderDataGridView.CellErrorTextNeeded += new System.Windows.Forms.DataGridViewCellErrorTextNeededEventHandler(this.tblwkladderDataGridView_CellErrorTextNeeded);
+            this.tblwkladderDataGridView.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.tblwkladderDataGridView_EditingControlShowing);
+            this.tblwkladderDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.tblwkladderDataGridView_DataError);
             this.tblwkladderDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tblwkladderDataGridView_KeyDown);
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Pid";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Pid";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Bilagpid";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Bilagpid";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "Tekst";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Tekst";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "Afstemningskonto";
-            this.dataGridViewTextBoxColumn7.HeaderText = "Afstem";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn8
-            // 
-            this.dataGridViewTextBoxColumn8.DataPropertyName = "Belob";
-            this.dataGridViewTextBoxColumn8.HeaderText = "Beløb";
-            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.DataPropertyName = "Konto";
-            this.dataGridViewTextBoxColumn9.HeaderText = "Konto";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            this.dataGridViewTextBoxColumn10.DataPropertyName = "Momskode";
-            this.dataGridViewTextBoxColumn10.HeaderText = "MK";
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            this.dataGridViewTextBoxColumn10.Width = 40;
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            this.dataGridViewTextBoxColumn11.DataPropertyName = "Faktura";
-            this.dataGridViewTextBoxColumn11.HeaderText = "Faknr";
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            this.dataGridViewTextBoxColumn11.Width = 40;
-            // 
-            // dataGridViewTextBoxColumn12
-            // 
-            this.dataGridViewTextBoxColumn12.DataPropertyName = "Tblwbilag";
-            this.dataGridViewTextBoxColumn12.HeaderText = "Tblwbilag";
-            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-            this.dataGridViewTextBoxColumn12.Visible = false;
             // 
             // contextMenuStrip1
             // 
@@ -455,7 +309,7 @@
             // bilagTextBox
             // 
             this.bilagTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tblwbilagBindingSource, "Bilag", true));
-            this.bilagTextBox.Location = new System.Drawing.Point(256, 8);
+            this.bilagTextBox.Location = new System.Drawing.Point(201, 8);
             this.bilagTextBox.Name = "bilagTextBox";
             this.bilagTextBox.Size = new System.Drawing.Size(51, 20);
             this.bilagTextBox.TabIndex = 4;
@@ -463,9 +317,10 @@
             // datoDateTimePicker
             // 
             this.datoDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.tblwbilagBindingSource, "Dato", true));
+            this.datoDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.datoDateTimePicker.Location = new System.Drawing.Point(63, 7);
             this.datoDateTimePicker.Name = "datoDateTimePicker";
-            this.datoDateTimePicker.Size = new System.Drawing.Size(137, 20);
+            this.datoDateTimePicker.Size = new System.Drawing.Size(87, 20);
             this.datoDateTimePicker.TabIndex = 6;
             // 
             // splitContainer1
@@ -485,7 +340,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(530, 259);
+            this.splitContainer1.Size = new System.Drawing.Size(521, 259);
             this.splitContainer1.SplitterDistance = 52;
             this.splitContainer1.TabIndex = 7;
             // 
@@ -503,15 +358,112 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tblwbilagBindingNavigator);
-            this.splitContainer2.Size = new System.Drawing.Size(530, 203);
+            this.splitContainer2.Size = new System.Drawing.Size(521, 203);
             this.splitContainer2.SplitterDistance = 174;
             this.splitContainer2.TabIndex = 0;
+            // 
+            // karKontoplanBindingSource
+            // 
+            this.karKontoplanBindingSource.DataSource = typeof(nsPuls3060.KarKontoplan);
+            // 
+            // karAfstemningskontiBindingSource
+            // 
+            this.karAfstemningskontiBindingSource.DataSource = typeof(nsPuls3060.KarAfstemningskonti);
+            // 
+            // PiddataGridViewTextBox
+            // 
+            this.PiddataGridViewTextBox.DataPropertyName = "Pid";
+            this.PiddataGridViewTextBox.HeaderText = "Pid";
+            this.PiddataGridViewTextBox.Name = "PiddataGridViewTextBox";
+            this.PiddataGridViewTextBox.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.PiddataGridViewTextBox.Visible = false;
+            // 
+            // BilagpiddataGridViewTextBox
+            // 
+            this.BilagpiddataGridViewTextBox.DataPropertyName = "Bilagpid";
+            this.BilagpiddataGridViewTextBox.HeaderText = "Bilagpid";
+            this.BilagpiddataGridViewTextBox.Name = "BilagpiddataGridViewTextBox";
+            this.BilagpiddataGridViewTextBox.Visible = false;
+            // 
+            // TekstdataGridViewTextBox
+            // 
+            this.TekstdataGridViewTextBox.DataPropertyName = "Tekst";
+            this.TekstdataGridViewTextBox.HeaderText = "Tekst";
+            this.TekstdataGridViewTextBox.Name = "TekstdataGridViewTextBox";
+            this.TekstdataGridViewTextBox.Width = 200;
+            // 
+            // AfstemdataGridViewTextBox
+            // 
+            this.AfstemdataGridViewTextBox.DataPropertyName = "Afstemningskonto";
+            this.AfstemdataGridViewTextBox.DataSource = this.karAfstemningskontiBindingSource;
+            this.AfstemdataGridViewTextBox.DisplayMember = "Kontonavn";
+            this.AfstemdataGridViewTextBox.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.AfstemdataGridViewTextBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.AfstemdataGridViewTextBox.HeaderText = "Afstem";
+            this.AfstemdataGridViewTextBox.Name = "AfstemdataGridViewTextBox";
+            this.AfstemdataGridViewTextBox.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.AfstemdataGridViewTextBox.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.AfstemdataGridViewTextBox.ValueMember = "Kontonavn";
+            this.AfstemdataGridViewTextBox.Width = 60;
+            // 
+            // BelobdataGridViewTextBox
+            // 
+            this.BelobdataGridViewTextBox.DataPropertyName = "Belob";
+            this.BelobdataGridViewTextBox.HeaderText = "Beløb";
+            this.BelobdataGridViewTextBox.Name = "BelobdataGridViewTextBox";
+            this.BelobdataGridViewTextBox.Width = 60;
+            // 
+            // KontodataGridViewTextBox
+            // 
+            this.KontodataGridViewTextBox.DataPropertyName = "Konto";
+            this.KontodataGridViewTextBox.DataSource = this.karKontoplanBindingSource;
+            this.KontodataGridViewTextBox.DisplayMember = "Kontonr";
+            this.KontodataGridViewTextBox.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.KontodataGridViewTextBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.KontodataGridViewTextBox.HeaderText = "Konto";
+            this.KontodataGridViewTextBox.MaxDropDownItems = 25;
+            this.KontodataGridViewTextBox.Name = "KontodataGridViewTextBox";
+            this.KontodataGridViewTextBox.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.KontodataGridViewTextBox.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.KontodataGridViewTextBox.ValueMember = "Kontonr";
+            this.KontodataGridViewTextBox.Width = 60;
+            // 
+            // MKdataGridViewComboBox
+            // 
+            this.MKdataGridViewComboBox.DataPropertyName = "Momskode";
+            this.MKdataGridViewComboBox.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.MKdataGridViewComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MKdataGridViewComboBox.HeaderText = "MK";
+            this.MKdataGridViewComboBox.Items.AddRange(new object[] {
+            "",
+            "S25",
+            "K25",
+            "U25"});
+            this.MKdataGridViewComboBox.Name = "MKdataGridViewComboBox";
+            this.MKdataGridViewComboBox.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.MKdataGridViewComboBox.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.MKdataGridViewComboBox.Width = 40;
+            // 
+            // FaknrdataGridViewTextBox
+            // 
+            this.FaknrdataGridViewTextBox.DataPropertyName = "Faktura";
+            this.FaknrdataGridViewTextBox.HeaderText = "Faknr";
+            this.FaknrdataGridViewTextBox.Name = "FaknrdataGridViewTextBox";
+            this.FaknrdataGridViewTextBox.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.FaknrdataGridViewTextBox.Width = 40;
+            // 
+            // dataGridViewTextBoxColumn12
+            // 
+            this.dataGridViewTextBoxColumn12.DataPropertyName = "Tblwbilag";
+            this.dataGridViewTextBoxColumn12.HeaderText = "Tblwbilag";
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.Visible = false;
             // 
             // FrmNyekladder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(530, 259);
+            this.ClientSize = new System.Drawing.Size(521, 259);
             this.Controls.Add(this.splitContainer1);
             this.Name = "FrmNyekladder";
             this.Text = "Nye Kladder";
@@ -532,6 +484,8 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.Panel2.PerformLayout();
             this.splitContainer2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.karKontoplanBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.karAfstemningskontiBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -557,29 +511,22 @@
         private System.Windows.Forms.TextBox bilagTextBox;
         private System.Windows.Forms.DateTimePicker datoDateTimePicker;
         private System.Windows.Forms.ToolStripButton newToolStripButton;
-        private System.Windows.Forms.ToolStripButton openToolStripButton;
-        private System.Windows.Forms.ToolStripButton saveToolStripButton;
-        private System.Windows.Forms.ToolStripButton printToolStripButton;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
-        private System.Windows.Forms.ToolStripButton cutToolStripButton;
-        private System.Windows.Forms.ToolStripButton copyToolStripButton;
-        private System.Windows.Forms.ToolStripButton pasteToolStripButton;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton helpToolStripButton;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
+        private System.Windows.Forms.BindingSource karKontoplanBindingSource;
+        private System.Windows.Forms.BindingSource karAfstemningskontiBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PiddataGridViewTextBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BilagpiddataGridViewTextBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TekstdataGridViewTextBox;
+        private System.Windows.Forms.DataGridViewComboBoxColumn AfstemdataGridViewTextBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BelobdataGridViewTextBox;
+        private System.Windows.Forms.DataGridViewComboBoxColumn KontodataGridViewTextBox;
+        private System.Windows.Forms.DataGridViewComboBoxColumn MKdataGridViewComboBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FaknrdataGridViewTextBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
     }
 }

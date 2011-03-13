@@ -16,6 +16,7 @@ namespace nsPuls3060
         public string Afstemningskonto { get; set; }
         public decimal? Belob { get; set; }
         public int? Kontonr { get; set; }
+        public string Momskode { get; set; }
         public int? Faknr { get; set; }
     }
 
@@ -38,13 +39,13 @@ namespace nsPuls3060
                 foreach (var b in qry_this)
                 {
                     string ln = "";
-                    //ln += (b.Dato == null) ? "," : String.Format("{0:yyyy-MM-dd}",b.Dato) + ",";
                     ln += (b.Dato == null) ? "," : (int)clsUtil.MSDateTime2Serial((DateTime)b.Dato) + ",";
                     ln += (b.Bilag == null) ? "," : b.Bilag.ToString() + ",";
                     ln += (b.Tekst == null) ? "," : @"""" + b.Tekst + @""",";
                     ln += (b.Afstemningskonto == null) ? "," : @"""" + b.Afstemningskonto + @""",";
                     ln += (b.Belob == null) ? "," : @"""" + ((decimal)(b.Belob)).ToString("0.00") + @""",";
-                    ln += (b.Kontonr == null) ? ",," : b.Kontonr.ToString() + ",,";
+                    ln += (b.Kontonr == null) ? "," : b.Kontonr.ToString() + ",";
+                    ln += (b.Momskode == null) ? "," : b.Momskode.ToString() + ",";
                     ln += (b.Faknr == null) ? ",0," : b.Faknr.ToString() + ",0,";
                     sr.WriteLine(ln);
                 }

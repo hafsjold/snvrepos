@@ -20,6 +20,8 @@ namespace nsPuls3060
         private void FrmNyekladder_Load(object sender, EventArgs e)
         {
             this.tblwbilagBindingSource.DataSource = Program.dbDataTransSumma.Tblwbilag;
+            this.karKontoplanBindingSource.DataSource = Program.karKontoplan;
+            this.karAfstemningskontiBindingSource.DataSource = Program.karAfstemningskonti;
         }
 
         private void FrmNyekladder_FormClosed(object sender, FormClosedEventArgs e)
@@ -202,5 +204,61 @@ namespace nsPuls3060
                 this.pasteFromClipboard();
             }
         }
+
+        void tblwkladderDataGridView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (e.Control.GetType() == typeof(DataGridViewComboBoxEditingControl))
+            {
+                DataGridViewComboBoxEditingControl cbo = e.Control as DataGridViewComboBoxEditingControl;
+                cbo.DropDownStyle = ComboBoxStyle.DropDown;
+            }
+        }
+
+        private void tblwkladderDataGridView_CellErrorTextNeeded(object sender, DataGridViewCellErrorTextNeededEventArgs e)
+        {
+            //DataGridViewCell cell = tblwkladderDataGridView.CurrentCell;
+            //object yyy = tblwkladderDataGridView.Rows[1].Cells[2];
+        }
+
+        private void tblwkladderDataGridView_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            // If the data source raises an exception when a cell value is 
+            // commited, display an error message.
+            if (e.Exception != null && e.Context == (DataGridViewDataErrorContexts.Parsing | DataGridViewDataErrorContexts.Commit))
+            {
+                MessageBox.Show(e.Exception.Message);
+            }
+
+            if (e.Exception != null && e.Context == (DataGridViewDataErrorContexts.Formatting | DataGridViewDataErrorContexts.Display))
+            {
+                MessageBox.Show(e.Exception.Message);
+            }
+
+        }
+
+        private void newToolStripButton_Click(object sender, EventArgs e)
+        {
+            var qry = from k in Program.dbDataTransSumma.Tblwkladder
+                      join b in Program.dbDataTransSumma.Tblwbilag on k.Bilagpid equals b.Pid 
+                      select new recKladde 
+                      {
+                        Dato = b.Dato,
+                        Bilag = b.Bilag,
+                        Tekst = k.Tekst,
+                        Afstemningskonto = k.Afstemningskonto,
+                        Belob = k.Belob,
+                        Kontonr = k.Konto,
+                        Momskode = k.Momskode,
+                        Faknr = k.Faktura
+                      };
+            
+            KarKladde karKladde = new KarKladde();
+            foreach (var k in qry) 
+            {
+                karKladde.Add(k);
+            }
+            karKladde.save();
+        }
     }
+
 }
