@@ -45,6 +45,7 @@
             this.regnearkNotPBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BankafstemningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nyeKladderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kladderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.SendModtagPBSfilertoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,6 +65,7 @@
             this.data2AppEngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bankKontoudtogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -168,7 +170,9 @@
             this.medlemmerTilRegnearkEksternToolStripMenuItem,
             this.regnearkNotPBSToolStripMenuItem,
             this.BankafstemningToolStripMenuItem,
-            this.nyeKladderToolStripMenuItem});
+            this.nyeKladderToolStripMenuItem,
+            this.kladderToolStripMenuItem,
+            this.bankKontoudtogToolStripMenuItem});
             this.medlemToolStripMenuItem.Name = "medlemToolStripMenuItem";
             this.medlemToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.medlemToolStripMenuItem.Text = "Medlem";
@@ -214,6 +218,13 @@
             this.nyeKladderToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.nyeKladderToolStripMenuItem.Text = "Nye Kladder";
             this.nyeKladderToolStripMenuItem.Click += new System.EventHandler(this.nyeKladderToolStripMenuItem_Click);
+            // 
+            // kladderToolStripMenuItem
+            // 
+            this.kladderToolStripMenuItem.Name = "kladderToolStripMenuItem";
+            this.kladderToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.kladderToolStripMenuItem.Text = "Kladder";
+            this.kladderToolStripMenuItem.Click += new System.EventHandler(this.kladderToolStripMenuItem_Click);
             // 
             // pBSToolStripMenuItem
             // 
@@ -359,6 +370,13 @@
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
+            // bankKontoudtogToolStripMenuItem
+            // 
+            this.bankKontoudtogToolStripMenuItem.Name = "bankKontoudtogToolStripMenuItem";
+            this.bankKontoudtogToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.bankKontoudtogToolStripMenuItem.Text = "Bank kontoudtog";
+            this.bankKontoudtogToolStripMenuItem.Click += new System.EventHandler(this.bankKontoudtogToolStripMenuItem_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -424,6 +442,8 @@
         private System.Windows.Forms.ToolStripMenuItem data2AppEngToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importerTransaktionerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nyeKladderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem kladderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bankKontoudtogToolStripMenuItem;
     }
 }
 

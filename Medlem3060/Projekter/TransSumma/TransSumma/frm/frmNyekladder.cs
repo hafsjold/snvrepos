@@ -22,6 +22,9 @@ namespace nsPuls3060
             this.tblwbilagBindingSource.DataSource = Program.dbDataTransSumma.Tblwbilag;
             this.karKontoplanBindingSource.DataSource = Program.karKontoplan;
             this.karAfstemningskontiBindingSource.DataSource = Program.karAfstemningskonti;
+            this.karMomsBindingSource.DataSource = Program.karMoms;
+            if (Program.karRegnskab.MomsPeriode() == 2)
+                this.MKdataGridViewComboBox.Visible = false;
         }
 
         private void FrmNyekladder_FormClosed(object sender, FormClosedEventArgs e)

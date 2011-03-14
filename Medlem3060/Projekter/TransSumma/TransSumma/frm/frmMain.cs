@@ -536,6 +536,26 @@ namespace nsPuls3060
             }
         }
 
+        private void kladderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("Kladder"))
+            {
+                FrmKladder m_frmKladder = new FrmKladder();
+                m_frmKladder.MdiParent = this;
+                m_frmKladder.Show();
+            }
+        }
+
+        private void bankKontoudtogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("Bank kontoudtog"))
+            {
+                FrmBankkontoudtog m_Bankkontoudtog = new FrmBankkontoudtog();
+                m_Bankkontoudtog.MdiParent = this;
+                m_Bankkontoudtog.Show();
+            }
+        }
+
 
     }
 }

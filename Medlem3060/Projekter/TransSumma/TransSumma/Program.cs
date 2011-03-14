@@ -62,6 +62,7 @@ namespace nsPuls3060
         private static KarFakturastr_k m_KarFakturastr_k;
         private static KarFakturavarer_k m_KarFakturavarer_k;
         private static KarAfstemningskonti m_KarAfstemningskonti;
+        private static KarMoms m_KarMoms;
 
         public static string AppEngName
         {
@@ -596,6 +597,18 @@ namespace nsPuls3060
             set
             {
                 m_KarAfstemningskonti = value;
+            }
+        }
+        public static KarMoms karMoms
+        {
+            get
+            {
+                if (m_KarMoms == null) m_KarMoms = new KarMoms();
+                return m_KarMoms;
+            }
+            set
+            {
+                m_KarMoms = value;
             }
         }
         public static recMemRegnskab qryAktivRegnskab()

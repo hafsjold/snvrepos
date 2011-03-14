@@ -133,6 +133,18 @@
       <DependentUpon>dsMedlem.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="frm\frmBankkontoudtog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmBankkontoudtog.Designer.cs">
+      <DependentUpon>frmBankkontoudtog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm\frmKladder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmKladder.Designer.cs">
+      <DependentUpon>frmKladder.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm\frmNyekladder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +195,7 @@
     </Compile>
     <Compile Include="cls\clsCsv.cs" />
     <Compile Include="cls\clsMedlem.cs" />
+    <Compile Include="kar\karMoms.cs" />
     <Compile Include="kar\karAfstemningskonti.cs" />
     <Compile Include="kar\karBankkontoudtog.cs" />
     <Compile Include="kar\karBankafstemning.cs" />
@@ -253,6 +266,12 @@
     <None Include="dbDataTransSumma.dbml.layout">
       <DependentUpon>dbDataTransSumma.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="frm\frmBankkontoudtog.resx">
+      <DependentUpon>frmBankkontoudtog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmKladder.resx">
+      <DependentUpon>frmKladder.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm\frmNyekladder.resx">
       <DependentUpon>frmNyekladder.cs</DependentUpon>
     </EmbeddedResource>
@@ -343,11 +362,13 @@
     <None Include="HafsjoldDataApSSignature.pfx" />
     <None Include="Properties\DataSources\KarAfstemningskonti.datasource" />
     <None Include="Properties\DataSources\KarKontoplan.datasource" />
+    <None Include="Properties\DataSources\KarMoms.datasource" />
     <None Include="Properties\DataSources\MemInfotekst.datasource" />
     <None Include="Properties\DataSources\MemKreditor.datasource" />
     <None Include="Properties\DataSources\MemPbsnetdir.datasource" />
     <None Include="Properties\DataSources\MemRegnskab.datasource" />
     <None Include="Properties\DataSources\Tblbankkonto.datasource" />
+    <None Include="Properties\DataSources\Tblbilag.datasource" />
     <None Include="Properties\DataSources\Tblwbilag.datasource" />
     <None Include="Resources\Add.bmp" />
     <Content Include="Resources\info.png" />
