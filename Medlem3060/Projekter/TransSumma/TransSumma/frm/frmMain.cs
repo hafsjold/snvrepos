@@ -540,9 +540,8 @@ namespace nsPuls3060
         {
             if (!FocusChild("Kladder"))
             {
-                FrmKladder m_frmKladder = new FrmKladder();
-                m_frmKladder.MdiParent = this;
-                m_frmKladder.Show();
+                Program.frmKladder.MdiParent = this;
+                Program.frmKladder.Show();
             }
         }
 

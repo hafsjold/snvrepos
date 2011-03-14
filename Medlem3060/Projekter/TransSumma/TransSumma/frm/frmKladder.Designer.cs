@@ -33,8 +33,9 @@
             System.Windows.Forms.Label bilagLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmKladder));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.bilagTextBox = new System.Windows.Forms.TextBox();
+            this.datoTextBox = new System.Windows.Forms.TextBox();
             this.tblbilagBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bilagTextBox = new System.Windows.Forms.TextBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tblkladderDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,7 +60,10 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.datoTextBox = new System.Windows.Forms.TextBox();
+            this.textBoxSogeord = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmdSog = new System.Windows.Forms.Button();
+            this.cmdKopier = new System.Windows.Forms.Button();
             datoLabel = new System.Windows.Forms.Label();
             bilagLabel = new System.Windows.Forms.Label();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -87,7 +91,7 @@
             // bilagLabel
             // 
             bilagLabel.AutoSize = true;
-            bilagLabel.Location = new System.Drawing.Point(131, 19);
+            bilagLabel.Location = new System.Drawing.Point(125, 19);
             bilagLabel.Name = "bilagLabel";
             bilagLabel.Size = new System.Drawing.Size(33, 13);
             bilagLabel.TabIndex = 6;
@@ -103,6 +107,10 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.AutoScroll = true;
+            this.splitContainer1.Panel1.Controls.Add(this.cmdKopier);
+            this.splitContainer1.Panel1.Controls.Add(this.cmdSog);
+            this.splitContainer1.Panel1.Controls.Add(this.label1);
+            this.splitContainer1.Panel1.Controls.Add(this.textBoxSogeord);
             this.splitContainer1.Panel1.Controls.Add(this.datoTextBox);
             this.splitContainer1.Panel1.Controls.Add(bilagLabel);
             this.splitContainer1.Panel1.Controls.Add(this.bilagTextBox);
@@ -115,20 +123,30 @@
             this.splitContainer1.SplitterDistance = 52;
             this.splitContainer1.TabIndex = 7;
             // 
-            // bilagTextBox
+            // datoTextBox
             // 
-            this.bilagTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.bilagTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tblbilagBindingSource, "Bilag", true));
-            this.bilagTextBox.Location = new System.Drawing.Point(170, 16);
-            this.bilagTextBox.Name = "bilagTextBox";
-            this.bilagTextBox.ReadOnly = true;
-            this.bilagTextBox.Size = new System.Drawing.Size(58, 20);
-            this.bilagTextBox.TabIndex = 7;
-            this.bilagTextBox.TextChanged += new System.EventHandler(this.bilagTextBox_TextChanged);
+            this.datoTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.datoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tblbilagBindingSource, "Dato", true));
+            this.datoTextBox.Location = new System.Drawing.Point(40, 16);
+            this.datoTextBox.Name = "datoTextBox";
+            this.datoTextBox.ReadOnly = true;
+            this.datoTextBox.Size = new System.Drawing.Size(75, 20);
+            this.datoTextBox.TabIndex = 8;
             // 
             // tblbilagBindingSource
             // 
             this.tblbilagBindingSource.DataSource = typeof(nsPuls3060.Tblbilag);
+            // 
+            // bilagTextBox
+            // 
+            this.bilagTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.bilagTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tblbilagBindingSource, "Bilag", true));
+            this.bilagTextBox.Location = new System.Drawing.Point(164, 16);
+            this.bilagTextBox.Name = "bilagTextBox";
+            this.bilagTextBox.ReadOnly = true;
+            this.bilagTextBox.Size = new System.Drawing.Size(46, 20);
+            this.bilagTextBox.TabIndex = 7;
+            this.bilagTextBox.TextChanged += new System.EventHandler(this.bilagTextBox_TextChanged);
             // 
             // splitContainer2
             // 
@@ -364,15 +382,40 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
-            // datoTextBox
+            // textBoxSogeord
             // 
-            this.datoTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.datoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tblbilagBindingSource, "Dato", true));
-            this.datoTextBox.Location = new System.Drawing.Point(45, 16);
-            this.datoTextBox.Name = "datoTextBox";
-            this.datoTextBox.ReadOnly = true;
-            this.datoTextBox.Size = new System.Drawing.Size(75, 20);
-            this.datoTextBox.TabIndex = 8;
+            this.textBoxSogeord.Location = new System.Drawing.Point(270, 16);
+            this.textBoxSogeord.Name = "textBoxSogeord";
+            this.textBoxSogeord.Size = new System.Drawing.Size(102, 20);
+            this.textBoxSogeord.TabIndex = 9;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(221, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Søgeord";
+            // 
+            // cmdSog
+            // 
+            this.cmdSog.Location = new System.Drawing.Point(378, 15);
+            this.cmdSog.Name = "cmdSog";
+            this.cmdSog.Size = new System.Drawing.Size(43, 23);
+            this.cmdSog.TabIndex = 11;
+            this.cmdSog.Text = "Søg";
+            this.cmdSog.UseVisualStyleBackColor = true;
+            this.cmdSog.Click += new System.EventHandler(this.cmdSog_Click);
+            // 
+            // cmdKopier
+            // 
+            this.cmdKopier.Location = new System.Drawing.Point(454, 16);
+            this.cmdKopier.Name = "cmdKopier";
+            this.cmdKopier.Size = new System.Drawing.Size(45, 23);
+            this.cmdKopier.TabIndex = 12;
+            this.cmdKopier.Text = "Kopier";
+            this.cmdKopier.UseVisualStyleBackColor = true;
             // 
             // FrmKladder
             // 
@@ -431,5 +474,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.TextBox datoTextBox;
+        private System.Windows.Forms.Button cmdKopier;
+        private System.Windows.Forms.Button cmdSog;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBoxSogeord;
     }
 }

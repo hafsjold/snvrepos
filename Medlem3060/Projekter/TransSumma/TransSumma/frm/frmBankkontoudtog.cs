@@ -40,6 +40,27 @@ namespace nsPuls3060
             this.tblbankkontoBindingSourceAfstemte.DataSource = qryAfstemte;
         }
 
+         private void cmdTest_Click(object sender, EventArgs e)
+        {
+            //string sogeord = "Hafs";
+            //Program.frmKladder.findBilag(sogeord);
+        }
+
+        private void tblbankkonto2DataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Tblbankkonto recBankkonto = this.tblbankkontoBindingSourceAfstemte.Current as Tblbankkonto;
+                int? Bilagpid = (from t in Program.dbDataTransSumma.Tbltrans
+                                 where t.Afstem == recBankkonto.Afstem
+                                 select t.Bilagpid).First();
+                Program.frmKladder.findBilag(Bilagpid);
+            }
+            catch
+            {
+            }
+        }
+
     }
 
 }
