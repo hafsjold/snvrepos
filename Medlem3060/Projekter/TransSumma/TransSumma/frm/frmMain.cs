@@ -9,9 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
 using System.IO;
-using Excel;
 using System.Data.Common;
-using System.Data.SQLite;
 using System.Xml.Linq;
 using System.Data.Linq.SqlClient;
 
