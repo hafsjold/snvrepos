@@ -98,27 +98,12 @@ namespace nsPuls3060
             return null;
         }
 
-
-
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
-/*            string strLike = "%ATP%";
-            string tekst;
-            var query = from c in Program.dbDataTransSumma.Tbltrans
-                        where SqlMethods.Like(c.Tekst, strLike)
-                        select c;
-            int antal = query.Count();
-            foreach (var c in query)
-            {
-                tekst = c.Tekst;
-            }
-*/
- 
             //KarBankafstemning recBankafstemning = new KarBankafstemning();
             //recBankafstemning.load();
-            KarBankkontoudtog recBankkontoudtog = new KarBankkontoudtog();
-            recBankkontoudtog.load();
+            
 
 #endif
         }
@@ -319,6 +304,11 @@ namespace nsPuls3060
             bankKontoudtogToolStripMenuItem_Click(sender, e);
         }
 
+        private void importerNordeaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KarBankkontoudtog recBankkontoudtog = new KarBankkontoudtog();
+            recBankkontoudtog.load();
+        }
 
     }
 }

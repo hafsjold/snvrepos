@@ -10,31 +10,6 @@ namespace nsPuls3060
 {
     static class Program
     {
-#if (DEBUG)
-        //private static string m_baseUrl = @"http://hd36:8080";
-        private static string m_baseUrl = @"http://localhost:8084";
-        //private static string m_baseUrl = @"http://testmedlem3060.appspot.com";
-#else
-        private static string m_baseUrl = @"http://medlem3060.appspot.com";
-#endif
-
-#if (DEBUG)
-        private static string m_sftpName = "TestHD36";
-        //private static string m_sftpName = "Test";
-        //private static string m_sftpName = "Produktion";
-#else
-        private static string m_sftpName = "Produktion";
-#endif
-        private static string m_Smtphost;
-        private static string m_Smtpport;
-        private static string m_Smtpssl;
-        private static string m_Smtpuser;
-        private static string m_Smtppasswd;
-        private static string m_MailToName;
-        private static string m_MailToAddr;
-        private static string m_MailFrom;
-        private static string m_MailReply;
-
         private static string m_path_to_lock_summasummarum_kontoplan;
         private static FileStream m_filestream_to_lock_summasummarum_kontoplan;
         private static DbDataTransSumma m_dbDataTransSumma;
@@ -357,29 +332,6 @@ namespace nsPuls3060
             }
         }
         public static FrmMain frmMain { get; set; }
-        public static bool ValidatekBank(string Bank)
-        {
-            if (Bank == null) return false;
-            string[] value = new string[2];
-            Regex regex = new Regex("(^[0-9]*) ([0-9]*$)");
-            Match m = regex.Match(Bank);
-            if (m.Success)
-            {
-                for (int j = 1; j <= 2; j++)
-                {
-                    if (m.Groups[j].Success)
-                    {
-                        value[j - 1] = m.Groups[j].ToString().Trim();
-                    }
-                }
-                string wRegnr = value[0];
-                string wKonto = value[1];
-
-                if ((wRegnr.Length == 4) & (wKonto.Length == 10)) return true;
-                else return false;
-            }
-            return false;
-        }
 
         /// <summary>
         /// The main entry point for the application.

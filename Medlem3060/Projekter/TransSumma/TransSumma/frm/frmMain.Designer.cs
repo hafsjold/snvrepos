@@ -45,13 +45,13 @@
             this.bankKontoudtogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bilagsindtastningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.regnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.posterTilExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importerTransaktionerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.pbsfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importerNordeaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -151,13 +151,13 @@
             // 
             this.medlemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.BankafstemningToolStripMenuItem,
+            this.bilagsindtastningToolStripMenuItem,
             this.nyeKladderToolStripMenuItem,
             this.kladderToolStripMenuItem,
-            this.bankKontoudtogToolStripMenuItem,
-            this.bilagsindtastningToolStripMenuItem});
+            this.bankKontoudtogToolStripMenuItem});
             this.medlemToolStripMenuItem.Name = "medlemToolStripMenuItem";
-            this.medlemToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
-            this.medlemToolStripMenuItem.Text = "Medlem";
+            this.medlemToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.medlemToolStripMenuItem.Text = "Bogføring";
             // 
             // BankafstemningToolStripMenuItem
             // 
@@ -197,8 +197,8 @@
             // regnskabToolStripMenuItem
             // 
             this.regnskabToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.posterTilExcelToolStripMenuItem,
-            this.importerTransaktionerToolStripMenuItem});
+            this.importerTransaktionerToolStripMenuItem,
+            this.importerNordeaToolStripMenuItem});
             this.regnskabToolStripMenuItem.Name = "regnskabToolStripMenuItem";
             this.regnskabToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.regnskabToolStripMenuItem.Text = "Regnskab";
@@ -248,6 +248,13 @@
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
+            // importerNordeaToolStripMenuItem
+            // 
+            this.importerNordeaToolStripMenuItem.Name = "importerNordeaToolStripMenuItem";
+            this.importerNordeaToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.importerNordeaToolStripMenuItem.Text = "Importer Nordea";
+            this.importerNordeaToolStripMenuItem.Click += new System.EventHandler(this.importerNordeaToolStripMenuItem_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -292,7 +299,6 @@
         private System.Windows.Forms.ToolStripMenuItem hjælpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem omToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem regnskabToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem posterTilExcelToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem BankafstemningToolStripMenuItem;
         internal System.Windows.Forms.ToolStripProgressBar MainformProgressBar;
         internal System.Windows.Forms.ToolStripStatusLabel MainformProgressText;
@@ -301,6 +307,7 @@
         private System.Windows.Forms.ToolStripMenuItem kladderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bankKontoudtogToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bilagsindtastningToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importerNordeaToolStripMenuItem;
     }
 }
 
