@@ -82,6 +82,12 @@
     <Reference Include="Microsoft.ReportViewer.Common, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -106,6 +112,12 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AboutBox.cs">
@@ -114,24 +126,11 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="cls\clsPassXmlDoc.cs" />
-    <Compile Include="cls\clsSQLite.cs" />
-    <Compile Include="cls\clsRest.cs" />
-    <Compile Include="cls\clsInfotekst.cs" />
-    <Compile Include="cls\clsImportMedlem.cs" />
-    <Compile Include="cls\clsExcel.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="cls\clsSumma.cs" />
-    <Compile Include="cls\clsSFTP.cs" />
+    <Compile Include="cls\clsPbs.cs" />
     <Compile Include="dbDataTransSumma.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dbDataTransSumma.dbml</DependentUpon>
-    </Compile>
-    <Compile Include="dsMedlem.cs">
-      <DependentUpon>dsMedlem.xsd</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="frm\frmBankkontoudtog.cs">
       <SubType>Form</SubType>
@@ -157,30 +156,6 @@
     <Compile Include="frm\frmUdskrivbilag.Designer.cs">
       <DependentUpon>frmUdskrivbilag.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm\frmPbsnetdir.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frm\frmPbsnetdir.Designer.cs">
-      <DependentUpon>frmPbsnetdir.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frm\frmInfotekst.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frm\frmInfotekst.Designer.cs">
-      <DependentUpon>frmInfotekst.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frm\frmBetalingsForslag.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frm\frmBetalingsForslag.Designer.cs">
-      <DependentUpon>frmBetalingsForslag.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frm\frmKontingentForslag.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frm\frmKontingentForslag.Designer.cs">
-      <DependentUpon>frmKontingentForslag.cs</DependentUpon>
-    </Compile>
     <Compile Include="frm\frmRegnskab.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -193,8 +168,6 @@
     <Compile Include="frm\BetterDialog.designer.cs">
       <DependentUpon>BetterDialog.cs</DependentUpon>
     </Compile>
-    <Compile Include="cls\clsCsv.cs" />
-    <Compile Include="cls\clsMedlem.cs" />
     <Compile Include="kar\karMoms.cs" />
     <Compile Include="kar\karAfstemningskonti.cs" />
     <Compile Include="kar\karBankkontoudtog.cs" />
@@ -207,44 +180,20 @@
     <Compile Include="kar\karKontoplan.cs" />
     <Compile Include="kar\karKladde.cs" />
     <Compile Include="mem\memAktivitet.cs" />
-    <Compile Include="mem\memInfotekst.cs" />
-    <Compile Include="mem\memKreditor.cs" />
     <Compile Include="mem\memRegnskab.cs" />
-    <Compile Include="mem\memPbsnetdir.cs" />
     <Compile Include="mem\memAktivRegnskab.cs" />
-    <Compile Include="frm\frmKreditor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frm\frmKreditor.Designer.cs">
-      <DependentUpon>frmKreditor.cs</DependentUpon>
-    </Compile>
     <Compile Include="frm\frmSelectRegnskab.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frm\frmSelectRegnskab.Designer.cs">
       <DependentUpon>frmSelectRegnskab.cs</DependentUpon>
     </Compile>
-    <Compile Include="kar\karMedlemmer.cs" />
-    <Compile Include="cls\clsPbs.cs" />
     <Compile Include="cls\clsUtil.cs" />
-    <Compile Include="mem\memMedlemDictionary.cs" />
-    <Compile Include="dsMedlem.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dsMedlem.xsd</DependentUpon>
-    </Compile>
     <Compile Include="frm\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frm\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="cls\clsRegistry.cs" />
-    <Compile Include="frm\frmMedlemmer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frm\frmMedlemmer.Designer.cs">
-      <DependentUpon>frmMedlemmer.cs</DependentUpon>
     </Compile>
     <Compile Include="kar\karDkkonti.cs" />
     <Compile Include="kar\karFakturaer_s.cs" />
@@ -278,30 +227,11 @@
     <EmbeddedResource Include="frm\frmUdskrivbilag.resx">
       <DependentUpon>frmUdskrivbilag.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm\frmBetalingsForslag.resx">
-      <DependentUpon>frmBetalingsForslag.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frm\BetterDialog.resx">
       <DependentUpon>BetterDialog.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frm\frmInfotekst.resx">
-      <DependentUpon>frmInfotekst.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frm\frmKontingentForslag.resx">
-      <DependentUpon>frmKontingentForslag.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frm\frmKreditor.resx">
-      <DependentUpon>frmKreditor.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frm\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frm\frmMedlemmer.resx">
-      <DependentUpon>frmMedlemmer.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frm\frmPbsnetdir.resx">
-      <DependentUpon>frmPbsnetdir.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm\frmRegnskab.resx">
       <DependentUpon>frmRegnskab.cs</DependentUpon>
@@ -323,17 +253,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="dsMedlem.xsc">
-      <DependentUpon>dsMedlem.xsd</DependentUpon>
-    </None>
-    <None Include="dsMedlem.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>dsMedlem.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="dsMedlem.xss">
-      <DependentUpon>dsMedlem.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

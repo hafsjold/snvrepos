@@ -38,14 +38,8 @@ namespace nsPuls3060
         private static string m_path_to_lock_summasummarum_kontoplan;
         private static FileStream m_filestream_to_lock_summasummarum_kontoplan;
         private static DbDataTransSumma m_dbDataTransSumma;
-        private static dsMedlem m_dsMedlemGlobal;
-        private static KarMedlemmer m_KarMedlemmer;
-        private static MemMedlemDictionary m_dicMedlem;
         private static MemRegnskab m_memRegnskab;
-        private static MemKreditor m_memKreditor;
-        private static MemInfotekst m_memInfotekst;
         private static MemAktivRegnskab m_memAktivRegnskab;
-        private static MemPbsnetdir m_memPbsnetdir;
         private static MemAktivitet m_memAktivitet;
         private static KarDkkonti m_KarDkkonti;
         private static KarFakturaer_s m_KarFakturaer_s;
@@ -63,181 +57,6 @@ namespace nsPuls3060
         private static KarFakturavarer_k m_KarFakturavarer_k;
         private static KarAfstemningskonti m_KarAfstemningskonti;
         private static KarMoms m_KarMoms;
-
-        public static string AppEngName
-        {
-            get
-            {
-                try
-                {
-                    string[] lines = Regex.Split(m_baseUrl, "//");
-                    return lines[1];
-                }
-                catch (Exception)
-                {
-                    return m_baseUrl;
-                }
-            }
-        }
-        public static string baseUrl
-        {
-            get
-            {
-                return m_baseUrl;
-            }
-        }
-        public static string sftpName
-        {
-            get
-            {
-                return m_sftpName;
-            }
-        }
-        public static string Smtphost
-        {
-            get
-            {
-                if (m_Smtphost == null)
-                {
-                    clsRest objRest = new clsRest();
-                    m_Smtphost = objRest.HttpGet2(clsRest.urlBaseType.sync, "Sysinfo/SMTPHOST");
-                }
-                return m_Smtphost;
-            }
-            set
-            {
-                m_Smtphost = value;
-            }
-        }
-        public static string Smtpport
-        {
-            get
-            {
-                if (m_Smtpport == null)
-                {
-                    clsRest objRest = new clsRest();
-                    m_Smtpport = objRest.HttpGet2(clsRest.urlBaseType.sync, "Sysinfo/SMTPPORT");
-                }
-                return m_Smtpport;
-            }
-            set
-            {
-                m_Smtpport = value;
-            }
-        }
-        public static string Smtpssl
-        {
-            get
-            {
-                if (m_Smtpssl == null)
-                {
-                    clsRest objRest = new clsRest();
-                    m_Smtpssl = objRest.HttpGet2(clsRest.urlBaseType.sync, "Sysinfo/SMTPSSL");
-                }
-                return m_Smtpssl;
-            }
-            set
-            {
-                m_Smtpssl = value;
-            }
-        }
-        public static string Smtpuser
-        {
-            get
-            {
-                if (m_Smtpuser == null)
-                {
-                    clsRest objRest = new clsRest();
-                    m_Smtpuser = objRest.HttpGet2(clsRest.urlBaseType.sync, "Sysinfo/SMTPUSER");
-                }
-                return m_Smtpuser;
-            }
-            set
-            {
-                m_Smtpuser = value;
-            }
-        }
-        public static string Smtppasswd
-        {
-            get
-            {
-                if (m_Smtppasswd == null)
-                {
-                    clsRest objRest = new clsRest();
-                    m_Smtppasswd = objRest.HttpGet2(clsRest.urlBaseType.sync, "Sysinfo/SMTPPASSWD");
-                }
-                return m_Smtppasswd;
-            }
-            set
-            {
-                m_Smtppasswd = value;
-            }
-        }
-        public static string MailToName
-        {
-            get
-            {
-                if (m_MailToName == null)
-                {
-                    clsRest objRest = new clsRest();
-                    m_MailToName = objRest.HttpGet2(clsRest.urlBaseType.sync, "Sysinfo/MAILTONAME");
-                }
-                return m_MailToName;
-            }
-            set
-            {
-                m_MailToName = value;
-            }
-        }
-        public static string MailToAddr
-        {
-            get
-            {
-                if (m_MailToAddr == null)
-                {
-                    clsRest objRest = new clsRest();
-                    m_MailToAddr = objRest.HttpGet2(clsRest.urlBaseType.sync, "Sysinfo/MAILTOADDR");
-                }
-
-                return m_MailToAddr;
-            }
-            set
-            {
-                m_MailToAddr = value;
-            }
-        }
-        public static string MailFrom
-        {
-            get
-            {
-                if (m_MailFrom == null)
-                {
-                    clsRest objRest = new clsRest();
-                    m_MailFrom = objRest.HttpGet2(clsRest.urlBaseType.sync, "Sysinfo/MAILFROM");
-                }
-                return m_MailFrom;
-            }
-            set
-            {
-                m_MailFrom = value;
-            }
-        }
-        public static string MailReply
-        {
-            get
-            {
-                if (m_MailReply == null)
-                {
-                    clsRest objRest = new clsRest();
-                    m_MailReply = objRest.HttpGet2(clsRest.urlBaseType.sync, "Sysinfo/MAILREPLY");
-                }
-                return m_MailReply;
-            }
-            set
-            {
-                m_MailReply = value;
-            }
-        }
 
         public static string path_to_lock_summasummarum_kontoplan
         {
@@ -295,61 +114,6 @@ namespace nsPuls3060
                 m_dbDataTransSumma = value;
             }
         }
-        public static dsMedlem dsMedlemGlobal
-        {
-            get
-            {
-                if (m_dsMedlemGlobal == null)
-                {
-                    m_dsMedlemGlobal = new dsMedlem();
-                    if (isAppEngOnline)
-                    {
-                        m_dsMedlemGlobal.fillPerson();
-                        m_dsMedlemGlobal.fillMedlog();
-                    }
-                    m_dsMedlemGlobal.filldsMedlem();
-                }
-                return m_dsMedlemGlobal;
-            }
-        }
-        public static dsMedlem.tblMedlogDataTable tblMedlog
-        {
-            get
-            {
-                return dsMedlemGlobal.tblMedlog;
-            }
-        }
-        public static dsMedlem.tblPersonDataTable tblPerson
-        {
-            get
-            {
-                return dsMedlemGlobal.tblPerson;
-            }
-        }
-        public static KarMedlemmer karMedlemmer
-        {
-            get
-            {
-                if (m_KarMedlemmer == null) m_KarMedlemmer = new KarMedlemmer();
-                return m_KarMedlemmer;
-            }
-            set
-            {
-                m_KarMedlemmer = value;
-            }
-        }
-        public static MemMedlemDictionary memMedlemDictionary
-        {
-            get
-            {
-                if (m_dicMedlem == null) m_dicMedlem = new MemMedlemDictionary();
-                return m_dicMedlem;
-            }
-            set
-            {
-                m_dicMedlem = value;
-            }
-        }
         public static MemRegnskab memRegnskab
         {
             get
@@ -362,30 +126,6 @@ namespace nsPuls3060
                 m_memRegnskab = value;
             }
         }
-        public static MemKreditor memKreditor
-        {
-            get
-            {
-                if (m_memKreditor == null) m_memKreditor = new MemKreditor();
-                return m_memKreditor;
-            }
-            set
-            {
-                m_memKreditor = value;
-            }
-        }
-        public static MemInfotekst memInfotekst
-        {
-            get
-            {
-                if (m_memInfotekst == null) m_memInfotekst = new MemInfotekst();
-                return m_memInfotekst;
-            }
-            set
-            {
-                m_memInfotekst = value;
-            }
-        }
         public static MemAktivRegnskab memAktivRegnskab
         {
             get
@@ -396,18 +136,6 @@ namespace nsPuls3060
             set
             {
                 m_memAktivRegnskab = value;
-            }
-        }
-        public static MemPbsnetdir memPbsnetdir
-        {
-            get
-            {
-                if (m_memPbsnetdir == null) m_memPbsnetdir = new MemPbsnetdir();
-                return m_memPbsnetdir;
-            }
-            set
-            {
-                m_memPbsnetdir = value;
             }
         }
         public static MemAktivitet memAktivitet
@@ -628,32 +356,7 @@ namespace nsPuls3060
                 };
             }
         }
-        public static IEnumerable<clsLog> qryLog()
-        {
-
-            IEnumerable<clsLog> qryLogResult = from m in Program.tblMedlog.AsEnumerable()
-                                               select new clsLog
-                                               {
-                                                   Nr = (int?)m.Nr,
-                                                   Logdato = (DateTime?)m.Logdato,
-                                                   Akt_id = (int?)m.Akt_id,
-                                                   Akt_dato = (DateTime?)m.Akt_dato
-                                               };
-
-            return qryLogResult;
-        }
-
         public static FrmMain frmMain { get; set; }
-        public static bool isAppEngOnline
-        {
-            get
-            {
-                clsRest objRest = new clsRest();
-                string retur = objRest.HttpGet2(clsRest.urlBaseType.data, "online");
-                if (retur == "Status: 200") return true;
-                else return false;
-            }
-        }
         public static bool ValidatekBank(string Bank)
         {
             if (Bank == null) return false;

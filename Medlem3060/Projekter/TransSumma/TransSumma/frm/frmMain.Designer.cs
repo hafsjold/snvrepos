@@ -39,34 +39,19 @@
             this.afslutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medlemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.vedligeholdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.medlemmerTilRegnearkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.medlemmerTilRegnearkEksternToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.regnearkNotPBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BankafstemningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nyeKladderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kladderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bankKontoudtogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
-            this.SendModtagPBSfilertoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.betalingerFraPBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.betalingerTilKassekladeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.kontingentForslagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.betalingsForslagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bilagsindtastningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.regnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.posterTilExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importerTransaktionerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.pbsfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.infoTekstToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.data2AppEngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bilagsindtastningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -123,7 +108,6 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.medlemToolStripMenuItem,
-            this.pBSToolStripMenuItem,
             this.regnskabToolStripMenuItem,
             this.systemToolStripMenuItem,
             this.hjælpToolStripMenuItem});
@@ -146,19 +130,19 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(110, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // afslutToolStripMenuItem
             // 
             this.afslutToolStripMenuItem.Name = "afslutToolStripMenuItem";
-            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.afslutToolStripMenuItem.Text = "Afslut";
             this.afslutToolStripMenuItem.Click += new System.EventHandler(this.afslutToolStripMenuItem_Click);
             // 
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.testToolStripMenuItem.Text = "Test";
             this.testToolStripMenuItem.Visible = false;
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
@@ -166,10 +150,6 @@
             // medlemToolStripMenuItem
             // 
             this.medlemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.vedligeholdToolStripMenuItem,
-            this.medlemmerTilRegnearkToolStripMenuItem,
-            this.medlemmerTilRegnearkEksternToolStripMenuItem,
-            this.regnearkNotPBSToolStripMenuItem,
             this.BankafstemningToolStripMenuItem,
             this.nyeKladderToolStripMenuItem,
             this.kladderToolStripMenuItem,
@@ -179,122 +159,40 @@
             this.medlemToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.medlemToolStripMenuItem.Text = "Medlem";
             // 
-            // vedligeholdToolStripMenuItem
-            // 
-            this.vedligeholdToolStripMenuItem.Name = "vedligeholdToolStripMenuItem";
-            this.vedligeholdToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.vedligeholdToolStripMenuItem.Text = "Vedligehold Medlemmer";
-            this.vedligeholdToolStripMenuItem.Click += new System.EventHandler(this.medlemmerToolStripMenuItem_Click);
-            // 
-            // medlemmerTilRegnearkToolStripMenuItem
-            // 
-            this.medlemmerTilRegnearkToolStripMenuItem.Name = "medlemmerTilRegnearkToolStripMenuItem";
-            this.medlemmerTilRegnearkToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.medlemmerTilRegnearkToolStripMenuItem.Text = "Regneark internt";
-            this.medlemmerTilRegnearkToolStripMenuItem.Click += new System.EventHandler(this.excelInterntToolStripMenuItem_Click);
-            // 
-            // medlemmerTilRegnearkEksternToolStripMenuItem
-            // 
-            this.medlemmerTilRegnearkEksternToolStripMenuItem.Name = "medlemmerTilRegnearkEksternToolStripMenuItem";
-            this.medlemmerTilRegnearkEksternToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.medlemmerTilRegnearkEksternToolStripMenuItem.Text = "Regneark eksternt";
-            this.medlemmerTilRegnearkEksternToolStripMenuItem.Click += new System.EventHandler(this.excelExterntToolStripMenuItem_Click);
-            // 
-            // regnearkNotPBSToolStripMenuItem
-            // 
-            this.regnearkNotPBSToolStripMenuItem.Name = "regnearkNotPBSToolStripMenuItem";
-            this.regnearkNotPBSToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.regnearkNotPBSToolStripMenuItem.Text = "Regneark notPBS";
-            this.regnearkNotPBSToolStripMenuItem.Click += new System.EventHandler(this.regnearkNotPBSToolStripMenuItem_Click);
-            // 
             // BankafstemningToolStripMenuItem
             // 
             this.BankafstemningToolStripMenuItem.Name = "BankafstemningToolStripMenuItem";
-            this.BankafstemningToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.BankafstemningToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.BankafstemningToolStripMenuItem.Text = "Bankafstemning";
             this.BankafstemningToolStripMenuItem.Click += new System.EventHandler(this.BankafstemningToolStripMenuItem_Click);
             // 
             // nyeKladderToolStripMenuItem
             // 
             this.nyeKladderToolStripMenuItem.Name = "nyeKladderToolStripMenuItem";
-            this.nyeKladderToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.nyeKladderToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.nyeKladderToolStripMenuItem.Text = "Nye Kladder";
             this.nyeKladderToolStripMenuItem.Click += new System.EventHandler(this.nyeKladderToolStripMenuItem_Click);
             // 
             // kladderToolStripMenuItem
             // 
             this.kladderToolStripMenuItem.Name = "kladderToolStripMenuItem";
-            this.kladderToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.kladderToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.kladderToolStripMenuItem.Text = "Kladder";
             this.kladderToolStripMenuItem.Click += new System.EventHandler(this.kladderToolStripMenuItem_Click);
             // 
             // bankKontoudtogToolStripMenuItem
             // 
             this.bankKontoudtogToolStripMenuItem.Name = "bankKontoudtogToolStripMenuItem";
-            this.bankKontoudtogToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.bankKontoudtogToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
             this.bankKontoudtogToolStripMenuItem.Text = "Bank kontoudtog";
             this.bankKontoudtogToolStripMenuItem.Click += new System.EventHandler(this.bankKontoudtogToolStripMenuItem_Click);
             // 
-            // pBSToolStripMenuItem
+            // bilagsindtastningToolStripMenuItem
             // 
-            this.pBSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem3,
-            this.SendModtagPBSfilertoolStripMenuItem,
-            this.betalingerFraPBSToolStripMenuItem,
-            this.betalingerTilKassekladeToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.kontingentForslagToolStripMenuItem,
-            this.betalingsForslagToolStripMenuItem});
-            this.pBSToolStripMenuItem.Name = "pBSToolStripMenuItem";
-            this.pBSToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.pBSToolStripMenuItem.Text = "PBS";
-            // 
-            // toolStripMenuItem3
-            // 
-            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(206, 22);
-            this.toolStripMenuItem3.Text = "PBS Filer";
-            this.toolStripMenuItem3.Click += new System.EventHandler(this.pbsFilertoolStripMenuItem_Click);
-            // 
-            // SendModtagPBSfilertoolStripMenuItem
-            // 
-            this.SendModtagPBSfilertoolStripMenuItem.Name = "SendModtagPBSfilertoolStripMenuItem";
-            this.SendModtagPBSfilertoolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.SendModtagPBSfilertoolStripMenuItem.Text = "Send/Modtag PBS filer";
-            this.SendModtagPBSfilertoolStripMenuItem.Click += new System.EventHandler(this.SendModtagPBSfilertoolStripMenuItem_Click);
-            // 
-            // betalingerFraPBSToolStripMenuItem
-            // 
-            this.betalingerFraPBSToolStripMenuItem.Name = "betalingerFraPBSToolStripMenuItem";
-            this.betalingerFraPBSToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.betalingerFraPBSToolStripMenuItem.Text = "Betalinger fra PBS";
-            this.betalingerFraPBSToolStripMenuItem.Click += new System.EventHandler(this.betalingerFraPBSToolStripMenuItem_Click);
-            // 
-            // betalingerTilKassekladeToolStripMenuItem
-            // 
-            this.betalingerTilKassekladeToolStripMenuItem.Name = "betalingerTilKassekladeToolStripMenuItem";
-            this.betalingerTilKassekladeToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.betalingerTilKassekladeToolStripMenuItem.Text = "Betalinger til Kassekladde";
-            this.betalingerTilKassekladeToolStripMenuItem.Click += new System.EventHandler(this.betalingerTilKassekladeToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(203, 6);
-            // 
-            // kontingentForslagToolStripMenuItem
-            // 
-            this.kontingentForslagToolStripMenuItem.Name = "kontingentForslagToolStripMenuItem";
-            this.kontingentForslagToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.kontingentForslagToolStripMenuItem.Text = "Kontingent Forslag";
-            this.kontingentForslagToolStripMenuItem.Click += new System.EventHandler(this.kontingentForslagToolStripMenuItem_Click);
-            // 
-            // betalingsForslagToolStripMenuItem
-            // 
-            this.betalingsForslagToolStripMenuItem.Name = "betalingsForslagToolStripMenuItem";
-            this.betalingsForslagToolStripMenuItem.Size = new System.Drawing.Size(206, 22);
-            this.betalingsForslagToolStripMenuItem.Text = "Betalings Forslag";
-            this.betalingsForslagToolStripMenuItem.Click += new System.EventHandler(this.betalingsForslagToolStripMenuItem_Click);
+            this.bilagsindtastningToolStripMenuItem.Name = "bilagsindtastningToolStripMenuItem";
+            this.bilagsindtastningToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.bilagsindtastningToolStripMenuItem.Text = "Bilagsindtastning";
+            this.bilagsindtastningToolStripMenuItem.Click += new System.EventHandler(this.bilagsindtastningToolStripMenuItem_Click);
             // 
             // regnskabToolStripMenuItem
             // 
@@ -304,13 +202,6 @@
             this.regnskabToolStripMenuItem.Name = "regnskabToolStripMenuItem";
             this.regnskabToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
             this.regnskabToolStripMenuItem.Text = "Regnskab";
-            // 
-            // posterTilExcelToolStripMenuItem
-            // 
-            this.posterTilExcelToolStripMenuItem.Name = "posterTilExcelToolStripMenuItem";
-            this.posterTilExcelToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.posterTilExcelToolStripMenuItem.Text = "Poster til Regneark";
-            this.posterTilExcelToolStripMenuItem.Click += new System.EventHandler(this.posterTilExcelToolStripMenuItem_Click);
             // 
             // importerTransaktionerToolStripMenuItem
             // 
@@ -323,10 +214,7 @@
             // 
             this.systemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem2,
-            this.toolStripMenuItem1,
-            this.pbsfilesToolStripMenuItem,
-            this.infoTekstToolStripMenuItem,
-            this.data2AppEngToolStripMenuItem});
+            this.pbsfilesToolStripMenuItem});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
             this.systemToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.systemToolStripMenuItem.Text = "System";
@@ -334,35 +222,16 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(145, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem2.Text = "Regnskab";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.regnskabToolStripMenuItem_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(145, 22);
-            this.toolStripMenuItem1.Text = "Kreditor";
-            this.toolStripMenuItem1.Click += new System.EventHandler(this.kerditorToolStripMenuItem_Click);
             // 
             // pbsfilesToolStripMenuItem
             // 
             this.pbsfilesToolStripMenuItem.Name = "pbsfilesToolStripMenuItem";
-            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.pbsfilesToolStripMenuItem.Text = "Udskriv bilag";
             this.pbsfilesToolStripMenuItem.Click += new System.EventHandler(this.pbsfilesToolStripMenuItem_Click);
-            // 
-            // infoTekstToolStripMenuItem
-            // 
-            this.infoTekstToolStripMenuItem.Name = "infoTekstToolStripMenuItem";
-            this.infoTekstToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
-            this.infoTekstToolStripMenuItem.Text = "Info tekst";
-            this.infoTekstToolStripMenuItem.Click += new System.EventHandler(this.infoTekstToolStripMenuItem_Click);
-            // 
-            // data2AppEngToolStripMenuItem
-            // 
-            this.data2AppEngToolStripMenuItem.Name = "data2AppEngToolStripMenuItem";
-            this.data2AppEngToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             // 
             // hjælpToolStripMenuItem
             // 
@@ -375,16 +244,9 @@
             // omToolStripMenuItem
             // 
             this.omToolStripMenuItem.Name = "omToolStripMenuItem";
-            this.omToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.omToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
-            // 
-            // bilagsindtastningToolStripMenuItem
-            // 
-            this.bilagsindtastningToolStripMenuItem.Name = "bilagsindtastningToolStripMenuItem";
-            this.bilagsindtastningToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.bilagsindtastningToolStripMenuItem.Text = "Bilagsindtastning";
-            this.bilagsindtastningToolStripMenuItem.Click += new System.EventHandler(this.bilagsindtastningToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -421,34 +283,19 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
-        private System.Windows.Forms.ToolStripMenuItem pBSToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem kontingentForslagToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem afslutToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem medlemToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem vedligeholdToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem systemToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem medlemmerTilRegnearkToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem betalingerFraPBSToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem betalingerTilKassekladeToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem pbsfilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hjælpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem omToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem medlemmerTilRegnearkEksternToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem regnskabToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem posterTilExcelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem betalingsForslagToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem BankafstemningToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem infoTekstToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         internal System.Windows.Forms.ToolStripProgressBar MainformProgressBar;
         internal System.Windows.Forms.ToolStripStatusLabel MainformProgressText;
-        private System.Windows.Forms.ToolStripMenuItem regnearkNotPBSToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem SendModtagPBSfilertoolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem data2AppEngToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importerTransaktionerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nyeKladderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kladderToolStripMenuItem;

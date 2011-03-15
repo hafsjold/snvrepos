@@ -293,6 +293,27 @@ namespace nsPuls3060
             }
             karKladde.save();
         }
+
+        private void cmdTest_Click(object sender, EventArgs e)
+        {
+            /*
+            var qry = from b in ((IList<Tblwbilag>)this.tblwbilagBindingSource.List) select b;
+            foreach (var b in qry)
+            {
+                foreach (var k in b.Tblwkladder)
+                {
+                    k.Belob += 100;
+                }
+            }
+            */
+            var qry2 = from k in (this.tblwbilagBindingSource.Current as Tblwbilag).Tblwkladder select k;
+            foreach (var k in qry2)
+                {
+                    k.Belob -= 25;
+                }
+        }
+
+
     }
 
 }

@@ -68,6 +68,7 @@
             this.bilagTextBox = new System.Windows.Forms.TextBox();
             this.datoDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.cmdTest = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             bilagLabel = new System.Windows.Forms.Label();
             datoLabel = new System.Windows.Forms.Label();
@@ -434,6 +435,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.cmdTest);
             this.splitContainer1.Panel1.Controls.Add(datoLabel);
             this.splitContainer1.Panel1.Controls.Add(this.bilagTextBox);
             this.splitContainer1.Panel1.Controls.Add(this.datoDateTimePicker);
@@ -445,6 +447,16 @@
             this.splitContainer1.Size = new System.Drawing.Size(521, 259);
             this.splitContainer1.SplitterDistance = 52;
             this.splitContainer1.TabIndex = 7;
+            // 
+            // cmdTest
+            // 
+            this.cmdTest.Location = new System.Drawing.Point(375, 8);
+            this.cmdTest.Name = "cmdTest";
+            this.cmdTest.Size = new System.Drawing.Size(62, 20);
+            this.cmdTest.TabIndex = 7;
+            this.cmdTest.Text = "Test";
+            this.cmdTest.UseVisualStyleBackColor = true;
+            this.cmdTest.Click += new System.EventHandler(this.cmdTest_Click);
             // 
             // splitContainer2
             // 
@@ -538,5 +550,6 @@
         private System.Windows.Forms.BindingSource karMomsBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn FaknrdataGridViewTextBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
+        private System.Windows.Forms.Button cmdTest;
     }
 }
