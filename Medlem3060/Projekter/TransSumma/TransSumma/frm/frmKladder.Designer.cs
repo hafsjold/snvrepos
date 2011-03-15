@@ -33,6 +33,10 @@
             System.Windows.Forms.Label bilagLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmKladder));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.cmdKopier = new System.Windows.Forms.Button();
+            this.cmdSog = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxSogeord = new System.Windows.Forms.TextBox();
             this.datoTextBox = new System.Windows.Forms.TextBox();
             this.tblbilagBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bilagTextBox = new System.Windows.Forms.TextBox();
@@ -60,10 +64,6 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.textBoxSogeord = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cmdSog = new System.Windows.Forms.Button();
-            this.cmdKopier = new System.Windows.Forms.Button();
             datoLabel = new System.Windows.Forms.Label();
             bilagLabel = new System.Windows.Forms.Label();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -122,6 +122,42 @@
             this.splitContainer1.Size = new System.Drawing.Size(530, 259);
             this.splitContainer1.SplitterDistance = 52;
             this.splitContainer1.TabIndex = 7;
+            // 
+            // cmdKopier
+            // 
+            this.cmdKopier.Location = new System.Drawing.Point(454, 16);
+            this.cmdKopier.Name = "cmdKopier";
+            this.cmdKopier.Size = new System.Drawing.Size(45, 23);
+            this.cmdKopier.TabIndex = 12;
+            this.cmdKopier.Text = "Kopier";
+            this.cmdKopier.UseVisualStyleBackColor = true;
+            this.cmdKopier.Click += new System.EventHandler(this.cmdKopier_Click);
+            // 
+            // cmdSog
+            // 
+            this.cmdSog.Location = new System.Drawing.Point(378, 15);
+            this.cmdSog.Name = "cmdSog";
+            this.cmdSog.Size = new System.Drawing.Size(43, 23);
+            this.cmdSog.TabIndex = 11;
+            this.cmdSog.Text = "Søg";
+            this.cmdSog.UseVisualStyleBackColor = true;
+            this.cmdSog.Click += new System.EventHandler(this.cmdSog_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(221, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 13);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Søgeord";
+            // 
+            // textBoxSogeord
+            // 
+            this.textBoxSogeord.Location = new System.Drawing.Point(270, 16);
+            this.textBoxSogeord.Name = "textBoxSogeord";
+            this.textBoxSogeord.Size = new System.Drawing.Size(102, 20);
+            this.textBoxSogeord.TabIndex = 9;
             // 
             // datoTextBox
             // 
@@ -382,47 +418,15 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
-            // textBoxSogeord
-            // 
-            this.textBoxSogeord.Location = new System.Drawing.Point(270, 16);
-            this.textBoxSogeord.Name = "textBoxSogeord";
-            this.textBoxSogeord.Size = new System.Drawing.Size(102, 20);
-            this.textBoxSogeord.TabIndex = 9;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(221, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 13);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Søgeord";
-            // 
-            // cmdSog
-            // 
-            this.cmdSog.Location = new System.Drawing.Point(378, 15);
-            this.cmdSog.Name = "cmdSog";
-            this.cmdSog.Size = new System.Drawing.Size(43, 23);
-            this.cmdSog.TabIndex = 11;
-            this.cmdSog.Text = "Søg";
-            this.cmdSog.UseVisualStyleBackColor = true;
-            this.cmdSog.Click += new System.EventHandler(this.cmdSog_Click);
-            // 
-            // cmdKopier
-            // 
-            this.cmdKopier.Location = new System.Drawing.Point(454, 16);
-            this.cmdKopier.Name = "cmdKopier";
-            this.cmdKopier.Size = new System.Drawing.Size(45, 23);
-            this.cmdKopier.TabIndex = 12;
-            this.cmdKopier.Text = "Kopier";
-            this.cmdKopier.UseVisualStyleBackColor = true;
-            // 
             // FrmKladder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(530, 259);
+            this.ClientSize = global::nsPuls3060.Properties.Settings.Default.frmKladderSize;
             this.Controls.Add(this.splitContainer1);
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsPuls3060.Properties.Settings.Default, "frmKladderLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::nsPuls3060.Properties.Settings.Default, "frmKladderSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.Location = global::nsPuls3060.Properties.Settings.Default.frmKladderLocation;
             this.Name = "FrmKladder";
             this.Text = "Kladder";
             this.Load += new System.EventHandler(this.FrmKladder_Load);

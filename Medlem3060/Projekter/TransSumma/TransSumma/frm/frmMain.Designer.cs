@@ -46,6 +46,7 @@
             this.BankafstemningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nyeKladderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kladderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bankKontoudtogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.SendModtagPBSfilertoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,7 +66,7 @@
             this.data2AppEngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bankKontoudtogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bilagsindtastningToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -172,7 +173,8 @@
             this.BankafstemningToolStripMenuItem,
             this.nyeKladderToolStripMenuItem,
             this.kladderToolStripMenuItem,
-            this.bankKontoudtogToolStripMenuItem});
+            this.bankKontoudtogToolStripMenuItem,
+            this.bilagsindtastningToolStripMenuItem});
             this.medlemToolStripMenuItem.Name = "medlemToolStripMenuItem";
             this.medlemToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.medlemToolStripMenuItem.Text = "Medlem";
@@ -225,6 +227,13 @@
             this.kladderToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.kladderToolStripMenuItem.Text = "Kladder";
             this.kladderToolStripMenuItem.Click += new System.EventHandler(this.kladderToolStripMenuItem_Click);
+            // 
+            // bankKontoudtogToolStripMenuItem
+            // 
+            this.bankKontoudtogToolStripMenuItem.Name = "bankKontoudtogToolStripMenuItem";
+            this.bankKontoudtogToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.bankKontoudtogToolStripMenuItem.Text = "Bank kontoudtog";
+            this.bankKontoudtogToolStripMenuItem.Click += new System.EventHandler(this.bankKontoudtogToolStripMenuItem_Click);
             // 
             // pBSToolStripMenuItem
             // 
@@ -370,12 +379,12 @@
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
-            // bankKontoudtogToolStripMenuItem
+            // bilagsindtastningToolStripMenuItem
             // 
-            this.bankKontoudtogToolStripMenuItem.Name = "bankKontoudtogToolStripMenuItem";
-            this.bankKontoudtogToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.bankKontoudtogToolStripMenuItem.Text = "Bank kontoudtog";
-            this.bankKontoudtogToolStripMenuItem.Click += new System.EventHandler(this.bankKontoudtogToolStripMenuItem_Click);
+            this.bilagsindtastningToolStripMenuItem.Name = "bilagsindtastningToolStripMenuItem";
+            this.bilagsindtastningToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.bilagsindtastningToolStripMenuItem.Text = "Bilagsindtastning";
+            this.bilagsindtastningToolStripMenuItem.Click += new System.EventHandler(this.bilagsindtastningToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -444,6 +453,7 @@
         private System.Windows.Forms.ToolStripMenuItem nyeKladderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kladderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bankKontoudtogToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bilagsindtastningToolStripMenuItem;
     }
 }
 

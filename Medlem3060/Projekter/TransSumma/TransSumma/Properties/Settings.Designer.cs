@@ -335,5 +335,77 @@ namespace nsPuls3060.Properties {
                 this["BankafstemningSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point FrmBankkontoudtogLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["FrmBankkontoudtogLocation"]));
+            }
+            set {
+                this["FrmBankkontoudtogLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("393, 416")]
+        public global::System.Drawing.Size frmBankkontoudtogSize {
+            get {
+                return ((global::System.Drawing.Size)(this["frmBankkontoudtogSize"]));
+            }
+            set {
+                this["frmBankkontoudtogSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point frmKladderLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["frmKladderLocation"]));
+            }
+            set {
+                this["frmKladderLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("530, 259")]
+        public global::System.Drawing.Size frmKladderSize {
+            get {
+                return ((global::System.Drawing.Size)(this["frmKladderSize"]));
+            }
+            set {
+                this["frmKladderSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point frmNyeKladderLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["frmNyeKladderLocation"]));
+            }
+            set {
+                this["frmNyeKladderLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("521, 259")]
+        public global::System.Drawing.Size frmNyeKladderSize {
+            get {
+                return ((global::System.Drawing.Size)(this["frmNyeKladderSize"]));
+            }
+            set {
+                this["frmNyeKladderSize"] = value;
+            }
+        }
     }
 }

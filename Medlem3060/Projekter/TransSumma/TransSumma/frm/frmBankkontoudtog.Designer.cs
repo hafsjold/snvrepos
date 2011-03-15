@@ -410,8 +410,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(393, 416);
+            this.ClientSize = global::nsPuls3060.Properties.Settings.Default.frmBankkontoudtogSize;
             this.Controls.Add(this.splitContainer1);
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsPuls3060.Properties.Settings.Default, "FrmBankkontoudtogLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::nsPuls3060.Properties.Settings.Default, "frmBankkontoudtogSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.Location = global::nsPuls3060.Properties.Settings.Default.FrmBankkontoudtogLocation;
             this.Name = "FrmBankkontoudtog";
             this.Text = "Bank kontoudtog";
             this.Load += new System.EventHandler(this.FrmKladder_Load);

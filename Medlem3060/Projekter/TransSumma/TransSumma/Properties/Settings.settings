@@ -80,5 +80,23 @@
     <Setting Name="BankafstemningSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">660, 496</Value>
     </Setting>
+    <Setting Name="FrmBankkontoudtogLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="frmBankkontoudtogSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">393, 416</Value>
+    </Setting>
+    <Setting Name="frmKladderLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="frmKladderSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">530, 259</Value>
+    </Setting>
+    <Setting Name="frmNyeKladderLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="frmNyeKladderSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">521, 259</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

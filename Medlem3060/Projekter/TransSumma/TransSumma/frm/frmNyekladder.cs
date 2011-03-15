@@ -27,6 +27,37 @@ namespace nsPuls3060
                 this.MKdataGridViewComboBox.Visible = false;
         }
 
+        public void AddNyKladde(Tblbilag recBilag) 
+        {
+            var qry = from k in recBilag.Tblkladder 
+                      select new Tblwkladder
+                      {
+                        Tekst = k.Tekst,
+                        Afstemningskonto = k.Afstemningskonto,
+                        Belob = k.Belob,
+                        Konto = k.Konto,
+                        Momskode = k.Momskode,
+                        Faktura = k.Faktura
+                      };
+            int antal = qry.Count();
+
+            int? bilagnr = (from b in ((IList<Tblwbilag>)this.tblwbilagBindingSource.List) select b.Bilag).Max();
+            if (bilagnr != null)
+                bilagnr++;
+            else
+                bilagnr = 1;
+            Tblwbilag recwBilag = new Tblwbilag 
+            {
+                Bilag = bilagnr,
+                Dato = DateTime.Today
+            };
+            foreach (var k in qry)
+            {
+                recwBilag.Tblwkladder.Add(k);
+            }
+            this.tblwbilagBindingSource.Add(recwBilag);
+        }
+
         private void FrmNyekladder_FormClosed(object sender, FormClosedEventArgs e)
         {
             Program.dbDataTransSumma.SubmitChanges();

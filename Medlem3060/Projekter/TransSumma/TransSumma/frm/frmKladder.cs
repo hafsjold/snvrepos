@@ -50,6 +50,18 @@ namespace nsPuls3060
             this.tblbilagBindingSource.DataSource = qryAfstemte;
         }
 
+        private void cmdKopier_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmMain frmMain = this.ParentForm as FrmMain;
+                FrmNyekladder frmNyekladder = frmMain.GetChild("Nye kladder") as FrmNyekladder;
+                Tblbilag recBilag = this.tblbilagBindingSource.Current as Tblbilag;
+                frmNyekladder.AddNyKladde(recBilag);
+            }
+            catch{}
+        }
+
     }
 
 }

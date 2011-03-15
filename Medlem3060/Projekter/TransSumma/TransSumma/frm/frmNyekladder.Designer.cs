@@ -468,8 +468,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(521, 259);
+            this.ClientSize = global::nsPuls3060.Properties.Settings.Default.frmNyeKladderSize;
             this.Controls.Add(this.splitContainer1);
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsPuls3060.Properties.Settings.Default, "frmNyeKladderLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::nsPuls3060.Properties.Settings.Default, "frmNyeKladderSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.Location = global::nsPuls3060.Properties.Settings.Default.frmNyeKladderLocation;
             this.Name = "FrmNyekladder";
             this.Text = "Nye Kladder";
             this.Load += new System.EventHandler(this.FrmNyekladder_Load);

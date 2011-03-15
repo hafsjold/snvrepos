@@ -89,6 +89,18 @@ namespace nsPuls3060
             return false;
         }
 
+        public Form GetChild(string child)
+        {
+            foreach (Form frm in this.MdiChildren)
+            {
+                if (frm.Text.ToUpper() == child.ToUpper())
+                {
+                    return frm;
+                }
+            }
+            return null;
+        }
+
         private void medlemmerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!FocusChild("Medlemmer"))
@@ -540,8 +552,9 @@ namespace nsPuls3060
         {
             if (!FocusChild("Kladder"))
             {
-                Program.frmKladder.MdiParent = this;
-                Program.frmKladder.Show();
+                FrmKladder m_frmKladder = new FrmKladder();
+                m_frmKladder.MdiParent = this;
+                m_frmKladder.Show();
             }
         }
 
@@ -553,6 +566,13 @@ namespace nsPuls3060
                 m_Bankkontoudtog.MdiParent = this;
                 m_Bankkontoudtog.Show();
             }
+        }
+
+        private void bilagsindtastningToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            nyeKladderToolStripMenuItem_Click(sender, e);
+            kladderToolStripMenuItem_Click(sender, e);
+            bankKontoudtogToolStripMenuItem_Click(sender, e);
         }
 
 

@@ -50,11 +50,14 @@ namespace nsPuls3060
         {
             try
             {
+                FrmMain frmMain = this.ParentForm as FrmMain;
+                FrmKladder frmKladder = frmMain.GetChild("Kladder") as FrmKladder;
+                
                 Tblbankkonto recBankkonto = this.tblbankkontoBindingSourceAfstemte.Current as Tblbankkonto;
                 int? Bilagpid = (from t in Program.dbDataTransSumma.Tbltrans
                                  where t.Afstem == recBankkonto.Afstem
                                  select t.Bilagpid).First();
-                Program.frmKladder.findBilag(Bilagpid);
+                frmKladder.findBilag(Bilagpid);
             }
             catch
             {

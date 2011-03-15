@@ -64,8 +64,6 @@ namespace nsPuls3060
         private static KarAfstemningskonti m_KarAfstemningskonti;
         private static KarMoms m_KarMoms;
 
-        private static FrmKladder m_frmKladder;
-
         public static string AppEngName
         {
             get
@@ -562,18 +560,6 @@ namespace nsPuls3060
             set
             {
                 m_KarMoms = value;
-            }
-        }
-        public static FrmKladder frmKladder
-        {
-            get
-            {
-                if (m_frmKladder == null) m_frmKladder = new FrmKladder();
-                return m_frmKladder;
-            }
-            set
-            {
-                m_frmKladder = value;
             }
         }
         public static KarFakturaer_k karFakturaer_k
