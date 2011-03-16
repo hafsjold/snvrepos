@@ -63,8 +63,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\Interop.VBIDE.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ReportViewer.Common, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-    <Reference Include="Microsoft.ReportViewer.WinForms, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="PresentationCore">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
@@ -108,6 +106,7 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="cls\clsPrint.cs" />
     <Compile Include="cls\clsPbs.cs" />
     <Compile Include="dbDataTransSumma.designer.cs">
       <AutoGen>True</AutoGen>
@@ -131,12 +130,6 @@
     </Compile>
     <Compile Include="frm\frmNyekladder.Designer.cs">
       <DependentUpon>frmNyekladder.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frm\frmUdskrivbilag.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frm\frmUdskrivbilag.Designer.cs">
-      <DependentUpon>frmUdskrivbilag.cs</DependentUpon>
     </Compile>
     <Compile Include="frm\frmRegnskab.cs">
       <SubType>Form</SubType>
@@ -205,9 +198,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm\frmNyekladder.resx">
       <DependentUpon>frmNyekladder.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frm\frmUdskrivbilag.resx">
-      <DependentUpon>frmUdskrivbilag.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm\BetterDialog.resx">
       <DependentUpon>BetterDialog.cs</DependentUpon>

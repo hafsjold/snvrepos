@@ -13,6 +13,20 @@ using System.Data.Common;
 using System.Xml.Linq;
 using System.Data.Linq.SqlClient;
 
+//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
 
 namespace nsPuls3060
 {
@@ -103,7 +117,7 @@ namespace nsPuls3060
 #if (DEBUG)
             //KarBankafstemning recBankafstemning = new KarBankafstemning();
             //recBankafstemning.load();
-            
+
 
 #endif
         }
@@ -150,11 +164,11 @@ namespace nsPuls3060
             string Kontonavn = null;
             Tblbilag recBilag = null;
             var qryPosteringer = from p in Program.karPosteringer
-                      join b in Program.dbDataTransSumma.Tbltrans on new { p.Regnskabid, p.Id, p.Nr } equals new { b.Regnskabid, b.Id, b.Nr } into tbltrans
-                      from b in tbltrans.DefaultIfEmpty(new Tbltrans { Pid = 0, Regnskabid = null, Id = null, Nr = null })
-                      where b.Pid == 0
-                      orderby p.Regnskabid, p.Bilag, p.Id, p.Nr
-                      select p;
+                                 join b in Program.dbDataTransSumma.Tbltrans on new { p.Regnskabid, p.Id, p.Nr } equals new { b.Regnskabid, b.Id, b.Nr } into tbltrans
+                                 from b in tbltrans.DefaultIfEmpty(new Tbltrans { Pid = 0, Regnskabid = null, Id = null, Nr = null })
+                                 where b.Pid == 0
+                                 orderby p.Regnskabid, p.Bilag, p.Id, p.Nr
+                                 select p;
             int antal = qryPosteringer.Count();
             foreach (var p in qryPosteringer)
             {
@@ -183,7 +197,7 @@ namespace nsPuls3060
                 {
                     Kontonavn = (from b in Program.karKontoplan where b.Kontonr == p.Konto select b.Kontonavn).First();
                 }
-                catch 
+                catch
                 {
                     Kontonavn = null;
                 }
@@ -199,7 +213,7 @@ namespace nsPuls3060
                     Belob = p.Nettobeløb + p.Momsbeløb,
                     Moms = p.Momsbeløb,
                     Debet = (p.Nettobeløb >= 0) ? p.Nettobeløb : (decimal?)null,
-                    Kredit = (p.Nettobeløb < 0) ? - p.Nettobeløb : (decimal?)null,
+                    Kredit = (p.Nettobeløb < 0) ? -p.Nettobeløb : (decimal?)null,
                 };
                 Program.dbDataTransSumma.Tbltrans.InsertOnSubmit(recTrans);
                 if (!(p.Bilag == 0)) recBilag.Tbltrans.Add(recTrans);
@@ -207,14 +221,14 @@ namespace nsPuls3060
             }
             Program.dbDataTransSumma.SubmitChanges();
 
-            
+
             lastBilag = 0;
             var qryKladder = from k in Program.karKladder
-                      join b in Program.dbDataTransSumma.Tblkladder on new { k.Regnskabid, k.Id } equals new { b.Regnskabid, b.Id } into tblkladder
-                      from b in tblkladder.DefaultIfEmpty(new Tblkladder { Pid = 0, Regnskabid = null, Id = null })
-                      where b.Pid == 0
-                      orderby k.Regnskabid, k.Bilag, k.Id
-                      select k;
+                             join b in Program.dbDataTransSumma.Tblkladder on new { k.Regnskabid, k.Id } equals new { b.Regnskabid, b.Id } into tblkladder
+                             from b in tblkladder.DefaultIfEmpty(new Tblkladder { Pid = 0, Regnskabid = null, Id = null })
+                             where b.Pid == 0
+                             orderby k.Regnskabid, k.Bilag, k.Id
+                             select k;
             antal = qryKladder.Count();
             foreach (var k in qryKladder)
             {
@@ -255,16 +269,6 @@ namespace nsPuls3060
                 lastBilag = k.Bilag;
             }
             Program.dbDataTransSumma.SubmitChanges();
-        }
-
-        private void pbsfilesToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!FocusChild("Udskrivbilag"))
-            {
-                FrmUdskrivbilag m_frmUdskrivbilag = new FrmUdskrivbilag();
-                m_frmUdskrivbilag.MdiParent = this;
-                m_frmUdskrivbilag.Show();
-            }
         }
 
         private void nyeKladderToolStripMenuItem_Click(object sender, EventArgs e)
@@ -310,5 +314,12 @@ namespace nsPuls3060
             recBankkontoudtog.load();
         }
 
+        private void testWPFToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clsPrint.testPrint();
+        }
+
     }
+
+
 }
