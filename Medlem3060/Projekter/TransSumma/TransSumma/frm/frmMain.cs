@@ -314,9 +314,9 @@ namespace nsPuls3060
             recBankkontoudtog.load();
         }
 
-        private void testWPFToolStripMenuItem_Click(object sender, EventArgs e)
+        private void printBilagToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            clsPrint.testPrint();
+            clsBilagsudskrift.Bilagsudskrift(false);
         }
 
     }

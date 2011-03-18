@@ -11,18 +11,12 @@ using System.Diagnostics;
 using d = System.Drawing;
 
 
-
-
 namespace nsPuls3060
 {
-    class clsPrint
+    class clsBilagsudskrift
     {
-        public static void testPrint()
+        public static void Bilagsudskrift(bool bDialog)
         {
-            PrintDialog dialog = new PrintDialog();
-            if (dialog.ShowDialog() != true)
-                return;
-
             Tblbilag[] Bilag;
             var qry = from b in Program.dbDataTransSumma.Tblbilag
                       where b.Udskriv == true
@@ -45,6 +39,11 @@ namespace nsPuls3060
                 Bilag[i++] = b;
                 if (i >= iMax) break;
             }
+
+            PrintDialog dialog = new PrintDialog();
+            if (bDialog)
+                if (dialog.ShowDialog() != true) 
+                    return;            
             var paginator = new BilagsudskriftPaginator(Bilag, new Size(dialog.PrintableAreaWidth, dialog.PrintableAreaHeight));
             dialog.PrintDocument(paginator, "Bilagsudskrift");
         }

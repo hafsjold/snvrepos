@@ -106,7 +106,7 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="cls\clsPrint.cs" />
+    <Compile Include="cls\clsBilagsudskrift.cs" />
     <Compile Include="cls\clsPbs.cs" />
     <Compile Include="dbDataTransSumma.designer.cs">
       <AutoGen>True</AutoGen>

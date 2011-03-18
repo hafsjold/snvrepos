@@ -44,15 +44,14 @@
             this.nyeKladderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kladderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bankKontoudtogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printBilagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.regnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importerTransaktionerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importerNordeaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.pbsfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.testWPFToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -155,7 +154,8 @@
             this.bilagsindtastningToolStripMenuItem,
             this.nyeKladderToolStripMenuItem,
             this.kladderToolStripMenuItem,
-            this.bankKontoudtogToolStripMenuItem});
+            this.bankKontoudtogToolStripMenuItem,
+            this.printBilagToolStripMenuItem});
             this.medlemToolStripMenuItem.Name = "medlemToolStripMenuItem";
             this.medlemToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.medlemToolStripMenuItem.Text = "Bogføring";
@@ -195,6 +195,13 @@
             this.bankKontoudtogToolStripMenuItem.Text = "Bank kontoudtog";
             this.bankKontoudtogToolStripMenuItem.Click += new System.EventHandler(this.bankKontoudtogToolStripMenuItem_Click);
             // 
+            // printBilagToolStripMenuItem
+            // 
+            this.printBilagToolStripMenuItem.Name = "printBilagToolStripMenuItem";
+            this.printBilagToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.printBilagToolStripMenuItem.Text = "Print bilag";
+            this.printBilagToolStripMenuItem.Click += new System.EventHandler(this.printBilagToolStripMenuItem_Click);
+            // 
             // regnskabToolStripMenuItem
             // 
             this.regnskabToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -221,9 +228,7 @@
             // systemToolStripMenuItem
             // 
             this.systemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem2,
-            this.pbsfilesToolStripMenuItem,
-            this.testWPFToolStripMenuItem});
+            this.toolStripMenuItem2});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
             this.systemToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.systemToolStripMenuItem.Text = "System";
@@ -249,13 +254,6 @@
             this.omToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
-            // 
-            // testWPFToolStripMenuItem
-            // 
-            this.testWPFToolStripMenuItem.Name = "testWPFToolStripMenuItem";
-            this.testWPFToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.testWPFToolStripMenuItem.Text = "TestWPF";
-            this.testWPFToolStripMenuItem.Click += new System.EventHandler(this.testWPFToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -297,7 +295,6 @@
         private System.Windows.Forms.ToolStripMenuItem medlemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem systemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem pbsfilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hjælpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem omToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem regnskabToolStripMenuItem;
@@ -310,7 +307,7 @@
         private System.Windows.Forms.ToolStripMenuItem bankKontoudtogToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bilagsindtastningToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importerNordeaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem testWPFToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem printBilagToolStripMenuItem;
     }
 }
 
