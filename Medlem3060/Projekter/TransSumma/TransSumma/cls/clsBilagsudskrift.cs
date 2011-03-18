@@ -23,7 +23,7 @@ namespace nsPuls3060
                       && b.Tbltrans.Count() > 0
                       select b;
             int count = qry.Count();
-            int iMax = 1;
+            int iMax = 99999;
             if (count > iMax)
             {
                 Bilag = new Tblbilag[iMax];
@@ -37,6 +37,7 @@ namespace nsPuls3060
             foreach (var b in qry)
             {
                 Bilag[i++] = b;
+                b.Udskriv = false;
                 if (i >= iMax) break;
             }
 
@@ -46,6 +47,7 @@ namespace nsPuls3060
                     return;            
             var paginator = new BilagsudskriftPaginator(Bilag, new Size(dialog.PrintableAreaWidth, dialog.PrintableAreaHeight));
             dialog.PrintDocument(paginator, "Bilagsudskrift");
+            Program.dbDataTransSumma.SubmitChanges();
         }
     }
 

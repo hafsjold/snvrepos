@@ -32,6 +32,9 @@
             System.Windows.Forms.Label bilagLabel;
             System.Windows.Forms.Label datoLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNyekladder));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tblwbilagBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tblwbilagBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
@@ -61,8 +64,7 @@
             this.karMomsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.FaknrdataGridViewTextBox = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuLineCopyPaste = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bilagTextBox = new System.Windows.Forms.TextBox();
@@ -70,6 +72,9 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.cmdTest = new System.Windows.Forms.Button();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.contextMenuMoms = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tillægMomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fratrækMomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             bilagLabel = new System.Windows.Forms.Label();
             datoLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tblwbilagBindingSource)).BeginInit();
@@ -80,13 +85,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.karAfstemningskontiBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.karKontoplanBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.karMomsBindingSource)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
+            this.contextMenuLineCopyPaste.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
+            this.contextMenuMoms.SuspendLayout();
             this.SuspendLayout();
             // 
             // bilagLabel
@@ -268,13 +274,13 @@
             this.MKdataGridViewComboBox,
             this.FaknrdataGridViewTextBox,
             this.dataGridViewTextBoxColumn12});
-            this.tblwkladderDataGridView.ContextMenuStrip = this.contextMenuStrip1;
             this.tblwkladderDataGridView.DataSource = this.tblwkladderBindingSource;
             this.tblwkladderDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblwkladderDataGridView.Location = new System.Drawing.Point(0, 0);
             this.tblwkladderDataGridView.Name = "tblwkladderDataGridView";
             this.tblwkladderDataGridView.Size = new System.Drawing.Size(521, 174);
             this.tblwkladderDataGridView.TabIndex = 2;
+            this.tblwkladderDataGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tblwkladderDataGridView_MouseDown);
             this.tblwkladderDataGridView.CellErrorTextNeeded += new System.Windows.Forms.DataGridViewCellErrorTextNeededEventHandler(this.tblwkladderDataGridView_CellErrorTextNeeded);
             this.tblwkladderDataGridView.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.tblwkladderDataGridView_EditingControlShowing);
             this.tblwkladderDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.tblwkladderDataGridView_DataError);
@@ -323,6 +329,10 @@
             // BelobdataGridViewTextBox
             // 
             this.BelobdataGridViewTextBox.DataPropertyName = "Belob";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.BelobdataGridViewTextBox.DefaultCellStyle = dataGridViewCellStyle1;
             this.BelobdataGridViewTextBox.HeaderText = "Beløb";
             this.BelobdataGridViewTextBox.Name = "BelobdataGridViewTextBox";
             this.BelobdataGridViewTextBox.Width = 60;
@@ -331,6 +341,8 @@
             // 
             this.KontodataGridViewTextBox.DataPropertyName = "Konto";
             this.KontodataGridViewTextBox.DataSource = this.karKontoplanBindingSource;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.KontodataGridViewTextBox.DefaultCellStyle = dataGridViewCellStyle2;
             this.KontodataGridViewTextBox.DisplayMember = "Kontonr";
             this.KontodataGridViewTextBox.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
             this.KontodataGridViewTextBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -367,6 +379,8 @@
             // FaknrdataGridViewTextBox
             // 
             this.FaknrdataGridViewTextBox.DataPropertyName = "Faktura";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.FaknrdataGridViewTextBox.DefaultCellStyle = dataGridViewCellStyle3;
             this.FaknrdataGridViewTextBox.HeaderText = "Faknr";
             this.FaknrdataGridViewTextBox.Name = "FaknrdataGridViewTextBox";
             this.FaknrdataGridViewTextBox.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -379,35 +393,27 @@
             this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
             this.dataGridViewTextBoxColumn12.Visible = false;
             // 
-            // contextMenuStrip1
+            // contextMenuLineCopyPaste
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cutToolStripMenuItem,
+            this.contextMenuLineCopyPaste.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyToolStripMenuItem,
             this.pasteToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(113, 70);
-            // 
-            // cutToolStripMenuItem
-            // 
-            this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
-            this.cutToolStripMenuItem.Text = "Cut";
-            this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
+            this.contextMenuLineCopyPaste.Name = "contextMenuStrip1";
+            this.contextMenuLineCopyPaste.Size = new System.Drawing.Size(113, 48);
             // 
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
             this.copyToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.copyToolStripMenuItem.Text = "Copy";
-            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyMenuLineCopyPastItem_Click);
             // 
             // pasteToolStripMenuItem
             // 
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
             this.pasteToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.pasteToolStripMenuItem.Text = "Paste";
-            this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
+            this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteMenuLineCopyPastItem_Click);
             // 
             // bilagTextBox
             // 
@@ -476,6 +482,28 @@
             this.splitContainer2.SplitterDistance = 174;
             this.splitContainer2.TabIndex = 0;
             // 
+            // contextMenuMoms
+            // 
+            this.contextMenuMoms.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tillægMomsToolStripMenuItem,
+            this.fratrækMomsToolStripMenuItem});
+            this.contextMenuMoms.Name = "contextMenuMoms";
+            this.contextMenuMoms.Size = new System.Drawing.Size(155, 48);
+            // 
+            // tillægMomsToolStripMenuItem
+            // 
+            this.tillægMomsToolStripMenuItem.Name = "tillægMomsToolStripMenuItem";
+            this.tillægMomsToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.tillægMomsToolStripMenuItem.Text = "Tillæg moms";
+            this.tillægMomsToolStripMenuItem.Click += new System.EventHandler(this.tillægMomsToolStripMenuItem_Click);
+            // 
+            // fratrækMomsToolStripMenuItem
+            // 
+            this.fratrækMomsToolStripMenuItem.Name = "fratrækMomsToolStripMenuItem";
+            this.fratrækMomsToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.fratrækMomsToolStripMenuItem.Text = "Fratræk moms";
+            this.fratrækMomsToolStripMenuItem.Click += new System.EventHandler(this.fratrækMomsToolStripMenuItem_Click);
+            // 
             // FrmNyekladder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -498,7 +526,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.karAfstemningskontiBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.karKontoplanBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.karMomsBindingSource)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
+            this.contextMenuLineCopyPaste.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -507,6 +535,7 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.Panel2.PerformLayout();
             this.splitContainer2.ResumeLayout(false);
+            this.contextMenuMoms.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -534,12 +563,16 @@
         private System.Windows.Forms.ToolStripButton newToolStripButton;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuLineCopyPaste;
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
         private System.Windows.Forms.BindingSource karKontoplanBindingSource;
         private System.Windows.Forms.BindingSource karAfstemningskontiBindingSource;
+        private System.Windows.Forms.BindingSource karMomsBindingSource;
+        private System.Windows.Forms.Button cmdTest;
+        private System.Windows.Forms.ContextMenuStrip contextMenuMoms;
+        private System.Windows.Forms.ToolStripMenuItem tillægMomsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fratrækMomsToolStripMenuItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn PiddataGridViewTextBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn BilagpiddataGridViewTextBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn TekstdataGridViewTextBox;
@@ -547,9 +580,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn BelobdataGridViewTextBox;
         private System.Windows.Forms.DataGridViewComboBoxColumn KontodataGridViewTextBox;
         private System.Windows.Forms.DataGridViewComboBoxColumn MKdataGridViewComboBox;
-        private System.Windows.Forms.BindingSource karMomsBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn FaknrdataGridViewTextBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
-        private System.Windows.Forms.Button cmdTest;
     }
 }

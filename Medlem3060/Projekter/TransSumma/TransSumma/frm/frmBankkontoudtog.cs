@@ -28,7 +28,17 @@ namespace nsPuls3060
                                where u.Afstem != null && u.Skjul == null
                                select u;
             this.tblbankkontoBindingSourceAfstemte.DataSource = qryAfstemte;
-            
+        }
+
+        public Tblbankkonto GetrecBankkonto() 
+        {
+            Tblbankkonto recBankkonto = null;
+            try
+            {
+                recBankkonto = this.tblbankkontoBindingSourceUafstemte.Current as Tblbankkonto;
+            }
+            catch { }
+            return recBankkonto;
         }
 
         private void cmdSog_Click(object sender, EventArgs e)

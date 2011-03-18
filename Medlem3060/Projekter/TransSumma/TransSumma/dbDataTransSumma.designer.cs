@@ -2204,9 +2204,9 @@ namespace nsPuls3060
 		
 		private int _Pid;
 		
-		private System.Nullable<int> _Bilag;
+		private int _Bilag;
 		
-		private System.Nullable<System.DateTime> _Dato;
+		private System.DateTime _Dato;
 		
 		private EntitySet<Tblwkladder> _Tblwkladder;
 		
@@ -2216,9 +2216,9 @@ namespace nsPuls3060
     partial void OnCreated();
     partial void OnPidChanging(int value);
     partial void OnPidChanged();
-    partial void OnBilagChanging(System.Nullable<int> value);
+    partial void OnBilagChanging(int value);
     partial void OnBilagChanged();
-    partial void OnDatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnDatoChanging(System.DateTime value);
     partial void OnDatoChanged();
     #endregion
 		
@@ -2248,8 +2248,8 @@ namespace nsPuls3060
 			}
 		}
 		
-		[Column(Name="bilag", Storage="_Bilag", DbType="Int")]
-		public System.Nullable<int> Bilag
+		[Column(Name="bilag", Storage="_Bilag", DbType="Int NOT NULL")]
+		public int Bilag
 		{
 			get
 			{
@@ -2268,8 +2268,8 @@ namespace nsPuls3060
 			}
 		}
 		
-		[Column(Name="dato", Storage="_Dato", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Dato
+		[Column(Name="dato", Storage="_Dato", DbType="DateTime NOT NULL")]
+		public System.DateTime Dato
 		{
 			get
 			{
@@ -2342,7 +2342,7 @@ namespace nsPuls3060
 		
 		private int _Pid;
 		
-		private System.Nullable<int> _Bilagpid;
+		private int _Bilagpid;
 		
 		private string _Tekst;
 		
@@ -2364,7 +2364,7 @@ namespace nsPuls3060
     partial void OnCreated();
     partial void OnPidChanging(int value);
     partial void OnPidChanged();
-    partial void OnBilagpidChanging(System.Nullable<int> value);
+    partial void OnBilagpidChanging(int value);
     partial void OnBilagpidChanged();
     partial void OnTekstChanging(string value);
     partial void OnTekstChanged();
@@ -2406,8 +2406,8 @@ namespace nsPuls3060
 			}
 		}
 		
-		[Column(Name="bilagpid", Storage="_Bilagpid", DbType="Int")]
-		public System.Nullable<int> Bilagpid
+		[Column(Name="bilagpid", Storage="_Bilagpid", DbType="Int NOT NULL")]
+		public int Bilagpid
 		{
 			get
 			{
@@ -2546,7 +2546,7 @@ namespace nsPuls3060
 			}
 		}
 		
-		[Association(Name="Tblwbilag_Tblwkladder", Storage="_Tblwbilag", ThisKey="Bilagpid", OtherKey="Pid", IsForeignKey=true)]
+		[Association(Name="Tblwbilag_Tblwkladder", Storage="_Tblwbilag", ThisKey="Bilagpid", OtherKey="Pid", IsForeignKey=true, DeleteOnNull=true)]
 		public Tblwbilag Tblwbilag
 		{
 			get
@@ -2573,7 +2573,7 @@ namespace nsPuls3060
 					}
 					else
 					{
-						this._Bilagpid = default(Nullable<int>);
+						this._Bilagpid = default(int);
 					}
 					this.SendPropertyChanged("Tblwbilag");
 				}

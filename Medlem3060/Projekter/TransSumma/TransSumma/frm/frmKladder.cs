@@ -31,11 +31,11 @@ namespace nsPuls3060
         private void cmdSog_Click(object sender, EventArgs e)
         {
             string strLike = "%" + textBoxSogeord.Text + "%";
-            var qry= (from u in Program.dbDataTransSumma.Tbltrans
-                              where SqlMethods.Like(u.Tekst, strLike)
-                              join b in Program.dbDataTransSumma.Tblbilag on u.Bilagpid equals b.Pid
-                              orderby b.Dato descending
-                              select b).Distinct();
+            var qry = (from u in Program.dbDataTransSumma.Tbltrans
+                       where SqlMethods.Like(u.Tekst, strLike)
+                       join b in Program.dbDataTransSumma.Tblbilag on u.Bilagpid equals b.Pid
+                       orderby b.Dato descending
+                       select b).Distinct();
             var qryAfstemte = from b in qry orderby b.Dato descending select b;
 
             this.tblbilagBindingSource.DataSource = qryAfstemte;
@@ -43,7 +43,7 @@ namespace nsPuls3060
 
         public void findBilag(int? Bilagpid)
         {
-            var qryAfstemte = from  b in Program.dbDataTransSumma.Tblbilag
+            var qryAfstemte = from b in Program.dbDataTransSumma.Tblbilag
                               where b.Pid == Bilagpid
                               select b;
 
@@ -52,14 +52,22 @@ namespace nsPuls3060
 
         private void cmdKopier_Click(object sender, EventArgs e)
         {
+            FrmMain frmMain = this.ParentForm as FrmMain;
+            Tblbankkonto recBankkonto = null;
             try
             {
-                FrmMain frmMain = this.ParentForm as FrmMain;
+                FrmBankkontoudtog frmBankkontoudtog = frmMain.GetChild("Bank kontoudtog") as FrmBankkontoudtog;
+                recBankkonto = frmBankkontoudtog.GetrecBankkonto();
+            }
+            catch { }
+
+            try
+            {
                 FrmNyekladder frmNyekladder = frmMain.GetChild("Nye kladder") as FrmNyekladder;
                 Tblbilag recBilag = this.tblbilagBindingSource.Current as Tblbilag;
-                frmNyekladder.AddNyKladde(recBilag);
+                frmNyekladder.AddNyKladde(recBilag, recBankkonto);
             }
-            catch{}
+            catch { }
         }
 
     }

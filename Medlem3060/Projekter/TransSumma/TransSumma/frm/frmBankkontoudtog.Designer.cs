@@ -33,6 +33,7 @@
             System.Windows.Forms.Label tekstLabel;
             System.Windows.Forms.Label belobLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBankkontoudtog));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.cmdTest = new System.Windows.Forms.Button();
@@ -54,6 +55,7 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tblbankkonto2DataGridView = new System.Windows.Forms.DataGridView();
+            this.tblbankkontoBindingSourceAfstemte = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,7 +64,6 @@
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblbankkontoBindingSourceAfstemte = new System.Windows.Forms.BindingSource(this.components);
             datoLabel = new System.Windows.Forms.Label();
             tekstLabel = new System.Windows.Forms.Label();
             belobLabel = new System.Windows.Forms.Label();
@@ -196,6 +197,7 @@
             this.belobTextBox.Name = "belobTextBox";
             this.belobTextBox.Size = new System.Drawing.Size(81, 20);
             this.belobTextBox.TabIndex = 5;
+            this.belobTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // tblbankkontoBindingSourceUafstemte
             // 
@@ -338,6 +340,10 @@
             this.tblbankkonto2DataGridView.TabIndex = 0;
             this.tblbankkonto2DataGridView.SelectionChanged += new System.EventHandler(this.tblbankkonto2DataGridView_SelectionChanged);
             // 
+            // tblbankkontoBindingSourceAfstemte
+            // 
+            this.tblbankkontoBindingSourceAfstemte.DataSource = typeof(nsPuls3060.Tblbankkonto);
+            // 
             // dataGridViewTextBoxColumn9
             // 
             this.dataGridViewTextBoxColumn9.DataPropertyName = "Pid";
@@ -381,6 +387,10 @@
             // dataGridViewTextBoxColumn14
             // 
             this.dataGridViewTextBoxColumn14.DataPropertyName = "Belob";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.dataGridViewTextBoxColumn14.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewTextBoxColumn14.HeaderText = "Belob";
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
             this.dataGridViewTextBoxColumn14.ReadOnly = true;
@@ -401,10 +411,6 @@
             this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
             this.dataGridViewTextBoxColumn16.ReadOnly = true;
             this.dataGridViewTextBoxColumn16.Visible = false;
-            // 
-            // tblbankkontoBindingSourceAfstemte
-            // 
-            this.tblbankkontoBindingSourceAfstemte.DataSource = typeof(nsPuls3060.Tblbankkonto);
             // 
             // FrmBankkontoudtog
             // 
@@ -459,6 +465,7 @@
         private System.Windows.Forms.Button cmdSog;
         private System.Windows.Forms.Label labeltextBoxSogeord;
         private System.Windows.Forms.TextBox textBoxSogeord;
+        private System.Windows.Forms.Button cmdTest;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
@@ -467,6 +474,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
-        private System.Windows.Forms.Button cmdTest;
     }
 }

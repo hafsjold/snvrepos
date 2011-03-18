@@ -69,30 +69,5 @@ namespace nsPuls3060
             }
         }
 
-        public int BS1_NæsteNr()
-        {
-            recRegnskab rec;
-            int BS1_SidsteNr;
-            try
-            {
-                rec = (from r in this where r.key == "BS1_SidsteNr" select r).First();
-                BS1_SidsteNr = int.Parse(rec.value);
-                BS1_SidsteNr++;
-                rec.value = BS1_SidsteNr.ToString();
-                return BS1_SidsteNr;
-            }
-            catch
-            {
-                rec = new recRegnskab
-                {
-                    key = "BS1_SidsteNr",
-                    value = "1"
-                };
-                this.Add(rec);
-                return 1;
-            }
-
-
-        }
     }
 }

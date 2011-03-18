@@ -98,5 +98,14 @@
     <Setting Name="frmNyeKladderSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">521, 259</Value>
     </Setting>
+    <Setting Name="frmBilagLoacation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="frmBilagSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">870, 346</Value>
+    </Setting>
+    <Setting Name="frmBilagSplitDistance" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">246</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

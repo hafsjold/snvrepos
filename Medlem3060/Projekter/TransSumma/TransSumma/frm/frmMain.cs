@@ -319,6 +319,16 @@ namespace nsPuls3060
             clsBilagsudskrift.Bilagsudskrift(false);
         }
 
+        private void bilagToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("Bilag"))
+            {
+                FrmBilag m_Bilag = new FrmBilag();
+                m_Bilag.MdiParent = this;
+                m_Bilag.Show();
+            }
+        }
+
     }
 
 

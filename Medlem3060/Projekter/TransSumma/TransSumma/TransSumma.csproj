@@ -107,11 +107,16 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="cls\clsBilagsudskrift.cs" />
-    <Compile Include="cls\clsPbs.cs" />
     <Compile Include="dbDataTransSumma.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dbDataTransSumma.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="frm\frmBilag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmBilag.Designer.cs">
+      <DependentUpon>frmBilag.cs</DependentUpon>
     </Compile>
     <Compile Include="frm\frmBankkontoudtog.cs">
       <SubType>Form</SubType>
@@ -193,6 +198,9 @@
     <EmbeddedResource Include="frm\frmBankkontoudtog.resx">
       <DependentUpon>frmBankkontoudtog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmBilag.resx">
+      <DependentUpon>frmBilag.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm\frmKladder.resx">
       <DependentUpon>frmKladder.cs</DependentUpon>
     </EmbeddedResource>
@@ -219,7 +227,6 @@
     <EmbeddedResource Include="frm\frmBankafstemning.resx">
       <DependentUpon>frmBankafstemning.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="rptKonto.rdlc" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -254,9 +261,6 @@
     <None Include="Properties\DataSources\KarAfstemningskonti.datasource" />
     <None Include="Properties\DataSources\KarKontoplan.datasource" />
     <None Include="Properties\DataSources\KarMoms.datasource" />
-    <None Include="Properties\DataSources\MemInfotekst.datasource" />
-    <None Include="Properties\DataSources\MemKreditor.datasource" />
-    <None Include="Properties\DataSources\MemPbsnetdir.datasource" />
     <None Include="Properties\DataSources\MemRegnskab.datasource" />
     <None Include="Properties\DataSources\Tblbankkonto.datasource" />
     <None Include="Properties\DataSources\Tblbilag.datasource" />

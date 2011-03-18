@@ -27,35 +27,57 @@ namespace nsPuls3060
                 this.MKdataGridViewComboBox.Visible = false;
         }
 
-        public void AddNyKladde(Tblbilag recBilag) 
+        public void AddNyKladde(Tblbilag recBilag, Tblbankkonto recBankkonto)
         {
-            var qry = from k in recBilag.Tblkladder 
+            var qry = from k in recBilag.Tblkladder
                       select new Tblwkladder
                       {
-                        Tekst = k.Tekst,
-                        Afstemningskonto = k.Afstemningskonto,
-                        Belob = k.Belob,
-                        Konto = k.Konto,
-                        Momskode = k.Momskode,
-                        Faktura = k.Faktura
+                          Tekst = k.Tekst,
+                          Afstemningskonto = k.Afstemningskonto,
+                          Belob = k.Belob,
+                          Konto = k.Konto,
+                          Momskode = k.Momskode,
+                          Faktura = k.Faktura
                       };
             int antal = qry.Count();
 
-            int? bilagnr = (from b in ((IList<Tblwbilag>)this.tblwbilagBindingSource.List) select b.Bilag).Max();
-            if (bilagnr != null)
+            int bilagnr = 0;
+
+            try
+            {
+                bilagnr = (from b in ((IList<Tblwbilag>)this.tblwbilagBindingSource.List) select b.Bilag).Max();
                 bilagnr++;
-            else
-                bilagnr = 1;
-            Tblwbilag recwBilag = new Tblwbilag 
+            }
+            catch
+            {
+                bilagnr = Program.karStatus.BS1_NæsteNr();
+            }
+
+            DateTime BankDato;
+            try
+            {
+                BankDato = (DateTime)recBankkonto.Dato;
+            }
+            catch
+            {
+                BankDato = DateTime.Today;
+            }
+
+            Tblwbilag recwBilag = new Tblwbilag
             {
                 Bilag = bilagnr,
-                Dato = DateTime.Today
+                Dato = BankDato
             };
-            foreach (var k in qry)
+
+            if (!ReducerBilag(recwBilag, recBilag, recBankkonto))
             {
-                recwBilag.Tblwkladder.Add(k);
+
+                foreach (var k in qry)
+                {
+                    recwBilag.Tblwkladder.Add(k);
+                }
+                this.tblwbilagBindingSource.Add(recwBilag);
             }
-            this.tblwbilagBindingSource.Add(recwBilag);
         }
 
         private void FrmNyekladder_FormClosed(object sender, FormClosedEventArgs e)
@@ -68,45 +90,41 @@ namespace nsPuls3060
             Program.dbDataTransSumma.SubmitChanges();
         }
 
-        private void cutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.cutToClipboard();
-        }
-
-        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        private void copyMenuLineCopyPastItem_Click(object sender, EventArgs e)
         {
             this.copyToClipboard();
         }
 
-        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        private void pasteMenuLineCopyPastItem_Click(object sender, EventArgs e)
         {
             this.pasteFromClipboard();
         }
 
-        private void cutToolStripButton_Click(object sender, EventArgs e)
+        private void tblwkladderDataGridView_KeyDown(object sender, KeyEventArgs e)
         {
-            cutToClipboard();
-        }
+            /*
+            if (e.KeyCode == Keys.Delete)
+            {
+                Tblwbilag recWbilag = tblwbilagBindingSource.Current as Tblwbilag;
+                DataGridViewSelectedRowCollection rows = tblwkladderDataGridView.SelectedRows;
+                foreach (DataGridViewRow row in rows)
+                {
+                    Tblwkladder recWkladder = row.DataBoundItem as Tblwkladder;
+                    recWbilag.Tblwkladder.Remove(recWkladder);
+                }
+                e.Handled = true;
+            }    
+            */
 
-        private void copyToolStripButton_Click(object sender, EventArgs e)
-        {
-            copyToClipboard();
-        }
-
-        private void pasteToolStripButton_Click(object sender, EventArgs e)
-        {
-            pasteFromClipboard();
-        }
-
-        private void deleteCurrentSelection()
-        {
-            this.tblwkladderBindingSource.RemoveCurrent();
-        }
-
-        private void cutToClipboard()
-        {
-            copyToClipboard();
-            deleteCurrentSelection();
+            if (e.KeyCode == Keys.C && e.Control)
+            {
+                this.copyToClipboard();
+                e.Handled = true; //otherwise the control itself tries to “copy”
+            }
+            if (e.KeyCode == Keys.V && e.Control)
+            {
+                this.pasteFromClipboard();
+            }
         }
 
         private void copyToClipboard()
@@ -133,10 +151,10 @@ namespace nsPuls3060
             }
             if (csv == null)
                 return;
-            
+
             Regex regexCommaCvs = new Regex(@"""(.*?)"",|([^,]*),|(.*)$");
             Regex regexSimicolonCvs = new Regex(@"""(.*?)"";|([^;]*);|(.*)$");
-            string[] sep = {"\r\n","\n"};
+            string[] sep = { "\r\n", "\n" };
             string[] lines = csv.TrimEnd('\0').Split(sep, StringSplitOptions.RemoveEmptyEntries);
             int row = tblwkladderDataGridView.NewRowIndex;
             Tblwbilag recWbilag = (Tblwbilag)tblwbilagBindingSource.Current;
@@ -163,7 +181,7 @@ namespace nsPuls3060
                                 }
                             }
                         }
-                        
+
                         if (value[3] == null) //belob
                         {
                             i = 0;
@@ -183,7 +201,7 @@ namespace nsPuls3060
                                 }
                             }
                         }
-                        
+
                         if (value[3] != null) //belob
                         {
                             Tblwkladder recWkladder = new Tblwkladder
@@ -225,19 +243,7 @@ namespace nsPuls3060
                 pasteCsv(clipboardData);
             }
         }
-     
-        private void tblwkladderDataGridView_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.C && e.Control)
-            {
-                this.copyToClipboard();
-                e.Handled = true; //otherwise the control itself tries to “copy”
-            }
-            if (e.KeyCode == Keys.V && e.Control)
-            {
-                this.pasteFromClipboard();
-            }
-        }
+
 
         void tblwkladderDataGridView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
@@ -273,21 +279,21 @@ namespace nsPuls3060
         private void newToolStripButton_Click(object sender, EventArgs e)
         {
             var qry = from k in Program.dbDataTransSumma.Tblwkladder
-                      join b in Program.dbDataTransSumma.Tblwbilag on k.Bilagpid equals b.Pid 
-                      select new recKladde 
+                      join b in Program.dbDataTransSumma.Tblwbilag on k.Bilagpid equals b.Pid
+                      select new recKladde
                       {
-                        Dato = b.Dato,
-                        Bilag = b.Bilag,
-                        Tekst = k.Tekst,
-                        Afstemningskonto = k.Afstemningskonto,
-                        Belob = k.Belob,
-                        Kontonr = k.Konto,
-                        Momskode = k.Momskode,
-                        Faknr = k.Faktura
+                          Dato = b.Dato,
+                          Bilag = b.Bilag,
+                          Tekst = k.Tekst,
+                          Afstemningskonto = k.Afstemningskonto,
+                          Belob = k.Belob,
+                          Kontonr = k.Konto,
+                          Momskode = k.Momskode,
+                          Faknr = k.Faktura
                       };
-            
+
             KarKladde karKladde = new KarKladde();
-            foreach (var k in qry) 
+            foreach (var k in qry)
             {
                 karKladde.Add(k);
             }
@@ -308,12 +314,191 @@ namespace nsPuls3060
             */
             var qry2 = from k in (this.tblwbilagBindingSource.Current as Tblwbilag).Tblwkladder select k;
             foreach (var k in qry2)
-                {
-                    k.Belob -= 25;
-                }
+            {
+                k.Belob -= 25;
+            }
         }
 
+        private void tblwkladderDataGridView_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                DataGridView.HitTestInfo hit = tblwkladderDataGridView.HitTest(e.X, e.Y);
+                int hitcol = hit.ColumnIndex;
+                if (hit.Type == DataGridViewHitTestType.Cell && hit.ColumnIndex == 4)
+                {
+                    tblwkladderDataGridView.ClearSelection();
+                    tblwkladderDataGridView.Rows[hit.RowIndex].Cells[hit.ColumnIndex].Selected = true;
+                    this.contextMenuMoms.Show(this.tblwkladderDataGridView, new Point(e.X, e.Y));
+                }
+                else if (hit.Type == DataGridViewHitTestType.RowHeader)
+                {
+                    this.contextMenuLineCopyPaste.Show(this.tblwkladderDataGridView, new Point(e.X, e.Y));
+                }
+            }
+        }
 
+        private void tillægMomsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataGridViewSelectedCellCollection cells = tblwkladderDataGridView.SelectedCells;
+            if (cells.Count == 1)
+            {
+                try
+                {
+                    DataGridViewTextBoxCell cell = cells[0] as DataGridViewTextBoxCell;
+                    Tblwkladder recWkladder = cell.OwningRow.DataBoundItem as Tblwkladder;
+                    decimal momspct = decimal.Parse("1,25");
+                    recWkladder.Belob *= momspct;
+
+                }
+                catch { }
+            }
+
+        }
+
+        private void fratrækMomsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataGridViewSelectedCellCollection cells = tblwkladderDataGridView.SelectedCells;
+            if (cells.Count == 1)
+            {
+                try
+                {
+                    DataGridViewTextBoxCell cell = cells[0] as DataGridViewTextBoxCell;
+                    Tblwkladder recWkladder = cell.OwningRow.DataBoundItem as Tblwkladder;
+                    decimal momspct = decimal.Parse("1,25");
+                    recWkladder.Belob /= momspct;
+                }
+                catch { }
+            }
+        }
+
+        private bool ReducerBilag(Tblwbilag recwBilag, Tblbilag recBilag, Tblbankkonto recBankkonto)
+        {
+            bool IsFound_BankKontoudtog = (recBankkonto != null);
+            decimal BankBelob = 0;
+            decimal MomsBelob = 0;
+            decimal AndenKontoBelob = 0;
+            int? AndenKontoKonto = null;
+            string AndenKontoTekst = "";
+            string AndenKontoMomskode;
+            string AndenKontoAfstemningskonto = "";
+            string MK = "";
+            bool bBankKonto = false;
+            bool bMomsKonto = false;
+            bool bAndenKonto = false;
+            bool bAfstem = false;
+            bool bMomskode = false;
+            
+            int AntalLinier = recBilag.Tblkladder.Count;
+            if (AntalLinier <= 3)
+            {
+                foreach (Tblkladder recKladder in recBilag.Tblkladder)
+                {
+                    if ((recKladder.Afstemningskonto != null) && (recKladder.Afstemningskonto != ""))
+                        bAfstem = true;
+
+                    if (recKladder.Konto != null)
+                    {
+                        switch (recKladder.Konto)
+                        {
+                            case 58000:
+                                bBankKonto = true;
+                                BankBelob = (decimal)recKladder.Belob;
+                                break;
+
+                            case 66100:
+                                bMomsKonto = true;
+                                MomsBelob = (decimal)recKladder.Belob;
+                                MK = "S25";
+                                break;
+
+                            case 66200:
+                                bMomsKonto = true;
+                                MomsBelob = (decimal)recKladder.Belob;
+                                MK = "K25";
+                                break;
+
+                            default:
+                                bAndenKonto = true;
+                                AndenKontoBelob = (decimal)recKladder.Belob;
+                                AndenKontoTekst = recKladder.Tekst;
+                                AndenKontoKonto = (int)recKladder.Konto;
+                                if ((recKladder.Afstemningskonto != null) && (recKladder.Afstemningskonto != ""))
+                                    AndenKontoAfstemningskonto = recKladder.Afstemningskonto;
+                                if ((recKladder.Momskode != null) && (recKladder.Momskode != ""))
+                                    AndenKontoMomskode = recKladder.Momskode;
+                                break;
+                        }
+                    }
+                    
+                    if ((recKladder.Momskode != null) && (recKladder.Momskode != ""))
+                        bMomskode = true;
+                }
+
+                if ((AntalLinier == 3)
+                && (bBankKonto)
+                && (bMomsKonto)
+                && (bAndenKonto)
+                && (!bAfstem)
+                && (!bMomskode))
+                {
+                    decimal MomsBelobDif = -MomsBelob + (AndenKontoBelob * decimal.Parse(" 0,25"));
+                    if ((MomsBelobDif > -decimal.Parse(" 0,01"))
+                    && (MomsBelobDif < decimal.Parse(" 0,01")))
+                    {
+                        Tblwkladder recWkladder = new Tblwkladder
+                        {
+                            Tekst = AndenKontoTekst,
+                            Afstemningskonto = "Bank",
+                            Belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.Belob : BankBelob,
+                            Konto = AndenKontoKonto,
+                            Momskode = MK
+                        };
+                        recwBilag.Tblwkladder.Add(recWkladder); 
+                        this.tblwbilagBindingSource.Add(recwBilag);
+                        return true;
+                    }
+                }
+
+                if ((AntalLinier == 2)
+                && (bBankKonto)
+                && (!bMomsKonto)
+                && (bAndenKonto)
+                && (!bAfstem)
+                && (!bMomskode))
+                {
+                    Tblwkladder recWkladder = new Tblwkladder
+                    {
+                        Tekst = AndenKontoTekst,
+                        Afstemningskonto = "Bank",
+                        Belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.Belob : BankBelob,
+                        Konto = AndenKontoKonto
+                    };
+                    recwBilag.Tblwkladder.Add(recWkladder);
+                    this.tblwbilagBindingSource.Add(recwBilag);
+                    return true;
+                }
+
+                if ((AntalLinier == 1)
+                && (!bBankKonto)
+                && (bAndenKonto)
+                && (bAfstem))
+                {
+                    Tblwkladder recWkladder = new Tblwkladder
+                    {
+                        Tekst = AndenKontoTekst,
+                        Afstemningskonto = AndenKontoAfstemningskonto,
+                        Belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.Belob : BankBelob,
+                        Konto = AndenKontoKonto,
+                        Momskode = MK
+                    };
+                    recwBilag.Tblwkladder.Add(recWkladder);
+                    this.tblwbilagBindingSource.Add(recwBilag);
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 
 }

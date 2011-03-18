@@ -407,5 +407,41 @@ namespace nsPuls3060.Properties {
                 this["frmNyeKladderSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point frmBilagLoacation {
+            get {
+                return ((global::System.Drawing.Point)(this["frmBilagLoacation"]));
+            }
+            set {
+                this["frmBilagLoacation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("870, 346")]
+        public global::System.Drawing.Size frmBilagSize {
+            get {
+                return ((global::System.Drawing.Size)(this["frmBilagSize"]));
+            }
+            set {
+                this["frmBilagSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("246")]
+        public int frmBilagSplitDistance {
+            get {
+                return ((int)(this["frmBilagSplitDistance"]));
+            }
+            set {
+                this["frmBilagSplitDistance"] = value;
+            }
+        }
     }
 }
