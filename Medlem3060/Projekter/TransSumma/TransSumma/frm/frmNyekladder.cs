@@ -78,6 +78,8 @@ namespace nsPuls3060
                 }
                 this.tblwbilagBindingSource.Add(recwBilag);
             }
+            this.tblwbilagBindingSource.MoveLast();
+
         }
 
         private void FrmNyekladder_FormClosed(object sender, FormClosedEventArgs e)
