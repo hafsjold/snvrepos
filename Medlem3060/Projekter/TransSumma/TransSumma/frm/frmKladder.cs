@@ -21,6 +21,25 @@ namespace nsPuls3060
         private void FrmKladder_Load(object sender, EventArgs e)
         {
             this.tblbilagBindingSource.DataSource = Program.dbDataTransSumma.Tblbilag;
+            if (Program.karRegnskab.MomsPeriode() == 2)
+                this.MKdataGridViewTextBoxColumn.Visible = false;
+        }
+
+        private void copyMenuLineCopyPastItem_Click(object sender, EventArgs e)
+        {
+            this.copyToClipboard();
+        }
+        
+        private void copyToClipboard()
+        {
+            IDataObject clipboardData = getDataObject();
+            Clipboard.SetDataObject(clipboardData);
+        }
+
+        private IDataObject getDataObject()
+        {
+            DataObject clipboardData = this.tblkladderDataGridView.GetClipboardContent();
+            return clipboardData;
         }
 
         private void bilagTextBox_TextChanged(object sender, EventArgs e)

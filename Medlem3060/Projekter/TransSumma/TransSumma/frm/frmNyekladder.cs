@@ -89,7 +89,11 @@ namespace nsPuls3060
 
         private void tblwbilagBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            Program.dbDataTransSumma.SubmitChanges();
+            try
+            {
+                Program.dbDataTransSumma.SubmitChanges();
+            }
+            catch { }
         }
 
         private void copyMenuLineCopyPastItem_Click(object sender, EventArgs e)
@@ -206,9 +210,24 @@ namespace nsPuls3060
 
                         if (value[3] != null) //belob
                         {
-                            Tblwkladder recWkladder = new Tblwkladder
+                            Tblwkladder recWkladder;
+                            if (Program.karRegnskab.MomsPeriode() == 2) // Ingen moms
+                            {
+                                recWkladder = new Tblwkladder
+                                    {
+
+                                        Tekst = value[1],
+                                        Afstemningskonto = value[2],
+                                        Belob = Microsoft.VisualBasic.Information.IsNumeric(value[3]) ? decimal.Parse(value[3]) : (decimal?)null,
+                                        Konto = Microsoft.VisualBasic.Information.IsNumeric(value[4]) ? int.Parse(value[4]) : (int?)null,
+                                        Faktura = Microsoft.VisualBasic.Information.IsNumeric(value[5]) ? int.Parse(value[5]) : (int?)null
+                                    };
+                            }
+                            else
+                            {
+                                recWkladder = new Tblwkladder
                                 {
-                                    Bilagpid = recWbilag.Pid,
+
                                     Tekst = value[1],
                                     Afstemningskonto = value[2],
                                     Belob = Microsoft.VisualBasic.Information.IsNumeric(value[3]) ? decimal.Parse(value[3]) : (decimal?)null,
@@ -216,6 +235,7 @@ namespace nsPuls3060
                                     Momskode = value[5],
                                     Faktura = Microsoft.VisualBasic.Information.IsNumeric(value[6]) ? int.Parse(value[6]) : (int?)null
                                 };
+                            }
                             tblwkladderBindingSource.Add(recWkladder);
                         }
                         row++;
@@ -229,6 +249,7 @@ namespace nsPuls3060
                 {
                     break;
                 }
+                tblwkladderBindingSource.MoveFirst();
             }
         }
 
@@ -278,7 +299,7 @@ namespace nsPuls3060
 
         }
 
-        private void newToolStripButton_Click(object sender, EventArgs e)
+        private void KladderTilSummaSummarumToolStripButton_Click(object sender, EventArgs e)
         {
             var qry = from k in Program.dbDataTransSumma.Tblwkladder
                       join b in Program.dbDataTransSumma.Tblwbilag on k.Bilagpid equals b.Pid
@@ -314,10 +335,33 @@ namespace nsPuls3060
                 }
             }
             */
-            var qry2 = from k in (this.tblwbilagBindingSource.Current as Tblwbilag).Tblwkladder select k;
-            foreach (var k in qry2)
+            decimal Balance = 0;
+            try
             {
-                k.Belob -= 25;
+                var qry2 = from k in (this.tblwbilagBindingSource.Current as Tblwbilag).Tblwkladder select k;
+                foreach (var k in qry2)
+                {
+                    if (!((k.Afstemningskonto != null)
+                    && (k.Afstemningskonto != "")
+                    && (k.Konto != null)))
+                    {
+                        if (k.Konto != null)
+                            Balance -= (k.Belob != null) ? (decimal)k.Belob : 0;
+                        else
+                            Balance += (k.Belob != null) ? (decimal)k.Belob : 0;
+                    }
+                }
+            }
+            catch { }
+            if (Balance == 0)
+            {
+                this.lblBalanceBilag.Text = "0,00";
+                this.lblBalanceBilag.ForeColor = Color.Black;  //System.Drawing.SystemColors.Control;
+            }
+            else
+            {
+                this.lblBalanceBilag.Text = Balance.ToString("#0.00");
+                this.lblBalanceBilag.ForeColor = Color.Red;
             }
         }
 
@@ -390,7 +434,7 @@ namespace nsPuls3060
             bool bAndenKonto = false;
             bool bAfstem = false;
             bool bMomskode = false;
-            
+
             int AntalLinier = recBilag.Tblkladder.Count;
             if (AntalLinier <= 3)
             {
@@ -432,7 +476,7 @@ namespace nsPuls3060
                                 break;
                         }
                     }
-                    
+
                     if ((recKladder.Momskode != null) && (recKladder.Momskode != ""))
                         bMomskode = true;
                 }
@@ -456,7 +500,7 @@ namespace nsPuls3060
                             Konto = AndenKontoKonto,
                             Momskode = MK
                         };
-                        recwBilag.Tblwkladder.Add(recWkladder); 
+                        recwBilag.Tblwkladder.Add(recWkladder);
                         this.tblwbilagBindingSource.Add(recwBilag);
                         return true;
                     }
@@ -500,6 +544,58 @@ namespace nsPuls3060
                 }
             }
             return false;
+        }
+
+        private void bindingNavigatorDeleteItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.tblwbilagBindingSource.RemoveCurrent();
+            }
+            catch
+            {
+                //throw;
+            }
+        }
+
+        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
+        {
+            int bilagnr = 0;
+
+            try
+            {
+                bilagnr = (from b in ((IList<Tblwbilag>)this.tblwbilagBindingSource.List) select b.Bilag).Max();
+                bilagnr++;
+            }
+            catch
+            {
+                bilagnr = Program.karStatus.BS1_NæsteNr();
+            }
+
+            DateTime SidsteDato;
+            try
+            {
+                SidsteDato = (from b in ((IList<Tblwbilag>)this.tblwbilagBindingSource.List) select b.Dato).Last();
+            }
+            catch 
+            {
+                SidsteDato = DateTime.Today;
+            }
+            
+            Tblwbilag recwBilag = new Tblwbilag
+            {
+                Bilag = bilagnr,
+                Dato = SidsteDato
+            };
+            try
+            {
+                this.tblwbilagBindingSource.Add(recwBilag);
+                this.tblwbilagBindingSource.MoveLast();
+            }
+            catch
+            {
+                //throw;
+            }
         }
     }
 
