@@ -18,7 +18,6 @@ namespace Backup3060
 {
     public partial class frmBackup : Form
     {
-        private object moMissing = System.Reflection.Missing.Value;
         private int selectedIndes = -1;
         private string regKey = @"Software\Hafsjold\Puls3060\Start";
 
@@ -26,11 +25,19 @@ namespace Backup3060
         {
             InitializeComponent();
             RegistryKey masterKey = Registry.CurrentUser.OpenSubKey(regKey);
-            this.BackupDir.Text = (string)masterKey.GetValue("BackupDir");
-            string[] folders = (string[])masterKey.GetValue("BackupFolders");
-            foreach (string folder in folders)
+            if (masterKey == null)
             {
-                this.lvwFolders.Items.Add(folder);
+                RegistryKey masterKeyCreate = Registry.CurrentUser.OpenSubKey(@"Software",true);
+                masterKey = masterKeyCreate.CreateSubKey(@"Hafsjold\Puls3060\Start");
+            }
+            this.BackupDir.Text = (string)masterKey.GetValue("BackupDir","");
+            string[] folders = (string[])masterKey.GetValue("BackupFolders");
+            if (folders != null)
+            {
+                foreach (string folder in folders)
+                {
+                    this.lvwFolders.Items.Add(folder);
+                }
             }
             masterKey.Close();
         }
