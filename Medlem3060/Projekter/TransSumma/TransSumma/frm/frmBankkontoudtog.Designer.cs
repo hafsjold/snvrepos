@@ -36,7 +36,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.cmdTest = new System.Windows.Forms.Button();
             this.cmdSog = new System.Windows.Forms.Button();
             this.labeltextBoxSogeord = new System.Windows.Forms.Label();
             this.textBoxSogeord = new System.Windows.Forms.TextBox();
@@ -55,7 +54,6 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tblbankkonto2DataGridView = new System.Windows.Forms.DataGridView();
-            this.tblbankkontoBindingSourceAfstemte = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -64,6 +62,7 @@
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblbankkontoBindingSourceAfstemte = new System.Windows.Forms.BindingSource(this.components);
             datoLabel = new System.Windows.Forms.Label();
             tekstLabel = new System.Windows.Forms.Label();
             belobLabel = new System.Windows.Forms.Label();
@@ -136,7 +135,6 @@
             // splitContainer3.Panel1
             // 
             this.splitContainer3.Panel1.AutoScroll = true;
-            this.splitContainer3.Panel1.Controls.Add(this.cmdTest);
             this.splitContainer3.Panel1.Controls.Add(this.cmdSog);
             this.splitContainer3.Panel1.Controls.Add(this.labeltextBoxSogeord);
             this.splitContainer3.Panel1.Controls.Add(this.textBoxSogeord);
@@ -153,16 +151,6 @@
             this.splitContainer3.Size = new System.Drawing.Size(393, 150);
             this.splitContainer3.SplitterDistance = 120;
             this.splitContainer3.TabIndex = 0;
-            // 
-            // cmdTest
-            // 
-            this.cmdTest.Location = new System.Drawing.Point(166, 8);
-            this.cmdTest.Name = "cmdTest";
-            this.cmdTest.Size = new System.Drawing.Size(75, 22);
-            this.cmdTest.TabIndex = 9;
-            this.cmdTest.Text = "Test";
-            this.cmdTest.UseVisualStyleBackColor = true;
-            this.cmdTest.Click += new System.EventHandler(this.cmdTest_Click);
             // 
             // cmdSog
             // 
@@ -202,6 +190,7 @@
             // tblbankkontoBindingSourceUafstemte
             // 
             this.tblbankkontoBindingSourceUafstemte.DataSource = typeof(nsPuls3060.Tblbankkonto);
+            this.tblbankkontoBindingSourceUafstemte.PositionChanged += new System.EventHandler(this.tblbankkontoBindingSourceUafstemte_PositionChanged);
             // 
             // tekstTextBox
             // 
@@ -340,10 +329,6 @@
             this.tblbankkonto2DataGridView.TabIndex = 0;
             this.tblbankkonto2DataGridView.SelectionChanged += new System.EventHandler(this.tblbankkonto2DataGridView_SelectionChanged);
             // 
-            // tblbankkontoBindingSourceAfstemte
-            // 
-            this.tblbankkontoBindingSourceAfstemte.DataSource = typeof(nsPuls3060.Tblbankkonto);
-            // 
             // dataGridViewTextBoxColumn9
             // 
             this.dataGridViewTextBoxColumn9.DataPropertyName = "Pid";
@@ -412,6 +397,10 @@
             this.dataGridViewTextBoxColumn16.ReadOnly = true;
             this.dataGridViewTextBoxColumn16.Visible = false;
             // 
+            // tblbankkontoBindingSourceAfstemte
+            // 
+            this.tblbankkontoBindingSourceAfstemte.DataSource = typeof(nsPuls3060.Tblbankkonto);
+            // 
             // FrmBankkontoudtog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -465,7 +454,6 @@
         private System.Windows.Forms.Button cmdSog;
         private System.Windows.Forms.Label labeltextBoxSogeord;
         private System.Windows.Forms.TextBox textBoxSogeord;
-        private System.Windows.Forms.Button cmdTest;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;

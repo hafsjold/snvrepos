@@ -20,14 +20,17 @@ namespace nsPuls3060
 
         private void FrmKladder_Load(object sender, EventArgs e)
         {
+            var qryAfstemte = from u in Program.dbDataTransSumma.Tblbankkonto
+                              where u.Afstem != null && u.Skjul != true
+                              orderby u.Dato descending
+                              select u;
+            this.tblbankkontoBindingSourceAfstemte.DataSource = qryAfstemte; 
+            
             var qryUafstemte = from u in Program.dbDataTransSumma.Tblbankkonto
-                               where u.Afstem == null && u.Skjul == null
+                               where u.Afstem == null && u.Skjul != true
+                               orderby u.Dato descending
                                select u;
             this.tblbankkontoBindingSourceUafstemte.DataSource = qryUafstemte;
-            var qryAfstemte = from u in Program.dbDataTransSumma.Tblbankkonto
-                               where u.Afstem != null && u.Skjul == null
-                               select u;
-            this.tblbankkontoBindingSourceAfstemte.DataSource = qryAfstemte;
         }
 
         public Tblbankkonto GetrecBankkonto() 
@@ -45,15 +48,10 @@ namespace nsPuls3060
         {
             string strLike = "%" + textBoxSogeord.Text + "%";
             var qryAfstemte = from u in Program.dbDataTransSumma.Tblbankkonto
-                              where u.Afstem != null && u.Skjul == null && SqlMethods.Like(u.Tekst, strLike)
+                              where u.Afstem != null && u.Skjul != true && SqlMethods.Like(u.Tekst, strLike)
+                              orderby u.Dato descending
                               select u;
             this.tblbankkontoBindingSourceAfstemte.DataSource = qryAfstemte;
-        }
-
-         private void cmdTest_Click(object sender, EventArgs e)
-        {
-            //string sogeord = "Hafs";
-            //Program.frmKladder.findBilag(sogeord);
         }
 
         private void tblbankkonto2DataGridView_SelectionChanged(object sender, EventArgs e)
@@ -72,6 +70,22 @@ namespace nsPuls3060
             catch
             {
             }
+        }
+
+        private void tblbankkontoBindingSourceUafstemte_PositionChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Tblbankkonto recBankkonto = tblbankkontoBindingSourceUafstemte.Current as Tblbankkonto;
+                this.textBoxSogeord.Text = recBankkonto.Tekst;
+                string strLike = "%" + this.textBoxSogeord.Text + "%";
+                var qryAfstemte = from u in Program.dbDataTransSumma.Tblbankkonto
+                                  where u.Afstem != null && u.Skjul != true && SqlMethods.Like(u.Tekst, strLike)
+                                  orderby u.Dato descending
+                                  select u;
+                this.tblbankkontoBindingSourceAfstemte.DataSource = qryAfstemte;
+            }
+            catch {}
         }
 
     }

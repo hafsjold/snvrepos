@@ -96,7 +96,7 @@
         <elementListCompartment Id="28da8635-6c56-430c-ab96-b66166e5d99a" absoluteBounds="1.1400000000000001, 9.335, 1.9700000000000002, 1.5222371419270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.125 : 8.13550048828125); (2.125 : 8.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.125 : 8.13550048828125); (2.125 : 8.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DbDataTransSumma/Tblwbilag/Tblwbilag_Tblwkladder" />
       <nodes>
         <classShapeMoniker Id="f8cff965-96e1-4a1f-8e45-387fd6d51893" />

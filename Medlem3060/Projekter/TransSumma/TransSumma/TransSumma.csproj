@@ -159,7 +159,6 @@
     <Compile Include="kar\karPosteringer.cs" />
     <Compile Include="kar\karKontoplan.cs" />
     <Compile Include="kar\karKladde.cs" />
-    <Compile Include="mem\memAktivitet.cs" />
     <Compile Include="mem\memRegnskab.cs" />
     <Compile Include="mem\memAktivRegnskab.cs" />
     <Compile Include="frm\frmSelectRegnskab.cs">

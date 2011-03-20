@@ -117,7 +117,29 @@ namespace nsPuls3060
 #if (DEBUG)
             //KarBankafstemning recBankafstemning = new KarBankafstemning();
             //recBankafstemning.load();
-
+            /*
+            var qry = from t in Program.dbDataTransSumma.Tbltrans
+                      join a in Program.dbDataTransSumma.Tblbankafsteminit on new Xrec { Xrid = t.Regnskabid, Xid = t.Id, Xnr = t.Nr } equals new Xrec { Xrid = a.Rid, Xid = a.Tid, Xnr = a.Tnr } into bankafsteminit
+                      from a in bankafsteminit
+                      select t;
+            Tblafstem recAfstem;
+            foreach (Tbltrans recTrans in qry) 
+            {
+                try
+                {
+                    recAfstem = (from a in Program.dbDataTransSumma.Tblafstem
+                                 join i in Program.dbDataTransSumma.Tblbankafsteminit on a.Pid equals i.Bid
+                                 where i.Rid == recTrans.Regnskabid && i.Tid == recTrans.Id && i.Tnr == recTrans.Nr
+                                 select a).First();
+                    recAfstem.Tbltrans.Add(recTrans);
+                }
+                catch
+                {
+                    int test = 1;
+                }
+            }
+            Program.dbDataTransSumma.SubmitChanges();
+            */
 
 #endif
         }
@@ -330,6 +352,14 @@ namespace nsPuls3060
         }
 
     }
+
+    public class Xrec
+    {
+        public int? Xrid { get; set; }
+        public int? Xid { get; set; }
+        public int? Xnr { get; set; }
+    }
+
 
 
 }

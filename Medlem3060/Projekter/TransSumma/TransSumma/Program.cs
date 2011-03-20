@@ -15,7 +15,6 @@ namespace nsPuls3060
         private static DbDataTransSumma m_dbDataTransSumma;
         private static MemRegnskab m_memRegnskab;
         private static MemAktivRegnskab m_memAktivRegnskab;
-        private static MemAktivitet m_memAktivitet;
         private static KarDkkonti m_KarDkkonti;
         private static KarFakturaer_s m_KarFakturaer_s;
         private static KarFakturastr_s m_KarFakturastr_s;
@@ -111,14 +110,6 @@ namespace nsPuls3060
             set
             {
                 m_memAktivRegnskab = value;
-            }
-        }
-        public static MemAktivitet memAktivitet
-        {
-            get
-            {
-                if (m_memAktivitet == null) m_memAktivitet = new MemAktivitet();
-                return m_memAktivitet;
             }
         }
         public static KarDkkonti karDkkonti
