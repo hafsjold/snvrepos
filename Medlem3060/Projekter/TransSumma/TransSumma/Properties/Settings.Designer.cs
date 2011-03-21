@@ -455,5 +455,29 @@ namespace nsPuls3060.Properties {
                 this["frmKontoplanListLocation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool checkBoxMedsaldo {
+            get {
+                return ((bool)(this["checkBoxMedsaldo"]));
+            }
+            set {
+                this["checkBoxMedsaldo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool frmKontoplanListCheckboxmedsaldo {
+            get {
+                return ((bool)(this["frmKontoplanListCheckboxmedsaldo"]));
+            }
+            set {
+                this["frmKontoplanListCheckboxmedsaldo"] = value;
+            }
+        }
     }
 }

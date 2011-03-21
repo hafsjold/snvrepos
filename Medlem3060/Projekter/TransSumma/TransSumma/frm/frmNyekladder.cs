@@ -108,19 +108,6 @@ namespace nsPuls3060
 
         private void tblwkladderDataGridView_KeyDown(object sender, KeyEventArgs e)
         {
-            /*
-            if (e.KeyCode == Keys.Delete)
-            {
-                Tblwbilag recWbilag = tblwbilagBindingSource.Current as Tblwbilag;
-                DataGridViewSelectedRowCollection rows = tblwkladderDataGridView.SelectedRows;
-                foreach (DataGridViewRow row in rows)
-                {
-                    Tblwkladder recWkladder = row.DataBoundItem as Tblwkladder;
-                    recWbilag.Tblwkladder.Remove(recWkladder);
-                }
-                e.Handled = true;
-            }    
-            */
 
             if (e.KeyCode == Keys.C && e.Control)
             {
@@ -381,6 +368,16 @@ namespace nsPuls3060
                     Point startPoint = tblwkladderDataGridView.PointToScreen(new Point(e.X, e.Y));
                     FrmKontoplanList m_frmKontoplanList = new FrmKontoplanList(startPoint);
                     m_frmKontoplanList.ShowDialog();
+                    int? selectedKontonr = m_frmKontoplanList.SelectedKontonr;
+                    m_frmKontoplanList.Close();
+                    if (selectedKontonr != null) 
+                    {
+                        Tblwkladder recWkladder = ((DataGridView)sender).Rows[hit.RowIndex].DataBoundItem as Tblwkladder;
+                        if (recWkladder != null)
+                        {
+                            recWkladder.Konto = selectedKontonr;
+                        }
+                    }
                 }
                 else if (hit.Type == DataGridViewHitTestType.RowHeader)
                 {
