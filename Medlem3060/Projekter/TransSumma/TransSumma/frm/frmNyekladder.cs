@@ -374,6 +374,14 @@ namespace nsPuls3060
                     tblwkladderDataGridView.Rows[hit.RowIndex].Cells[hit.ColumnIndex].Selected = true;
                     this.contextMenuMoms.Show(this.tblwkladderDataGridView, new Point(e.X, e.Y));
                 }
+                else if (hit.Type == DataGridViewHitTestType.Cell && hit.ColumnIndex == 5)
+                {
+                    tblwkladderDataGridView.ClearSelection();
+                    tblwkladderDataGridView.Rows[hit.RowIndex].Cells[hit.ColumnIndex].Selected = true;
+                    Point startPoint = tblwkladderDataGridView.PointToScreen(new Point(e.X, e.Y));
+                    FrmKontoplanList m_frmKontoplanList = new FrmKontoplanList(startPoint);
+                    m_frmKontoplanList.ShowDialog();
+                }
                 else if (hit.Type == DataGridViewHitTestType.RowHeader)
                 {
                     this.contextMenuLineCopyPaste.Show(this.tblwkladderDataGridView, new Point(e.X, e.Y));

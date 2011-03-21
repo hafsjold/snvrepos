@@ -107,5 +107,8 @@
     <Setting Name="frmBilagSplitDistance" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">246</Value>
     </Setting>
+    <Setting Name="frmKontoplanListLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

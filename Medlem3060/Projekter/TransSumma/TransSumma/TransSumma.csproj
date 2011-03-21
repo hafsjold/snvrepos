@@ -112,6 +112,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbDataTransSumma.dbml</DependentUpon>
     </Compile>
+    <Compile Include="frm\frmKontoplanList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmKontoplanList.Designer.cs">
+      <DependentUpon>frmKontoplanList.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm\frmBilag.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -203,6 +209,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm\frmKladder.resx">
       <DependentUpon>frmKladder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmKontoplanList.resx">
+      <DependentUpon>frmKontoplanList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm\frmNyekladder.resx">
       <DependentUpon>frmNyekladder.cs</DependentUpon>
