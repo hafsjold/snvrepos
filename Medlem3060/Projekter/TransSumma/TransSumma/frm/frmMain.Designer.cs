@@ -45,6 +45,7 @@
             this.kladderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bankKontoudtogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printBilagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bilagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.regnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importerTransaktionerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importerNordeaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -52,7 +53,7 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bilagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importDanskebankToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -204,10 +205,18 @@
             this.printBilagToolStripMenuItem.Text = "Print bilag";
             this.printBilagToolStripMenuItem.Click += new System.EventHandler(this.printBilagToolStripMenuItem_Click);
             // 
+            // bilagToolStripMenuItem
+            // 
+            this.bilagToolStripMenuItem.Name = "bilagToolStripMenuItem";
+            this.bilagToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.bilagToolStripMenuItem.Text = "Bilag";
+            this.bilagToolStripMenuItem.Click += new System.EventHandler(this.bilagToolStripMenuItem_Click);
+            // 
             // regnskabToolStripMenuItem
             // 
             this.regnskabToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.importerTransaktionerToolStripMenuItem,
+            this.importDanskebankToolStripMenuItem,
             this.importerNordeaToolStripMenuItem});
             this.regnskabToolStripMenuItem.Name = "regnskabToolStripMenuItem";
             this.regnskabToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
@@ -238,7 +247,7 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(132, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem2.Text = "Regnskab";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.regnskabToolStripMenuItem_Click);
             // 
@@ -257,12 +266,12 @@
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
-            // bilagToolStripMenuItem
+            // importDanskebankToolStripMenuItem
             // 
-            this.bilagToolStripMenuItem.Name = "bilagToolStripMenuItem";
-            this.bilagToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-            this.bilagToolStripMenuItem.Text = "Bilag";
-            this.bilagToolStripMenuItem.Click += new System.EventHandler(this.bilagToolStripMenuItem_Click);
+            this.importDanskebankToolStripMenuItem.Name = "importDanskebankToolStripMenuItem";
+            this.importDanskebankToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.importDanskebankToolStripMenuItem.Text = "Import Danskebank";
+            this.importDanskebankToolStripMenuItem.Click += new System.EventHandler(this.importDanskebankToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -318,6 +327,7 @@
         private System.Windows.Forms.ToolStripMenuItem importerNordeaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem printBilagToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem bilagToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importDanskebankToolStripMenuItem;
     }
 }
 

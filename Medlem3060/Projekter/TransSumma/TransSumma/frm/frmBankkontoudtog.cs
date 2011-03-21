@@ -21,13 +21,13 @@ namespace nsPuls3060
         private void FrmKladder_Load(object sender, EventArgs e)
         {
             var qryAfstemte = from u in Program.dbDataTransSumma.Tblbankkonto
-                              where u.Afstem != null && u.Skjul != true
+                              where u.Afstem != null && (u.Skjul == null || u.Skjul == false)
                               orderby u.Dato descending
                               select u;
             this.tblbankkontoBindingSourceAfstemte.DataSource = qryAfstemte; 
             
             var qryUafstemte = from u in Program.dbDataTransSumma.Tblbankkonto
-                               where u.Afstem == null && u.Skjul != true
+                               where u.Afstem == null && (u.Skjul == null || u.Skjul == false)
                                orderby u.Dato descending
                                select u;
             this.tblbankkontoBindingSourceUafstemte.DataSource = qryUafstemte;
@@ -48,7 +48,7 @@ namespace nsPuls3060
         {
             string strLike = "%" + textBoxSogeord.Text + "%";
             var qryAfstemte = from u in Program.dbDataTransSumma.Tblbankkonto
-                              where u.Afstem != null && u.Skjul != true && SqlMethods.Like(u.Tekst, strLike)
+                              where u.Afstem != null && (u.Skjul == null || u.Skjul == false) && SqlMethods.Like(u.Tekst, strLike)
                               orderby u.Dato descending
                               select u;
             this.tblbankkontoBindingSourceAfstemte.DataSource = qryAfstemte;
@@ -80,7 +80,7 @@ namespace nsPuls3060
                 this.textBoxSogeord.Text = recBankkonto.Tekst;
                 string strLike = "%" + this.textBoxSogeord.Text + "%";
                 var qryAfstemte = from u in Program.dbDataTransSumma.Tblbankkonto
-                                  where u.Afstem != null && u.Skjul != true && SqlMethods.Like(u.Tekst, strLike)
+                                  where u.Afstem != null && (u.Skjul == null || u.Skjul == false) && SqlMethods.Like(u.Tekst, strLike)
                                   orderby u.Dato descending
                                   select u;
                 this.tblbankkontoBindingSourceAfstemte.DataSource = qryAfstemte;

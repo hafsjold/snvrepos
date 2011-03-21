@@ -148,9 +148,10 @@
     <Compile Include="frm\BetterDialog.designer.cs">
       <DependentUpon>BetterDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="kar\karBankkontoudtogDanskebank.cs" />
     <Compile Include="kar\karMoms.cs" />
     <Compile Include="kar\karAfstemningskonti.cs" />
-    <Compile Include="kar\karBankkontoudtog.cs" />
+    <Compile Include="kar\karBankkontoudtogNordea.cs" />
     <Compile Include="kar\karBankafstemning.cs" />
     <Compile Include="kar\karKladder.cs" />
     <Compile Include="kar\karFakturastr_k.cs" />

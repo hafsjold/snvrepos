@@ -8,26 +8,27 @@ using System.Text.RegularExpressions;
 
 namespace nsPuls3060
 {
-    public class recBankkontoudtog
+    public class recBankkontoudtogDanskebank
     {
-        public recBankkontoudtog() { }
+        public recBankkontoudtogDanskebank() { }
 
         public DateTime? bdato { get; set; }
         public string btekst { get; set; }
-        public DateTime? rdato { get; set; }
         public decimal? bbeløb { get; set; }
         public decimal? bsaldo { get; set; }
+        public string bstatus { get; set; }
+        public string bafstemt { get; set; }
     }
 
-    public class KarBankkontoudtog : List<recBankkontoudtog>
+
+    public class KarBankkontoudtogDanskebank : List<recBankkontoudtogDanskebank>
     {
         private string m_path { get; set; }
-        private string b105 = "                                                                                                         ";
 
-        public KarBankkontoudtog()
+        public KarBankkontoudtogDanskebank()
         {
             var rec_regnskab = Program.qryAktivRegnskab();
-            m_path = rec_regnskab.Eksportmappe + "Nordea Puls3060.csv";
+            m_path = rec_regnskab.Eksportmappe + "Danske Erhverv.csv";
             open();
         }
 
@@ -35,7 +36,7 @@ namespace nsPuls3060
         {
             FileStream ts = new FileStream(m_path, FileMode.Open, FileAccess.Read, FileShare.None);
             string ln = null;
-            recBankkontoudtog rec;
+            recBankkontoudtogDanskebank rec;
             Regex regexKontoplan = new Regex(@"""(.*?)"";|([^;]*);|(.*)$");
             using (StreamReader sr = new StreamReader(ts, Encoding.Default))
             {
@@ -62,20 +63,17 @@ namespace nsPuls3060
                     DateTime? wdato = Microsoft.VisualBasic.Information.IsDate(value[0]) ? DateTime.Parse(value[0]) : (DateTime?)null;
                     if (wdato != null)
                     {
-                        string wtekst = value[1] + b105;
-                        string wtekst1 = wtekst.Substring(0, 35).TrimEnd(' ');
-                        string wtekst2 = wtekst.Substring(35, 35).TrimEnd(' '); ;
-                        string wtekst3 = wtekst.Substring(70, 35).TrimEnd(' '); ;
-                        string wtekst4 = wtekst1 + wtekst2 + wtekst3;
-                        rec = new recBankkontoudtog
+                        rec = new recBankkontoudtogDanskebank
                         {
                             bdato = wdato,
-                            btekst = (wtekst4.Length > 50) ? wtekst4.Substring(0, 50) : wtekst4,
-                            rdato = Microsoft.VisualBasic.Information.IsDate(value[2]) ? DateTime.Parse(value[2]) : (DateTime?)null,
-                            bbeløb = Microsoft.VisualBasic.Information.IsNumeric(value[3]) ? decimal.Parse(value[3]) : (decimal?)null,
-                            bsaldo = Microsoft.VisualBasic.Information.IsNumeric(value[4]) ? decimal.Parse(value[4]) : (decimal?)null,
-                        };
-                        this.Add(rec);
+                            btekst = value[1],
+                            bbeløb = Microsoft.VisualBasic.Information.IsNumeric(value[2]) ? decimal.Parse(value[2]) : (decimal?)null,
+                            bsaldo = Microsoft.VisualBasic.Information.IsNumeric(value[3]) ? decimal.Parse(value[3]) : (decimal?)null,
+                            bstatus =  value[4],
+                            bafstemt = value[5]
+                       };
+                       if (rec.bstatus == "Udført")
+                            this.Add(rec);
                     }
                 }
             }

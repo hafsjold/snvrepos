@@ -332,10 +332,15 @@ namespace nsPuls3060
 
         private void importerNordeaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            KarBankkontoudtog recBankkontoudtog = new KarBankkontoudtog();
-            recBankkontoudtog.load();
+            KarBankkontoudtogNordea recBankkontoudtogNordea = new KarBankkontoudtogNordea();
+            recBankkontoudtogNordea.load();
         }
 
+        private void importDanskebankToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KarBankkontoudtogDanskebank recBankkontoudtogDanskebank = new KarBankkontoudtogDanskebank();
+            recBankkontoudtogDanskebank.load();
+        }
         private void printBilagToolStripMenuItem_Click(object sender, EventArgs e)
         {
             clsBilagsudskrift.Bilagsudskrift(false);

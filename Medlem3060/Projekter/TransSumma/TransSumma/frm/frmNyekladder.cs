@@ -301,26 +301,29 @@ namespace nsPuls3060
 
         private void KladderTilSummaSummarumToolStripButton_Click(object sender, EventArgs e)
         {
-            var qry = from k in Program.dbDataTransSumma.Tblwkladder
-                      join b in Program.dbDataTransSumma.Tblwbilag on k.Bilagpid equals b.Pid
-                      select new recKladde
-                      {
-                          Dato = b.Dato,
-                          Bilag = b.Bilag,
-                          Tekst = k.Tekst,
-                          Afstemningskonto = k.Afstemningskonto,
-                          Belob = k.Belob,
-                          Kontonr = k.Konto,
-                          Momskode = k.Momskode,
-                          Faknr = k.Faktura
-                      };
 
-            KarKladde karKladde = new KarKladde();
-            foreach (var k in qry)
+            KarKladde karKladde = new KarKladde(); 
+            var qry = from wb in ((IList<Tblwbilag>)this.tblwbilagBindingSource.List) select wb;
+            foreach (Tblwbilag wb in qry)
             {
-                karKladde.Add(k);
+                foreach (Tblwkladder wk in wb.Tblwkladder)
+                {
+                    recKladde k = new recKladde
+                             {
+                                 Dato = wb.Dato,
+                                 Bilag = wb.Bilag,
+                                 Tekst = wk.Tekst,
+                                 Afstemningskonto = wk.Afstemningskonto,
+                                 Belob = wk.Belob,
+                                 Kontonr = wk.Konto,
+                                 Momskode = wk.Momskode,
+                                 Faknr = wk.Faktura
+                             };
+                    karKladde.Add(k);
+                }
             }
             karKladde.save();
+
         }
 
         private void cmdTest_Click(object sender, EventArgs e)
