@@ -319,25 +319,19 @@ namespace nsPuls3060
                                  Momskode = wk.Momskode,
                                  Faknr = wk.Faktura
                              };
-                    karKladde.Add(k);
-                }
+                    karKladde.Add(k);}
             }
             karKladde.save();
-
+            
+            int iMax = this.tblwbilagBindingSource.List.Count - 1;
+            for (int i = iMax; i >= 0; i--)
+            {
+                this.tblwbilagBindingSource.List.RemoveAt(i);
+            }
         }
 
         private void cmdTest_Click(object sender, EventArgs e)
         {
-            /*
-            var qry = from b in ((IList<Tblwbilag>)this.tblwbilagBindingSource.List) select b;
-            foreach (var b in qry)
-            {
-                foreach (var k in b.Tblwkladder)
-                {
-                    k.Belob += 100;
-                }
-            }
-            */
             decimal Balance = 0;
             try
             {
