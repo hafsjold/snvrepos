@@ -389,6 +389,30 @@ namespace nsPuls3060
             }
         }
 
+        private void myDGV_CellToolTipTextNeeded(object sender, DataGridViewCellToolTipTextNeededEventArgs e)
+        {
+            if (e.ColumnIndex == 5) 
+            {
+                if (e.RowIndex >= 0)
+                {
+                    Tblwkladder recWkladder = ((DataGridView)sender).Rows[e.RowIndex].DataBoundItem as Tblwkladder;
+                    if (recWkladder != null)
+                    {
+                        string kontonavn;
+                        try
+                        {
+                            kontonavn = (from k in Program.karKontoplan where k.Kontonr == recWkladder.Konto select k.Kontonavn).First();
+                        }
+                        catch 
+                        {
+                            kontonavn = "Not found";
+                        }
+                        e.ToolTipText = kontonavn;
+                    }
+                }
+            }
+        }
+
         private void tillægMomsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DataGridViewSelectedCellCollection cells = tblwkladderDataGridView.SelectedCells;

@@ -32,9 +32,9 @@
             System.Windows.Forms.Label bilagLabel;
             System.Windows.Forms.Label datoLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNyekladder));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tblwbilagBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tblwbilagBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
@@ -54,8 +54,8 @@
             this.tblwkladderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tblwkladderDataGridView = new System.Windows.Forms.DataGridView();
             this.karAfstemningskontiBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.karKontoplanBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.karMomsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.karKontoplanBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.contextMenuLineCopyPaste = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,8 +85,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.tblwkladderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblwkladderDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.karAfstemningskontiBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.karKontoplanBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.karMomsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.karKontoplanBindingSource)).BeginInit();
             this.contextMenuLineCopyPaste.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -297,6 +297,7 @@
             this.tblwkladderDataGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tblwkladderDataGridView_MouseDown);
             this.tblwkladderDataGridView.CellErrorTextNeeded += new System.Windows.Forms.DataGridViewCellErrorTextNeededEventHandler(this.tblwkladderDataGridView_CellErrorTextNeeded);
             this.tblwkladderDataGridView.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.tblwkladderDataGridView_EditingControlShowing);
+            this.tblwkladderDataGridView.CellToolTipTextNeeded += new System.Windows.Forms.DataGridViewCellToolTipTextNeededEventHandler(this.myDGV_CellToolTipTextNeeded);
             this.tblwkladderDataGridView.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.tblwkladderDataGridView_DataError);
             this.tblwkladderDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tblwkladderDataGridView_KeyDown);
             // 
@@ -304,13 +305,13 @@
             // 
             this.karAfstemningskontiBindingSource.DataSource = typeof(nsPuls3060.KarAfstemningskonti);
             // 
-            // karKontoplanBindingSource
-            // 
-            this.karKontoplanBindingSource.DataSource = typeof(nsPuls3060.KarKontoplan);
-            // 
             // karMomsBindingSource
             // 
             this.karMomsBindingSource.DataSource = typeof(nsPuls3060.KarMoms);
+            // 
+            // karKontoplanBindingSource
+            // 
+            this.karKontoplanBindingSource.DataSource = typeof(nsPuls3060.KarKontoplan);
             // 
             // contextMenuLineCopyPaste
             // 
@@ -474,10 +475,10 @@
             // BelobdataGridViewTextBox
             // 
             this.BelobdataGridViewTextBox.DataPropertyName = "Belob";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.Format = "N2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.BelobdataGridViewTextBox.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.BelobdataGridViewTextBox.DefaultCellStyle = dataGridViewCellStyle4;
             this.BelobdataGridViewTextBox.HeaderText = "Beløb";
             this.BelobdataGridViewTextBox.Name = "BelobdataGridViewTextBox";
             this.BelobdataGridViewTextBox.Width = 60;
@@ -485,11 +486,12 @@
             // KontodataGridViewTextBox
             // 
             this.KontodataGridViewTextBox.DataPropertyName = "Konto";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.KontodataGridViewTextBox.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.KontodataGridViewTextBox.DefaultCellStyle = dataGridViewCellStyle5;
             this.KontodataGridViewTextBox.HeaderText = "Konto";
             this.KontodataGridViewTextBox.Name = "KontodataGridViewTextBox";
             this.KontodataGridViewTextBox.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.KontodataGridViewTextBox.ToolTipText = "XYZABC";
             this.KontodataGridViewTextBox.Width = 60;
             // 
             // MKdataGridViewComboBox
@@ -509,8 +511,8 @@
             // FaknrdataGridViewTextBox
             // 
             this.FaknrdataGridViewTextBox.DataPropertyName = "Faktura";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.FaknrdataGridViewTextBox.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.FaknrdataGridViewTextBox.DefaultCellStyle = dataGridViewCellStyle6;
             this.FaknrdataGridViewTextBox.HeaderText = "Faknr";
             this.FaknrdataGridViewTextBox.Name = "FaknrdataGridViewTextBox";
             this.FaknrdataGridViewTextBox.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -543,8 +545,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.tblwkladderBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblwkladderDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.karAfstemningskontiBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.karKontoplanBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.karMomsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.karKontoplanBindingSource)).EndInit();
             this.contextMenuLineCopyPaste.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();

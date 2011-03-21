@@ -26,12 +26,19 @@ namespace nsPuls3060
 
         private void FrmKontoplanList_Load(object sender, EventArgs e)
         {
+            IEnumerable<recKontoplan> qry_Kontoplan;
+            qry_Kontoplan = from k in Program.karKontoplan
+                            where k.Saldo != null && k.Saldo != 0
+                           orderby k.Kontonr ascending
+                           select k;
+            foreach (var b in qry_Kontoplan)
+            {
+                ListViewItem it = lvwKontoplan.Items.Add(b.Kontonr.ToString(), b.Kontonr.ToString(), 0);
+                it.SubItems.Add(b.Kontonavn);
+                it.SubItems.Add(b.Moms);
+            }
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Location = new Point(this.Location.X + 50, this.Location.Y);
-        }
     }
 }

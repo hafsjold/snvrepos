@@ -34,13 +34,6 @@ namespace nsPuls3060
         public void open()
         {
             recKontoplan rec;
-            rec = new recKontoplan
-            {
-                Kontonr = null,
-                Kontonavn = "ikke valgt",
-            };
-            this.Add(rec);
-
             FileStream ts = new FileStream(m_path, FileMode.Open, FileAccess.Read, FileShare.None);
             string ln = null;
             Regex regexKontoplan = new Regex(@"""(.*?)"",|([^,]*),|(.*)$");
