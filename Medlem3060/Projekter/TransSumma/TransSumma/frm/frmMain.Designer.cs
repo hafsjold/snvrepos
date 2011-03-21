@@ -48,12 +48,12 @@
             this.bilagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.regnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importerTransaktionerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importDanskebankToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importerNordeaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importDanskebankToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -132,19 +132,19 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(110, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // afslutToolStripMenuItem
             // 
             this.afslutToolStripMenuItem.Name = "afslutToolStripMenuItem";
-            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.afslutToolStripMenuItem.Text = "Afslut";
             this.afslutToolStripMenuItem.Click += new System.EventHandler(this.afslutToolStripMenuItem_Click);
             // 
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.testToolStripMenuItem.Text = "Test";
             this.testToolStripMenuItem.Visible = false;
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
@@ -229,6 +229,13 @@
             this.importerTransaktionerToolStripMenuItem.Text = "Importer Transaktioner";
             this.importerTransaktionerToolStripMenuItem.Click += new System.EventHandler(this.importerTransaktionerToolStripMenuItem_Click);
             // 
+            // importDanskebankToolStripMenuItem
+            // 
+            this.importDanskebankToolStripMenuItem.Name = "importDanskebankToolStripMenuItem";
+            this.importDanskebankToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.importDanskebankToolStripMenuItem.Text = "Import Danskebank";
+            this.importDanskebankToolStripMenuItem.Click += new System.EventHandler(this.importDanskebankToolStripMenuItem_Click);
+            // 
             // importerNordeaToolStripMenuItem
             // 
             this.importerNordeaToolStripMenuItem.Name = "importerNordeaToolStripMenuItem";
@@ -266,13 +273,6 @@
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
-            // importDanskebankToolStripMenuItem
-            // 
-            this.importDanskebankToolStripMenuItem.Name = "importDanskebankToolStripMenuItem";
-            this.importDanskebankToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.importDanskebankToolStripMenuItem.Text = "Import Danskebank";
-            this.importDanskebankToolStripMenuItem.Click += new System.EventHandler(this.importDanskebankToolStripMenuItem_Click);
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -288,7 +288,7 @@
             this.Name = "FrmMain";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Puls 3060";
+            this.Text = "Trans Summa";
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.statusStrip1.ResumeLayout(false);

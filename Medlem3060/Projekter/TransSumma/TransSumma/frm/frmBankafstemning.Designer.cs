@@ -43,6 +43,8 @@
             this.columnHeaderSBDato = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderSBTekst = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderSBBelob = new System.Windows.Forms.ColumnHeader();
+            this.AfstemtTidligere = new System.Windows.Forms.CheckBox();
+            this.cmdForslag = new System.Windows.Forms.Button();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.lvwTrans = new System.Windows.Forms.ListView();
             this.columnHeaderTDato = new System.Windows.Forms.ColumnHeader();
@@ -60,9 +62,7 @@
             this.columnHeaderSTBilag = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderSTTekst = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderSTBelob = new System.Windows.Forms.ColumnHeader();
-            this.RykketTidligere = new System.Windows.Forms.CheckBox();
             this.cmdAfstemt = new System.Windows.Forms.Button();
-            this.cmdForslag = new System.Windows.Forms.Button();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -113,8 +113,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer2.Size = new System.Drawing.Size(344, 513);
-            this.splitContainer2.SplitterDistance = 232;
+            this.splitContainer2.Size = new System.Drawing.Size(344, 389);
+            this.splitContainer2.SplitterDistance = 240;
             this.splitContainer2.TabIndex = 0;
             // 
             // lvwBank
@@ -129,12 +129,12 @@
             this.lvwBank.GridLines = true;
             this.lvwBank.Location = new System.Drawing.Point(0, 0);
             this.lvwBank.Name = "lvwBank";
-            this.lvwBank.Size = new System.Drawing.Size(344, 232);
+            this.lvwBank.Size = new System.Drawing.Size(344, 240);
             this.lvwBank.TabIndex = 0;
             this.lvwBank.UseCompatibleStateImageBehavior = false;
             this.lvwBank.View = System.Windows.Forms.View.Details;
             this.lvwBank.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvwBank_DragDrop);
-            this.lvwBank.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwMedlem_ColumnClick);
+            this.lvwBank.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwBank_ColumnClick);
             this.lvwBank.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvwBank_DragEnter);
             this.lvwBank.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvwBank_ItemDrag);
             // 
@@ -167,8 +167,10 @@
             // splitContainer4.Panel2
             // 
             this.splitContainer4.Panel2.Controls.Add(this.lvwSumBank);
-            this.splitContainer4.Size = new System.Drawing.Size(344, 277);
-            this.splitContainer4.SplitterDistance = 135;
+            this.splitContainer4.Panel2.Controls.Add(this.AfstemtTidligere);
+            this.splitContainer4.Panel2.Controls.Add(this.cmdForslag);
+            this.splitContainer4.Size = new System.Drawing.Size(344, 145);
+            this.splitContainer4.SplitterDistance = 90;
             this.splitContainer4.TabIndex = 0;
             // 
             // lvwAfstemBank
@@ -183,7 +185,7 @@
             this.lvwAfstemBank.GridLines = true;
             this.lvwAfstemBank.Location = new System.Drawing.Point(0, 0);
             this.lvwAfstemBank.Name = "lvwAfstemBank";
-            this.lvwAfstemBank.Size = new System.Drawing.Size(344, 135);
+            this.lvwAfstemBank.Size = new System.Drawing.Size(344, 90);
             this.lvwAfstemBank.TabIndex = 1;
             this.lvwAfstemBank.UseCompatibleStateImageBehavior = false;
             this.lvwAfstemBank.View = System.Windows.Forms.View.Details;
@@ -238,6 +240,26 @@
             this.columnHeaderSBBelob.Text = "";
             this.columnHeaderSBBelob.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // AfstemtTidligere
+            // 
+            this.AfstemtTidligere.AutoSize = true;
+            this.AfstemtTidligere.Location = new System.Drawing.Point(150, 23);
+            this.AfstemtTidligere.Name = "AfstemtTidligere";
+            this.AfstemtTidligere.Size = new System.Drawing.Size(100, 17);
+            this.AfstemtTidligere.TabIndex = 8;
+            this.AfstemtTidligere.Text = "Afstemt tidligere";
+            this.AfstemtTidligere.UseVisualStyleBackColor = true;
+            // 
+            // cmdForslag
+            // 
+            this.cmdForslag.Location = new System.Drawing.Point(255, 23);
+            this.cmdForslag.Name = "cmdForslag";
+            this.cmdForslag.Size = new System.Drawing.Size(61, 25);
+            this.cmdForslag.TabIndex = 3;
+            this.cmdForslag.Text = "Hent";
+            this.cmdForslag.UseVisualStyleBackColor = true;
+            this.cmdForslag.Click += new System.EventHandler(this.cmdForslag_Click);
+            // 
             // splitContainer3
             // 
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -252,8 +274,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer5);
-            this.splitContainer3.Size = new System.Drawing.Size(481, 513);
-            this.splitContainer3.SplitterDistance = 232;
+            this.splitContainer3.Size = new System.Drawing.Size(481, 389);
+            this.splitContainer3.SplitterDistance = 241;
             this.splitContainer3.TabIndex = 0;
             // 
             // lvwTrans
@@ -269,7 +291,7 @@
             this.lvwTrans.GridLines = true;
             this.lvwTrans.Location = new System.Drawing.Point(0, 0);
             this.lvwTrans.Name = "lvwTrans";
-            this.lvwTrans.Size = new System.Drawing.Size(481, 232);
+            this.lvwTrans.Size = new System.Drawing.Size(481, 241);
             this.lvwTrans.TabIndex = 0;
             this.lvwTrans.UseCompatibleStateImageBehavior = false;
             this.lvwTrans.View = System.Windows.Forms.View.Details;
@@ -312,11 +334,9 @@
             // splitContainer5.Panel2
             // 
             this.splitContainer5.Panel2.Controls.Add(this.lvwSumTrans);
-            this.splitContainer5.Panel2.Controls.Add(this.RykketTidligere);
             this.splitContainer5.Panel2.Controls.Add(this.cmdAfstemt);
-            this.splitContainer5.Panel2.Controls.Add(this.cmdForslag);
-            this.splitContainer5.Size = new System.Drawing.Size(481, 277);
-            this.splitContainer5.SplitterDistance = 135;
+            this.splitContainer5.Size = new System.Drawing.Size(481, 144);
+            this.splitContainer5.SplitterDistance = 90;
             this.splitContainer5.TabIndex = 0;
             // 
             // lvwAfstemTrans
@@ -332,7 +352,7 @@
             this.lvwAfstemTrans.GridLines = true;
             this.lvwAfstemTrans.Location = new System.Drawing.Point(0, 0);
             this.lvwAfstemTrans.Name = "lvwAfstemTrans";
-            this.lvwAfstemTrans.Size = new System.Drawing.Size(481, 135);
+            this.lvwAfstemTrans.Size = new System.Drawing.Size(481, 90);
             this.lvwAfstemTrans.TabIndex = 2;
             this.lvwAfstemTrans.UseCompatibleStateImageBehavior = false;
             this.lvwAfstemTrans.View = System.Windows.Forms.View.Details;
@@ -397,16 +417,6 @@
             this.columnHeaderSTBelob.Text = "";
             this.columnHeaderSTBelob.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // RykketTidligere
-            // 
-            this.RykketTidligere.AutoSize = true;
-            this.RykketTidligere.Location = new System.Drawing.Point(34, 71);
-            this.RykketTidligere.Name = "RykketTidligere";
-            this.RykketTidligere.Size = new System.Drawing.Size(99, 17);
-            this.RykketTidligere.TabIndex = 8;
-            this.RykketTidligere.Text = "Rykket tidligere";
-            this.RykketTidligere.UseVisualStyleBackColor = true;
-            // 
             // cmdAfstemt
             // 
             this.cmdAfstemt.Enabled = false;
@@ -417,16 +427,6 @@
             this.cmdAfstemt.Text = "Afstemt";
             this.cmdAfstemt.UseVisualStyleBackColor = true;
             this.cmdAfstemt.Click += new System.EventHandler(this.cmdAfstemt_Click);
-            // 
-            // cmdForslag
-            // 
-            this.cmdForslag.Location = new System.Drawing.Point(139, 71);
-            this.cmdForslag.Name = "cmdForslag";
-            this.cmdForslag.Size = new System.Drawing.Size(61, 25);
-            this.cmdForslag.TabIndex = 3;
-            this.cmdForslag.Text = "Hent";
-            this.cmdForslag.UseVisualStyleBackColor = true;
-            this.cmdForslag.Click += new System.EventHandler(this.cmdForslag_Click);
             // 
             // FrmBankafstemning
             // 
@@ -448,13 +448,13 @@
             this.splitContainer2.ResumeLayout(false);
             this.splitContainer4.Panel1.ResumeLayout(false);
             this.splitContainer4.Panel2.ResumeLayout(false);
+            this.splitContainer4.Panel2.PerformLayout();
             this.splitContainer4.ResumeLayout(false);
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel2.ResumeLayout(false);
             this.splitContainer3.ResumeLayout(false);
             this.splitContainer5.Panel1.ResumeLayout(false);
             this.splitContainer5.Panel2.ResumeLayout(false);
-            this.splitContainer5.Panel2.PerformLayout();
             this.splitContainer5.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -473,7 +473,7 @@
         private System.Windows.Forms.ColumnHeader columnHeaderTTekst;
         private System.Windows.Forms.ColumnHeader columnHeaderTBelob;
         private System.Windows.Forms.ColumnHeader columnHeaderBBelob;
-        private System.Windows.Forms.CheckBox RykketTidligere;
+        private System.Windows.Forms.CheckBox AfstemtTidligere;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.ListView lvwAfstemBank;

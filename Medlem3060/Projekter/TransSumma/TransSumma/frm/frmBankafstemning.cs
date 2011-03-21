@@ -35,7 +35,7 @@ namespace nsPuls3060
             this.lvwAfstemTrans.ListViewItemSorter = lvwAfstemTrans_ColumnSorter;
         }
 
-        private void lvwMedlem_ColumnClick(object sender, ColumnClickEventArgs e)
+        private void lvwBank_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             lvwBank_ColumnSorter.CurrentColumn = e.Column;
             this.lvwBank.Sort();
@@ -61,6 +61,13 @@ namespace nsPuls3060
 
         private void FrmBankafstemning_Load(object sender, EventArgs e)
         {
+            getBankkonto();
+            getTrans();
+            lvwBank_ColumnSorter.CurrentColumn = 0;
+            this.lvwBank.Sort();
+            lvwTrans_ColumnSorter.CurrentColumn = 0;
+            this.lvwTrans.Sort();
+
         }
 
         private void cmdForslag_Click(object sender, EventArgs e)
@@ -73,11 +80,11 @@ namespace nsPuls3060
         {
             int AntalForslag = 0;
             IEnumerable<clsqry_bank> qry_bank;
-            if (this.RykketTidligere.Checked)
+            if (this.AfstemtTidligere.Checked)
             {
                 qry_bank = from b in Program.dbDataTransSumma.Tblbankkonto
                            where b.Afstem > 0 && (b.Skjul == null || b.Skjul == false)
-                           orderby b.Dato
+                           orderby b.Dato ascending
                            select new clsqry_bank
                            {
                                Pid = b.Pid,
@@ -91,7 +98,7 @@ namespace nsPuls3060
 
                 qry_bank = from b in Program.dbDataTransSumma.Tblbankkonto
                            where b.Afstem == null && (b.Skjul == null || b.Skjul == false)
-                           orderby b.Dato
+                           orderby b.Dato ascending
                            select new clsqry_bank
                            {
                                Pid = b.Pid,
@@ -131,16 +138,17 @@ namespace nsPuls3060
             lvwAfstemBank_Sum();
 
         }
+        
         private void getTrans()
         {
             int AntalForslag = 0;
             IEnumerable<clsqry_trans> qry_trans;
-            if (this.RykketTidligere.Checked)
+            if (this.AfstemtTidligere.Checked)
             {
                 qry_trans = from t in Program.dbDataTransSumma.Tbltrans
                             join b in Program.dbDataTransSumma.Tblbilag on t.Bilagpid equals b.Pid
                             where t.Afstem > 0 && t.Kontonr == 58000
-                            orderby b.Dato descending
+                            orderby b.Dato ascending
                             select new clsqry_trans
                             {
                                 Pid = t.Pid,
@@ -156,7 +164,7 @@ namespace nsPuls3060
                 qry_trans = from t in Program.dbDataTransSumma.Tbltrans
                             join b in Program.dbDataTransSumma.Tblbilag on t.Bilagpid equals b.Pid
                             where t.Afstem == null && t.Kontonr == 58000
-                            orderby b.Dato descending
+                            orderby b.Dato ascending
                             select new clsqry_trans
                             {
                                 Pid = t.Pid,

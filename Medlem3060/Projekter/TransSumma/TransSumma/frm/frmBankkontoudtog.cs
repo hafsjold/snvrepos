@@ -28,7 +28,7 @@ namespace nsPuls3060
             
             var qryUafstemte = from u in Program.dbDataTransSumma.Tblbankkonto
                                where u.Afstem == null && (u.Skjul == null || u.Skjul == false)
-                               orderby u.Dato descending
+                               orderby u.Dato ascending
                                select u;
             this.tblbankkontoBindingSourceUafstemte.DataSource = qryUafstemte;
         }
