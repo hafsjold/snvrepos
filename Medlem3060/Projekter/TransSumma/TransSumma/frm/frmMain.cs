@@ -116,8 +116,7 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
-            FrmKontoplanList m_frmKontoplanList = new FrmKontoplanList();
-            m_frmKontoplanList.ShowDialog();
+            KarKartotek recKartotek = new KarKartotek();
             int testx = 1;
             //KarBankafstemning recBankafstemning = new KarBankafstemning();
             //recBankafstemning.load();

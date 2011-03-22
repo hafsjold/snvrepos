@@ -47,10 +47,15 @@ namespace nsPuls3060
 
             string strLike = toolStripTextBoxFind.Text;
             IEnumerable<recKontoplan> qry_Kontoplan;
+            IEnumerable<recKontoplan> qry_Kartotek;
             IEnumerable<recKontoplan> qry_Kontoplan2;
+            IEnumerable<recKontoplan> qry_Join;
             if (checkBoxMedsaldo.Checked)
             {
                 qry_Kontoplan = from k in Program.karKontoplan
+                                where k.Saldo != null && k.Saldo != 0
+                                select k;
+                qry_Kartotek = from k in Program.karKartotek
                                 where k.Saldo != null && k.Saldo != 0
                                 select k;
             }
@@ -58,18 +63,22 @@ namespace nsPuls3060
             {
                 qry_Kontoplan = from k in Program.karKontoplan
                                 select k;
+                qry_Kartotek = from k in Program.karKartotek
+                                select k;
             }
-
+            
+            qry_Join = qry_Kontoplan.Union(qry_Kartotek);
+            
             if (bFind)
             {
-                qry_Kontoplan2 = from k in qry_Kontoplan
+                qry_Kontoplan2 = from k in qry_Join
                                  where k.Kontonavn.ToUpper().Contains(strLike.ToUpper())
                                  orderby k.Kontonr ascending
                                  select k;
             }
             else
             {
-                qry_Kontoplan2 = from k in qry_Kontoplan
+                qry_Kontoplan2 = from k in qry_Join
                                 orderby k.Kontonr ascending
                                 select k;
             }
@@ -86,7 +95,6 @@ namespace nsPuls3060
 
          private void cmdOK_Click(object sender, EventArgs e)
         {
-            SelectedKontonr = 54321;
             this.Close();
         }
 
@@ -94,6 +102,14 @@ namespace nsPuls3060
         {
             SelectedKontonr = null;
             this.Close();
+        }
+
+        private void lvwKontoplan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lvwKontoplan.SelectedItems.Count == 1) 
+            {
+                SelectedKontonr = int.Parse(lvwKontoplan.SelectedItems[0].Name);
+            }
         }
 
     }

@@ -33,13 +33,13 @@
             this.columnHeaderKontonavn = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderMoms = new System.Windows.Forms.ColumnHeader();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.checkBoxMedsaldo = new System.Windows.Forms.CheckBox();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.toolStripTextBoxFind = new System.Windows.Forms.TextBox();
-            this.cmdFind = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.cmdOK = new System.Windows.Forms.Button();
+            this.cmdFind = new System.Windows.Forms.Button();
+            this.toolStripTextBoxFind = new System.Windows.Forms.TextBox();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.cmdCancel = new System.Windows.Forms.Button();
+            this.cmdOK = new System.Windows.Forms.Button();
+            this.checkBoxMedsaldo = new System.Windows.Forms.CheckBox();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -55,12 +55,16 @@
             this.columnHeaderKontonavn,
             this.columnHeaderMoms});
             this.lvwKontoplan.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvwKontoplan.FullRowSelect = true;
+            this.lvwKontoplan.GridLines = true;
             this.lvwKontoplan.Location = new System.Drawing.Point(0, 0);
+            this.lvwKontoplan.MultiSelect = false;
             this.lvwKontoplan.Name = "lvwKontoplan";
-            this.lvwKontoplan.Size = new System.Drawing.Size(345, 375);
+            this.lvwKontoplan.Size = new System.Drawing.Size(344, 375);
             this.lvwKontoplan.TabIndex = 0;
             this.lvwKontoplan.UseCompatibleStateImageBehavior = false;
             this.lvwKontoplan.View = System.Windows.Forms.View.Details;
+            this.lvwKontoplan.SelectedIndexChanged += new System.EventHandler(this.lvwKontoplan_SelectedIndexChanged);
             // 
             // columnHeaderKontonr
             // 
@@ -95,19 +99,31 @@
             this.splitContainer1.SplitterDistance = 34;
             this.splitContainer1.TabIndex = 1;
             // 
-            // checkBoxMedsaldo
+            // label1
             // 
-            this.checkBoxMedsaldo.AutoSize = true;
-            this.checkBoxMedsaldo.Checked = global::nsPuls3060.Properties.Settings.Default.frmKontoplanListCheckboxmedsaldo;
-            this.checkBoxMedsaldo.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxMedsaldo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::nsPuls3060.Properties.Settings.Default, "frmKontoplanListCheckboxmedsaldo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBoxMedsaldo.Location = new System.Drawing.Point(9, 88);
-            this.checkBoxMedsaldo.Name = "checkBoxMedsaldo";
-            this.checkBoxMedsaldo.Size = new System.Drawing.Size(72, 43);
-            this.checkBoxMedsaldo.TabIndex = 1;
-            this.checkBoxMedsaldo.Text = "Vis kun\r\nkonti med\r\nsaldo";
-            this.checkBoxMedsaldo.UseVisualStyleBackColor = true;
-            this.checkBoxMedsaldo.CheckedChanged += new System.EventHandler(this.checkBoxMedsaldo_CheckedChanged);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(5, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(27, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Find";
+            // 
+            // cmdFind
+            // 
+            this.cmdFind.Location = new System.Drawing.Point(136, 6);
+            this.cmdFind.Name = "cmdFind";
+            this.cmdFind.Size = new System.Drawing.Size(39, 23);
+            this.cmdFind.TabIndex = 1;
+            this.cmdFind.Text = "Søg";
+            this.cmdFind.UseVisualStyleBackColor = true;
+            this.cmdFind.Click += new System.EventHandler(this.toolStripButtonFind_Click);
+            // 
+            // toolStripTextBoxFind
+            // 
+            this.toolStripTextBoxFind.Location = new System.Drawing.Point(34, 7);
+            this.toolStripTextBoxFind.Name = "toolStripTextBoxFind";
+            this.toolStripTextBoxFind.Size = new System.Drawing.Size(100, 20);
+            this.toolStripTextBoxFind.TabIndex = 0;
             // 
             // splitContainer2
             // 
@@ -125,34 +141,18 @@
             this.splitContainer2.Panel2.Controls.Add(this.cmdOK);
             this.splitContainer2.Panel2.Controls.Add(this.checkBoxMedsaldo);
             this.splitContainer2.Size = new System.Drawing.Size(436, 375);
-            this.splitContainer2.SplitterDistance = 345;
+            this.splitContainer2.SplitterDistance = 344;
             this.splitContainer2.TabIndex = 0;
             // 
-            // toolStripTextBoxFind
+            // cmdCancel
             // 
-            this.toolStripTextBoxFind.Location = new System.Drawing.Point(34, 7);
-            this.toolStripTextBoxFind.Name = "toolStripTextBoxFind";
-            this.toolStripTextBoxFind.Size = new System.Drawing.Size(100, 20);
-            this.toolStripTextBoxFind.TabIndex = 0;
-            // 
-            // cmdFind
-            // 
-            this.cmdFind.Location = new System.Drawing.Point(136, 6);
-            this.cmdFind.Name = "cmdFind";
-            this.cmdFind.Size = new System.Drawing.Size(39, 23);
-            this.cmdFind.TabIndex = 1;
-            this.cmdFind.Text = "Søg";
-            this.cmdFind.UseVisualStyleBackColor = true;
-            this.cmdFind.Click += new System.EventHandler(this.toolStripButtonFind_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 11);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(27, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Find";
+            this.cmdCancel.Location = new System.Drawing.Point(9, 56);
+            this.cmdCancel.Name = "cmdCancel";
+            this.cmdCancel.Size = new System.Drawing.Size(75, 23);
+            this.cmdCancel.TabIndex = 2;
+            this.cmdCancel.Text = "Annuler";
+            this.cmdCancel.UseVisualStyleBackColor = true;
+            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
             // 
             // cmdOK
             // 
@@ -164,15 +164,19 @@
             this.cmdOK.UseVisualStyleBackColor = true;
             this.cmdOK.Click += new System.EventHandler(this.cmdOK_Click);
             // 
-            // cmdCancel
+            // checkBoxMedsaldo
             // 
-            this.cmdCancel.Location = new System.Drawing.Point(9, 56);
-            this.cmdCancel.Name = "cmdCancel";
-            this.cmdCancel.Size = new System.Drawing.Size(75, 23);
-            this.cmdCancel.TabIndex = 2;
-            this.cmdCancel.Text = "Annuler";
-            this.cmdCancel.UseVisualStyleBackColor = true;
-            this.cmdCancel.Click += new System.EventHandler(this.cmdCancel_Click);
+            this.checkBoxMedsaldo.AutoSize = true;
+            this.checkBoxMedsaldo.Checked = global::nsPuls3060.Properties.Settings.Default.frmKontoplanListCheckboxmedsaldo;
+            this.checkBoxMedsaldo.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxMedsaldo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::nsPuls3060.Properties.Settings.Default, "frmKontoplanListCheckboxmedsaldo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.checkBoxMedsaldo.Location = new System.Drawing.Point(9, 88);
+            this.checkBoxMedsaldo.Name = "checkBoxMedsaldo";
+            this.checkBoxMedsaldo.Size = new System.Drawing.Size(72, 43);
+            this.checkBoxMedsaldo.TabIndex = 1;
+            this.checkBoxMedsaldo.Text = "Vis kun\r\nkonti med\r\nsaldo";
+            this.checkBoxMedsaldo.UseVisualStyleBackColor = true;
+            this.checkBoxMedsaldo.CheckedChanged += new System.EventHandler(this.checkBoxMedsaldo_CheckedChanged);
             // 
             // FrmKontoplanList
             // 

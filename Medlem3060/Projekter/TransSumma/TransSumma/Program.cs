@@ -31,6 +31,7 @@ namespace nsPuls3060
         private static KarFakturavarer_k m_KarFakturavarer_k;
         private static KarAfstemningskonti m_KarAfstemningskonti;
         private static KarMoms m_KarMoms;
+        private static KarKartotek m_KarKartotek;
 
         public static string path_to_lock_summasummarum_kontoplan
         {
@@ -254,6 +255,18 @@ namespace nsPuls3060
             set
             {
                 m_KarMoms = value;
+            }
+        }
+        public static KarKartotek karKartotek
+        {
+            get
+            {
+                if (m_KarKartotek == null) m_KarKartotek = new KarKartotek();
+                return m_KarKartotek;
+            }
+            set
+            {
+                m_KarKartotek = value;
             }
         }
         public static KarFakturaer_k karFakturaer_k
