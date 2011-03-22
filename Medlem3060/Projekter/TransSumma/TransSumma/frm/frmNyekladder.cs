@@ -398,7 +398,10 @@ namespace nsPuls3060
                         string kontonavn;
                         try
                         {
-                            kontonavn = (from k in Program.karKontoplan where k.Kontonr == recWkladder.Konto select k.Kontonavn).First();
+                            IEnumerable<recKontoplan> qry_Kontoplan = from k in Program.karKontoplan select k;
+                            IEnumerable<recKontoplan> qry_Kartotek = from k in Program.karKartotek select k;
+                            IEnumerable<recKontoplan> qry_Join = qry_Kontoplan.Union(qry_Kartotek);
+                            kontonavn = (from k in qry_Join where k.Kontonr == recWkladder.Konto select k.Kontonavn).First();
                         }
                         catch 
                         {
