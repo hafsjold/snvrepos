@@ -1,0 +1,635 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dbTSModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.3.5" ProviderManifestToken="3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="dbTSModelStoreContainer">
+          <EntitySet Name="tblafstem" EntityType="dbTSModel.Store.tblafstem" store:Type="Tables" />
+          <EntitySet Name="tblbankafsteminit" EntityType="dbTSModel.Store.tblbankafsteminit" store:Type="Tables" />
+          <EntitySet Name="tblbankkonto" EntityType="dbTSModel.Store.tblbankkonto" store:Type="Tables" />
+          <EntitySet Name="tblbilag" EntityType="dbTSModel.Store.tblbilag" store:Type="Tables" />
+          <EntitySet Name="tblkladder" EntityType="dbTSModel.Store.tblkladder" store:Type="Tables" />
+          <EntitySet Name="tblkonto" EntityType="dbTSModel.Store.tblkonto" store:Type="Tables" />
+          <EntitySet Name="tblnrserie" EntityType="dbTSModel.Store.tblnrserie" store:Type="Tables" />
+          <EntitySet Name="tblregnskab" EntityType="dbTSModel.Store.tblregnskab" store:Type="Tables" />
+          <EntitySet Name="tbltrans" EntityType="dbTSModel.Store.tbltrans" store:Type="Tables" />
+          <EntitySet Name="tblwbilag" EntityType="dbTSModel.Store.tblwbilag" store:Type="Tables" />
+          <EntitySet Name="tblwkladder" EntityType="dbTSModel.Store.tblwkladder" store:Type="Tables" />
+          <AssociationSet Name="FK_tblafstem_tblbankkonto" Association="dbTSModel.Store.FK_tblafstem_tblbankkonto">
+            <End Role="tblafstem" EntitySet="tblafstem" />
+            <End Role="tblbankkonto" EntitySet="tblbankkonto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblafstem_tbltrans" Association="dbTSModel.Store.FK_tblafstem_tbltrans">
+            <End Role="tblafstem" EntitySet="tblafstem" />
+            <End Role="tbltrans" EntitySet="tbltrans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblbilag_tblkaldder" Association="dbTSModel.Store.FK_tblbilag_tblkaldder">
+            <End Role="tblbilag" EntitySet="tblbilag" />
+            <End Role="tblkladder" EntitySet="tblkladder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblbilag_tbltrans" Association="dbTSModel.Store.FK_tblbilag_tbltrans">
+            <End Role="tblbilag" EntitySet="tblbilag" />
+            <End Role="tbltrans" EntitySet="tbltrans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblwbilag_tblwkaldder" Association="dbTSModel.Store.FK_tblwbilag_tblwkaldder">
+            <End Role="tblwbilag" EntitySet="tblwbilag" />
+            <End Role="tblwkladder" EntitySet="tblwkladder" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblafstem">
+          <Key>
+            <PropertyRef Name="pid" />
+          </Key>
+          <Property Name="pid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="udskriv" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblbankafsteminit">
+          <Key>
+            <PropertyRef Name="bid" />
+            <PropertyRef Name="rid" />
+            <PropertyRef Name="tid" />
+            <PropertyRef Name="tnr" />
+          </Key>
+          <Property Name="bid" Type="int" Nullable="false" />
+          <Property Name="rid" Type="int" Nullable="false" />
+          <Property Name="tid" Type="int" Nullable="false" />
+          <Property Name="tnr" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblbankkonto">
+          <Key>
+            <PropertyRef Name="pid" />
+          </Key>
+          <Property Name="pid" Type="int" Nullable="false" />
+          <Property Name="saldo" Type="numeric" Scale="2" />
+          <Property Name="skjul" Type="bit" />
+          <Property Name="dato" Type="datetime" />
+          <Property Name="tekst" Type="nvarchar" MaxLength="50" />
+          <Property Name="belob" Type="numeric" Scale="2" />
+          <Property Name="afstem" Type="int" />
+        </EntityType>
+        <EntityType Name="tblbilag">
+          <Key>
+            <PropertyRef Name="pid" />
+          </Key>
+          <Property Name="pid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="regnskabid" Type="int" />
+          <Property Name="bilag" Type="int" />
+          <Property Name="dato" Type="datetime" />
+          <Property Name="udskriv" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblkladder">
+          <Key>
+            <PropertyRef Name="pid" />
+          </Key>
+          <Property Name="pid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="regnskabid" Type="int" />
+          <Property Name="bilagpid" Type="int" />
+          <Property Name="tekst" Type="nvarchar" MaxLength="50" />
+          <Property Name="afstemningskonto" Type="nvarchar" MaxLength="50" />
+          <Property Name="belob" Type="numeric" Scale="2" />
+          <Property Name="konto" Type="int" />
+          <Property Name="momskode" Type="nvarchar" MaxLength="3" />
+          <Property Name="faktura" Type="int" />
+          <Property Name="id" Type="int" />
+        </EntityType>
+        <EntityType Name="tblkonto">
+          <Key>
+            <PropertyRef Name="kontonr" />
+          </Key>
+          <Property Name="kontonr" Type="int" Nullable="false" />
+          <Property Name="kontonavn" Type="nvarchar" MaxLength="50" />
+          <Property Name="type" Type="nvarchar" MaxLength="10" />
+          <Property Name="momskode" Type="nvarchar" MaxLength="3" />
+          <Property Name="saldo" Type="numeric" Scale="2" />
+        </EntityType>
+        <EntityType Name="tblnrserie">
+          <Key>
+            <PropertyRef Name="nrserienavn" />
+          </Key>
+          <Property Name="nrserienavn" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="sidstbrugtenr" Type="int" />
+        </EntityType>
+        <EntityType Name="tblregnskab">
+          <Key>
+            <PropertyRef Name="rid" />
+          </Key>
+          <Property Name="rid" Type="int" Nullable="false" />
+          <Property Name="navn" Type="nvarchar" MaxLength="50" />
+          <Property Name="oprettet" Type="datetime" />
+          <Property Name="start" Type="datetime" />
+          <Property Name="slut" Type="datetime" />
+          <Property Name="datoLaas" Type="datetime" />
+          <Property Name="firmanavn" Type="nvarchar" MaxLength="50" />
+          <Property Name="placering" Type="nvarchar" MaxLength="255" />
+          <Property Name="eksportmappe" Type="nvarchar" MaxLength="255" />
+          <Property Name="afsluttet" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbltrans">
+          <Key>
+            <PropertyRef Name="pid" />
+          </Key>
+          <Property Name="pid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="regnskabid" Type="int" />
+          <Property Name="skjul" Type="bit" />
+          <Property Name="bilagpid" Type="int" />
+          <Property Name="tekst" Type="nvarchar" MaxLength="50" />
+          <Property Name="kontonr" Type="int" />
+          <Property Name="kontonavn" Type="nvarchar" MaxLength="50" />
+          <Property Name="moms" Type="numeric" Scale="2" />
+          <Property Name="debet" Type="numeric" Scale="2" />
+          <Property Name="kredit" Type="numeric" Scale="2" />
+          <Property Name="id" Type="int" />
+          <Property Name="nr" Type="int" />
+          <Property Name="belob" Type="numeric" Scale="2" />
+          <Property Name="afstem" Type="int" />
+        </EntityType>
+        <EntityType Name="tblwbilag">
+          <Key>
+            <PropertyRef Name="pid" />
+          </Key>
+          <Property Name="pid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="bilag" Type="int" Nullable="false" />
+          <Property Name="dato" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblwkladder">
+          <Key>
+            <PropertyRef Name="pid" />
+          </Key>
+          <Property Name="pid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="bilagpid" Type="int" Nullable="false" />
+          <Property Name="tekst" Type="nvarchar" MaxLength="50" />
+          <Property Name="afstemningskonto" Type="nvarchar" MaxLength="50" />
+          <Property Name="belob" Type="numeric" Scale="2" />
+          <Property Name="konto" Type="int" />
+          <Property Name="momskode" Type="nvarchar" MaxLength="3" />
+          <Property Name="faktura" Type="int" />
+        </EntityType>
+        <Association Name="FK_tblafstem_tblbankkonto">
+          <End Role="tblafstem" Type="dbTSModel.Store.tblafstem" Multiplicity="0..1" />
+          <End Role="tblbankkonto" Type="dbTSModel.Store.tblbankkonto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblafstem">
+              <PropertyRef Name="pid" />
+            </Principal>
+            <Dependent Role="tblbankkonto">
+              <PropertyRef Name="afstem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblafstem_tbltrans">
+          <End Role="tblafstem" Type="dbTSModel.Store.tblafstem" Multiplicity="0..1" />
+          <End Role="tbltrans" Type="dbTSModel.Store.tbltrans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblafstem">
+              <PropertyRef Name="pid" />
+            </Principal>
+            <Dependent Role="tbltrans">
+              <PropertyRef Name="afstem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblbilag_tblkaldder">
+          <End Role="tblbilag" Type="dbTSModel.Store.tblbilag" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblkladder" Type="dbTSModel.Store.tblkladder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblbilag">
+              <PropertyRef Name="pid" />
+            </Principal>
+            <Dependent Role="tblkladder">
+              <PropertyRef Name="bilagpid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblbilag_tbltrans">
+          <End Role="tblbilag" Type="dbTSModel.Store.tblbilag" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbltrans" Type="dbTSModel.Store.tbltrans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblbilag">
+              <PropertyRef Name="pid" />
+            </Principal>
+            <Dependent Role="tbltrans">
+              <PropertyRef Name="bilagpid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblwbilag_tblwkaldder">
+          <End Role="tblwbilag" Type="dbTSModel.Store.tblwbilag" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblwkladder" Type="dbTSModel.Store.tblwkladder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblwbilag">
+              <PropertyRef Name="pid" />
+            </Principal>
+            <Dependent Role="tblwkladder">
+              <PropertyRef Name="bilagpid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbTSModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="dbTSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblafstem" EntityType="dbTSModel.tblafstem" />
+          <EntitySet Name="tblbankafsteminit" EntityType="dbTSModel.tblbankafsteminit" />
+          <EntitySet Name="tblbankkonto" EntityType="dbTSModel.tblbankkonto" />
+          <EntitySet Name="tblbilag" EntityType="dbTSModel.tblbilag" />
+          <EntitySet Name="tblkladder" EntityType="dbTSModel.tblkladder" />
+          <EntitySet Name="tblkonto" EntityType="dbTSModel.tblkonto" />
+          <EntitySet Name="tblnrserie" EntityType="dbTSModel.tblnrserie" />
+          <EntitySet Name="tblregnskab" EntityType="dbTSModel.tblregnskab" />
+          <EntitySet Name="tbltrans" EntityType="dbTSModel.tbltrans" />
+          <EntitySet Name="tblwbilag" EntityType="dbTSModel.tblwbilag" />
+          <EntitySet Name="tblwkladder" EntityType="dbTSModel.tblwkladder" />
+          <AssociationSet Name="FK_tblafstem_tblbankkonto" Association="dbTSModel.FK_tblafstem_tblbankkonto">
+            <End Role="tblafstem" EntitySet="tblafstem" />
+            <End Role="tblbankkonto" EntitySet="tblbankkonto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblafstem_tbltrans" Association="dbTSModel.FK_tblafstem_tbltrans">
+            <End Role="tblafstem" EntitySet="tblafstem" />
+            <End Role="tbltrans" EntitySet="tbltrans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblbilag_tblkaldder" Association="dbTSModel.FK_tblbilag_tblkaldder">
+            <End Role="tblbilag" EntitySet="tblbilag" />
+            <End Role="tblkladder" EntitySet="tblkladder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblbilag_tbltrans" Association="dbTSModel.FK_tblbilag_tbltrans">
+            <End Role="tblbilag" EntitySet="tblbilag" />
+            <End Role="tbltrans" EntitySet="tbltrans" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblwbilag_tblwkaldder" Association="dbTSModel.FK_tblwbilag_tblwkaldder">
+            <End Role="tblwbilag" EntitySet="tblwbilag" />
+            <End Role="tblwkladder" EntitySet="tblwkladder" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblafstem">
+          <Key>
+            <PropertyRef Name="pid" />
+          </Key>
+          <Property Name="pid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="udskriv" Type="Boolean" />
+          <NavigationProperty Name="tblbankkonto" Relationship="dbTSModel.FK_tblafstem_tblbankkonto" FromRole="tblafstem" ToRole="tblbankkonto" />
+          <NavigationProperty Name="tbltrans" Relationship="dbTSModel.FK_tblafstem_tbltrans" FromRole="tblafstem" ToRole="tbltrans" />
+        </EntityType>
+        <EntityType Name="tblbankafsteminit">
+          <Key>
+            <PropertyRef Name="bid" />
+            <PropertyRef Name="rid" />
+            <PropertyRef Name="tid" />
+            <PropertyRef Name="tnr" />
+          </Key>
+          <Property Name="bid" Type="Int32" Nullable="false" />
+          <Property Name="rid" Type="Int32" Nullable="false" />
+          <Property Name="tid" Type="Int32" Nullable="false" />
+          <Property Name="tnr" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblbankkonto">
+          <Key>
+            <PropertyRef Name="pid" />
+          </Key>
+          <Property Name="pid" Type="Int32" Nullable="false" />
+          <Property Name="saldo" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="skjul" Type="Boolean" />
+          <Property Name="dato" Type="DateTime" />
+          <Property Name="tekst" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="belob" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="afstem" Type="Int32" />
+          <NavigationProperty Name="tblafstem" Relationship="dbTSModel.FK_tblafstem_tblbankkonto" FromRole="tblbankkonto" ToRole="tblafstem" />
+        </EntityType>
+        <EntityType Name="tblbilag">
+          <Key>
+            <PropertyRef Name="pid" />
+          </Key>
+          <Property Name="pid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="regnskabid" Type="Int32" />
+          <Property Name="bilag" Type="Int32" />
+          <Property Name="dato" Type="DateTime" />
+          <Property Name="udskriv" Type="Boolean" />
+          <NavigationProperty Name="tblkladder" Relationship="dbTSModel.FK_tblbilag_tblkaldder" FromRole="tblbilag" ToRole="tblkladder" />
+          <NavigationProperty Name="tbltrans" Relationship="dbTSModel.FK_tblbilag_tbltrans" FromRole="tblbilag" ToRole="tbltrans" />
+        </EntityType>
+        <EntityType Name="tblkladder">
+          <Key>
+            <PropertyRef Name="pid" />
+          </Key>
+          <Property Name="pid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="regnskabid" Type="Int32" />
+          <Property Name="bilagpid" Type="Int32" />
+          <Property Name="tekst" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="afstemningskonto" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="belob" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="konto" Type="Int32" />
+          <Property Name="momskode" Type="String" MaxLength="3" Unicode="true" FixedLength="false" />
+          <Property Name="faktura" Type="Int32" />
+          <Property Name="id" Type="Int32" />
+          <NavigationProperty Name="tblbilag" Relationship="dbTSModel.FK_tblbilag_tblkaldder" FromRole="tblkladder" ToRole="tblbilag" />
+        </EntityType>
+        <EntityType Name="tblkonto">
+          <Key>
+            <PropertyRef Name="kontonr" />
+          </Key>
+          <Property Name="kontonr" Type="Int32" Nullable="false" />
+          <Property Name="kontonavn" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="type" Type="String" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="momskode" Type="String" MaxLength="3" Unicode="true" FixedLength="false" />
+          <Property Name="saldo" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="tblnrserie">
+          <Key>
+            <PropertyRef Name="nrserienavn" />
+          </Key>
+          <Property Name="nrserienavn" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="sidstbrugtenr" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblregnskab">
+          <Key>
+            <PropertyRef Name="rid" />
+          </Key>
+          <Property Name="rid" Type="Int32" Nullable="false" />
+          <Property Name="navn" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="oprettet" Type="DateTime" />
+          <Property Name="start" Type="DateTime" />
+          <Property Name="slut" Type="DateTime" />
+          <Property Name="datoLaas" Type="DateTime" />
+          <Property Name="firmanavn" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="placering" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="eksportmappe" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="afsluttet" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbltrans">
+          <Key>
+            <PropertyRef Name="pid" />
+          </Key>
+          <Property Name="pid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="regnskabid" Type="Int32" />
+          <Property Name="skjul" Type="Boolean" />
+          <Property Name="bilagpid" Type="Int32" />
+          <Property Name="tekst" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="kontonr" Type="Int32" />
+          <Property Name="kontonavn" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="moms" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="debet" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="kredit" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="id" Type="Int32" />
+          <Property Name="nr" Type="Int32" />
+          <Property Name="belob" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="afstem" Type="Int32" />
+          <NavigationProperty Name="tblafstem" Relationship="dbTSModel.FK_tblafstem_tbltrans" FromRole="tbltrans" ToRole="tblafstem" />
+          <NavigationProperty Name="tblbilag" Relationship="dbTSModel.FK_tblbilag_tbltrans" FromRole="tbltrans" ToRole="tblbilag" />
+        </EntityType>
+        <EntityType Name="tblwbilag">
+          <Key>
+            <PropertyRef Name="pid" />
+          </Key>
+          <Property Name="pid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bilag" Type="Int32" Nullable="false" />
+          <Property Name="dato" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="tblwkladder" Relationship="dbTSModel.FK_tblwbilag_tblwkaldder" FromRole="tblwbilag" ToRole="tblwkladder" />
+        </EntityType>
+        <EntityType Name="tblwkladder">
+          <Key>
+            <PropertyRef Name="pid" />
+          </Key>
+          <Property Name="pid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="bilagpid" Type="Int32" Nullable="false" />
+          <Property Name="tekst" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="afstemningskonto" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="belob" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="konto" Type="Int32" />
+          <Property Name="momskode" Type="String" MaxLength="3" Unicode="true" FixedLength="false" />
+          <Property Name="faktura" Type="Int32" />
+          <NavigationProperty Name="tblwbilag" Relationship="dbTSModel.FK_tblwbilag_tblwkaldder" FromRole="tblwkladder" ToRole="tblwbilag" />
+        </EntityType>
+        <Association Name="FK_tblafstem_tblbankkonto">
+          <End Role="tblafstem" Type="dbTSModel.tblafstem" Multiplicity="0..1" />
+          <End Role="tblbankkonto" Type="dbTSModel.tblbankkonto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblafstem">
+              <PropertyRef Name="pid" />
+            </Principal>
+            <Dependent Role="tblbankkonto">
+              <PropertyRef Name="afstem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblafstem_tbltrans">
+          <End Role="tblafstem" Type="dbTSModel.tblafstem" Multiplicity="0..1" />
+          <End Role="tbltrans" Type="dbTSModel.tbltrans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblafstem">
+              <PropertyRef Name="pid" />
+            </Principal>
+            <Dependent Role="tbltrans">
+              <PropertyRef Name="afstem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblbilag_tblkaldder">
+          <End Role="tblbilag" Type="dbTSModel.tblbilag" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblkladder" Type="dbTSModel.tblkladder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblbilag">
+              <PropertyRef Name="pid" />
+            </Principal>
+            <Dependent Role="tblkladder">
+              <PropertyRef Name="bilagpid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblbilag_tbltrans">
+          <End Role="tblbilag" Type="dbTSModel.tblbilag" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbltrans" Type="dbTSModel.tbltrans" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblbilag">
+              <PropertyRef Name="pid" />
+            </Principal>
+            <Dependent Role="tbltrans">
+              <PropertyRef Name="bilagpid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblwbilag_tblwkaldder">
+          <End Role="tblwbilag" Type="dbTSModel.tblwbilag" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblwkladder" Type="dbTSModel.tblwkladder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblwbilag">
+              <PropertyRef Name="pid" />
+            </Principal>
+            <Dependent Role="tblwkladder">
+              <PropertyRef Name="bilagpid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbTSModelStoreContainer" CdmEntityContainer="dbTSEntities">
+          <EntitySetMapping Name="tblafstem"><EntityTypeMapping TypeName="dbTSModel.tblafstem"><MappingFragment StoreEntitySet="tblafstem">
+            <ScalarProperty Name="pid" ColumnName="pid" />
+            <ScalarProperty Name="udskriv" ColumnName="udskriv" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblbankafsteminit"><EntityTypeMapping TypeName="dbTSModel.tblbankafsteminit"><MappingFragment StoreEntitySet="tblbankafsteminit">
+            <ScalarProperty Name="bid" ColumnName="bid" />
+            <ScalarProperty Name="rid" ColumnName="rid" />
+            <ScalarProperty Name="tid" ColumnName="tid" />
+            <ScalarProperty Name="tnr" ColumnName="tnr" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblbankkonto"><EntityTypeMapping TypeName="dbTSModel.tblbankkonto"><MappingFragment StoreEntitySet="tblbankkonto">
+            <ScalarProperty Name="pid" ColumnName="pid" />
+            <ScalarProperty Name="saldo" ColumnName="saldo" />
+            <ScalarProperty Name="skjul" ColumnName="skjul" />
+            <ScalarProperty Name="dato" ColumnName="dato" />
+            <ScalarProperty Name="tekst" ColumnName="tekst" />
+            <ScalarProperty Name="belob" ColumnName="belob" />
+            <ScalarProperty Name="afstem" ColumnName="afstem" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblbilag"><EntityTypeMapping TypeName="dbTSModel.tblbilag"><MappingFragment StoreEntitySet="tblbilag">
+            <ScalarProperty Name="pid" ColumnName="pid" />
+            <ScalarProperty Name="regnskabid" ColumnName="regnskabid" />
+            <ScalarProperty Name="bilag" ColumnName="bilag" />
+            <ScalarProperty Name="dato" ColumnName="dato" />
+            <ScalarProperty Name="udskriv" ColumnName="udskriv" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblkladder"><EntityTypeMapping TypeName="dbTSModel.tblkladder"><MappingFragment StoreEntitySet="tblkladder">
+            <ScalarProperty Name="pid" ColumnName="pid" />
+            <ScalarProperty Name="regnskabid" ColumnName="regnskabid" />
+            <ScalarProperty Name="bilagpid" ColumnName="bilagpid" />
+            <ScalarProperty Name="tekst" ColumnName="tekst" />
+            <ScalarProperty Name="afstemningskonto" ColumnName="afstemningskonto" />
+            <ScalarProperty Name="belob" ColumnName="belob" />
+            <ScalarProperty Name="konto" ColumnName="konto" />
+            <ScalarProperty Name="momskode" ColumnName="momskode" />
+            <ScalarProperty Name="faktura" ColumnName="faktura" />
+            <ScalarProperty Name="id" ColumnName="id" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblkonto"><EntityTypeMapping TypeName="dbTSModel.tblkonto"><MappingFragment StoreEntitySet="tblkonto">
+            <ScalarProperty Name="kontonr" ColumnName="kontonr" />
+            <ScalarProperty Name="kontonavn" ColumnName="kontonavn" />
+            <ScalarProperty Name="type" ColumnName="type" />
+            <ScalarProperty Name="momskode" ColumnName="momskode" />
+            <ScalarProperty Name="saldo" ColumnName="saldo" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblnrserie"><EntityTypeMapping TypeName="dbTSModel.tblnrserie"><MappingFragment StoreEntitySet="tblnrserie">
+            <ScalarProperty Name="nrserienavn" ColumnName="nrserienavn" />
+            <ScalarProperty Name="sidstbrugtenr" ColumnName="sidstbrugtenr" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblregnskab"><EntityTypeMapping TypeName="dbTSModel.tblregnskab"><MappingFragment StoreEntitySet="tblregnskab">
+            <ScalarProperty Name="rid" ColumnName="rid" />
+            <ScalarProperty Name="navn" ColumnName="navn" />
+            <ScalarProperty Name="oprettet" ColumnName="oprettet" />
+            <ScalarProperty Name="start" ColumnName="start" />
+            <ScalarProperty Name="slut" ColumnName="slut" />
+            <ScalarProperty Name="datoLaas" ColumnName="datoLaas" />
+            <ScalarProperty Name="firmanavn" ColumnName="firmanavn" />
+            <ScalarProperty Name="placering" ColumnName="placering" />
+            <ScalarProperty Name="eksportmappe" ColumnName="eksportmappe" />
+            <ScalarProperty Name="afsluttet" ColumnName="afsluttet" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tbltrans"><EntityTypeMapping TypeName="dbTSModel.tbltrans"><MappingFragment StoreEntitySet="tbltrans">
+            <ScalarProperty Name="pid" ColumnName="pid" />
+            <ScalarProperty Name="regnskabid" ColumnName="regnskabid" />
+            <ScalarProperty Name="skjul" ColumnName="skjul" />
+            <ScalarProperty Name="bilagpid" ColumnName="bilagpid" />
+            <ScalarProperty Name="tekst" ColumnName="tekst" />
+            <ScalarProperty Name="kontonr" ColumnName="kontonr" />
+            <ScalarProperty Name="kontonavn" ColumnName="kontonavn" />
+            <ScalarProperty Name="moms" ColumnName="moms" />
+            <ScalarProperty Name="debet" ColumnName="debet" />
+            <ScalarProperty Name="kredit" ColumnName="kredit" />
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="nr" ColumnName="nr" />
+            <ScalarProperty Name="belob" ColumnName="belob" />
+            <ScalarProperty Name="afstem" ColumnName="afstem" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblwbilag"><EntityTypeMapping TypeName="dbTSModel.tblwbilag"><MappingFragment StoreEntitySet="tblwbilag">
+            <ScalarProperty Name="pid" ColumnName="pid" />
+            <ScalarProperty Name="bilag" ColumnName="bilag" />
+            <ScalarProperty Name="dato" ColumnName="dato" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblwkladder"><EntityTypeMapping TypeName="dbTSModel.tblwkladder"><MappingFragment StoreEntitySet="tblwkladder">
+            <ScalarProperty Name="pid" ColumnName="pid" />
+            <ScalarProperty Name="bilagpid" ColumnName="bilagpid" />
+            <ScalarProperty Name="tekst" ColumnName="tekst" />
+            <ScalarProperty Name="afstemningskonto" ColumnName="afstemningskonto" />
+            <ScalarProperty Name="belob" ColumnName="belob" />
+            <ScalarProperty Name="konto" ColumnName="konto" />
+            <ScalarProperty Name="momskode" ColumnName="momskode" />
+            <ScalarProperty Name="faktura" ColumnName="faktura" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="dbTS">
+        <EntityTypeShape EntityType="dbTSModel.tblafstem" Width="1.5" PointX="0.75" PointY="5" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbTSModel.tblbankafsteminit" Width="1.5" PointX="0.75" PointY="1.75" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbTSModel.tblbankkonto" Width="1.5" PointX="3" PointY="4.625" Height="2.5571907552083317" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbTSModel.tblbilag" Width="1.5" PointX="3.75" PointY="0.75" Height="2.3648893229166656" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbTSModel.tblkladder" Width="1.5" PointX="6" PointY="8.875" Height="3.1340950520833317" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbTSModel.tblkonto" Width="1.5" PointX="8.75" PointY="1.75" Height="1.9802864583333326" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbTSModel.tblnrserie" Width="1.5" PointX="8.75" PointY="4.75" Height="1.4033821614583317" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbTSModel.tblregnskab" Width="1.5" PointX="8.75" PointY="7.75" Height="2.9417936197916683" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbTSModel.tbltrans" Width="1.5" PointX="6" PointY="3.875" Height="4.0956022135416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbTSModel.tblwbilag" Width="1.5" PointX="0.75" PointY="9.5" Height="1.7879850260416674" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbTSModel.tblwkladder" Width="1.5" PointX="3" PointY="9" Height="2.7494921875000031" IsExpanded="true" />
+        <AssociationConnector Association="dbTSModel.FK_tblafstem_tblbankkonto" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="5.8939925130208337" />
+          <ConnectorPoint PointX="3" PointY="5.8939925130208337" />
+        </AssociationConnector>
+        <AssociationConnector Association="dbTSModel.FK_tblafstem_tbltrans" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="6.7879850260416674" />
+          <ConnectorPoint PointX="1.5" PointY="7.607646484375" />
+          <ConnectorPoint PointX="4.822916666666667" PointY="7.6076464843749987" />
+          <ConnectorPoint PointX="4.989583333333333" PointY="7.607646484375" />
+          <ConnectorPoint PointX="6" PointY="7.607646484375" />
+        </AssociationConnector>
+        <AssociationConnector Association="dbTSModel.FK_tblbilag_tblkaldder" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.90625" PointY="3.1148893229166656" />
+          <ConnectorPoint PointX="4.90625" PointY="11.910543619791667" />
+          <ConnectorPoint PointX="6" PointY="11.910543619791667" />
+        </AssociationConnector>
+        <AssociationConnector Association="dbTSModel.FK_tblbilag_tbltrans" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.1093775" PointY="3.1148893229166656" />
+          <ConnectorPoint PointX="5.1093775" PointY="4.21875" />
+          <ConnectorPoint PointX="6" PointY="4.21875" />
+        </AssociationConnector>
+        <AssociationConnector Association="dbTSModel.FK_tblwbilag_tblwkaldder" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="10.393992513020834" />
+          <ConnectorPoint PointX="3" PointY="10.393992513020834" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

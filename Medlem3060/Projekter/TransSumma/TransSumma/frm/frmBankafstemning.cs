@@ -78,33 +78,34 @@ namespace nsPuls3060
 
         private void getBankkonto()
         {
+
             int AntalForslag = 0;
             IEnumerable<clsqry_bank> qry_bank;
             if (this.AfstemtTidligere.Checked)
             {
-                qry_bank = from b in Program.dbDataTransSumma.Tblbankkonto
-                           where b.Afstem > 0 && (b.Skjul == null || b.Skjul == false)
-                           orderby b.Dato ascending
+                qry_bank = from b in Program.dbTS.tblbankkonto
+                           where b.afstem > 0 && (b.skjul == null || b.skjul == false)
+                           orderby b.dato ascending
                            select new clsqry_bank
                            {
-                               Pid = b.Pid,
-                               Dato = b.Dato,
-                               Tekst = b.Tekst,
-                               Belob = b.Belob
+                               Pid = b.pid,
+                               Dato = b.dato,
+                               Tekst = b.tekst,
+                               Belob = b.belob
                            };
             }
             else
             {
 
-                qry_bank = from b in Program.dbDataTransSumma.Tblbankkonto
-                           where b.Afstem == null && (b.Skjul == null || b.Skjul == false)
-                           orderby b.Dato ascending
+                qry_bank = from b in Program.dbTS.tblbankkonto
+                           where b.afstem == null && (b.skjul == null || b.skjul == false)
+                           orderby b.dato ascending
                            select new clsqry_bank
                            {
-                               Pid = b.Pid,
-                               Dato = b.Dato,
-                               Tekst = b.Tekst,
-                               Belob = b.Belob
+                               Pid = b.pid,
+                               Dato = b.dato,
+                               Tekst = b.tekst,
+                               Belob = b.belob
                            };
             }
 
@@ -145,33 +146,33 @@ namespace nsPuls3060
             IEnumerable<clsqry_trans> qry_trans;
             if (this.AfstemtTidligere.Checked)
             {
-                qry_trans = from t in Program.dbDataTransSumma.Tbltrans
-                            join b in Program.dbDataTransSumma.Tblbilag on t.Bilagpid equals b.Pid
-                            where t.Afstem > 0 && t.Kontonr == 58000
-                            orderby b.Dato ascending
+                qry_trans = from t in Program.dbTS.tbltrans
+                            join b in Program.dbTS.tblbilag on t.bilagpid equals b.pid
+                            where t.afstem > 0 && t.kontonr == 58000
+                            orderby b.dato ascending
                             select new clsqry_trans
                             {
-                                Pid = t.Pid,
-                                Dato = b.Dato,
-                                Bilag = b.Bilag,
-                                Tekst = t.Tekst,
-                                Belob = t.Belob
+                                Pid = t.pid,
+                                Dato = b.dato,
+                                Bilag = b.bilag,
+                                Tekst = t.tekst,
+                                Belob = t.belob
                             };
             }
             else
             {
 
-                qry_trans = from t in Program.dbDataTransSumma.Tbltrans
-                            join b in Program.dbDataTransSumma.Tblbilag on t.Bilagpid equals b.Pid
-                            where t.Afstem == null && t.Kontonr == 58000
-                            orderby b.Dato ascending
+                qry_trans = from t in Program.dbTS.tbltrans
+                            join b in Program.dbTS.tblbilag on t.bilagpid equals b.pid
+                            where t.afstem == null && t.kontonr == 58000
+                            orderby b.dato ascending
                             select new clsqry_trans
                             {
-                                Pid = t.Pid,
-                                Dato = b.Dato,
-                                Bilag = b.Bilag,
-                                Tekst = t.Tekst,
-                                Belob = t.Belob
+                                Pid = t.pid,
+                                Dato = b.dato,
+                                Bilag = b.bilag,
+                                Tekst = t.tekst,
+                                Belob = t.belob
                             };
             }
 

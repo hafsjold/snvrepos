@@ -65,9 +65,9 @@
             this.toolStripStatusLabel2,
             this.MainformProgressBar,
             this.MainformProgressText});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 778);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 776);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1024, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1024, 24);
             this.statusStrip1.TabIndex = 1;
             // 
             // toolStripStatusLabel1
@@ -76,7 +76,7 @@
                         | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.toolStripStatusLabel1.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(113, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(122, 19);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
             // toolStripStatusLabel2
@@ -85,14 +85,14 @@
                         | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.toolStripStatusLabel2.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(493, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(547, 19);
             this.toolStripStatusLabel2.Text = "C:\\Documents and Settings\\mha\\Dokumenter\\Medlem3060\\Databaser\\SQLCompact\\dbData30" +
                 "60.sdf";
             // 
             // MainformProgressBar
             // 
             this.MainformProgressBar.Name = "MainformProgressBar";
-            this.MainformProgressBar.Size = new System.Drawing.Size(100, 16);
+            this.MainformProgressBar.Size = new System.Drawing.Size(100, 18);
             this.MainformProgressBar.Visible = false;
             // 
             // MainformProgressText
@@ -101,7 +101,7 @@
                         | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.MainformProgressText.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.MainformProgressText.Name = "MainformProgressText";
-            this.MainformProgressText.Size = new System.Drawing.Size(119, 17);
+            this.MainformProgressText.Size = new System.Drawing.Size(131, 19);
             this.MainformProgressText.Text = "MainformProgressText";
             this.MainformProgressText.Visible = false;
             // 
@@ -126,7 +126,7 @@
             this.afslutToolStripMenuItem,
             this.testToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // toolStripSeparator1
@@ -160,7 +160,7 @@
             this.printBilagToolStripMenuItem,
             this.bilagToolStripMenuItem});
             this.medlemToolStripMenuItem.Name = "medlemToolStripMenuItem";
-            this.medlemToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.medlemToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.medlemToolStripMenuItem.Text = "Bogføring";
             // 
             // BankafstemningToolStripMenuItem
@@ -219,27 +219,27 @@
             this.importDanskebankToolStripMenuItem,
             this.importerNordeaToolStripMenuItem});
             this.regnskabToolStripMenuItem.Name = "regnskabToolStripMenuItem";
-            this.regnskabToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.regnskabToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
             this.regnskabToolStripMenuItem.Text = "Regnskab";
             // 
             // importerTransaktionerToolStripMenuItem
             // 
             this.importerTransaktionerToolStripMenuItem.Name = "importerTransaktionerToolStripMenuItem";
-            this.importerTransaktionerToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.importerTransaktionerToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.importerTransaktionerToolStripMenuItem.Text = "Importer Transaktioner";
             this.importerTransaktionerToolStripMenuItem.Click += new System.EventHandler(this.importerTransaktionerToolStripMenuItem_Click);
             // 
             // importDanskebankToolStripMenuItem
             // 
             this.importDanskebankToolStripMenuItem.Name = "importDanskebankToolStripMenuItem";
-            this.importDanskebankToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.importDanskebankToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.importDanskebankToolStripMenuItem.Text = "Import Danskebank";
             this.importDanskebankToolStripMenuItem.Click += new System.EventHandler(this.importDanskebankToolStripMenuItem_Click);
             // 
             // importerNordeaToolStripMenuItem
             // 
             this.importerNordeaToolStripMenuItem.Name = "importerNordeaToolStripMenuItem";
-            this.importerNordeaToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.importerNordeaToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
             this.importerNordeaToolStripMenuItem.Text = "Importer Nordea";
             this.importerNordeaToolStripMenuItem.Click += new System.EventHandler(this.importerNordeaToolStripMenuItem_Click);
             // 
@@ -248,7 +248,7 @@
             this.systemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem2});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
-            this.systemToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.systemToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.systemToolStripMenuItem.Text = "System";
             // 
             // toolStripMenuItem2
@@ -263,13 +263,13 @@
             this.hjælpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.omToolStripMenuItem});
             this.hjælpToolStripMenuItem.Name = "hjælpToolStripMenuItem";
-            this.hjælpToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.hjælpToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
             this.hjælpToolStripMenuItem.Text = "Hjælp";
             // 
             // omToolStripMenuItem
             // 
             this.omToolStripMenuItem.Name = "omToolStripMenuItem";
-            this.omToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.omToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
@@ -289,8 +289,8 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Trans Summa";
-            this.Load += new System.EventHandler(this.FrmMain_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
+            this.Load += new System.EventHandler(this.FrmMain_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);

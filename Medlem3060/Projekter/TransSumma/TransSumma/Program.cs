@@ -13,6 +13,7 @@ namespace nsPuls3060
         private static string m_path_to_lock_summasummarum_kontoplan;
         private static FileStream m_filestream_to_lock_summasummarum_kontoplan;
         private static DbDataTransSumma m_dbDataTransSumma;
+        private static dbTSEntities m_dbTSContext;
         private static MemRegnskab m_memRegnskab;
         private static MemAktivRegnskab m_memAktivRegnskab;
         private static KarDkkonti m_KarDkkonti;
@@ -87,6 +88,21 @@ namespace nsPuls3060
             set
             {
                 m_dbDataTransSumma = value;
+            }
+        }
+        public static dbTSEntities dbTS
+        {
+            get
+            {
+                if (m_dbTSContext == null)
+                {
+                    m_dbTSContext = new dbTSEntities();
+                }
+                return m_dbTSContext;
+            }
+            set
+            {
+                m_dbTSContext = value;
             }
         }
         public static MemRegnskab memRegnskab

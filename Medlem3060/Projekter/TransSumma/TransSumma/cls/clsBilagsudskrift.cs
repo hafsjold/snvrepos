@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Globalization;
 using System.Diagnostics;
 using d = System.Drawing;
+using System.Xaml;
 
 
 namespace nsPuls3060
