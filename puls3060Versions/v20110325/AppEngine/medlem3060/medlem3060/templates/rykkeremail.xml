@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<list>
+  <Status>{{status}}</Status>
+  {% if status %}
+  {% if rykkeremail %}
+  {% for r in rykkeremail %}
+  <RykkerEmail>
+    <Navn>{{r.Navn}}</Navn> 
+    <Email>{{r.Email|escape}}</Email> 
+    <Emne>{{r.Emne|escape}}</Emne> 
+    <Tekst>{{r.Tekst|escape}}</Tekst> 
+  </RykkerEmail>
+  {% endfor %}
+  {% endif %}    
+  {% endif %} 
+</list>

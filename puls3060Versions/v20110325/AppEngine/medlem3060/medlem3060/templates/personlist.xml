@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<list>
+  <Status>{{status}}</Status>
+  {% if status %}
+  {% if forslag %}
+  {% for f in forslag %}
+  <Person>
+    <Nr>{{f.person.Nr}}</Nr> 
+    <Navn>{{f.person.Navn}}</Navn> 
+    <Kaldenavn>{{f.person.Kaldenavn}}</Kaldenavn> 
+    <Adresse>{{f.person.Adresse}}</Adresse>
+    <Postnr>{{f.person.Postnr}}</Postnr> 
+    <Bynavn>{{f.person.Bynavn}}</Bynavn> 
+    <Telefon>{{f.person.Telefon}}</Telefon> 
+    <Email>{{f.person.Email}}</Email> 
+    <FodtDato>{{f.person.FodtDato}}</FodtDato> 
+    <Kon>{{f.person.Kon}}</Kon> 
+    <Bank>{{f.person.Bank}}</Bank> 
+    <erMedlem>{{f.erMedlem}}</erMedlem> 
+    <indmeldelsesDato>{{f.indmeldelsesDato}}</indmeldelsesDato> 
+    <udmeldelsesDato>{{f.udmeldelsesDato}}</udmeldelsesDato> 
+    <kontingentBetaltTilDato>{{f.kontingentBetaltTilDato}}</kontingentBetaltTilDato> 
+    <opkraevningsDato>{{f.opkraevningsDato}}</opkraevningsDato> 
+    <kontingentTilbagefoertDato>{{f.kontingentTilbagefoertDato}}</kontingentTilbagefoertDato>
+    <Tilmeldtpbs>{{f.Tilmeldtpbs}}</Tilmeldtpbs> 
+  </Person>
+  {% endfor %}
+  {% endif %}    
+  {% endif %} 
+</list>

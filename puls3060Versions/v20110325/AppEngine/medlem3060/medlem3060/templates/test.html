@@ -1,0 +1,44 @@
+﻿<html>
+  <head>
+    <link rel="stylesheet" href="/stylesheets/medlem3060.css" type="text/css" media="screen" />
+    <script src="/javascripts/jquery-1.4.2.js" type="text/javascript"></script>
+    <title>Test</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  </head>
+<body bgcolor="#FFFFFF" text="#000000" >
+<p>Mogens Hafsjold</>
+<object name="crypt2" width=0 height=0
+classid="clsid:3352B5B9-82E8-4FFD-9EB1-1A3E60056904"
+standby="Loading Chilkat Crypt2..."
+type="application/x-oleobject"
+codebase="/software/ChilkatCrypt2.cab">
+
+<p id="somethingCrypt">This text will get updated by Javascript.</p>
+</body>
+<script language="javascript">
+<!--
+  var p1 = document.getElementById("somethingCrypt");
+  document.crypt2.UnlockComponent("Anything for 30-day trial.");
+  p1.innerHTML = "Chilkat Crypt2 Version = " + document.crypt2.Version;
+
+  $(document).ready(function() {
+    fonLoad();
+  });
+  
+  function fonLoad(){
+    var sftp = new ActiveXObject("Chilkat.SFtp");
+    var success = sftp.UnlockComponent("HAFSJOSSH_6pspJCMP1QnW");
+
+    var h = 25;
+	  var w = 25;
+    if (success)
+    {
+      var h = 325;
+      var w = 625;
+    }
+	  window.resizeTo(w, h);
+  }
+ 
+// -->
+</script>
+</html>

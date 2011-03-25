@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<list>
+  <Status>{{status}}</Status>
+  {% if status %}
+  {% if overforselemail %}
+  {% for r in overforselemail %}
+  <OverforselEmail>
+    <Navn>{{r.Navn}}</Navn> 
+    <Email>{{r.Email|escape}}</Email> 
+    <Tekst>{{r.Tekst|escape}}</Tekst> 
+  </OverforselEmail>
+  {% endfor %}
+  {% endif %}    
+  {% endif %} 
+</list>

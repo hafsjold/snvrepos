@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT Type="Advanced Installer" CreateVersion="8.0.2" version="8.0.2" Modules="enterprise" RootPath="." Language="en">
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
+    <ROW Property="ALLUSERS" Value="2"/>
+    <ROW Property="ARPCOMMENTS" Value="Chilkat SSH and SFTP ActiveX" ValueLocId="*"/>
+    <ROW Property="ARPCONTACT" Value="Chilkat Software Inc"/>
+    <ROW Property="ARPHELPLINK" Value="http://www.chilkatsoft.com/support.asp"/>
+    <ROW Property="ARPHELPTELEPHONE" Value="630-784-9670"/>
+    <ROW Property="ARPURLINFOABOUT" Value="http://www.chilkatsoft.com/"/>
+    <ROW Property="AdminConfirmInstallForm_PrevArgs" Value="AdminFolderForm"/>
+    <ROW Property="AdminFolderForm_NextArgs" Value="AdminConfirmInstallForm"/>
+    <ROW Property="AdminFolderForm_PrevArgs" Value="AdminWelcomeForm"/>
+    <ROW Property="AdminMaintenanceForm_Action" Value="Repair"/>
+    <ROW Property="AdminWelcomeForm_NextArgs" Value="AdminFolderForm"/>
+    <ROW Property="BannerBitmap" MultiBuildValue="DefaultBuild:banner_image.jpg" Type="1"/>
+    <ROW Property="ConfirmInstallForm_PrevArgs" Value="FolderForm"/>
+    <ROW Property="DialogBitmap" MultiBuildValue="DefaultBuild:dialog_image.jpg" Type="1"/>
+    <ROW Property="EulaForm_NextArgs" Value="FolderForm"/>
+    <ROW Property="EulaForm_PrevArgs" Value="WelcomeForm"/>
+    <ROW Property="EulaForm_Property" Value="No"/>
+    <ROW Property="FolderForm_AllUsers" Value="ME"/>
+    <ROW Property="FolderForm_NextArgs" Value="ConfirmInstallForm"/>
+    <ROW Property="FolderForm_PrevArgs" Value="EulaForm"/>
+    <ROW Property="MaintenanceForm_Action" Value="Repair"/>
+    <ROW Property="Manufacturer" Value="Chilkat Software Inc" ValueLocId="*"/>
+    <ROW Property="ProductCode" Value="1033:{C18E40D8-2422-454D-B2B2-E0400BE8AFE2} " Type="16"/>
+    <ROW Property="ProductLanguage" Value="1033"/>
+    <ROW Property="ProductName" Value="Chilkat SSH and SFTP ActiveX" ValueLocId="*"/>
+    <ROW Property="ProductVersion" Value="2.1.6"/>
+    <ROW Property="SFF_NewFldrBtn" Value="NewFldrBtn"/>
+    <ROW Property="SFF_UpFldrBtn" Value="UpFldrBtn"/>
+    <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
+    <ROW Property="UpgradeCode" Value="{07347844-7E3F-4EE5-997D-E5439848F0EC}"/>
+    <ROW Property="VSDIISMSG" Value="This setup requires Internet Information Server 4.0 or higher and Windows NT 4.0, Windows 2000, or Windows XP.  This setup cannot be installed on Windows 95, Windows 98, or Windows Me.  Please install Internet Information Server and run this setup again."/>
+    <ROW Property="VSDINVALIDURLMSG" Value="The specified path &apos;[2]&apos; is unavailable. The Internet Information Server might not be running or the path exists and is redirected to another machine. Please check the status of this virtual directory in the Internet Services Manager."/>
+    <ROW Property="VSDNETMSG" Value="This setup requires the .NET Framework.  Please install the .NET Framework and run this setup again."/>
+    <ROW Property="VSDUIANDADVERTISED" Value="This advertised application will not be installed because it might be unsafe. Contact your administrator to change the installation user interface option of the package to basic."/>
+    <ROW Property="VSDVERSIONMSG" Value="Unable to install because a newer version of this product is already installed."/>
+    <ROW Property="WelcomeForm_NextArgs" Value="EulaForm"/>
+    <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT" MultiBuildValue="DefaultBuild:Windows NT 4.0, Windows NT 4.0 Service Pack 1, Windows NT 4.0 Service Pack 2, Windows NT 4.0 Service Pack 3, Windows NT 4.0 Service Pack 4, Windows NT 4.0 Service Pack 5, Windows NT 4.0 Service Pack 6, Windows 2000, Windows 2000 Service Pack 1, Windows 2000 Service Pack 2, Windows 2000 Service Pack 3, Windows 2000 Service Pack 4" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT64" MultiBuildValue="DefaultBuild:Windows XP/Vista/Windows7 x64" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT64Display" MultiBuildValue="DefaultBuild:Windows XP/Vista/Windows7 x64" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNTDisplay" MultiBuildValue="DefaultBuild:Windows NT 4.0, Windows 2000" ValueLocId="-"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
+    <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="." IsPseudoRoot="1"/>
+    <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
+    <ROW Component="C__EC57D290B29846B79F7280B31758EEE8" ComponentId="{DA818F42-D062-6D06-8EF8-5DAB09880312}" Directory_="APPDIR" Attributes="0" KeyPath="_EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Component="DD95801_9882_11CF_9FA9_00AA006C42C4" ComponentId="{E81CF283-AB0A-4B85-87DD-413FBA62FAC6}" Directory_="APPDIR" Attributes="4" KeyPath="DD95801_9882_11CF_9FA9_00AA006C42C4"/>
+    <ROW Component="DD95801_9882_11CF_9FA9_00AA006C42C4_1" ComponentId="{1050C8AA-0168-43B0-A4B7-2A79FCE56EEC}" Directory_="APPDIR" Attributes="4" KeyPath="DD95801_9882_11CF_9FA9_00AA006C42C4_1"/>
+    <ROW Component="DD95801_9882_11CF_9FA9_00AA006C42C4_2" ComponentId="{F89DF985-0356-4649-88CE-33B3496AFDB1}" Directory_="APPDIR" Attributes="4" KeyPath="DD95801_9882_11CF_9FA9_00AA006C42C4_2"/>
+    <ROW Component="DD95801_9882_11CF_9FA9_00AA006C42C4_3" ComponentId="{74B31287-E058-4A1E-BBCA-531C58B44F1C}" Directory_="APPDIR" Attributes="4" KeyPath="DD95801_9882_11CF_9FA9_00AA006C42C4_3"/>
+    <ROW Component="DD95801_9882_11CF_9FA9_00AA006C42C4_4" ComponentId="{7DE65140-60E5-45D5-97FA-DC4013AFE7C1}" Directory_="APPDIR" Attributes="4" KeyPath="DD95801_9882_11CF_9FA9_00AA006C42C4_4"/>
+    <ROW Component="DD95801_9882_11CF_9FA9_00AA006C42C4_5" ComponentId="{5B9A2991-51D4-40D8-8577-60DD4E5A2FC1}" Directory_="APPDIR" Attributes="4" KeyPath="DD95801_9882_11CF_9FA9_00AA006C42C4_5"/>
+    <ROW Component="DD95802_9882_11CF_9FA9_00AA006C42C4" ComponentId="{C66270CA-FDFD-44AF-B023-97B6E924A650}" Directory_="APPDIR" Attributes="4" KeyPath="DD95802_9882_11CF_9FA9_00AA006C42C4"/>
+    <ROW Component="DD95802_9882_11CF_9FA9_00AA006C42C4_1" ComponentId="{2D3960AA-49AE-41C8-95DA-CEE98FEA74D5}" Directory_="APPDIR" Attributes="4" KeyPath="DD95802_9882_11CF_9FA9_00AA006C42C4_1"/>
+    <ROW Component="DD95802_9882_11CF_9FA9_00AA006C42C4_2" ComponentId="{4224E1E9-7598-4F24-9DED-F79767145CBE}" Directory_="APPDIR" Attributes="4" KeyPath="DD95802_9882_11CF_9FA9_00AA006C42C4_2"/>
+    <ROW Component="DD95802_9882_11CF_9FA9_00AA006C42C4_3" ComponentId="{0E747EA2-3181-47F7-A751-0C5C693C93AC}" Directory_="APPDIR" Attributes="4" KeyPath="DD95802_9882_11CF_9FA9_00AA006C42C4_3"/>
+    <ROW Component="DD95802_9882_11CF_9FA9_00AA006C42C4_4" ComponentId="{BEA2CC18-9DA1-470C-8E1A-3C705AF479E5}" Directory_="APPDIR" Attributes="4" KeyPath="DD95802_9882_11CF_9FA9_00AA006C42C4_4"/>
+    <ROW Component="DD95802_9882_11CF_9FA9_00AA006C42C4_5" ComponentId="{BC6521DE-D61E-4B0E-A1F0-66C0F8D07132}" Directory_="APPDIR" Attributes="4" KeyPath="DD95802_9882_11CF_9FA9_00AA006C42C4_5"/>
+    <ROW Component="ProductName" ComponentId="{0563B529-3859-45DA-882C-2BB79C5B8761}" Directory_="APPDIR" Attributes="4" KeyPath="ProductName"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
+    <ROW Feature="DefaultFeature" Display="2" Level="1" Directory_="APPDIR" Attributes="0" Components="C__EC57D290B29846B79F7280B31758EEE8 DD95802_9882_11CF_9FA9_00AA006C42C4 DD95802_9882_11CF_9FA9_00AA006C42C4_1 DD95802_9882_11CF_9FA9_00AA006C42C4_2 DD95802_9882_11CF_9FA9_00AA006C42C4_3 DD95802_9882_11CF_9FA9_00AA006C42C4_4 DD95802_9882_11CF_9FA9_00AA006C42C4_5 DD95801_9882_11CF_9FA9_00AA006C42C4 DD95801_9882_11CF_9FA9_00AA006C42C4_1 DD95801_9882_11CF_9FA9_00AA006C42C4_2 DD95801_9882_11CF_9FA9_00AA006C42C4_3 DD95801_9882_11CF_9FA9_00AA006C42C4_4 DD95801_9882_11CF_9FA9_00AA006C42C4_5 ProductName"/>
+    <ATTRIBUTE name="CurrentFeature" value="DefaultFeature"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
+    <ROW File="_EC57D290B29846B79F7280B31758EEE8" Component_="C__EC57D290B29846B79F7280B31758EEE8" FileName="CHILKA~1.DLL|ChilkatSsh.dll" Version="2.1.6.0" Attributes="512" SourcePath="source\ssh\SshActiveX 2.1.6\Files\ChilkatSsh.dll" SelfReg="safe" Sequence="1" DigSign="true"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" PackageFolder="target" PackageFileName="ChilkatSsh" Languages="en" InstallationType="4" MsiPackageType="Intel"/>
+    <ATTRIBUTE name="CurrentBuild" value="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
+    <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_en.ail"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.DigCertStoreComponent">
+    <ROW DigitalCertificate="..\..\..\..\..\HafsjoldDataApSSignature.pfx" TimeStampUrl="http://timestamp.verisign.com/scripts/timstamp.dll" SignerDescription="[|ProductName]" SignOptions="7" SignTool="0" Password="7599B0A4EC93E3035680FC53E942F711"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
+    <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
+    <ROW Fragment="FolderDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\FolderDlg.aip"/>
+    <ROW Fragment="SequenceDialogs.aip" Path="&lt;AI_THEMES&gt;classic\fragments\SequenceDialogs.aip"/>
+    <ROW Fragment="Sequences.aip" Path="&lt;AI_FRAGS&gt;Sequences.aip"/>
+    <ROW Fragment="StaticUIStrings.aip" Path="&lt;AI_FRAGS&gt;StaticUIStrings.aip"/>
+    <ROW Fragment="UI.aip" Path="&lt;AI_THEMES&gt;classic\fragments\UI.aip"/>
+    <ROW Fragment="Validation.aip" Path="&lt;AI_FRAGS&gt;Validation.aip"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
+    <ROW Name="DefBannerBitmap" SourcePath="source\ssh\SshActiveX 2.1.6\Binary\DefBannerBitmap"/>
+    <ROW Name="NewFldrBtn" SourcePath="source\ssh\SshActiveX 2.1.6\Binary\NewFldrBtn"/>
+    <ROW Name="UpFldrBtn" SourcePath="source\ssh\SshActiveX 2.1.6\Binary\UpFldrBtn"/>
+    <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
+    <ROW Name="banner_image.jpg" SourcePath="&lt;AI_THEMES&gt;classic\resources\banner-image.jpg"/>
+    <ROW Name="dialog_image.jpg" SourcePath="&lt;AI_THEMES&gt;classic\resources\dialog-image.jpg"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiControlComponent">
+    <ATTRIBUTE name="FixedSizeBitmaps" value="2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="197"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="FolderDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceWelcomeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceWelcomeDlg" Control_="Next" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="99"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="ChangeButton" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="301"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="202"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_MAINT" Ordering="198"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_PATCH" Ordering="201"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_PATCH" Ordering="199"/>
+    <ROW Dialog_="ResumeDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_RESUME" Ordering="299"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
+    <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
+    <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
+    <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
+    <ROW Action="DIRCA_TARGETDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]"/>
+    <ROW Action="ERRCA_CANCELNEWERVERSION" Type="19" Target="[VSDVERSIONMSG]"/>
+    <ROW Action="ERRCA_UIANDADVERTISED" Type="19" Target="[VSDUIANDADVERTISED]"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]"/>
+    <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
+    <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
+    <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_STORE_LOCATION" Condition="Not Installed" Sequence="1501"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1399"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="51"/>
+    <ROW Action="ERRCA_CANCELNEWERVERSION" Condition="NEWERPRODUCTFOUND AND NOT Installed" Sequence="219"/>
+    <ROW Action="DIRCA_TARGETDIR" Condition="APPDIR=&quot;&quot;" Sequence="710"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="51"/>
+    <ROW Action="ERRCA_UIANDADVERTISED" Condition="ProductState=1" Sequence="55"/>
+    <ROW Action="ERRCA_CANCELNEWERVERSION" Condition="NEWERPRODUCTFOUND AND NOT Installed" Sequence="221"/>
+    <ROW Action="DIRCA_TARGETDIR" Condition="APPDIR=&quot;&quot;" Sequence="612"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
+    <ROW Condition="( Version9X OR (VersionNT AND (NOT VersionNT64)) )" Description="[ProductName] cannot be installed on [WindowsTypeNT64Display]" DescriptionLocId="AI.LaunchCondition.NoNT64" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="( Version9X OR VersionNT64 OR ( VersionNT AND ((VersionNT &lt;&gt; 400) OR ((VersionNT = 400) AND (ServicePackLevel &gt;= 1))) AND ((VersionNT &lt;&gt; 400) OR ((VersionNT = 400) AND (ServicePackLevel &lt;&gt; 1))) AND ((VersionNT &lt;&gt; 400) OR ((VersionNT = 400) AND (ServicePackLevel &lt;&gt; 2))) AND ((VersionNT &lt;&gt; 400) OR ((VersionNT = 400) AND (ServicePackLevel &lt;&gt; 3))) AND ((VersionNT &lt;&gt; 400) OR ((VersionNT = 400) AND (ServicePackLevel &lt;&gt; 4))) AND ((VersionNT &lt;&gt; 400) OR ((VersionNT = 400) AND (ServicePackLevel &lt;&gt; 5))) AND ((VersionNT &lt;&gt; 400) OR ((VersionNT = 400) AND (ServicePackLevel &lt;&gt; 6))) AND ((VersionNT &lt;&gt; 500) OR ((VersionNT = 500) AND (ServicePackLevel &gt;= 1))) AND ((VersionNT &lt;&gt; 500) OR ((VersionNT = 500) AND (ServicePackLevel &lt;&gt; 1))) AND ((VersionNT &lt;&gt; 500) OR ((VersionNT = 500) AND (ServicePackLevel &lt;&gt; 2))) AND ((VersionNT &lt;&gt; 500) OR ((VersionNT = 500) AND (ServicePackLevel &lt;&gt; 3))) AND ((VersionNT &lt;&gt; 500) OR ((VersionNT = 500) AND (ServicePackLevel &lt;&gt; 4))) ) )" Description="[ProductName] cannot be installed on the following Windows versions: [WindowsTypeNTDisplay]" DescriptionLocId="AI.LaunchCondition.NoSpecificNT" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]" DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
+    <ROW Registry="Control" Root="0" Key="CLSID\{39B10683-ED49-47A3-A4A5-AB1F52D1C2CC}\Control" Name="+" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Control_1" Root="0" Key="CLSID\{4D881197-5686-45BF-B9D9-9EC432F4BB75}\Control" Name="+" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Control_2" Root="0" Key="CLSID\{64A17FBB-89E2-403F-8E06-B7CE412FB0E6}\Control" Name="+" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Control_3" Root="0" Key="CLSID\{72A1C13F-1C23-4C52-97F0-BCA902148720}\Control" Name="+" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Control_4" Root="0" Key="CLSID\{73111D94-E28A-4587-B687-60E23CD989A8}\Control" Name="+" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Control_5" Root="0" Key="CLSID\{B2208BCC-AB0F-4722-A908-2F54269D21C2}\Control" Name="+" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="DD95801_9882_11CF_9FA9_00AA006C42C4" Root="0" Key="CLSID\{39B10683-ED49-47A3-A4A5-AB1F52D1C2CC}\Implemented Categories\{7DD95801-9882-11CF-9FA9-00AA006C42C4}" Name="+" Component_="DD95801_9882_11CF_9FA9_00AA006C42C4"/>
+    <ROW Registry="DD95801_9882_11CF_9FA9_00AA006C42C4_1" Root="0" Key="CLSID\{4D881197-5686-45BF-B9D9-9EC432F4BB75}\Implemented Categories\{7DD95801-9882-11CF-9FA9-00AA006C42C4}" Name="+" Component_="DD95801_9882_11CF_9FA9_00AA006C42C4_1"/>
+    <ROW Registry="DD95801_9882_11CF_9FA9_00AA006C42C4_2" Root="0" Key="CLSID\{64A17FBB-89E2-403F-8E06-B7CE412FB0E6}\Implemented Categories\{7DD95801-9882-11CF-9FA9-00AA006C42C4}" Name="+" Component_="DD95801_9882_11CF_9FA9_00AA006C42C4_2"/>
+    <ROW Registry="DD95801_9882_11CF_9FA9_00AA006C42C4_3" Root="0" Key="CLSID\{72A1C13F-1C23-4C52-97F0-BCA902148720}\Implemented Categories\{7DD95801-9882-11CF-9FA9-00AA006C42C4}" Name="+" Component_="DD95801_9882_11CF_9FA9_00AA006C42C4_3"/>
+    <ROW Registry="DD95801_9882_11CF_9FA9_00AA006C42C4_4" Root="0" Key="CLSID\{73111D94-E28A-4587-B687-60E23CD989A8}\Implemented Categories\{7DD95801-9882-11CF-9FA9-00AA006C42C4}" Name="+" Component_="DD95801_9882_11CF_9FA9_00AA006C42C4_4"/>
+    <ROW Registry="DD95801_9882_11CF_9FA9_00AA006C42C4_5" Root="0" Key="CLSID\{B2208BCC-AB0F-4722-A908-2F54269D21C2}\Implemented Categories\{7DD95801-9882-11CF-9FA9-00AA006C42C4}" Name="+" Component_="DD95801_9882_11CF_9FA9_00AA006C42C4_5"/>
+    <ROW Registry="DD95802_9882_11CF_9FA9_00AA006C42C4" Root="0" Key="CLSID\{39B10683-ED49-47A3-A4A5-AB1F52D1C2CC}\Implemented Categories\{7DD95802-9882-11CF-9FA9-00AA006C42C4}" Name="+" Component_="DD95802_9882_11CF_9FA9_00AA006C42C4"/>
+    <ROW Registry="DD95802_9882_11CF_9FA9_00AA006C42C4_1" Root="0" Key="CLSID\{4D881197-5686-45BF-B9D9-9EC432F4BB75}\Implemented Categories\{7DD95802-9882-11CF-9FA9-00AA006C42C4}" Name="+" Component_="DD95802_9882_11CF_9FA9_00AA006C42C4_1"/>
+    <ROW Registry="DD95802_9882_11CF_9FA9_00AA006C42C4_2" Root="0" Key="CLSID\{64A17FBB-89E2-403F-8E06-B7CE412FB0E6}\Implemented Categories\{7DD95802-9882-11CF-9FA9-00AA006C42C4}" Name="+" Component_="DD95802_9882_11CF_9FA9_00AA006C42C4_2"/>
+    <ROW Registry="DD95802_9882_11CF_9FA9_00AA006C42C4_3" Root="0" Key="CLSID\{72A1C13F-1C23-4C52-97F0-BCA902148720}\Implemented Categories\{7DD95802-9882-11CF-9FA9-00AA006C42C4}" Name="+" Component_="DD95802_9882_11CF_9FA9_00AA006C42C4_3"/>
+    <ROW Registry="DD95802_9882_11CF_9FA9_00AA006C42C4_4" Root="0" Key="CLSID\{73111D94-E28A-4587-B687-60E23CD989A8}\Implemented Categories\{7DD95802-9882-11CF-9FA9-00AA006C42C4}" Name="+" Component_="DD95802_9882_11CF_9FA9_00AA006C42C4_4"/>
+    <ROW Registry="DD95802_9882_11CF_9FA9_00AA006C42C4_5" Root="0" Key="CLSID\{B2208BCC-AB0F-4722-A908-2F54269D21C2}\Implemented Categories\{7DD95802-9882-11CF-9FA9-00AA006C42C4}" Name="+" Component_="DD95802_9882_11CF_9FA9_00AA006C42C4_5"/>
+    <ROW Registry="Insertable" Root="0" Key="Chilkat.SFtp.1\Insertable" Name="+" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Insertable_1" Root="0" Key="Chilkat.SFtpDir.1\Insertable" Name="+" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Insertable_10" Root="0" Key="CLSID\{73111D94-E28A-4587-B687-60E23CD989A8}\Insertable" Name="+" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Insertable_11" Root="0" Key="CLSID\{B2208BCC-AB0F-4722-A908-2F54269D21C2}\Insertable" Name="+" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Insertable_2" Root="0" Key="Chilkat.SFtpFile.1\Insertable" Name="+" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Insertable_3" Root="0" Key="Chilkat.Ssh.1\Insertable" Name="+" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Insertable_4" Root="0" Key="Chilkat.SshKey.1\Insertable" Name="+" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Insertable_5" Root="0" Key="Chilkat.SshTunnel.1\Insertable" Name="+" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Insertable_6" Root="0" Key="CLSID\{39B10683-ED49-47A3-A4A5-AB1F52D1C2CC}\Insertable" Name="+" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Insertable_7" Root="0" Key="CLSID\{4D881197-5686-45BF-B9D9-9EC432F4BB75}\Insertable" Name="+" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Insertable_8" Root="0" Key="CLSID\{64A17FBB-89E2-403F-8E06-B7CE412FB0E6}\Insertable" Name="+" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Insertable_9" Root="0" Key="CLSID\{72A1C13F-1C23-4C52-97F0-BCA902148720}\Insertable" Name="+" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="ProductName" Root="0" Key="Software\[Manufacturer]\[ProductName]" Name="+" Component_="ProductName"/>
+    <ROW Registry="Programmable" Root="0" Key="CLSID\{39B10683-ED49-47A3-A4A5-AB1F52D1C2CC}\Programmable" Name="+" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Programmable_1" Root="0" Key="CLSID\{4D881197-5686-45BF-B9D9-9EC432F4BB75}\Programmable" Name="+" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Programmable_2" Root="0" Key="CLSID\{64A17FBB-89E2-403F-8E06-B7CE412FB0E6}\Programmable" Name="+" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Programmable_3" Root="0" Key="CLSID\{72A1C13F-1C23-4C52-97F0-BCA902148720}\Programmable" Name="+" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Programmable_4" Root="0" Key="CLSID\{73111D94-E28A-4587-B687-60E23CD989A8}\Programmable" Name="+" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Programmable_5" Root="0" Key="CLSID\{B2208BCC-AB0F-4722-A908-2F54269D21C2}\Programmable" Name="+" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="ThreadingModel" Root="0" Key="CLSID\{39B10683-ED49-47A3-A4A5-AB1F52D1C2CC}\InprocServer32" Name="ThreadingModel" Value="Apartment" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="ThreadingModel_1" Root="0" Key="CLSID\{4D881197-5686-45BF-B9D9-9EC432F4BB75}\InprocServer32" Name="ThreadingModel" Value="Apartment" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="ThreadingModel_2" Root="0" Key="CLSID\{64A17FBB-89E2-403F-8E06-B7CE412FB0E6}\InprocServer32" Name="ThreadingModel" Value="Apartment" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="ThreadingModel_3" Root="0" Key="CLSID\{72A1C13F-1C23-4C52-97F0-BCA902148720}\InprocServer32" Name="ThreadingModel" Value="Apartment" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="ThreadingModel_4" Root="0" Key="CLSID\{73111D94-E28A-4587-B687-60E23CD989A8}\InprocServer32" Name="ThreadingModel" Value="Apartment" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="ThreadingModel_5" Root="0" Key="CLSID\{B2208BCC-AB0F-4722-A908-2F54269D21C2}\InprocServer32" Name="ThreadingModel" Value="Apartment" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Version_10" Root="0" Key="Interface\{4B6F7708-A9CF-46DC-B9F4-86A8221C903B}\TypeLib" Name="Version" Value="1.0" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Version_11" Root="0" Key="Interface\{7B4733B0-73AD-47C7-9C8C-1453921A4423}\TypeLib" Name="Version" Value="1.0" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Version_12" Root="0" Key="Interface\{8EDEE32A-7042-4D9C-8299-E5EF14106D34}\TypeLib" Name="Version" Value="1.0" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Version_13" Root="0" Key="Interface\{C7F184B8-AEEC-48D7-96AB-294C6F950A00}\TypeLib" Name="Version" Value="1.0" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Version_14" Root="0" Key="Interface\{CC8BD39E-1FBA-4131-BF0A-E6C52AC3E159}\TypeLib" Name="Version" Value="1.0" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Version_15" Root="0" Key="Interface\{D894B881-8738-4013-8A1F-74F5EB84E0F3}\TypeLib" Name="Version" Value="1.0" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Version_16" Root="0" Key="Interface\{E6D503E3-FCA5-42A2-85AE-A07693A4021D}\TypeLib" Name="Version" Value="1.0" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Version_6" Root="0" Key="Interface\{07D9F2BC-3BC6-43D3-AE14-EEF1BB4799F0}\TypeLib" Name="Version" Value="1.0" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Version_7" Root="0" Key="Interface\{0A742926-B1C3-4608-8743-6E4F8D3D14AC}\TypeLib" Name="Version" Value="1.0" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Version_8" Root="0" Key="Interface\{1F64D48B-7A5F-45F2-AC08-56296E6DFFB6}\TypeLib" Name="Version" Value="1.0" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="Version_9" Root="0" Key="Interface\{4340DF8E-D7A3-4675-BE74-80077B2B3E81}\TypeLib" Name="Version" Value="1.0" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="_" Root="0" Key="Chilkat.SFtp" Value="ChilkatSFtp Class" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__1" Root="0" Key="Chilkat.SFtp\CLSID" Value="[\{]64A17FBB-89E2-403F-8E06-B7CE412FB0E6[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__10" Root="0" Key="Chilkat.SFtpFile" Value="ChilkatSFtpFile Class" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__100" Root="0" Key="Interface\{1F64D48B-7A5F-45F2-AC08-56296E6DFFB6}\ProxyStubClsid32" Value="[\{]00020424-0000-0000-C000-000000000046[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__101" Root="0" Key="Interface\{1F64D48B-7A5F-45F2-AC08-56296E6DFFB6}\TypeLib" Value="[\{]8D1248A4-55A8-4F8D-A0E7-161D405FBB01[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__102" Root="0" Key="Interface\{4340DF8E-D7A3-4675-BE74-80077B2B3E81}" Value="ICkStringArray" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__103" Root="0" Key="Interface\{4340DF8E-D7A3-4675-BE74-80077B2B3E81}\ProxyStubClsid" Value="[\{]00020424-0000-0000-C000-000000000046[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__104" Root="0" Key="Interface\{4340DF8E-D7A3-4675-BE74-80077B2B3E81}\ProxyStubClsid32" Value="[\{]00020424-0000-0000-C000-000000000046[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__105" Root="0" Key="Interface\{4340DF8E-D7A3-4675-BE74-80077B2B3E81}\TypeLib" Value="[\{]8D1248A4-55A8-4F8D-A0E7-161D405FBB01[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__106" Root="0" Key="Interface\{4B6F7708-A9CF-46DC-B9F4-86A8221C903B}" Value="_IChilkatSshKeyEvents" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__107" Root="0" Key="Interface\{4B6F7708-A9CF-46DC-B9F4-86A8221C903B}\ProxyStubClsid" Value="[\{]00020420-0000-0000-C000-000000000046[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__108" Root="0" Key="Interface\{4B6F7708-A9CF-46DC-B9F4-86A8221C903B}\ProxyStubClsid32" Value="[\{]00020420-0000-0000-C000-000000000046[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__109" Root="0" Key="Interface\{4B6F7708-A9CF-46DC-B9F4-86A8221C903B}\TypeLib" Value="[\{]8D1248A4-55A8-4F8D-A0E7-161D405FBB01[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__11" Root="0" Key="Chilkat.SFtpFile\CLSID" Value="[\{]B2208BCC-AB0F-4722-A908-2F54269D21C2[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__110" Root="0" Key="Interface\{7B4733B0-73AD-47C7-9C8C-1453921A4423}" Value="_IChilkatSFtpEvents" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__111" Root="0" Key="Interface\{7B4733B0-73AD-47C7-9C8C-1453921A4423}\ProxyStubClsid" Value="[\{]00020420-0000-0000-C000-000000000046[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__112" Root="0" Key="Interface\{7B4733B0-73AD-47C7-9C8C-1453921A4423}\ProxyStubClsid32" Value="[\{]00020420-0000-0000-C000-000000000046[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__113" Root="0" Key="Interface\{7B4733B0-73AD-47C7-9C8C-1453921A4423}\TypeLib" Value="[\{]8D1248A4-55A8-4F8D-A0E7-161D405FBB01[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__114" Root="0" Key="Interface\{8EDEE32A-7042-4D9C-8299-E5EF14106D34}" Value="IChilkatSFtp" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__115" Root="0" Key="Interface\{8EDEE32A-7042-4D9C-8299-E5EF14106D34}\ProxyStubClsid" Value="[\{]00020424-0000-0000-C000-000000000046[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__116" Root="0" Key="Interface\{8EDEE32A-7042-4D9C-8299-E5EF14106D34}\ProxyStubClsid32" Value="[\{]00020424-0000-0000-C000-000000000046[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__117" Root="0" Key="Interface\{8EDEE32A-7042-4D9C-8299-E5EF14106D34}\TypeLib" Value="[\{]8D1248A4-55A8-4F8D-A0E7-161D405FBB01[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__118" Root="0" Key="Interface\{C7F184B8-AEEC-48D7-96AB-294C6F950A00}" Value="IChilkatSshTunnel" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__119" Root="0" Key="Interface\{C7F184B8-AEEC-48D7-96AB-294C6F950A00}\ProxyStubClsid" Value="[\{]00020424-0000-0000-C000-000000000046[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__12" Root="0" Key="Chilkat.SFtpFile\CurVer" Value="Chilkat.SFtpFile.1" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__120" Root="0" Key="Interface\{C7F184B8-AEEC-48D7-96AB-294C6F950A00}\ProxyStubClsid32" Value="[\{]00020424-0000-0000-C000-000000000046[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__121" Root="0" Key="Interface\{C7F184B8-AEEC-48D7-96AB-294C6F950A00}\TypeLib" Value="[\{]8D1248A4-55A8-4F8D-A0E7-161D405FBB01[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__122" Root="0" Key="Interface\{CC8BD39E-1FBA-4131-BF0A-E6C52AC3E159}" Value="_IChilkatSshTunnelEvents" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__123" Root="0" Key="Interface\{CC8BD39E-1FBA-4131-BF0A-E6C52AC3E159}\ProxyStubClsid" Value="[\{]00020420-0000-0000-C000-000000000046[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__124" Root="0" Key="Interface\{CC8BD39E-1FBA-4131-BF0A-E6C52AC3E159}\ProxyStubClsid32" Value="[\{]00020420-0000-0000-C000-000000000046[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__125" Root="0" Key="Interface\{CC8BD39E-1FBA-4131-BF0A-E6C52AC3E159}\TypeLib" Value="[\{]8D1248A4-55A8-4F8D-A0E7-161D405FBB01[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__126" Root="0" Key="Interface\{D894B881-8738-4013-8A1F-74F5EB84E0F3}" Value="IChilkatSsh" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__127" Root="0" Key="Interface\{D894B881-8738-4013-8A1F-74F5EB84E0F3}\ProxyStubClsid" Value="[\{]00020424-0000-0000-C000-000000000046[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__128" Root="0" Key="Interface\{D894B881-8738-4013-8A1F-74F5EB84E0F3}\ProxyStubClsid32" Value="[\{]00020424-0000-0000-C000-000000000046[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__129" Root="0" Key="Interface\{D894B881-8738-4013-8A1F-74F5EB84E0F3}\TypeLib" Value="[\{]8D1248A4-55A8-4F8D-A0E7-161D405FBB01[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__13" Root="0" Key="Chilkat.SFtpFile.1" Value="ChilkatSFtpFile Class" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__130" Root="0" Key="Interface\{E6D503E3-FCA5-42A2-85AE-A07693A4021D}" Value="_IChilkatSshEvents" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__131" Root="0" Key="Interface\{E6D503E3-FCA5-42A2-85AE-A07693A4021D}\ProxyStubClsid" Value="[\{]00020420-0000-0000-C000-000000000046[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__132" Root="0" Key="Interface\{E6D503E3-FCA5-42A2-85AE-A07693A4021D}\ProxyStubClsid32" Value="[\{]00020420-0000-0000-C000-000000000046[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__133" Root="0" Key="Interface\{E6D503E3-FCA5-42A2-85AE-A07693A4021D}\TypeLib" Value="[\{]8D1248A4-55A8-4F8D-A0E7-161D405FBB01[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__135" Root="0" Key="TypeLib\{8D1248A4-55A8-4F8D-A0E7-161D405FBB01}\1.0" Value="Chilkat SSH/SFTP" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__137" Root="0" Key="TypeLib\{8D1248A4-55A8-4F8D-A0E7-161D405FBB01}\1.0\0\win32" Value="[#_EC57D290B29846B79F7280B31758EEE8]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__138" Root="0" Key="TypeLib\{8D1248A4-55A8-4F8D-A0E7-161D405FBB01}\1.0\FLAGS" Value="0" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__139" Root="0" Key="TypeLib\{8D1248A4-55A8-4F8D-A0E7-161D405FBB01}\1.0\HELPDIR" Value="[APPDIR]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__14" Root="0" Key="Chilkat.SFtpFile.1\CLSID" Value="[\{]B2208BCC-AB0F-4722-A908-2F54269D21C2[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__15" Root="0" Key="Chilkat.Ssh" Value="ChilkatSsh Class" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__16" Root="0" Key="Chilkat.Ssh\CLSID" Value="[\{]72A1C13F-1C23-4C52-97F0-BCA902148720[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__17" Root="0" Key="Chilkat.Ssh\CurVer" Value="Chilkat.Ssh.1" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__18" Root="0" Key="Chilkat.Ssh.1" Value="ChilkatSsh Class" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__19" Root="0" Key="Chilkat.Ssh.1\CLSID" Value="[\{]72A1C13F-1C23-4C52-97F0-BCA902148720[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__2" Root="0" Key="Chilkat.SFtp\CurVer" Value="Chilkat.SFtp.1" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__20" Root="0" Key="Chilkat.SshKey" Value="ChilkatSshKey Class" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__21" Root="0" Key="Chilkat.SshKey\CLSID" Value="[\{]73111D94-E28A-4587-B687-60E23CD989A8[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__22" Root="0" Key="Chilkat.SshKey\CurVer" Value="Chilkat.SshKey.1" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__23" Root="0" Key="Chilkat.SshKey.1" Value="ChilkatSshKey Class" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__24" Root="0" Key="Chilkat.SshKey.1\CLSID" Value="[\{]73111D94-E28A-4587-B687-60E23CD989A8[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__25" Root="0" Key="Chilkat.SshTunnel" Value="ChilkatSshTunnel Class" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__26" Root="0" Key="Chilkat.SshTunnel\CLSID" Value="[\{]4D881197-5686-45BF-B9D9-9EC432F4BB75[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__27" Root="0" Key="Chilkat.SshTunnel\CurVer" Value="Chilkat.SshTunnel.1" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__28" Root="0" Key="Chilkat.SshTunnel.1" Value="ChilkatSshTunnel Class" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__29" Root="0" Key="Chilkat.SshTunnel.1\CLSID" Value="[\{]4D881197-5686-45BF-B9D9-9EC432F4BB75[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__3" Root="0" Key="Chilkat.SFtp.1" Value="ChilkatSFtp Class" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__30" Root="0" Key="CLSID\{39B10683-ED49-47A3-A4A5-AB1F52D1C2CC}" Value="ChilkatSFtpDir Class" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__31" Root="0" Key="CLSID\{39B10683-ED49-47A3-A4A5-AB1F52D1C2CC}\InprocServer32" Value="[#_EC57D290B29846B79F7280B31758EEE8]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__32" Root="0" Key="CLSID\{39B10683-ED49-47A3-A4A5-AB1F52D1C2CC}\MiscStatus" Value="0" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__34" Root="0" Key="CLSID\{39B10683-ED49-47A3-A4A5-AB1F52D1C2CC}\MiscStatus\1" Value="132497" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__35" Root="0" Key="CLSID\{39B10683-ED49-47A3-A4A5-AB1F52D1C2CC}\ProgID" Value="Chilkat.SFtpDir.1" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__36" Root="0" Key="CLSID\{39B10683-ED49-47A3-A4A5-AB1F52D1C2CC}\ToolboxBitmap32" Value="[#_EC57D290B29846B79F7280B31758EEE8], 109" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__37" Root="0" Key="CLSID\{39B10683-ED49-47A3-A4A5-AB1F52D1C2CC}\TypeLib" Value="[\{]8D1248A4-55A8-4F8D-A0E7-161D405FBB01[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__38" Root="0" Key="CLSID\{39B10683-ED49-47A3-A4A5-AB1F52D1C2CC}\Version" Value="1.0" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__39" Root="0" Key="CLSID\{39B10683-ED49-47A3-A4A5-AB1F52D1C2CC}\VersionIndependentProgID" Value="Chilkat.SFtpDir" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__4" Root="0" Key="Chilkat.SFtp.1\CLSID" Value="[\{]64A17FBB-89E2-403F-8E06-B7CE412FB0E6[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__40" Root="0" Key="CLSID\{4D881197-5686-45BF-B9D9-9EC432F4BB75}" Value="ChilkatSshTunnel Class" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__41" Root="0" Key="CLSID\{4D881197-5686-45BF-B9D9-9EC432F4BB75}\InprocServer32" Value="[#_EC57D290B29846B79F7280B31758EEE8]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__42" Root="0" Key="CLSID\{4D881197-5686-45BF-B9D9-9EC432F4BB75}\MiscStatus" Value="0" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__44" Root="0" Key="CLSID\{4D881197-5686-45BF-B9D9-9EC432F4BB75}\MiscStatus\1" Value="132497" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__45" Root="0" Key="CLSID\{4D881197-5686-45BF-B9D9-9EC432F4BB75}\ProgID" Value="Chilkat.SshTunnel.1" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__46" Root="0" Key="CLSID\{4D881197-5686-45BF-B9D9-9EC432F4BB75}\ToolboxBitmap32" Value="[#_EC57D290B29846B79F7280B31758EEE8], 111" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__47" Root="0" Key="CLSID\{4D881197-5686-45BF-B9D9-9EC432F4BB75}\TypeLib" Value="[\{]8D1248A4-55A8-4F8D-A0E7-161D405FBB01[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__48" Root="0" Key="CLSID\{4D881197-5686-45BF-B9D9-9EC432F4BB75}\Version" Value="1.0" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__49" Root="0" Key="CLSID\{4D881197-5686-45BF-B9D9-9EC432F4BB75}\VersionIndependentProgID" Value="Chilkat.SshTunnel" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__5" Root="0" Key="Chilkat.SFtpDir" Value="ChilkatSFtpDir Class" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__50" Root="0" Key="CLSID\{64A17FBB-89E2-403F-8E06-B7CE412FB0E6}" Value="ChilkatSFtp Class" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__51" Root="0" Key="CLSID\{64A17FBB-89E2-403F-8E06-B7CE412FB0E6}\InprocServer32" Value="[#_EC57D290B29846B79F7280B31758EEE8]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__52" Root="0" Key="CLSID\{64A17FBB-89E2-403F-8E06-B7CE412FB0E6}\MiscStatus" Value="0" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__54" Root="0" Key="CLSID\{64A17FBB-89E2-403F-8E06-B7CE412FB0E6}\MiscStatus\1" Value="132497" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__55" Root="0" Key="CLSID\{64A17FBB-89E2-403F-8E06-B7CE412FB0E6}\ProgID" Value="Chilkat.SFtp.1" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__56" Root="0" Key="CLSID\{64A17FBB-89E2-403F-8E06-B7CE412FB0E6}\ToolboxBitmap32" Value="[#_EC57D290B29846B79F7280B31758EEE8], 105" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__57" Root="0" Key="CLSID\{64A17FBB-89E2-403F-8E06-B7CE412FB0E6}\TypeLib" Value="[\{]8D1248A4-55A8-4F8D-A0E7-161D405FBB01[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__58" Root="0" Key="CLSID\{64A17FBB-89E2-403F-8E06-B7CE412FB0E6}\Version" Value="1.0" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__59" Root="0" Key="CLSID\{64A17FBB-89E2-403F-8E06-B7CE412FB0E6}\VersionIndependentProgID" Value="Chilkat.SFtp" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__6" Root="0" Key="Chilkat.SFtpDir\CLSID" Value="[\{]39B10683-ED49-47A3-A4A5-AB1F52D1C2CC[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__60" Root="0" Key="CLSID\{72A1C13F-1C23-4C52-97F0-BCA902148720}" Value="ChilkatSsh Class" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__61" Root="0" Key="CLSID\{72A1C13F-1C23-4C52-97F0-BCA902148720}\InprocServer32" Value="[#_EC57D290B29846B79F7280B31758EEE8]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__62" Root="0" Key="CLSID\{72A1C13F-1C23-4C52-97F0-BCA902148720}\MiscStatus" Value="0" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__64" Root="0" Key="CLSID\{72A1C13F-1C23-4C52-97F0-BCA902148720}\MiscStatus\1" Value="132497" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__65" Root="0" Key="CLSID\{72A1C13F-1C23-4C52-97F0-BCA902148720}\ProgID" Value="Chilkat.Ssh.1" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__66" Root="0" Key="CLSID\{72A1C13F-1C23-4C52-97F0-BCA902148720}\ToolboxBitmap32" Value="[#_EC57D290B29846B79F7280B31758EEE8], 101" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__67" Root="0" Key="CLSID\{72A1C13F-1C23-4C52-97F0-BCA902148720}\TypeLib" Value="[\{]8D1248A4-55A8-4F8D-A0E7-161D405FBB01[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__68" Root="0" Key="CLSID\{72A1C13F-1C23-4C52-97F0-BCA902148720}\Version" Value="1.0" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__69" Root="0" Key="CLSID\{72A1C13F-1C23-4C52-97F0-BCA902148720}\VersionIndependentProgID" Value="Chilkat.Ssh" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__7" Root="0" Key="Chilkat.SFtpDir\CurVer" Value="Chilkat.SFtpDir.1" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__70" Root="0" Key="CLSID\{73111D94-E28A-4587-B687-60E23CD989A8}" Value="ChilkatSshKey Class" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__71" Root="0" Key="CLSID\{73111D94-E28A-4587-B687-60E23CD989A8}\InprocServer32" Value="[#_EC57D290B29846B79F7280B31758EEE8]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__72" Root="0" Key="CLSID\{73111D94-E28A-4587-B687-60E23CD989A8}\MiscStatus" Value="0" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__74" Root="0" Key="CLSID\{73111D94-E28A-4587-B687-60E23CD989A8}\MiscStatus\1" Value="132497" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__75" Root="0" Key="CLSID\{73111D94-E28A-4587-B687-60E23CD989A8}\ProgID" Value="Chilkat.SshKey.1" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__76" Root="0" Key="CLSID\{73111D94-E28A-4587-B687-60E23CD989A8}\ToolboxBitmap32" Value="[#_EC57D290B29846B79F7280B31758EEE8], 103" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__77" Root="0" Key="CLSID\{73111D94-E28A-4587-B687-60E23CD989A8}\TypeLib" Value="[\{]8D1248A4-55A8-4F8D-A0E7-161D405FBB01[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__78" Root="0" Key="CLSID\{73111D94-E28A-4587-B687-60E23CD989A8}\Version" Value="1.0" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__79" Root="0" Key="CLSID\{73111D94-E28A-4587-B687-60E23CD989A8}\VersionIndependentProgID" Value="Chilkat.SshKey" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__8" Root="0" Key="Chilkat.SFtpDir.1" Value="ChilkatSFtpDir Class" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__80" Root="0" Key="CLSID\{B2208BCC-AB0F-4722-A908-2F54269D21C2}" Value="ChilkatSFtpFile Class" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__81" Root="0" Key="CLSID\{B2208BCC-AB0F-4722-A908-2F54269D21C2}\InprocServer32" Value="[#_EC57D290B29846B79F7280B31758EEE8]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__82" Root="0" Key="CLSID\{B2208BCC-AB0F-4722-A908-2F54269D21C2}\MiscStatus" Value="0" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__84" Root="0" Key="CLSID\{B2208BCC-AB0F-4722-A908-2F54269D21C2}\MiscStatus\1" Value="132497" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__85" Root="0" Key="CLSID\{B2208BCC-AB0F-4722-A908-2F54269D21C2}\ProgID" Value="Chilkat.SFtpFile.1" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__86" Root="0" Key="CLSID\{B2208BCC-AB0F-4722-A908-2F54269D21C2}\ToolboxBitmap32" Value="[#_EC57D290B29846B79F7280B31758EEE8], 107" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__87" Root="0" Key="CLSID\{B2208BCC-AB0F-4722-A908-2F54269D21C2}\TypeLib" Value="[\{]8D1248A4-55A8-4F8D-A0E7-161D405FBB01[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__88" Root="0" Key="CLSID\{B2208BCC-AB0F-4722-A908-2F54269D21C2}\Version" Value="1.0" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__89" Root="0" Key="CLSID\{B2208BCC-AB0F-4722-A908-2F54269D21C2}\VersionIndependentProgID" Value="Chilkat.SFtpFile" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__9" Root="0" Key="Chilkat.SFtpDir.1\CLSID" Value="[\{]39B10683-ED49-47A3-A4A5-AB1F52D1C2CC[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__90" Root="0" Key="Interface\{07D9F2BC-3BC6-43D3-AE14-EEF1BB4799F0}" Value="IChilkatSFtpFile" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__91" Root="0" Key="Interface\{07D9F2BC-3BC6-43D3-AE14-EEF1BB4799F0}\ProxyStubClsid" Value="[\{]00020424-0000-0000-C000-000000000046[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__92" Root="0" Key="Interface\{07D9F2BC-3BC6-43D3-AE14-EEF1BB4799F0}\ProxyStubClsid32" Value="[\{]00020424-0000-0000-C000-000000000046[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__93" Root="0" Key="Interface\{07D9F2BC-3BC6-43D3-AE14-EEF1BB4799F0}\TypeLib" Value="[\{]8D1248A4-55A8-4F8D-A0E7-161D405FBB01[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__94" Root="0" Key="Interface\{0A742926-B1C3-4608-8743-6E4F8D3D14AC}" Value="IChilkatSshKey" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__95" Root="0" Key="Interface\{0A742926-B1C3-4608-8743-6E4F8D3D14AC}\ProxyStubClsid" Value="[\{]00020424-0000-0000-C000-000000000046[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__96" Root="0" Key="Interface\{0A742926-B1C3-4608-8743-6E4F8D3D14AC}\ProxyStubClsid32" Value="[\{]00020424-0000-0000-C000-000000000046[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__97" Root="0" Key="Interface\{0A742926-B1C3-4608-8743-6E4F8D3D14AC}\TypeLib" Value="[\{]8D1248A4-55A8-4F8D-A0E7-161D405FBB01[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__98" Root="0" Key="Interface\{1F64D48B-7A5F-45F2-AC08-56296E6DFFB6}" Value="IChilkatSFtpDir" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+    <ROW Registry="__99" Root="0" Key="Interface\{1F64D48B-7A5F-45F2-AC08-56296E6DFFB6}\ProxyStubClsid" Value="[\{]00020424-0000-0000-C000-000000000046[\}]" Component_="C__EC57D290B29846B79F7280B31758EEE8"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiTextStyleComponent">
+    <ROW TextStyle="VSI_MS_Sans_Serif13.0_0_0" FaceName="MS Sans Serif" Size="9" Color="0" StyleBits="0"/>
+    <ROW TextStyle="VSI_MS_Sans_Serif16.0_1_0" FaceName="MS Sans Serif" Size="12" Color="0" StyleBits="1"/>
+    <ROW TextStyle="VSI_MS_Shell_Dlg13.0_0_0" FaceName="MS Shell Dlg" Size="9" Color="0" StyleBits="0"/>
+    <ROW TextStyle="VsdDefaultUIFont.524F4245_5254_5341_4C45_534153783400" FaceName="MS Sans Serif" Size="9" Color="0" StyleBits="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
+    <ATTRIBUTE name="UsedTheme" value="classic"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiUITextComponent">
+    <ROW Key="NewFolder" Text="Folder|New Folder"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiUpgradeComponent">
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMax="[|ProductVersion]" Attributes="1025" ActionProperty="OLDPRODUCTS"/>
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="258" ActionProperty="NEWERPRODUCTFOUND"/>
+  </COMPONENT>
+</DOCUMENT>

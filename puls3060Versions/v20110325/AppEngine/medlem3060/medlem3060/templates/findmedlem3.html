@@ -1,0 +1,688 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link type="text/css" href="/stylesheets/ui-lightness/jquery-ui-1.8.2.custom.css" rel="Stylesheet" />  
+    <style type="text/css" title="currentStyle">
+      @import "/stylesheets/demo_page.css";
+      @import "/stylesheets/demo_table_jui.css";
+    </style>
+    <style type="text/css">
+      #dynamic_2 label, #dialog-form label { width:7em; float:left;  display:block;  color: #1c94c4; font-weight:bold;}
+      #dynamic_2 input, #dialog-form input { width:13em; float:rigth; display:block; }
+      input.text {margin-bottom:2px; padding: .2em; }
+      fieldset { padding:0; border:0;}
+      .ui-dialog .ui-state-error { padding: .3em; }
+      .validateTips { border: 1px solid transparent; padding: 0.3em; }
+   </style>
+    <script src="/javascripts/jquery-1.4.2.js" type="text/javascript"></script>
+    <script src="/javascripts/jquery.dataTables.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/javascripts/jquery-ui-1.8.2.custom.min.js"></script>
+    <script type="text/javascript" src="/javascripts/jquery.ui.datepicker-da.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        var oPersonTable;
+        var oMedlemlogTable;
+        var oKontingentTable;
+        var arrAktivitet = {
+          10:'Indmeldelses dato',
+          20:'PBS opkrævnings dato',
+          30:'Kontingent betalt til dato',
+          40:'PBS betaling tilbageført',
+          50:'Udmeldelses dato',
+        };
+        
+        $(document).ready(function() {
+
+        oPersonTable = $('#person').dataTable( {
+          "bJQueryUI": true,
+          "sDom": '<"H"lfr>t<"F"ip>',
+          "bAutoWidth": false, 
+          "bProcessing": true,
+          "bStateSave": true,
+          "aLengthMenu": [[10, 20, 40, 100, -1],[10, 20, 40, 100, "Alle"]],
+          "sPaginationType": "full_numbers",
+          "bPaginate": true,  
+          //"sScrollY": "450px",
+          "aoColumnDefs": [
+              { "sWidth": "3em", "sClass": 'left', "sTitle": "Nr", "bVisible": true, "aTargets": [ 0 ] },
+              { "sClass": 'left', "sTitle": "Navn", "bVisible": true, "aTargets": [ 1 ] },
+              { "sClass": 'left', "sTitle": "Kaldenavn", "bVisible": false, "aTargets": [ 2 ] },
+              { "sClass": 'left', "sTitle": "Adresse", "bVisible": true, "aTargets": [ 3 ] },
+              { "sWidth": "3em", "sClass": 'left', "sTitle": "Pnr", "bVisible": false, "aTargets": [ 4 ] },
+              { "sWidth": "7em", "sClass": 'left', "sTitle": "By", "bVisible": true, "aTargets": [ 5 ] },
+              { "sClass": 'left', "sTitle": "Email", "bVisible": false, "aTargets": [ 6 ] },
+              { "sWidth": "5em", "sClass": 'left', "sTitle": "Telefon", "bVisible": false, "aTargets": [ 7 ] },
+              { "sWidth": "3em", "sClass": 'left', "sTitle": "Køn", "bVisible": false, "aTargets": [ 8 ] },
+              { "sWidth": "8em", "sClass": 'left', "sTitle": "Født dato", "bVisible": false, "aTargets": [ 9 ] },
+              { "sWidth": "10em", "sClass": 'left', "sTitle": "Bank", "bVisible": false, "aTargets": [ 10 ] },
+              { "sWidth": "2em", "sClass": 'left', "sTitle": "erMedlem", "bVisible": false, "fnRender": function ( oObj ) {return format_erMedlem(oObj.aData[11]);}, "aTargets": [ 11 ] },
+              { "sWidth": "2em", "sClass": 'left', "sTitle": "ikkeBetalt", "bVisible": false, "fnRender": function ( oObj ) {return format_ikkeBetalt(oObj.aData[12]);}, "aTargets": [ 12 ] }
+              ],
+          "fnInitComplete":function( oSettings, json ) {
+            $(oSettings.aoData).each( function() {
+              var id = $(this)[0]._aData[0];
+              var erMedlem = $(this)[0]._aData[11];
+              var ikkeBetalt = $(this)[0]._aData[12];
+              var nRow = $(this)[0].nTr;
+              if (erMedlem == 'ikkeMedlem') {
+                $(nRow).addClass('ikkeMedlem');
+              };
+              if (erMedlem == 'erMedlem') {
+                if (ikkeBetalt == 'ikkeBetalt') {
+                  $(nRow).addClass('ikkeBetalt');
+                };
+              };
+              $(nRow).attr("id",id);
+              $(nRow).click( function(){
+                var aPos = oPersonTable.fnGetPosition( this ); 
+                medlemDisplay(aPos);
+                $('#dynamic_2').removeClass('skjul')
+              });
+              $(nRow).hover( 
+                function(){
+                  if ($(this).hasClass('even'))
+                  {
+                    $(this).removeClass('even').addClass('even_mark');
+                  }
+                  if ($(this).hasClass('odd'))
+                  {
+                    $(this).removeClass('odd').addClass('odd_mark');
+                  }
+                },
+                function(){
+                  if ($(this).hasClass('even_mark'))
+                  {
+                    $(this).removeClass('even_mark').addClass('even');
+                  }
+                  if ($(this).hasClass('odd_mark'))
+                  {
+                    $(this).removeClass('odd_mark').addClass('odd');
+                  }
+                }
+              );
+            });
+          },
+          "sAjaxSource": "/adm/medlemjson"
+        } );
+        
+        oMedlemlogTable = $('#medlemlog').dataTable( {
+          "sDom": 'rt',
+          "bJQueryUI": true,
+          "bAutoWidth": false,
+          "bPaginate": false,          
+          "bProcessing": false,
+          "bStateSave": false,
+          "aoSearchCols": [
+            { "sSearch": "^000$", "bEscapeRegex": false },
+              null,
+              null,
+              null,
+              null,
+              null,
+              null
+          ],
+          "aoColumnDefs": [
+              { "sWidth": "1em", "sClass": 'left', "sTitle": "Nr", "bVisible": false, "aTargets": [ 0 ] },
+              { "sWidth": "1em", "sClass": 'left', "sTitle": "Source", "bVisible": false, "aTargets": [ 1 ] },
+              { "sWidth": "1em", "sClass": 'left', "sTitle": "Source_id", "bVisible": false, "aTargets": [ 2 ] },
+              { "sWidth": "10em", "sClass": 'left', "sTitle": "Logdato", "bVisible": false, "aTargets": [ 3 ] },
+              { "sWidth": "11em", "sClass": 'left', "sTitle": "Aktivitet", "bVisible": true, "fnRender": function ( oObj ) {return arrAktivitet[oObj.aData[4]];}, "aTargets": [ 4 ] },
+              { "sWidth": "5em", "sClass": 'left', "sTitle": "Dato", "bVisible": true, "fnRender": function ( oObj ) {return oObj.aData[5].substring(0,10);}, "aTargets": [ 5 ] },
+              { "sWidth": "1em", "sClass": 'left', "sTitle": "Akt_id", "bVisible": false, "aTargets": [ 6 ] }
+             ],
+          "sAjaxSource": "/adm/medlemlogjson"
+        } );
+        
+        oKontingentTable = $('#kontingent').dataTable( {
+          "sDom": 'rt',
+          "bJQueryUI": true,
+          "bAutoWidth": false,
+          "bPaginate": false,          
+          "bProcessing": false,
+          "bStateSave": false,
+          "aoColumnDefs": [
+              { "sWidth": "3em", "sClass": 'left', "sTitle": "Nr", "bVisible": true, "aTargets": [ 0 ] },
+              { "sClass": 'left', "sTitle": "Navn", "bVisible": true, "aTargets": [ 1 ] },
+              { "sWidth": "10em", "sClass": 'left', "sTitle": "Fradato", "bVisible": true, "aTargets": [ 2 ] },
+              { "sWidth": "10em", "sClass": 'left', "sTitle": "Kontingent", "bVisible": true, "fnRender": function ( oObj ) { var NumVal = parseFloat(oObj.aData[3]); var StrVal = NumVal.toFixed(2); return StrVal.replace('.', ','); }, "aTargets": [ 3 ] },
+              { "sWidth": "10em", "sClass": 'left', "sTitle": "Tildato", "bVisible": true, "aTargets": [ 4 ] },
+              { "sWidth": "1em", "sClass": 'left', "sTitle": "Kont_id", "bVisible": false, "aTargets": [ 5 ] }
+             ],
+          "sAjaxSource": "/adm/kontingentjson"
+        } );
+
+        var pos = $("#pos"),
+          nr = $("#nr"),
+          navn = $("#navn"),
+          kaldenavn = $("#kaldenavn"),
+          adresse = $("#adresse"),
+          postnr = $("#postnr"),
+          bynavn = $("#bynavn"),
+          email = $("#email"),
+          telefon = $("#telefon"),
+          kon = $("#kon"),
+          fodtdato = $("#fodtdato"),
+          bank = $("#bank"),
+          ermedlem = $("#ermedlem"),
+          ikkebetalt = $("#ikkebetalt"),
+          akt_id = $("#akt_id"),
+          akt_dato = $("#akt_dato"),
+          allFields = $([]).add(pos).add(nr).add(navn).add(kaldenavn).add(adresse).add(postnr).add(bynavn).add(email).add(telefon).add(kon).add(fodtdato).add(bank).add(ermedlem).add(ikkebetalt).add(akt_id).add(akt_dato),
+          tips = $(".validateTips");
+
+        function updateTips(t) {
+          tips
+            .text(t)
+            .addClass('ui-state-highlight');
+          setTimeout(function() {
+            tips.removeClass('ui-state-highlight', 1500);
+          }, 500);
+        }
+
+        function checkLength(o,n,min,max) {
+          if ( o.val().length > max || o.val().length < min ) 
+          {
+            o.addClass('ui-state-error');
+            updateTips("Length of " + n + " must be between "+min+" and "+max+".");
+            return false;
+          } 
+          else 
+          {
+            return true;
+          }
+        }
+        
+        function checkRegexp(o,regexp,n) {
+          if ( !( regexp.test( o.val() ) ) ) {
+            o.addClass('ui-state-error');
+            updateTips(n);
+            return false;
+          } else {
+            return true;
+          }
+        }  
+          
+        $("#dialog-form").dialog({
+          autoOpen: false,
+          modal: true,
+          width: 300,
+          buttons: {
+            Ok: function() {
+              var bValid = true;
+              allFields.removeClass('ui-state-error');
+              bValid = bValid && checkLength(navn,"Name",3,35);
+              bValid = bValid && checkLength(kaldenavn,"Kaldenavn",2,20);
+              bValid = bValid && checkRegexp(email,/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i,"f. eks. ui@jquery.dk");
+              bValid = bValid && checkRegexp(kon,/^([MK])+$/,"Mand = M, Kvinde = K");
+              if (bValid) {
+                $.ajax({
+                  url: "/adm/updatemedlem",
+                  type: 'POST',
+                  data: {
+                     PersonTablePos: $("#pos").val()
+                    ,Nr: $("#nr").val()
+                    ,Navn: $("#navn").val()
+                    ,Kaldenavn: $("#kaldenavn").val()
+                    ,Adresse: $("#adresse").val()
+                    ,Postnr: $("#postnr").val()
+                    ,Bynavn: $("#bynavn").val()
+                    ,Email: $("#email").val()
+                    ,Telefon: $("#telefon").val()
+                    ,Kon: $("#kon").val()
+                    ,FodtDato: $("#fodtdato").val()
+                    ,Bank: $("#bank").val()
+                    ,MedlemlogTablePos: 0 
+                    ,Akt_id: $("#akt_id").val()
+                    ,Akt_dato: $("#akt_dato").val()
+                    ,KontingentTablePos: 0 
+                  },
+                  success: function(data) {
+                    if (data.bMedlemlog == 'true') {
+                      Lidx = oMedlemlogTable.fnAddData(data.MedlemlogData );
+                      var MedlemlogTablePos = Lidx[0];
+                    }
+                    if (data.bKontingent == 'true') {
+                      Kidx = oKontingentTable.fnAddData(data.KontingentData );
+                      var KontingentTablePos = Kidx[0];
+                    }
+                    if (isNaN(data.PersonTablePos) )
+                    {
+                      Pidx = oPersonTable.fnAddData(data.PersonTableData );
+                      $("#xpos").text(Pidx[0]);
+                    } 
+                    else 
+                    {
+                      oPersonTable.fnUpdate( data.PersonTableData, data.PersonTablePos, 0);
+                      var aData = oPersonTable.fnGetData(data.PersonTablePos); 
+                      var nNode = oPersonTable.fnGetNodes(data.PersonTablePos); 
+                      var erMedlem = aData[11];
+                      var ikkeBetalt = aData[12];
+                      $(nNode).removeClass('ikkeMedlem').removeClass('ikkeBetalt')
+                      if (erMedlem == 'ikkeMedlem') {
+                        $(nNode).addClass('ikkeMedlem');
+                      };
+                      if (erMedlem == 'erMedlem') {
+                        if (ikkeBetalt == 'ikkeBetalt') {
+                          $(nNode).addClass('ikkeBetalt');
+                        };
+                      };
+                    }
+                    medlemDisplay(data.PersonTablePos); 
+                  }
+                });
+                $(this).dialog('close');
+              }                
+            },
+            Cancel: function() {
+              $(this).dialog('close');
+            }
+          },
+          close: function() {
+            allFields.val('').removeClass('ui-state-error');
+          }
+        });
+ 
+        $('#akt_dato').datepicker({
+           dateFormat: 'yy-mm-dd',
+           changeMonth: true,
+           changeYear: true,
+           yearRange: '2010:2011' 
+        });
+        $('#fodtdato').datepicker({
+           dateFormat: 'yy-mm-dd',
+           changeMonth: true,
+           changeYear: true,
+           yearRange: '1920:2010' 
+        });
+        $(xadd).click( function(){
+          medlemAdd();
+        });
+        
+        $(xupdate).click( function(){
+          var aPos = $("#xpos").text(); 
+          medlemUpdate(aPos);
+        });
+       
+      });                
+      
+      function format_erMedlem(string) {
+        dato = stringToDateNumber(string);
+        if (dato == null) return 'ikkeMedlem';
+        pDate = new Date().valueOf();
+        if (dato > pDate) return 'erMedlem';
+        return 'ikkeMedlem';
+      }
+      
+      function format_ikkeBetalt(string) {
+        dato = stringToDateNumber(string);
+        if (dato == null) return 'None';
+        pDate = new Date().valueOf();
+        if (dato > pDate) return 'None';
+        return 'ikkeBetalt';
+      }
+      
+      function medlemDisplay(aPos) {
+        var aPos_old = $("#xpos").text();
+        if (aPos_old.length > 0) {
+          var nNode_old = oPersonTable.fnGetNodes(aPos_old);
+          $(nNode_old).removeAttr('style');
+        }
+        var nNode = oPersonTable.fnGetNodes(aPos);
+        $(nNode).css('background-color','#14dc52');
+        
+        var aData = oPersonTable.fnGetData( aPos ); 
+        $("#xpos").text(aPos);
+        oMedlemlogTable.fnFilter('^' + aData[0] + '$',0,true,false);
+        oMedlemlogTable.fnSort( [ [3,'desc'], [4,'desc'] ] ); 
+        if (erMedlem()){
+          $("#erMedlem").text(aData[1]);
+          $("#erMedlem").removeClass('ikkeMedlem').addClass('Medlem');
+        }
+        else {
+          $("#erMedlem").text(aData[1]);
+          $("#erMedlem").removeClass('Medlem').addClass('ikkeMedlem');
+        }
+        $("#xnr").text(aData[0]);
+        $("#xnavn").text(aData[1]);
+        $("#xkaldenavn").text(aData[2]);
+        $("#xadresse").text(aData[3]);
+        $("#xpostnr").text(aData[4]);
+        $("#xbynavn").text(aData[5]);
+        $("#xemail").text(aData[6]);
+        $("#xtelefon").text(aData[7]);
+        $("#xkon").text(aData[8]);
+        $("#xfodtdato").text(aData[9]);
+        $("#xbank").text(aData[10]);
+      }
+
+      function medlemAdd() {
+        $("#pos").val('*');
+        $("#nr").val('*');
+        $("#navn").val('');
+        $("#kaldenavn").val('');
+        $("#adresse").val('');
+        $("#postnr").val('');
+        $("#bynavn").val('');
+        $("#email").val('');
+        $("#telefon").val('');
+        $("#kon").val('');
+        $("#fodtdato").val('');
+        $("#bank").val('');
+        $("#ermedlem").val('');
+        $("#ikkebetalt").val('');
+        $("#label_akt_dato").text('Indmeldelse');
+        $("#akt_dato").val('');
+        $("#akt_id").val('10');
+        $("#dialog-form").dialog('open');
+      }   
+      
+      function medlemUpdate(aPos) {
+        var aData = oPersonTable.fnGetData( aPos ); 
+        $("#pos").val(aPos);
+        $("#nr").val(aData[0]);
+        $("#navn").val(aData[1]);
+        $("#kaldenavn").val(aData[2]);
+        $("#adresse").val(aData[3]);
+        $("#postnr").val(aData[4]);
+        $("#bynavn").val(aData[5]);
+        $("#email").val(aData[6]);
+        $("#telefon").val(aData[7]);
+        $("#kon").val(aData[8]);
+        $("#fodtdato").val(aData[9]);
+        $("#bank").val(aData[10]);
+        $("#ermedlem").val(aData[11]);
+        $("#ikkebetalt").val(aData[12]);
+        if ($("#erMedlem").hasClass('Medlem')) 
+        { 
+          $("#label_akt_dato").text('Udmeldelse');
+          $("#akt_dato").val(' ');
+          $("#akt_id").val('50');
+        }
+        else 
+        {
+          $("#label_akt_dato").text('Indmeldelse');
+          $("#akt_dato").val(' ');
+          $("#akt_id").val('10');
+        }
+        $("#dialog-form").dialog('open');
+      }      
+
+      function stringToDateNumber(string) {
+        var matches; 
+        if (matches = string.match(/^(\d{4,4})-(\d{2,2})-(\d{2,2})$/)) {
+          return (new Date(matches[1], matches[2] - 1, matches[3])).valueOf();
+        } 
+        else if (matches = string.match(/^(\d{4,4})-(\d{2,2})-(\d{2,2}) (\d{2,2}):(\d{2,2}):(\d{2,2})$/)){
+          return (new Date(matches[1], matches[2] - 1, matches[3], matches[4], matches[5], matches[6])).valueOf();
+        }
+        else {
+          return null;
+        };
+      }
+
+      function DateToString(date) {
+        var yyyy = (date.getFullYear()).toString();
+        var mm = (date.getMonth() + 1).toString();
+        if (mm.length == 1) mm = '0' + mm;
+        var dd = (date.getDate() + 1).toString();
+        if (dd.length == 1) dd = '0' + dd;
+        var hh = (date.getHours() + 1).toString();
+        if (hh.length == 1) hh = '0' + hh;
+        var MM = (date.getMinutes() + 1).toString();
+        if (MM.length == 1) MM = '0' + MM;
+        var ss = (date.getSeconds() + 1).toString();
+        if (ss.length == 1) ss = '0' + ss;
+        return yyyy + '-' + mm + '-' + dd + ' ' + hh + ':' + MM  + ':' + ss;
+      }
+      
+      function erMedlem() {
+        var debugoMedlemlogTable = oMedlemlogTable;
+        var pDate = new Date().valueOf();
+        var aiDisplayMedlemlog = oMedlemlogTable.dataTableSettings[1].aiDisplay;
+        var logdata;
+        var m_indmeldelsesDato = null;
+        var m_udmeldelsesDato = null;
+        var m_kontingentTilbageførtDato = null;
+        var m_kontingentBetalingsDato = null;
+        var m_kontingentBetaltTilDato = null;
+        var m_opkrævningsDato = null;
+        var m_BetalingsFristiDageGamleMedlemmer = 31;
+        var m_BetalingsFristiDageNyeMedlemmer = 61;
+        mindate = Date.parse( "01/01/1970 00:00:00" );
+        var m_kontingentTilDato31 = mindate;
+        var m_kontingentBetaltDato31 = mindate;
+        var m_restanceTilDatoGamleMedlemmer = mindate;
+        var restanceTilDatoNyeMedlemmer = mindate;
+        var  m_b10 = false; // Seneste Indmelses dato fundet
+        var  m_b20 = false; // Seneste PBS opkrævnings dato fundet
+        var  m_b30 = false; // Seneste Kontingent betalt til dato fundet
+        var  m_b31 = false; // Næst seneste Kontingent betalt til dato fundet
+        var  m_b40 = false; // Seneste PBS betaling tilbageført fundet
+        var  m_b50 = false; // Udmeldelses dato fundet
+        
+        for (i in aiDisplayMedlemlog)
+        {
+          logdata = oMedlemlogTable.fnGetData( aiDisplayMedlemlog[i] );
+          var Logdato = stringToDateNumber(logdata[3]);
+          var Akt_dato= stringToDateNumber(logdata[5]);
+          var Akt_id = parseInt(logdata[6]);
+          switch(Akt_id)
+          {
+            case 10: // Seneste Indmelses dato
+              if (!m_b10)
+              {
+                m_b10 = true;
+                m_indmeldelsesDato = Akt_dato;
+              }
+              break;
+
+            case 20:  // Seneste PBS opkrævnings dato
+              if (!m_b20)
+              {
+                m_b20 = true;
+                m_opkrævningsDato = Akt_dato;
+              }
+              break;
+
+            case 30:  // Kontingent betalt til dato
+              if ((m_b30) && (!m_b31)) // Næst seneste Kontingent betalt til dato
+              {
+                m_b31 = true;
+                m_kontingentBetaltDato31 = Logdato;
+                m_kontingentTilDato31 = Akt_dato;
+              }
+              if ((!m_b30) && (!m_b31)) // Seneste Kontingent betalt til dato
+              {
+                m_b30 = true;
+                m_kontingentBetalingsDato = Logdato;
+                m_kontingentBetaltTilDato = Akt_dato;
+              }
+              break;
+
+            case 40:  // Seneste PBS betaling tilbageført
+              if (!m_b40)
+              {
+                m_b40 = true;
+                m_kontingentTilbageførtDato = Akt_dato;
+              }
+              break;
+
+            case 50:  // Udmeldelses dato
+              if (!m_b50)
+              {
+                m_b50 = true;
+                m_udmeldelsesDato = Akt_dato;
+              }
+              break;          
+          }
+        }
+
+        //Undersøg vedr ind- og udmeldelse
+        if (m_b10) //Findes der en indmeldelse
+        {
+          if (m_b50) //Findes der en udmeldelse
+          {
+            if (m_udmeldelsesDato >= m_indmeldelsesDato) //Er udmeldelsen aktiv
+            {
+              if (m_udmeldelsesDato <= pDate) //Er udmeldelsen aktiv
+              {
+                return false;
+              }
+            }
+          }
+        }
+        else //Der findes ingen indmeldelse
+        {
+          return false;
+        }
+          
+        //Find aktive betalingsrecord
+        if (m_b40) //Findes der en kontingent tilbageført
+        {
+          if (m_kontingentTilbageførtDato >= m_kontingentBetalingsDato) //Kontingenttilbageført er aktiv
+          {
+            //''!!!Kontingent er tilbageført !!!!!!!!!
+            if (m_b31)
+            {
+              m_kontingentBetalingsDato = m_kontingentBetaltDato31;
+              m_kontingentBetaltTilDato = m_kontingentTilDato31;
+            }
+            else
+            {
+              m_b30 = false;
+            }
+          }
+        }
+          
+        //Undersøg om der er betalt kontingent
+        if ((m_b30) && (m_kontingentBetaltTilDato > m_indmeldelsesDato))//Findes der en betaling efter indmelsesdato
+        {
+          m_restanceTilDatoGamleMedlemmer = m_kontingentBetaltTilDato + m_BetalingsFristiDageGamleMedlemmer * 24 * 3600 * 1000;
+          if (m_restanceTilDatoGamleMedlemmer >= pDate) //Er kontingentTilDato aktiv
+          {
+            return true;
+          }
+          else
+          {
+            return false;
+          }
+        }
+        else
+        { //Der findes ingen betalinger. Nyt medlem?
+          restanceTilDatoNyeMedlemmer = m_indmeldelsesDato + m_BetalingsFristiDageNyeMedlemmer * 24 * 3600 * 1000;
+          if (restanceTilDatoNyeMedlemmer >= pDate)
+          { //Er kontingentTilDato aktiv
+            return true;
+          }
+          else
+          {
+            return false;
+          }
+        }
+      
+      }      
+      
+    </script>
+    <title>Find Medlem</title>
+  </head>
+  <body id="dt_example" style="margin-top:10px;">
+    <div id="dynamic_2" class="skjul" style="width:35%; float:left; margin-left:1%;">
+      <div id="xpos"></div>
+      <div id="erMedlem"></div>
+      <div id="xadd" class="medlem_label ui-state-default">Ny</div>
+      <div id="xupdate" class="medlem_button ui-state-default">Opdater</div>
+      <div class="medlem_label ui-state-default">Nr</div> <div id="xnr" class="medlem_text"></div>
+      <div class="medlem_label ui-state-default">Navn</div> <div id="xnavn" class="medlem_text"></div>
+      <div class="medlem_label ui-state-default">Kaldenavn</div> <div id="xkaldenavn" class="medlem_text"></div>
+      <div class="medlem_label ui-state-default">Adresse</div> <div id="xadresse" class="medlem_text"></div>
+      <div class="medlem_label ui-state-default">Postnr</div> <div id="xpostnr" class="medlem_text"></div>
+      <div class="medlem_label ui-state-default">By</div> <div id="xbynavn" class="medlem_text"></div>
+      <div class="medlem_label ui-state-default">Email</div> <div id="xemail" class="medlem_text"></div>
+      <div class="medlem_label ui-state-default">Telefon</div> <div id="xtelefon" class="medlem_text"></div>
+      <div class="medlem_label ui-state-default">Køn</div> <div id="xkon" class="medlem_text"></div>
+      <div class="medlem_label ui-state-default">FødtDato</div> <div id="xfodtdato" class="medlem_text"></div>
+      <div class="medlem_label ui-state-default" style="padding-bottom:0px;">Bank</div> <div id="xbank" class="medlem_text" style="padding-bottom:0px;"></div>
+
+      <table class="display" id="medlemlog">
+        <thead>
+          <tr >
+            <th>Nr</th>
+            <th>Source</th>
+            <th>Source_id</th>
+            <th>Logdato</th>
+            <th>Akt_id</th>
+            <th>Akt_dato</th>
+            <th>Akt_id</th>
+          </tr>
+        </thead>          
+        <tbody>
+        </tbody>  
+      </table>
+    </div>
+
+    <div id="dynamic" style="float:left;width:60%;">
+      <table class="display" id="person">
+        <thead>
+          <tr >
+            <th>Nr</th>
+            <th>Navn</th>
+            <th>Kaldenavn</th>
+            <th>Adresse</th>
+            <th>Postnr</th>
+            <th>By</th>
+            <th>Email</th>
+            <th>Telefon</th>
+            <th>Køn</th>
+            <th>FødtDato</th>
+            <th>Bank</th>
+            <th>erMedlem</th>
+            <th>ikkeBetalt</th>
+          </tr>
+        </thead>          
+        <tbody>
+        </tbody>  
+      </table>
+    </div>
+
+    <div id="dynamic" style="float:left;width:60%;">
+      <table class="display" id="kontingent">
+        <thead>
+          <tr >
+            <th>Nr</th>
+            <th>Navn</th>
+            <th>Fradato</th>
+            <th>Kontingent</th>
+            <th>Tildato</th>
+            <th>Kont_id</th>
+          </tr>
+        </thead>          
+        <tbody>
+        </tbody>  
+      </table>
+    </div>
+    
+    <div id="dialog-form" title="Update user">
+      <p class="validateTips">All form fields are required.</p>
+      <form>
+        <fieldset>
+          <input type="hidden" name="pos" id="pos"/>
+          <label for="nr">Nr</label><input style="width:5em;" type="text" name="nr" id="nr" class="text ui-widget-content ui-corner-all" />
+          <label for="navn">Navn</label><input type="text" name="navn" id="navn" class="text ui-widget-content ui-corner-all" />
+          <label for="kaldenavn">Kaldenavn</label><input type="text" name="kaldenavn" id="kaldenavn" class="text ui-widget-content ui-corner-all" />
+          <label for="adresse">Adresse</label><input type="text" name="adresse" id="adresse" value="" class="text ui-widget-content ui-corner-all" />
+          <label for="postnr">Postnr</label><input style="width:10em;" type="text" name="postnr" id="postnr" value="" class="text ui-widget-content ui-corner-all" />
+          <label float:left;" for="bynavn">By</label><input type="text" name="bynavn" id="bynavn" value="" class="text ui-widget-content ui-corner-all" />
+          <label float:left;" for="email">Email</label><input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all" />
+          <label for="telefon">Telefon</label><input style="width:10em;" type="text" name="telefon" id="telefon" value="" class="text ui-widget-content ui-corner-all" />
+          <label for="kon">Køn</label><input style="width:1em;" type="text" name="kon" id="kon" value="" class="text ui-widget-content ui-corner-all" />
+          <label for="fodtdato">FødtDato</label><input style="width:10em;" type="text" name="fodtdato" id="fodtdato" value="" class="text ui-widget-content ui-corner-all" />
+          <label for="bank">Bank</label><input type="text" name="bank" id="bank" value="" class="text ui-widget-content ui-corner-all" />
+          <input type="hidden" name="ermedlem" id="ermedlem"/>
+          <input type="hidden" name="ikkebetalt" id="ikkebetalt"/>
+          <input type="hidden" name="akt_id" id="akt_id"/>
+          <label id="label_akt_dato" for="akt_dato"></label><input style="width:10em;" type="text" name="akt_dato" id="akt_dato" value="" class="text ui-widget-content ui-corner-all" />
+        </fieldset>
+      </form>
+    </div>
+  </body>
+</html>

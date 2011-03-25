@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<list>
+  <Status>{{status}}</Status>
+  {% if status %}
+  {% if forslag %}
+  {% for f in forslag %}
+  <KontingentForslag>
+    <Nr>{{f.person.Nr}}</Nr> 
+    <Navn>{{f.person.Navn}}</Navn> 
+    <Adresse>{{f.person.Adresse}}</Adresse>
+    <Postnr>{{f.person.Postnr}}</Postnr> 
+    <KontingentFradato>{{f.KontingentFradato}}</KontingentFradato> 
+    <Indmeldelse>{{f.Indmeldelse}}</Indmeldelse> 
+    <Tilmeldtpbs>{{f.Tilmeldtpbs}}</Tilmeldtpbs> 
+  </KontingentForslag>
+  {% endfor %}
+  {% endif %}    
+  {% endif %} 
+</list>
