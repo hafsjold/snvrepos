@@ -86,9 +86,10 @@ namespace nsPuls3060
 
         public void load()
         {
+            Guid nullGuid = new Guid("00000000-0000-0000-0000-000000000000"); 
             var qry = from w in this
                       join b in Program.dbDataTransSumma.Tblbankkonto on new { dato = w.bdato, belob = w.bbeløb, saldo = w.bsaldo } equals new { dato = b.Dato, belob = b.Belob, saldo = b.Saldo } into bankkonto
-                      from b in bankkonto.DefaultIfEmpty(new Tblbankkonto { Pid = new Guid(), Belob = null })
+                      from b in bankkonto.DefaultIfEmpty(new Tblbankkonto { Pid = nullGuid, Belob = null })
                       where b.Belob == null 
                       orderby w.bdato
                       select w;

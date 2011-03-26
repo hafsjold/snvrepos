@@ -120,7 +120,6 @@ namespace nsPuls3060
             {
                 AntalForslag++;
                 ListViewItem it = lvwBank.Items.Add(b.Pid.ToString(), string.Format("{0:yyyy-MM-dd}", b.Dato), 0);
-                //it.Tag = b;
                 it.SubItems.Add(b.Tekst);
                 it.SubItems.Add(b.Belob.ToString());
             }
@@ -187,7 +186,6 @@ namespace nsPuls3060
             {
                 AntalForslag++;
                 ListViewItem it = lvwTrans.Items.Add(t.Pid.ToString(), string.Format("{0:yyyy-MM-dd}", t.Dato), 0);
-                //it.Tag = t;
                 it.SubItems.Add(t.Bilag.ToString());
                 it.SubItems.Add(t.Tekst);
                 it.SubItems.Add(t.Belob.ToString());
@@ -484,7 +482,6 @@ namespace nsPuls3060
             }
             this.lvwSumBank.Items.Clear();
             ListViewItem it = lvwSumBank.Items.Add("1", "", 0);
-            //it.Tag = t;
             it.SubItems.Add("");
             it.SubItems.Add(sumAfstemBank.ToString());
             cmdAfstemt_Enable();
@@ -511,7 +508,6 @@ namespace nsPuls3060
             }
             this.lvwSumTrans.Items.Clear();
             ListViewItem it = lvwSumTrans.Items.Add("1", "", 0);
-            //it.Tag = t;
             it.SubItems.Add("");
             it.SubItems.Add("");
             it.SubItems.Add(sumAfstemTrans.ToString());
@@ -542,6 +538,7 @@ namespace nsPuls3060
             int count = 0;
             Tblafstem recAfstem = new Tblafstem
             {
+                Pid = new Guid(),
                 Udskriv = true
             };
  

@@ -35,9 +35,6 @@ namespace nsPuls3060
             var rec_regnskab = Program.qryAktivRegnskab();
             m_path = rec_regnskab.Placering + "kladder.dat";
             m_regnskabid = rec_regnskab.Rid;
-            //m_path = @"F:\summatest\3\kladder.dat";
-            //m_regnskabid = 8;
-
             open();
         }
 

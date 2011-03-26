@@ -116,34 +116,10 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
-            KarKartotek recKartotek = new KarKartotek();
-            int testx = 1;
+            //KarKartotek recKartotek = new KarKartotek();
+            //int testx = 1;
             //KarBankafstemning recBankafstemning = new KarBankafstemning();
             //recBankafstemning.load();
-            /*
-            var qry = from t in Program.dbDataTransSumma.Tbltrans
-                      join a in Program.dbDataTransSumma.Tblbankafsteminit on new Xrec { Xrid = t.Regnskabid, Xid = t.Id, Xnr = t.Nr } equals new Xrec { Xrid = a.Rid, Xid = a.Tid, Xnr = a.Tnr } into bankafsteminit
-                      from a in bankafsteminit
-                      select t;
-            Tblafstem recAfstem;
-            foreach (Tbltrans recTrans in qry) 
-            {
-                try
-                {
-                    recAfstem = (from a in Program.dbDataTransSumma.Tblafstem
-                                 join i in Program.dbDataTransSumma.Tblbankafsteminit on a.Pid equals i.Bid
-                                 where i.Rid == recTrans.Regnskabid && i.Tid == recTrans.Id && i.Tnr == recTrans.Nr
-                                 select a).First();
-                    recAfstem.Tbltrans.Add(recTrans);
-                }
-                catch
-                {
-                    int test = 1;
-                }
-            }
-            Program.dbDataTransSumma.SubmitChanges();
-            */
-
 #endif
         }
 
@@ -185,13 +161,14 @@ namespace nsPuls3060
 
         private void importerTransaktionerToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Guid nullGuid = new Guid("00000000-0000-0000-0000-000000000000"); 
             int? lastBilag = null;
             string Kontonavn = null;
             Tblbilag recBilag = null;
             var qryPosteringer = from p in Program.karPosteringer
                                  join b in Program.dbDataTransSumma.Tbltrans on new { p.Regnskabid, p.Id, p.Nr } equals new { b.Regnskabid, b.Id, b.Nr } into tbltrans
-                                 from b in tbltrans.DefaultIfEmpty(new Tbltrans { Pid = new Guid("12345678-9012-3456-7890-123456789012"), Regnskabid = null, Id = null, Nr = null })
-                                 where b.Pid == new Guid("12345678-9012-3456-7890-123456789012")
+                                 from b in tbltrans.DefaultIfEmpty(new Tbltrans { Pid = nullGuid, Regnskabid = null, Id = null, Nr = null })
+                                 where b.Pid == nullGuid
                                  orderby p.Regnskabid, p.Bilag, p.Id, p.Nr
                                  select p;
             int antal = qryPosteringer.Count();
@@ -209,6 +186,7 @@ namespace nsPuls3060
                     {
                         recBilag = new Tblbilag
                         {
+                            Pid = new Guid(),
                             Regnskabid = p.Regnskabid,
                             Bilag = p.Bilag,
                             Dato = p.Dato,
@@ -229,6 +207,7 @@ namespace nsPuls3060
 
                 Tbltrans recTrans = new Tbltrans
                 {
+                    Pid = new Guid(),
                     Regnskabid = p.Regnskabid,
                     Tekst = p.Tekst,
                     Kontonr = p.Konto,
@@ -250,8 +229,8 @@ namespace nsPuls3060
             lastBilag = 0;
             var qryKladder = from k in Program.karKladder
                              join b in Program.dbDataTransSumma.Tblkladder on new { k.Regnskabid, k.Id } equals new { b.Regnskabid, b.Id } into tblkladder
-                             from b in tblkladder.DefaultIfEmpty(new Tblkladder { Pid = new Guid("12345678-9012-3456-7890-123456789012"), Regnskabid = null, Id = null })
-                             where b.Pid == new Guid("12345678-9012-3456-7890-123456789012")
+                             from b in tblkladder.DefaultIfEmpty(new Tblkladder { Pid = nullGuid, Regnskabid = null, Id = null })
+                             where b.Pid == nullGuid
                              orderby k.Regnskabid, k.Bilag, k.Id
                              select k;
             antal = qryKladder.Count();
@@ -269,6 +248,7 @@ namespace nsPuls3060
                     {
                         recBilag = new Tblbilag
                         {
+                            Pid = new Guid(),
                             Regnskabid = k.Regnskabid,
                             Bilag = k.Bilag,
                             Dato = k.Dato,
@@ -280,6 +260,7 @@ namespace nsPuls3060
 
                 Tblkladder recKladder = new Tblkladder
                 {
+                    Pid = new Guid(),
                     Regnskabid = k.Regnskabid,
                     Tekst = k.Tekst,
                     Afstemningskonto = k.Afstemningskonto,
