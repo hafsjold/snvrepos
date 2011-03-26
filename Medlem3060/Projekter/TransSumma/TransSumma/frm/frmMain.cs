@@ -190,8 +190,8 @@ namespace nsPuls3060
             Tblbilag recBilag = null;
             var qryPosteringer = from p in Program.karPosteringer
                                  join b in Program.dbDataTransSumma.Tbltrans on new { p.Regnskabid, p.Id, p.Nr } equals new { b.Regnskabid, b.Id, b.Nr } into tbltrans
-                                 from b in tbltrans.DefaultIfEmpty(new Tbltrans { Pid = 0, Regnskabid = null, Id = null, Nr = null })
-                                 where b.Pid == 0
+                                 from b in tbltrans.DefaultIfEmpty(new Tbltrans { Pid = new Guid("12345678-9012-3456-7890-123456789012"), Regnskabid = null, Id = null, Nr = null })
+                                 where b.Pid == new Guid("12345678-9012-3456-7890-123456789012")
                                  orderby p.Regnskabid, p.Bilag, p.Id, p.Nr
                                  select p;
             int antal = qryPosteringer.Count();
@@ -250,8 +250,8 @@ namespace nsPuls3060
             lastBilag = 0;
             var qryKladder = from k in Program.karKladder
                              join b in Program.dbDataTransSumma.Tblkladder on new { k.Regnskabid, k.Id } equals new { b.Regnskabid, b.Id } into tblkladder
-                             from b in tblkladder.DefaultIfEmpty(new Tblkladder { Pid = 0, Regnskabid = null, Id = null })
-                             where b.Pid == 0
+                             from b in tblkladder.DefaultIfEmpty(new Tblkladder { Pid = new Guid("12345678-9012-3456-7890-123456789012"), Regnskabid = null, Id = null })
+                             where b.Pid == new Guid("12345678-9012-3456-7890-123456789012")
                              orderby k.Regnskabid, k.Bilag, k.Id
                              select k;
             antal = qryKladder.Count();

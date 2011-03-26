@@ -82,7 +82,10 @@
     <Reference Include="System.Data.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
+    <Reference Include="System.Data.SqlServerCe, Version=3.5.1.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Microsoft SQL Server Compact Edition\v4.0\Desktop\System.Data.SqlServerCe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
@@ -115,15 +118,13 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="cls\clsBilagsudskrift.cs" />
+    <Compile Include="dbDataTransSumma.cs">
+      <DependentUpon>dbDataTransSumma.dbml</DependentUpon>
+    </Compile>
     <Compile Include="dbDataTransSumma.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dbDataTransSumma.dbml</DependentUpon>
-    </Compile>
-    <Compile Include="dbTS.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbTS.edmx</DependentUpon>
     </Compile>
     <Compile Include="frm\frmKontoplanList.cs">
       <SubType>Form</SubType>
@@ -172,7 +173,6 @@
     <Compile Include="kar\karMoms.cs" />
     <Compile Include="kar\karAfstemningskonti.cs" />
     <Compile Include="kar\karBankkontoudtogNordea.cs" />
-    <Compile Include="kar\karBankafstemning.cs" />
     <Compile Include="kar\karKladder.cs" />
     <Compile Include="kar\karFakturastr_k.cs" />
     <Compile Include="kar\karFakturavarer_k.cs" />
@@ -207,11 +207,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="app.config" />
-    <EntityDeploy Include="dbTS.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>dbTS.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="mem\app.config" />
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
@@ -259,6 +257,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Properties\DataSources\dbTSEntities.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -60,7 +60,7 @@ namespace nsPuls3060
             this.tblbilagBindingSource.DataSource = qryAfstemte;
         }
 
-        public void findBilag(int? Bilagpid)
+        public void findBilag(Guid? Bilagpid)
         {
             var qryAfstemte = from b in Program.dbDataTransSumma.Tblbilag
                               where b.Pid == Bilagpid

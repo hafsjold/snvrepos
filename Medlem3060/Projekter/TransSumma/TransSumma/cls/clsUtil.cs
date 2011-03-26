@@ -21,39 +21,6 @@ namespace nsPuls3060
 
         public clsPbs() { }
 
-        public static int nextval(string nrserienavn)
-        {
-            try
-            {
-                var rst = (from c in Program.dbDataTransSumma.Tblnrserie
-                           where c.Nrserienavn == nrserienavn
-                           select c).First();
-
-                if (rst.Sidstbrugtenr != null)
-                {
-                    rst.Sidstbrugtenr += 1;
-                    return rst.Sidstbrugtenr.Value;
-                }
-                else
-                {
-                    rst.Sidstbrugtenr = 0;
-                    return rst.Sidstbrugtenr.Value;
-                }
-            }
-            catch (System.InvalidOperationException)
-            {
-                Tblnrserie rec_nrserie = new Tblnrserie
-                {
-                    Nrserienavn = nrserienavn,
-                    Sidstbrugtenr = 0
-                };
-                Program.dbDataTransSumma.Tblnrserie.InsertOnSubmit(rec_nrserie);
-                Program.dbDataTransSumma.SubmitChanges();
-
-                return 0;
-            }
-        }
-
         public bool ReadRegnskaber()
         {
             string RegnskabId;
@@ -444,47 +411,6 @@ namespace nsPuls3060
             {
                 return new DateTime((int)j, (int)m, (int)d, (int)h, (int)min, (int)s);
             }
-
-        }
-        public static void INI_File()
-        {
-            string data = @"[WindowSettings]
-Window X Pos=0
-Window Y Pos=0
-Window Maximized=false
-Window Name=Jabberwocky
-
-[Logging]
-Directory=C:\Rosetta Stone\Logs
-";
-            string pattern = @"
-^                           # Beginning of the line
-((?:\[)                     # Section Start
-     (?<Section>[^\]]*)     # Actual Section text into Section Group
- (?:\])                     # Section End then EOL/EOB
- (?:[\r\n]{0,}|\Z))         # Match but don't capture the CRLF or EOB
- (                          # Begin capture groups (Key Value Pairs)
-  (?!\[)                    # Stop capture groups if a [ is found; new section
-  (?<Key>[^=]*?)            # Any text before the =, matched few as possible
-  (?:=)                     # Get the = now
-  (?<Value>[^\r\n]*)        # Get everything that is not an Line Changes
-  (?:[\r\n]{0,4})           # MBDC \r\n
-  )+                        # End Capture groups";
-
-            Dictionary<string, Dictionary<string, string>> InIFile
-            = (from Match m in Regex.Matches(data, pattern, RegexOptions.IgnorePatternWhitespace | RegexOptions.Multiline)
-               select new
-               {
-                   Section = m.Groups["Section"].Value,
-
-                   kvps = (from cpKey in m.Groups["Key"].Captures.Cast<Capture>().Select((a, i) => new { a.Value, i })
-                           join cpValue in m.Groups["Value"].Captures.Cast<Capture>().Select((b, i) => new { b.Value, i }) on cpKey.i equals cpValue.i
-                           select new KeyValuePair<string, string>(cpKey.Value, cpValue.Value)).ToDictionary(kvp => kvp.Key, kvp => kvp.Value)
-
-               }).ToDictionary(itm => itm.Section, itm => itm.kvps);
-
-            Console.WriteLine(InIFile["WindowSettings"]["Window Name"]); // Jabberwocky
-            Console.WriteLine(InIFile["Logging"]["Directory"]);          // C:\Rosetta Stone\Logs
 
         }
     }

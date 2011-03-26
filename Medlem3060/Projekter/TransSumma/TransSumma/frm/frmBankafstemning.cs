@@ -83,29 +83,29 @@ namespace nsPuls3060
             IEnumerable<clsqry_bank> qry_bank;
             if (this.AfstemtTidligere.Checked)
             {
-                qry_bank = from b in Program.dbTS.tblbankkonto
-                           where b.afstem > 0 && (b.skjul == null || b.skjul == false)
-                           orderby b.dato ascending
+                qry_bank = from b in Program.dbDataTransSumma.Tblbankkonto
+                           where b.Afstem != null && (b.Skjul == null || b.Skjul == false)
+                           orderby b.Dato ascending
                            select new clsqry_bank
                            {
-                               Pid = b.pid,
-                               Dato = b.dato,
-                               Tekst = b.tekst,
-                               Belob = b.belob
+                               Pid = b.Pid,
+                               Dato = b.Dato,
+                               Tekst = b.Tekst,
+                               Belob = b.Belob
                            };
             }
             else
             {
 
-                qry_bank = from b in Program.dbTS.tblbankkonto
-                           where b.afstem == null && (b.skjul == null || b.skjul == false)
-                           orderby b.dato ascending
+                qry_bank = from b in Program.dbDataTransSumma.Tblbankkonto
+                           where b.Afstem == null && (b.Skjul == null || b.Skjul == false)
+                           orderby b.Dato ascending
                            select new clsqry_bank
                            {
-                               Pid = b.pid,
-                               Dato = b.dato,
-                               Tekst = b.tekst,
-                               Belob = b.belob
+                               Pid = b.Pid,
+                               Dato = b.Dato,
+                               Tekst = b.Tekst,
+                               Belob = b.Belob
                            };
             }
 
@@ -146,33 +146,33 @@ namespace nsPuls3060
             IEnumerable<clsqry_trans> qry_trans;
             if (this.AfstemtTidligere.Checked)
             {
-                qry_trans = from t in Program.dbTS.tbltrans
-                            join b in Program.dbTS.tblbilag on t.bilagpid equals b.pid
-                            where t.afstem > 0 && t.kontonr == 58000
-                            orderby b.dato ascending
+                qry_trans = from t in Program.dbDataTransSumma.Tbltrans
+                            join b in Program.dbDataTransSumma.Tblbilag on t.Bilagpid equals b.Pid
+                            where t.Afstem != null && t.Kontonr == 58000
+                            orderby b.Dato ascending
                             select new clsqry_trans
                             {
-                                Pid = t.pid,
-                                Dato = b.dato,
-                                Bilag = b.bilag,
-                                Tekst = t.tekst,
-                                Belob = t.belob
+                                Pid = t.Pid,
+                                Dato = b.Dato,
+                                Bilag = b.Bilag,
+                                Tekst = t.Tekst,
+                                Belob = t.Belob
                             };
             }
             else
             {
 
-                qry_trans = from t in Program.dbTS.tbltrans
-                            join b in Program.dbTS.tblbilag on t.bilagpid equals b.pid
-                            where t.afstem == null && t.kontonr == 58000
-                            orderby b.dato ascending
+                qry_trans = from t in Program.dbDataTransSumma.Tbltrans
+                            join b in Program.dbDataTransSumma.Tblbilag on t.Bilagpid equals b.Pid
+                            where t.Afstem == null && t.Kontonr == 58000
+                            orderby b.Dato ascending
                             select new clsqry_trans
                             {
-                                Pid = t.pid,
-                                Dato = b.dato,
-                                Bilag = b.bilag,
-                                Tekst = t.tekst,
-                                Belob = t.belob
+                                Pid = t.Pid,
+                                Dato = b.Dato,
+                                Bilag = b.Bilag,
+                                Tekst = t.Tekst,
+                                Belob = t.Belob
                             };
             }
 
@@ -544,11 +544,12 @@ namespace nsPuls3060
             {
                 Udskriv = true
             };
+ 
 
             foreach (ListViewItem lvi in lvwAfstemBank.Items)
             {
                 string keyval = lvi.Name;
-                int pid = int.Parse(keyval);
+                Guid pid = new Guid(keyval);
                 Tblbankkonto recBankkonto = (from b in Program.dbDataTransSumma.Tblbankkonto where b.Pid == pid select b).First();
                 recAfstem.Tblbankkonto.Add(recBankkonto);
                 count++;
@@ -556,7 +557,7 @@ namespace nsPuls3060
             foreach (ListViewItem lvi in lvwAfstemTrans.Items)
             {
                 string keyval = lvi.Name;
-                int pid = int.Parse(keyval);
+                Guid pid = new Guid(keyval);
                 Tbltrans recTrans = (from b in Program.dbDataTransSumma.Tbltrans where b.Pid == pid select b).First();
                 recAfstem.Tbltrans.Add(recTrans);
                 count++;
@@ -575,7 +576,7 @@ namespace nsPuls3060
 
     public class clsqry_bank
     {
-        public int? Pid { get; set; }
+        public Guid? Pid { get; set; }
         public DateTime? Dato { get; set; }
         public string Tekst { get; set; }
         public decimal? Belob { get; set; }
@@ -583,7 +584,7 @@ namespace nsPuls3060
 
     public class clsqry_trans
     {
-        public int? Pid { get; set; }
+        public Guid? Pid { get; set; }
         public DateTime? Dato { get; set; }
         public int? Bilag { get; set; }
         public string Tekst { get; set; }

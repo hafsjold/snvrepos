@@ -62,7 +62,7 @@ namespace nsPuls3060
                 FrmKladder frmKladder = frmMain.GetChild("Kladder") as FrmKladder;
                 
                 Tblbankkonto recBankkonto = this.tblbankkontoBindingSourceAfstemte.Current as Tblbankkonto;
-                int? Bilagpid = (from t in Program.dbDataTransSumma.Tbltrans
+                Guid? Bilagpid = (from t in Program.dbDataTransSumma.Tbltrans
                                  where t.Afstem == recBankkonto.Afstem
                                  select t.Bilagpid).First();
                 frmKladder.findBilag(Bilagpid);
