@@ -1,0 +1,330 @@
+
+CREATE TABLE [txlafstem] (
+  [pid] uniqueidentifier NOT NULL DEFAULT NEWID()
+, [udskriv] bit NULL
+);
+GO
+CREATE TABLE [txlbankkonto] (
+  [pid] uniqueidentifier NOT NULL DEFAULT NEWID()
+, [saldo] numeric(18,2) NULL
+, [skjul] bit NULL
+, [dato] datetime NULL
+, [tekst] nvarchar(50) NULL
+, [belob] numeric(18,2) NULL
+, [afstem] uniqueidentifier NULL
+);
+GO
+CREATE TABLE [txlbilag] (
+  [pid] uniqueidentifier NOT NULL DEFAULT NEWID()
+, [regnskabid] int NULL
+, [bilag] int NULL
+, [dato] datetime NULL
+, [udskriv] bit NULL
+);
+GO
+CREATE TABLE [txlkladder] (
+  [pid] uniqueidentifier NOT NULL DEFAULT NEWID()
+, [regnskabid] int NULL
+, [bilagpid] uniqueidentifier NULL
+, [tekst] nvarchar(50) NULL
+, [afstemningskonto] nvarchar(50) NULL
+, [belob] numeric(18,2) NULL
+, [konto] int NULL
+, [momskode] nvarchar(3) NULL
+, [faktura] int NULL
+, [id] int NULL
+);
+GO
+
+CREATE TABLE [txltrans] (
+  [pid] uniqueidentifier NOT NULL DEFAULT NEWID()
+, [regnskabid] int NULL
+, [skjul] bit NULL
+, [bilagpid] uniqueidentifier NULL
+, [tekst] nvarchar(50) NULL
+, [kontonr] int NULL
+, [kontonavn] nvarchar(50) NULL
+, [moms] numeric(18,2) NULL
+, [debet] numeric(18,2) NULL
+, [kredit] numeric(18,2) NULL
+, [id] int NULL
+, [nr] int NULL
+, [belob] numeric(18,2) NULL
+, [afstem] uniqueidentifier NULL
+);
+GO
+CREATE TABLE [txlwbilag] (
+  [pid] uniqueidentifier NOT NULL DEFAULT NEWID()
+, [bilag] int NOT NULL
+, [dato] datetime NOT NULL
+);
+GO
+CREATE TABLE [txlwkladder] (
+  [pid] uniqueidentifier NOT NULL DEFAULT NEWID()
+, [bilagpid] uniqueidentifier NOT NULL
+, [tekst] nvarchar(50) NULL
+, [afstemningskonto] nvarchar(50) NULL
+, [belob] numeric(18,2) NULL
+, [konto] int NULL
+, [momskode] nvarchar(3) NULL
+, [faktura] int NULL
+);
+GO
+
+CREATE TABLE [tylafstem] (
+  [pid] int NOT NULL
+, [pguid] uniqueidentifier NOT NULL DEFAULT NEWID()
+);
+GO
+CREATE TABLE [tylbankkonto] (
+  [pid] int NOT NULL
+, [pguid] uniqueidentifier NOT NULL DEFAULT NEWID()
+);
+GO
+CREATE TABLE [tylbilag] (
+  [pid] int NOT NULL
+, [pguid] uniqueidentifier NOT NULL DEFAULT NEWID()
+);
+GO
+CREATE TABLE [tylkladder] (
+  [pid] int NOT NULL
+, [pguid] uniqueidentifier NOT NULL DEFAULT NEWID()
+);
+GO
+CREATE TABLE [tyltrans] (
+  [pid] int NOT NULL
+, [pguid] uniqueidentifier NOT NULL DEFAULT NEWID()
+);
+GO
+CREATE TABLE [tylwbilag] (
+  [pid] int NOT NULL
+, [pguid] uniqueidentifier NOT NULL DEFAULT NEWID()
+);
+GO
+CREATE TABLE [tylwkladder] (
+  [pid] int NOT NULL
+, [pguid] uniqueidentifier NOT NULL DEFAULT NEWID()
+);
+GO
+
+INSERT INTO [tylafstem] ([pid]) (SELECT [pid] FROM [tblafstem]);
+GO
+INSERT INTO [tylbankkonto] ([pid]) (SELECT [pid] FROM [tblbankkonto]);
+GO
+INSERT INTO [tylbilag] ([pid]) (SELECT [pid] FROM [tblbilag]);
+GO
+INSERT INTO [tylkladder] ([pid]) (SELECT [pid] FROM [tblkladder]);
+GO
+INSERT INTO [tyltrans] ([pid]) (SELECT [pid] FROM [tbltrans]);
+GO
+INSERT INTO [tylwbilag] ([pid]) (SELECT [pid] FROM [tblwbilag]);
+GO
+INSERT INTO [tylwkladder] ([pid]) (SELECT [pid] FROM [tblwkladder]);
+GO
+
+INSERT INTO [txlafstem] ([pid],[udskriv]) SELECT d.pguid as pid, f.[udskriv] FROM [tblafstem] AS f LEFT JOIN [tylafstem] AS d ON f.pid = d.pid; 
+GO
+INSERT INTO [txlbilag] ([pid],[regnskabid],[bilag],[dato],[udskriv]) SELECT d.pguid as pid,  f.[regnskabid],f.[bilag],f.[dato],f.[udskriv] FROM [tblbilag] AS f LEFT JOIN [tylbilag] AS d ON f.pid = d.pid;
+GO
+INSERT INTO [txlkladder] ([pid],[regnskabid],[bilagpid],[tekst],[afstemningskonto],[belob],[konto],[momskode],[faktura],[id]) 
+  SELECT d.pguid as pid,f.[regnskabid],b.pguid as bilagpid,f.[tekst],f.[afstemningskonto],f.[belob],f.[konto],f.[momskode],f.[faktura],f.[id] 
+  FROM [tblkladder] AS f 
+  LEFT JOIN [tylkladder] AS d ON f.pid = d.pid 
+  LEFT JOIN [tylbilag] AS b ON f.bilagpid = b.pid; 
+GO
+INSERT INTO [txltrans] ([pid],[regnskabid],[skjul],[bilagpid],[tekst],[kontonr],[kontonavn],[moms],[debet],[kredit],[id],[nr],[belob],[afstem])
+  SELECT d.pguid as pid,f.[regnskabid],f.[skjul],b.pguid as bilagpid,f.[tekst],f.[kontonr],f.[kontonavn],f.[moms],f.[debet],f.[kredit],f.[id],f.[nr],f.[belob],a.pguid as afstem
+  FROM [tbltrans] AS f 
+  LEFT JOIN [tyltrans] AS d ON f.pid = d.pid 
+  LEFT JOIN [tylbilag] AS b ON f.bilagpid = b.pid 
+  LEFT JOIN [tylafstem] AS a ON f.afstem = a.pid; 
+GO
+INSERT INTO [txlbankkonto] ([pid],[saldo],[skjul],[dato],[tekst],[belob],[afstem])
+  SELECT d.pguid as pid,f.[saldo],f.[skjul],f.[dato],f.[tekst],f.[belob],a.pguid as afstem
+  FROM [tblbankkonto] AS f 
+  LEFT JOIN [tylbankkonto] AS d ON f.pid = d.pid 
+  LEFT JOIN [tylafstem] AS a ON f.afstem = a.pid; 
+GO
+
+DROP TABLE [tblkladder];
+GO
+DROP TABLE [tbltrans];
+GO
+DROP TABLE [tblbankkonto] ;
+GO
+DROP TABLE [tblafstem];
+GO
+DROP TABLE [tblbilag];
+GO
+DROP TABLE [tblwkladder];
+GO
+DROP TABLE [tblwbilag];
+GO
+DROP TABLE [tblbankafsteminit];
+GO
+DROP TABLE [tblkonto];
+GO
+DROP TABLE [tblnrserie];
+GO
+DROP TABLE [tblregnskab];
+GO
+
+CREATE TABLE [tblafstem] (
+  [pid] uniqueidentifier NOT NULL DEFAULT NEWID()
+, [udskriv] bit NULL
+);
+GO
+CREATE TABLE [tblbankkonto] (
+  [pid] uniqueidentifier NOT NULL DEFAULT NEWID()
+, [saldo] numeric(18,2) NULL
+, [skjul] bit NULL
+, [dato] datetime NULL
+, [tekst] nvarchar(50) NULL
+, [belob] numeric(18,2) NULL
+, [afstem] uniqueidentifier NULL
+);
+GO
+CREATE TABLE [tblbilag] (
+  [pid] uniqueidentifier NOT NULL DEFAULT NEWID()
+, [regnskabid] int NULL
+, [bilag] int NULL
+, [dato] datetime NULL
+, [udskriv] bit NULL
+);
+GO
+CREATE TABLE [tblkladder] (
+  [pid] uniqueidentifier NOT NULL DEFAULT NEWID()
+, [regnskabid] int NULL
+, [bilagpid] uniqueidentifier NULL
+, [tekst] nvarchar(50) NULL
+, [afstemningskonto] nvarchar(50) NULL
+, [belob] numeric(18,2) NULL
+, [konto] int NULL
+, [momskode] nvarchar(3) NULL
+, [faktura] int NULL
+, [id] int NULL
+);
+GO
+
+CREATE TABLE [tbltrans] (
+  [pid] uniqueidentifier NOT NULL DEFAULT NEWID()
+, [regnskabid] int NULL
+, [skjul] bit NULL
+, [bilagpid] uniqueidentifier NULL
+, [tekst] nvarchar(50) NULL
+, [kontonr] int NULL
+, [kontonavn] nvarchar(50) NULL
+, [moms] numeric(18,2) NULL
+, [debet] numeric(18,2) NULL
+, [kredit] numeric(18,2) NULL
+, [id] int NULL
+, [nr] int NULL
+, [belob] numeric(18,2) NULL
+, [afstem] uniqueidentifier NULL
+);
+GO
+CREATE TABLE [tblwbilag] (
+  [pid] uniqueidentifier NOT NULL DEFAULT NEWID()
+, [bilag] int NOT NULL
+, [dato] datetime NOT NULL
+);
+GO
+CREATE TABLE [tblwkladder] (
+  [pid] uniqueidentifier NOT NULL DEFAULT NEWID()
+, [bilagpid] uniqueidentifier NOT NULL
+, [tekst] nvarchar(50) NULL
+, [afstemningskonto] nvarchar(50) NULL
+, [belob] numeric(18,2) NULL
+, [konto] int NULL
+, [momskode] nvarchar(3) NULL
+, [faktura] int NULL
+);
+GO
+
+INSERT INTO [tblafstem] ([pid],[udskriv]) (SELECT [pid],[udskriv] FROM [txlafstem]);
+GO
+INSERT INTO [tblbankkonto] ([pid],[saldo],[skjul],[dato],[tekst],[belob],[afstem]) 
+(SELECT [pid],[saldo],[skjul],[dato],[tekst],[belob],[afstem] FROM [txlbankkonto]);
+GO
+INSERT INTO [tblbilag] ([pid],[regnskabid],[bilag],[dato],[udskriv]) 
+(SELECT [pid],[regnskabid],[bilag],[dato],[udskriv] FROM [txlbilag]);
+GO
+INSERT INTO [tblkladder] ([pid],[regnskabid],[bilagpid],[tekst],[afstemningskonto],[belob],[konto],[momskode],[faktura],[id]) 
+(SELECT [pid],[regnskabid],[bilagpid],[tekst],[afstemningskonto],[belob],[konto],[momskode],[faktura],[id] FROM [txlkladder]);
+GO
+INSERT INTO [tbltrans] ([pid],[regnskabid],[skjul],[bilagpid],[tekst],[kontonr],[kontonavn],[moms],[debet],[kredit],[id],[nr],[belob],[afstem]) 
+(SELECT [pid],[regnskabid],[skjul],[bilagpid],[tekst],[kontonr],[kontonavn],[moms],[debet],[kredit],[id],[nr],[belob],[afstem] FROM [txltrans]);
+GO
+
+
+
+
+
+ALTER TABLE [tblafstem] ADD CONSTRAINT [PK__tblafstem__000000000000249C] PRIMARY KEY ([pid]);
+GO
+ALTER TABLE [tblbankkonto] ADD CONSTRAINT [PK__tblbankkonto__000000000000049C] PRIMARY KEY ([pid]);
+GO
+ALTER TABLE [tblbilag] ADD CONSTRAINT [PK__tblbilag__000000000000049C] PRIMARY KEY ([pid]);
+GO
+ALTER TABLE [tblkladder] ADD CONSTRAINT [PK__tblkladder__000000000000049C] PRIMARY KEY ([pid]);
+GO
+ALTER TABLE [tbltrans] ADD CONSTRAINT [PK__tbltrans__000000000000049C] PRIMARY KEY ([pid]);
+GO
+ALTER TABLE [tblwbilag] ADD CONSTRAINT [PK__tblwbilag__000000000005749C] PRIMARY KEY ([pid]);
+GO
+ALTER TABLE [tblwkladder] ADD CONSTRAINT [PK__tblwkladder__0000000000015849C] PRIMARY KEY ([pid]);
+GO
+ALTER TABLE [tblbankkonto] ADD CONSTRAINT [FK_tblafstem_tblbankkonto] FOREIGN KEY ([afstem]) REFERENCES [tblafstem]([pid]) ON DELETE SET NULL ON UPDATE CASCADE;
+GO
+ALTER TABLE [tblkladder] ADD CONSTRAINT [FK_tblbilag_tblkaldder] FOREIGN KEY ([bilagpid]) REFERENCES [tblbilag]([pid]) ON DELETE CASCADE ON UPDATE CASCADE;
+GO
+ALTER TABLE [tbltrans] ADD CONSTRAINT [FK_tblafstem_tbltrans] FOREIGN KEY ([afstem]) REFERENCES [tblafstem]([pid]) ON DELETE SET NULL ON UPDATE CASCADE;
+GO
+ALTER TABLE [tbltrans] ADD CONSTRAINT [FK_tblbilag_tbltrans] FOREIGN KEY ([bilagpid]) REFERENCES [tblbilag]([pid]) ON DELETE CASCADE ON UPDATE CASCADE;
+GO
+ALTER TABLE [tblwkladder] ADD CONSTRAINT [FK_tblwbilag_tblwkaldder] FOREIGN KEY ([bilagpid]) REFERENCES [tblwbilag]([pid]) ON DELETE CASCADE ON UPDATE CASCADE;
+GO
+CREATE UNIQUE INDEX [UQ__tblafstem__0000000000001251] ON [tblafstem] ([pid] ASC);
+GO
+CREATE UNIQUE INDEX [UQ__tblbankkonto__0000000000000251] ON [tblbankkonto] ([pid] ASC);
+GO
+CREATE UNIQUE INDEX [UQ__tblbilag__0000000000000251] ON [tblbilag] ([pid] ASC);
+GO
+CREATE UNIQUE INDEX [UQ__tblkladder__0000000000000251] ON [tblkladder] ([pid] ASC);
+GO
+CREATE UNIQUE INDEX [UQ__tbltrans__0000000000000251] ON [tbltrans] ([pid] ASC);
+GO
+CREATE UNIQUE INDEX [UQ__tblwbilag__0000000000057251] ON [tblwbilag] ([pid] ASC);
+GO
+CREATE UNIQUE INDEX [UQ__tblwkladder__0000000000158251] ON [tblwkladder] ([pid] ASC);
+GO
+
+
+DROP TABLE [txlafstem];
+GO
+DROP TABLE [txlbankkonto] ;
+GO
+DROP TABLE [txlbilag];
+GO
+DROP TABLE [txlkladder];
+GO
+DROP TABLE [txltrans];
+GO
+DROP TABLE [txlwbilag];
+GO
+DROP TABLE [txlwkladder];
+GO
+DROP TABLE [tylafstem];
+GO
+DROP TABLE [tylbankkonto];
+GO
+DROP TABLE [tylbilag];
+GO
+DROP TABLE [tylkladder];
+GO
+DROP TABLE [tyltrans];
+GO
+DROP TABLE [tylwbilag];
+GO
+DROP TABLE [tylwkladder];
+GO
