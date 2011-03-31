@@ -18,7 +18,8 @@ namespace nsPuls3060
 
         private void FrmBilag_Load(object sender, EventArgs e)
         {
-            this.tblbilagBindingSource.DataSource = Program.dbDataTransSumma.Tblbilag;
+            var qryTblbilag = from b in Program.dbDataTransSumma.Tblbilag orderby b.Dato descending select b;
+            this.tblbilagBindingSource.DataSource = qryTblbilag;
         }
         private void FrmBilag_FormClosed(object sender, FormClosedEventArgs e)
         {
