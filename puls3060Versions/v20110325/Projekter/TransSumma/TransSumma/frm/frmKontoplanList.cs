@@ -13,6 +13,7 @@ namespace nsPuls3060
     public partial class FrmKontoplanList : Form
     {
         public int? SelectedKontonr { get; set; }
+        public string SelectedMomskode { get; set; }
         
         public FrmKontoplanList()
         {
@@ -109,6 +110,7 @@ namespace nsPuls3060
             if (lvwKontoplan.SelectedItems.Count == 1) 
             {
                 SelectedKontonr = int.Parse(lvwKontoplan.SelectedItems[0].Name);
+                SelectedMomskode = lvwKontoplan.SelectedItems[0].SubItems[2].Text;
             }
         }
 

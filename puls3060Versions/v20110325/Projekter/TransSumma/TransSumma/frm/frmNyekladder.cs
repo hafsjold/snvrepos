@@ -369,6 +369,7 @@ namespace nsPuls3060
                     FrmKontoplanList m_frmKontoplanList = new FrmKontoplanList(startPoint);
                     m_frmKontoplanList.ShowDialog();
                     int? selectedKontonr = m_frmKontoplanList.SelectedKontonr;
+                    string selectedMomskode = m_frmKontoplanList.SelectedMomskode;
                     m_frmKontoplanList.Close();
                     if (selectedKontonr != null) 
                     {
@@ -376,6 +377,7 @@ namespace nsPuls3060
                         if (recWkladder != null)
                         {
                             recWkladder.Konto = selectedKontonr;
+                            recWkladder.Momskode = selectedMomskode;
                         }
                     }
                 }
@@ -455,7 +457,7 @@ namespace nsPuls3060
             decimal AndenKontoBelob = 0;
             int? AndenKontoKonto = null;
             string AndenKontoTekst = "";
-            string AndenKontoMomskode;
+            string AndenKontoMomskode = "";
             string AndenKontoAfstemningskonto = "";
             string MK = "";
             bool bBankKonto = false;
@@ -565,7 +567,7 @@ namespace nsPuls3060
                         Afstemningskonto = AndenKontoAfstemningskonto,
                         Belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.Belob : BankBelob,
                         Konto = AndenKontoKonto,
-                        Momskode = MK
+                        Momskode = AndenKontoMomskode
                     };
                     recwBilag.Tblwkladder.Add(recWkladder);
                     this.tblwbilagBindingSource.Add(recwBilag);
