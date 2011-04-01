@@ -176,13 +176,13 @@ namespace nsPuls3060
                     oSheetRegnskab.Name = "Regnskab";
                     oRng = oSheetRegnskab.get_Range("D3", Missing.Value);
                     oRng.Select();
-                    bool[] Periods = { false, false, false, false, true, false, false };
+                    bool[] Periods = { false, false, false, false, true, false, true };
                     oRng.Group(true, true, Missing.Value, Periods);
 
                     oRng = oSheetRegnskab.get_Range("D4", "P4");
                     oRng.HorizontalAlignment = Excel.XlHAlign.xlHAlignRight;
 
-                    oSheetRegnskab.PageSetup.LeftHeader = "&14Regnskab Puls 3060";
+                    oSheetRegnskab.PageSetup.LeftHeader = "&14" + rec_regnskab.Navn;
                     oSheetRegnskab.PageSetup.CenterHeader = "";
                     oSheetRegnskab.PageSetup.RightHeader = "&P af &N";
                     oSheetRegnskab.PageSetup.LeftFooter = "&Z&F";

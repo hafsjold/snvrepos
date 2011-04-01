@@ -50,6 +50,7 @@
             this.regnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importerTransaktionerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importDanskebankToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.excelRegnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importerNordeaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -64,7 +65,6 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.excelRegnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -249,6 +249,13 @@
             this.importDanskebankToolStripMenuItem.Text = "Import Danskebank";
             this.importDanskebankToolStripMenuItem.Click += new System.EventHandler(this.importDanskebankToolStripMenuItem_Click);
             // 
+            // excelRegnskabToolStripMenuItem
+            // 
+            this.excelRegnskabToolStripMenuItem.Name = "excelRegnskabToolStripMenuItem";
+            this.excelRegnskabToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.excelRegnskabToolStripMenuItem.Text = "Excel Regnskab";
+            this.excelRegnskabToolStripMenuItem.Click += new System.EventHandler(this.excelRegnskabToolStripMenuItem_Click);
+            // 
             // importerNordeaToolStripMenuItem
             // 
             this.importerNordeaToolStripMenuItem.Name = "importerNordeaToolStripMenuItem";
@@ -363,13 +370,6 @@
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
-            // 
-            // excelRegnskabToolStripMenuItem
-            // 
-            this.excelRegnskabToolStripMenuItem.Name = "excelRegnskabToolStripMenuItem";
-            this.excelRegnskabToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.excelRegnskabToolStripMenuItem.Text = "Excel Regnskab";
-            this.excelRegnskabToolStripMenuItem.Click += new System.EventHandler(this.excelRegnskabToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
