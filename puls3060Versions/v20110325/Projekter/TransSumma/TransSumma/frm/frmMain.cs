@@ -115,8 +115,6 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
-            clsExcel objExcel = new clsExcel();
-            objExcel.ecxelPoster();
             //KarKartotek recKartotek = new KarKartotek();
             //int testx = 1;
             //KarBankafstemning recBankafstemning = new KarBankafstemning();
@@ -358,6 +356,12 @@ namespace nsPuls3060
                 m_Bilag.MdiParent = this;
                 m_Bilag.Show();
             }
+        }
+
+        private void excelRegnskabToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clsExcel objExcel = new clsExcel();
+            objExcel.ecxelPoster();
         }
 
     }

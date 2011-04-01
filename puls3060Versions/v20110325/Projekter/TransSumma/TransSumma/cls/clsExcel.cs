@@ -61,21 +61,20 @@ namespace nsPuls3060
                     //oXL.Visible = true; //For debug
 
                     //Get a new workbook.
-
                     oWB = oXL.Workbooks.Add((Missing.Value));
                     oSheetPoster = (Excel._Worksheet)oWB.ActiveSheet;
                     oWindow = oXL.ActiveWindow;
 
                     if (pSheetName.Length > 0) oSheetPoster.Name = pSheetName.Substring(0, pSheetName.Length > 34 ? 34 : pSheetName.Length);
                     int row = 1;
-                    //this.MainformProgressBar.Value = 0;
-                    //this.MainformProgressBar.Minimum = 0;
-                    //this.MainformProgressBar.Maximum = (from h in Program.karPosteringer select h).Count();
-                    //this.MainformProgressBar.Step = 1;
-                    //this.MainformProgressBar.Visible = true;
+                    Program.frmMain.MainformProgressBar.Value = 0;
+                    Program.frmMain.MainformProgressBar.Minimum = 0;
+                    Program.frmMain.MainformProgressBar.Maximum = (from h in Program.karPosteringer select h).Count();
+                    Program.frmMain.MainformProgressBar.Step = 1;
+                    Program.frmMain.MainformProgressBar.Visible = true;
                     foreach (clsJournalposter m in JournalPoster)
                     {
-                        //this.MainformProgressBar.PerformStep();
+                        Program.frmMain.MainformProgressBar.PerformStep();
                         row++;
                         Type objectType = m.GetType();
                         PropertyInfo[] properties = objectType.GetProperties();
@@ -135,8 +134,6 @@ namespace nsPuls3060
 
 
                     oSheetRegnskab = (Excel._Worksheet)oWB.Worksheets.Add(System.Type.Missing, System.Type.Missing, System.Type.Missing, System.Type.Missing);
-                    oRng = oSheetRegnskab.get_Range("C2", Missing.Value);
-                    oRng.Formula = "Antal medlemmer: 300";
 
                     //oXL.Visible = true; //For debug
 
@@ -226,9 +223,7 @@ namespace nsPuls3060
                     oWB.SaveAs(SaveAs, Excel.XlFileFormat.xlWorkbookNormal, "", "", false, false, Excel.XlSaveAsAccessMode.xlExclusive, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
                     oWB.Saved = true;
                     oXL.Visible = true;
-                    //this.MainformProgressBar.Visible = false;
-
-
+                    Program.frmMain.MainformProgressBar.Visible = false;
 
                     //oXL.Quit();
                     //oXL = null;
@@ -245,7 +240,7 @@ namespace nsPuls3060
                 }
             }
         }
-        
+
         private string IUAP(string Type, string DK)
         {
             if (Type == "Drift")
