@@ -20,7 +20,7 @@ namespace nsPuls3060
         public string Enhed { get; set; }
         public decimal? Pris { get; set; }
         public decimal? Rabat { get; set; }
-        public string Felt07 { get; set; }
+        public decimal? Moms { get; set; }
         public decimal? Felt08 { get; set; }
         public decimal? Fakturabelob { get; set; }
         public string Felt10 { get; set; }
@@ -36,6 +36,13 @@ namespace nsPuls3060
         private string m_path { get; set; }
 
         public KarFakturavarer_k()
+        {
+            var rec_regnskab = Program.qryAktivRegnskab();
+            m_path = rec_regnskab.Placering + "fakturavarer_k.dat";
+            open();
+        }
+
+        public KarFakturavarer_k(bool Append)
         {
             var rec_regnskab = Program.qryAktivRegnskab();
             m_path = rec_regnskab.Placering + "fakturavarer_k.dat";
@@ -124,7 +131,7 @@ namespace nsPuls3060
                             Enhed = value3[4],
                             Pris = Microsoft.VisualBasic.Information.IsNumeric(value3[5]) ? decimal.Parse(value3[5]) : (decimal?)null,
                             Rabat = Microsoft.VisualBasic.Information.IsNumeric(value3[6]) ? decimal.Parse(value3[6]) : (decimal?)null,
-                            Felt07 = value3[7],
+                            Moms = Microsoft.VisualBasic.Information.IsNumeric(value3[7]) ? decimal.Parse(value3[7]) : (decimal?)null,
                             Felt08 = Microsoft.VisualBasic.Information.IsNumeric(value3[8]) ? decimal.Parse(value3[8]) : (decimal?)null,
                             Fakturabelob = Microsoft.VisualBasic.Information.IsNumeric(value3[9]) ? decimal.Parse(value3[9]) : (decimal?)null,
                             Felt10 = value3[10],

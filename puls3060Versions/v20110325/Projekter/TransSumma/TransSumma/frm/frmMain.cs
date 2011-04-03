@@ -115,6 +115,9 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
+            clsFaktura objFaktura = new clsFaktura();
+            objFaktura.ImportSalgsfakturaer();
+            objFaktura.ImportKøbsfakturaer();
             //KarKartotek recKartotek = new KarKartotek();
             //int testx = 1;
             //KarBankafstemning recBankafstemning = new KarBankafstemning();
@@ -362,6 +365,16 @@ namespace nsPuls3060
         {
             clsExcel objExcel = new clsExcel();
             objExcel.ecxelPoster();
+        }
+
+        private void fakturaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("Faktura"))
+            {
+                FrmFaktura m_Faktura = new FrmFaktura();
+                m_Faktura.MdiParent = this;
+                m_Faktura.Show();
+            }
         }
 
     }

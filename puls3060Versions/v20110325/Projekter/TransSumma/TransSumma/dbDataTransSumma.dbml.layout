@@ -103,5 +103,24 @@
         <classShapeMoniker Id="5581cf46-ea97-4d5d-b924-0131cd601c2e" />
       </nodes>
     </associationConnector>
+    <classShape Id="d1c012e1-c533-4293-af49-962bc82f3094" absoluteBounds="6.125, 0.625, 2, 2.0822371419270831">
+      <DataClassMoniker Name="/DbDataTransSumma/Tblfak" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f3ea17ea-5e2b-4433-83be-9987b62f1758" absoluteBounds="6.14, 1.085, 1.9700000000000002, 1.5222371419270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="928fe8ee-0a79-484f-a650-137293d81c1a" absoluteBounds="6.125, 3.625, 2, 3.3970157877604166">
+      <DataClassMoniker Name="/DbDataTransSumma/Tblfaklin" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f99c265f-3202-49d1-8db1-01c0112eed56" absoluteBounds="6.14, 4.085, 1.9700000000000002, 2.8370157877604165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(7.125 : 2.70723714192708); (7.125 : 3.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DbDataTransSumma/Tblfak/Tblfak_Tblfaklin" />
+      <nodes>
+        <classShapeMoniker Id="d1c012e1-c533-4293-af49-962bc82f3094" />
+        <classShapeMoniker Id="928fe8ee-0a79-484f-a650-137293d81c1a" />
+      </nodes>
+    </associationConnector>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

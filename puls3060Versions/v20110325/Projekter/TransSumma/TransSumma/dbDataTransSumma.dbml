@@ -39,6 +39,40 @@
       <Association Name="Tblbilag_Tbltrans" Member="Tbltrans" ThisKey="Pid" OtherKey="Bilagpid" Type="Tbltrans" />
     </Type>
   </Table>
+  <Table Name="tblfak" Member="Tblfak">
+    <Type Name="Tblfak">
+      <Column Name="pid" Member="Pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="udskriv" Member="Udskriv" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="regnskabid" Member="Regnskabid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sk" Member="Sk" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="fakid" Member="Fakid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="faknr" Member="Faknr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dato" Member="Dato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="konto" Member="Konto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Tblfak_Tblfaklin" Member="Tblfaklin" ThisKey="Pid" OtherKey="Fakpid" Type="Tblfaklin" />
+    </Type>
+  </Table>
+  <Table Name="tblfaklin" Member="Tblfaklin">
+    <Type Name="Tblfaklin">
+      <Column Name="pid" Member="Pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fakpid" Member="Fakpid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="regnskabid" Member="Regnskabid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sk" Member="Sk" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="fakid" Member="Fakid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="faklinnr" Member="Faklinnr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="varenr" Member="Varenr" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="tekst" Member="Tekst" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
+      <Column Name="konto" Member="Konto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="momskode" Member="Momskode" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="antal" Member="Antal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="enhed" Member="Enhed" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="pris" Member="Pris" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="rabat" Member="Rabat" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="moms" Member="Moms" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="belob" Member="Belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Association Name="Tblfak_Tblfaklin" Member="Tblfak" ThisKey="Fakpid" OtherKey="Pid" Type="Tblfak" IsForeignKey="true" DeleteOnNull="true" />
+    </Type>
+  </Table>
   <Table Name="tblkladder" Member="Tblkladder">
     <Type Name="Tblkladder">
       <Column Name="pid" Member="Pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />

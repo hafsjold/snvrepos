@@ -65,6 +65,7 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.fakturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -266,7 +267,8 @@
             // systemToolStripMenuItem
             // 
             this.systemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem2});
+            this.toolStripMenuItem2,
+            this.fakturaToolStripMenuItem});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
             this.systemToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.systemToolStripMenuItem.Text = "System";
@@ -274,7 +276,7 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(132, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem2.Text = "Regnskab";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.regnskabToolStripMenuItem_Click);
             // 
@@ -371,6 +373,13 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
+            // fakturaToolStripMenuItem
+            // 
+            this.fakturaToolStripMenuItem.Name = "fakturaToolStripMenuItem";
+            this.fakturaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.fakturaToolStripMenuItem.Text = "Faktura";
+            this.fakturaToolStripMenuItem.Click += new System.EventHandler(this.fakturaToolStripMenuItem_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -439,6 +448,7 @@
         public System.Windows.Forms.ToolStripProgressBar MainformProgressBar;
         public System.Windows.Forms.ToolStripStatusLabel MainformProgressText;
         private System.Windows.Forms.ToolStripMenuItem excelRegnskabToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fakturaToolStripMenuItem;
     }
 }
 
