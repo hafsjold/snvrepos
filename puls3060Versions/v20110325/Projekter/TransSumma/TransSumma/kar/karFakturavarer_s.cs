@@ -157,7 +157,22 @@ namespace nsPuls3060
                                select d;
                 foreach (var rec in qry_this)
                 {
-                    string ln = rec.Fakid + @"=""" + rec.Varenr + @",""""" + rec.VareTekst + @"""""," + rec.Bogfkonto + "," + rec.Antal + @",,""""" + rec.Fakturabelob + @",00"""",,,""""" + rec.Fakturabelob + @",00"""",""""" + rec.Fakturabelob + @",00"""",0,,,,,""";
+                    string ln = rec.Fakid 
+                              + @"=""" 
+                              + rec.Varenr  //0
+                              + @",""""" 
+                              + rec.VareTekst //1
+                              + @"""""," 
+                              + rec.Bogfkonto //2
+                              + "," 
+                              + rec.Antal //3
+                              + @",,""""" 
+                              + rec.Pris //5
+                              + @",00"""",,,"""""
+                              + rec.Felt08  //8
+                              + @",00"""",""""" 
+                              + rec.Fakturabelob //9
+                              + @",00"""",0,,,,,""";
                     sr.WriteLine(ln);
                 }
             }

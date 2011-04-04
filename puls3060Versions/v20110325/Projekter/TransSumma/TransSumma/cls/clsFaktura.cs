@@ -210,5 +210,121 @@ namespace nsPuls3060
             Program.dbDataTransSumma.SubmitChanges();
 
         }
+
+        
+        public int SalgsOrder2Summa()
+        {
+            var rec_regnskab = Program.qryAktivRegnskab();
+            if (rec_regnskab.Afsluttet == true) return 0;
+            KarFakturastr_s m_karFakturastr_s = null;
+            KarFakturavarer_s m_karFakturavarer_s = null;
+
+            DateTime? Startdato = rec_regnskab.Start;
+            DateTime? Slutdato = rec_regnskab.Slut;
+            if (rec_regnskab.DatoLaas != null)
+            {
+                if (rec_regnskab.DatoLaas > Startdato) Startdato = rec_regnskab.DatoLaas;
+            }
+            var qry_ord = from sf in Program.dbDataTransSumma.Tblwfak
+                          where sf.Sk == "S"
+                          select sf;
+
+            int AntalOrdre = qry_ord.Count();
+
+            if (AntalOrdre > 0)
+            {
+                DateTime ToDay = DateTime.Today;
+                int SidsteSFakID;
+                int SidsteRec_no;
+                try
+                {
+                    SidsteSFakID = (from f in Program.karFakturaer_s select f.fakid).Max();
+                }
+                catch (System.InvalidOperationException)
+                {
+                    SidsteSFakID = 0;
+                }
+                try
+                {
+                    SidsteRec_no = (from f in Program.karFakturaer_s select f.rec_no).Max();
+                }
+                catch (System.InvalidOperationException)
+                {
+                    SidsteRec_no = 0;
+                }
+                m_karFakturastr_s = new KarFakturastr_s();
+                m_karFakturavarer_s = new KarFakturavarer_s(true);
+
+                foreach (var o in qry_ord)
+                {
+
+                    SidsteSFakID++;
+                    SidsteRec_no++;
+                    var qry_ordlin = from sfl in Program.dbDataTransSumma.Tblwfaklin where sfl.Fakpid == o.Pid select sfl;
+                    int orebelob = (int)((from s in qry_ordlin select s.Belob).Sum()) * 100;
+
+                    ordtype_s ord = new ordtype_s
+                    (  
+                        SidsteSFakID,                     //fakid
+                        (DateTime)o.Dato,                 //dato
+                        ((DateTime)o.Dato).AddDays(14),   //forfaldsdato
+                        orebelob,                         //fakbeløb i øre
+                        (int)(o.Konto)                    //debitornr
+                    );
+                    recFakturaer_s rec = new recFakturaer_s { rec_no = SidsteRec_no, rec_data = ord };
+                    Program.karFakturaer_s.Add(rec);
+
+                    var m_rec = (from m in Program.karKartotek where m.Kontonr == o.Konto select m).First();
+                    recFakturastr_s rec_Fakturastr_s = new recFakturastr_s
+                    {
+                        Fakid = SidsteSFakID.ToString(),
+                        Navn = m_rec.Kontonavn,
+                        Adresse = m_rec.Adresse,
+                        Postnr = m_rec.Postnr,
+                        Bynavn = m_rec.Bynavn,
+                        Email = m_rec.Email
+                    };
+                    m_karFakturastr_s.Add(rec_Fakturastr_s);
+
+                    foreach (var l in qry_ordlin)
+                    {
+                        recFakturavarer_s rec_Fakturavarer_s = new recFakturavarer_s
+                        {
+                            Fakid = SidsteSFakID,
+                            Varenr = int.Parse(l.Varenr),
+                            VareTekst = l.Tekst,
+                            Bogfkonto = l.Konto,
+                            Antal = l.Antal,
+                            Pris = l.Pris,
+                            Moms = l.Moms,
+                            Fakturabelob = l.Belob
+                        };
+                        m_karFakturavarer_s.Add(rec_Fakturavarer_s);
+                    }
+                }
+                Program.karFakturaer_s.save();
+                m_karFakturastr_s.save();
+                m_karFakturavarer_s.save();
+
+                try
+                {
+                    recStatus rec_Status = (from s in Program.karStatus where s.key == "SidsteSFakID" select s).First();
+                    rec_Status.value = SidsteSFakID.ToString();
+                }
+                catch (System.InvalidOperationException)
+                {
+                    recStatus rec_Status = new recStatus
+                    {
+                        key = "SidsteSFakID",
+                        value = SidsteSFakID.ToString()
+                    };
+                    Program.karStatus.Add(rec_Status);
+                }
+                Program.karStatus.save();
+                Program.dbDataTransSumma.SubmitChanges();
+            }
+            return AntalOrdre;
+        }
+        
     }
 }

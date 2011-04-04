@@ -57,15 +57,31 @@ namespace nsPuls3060
                                 where k.Saldo != null && k.Saldo != 0
                                 select k;
                 qry_Kartotek = from k in Program.karKartotek
-                                where k.Saldo != null && k.Saldo != 0
-                                select k;
+                               where k.Saldo != null && k.Saldo != 0
+                               select new recKontoplan 
+                               {
+                                    DK = k.DK,
+                                    Kontonavn = k.Kontonavn,
+                                    Kontonr = k.Kontonr,
+                                    Moms = k.Moms,
+                                    Saldo = k.Saldo,
+                                    Type = k.Type
+                               };
             }
             else
             {
                 qry_Kontoplan = from k in Program.karKontoplan
                                 select k;
                 qry_Kartotek = from k in Program.karKartotek
-                                select k;
+                               select new recKontoplan
+                               {
+                                   DK = k.DK,
+                                   Kontonavn = k.Kontonavn,
+                                   Kontonr = k.Kontonr,
+                                   Moms = k.Moms,
+                                   Saldo = k.Saldo,
+                                   Type = k.Type
+                               };
             }
             
             qry_Join = qry_Kontoplan.Union(qry_Kartotek);

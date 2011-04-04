@@ -15,7 +15,6 @@ namespace nsPuls3060
         public string Adresse { get; set; }
         public string Postnr { get; set; }
         public string Bynavn { get; set; }
-        public int Faknr { get; set; }
         public string Email { get; set; }
     }
 
@@ -39,7 +38,7 @@ namespace nsPuls3060
                                select d;
                 foreach (var rec in qry_this)
                 {
-                    string ln = rec.Fakid + @"=""""""" + rec.Navn + @""""",""""" + rec.Adresse + @""""",""""" + rec.Postnr + " " + rec.Bynavn + @""""""",,,," + rec.Faknr + @",,,,," + rec.Email + @",,,";
+                    string ln = rec.Fakid + @"=""""""" + rec.Navn + @""""",""""" + rec.Adresse + @""""",""""" + rec.Postnr + " " + rec.Bynavn + @""""""",,,,,,,,," + rec.Email + @",,,";
                     sr.WriteLine(ln);
                 }
             }

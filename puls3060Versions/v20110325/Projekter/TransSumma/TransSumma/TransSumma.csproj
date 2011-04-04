@@ -204,6 +204,12 @@
     <Compile Include="NullableDateTimePicker.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="frm\frmNyfaktura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmNyfaktura.Designer.cs">
+      <DependentUpon>frmNyfaktura.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="app.config" />
@@ -237,6 +243,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmNyfaktura.resx">
+      <DependentUpon>frmNyfaktura.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm\frmRegnskab.resx">
       <DependentUpon>frmRegnskab.cs</DependentUpon>
@@ -291,6 +300,7 @@
     <None Include="Properties\DataSources\Tblbilag.datasource" />
     <None Include="Properties\DataSources\Tblfak.datasource" />
     <None Include="Properties\DataSources\Tblwbilag.datasource" />
+    <None Include="Properties\DataSources\Tblwfak.datasource" />
     <None Include="Resources\Add.bmp" />
     <Content Include="Resources\info.png" />
     <Content Include="Resources\logopart.jpg" />

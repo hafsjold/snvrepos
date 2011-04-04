@@ -145,6 +145,32 @@
       <Association Name="Tblwbilag_Tblwkladder" Member="Tblwkladder" ThisKey="Pid" OtherKey="Bilagpid" Type="Tblwkladder" />
     </Type>
   </Table>
+  <Table Name="tblwfak" Member="Tblwfak">
+    <Type Name="Tblwfak">
+      <Column Name="pid" Member="Pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="sk" Member="Sk" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="dato" Member="Dato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="konto" Member="Konto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Tblwfak_Tblwfaklin" Member="Tblwfaklin" ThisKey="Pid" OtherKey="Fakpid" Type="Tblwfaklin" />
+    </Type>
+  </Table>
+  <Table Name="tblwfaklin" Member="Tblwfaklin">
+    <Type Name="Tblwfaklin">
+      <Column Name="pid" Member="Pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fakpid" Member="Fakpid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="varenr" Member="Varenr" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="tekst" Member="Tekst" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
+      <Column Name="konto" Member="Konto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="momskode" Member="Momskode" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="antal" Member="Antal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="enhed" Member="Enhed" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="pris" Member="Pris" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="rabat" Member="Rabat" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="moms" Member="Moms" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="belob" Member="Belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Association Name="Tblwfak_Tblwfaklin" Member="Tblwfak" ThisKey="Fakpid" OtherKey="Pid" Type="Tblwfak" IsForeignKey="true" DeleteOnNull="true" />
+    </Type>
+  </Table>
   <Table Name="tblwkladder" Member="Tblwkladder">
     <Type Name="Tblwkladder">
       <Column Name="pid" Member="Pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />

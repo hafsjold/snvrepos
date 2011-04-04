@@ -9,19 +9,19 @@ using System.Windows.Forms;
 
 namespace nsPuls3060
 {
-    public partial class FrmFaktura : Form
+    public partial class FrmNyfaktura : Form
     {
-        public FrmFaktura()
+        public FrmNyfaktura()
         {
             InitializeComponent();
         }
 
-        private void FrmFaktura_Load(object sender, EventArgs e)
+        private void FrmNyfaktura_Load(object sender, EventArgs e)
         {
-            this.tblfakBindingSource.DataSource = Program.dbDataTransSumma.Tblfak;
+            this.tblwfakBindingSource.DataSource = Program.dbDataTransSumma.Tblwfak;
         }
 
-        private void FrmFaktura_FormClosed(object sender, FormClosedEventArgs e)
+        private void FrmNyfaktura_FormClosed(object sender, FormClosedEventArgs e)
         {
             Program.dbDataTransSumma.SubmitChanges();
         }

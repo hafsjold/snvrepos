@@ -401,7 +401,16 @@ namespace nsPuls3060
                         try
                         {
                             IEnumerable<recKontoplan> qry_Kontoplan = from k in Program.karKontoplan select k;
-                            IEnumerable<recKontoplan> qry_Kartotek = from k in Program.karKartotek select k;
+                            IEnumerable<recKontoplan> qry_Kartotek = from k in Program.karKartotek
+                                                                     select new recKontoplan
+                                                                     {
+                                                                         DK = k.DK,
+                                                                         Kontonavn = k.Kontonavn,
+                                                                         Kontonr = k.Kontonr,
+                                                                         Moms = k.Moms,
+                                                                         Saldo = k.Saldo,
+                                                                         Type = k.Type
+                                                                     };
                             IEnumerable<recKontoplan> qry_Join = qry_Kontoplan.Union(qry_Kartotek);
                             kontonavn = (from k in qry_Join where k.Kontonr == recWkladder.Konto select k.Kontonavn).First();
                         }
