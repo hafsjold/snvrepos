@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Vagtplan Tekst="Arbejde Lindevang" StartDato="2011-03-14" RulDage="42">
+  <Vagt Dag="1" Start="08:00:00" Slut="15:00:00" />
+  <Vagt Dag="2" Start="07:00:00" Slut="15:00:00" />
+  <Vagt Dag="3" Fri="Ja" />
+  <Vagt Dag="4" Start="07:00:00" Slut="15:00:00" />
+  <Vagt Dag="5" Start="07:00:00" Slut="14:00:00" />
+  <Vagt Dag="6" Fri="Ja" />
+  <Vagt Dag="7" Fri="Ja" />
+  <Vagt Dag="8" Start="08:00:00" Slut="16:00:00" />
+  <Vagt Dag="9" Start="08:00:00" Slut="16:00:00" />
+  <Vagt Dag="10" Fri="Ja" />
+  <Vagt Dag="11" Start="08:00:00" Slut="16:00:00" />
+  <Vagt Dag="12" Fri="Ja" />
+  <Vagt Dag="13" Fri="Ja" />
+  <Vagt Dag="14" Fri="Ja" />
+  <Vagt Dag="15" Fri="Ja" />
+  <Vagt Dag="16" Start="15:00:00" Slut="23:00:00" />
+  <Vagt Dag="17" Start="08:00:00" Slut="15:00:00" />
+  <Vagt Dag="18" Fri="Ja" />
+  <Vagt Dag="19" Start="08:00:00" Slut="15:00:00" />
+  <Vagt Dag="20" Start="07:00:00" Slut="15:00:00" />
+  <Vagt Dag="21" Start="07:00:00" Slut="15:00:00" />
+  <Vagt Dag="22" Start="15:00:00" Slut="23:00:00" />
+  <Vagt Dag="23" Start="08:00:00" Slut="16:00:00" />
+  <Vagt Dag="24" Fri="Ja" />
+  <Vagt Dag="25" Fri="Ja" />
+  <Vagt Dag="26" Fri="Ja" />
+  <Vagt Dag="27" Fri="Ja" />
+  <Vagt Dag="28" Fri="Ja" />
+  <Vagt Dag="29" Fri="Ja" />
+  <Vagt Dag="30" Start="13:00:00" Slut="21:00:00" />
+  <Vagt Dag="31" Start="08:00:00" Slut="16:00:00" />
+  <Vagt Dag="32" Start="08:00:00" Slut="16:00:00" />
+  <Vagt Dag="33" Fri="Ja" />
+  <Vagt Dag="34" Fri="Ja" />
+  <Vagt Dag="35" Fri="Ja" />
+  <Vagt Dag="36" Start="08:00:00" Slut="15:00:00" />
+  <Vagt Dag="37" Start="08:00:00" Slut="15:00:00" />
+  <Vagt Dag="38" Fri="Ja" />
+  <Vagt Dag="39" Fri="Ja" />
+  <Vagt Dag="40" Fri="Ja" />
+  <Vagt Dag="41" Start="07:00:00" Slut="15:00:00" />
+  <Vagt Dag="42" Start="07:00:00" Slut="15:00:00" />
+</Vagtplan>
