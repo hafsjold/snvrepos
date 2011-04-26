@@ -203,6 +203,7 @@ namespace nsPuls3060
 
             fld = new DirectoryInfo(m_path);
             Regex regexPoster = new Regex(@"^[0123456789]+\.dat", RegexOptions.IgnoreCase);
+            //Regex regexPoster = new Regex(@"^debkredposter\.dat|^[0123456789]+\.dat", RegexOptions.IgnoreCase);
 
             int n = 0;
             foreach (FileInfo f in fld.GetFiles())

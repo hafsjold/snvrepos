@@ -69,7 +69,9 @@
       <Column Name="pris" Member="Pris" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="rabat" Member="Rabat" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="moms" Member="Moms" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="belob" Member="Belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="nettobelob" Member="Nettobelob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="bruttobelob" Member="Bruttobelob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="omkostbelob" Member="Omkostbelob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Association Name="Tblfak_Tblfaklin" Member="Tblfak" ThisKey="Fakpid" OtherKey="Pid" Type="Tblfak" IsForeignKey="true" DeleteOnNull="true" />
     </Type>
   </Table>
@@ -137,6 +139,12 @@
       <Association Name="Tblbilag_Tbltrans" Member="Tblbilag" ThisKey="Bilagpid" OtherKey="Pid" Type="Tblbilag" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="tblvareomkostninger" Member="Tblvareomkostninger">
+    <Type Name="Tblvareomkostninger">
+      <Column Name="kontonr" Member="Kontonr" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="omktype" Member="Omktype" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Table Name="tblwbilag" Member="Tblwbilag">
     <Type Name="Tblwbilag">
       <Column Name="pid" Member="Pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -167,7 +175,8 @@
       <Column Name="pris" Member="Pris" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="rabat" Member="Rabat" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="moms" Member="Moms" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="belob" Member="Belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="nettobelob" Member="Nettobelob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="bruttobelob" Member="Bruttobelob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Association Name="Tblwfak_Tblwfaklin" Member="Tblwfak" ThisKey="Fakpid" OtherKey="Pid" Type="Tblwfak" IsForeignKey="true" DeleteOnNull="true" />
     </Type>
   </Table>

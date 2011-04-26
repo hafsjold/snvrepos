@@ -25,5 +25,32 @@ namespace nsPuls3060
         {
             Program.dbDataTransSumma.SubmitChanges();
         }
+
+        private void tblfaklinDataGridView_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            if (e.KeyCode == Keys.C && e.Control)
+            {
+                this.copyToClipboard();
+                e.Handled = true; //otherwise the control itself tries to “copy”
+            }
+        }
+
+        private void copyToClipboard()
+        {
+            IDataObject clipboardData = getDataObject();
+            Clipboard.SetDataObject(clipboardData);
+        }
+
+        private IDataObject getDataObject()
+        {
+            DataObject clipboardData = this.tblfaklinDataGridView.GetClipboardContent();
+            return clipboardData;
+        }
+
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.copyToClipboard();
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace nsPuls3060
         public int dato;
         public int int20;
         public int forfdato;
-        public int int28;
+        public int momsbelob;
         public int int32;
         public int fakbelob;
         public int int40;
@@ -26,10 +26,10 @@ namespace nsPuls3060
         public int const_1079574528;
         public int valuta;
         public int debitornr;
-        public int int68;
+        public int faktype;
         public int statenum;
 
-        public ordtype_s(int p_fakid, DateTime p_dato, DateTime p_forfdato, int p_fakbelob, int p_debitornr)
+        public ordtype_s(int p_fakid, DateTime p_dato, DateTime p_forfdato, int p_fakbelob, int p_debitornr, int p_momsbelob)
         {
             fakid = p_fakid;
             dato = clsUtil.SummaDateTime2Serial(p_dato);
@@ -37,6 +37,8 @@ namespace nsPuls3060
             fakbelob = p_fakbelob;
             saldo = p_fakbelob;
             debitornr = p_debitornr;
+            momsbelob = p_momsbelob;
+            faktype = 0; //0=Debitor Faktura, 1=Debitor Kreditnota
 
             faknr = 0;
             const_1079574528 = 1079574528;
@@ -45,12 +47,10 @@ namespace nsPuls3060
             int8 = 0;
             int12 = 0;
             int20 = 0;
-            int28 = 0;
             int32 = 0;
             int40 = 0;
             int48 = 0;
             int52 = 0;
-            int68 = 0;
         }
     }
 
@@ -126,6 +126,17 @@ namespace nsPuls3060
                 m_rec_data.forfdato = clsUtil.SummaDateTime2Serial(forfdato);
             }
         }
+        public int momsbelob
+        {
+            get
+            {
+                return m_rec_data.momsbelob;
+            }
+            set
+            {
+                m_rec_data.momsbelob = value;
+            }
+        }
         public int fakbelob
         {
             get
@@ -157,6 +168,17 @@ namespace nsPuls3060
             set
             {
                 m_rec_data.debitornr = value;
+            }
+        }
+        public int faktype
+        {
+            get
+            {
+                return m_rec_data.faktype;
+            }
+            set
+            {
+                m_rec_data.faktype = value;
             }
         }
         public recFakturaer_s() { }

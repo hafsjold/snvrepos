@@ -12,12 +12,12 @@ namespace nsPuls3060
     {
         public int faknr;
         public int fakid;
-        public int int8;
+        public int kreditorbilagsnr;
         public int int12;
         public int dato;
         public int int20;
         public int forfdato;
-        public int int28;
+        public int momsbelob;
         public int int32;
         public int fakbelob;
         public int int40;
@@ -27,10 +27,10 @@ namespace nsPuls3060
         public int const_1079574528;
         public int valuta;
         public int kreditornr;
-        public int int68;
+        public int faktype;
         public int statenum;
 
-        public ordtype_k(int p_fakid, DateTime p_dato, DateTime p_forfdato, int p_fakbelob, int p_kreditornr)
+        public ordtype_k(int p_fakid, DateTime p_dato, DateTime p_forfdato, int p_fakbelob, int p_kreditornr, int p_momsbelob)
         {
             fakid = p_fakid;
             dato = clsUtil.SummaDateTime2Serial(p_dato);
@@ -38,20 +38,20 @@ namespace nsPuls3060
             fakbelob = p_fakbelob;
             saldo = p_fakbelob;
             kreditornr = p_kreditornr;
+            momsbelob = p_momsbelob;
+            faktype = 2; //2=Kreditor Faktura, 3=Kreditor Kreditnota
+            kreditorbilagsnr = 0;
 
             faknr = 0;
             const_1079574528 = 1079574528;
             valuta = 1263223811;
             statenum = 0;
-            int8 = 0;
             int12 = 0;
             int20 = 0;
-            int28 = 0;
             int32 = 0;
             int40 = 0;
             int48 = 0;
             int52 = 0;
-            int68 = 0;
         }
     }
     public class recFakturaer_k
@@ -125,6 +125,17 @@ namespace nsPuls3060
                 m_rec_data.forfdato = clsUtil.SummaDateTime2Serial(forfdato);
             }
         }
+        public int momsbelob
+        {
+            get
+            {
+                return m_rec_data.momsbelob;
+            }
+            set
+            {
+                m_rec_data.momsbelob = value;
+            }
+        }
         public int fakbelob
         {
             get
@@ -158,7 +169,17 @@ namespace nsPuls3060
                 m_rec_data.kreditornr = value;
             }
         }
-        public recFakturaer_k() { }
+        public int faktype
+        {
+            get
+            {
+                return m_rec_data.faktype;
+            }
+            set
+            {
+                m_rec_data.faktype = value;
+            }
+        }       public recFakturaer_k() { }
     }
 
     public class KarFakturaer_k : List<recFakturaer_k>

@@ -11,10 +11,7 @@ namespace nsPuls3060
         public recFakturastr_s() { }
 
         public string Fakid { get; set; }
-        public string Navn { get; set; }
-        public string Adresse { get; set; }
-        public string Postnr { get; set; }
-        public string Bynavn { get; set; }
+        public clsNavnAdresse FakNavnAdresse { get; set; }
         public string Email { get; set; }
     }
 
@@ -38,7 +35,7 @@ namespace nsPuls3060
                                select d;
                 foreach (var rec in qry_this)
                 {
-                    string ln = rec.Fakid + @"=""""""" + rec.Navn + @""""",""""" + rec.Adresse + @""""",""""" + rec.Postnr + " " + rec.Bynavn + @""""""",,,,,,,,," + rec.Email + @",,,";
+                    string ln = rec.Fakid + @"=""" + rec.FakNavnAdresse.getCsv() +  @""",,,,,,,,," + rec.Email + @",,,";
                     sr.WriteLine(ln);
                 }
             }

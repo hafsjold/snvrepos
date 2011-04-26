@@ -115,10 +115,12 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
+            //object xx = Program.karPosteringer;
+            //object xx = Program.karFakturaer_k;
             clsFaktura objFaktura = new clsFaktura();
-            objFaktura.SalgsOrder2Summa();
-            //objFaktura.ImportSalgsfakturaer();
-            //objFaktura.ImportKøbsfakturaer();
+            //objFaktura.KøbsOrder2Summa();
+            objFaktura.ImportSalgsfakturaer();
+            objFaktura.ImportKøbsfakturaer();
             //KarKartotek recKartotek = new KarKartotek();
             //int testx = 1;
             //KarBankafstemning recBankafstemning = new KarBankafstemning();

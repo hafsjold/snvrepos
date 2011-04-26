@@ -14,7 +14,7 @@ namespace nsPuls3060
             var rec_regnskab = Program.qryAktivRegnskab();
             var qrySFak = from sfv in Program.karFakturavarer_s
                              join sf in Program.karFakturaer_s on new { fakid = sfv.Fakid } equals new { fakid = sf.fakid }
-                             where sf.faknr != 0
+                             where sf.faknr != 0 && sf.faktype == 0
                              join fl in Program.dbDataTransSumma.Tblfaklin
                              on new
                              {
@@ -52,7 +52,8 @@ namespace nsPuls3060
                                  Pris = sfv.Pris,
                                  Rabat = sfv.Rabat,
                                  Moms = sfv.Moms,
-                                 Belob = sfv.Fakturabelob,
+                                 Nettobelob = sfv.Nettobelob,
+                                 Bruttobelob = sfv.Bruttobelob,
                              };
 
             int antal = qrySFak.Count();
@@ -99,7 +100,8 @@ namespace nsPuls3060
                     Pris = s.Pris,
                     Rabat = s.Rabat,
                     Moms = s.Moms,
-                    Belob = s.Belob
+                    Nettobelob = s.Nettobelob,
+                    Bruttobelob = s.Bruttobelob
                 };
                 Program.dbDataTransSumma.Tblfaklin.InsertOnSubmit(recFaklin);
                 if (!(s.Fakid == 0)) recFak.Tblfaklin.Add(recFaklin);
@@ -116,7 +118,7 @@ namespace nsPuls3060
             var rec_regnskab = Program.qryAktivRegnskab();
             var qryKFak = from kfv in Program.karFakturavarer_k
                           join kf in Program.karFakturaer_k on new { fakid = kfv.Fakid } equals new { fakid = kf.fakid }
-                          where kf.faknr != 0
+                          where kf.faknr != 0 && kf.faktype == 2
                           join fl in Program.dbDataTransSumma.Tblfaklin
                           on new
                           {
@@ -154,7 +156,8 @@ namespace nsPuls3060
                               Pris = kfv.Pris,
                               Rabat = kfv.Rabat,
                               Moms = kfv.Moms,
-                              Belob = kfv.Fakturabelob,
+                              Nettobelob = kfv.Nettobelob,
+                              Bruttobelob = kfv.Bruttobelob,
                           };
 
             int antal = qryKFak.Count();
@@ -201,7 +204,8 @@ namespace nsPuls3060
                     Pris = k.Pris,
                     Rabat = k.Rabat,
                     Moms = k.Moms,
-                    Belob = k.Belob
+                    Nettobelob = k.Nettobelob,
+                    Bruttobelob = k.Bruttobelob
                 };
                 Program.dbDataTransSumma.Tblfaklin.InsertOnSubmit(recFaklin);
                 if (!(k.Fakid == 0)) recFak.Tblfaklin.Add(recFaklin);
@@ -210,8 +214,7 @@ namespace nsPuls3060
             Program.dbDataTransSumma.SubmitChanges();
 
         }
-
-        
+      
         public int SalgsOrder2Summa()
         {
             var rec_regnskab = Program.qryAktivRegnskab();
@@ -261,7 +264,8 @@ namespace nsPuls3060
                     SidsteSFakID++;
                     SidsteRec_no++;
                     var qry_ordlin = from sfl in Program.dbDataTransSumma.Tblwfaklin where sfl.Fakpid == o.Pid select sfl;
-                    int orebelob = (int)((from s in qry_ordlin select s.Belob).Sum()) * 100;
+                    int orebelob = (int)((from s in qry_ordlin select s.Bruttobelob).Sum()) * 100;
+                    int momsbelob = (int)((from s in qry_ordlin select s.Moms).Sum()) * 100;
 
                     ordtype_s ord = new ordtype_s
                     (  
@@ -269,35 +273,45 @@ namespace nsPuls3060
                         (DateTime)o.Dato,                 //dato
                         ((DateTime)o.Dato).AddDays(14),   //forfaldsdato
                         orebelob,                         //fakbeløb i øre
-                        (int)(o.Konto)                    //debitornr
+                        (int)(o.Konto),                   //debitornr
+                        momsbelob                         //momsbeløb i øre
                     );
                     recFakturaer_s rec = new recFakturaer_s { rec_no = SidsteRec_no, rec_data = ord };
                     Program.karFakturaer_s.Add(rec);
 
                     var m_rec = (from m in Program.karKartotek where m.Kontonr == o.Konto select m).First();
+                    string[] wAdresse = new string[1];
+                    wAdresse[0] = m_rec.Adresse;
+                    clsNavnAdresse wFakNavnAdresse = new clsNavnAdresse 
+                    {
+                        Navn = m_rec.Kontonavn,
+                        Adresse = wAdresse,
+                        Postnr = m_rec.Postnr,
+                        Bynavn = m_rec.Bynavn,
+                    };
                     recFakturastr_s rec_Fakturastr_s = new recFakturastr_s
                     {
                         Fakid = SidsteSFakID.ToString(),
-                        Navn = m_rec.Kontonavn,
-                        Adresse = m_rec.Adresse,
-                        Postnr = m_rec.Postnr,
-                        Bynavn = m_rec.Bynavn,
-                        Email = m_rec.Email
+                        FakNavnAdresse = wFakNavnAdresse,
+                        Email = m_rec.Email,
                     };
                     m_karFakturastr_s.Add(rec_Fakturastr_s);
 
-                    foreach (var l in qry_ordlin)
+                    foreach (var ol in qry_ordlin)
                     {
                         recFakturavarer_s rec_Fakturavarer_s = new recFakturavarer_s
                         {
                             Fakid = SidsteSFakID,
-                            Varenr = int.Parse(l.Varenr),
-                            VareTekst = l.Tekst,
-                            Bogfkonto = l.Konto,
-                            Antal = l.Antal,
-                            Pris = l.Pris,
-                            Moms = l.Moms,
-                            Fakturabelob = l.Belob
+                            Varenr = int.Parse(ol.Varenr),
+                            VareTekst = ol.Tekst,
+                            Bogfkonto = ol.Konto,
+                            Antal = ol.Antal,
+                            Enhed = ol.Enhed,
+                            Pris = ol.Pris,
+                            Moms = ol.Moms,
+                            Nettobelob = ol.Nettobelob,
+                            Bruttobelob = ol.Bruttobelob,
+                            Momspct = (ol.Momskode == "S25") ? 25 : 0
                         };
                         m_karFakturavarer_s.Add(rec_Fakturavarer_s);
                     }
@@ -325,6 +339,129 @@ namespace nsPuls3060
             }
             return AntalOrdre;
         }
-        
+
+        public int KøbsOrder2Summa()
+        {
+            var rec_regnskab = Program.qryAktivRegnskab();
+            if (rec_regnskab.Afsluttet == true) return 0;
+            KarFakturastr_k m_karFakturastr_k = null;
+            KarFakturavarer_k m_karFakturavarer_k = null;
+
+            DateTime? Startdato = rec_regnskab.Start;
+            DateTime? Slutdato = rec_regnskab.Slut;
+            if (rec_regnskab.DatoLaas != null)
+            {
+                if (rec_regnskab.DatoLaas > Startdato) Startdato = rec_regnskab.DatoLaas;
+            }
+            var qry_ord = from sf in Program.dbDataTransSumma.Tblwfak
+                          where sf.Sk == "K"
+                          select sf;
+
+            int AntalOrdre = qry_ord.Count();
+
+            if (AntalOrdre > 0)
+            {
+                DateTime ToDay = DateTime.Today;
+                int SidsteKFakID;
+                int SidsteRec_no;
+                try
+                {
+                    SidsteKFakID = (from f in Program.karFakturaer_k select f.fakid).Max();
+                }
+                catch (System.InvalidOperationException)
+                {
+                    SidsteKFakID = 0;
+                }
+                try
+                {
+                    SidsteRec_no = (from f in Program.karFakturaer_k select f.rec_no).Max();
+                }
+                catch (System.InvalidOperationException)
+                {
+                    SidsteRec_no = 0;
+                }
+                m_karFakturastr_k = new KarFakturastr_k();
+                m_karFakturavarer_k = new KarFakturavarer_k(true);
+
+                foreach (var o in qry_ord)
+                {
+
+                    SidsteKFakID++;
+                    SidsteRec_no++;
+                    var qry_ordlin = from sfl in Program.dbDataTransSumma.Tblwfaklin where sfl.Fakpid == o.Pid select sfl;
+                    int orebelob = (int)((from s in qry_ordlin select s.Bruttobelob).Sum()) * 100;
+                    int momsbelob = (int)((from s in qry_ordlin select s.Moms).Sum()) * 100;
+
+                    ordtype_k ord = new ordtype_k
+                    (
+                        SidsteKFakID,                     //fakid
+                        (DateTime)o.Dato,                 //dato
+                        ((DateTime)o.Dato).AddDays(14),   //forfaldsdato
+                        orebelob,                         //fakbeløb i øre
+                        (int)(o.Konto),                   //kreditornr
+                        momsbelob                         //momsbeløb i øre
+                    );
+                    recFakturaer_k rec = new recFakturaer_k { rec_no = SidsteRec_no, rec_data = ord };
+                    Program.karFakturaer_k.Add(rec);
+
+                    var m_rec = (from m in Program.karKartotek where m.Kontonr == o.Konto select m).First();
+                    string[] wAdresse = new string[1];
+                    wAdresse[0] = m_rec.Adresse;
+                    clsNavnAdresse wFakNavnAdresse = new clsNavnAdresse
+                    {
+                        Navn = m_rec.Kontonavn,
+                        Adresse = wAdresse,
+                        Postnr = m_rec.Postnr,
+                        Bynavn = m_rec.Bynavn,
+                    };
+                    recFakturastr_k rec_Fakturastr_k = new recFakturastr_k
+                    {
+                        Fakid = SidsteKFakID,
+                        FakNavnAdresse = wFakNavnAdresse,
+                    };
+                    m_karFakturastr_k.Add(rec_Fakturastr_k);
+
+                    foreach (var ol in qry_ordlin)
+                    {
+                        recFakturavarer_k rec_Fakturavarer_k = new recFakturavarer_k
+                        {
+                            Fakid = SidsteKFakID,
+                            Varenr = int.Parse(ol.Varenr),
+                            VareTekst = ol.Tekst,
+                            Bogfkonto = ol.Konto,
+                            Antal = ol.Antal,
+                            Enhed = ol.Enhed,
+                            Pris = ol.Pris,
+                            Moms = ol.Moms,
+                            Nettobelob = ol.Nettobelob,
+                            Bruttobelob = ol.Bruttobelob,
+                            Momspct = (ol.Momskode == "K25") ? 25 : 0
+                        };
+                        m_karFakturavarer_k.Add(rec_Fakturavarer_k);
+                    }
+                }
+                Program.karFakturaer_k.save();
+                m_karFakturastr_k.save();
+                m_karFakturavarer_k.save();
+
+                try
+                {
+                    recStatus rec_Status = (from s in Program.karStatus where s.key == "SidsteKFakID" select s).First();
+                    rec_Status.value = SidsteKFakID.ToString();
+                }
+                catch (System.InvalidOperationException)
+                {
+                    recStatus rec_Status = new recStatus
+                    {
+                        key = "SidsteKFakID",
+                        value = SidsteKFakID.ToString()
+                    };
+                    Program.karStatus.Add(rec_Status);
+                }
+                Program.karStatus.save();
+                Program.dbDataTransSumma.SubmitChanges();
+            }
+            return AntalOrdre;
+        }
     }
 }

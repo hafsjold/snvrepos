@@ -13,7 +13,7 @@ namespace nsPuls3060
         public recFakturastr_k() { }
 
         public int Fakid { get; set; }
-        public string FakNavnAdresse { get; set; }
+        public clsNavnAdresse FakNavnAdresse { get; set; }
         public string LevNavnAdresse { get; set; }
         public string Note { get; set; }
         public string Felt03 { get; set; }
@@ -90,7 +90,7 @@ namespace nsPuls3060
                     rec = new recFakturastr_k
                     {
                         Fakid = wFakid,
-                        FakNavnAdresse = value[0],
+                        //FakNavnAdresse = value[0],
                         LevNavnAdresse = value[1],
                         Note = value[2],
                         Felt03 = value[3],
@@ -107,6 +107,23 @@ namespace nsPuls3060
                     this.Add(rec);
                 }
             }
+        }
+
+        public void save()
+        {
+            FileStream ts = new FileStream(m_path, FileMode.Append, FileAccess.Write, FileShare.None);
+            using (StreamWriter sr = new StreamWriter(ts, Encoding.Default))
+            {
+                var qry_this = from d in this
+                               orderby d.Fakid
+                               select d;
+                foreach (var rec in qry_this)
+                {
+                    string ln = rec.Fakid + @"=""" + rec.FakNavnAdresse.getCsv() + @""",,,,,,,,,,,,";
+                    sr.WriteLine(ln);
+                }
+            }
+
         }
     }
 }

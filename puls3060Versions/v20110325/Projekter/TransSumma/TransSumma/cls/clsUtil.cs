@@ -488,4 +488,87 @@ Directory=C:\Rosetta Stone\Logs
 
         }
     }
+
+    public class clsNavnAdresse
+    {
+        public string Navn { get; set; }
+        public string[] Adresse { get; set; }
+        public string Postnr { get; set; }
+        public string Bynavn { get; set; }
+        public string Land { get; set; }
+
+        public string getCsv()
+        {
+            string NvnAdr = "";
+            if ((Navn != null) && (Navn.Length > 0)) 
+            {
+                if (NvnAdr.Length > 0)
+                    NvnAdr += "," + quote(Navn, 2);
+                else
+                    NvnAdr = quote(Navn, 2);
+            }
+            if ((Adresse != null) && (Adresse.Count() > 0))
+            {
+                for (int i = 0; i < Adresse.Count(); i++) 
+                {
+                    if ((Adresse[i] != null) && (Adresse[i].Length > 0))
+                    {
+                        if (NvnAdr.Length > 0)
+                            NvnAdr += "," + quote(Adresse[i], 2);
+                        else
+                            NvnAdr = quote(Adresse[i], 2);
+                    }
+                }
+            }
+    
+            string PostnrBynavn = Postnr;
+            if ((PostnrBynavn != null) && (PostnrBynavn.Length > 0))
+                PostnrBynavn += " " + Bynavn;
+            else
+                PostnrBynavn = Bynavn;
+            if ((PostnrBynavn != null) && (PostnrBynavn.Length > 0))
+            {
+                if (NvnAdr.Length > 0)
+                    NvnAdr += "," + quote(PostnrBynavn, 2);
+                else
+                    NvnAdr = quote(PostnrBynavn, 2);
+            }
+            if ((Land != null) && (Land.Length > 0))
+            {
+                if (NvnAdr.Length > 0)
+                    NvnAdr += "," + quote(Land, 2);
+                else
+                    NvnAdr = quote(Land, 2);
+            }
+            return NvnAdr;
+        }
+        
+        private string quote(string val, int antalQuotes)
+        {
+            string s;
+            if (val == null)
+                s = "";
+            else
+                s = val;
+
+            s = s.Trim();
+            if (s.IndexOf(' ') == -1 && s.IndexOf(',') == -1 && s.IndexOf('"') == -1)
+            {
+                return s;
+            }
+            else
+            {
+                if (antalQuotes == 1)
+                {
+                    return "\"" + s + "\"";
+                }
+                else
+                {
+                    return "\"\"" + s + "\"\"";
+                }
+            }
+        }
+
+
+    }
 }

@@ -63,6 +63,9 @@ namespace nsPuls3060
     partial void InsertTbltrans(Tbltrans instance);
     partial void UpdateTbltrans(Tbltrans instance);
     partial void DeleteTbltrans(Tbltrans instance);
+    partial void InsertTblvareomkostninger(Tblvareomkostninger instance);
+    partial void UpdateTblvareomkostninger(Tblvareomkostninger instance);
+    partial void DeleteTblvareomkostninger(Tblvareomkostninger instance);
     partial void InsertTblwbilag(Tblwbilag instance);
     partial void UpdateTblwbilag(Tblwbilag instance);
     partial void DeleteTblwbilag(Tblwbilag instance);
@@ -186,6 +189,14 @@ namespace nsPuls3060
 			get
 			{
 				return this.GetTable<Tbltrans>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Tblvareomkostninger> Tblvareomkostninger
+		{
+			get
+			{
+				return this.GetTable<Tblvareomkostninger>();
 			}
 		}
 		
@@ -1249,7 +1260,11 @@ namespace nsPuls3060
 		
 		private System.Nullable<decimal> _Moms;
 		
-		private System.Nullable<decimal> _Belob;
+		private System.Nullable<decimal> _Nettobelob;
+		
+		private System.Nullable<decimal> _Bruttobelob;
+		
+		private System.Nullable<decimal> _Omkostbelob;
 		
 		private EntityRef<Tblfak> _Tblfak;
 		
@@ -1287,8 +1302,12 @@ namespace nsPuls3060
     partial void OnRabatChanged();
     partial void OnMomsChanging(System.Nullable<decimal> value);
     partial void OnMomsChanged();
-    partial void OnBelobChanging(System.Nullable<decimal> value);
-    partial void OnBelobChanged();
+    partial void OnNettobelobChanging(System.Nullable<decimal> value);
+    partial void OnNettobelobChanged();
+    partial void OnBruttobelobChanging(System.Nullable<decimal> value);
+    partial void OnBruttobelobChanged();
+    partial void OnOmkostbelobChanging(System.Nullable<decimal> value);
+    partial void OnOmkostbelobChanged();
     #endregion
 		
 		public Tblfaklin()
@@ -1597,22 +1616,62 @@ namespace nsPuls3060
 			}
 		}
 		
-		[Column(Name="belob", Storage="_Belob", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> Belob
+		[Column(Name="nettobelob", Storage="_Nettobelob", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Nettobelob
 		{
 			get
 			{
-				return this._Belob;
+				return this._Nettobelob;
 			}
 			set
 			{
-				if ((this._Belob != value))
+				if ((this._Nettobelob != value))
 				{
-					this.OnBelobChanging(value);
+					this.OnNettobelobChanging(value);
 					this.SendPropertyChanging();
-					this._Belob = value;
-					this.SendPropertyChanged("Belob");
-					this.OnBelobChanged();
+					this._Nettobelob = value;
+					this.SendPropertyChanged("Nettobelob");
+					this.OnNettobelobChanged();
+				}
+			}
+		}
+		
+		[Column(Name="bruttobelob", Storage="_Bruttobelob", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Bruttobelob
+		{
+			get
+			{
+				return this._Bruttobelob;
+			}
+			set
+			{
+				if ((this._Bruttobelob != value))
+				{
+					this.OnBruttobelobChanging(value);
+					this.SendPropertyChanging();
+					this._Bruttobelob = value;
+					this.SendPropertyChanged("Bruttobelob");
+					this.OnBruttobelobChanged();
+				}
+			}
+		}
+		
+		[Column(Name="omkostbelob", Storage="_Omkostbelob", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Omkostbelob
+		{
+			get
+			{
+				return this._Omkostbelob;
+			}
+			set
+			{
+				if ((this._Omkostbelob != value))
+				{
+					this.OnOmkostbelobChanging(value);
+					this.SendPropertyChanging();
+					this._Omkostbelob = value;
+					this.SendPropertyChanged("Omkostbelob");
+					this.OnOmkostbelobChanged();
 				}
 			}
 		}
@@ -2957,6 +3016,92 @@ namespace nsPuls3060
 		}
 	}
 	
+	[Table(Name="tblvareomkostninger")]
+	public partial class Tblvareomkostninger : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Kontonr;
+		
+		private string _Omktype;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnKontonrChanging(int value);
+    partial void OnKontonrChanged();
+    partial void OnOmktypeChanging(string value);
+    partial void OnOmktypeChanged();
+    #endregion
+		
+		public Tblvareomkostninger()
+		{
+			OnCreated();
+		}
+		
+		[Column(Name="kontonr", Storage="_Kontonr", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Kontonr
+		{
+			get
+			{
+				return this._Kontonr;
+			}
+			set
+			{
+				if ((this._Kontonr != value))
+				{
+					this.OnKontonrChanging(value);
+					this.SendPropertyChanging();
+					this._Kontonr = value;
+					this.SendPropertyChanged("Kontonr");
+					this.OnKontonrChanged();
+				}
+			}
+		}
+		
+		[Column(Name="omktype", Storage="_Omktype", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string Omktype
+		{
+			get
+			{
+				return this._Omktype;
+			}
+			set
+			{
+				if ((this._Omktype != value))
+				{
+					this.OnOmktypeChanging(value);
+					this.SendPropertyChanging();
+					this._Omktype = value;
+					this.SendPropertyChanged("Omktype");
+					this.OnOmktypeChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[Table(Name="tblwbilag")]
 	public partial class Tblwbilag : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -3285,7 +3430,9 @@ namespace nsPuls3060
 		
 		private System.Nullable<decimal> _Moms;
 		
-		private System.Nullable<decimal> _Belob;
+		private System.Nullable<decimal> _Nettobelob;
+		
+		private System.Nullable<decimal> _Bruttobelob;
 		
 		private EntityRef<Tblwfak> _Tblwfak;
 		
@@ -3315,8 +3462,10 @@ namespace nsPuls3060
     partial void OnRabatChanged();
     partial void OnMomsChanging(System.Nullable<decimal> value);
     partial void OnMomsChanged();
-    partial void OnBelobChanging(System.Nullable<decimal> value);
-    partial void OnBelobChanged();
+    partial void OnNettobelobChanging(System.Nullable<decimal> value);
+    partial void OnNettobelobChanged();
+    partial void OnBruttobelobChanging(System.Nullable<decimal> value);
+    partial void OnBruttobelobChanged();
     #endregion
 		
 		public Tblwfaklin()
@@ -3545,22 +3694,42 @@ namespace nsPuls3060
 			}
 		}
 		
-		[Column(Name="belob", Storage="_Belob", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> Belob
+		[Column(Name="nettobelob", Storage="_Nettobelob", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Nettobelob
 		{
 			get
 			{
-				return this._Belob;
+				return this._Nettobelob;
 			}
 			set
 			{
-				if ((this._Belob != value))
+				if ((this._Nettobelob != value))
 				{
-					this.OnBelobChanging(value);
+					this.OnNettobelobChanging(value);
 					this.SendPropertyChanging();
-					this._Belob = value;
-					this.SendPropertyChanged("Belob");
-					this.OnBelobChanged();
+					this._Nettobelob = value;
+					this.SendPropertyChanged("Nettobelob");
+					this.OnNettobelobChanged();
+				}
+			}
+		}
+		
+		[Column(Name="bruttobelob", Storage="_Bruttobelob", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Bruttobelob
+		{
+			get
+			{
+				return this._Bruttobelob;
+			}
+			set
+			{
+				if ((this._Bruttobelob != value))
+				{
+					this.OnBruttobelobChanging(value);
+					this.SendPropertyChanging();
+					this._Bruttobelob = value;
+					this.SendPropertyChanged("Bruttobelob");
+					this.OnBruttobelobChanged();
 				}
 			}
 		}

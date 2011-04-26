@@ -21,9 +21,9 @@ namespace nsPuls3060
         public decimal? Pris { get; set; }
         public decimal? Rabat { get; set; }
         public decimal? Moms { get; set; }
-        public decimal? Felt08 { get; set; }
-        public decimal? Fakturabelob { get; set; }
-        public string Felt10 { get; set; }
+        public decimal? Nettobelob { get; set; }
+        public decimal? Bruttobelob { get; set; }
+        public decimal? Momspct { get; set; }
         public string Felt11 { get; set; }
         public string Felt12 { get; set; }
         public string Felt13 { get; set; }
@@ -132,9 +132,9 @@ namespace nsPuls3060
                             Pris = Microsoft.VisualBasic.Information.IsNumeric(value3[5]) ? decimal.Parse(value3[5]) : (decimal?)null,
                             Rabat = Microsoft.VisualBasic.Information.IsNumeric(value3[6]) ? decimal.Parse(value3[6]) : (decimal?)null,
                             Moms = Microsoft.VisualBasic.Information.IsNumeric(value3[7]) ? decimal.Parse(value3[7]) : (decimal?)null,
-                            Felt08 = Microsoft.VisualBasic.Information.IsNumeric(value3[8]) ? decimal.Parse(value3[8]) : (decimal?)null,
-                            Fakturabelob = Microsoft.VisualBasic.Information.IsNumeric(value3[9]) ? decimal.Parse(value3[9]) : (decimal?)null,
-                            Felt10 = value3[10],
+                            Nettobelob = Microsoft.VisualBasic.Information.IsNumeric(value3[8]) ? decimal.Parse(value3[8]) : (decimal?)null,
+                            Bruttobelob = Microsoft.VisualBasic.Information.IsNumeric(value3[9]) ? decimal.Parse(value3[9]) : (decimal?)null,
+                            Momspct = Microsoft.VisualBasic.Information.IsNumeric(value3[10]) ? decimal.Parse(value3[10]) : (decimal?)null,
                             Felt11 = value3[11],
                             Felt12 = value3[12],
                             Felt13 = value3[13],
@@ -148,21 +148,96 @@ namespace nsPuls3060
         }
 
 
-        private void save()
+        public void save()
         {
             FileStream ts = new FileStream(m_path, FileMode.Append, FileAccess.Write, FileShare.None);
             using (StreamWriter sr = new StreamWriter(ts, Encoding.Default))
             {
+                int lastFakid = 0;
+                string ln = "";
                 var qry_this = from d in this
-                               orderby d.Fakid
+                               orderby d.Fakid, d.Line
                                select d;
+
                 foreach (var rec in qry_this)
                 {
-                    string ln = rec.Fakid + @"=""" + rec.Varenr + @",""""" + rec.VareTekst + @"""""," + rec.Bogfkonto + "," + rec.Antal + @",,""""" + rec.Pris + @",00"""",,,""""" + rec.Pris + @",00"""",""""" + rec.Pris + @",00"""",0,,,,,""";
-                    sr.WriteLine(ln);
+                    if ((lastFakid != 0) && (lastFakid != rec.Fakid))
+                    {
+                        string lnx = lastFakid + @"=" + ln;
+                        sr.WriteLine(lnx);
+                        ln = "";
+                    }
+
+                    string vline = quote(rec.Varenr.ToString(), 2)  //#0
+                         + ","
+                         + quote(rec.VareTekst, 2)  //#1
+                         + ","
+                         + quote(rec.Bogfkonto.ToString(), 2) //#2
+                         + ","
+                         + quote(rec.Antal.ToString(), 2) //#3
+                         + ","
+                         + quote(rec.Enhed, 2) //#4
+                         + ","
+                         + quote(fmt(rec.Pris), 2) //#5
+                         + ","
+                         + quote(fmt(rec.Rabat), 2)  //#6
+                         + ","
+                         + quote(fmt(rec.Moms), 2)  //#7
+                         + ","
+                         + quote(fmt(rec.Nettobelob), 2)  //#8
+                         + ","
+                         + quote(fmt(rec.Bruttobelob), 2) //#9
+                         + ","
+                         + quote(rec.Momspct.ToString(), 2) //#10
+                         + ",,,,,";
+                    if (ln.Length > 0)
+                        ln += "," + quote(vline, 1);
+                    else
+                        ln = quote(vline, 1);
+
+                    lastFakid = rec.Fakid;
+                }
+
+                if (ln.Length > 0)
+                {
+                    string lnx = lastFakid + @"=" + ln;
+                    sr.WriteLine(lnx);
                 }
             }
+        }
 
+        private string fmt(decimal? dec)
+        {
+            if (dec == null)
+                return "";
+            else
+                return ((decimal)dec).ToString("N2");
+        }
+
+        private string quote(string val, int antalQuotes)
+        {
+            string s;
+            if (val == null)
+                s = "";
+            else
+                s = val;
+
+            s = s.Trim();
+            if (s.IndexOf(' ') == -1 && s.IndexOf(',') == -1 && s.IndexOf('"') == -1)
+            {
+                return s;
+            }
+            else
+            {
+                if (antalQuotes == 1)
+                {
+                    return "\"" + s + "\"";
+                }
+                else
+                {
+                    return "\"\"" + s + "\"\"";
+                }
+            }
         }
 
     }

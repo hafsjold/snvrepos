@@ -153,7 +153,7 @@ namespace nsPuls3060
             Tblwbilag recWbilag = (Tblwbilag)tblwbilagBindingSource.Current;
             foreach (string line in lines)
             {
-                if (row < tblwkladderDataGridView.RowCount && line.Length > 0)
+                if (line.Length > 0)
                 {
                     try
                     {
@@ -223,7 +223,7 @@ namespace nsPuls3060
                                     Faktura = Microsoft.VisualBasic.Information.IsNumeric(value[6]) ? int.Parse(value[6]) : (int?)null
                                 };
                             }
-                            tblwkladderBindingSource.Add(recWkladder);
+                            tblwkladderBindingSource.Insert(row, recWkladder);
                         }
                         row++;
                     }
@@ -253,7 +253,6 @@ namespace nsPuls3060
                 pasteCsv(clipboardData);
             }
         }
-
 
         void tblwkladderDataGridView_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
