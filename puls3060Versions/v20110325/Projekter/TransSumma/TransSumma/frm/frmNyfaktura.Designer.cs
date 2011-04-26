@@ -70,6 +70,7 @@
             this.contextMenuLineCopyPaste = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FakturaTilSummaSummarumToolStripButton = new System.Windows.Forms.ToolStripButton();
             datoLabel = new System.Windows.Forms.Label();
             kontoLabel = new System.Windows.Forms.Label();
             skLabel = new System.Windows.Forms.Label();
@@ -168,7 +169,7 @@
             this.datoDateTimePicker.Size = new System.Drawing.Size(81, 20);
             this.datoDateTimePicker.TabIndex = 4;
             // 
-            // tblwfaklinDataGridView1
+            // tblwfaklinDataGridView
             // 
             this.tblwfaklinDataGridView.AutoGenerateColumns = false;
             this.tblwfaklinDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -190,7 +191,7 @@
             this.tblwfaklinDataGridView.DataSource = this.tblwfaklinBindingSource;
             this.tblwfaklinDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblwfaklinDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.tblwfaklinDataGridView.Name = "tblwfaklinDataGridView1";
+            this.tblwfaklinDataGridView.Name = "tblwfaklinDataGridView";
             this.tblwfaklinDataGridView.Size = new System.Drawing.Size(803, 284);
             this.tblwfaklinDataGridView.TabIndex = 3;
             this.tblwfaklinDataGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tblwfaklinDataGridView1_MouseDown);
@@ -330,7 +331,8 @@
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
-            this.tblwfakBindingNavigatorSaveItem});
+            this.tblwfakBindingNavigatorSaveItem,
+            this.FakturaTilSummaSummarumToolStripButton});
             this.tblwfakBindingNavigator.Location = new System.Drawing.Point(0, 304);
             this.tblwfakBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.tblwfakBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -430,11 +432,11 @@
             // tblwfakBindingNavigatorSaveItem
             // 
             this.tblwfakBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tblwfakBindingNavigatorSaveItem.Enabled = false;
             this.tblwfakBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("tblwfakBindingNavigatorSaveItem.Image")));
             this.tblwfakBindingNavigatorSaveItem.Name = "tblwfakBindingNavigatorSaveItem";
             this.tblwfakBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
             this.tblwfakBindingNavigatorSaveItem.Text = "Save Data";
+            this.tblwfakBindingNavigatorSaveItem.Click += new System.EventHandler(this.tblwfakBindingNavigatorSaveItem_Click);
             // 
             // contextMenuLineCopyPaste
             // 
@@ -447,16 +449,26 @@
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
             // pasteToolStripMenuItem
             // 
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.pasteToolStripMenuItem.Text = "Paste";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
+            // 
+            // FakturaTilSummaSummarumToolStripButton
+            // 
+            this.FakturaTilSummaSummarumToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.FakturaTilSummaSummarumToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("FakturaTilSummaSummarumToolStripButton.Image")));
+            this.FakturaTilSummaSummarumToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.FakturaTilSummaSummarumToolStripButton.Name = "FakturaTilSummaSummarumToolStripButton";
+            this.FakturaTilSummaSummarumToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.FakturaTilSummaSummarumToolStripButton.Text = "Faktura Ti lSummaSummarum";
+            this.FakturaTilSummaSummarumToolStripButton.Click += new System.EventHandler(this.FakturaTilSummaSummarumToolStripButton_Click);
             // 
             // FrmNyfaktura
             // 
@@ -524,5 +536,6 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuLineCopyPaste;
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton FakturaTilSummaSummarumToolStripButton;
     }
 }

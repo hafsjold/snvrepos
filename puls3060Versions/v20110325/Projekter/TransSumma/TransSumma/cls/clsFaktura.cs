@@ -214,8 +214,8 @@ namespace nsPuls3060
             Program.dbDataTransSumma.SubmitChanges();
 
         }
-      
-        public int SalgsOrder2Summa()
+
+        public int SalgsOrder2Summa(IList<Tblwfak> wFak)
         {
             var rec_regnskab = Program.qryAktivRegnskab();
             if (rec_regnskab.Afsluttet == true) return 0;
@@ -228,7 +228,7 @@ namespace nsPuls3060
             {
                 if (rec_regnskab.DatoLaas > Startdato) Startdato = rec_regnskab.DatoLaas;
             }
-            var qry_ord = from sf in Program.dbDataTransSumma.Tblwfak
+            var qry_ord = from sf in wFak //Program.dbDataTransSumma.Tblwfak
                           where sf.Sk == "S"
                           select sf;
 
@@ -263,7 +263,8 @@ namespace nsPuls3060
 
                     SidsteSFakID++;
                     SidsteRec_no++;
-                    var qry_ordlin = from sfl in Program.dbDataTransSumma.Tblwfaklin where sfl.Fakpid == o.Pid select sfl;
+                    //var qry_ordlin = from sfl in Program.dbDataTransSumma.Tblwfaklin where sfl.Fakpid == o.Pid select sfl;
+                    var qry_ordlin = from sfl in o.Tblwfaklin select sfl;
                     int orebelob = (int)((from s in qry_ordlin select s.Bruttobelob).Sum()) * 100;
                     int momsbelob = (int)((from s in qry_ordlin select s.Moms).Sum()) * 100;
 
@@ -340,7 +341,7 @@ namespace nsPuls3060
             return AntalOrdre;
         }
 
-        public int KøbsOrder2Summa()
+        public int KøbsOrder2Summa(IList<Tblwfak> wFak)
         {
             var rec_regnskab = Program.qryAktivRegnskab();
             if (rec_regnskab.Afsluttet == true) return 0;
@@ -353,7 +354,7 @@ namespace nsPuls3060
             {
                 if (rec_regnskab.DatoLaas > Startdato) Startdato = rec_regnskab.DatoLaas;
             }
-            var qry_ord = from sf in Program.dbDataTransSumma.Tblwfak
+            var qry_ord = from sf in wFak //Program.dbDataTransSumma.Tblwfak
                           where sf.Sk == "K"
                           select sf;
 
@@ -388,7 +389,8 @@ namespace nsPuls3060
 
                     SidsteKFakID++;
                     SidsteRec_no++;
-                    var qry_ordlin = from sfl in Program.dbDataTransSumma.Tblwfaklin where sfl.Fakpid == o.Pid select sfl;
+                    //var qry_ordlin = from sfl in Program.dbDataTransSumma.Tblwfaklin where sfl.Fakpid == o.Pid select sfl;
+                    var qry_ordlin = from sfl in o.Tblwfaklin select sfl;
                     int orebelob = (int)((from s in qry_ordlin select s.Bruttobelob).Sum()) * 100;
                     int momsbelob = (int)((from s in qry_ordlin select s.Moms).Sum()) * 100;
 

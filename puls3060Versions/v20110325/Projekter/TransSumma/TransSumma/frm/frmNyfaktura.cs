@@ -204,6 +204,29 @@ namespace nsPuls3060
             }
         }
 
+        private void tblwfakBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Program.dbDataTransSumma.SubmitChanges();
+            }
+            catch { }
+        }
+
+        private void FakturaTilSummaSummarumToolStripButton_Click(object sender, EventArgs e)
+        {
+            clsFaktura objFaktura = new clsFaktura();
+            objFaktura.SalgsOrder2Summa((IList<Tblwfak>)this.tblwfakBindingSource.List);
+            objFaktura.KøbsOrder2Summa((IList<Tblwfak>)this.tblwfakBindingSource.List);
+            objFaktura = null;
+
+            int iMax = this.tblwfakBindingSource.List.Count - 1;
+            for (int i = iMax; i >= 0; i--)
+            {
+                this.tblwfakBindingSource.List.RemoveAt(i);
+            }
+        }
+
 
     }
 }
