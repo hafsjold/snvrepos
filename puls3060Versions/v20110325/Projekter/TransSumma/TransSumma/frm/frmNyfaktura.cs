@@ -132,6 +132,7 @@ namespace nsPuls3060
             string[] lines = csv.TrimEnd('\0').Split(sep, StringSplitOptions.RemoveEmptyEntries);
             int row = tblwfaklinDataGridView.NewRowIndex;
             Tblwfak recWfak = (Tblwfak)tblwfakBindingSource.Current;
+            String TargetType = recWfak.Sk;
             foreach (string line in lines)
             {
                 if (line.Length > 0)
@@ -191,6 +192,19 @@ namespace nsPuls3060
                                 Nettobelob = Microsoft.VisualBasic.Information.IsNumeric(value[9]) ? decimal.Parse(value[9]) : (decimal?)null,
                                 Bruttobelob = Microsoft.VisualBasic.Information.IsNumeric(value[10]) ? decimal.Parse(value[10]) : (decimal?)null
                             };
+
+                            decimal? Omkostbelob = Microsoft.VisualBasic.Information.IsNumeric(value[11]) ? decimal.Parse(value[11]) : (decimal?)null;
+                            if ((TargetType == "S") && (Omkostbelob != null))
+                            {
+                                decimal momspct = (decimal)0.25;
+                                if (recWfaklin.Konto == 2100)
+                                    recWfaklin.Konto = 1000;
+                                recWfaklin.Momskode = "S25";
+                                recWfaklin.Pris += decimal.Round((decimal)(Omkostbelob / recWfaklin.Antal), 2);
+                                recWfaklin.Nettobelob = decimal.Round((decimal)(recWfaklin.Pris * recWfaklin.Antal), 2);
+                                recWfaklin.Moms = decimal.Round((decimal)(recWfaklin.Nettobelob * momspct), 2);
+                                recWfaklin.Bruttobelob = decimal.Round((decimal)(recWfaklin.Nettobelob + recWfaklin.Moms), 2);
+                            }
                             tblwfaklinBindingSource.Insert(row, recWfaklin);
                         }
                         row++;
@@ -249,7 +263,11 @@ namespace nsPuls3060
             int iMax = this.tblwfakBindingSource.List.Count - 1;
             for (int i = iMax; i >= 0; i--)
             {
-                this.tblwfakBindingSource.List.RemoveAt(i);
+                try
+                {
+                    this.tblwfakBindingSource.List.RemoveAt(i);
+                }
+                catch {}
             }
         }
 
@@ -262,7 +280,7 @@ namespace nsPuls3060
                 foreach (var l in qry)
                 {
                     l.Nettobelob = l.Pris * l.Antal;
-                    l.Moms = l.Nettobelob * momspct;
+                    l.Moms = decimal.Round((decimal)(l.Nettobelob * momspct), 2);
                     l.Bruttobelob = l.Nettobelob + l.Moms;
                 }
             }

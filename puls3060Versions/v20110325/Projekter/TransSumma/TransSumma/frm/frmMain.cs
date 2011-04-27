@@ -397,6 +397,7 @@ namespace nsPuls3060
             clsFaktura objFaktura = new clsFaktura();
             objFaktura.ImportSalgsfakturaer();
             objFaktura.ImportKøbsfakturaer();
+            objFaktura.KøbsOrderOmk();
         }
 
     }

@@ -268,6 +268,7 @@ namespace nsPuls3060
                     int orebelob = (int)((from s in qry_ordlin select s.Bruttobelob).Sum() * 100);
                     int momsbelob = (int)((from s in qry_ordlin select s.Moms).Sum() * 100);
                     if (o.Dato == null) o.Dato = ToDay;
+                    if (o.Konto == null) o.Konto = 0;
 
                     ordtype_s ord = new ordtype_s
                     (
@@ -395,6 +396,8 @@ namespace nsPuls3060
                     int orebelob = (int)((from s in qry_ordlin select s.Bruttobelob).Sum() * 100);
                     int momsbelob = (int)((from s in qry_ordlin select s.Moms).Sum() * 100);
                     if (o.Dato == null) o.Dato = ToDay;
+                    if (o.Konto == null) o.Konto = 0;
+                    if (o.Kreditorbilagsnr == null) o.Kreditorbilagsnr = 0;
                     ordtype_k ord = new ordtype_k
                     (
                         SidsteKFakID,                     //fakid
@@ -403,7 +406,7 @@ namespace nsPuls3060
                         orebelob,                         //fakbeløb i øre
                         (int)(o.Konto),                   //kreditornr
                         momsbelob,                        //momsbeløb i øre
-                        0                                 //kreditorbilagsnr
+                        (int)(o.Kreditorbilagsnr)         //kreditorbilagsnr
                     );
                     recFakturaer_k rec = new recFakturaer_k { rec_no = SidsteRec_no, rec_data = ord };
                     Program.karFakturaer_k.Add(rec);
@@ -468,6 +471,47 @@ namespace nsPuls3060
                 Program.dbDataTransSumma.SubmitChanges();
             }
             return AntalOrdre;
+        }
+
+        public void KøbsOrderOmk() 
+        {
+            decimal omkfaktor;
+            var qry_ord = from f in Program.dbDataTransSumma.Tblfak
+                          where f.Sk == "K"
+                          select f;
+            foreach (var o in qry_ord)
+            {
+                var qry_lin_omk = from l in o.Tblfaklin
+                              join fl in Program.dbDataTransSumma.Tblvareomkostninger on l.Konto equals fl.Kontonr
+                              select l;
+
+                var qry_lin_vare = from l in o.Tblfaklin
+                                   join fl in Program.dbDataTransSumma.Tblvareomkostninger on l.Konto equals fl.Kontonr into omklin
+                                   from fl in omklin.DefaultIfEmpty(new Tblvareomkostninger { Kontonr = 0, Omktype = "varelinie" })
+                                   where fl.Omktype == "varelinie"
+                                   select l;
+                
+                int antal = qry_lin_omk.Count();
+                if (antal > 0)
+                {
+                    decimal omkbelob = (decimal)(from s in qry_lin_omk select s.Nettobelob).Sum();
+                    decimal varebelob = (decimal)(from s in qry_lin_vare select s.Nettobelob).Sum();
+                    if (varebelob != 0)
+                    {
+                        omkfaktor = 1 + omkbelob / varebelob;
+                        decimal total1 = varebelob + omkbelob;
+                        decimal total2 = varebelob * omkfaktor;
+                    }
+                    else
+                        omkfaktor = 1;
+                    
+                    foreach (var l in qry_lin_vare) 
+                    {
+                        l.Omkostbelob = decimal.Round((decimal)l.Nettobelob * (omkfaktor - 1), 2);
+                    }
+                }
+            }
+            Program.dbDataTransSumma.SubmitChanges();
         }
     }
 }
