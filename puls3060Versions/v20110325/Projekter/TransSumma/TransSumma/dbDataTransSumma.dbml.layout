@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 12.75" name="dbDataTransSumma">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 13" name="dbDataTransSumma">
   <DataContextMoniker Name="/DbDataTransSumma" />
   <nestedChildShapes>
     <classShape Id="9ca88365-fcc6-46fd-a585-40e611d8aebe" absoluteBounds="3.125, 8.875, 2, 1.9178898111979166">
@@ -122,19 +122,19 @@
         <classShapeMoniker Id="928fe8ee-0a79-484f-a650-137293d81c1a" />
       </nodes>
     </associationConnector>
-    <classShape Id="079590b9-a7c9-42e6-819c-af6fdb3d7449" absoluteBounds="5.875, 7.5, 2, 1.4248478190104168">
+    <classShape Id="079590b9-a7c9-42e6-819c-af6fdb3d7449" absoluteBounds="5.875, 7.625, 2, 1.5891951497395827">
       <DataClassMoniker Name="/DbDataTransSumma/Tblwfak" />
       <nestedChildShapes>
-        <elementListCompartment Id="e52905fd-2e2c-4baf-a0fc-4e9dadc867f0" absoluteBounds="5.89, 7.96, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="e52905fd-2e2c-4baf-a0fc-4e9dadc867f0" absoluteBounds="5.89, 8.085, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="1fb269c0-231d-4539-838d-c88d3d06e1bf" absoluteBounds="5.875, 9.625, 2, 2.9039737955729166">
+    <classShape Id="1fb269c0-231d-4539-838d-c88d3d06e1bf" absoluteBounds="5.875, 9.875, 2, 2.9039737955729166">
       <DataClassMoniker Name="/DbDataTransSumma/Tblwfaklin" />
       <nestedChildShapes>
-        <elementListCompartment Id="28ec43b2-0209-4c94-bd19-d823cf380192" absoluteBounds="5.89, 10.085, 1.9700000000000002, 2.3439737955729165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="28ec43b2-0209-4c94-bd19-d823cf380192" absoluteBounds="5.89, 10.335, 1.9700000000000002, 2.3439737955729165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(6.875 : 8.92484781901042); (6.875 : 9.625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(6.875 : 9.21419514973958); (6.875 : 9.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DbDataTransSumma/Tblwfak/Tblwfak_Tblwfaklin" />
       <nodes>
         <classShapeMoniker Id="079590b9-a7c9-42e6-819c-af6fdb3d7449" />

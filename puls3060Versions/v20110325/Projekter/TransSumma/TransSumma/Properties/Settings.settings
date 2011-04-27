@@ -120,7 +120,7 @@
       <Value Profile="(Default)">0, 0</Value>
     </Setting>
     <Setting Name="frmNyeFakturaerSize" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">803, 329</Value>
+      <Value Profile="(Default)">803, 354</Value>
     </Setting>
     <Setting Name="frmFakturaerSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">825, 260</Value>

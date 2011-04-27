@@ -304,7 +304,7 @@ namespace nsPuls3060
                         recFakturavarer_s rec_Fakturavarer_s = new recFakturavarer_s
                         {
                             Fakid = SidsteSFakID,
-                            Varenr = int.Parse(ol.Varenr),
+                            Varenr = Microsoft.VisualBasic.Information.IsNumeric(ol.Varenr) ? int.Parse(ol.Varenr) : (int?)null,
                             VareTekst = ol.Tekst,
                             Bogfkonto = ol.Konto,
                             Antal = ol.Antal,
@@ -318,9 +318,6 @@ namespace nsPuls3060
                         m_karFakturavarer_s.Add(rec_Fakturavarer_s);
                     }
                 }
-                Program.karFakturaer_s.save();
-                m_karFakturastr_s.save();
-                m_karFakturavarer_s.save();
 
                 try
                 {
@@ -337,6 +334,10 @@ namespace nsPuls3060
                     Program.karStatus.Add(rec_Status);
                 }
                 Program.karStatus.save();
+                Program.karFakturaer_s.save();
+                m_karFakturastr_s.save();
+                m_karFakturavarer_s.save();
+                
                 Program.dbDataTransSumma.SubmitChanges();
             }
             return AntalOrdre;
@@ -390,7 +391,6 @@ namespace nsPuls3060
 
                     SidsteKFakID++;
                     SidsteRec_no++;
-                    //var qry_ordlin = from sfl in Program.dbDataTransSumma.Tblwfaklin where sfl.Fakpid == o.Pid select sfl;
                     var qry_ordlin = from sfl in o.Tblwfaklin select sfl;
                     int orebelob = (int)((from s in qry_ordlin select s.Bruttobelob).Sum() * 100);
                     int momsbelob = (int)((from s in qry_ordlin select s.Moms).Sum() * 100);
@@ -402,7 +402,8 @@ namespace nsPuls3060
                         ((DateTime)o.Dato).AddDays(14),   //forfaldsdato
                         orebelob,                         //fakbeløb i øre
                         (int)(o.Konto),                   //kreditornr
-                        momsbelob                         //momsbeløb i øre
+                        momsbelob,                        //momsbeløb i øre
+                        0                                 //kreditorbilagsnr
                     );
                     recFakturaer_k rec = new recFakturaer_k { rec_no = SidsteRec_no, rec_data = ord };
                     Program.karFakturaer_k.Add(rec);
@@ -429,7 +430,7 @@ namespace nsPuls3060
                         recFakturavarer_k rec_Fakturavarer_k = new recFakturavarer_k
                         {
                             Fakid = SidsteKFakID,
-                            Varenr = int.Parse(ol.Varenr),
+                            Varenr = Microsoft.VisualBasic.Information.IsNumeric(ol.Varenr) ? int.Parse(ol.Varenr) : (int?)null,
                             VareTekst = ol.Tekst,
                             Bogfkonto = ol.Konto,
                             Antal = ol.Antal,
@@ -443,9 +444,6 @@ namespace nsPuls3060
                         m_karFakturavarer_k.Add(rec_Fakturavarer_k);
                     }
                 }
-                Program.karFakturaer_k.save();
-                m_karFakturastr_k.save();
-                m_karFakturavarer_k.save();
 
                 try
                 {
@@ -462,6 +460,11 @@ namespace nsPuls3060
                     Program.karStatus.Add(rec_Status);
                 }
                 Program.karStatus.save();
+                
+                Program.karFakturaer_k.save();
+                m_karFakturastr_k.save();
+                m_karFakturavarer_k.save();
+                
                 Program.dbDataTransSumma.SubmitChanges();
             }
             return AntalOrdre;

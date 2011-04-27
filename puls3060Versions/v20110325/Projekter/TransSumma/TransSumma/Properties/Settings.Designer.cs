@@ -494,7 +494,7 @@ namespace nsPuls3060.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("803, 329")]
+        [global::System.Configuration.DefaultSettingValueAttribute("803, 354")]
         public global::System.Drawing.Size frmNyeFakturaerSize {
             get {
                 return ((global::System.Drawing.Size)(this["frmNyeFakturaerSize"]));

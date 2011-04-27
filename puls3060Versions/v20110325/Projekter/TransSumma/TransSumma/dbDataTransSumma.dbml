@@ -159,6 +159,7 @@
       <Column Name="sk" Member="Sk" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
       <Column Name="dato" Member="Dato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="konto" Member="Konto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="kreditorbilagsnr" Member="Kreditorbilagsnr" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Tblwfak_Tblwfaklin" Member="Tblwfaklin" ThisKey="Pid" OtherKey="Fakpid" Type="Tblwfaklin" />
     </Type>
   </Table>

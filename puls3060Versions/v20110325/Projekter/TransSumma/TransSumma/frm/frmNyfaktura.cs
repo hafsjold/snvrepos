@@ -269,5 +269,10 @@ namespace nsPuls3060
             catch { }
 
         }
+
+        private void kreditorbilagsnrTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

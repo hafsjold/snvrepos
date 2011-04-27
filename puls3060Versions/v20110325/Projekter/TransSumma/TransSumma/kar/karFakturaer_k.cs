@@ -30,7 +30,7 @@ namespace nsPuls3060
         public int faktype;
         public int statenum;
 
-        public ordtype_k(int p_fakid, DateTime p_dato, DateTime p_forfdato, int p_fakbelob, int p_kreditornr, int p_momsbelob)
+        public ordtype_k(int p_fakid, DateTime p_dato, DateTime p_forfdato, int p_fakbelob, int p_kreditornr, int p_momsbelob, int p_kreditorbilagsnr)
         {
             fakid = p_fakid;
             dato = clsUtil.SummaDateTime2Serial(p_dato);
@@ -40,7 +40,7 @@ namespace nsPuls3060
             kreditornr = p_kreditornr;
             momsbelob = p_momsbelob;
             faktype = 2; //2=Kreditor Faktura, 3=Kreditor Kreditnota
-            kreditorbilagsnr = 0;
+            kreditorbilagsnr = p_kreditorbilagsnr;
 
             faknr = 0;
             const_1079574528 = 1079574528;
