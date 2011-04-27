@@ -71,6 +71,7 @@
             this.contextMenuLineCopyPaste = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdBeregn = new System.Windows.Forms.Button();
             datoLabel = new System.Windows.Forms.Label();
             kontoLabel = new System.Windows.Forms.Label();
             skLabel = new System.Windows.Forms.Label();
@@ -121,6 +122,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.cmdBeregn);
             this.splitContainer1.Panel1.Controls.Add(skLabel);
             this.splitContainer1.Panel1.Controls.Add(this.skComboBox);
             this.splitContainer1.Panel1.Controls.Add(kontoLabel);
@@ -471,6 +473,16 @@
             this.pasteToolStripMenuItem.Text = "Paste";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
             // 
+            // cmdBeregn
+            // 
+            this.cmdBeregn.Location = new System.Drawing.Point(569, 10);
+            this.cmdBeregn.Name = "cmdBeregn";
+            this.cmdBeregn.Size = new System.Drawing.Size(50, 22);
+            this.cmdBeregn.TabIndex = 8;
+            this.cmdBeregn.Text = "Beregn";
+            this.cmdBeregn.UseVisualStyleBackColor = true;
+            this.cmdBeregn.Click += new System.EventHandler(this.cmdBeregn_Click);
+            // 
             // FrmNyfaktura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -541,5 +553,6 @@
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton FakturaTilSummaSummarumToolStripButton;
+        private System.Windows.Forms.Button cmdBeregn;
     }
 }

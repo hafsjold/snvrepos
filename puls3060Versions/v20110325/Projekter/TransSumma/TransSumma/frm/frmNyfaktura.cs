@@ -253,8 +253,21 @@ namespace nsPuls3060
             }
         }
 
+        private void cmdBeregn_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                decimal momspct = (decimal)0.25;
+                var qry = from l in (this.tblwfakBindingSource.Current as Tblwfak).Tblwfaklin select l;
+                foreach (var l in qry)
+                {
+                    l.Nettobelob = l.Pris * l.Antal;
+                    l.Moms = l.Nettobelob * momspct;
+                    l.Bruttobelob = l.Nettobelob + l.Moms;
+                }
+            }
+            catch { }
 
-
-
+        }
     }
 }

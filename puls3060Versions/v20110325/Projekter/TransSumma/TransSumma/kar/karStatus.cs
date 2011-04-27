@@ -34,8 +34,12 @@ namespace nsPuls3060
                 while ((ln = sr.ReadLine()) != null)
                 {
                     string[] X = ln.Split('=');
-                    rec = new recStatus { key = X[0], value = X[1] };
-                    this.Add(rec);
+                    try
+                    {
+                        rec = new recStatus { key = X[0], value = X[1] };
+                        this.Add(rec);
+                    }
+                    catch {}
                 }
             }
         }

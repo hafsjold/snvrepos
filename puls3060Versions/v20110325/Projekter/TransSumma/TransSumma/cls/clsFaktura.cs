@@ -13,48 +13,48 @@ namespace nsPuls3060
             Tblfak recFak = null;
             var rec_regnskab = Program.qryAktivRegnskab();
             var qrySFak = from sfv in Program.karFakturavarer_s
-                             join sf in Program.karFakturaer_s on new { fakid = sfv.Fakid } equals new { fakid = sf.fakid }
-                             where sf.faknr != 0 && sf.faktype == 0
-                             join fl in Program.dbDataTransSumma.Tblfaklin
-                             on new
-                             {
-                                 regnskabsid = (int?)rec_regnskab.Rid,
-                                 fakid = (int?)sfv.Fakid,
-                                 sk = "S",
-                                 line = (int?)sfv.Line
-                             }
-                             equals new
-                             {
-                                 regnskabsid = fl.Regnskabid,
-                                 fakid = fl.Fakid,
-                                 sk = fl.Sk,
-                                 line = fl.Faklinnr
-                             }
-                             into tblfaklin
-                             from fl in tblfaklin.DefaultIfEmpty(new Tblfaklin { Pid = 0, Fakpid = 0, Regnskabid = null })
-                             where fl.Pid == 0
-                             orderby sfv.Fakid, sfv.Line
-                             select new 
-                             {
-                                 Regnskabid = rec_regnskab.Rid,
-                                 Sk = "S",
-                                 Fakid = sfv.Fakid,
-                                 Faknr = sf.faknr,
-                                 Dato = sf.dato,
-                                 debitornr = sf.debitornr,
-                                 Faklinnr = sfv.Line,
-                                 Varenr = sfv.Varenr,
-                                 Tekst = sfv.VareTekst,
-                                 Konto = sfv.Bogfkonto,
-                                 Momskode = "S25",
-                                 Antal = sfv.Antal,
-                                 Enhed = sfv.Enhed,
-                                 Pris = sfv.Pris,
-                                 Rabat = sfv.Rabat,
-                                 Moms = sfv.Moms,
-                                 Nettobelob = sfv.Nettobelob,
-                                 Bruttobelob = sfv.Bruttobelob,
-                             };
+                          join sf in Program.karFakturaer_s on new { fakid = sfv.Fakid } equals new { fakid = sf.fakid }
+                          where sf.faknr != 0 && sf.faktype == 0
+                          join fl in Program.dbDataTransSumma.Tblfaklin
+                          on new
+                          {
+                              regnskabsid = (int?)rec_regnskab.Rid,
+                              fakid = (int?)sfv.Fakid,
+                              sk = "S",
+                              line = (int?)sfv.Line
+                          }
+                          equals new
+                          {
+                              regnskabsid = fl.Regnskabid,
+                              fakid = fl.Fakid,
+                              sk = fl.Sk,
+                              line = fl.Faklinnr
+                          }
+                          into tblfaklin
+                          from fl in tblfaklin.DefaultIfEmpty(new Tblfaklin { Pid = 0, Fakpid = 0, Regnskabid = null })
+                          where fl.Pid == 0
+                          orderby sfv.Fakid, sfv.Line
+                          select new
+                          {
+                              Regnskabid = rec_regnskab.Rid,
+                              Sk = "S",
+                              Fakid = sfv.Fakid,
+                              Faknr = sf.faknr,
+                              Dato = sf.dato,
+                              debitornr = sf.debitornr,
+                              Faklinnr = sfv.Line,
+                              Varenr = sfv.Varenr,
+                              Tekst = sfv.VareTekst,
+                              Konto = sfv.Bogfkonto,
+                              Momskode = "S25",
+                              Antal = sfv.Antal,
+                              Enhed = sfv.Enhed,
+                              Pris = sfv.Pris,
+                              Rabat = sfv.Rabat,
+                              Moms = sfv.Moms,
+                              Nettobelob = sfv.Nettobelob,
+                              Bruttobelob = sfv.Bruttobelob,
+                          };
 
             int antal = qrySFak.Count();
 
@@ -94,7 +94,7 @@ namespace nsPuls3060
                     Varenr = s.Varenr.ToString(),
                     Tekst = s.Tekst,
                     Konto = s.Konto,
-                    Momskode = s.Momskode, 
+                    Momskode = s.Momskode,
                     Antal = s.Antal,
                     Enhed = s.Enhed,
                     Pris = s.Pris,
@@ -265,12 +265,12 @@ namespace nsPuls3060
                     SidsteRec_no++;
                     //var qry_ordlin = from sfl in Program.dbDataTransSumma.Tblwfaklin where sfl.Fakpid == o.Pid select sfl;
                     var qry_ordlin = from sfl in o.Tblwfaklin select sfl;
-                    int orebelob = (int)((from s in qry_ordlin select s.Bruttobelob).Sum()) * 100;
-                    int momsbelob = (int)((from s in qry_ordlin select s.Moms).Sum()) * 100;
+                    int orebelob = (int)((from s in qry_ordlin select s.Bruttobelob).Sum() * 100);
+                    int momsbelob = (int)((from s in qry_ordlin select s.Moms).Sum() * 100);
                     if (o.Dato == null) o.Dato = ToDay;
 
                     ordtype_s ord = new ordtype_s
-                    (  
+                    (
                         SidsteSFakID,                     //fakid
                         (DateTime)o.Dato,                 //dato
                         ((DateTime)o.Dato).AddDays(14),   //forfaldsdato
@@ -284,7 +284,7 @@ namespace nsPuls3060
                     var m_rec = (from m in Program.karKartotek where m.Kontonr == o.Konto select m).First();
                     string[] wAdresse = new string[1];
                     wAdresse[0] = m_rec.Adresse;
-                    clsNavnAdresse wFakNavnAdresse = new clsNavnAdresse 
+                    clsNavnAdresse wFakNavnAdresse = new clsNavnAdresse
                     {
                         Navn = m_rec.Kontonavn,
                         Adresse = wAdresse,
@@ -392,8 +392,8 @@ namespace nsPuls3060
                     SidsteRec_no++;
                     //var qry_ordlin = from sfl in Program.dbDataTransSumma.Tblwfaklin where sfl.Fakpid == o.Pid select sfl;
                     var qry_ordlin = from sfl in o.Tblwfaklin select sfl;
-                    int orebelob = (int)((from s in qry_ordlin select s.Bruttobelob).Sum()) * 100;
-                    int momsbelob = (int)((from s in qry_ordlin select s.Moms).Sum()) * 100;
+                    int orebelob = (int)((from s in qry_ordlin select s.Bruttobelob).Sum() * 100);
+                    int momsbelob = (int)((from s in qry_ordlin select s.Moms).Sum() * 100);
                     if (o.Dato == null) o.Dato = ToDay;
                     ordtype_k ord = new ordtype_k
                     (
