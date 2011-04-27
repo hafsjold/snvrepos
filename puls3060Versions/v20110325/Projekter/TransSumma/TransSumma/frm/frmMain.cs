@@ -117,10 +117,6 @@ namespace nsPuls3060
 #if (DEBUG)
             //object xx = Program.karPosteringer;
             //object xx = Program.karFakturaer_k;
-            clsFaktura objFaktura = new clsFaktura();
-            //objFaktura.KøbsOrder2Summa();
-            objFaktura.ImportSalgsfakturaer();
-            objFaktura.ImportKøbsfakturaer();
             //KarKartotek recKartotek = new KarKartotek();
             //int testx = 1;
             //KarBankafstemning recBankafstemning = new KarBankafstemning();
@@ -370,7 +366,23 @@ namespace nsPuls3060
             objExcel.ecxelPoster();
         }
 
-        private void fakturaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void indtastFakturaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            nyFakturaToolStripMenuItem1_Click(sender, e);
+            fakturaToolStripMenuItem1_Click(sender, e);
+        }
+
+        private void nyFakturaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("Ny faktura"))
+            {
+                FrmNyfaktura m_Nyfaktura = new FrmNyfaktura();
+                m_Nyfaktura.MdiParent = this;
+                m_Nyfaktura.Show();
+            }
+        }
+
+        private void fakturaToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             if (!FocusChild("Faktura"))
             {
@@ -380,14 +392,11 @@ namespace nsPuls3060
             }
         }
 
-        private void nyFakturaToolStripMenuItem_Click(object sender, EventArgs e)
+        private void importFakturaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!FocusChild("Ny faktura"))
-            {
-                FrmNyfaktura m_Nyfaktura = new FrmNyfaktura();
-                m_Nyfaktura.MdiParent = this;
-                m_Nyfaktura.Show();
-            }
+            clsFaktura objFaktura = new clsFaktura();
+            objFaktura.ImportSalgsfakturaer();
+            objFaktura.ImportKøbsfakturaer();
         }
 
     }

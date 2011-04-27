@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using Microsoft.Win32;
 
 namespace nsPuls3060
 {
@@ -38,6 +39,22 @@ namespace nsPuls3060
             if (e.KeyCode == Keys.V && e.Control)
             {
                 this.pasteFromClipboard();
+            }
+        }
+
+        private void kontoTextBox_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                Point startPoint = kontoTextBox.PointToScreen(new Point(e.X, e.Y));
+                FrmKontoplanList m_frmKontoplanList = new FrmKontoplanList(startPoint);
+                m_frmKontoplanList.ShowDialog();
+                int? selectedKontonr = m_frmKontoplanList.SelectedKontonr;
+                m_frmKontoplanList.Close();
+                if (selectedKontonr != null)
+                {
+                    kontoTextBox.Text = selectedKontonr.ToString();
+                }
             }
         }
 
@@ -124,7 +141,7 @@ namespace nsPuls3060
                         int i = 0;
                         int iMax = 12;
                         string[] value = new string[iMax];
-                        foreach (Match m in regexCommaCvs.Matches(line))
+                        foreach (Match m in regexCommaCvs.Matches(line + ",,"))
                         {
                             for (int j = 1; j <= 3; j++)
                             {
@@ -143,7 +160,7 @@ namespace nsPuls3060
                         {
                             i = 0;
                             value = new string[iMax];
-                            foreach (Match m in regexSimicolonCvs.Matches(line))
+                            foreach (Match m in regexSimicolonCvs.Matches(line + ";;"))
                             {
                                 for (int j = 1; j <= 3; j++)
                                 {
@@ -161,7 +178,7 @@ namespace nsPuls3060
 
                         if (value[3] != null) //konto
                         {
-                            Tblwfaklin  recWfaklin = new Tblwfaklin
+                            Tblwfaklin recWfaklin = new Tblwfaklin
                             {
                                 Varenr = value[1],
                                 Tekst = value[2],
@@ -215,6 +232,15 @@ namespace nsPuls3060
 
         private void FakturaTilSummaSummarumToolStripButton_Click(object sender, EventArgs e)
         {
+            try
+            {
+                Registry.CurrentUser.OpenSubKey(@"SOFTWARE\STONE'S SOFTWARE\SUMMAPRO\FAKTURA", true).SetValue("Kontant", "0");
+                Registry.CurrentUser.OpenSubKey(@"SOFTWARE\STONE'S SOFTWARE\SUMMAPRO\FAKTURA", true).SetValue("SkjulDaekBD", "1");
+            }
+            catch (System.NullReferenceException)
+            {
+            }
+
             clsFaktura objFaktura = new clsFaktura();
             objFaktura.SalgsOrder2Summa((IList<Tblwfak>)this.tblwfakBindingSource.List);
             objFaktura.KøbsOrder2Summa((IList<Tblwfak>)this.tblwfakBindingSource.List);
@@ -226,6 +252,8 @@ namespace nsPuls3060
                 this.tblwfakBindingSource.List.RemoveAt(i);
             }
         }
+
+
 
 
     }

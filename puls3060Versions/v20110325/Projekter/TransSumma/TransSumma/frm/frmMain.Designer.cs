@@ -47,6 +47,10 @@
             this.bankKontoudtogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printBilagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bilagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.faktureringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.indtastFakturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nyFakturaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.fakturaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.regnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importerTransaktionerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importDanskebankToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,7 +58,6 @@
             this.importerNordeaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.fakturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -66,7 +69,7 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.nyFakturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importFakturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -124,6 +127,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.medlemToolStripMenuItem,
+            this.faktureringToolStripMenuItem,
             this.regnskabToolStripMenuItem,
             this.systemToolStripMenuItem,
             this.hjælpToolStripMenuItem});
@@ -226,10 +230,42 @@
             this.bilagToolStripMenuItem.Text = "Bilag";
             this.bilagToolStripMenuItem.Click += new System.EventHandler(this.bilagToolStripMenuItem_Click);
             // 
+            // faktureringToolStripMenuItem
+            // 
+            this.faktureringToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.indtastFakturaToolStripMenuItem,
+            this.nyFakturaToolStripMenuItem1,
+            this.fakturaToolStripMenuItem1});
+            this.faktureringToolStripMenuItem.Name = "faktureringToolStripMenuItem";
+            this.faktureringToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
+            this.faktureringToolStripMenuItem.Text = "Fakturering";
+            // 
+            // indtastFakturaToolStripMenuItem
+            // 
+            this.indtastFakturaToolStripMenuItem.Name = "indtastFakturaToolStripMenuItem";
+            this.indtastFakturaToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.indtastFakturaToolStripMenuItem.Text = "Indtast Faktura";
+            this.indtastFakturaToolStripMenuItem.Click += new System.EventHandler(this.indtastFakturaToolStripMenuItem_Click);
+            // 
+            // nyFakturaToolStripMenuItem1
+            // 
+            this.nyFakturaToolStripMenuItem1.Name = "nyFakturaToolStripMenuItem1";
+            this.nyFakturaToolStripMenuItem1.Size = new System.Drawing.Size(160, 22);
+            this.nyFakturaToolStripMenuItem1.Text = "Ny Faktura";
+            this.nyFakturaToolStripMenuItem1.Click += new System.EventHandler(this.nyFakturaToolStripMenuItem1_Click);
+            // 
+            // fakturaToolStripMenuItem1
+            // 
+            this.fakturaToolStripMenuItem1.Name = "fakturaToolStripMenuItem1";
+            this.fakturaToolStripMenuItem1.Size = new System.Drawing.Size(160, 22);
+            this.fakturaToolStripMenuItem1.Text = "Faktura";
+            this.fakturaToolStripMenuItem1.Click += new System.EventHandler(this.fakturaToolStripMenuItem1_Click);
+            // 
             // regnskabToolStripMenuItem
             // 
             this.regnskabToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.importerTransaktionerToolStripMenuItem,
+            this.importFakturaToolStripMenuItem,
             this.importDanskebankToolStripMenuItem,
             this.excelRegnskabToolStripMenuItem,
             this.importerNordeaToolStripMenuItem});
@@ -268,9 +304,7 @@
             // systemToolStripMenuItem
             // 
             this.systemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem2,
-            this.fakturaToolStripMenuItem,
-            this.nyFakturaToolStripMenuItem});
+            this.toolStripMenuItem2});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
             this.systemToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.systemToolStripMenuItem.Text = "System";
@@ -278,16 +312,9 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(138, 22);
             this.toolStripMenuItem2.Text = "Regnskab";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.regnskabToolStripMenuItem_Click);
-            // 
-            // fakturaToolStripMenuItem
-            // 
-            this.fakturaToolStripMenuItem.Name = "fakturaToolStripMenuItem";
-            this.fakturaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.fakturaToolStripMenuItem.Text = "Faktura";
-            this.fakturaToolStripMenuItem.Click += new System.EventHandler(this.fakturaToolStripMenuItem_Click);
             // 
             // hjælpToolStripMenuItem
             // 
@@ -382,12 +409,12 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
-            // nyFakturaToolStripMenuItem
+            // importFakturaToolStripMenuItem
             // 
-            this.nyFakturaToolStripMenuItem.Name = "nyFakturaToolStripMenuItem";
-            this.nyFakturaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.nyFakturaToolStripMenuItem.Text = "Ny Faktura";
-            this.nyFakturaToolStripMenuItem.Click += new System.EventHandler(this.nyFakturaToolStripMenuItem_Click);
+            this.importFakturaToolStripMenuItem.Name = "importFakturaToolStripMenuItem";
+            this.importFakturaToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.importFakturaToolStripMenuItem.Text = "Import Faktura";
+            this.importFakturaToolStripMenuItem.Click += new System.EventHandler(this.importFakturaToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -457,8 +484,11 @@
         public System.Windows.Forms.ToolStripProgressBar MainformProgressBar;
         public System.Windows.Forms.ToolStripStatusLabel MainformProgressText;
         private System.Windows.Forms.ToolStripMenuItem excelRegnskabToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem fakturaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nyFakturaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem faktureringToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem indtastFakturaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nyFakturaToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem fakturaToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem importFakturaToolStripMenuItem;
     }
 }
 

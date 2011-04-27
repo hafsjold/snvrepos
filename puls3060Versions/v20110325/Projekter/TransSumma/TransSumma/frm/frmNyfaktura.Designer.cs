@@ -67,10 +67,10 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tblwfakBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.FakturaTilSummaSummarumToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.contextMenuLineCopyPaste = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.FakturaTilSummaSummarumToolStripButton = new System.Windows.Forms.ToolStripButton();
             datoLabel = new System.Windows.Forms.Label();
             kontoLabel = new System.Windows.Forms.Label();
             skLabel = new System.Windows.Forms.Label();
@@ -159,6 +159,7 @@
             this.kontoTextBox.Name = "kontoTextBox";
             this.kontoTextBox.Size = new System.Drawing.Size(61, 20);
             this.kontoTextBox.TabIndex = 6;
+            this.kontoTextBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.kontoTextBox_MouseDown);
             // 
             // datoDateTimePicker
             // 
@@ -438,6 +439,16 @@
             this.tblwfakBindingNavigatorSaveItem.Text = "Save Data";
             this.tblwfakBindingNavigatorSaveItem.Click += new System.EventHandler(this.tblwfakBindingNavigatorSaveItem_Click);
             // 
+            // FakturaTilSummaSummarumToolStripButton
+            // 
+            this.FakturaTilSummaSummarumToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.FakturaTilSummaSummarumToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("FakturaTilSummaSummarumToolStripButton.Image")));
+            this.FakturaTilSummaSummarumToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.FakturaTilSummaSummarumToolStripButton.Name = "FakturaTilSummaSummarumToolStripButton";
+            this.FakturaTilSummaSummarumToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.FakturaTilSummaSummarumToolStripButton.Text = "Faktura Ti lSummaSummarum";
+            this.FakturaTilSummaSummarumToolStripButton.Click += new System.EventHandler(this.FakturaTilSummaSummarumToolStripButton_Click);
+            // 
             // contextMenuLineCopyPaste
             // 
             this.contextMenuLineCopyPaste.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -460,23 +471,16 @@
             this.pasteToolStripMenuItem.Text = "Paste";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
             // 
-            // FakturaTilSummaSummarumToolStripButton
-            // 
-            this.FakturaTilSummaSummarumToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.FakturaTilSummaSummarumToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("FakturaTilSummaSummarumToolStripButton.Image")));
-            this.FakturaTilSummaSummarumToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.FakturaTilSummaSummarumToolStripButton.Name = "FakturaTilSummaSummarumToolStripButton";
-            this.FakturaTilSummaSummarumToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.FakturaTilSummaSummarumToolStripButton.Text = "Faktura Ti lSummaSummarum";
-            this.FakturaTilSummaSummarumToolStripButton.Click += new System.EventHandler(this.FakturaTilSummaSummarumToolStripButton_Click);
-            // 
             // FrmNyfaktura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(803, 329);
+            this.ClientSize = global::nsPuls3060.Properties.Settings.Default.frmNyeFakturaerSize;
             this.Controls.Add(this.tblwfakBindingNavigator);
             this.Controls.Add(this.splitContainer1);
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsPuls3060.Properties.Settings.Default, "frmNyeFakturaerLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::nsPuls3060.Properties.Settings.Default, "frmNyeFakturaerSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.Location = global::nsPuls3060.Properties.Settings.Default.frmNyeFakturaerLocation;
             this.Name = "FrmNyfaktura";
             this.Text = "Ny faktura";
             this.Load += new System.EventHandler(this.FrmNyfaktura_Load);

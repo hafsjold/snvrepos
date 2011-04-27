@@ -557,7 +557,7 @@
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
@@ -565,9 +565,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(825, 260);
+            this.ClientSize = global::nsPuls3060.Properties.Settings.Default.frmFakturaerSize;
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.tblfakBindingNavigator);
+            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::nsPuls3060.Properties.Settings.Default, "frmFakturaerSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsPuls3060.Properties.Settings.Default, "frmFakturaerLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.Location = global::nsPuls3060.Properties.Settings.Default.frmFakturaerLocation;
             this.Name = "FrmFaktura";
             this.Text = "Faktura";
             this.Load += new System.EventHandler(this.FrmFaktura_Load);

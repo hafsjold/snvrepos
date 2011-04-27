@@ -267,6 +267,7 @@ namespace nsPuls3060
                     var qry_ordlin = from sfl in o.Tblwfaklin select sfl;
                     int orebelob = (int)((from s in qry_ordlin select s.Bruttobelob).Sum()) * 100;
                     int momsbelob = (int)((from s in qry_ordlin select s.Moms).Sum()) * 100;
+                    if (o.Dato == null) o.Dato = ToDay;
 
                     ordtype_s ord = new ordtype_s
                     (  
@@ -393,7 +394,7 @@ namespace nsPuls3060
                     var qry_ordlin = from sfl in o.Tblwfaklin select sfl;
                     int orebelob = (int)((from s in qry_ordlin select s.Bruttobelob).Sum()) * 100;
                     int momsbelob = (int)((from s in qry_ordlin select s.Moms).Sum()) * 100;
-
+                    if (o.Dato == null) o.Dato = ToDay;
                     ordtype_k ord = new ordtype_k
                     (
                         SidsteKFakID,                     //fakid
