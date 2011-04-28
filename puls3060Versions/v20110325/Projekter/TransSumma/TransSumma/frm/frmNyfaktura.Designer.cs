@@ -74,6 +74,7 @@
             this.contextMenuLineCopyPaste = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.labelKontonavn = new System.Windows.Forms.Label();
             datoLabel = new System.Windows.Forms.Label();
             kontoLabel = new System.Windows.Forms.Label();
             skLabel = new System.Windows.Forms.Label();
@@ -101,7 +102,7 @@
             // kontoLabel
             // 
             kontoLabel.AutoSize = true;
-            kontoLabel.Location = new System.Drawing.Point(246, 15);
+            kontoLabel.Location = new System.Drawing.Point(105, 39);
             kontoLabel.Name = "kontoLabel";
             kontoLabel.Size = new System.Drawing.Size(38, 13);
             kontoLabel.TabIndex = 5;
@@ -119,7 +120,7 @@
             // kreditorbilagsnrLabel
             // 
             kreditorbilagsnrLabel.AutoSize = true;
-            kreditorbilagsnrLabel.Location = new System.Drawing.Point(373, 15);
+            kreditorbilagsnrLabel.Location = new System.Drawing.Point(410, 38);
             kreditorbilagsnrLabel.Name = "kreditorbilagsnrLabel";
             kreditorbilagsnrLabel.Size = new System.Drawing.Size(68, 13);
             kreditorbilagsnrLabel.TabIndex = 8;
@@ -135,6 +136,7 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.AutoScroll = true;
+            this.splitContainer1.Panel1.Controls.Add(this.labelKontonavn);
             this.splitContainer1.Panel1.Controls.Add(kreditorbilagsnrLabel);
             this.splitContainer1.Panel1.Controls.Add(this.kreditorbilagsnrTextBox);
             this.splitContainer1.Panel1.Controls.Add(this.cmdBeregn);
@@ -150,13 +152,13 @@
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.tblwfaklinDataGridView);
             this.splitContainer1.Size = new System.Drawing.Size(803, 354);
-            this.splitContainer1.SplitterDistance = 44;
+            this.splitContainer1.SplitterDistance = 62;
             this.splitContainer1.TabIndex = 0;
             // 
             // kreditorbilagsnrTextBox
             // 
             this.kreditorbilagsnrTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tblwfakBindingSource, "Kreditorbilagsnr", true));
-            this.kreditorbilagsnrTextBox.Location = new System.Drawing.Point(445, 12);
+            this.kreditorbilagsnrTextBox.Location = new System.Drawing.Point(482, 35);
             this.kreditorbilagsnrTextBox.Name = "kreditorbilagsnrTextBox";
             this.kreditorbilagsnrTextBox.Size = new System.Drawing.Size(89, 20);
             this.kreditorbilagsnrTextBox.TabIndex = 9;
@@ -191,9 +193,9 @@
             // kontoTextBox
             // 
             this.kontoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tblwfakBindingSource, "Konto", true));
-            this.kontoTextBox.Location = new System.Drawing.Point(290, 12);
+            this.kontoTextBox.Location = new System.Drawing.Point(148, 36);
             this.kontoTextBox.Name = "kontoTextBox";
-            this.kontoTextBox.Size = new System.Drawing.Size(61, 20);
+            this.kontoTextBox.Size = new System.Drawing.Size(63, 20);
             this.kontoTextBox.TabIndex = 6;
             this.kontoTextBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.kontoTextBox_MouseDown);
             // 
@@ -229,7 +231,7 @@
             this.tblwfaklinDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblwfaklinDataGridView.Location = new System.Drawing.Point(0, 0);
             this.tblwfaklinDataGridView.Name = "tblwfaklinDataGridView";
-            this.tblwfaklinDataGridView.Size = new System.Drawing.Size(803, 306);
+            this.tblwfaklinDataGridView.Size = new System.Drawing.Size(803, 288);
             this.tblwfaklinDataGridView.TabIndex = 3;
             this.tblwfaklinDataGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tblwfaklinDataGridView1_MouseDown);
             this.tblwfaklinDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tblwfaklinDataGridView1_KeyDown);
@@ -507,6 +509,15 @@
             this.pasteToolStripMenuItem.Text = "Paste";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
             // 
+            // labelKontonavn
+            // 
+            this.labelKontonavn.AutoSize = true;
+            this.labelKontonavn.Location = new System.Drawing.Point(215, 38);
+            this.labelKontonavn.Name = "labelKontonavn";
+            this.labelKontonavn.Size = new System.Drawing.Size(10, 13);
+            this.labelKontonavn.TabIndex = 10;
+            this.labelKontonavn.Text = " ";
+            // 
             // FrmNyfaktura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -579,5 +590,6 @@
         private System.Windows.Forms.ToolStripButton FakturaTilSummaSummarumToolStripButton;
         private System.Windows.Forms.Button cmdBeregn;
         private System.Windows.Forms.TextBox kreditorbilagsnrTextBox;
+        private System.Windows.Forms.Label labelKontonavn;
     }
 }

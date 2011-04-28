@@ -51,12 +51,9 @@
             this.tblfakBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.tblfaklinBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.udskrivCheckBox = new System.Windows.Forms.CheckBox();
             this.kontoTextBox = new System.Windows.Forms.TextBox();
-            this.datoDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.faknrTextBox = new System.Windows.Forms.TextBox();
             this.fakidTextBox = new System.Windows.Forms.TextBox();
-            this.skComboBox = new System.Windows.Forms.ComboBox();
             this.tblfaklinDataGridView = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -79,6 +76,14 @@
             this.dataGridViewTextBoxColumn38 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuLineCopyPaste = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdSog = new System.Windows.Forms.Button();
+            this.Sogeordlabel = new System.Windows.Forms.Label();
+            this.textBoxSogeord = new System.Windows.Forms.TextBox();
+            this.datoTextBox = new System.Windows.Forms.TextBox();
+            this.skTextBox = new System.Windows.Forms.TextBox();
+            this.checkBoxKøb = new System.Windows.Forms.CheckBox();
+            this.checkBoxSalg = new System.Windows.Forms.CheckBox();
+            this.labelKontonavn = new System.Windows.Forms.Label();
             skLabel = new System.Windows.Forms.Label();
             fakidLabel = new System.Windows.Forms.Label();
             faknrLabel = new System.Windows.Forms.Label();
@@ -107,7 +112,7 @@
             // fakidLabel
             // 
             fakidLabel.AutoSize = true;
-            fakidLabel.Location = new System.Drawing.Point(82, 15);
+            fakidLabel.Location = new System.Drawing.Point(70, 15);
             fakidLabel.Name = "fakidLabel";
             fakidLabel.Size = new System.Drawing.Size(36, 13);
             fakidLabel.TabIndex = 3;
@@ -116,7 +121,7 @@
             // faknrLabel
             // 
             faknrLabel.AutoSize = true;
-            faknrLabel.Location = new System.Drawing.Point(168, 15);
+            faknrLabel.Location = new System.Drawing.Point(165, 15);
             faknrLabel.Name = "faknrLabel";
             faknrLabel.Size = new System.Drawing.Size(37, 13);
             faknrLabel.TabIndex = 5;
@@ -125,7 +130,7 @@
             // datoLabel
             // 
             datoLabel.AutoSize = true;
-            datoLabel.Location = new System.Drawing.Point(254, 15);
+            datoLabel.Location = new System.Drawing.Point(251, 15);
             datoLabel.Name = "datoLabel";
             datoLabel.Size = new System.Drawing.Size(33, 13);
             datoLabel.TabIndex = 7;
@@ -134,7 +139,7 @@
             // kontoLabel
             // 
             kontoLabel.AutoSize = true;
-            kontoLabel.Location = new System.Drawing.Point(377, 15);
+            kontoLabel.Location = new System.Drawing.Point(67, 41);
             kontoLabel.Name = "kontoLabel";
             kontoLabel.Size = new System.Drawing.Size(38, 13);
             kontoLabel.TabIndex = 9;
@@ -160,14 +165,14 @@
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
             this.tblfakBindingNavigatorSaveItem});
-            this.tblfakBindingNavigator.Location = new System.Drawing.Point(0, 235);
+            this.tblfakBindingNavigator.Location = new System.Drawing.Point(0, 275);
             this.tblfakBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.tblfakBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.tblfakBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
             this.tblfakBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.tblfakBindingNavigator.Name = "tblfakBindingNavigator";
             this.tblfakBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.tblfakBindingNavigator.Size = new System.Drawing.Size(825, 25);
+            this.tblfakBindingNavigator.Size = new System.Drawing.Size(828, 25);
             this.tblfakBindingNavigator.TabIndex = 0;
             this.tblfakBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -284,80 +289,61 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.AutoScroll = true;
-            this.splitContainer1.Panel1.Controls.Add(this.udskrivCheckBox);
-            this.splitContainer1.Panel1.Controls.Add(kontoLabel);
-            this.splitContainer1.Panel1.Controls.Add(this.kontoTextBox);
-            this.splitContainer1.Panel1.Controls.Add(datoLabel);
-            this.splitContainer1.Panel1.Controls.Add(this.datoDateTimePicker);
-            this.splitContainer1.Panel1.Controls.Add(faknrLabel);
-            this.splitContainer1.Panel1.Controls.Add(this.faknrTextBox);
+            this.splitContainer1.Panel1.Controls.Add(this.labelKontonavn);
+            this.splitContainer1.Panel1.Controls.Add(this.checkBoxSalg);
+            this.splitContainer1.Panel1.Controls.Add(this.checkBoxKøb);
+            this.splitContainer1.Panel1.Controls.Add(skLabel);
+            this.splitContainer1.Panel1.Controls.Add(this.skTextBox);
             this.splitContainer1.Panel1.Controls.Add(fakidLabel);
             this.splitContainer1.Panel1.Controls.Add(this.fakidTextBox);
-            this.splitContainer1.Panel1.Controls.Add(skLabel);
-            this.splitContainer1.Panel1.Controls.Add(this.skComboBox);
+            this.splitContainer1.Panel1.Controls.Add(faknrLabel);
+            this.splitContainer1.Panel1.Controls.Add(this.faknrTextBox);
+            this.splitContainer1.Panel1.Controls.Add(datoLabel);
+            this.splitContainer1.Panel1.Controls.Add(this.datoTextBox);
+            this.splitContainer1.Panel1.Controls.Add(kontoLabel);
+            this.splitContainer1.Panel1.Controls.Add(this.kontoTextBox);
+            this.splitContainer1.Panel1.Controls.Add(this.Sogeordlabel);
+            this.splitContainer1.Panel1.Controls.Add(this.textBoxSogeord);
+            this.splitContainer1.Panel1.Controls.Add(this.cmdSog);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.tblfaklinDataGridView);
-            this.splitContainer1.Size = new System.Drawing.Size(825, 235);
-            this.splitContainer1.SplitterDistance = 41;
+            this.splitContainer1.Size = new System.Drawing.Size(828, 275);
+            this.splitContainer1.SplitterDistance = 67;
             this.splitContainer1.TabIndex = 3;
-            // 
-            // udskrivCheckBox
-            // 
-            this.udskrivCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.tblfakBindingSource, "Udskriv", true));
-            this.udskrivCheckBox.Location = new System.Drawing.Point(490, 10);
-            this.udskrivCheckBox.Name = "udskrivCheckBox";
-            this.udskrivCheckBox.Size = new System.Drawing.Size(67, 24);
-            this.udskrivCheckBox.TabIndex = 12;
-            this.udskrivCheckBox.Text = "Udskriv";
-            this.udskrivCheckBox.UseVisualStyleBackColor = true;
             // 
             // kontoTextBox
             // 
+            this.kontoTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.kontoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tblfakBindingSource, "Konto", true));
-            this.kontoTextBox.Location = new System.Drawing.Point(421, 12);
+            this.kontoTextBox.Location = new System.Drawing.Point(111, 38);
             this.kontoTextBox.Name = "kontoTextBox";
+            this.kontoTextBox.ReadOnly = true;
             this.kontoTextBox.Size = new System.Drawing.Size(50, 20);
-            this.kontoTextBox.TabIndex = 10;
-            // 
-            // datoDateTimePicker
-            // 
-            this.datoDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.tblfakBindingSource, "Dato", true));
-            this.datoDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.datoDateTimePicker.Location = new System.Drawing.Point(293, 11);
-            this.datoDateTimePicker.Name = "datoDateTimePicker";
-            this.datoDateTimePicker.Size = new System.Drawing.Size(81, 20);
-            this.datoDateTimePicker.TabIndex = 8;
+            this.kontoTextBox.TabIndex = 7;
+            this.kontoTextBox.TextChanged += new System.EventHandler(this.kontoTextBox_TextChanged);
             // 
             // faknrTextBox
             // 
+            this.faknrTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.faknrTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tblfakBindingSource, "Faknr", true));
-            this.faknrTextBox.Location = new System.Drawing.Point(211, 12);
+            this.faknrTextBox.Location = new System.Drawing.Point(208, 12);
             this.faknrTextBox.Name = "faknrTextBox";
+            this.faknrTextBox.ReadOnly = true;
             this.faknrTextBox.Size = new System.Drawing.Size(40, 20);
-            this.faknrTextBox.TabIndex = 6;
+            this.faknrTextBox.TabIndex = 5;
             // 
             // fakidTextBox
             // 
+            this.fakidTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.fakidTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tblfakBindingSource, "Fakid", true));
-            this.fakidTextBox.Location = new System.Drawing.Point(124, 12);
+            this.fakidTextBox.Location = new System.Drawing.Point(112, 12);
             this.fakidTextBox.Name = "fakidTextBox";
-            this.fakidTextBox.Size = new System.Drawing.Size(40, 20);
+            this.fakidTextBox.ReadOnly = true;
+            this.fakidTextBox.Size = new System.Drawing.Size(49, 20);
             this.fakidTextBox.TabIndex = 4;
-            // 
-            // skComboBox
-            // 
-            this.skComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tblfakBindingSource, "Sk", true));
-            this.skComboBox.FormattingEnabled = true;
-            this.skComboBox.Items.AddRange(new object[] {
-            "K",
-            "S"});
-            this.skComboBox.Location = new System.Drawing.Point(40, 12);
-            this.skComboBox.Name = "skComboBox";
-            this.skComboBox.Size = new System.Drawing.Size(38, 21);
-            this.skComboBox.TabIndex = 2;
             // 
             // tblfaklinDataGridView
             // 
@@ -391,8 +377,8 @@
             this.tblfaklinDataGridView.Location = new System.Drawing.Point(0, 0);
             this.tblfaklinDataGridView.Name = "tblfaklinDataGridView";
             this.tblfaklinDataGridView.ReadOnly = true;
-            this.tblfaklinDataGridView.Size = new System.Drawing.Size(825, 190);
-            this.tblfaklinDataGridView.TabIndex = 2;
+            this.tblfaklinDataGridView.Size = new System.Drawing.Size(828, 204);
+            this.tblfaklinDataGridView.TabIndex = 99;
             this.tblfaklinDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tblfaklinDataGridView_KeyDown);
             // 
             // dataGridViewTextBoxColumn9
@@ -561,6 +547,86 @@
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
+            // cmdSog
+            // 
+            this.cmdSog.Location = new System.Drawing.Point(572, 12);
+            this.cmdSog.Name = "cmdSog";
+            this.cmdSog.Size = new System.Drawing.Size(43, 23);
+            this.cmdSog.TabIndex = 2;
+            this.cmdSog.Text = "Søg";
+            this.cmdSog.UseVisualStyleBackColor = true;
+            this.cmdSog.Click += new System.EventHandler(this.cmdSog_Click);
+            // 
+            // Sogeordlabel
+            // 
+            this.Sogeordlabel.AutoSize = true;
+            this.Sogeordlabel.Location = new System.Drawing.Point(413, 16);
+            this.Sogeordlabel.Name = "Sogeordlabel";
+            this.Sogeordlabel.Size = new System.Drawing.Size(47, 13);
+            this.Sogeordlabel.TabIndex = 14;
+            this.Sogeordlabel.Text = "Søgeord";
+            // 
+            // textBoxSogeord
+            // 
+            this.textBoxSogeord.Location = new System.Drawing.Point(462, 13);
+            this.textBoxSogeord.Name = "textBoxSogeord";
+            this.textBoxSogeord.Size = new System.Drawing.Size(102, 20);
+            this.textBoxSogeord.TabIndex = 1;
+            // 
+            // datoTextBox
+            // 
+            this.datoTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.datoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tblfakBindingSource, "Dato", true));
+            this.datoTextBox.Location = new System.Drawing.Point(284, 12);
+            this.datoTextBox.Name = "datoTextBox";
+            this.datoTextBox.ReadOnly = true;
+            this.datoTextBox.Size = new System.Drawing.Size(64, 20);
+            this.datoTextBox.TabIndex = 6;
+            // 
+            // skTextBox
+            // 
+            this.skTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.skTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tblfakBindingSource, "Sk", true));
+            this.skTextBox.Location = new System.Drawing.Point(39, 12);
+            this.skTextBox.Name = "skTextBox";
+            this.skTextBox.ReadOnly = true;
+            this.skTextBox.Size = new System.Drawing.Size(22, 20);
+            this.skTextBox.TabIndex = 3;
+            // 
+            // checkBoxKøb
+            // 
+            this.checkBoxKøb.AutoSize = true;
+            this.checkBoxKøb.Checked = true;
+            this.checkBoxKøb.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxKøb.Location = new System.Drawing.Point(363, 8);
+            this.checkBoxKøb.Name = "checkBoxKøb";
+            this.checkBoxKøb.Size = new System.Drawing.Size(45, 17);
+            this.checkBoxKøb.TabIndex = 15;
+            this.checkBoxKøb.Text = "Køb";
+            this.checkBoxKøb.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxSalg
+            // 
+            this.checkBoxSalg.AutoSize = true;
+            this.checkBoxSalg.Checked = true;
+            this.checkBoxSalg.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxSalg.Location = new System.Drawing.Point(363, 22);
+            this.checkBoxSalg.Name = "checkBoxSalg";
+            this.checkBoxSalg.Size = new System.Drawing.Size(47, 17);
+            this.checkBoxSalg.TabIndex = 16;
+            this.checkBoxSalg.Text = "Salg";
+            this.checkBoxSalg.UseVisualStyleBackColor = true;
+            // 
+            // labelKontonavn
+            // 
+            this.labelKontonavn.AutoSize = true;
+            this.labelKontonavn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelKontonavn.Location = new System.Drawing.Point(167, 39);
+            this.labelKontonavn.Name = "labelKontonavn";
+            this.labelKontonavn.Size = new System.Drawing.Size(11, 15);
+            this.labelKontonavn.TabIndex = 17;
+            this.labelKontonavn.Text = " ";
+            // 
             // FrmFaktura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -610,10 +676,7 @@
         private System.Windows.Forms.BindingSource tblfaklinBindingSource;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TextBox fakidTextBox;
-        private System.Windows.Forms.ComboBox skComboBox;
-        private System.Windows.Forms.CheckBox udskrivCheckBox;
         private System.Windows.Forms.TextBox kontoTextBox;
-        private System.Windows.Forms.DateTimePicker datoDateTimePicker;
         private System.Windows.Forms.TextBox faknrTextBox;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
         private System.Windows.Forms.DataGridView tblfaklinDataGridView;
@@ -638,5 +701,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn38;
         private System.Windows.Forms.ContextMenuStrip contextMenuLineCopyPaste;
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
+        private System.Windows.Forms.Button cmdSog;
+        private System.Windows.Forms.Label Sogeordlabel;
+        private System.Windows.Forms.TextBox textBoxSogeord;
+        private System.Windows.Forms.TextBox datoTextBox;
+        private System.Windows.Forms.TextBox skTextBox;
+        private System.Windows.Forms.CheckBox checkBoxSalg;
+        private System.Windows.Forms.CheckBox checkBoxKøb;
+        private System.Windows.Forms.Label labelKontonavn;
     }
 }

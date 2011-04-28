@@ -40,6 +40,10 @@
             this.cmdCancel = new System.Windows.Forms.Button();
             this.cmdOK = new System.Windows.Forms.Button();
             this.checkBoxMedsaldo = new System.Windows.Forms.CheckBox();
+            this.checkBoxDrift = new System.Windows.Forms.CheckBox();
+            this.checkBoxDebitor = new System.Windows.Forms.CheckBox();
+            this.checkBoxKreditor = new System.Windows.Forms.CheckBox();
+            this.checkBoxStatus = new System.Windows.Forms.CheckBox();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -137,6 +141,10 @@
             // 
             // splitContainer2.Panel2
             // 
+            this.splitContainer2.Panel2.Controls.Add(this.checkBoxKreditor);
+            this.splitContainer2.Panel2.Controls.Add(this.checkBoxDebitor);
+            this.splitContainer2.Panel2.Controls.Add(this.checkBoxStatus);
+            this.splitContainer2.Panel2.Controls.Add(this.checkBoxDrift);
             this.splitContainer2.Panel2.Controls.Add(this.cmdCancel);
             this.splitContainer2.Panel2.Controls.Add(this.cmdOK);
             this.splitContainer2.Panel2.Controls.Add(this.checkBoxMedsaldo);
@@ -170,13 +178,65 @@
             this.checkBoxMedsaldo.Checked = global::nsPuls3060.Properties.Settings.Default.frmKontoplanListCheckboxmedsaldo;
             this.checkBoxMedsaldo.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBoxMedsaldo.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::nsPuls3060.Properties.Settings.Default, "frmKontoplanListCheckboxmedsaldo", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.checkBoxMedsaldo.Location = new System.Drawing.Point(9, 88);
+            this.checkBoxMedsaldo.Location = new System.Drawing.Point(9, 144);
             this.checkBoxMedsaldo.Name = "checkBoxMedsaldo";
             this.checkBoxMedsaldo.Size = new System.Drawing.Size(72, 43);
             this.checkBoxMedsaldo.TabIndex = 1;
             this.checkBoxMedsaldo.Text = "Vis kun\r\nkonti med\r\nsaldo";
             this.checkBoxMedsaldo.UseVisualStyleBackColor = true;
             this.checkBoxMedsaldo.CheckedChanged += new System.EventHandler(this.checkBoxMedsaldo_CheckedChanged);
+            // 
+            // checkBoxDrift
+            // 
+            this.checkBoxDrift.AutoSize = true;
+            this.checkBoxDrift.Checked = true;
+            this.checkBoxDrift.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxDrift.Location = new System.Drawing.Point(9, 87);
+            this.checkBoxDrift.Name = "checkBoxDrift";
+            this.checkBoxDrift.Size = new System.Drawing.Size(45, 17);
+            this.checkBoxDrift.TabIndex = 3;
+            this.checkBoxDrift.Text = "Drift";
+            this.checkBoxDrift.UseVisualStyleBackColor = true;
+            this.checkBoxDrift.CheckedChanged += new System.EventHandler(this.checkBoxDrift_CheckedChanged);
+            // 
+            // checkBoxDebitor
+            // 
+            this.checkBoxDebitor.AutoSize = true;
+            this.checkBoxDebitor.Checked = true;
+            this.checkBoxDebitor.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxDebitor.Location = new System.Drawing.Point(9, 114);
+            this.checkBoxDebitor.Name = "checkBoxDebitor";
+            this.checkBoxDebitor.Size = new System.Drawing.Size(60, 17);
+            this.checkBoxDebitor.TabIndex = 4;
+            this.checkBoxDebitor.Text = "Debitor";
+            this.checkBoxDebitor.UseVisualStyleBackColor = true;
+            this.checkBoxDebitor.CheckedChanged += new System.EventHandler(this.checkBoxDebitor_CheckedChanged);
+            // 
+            // checkBoxKreditor
+            // 
+            this.checkBoxKreditor.AutoSize = true;
+            this.checkBoxKreditor.Checked = true;
+            this.checkBoxKreditor.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxKreditor.Location = new System.Drawing.Point(9, 128);
+            this.checkBoxKreditor.Name = "checkBoxKreditor";
+            this.checkBoxKreditor.Size = new System.Drawing.Size(62, 17);
+            this.checkBoxKreditor.TabIndex = 5;
+            this.checkBoxKreditor.Text = "Kreditor";
+            this.checkBoxKreditor.UseVisualStyleBackColor = true;
+            this.checkBoxKreditor.CheckedChanged += new System.EventHandler(this.checkBoxKreditor_CheckedChanged);
+            // 
+            // checkBoxStatus
+            // 
+            this.checkBoxStatus.AutoSize = true;
+            this.checkBoxStatus.Checked = true;
+            this.checkBoxStatus.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxStatus.Location = new System.Drawing.Point(9, 100);
+            this.checkBoxStatus.Name = "checkBoxStatus";
+            this.checkBoxStatus.Size = new System.Drawing.Size(56, 17);
+            this.checkBoxStatus.TabIndex = 3;
+            this.checkBoxStatus.Text = "Status";
+            this.checkBoxStatus.UseVisualStyleBackColor = true;
+            this.checkBoxStatus.CheckedChanged += new System.EventHandler(this.checkBoxStatus_CheckedChanged);
             // 
             // FrmKontoplanList
             // 
@@ -219,5 +279,9 @@
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.Button cmdCancel;
         private System.Windows.Forms.Button cmdOK;
+        private System.Windows.Forms.CheckBox checkBoxDrift;
+        private System.Windows.Forms.CheckBox checkBoxKreditor;
+        private System.Windows.Forms.CheckBox checkBoxDebitor;
+        private System.Windows.Forms.CheckBox checkBoxStatus;
     }
 }

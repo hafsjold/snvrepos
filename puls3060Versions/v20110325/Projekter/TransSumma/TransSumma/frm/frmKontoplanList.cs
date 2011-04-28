@@ -42,6 +42,16 @@ namespace nsPuls3060
         
         private void getKontoplan()
         {
+            String[] aType = { "Drift", "Status", "Debitor", "Kreditor" };
+            if (!checkBoxDrift.Checked)
+                aType[0] = "w";
+            if (!checkBoxStatus.Checked)
+                aType[1] = "x";
+            if (!checkBoxDebitor.Checked)
+                aType[2] = "y";
+            if (!checkBoxKreditor.Checked)
+                aType[3] = "z";
+
             bool bFind = false;
             if (toolStripTextBoxFind.Text.Length > 0)
                 bFind = true;
@@ -50,6 +60,7 @@ namespace nsPuls3060
             IEnumerable<recKontoplan> qry_Kontoplan;
             IEnumerable<recKontoplan> qry_Kartotek;
             IEnumerable<recKontoplan> qry_Kontoplan2;
+            IEnumerable<recKontoplan> qry_Kontoplan3;
             IEnumerable<recKontoplan> qry_Join;
             if (checkBoxMedsaldo.Checked)
             {
@@ -100,8 +111,13 @@ namespace nsPuls3060
                                 select k;
             }
 
+            qry_Kontoplan3 = from k in qry_Kontoplan2
+                             where aType.Contains(k.Type)
+                             orderby k.Kontonr ascending
+                             select k;
+
             this.lvwKontoplan.Items.Clear();
-            foreach (var b in qry_Kontoplan2)
+            foreach (var b in qry_Kontoplan3)
             {
                 ListViewItem it = lvwKontoplan.Items.Add(b.Kontonr.ToString(), b.Kontonr.ToString(), 0);
                 it.SubItems.Add(b.Kontonavn);
@@ -128,6 +144,26 @@ namespace nsPuls3060
                 SelectedKontonr = int.Parse(lvwKontoplan.SelectedItems[0].Name);
                 SelectedMomskode = lvwKontoplan.SelectedItems[0].SubItems[2].Text;
             }
+        }
+
+        private void checkBoxDrift_CheckedChanged(object sender, EventArgs e)
+        {
+            getKontoplan();
+        }
+
+        private void checkBoxStatus_CheckedChanged(object sender, EventArgs e)
+        {
+            getKontoplan();
+        }
+
+        private void checkBoxDebitor_CheckedChanged(object sender, EventArgs e)
+        {
+            getKontoplan();
+        }
+
+        private void checkBoxKreditor_CheckedChanged(object sender, EventArgs e)
+        {
+            getKontoplan();
         }
 
     }

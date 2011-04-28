@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Data.Linq.SqlClient;
 
 namespace nsPuls3060
 {
@@ -52,5 +53,48 @@ namespace nsPuls3060
         {
             this.copyToClipboard();
         }
+
+        private void cmdSog_Click(object sender, EventArgs e)
+        {
+            String[] aSk = { "S", "K" };
+            if (!checkBoxSalg.Checked)
+                aSk[0] = "x";
+            if (!checkBoxKøb.Checked)
+                aSk[1] = "y";
+            string strLike = "%" + textBoxSogeord.Text + "%";
+            var qry = (from u in Program.dbDataTransSumma.Tblfaklin
+                       where SqlMethods.Like(u.Tekst, strLike)
+                       join b in Program.dbDataTransSumma.Tblfak on u.Fakpid equals b.Pid
+                       where aSk.Contains(b.Sk)
+                       orderby b.Dato descending
+                       select b).Distinct();
+            var qryAfstemte = from b in qry orderby b.Dato descending select b;
+
+            this.tblfakBindingSource.DataSource = qryAfstemte;
+        }
+
+        private void kontoTextBox_TextChanged(object sender, EventArgs e)
+        {
+            getKontonavn();
+        }        
+        
+        private void getKontonavn()
+        {
+            int Konto;
+            if (int.TryParse(kontoTextBox.Text, out Konto))
+            {
+                try
+                {
+                    labelKontonavn.Text = (from k in Program.karKartotek where k.Kontonr == Konto select k.Kontonavn).First();
+                }
+                catch
+                {
+                    labelKontonavn.Text = "Skal udfyldes";
+                }
+            }
+            else
+                labelKontonavn.Text = "Skal udfyldes";
+        }
+
     }
 }
