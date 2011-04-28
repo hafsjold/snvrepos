@@ -56,6 +56,11 @@ namespace nsPuls3060
 
         private void cmdSog_Click(object sender, EventArgs e)
         {
+            Sog();
+        }
+
+        private void Sog()
+        {
             String[] aSk = { "S", "K" };
             if (!checkBoxSalg.Checked)
                 aSk[0] = "x";
@@ -94,6 +99,16 @@ namespace nsPuls3060
             }
             else
                 labelKontonavn.Text = "Skal udfyldes";
+        }
+
+        private void checkBoxKøb_CheckedChanged(object sender, EventArgs e)
+        {
+            Sog();
+        }
+
+        private void checkBoxSalg_CheckedChanged(object sender, EventArgs e)
+        {
+            Sog();
         }
 
     }

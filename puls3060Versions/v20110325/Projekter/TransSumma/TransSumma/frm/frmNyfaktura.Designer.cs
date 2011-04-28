@@ -32,9 +32,10 @@
             System.Windows.Forms.Label datoLabel;
             System.Windows.Forms.Label kontoLabel;
             System.Windows.Forms.Label skLabel;
-            System.Windows.Forms.Label kreditorbilagsnrLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNyfaktura));
+            this.kreditorbilagsnrLabel = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.labelKontonavn = new System.Windows.Forms.Label();
             this.kreditorbilagsnrTextBox = new System.Windows.Forms.TextBox();
             this.tblwfakBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmdBeregn = new System.Windows.Forms.Button();
@@ -74,11 +75,9 @@
             this.contextMenuLineCopyPaste = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.labelKontonavn = new System.Windows.Forms.Label();
             datoLabel = new System.Windows.Forms.Label();
             kontoLabel = new System.Windows.Forms.Label();
             skLabel = new System.Windows.Forms.Label();
-            kreditorbilagsnrLabel = new System.Windows.Forms.Label();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -93,38 +92,38 @@
             // datoLabel
             // 
             datoLabel.AutoSize = true;
-            datoLabel.Location = new System.Drawing.Point(108, 15);
+            datoLabel.Location = new System.Drawing.Point(92, 15);
             datoLabel.Name = "datoLabel";
-            datoLabel.Size = new System.Drawing.Size(33, 13);
+            datoLabel.Size = new System.Drawing.Size(30, 13);
             datoLabel.TabIndex = 3;
-            datoLabel.Text = "Dato:";
+            datoLabel.Text = "Dato";
             // 
             // kontoLabel
             // 
             kontoLabel.AutoSize = true;
-            kontoLabel.Location = new System.Drawing.Point(105, 39);
+            kontoLabel.Location = new System.Drawing.Point(10, 42);
             kontoLabel.Name = "kontoLabel";
-            kontoLabel.Size = new System.Drawing.Size(38, 13);
+            kontoLabel.Size = new System.Drawing.Size(35, 13);
             kontoLabel.TabIndex = 5;
-            kontoLabel.Text = "Konto:";
+            kontoLabel.Text = "Konto";
             // 
             // skLabel
             // 
             skLabel.AutoSize = true;
-            skLabel.Location = new System.Drawing.Point(15, 15);
+            skLabel.Location = new System.Drawing.Point(19, 15);
             skLabel.Name = "skLabel";
-            skLabel.Size = new System.Drawing.Size(23, 13);
+            skLabel.Size = new System.Drawing.Size(26, 13);
             skLabel.TabIndex = 6;
-            skLabel.Text = "Sk:";
+            skLabel.Text = "K/S";
             // 
             // kreditorbilagsnrLabel
             // 
-            kreditorbilagsnrLabel.AutoSize = true;
-            kreditorbilagsnrLabel.Location = new System.Drawing.Point(410, 38);
-            kreditorbilagsnrLabel.Name = "kreditorbilagsnrLabel";
-            kreditorbilagsnrLabel.Size = new System.Drawing.Size(68, 13);
-            kreditorbilagsnrLabel.TabIndex = 8;
-            kreditorbilagsnrLabel.Text = "Kreditorbilag:";
+            this.kreditorbilagsnrLabel.AutoSize = true;
+            this.kreditorbilagsnrLabel.Location = new System.Drawing.Point(211, 15);
+            this.kreditorbilagsnrLabel.Name = "kreditorbilagsnrLabel";
+            this.kreditorbilagsnrLabel.Size = new System.Drawing.Size(65, 13);
+            this.kreditorbilagsnrLabel.TabIndex = 8;
+            this.kreditorbilagsnrLabel.Text = "Kreditorbilag";
             // 
             // splitContainer1
             // 
@@ -137,7 +136,7 @@
             // 
             this.splitContainer1.Panel1.AutoScroll = true;
             this.splitContainer1.Panel1.Controls.Add(this.labelKontonavn);
-            this.splitContainer1.Panel1.Controls.Add(kreditorbilagsnrLabel);
+            this.splitContainer1.Panel1.Controls.Add(this.kreditorbilagsnrLabel);
             this.splitContainer1.Panel1.Controls.Add(this.kreditorbilagsnrTextBox);
             this.splitContainer1.Panel1.Controls.Add(this.cmdBeregn);
             this.splitContainer1.Panel1.Controls.Add(skLabel);
@@ -152,17 +151,26 @@
             this.splitContainer1.Panel2.AutoScroll = true;
             this.splitContainer1.Panel2.Controls.Add(this.tblwfaklinDataGridView);
             this.splitContainer1.Size = new System.Drawing.Size(803, 354);
-            this.splitContainer1.SplitterDistance = 62;
+            this.splitContainer1.SplitterDistance = 65;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // labelKontonavn
+            // 
+            this.labelKontonavn.AutoSize = true;
+            this.labelKontonavn.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelKontonavn.Location = new System.Drawing.Point(104, 39);
+            this.labelKontonavn.Name = "labelKontonavn";
+            this.labelKontonavn.Size = new System.Drawing.Size(11, 15);
+            this.labelKontonavn.TabIndex = 10;
+            this.labelKontonavn.Text = " ";
             // 
             // kreditorbilagsnrTextBox
             // 
             this.kreditorbilagsnrTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tblwfakBindingSource, "Kreditorbilagsnr", true));
-            this.kreditorbilagsnrTextBox.Location = new System.Drawing.Point(482, 35);
+            this.kreditorbilagsnrTextBox.Location = new System.Drawing.Point(280, 12);
             this.kreditorbilagsnrTextBox.Name = "kreditorbilagsnrTextBox";
             this.kreditorbilagsnrTextBox.Size = new System.Drawing.Size(89, 20);
             this.kreditorbilagsnrTextBox.TabIndex = 9;
-            this.kreditorbilagsnrTextBox.TextChanged += new System.EventHandler(this.kreditorbilagsnrTextBox_TextChanged);
             // 
             // tblwfakBindingSource
             // 
@@ -185,25 +193,27 @@
             this.skComboBox.Items.AddRange(new object[] {
             "K",
             "S"});
-            this.skComboBox.Location = new System.Drawing.Point(44, 12);
+            this.skComboBox.Location = new System.Drawing.Point(48, 12);
             this.skComboBox.Name = "skComboBox";
             this.skComboBox.Size = new System.Drawing.Size(39, 21);
             this.skComboBox.TabIndex = 7;
+            this.skComboBox.TextChanged += new System.EventHandler(this.skComboBox_TextChanged);
             // 
             // kontoTextBox
             // 
             this.kontoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tblwfakBindingSource, "Konto", true));
-            this.kontoTextBox.Location = new System.Drawing.Point(148, 36);
+            this.kontoTextBox.Location = new System.Drawing.Point(48, 38);
             this.kontoTextBox.Name = "kontoTextBox";
-            this.kontoTextBox.Size = new System.Drawing.Size(63, 20);
+            this.kontoTextBox.Size = new System.Drawing.Size(50, 20);
             this.kontoTextBox.TabIndex = 6;
+            this.kontoTextBox.TextChanged += new System.EventHandler(this.kontoTextBox_TextChanged);
             this.kontoTextBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.kontoTextBox_MouseDown);
             // 
             // datoDateTimePicker
             // 
             this.datoDateTimePicker.DataBindings.Add(new System.Windows.Forms.Binding("Value", this.tblwfakBindingSource, "Dato", true));
             this.datoDateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.datoDateTimePicker.Location = new System.Drawing.Point(147, 11);
+            this.datoDateTimePicker.Location = new System.Drawing.Point(124, 11);
             this.datoDateTimePicker.Name = "datoDateTimePicker";
             this.datoDateTimePicker.Size = new System.Drawing.Size(81, 20);
             this.datoDateTimePicker.TabIndex = 4;
@@ -231,7 +241,7 @@
             this.tblwfaklinDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblwfaklinDataGridView.Location = new System.Drawing.Point(0, 0);
             this.tblwfaklinDataGridView.Name = "tblwfaklinDataGridView";
-            this.tblwfaklinDataGridView.Size = new System.Drawing.Size(803, 288);
+            this.tblwfaklinDataGridView.Size = new System.Drawing.Size(803, 285);
             this.tblwfaklinDataGridView.TabIndex = 3;
             this.tblwfaklinDataGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tblwfaklinDataGridView1_MouseDown);
             this.tblwfaklinDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tblwfaklinDataGridView1_KeyDown);
@@ -353,7 +363,7 @@
             // 
             // tblwfakBindingNavigator
             // 
-            this.tblwfakBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.tblwfakBindingNavigator.AddNewItem = null;
             this.tblwfakBindingNavigator.BindingSource = this.tblwfakBindingSource;
             this.tblwfakBindingNavigator.CountItem = this.bindingNavigatorCountItem;
             this.tblwfakBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
@@ -391,6 +401,7 @@
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorAddNewItem.Text = "Add new";
+            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
             // 
             // bindingNavigatorCountItem
             // 
@@ -509,15 +520,6 @@
             this.pasteToolStripMenuItem.Text = "Paste";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
             // 
-            // labelKontonavn
-            // 
-            this.labelKontonavn.AutoSize = true;
-            this.labelKontonavn.Location = new System.Drawing.Point(215, 38);
-            this.labelKontonavn.Name = "labelKontonavn";
-            this.labelKontonavn.Size = new System.Drawing.Size(10, 13);
-            this.labelKontonavn.TabIndex = 10;
-            this.labelKontonavn.Text = " ";
-            // 
             // FrmNyfaktura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -591,5 +593,6 @@
         private System.Windows.Forms.Button cmdBeregn;
         private System.Windows.Forms.TextBox kreditorbilagsnrTextBox;
         private System.Windows.Forms.Label labelKontonavn;
+        public System.Windows.Forms.Label kreditorbilagsnrLabel;
     }
 }

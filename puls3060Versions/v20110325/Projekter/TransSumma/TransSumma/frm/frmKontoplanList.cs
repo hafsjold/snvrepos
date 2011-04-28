@@ -10,6 +10,16 @@ using System.Data.Linq.SqlClient;
 
 namespace nsPuls3060
 {
+    [Flags]
+    public enum KontoType
+    {
+        None = 0x0,
+        Drift = 0x1,
+        Status = 0x2,
+        Debitor = 0x4,
+        Kreditor = 0x8
+    }
+
     public partial class FrmKontoplanList : Form
     {
         public int? SelectedKontonr { get; set; }
@@ -20,10 +30,29 @@ namespace nsPuls3060
             InitializeComponent();
         }
         
-        public FrmKontoplanList(Point Start)
+        public FrmKontoplanList(Point Start, KontoType ktp)
         {
             global::nsPuls3060.Properties.Settings.Default.frmKontoplanListLocation = Start;
             InitializeComponent();
+            if ((ktp & KontoType.Drift) == KontoType.Drift)
+                checkBoxDrift.Checked = true;
+            else
+                checkBoxDrift.Checked = false;
+
+            if ((ktp & KontoType.Status) == KontoType.Status)
+                checkBoxStatus.Checked = true;
+            else
+                checkBoxStatus.Checked = false;
+
+            if ((ktp & KontoType.Debitor) == KontoType.Debitor)
+                checkBoxDebitor.Checked = true;
+            else
+                checkBoxDebitor.Checked = false;
+
+            if ((ktp & KontoType.Kreditor) == KontoType.Kreditor)
+                checkBoxKreditor.Checked = true;
+            else
+                checkBoxKreditor.Checked = false;
         }
         private void FrmKontoplanList_Load(object sender, EventArgs e)
         {

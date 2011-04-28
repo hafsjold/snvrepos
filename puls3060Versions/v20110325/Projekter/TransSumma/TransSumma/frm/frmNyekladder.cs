@@ -365,7 +365,7 @@ namespace nsPuls3060
                     tblwkladderDataGridView.ClearSelection();
                     tblwkladderDataGridView.Rows[hit.RowIndex].Cells[hit.ColumnIndex].Selected = true;
                     Point startPoint = tblwkladderDataGridView.PointToScreen(new Point(e.X, e.Y));
-                    FrmKontoplanList m_frmKontoplanList = new FrmKontoplanList(startPoint);
+                    FrmKontoplanList m_frmKontoplanList = new FrmKontoplanList(startPoint, KontoType.Drift | KontoType.Status | KontoType.Debitor | KontoType.Kreditor);
                     m_frmKontoplanList.ShowDialog();
                     int? selectedKontonr = m_frmKontoplanList.SelectedKontonr;
                     string selectedMomskode = m_frmKontoplanList.SelectedMomskode;

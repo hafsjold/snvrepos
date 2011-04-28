@@ -21,6 +21,11 @@ namespace nsPuls3060
         private void FrmNyfaktura_Load(object sender, EventArgs e)
         {
             this.tblwfakBindingSource.DataSource = Program.dbDataTransSumma.Tblwfak;
+            int antal_fak = this.tblwfakBindingSource.Count;
+            if (antal_fak == 0)
+            {
+                AddNewFak();
+            }
         }
 
         private void FrmNyfaktura_FormClosed(object sender, FormClosedEventArgs e)
@@ -47,7 +52,12 @@ namespace nsPuls3060
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
                 Point startPoint = kontoTextBox.PointToScreen(new Point(e.X, e.Y));
-                FrmKontoplanList m_frmKontoplanList = new FrmKontoplanList(startPoint);
+                KontoType ktp = KontoType.None;
+                if (skComboBox.Text == "K")
+                    ktp = KontoType.Kreditor;
+                if (skComboBox.Text == "S")
+                    ktp = KontoType.Debitor;
+                FrmKontoplanList m_frmKontoplanList = new FrmKontoplanList(startPoint, ktp);
                 m_frmKontoplanList.ShowDialog();
                 int? selectedKontonr = m_frmKontoplanList.SelectedKontonr;
                 m_frmKontoplanList.Close();
@@ -69,7 +79,7 @@ namespace nsPuls3060
                     tblwfaklinDataGridView.ClearSelection();
                     tblwfaklinDataGridView.Rows[hit.RowIndex].Cells[hit.ColumnIndex].Selected = true;
                     Point startPoint = tblwfaklinDataGridView.PointToScreen(new Point(e.X, e.Y));
-                    FrmKontoplanList m_frmKontoplanList = new FrmKontoplanList(startPoint);
+                    FrmKontoplanList m_frmKontoplanList = new FrmKontoplanList(startPoint, KontoType.Drift | KontoType.Status);
                     m_frmKontoplanList.ShowDialog();
                     int? selectedKontonr = m_frmKontoplanList.SelectedKontonr;
                     string selectedMomskode = m_frmKontoplanList.SelectedMomskode;
@@ -273,6 +283,7 @@ namespace nsPuls3060
 
         private void cmdBeregn_Click(object sender, EventArgs e)
         {
+            int antal = this.tblwfakBindingSource.Count;
             try
             {
                 decimal momspct = (decimal)0.25;
@@ -288,8 +299,84 @@ namespace nsPuls3060
 
         }
 
-        private void kreditorbilagsnrTextBox_TextChanged(object sender, EventArgs e)
+        private void kontoTextBox_TextChanged(object sender, EventArgs e)
         {
+
+            getKontonavn();
+        }
+
+        private void getKontonavn()
+        {
+            int Konto;
+            if (int.TryParse(kontoTextBox.Text, out Konto))
+            {
+                try
+                {
+                    labelKontonavn.Text = (from k in Program.karKartotek where k.Kontonr == Konto select k.Kontonavn).First();
+                }
+                catch
+                {
+                    labelKontonavn.Text = "Skal udfyldes";
+                }
+            }
+            else
+                labelKontonavn.Text = "Skal udfyldes";
+        }
+
+        private void bindingNavigatorAddNewItem_Click(object sender, EventArgs e)
+        {
+            AddNewFak();
+        }
+
+        private void AddNewFak()
+        {
+            DateTime SidsteDato;
+            try
+            {
+                SidsteDato = (DateTime)(from b in ((IList<Tblwfak>)this.tblwfakBindingSource.List) select b.Dato).Last();
+            }
+            catch
+            {
+                SidsteDato = DateTime.Today;
+            }
+            String SidsteSk;
+            try
+            {
+                SidsteSk = (from b in ((IList<Tblwfak>)this.tblwfakBindingSource.List) select b.Sk).Last();
+            }
+            catch
+            {
+                SidsteSk = "S";
+            }
+
+            Tblwfak recwBilag = new Tblwfak
+            {
+                Dato = SidsteDato,
+                Sk = SidsteSk
+            };
+            try
+            {
+                this.tblwfakBindingSource.Add(recwBilag);
+                this.tblwfakBindingSource.MoveLast();
+            }
+            catch
+            {
+                //throw;
+            }
+        }
+
+        private void skComboBox_TextChanged(object sender, EventArgs e)
+        {
+            if (skComboBox.Text == "K")
+            {
+                this.kreditorbilagsnrLabel.Visible = true;
+                this.kreditorbilagsnrTextBox.Visible = true;
+            }
+            else
+            {
+                this.kreditorbilagsnrLabel.Visible = false;
+                this.kreditorbilagsnrTextBox.Visible = false;
+            }
 
         }
     }
