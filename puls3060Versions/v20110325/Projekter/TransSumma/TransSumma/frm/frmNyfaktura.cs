@@ -21,6 +21,13 @@ namespace nsPuls3060
         private void FrmNyfaktura_Load(object sender, EventArgs e)
         {
             this.tblwfakBindingSource.DataSource = Program.dbDataTransSumma.Tblwfak;
+            if (Program.karRegnskab.MomsPeriode() == 2)
+            {
+                this.dataGridViewTextBoxMK.Visible = false;
+                this.dataGridViewTextBoxMoms.Visible = false;
+                this.dataGridViewTextBoxBruttobelob.Visible = false;
+            }
+
             int antal_fak = this.tblwfakBindingSource.Count;
             if (antal_fak == 0)
             {
@@ -189,32 +196,64 @@ namespace nsPuls3060
 
                         if (value[3] != null) //konto
                         {
-                            Tblwfaklin recWfaklin = new Tblwfaklin
+                            Tblwfaklin recWfaklin;
+                            decimal? Omkostbelob;
+                            if (Program.karRegnskab.MomsPeriode() == 2)
                             {
-                                Varenr = value[1],
-                                Tekst = value[2],
-                                Konto = Microsoft.VisualBasic.Information.IsNumeric(value[3]) ? int.Parse(value[3]) : (int?)null,
-                                Momskode = value[4],
-                                Antal = Microsoft.VisualBasic.Information.IsNumeric(value[5]) ? int.Parse(value[5]) : (int?)null,
-                                Enhed = value[6],
-                                Pris = Microsoft.VisualBasic.Information.IsNumeric(value[7]) ? decimal.Parse(value[7]) : (decimal?)null,
-                                Moms = Microsoft.VisualBasic.Information.IsNumeric(value[8]) ? decimal.Parse(value[8]) : (decimal?)null,
-                                Nettobelob = Microsoft.VisualBasic.Information.IsNumeric(value[9]) ? decimal.Parse(value[9]) : (decimal?)null,
-                                Bruttobelob = Microsoft.VisualBasic.Information.IsNumeric(value[10]) ? decimal.Parse(value[10]) : (decimal?)null
-                            };
-
-                            decimal? Omkostbelob = Microsoft.VisualBasic.Information.IsNumeric(value[11]) ? decimal.Parse(value[11]) : (decimal?)null;
-                            if ((TargetType == "S") && (Omkostbelob != null))
-                            {
-                                if (recWfaklin.Konto == 2100)
-                                    recWfaklin.Konto = 1000;
-                                recWfaklin.Momskode = "S25";
-                                decimal momspct = KarMoms.getMomspct(recWfaklin.Momskode)/100;
-                                recWfaklin.Pris += decimal.Round((decimal)(Omkostbelob / recWfaklin.Antal), 2);
-                                recWfaklin.Nettobelob = decimal.Round((decimal)(recWfaklin.Pris * recWfaklin.Antal), 2);
-                                recWfaklin.Moms = decimal.Round((decimal)(recWfaklin.Nettobelob * momspct), 2);
-                                recWfaklin.Bruttobelob = decimal.Round((decimal)(recWfaklin.Nettobelob + recWfaklin.Moms), 2);
+                                recWfaklin = new Tblwfaklin
+                                {
+                                    Varenr = value[1],
+                                    Tekst = value[2],
+                                    Konto = Microsoft.VisualBasic.Information.IsNumeric(value[3]) ? int.Parse(value[3]) : (int?)null,
+                                    Momskode = "",
+                                    Antal = Microsoft.VisualBasic.Information.IsNumeric(value[4]) ? int.Parse(value[4]) : (int?)null,
+                                    Enhed = value[5],
+                                    Pris = Microsoft.VisualBasic.Information.IsNumeric(value[6]) ? decimal.Parse(value[6]) : (decimal?)null,
+                                    Moms = 0,
+                                    Nettobelob = Microsoft.VisualBasic.Information.IsNumeric(value[7]) ? decimal.Parse(value[7]) : (decimal?)null,
+                                    Bruttobelob = Microsoft.VisualBasic.Information.IsNumeric(value[7]) ? decimal.Parse(value[7]) : (decimal?)null,
+                                };
+                                Omkostbelob = Microsoft.VisualBasic.Information.IsNumeric(value[8]) ? decimal.Parse(value[8]) : (decimal?)null;
+                                if ((TargetType == "S") && (Omkostbelob != null))
+                                {
+                                    if (recWfaklin.Konto == 2100)
+                                        recWfaklin.Konto = 1000;
+                                    decimal momspct = KarMoms.getMomspct(recWfaklin.Momskode) / 100;
+                                    recWfaklin.Pris += decimal.Round((decimal)(Omkostbelob / recWfaklin.Antal), 2);
+                                    recWfaklin.Nettobelob = decimal.Round((decimal)(recWfaklin.Pris * recWfaklin.Antal), 2);
+                                    recWfaklin.Moms = decimal.Round((decimal)(recWfaklin.Nettobelob * momspct), 2);
+                                    recWfaklin.Bruttobelob = decimal.Round((decimal)(recWfaklin.Nettobelob + recWfaklin.Moms), 2);
+                                }
                             }
+                            else
+                            {
+                                recWfaklin = new Tblwfaklin
+                                {
+                                    Varenr = value[1],
+                                    Tekst = value[2],
+                                    Konto = Microsoft.VisualBasic.Information.IsNumeric(value[3]) ? int.Parse(value[3]) : (int?)null,
+                                    Momskode = value[4],
+                                    Antal = Microsoft.VisualBasic.Information.IsNumeric(value[5]) ? int.Parse(value[5]) : (int?)null,
+                                    Enhed = value[6],
+                                    Pris = Microsoft.VisualBasic.Information.IsNumeric(value[7]) ? decimal.Parse(value[7]) : (decimal?)null,
+                                    Moms = Microsoft.VisualBasic.Information.IsNumeric(value[8]) ? decimal.Parse(value[8]) : (decimal?)null,
+                                    Nettobelob = Microsoft.VisualBasic.Information.IsNumeric(value[9]) ? decimal.Parse(value[9]) : (decimal?)null,
+                                    Bruttobelob = Microsoft.VisualBasic.Information.IsNumeric(value[10]) ? decimal.Parse(value[10]) : (decimal?)null
+                                };
+                                Omkostbelob = Microsoft.VisualBasic.Information.IsNumeric(value[11]) ? decimal.Parse(value[11]) : (decimal?)null;
+                                if ((TargetType == "S") && (Omkostbelob != null))
+                                {
+                                    if (recWfaklin.Konto == 2100)
+                                        recWfaklin.Konto = 1000;
+                                    recWfaklin.Momskode = "S25";
+                                    decimal momspct = KarMoms.getMomspct(recWfaklin.Momskode) / 100;
+                                    recWfaklin.Pris += decimal.Round((decimal)(Omkostbelob / recWfaklin.Antal), 2);
+                                    recWfaklin.Nettobelob = decimal.Round((decimal)(recWfaklin.Pris * recWfaklin.Antal), 2);
+                                    recWfaklin.Moms = decimal.Round((decimal)(recWfaklin.Nettobelob * momspct), 2);
+                                    recWfaklin.Bruttobelob = decimal.Round((decimal)(recWfaklin.Nettobelob + recWfaklin.Moms), 2);
+                                }
+                            }
+
                             tblwfaklinBindingSource.Insert(row, recWfaklin);
                         }
                         row++;
@@ -277,7 +316,7 @@ namespace nsPuls3060
                 {
                     this.tblwfakBindingSource.List.RemoveAt(i);
                 }
-                catch {}
+                catch { }
             }
         }
 

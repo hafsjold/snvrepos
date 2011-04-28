@@ -357,7 +357,7 @@ namespace nsPuls3060
             {
                 if (rec_regnskab.DatoLaas > Startdato) Startdato = rec_regnskab.DatoLaas;
             }
-            var qry_ord = from sf in wFak //Program.dbDataTransSumma.Tblwfak
+            var qry_ord = from sf in wFak 
                           where sf.Sk == "K"
                           select sf;
 

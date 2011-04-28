@@ -89,6 +89,9 @@ namespace nsPuls3060
 
         public static decimal getMomspct(string momskode)
         {
+            if (Program.karRegnskab.MomsPeriode() == 2)
+                return 0;
+
             try
             {
                 return (decimal)(from m in Program.karMoms where m.Momskode == momskode select m.Momspct).First();

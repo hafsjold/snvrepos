@@ -20,6 +20,12 @@ namespace nsPuls3060
         private void FrmFaktura_Load(object sender, EventArgs e)
         {
             this.tblfakBindingSource.DataSource = Program.dbDataTransSumma.Tblfak;
+            if (Program.karRegnskab.MomsPeriode() == 2)
+            {
+                this.dataGridViewTextBoxMK.Visible = false;
+                this.dataGridViewTextBoxMoms.Visible = false;
+                this.dataGridViewTextBoxBruttobelob.Visible = false;
+            }
         }
 
         private void FrmFaktura_FormClosed(object sender, FormClosedEventArgs e)

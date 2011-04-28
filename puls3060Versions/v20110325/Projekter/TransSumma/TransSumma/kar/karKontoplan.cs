@@ -77,6 +77,9 @@ namespace nsPuls3060
         }
         public static string getMomskode(int? kontonr)
         {
+            if (Program.karRegnskab.MomsPeriode() == 2)
+                return "";
+
             try
             {
                 return (from m in Program.karKontoplan where m.Kontonr == kontonr select m.Moms).First();

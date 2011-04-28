@@ -43,23 +43,8 @@
             this.kontoTextBox = new System.Windows.Forms.TextBox();
             this.datoDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.tblwfaklinDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn21 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn22 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn23 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn26 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblwfaklinBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tblwfakBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -70,11 +55,26 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.tblwfakBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.FakturaTilSummaSummarumToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.contextMenuLineCopyPaste = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dataGridViewTextBoxPid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxFakpid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxVarenr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxTekst = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxKonto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxMK = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxAntal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxEnhed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxPris = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxRabat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxMoms = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxNettobelob = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxBruttobelob = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxTblwfak = new System.Windows.Forms.DataGridViewTextBoxColumn();
             datoLabel = new System.Windows.Forms.Label();
             kontoLabel = new System.Windows.Forms.Label();
             skLabel = new System.Windows.Forms.Label();
@@ -223,20 +223,20 @@
             this.tblwfaklinDataGridView.AutoGenerateColumns = false;
             this.tblwfaklinDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblwfaklinDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn17,
-            this.dataGridViewTextBoxColumn19,
-            this.dataGridViewTextBoxColumn20,
-            this.dataGridViewTextBoxColumn21,
-            this.dataGridViewTextBoxColumn22,
-            this.dataGridViewTextBoxColumn23,
-            this.dataGridViewTextBoxColumn24,
-            this.dataGridViewTextBoxColumn25,
-            this.dataGridViewTextBoxColumn26});
+            this.dataGridViewTextBoxPid,
+            this.dataGridViewTextBoxFakpid,
+            this.dataGridViewTextBoxVarenr,
+            this.dataGridViewTextBoxTekst,
+            this.dataGridViewTextBoxKonto,
+            this.dataGridViewTextBoxMK,
+            this.dataGridViewTextBoxAntal,
+            this.dataGridViewTextBoxEnhed,
+            this.dataGridViewTextBoxPris,
+            this.dataGridViewTextBoxRabat,
+            this.dataGridViewTextBoxMoms,
+            this.dataGridViewTextBoxNettobelob,
+            this.dataGridViewTextBoxBruttobelob,
+            this.dataGridViewTextBoxTblwfak});
             this.tblwfaklinDataGridView.DataSource = this.tblwfaklinBindingSource;
             this.tblwfaklinDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblwfaklinDataGridView.Location = new System.Drawing.Point(0, 0);
@@ -245,116 +245,6 @@
             this.tblwfaklinDataGridView.TabIndex = 3;
             this.tblwfaklinDataGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tblwfaklinDataGridView1_MouseDown);
             this.tblwfaklinDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tblwfaklinDataGridView1_KeyDown);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Pid";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Pid";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Fakpid";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Fakpid";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Varenr";
-            this.dataGridViewTextBoxColumn3.FillWeight = 80F;
-            this.dataGridViewTextBoxColumn3.HeaderText = "Varenr";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 80;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Tekst";
-            this.dataGridViewTextBoxColumn4.FillWeight = 200F;
-            this.dataGridViewTextBoxColumn4.HeaderText = "Tekst";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "Konto";
-            this.dataGridViewTextBoxColumn7.FillWeight = 60F;
-            this.dataGridViewTextBoxColumn7.HeaderText = "Konto";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn17
-            // 
-            this.dataGridViewTextBoxColumn17.DataPropertyName = "Momskode";
-            this.dataGridViewTextBoxColumn17.FillWeight = 50F;
-            this.dataGridViewTextBoxColumn17.HeaderText = "MK";
-            this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
-            this.dataGridViewTextBoxColumn17.Width = 50;
-            // 
-            // dataGridViewTextBoxColumn19
-            // 
-            this.dataGridViewTextBoxColumn19.DataPropertyName = "Antal";
-            this.dataGridViewTextBoxColumn19.FillWeight = 40F;
-            this.dataGridViewTextBoxColumn19.HeaderText = "Antal";
-            this.dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
-            this.dataGridViewTextBoxColumn19.Width = 40;
-            // 
-            // dataGridViewTextBoxColumn20
-            // 
-            this.dataGridViewTextBoxColumn20.DataPropertyName = "Enhed";
-            this.dataGridViewTextBoxColumn20.FillWeight = 40F;
-            this.dataGridViewTextBoxColumn20.HeaderText = "Enhed";
-            this.dataGridViewTextBoxColumn20.Name = "dataGridViewTextBoxColumn20";
-            this.dataGridViewTextBoxColumn20.Width = 40;
-            // 
-            // dataGridViewTextBoxColumn21
-            // 
-            this.dataGridViewTextBoxColumn21.DataPropertyName = "Pris";
-            this.dataGridViewTextBoxColumn21.FillWeight = 60F;
-            this.dataGridViewTextBoxColumn21.HeaderText = "Pris";
-            this.dataGridViewTextBoxColumn21.Name = "dataGridViewTextBoxColumn21";
-            this.dataGridViewTextBoxColumn21.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn22
-            // 
-            this.dataGridViewTextBoxColumn22.DataPropertyName = "Rabat";
-            this.dataGridViewTextBoxColumn22.FillWeight = 1F;
-            this.dataGridViewTextBoxColumn22.HeaderText = "Rabat";
-            this.dataGridViewTextBoxColumn22.Name = "dataGridViewTextBoxColumn22";
-            this.dataGridViewTextBoxColumn22.Visible = false;
-            this.dataGridViewTextBoxColumn22.Width = 5;
-            // 
-            // dataGridViewTextBoxColumn23
-            // 
-            this.dataGridViewTextBoxColumn23.DataPropertyName = "Moms";
-            this.dataGridViewTextBoxColumn23.FillWeight = 60F;
-            this.dataGridViewTextBoxColumn23.HeaderText = "Moms";
-            this.dataGridViewTextBoxColumn23.Name = "dataGridViewTextBoxColumn23";
-            this.dataGridViewTextBoxColumn23.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn24
-            // 
-            this.dataGridViewTextBoxColumn24.DataPropertyName = "Nettobelob";
-            this.dataGridViewTextBoxColumn24.FillWeight = 70F;
-            this.dataGridViewTextBoxColumn24.HeaderText = "Nettobelob";
-            this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
-            this.dataGridViewTextBoxColumn24.Width = 70;
-            // 
-            // dataGridViewTextBoxColumn25
-            // 
-            this.dataGridViewTextBoxColumn25.DataPropertyName = "Bruttobelob";
-            this.dataGridViewTextBoxColumn25.FillWeight = 70F;
-            this.dataGridViewTextBoxColumn25.HeaderText = "Bruttobelob";
-            this.dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
-            this.dataGridViewTextBoxColumn25.Width = 70;
-            // 
-            // dataGridViewTextBoxColumn26
-            // 
-            this.dataGridViewTextBoxColumn26.DataPropertyName = "Tblwfak";
-            this.dataGridViewTextBoxColumn26.HeaderText = "Tblwfak";
-            this.dataGridViewTextBoxColumn26.Name = "dataGridViewTextBoxColumn26";
-            this.dataGridViewTextBoxColumn26.Visible = false;
             // 
             // tblwfaklinBindingSource
             // 
@@ -392,16 +282,6 @@
             this.tblwfakBindingNavigator.Size = new System.Drawing.Size(803, 25);
             this.tblwfakBindingNavigator.TabIndex = 1;
             this.tblwfakBindingNavigator.Text = "bindingNavigator1";
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
             // 
             // bindingNavigatorCountItem
             // 
@@ -479,6 +359,16 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorAddNewItem.Text = "Add new";
+            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
+            // 
             // tblwfakBindingNavigatorSaveItem
             // 
             this.tblwfakBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
@@ -519,6 +409,116 @@
             this.pasteToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.pasteToolStripMenuItem.Text = "Paste";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
+            // 
+            // dataGridViewTextBoxPid
+            // 
+            this.dataGridViewTextBoxPid.DataPropertyName = "Pid";
+            this.dataGridViewTextBoxPid.HeaderText = "Pid";
+            this.dataGridViewTextBoxPid.Name = "dataGridViewTextBoxPid";
+            this.dataGridViewTextBoxPid.Visible = false;
+            // 
+            // dataGridViewTextBoxFakpid
+            // 
+            this.dataGridViewTextBoxFakpid.DataPropertyName = "Fakpid";
+            this.dataGridViewTextBoxFakpid.HeaderText = "Fakpid";
+            this.dataGridViewTextBoxFakpid.Name = "dataGridViewTextBoxFakpid";
+            this.dataGridViewTextBoxFakpid.Visible = false;
+            // 
+            // dataGridViewTextBoxVarenr
+            // 
+            this.dataGridViewTextBoxVarenr.DataPropertyName = "Varenr";
+            this.dataGridViewTextBoxVarenr.FillWeight = 80F;
+            this.dataGridViewTextBoxVarenr.HeaderText = "Varenr";
+            this.dataGridViewTextBoxVarenr.Name = "dataGridViewTextBoxVarenr";
+            this.dataGridViewTextBoxVarenr.Width = 80;
+            // 
+            // dataGridViewTextBoxTekst
+            // 
+            this.dataGridViewTextBoxTekst.DataPropertyName = "Tekst";
+            this.dataGridViewTextBoxTekst.FillWeight = 200F;
+            this.dataGridViewTextBoxTekst.HeaderText = "Tekst";
+            this.dataGridViewTextBoxTekst.Name = "dataGridViewTextBoxTekst";
+            this.dataGridViewTextBoxTekst.Width = 200;
+            // 
+            // dataGridViewTextBoxKonto
+            // 
+            this.dataGridViewTextBoxKonto.DataPropertyName = "Konto";
+            this.dataGridViewTextBoxKonto.FillWeight = 60F;
+            this.dataGridViewTextBoxKonto.HeaderText = "Konto";
+            this.dataGridViewTextBoxKonto.Name = "dataGridViewTextBoxKonto";
+            this.dataGridViewTextBoxKonto.Width = 60;
+            // 
+            // dataGridViewTextBoxMK
+            // 
+            this.dataGridViewTextBoxMK.DataPropertyName = "Momskode";
+            this.dataGridViewTextBoxMK.FillWeight = 50F;
+            this.dataGridViewTextBoxMK.HeaderText = "MK";
+            this.dataGridViewTextBoxMK.Name = "dataGridViewTextBoxMK";
+            this.dataGridViewTextBoxMK.Width = 50;
+            // 
+            // dataGridViewTextBoxAntal
+            // 
+            this.dataGridViewTextBoxAntal.DataPropertyName = "Antal";
+            this.dataGridViewTextBoxAntal.FillWeight = 40F;
+            this.dataGridViewTextBoxAntal.HeaderText = "Antal";
+            this.dataGridViewTextBoxAntal.Name = "dataGridViewTextBoxAntal";
+            this.dataGridViewTextBoxAntal.Width = 40;
+            // 
+            // dataGridViewTextBoxEnhed
+            // 
+            this.dataGridViewTextBoxEnhed.DataPropertyName = "Enhed";
+            this.dataGridViewTextBoxEnhed.FillWeight = 40F;
+            this.dataGridViewTextBoxEnhed.HeaderText = "Enhed";
+            this.dataGridViewTextBoxEnhed.Name = "dataGridViewTextBoxEnhed";
+            this.dataGridViewTextBoxEnhed.Width = 40;
+            // 
+            // dataGridViewTextBoxPris
+            // 
+            this.dataGridViewTextBoxPris.DataPropertyName = "Pris";
+            this.dataGridViewTextBoxPris.FillWeight = 60F;
+            this.dataGridViewTextBoxPris.HeaderText = "Pris";
+            this.dataGridViewTextBoxPris.Name = "dataGridViewTextBoxPris";
+            this.dataGridViewTextBoxPris.Width = 60;
+            // 
+            // dataGridViewTextBoxRabat
+            // 
+            this.dataGridViewTextBoxRabat.DataPropertyName = "Rabat";
+            this.dataGridViewTextBoxRabat.FillWeight = 1F;
+            this.dataGridViewTextBoxRabat.HeaderText = "Rabat";
+            this.dataGridViewTextBoxRabat.Name = "dataGridViewTextBoxRabat";
+            this.dataGridViewTextBoxRabat.Visible = false;
+            this.dataGridViewTextBoxRabat.Width = 5;
+            // 
+            // dataGridViewTextBoxMoms
+            // 
+            this.dataGridViewTextBoxMoms.DataPropertyName = "Moms";
+            this.dataGridViewTextBoxMoms.FillWeight = 60F;
+            this.dataGridViewTextBoxMoms.HeaderText = "Moms";
+            this.dataGridViewTextBoxMoms.Name = "dataGridViewTextBoxMoms";
+            this.dataGridViewTextBoxMoms.Width = 60;
+            // 
+            // dataGridViewTextBoxNettobelob
+            // 
+            this.dataGridViewTextBoxNettobelob.DataPropertyName = "Nettobelob";
+            this.dataGridViewTextBoxNettobelob.FillWeight = 70F;
+            this.dataGridViewTextBoxNettobelob.HeaderText = "Nettobelob";
+            this.dataGridViewTextBoxNettobelob.Name = "dataGridViewTextBoxNettobelob";
+            this.dataGridViewTextBoxNettobelob.Width = 70;
+            // 
+            // dataGridViewTextBoxBruttobelob
+            // 
+            this.dataGridViewTextBoxBruttobelob.DataPropertyName = "Bruttobelob";
+            this.dataGridViewTextBoxBruttobelob.FillWeight = 70F;
+            this.dataGridViewTextBoxBruttobelob.HeaderText = "Bruttobelob";
+            this.dataGridViewTextBoxBruttobelob.Name = "dataGridViewTextBoxBruttobelob";
+            this.dataGridViewTextBoxBruttobelob.Width = 70;
+            // 
+            // dataGridViewTextBoxTblwfak
+            // 
+            this.dataGridViewTextBoxTblwfak.DataPropertyName = "Tblwfak";
+            this.dataGridViewTextBoxTblwfak.HeaderText = "Tblwfak";
+            this.dataGridViewTextBoxTblwfak.Name = "dataGridViewTextBoxTblwfak";
+            this.dataGridViewTextBoxTblwfak.Visible = false;
             // 
             // FrmNyfaktura
             // 
@@ -572,20 +572,6 @@
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton tblwfakBindingNavigatorSaveItem;
         private System.Windows.Forms.DataGridView tblwfaklinDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn21;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn22;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn23;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn26;
         private System.Windows.Forms.ContextMenuStrip contextMenuLineCopyPaste;
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
@@ -594,5 +580,19 @@
         private System.Windows.Forms.TextBox kreditorbilagsnrTextBox;
         private System.Windows.Forms.Label labelKontonavn;
         public System.Windows.Forms.Label kreditorbilagsnrLabel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxPid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxFakpid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxVarenr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxTekst;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxKonto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxMK;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxAntal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxEnhed;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxPris;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxRabat;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxMoms;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxNettobelob;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxBruttobelob;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxTblwfak;
     }
 }
