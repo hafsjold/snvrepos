@@ -87,7 +87,17 @@ namespace nsPuls3060
             ts.Close();
         }
 
-
+        public static decimal getMomspct(string momskode)
+        {
+            try
+            {
+                return (decimal)(from m in Program.karMoms where m.Momskode == momskode select m.Momspct).First();
+            }
+            catch
+            {
+                return 0;
+            }
+        }
 
     }
 }

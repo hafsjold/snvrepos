@@ -67,12 +67,30 @@ namespace nsPuls3060
             if (!checkBoxKøb.Checked)
                 aSk[1] = "y";
             string strLike = "%" + textBoxSogeord.Text + "%";
-            var qry = (from u in Program.dbDataTransSumma.Tblfaklin
+            IEnumerable<Tblfak> qry;
+            if (checkBoxVareforbrug.Checked)
+            {
+                checkBoxSalg.Checked = false;
+                aSk[1] = "x";
+                checkBoxKøb.Checked = true;
+                aSk[1] = "K";
+                qry = (from u in Program.dbDataTransSumma.Tblfaklin
+                       where SqlMethods.Like(u.Tekst, strLike) && u.Konto == 2100
+                       join b in Program.dbDataTransSumma.Tblfak on u.Fakpid equals b.Pid
+                       where aSk.Contains(b.Sk)
+                       orderby b.Dato descending
+                       select b).Distinct();
+            }
+            else 
+            {
+                qry = (from u in Program.dbDataTransSumma.Tblfaklin
                        where SqlMethods.Like(u.Tekst, strLike)
                        join b in Program.dbDataTransSumma.Tblfak on u.Fakpid equals b.Pid
                        where aSk.Contains(b.Sk)
                        orderby b.Dato descending
                        select b).Distinct();
+            }
+
             var qryAfstemte = from b in qry orderby b.Dato descending select b;
 
             this.tblfakBindingSource.DataSource = qryAfstemte;
@@ -107,6 +125,11 @@ namespace nsPuls3060
         }
 
         private void checkBoxSalg_CheckedChanged(object sender, EventArgs e)
+        {
+            Sog();
+        }
+
+        private void checkBoxVareforbrug_CheckedChanged(object sender, EventArgs e)
         {
             Sog();
         }

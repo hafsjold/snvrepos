@@ -75,6 +75,16 @@ namespace nsPuls3060
                 }
             }
         }
-
+        public static string getMomskode(int? kontonr)
+        {
+            try
+            {
+                return (from m in Program.karKontoplan where m.Kontonr == kontonr select m.Moms).First();
+            }
+            catch
+            {
+                return "";
+            }
+        }
     }
 }

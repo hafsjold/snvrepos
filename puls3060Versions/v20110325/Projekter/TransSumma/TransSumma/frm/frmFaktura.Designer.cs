@@ -82,6 +82,7 @@
             this.dataGridViewTextBoxColumn38 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuLineCopyPaste = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkBoxVareforbrug = new System.Windows.Forms.CheckBox();
             skLabel = new System.Windows.Forms.Label();
             faknrLabel = new System.Windows.Forms.Label();
             datoLabel = new System.Windows.Forms.Label();
@@ -279,6 +280,7 @@
             this.splitContainer1.Panel1.AutoScroll = true;
             this.splitContainer1.Panel1.Controls.Add(this.labelKontonavn);
             this.splitContainer1.Panel1.Controls.Add(this.checkBoxSalg);
+            this.splitContainer1.Panel1.Controls.Add(this.checkBoxVareforbrug);
             this.splitContainer1.Panel1.Controls.Add(this.checkBoxKøb);
             this.splitContainer1.Panel1.Controls.Add(skLabel);
             this.splitContainer1.Panel1.Controls.Add(this.skTextBox);
@@ -605,6 +607,17 @@
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
+            // checkBoxVareforbrug
+            // 
+            this.checkBoxVareforbrug.AutoSize = true;
+            this.checkBoxVareforbrug.Location = new System.Drawing.Point(636, 15);
+            this.checkBoxVareforbrug.Name = "checkBoxVareforbrug";
+            this.checkBoxVareforbrug.Size = new System.Drawing.Size(81, 17);
+            this.checkBoxVareforbrug.TabIndex = 15;
+            this.checkBoxVareforbrug.Text = "Vareforbrug";
+            this.checkBoxVareforbrug.UseVisualStyleBackColor = true;
+            this.checkBoxVareforbrug.CheckedChanged += new System.EventHandler(this.checkBoxVareforbrug_CheckedChanged);
+            // 
             // FrmFaktura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -686,5 +699,6 @@
         private System.Windows.Forms.CheckBox checkBoxSalg;
         private System.Windows.Forms.CheckBox checkBoxKøb;
         private System.Windows.Forms.Label labelKontonavn;
+        private System.Windows.Forms.CheckBox checkBoxVareforbrug;
     }
 }

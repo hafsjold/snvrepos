@@ -206,10 +206,10 @@ namespace nsPuls3060
                             decimal? Omkostbelob = Microsoft.VisualBasic.Information.IsNumeric(value[11]) ? decimal.Parse(value[11]) : (decimal?)null;
                             if ((TargetType == "S") && (Omkostbelob != null))
                             {
-                                decimal momspct = (decimal)0.25;
                                 if (recWfaklin.Konto == 2100)
                                     recWfaklin.Konto = 1000;
                                 recWfaklin.Momskode = "S25";
+                                decimal momspct = KarMoms.getMomspct(recWfaklin.Momskode)/100;
                                 recWfaklin.Pris += decimal.Round((decimal)(Omkostbelob / recWfaklin.Antal), 2);
                                 recWfaklin.Nettobelob = decimal.Round((decimal)(recWfaklin.Pris * recWfaklin.Antal), 2);
                                 recWfaklin.Moms = decimal.Round((decimal)(recWfaklin.Nettobelob * momspct), 2);
@@ -286,10 +286,10 @@ namespace nsPuls3060
             int antal = this.tblwfakBindingSource.Count;
             try
             {
-                decimal momspct = (decimal)0.25;
                 var qry = from l in (this.tblwfakBindingSource.Current as Tblwfak).Tblwfaklin select l;
                 foreach (var l in qry)
                 {
+                    decimal momspct = KarMoms.getMomspct(l.Momskode) / 100;
                     l.Nettobelob = l.Pris * l.Antal;
                     l.Moms = decimal.Round((decimal)(l.Nettobelob * momspct), 2);
                     l.Bruttobelob = l.Nettobelob + l.Moms;

@@ -46,7 +46,7 @@ namespace nsPuls3060
                               Varenr = sfv.Varenr,
                               Tekst = sfv.VareTekst,
                               Konto = sfv.Bogfkonto,
-                              Momskode = "S25",
+                              Momskode = KarKontoplan.getMomskode(sfv.Bogfkonto),
                               Antal = sfv.Antal,
                               Enhed = sfv.Enhed,
                               Pris = sfv.Pris,
@@ -150,7 +150,7 @@ namespace nsPuls3060
                               Varenr = kfv.Varenr,
                               Tekst = kfv.VareTekst,
                               Konto = kfv.Bogfkonto,
-                              Momskode = "K25",
+                              Momskode = KarKontoplan.getMomskode(kfv.Bogfkonto),
                               Antal = kfv.Antal,
                               Enhed = kfv.Enhed,
                               Pris = kfv.Pris,
@@ -314,7 +314,7 @@ namespace nsPuls3060
                             Moms = ol.Moms,
                             Nettobelob = ol.Nettobelob,
                             Bruttobelob = ol.Bruttobelob,
-                            Momspct = (ol.Momskode == "S25") ? 25 : 0
+                            Momspct = KarMoms.getMomspct(ol.Momskode)
                         };
                         m_karFakturavarer_s.Add(rec_Fakturavarer_s);
                     }
@@ -442,7 +442,7 @@ namespace nsPuls3060
                             Moms = ol.Moms,
                             Nettobelob = ol.Nettobelob,
                             Bruttobelob = ol.Bruttobelob,
-                            Momspct = (ol.Momskode == "K25") ? 25 : 0
+                            Momspct = KarMoms.getMomspct(ol.Momskode)
                         };
                         m_karFakturavarer_k.Add(rec_Fakturavarer_k);
                     }
@@ -513,5 +513,6 @@ namespace nsPuls3060
             }
             Program.dbDataTransSumma.SubmitChanges();
         }
+
     }
 }

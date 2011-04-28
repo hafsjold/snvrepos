@@ -432,7 +432,7 @@ namespace nsPuls3060
                 {
                     DataGridViewTextBoxCell cell = cells[0] as DataGridViewTextBoxCell;
                     Tblwkladder recWkladder = cell.OwningRow.DataBoundItem as Tblwkladder;
-                    decimal momspct = decimal.Parse("1,25");
+                    decimal momspct = 1 + KarMoms.getMomspct(recWkladder.Momskode)/100;
                     recWkladder.Belob *= momspct;
 
                 }
@@ -450,7 +450,7 @@ namespace nsPuls3060
                 {
                     DataGridViewTextBoxCell cell = cells[0] as DataGridViewTextBoxCell;
                     Tblwkladder recWkladder = cell.OwningRow.DataBoundItem as Tblwkladder;
-                    decimal momspct = decimal.Parse("1,25");
+                    decimal momspct = 1 + KarMoms.getMomspct(recWkladder.Momskode) / 100;
                     recWkladder.Belob /= momspct;
                 }
                 catch { }
@@ -527,7 +527,9 @@ namespace nsPuls3060
                 && (!bAfstem)
                 && (!bMomskode))
                 {
-                    decimal MomsBelobDif = -MomsBelob + (AndenKontoBelob * decimal.Parse(" 0,25"));
+                    //decimal MomsBelobDif = -MomsBelob + (AndenKontoBelob * decimal.Parse(" 0,25"));
+                    decimal momspct = KarMoms.getMomspct(MK) / 100;
+                    decimal MomsBelobDif = -MomsBelob + (AndenKontoBelob * momspct);
                     if ((MomsBelobDif > -decimal.Parse(" 0,01"))
                     && (MomsBelobDif < decimal.Parse(" 0,01")))
                     {
