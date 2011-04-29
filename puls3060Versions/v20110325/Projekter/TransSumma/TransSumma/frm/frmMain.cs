@@ -400,6 +400,16 @@ namespace nsPuls3060
             objFaktura.KøbsOrderOmk();
         }
 
+        private void varekontoTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("VarekontoType"))
+            {
+                FrmVarekontoType m_VarekontoType = new FrmVarekontoType();
+                m_VarekontoType.MdiParent = this;
+                m_VarekontoType.Show();
+            }
+        }
+
     }
 
     public class Xrec

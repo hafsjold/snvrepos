@@ -53,6 +53,7 @@
             this.fakturaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.regnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importerTransaktionerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importFakturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importDanskebankToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.excelRegnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importerNordeaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -69,7 +70,7 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.importFakturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.varekontoTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -280,6 +281,13 @@
             this.importerTransaktionerToolStripMenuItem.Text = "Import Bilag";
             this.importerTransaktionerToolStripMenuItem.Click += new System.EventHandler(this.importerTransaktionerToolStripMenuItem_Click);
             // 
+            // importFakturaToolStripMenuItem
+            // 
+            this.importFakturaToolStripMenuItem.Name = "importFakturaToolStripMenuItem";
+            this.importFakturaToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.importFakturaToolStripMenuItem.Text = "Import Faktura";
+            this.importFakturaToolStripMenuItem.Click += new System.EventHandler(this.importFakturaToolStripMenuItem_Click);
+            // 
             // importDanskebankToolStripMenuItem
             // 
             this.importDanskebankToolStripMenuItem.Name = "importDanskebankToolStripMenuItem";
@@ -304,7 +312,8 @@
             // systemToolStripMenuItem
             // 
             this.systemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem2});
+            this.toolStripMenuItem2,
+            this.varekontoTypeToolStripMenuItem});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
             this.systemToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.systemToolStripMenuItem.Text = "System";
@@ -312,7 +321,7 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(138, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(158, 22);
             this.toolStripMenuItem2.Text = "Regnskab";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.regnskabToolStripMenuItem_Click);
             // 
@@ -409,12 +418,12 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
-            // importFakturaToolStripMenuItem
+            // varekontoTypeToolStripMenuItem
             // 
-            this.importFakturaToolStripMenuItem.Name = "importFakturaToolStripMenuItem";
-            this.importFakturaToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.importFakturaToolStripMenuItem.Text = "Import Faktura";
-            this.importFakturaToolStripMenuItem.Click += new System.EventHandler(this.importFakturaToolStripMenuItem_Click);
+            this.varekontoTypeToolStripMenuItem.Name = "varekontoTypeToolStripMenuItem";
+            this.varekontoTypeToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.varekontoTypeToolStripMenuItem.Text = "VarekontoType";
+            this.varekontoTypeToolStripMenuItem.Click += new System.EventHandler(this.varekontoTypeToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -489,6 +498,7 @@
         private System.Windows.Forms.ToolStripMenuItem nyFakturaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem fakturaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem importFakturaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem varekontoTypeToolStripMenuItem;
     }
 }
 

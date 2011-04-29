@@ -118,6 +118,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbDataTransSumma.dbml</DependentUpon>
     </Compile>
+    <Compile Include="frm\frmVarekontoType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmVarekontoType.Designer.cs">
+      <DependentUpon>frmVarekontoType.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm\frmFaktura.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -253,6 +259,9 @@
     <EmbeddedResource Include="frm\frmSelectRegnskab.resx">
       <DependentUpon>frmSelectRegnskab.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmVarekontoType.resx">
+      <DependentUpon>frmVarekontoType.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -299,6 +308,7 @@
     <None Include="Properties\DataSources\Tblbankkonto.datasource" />
     <None Include="Properties\DataSources\Tblbilag.datasource" />
     <None Include="Properties\DataSources\Tblfak.datasource" />
+    <None Include="Properties\DataSources\Tblvareomkostninger.datasource" />
     <None Include="Properties\DataSources\Tblwbilag.datasource" />
     <None Include="Properties\DataSources\Tblwfak.datasource" />
     <None Include="Resources\Add.bmp" />

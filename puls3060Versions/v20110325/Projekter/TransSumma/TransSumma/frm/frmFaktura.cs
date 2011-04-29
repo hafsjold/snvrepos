@@ -81,7 +81,9 @@ namespace nsPuls3060
                 checkBoxKøb.Checked = true;
                 aSk[1] = "K";
                 qry = (from u in Program.dbDataTransSumma.Tblfaklin
-                       where SqlMethods.Like(u.Tekst, strLike) && u.Konto == 2100
+                       where SqlMethods.Like(u.Tekst, strLike)
+                       join fl in Program.dbDataTransSumma.Tblvareomkostninger on u.Konto equals fl.Kontonr
+                       where fl.Omktype == "vareforb"
                        join b in Program.dbDataTransSumma.Tblfak on u.Fakpid equals b.Pid
                        where aSk.Contains(b.Sk)
                        orderby b.Dato descending

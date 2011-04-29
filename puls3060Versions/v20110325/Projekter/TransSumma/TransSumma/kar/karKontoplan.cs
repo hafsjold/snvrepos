@@ -89,5 +89,17 @@ namespace nsPuls3060
                 return "";
             }
         }
+
+        public static string getKontonavn(int? kontonr)
+        {
+            try
+            {
+                return (from m in Program.karKontoplan where m.Kontonr == kontonr select m.Kontonavn).First();
+            }
+            catch
+            {
+                return "Konto findes ikke";
+            }
+        }
     }
 }

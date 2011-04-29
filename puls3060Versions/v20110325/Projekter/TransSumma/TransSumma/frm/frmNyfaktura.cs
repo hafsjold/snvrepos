@@ -216,8 +216,7 @@ namespace nsPuls3060
                                 Omkostbelob = Microsoft.VisualBasic.Information.IsNumeric(value[8]) ? decimal.Parse(value[8]) : (decimal?)null;
                                 if ((TargetType == "S") && (Omkostbelob != null))
                                 {
-                                    if (recWfaklin.Konto == 2100)
-                                        recWfaklin.Konto = 1000;
+                                    recWfaklin.Konto = getVaresalgsKonto(recWfaklin.Konto);
                                     decimal momspct = KarMoms.getMomspct(recWfaklin.Momskode) / 100;
                                     recWfaklin.Pris += decimal.Round((decimal)(Omkostbelob / recWfaklin.Antal), 2);
                                     recWfaklin.Nettobelob = decimal.Round((decimal)(recWfaklin.Pris * recWfaklin.Antal), 2);
@@ -243,8 +242,7 @@ namespace nsPuls3060
                                 Omkostbelob = Microsoft.VisualBasic.Information.IsNumeric(value[11]) ? decimal.Parse(value[11]) : (decimal?)null;
                                 if ((TargetType == "S") && (Omkostbelob != null))
                                 {
-                                    if (recWfaklin.Konto == 2100)
-                                        recWfaklin.Konto = 1000;
+                                    recWfaklin.Konto = getVaresalgsKonto(recWfaklin.Konto);
                                     recWfaklin.Momskode = "S25";
                                     decimal momspct = KarMoms.getMomspct(recWfaklin.Momskode) / 100;
                                     recWfaklin.Pris += decimal.Round((decimal)(Omkostbelob / recWfaklin.Antal), 2);
@@ -417,6 +415,22 @@ namespace nsPuls3060
                 this.kreditorbilagsnrTextBox.Visible = false;
             }
 
+        }
+
+        private int? getVaresalgsKonto(int? konto)
+        {
+            try
+            {
+                string Omktype = (from fl in Program.dbDataTransSumma.Tblvareomkostninger where fl.Kontonr == konto select fl.Omktype).First();
+                if (Omktype == "vareforb")
+                    return 1000;
+                else
+                    return konto;
+            }
+            catch 
+            {
+                return konto;  
+            } 
         }
     }
 }

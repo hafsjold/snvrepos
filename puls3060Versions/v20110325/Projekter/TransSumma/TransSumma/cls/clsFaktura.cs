@@ -338,7 +338,7 @@ namespace nsPuls3060
                 Program.karFakturaer_s.save();
                 m_karFakturastr_s.save();
                 m_karFakturavarer_s.save();
-                
+
                 Program.dbDataTransSumma.SubmitChanges();
             }
             return AntalOrdre;
@@ -357,7 +357,7 @@ namespace nsPuls3060
             {
                 if (rec_regnskab.DatoLaas > Startdato) Startdato = rec_regnskab.DatoLaas;
             }
-            var qry_ord = from sf in wFak 
+            var qry_ord = from sf in wFak
                           where sf.Sk == "K"
                           select sf;
 
@@ -463,17 +463,17 @@ namespace nsPuls3060
                     Program.karStatus.Add(rec_Status);
                 }
                 Program.karStatus.save();
-                
+
                 Program.karFakturaer_k.save();
                 m_karFakturastr_k.save();
                 m_karFakturavarer_k.save();
-                
+
                 Program.dbDataTransSumma.SubmitChanges();
             }
             return AntalOrdre;
         }
 
-        public void KøbsOrderOmk() 
+        public void KøbsOrderOmk()
         {
             decimal omkfaktor;
             var qry_ord = from f in Program.dbDataTransSumma.Tblfak
@@ -482,15 +482,16 @@ namespace nsPuls3060
             foreach (var o in qry_ord)
             {
                 var qry_lin_omk = from l in o.Tblfaklin
-                              join fl in Program.dbDataTransSumma.Tblvareomkostninger on l.Konto equals fl.Kontonr
-                              select l;
+                                  join fl in Program.dbDataTransSumma.Tblvareomkostninger on l.Konto equals fl.Kontonr
+                                  where fl.Omktype == "vareomk"
+                                  select l;
 
                 var qry_lin_vare = from l in o.Tblfaklin
                                    join fl in Program.dbDataTransSumma.Tblvareomkostninger on l.Konto equals fl.Kontonr into omklin
                                    from fl in omklin.DefaultIfEmpty(new Tblvareomkostninger { Kontonr = 0, Omktype = "varelinie" })
-                                   where fl.Omktype == "varelinie"
+                                   where fl.Omktype != "vareomk"
                                    select l;
-                
+
                 int antal = qry_lin_omk.Count();
                 if (antal > 0)
                 {
@@ -504,8 +505,8 @@ namespace nsPuls3060
                     }
                     else
                         omkfaktor = 1;
-                    
-                    foreach (var l in qry_lin_vare) 
+
+                    foreach (var l in qry_lin_vare)
                     {
                         l.Omkostbelob = decimal.Round((decimal)l.Nettobelob * (omkfaktor - 1), 2);
                     }
