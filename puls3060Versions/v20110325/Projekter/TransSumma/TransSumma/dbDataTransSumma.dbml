@@ -1,5 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="dbDataTransSumma" Class="DbDataTransSumma" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="tblactebisfaktura" Member="Tblactebisfaktura">
+    <Type Name="Tblactebisfaktura">
+      <Column Name="pid" Member="Pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="import" Member="Import" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ordredato" Member="Ordredato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="fakturanr" Member="Fakturanr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ordrenr" Member="Ordrenr" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ordreref" Member="Ordreref" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ordrebelob" Member="Ordrebelob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="ordrestatus" Member="Ordrestatus" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="leveringsadresse" Member="Leveringsadresse" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Association Name="Tblactebisfaktura_Tblactebisordre" Member="Tblactebisordre" ThisKey="Pid" OtherKey="Fakpid" Type="Tblactebisordre" />
+    </Type>
+  </Table>
+  <Table Name="tblactebisordre" Member="Tblactebisordre">
+    <Type Name="Tblactebisordre">
+      <Column Name="pid" Member="Pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fakpid" Member="Fakpid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ordrenr" Member="Ordrenr" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="pos" Member="Pos" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="antal" Member="Antal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="varenr" Member="Varenr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sku" Member="Sku" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="beskrivelse" Member="Beskrivelse" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ordrerefpos" Member="Ordrerefpos" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="stkpris" Member="Stkpris" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="leveringsnr" Member="Leveringsnr" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="serienr" Member="Serienr" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="ordrestatuspos" Member="Ordrestatuspos" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="producent" Member="Producent" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Tblactebisfaktura_Tblactebisordre" Member="Tblactebisfaktura" ThisKey="Fakpid" OtherKey="Pid" Type="Tblactebisfaktura" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="tblafstem" Member="Tblafstem">
     <Type Name="Tblafstem">
       <Column Name="pid" Member="Pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />

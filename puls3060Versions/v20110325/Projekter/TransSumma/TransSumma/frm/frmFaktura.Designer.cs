@@ -668,7 +668,6 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TextBox kontoTextBox;
         private System.Windows.Forms.TextBox faknrTextBox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
         private System.Windows.Forms.DataGridView tblfaklinDataGridView;
         private System.Windows.Forms.ContextMenuStrip contextMenuLineCopyPaste;
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;

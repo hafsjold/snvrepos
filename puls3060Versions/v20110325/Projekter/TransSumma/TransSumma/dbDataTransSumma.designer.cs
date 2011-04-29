@@ -30,6 +30,12 @@ namespace nsPuls3060
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
+    partial void InsertTblactebisfaktura(Tblactebisfaktura instance);
+    partial void UpdateTblactebisfaktura(Tblactebisfaktura instance);
+    partial void DeleteTblactebisfaktura(Tblactebisfaktura instance);
+    partial void InsertTblactebisordre(Tblactebisordre instance);
+    partial void UpdateTblactebisordre(Tblactebisordre instance);
+    partial void DeleteTblactebisordre(Tblactebisordre instance);
     partial void InsertTblafstem(Tblafstem instance);
     partial void UpdateTblafstem(Tblafstem instance);
     partial void DeleteTblafstem(Tblafstem instance);
@@ -102,6 +108,22 @@ namespace nsPuls3060
 				base(connection, mappingSource)
 		{
 			OnCreated();
+		}
+		
+		public System.Data.Linq.Table<Tblactebisfaktura> Tblactebisfaktura
+		{
+			get
+			{
+				return this.GetTable<Tblactebisfaktura>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Tblactebisordre> Tblactebisordre
+		{
+			get
+			{
+				return this.GetTable<Tblactebisordre>();
+			}
 		}
 		
 		public System.Data.Linq.Table<Tblafstem> Tblafstem
@@ -229,6 +251,699 @@ namespace nsPuls3060
 			get
 			{
 				return this.GetTable<Tblwkladder>();
+			}
+		}
+	}
+	
+	[Table(Name="tblactebisfaktura")]
+	public partial class Tblactebisfaktura : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Pid;
+		
+		private System.Nullable<bool> _Import;
+		
+		private System.Nullable<System.DateTime> _Ordredato;
+		
+		private System.Nullable<int> _Fakturanr;
+		
+		private System.Nullable<long> _Ordrenr;
+		
+		private string _Ordreref;
+		
+		private System.Nullable<decimal> _Ordrebelob;
+		
+		private string _Ordrestatus;
+		
+		private string _Leveringsadresse;
+		
+		private EntitySet<Tblactebisordre> _Tblactebisordre;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPidChanging(int value);
+    partial void OnPidChanged();
+    partial void OnImportChanging(System.Nullable<bool> value);
+    partial void OnImportChanged();
+    partial void OnOrdredatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnOrdredatoChanged();
+    partial void OnFakturanrChanging(System.Nullable<int> value);
+    partial void OnFakturanrChanged();
+    partial void OnOrdrenrChanging(System.Nullable<long> value);
+    partial void OnOrdrenrChanged();
+    partial void OnOrdrerefChanging(string value);
+    partial void OnOrdrerefChanged();
+    partial void OnOrdrebelobChanging(System.Nullable<decimal> value);
+    partial void OnOrdrebelobChanged();
+    partial void OnOrdrestatusChanging(string value);
+    partial void OnOrdrestatusChanged();
+    partial void OnLeveringsadresseChanging(string value);
+    partial void OnLeveringsadresseChanged();
+    #endregion
+		
+		public Tblactebisfaktura()
+		{
+			this._Tblactebisordre = new EntitySet<Tblactebisordre>(new Action<Tblactebisordre>(this.attach_Tblactebisordre), new Action<Tblactebisordre>(this.detach_Tblactebisordre));
+			OnCreated();
+		}
+		
+		[Column(Name="pid", Storage="_Pid", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Pid
+		{
+			get
+			{
+				return this._Pid;
+			}
+			set
+			{
+				if ((this._Pid != value))
+				{
+					this.OnPidChanging(value);
+					this.SendPropertyChanging();
+					this._Pid = value;
+					this.SendPropertyChanged("Pid");
+					this.OnPidChanged();
+				}
+			}
+		}
+		
+		[Column(Name="import", Storage="_Import", DbType="Bit")]
+		public System.Nullable<bool> Import
+		{
+			get
+			{
+				return this._Import;
+			}
+			set
+			{
+				if ((this._Import != value))
+				{
+					this.OnImportChanging(value);
+					this.SendPropertyChanging();
+					this._Import = value;
+					this.SendPropertyChanged("Import");
+					this.OnImportChanged();
+				}
+			}
+		}
+		
+		[Column(Name="ordredato", Storage="_Ordredato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> Ordredato
+		{
+			get
+			{
+				return this._Ordredato;
+			}
+			set
+			{
+				if ((this._Ordredato != value))
+				{
+					this.OnOrdredatoChanging(value);
+					this.SendPropertyChanging();
+					this._Ordredato = value;
+					this.SendPropertyChanged("Ordredato");
+					this.OnOrdredatoChanged();
+				}
+			}
+		}
+		
+		[Column(Name="fakturanr", Storage="_Fakturanr", DbType="Int")]
+		public System.Nullable<int> Fakturanr
+		{
+			get
+			{
+				return this._Fakturanr;
+			}
+			set
+			{
+				if ((this._Fakturanr != value))
+				{
+					this.OnFakturanrChanging(value);
+					this.SendPropertyChanging();
+					this._Fakturanr = value;
+					this.SendPropertyChanged("Fakturanr");
+					this.OnFakturanrChanged();
+				}
+			}
+		}
+		
+		[Column(Name="ordrenr", Storage="_Ordrenr", DbType="BigInt")]
+		public System.Nullable<long> Ordrenr
+		{
+			get
+			{
+				return this._Ordrenr;
+			}
+			set
+			{
+				if ((this._Ordrenr != value))
+				{
+					this.OnOrdrenrChanging(value);
+					this.SendPropertyChanging();
+					this._Ordrenr = value;
+					this.SendPropertyChanged("Ordrenr");
+					this.OnOrdrenrChanged();
+				}
+			}
+		}
+		
+		[Column(Name="ordreref", Storage="_Ordreref", DbType="NVarChar(50)")]
+		public string Ordreref
+		{
+			get
+			{
+				return this._Ordreref;
+			}
+			set
+			{
+				if ((this._Ordreref != value))
+				{
+					this.OnOrdrerefChanging(value);
+					this.SendPropertyChanging();
+					this._Ordreref = value;
+					this.SendPropertyChanged("Ordreref");
+					this.OnOrdrerefChanged();
+				}
+			}
+		}
+		
+		[Column(Name="ordrebelob", Storage="_Ordrebelob", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Ordrebelob
+		{
+			get
+			{
+				return this._Ordrebelob;
+			}
+			set
+			{
+				if ((this._Ordrebelob != value))
+				{
+					this.OnOrdrebelobChanging(value);
+					this.SendPropertyChanging();
+					this._Ordrebelob = value;
+					this.SendPropertyChanged("Ordrebelob");
+					this.OnOrdrebelobChanged();
+				}
+			}
+		}
+		
+		[Column(Name="ordrestatus", Storage="_Ordrestatus", DbType="NVarChar(50)")]
+		public string Ordrestatus
+		{
+			get
+			{
+				return this._Ordrestatus;
+			}
+			set
+			{
+				if ((this._Ordrestatus != value))
+				{
+					this.OnOrdrestatusChanging(value);
+					this.SendPropertyChanging();
+					this._Ordrestatus = value;
+					this.SendPropertyChanged("Ordrestatus");
+					this.OnOrdrestatusChanged();
+				}
+			}
+		}
+		
+		[Column(Name="leveringsadresse", Storage="_Leveringsadresse", DbType="NVarChar(250)")]
+		public string Leveringsadresse
+		{
+			get
+			{
+				return this._Leveringsadresse;
+			}
+			set
+			{
+				if ((this._Leveringsadresse != value))
+				{
+					this.OnLeveringsadresseChanging(value);
+					this.SendPropertyChanging();
+					this._Leveringsadresse = value;
+					this.SendPropertyChanged("Leveringsadresse");
+					this.OnLeveringsadresseChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Tblactebisfaktura_Tblactebisordre", Storage="_Tblactebisordre", ThisKey="Pid", OtherKey="Fakpid")]
+		public EntitySet<Tblactebisordre> Tblactebisordre
+		{
+			get
+			{
+				return this._Tblactebisordre;
+			}
+			set
+			{
+				this._Tblactebisordre.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Tblactebisordre(Tblactebisordre entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tblactebisfaktura = this;
+		}
+		
+		private void detach_Tblactebisordre(Tblactebisordre entity)
+		{
+			this.SendPropertyChanging();
+			entity.Tblactebisfaktura = null;
+		}
+	}
+	
+	[Table(Name="tblactebisordre")]
+	public partial class Tblactebisordre : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Pid;
+		
+		private System.Nullable<int> _Fakpid;
+		
+		private System.Nullable<long> _Ordrenr;
+		
+		private System.Nullable<int> _Pos;
+		
+		private System.Nullable<int> _Antal;
+		
+		private System.Nullable<int> _Varenr;
+		
+		private string _Sku;
+		
+		private string _Beskrivelse;
+		
+		private string _Ordrerefpos;
+		
+		private System.Nullable<decimal> _Stkpris;
+		
+		private System.Nullable<long> _Leveringsnr;
+		
+		private string _Serienr;
+		
+		private string _Ordrestatuspos;
+		
+		private string _Producent;
+		
+		private EntityRef<Tblactebisfaktura> _Tblactebisfaktura;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPidChanging(int value);
+    partial void OnPidChanged();
+    partial void OnFakpidChanging(System.Nullable<int> value);
+    partial void OnFakpidChanged();
+    partial void OnOrdrenrChanging(System.Nullable<long> value);
+    partial void OnOrdrenrChanged();
+    partial void OnPosChanging(System.Nullable<int> value);
+    partial void OnPosChanged();
+    partial void OnAntalChanging(System.Nullable<int> value);
+    partial void OnAntalChanged();
+    partial void OnVarenrChanging(System.Nullable<int> value);
+    partial void OnVarenrChanged();
+    partial void OnSkuChanging(string value);
+    partial void OnSkuChanged();
+    partial void OnBeskrivelseChanging(string value);
+    partial void OnBeskrivelseChanged();
+    partial void OnOrdrerefposChanging(string value);
+    partial void OnOrdrerefposChanged();
+    partial void OnStkprisChanging(System.Nullable<decimal> value);
+    partial void OnStkprisChanged();
+    partial void OnLeveringsnrChanging(System.Nullable<long> value);
+    partial void OnLeveringsnrChanged();
+    partial void OnSerienrChanging(string value);
+    partial void OnSerienrChanged();
+    partial void OnOrdrestatusposChanging(string value);
+    partial void OnOrdrestatusposChanged();
+    partial void OnProducentChanging(string value);
+    partial void OnProducentChanged();
+    #endregion
+		
+		public Tblactebisordre()
+		{
+			this._Tblactebisfaktura = default(EntityRef<Tblactebisfaktura>);
+			OnCreated();
+		}
+		
+		[Column(Name="pid", Storage="_Pid", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Pid
+		{
+			get
+			{
+				return this._Pid;
+			}
+			set
+			{
+				if ((this._Pid != value))
+				{
+					this.OnPidChanging(value);
+					this.SendPropertyChanging();
+					this._Pid = value;
+					this.SendPropertyChanged("Pid");
+					this.OnPidChanged();
+				}
+			}
+		}
+		
+		[Column(Name="fakpid", Storage="_Fakpid", DbType="Int")]
+		public System.Nullable<int> Fakpid
+		{
+			get
+			{
+				return this._Fakpid;
+			}
+			set
+			{
+				if ((this._Fakpid != value))
+				{
+					this.OnFakpidChanging(value);
+					this.SendPropertyChanging();
+					this._Fakpid = value;
+					this.SendPropertyChanged("Fakpid");
+					this.OnFakpidChanged();
+				}
+			}
+		}
+		
+		[Column(Name="ordrenr", Storage="_Ordrenr", DbType="BigInt")]
+		public System.Nullable<long> Ordrenr
+		{
+			get
+			{
+				return this._Ordrenr;
+			}
+			set
+			{
+				if ((this._Ordrenr != value))
+				{
+					this.OnOrdrenrChanging(value);
+					this.SendPropertyChanging();
+					this._Ordrenr = value;
+					this.SendPropertyChanged("Ordrenr");
+					this.OnOrdrenrChanged();
+				}
+			}
+		}
+		
+		[Column(Name="pos", Storage="_Pos", DbType="Int")]
+		public System.Nullable<int> Pos
+		{
+			get
+			{
+				return this._Pos;
+			}
+			set
+			{
+				if ((this._Pos != value))
+				{
+					this.OnPosChanging(value);
+					this.SendPropertyChanging();
+					this._Pos = value;
+					this.SendPropertyChanged("Pos");
+					this.OnPosChanged();
+				}
+			}
+		}
+		
+		[Column(Name="antal", Storage="_Antal", DbType="Int")]
+		public System.Nullable<int> Antal
+		{
+			get
+			{
+				return this._Antal;
+			}
+			set
+			{
+				if ((this._Antal != value))
+				{
+					this.OnAntalChanging(value);
+					this.SendPropertyChanging();
+					this._Antal = value;
+					this.SendPropertyChanged("Antal");
+					this.OnAntalChanged();
+				}
+			}
+		}
+		
+		[Column(Name="varenr", Storage="_Varenr", DbType="Int")]
+		public System.Nullable<int> Varenr
+		{
+			get
+			{
+				return this._Varenr;
+			}
+			set
+			{
+				if ((this._Varenr != value))
+				{
+					this.OnVarenrChanging(value);
+					this.SendPropertyChanging();
+					this._Varenr = value;
+					this.SendPropertyChanged("Varenr");
+					this.OnVarenrChanged();
+				}
+			}
+		}
+		
+		[Column(Name="sku", Storage="_Sku", DbType="NVarChar(50)")]
+		public string Sku
+		{
+			get
+			{
+				return this._Sku;
+			}
+			set
+			{
+				if ((this._Sku != value))
+				{
+					this.OnSkuChanging(value);
+					this.SendPropertyChanging();
+					this._Sku = value;
+					this.SendPropertyChanged("Sku");
+					this.OnSkuChanged();
+				}
+			}
+		}
+		
+		[Column(Name="beskrivelse", Storage="_Beskrivelse", DbType="NVarChar(50)")]
+		public string Beskrivelse
+		{
+			get
+			{
+				return this._Beskrivelse;
+			}
+			set
+			{
+				if ((this._Beskrivelse != value))
+				{
+					this.OnBeskrivelseChanging(value);
+					this.SendPropertyChanging();
+					this._Beskrivelse = value;
+					this.SendPropertyChanged("Beskrivelse");
+					this.OnBeskrivelseChanged();
+				}
+			}
+		}
+		
+		[Column(Name="ordrerefpos", Storage="_Ordrerefpos", DbType="NVarChar(50)")]
+		public string Ordrerefpos
+		{
+			get
+			{
+				return this._Ordrerefpos;
+			}
+			set
+			{
+				if ((this._Ordrerefpos != value))
+				{
+					this.OnOrdrerefposChanging(value);
+					this.SendPropertyChanging();
+					this._Ordrerefpos = value;
+					this.SendPropertyChanged("Ordrerefpos");
+					this.OnOrdrerefposChanged();
+				}
+			}
+		}
+		
+		[Column(Name="stkpris", Storage="_Stkpris", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> Stkpris
+		{
+			get
+			{
+				return this._Stkpris;
+			}
+			set
+			{
+				if ((this._Stkpris != value))
+				{
+					this.OnStkprisChanging(value);
+					this.SendPropertyChanging();
+					this._Stkpris = value;
+					this.SendPropertyChanged("Stkpris");
+					this.OnStkprisChanged();
+				}
+			}
+		}
+		
+		[Column(Name="leveringsnr", Storage="_Leveringsnr", DbType="BigInt")]
+		public System.Nullable<long> Leveringsnr
+		{
+			get
+			{
+				return this._Leveringsnr;
+			}
+			set
+			{
+				if ((this._Leveringsnr != value))
+				{
+					this.OnLeveringsnrChanging(value);
+					this.SendPropertyChanging();
+					this._Leveringsnr = value;
+					this.SendPropertyChanged("Leveringsnr");
+					this.OnLeveringsnrChanged();
+				}
+			}
+		}
+		
+		[Column(Name="serienr", Storage="_Serienr", DbType="NVarChar(250)")]
+		public string Serienr
+		{
+			get
+			{
+				return this._Serienr;
+			}
+			set
+			{
+				if ((this._Serienr != value))
+				{
+					this.OnSerienrChanging(value);
+					this.SendPropertyChanging();
+					this._Serienr = value;
+					this.SendPropertyChanged("Serienr");
+					this.OnSerienrChanged();
+				}
+			}
+		}
+		
+		[Column(Name="ordrestatuspos", Storage="_Ordrestatuspos", DbType="NVarChar(50)")]
+		public string Ordrestatuspos
+		{
+			get
+			{
+				return this._Ordrestatuspos;
+			}
+			set
+			{
+				if ((this._Ordrestatuspos != value))
+				{
+					this.OnOrdrestatusposChanging(value);
+					this.SendPropertyChanging();
+					this._Ordrestatuspos = value;
+					this.SendPropertyChanged("Ordrestatuspos");
+					this.OnOrdrestatusposChanged();
+				}
+			}
+		}
+		
+		[Column(Name="producent", Storage="_Producent", DbType="NVarChar(50)")]
+		public string Producent
+		{
+			get
+			{
+				return this._Producent;
+			}
+			set
+			{
+				if ((this._Producent != value))
+				{
+					this.OnProducentChanging(value);
+					this.SendPropertyChanging();
+					this._Producent = value;
+					this.SendPropertyChanged("Producent");
+					this.OnProducentChanged();
+				}
+			}
+		}
+		
+		[Association(Name="Tblactebisfaktura_Tblactebisordre", Storage="_Tblactebisfaktura", ThisKey="Fakpid", OtherKey="Pid", IsForeignKey=true)]
+		public Tblactebisfaktura Tblactebisfaktura
+		{
+			get
+			{
+				return this._Tblactebisfaktura.Entity;
+			}
+			set
+			{
+				Tblactebisfaktura previousValue = this._Tblactebisfaktura.Entity;
+				if (((previousValue != value) 
+							|| (this._Tblactebisfaktura.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Tblactebisfaktura.Entity = null;
+						previousValue.Tblactebisordre.Remove(this);
+					}
+					this._Tblactebisfaktura.Entity = value;
+					if ((value != null))
+					{
+						value.Tblactebisordre.Add(this);
+						this._Fakpid = value.Pid;
+					}
+					else
+					{
+						this._Fakpid = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Tblactebisfaktura");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
