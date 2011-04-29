@@ -412,6 +412,21 @@ namespace nsPuls3060
             }
         }
 
+        private void importActebisToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void actebisFakturaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("Actebis Faktura"))
+            {
+                FrmActebisfaktura m_Actebisfaktura = new FrmActebisfaktura();
+                m_Actebisfaktura.MdiParent = this;
+                m_Actebisfaktura.Show();
+            }
+        }
+
     }
 
     public class Xrec

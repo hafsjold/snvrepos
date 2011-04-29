@@ -33,6 +33,10 @@
             System.Windows.Forms.Label kontoLabel;
             System.Windows.Forms.Label skLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNyfaktura));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.kreditorbilagsnrLabel = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.labelKontonavn = new System.Windows.Forms.Label();
@@ -475,6 +479,10 @@
             // dataGridViewTextBoxPris
             // 
             this.dataGridViewTextBoxPris.DataPropertyName = "Pris";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.dataGridViewTextBoxPris.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewTextBoxPris.FillWeight = 60F;
             this.dataGridViewTextBoxPris.HeaderText = "Pris";
             this.dataGridViewTextBoxPris.Name = "dataGridViewTextBoxPris";
@@ -492,6 +500,10 @@
             // dataGridViewTextBoxMoms
             // 
             this.dataGridViewTextBoxMoms.DataPropertyName = "Moms";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.dataGridViewTextBoxMoms.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxMoms.FillWeight = 60F;
             this.dataGridViewTextBoxMoms.HeaderText = "Moms";
             this.dataGridViewTextBoxMoms.Name = "dataGridViewTextBoxMoms";
@@ -500,6 +512,10 @@
             // dataGridViewTextBoxNettobelob
             // 
             this.dataGridViewTextBoxNettobelob.DataPropertyName = "Nettobelob";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.dataGridViewTextBoxNettobelob.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewTextBoxNettobelob.FillWeight = 70F;
             this.dataGridViewTextBoxNettobelob.HeaderText = "Nettobelob";
             this.dataGridViewTextBoxNettobelob.Name = "dataGridViewTextBoxNettobelob";
@@ -508,6 +524,10 @@
             // dataGridViewTextBoxBruttobelob
             // 
             this.dataGridViewTextBoxBruttobelob.DataPropertyName = "Bruttobelob";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.dataGridViewTextBoxBruttobelob.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewTextBoxBruttobelob.FillWeight = 70F;
             this.dataGridViewTextBoxBruttobelob.HeaderText = "Bruttobelob";
             this.dataGridViewTextBoxBruttobelob.Name = "dataGridViewTextBoxBruttobelob";

@@ -134,5 +134,11 @@
     <Setting Name="FrmVarekontoTypeSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">302, 106</Value>
     </Setting>
+    <Setting Name="FrmActebisfakturaLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="FrmActebisfakturaSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">1081, 495</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

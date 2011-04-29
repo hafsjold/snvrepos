@@ -118,6 +118,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbDataTransSumma.dbml</DependentUpon>
     </Compile>
+    <Compile Include="frm\frmActebisfaktura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmActebisfaktura.Designer.cs">
+      <DependentUpon>frmActebisfaktura.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm\frmVarekontoType.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -227,6 +233,9 @@
     <None Include="dbDataTransSumma.dbml.layout">
       <DependentUpon>dbDataTransSumma.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="frm\frmActebisfaktura.resx">
+      <DependentUpon>frmActebisfaktura.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm\frmBankkontoudtog.resx">
       <DependentUpon>frmBankkontoudtog.cs</DependentUpon>
     </EmbeddedResource>
@@ -306,6 +315,7 @@
     <None Include="Properties\DataSources\KarKontoplan.datasource" />
     <None Include="Properties\DataSources\KarMoms.datasource" />
     <None Include="Properties\DataSources\MemRegnskab.datasource" />
+    <None Include="Properties\DataSources\Tblactebisfaktura.datasource" />
     <None Include="Properties\DataSources\Tblbankkonto.datasource" />
     <None Include="Properties\DataSources\Tblbilag.datasource" />
     <None Include="Properties\DataSources\Tblfak.datasource" />

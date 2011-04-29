@@ -34,6 +34,11 @@
             System.Windows.Forms.Label datoLabel;
             System.Windows.Forms.Label kontoLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFaktura));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tblfakBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.tblfakBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -565,6 +570,10 @@
             // dataGridViewTextBoxPris
             // 
             this.dataGridViewTextBoxPris.DataPropertyName = "Pris";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.dataGridViewTextBoxPris.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewTextBoxPris.HeaderText = "Pris";
             this.dataGridViewTextBoxPris.Name = "dataGridViewTextBoxPris";
             this.dataGridViewTextBoxPris.ReadOnly = true;
@@ -581,6 +590,10 @@
             // dataGridViewTextBoxMoms
             // 
             this.dataGridViewTextBoxMoms.DataPropertyName = "Moms";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.dataGridViewTextBoxMoms.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxMoms.HeaderText = "Moms";
             this.dataGridViewTextBoxMoms.Name = "dataGridViewTextBoxMoms";
             this.dataGridViewTextBoxMoms.ReadOnly = true;
@@ -589,6 +602,10 @@
             // dataGridViewTextBoxNettobelob
             // 
             this.dataGridViewTextBoxNettobelob.DataPropertyName = "Nettobelob";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.dataGridViewTextBoxNettobelob.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewTextBoxNettobelob.HeaderText = "Nettobelob";
             this.dataGridViewTextBoxNettobelob.Name = "dataGridViewTextBoxNettobelob";
             this.dataGridViewTextBoxNettobelob.ReadOnly = true;
@@ -597,6 +614,10 @@
             // dataGridViewTextBoxBruttobelob
             // 
             this.dataGridViewTextBoxBruttobelob.DataPropertyName = "Bruttobelob";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.dataGridViewTextBoxBruttobelob.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewTextBoxBruttobelob.HeaderText = "Bruttobelob";
             this.dataGridViewTextBoxBruttobelob.Name = "dataGridViewTextBoxBruttobelob";
             this.dataGridViewTextBoxBruttobelob.ReadOnly = true;
@@ -605,6 +626,10 @@
             // dataGridViewTextBoxOmkostbelob
             // 
             this.dataGridViewTextBoxOmkostbelob.DataPropertyName = "Omkostbelob";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = null;
+            this.dataGridViewTextBoxOmkostbelob.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewTextBoxOmkostbelob.HeaderText = "Omk";
             this.dataGridViewTextBoxOmkostbelob.Name = "dataGridViewTextBoxOmkostbelob";
             this.dataGridViewTextBoxOmkostbelob.ReadOnly = true;

@@ -551,5 +551,29 @@ namespace nsPuls3060.Properties {
                 this["FrmVarekontoTypeSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point FrmActebisfakturaLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["FrmActebisfakturaLocation"]));
+            }
+            set {
+                this["FrmActebisfakturaLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1081, 495")]
+        public global::System.Drawing.Size FrmActebisfakturaSize {
+            get {
+                return ((global::System.Drawing.Size)(this["FrmActebisfakturaSize"]));
+            }
+            set {
+                this["FrmActebisfakturaSize"] = value;
+            }
+        }
     }
 }
