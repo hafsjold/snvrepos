@@ -26,7 +26,18 @@ namespace nsPuls3060
             bool bVareforbrug = true;
             Tblactebisfaktura recActebisfaktura = tblactebisfakturaBindingSource.Current as Tblactebisfaktura;
             if (recActebisfaktura.Leveringsadresse.ToUpper().Contains("HAFSJOLD"))
-                bVareforbrug = false;
+            {
+                DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
+                    "TransSumma", //titleString 
+                    "Hvis dette er en Hafsjold Data ApS anskaffelse svar JA.\n\nEr dette et vareforbrug svar NEJ", //bigString 
+                    null, //smallString
+                    "JA", //leftButton == OK
+                    "NEJ", //rightButton == Cancel
+                    global::nsPuls3060.Properties.Resources.Message_info); //iconSet
+
+                if (result == DialogResult.OK)
+                    bVareforbrug = false;
+            }
             Tblwfak recWfak = new Tblwfak
             {
                 Sk = "K",
