@@ -115,9 +115,6 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
-            KarActebisordre objActebisordre = new KarActebisordre();
-            objActebisordre.load();
-            string test = "Test";
             //object xx = Program.karFakturaer_k;
             //KarKartotek recKartotek = new KarKartotek();
             //int testx = 1;
@@ -414,7 +411,8 @@ namespace nsPuls3060
 
         private void importActebisToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            KarActebisordre objActebisordre = new KarActebisordre();
+            objActebisordre.load();
         }
 
         private void actebisFakturaToolStripMenuItem_Click(object sender, EventArgs e)
