@@ -318,8 +318,9 @@ namespace nsPuls3060
             }
         }
 
-        private void cmdBeregn_Click(object sender, EventArgs e)
+        private void Beregn()
         {
+            decimal? fakturabelob = 0;
             int antal = this.tblwfakBindingSource.Count;
             try
             {
@@ -330,10 +331,11 @@ namespace nsPuls3060
                     l.Nettobelob = l.Pris * l.Antal;
                     l.Moms = decimal.Round((decimal)(l.Nettobelob * momspct), 2);
                     l.Bruttobelob = l.Nettobelob + l.Moms;
+                    fakturabelob += l.Bruttobelob;
                 }
             }
             catch { }
-
+            toolStripLabelFakturabelob.Text = fakturabelob.ToString();
         }
 
         private void kontoTextBox_TextChanged(object sender, EventArgs e)
@@ -431,6 +433,16 @@ namespace nsPuls3060
             {
                 return konto;  
             } 
+        }
+
+        private void bindingNavigatorPositionItem_TextChanged(object sender, EventArgs e)
+        {
+            Beregn();
+        }
+
+        private void toolStripcmdBeregn_Click(object sender, EventArgs e)
+        {
+            Beregn();
         }
     }
 }

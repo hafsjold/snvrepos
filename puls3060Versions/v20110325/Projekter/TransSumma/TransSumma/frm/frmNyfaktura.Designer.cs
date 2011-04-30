@@ -32,21 +32,34 @@
             System.Windows.Forms.Label datoLabel;
             System.Windows.Forms.Label kontoLabel;
             System.Windows.Forms.Label skLabel;
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNyfaktura));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.kreditorbilagsnrLabel = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.labelKontonavn = new System.Windows.Forms.Label();
             this.kreditorbilagsnrTextBox = new System.Windows.Forms.TextBox();
             this.tblwfakBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cmdBeregn = new System.Windows.Forms.Button();
             this.skComboBox = new System.Windows.Forms.ComboBox();
             this.kontoTextBox = new System.Windows.Forms.TextBox();
             this.datoDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.tblwfaklinDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxPid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxFakpid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxVarenr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxTekst = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxKonto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxMK = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxAntal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxEnhed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxPris = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxRabat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxMoms = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxNettobelob = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxBruttobelob = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxTblwfak = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblwfaklinBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tblwfakBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
@@ -65,20 +78,10 @@
             this.contextMenuLineCopyPaste = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dataGridViewTextBoxPid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxFakpid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxVarenr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxTekst = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxKonto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxMK = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxAntal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxEnhed = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxPris = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxRabat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxMoms = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxNettobelob = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxBruttobelob = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxTblwfak = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toolStripLabelFakturabelob = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripcmdBeregn = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             datoLabel = new System.Windows.Forms.Label();
             kontoLabel = new System.Windows.Forms.Label();
             skLabel = new System.Windows.Forms.Label();
@@ -142,7 +145,6 @@
             this.splitContainer1.Panel1.Controls.Add(this.labelKontonavn);
             this.splitContainer1.Panel1.Controls.Add(this.kreditorbilagsnrLabel);
             this.splitContainer1.Panel1.Controls.Add(this.kreditorbilagsnrTextBox);
-            this.splitContainer1.Panel1.Controls.Add(this.cmdBeregn);
             this.splitContainer1.Panel1.Controls.Add(skLabel);
             this.splitContainer1.Panel1.Controls.Add(this.skComboBox);
             this.splitContainer1.Panel1.Controls.Add(kontoLabel);
@@ -179,16 +181,6 @@
             // tblwfakBindingSource
             // 
             this.tblwfakBindingSource.DataSource = typeof(nsPuls3060.Tblwfak);
-            // 
-            // cmdBeregn
-            // 
-            this.cmdBeregn.Location = new System.Drawing.Point(630, 10);
-            this.cmdBeregn.Name = "cmdBeregn";
-            this.cmdBeregn.Size = new System.Drawing.Size(50, 22);
-            this.cmdBeregn.TabIndex = 8;
-            this.cmdBeregn.Text = "Beregn";
-            this.cmdBeregn.UseVisualStyleBackColor = true;
-            this.cmdBeregn.Click += new System.EventHandler(this.cmdBeregn_Click);
             // 
             // skComboBox
             // 
@@ -249,170 +241,6 @@
             this.tblwfaklinDataGridView.TabIndex = 3;
             this.tblwfaklinDataGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tblwfaklinDataGridView1_MouseDown);
             this.tblwfaklinDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tblwfaklinDataGridView1_KeyDown);
-            // 
-            // tblwfaklinBindingSource
-            // 
-            this.tblwfaklinBindingSource.DataMember = "Tblwfaklin";
-            this.tblwfaklinBindingSource.DataSource = this.tblwfakBindingSource;
-            // 
-            // tblwfakBindingNavigator
-            // 
-            this.tblwfakBindingNavigator.AddNewItem = null;
-            this.tblwfakBindingNavigator.BindingSource = this.tblwfakBindingSource;
-            this.tblwfakBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.tblwfakBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
-            this.tblwfakBindingNavigator.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tblwfakBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.bindingNavigatorMoveFirstItem,
-            this.bindingNavigatorMovePreviousItem,
-            this.bindingNavigatorSeparator,
-            this.bindingNavigatorPositionItem,
-            this.bindingNavigatorCountItem,
-            this.bindingNavigatorSeparator1,
-            this.bindingNavigatorMoveNextItem,
-            this.bindingNavigatorMoveLastItem,
-            this.bindingNavigatorSeparator2,
-            this.bindingNavigatorAddNewItem,
-            this.bindingNavigatorDeleteItem,
-            this.tblwfakBindingNavigatorSaveItem,
-            this.FakturaTilSummaSummarumToolStripButton});
-            this.tblwfakBindingNavigator.Location = new System.Drawing.Point(0, 329);
-            this.tblwfakBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
-            this.tblwfakBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
-            this.tblwfakBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
-            this.tblwfakBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
-            this.tblwfakBindingNavigator.Name = "tblwfakBindingNavigator";
-            this.tblwfakBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.tblwfakBindingNavigator.Size = new System.Drawing.Size(803, 25);
-            this.tblwfakBindingNavigator.TabIndex = 1;
-            this.tblwfakBindingNavigator.Text = "bindingNavigator1";
-            // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(36, 22);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
-            // 
-            // bindingNavigatorMoveFirstItem
-            // 
-            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
-            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
-            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveFirstItem.Text = "Move first";
-            // 
-            // bindingNavigatorMovePreviousItem
-            // 
-            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
-            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
-            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
-            // 
-            // bindingNavigatorSeparator
-            // 
-            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorPositionItem
-            // 
-            this.bindingNavigatorPositionItem.AccessibleName = "Position";
-            this.bindingNavigatorPositionItem.AutoSize = false;
-            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
-            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 21);
-            this.bindingNavigatorPositionItem.Text = "0";
-            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
-            // 
-            // bindingNavigatorSeparator1
-            // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorMoveNextItem
-            // 
-            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
-            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
-            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveNextItem.Text = "Move next";
-            // 
-            // bindingNavigatorMoveLastItem
-            // 
-            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
-            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
-            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorMoveLastItem.Text = "Move last";
-            // 
-            // bindingNavigatorSeparator2
-            // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
-            // 
-            // tblwfakBindingNavigatorSaveItem
-            // 
-            this.tblwfakBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tblwfakBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("tblwfakBindingNavigatorSaveItem.Image")));
-            this.tblwfakBindingNavigatorSaveItem.Name = "tblwfakBindingNavigatorSaveItem";
-            this.tblwfakBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
-            this.tblwfakBindingNavigatorSaveItem.Text = "Save Data";
-            this.tblwfakBindingNavigatorSaveItem.Click += new System.EventHandler(this.tblwfakBindingNavigatorSaveItem_Click);
-            // 
-            // FakturaTilSummaSummarumToolStripButton
-            // 
-            this.FakturaTilSummaSummarumToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.FakturaTilSummaSummarumToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("FakturaTilSummaSummarumToolStripButton.Image")));
-            this.FakturaTilSummaSummarumToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.FakturaTilSummaSummarumToolStripButton.Name = "FakturaTilSummaSummarumToolStripButton";
-            this.FakturaTilSummaSummarumToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.FakturaTilSummaSummarumToolStripButton.Text = "Faktura Ti lSummaSummarum";
-            this.FakturaTilSummaSummarumToolStripButton.Click += new System.EventHandler(this.FakturaTilSummaSummarumToolStripButton_Click);
-            // 
-            // contextMenuLineCopyPaste
-            // 
-            this.contextMenuLineCopyPaste.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.copyToolStripMenuItem,
-            this.pasteToolStripMenuItem});
-            this.contextMenuLineCopyPaste.Name = "contextMenuLineCopyPaste";
-            this.contextMenuLineCopyPaste.Size = new System.Drawing.Size(113, 48);
-            // 
-            // copyToolStripMenuItem
-            // 
-            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
-            this.copyToolStripMenuItem.Text = "Copy";
-            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
-            // 
-            // pasteToolStripMenuItem
-            // 
-            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
-            this.pasteToolStripMenuItem.Text = "Paste";
-            this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
             // 
             // dataGridViewTextBoxPid
             // 
@@ -479,10 +307,10 @@
             // dataGridViewTextBoxPris
             // 
             this.dataGridViewTextBoxPris.DataPropertyName = "Pris";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.Format = "N2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.dataGridViewTextBoxPris.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = null;
+            this.dataGridViewTextBoxPris.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewTextBoxPris.FillWeight = 60F;
             this.dataGridViewTextBoxPris.HeaderText = "Pris";
             this.dataGridViewTextBoxPris.Name = "dataGridViewTextBoxPris";
@@ -500,10 +328,10 @@
             // dataGridViewTextBoxMoms
             // 
             this.dataGridViewTextBoxMoms.DataPropertyName = "Moms";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.dataGridViewTextBoxMoms.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.Format = "N2";
+            dataGridViewCellStyle6.NullValue = null;
+            this.dataGridViewTextBoxMoms.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewTextBoxMoms.FillWeight = 60F;
             this.dataGridViewTextBoxMoms.HeaderText = "Moms";
             this.dataGridViewTextBoxMoms.Name = "dataGridViewTextBoxMoms";
@@ -512,10 +340,10 @@
             // dataGridViewTextBoxNettobelob
             // 
             this.dataGridViewTextBoxNettobelob.DataPropertyName = "Nettobelob";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.dataGridViewTextBoxNettobelob.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.Format = "N2";
+            dataGridViewCellStyle7.NullValue = null;
+            this.dataGridViewTextBoxNettobelob.DefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridViewTextBoxNettobelob.FillWeight = 70F;
             this.dataGridViewTextBoxNettobelob.HeaderText = "Nettobelob";
             this.dataGridViewTextBoxNettobelob.Name = "dataGridViewTextBoxNettobelob";
@@ -524,10 +352,10 @@
             // dataGridViewTextBoxBruttobelob
             // 
             this.dataGridViewTextBoxBruttobelob.DataPropertyName = "Bruttobelob";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.dataGridViewTextBoxBruttobelob.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle8.Format = "N2";
+            dataGridViewCellStyle8.NullValue = null;
+            this.dataGridViewTextBoxBruttobelob.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewTextBoxBruttobelob.FillWeight = 70F;
             this.dataGridViewTextBoxBruttobelob.HeaderText = "Bruttobelob";
             this.dataGridViewTextBoxBruttobelob.Name = "dataGridViewTextBoxBruttobelob";
@@ -539,6 +367,202 @@
             this.dataGridViewTextBoxTblwfak.HeaderText = "Tblwfak";
             this.dataGridViewTextBoxTblwfak.Name = "dataGridViewTextBoxTblwfak";
             this.dataGridViewTextBoxTblwfak.Visible = false;
+            // 
+            // tblwfaklinBindingSource
+            // 
+            this.tblwfaklinBindingSource.DataMember = "Tblwfaklin";
+            this.tblwfaklinBindingSource.DataSource = this.tblwfakBindingSource;
+            // 
+            // tblwfakBindingNavigator
+            // 
+            this.tblwfakBindingNavigator.AddNewItem = null;
+            this.tblwfakBindingNavigator.BindingSource = this.tblwfakBindingSource;
+            this.tblwfakBindingNavigator.CountItem = this.bindingNavigatorCountItem;
+            this.tblwfakBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
+            this.tblwfakBindingNavigator.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.tblwfakBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bindingNavigatorMoveFirstItem,
+            this.bindingNavigatorMovePreviousItem,
+            this.bindingNavigatorSeparator,
+            this.bindingNavigatorPositionItem,
+            this.bindingNavigatorCountItem,
+            this.bindingNavigatorSeparator1,
+            this.bindingNavigatorMoveNextItem,
+            this.bindingNavigatorMoveLastItem,
+            this.bindingNavigatorSeparator2,
+            this.bindingNavigatorAddNewItem,
+            this.bindingNavigatorDeleteItem,
+            this.tblwfakBindingNavigatorSaveItem,
+            this.toolStripSeparator1,
+            this.toolStripcmdBeregn,
+            this.toolStripLabelFakturabelob,
+            this.toolStripSeparator2,
+            this.FakturaTilSummaSummarumToolStripButton});
+            this.tblwfakBindingNavigator.Location = new System.Drawing.Point(0, 329);
+            this.tblwfakBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
+            this.tblwfakBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
+            this.tblwfakBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
+            this.tblwfakBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
+            this.tblwfakBindingNavigator.Name = "tblwfakBindingNavigator";
+            this.tblwfakBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
+            this.tblwfakBindingNavigator.Size = new System.Drawing.Size(803, 25);
+            this.tblwfakBindingNavigator.TabIndex = 1;
+            this.tblwfakBindingNavigator.Text = "bindingNavigator1";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(36, 22);
+            this.bindingNavigatorCountItem.Text = "of {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorDeleteItem.Text = "Delete";
+            // 
+            // bindingNavigatorMoveFirstItem
+            // 
+            this.bindingNavigatorMoveFirstItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
+            this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
+            this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveFirstItem.Text = "Move first";
+            // 
+            // bindingNavigatorMovePreviousItem
+            // 
+            this.bindingNavigatorMovePreviousItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
+            this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
+            this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMovePreviousItem.Text = "Move previous";
+            // 
+            // bindingNavigatorSeparator
+            // 
+            this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
+            // 
+            // bindingNavigatorPositionItem
+            // 
+            this.bindingNavigatorPositionItem.AccessibleName = "Position";
+            this.bindingNavigatorPositionItem.AutoSize = false;
+            this.bindingNavigatorPositionItem.Name = "bindingNavigatorPositionItem";
+            this.bindingNavigatorPositionItem.Size = new System.Drawing.Size(50, 21);
+            this.bindingNavigatorPositionItem.Text = "0";
+            this.bindingNavigatorPositionItem.ToolTipText = "Current position";
+            this.bindingNavigatorPositionItem.TextChanged += new System.EventHandler(this.bindingNavigatorPositionItem_TextChanged);
+            // 
+            // bindingNavigatorSeparator1
+            // 
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // bindingNavigatorMoveNextItem
+            // 
+            this.bindingNavigatorMoveNextItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
+            this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
+            this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveNextItem.Text = "Move next";
+            // 
+            // bindingNavigatorMoveLastItem
+            // 
+            this.bindingNavigatorMoveLastItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
+            this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
+            this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveLastItem.Text = "Move last";
+            // 
+            // bindingNavigatorSeparator2
+            // 
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorAddNewItem.Text = "Add new";
+            this.bindingNavigatorAddNewItem.Click += new System.EventHandler(this.bindingNavigatorAddNewItem_Click);
+            // 
+            // tblwfakBindingNavigatorSaveItem
+            // 
+            this.tblwfakBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tblwfakBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("tblwfakBindingNavigatorSaveItem.Image")));
+            this.tblwfakBindingNavigatorSaveItem.Name = "tblwfakBindingNavigatorSaveItem";
+            this.tblwfakBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
+            this.tblwfakBindingNavigatorSaveItem.Text = "Save Data";
+            this.tblwfakBindingNavigatorSaveItem.Click += new System.EventHandler(this.tblwfakBindingNavigatorSaveItem_Click);
+            // 
+            // FakturaTilSummaSummarumToolStripButton
+            // 
+            this.FakturaTilSummaSummarumToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.FakturaTilSummaSummarumToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("FakturaTilSummaSummarumToolStripButton.Image")));
+            this.FakturaTilSummaSummarumToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.FakturaTilSummaSummarumToolStripButton.Name = "FakturaTilSummaSummarumToolStripButton";
+            this.FakturaTilSummaSummarumToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.FakturaTilSummaSummarumToolStripButton.Text = "Faktura Til SummaSummarum";
+            this.FakturaTilSummaSummarumToolStripButton.Click += new System.EventHandler(this.FakturaTilSummaSummarumToolStripButton_Click);
+            // 
+            // contextMenuLineCopyPaste
+            // 
+            this.contextMenuLineCopyPaste.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyToolStripMenuItem,
+            this.pasteToolStripMenuItem});
+            this.contextMenuLineCopyPaste.Name = "contextMenuLineCopyPaste";
+            this.contextMenuLineCopyPaste.Size = new System.Drawing.Size(113, 48);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.copyToolStripMenuItem.Text = "Copy";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+            // 
+            // pasteToolStripMenuItem
+            // 
+            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.pasteToolStripMenuItem.Text = "Paste";
+            this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
+            // 
+            // toolStripLabelFakturabelob
+            // 
+            this.toolStripLabelFakturabelob.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabelFakturabelob.Name = "toolStripLabelFakturabelob";
+            this.toolStripLabelFakturabelob.Size = new System.Drawing.Size(14, 22);
+            this.toolStripLabelFakturabelob.Text = "0";
+            // 
+            // toolStripcmdBeregn
+            // 
+            this.toolStripcmdBeregn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripcmdBeregn.Image = ((System.Drawing.Image)(resources.GetObject("toolStripcmdBeregn.Image")));
+            this.toolStripcmdBeregn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripcmdBeregn.Name = "toolStripcmdBeregn";
+            this.toolStripcmdBeregn.Size = new System.Drawing.Size(45, 22);
+            this.toolStripcmdBeregn.Text = "Beregn";
+            this.toolStripcmdBeregn.Click += new System.EventHandler(this.toolStripcmdBeregn_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // FrmNyfaktura
             // 
@@ -596,7 +620,6 @@
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton FakturaTilSummaSummarumToolStripButton;
-        private System.Windows.Forms.Button cmdBeregn;
         private System.Windows.Forms.TextBox kreditorbilagsnrTextBox;
         private System.Windows.Forms.Label labelKontonavn;
         public System.Windows.Forms.Label kreditorbilagsnrLabel;
@@ -614,5 +637,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxNettobelob;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxBruttobelob;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxTblwfak;
+        private System.Windows.Forms.ToolStripLabel toolStripLabelFakturabelob;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton toolStripcmdBeregn;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
     }
 }

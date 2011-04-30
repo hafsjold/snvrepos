@@ -29,7 +29,7 @@ namespace nsPuls3060
             {
                 DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
                     "TransSumma", //titleString 
-                    "Hvis dette er en Hafsjold Data ApS anskaffelse svar JA.\n\nEr dette et vareforbrug svar NEJ", //bigString 
+                    " JA: Dette er en Hafsjold Data ApS anskaffelse.\nNEJ: Dette et vareforbrug.", //bigString 
                     null, //smallString
                     "JA", //leftButton == OK
                     "NEJ", //rightButton == Cancel
@@ -54,7 +54,7 @@ namespace nsPuls3060
                     Pris = recActebisordre.Stkpris,
                     Varenr = recActebisordre.Varenr.ToString(),
                     Nettobelob = recActebisordre.Antal * recActebisordre.Stkpris,
-                    Tekst = recActebisordre.Beskrivelse,
+                    Tekst = getVaretekst(recActebisfaktura, recActebisordre, bVareforbrug),
                     Konto = getVarenrKonto(recActebisordre.Varenr, bVareforbrug),
                     Momskode = KarKontoplan.getMomskode(getVarenrKonto(recActebisordre.Varenr, bVareforbrug))
                 };
@@ -62,6 +62,23 @@ namespace nsPuls3060
             }
             Program.dbDataTransSumma.Tblwfak.InsertOnSubmit(recWfak);
             Program.dbDataTransSumma.SubmitChanges();
+        }
+
+        private string getVaretekst(Tblactebisfaktura recActebisfaktura, Tblactebisordre recActebisordre, bool bVareforbrug)
+        {
+            string Tekst = recActebisordre.Beskrivelse.Trim();
+            if (bVareforbrug)
+            {
+                if ((recActebisfaktura.Ordreref != null) && (recActebisfaktura.Ordreref.Length > 0))
+                    Tekst += ". Indkøbsordre: " + recActebisfaktura.Ordreref.Trim();
+            } 
+            if ((recActebisordre.Sku != null) && (recActebisordre.Sku.Length > 0))
+                Tekst += ". Producent varenr: " + recActebisordre.Sku.Trim();
+            if ((recActebisordre.Serienr != null) && (recActebisordre.Serienr.Length > 0))
+                Tekst += ". Serienr: " + recActebisordre.Serienr.Trim();
+            if ((recActebisordre.Producent != null) && (recActebisordre.Producent.Length > 0))
+                Tekst += ". Producent: " + recActebisordre.Producent.Trim();
+            return Tekst.Substring(0,512).TrimEnd();
         }
 
         private int getVarenrKonto(int? varenr, bool bVareforbrug) 
