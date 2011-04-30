@@ -16,7 +16,7 @@ namespace nsPuls3060
         public int? Varenr { get; set; }
         public string VareTekst { get; set; }
         public int? Bogfkonto { get; set; }
-        public int? Antal { get; set; }
+        public decimal? Antal { get; set; }
         public string Enhed { get; set; }
         public decimal? Pris { get; set; }
         public decimal? Rabat { get; set; }
@@ -127,7 +127,7 @@ namespace nsPuls3060
                             Varenr = Microsoft.VisualBasic.Information.IsNumeric(value3[0]) ? int.Parse(value3[0]) : (int?)null,
                             VareTekst = value3[1],
                             Bogfkonto = Microsoft.VisualBasic.Information.IsNumeric(value3[2]) ? int.Parse(value3[2]) : (int?)null,
-                            Antal = Microsoft.VisualBasic.Information.IsNumeric(value3[3]) ? int.Parse(value3[3]) : (int?)null,
+                            Antal = Microsoft.VisualBasic.Information.IsNumeric(value3[3]) ? decimal.Parse(value3[3]) : (decimal?)null,
                             Enhed = value3[4],
                             Pris = Microsoft.VisualBasic.Information.IsNumeric(value3[5]) ? decimal.Parse(value3[5]) : (decimal?)null,
                             Rabat = Microsoft.VisualBasic.Information.IsNumeric(value3[6]) ? decimal.Parse(value3[6]) : (decimal?)null,
@@ -168,13 +168,19 @@ namespace nsPuls3060
                         ln = "";
                     }
 
+                    string wantal = rec.Antal.ToString();
+                    if (wantal.Contains(","))
+                    {
+                        string yantal = wantal.TrimEnd('0').TrimEnd(',');
+                        wantal = yantal;
+                    }
                     string vline = quote(rec.Varenr.ToString(), 2)  //#0
                          + ","
                          + quote(rec.VareTekst, 2)  //#1
                          + ","
                          + quote(rec.Bogfkonto.ToString(), 2) //#2
                          + ","
-                         + quote(rec.Antal.ToString(), 2) //#3
+                         + quote(wantal, 2) //#3
                          + ","
                          + quote(rec.Enhed, 2) //#4
                          + ","

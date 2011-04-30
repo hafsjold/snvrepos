@@ -260,11 +260,13 @@ namespace nsPuls3060
 
                 foreach (var o in qry_ord)
                 {
-
+                    var qry_ordlin = from sfl in o.Tblwfaklin select sfl;
+                    if (qry_ordlin.Count() == 0)  //der findes ingen ordrelinier
+                        continue;
+                    
                     SidsteSFakID++;
                     SidsteRec_no++;
                     //var qry_ordlin = from sfl in Program.dbDataTransSumma.Tblwfaklin where sfl.Fakpid == o.Pid select sfl;
-                    var qry_ordlin = from sfl in o.Tblwfaklin select sfl;
                     int orebelob = (int)((from s in qry_ordlin select s.Bruttobelob).Sum() * 100);
                     int momsbelob = (int)((from s in qry_ordlin select s.Moms).Sum() * 100);
                     if (o.Dato == null) o.Dato = ToDay;
@@ -389,10 +391,12 @@ namespace nsPuls3060
 
                 foreach (var o in qry_ord)
                 {
+                    var qry_ordlin = from sfl in o.Tblwfaklin select sfl;
+                    if (qry_ordlin.Count() == 0) //der findes ingen ordrelinier
+                        continue;
 
                     SidsteKFakID++;
                     SidsteRec_no++;
-                    var qry_ordlin = from sfl in o.Tblwfaklin select sfl;
                     int orebelob = (int)((from s in qry_ordlin select s.Bruttobelob).Sum() * 100);
                     int momsbelob = (int)((from s in qry_ordlin select s.Moms).Sum() * 100);
                     if (o.Dato == null) o.Dato = ToDay;

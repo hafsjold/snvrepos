@@ -38,7 +38,7 @@
         <elementListCompartment Id="3ce7076e-196d-45c3-a750-b0933fb9c5f6" absoluteBounds="3.1400000000000006, 3.335, 1.9700000000000002, 2.508321126302083" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.375 : 2.08919514973958); (2.375 : 2.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.375 : 2.08919514973958); (2.375 : 2.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DbDataTransSumma/Tblbilag/Tblbilag_Tblkladder" />
       <nodes>
         <classShapeMoniker Id="916f8c8a-f66a-464c-9e00-bcb0d32fe69e" />
@@ -109,13 +109,13 @@
         <elementListCompartment Id="f3ea17ea-5e2b-4433-83be-9987b62f1758" absoluteBounds="5.89, 0.96, 1.9700000000000002, 1.5222371419270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="928fe8ee-0a79-484f-a650-137293d81c1a" absoluteBounds="5.875, 3.5, 2, 3.7257104492187496">
+    <classShape Id="928fe8ee-0a79-484f-a650-137293d81c1a" absoluteBounds="5.875, 3.25, 2, 3.7257104492187496">
       <DataClassMoniker Name="/DbDataTransSumma/Tblfaklin" />
       <nestedChildShapes>
-        <elementListCompartment Id="f99c265f-3202-49d1-8db1-01c0112eed56" absoluteBounds="5.89, 3.96, 1.9700000000000002, 3.16571044921875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="f99c265f-3202-49d1-8db1-01c0112eed56" absoluteBounds="5.89, 3.71, 1.9700000000000002, 3.16571044921875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(6.875 : 2.58223714192708); (6.875 : 3.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(6.875 : 2.58223714192708); (6.875 : 3.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DbDataTransSumma/Tblfak/Tblfak_Tblfaklin" />
       <nodes>
         <classShapeMoniker Id="d1c012e1-c533-4293-af49-962bc82f3094" />
@@ -159,7 +159,7 @@
         <elementListCompartment Id="4c9c30e9-719d-4954-b61e-3992bb6172cd" absoluteBounds="8.265, 9.335, 1.9700000000000002, 1.68658447265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(9.25 : 11.1215844726563); (9.25 : 11.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(9.25 : 11.1215844726563); (9.25 : 11.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DbDataTransSumma/Tblactebisfaktura/Tblactebisfaktura_Tblactebisordre" />
       <nodes>
         <classShapeMoniker Id="c7692f93-2b27-4ab1-a36d-5c9e7452a743" />

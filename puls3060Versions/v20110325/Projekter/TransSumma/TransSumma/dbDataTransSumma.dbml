@@ -20,7 +20,7 @@
       <Column Name="fakpid" Member="Fakpid" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ordrenr" Member="Ordrenr" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
       <Column Name="pos" Member="Pos" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="antal" Member="Antal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="antal" Member="Antal" Type="System.Decimal" DbType="Decimal(8,2)" CanBeNull="true" />
       <Column Name="varenr" Member="Varenr" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="sku" Member="Sku" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="beskrivelse" Member="Beskrivelse" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
@@ -97,7 +97,7 @@
       <Column Name="tekst" Member="Tekst" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
       <Column Name="konto" Member="Konto" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="momskode" Member="Momskode" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
-      <Column Name="antal" Member="Antal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="antal" Member="Antal" Type="System.Decimal" DbType="Decimal(8,2)" CanBeNull="true" />
       <Column Name="enhed" Member="Enhed" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
       <Column Name="pris" Member="Pris" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="rabat" Member="Rabat" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
@@ -204,7 +204,7 @@
       <Column Name="tekst" Member="Tekst" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
       <Column Name="konto" Member="Konto" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="momskode" Member="Momskode" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
-      <Column Name="antal" Member="Antal" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="antal" Member="Antal" Type="System.Decimal" DbType="Decimal(8,2)" CanBeNull="true" />
       <Column Name="enhed" Member="Enhed" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
       <Column Name="pris" Member="Pris" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="rabat" Member="Rabat" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />

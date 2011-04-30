@@ -61,7 +61,7 @@ namespace nsPuls3060
         public void save()
         {
             var qry = from k in this orderby k.Debnr select k;
-            FileStream ts = new FileStream(m_path, FileMode.Open, FileAccess.Write, FileShare.None);
+            FileStream ts = new FileStream(m_path, FileMode.Truncate, FileAccess.Write, FileShare.None);
             using (StreamWriter sr = new StreamWriter(ts, Encoding.Default))
             {
                 foreach (var i in qry)

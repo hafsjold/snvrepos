@@ -67,21 +67,27 @@ namespace nsPuls3060
         private string getVaretekst(Tblactebisfaktura recActebisfaktura, Tblactebisordre recActebisordre, bool bVareforbrug)
         {
             string Tekst = recActebisordre.Beskrivelse.Trim();
-            if (bVareforbrug)
+            if (!bOmkostningsVarenr(recActebisordre.Varenr))
             {
-                if ((recActebisfaktura.Ordreref != null) && (recActebisfaktura.Ordreref.Length > 0))
-                    Tekst += ". Indkøbsordre: " + recActebisfaktura.Ordreref.Trim();
-            } 
-            if ((recActebisordre.Sku != null) && (recActebisordre.Sku.Length > 0))
-                Tekst += ". Producent varenr: " + recActebisordre.Sku.Trim();
-            if ((recActebisordre.Serienr != null) && (recActebisordre.Serienr.Length > 0))
-                Tekst += ". Serienr: " + recActebisordre.Serienr.Trim();
-            if ((recActebisordre.Producent != null) && (recActebisordre.Producent.Length > 0))
-                Tekst += ". Producent: " + recActebisordre.Producent.Trim();
-            return Tekst.Substring(0,512).TrimEnd();
+                if (bVareforbrug)
+                {
+                    if ((recActebisfaktura.Ordreref != null) && (recActebisfaktura.Ordreref.Length > 0))
+                        Tekst += ". Indkøbsordre: " + recActebisfaktura.Ordreref.Trim();
+                }
+                if ((recActebisordre.Sku != null) && (recActebisordre.Sku.Length > 0))
+                    Tekst += ". Producent varenr: " + recActebisordre.Sku.Trim();
+                if ((recActebisordre.Serienr != null) && (recActebisordre.Serienr.Length > 0))
+                    Tekst += ". Serienr: " + recActebisordre.Serienr.Trim();
+                if ((recActebisordre.Producent != null) && (recActebisordre.Producent.Length > 0))
+                    Tekst += ". Producent: " + recActebisordre.Producent.Trim(); 
+            }
+            if (Tekst.Length > 512)
+                return Tekst.Substring(0, 511);
+            else
+                return Tekst;
         }
 
-        private int getVarenrKonto(int? varenr, bool bVareforbrug) 
+        private int getVarenrKonto(int? varenr, bool bVareforbrug)
         {
             switch (varenr)
             {
@@ -96,6 +102,21 @@ namespace nsPuls3060
                         return 2100;
                     else
                         return 9100;
+            }
+        }
+
+        private bool bOmkostningsVarenr(int? varenr)
+        {
+            switch (varenr)
+            {
+                case 7000061:    //Fragt
+                    return true;
+                case 7000221:    //Minimumordregebyr
+                    return true;
+                case 7900154:    //Transportforsikring
+                    return true;
+                default:
+                    return false;
             }
         }
     }

@@ -551,7 +551,7 @@ namespace nsPuls3060
 		
 		private System.Nullable<int> _Pos;
 		
-		private System.Nullable<int> _Antal;
+		private System.Nullable<decimal> _Antal;
 		
 		private System.Nullable<int> _Varenr;
 		
@@ -585,7 +585,7 @@ namespace nsPuls3060
     partial void OnOrdrenrChanged();
     partial void OnPosChanging(System.Nullable<int> value);
     partial void OnPosChanged();
-    partial void OnAntalChanging(System.Nullable<int> value);
+    partial void OnAntalChanging(System.Nullable<decimal> value);
     partial void OnAntalChanged();
     partial void OnVarenrChanging(System.Nullable<int> value);
     partial void OnVarenrChanged();
@@ -693,8 +693,8 @@ namespace nsPuls3060
 			}
 		}
 		
-		[Column(Name="antal", Storage="_Antal", DbType="Int")]
-		public System.Nullable<int> Antal
+		[Column(Name="antal", Storage="_Antal", DbType="Decimal(8,2)")]
+		public System.Nullable<decimal> Antal
 		{
 			get
 			{
@@ -1965,7 +1965,7 @@ namespace nsPuls3060
 		
 		private string _Momskode;
 		
-		private System.Nullable<int> _Antal;
+		private System.Nullable<decimal> _Antal;
 		
 		private string _Enhed;
 		
@@ -2007,7 +2007,7 @@ namespace nsPuls3060
     partial void OnKontoChanged();
     partial void OnMomskodeChanging(string value);
     partial void OnMomskodeChanged();
-    partial void OnAntalChanging(System.Nullable<int> value);
+    partial void OnAntalChanging(System.Nullable<decimal> value);
     partial void OnAntalChanged();
     partial void OnEnhedChanging(string value);
     partial void OnEnhedChanged();
@@ -2231,8 +2231,8 @@ namespace nsPuls3060
 			}
 		}
 		
-		[Column(Name="antal", Storage="_Antal", DbType="Int")]
-		public System.Nullable<int> Antal
+		[Column(Name="antal", Storage="_Antal", DbType="Decimal(8,2)")]
+		public System.Nullable<decimal> Antal
 		{
 			get
 			{
@@ -4159,7 +4159,7 @@ namespace nsPuls3060
 		
 		private string _Momskode;
 		
-		private System.Nullable<int> _Antal;
+		private System.Nullable<decimal> _Antal;
 		
 		private string _Enhed;
 		
@@ -4191,7 +4191,7 @@ namespace nsPuls3060
     partial void OnKontoChanged();
     partial void OnMomskodeChanging(string value);
     partial void OnMomskodeChanged();
-    partial void OnAntalChanging(System.Nullable<int> value);
+    partial void OnAntalChanging(System.Nullable<decimal> value);
     partial void OnAntalChanged();
     partial void OnEnhedChanging(string value);
     partial void OnEnhedChanged();
@@ -4333,8 +4333,8 @@ namespace nsPuls3060
 			}
 		}
 		
-		[Column(Name="antal", Storage="_Antal", DbType="Int")]
-		public System.Nullable<int> Antal
+		[Column(Name="antal", Storage="_Antal", DbType="Decimal(8,2)")]
+		public System.Nullable<decimal> Antal
 		{
 			get
 			{

@@ -70,6 +70,7 @@ namespace nsPuls3060
                 m_frmKontoplanList.Close();
                 if (selectedKontonr != null)
                 {
+                    kontoTextBox.Focus();
                     kontoTextBox.Text = selectedKontonr.ToString();
                 }
             }
@@ -206,7 +207,7 @@ namespace nsPuls3060
                                     Tekst = value[2],
                                     Konto = Microsoft.VisualBasic.Information.IsNumeric(value[3]) ? int.Parse(value[3]) : (int?)null,
                                     Momskode = "",
-                                    Antal = Microsoft.VisualBasic.Information.IsNumeric(value[4]) ? int.Parse(value[4]) : (int?)null,
+                                    Antal = Microsoft.VisualBasic.Information.IsNumeric(value[4]) ? decimal.Parse(value[4]) : (decimal?)null,
                                     Enhed = value[5],
                                     Pris = Microsoft.VisualBasic.Information.IsNumeric(value[6]) ? decimal.Parse(value[6]) : (decimal?)null,
                                     Moms = 0,
@@ -232,7 +233,7 @@ namespace nsPuls3060
                                     Tekst = value[2],
                                     Konto = Microsoft.VisualBasic.Information.IsNumeric(value[3]) ? int.Parse(value[3]) : (int?)null,
                                     Momskode = value[4],
-                                    Antal = Microsoft.VisualBasic.Information.IsNumeric(value[5]) ? int.Parse(value[5]) : (int?)null,
+                                    Antal = Microsoft.VisualBasic.Information.IsNumeric(value[5]) ? decimal.Parse(value[5]) : (decimal?)null,
                                     Enhed = value[6],
                                     Pris = Microsoft.VisualBasic.Information.IsNumeric(value[7]) ? decimal.Parse(value[7]) : (decimal?)null,
                                     Moms = Microsoft.VisualBasic.Information.IsNumeric(value[8]) ? decimal.Parse(value[8]) : (decimal?)null,
@@ -301,27 +302,65 @@ namespace nsPuls3060
             catch (System.NullReferenceException)
             {
             }
-
-            clsFaktura objFaktura = new clsFaktura();
-            objFaktura.SalgsOrder2Summa((IList<Tblwfak>)this.tblwfakBindingSource.List);
-            objFaktura.KøbsOrder2Summa((IList<Tblwfak>)this.tblwfakBindingSource.List);
-            objFaktura = null;
-
-            int iMax = this.tblwfakBindingSource.List.Count - 1;
-            for (int i = iMax; i >= 0; i--)
+            
+            if (Valider())
             {
-                try
+                clsFaktura objFaktura = new clsFaktura();
+                objFaktura.SalgsOrder2Summa((IList<Tblwfak>)this.tblwfakBindingSource.List);
+                objFaktura.KøbsOrder2Summa((IList<Tblwfak>)this.tblwfakBindingSource.List);
+                objFaktura = null;
+
+                int iMax = this.tblwfakBindingSource.List.Count - 1;
+                for (int i = iMax; i >= 0; i--)
                 {
-                    this.tblwfakBindingSource.List.RemoveAt(i);
+                    try
+                    {
+                        this.tblwfakBindingSource.List.RemoveAt(i);
+                    }
+                    catch { }
                 }
-                catch { }
             }
         }
+
+        private bool Valider()
+        {
+            bool OK = true;
+            string[] aSk = {"S","K"}; 
+            var qry = from f in (IList<Tblwfak>)this.tblwfakBindingSource.List select f;
+            foreach(var f in qry)
+            {
+                if ((from l in f.Tblwfaklin select l).Count() > 0)
+                {
+                    if (!aSk.Contains(f.Sk))
+                        OK = false;
+                    if (f.Dato == null)
+                        OK = false;
+                    try
+                    {
+                        string Kontonavn = (from k in Program.karKartotek where k.Kontonr == f.Konto select k.Kontonavn).First();
+                    }
+                    catch
+                    {
+                        OK = false;
+                    }
+                    if (f.Sk == "K")
+                        if (f.Kreditorbilagsnr == null)
+                            OK = false;
+                }
+            }
+            return OK;        
+        }
+
+        private void visfejl(Tblwfak f, string p)
+        {
+            throw new NotImplementedException();
+        }
+
+
 
         private void Beregn()
         {
             decimal? fakturabelob = 0;
-            int antal = this.tblwfakBindingSource.Count;
             try
             {
                 var qry = from l in (this.tblwfakBindingSource.Current as Tblwfak).Tblwfaklin select l;
@@ -340,7 +379,6 @@ namespace nsPuls3060
 
         private void kontoTextBox_TextChanged(object sender, EventArgs e)
         {
-
             getKontonavn();
         }
 
