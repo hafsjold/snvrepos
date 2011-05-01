@@ -20,7 +20,7 @@ namespace nsPuls3060
             InitializeComponent();
         }
 
-        public FrmVareList(Point Start, KontoType ktp)
+        public FrmVareList(Point Start)
         {
             global::nsPuls3060.Properties.Settings.Default.frmVareListLocation = Start;
             InitializeComponent();

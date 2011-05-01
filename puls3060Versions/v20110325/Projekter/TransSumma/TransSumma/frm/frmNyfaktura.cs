@@ -82,7 +82,28 @@ namespace nsPuls3060
             {
                 DataGridView.HitTestInfo hit = tblwfaklinDataGridView.HitTest(e.X, e.Y);
                 int hitcol = hit.ColumnIndex;
-                if (hit.Type == DataGridViewHitTestType.Cell && hit.ColumnIndex == 4)
+                if (hit.Type == DataGridViewHitTestType.Cell && hit.ColumnIndex == 2)
+                {
+                    tblwfaklinDataGridView.ClearSelection();
+                    DataGridViewCell cellVarenr = tblwfaklinDataGridView.Rows[hit.RowIndex].Cells[hit.ColumnIndex];
+                    cellVarenr.Selected = true;
+                    Point startPoint = tblwfaklinDataGridView.PointToScreen(new Point(e.X, e.Y));
+                    FrmVareList m_frmVareList = new FrmVareList(startPoint);
+                    m_frmVareList.ShowDialog();
+                    int? selectedVarenr = m_frmVareList.SelectedVarenr;
+                    string selectedVarenavn = m_frmVareList.SelectedVarenavn;
+                    m_frmVareList.Close();
+                    if (selectedVarenr != null)
+                    {
+                        Tblwfaklin recWfaklin = ((DataGridView)sender).Rows[hit.RowIndex].DataBoundItem as Tblwfaklin;
+                        if (recWfaklin != null) 
+                        {
+                            recWfaklin.Varenr = selectedVarenr.ToString();
+                            recWfaklin.Tekst = selectedVarenavn;
+                        }
+                    }
+                }
+                else if (hit.Type == DataGridViewHitTestType.Cell && hit.ColumnIndex == 4)
                 {
                     tblwfaklinDataGridView.ClearSelection();
                     tblwfaklinDataGridView.Rows[hit.RowIndex].Cells[hit.ColumnIndex].Selected = true;

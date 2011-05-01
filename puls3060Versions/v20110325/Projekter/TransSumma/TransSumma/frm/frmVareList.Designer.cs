@@ -57,7 +57,7 @@
             this.lvwVarer.Location = new System.Drawing.Point(0, 0);
             this.lvwVarer.MultiSelect = false;
             this.lvwVarer.Name = "lvwVarer";
-            this.lvwVarer.Size = new System.Drawing.Size(275, 375);
+            this.lvwVarer.Size = new System.Drawing.Size(264, 375);
             this.lvwVarer.TabIndex = 0;
             this.lvwVarer.UseCompatibleStateImageBehavior = false;
             this.lvwVarer.View = System.Windows.Forms.View.Details;
@@ -70,7 +70,7 @@
             // columnHeaderVarenavn
             // 
             this.columnHeaderVarenavn.Text = "Varenavn";
-            this.columnHeaderVarenavn.Width = 194;
+            this.columnHeaderVarenavn.Width = 195;
             // 
             // splitContainer1
             // 
@@ -88,7 +88,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(349, 413);
+            this.splitContainer1.Size = new System.Drawing.Size(358, 413);
             this.splitContainer1.SplitterDistance = 34;
             this.splitContainer1.TabIndex = 1;
             // 
@@ -132,8 +132,8 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.cmdCancel);
             this.splitContainer2.Panel2.Controls.Add(this.cmdOK);
-            this.splitContainer2.Size = new System.Drawing.Size(349, 375);
-            this.splitContainer2.SplitterDistance = 275;
+            this.splitContainer2.Size = new System.Drawing.Size(358, 375);
+            this.splitContainer2.SplitterDistance = 264;
             this.splitContainer2.TabIndex = 0;
             // 
             // cmdCancel
@@ -161,7 +161,7 @@
             this.AcceptButton = this.cmdOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(349, 413);
+            this.ClientSize = new System.Drawing.Size(358, 413);
             this.Controls.Add(this.splitContainer1);
             this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsPuls3060.Properties.Settings.Default, "frmVareListLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.Location = global::nsPuls3060.Properties.Settings.Default.frmVareListLocation;
