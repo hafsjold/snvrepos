@@ -575,5 +575,17 @@ namespace nsPuls3060.Properties {
                 this["FrmActebisfakturaSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point frmVareListLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["frmVareListLocation"]));
+            }
+            set {
+                this["frmVareListLocation"] = value;
+            }
+        }
     }
 }
