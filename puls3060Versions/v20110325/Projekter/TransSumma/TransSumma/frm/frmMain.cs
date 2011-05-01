@@ -115,6 +115,7 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
+            KarVarer objVarer = new KarVarer();
             //object xx = Program.karFakturaer_k;
             //KarKartotek recKartotek = new KarKartotek();
             //int testx = 1;
