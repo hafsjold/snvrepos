@@ -16,6 +16,8 @@ namespace nsPuls3060
         public string Enhed { get; set; }
         public decimal? Salgspris { get; set; }
         public int? Salgskonto { get; set; }
+        public decimal? Kobspris { get; set; }
+        public int? Kobskonto { get; set; }
     }
 
     class KarVarer : List<recVarer>
@@ -39,7 +41,7 @@ namespace nsPuls3060
                 while ((ln = sr.ReadLine()) != null)
                 {
                     int i = 0;
-                    int iMax = 7;
+                    int iMax = 10;
                     string[] value = new string[iMax];
                     foreach (Match m in regexKontoplan.Matches(ln))
                     {
@@ -66,6 +68,8 @@ namespace nsPuls3060
                             Enhed = value[2],
                             Salgspris = Microsoft.VisualBasic.Information.IsNumeric(value[3]) ? decimal.Parse(value[3]) : (decimal?)null,
                             Salgskonto = Microsoft.VisualBasic.Information.IsNumeric(value[4]) ? int.Parse(value[4]) : (int?)null,
+                            Kobspris = Microsoft.VisualBasic.Information.IsNumeric(value[6]) ? decimal.Parse(value[6]) : (decimal?)null,
+                            Kobskonto = Microsoft.VisualBasic.Information.IsNumeric(value[7]) ? int.Parse(value[7]) : (int?)null,
                         };
                         this.Add(rec);
                     }

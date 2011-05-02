@@ -23,6 +23,7 @@ namespace nsPuls3060
         public string Moms { get; set; }
         public decimal? Saldo { get; set; }
         public string DK { get; set; }
+        public string Cvrnr { get; set; }
     }
     public class KarKartotek : List<recKartotek>
     {
@@ -96,7 +97,8 @@ namespace nsPuls3060
                             Email = value[8],
                             Type = "Debitor",
                             Saldo = Microsoft.VisualBasic.Information.IsNumeric(value[23]) ? decimal.Parse(value[23]) : (decimal?)null,
-                            DK = "0"
+                            DK = "0",
+                            Cvrnr = value[14]
                         };
                         this.Add(rec);
                     }
@@ -113,7 +115,8 @@ namespace nsPuls3060
                             Email = value[8],
                             Type = "Kreditor",
                             Saldo = Microsoft.VisualBasic.Information.IsNumeric(value[24]) ? decimal.Parse(value[24]) : (decimal?)null,
-                            DK = "1"
+                            DK = "1",
+                            Cvrnr = value[14]
                         };
                         this.Add(rec);
                     }

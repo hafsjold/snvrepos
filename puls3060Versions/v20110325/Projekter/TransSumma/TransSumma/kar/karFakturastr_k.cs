@@ -24,7 +24,7 @@ namespace nsPuls3060
         public string Felt08 { get; set; }
         public string DeresRef { get; set; }
         public string Felt10 { get; set; }
-        public string Felt11 { get; set; }
+        public string Cvrnr { get; set; }
         public string Felt12 { get; set; }
     }
 
@@ -101,7 +101,7 @@ namespace nsPuls3060
                         Felt08 = value[8],
                         DeresRef = value[9],
                         Felt10 = value[10],
-                        Felt11 = value[11],
+                        Cvrnr = value[11],
                         Felt12 = value[12],
                     };
                     this.Add(rec);
@@ -119,7 +119,7 @@ namespace nsPuls3060
                                select d;
                 foreach (var rec in qry_this)
                 {
-                    string ln = rec.Fakid + @"=""" + rec.FakNavnAdresse.getCsv() + @""",,,,,,,,,,,,";
+                    string ln = rec.Fakid + @"=""" + rec.FakNavnAdresse.getCsv() + @""",,,,,,,,,," + rec.Cvrnr + @",,";
                     sr.WriteLine(ln);
                 }
             }

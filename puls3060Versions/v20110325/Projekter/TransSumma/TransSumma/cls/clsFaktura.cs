@@ -299,6 +299,7 @@ namespace nsPuls3060
                         Fakid = SidsteSFakID.ToString(),
                         FakNavnAdresse = wFakNavnAdresse,
                         Email = m_rec.Email,
+                        Cvrnr = m_rec.Cvrnr,
                     };
                     m_karFakturastr_s.Add(rec_Fakturastr_s);
 
@@ -429,6 +430,7 @@ namespace nsPuls3060
                     {
                         Fakid = SidsteKFakID,
                         FakNavnAdresse = wFakNavnAdresse,
+                        Cvrnr = m_rec.Cvrnr,
                     };
                     m_karFakturastr_k.Add(rec_Fakturastr_k);
 

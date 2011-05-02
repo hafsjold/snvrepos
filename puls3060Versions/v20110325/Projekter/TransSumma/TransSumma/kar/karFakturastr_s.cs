@@ -13,6 +13,7 @@ namespace nsPuls3060
         public string Fakid { get; set; }
         public clsNavnAdresse FakNavnAdresse { get; set; }
         public string Email { get; set; }
+        public string Cvrnr { get; set; }
     }
 
     public class KarFakturastr_s : List<recFakturastr_s>
@@ -35,7 +36,7 @@ namespace nsPuls3060
                                select d;
                 foreach (var rec in qry_this)
                 {
-                    string ln = rec.Fakid + @"=""" + rec.FakNavnAdresse.getCsv() +  @""",,,,,,,,," + rec.Email + @",,,";
+                    string ln = rec.Fakid + @"=""" + rec.FakNavnAdresse.getCsv() + @""",,,,,,,,," + rec.Email + @"," + rec.Cvrnr + ",,";
                     sr.WriteLine(ln);
                 }
             }

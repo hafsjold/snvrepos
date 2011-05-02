@@ -91,15 +91,32 @@ namespace nsPuls3060
                     FrmVareList m_frmVareList = new FrmVareList(startPoint);
                     m_frmVareList.ShowDialog();
                     int? selectedVarenr = m_frmVareList.SelectedVarenr;
-                    string selectedVarenavn = m_frmVareList.SelectedVarenavn;
                     m_frmVareList.Close();
                     if (selectedVarenr != null)
                     {
+                        Tblwfak recWfak = tblwfakBindingSource.Current as Tblwfak;
                         Tblwfaklin recWfaklin = ((DataGridView)sender).Rows[hit.RowIndex].DataBoundItem as Tblwfaklin;
                         if (recWfaklin != null) 
                         {
-                            recWfaklin.Varenr = selectedVarenr.ToString();
-                            recWfaklin.Tekst = selectedVarenavn;
+                            try
+                            {
+                                recVarer rec = (from k in Program.karVarer where k.Varenr == selectedVarenr select k).First();
+                                recWfaklin.Varenr = rec.Varenr.ToString();
+                                recWfaklin.Tekst = rec.Varenavn;
+                                recWfaklin.Enhed = rec.Enhed;
+                                if (recWfak.Sk == "S")
+                                {
+                                    recWfaklin.Konto = rec.Salgskonto;
+                                    recWfaklin.Momskode = KarKontoplan.getMomskode(rec.Salgskonto);
+                                    recWfaklin.Pris = rec.Salgspris;
+                                } if (recWfak.Sk == "K")
+                                {
+                                    recWfaklin.Konto = rec.Kobskonto;
+                                    recWfaklin.Momskode = KarKontoplan.getMomskode(rec.Kobskonto);
+                                    recWfaklin.Pris = rec.Kobspris;
+                                }
+                            }
+                            catch{}
                         }
                     }
                 }

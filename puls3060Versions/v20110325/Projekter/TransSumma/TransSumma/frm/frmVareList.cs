@@ -13,7 +13,6 @@ namespace nsPuls3060
     public partial class FrmVareList : Form
     {
         public int? SelectedVarenr { get; set; }
-        public string SelectedVarenavn { get; set; }
 
         public FrmVareList()
         {
@@ -83,7 +82,6 @@ namespace nsPuls3060
             if (lvwVarer.SelectedItems.Count == 1)
             {
                 SelectedVarenr = int.Parse(lvwVarer.SelectedItems[0].Name);
-                SelectedVarenavn = lvwVarer.SelectedItems[0].SubItems[1].Text;
             }
         }
 
