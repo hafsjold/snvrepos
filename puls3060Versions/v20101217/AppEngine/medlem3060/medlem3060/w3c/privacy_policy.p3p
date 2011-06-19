@@ -1,8 +1,0 @@
-<META> 
-  <POLICY-REFERENCES> 
-    <POLICY-REF about="/w3c/privacy_policy.p3p"> 
-       <INCLUDE>http://adm3060.appspot.com/*</INCLUDE>  
-       <COOKIE-INCLUDE name="*" value="*" domain="*" path="*" />  
-    </POLICY-REF> 
-  </POLICY-REFERENCES> 
-</META> 

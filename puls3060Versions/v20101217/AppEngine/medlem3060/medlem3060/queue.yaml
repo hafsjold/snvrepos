@@ -1,4 +1,0 @@
-queue:
-- name: default
-  rate: 5/s
-  bucket_size: 1
