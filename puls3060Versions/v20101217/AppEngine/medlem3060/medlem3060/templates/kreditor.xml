@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<list>
+  {% if kreditor_list %}
+    {% for kreditor in kreditor_list %}
+    <Kreditor>
+      <Id>{{kreditor.Id}}</Id> 
+      <Datalevnr>{{kreditor.Datalevnr}}</Datalevnr> 
+      <Datalevnavn>{{kreditor.Datalevnavn}}</Datalevnavn> 
+      <Pbsnr>{{kreditor.Pbsnr}}</Pbsnr>
+      <Delsystem>{{kreditor.Delsystem}}</Delsystem> 
+      <Regnr>{{kreditor.Regnr}}</Regnr> 
+      <Kontonr>{{kreditor.Kontonr}}</Kontonr> 
+      <Debgrpnr>{{kreditor.Debgrpnr}}</Debgrpnr> 
+      <Sektionnr>{{kreditor.Sektionnr}}</Sektionnr>
+      <Transkodebetaling>{{kreditor.Transkodebetaling}}</Transkodebetaling> 
+    </Kreditor>
+    {% endfor %}
+  {% endif %}    
+</list>

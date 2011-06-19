@@ -1,0 +1,17 @@
+.vpil a {
+  background:url(/images/vpil.gif) no-repeat; 
+  cursor:pointer; 
+  width: 15px; 
+  height: 15px 
+  border: none; 
+}
+.vpil a:hover {
+  background:url(/images/vpil_f2.gif) no-repeat; 
+  cursor:pointer; 
+  width: 15; 
+  height: 15; 
+  border: none; 
+}
+.highlight {
+    background-color: blue;
+}

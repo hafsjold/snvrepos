@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+        <sectionGroup name="userSettings" type="System.Configuration.UserSettingsGroup, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+            <section name="nsPuls3060.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" allowExeDefinition="MachineToLocalUser" requirePermission="false" />
+        </sectionGroup>
+    </configSections>
+    <userSettings>
+        <nsPuls3060.Properties.Settings>
+            <setting name="BetalingsFristiDageGamleMedlemmer" serializeAs="String">
+                <value>31</value>
+            </setting>
+            <setting name="BetalingsFristiDageNyeMedlemmer" serializeAs="String">
+                <value>61</value>
+            </setting>
+            <setting name="DataBasePath" serializeAs="String">
+                <value>C:\Documents and Settings\mha\Dokumenter\Medlem3060\Databaser\SQLCompact\dbData3060.sdf</value>
+            </setting>
+            <setting name="frmMainPoint" serializeAs="String">
+                <value>100, 100</value>
+            </setting>
+            <setting name="frmMainSize" serializeAs="String">
+                <value>1024, 800</value>
+            </setting>
+            <setting name="frmMedlemmerPoint" serializeAs="String">
+                <value>100, 100</value>
+            </setting>
+            <setting name="frmMedlemmerSize" serializeAs="String">
+                <value>800, 600</value>
+            </setting>
+            <setting name="frmKreditorPoint" serializeAs="String">
+                <value>10, 10</value>
+            </setting>
+            <setting name="frmKreditorSize" serializeAs="String">
+                <value>304, 300</value>
+            </setting>
+            <setting name="frmKreditorState" serializeAs="String">
+                <value>Normal</value>
+            </setting>
+            <setting name="frmRegnskabState" serializeAs="String">
+                <value>Normal</value>
+            </setting>
+            <setting name="frmRegnskabSize" serializeAs="String">
+                <value>531, 398</value>
+            </setting>
+            <setting name="frmRegnskabPoint" serializeAs="String">
+                <value>0, 0</value>
+            </setting>
+            <setting name="frmKontingentForslagSize" serializeAs="String">
+                <value>829, 513</value>
+            </setting>
+            <setting name="frmKontingentForslagPoint" serializeAs="String">
+                <value>0, 0</value>
+            </setting>
+            <setting name="frmMedlemmerSplitteDist" serializeAs="String">
+                <value>280</value>
+            </setting>
+            <setting name="frmPbsfilesPoint" serializeAs="String">
+                <value>0, 0</value>
+            </setting>
+            <setting name="frmPbsfilesSize" serializeAs="String">
+                <value>707, 511</value>
+            </setting>
+            <setting name="FrmBetalingsForslagSize" serializeAs="String">
+                <value>800, 600</value>
+            </setting>
+            <setting name="FrmBetalingsForslagPoint" serializeAs="String">
+                <value>0, 0</value>
+            </setting>
+        </nsPuls3060.Properties.Settings>
+    </userSettings>
+</configuration>

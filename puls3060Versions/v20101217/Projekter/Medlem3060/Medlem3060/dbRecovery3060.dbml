@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="dbRecovery3060" Class="DbRecovery3060" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="tblContent" Member="TblContent">
+    <Type Name="TblContent">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="directoryid" Member="Directoryid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="checksum" Member="Checksum" Type="System.String" DbType="NVarChar(32) NOT NULL" CanBeNull="false" />
+      <Column Name="size" Member="Size" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="atime" Member="Atime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="mtime" Member="Mtime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="data" Member="Data" Type="System.Data.Linq.Binary" DbType="Image NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Association Name="TblContent_TblRecoveryPointContent" Member="TblRecoveryPointContent" ThisKey="Id" OtherKey="Contentid" Type="TblRecoveryPointContent" />
+      <Association Name="TblDirectory_TblContent" Member="TblDirectory" ThisKey="Directoryid" OtherKey="Id" Type="TblDirectory" IsForeignKey="true" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="tblDirectory" Member="TblDirectory">
+    <Type Name="TblDirectory">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="parentid" Member="Parentid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="name" Member="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="isfile" Member="Isfile" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="TblDirectory_TblContent" Member="TblContent" ThisKey="Id" OtherKey="Directoryid" Type="TblContent" />
+      <Association Name="TblDirectory_TblDirectory" Member="Dirindir" ThisKey="Id" OtherKey="Parentid" Type="TblDirectory" />
+      <Association Name="TblDirectory_TblDirectory" Member="Parent" ThisKey="Parentid" OtherKey="Id" Type="TblDirectory" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="tblRecoveryPoint" Member="TblRecoveryPoint">
+    <Type Name="TblRecoveryPoint">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Member="Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="rptime" Member="Rptime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="TblRecoveryPoint_TblRecoveryPointLine" Member="TblRecoveryPointLine" ThisKey="Id" OtherKey="Recoverypointid" Type="TblRecoveryPointLine" />
+    </Type>
+  </Table>
+  <Table Name="tblRecoveryPointContent" Member="TblRecoveryPointContent">
+    <Type Name="TblRecoveryPointContent">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="recoverypointlineid" Member="Recoverypointlineid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="contentid" Member="Contentid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="TblContent_TblRecoveryPointContent" Member="TblContent" ThisKey="Contentid" OtherKey="Id" Type="TblContent" IsForeignKey="true" DeleteOnNull="true" />
+      <Association Name="TblRecoveryPointLine_TblRecoveryPointContent" Member="TblRecoveryPointLine" ThisKey="Recoverypointlineid" OtherKey="Id" Type="TblRecoveryPointLine" IsForeignKey="true" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="tblRecoveryPointLine" Member="TblRecoveryPointLine">
+    <Type Name="TblRecoveryPointLine">
+      <Column Name="id" Member="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="recoverypointid" Member="Recoverypointid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="recoverypath" Member="Recoverypath" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="recoveryisfile" Member="Recoveryisfile" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="restorepath" Member="Restorepath" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="TblRecoveryPointLine_TblRecoveryPointContent" Member="TblRecoveryPointContent" ThisKey="Id" OtherKey="Recoverypointlineid" Type="TblRecoveryPointContent" />
+      <Association Name="TblRecoveryPoint_TblRecoveryPointLine" Member="TblRecoveryPoint" ThisKey="Recoverypointid" OtherKey="Id" Type="TblRecoveryPoint" IsForeignKey="true" DeleteOnNull="true" />
+    </Type>
+  </Table>
+</Database>

@@ -1,0 +1,4212 @@
+Executing: 
+DELETE FROM [tblMedlemLog];
+
+
+(5 rows affected)
+Executing: 
+DELETE FROM [tblMedlem];
+
+
+(325 rows affected)
+Executing: 
+DELETE FROM [tblbetlin];
+
+
+(128 rows affected)
+Executing: 
+DELETE FROM [tblbet];
+
+
+(24 rows affected)
+Executing: 
+DELETE FROM [tblfrapbs];
+
+
+(21 rows affected)
+Executing: 
+DELETE FROM [tblpbsfile];
+
+
+(254 rows affected)
+Executing: 
+DELETE FROM [tblpbsfiles];
+
+
+(23 rows affected)
+Executing: 
+DELETE FROM [tblfak];
+
+
+(4 rows affected)
+Executing: 
+DELETE FROM [tbltilpbs];
+
+
+(2 rows affected)
+Executing: 
+DELETE FROM [tblpbsforsendelse];
+
+
+(26 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (3,1,N'M',{ts '1945-05-21 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (4,1,N'K',{ts '1956-04-05 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (5,1,N'K',{ts '1951-03-07 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (6,1,N'M',{ts '1957-01-23 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (7,2,N'K',{ts '1958-04-09 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (8,1,N'K',{ts '1949-05-29 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (10,1,N'K',{ts '1970-02-08 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (11,1,N'K',{ts '1960-01-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (12,1,N'K',{ts '1960-01-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (14,1,N'K',{ts '1948-07-09 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (15,1,N'K',{ts '1963-05-31 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (16,1,N'K',{ts '1959-09-27 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (17,1,N'K',{ts '1950-05-22 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (18,1,N'K',{ts '1965-07-28 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (19,1,N'K',{ts '1960-04-21 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (21,1,N'K',{ts '1961-05-14 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (22,1,N'K',{ts '1941-10-10 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (23,1,N'K',{ts '1950-01-14 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (24,1,N'K',{ts '1959-07-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (25,1,N'K',{ts '1960-04-08 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (26,1,N'K',{ts '1957-08-29 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (27,1,N'K',{ts '1945-03-19 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (28,1,N'K',{ts '1960-01-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (31,1,N'M',{ts '1931-11-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (36,1,N'K',{ts '1952-03-06 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (37,1,N'M',{ts '1947-09-24 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (38,1,N'K',{ts '1961-07-24 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (40,1,N'M',{ts '1938-07-08 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (41,1,N'K',{ts '1959-03-26 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (46,1,N'K',{ts '1957-01-12 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (47,1,N'K',{ts '1963-05-13 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (48,1,N'K',{ts '1960-01-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (49,1,N'K',{ts '1943-02-18 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (50,1,N'M',{ts '1960-12-15 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (51,1,N'K',{ts '1949-01-24 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (53,1,N'K',{ts '1968-03-04 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (54,1,N'K',{ts '1948-01-28 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (55,1,N'M',{ts '1956-12-06 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (56,1,N'M',{ts '1963-05-10 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (57,1,N'M',{ts '1964-12-16 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (58,1,N'M',{ts '1973-10-17 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (59,1,N'M',{ts '1960-08-27 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (60,1,N'M',{ts '1974-03-29 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (61,1,N'K',{ts '1972-04-27 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (63,1,N'K',{ts '1968-06-17 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (65,1,N'M',{ts '1953-03-07 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (66,1,N'K',{ts '1951-06-06 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (67,1,N'K',{ts '1960-01-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (71,1,N'K',{ts '1965-06-19 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (73,1,N'K',{ts '1955-12-17 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (74,1,N'M',{ts '1945-06-10 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (75,1,N'K',{ts '1940-04-16 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (78,1,N'K',{ts '1935-03-10 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (79,1,N'K',{ts '1951-03-09 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (83,1,N'M',{ts '1960-01-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (84,1,N'M',{ts '1952-05-05 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (86,1,N'M',{ts '1940-02-02 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (88,1,N'K',{ts '1952-03-22 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (92,1,N'M',{ts '1948-01-16 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (93,1,N'M',{ts '1957-03-26 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (94,1,N'M',{ts '1944-11-22 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (95,1,N'M',{ts '1960-01-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (96,1,N'M',{ts '1963-12-27 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (97,1,N'M',{ts '1947-08-02 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (98,1,N'M',{ts '1950-10-04 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (99,1,N'M',{ts '1960-01-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (101,1,N'K',{ts '1943-06-02 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (103,1,N'K',{ts '1959-07-27 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (105,1,N'K',{ts '1961-02-06 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (106,1,N'K',{ts '1944-05-06 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (107,1,N'K',{ts '1954-02-13 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (108,1,N'K',{ts '1953-04-30 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (110,2,N'K',{ts '1947-03-07 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (112,1,N'K',{ts '1945-09-28 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (113,1,N'M',{ts '1951-06-22 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (114,1,N'M',{ts '1941-05-18 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (115,1,N'M',{ts '1941-12-02 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (116,1,N'K',{ts '1964-10-06 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (117,1,N'K',{ts '1961-11-27 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (118,1,N'K',{ts '1957-05-06 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (119,1,N'K',{ts '1954-03-30 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (120,1,N'K',{ts '1961-07-21 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (121,1,N'K',{ts '1954-04-30 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (123,1,N'M',{ts '1947-05-05 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (125,1,N'M',{ts '1961-06-16 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (126,1,N'M',{ts '1947-07-21 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (127,1,N'M',{ts '1966-02-28 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (128,1,N'M',{ts '1945-05-05 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (129,1,N'M',{ts '1947-09-10 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (132,2,N'M',{ts '1966-08-06 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (133,1,N'M',{ts '1942-06-24 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (134,1,N'K',{ts '1954-07-08 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (135,1,N'K',{ts '1950-06-12 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (137,1,N'K',{ts '1960-01-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (138,1,N'K',{ts '1947-01-28 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (140,1,N'K',{ts '1948-10-24 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (141,1,N'K',{ts '1946-02-07 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (143,1,N'M',{ts '1969-03-10 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (144,4,N'K',{ts '1957-05-14 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (145,2,N'M',{ts '1942-01-19 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (146,1,N'M',{ts '1947-12-06 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (147,1,N'M',{ts '1962-06-07 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (148,1,N'M',{ts '1953-06-18 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (149,1,N'K',{ts '1947-11-30 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (150,2,N'K',{ts '1959-10-07 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (151,1,N'K',{ts '1955-01-05 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (153,1,N'M',{ts '1951-09-20 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (156,1,N'M',{ts '1964-11-10 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (157,3,N'M',{ts '1954-06-14 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (158,1,N'K',{ts '1960-01-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (159,1,N'K',{ts '1948-02-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (160,1,N'K',{ts '1960-05-27 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (163,1,N'M',{ts '1955-08-11 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (164,1,N'M',{ts '1954-06-20 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (165,1,N'M',{ts '1951-04-21 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (166,1,N'M',{ts '1948-03-22 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (167,1,N'M',{ts '1962-11-29 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (171,1,N'M',{ts '1958-01-10 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (173,1,N'M',{ts '1955-05-30 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (174,1,N'K',{ts '1954-06-16 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (175,1,N'K',{ts '1946-05-31 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (176,1,N'K',{ts '1973-04-05 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (178,1,N'K',{ts '1957-08-29 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (179,1,N'K',{ts '1945-07-29 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (180,1,N'K',{ts '1964-12-11 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (181,1,N'K',{ts '1980-04-15 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (182,1,N'M',{ts '1955-07-18 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (183,1,N'M',{ts '1955-08-03 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (184,1,N'M',{ts '1967-11-09 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (185,1,N'K',{ts '1949-12-06 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (188,1,N'K',{ts '1956-03-23 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (190,1,N'K',{ts '1953-04-23 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (191,1,N'K',{ts '1942-09-26 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (192,1,N'K',{ts '1971-04-06 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (193,1,N'M',{ts '1939-06-21 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (194,1,N'M',{ts '1941-09-07 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (195,1,N'K',{ts '1964-04-26 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (196,1,N'M',{ts '1942-07-17 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (197,1,N'M',{ts '1943-06-29 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (199,1,N'M',{ts '1970-01-12 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (201,1,N'M',{ts '1959-09-13 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (202,1,N'M',{ts '1945-03-02 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (203,1,N'M',{ts '1947-11-14 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (204,1,N'K',{ts '1964-09-06 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (205,1,N'K',{ts '1962-07-12 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (206,2,N'K',{ts '1960-05-31 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (212,1,N'K',{ts '1952-07-15 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (214,1,N'K',{ts '1960-04-21 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (215,4,N'K',{ts '1977-11-11 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (217,1,N'K',{ts '1955-09-05 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (218,1,N'K',{ts '1971-03-21 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (219,1,N'K',{ts '1976-03-17 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (220,1,N'K',{ts '1973-10-29 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (221,1,N'K',{ts '1952-02-11 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (222,1,N'K',{ts '1959-09-13 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (223,1,N'K',{ts '1950-07-21 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (224,1,N'K',{ts '1961-10-04 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (225,1,N'K',{ts '1960-01-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (229,2,N'M',{ts '1958-07-25 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (230,1,N'K',{ts '1962-10-09 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (231,1,N'M',{ts '1948-05-10 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (232,1,N'K',{ts '1960-05-07 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (233,1,N'K',{ts '1943-07-14 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (234,1,N'K',{ts '1953-12-29 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (235,1,N'K',{ts '1976-02-18 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (236,1,N'K',{ts '1960-01-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (237,1,N'K',{ts '1959-05-29 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (239,1,N'M',{ts '1946-06-02 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (240,1,N'M',{ts '1959-04-27 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (242,2,N'M',{ts '1979-01-07 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (243,1,N'M',{ts '1956-12-03 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (246,1,N'M',{ts '1968-01-26 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (247,2,N'K',{ts '1960-08-21 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (250,1,N'M',{ts '1959-02-28 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (252,1,N'M',{ts '1943-08-05 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (253,1,N'M',{ts '1962-08-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (254,1,N'M',{ts '1941-08-13 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (255,1,N'K',{ts '1964-05-20 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (258,1,N'K',{ts '1968-06-10 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (260,1,N'K',{ts '1963-02-02 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (261,1,N'K',{ts '1958-05-20 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (262,2,N'K',{ts '1949-03-15 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (263,1,N'K',{ts '1960-01-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (265,1,N'M',{ts '1960-01-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (267,1,N'M',{ts '1934-01-03 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (268,2,N'K',{ts '1931-10-26 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (269,1,N'K',{ts '1958-01-26 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (270,1,N'K',{ts '1948-12-10 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (271,1,N'K',{ts '1960-01-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (273,1,N'K',{ts '1989-05-16 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (274,1,N'K',{ts '1948-05-24 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (276,4,N'K',{ts '1963-05-17 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (277,1,N'K',{ts '1995-05-28 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (278,1,N'K',{ts '1991-05-27 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (284,1,N'M',{ts '1975-08-29 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (285,1,N'K',{ts '1953-05-23 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (286,1,N'K',{ts '1954-05-06 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (287,1,N'K',{ts '1949-09-06 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (288,1,N'K',{ts '1959-03-06 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (289,1,N'K',{ts '1967-11-06 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (290,1,N'K',{ts '1952-01-08 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (292,1,N'K',{ts '1965-04-21 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (296,1,N'M',{ts '1951-04-17 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (297,1,N'M',{ts '1955-12-24 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (298,1,N'M',{ts '1969-05-04 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (300,1,N'M',{ts '1947-11-02 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (302,2,N'M',{ts '1969-07-17 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (303,1,N'K',{ts '1967-04-10 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (304,1,N'K',{ts '1962-04-14 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (305,2,N'M',{ts '1960-01-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (306,1,N'M',{ts '1932-01-08 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (307,1,N'M',{ts '1950-04-29 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (308,1,N'K',{ts '1946-04-16 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (315,1,N'K',{ts '1960-01-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (317,1,N'K',{ts '1974-03-13 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (318,1,N'M',{ts '1975-06-14 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (319,1,N'K',{ts '1954-04-25 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (321,2,N'M',{ts '1950-01-15 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (324,1,N'K',{ts '1961-02-21 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (327,2,N'M',{ts '1953-06-02 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (328,1,N'K',{ts '1955-09-05 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (331,2,N'K',{ts '1945-11-30 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (337,1,N'M',{ts '1971-07-28 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (339,1,N'M',{ts '1962-10-08 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (341,1,N'M',{ts '1968-02-18 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (342,1,N'K',{ts '1964-01-31 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (344,1,N'M',{ts '1965-09-09 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (347,1,N'M',{ts '1969-01-06 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (348,1,N'K',{ts '1966-08-16 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (349,1,N'K',{ts '1974-03-05 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (350,1,N'K',{ts '1991-10-09 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (351,1,N'M',{ts '1959-11-30 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (352,1,N'K',{ts '1959-12-03 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (353,1,N'K',{ts '1965-01-07 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (354,1,N'K',{ts '1980-08-25 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (355,1,N'M',{ts '1970-04-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (356,2,N'K',{ts '1999-01-05 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (357,2,N'K',{ts '1995-07-29 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (358,1,N'M',{ts '1970-04-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (359,2,N'M',{ts '1962-11-11 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (360,1,N'K',{ts '1965-06-10 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (361,1,N'K',{ts '1959-12-03 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (362,1,N'K',{ts '1956-04-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (363,1,N'M',{ts '1950-07-12 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (364,1,N'M',{ts '1941-03-04 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (365,1,N'M',{ts '1972-03-16 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (366,3,N'K',{ts '1961-01-15 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (367,1,N'K',{ts '1949-05-20 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (369,1,N'M',{ts '1983-07-10 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (370,1,N'K',{ts '1969-12-04 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (371,1,N'K',{ts '1993-05-24 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (372,1,N'K',{ts '1995-07-11 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (373,1,N'K',{ts '1995-07-11 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (374,1,N'K',{ts '1965-01-05 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (375,1,N'M',{ts '1963-07-08 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (376,1,N'M',{ts '1934-11-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (377,1,N'K',{ts '1953-10-21 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (378,1,N'K',{ts '1971-09-13 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (379,1,N'M',{ts '1965-03-11 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (380,2,N'K',{ts '1952-03-23 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (381,2,N'M',{ts '1953-02-12 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (382,1,N'K',{ts '1953-05-18 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (383,1,N'K',{ts '1947-04-10 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (384,1,N'K',{ts '1943-10-15 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (386,1,N'K',{ts '1955-01-09 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (387,1,N'K',{ts '1946-08-30 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (388,1,N'K',{ts '1965-01-20 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (390,1,N'M',{ts '1966-06-13 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (391,1,N'K',{ts '1959-11-26 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (392,1,N'K',{ts '1957-10-18 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (393,2,N'K',{ts '1960-08-31 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (394,1,N'M',{ts '1955-08-02 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (396,1,N'M',{ts '1963-10-26 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (398,2,N'K',{ts '1964-04-17 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (399,1,N'K',{ts '1962-11-22 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (400,1,N'K',{ts '1947-12-26 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (401,1,N'K',{ts '1965-05-05 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (402,1,N'M',{ts '1942-02-09 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (404,1,N'K',{ts '1998-08-18 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (405,1,N'K',{ts '1960-12-08 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (406,2,N'K',{ts '1972-08-24 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (409,1,N'K',{ts '1955-04-24 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (410,2,N'M',{ts '1953-12-13 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (411,1,N'K',{ts '1973-02-21 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (412,1,N'K',{ts '1972-08-25 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (413,1,N'K',{ts '1966-02-24 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (414,2,N'M',{ts '1963-05-31 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (415,1,N'K',{ts '1956-10-07 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (416,3,N'K',{ts '1966-06-09 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (417,6,N'M',{ts '1963-10-26 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (418,1,N'M',{ts '1967-08-18 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (419,1,N'K',{ts '1959-09-23 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (420,1,N'K',{ts '1959-08-30 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (421,1,N'M',{ts '1966-10-29 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (422,1,N'K',{ts '1965-01-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (423,1,N'K',{ts '1969-11-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (424,1,N'K',{ts '1943-11-06 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (425,1,N'M',{ts '1991-07-04 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (426,1,N'M',{ts '1960-07-02 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (427,1,N'K',{ts '1941-07-21 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (428,2,N'K',{ts '1958-04-28 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (429,1,N'K',{ts '1934-05-09 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (430,1,N'M',{ts '1964-02-18 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (431,1,N'M',{ts '1960-04-13 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (432,1,N'M',{ts '1994-04-16 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (433,1,N'M',{ts '1998-08-20 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (434,1,N'K',{ts '1948-04-03 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (435,1,N'K',{ts '1965-12-19 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (436,1,N'K',{ts '1971-12-21 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (437,1,N'K',{ts '1969-10-29 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (438,1,N'K',{ts '1967-03-19 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (439,1,N'M',{ts '1958-10-22 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (440,1,N'M',{ts '1956-03-21 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (441,1,N'K',{ts '1978-06-10 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (442,1,N'K',{ts '1964-08-19 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (443,1,N'K',{ts '1978-06-20 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (444,1,N'M',{ts '1960-08-24 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (445,6,N'K',{ts '1949-11-16 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (446,2,N'K',{ts '1968-05-29 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (447,1,N'K',{ts '1961-11-14 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (448,1,N'M',{ts '1994-10-06 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (449,1,N'M',{ts '1977-01-23 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (450,1,N'M',{ts '1991-04-06 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (451,1,N'K',{ts '1974-05-25 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlem] ([Nr],[Knr],[Kon],[FodtDato]) VALUES (452,1,N'K',{ts '1962-03-18 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+SET IDENTITY_INSERT [tblMedlemLog] ON
+
+
+(-1 rows affected)
+Executing: 
+INSERT INTO [tblMedlemLog] ([id],[Nr],[logdato],[akt_id],[akt_dato]) VALUES (1,10,{ts '2002-12-11 00:00:00'},10,{ts '2002-12-11 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlemLog] ([id],[Nr],[logdato],[akt_id],[akt_dato]) VALUES (2,10,{ts '2008-01-01 00:00:00'},30,{ts '2009-12-31 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlemLog] ([id],[Nr],[logdato],[akt_id],[akt_dato]) VALUES (3,8,{ts '2009-11-01 00:00:00'},10,{ts '2009-11-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlemLog] ([id],[Nr],[logdato],[akt_id],[akt_dato]) VALUES (5,7,{ts '2009-11-14 00:00:00'},10,{ts '2009-11-14 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblMedlemLog] ([id],[Nr],[logdato],[akt_id],[akt_dato]) VALUES (6,443,{ts '2009-12-07 08:52:49'},10,{ts '2009-11-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+SET IDENTITY_INSERT [tblMedlemLog] OFF
+
+
+(-1 rows affected)
+Executing: 
+SET IDENTITY_INSERT [tblpbsforsendelse] ON
+
+
+(-1 rows affected)
+Executing: 
+INSERT INTO [tblpbsforsendelse] ([id],[delsystem],[leverancetype],[oprettetaf],[oprettet],[leveranceid]) VALUES (810, N'BS1',N'0601',N'Fak',{ts '2009-12-04 09:11:09'},410);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsforsendelse] ([id],[delsystem],[leverancetype],[oprettetaf],[oprettet],[leveranceid]) VALUES (811, N'BS1',N'0602',N'Bet',{ts '2009-12-04 00:00:00'},411);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsforsendelse] ([id],[delsystem],[leverancetype],[oprettetaf],[oprettet],[leveranceid]) VALUES (812, N'BS1',N'0602',N'Bet',{ts '2009-12-04 00:00:00'},412);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsforsendelse] ([id],[delsystem],[leverancetype],[oprettetaf],[oprettet],[leveranceid]) VALUES (813, N'BS1',N'0602',N'Bet',{ts '2009-12-04 00:00:00'},413);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsforsendelse] ([id],[delsystem],[leverancetype],[oprettetaf],[oprettet],[leveranceid]) VALUES (814, N'BS1',N'0602',N'Bet',{ts '2009-12-04 00:00:00'},414);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsforsendelse] ([id],[delsystem],[leverancetype],[oprettetaf],[oprettet],[leveranceid]) VALUES (815, N'BS1',N'0602',N'Bet',{ts '2009-12-04 00:00:00'},415);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsforsendelse] ([id],[delsystem],[leverancetype],[oprettetaf],[oprettet],[leveranceid]) VALUES (816, N'BS1',N'0602',N'Bet',{ts '2009-12-04 00:00:00'},416);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsforsendelse] ([id],[delsystem],[leverancetype],[oprettetaf],[oprettet],[leveranceid]) VALUES (817, N'BS1',N'0602',N'Bet',{ts '2009-12-04 00:00:00'},417);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsforsendelse] ([id],[delsystem],[leverancetype],[oprettetaf],[oprettet],[leveranceid]) VALUES (818, N'BS1',N'0602',N'Bet',{ts '2009-12-04 00:00:00'},418);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsforsendelse] ([id],[delsystem],[leverancetype],[oprettetaf],[oprettet],[leveranceid]) VALUES (819, N'BS1',N'0602',N'Bet',{ts '2009-12-04 00:00:00'},419);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsforsendelse] ([id],[delsystem],[leverancetype],[oprettetaf],[oprettet],[leveranceid]) VALUES (820, N'BS1',N'0602',N'Bet',{ts '2009-12-04 00:00:00'},420);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsforsendelse] ([id],[delsystem],[leverancetype],[oprettetaf],[oprettet],[leveranceid]) VALUES (821, N'BS1',N'0602',N'Bet',{ts '2009-12-04 00:00:00'},421);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsforsendelse] ([id],[delsystem],[leverancetype],[oprettetaf],[oprettet],[leveranceid]) VALUES (822, N'BS1',N'0602',N'Bet',{ts '2009-12-04 00:00:00'},422);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsforsendelse] ([id],[delsystem],[leverancetype],[oprettetaf],[oprettet],[leveranceid]) VALUES (823, N'BS1',N'0602',N'Bet',{ts '2009-12-04 00:00:00'},423);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsforsendelse] ([id],[delsystem],[leverancetype],[oprettetaf],[oprettet],[leveranceid]) VALUES (824, N'BS1',N'0602',N'Bet',{ts '2009-12-04 00:00:00'},424);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsforsendelse] ([id],[delsystem],[leverancetype],[oprettetaf],[oprettet],[leveranceid]) VALUES (825, N'BS1',N'0602',N'Bet',{ts '2009-12-04 00:00:00'},425);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsforsendelse] ([id],[delsystem],[leverancetype],[oprettetaf],[oprettet],[leveranceid]) VALUES (826, N'BS1',N'0602',N'Bet',{ts '2009-12-04 00:00:00'},426);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsforsendelse] ([id],[delsystem],[leverancetype],[oprettetaf],[oprettet],[leveranceid]) VALUES (827, N'BS1',N'0602',N'Bet',{ts '2009-12-04 00:00:00'},427);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsforsendelse] ([id],[delsystem],[leverancetype],[oprettetaf],[oprettet],[leveranceid]) VALUES (828, N'BS1',N'0602',N'Bet',{ts '2009-12-04 00:00:00'},428);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsforsendelse] ([id],[delsystem],[leverancetype],[oprettetaf],[oprettet],[leveranceid]) VALUES (829, N'BS1',N'0602',N'Bet',{ts '2009-12-04 00:00:00'},429);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsforsendelse] ([id],[delsystem],[leverancetype],[oprettetaf],[oprettet],[leveranceid]) VALUES (830, N'BS1',N'0602',N'Bet',{ts '2009-12-04 00:00:00'},430);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsforsendelse] ([id],[delsystem],[leverancetype],[oprettetaf],[oprettet],[leveranceid]) VALUES (831, N'BS1',N'0602',N'Bet',{ts '2009-12-04 00:00:00'},431);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsforsendelse] ([id],[delsystem],[leverancetype],[oprettetaf],[oprettet],[leveranceid]) VALUES (832, N'BS1',N'0601',N'Fak',{ts '2009-12-07 08:57:50'},432);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsforsendelse] ([id],[delsystem],[leverancetype],[oprettetaf],[oprettet],[leveranceid]) VALUES (833, N'BS1',N'0601',N'Fak',{ts '2009-12-07 09:06:15'},433);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsforsendelse] ([id],[delsystem],[leverancetype],[oprettetaf],[oprettet],[leveranceid]) VALUES (834, N'BS1',N'0601',N'Fak',{ts '2009-12-07 09:08:50'},434);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsforsendelse] ([id],[delsystem],[leverancetype],[oprettetaf],[oprettet],[leveranceid]) VALUES (835, N'BS1',N'0601',N'Fak',{ts '2009-12-07 09:14:48'},435);
+
+
+(1 rows affected)
+Executing: 
+SET IDENTITY_INSERT [tblpbsforsendelse] OFF
+
+
+(-1 rows affected)
+Executing: 
+SET IDENTITY_INSERT [tbltilpbs] ON
+
+
+(-1 rows affected)
+Executing: 
+INSERT INTO [tbltilpbs] ([id],[delsystem],[leverancetype],[bilagdato],[pbsforsendelseid],[udtrukket],[leverancespecifikation],[leverancedannelsesdato]) VALUES (611,N'BS1',N'0601',{ts '2009-12-04 00:00:00'},810,{ts '2009-12-04 00:00:00'},N'410',null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tbltilpbs] ([id],[delsystem],[leverancetype],[bilagdato],[pbsforsendelseid],[udtrukket],[leverancespecifikation],[leverancedannelsesdato]) VALUES (615,N'BS1',N'0601',{ts '2009-12-07 00:00:00'},835,{ts '2009-12-07 00:00:00'},N'435',null);
+
+
+(1 rows affected)
+Executing: 
+SET IDENTITY_INSERT [tbltilpbs] OFF
+
+
+(-1 rows affected)
+Executing: 
+SET IDENTITY_INSERT [tblfak] ON
+
+
+(-1 rows affected)
+Executing: 
+INSERT INTO [tblfak] ([id],[tilpbsid],[betalingsdato],[Nr],[faknr],[advistekst],[advisbelob],[infotekst],[bogfkonto],[vnr],[fradato],[tildato],[SFakID],[SFaknr],[rykkerdato],[maildato],[rykkerstop],[betalt]) VALUES (30025,611,{ts '2010-01-04 00:00:00'},10,10025,N'Puls 3060 Medlemskontingent
+  for Anja Olsen
+  perioden fra 2010-01-01 til 2010-12-31
+Bes�g Puls 3060"s hjemmeside p� www.puls3060.dk',150.00,0,1800,1,{ts '2010-01-01 00:00:00'},{ts '2010-12-31 00:00:00'},null,null,null,null,0,0);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblfak] ([id],[tilpbsid],[betalingsdato],[Nr],[faknr],[advistekst],[advisbelob],[infotekst],[bogfkonto],[vnr],[fradato],[tildato],[SFakID],[SFaknr],[rykkerdato],[maildato],[rykkerstop],[betalt]) VALUES (30026,611,{ts '2010-01-04 00:00:00'},7,10026,N'Puls 3060 Medlemskontingent
+  for Anette Westring
+  perioden fra 2009-11-14 til 2010-12-31
+Bes�g Puls 3060"s hjemmeside p� www.puls3060.dk',170.00,0,1800,1,{ts '2009-11-14 00:00:00'},{ts '2010-12-31 00:00:00'},null,null,null,null,0,0);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblfak] ([id],[tilpbsid],[betalingsdato],[Nr],[faknr],[advistekst],[advisbelob],[infotekst],[bogfkonto],[vnr],[fradato],[tildato],[SFakID],[SFaknr],[rykkerdato],[maildato],[rykkerstop],[betalt]) VALUES (30027,611,{ts '2010-01-04 00:00:00'},8,10027,N'Puls 3060 Medlemskontingent
+  for Anitta Hennings
+  perioden fra 2009-11-01 til 2010-12-31
+Bes�g Puls 3060"s hjemmeside p� www.puls3060.dk',176.00,0,1800,1,{ts '2009-11-01 00:00:00'},{ts '2010-12-31 00:00:00'},null,null,null,null,0,0);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblfak] ([id],[tilpbsid],[betalingsdato],[Nr],[faknr],[advistekst],[advisbelob],[infotekst],[bogfkonto],[vnr],[fradato],[tildato],[SFakID],[SFaknr],[rykkerdato],[maildato],[rykkerstop],[betalt]) VALUES (30031,615,{ts '2010-01-04 00:00:00'},443,10031,N'Puls 3060 Medlemskontingent
+  for Anita Isabella Kraft
+  perioden fra 2009-11-01 til 2010-12-31
+Bes�g Puls 3060"s hjemmeside p� www.puls3060.dk',176.00,0,1800,1,{ts '2009-11-01 00:00:00'},{ts '2010-12-31 00:00:00'},null,null,null,null,0,0);
+
+
+(1 rows affected)
+Executing: 
+SET IDENTITY_INSERT [tblfak] OFF
+
+
+(-1 rows affected)
+Executing: 
+SET IDENTITY_INSERT [tblpbsfiles] ON
+
+
+(-1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfiles] ([id],[type],[path],[filename],[size],[atime],[mtime],[perm],[uid],[gid],[transmittime],[pbsforsendelseid]) VALUES (710,8,N'TilPBS',N'PBS410.lst',2434,{ts '2009-12-04 09:11:09'},{ts '2009-12-04 09:11:09'},null,null,null,null,810);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfiles] ([id],[type],[path],[filename],[size],[atime],[mtime],[perm],[uid],[gid],[transmittime],[pbsforsendelseid]) VALUES (711,8,N'FraPBS',N'D0006001-602.BS1',730,{ts '2009-12-04 09:13:47'},{ts '2009-08-18 10:48:54'},null,null,null,{ts '2009-12-04 09:54:16'},811);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfiles] ([id],[type],[path],[filename],[size],[atime],[mtime],[perm],[uid],[gid],[transmittime],[pbsforsendelseid]) VALUES (712,8,N'FraPBS',N'D0694001-602.BS1',470,{ts '2009-12-04 09:13:47'},{ts '2009-08-18 10:49:30'},null,null,null,{ts '2009-12-04 09:54:16'},812);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfiles] ([id],[type],[path],[filename],[size],[atime],[mtime],[perm],[uid],[gid],[transmittime],[pbsforsendelseid]) VALUES (713,8,N'FraPBS',N'D1594501-602.BS1',600,{ts '2009-12-04 09:13:47'},{ts '2009-08-09 09:13:20'},null,null,null,{ts '2009-12-04 09:54:16'},813);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfiles] ([id],[type],[path],[filename],[size],[atime],[mtime],[perm],[uid],[gid],[transmittime],[pbsforsendelseid]) VALUES (714,8,N'FraPBS',N'D1989001-602.BS1',470,{ts '2009-12-04 09:13:47'},{ts '2009-10-22 11:05:54'},null,null,null,{ts '2009-12-04 09:54:16'},814);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfiles] ([id],[type],[path],[filename],[size],[atime],[mtime],[perm],[uid],[gid],[transmittime],[pbsforsendelseid]) VALUES (715,8,N'FraPBS',N'D2192601-602.BS1',600,{ts '2009-12-04 09:13:47'},{ts '2009-08-09 09:13:42'},null,null,null,{ts '2009-12-04 09:54:16'},815);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfiles] ([id],[type],[path],[filename],[size],[atime],[mtime],[perm],[uid],[gid],[transmittime],[pbsforsendelseid]) VALUES (716,8,N'FraPBS',N'D3017601-602.BS1',470,{ts '2009-12-04 09:13:47'},{ts '2009-10-05 02:53:04'},null,null,null,{ts '2009-12-04 09:54:16'},816);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfiles] ([id],[type],[path],[filename],[size],[atime],[mtime],[perm],[uid],[gid],[transmittime],[pbsforsendelseid]) VALUES (717,8,N'FraPBS',N'D3285501-602.BS1',600,{ts '2009-12-04 09:13:47'},{ts '2009-08-09 09:14:12'},null,null,null,{ts '2009-12-04 09:54:16'},817);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfiles] ([id],[type],[path],[filename],[size],[atime],[mtime],[perm],[uid],[gid],[transmittime],[pbsforsendelseid]) VALUES (718,8,N'FraPBS',N'D3786201-602.BS1',9593,{ts '2009-12-04 09:13:47'},{ts '2009-08-09 09:14:38'},null,null,null,{ts '2009-12-04 09:54:16'},818);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfiles] ([id],[type],[path],[filename],[size],[atime],[mtime],[perm],[uid],[gid],[transmittime],[pbsforsendelseid]) VALUES (719,8,N'FraPBS',N'D4442201-602.BS1',1120,{ts '2009-12-04 09:13:47'},{ts '2009-08-09 09:14:52'},null,null,null,{ts '2009-12-04 09:54:16'},819);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfiles] ([id],[type],[path],[filename],[size],[atime],[mtime],[perm],[uid],[gid],[transmittime],[pbsforsendelseid]) VALUES (720,8,N'FraPBS',N'D4827101-602.BS1',730,{ts '2009-12-04 09:13:47'},{ts '2009-08-26 10:51:22'},null,null,null,{ts '2009-12-04 09:54:16'},820);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfiles] ([id],[type],[path],[filename],[size],[atime],[mtime],[perm],[uid],[gid],[transmittime],[pbsforsendelseid]) VALUES (721,8,N'FraPBS',N'D5081101-602.BS1',2550,{ts '2009-12-04 09:13:47'},{ts '2009-08-09 09:15:22'},null,null,null,{ts '2009-12-04 09:54:16'},821);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfiles] ([id],[type],[path],[filename],[size],[atime],[mtime],[perm],[uid],[gid],[transmittime],[pbsforsendelseid]) VALUES (722,8,N'FraPBS',N'D5468701-602.BS1',600,{ts '2009-12-04 09:13:47'},{ts '2009-08-27 10:05:42'},null,null,null,{ts '2009-12-04 09:54:16'},822);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfiles] ([id],[type],[path],[filename],[size],[atime],[mtime],[perm],[uid],[gid],[transmittime],[pbsforsendelseid]) VALUES (723,8,N'FraPBS',N'D6254301-602.BS1',600,{ts '2009-12-04 09:13:47'},{ts '2009-08-09 09:16:12'},null,null,null,{ts '2009-12-04 09:54:16'},823);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfiles] ([id],[type],[path],[filename],[size],[atime],[mtime],[perm],[uid],[gid],[transmittime],[pbsforsendelseid]) VALUES (724,8,N'FraPBS',N'D6490201-602.BS1',470,{ts '2009-12-04 09:13:47'},{ts '2009-10-13 08:40:20'},null,null,null,{ts '2009-12-04 09:54:16'},824);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfiles] ([id],[type],[path],[filename],[size],[atime],[mtime],[perm],[uid],[gid],[transmittime],[pbsforsendelseid]) VALUES (725,8,N'FraPBS',N'D7639001-602.BS1',470,{ts '2009-12-04 09:13:47'},{ts '2009-08-14 09:33:56'},null,null,null,{ts '2009-12-04 09:54:16'},825);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfiles] ([id],[type],[path],[filename],[size],[atime],[mtime],[perm],[uid],[gid],[transmittime],[pbsforsendelseid]) VALUES (726,8,N'FraPBS',N'D7755401-602.BS1',600,{ts '2009-12-04 09:13:47'},{ts '2009-11-09 03:35:18'},null,null,null,{ts '2009-12-04 09:54:16'},826);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfiles] ([id],[type],[path],[filename],[size],[atime],[mtime],[perm],[uid],[gid],[transmittime],[pbsforsendelseid]) VALUES (727,8,N'FraPBS',N'D7948301-602.BS1',600,{ts '2009-12-04 09:13:47'},{ts '2009-09-03 01:22:46'},null,null,null,{ts '2009-12-04 09:54:16'},827);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfiles] ([id],[type],[path],[filename],[size],[atime],[mtime],[perm],[uid],[gid],[transmittime],[pbsforsendelseid]) VALUES (728,8,N'FraPBS',N'D8298301-602.BS1',730,{ts '2009-12-04 09:13:47'},{ts '2009-08-14 09:35:36'},null,null,null,{ts '2009-12-04 09:54:16'},828);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfiles] ([id],[type],[path],[filename],[size],[atime],[mtime],[perm],[uid],[gid],[transmittime],[pbsforsendelseid]) VALUES (729,8,N'FraPBS',N'D8587201-602.BS1',860,{ts '2009-12-04 09:13:47'},{ts '2009-09-03 01:23:18'},null,null,null,{ts '2009-12-04 09:54:16'},829);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfiles] ([id],[type],[path],[filename],[size],[atime],[mtime],[perm],[uid],[gid],[transmittime],[pbsforsendelseid]) VALUES (730,8,N'FraPBS',N'D9185501-602.BS1',600,{ts '2009-12-04 09:13:47'},{ts '2009-09-04 01:16:44'},null,null,null,{ts '2009-12-04 09:54:16'},830);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfiles] ([id],[type],[path],[filename],[size],[atime],[mtime],[perm],[uid],[gid],[transmittime],[pbsforsendelseid]) VALUES (731,8,N'FraPBS',N'D9772601-602.BS1',470,{ts '2009-12-04 09:13:47'},{ts '2009-09-07 02:45:48'},null,null,null,{ts '2009-12-04 09:54:16'},831);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfiles] ([id],[type],[path],[filename],[size],[atime],[mtime],[perm],[uid],[gid],[transmittime],[pbsforsendelseid]) VALUES (732,8,N'TilPBS',N'PBS435.lst',1080,{ts '2009-12-07 09:14:49'},{ts '2009-12-07 09:14:49'},null,null,null,null,835);
+
+
+(1 rows affected)
+Executing: 
+SET IDENTITY_INSERT [tblpbsfiles] OFF
+
+
+(-1 rows affected)
+Executing: 
+SET IDENTITY_INSERT [tblpbsfile] ON
+
+
+(-1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (29,710,1,N'BS00229349444BS106010000000410                   041209');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (30,710,2,N'BS012039856440112     00001Puls 3060          0412200931830001417967L�BEKLUBBEN PULS 3060');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (31,710,3,N'BS0220398564402400000100001032001610000007000000000Anette Westring');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (32,710,4,N'BS0220398564402400000200001032001610000007000000000Langebjergvej 209');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (33,710,5,N'BS0220398564402400000900001032001610000007000000000               3050DK ');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (34,710,6,N'BS04203985644028000000000010320016100000070000000000401201010000000017000000010026                     00');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (35,710,7,N'BS0520398564402410000100001032001610000007000000000 Puls 3060 Medlemskontingent           170,00   ');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (36,710,8,N'BS0520398564402410000200001032001610000007000000000   for Anette Westring');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (37,710,9,N'BS0520398564402410000300001032001610000007000000000   perioden fra 2009-11-14 til 2010-12-31');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (38,710,10,N'BS0520398564402410000400001032001610000007000000000 Bes�g Puls 3060"s hjemmeside p� www.puls3060.dk');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (39,710,11,N'BS0220398564402400000100001032001610000008000000000Anitta Hennings');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (40,710,12,N'BS0220398564402400000200001032001610000008000000000Rugmarken 9');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (41,710,13,N'BS0220398564402400000900001032001610000008000000000               3060DK ');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (42,710,14,N'BS04203985644028000000000010320016100000080000000000401201010000000017600000010027                     00');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (43,710,15,N'BS0520398564402410000100001032001610000008000000000 Puls 3060 Medlemskontingent           176,00   ');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (44,710,16,N'BS0520398564402410000200001032001610000008000000000   for Anitta Hennings');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (45,710,17,N'BS0520398564402410000300001032001610000008000000000   perioden fra 2009-11-01 til 2010-12-31');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (46,710,18,N'BS0520398564402410000400001032001610000008000000000 Bes�g Puls 3060"s hjemmeside p� www.puls3060.dk');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (47,710,19,N'BS0220398564402400000100001032001610000010000000000Anja Olsen');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (48,710,20,N'BS0220398564402400000200001032001610000010000000000Gransangervej 38 ABC');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (49,710,21,N'BS0220398564402400000900001032001610000010000000000               3080DK ');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (50,710,22,N'BS04203985644028000000000010320016100000100000000000401201010000000015000000010025                     00');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (51,710,23,N'BS0520398564402410000100001032001610000010000000000 Puls 3060 Medlemskontingent           150,00   ');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (52,710,24,N'BS0520398564402410000200001032001610000010000000000   for Anja Olsen');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (53,710,25,N'BS0520398564402410000300001032001610000010000000000   perioden fra 2010-01-01 til 2010-12-31');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (54,710,26,N'BS0520398564402410000400001032001610000010000000000 Bes�g Puls 3060"s hjemmeside p� www.puls3060.dk');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (55,710,27,N'BS0920398564401120000000001    0000000000300000000004960000000000012               00000000009');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (56,710,28,N'BS99229349444BS10601000000000010000000000300000000004960000000000012000000000000000000000000090000000000000000000000000000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (57,711,1,N'BS00229349444BS106022100060001                   140809');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (58,711,2,N'BS01203985644021500000001                        140809');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (59,711,3,N'BS0420398564402970000000100000320016100000157100000003080910000000006250611971   040020090813N1512399331308091408090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (60,711,4,N'BS0420398564402970000000100000320016100001157100000003080910000000006250612008   36112009081330613267271308091408090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (61,711,5,N'BS0420398564402970000000100000320016100002337100000003080910000000006250612060   36112009081330613267281308091408090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (62,711,6,N'BS09203985644021500000001      0000000000300000000001875000000000000               00000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (63,711,7,N'BS99229349444BS10602000000000010000000000300000000001875000000000000000000000000000000000000000000000000000000000000000000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (64,712,1,N'BS00229349444BS106022106940001                   170809');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (65,712,2,N'BS01203985644021500000001                        170809');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (66,712,3,N'BS0420398564402970000000100000320016100002407100000003080910000000006250612063   981520090814N0912863301408091708090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (67,712,4,N'BS09203985644021500000001      0000000000100000000000625000000000000               00000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (68,712,5,N'BS99229349444BS10602000000000010000000000100000000000625000000000000000000000000000000000000000000000000000000000000000000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (69,713,1,N'BS00229349444BS106022015945001                   270709');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (70,713,2,N'BS01203985644021500000001                        270709');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (71,713,3,N'BS0420398564402970000000100000320016100000957100000003080910000000006250611998   50502009072400000000972407092707090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (72,713,4,N'BS0420398564402970000000100000320016100003157100000003080910000000006250612088   50502009072400000000982407092707090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (73,713,5,N'BS09203985644021500000001      0000000000200000000001250000000000000               00000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (74,713,6,N'BS99229349444BS10602000000000010000000000200000000001250000000000000000000000000000000000000000000000000000000000000000000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (75,714,1,N'BS00229349444BS106022419890001                   211009');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (76,714,2,N'BS01203985644021500000001                        211009');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (77,714,3,N'BS0420398564402970000000100000320016100004487100000001100910000000020000639260   21412009102069878496752010092110090000000020000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (78,714,4,N'BS09203985644021500000001      0000000000100000000002000000000000000               00000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (79,714,5,N'BS99229349444BS10602000000000010000000000100000000002000000000000000000000000000000000000000000000000000000000000000000000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (80,715,1,N'BS00229349444BS106022021926001                   280709');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (81,715,2,N'BS01203985644021500000001                        280709');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (82,715,3,N'BS0420398564402970000000100000320016100001597100000003080910000000006250612031   54792009072700890000322707092807090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (83,715,4,N'BS0420398564402970000000100000320016100001807100000003080910000000006250612039   54792009072700890035392707092807090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (84,715,5,N'BS09203985644021500000001      0000000000200000000001250000000000000               00000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (85,715,6,N'BS99229349444BS10602000000000010000000000200000000001250000000000000000000000000000000000000000000000000000000000000000000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (86,716,1,N'BS00229349444BS106022330176001                   021009');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (87,716,2,N'BS01203985644021500000001                        021009');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (88,716,3,N'BS0420398564402970000000100000320016100004477100000001100910000000020000639259   54792009100100890174770110090210090000000020000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (89,716,4,N'BS09203985644021500000001      0000000000100000000002000000000000000               00000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (90,716,5,N'BS99229349444BS10602000000000010000000000100000000002000000000000000000000000000000000000000000000000000000000000000000000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (91,717,1,N'BS00229349444BS106022032855001                   300709');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (92,717,2,N'BS01203985644021500000001                        300709');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (93,717,3,N'BS0420398564402970000000100000320016100001607100000003080910000000006250612032   30152009072957692104602907093007090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (94,717,4,N'BS0420398564402970000000100000320016100002977100000003080910000000006250612082   30152009072952692104632907093007090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (95,717,5,N'BS09203985644021500000001      0000000000200000000001250000000000000               00000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (96,717,6,N'BS99229349444BS10602000000000010000000000200000000001250000000000000000000000000000000000000000000000000000000000000000000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (97,718,1,N'BS00229349444BS106022037862001                   310709');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (98,718,2,N'BS01203985644021100000001                        310709');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (99,718,3,N'BS0420398564402360000000103200161000000381165693503080910000000006250611967                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (100,718,4,N'BS0420398564402360000000103200161000001181165707903080910000000006250611969                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (101,718,5,N'BS0420398564402360000000103200161000002781165693103080910000000006250611972                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (102,718,6,N'BS0420398564402360000000103200161000003181165712803080910000000006250611973                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (103,718,7,N'BS0420398564402360000000103200161000003684746599803080910000000006250611974                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (104,718,8,N'BS0420398564402360000000103200161000004681165688003080910000000006250611976                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (105,718,9,N'BS0420398564402360000000103200161000005581165691003080910000000006250611981                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (106,718,10,N'BS0420398564402360000000103200161000005781165697903080910000000006250611982                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (107,718,11,N'BS0420398564402360000000103200161000005981165717003080910000000006250611983                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (108,718,12,N'BS0420398564402360000000103200161000006181260378803080910000000006250611984                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (109,718,13,N'BS0420398564402360000000103200161000006581165687403080910000000006250611985                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (110,718,14,N'BS0420398564402360000000103200161000006781165692703080910000000006250611986                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (111,718,15,N'BS0420398564402360000000103200161000007581223114403080910000000006250611988                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (112,718,16,N'BS0420398564402360000000103200161000008381165714503080910000000006250611990                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (113,718,17,N'BS0420398564402360000000103200161000008481165687503080910000000006250611991                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (114,718,18,N'BS0420398564402360000000103200161000008881165713703080910000000006250611994                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (115,718,19,N'BS0420398564402360000000103200161000009281165698403080910000000006250611995                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (116,718,20,N'BS0420398564402360000000103200161000009481165689903080910000000006250611997                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (117,718,21,N'BS0420398564402360000000103200161000009981165711203080910000000006250612000                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (118,718,22,N'BS0420398564402360000000103200161000010381165699303080910000000006250612002                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (119,718,23,N'BS0420398564402360000000103200161000010681165703303080910000000006250612003                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (120,718,24,N'BS0420398564402360000000103200161000010881165705903080910000000006250612004                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (121,718,25,N'BS0420398564402360000000103200161000011081165715903080910000000006250612005                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (122,718,26,N'BS0420398564402360000000103200161000011481165700903080910000000006250612007                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (123,718,27,N'BS0420398564402360000000103200161000011881165698503080910000000006250612009                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (124,718,28,N'BS0420398564402360000000103200161000011981165704603080910000000006250612010                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (125,718,29,N'BS0420398564402360000000103200161000012181165702303080910000000006250612011                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (126,718,30,N'BS0420398564402370000000103200161000013081165693603080910000000006250612015                            0000000000000000000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (127,718,31,N'BS0420398564402360000000103200161000013381165684903080910000000006250612016                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (128,718,32,N'BS0420398564402360000000103200161000013481165704003080910000000006250612017                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (129,718,33,N'BS0420398564402360000000103200161000013581165708903080910000000006250612018                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (130,718,34,N'BS0420398564402360000000103200161000013681165698903080910000000006250612019                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (131,718,35,N'BS0420398564402360000000103200161000013781165713503080910000000006250612020                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (132,718,36,N'BS0420398564402360000000103200161000013881165701003080910000000006250612021                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (133,718,37,N'BS0420398564402360000000103200161000014681165703603080910000000006250612025                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (134,718,38,N'BS0420398564402360000000103200161000014881165709203080910000000006250612026                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (135,718,39,N'BS0420398564402360000000103200161000014981165703903080910000000006250612027                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (136,718,40,N'BS0420398564402360000000103200161000015781165704403080910000000006250612029                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (137,718,41,N'BS0420398564402360000000103200161000015881165685103080910000000006250612030                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (138,718,42,N'BS0420398564402360000000103200161000016381165692303080910000000006250612033                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (139,718,43,N'BS0420398564402360000000103200161000017281165699603080910000000006250612036                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (140,718,44,N'BS0420398564402360000000103200161000017381165688103080910000000006250612037                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (141,718,45,N'BS0420398564402360000000103200161000017481165702903080910000000006250612038                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (142,718,46,N'BS0420398564402360000000103200161000018281165704103080910000000006250612040                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (143,718,47,N'BS0420398564402360000000103200161000019281228686603080910000000006250612044                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (144,718,48,N'BS0420398564402360000000103200161000019481165694603080910000000006250612046                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (145,718,49,N'BS0420398564402360000000103200161000020282135391403080910000000006250612049                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (146,718,50,N'BS0420398564402360000000103200161000021781165711403080910000000006250612052                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (147,718,51,N'BS0420398564402360000000103200161000022181165685903080910000000006250612053                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (148,718,52,N'BS0420398564402360000000103200161000022281165703103080910000000006250612054                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (149,718,53,N'BS0420398564402360000000103200161000022381165716403080910000000006250612055                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (150,718,54,N'BS0420398564402360000000103200161000022481165698603080910000000006250612056                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (151,718,55,N'BS0420398564402360000000103200161000022581165699803080910000000006250612057                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (152,718,56,N'BS0420398564402360000000103200161000023681165711803080910000000006250612061                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (153,718,57,N'BS0420398564402360000000103200161000023981068794703080910000000006250612062                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (154,718,58,N'BS0420398564402360000000103200161000025081165712203080910000000006250612065                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (155,718,59,N'BS0420398564402360000000103200161000025481165716503080910000000006250612066                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (156,718,60,N'BS0420398564402360000000103200161000026081223114703080910000000006250612068                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (157,718,61,N'BS0420398564402360000000103200161000026981165704903080910000000006250612073                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (158,718,62,N'BS0420398564402360000000103200161000027081165691603080910000000006250612074                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (159,718,63,N'BS0420398564402360000000103200161000027181165706903080910000000006250612075                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (160,718,64,N'BS0420398564402360000000103200161000028681165701803080910000000006250612078                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (161,718,65,N'BS0420398564402360000000103200161000028781165689203080910000000006250612079                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (162,718,66,N'BS0420398564402360000000103200161000028884746599203080910000000006250612080                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (163,718,67,N'BS0420398564402370000000103200161000029481165697703080910000000006250612081                            0000000000000000000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (164,718,68,N'BS0420398564402360000000103200161000030081165708603080910000000006250612083                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (165,718,69,N'BS0420398564402360000000103200161000030581165713203080910000000006250612084                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (166,718,70,N'BS0420398564402360000000103200161000030681165691103080910000000006250612085                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (167,718,71,N'BS0420398564402360000000103200161000030784746592903080910000000006250612086                            0308090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (168,718,72,N'BS09203985644021100000001      0000000006900000000041875000000000000               00000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (169,718,73,N'BS01203985644021500000001                        310709');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (170,718,74,N'BS0420398564402970000000100000320016100000977100000003080910000000006250611999   905620090730N1300571683007093107090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (171,718,75,N'BS09203985644021500000001      0000000000100000000000625000000000000               00000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (172,718,76,N'BS99229349444BS10602000000000020000000007000000000042500000000000000000000000000000000000000000000000000000000000000000000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (173,719,1,N'BS00229349444BS106022044422001                   030809');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (174,719,2,N'BS01203985644021500000001                        030809');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (175,719,3,N'BS0420398564402970000000100000320016100000087100000003080910000000006250611968   54702009073100890088853107090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (176,719,4,N'BS0420398564402970000000100000320016100000497100000003080910000000006250611978   23132009073199738618983107090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (177,719,5,N'BS0420398564402970000000100000320016100000937100000003080910000000006250611996   23132009073159750671043107090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (178,719,6,N'BS0420398564402970000000100000320016100001127100000003080910000000006250612006   04662009073129748807613107090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (179,719,7,N'BS0420398564402970000000100000320016100002777100000003080910000000006250612076   30152009073163692104613107090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (180,719,8,N'BS0420398564402970000000100000320016100003477100000003080910000000006250612090   50182009073100000001503107090308090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (181,719,9,N'BS09203985644021500000001      0000000000600000000003750000000000000               00000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (182,719,10,N'BS99229349444BS10602000000000010000000000600000000003750000000000000000000000000000000000000000000000000000000000000000000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (183,720,1,N'BS00229349444BS106022148271001                   250809');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (184,720,2,N'BS01203985644021500000001                        250809');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (185,720,3,N'BS0420398564402970000000100000320016100001407100000003080910000000006250612023   36112009082430612264662208092508090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (186,720,4,N'BS0420398564402970000000100000320016100002437100000003080910000000006250612064   30152009082486592345152408092508090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (187,720,5,N'BS0420398564402970000000100000320016100002857100000003080910000000006250612077   30152009082453592345142408092508090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (188,720,6,N'BS09203985644021500000001      0000000000300000000001875000000000000               00000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (189,720,7,N'BS99229349444BS10602000000000010000000000300000000001875000000000000000000000000000000000000000000000000000000000000000000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (190,721,1,N'BS00229349444BS106022050811001                   040809');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (191,721,2,N'BS01203985644021500000001                        040809');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (192,721,3,N'BS0420398564402970000000100000320016100000487100000003080910000000006250611977   50502009080300000004950308090408090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (193,721,4,N'BS0420398564402970000000100000320016100000517100000003080910000000006250611979   30152009080360592134790308090408090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (194,721,5,N'BS0420398564402970000000100000320016100000797100000003080910000000006250611989   30152009080332592067410308090408090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (195,721,6,N'BS0420398564402970000000100000320016100000867100000003080910000000006250611993   50502009080300000003100308090408090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (196,721,7,N'BS0420398564402970000000100000320016100001647100000003080910000000006250612034   23132009080359748868340308090408090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (197,721,8,N'BS0420398564402970000000100000320016100001667100000003080910000000006250612035   04732009080359738239340308090408090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (198,721,9,N'BS0420398564402970000000100000320016100001837100000003080910000000006250612041   36112009080330613107560308090408090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (199,721,10,N'BS0420398564402970000000100000320016100001917100000003080910000000006250612043   23132009080359748192840308090408090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (200,721,11,N'BS0420398564402970000000100000320016100001937100000003080910000000006250612045   50502009080300000004150308090408090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (201,721,12,N'BS0420398564402970000000100000320016100001967100000003080910000000006250612047   36112009080330023778750308090408090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (202,721,13,N'BS0420398564402970000000100000320016100001977100000003080910000000006250612048   30152009080371592134810308090408090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (203,721,14,N'BS0420398564402970000000100000320016100002127100000003080910000000006250612051   30152009080392592094820308090408090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (204,721,15,N'BS0420398564402970000000100000320016100002297100000003080910000000006250612058   30152009080356392029390308090408090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (205,721,16,N'BS0420398564402970000000100000320016100002317100000003080910000000006250612059   22772009080369734453850308090408090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (206,721,17,N'BS0420398564402970000000100000320016100002617100000003080910000000006250612069   22552009080329747118310308090408090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (207,721,18,N'BS0420398564402970000000100000320016100002677100000003080910000000006250612071   22552009080369737794050308090408090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (208,721,19,N'BS0420398564402970000000100000320016100002687100000003080910000000006250612072   02412009073120604293860308090408090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (209,721,20,N'BS09203985644021500000001      0000000001700000000010625000000000000               00000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (210,721,21,N'BS99229349444BS10602000000000010000000001700000000010625000000000000000000000000000000000000000000000000000000000000000000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (211,722,1,N'BS00229349444BS106022154687001                   260809');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (212,722,2,N'BS01203985644021500000001                        260809');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (213,722,3,N'BS0420398564402970000000100000320016100000377100000003080910000000006250611975   63002009082500890025262508092608090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (214,722,4,N'BS0420398564402970000000100000320016100001857100000003080910000000006250612042   63002009082500890025252508092608090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (215,722,5,N'BS09203985644021500000001      0000000000200000000001250000000000000               00000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (216,722,6,N'BS99229349444BS10602000000000010000000000200000000001250000000000000000000000000000000000000000000000000000000000000000000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (217,723,1,N'BS00229349444BS106022062543001                   060809');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (218,723,2,N'BS01203985644021500000001                        060809');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (219,723,3,N'BS0420398564402970000000100000320016100000547100000003080910000000006250611980   21052009080589756502270508090608090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (220,723,4,N'BS0420398564402970000000100000320016100001287100000003080910000000006250612013   30152009080549492178170508090608090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (221,723,5,N'BS09203985644021500000001      0000000000200000000001250000000000000               00000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (222,723,6,N'BS99229349444BS10602000000000010000000000200000000001250000000000000000000000000000000000000000000000000000000000000000000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (223,724,1,N'BS00229349444BS106022364902001                   091009');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (224,724,2,N'BS01203985644021500000001                        091009');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (225,724,3,N'BS0420398564402970000000100000320016100004507100000001100910000000020000639262   040020091007N2161003270810090910090000000020000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (226,724,4,N'BS09203985644021500000001      0000000000100000000002000000000000000               00000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (227,724,5,N'BS99229349444BS10602000000000010000000000100000000002000000000000000000000000000000000000000000000000000000000000000000000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (228,725,1,N'BS00229349444BS106022076390001                   100809');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (229,725,2,N'BS01203985644021500000001                        100809');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (230,725,3,N'BS0420398564402970000000100000320016100002657100000003080910000000006250612070   30152009080785492199510708091008090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (231,725,4,N'BS09203985644021500000001      0000000000100000000000625000000000000               00000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (232,725,5,N'BS99229349444BS10602000000000010000000000100000000000625000000000000000000000000000000000000000000000000000000000000000000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (233,726,1,N'BS00229349444BS106022477554001                   031109');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (234,726,2,N'BS01203985644021500000001                        031109');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (235,726,3,N'BS0420398564402970000000100000320016100004517100000002110910000000018750650226   54792009110200890424880211090311090000000018750');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (236,726,4,N'BS0420398564402970000000100000320016100004527100000002110910000000018750650227   22522009110279902075060211090311090000000018750');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (237,726,5,N'BS09203985644021500000001      0000000000200000000003750000000000000               00000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (238,726,6,N'BS99229349444BS10602000000000010000000000200000000003750000000000000000000000000000000000000000000000000000000000000000000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (239,727,1,N'BS00229349444BS106022179483001                   010909');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (240,727,2,N'BS01203985644021500000001                        010909');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (241,727,3,N'BS0420398564402970000000100000320016100004377100000003080910000000006250612326   13292009083189796749573108090109090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (242,727,4,N'BS0420398564402970000000100000320016100004417100000001090910000000006250624325   30152009083112192420423108090109090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (243,727,5,N'BS09203985644021500000001      0000000000200000000001250000000000000               00000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (244,727,6,N'BS99229349444BS10602000000000010000000000200000000001250000000000000000000000000000000000000000000000000000000000000000000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (245,728,1,N'BS00229349444BS106022082983001                   110809');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (246,728,2,N'BS01203985644021500000001                        110809');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (247,728,3,N'BS0420398564402970000000100000320016100001267100000003080910000000006250612012   22552009081009761876391008091108090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (248,728,4,N'BS0420398564402970000000100000320016100001417100000003080910000000006250612024   36112009081030612102501008091108090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (249,728,5,N'BS0420398564402970000000100000320016100002037100000003080910000000006250612050   30152009081016592214681008091108090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (250,728,6,N'BS09203985644021500000001      0000000000300000000001875000000000000               00000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (251,728,7,N'BS99229349444BS10602000000000010000000000300000000001875000000000000000000000000000000000000000000000000000000000000000000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (252,729,1,N'BS00229349444BS106022185872001                   020909');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (253,729,2,N'BS01203985644021500000001                        020909');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (254,729,3,N'BS0420398564402970000000100000320016100004397100000001090910000000006250624323   23132009090199775088880109090209090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (255,729,4,N'BS0420398564402970000000100000320016100004407100000001090910000000006250624324   76602009090100890046760109090209090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (256,729,5,N'BS0420398564402970000000100000320016100004427100000001090910000000006250624326   55072009090129783560910109090209090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (257,729,6,N'BS0420398564402970000000100000320016100004447100000001090910000000006250624328   54792009090100890082800109090209090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (258,729,7,N'BS09203985644021500000001      0000000000400000000002500000000000000               00000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (259,729,8,N'BS99229349444BS10602000000000010000000000400000000002500000000000000000000000000000000000000000000000000000000000000000000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (260,730,1,N'BS00229349444BS106022191855001                   030909');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (261,730,2,N'BS01203985644021500000001                        030909');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (262,730,3,N'BS0420398564402970000000100000320016100004387100000001090910000000006250624322   23132009090279801264660209090309090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (263,730,4,N'BS0420398564402970000000100000320016100004457100000001090910000000006250624329   76702009090230057772720209090309090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (264,730,5,N'BS09203985644021500000001      0000000000200000000001250000000000000               00000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (265,730,6,N'BS99229349444BS10602000000000010000000000200000000001250000000000000000000000000000000000000000000000000000000000000000000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (266,731,1,N'BS00229349444BS106022197726001                   040909');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (267,731,2,N'BS01203985644021500000001                        040909');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (268,731,3,N'BS0420398564402970000000100000320016100004437100000001090910000000006250624327   36112009090330612474530309090409090000000006250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (269,731,4,N'BS09203985644021500000001      0000000000100000000000625000000000000               00000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (270,731,5,N'BS99229349444BS10602000000000010000000000100000000000625000000000000000000000000000000000000000000000000000000000000000000000000');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (271,732,1,N'BS00229349444BS106010000000435                   071209');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (272,732,2,N'BS012039856440112     00001Puls 3060          0712200931830001417967L�BEKLUBBEN PULS 3060');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (273,732,3,N'BS0220398564402400000100001032001610000443000000000Anita Isabella Kraft');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (274,732,4,N'BS0220398564402400000200001032001610000443000000000S�ndermarken 14, 2.th.');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (275,732,5,N'BS0220398564402400000900001032001610000443000000000               3060DK ');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (276,732,6,N'BS04203985644028000000000010320016100004430000000000401201010000000017600000010031                     00');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (277,732,7,N'BS0520398564402410000100001032001610000443000000000 Puls 3060 Medlemskontingent           176,00   ');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (278,732,8,N'BS0520398564402410000200001032001610000443000000000   for Anita Isabella Kraft');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (279,732,9,N'BS0520398564402410000300001032001610000443000000000   perioden fra 2009-11-01 til 2010-12-31');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (280,732,10,N'BS0520398564402410000400001032001610000443000000000 Bes�g Puls 3060"s hjemmeside p� www.puls3060.dk');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (281,732,11,N'BS0920398564401120000000001    0000000000100000000001760000000000004               00000000003');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblpbsfile] ([id],[pbsfilesid],[seqnr],[data]) VALUES (282,732,12,N'BS99229349444BS10601000000000010000000000100000000001760000000000004000000000000000000000000030000000000000000000000000000000000');
+
+
+(1 rows affected)
+Executing: 
+SET IDENTITY_INSERT [tblpbsfile] OFF
+
+
+(-1 rows affected)
+Executing: 
+SET IDENTITY_INSERT [tblfrapbs] ON
+
+
+(-1 rows affected)
+Executing: 
+INSERT INTO [tblfrapbs] ([id],[delsystem],[leverancetype],[udtrukket],[bilagdato],[pbsforsendelseid],[leverancespecifikation],[leverancedannelsesdato]) VALUES (501,N'BS1',N'0602',{ts '2009-12-04 09:58:59'},null,811,N'2100060001',{ts '2009-08-14 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblfrapbs] ([id],[delsystem],[leverancetype],[udtrukket],[bilagdato],[pbsforsendelseid],[leverancespecifikation],[leverancedannelsesdato]) VALUES (502,N'BS1',N'0602',{ts '2009-12-04 09:58:59'},null,812,N'2106940001',{ts '2009-08-17 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblfrapbs] ([id],[delsystem],[leverancetype],[udtrukket],[bilagdato],[pbsforsendelseid],[leverancespecifikation],[leverancedannelsesdato]) VALUES (503,N'BS1',N'0602',{ts '2009-12-04 09:59:00'},null,813,N'2015945001',{ts '2009-07-27 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblfrapbs] ([id],[delsystem],[leverancetype],[udtrukket],[bilagdato],[pbsforsendelseid],[leverancespecifikation],[leverancedannelsesdato]) VALUES (504,N'BS1',N'0602',{ts '2009-12-04 09:59:00'},null,814,N'2419890001',{ts '2009-10-21 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblfrapbs] ([id],[delsystem],[leverancetype],[udtrukket],[bilagdato],[pbsforsendelseid],[leverancespecifikation],[leverancedannelsesdato]) VALUES (505,N'BS1',N'0602',{ts '2009-12-04 09:59:00'},null,815,N'2021926001',{ts '2009-07-28 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblfrapbs] ([id],[delsystem],[leverancetype],[udtrukket],[bilagdato],[pbsforsendelseid],[leverancespecifikation],[leverancedannelsesdato]) VALUES (506,N'BS1',N'0602',{ts '2009-12-04 09:59:00'},null,816,N'2330176001',{ts '2009-10-02 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblfrapbs] ([id],[delsystem],[leverancetype],[udtrukket],[bilagdato],[pbsforsendelseid],[leverancespecifikation],[leverancedannelsesdato]) VALUES (507,N'BS1',N'0602',{ts '2009-12-04 09:59:00'},null,817,N'2032855001',{ts '2009-07-30 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblfrapbs] ([id],[delsystem],[leverancetype],[udtrukket],[bilagdato],[pbsforsendelseid],[leverancespecifikation],[leverancedannelsesdato]) VALUES (508,N'BS1',N'0602',{ts '2009-12-04 09:59:00'},null,818,N'2037862001',{ts '2009-07-31 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblfrapbs] ([id],[delsystem],[leverancetype],[udtrukket],[bilagdato],[pbsforsendelseid],[leverancespecifikation],[leverancedannelsesdato]) VALUES (509,N'BS1',N'0602',{ts '2009-12-04 09:59:01'},null,819,N'2044422001',{ts '2009-08-03 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblfrapbs] ([id],[delsystem],[leverancetype],[udtrukket],[bilagdato],[pbsforsendelseid],[leverancespecifikation],[leverancedannelsesdato]) VALUES (510,N'BS1',N'0602',{ts '2009-12-04 09:59:02'},null,820,N'2148271001',{ts '2009-08-25 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblfrapbs] ([id],[delsystem],[leverancetype],[udtrukket],[bilagdato],[pbsforsendelseid],[leverancespecifikation],[leverancedannelsesdato]) VALUES (511,N'BS1',N'0602',{ts '2009-12-04 09:59:02'},null,821,N'2050811001',{ts '2009-08-04 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblfrapbs] ([id],[delsystem],[leverancetype],[udtrukket],[bilagdato],[pbsforsendelseid],[leverancespecifikation],[leverancedannelsesdato]) VALUES (512,N'BS1',N'0602',{ts '2009-12-04 09:59:02'},null,822,N'2154687001',{ts '2009-08-26 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblfrapbs] ([id],[delsystem],[leverancetype],[udtrukket],[bilagdato],[pbsforsendelseid],[leverancespecifikation],[leverancedannelsesdato]) VALUES (513,N'BS1',N'0602',{ts '2009-12-04 09:59:02'},null,823,N'2062543001',{ts '2009-08-06 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblfrapbs] ([id],[delsystem],[leverancetype],[udtrukket],[bilagdato],[pbsforsendelseid],[leverancespecifikation],[leverancedannelsesdato]) VALUES (514,N'BS1',N'0602',{ts '2009-12-04 09:59:02'},null,824,N'2364902001',{ts '2009-10-09 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblfrapbs] ([id],[delsystem],[leverancetype],[udtrukket],[bilagdato],[pbsforsendelseid],[leverancespecifikation],[leverancedannelsesdato]) VALUES (515,N'BS1',N'0602',{ts '2009-12-04 09:59:02'},null,825,N'2076390001',{ts '2009-08-10 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblfrapbs] ([id],[delsystem],[leverancetype],[udtrukket],[bilagdato],[pbsforsendelseid],[leverancespecifikation],[leverancedannelsesdato]) VALUES (516,N'BS1',N'0602',{ts '2009-12-04 09:59:03'},null,826,N'2477554001',{ts '2009-11-03 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblfrapbs] ([id],[delsystem],[leverancetype],[udtrukket],[bilagdato],[pbsforsendelseid],[leverancespecifikation],[leverancedannelsesdato]) VALUES (517,N'BS1',N'0602',{ts '2009-12-04 09:59:03'},null,827,N'2179483001',{ts '2009-09-01 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblfrapbs] ([id],[delsystem],[leverancetype],[udtrukket],[bilagdato],[pbsforsendelseid],[leverancespecifikation],[leverancedannelsesdato]) VALUES (518,N'BS1',N'0602',{ts '2009-12-04 09:59:03'},null,828,N'2082983001',{ts '2009-08-11 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblfrapbs] ([id],[delsystem],[leverancetype],[udtrukket],[bilagdato],[pbsforsendelseid],[leverancespecifikation],[leverancedannelsesdato]) VALUES (519,N'BS1',N'0602',{ts '2009-12-04 09:59:03'},null,829,N'2185872001',{ts '2009-09-02 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblfrapbs] ([id],[delsystem],[leverancetype],[udtrukket],[bilagdato],[pbsforsendelseid],[leverancespecifikation],[leverancedannelsesdato]) VALUES (520,N'BS1',N'0602',{ts '2009-12-04 09:59:03'},null,830,N'2191855001',{ts '2009-09-03 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblfrapbs] ([id],[delsystem],[leverancetype],[udtrukket],[bilagdato],[pbsforsendelseid],[leverancespecifikation],[leverancedannelsesdato]) VALUES (521,N'BS1',N'0602',{ts '2009-12-04 09:59:03'},null,831,N'2197726001',{ts '2009-09-04 00:00:00'});
+
+
+(1 rows affected)
+Executing: 
+SET IDENTITY_INSERT [tblfrapbs] OFF
+
+
+(-1 rows affected)
+Executing: 
+SET IDENTITY_INSERT [tblbet] ON
+
+
+(-1 rows affected)
+Executing: 
+INSERT INTO [tblbet] ([id],[frapbsid],[pbssektionnr],[transkode],[bogforingsdato],[indbetalingsbelob]) VALUES (20001,501,N'0215',N'0297',{ts '2009-08-14 00:00:00'},187.50);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbet] ([id],[frapbsid],[pbssektionnr],[transkode],[bogforingsdato],[indbetalingsbelob]) VALUES (20002,502,N'0215',N'0297',{ts '2009-08-17 00:00:00'},62.50);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbet] ([id],[frapbsid],[pbssektionnr],[transkode],[bogforingsdato],[indbetalingsbelob]) VALUES (20003,503,N'0215',N'0297',{ts '2009-07-27 00:00:00'},125.00);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbet] ([id],[frapbsid],[pbssektionnr],[transkode],[bogforingsdato],[indbetalingsbelob]) VALUES (20004,504,N'0215',N'0297',{ts '2009-10-21 00:00:00'},200.00);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbet] ([id],[frapbsid],[pbssektionnr],[transkode],[bogforingsdato],[indbetalingsbelob]) VALUES (20005,505,N'0215',N'0297',{ts '2009-07-28 00:00:00'},125.00);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbet] ([id],[frapbsid],[pbssektionnr],[transkode],[bogforingsdato],[indbetalingsbelob]) VALUES (20006,506,N'0215',N'0297',{ts '2009-10-02 00:00:00'},200.00);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbet] ([id],[frapbsid],[pbssektionnr],[transkode],[bogforingsdato],[indbetalingsbelob]) VALUES (20007,507,N'0215',N'0297',{ts '2009-07-30 00:00:00'},125.00);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbet] ([id],[frapbsid],[pbssektionnr],[transkode],[bogforingsdato],[indbetalingsbelob]) VALUES (20008,508,N'0211',N'0236',{ts '2009-08-03 00:00:00'},4187.50);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbet] ([id],[frapbsid],[pbssektionnr],[transkode],[bogforingsdato],[indbetalingsbelob]) VALUES (20009,508,N'0211',N'0237',null,0.00);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbet] ([id],[frapbsid],[pbssektionnr],[transkode],[bogforingsdato],[indbetalingsbelob]) VALUES (20010,508,N'0211',N'0237',null,0.00);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbet] ([id],[frapbsid],[pbssektionnr],[transkode],[bogforingsdato],[indbetalingsbelob]) VALUES (20011,508,N'0215',N'0297',{ts '2009-07-31 00:00:00'},62.50);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbet] ([id],[frapbsid],[pbssektionnr],[transkode],[bogforingsdato],[indbetalingsbelob]) VALUES (20012,509,N'0215',N'0297',{ts '2009-08-03 00:00:00'},375.00);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbet] ([id],[frapbsid],[pbssektionnr],[transkode],[bogforingsdato],[indbetalingsbelob]) VALUES (20013,510,N'0215',N'0297',{ts '2009-08-25 00:00:00'},187.50);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbet] ([id],[frapbsid],[pbssektionnr],[transkode],[bogforingsdato],[indbetalingsbelob]) VALUES (20014,511,N'0215',N'0297',{ts '2009-08-04 00:00:00'},1062.50);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbet] ([id],[frapbsid],[pbssektionnr],[transkode],[bogforingsdato],[indbetalingsbelob]) VALUES (20015,512,N'0215',N'0297',{ts '2009-08-26 00:00:00'},125.00);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbet] ([id],[frapbsid],[pbssektionnr],[transkode],[bogforingsdato],[indbetalingsbelob]) VALUES (20016,513,N'0215',N'0297',{ts '2009-08-06 00:00:00'},125.00);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbet] ([id],[frapbsid],[pbssektionnr],[transkode],[bogforingsdato],[indbetalingsbelob]) VALUES (20017,514,N'0215',N'0297',{ts '2009-10-09 00:00:00'},200.00);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbet] ([id],[frapbsid],[pbssektionnr],[transkode],[bogforingsdato],[indbetalingsbelob]) VALUES (20018,515,N'0215',N'0297',{ts '2009-08-10 00:00:00'},62.50);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbet] ([id],[frapbsid],[pbssektionnr],[transkode],[bogforingsdato],[indbetalingsbelob]) VALUES (20019,516,N'0215',N'0297',{ts '2009-11-03 00:00:00'},375.00);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbet] ([id],[frapbsid],[pbssektionnr],[transkode],[bogforingsdato],[indbetalingsbelob]) VALUES (20020,517,N'0215',N'0297',{ts '2009-09-01 00:00:00'},125.00);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbet] ([id],[frapbsid],[pbssektionnr],[transkode],[bogforingsdato],[indbetalingsbelob]) VALUES (20021,518,N'0215',N'0297',{ts '2009-08-11 00:00:00'},187.50);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbet] ([id],[frapbsid],[pbssektionnr],[transkode],[bogforingsdato],[indbetalingsbelob]) VALUES (20022,519,N'0215',N'0297',{ts '2009-09-02 00:00:00'},250.00);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbet] ([id],[frapbsid],[pbssektionnr],[transkode],[bogforingsdato],[indbetalingsbelob]) VALUES (20023,520,N'0215',N'0297',{ts '2009-09-03 00:00:00'},125.00);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbet] ([id],[frapbsid],[pbssektionnr],[transkode],[bogforingsdato],[indbetalingsbelob]) VALUES (20024,521,N'0215',N'0297',{ts '2009-09-04 00:00:00'},62.50);
+
+
+(1 rows affected)
+Executing: 
+SET IDENTITY_INSERT [tblbet] OFF
+
+
+(-1 rows affected)
+Executing: 
+SET IDENTITY_INSERT [tblbetlin] ON
+
+
+(-1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (1,20001,N'0215',N'0297',15,611971,N'032001610000015',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-13 00:00:00'},{ts '2009-08-14 00:00:00'},62.50,N'71',0.00,N'040020090813N151239933');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (2,20001,N'0215',N'0297',115,612008,N'032001610000115',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-13 00:00:00'},{ts '2009-08-14 00:00:00'},62.50,N'71',0.00,N'3611200908133061326727');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (3,20001,N'0215',N'0297',233,612060,N'032001610000233',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-13 00:00:00'},{ts '2009-08-14 00:00:00'},62.50,N'71',0.00,N'3611200908133061326728');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (4,20002,N'0215',N'0297',240,612063,N'032001610000240',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-14 00:00:00'},{ts '2009-08-17 00:00:00'},62.50,N'71',0.00,N'981520090814N091286330');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (5,20003,N'0215',N'0297',95,611998,N'032001610000095',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-07-24 00:00:00'},{ts '2009-07-27 00:00:00'},62.50,N'71',0.00,N'5050200907240000000097');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (6,20003,N'0215',N'0297',315,612088,N'032001610000315',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-07-24 00:00:00'},{ts '2009-07-27 00:00:00'},62.50,N'71',0.00,N'5050200907240000000098');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (7,20004,N'0215',N'0297',448,639260,N'032001610000448',null,{ts '2009-10-01 00:00:00'},200.00,{ts '2009-10-20 00:00:00'},{ts '2009-10-21 00:00:00'},200.00,N'71',0.00,N'2141200910206987849675');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (8,20005,N'0215',N'0297',159,612031,N'032001610000159',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-07-27 00:00:00'},{ts '2009-07-28 00:00:00'},62.50,N'71',0.00,N'5479200907270089000032');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (9,20005,N'0215',N'0297',180,612039,N'032001610000180',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-07-27 00:00:00'},{ts '2009-07-28 00:00:00'},62.50,N'71',0.00,N'5479200907270089003539');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (10,20006,N'0215',N'0297',447,639259,N'032001610000447',null,{ts '2009-10-01 00:00:00'},200.00,{ts '2009-10-01 00:00:00'},{ts '2009-10-02 00:00:00'},200.00,N'71',0.00,N'5479200910010089017477');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (11,20007,N'0215',N'0297',160,612032,N'032001610000160',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-07-29 00:00:00'},{ts '2009-07-30 00:00:00'},62.50,N'71',0.00,N'3015200907295769210460');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (12,20007,N'0215',N'0297',297,612082,N'032001610000297',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-07-29 00:00:00'},{ts '2009-07-30 00:00:00'},62.50,N'71',0.00,N'3015200907295269210463');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (13,20008,N'0211',N'0236',3,611967,N'032001610000003',811656935,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (14,20008,N'0211',N'0236',11,611969,N'032001610000011',811657079,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (15,20008,N'0211',N'0236',27,611972,N'032001610000027',811656931,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (16,20008,N'0211',N'0236',31,611973,N'032001610000031',811657128,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (17,20008,N'0211',N'0236',36,611974,N'032001610000036',847465998,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (18,20008,N'0211',N'0236',46,611976,N'032001610000046',811656880,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (19,20008,N'0211',N'0236',55,611981,N'032001610000055',811656910,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (20,20008,N'0211',N'0236',57,611982,N'032001610000057',811656979,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (21,20008,N'0211',N'0236',59,611983,N'032001610000059',811657170,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (22,20008,N'0211',N'0236',61,611984,N'032001610000061',812603788,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (23,20008,N'0211',N'0236',65,611985,N'032001610000065',811656874,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (24,20008,N'0211',N'0236',67,611986,N'032001610000067',811656927,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (25,20008,N'0211',N'0236',75,611988,N'032001610000075',812231144,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (26,20008,N'0211',N'0236',83,611990,N'032001610000083',811657145,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (27,20008,N'0211',N'0236',84,611991,N'032001610000084',811656875,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (28,20008,N'0211',N'0236',88,611994,N'032001610000088',811657137,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (29,20008,N'0211',N'0236',92,611995,N'032001610000092',811656984,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (30,20008,N'0211',N'0236',94,611997,N'032001610000094',811656899,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (31,20008,N'0211',N'0236',99,612000,N'032001610000099',811657112,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (32,20008,N'0211',N'0236',103,612002,N'032001610000103',811656993,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (33,20008,N'0211',N'0236',106,612003,N'032001610000106',811657033,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (34,20008,N'0211',N'0236',108,612004,N'032001610000108',811657059,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (35,20008,N'0211',N'0236',110,612005,N'032001610000110',811657159,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (36,20008,N'0211',N'0236',114,612007,N'032001610000114',811657009,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (37,20008,N'0211',N'0236',118,612009,N'032001610000118',811656985,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (38,20008,N'0211',N'0236',119,612010,N'032001610000119',811657046,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (39,20008,N'0211',N'0236',121,612011,N'032001610000121',811657023,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (40,20009,N'0211',N'0237',130,612015,N'032001610000130',811656936,{ts '2009-08-03 00:00:00'},62.50,null,null,0.00,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (41,20008,N'0211',N'0236',133,612016,N'032001610000133',811656849,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (42,20008,N'0211',N'0236',134,612017,N'032001610000134',811657040,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (43,20008,N'0211',N'0236',135,612018,N'032001610000135',811657089,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (44,20008,N'0211',N'0236',136,612019,N'032001610000136',811656989,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (45,20008,N'0211',N'0236',137,612020,N'032001610000137',811657135,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (46,20008,N'0211',N'0236',138,612021,N'032001610000138',811657010,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (47,20008,N'0211',N'0236',146,612025,N'032001610000146',811657036,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (48,20008,N'0211',N'0236',148,612026,N'032001610000148',811657092,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (49,20008,N'0211',N'0236',149,612027,N'032001610000149',811657039,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (50,20008,N'0211',N'0236',157,612029,N'032001610000157',811657044,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (51,20008,N'0211',N'0236',158,612030,N'032001610000158',811656851,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (52,20008,N'0211',N'0236',163,612033,N'032001610000163',811656923,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (53,20008,N'0211',N'0236',172,612036,N'032001610000172',811656996,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (54,20008,N'0211',N'0236',173,612037,N'032001610000173',811656881,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (55,20008,N'0211',N'0236',174,612038,N'032001610000174',811657029,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (56,20008,N'0211',N'0236',182,612040,N'032001610000182',811657041,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (57,20008,N'0211',N'0236',192,612044,N'032001610000192',812286866,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (58,20008,N'0211',N'0236',194,612046,N'032001610000194',811656946,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (59,20008,N'0211',N'0236',202,612049,N'032001610000202',821353914,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (60,20008,N'0211',N'0236',217,612052,N'032001610000217',811657114,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (61,20008,N'0211',N'0236',221,612053,N'032001610000221',811656859,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (62,20008,N'0211',N'0236',222,612054,N'032001610000222',811657031,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (63,20008,N'0211',N'0236',223,612055,N'032001610000223',811657164,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (64,20008,N'0211',N'0236',224,612056,N'032001610000224',811656986,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (65,20008,N'0211',N'0236',225,612057,N'032001610000225',811656998,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (66,20008,N'0211',N'0236',236,612061,N'032001610000236',811657118,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (67,20008,N'0211',N'0236',239,612062,N'032001610000239',810687947,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (68,20008,N'0211',N'0236',250,612065,N'032001610000250',811657122,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (69,20008,N'0211',N'0236',254,612066,N'032001610000254',811657165,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (70,20008,N'0211',N'0236',260,612068,N'032001610000260',812231147,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (71,20008,N'0211',N'0236',269,612073,N'032001610000269',811657049,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (72,20008,N'0211',N'0236',270,612074,N'032001610000270',811656916,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (73,20008,N'0211',N'0236',271,612075,N'032001610000271',811657069,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (74,20008,N'0211',N'0236',286,612078,N'032001610000286',811657018,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (75,20008,N'0211',N'0236',287,612079,N'032001610000287',811656892,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (76,20008,N'0211',N'0236',288,612080,N'032001610000288',847465992,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (77,20010,N'0211',N'0237',294,612081,N'032001610000294',811656977,{ts '2009-08-03 00:00:00'},62.50,null,null,0.00,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (78,20008,N'0211',N'0236',300,612083,N'032001610000300',811657086,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (79,20008,N'0211',N'0236',305,612084,N'032001610000305',811657132,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (80,20008,N'0211',N'0236',306,612085,N'032001610000306',811656911,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (81,20008,N'0211',N'0236',307,612086,N'032001610000307',847465929,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,null,0.00,null);
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (82,20011,N'0215',N'0297',97,611999,N'032001610000097',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-07-30 00:00:00'},{ts '2009-07-31 00:00:00'},62.50,N'71',0.00,N'905620090730N130057168');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (83,20012,N'0215',N'0297',8,611968,N'032001610000008',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-07-31 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,N'71',0.00,N'5470200907310089008885');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (84,20012,N'0215',N'0297',49,611978,N'032001610000049',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-07-31 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,N'71',0.00,N'2313200907319973861898');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (85,20012,N'0215',N'0297',93,611996,N'032001610000093',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-07-31 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,N'71',0.00,N'2313200907315975067104');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (86,20012,N'0215',N'0297',112,612006,N'032001610000112',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-07-31 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,N'71',0.00,N'0466200907312974880761');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (87,20012,N'0215',N'0297',277,612076,N'032001610000277',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-07-31 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,N'71',0.00,N'3015200907316369210461');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (88,20012,N'0215',N'0297',347,612090,N'032001610000347',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-07-31 00:00:00'},{ts '2009-08-03 00:00:00'},62.50,N'71',0.00,N'5018200907310000000150');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (89,20013,N'0215',N'0297',140,612023,N'032001610000140',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-22 00:00:00'},{ts '2009-08-25 00:00:00'},62.50,N'71',0.00,N'3611200908243061226466');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (90,20013,N'0215',N'0297',243,612064,N'032001610000243',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-24 00:00:00'},{ts '2009-08-25 00:00:00'},62.50,N'71',0.00,N'3015200908248659234515');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (91,20013,N'0215',N'0297',285,612077,N'032001610000285',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-24 00:00:00'},{ts '2009-08-25 00:00:00'},62.50,N'71',0.00,N'3015200908245359234514');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (92,20014,N'0215',N'0297',48,611977,N'032001610000048',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-04 00:00:00'},62.50,N'71',0.00,N'5050200908030000000495');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (93,20014,N'0215',N'0297',51,611979,N'032001610000051',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-04 00:00:00'},62.50,N'71',0.00,N'3015200908036059213479');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (94,20014,N'0215',N'0297',79,611989,N'032001610000079',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-04 00:00:00'},62.50,N'71',0.00,N'3015200908033259206741');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (95,20014,N'0215',N'0297',86,611993,N'032001610000086',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-04 00:00:00'},62.50,N'71',0.00,N'5050200908030000000310');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (96,20014,N'0215',N'0297',164,612034,N'032001610000164',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-04 00:00:00'},62.50,N'71',0.00,N'2313200908035974886834');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (97,20014,N'0215',N'0297',166,612035,N'032001610000166',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-04 00:00:00'},62.50,N'71',0.00,N'0473200908035973823934');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (98,20014,N'0215',N'0297',183,612041,N'032001610000183',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-04 00:00:00'},62.50,N'71',0.00,N'3611200908033061310756');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (99,20014,N'0215',N'0297',191,612043,N'032001610000191',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-04 00:00:00'},62.50,N'71',0.00,N'2313200908035974819284');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (100,20014,N'0215',N'0297',193,612045,N'032001610000193',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-04 00:00:00'},62.50,N'71',0.00,N'5050200908030000000415');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (101,20014,N'0215',N'0297',196,612047,N'032001610000196',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-04 00:00:00'},62.50,N'71',0.00,N'3611200908033002377875');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (102,20014,N'0215',N'0297',197,612048,N'032001610000197',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-04 00:00:00'},62.50,N'71',0.00,N'3015200908037159213481');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (103,20014,N'0215',N'0297',212,612051,N'032001610000212',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-04 00:00:00'},62.50,N'71',0.00,N'3015200908039259209482');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (104,20014,N'0215',N'0297',229,612058,N'032001610000229',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-04 00:00:00'},62.50,N'71',0.00,N'3015200908035639202939');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (105,20014,N'0215',N'0297',231,612059,N'032001610000231',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-04 00:00:00'},62.50,N'71',0.00,N'2277200908036973445385');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (106,20014,N'0215',N'0297',261,612069,N'032001610000261',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-04 00:00:00'},62.50,N'71',0.00,N'2255200908032974711831');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (107,20014,N'0215',N'0297',267,612071,N'032001610000267',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-04 00:00:00'},62.50,N'71',0.00,N'2255200908036973779405');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (108,20014,N'0215',N'0297',268,612072,N'032001610000268',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-03 00:00:00'},{ts '2009-08-04 00:00:00'},62.50,N'71',0.00,N'0241200907312060429386');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (109,20015,N'0215',N'0297',37,611975,N'032001610000037',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-25 00:00:00'},{ts '2009-08-26 00:00:00'},62.50,N'71',0.00,N'6300200908250089002526');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (110,20015,N'0215',N'0297',185,612042,N'032001610000185',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-25 00:00:00'},{ts '2009-08-26 00:00:00'},62.50,N'71',0.00,N'6300200908250089002525');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (111,20016,N'0215',N'0297',54,611980,N'032001610000054',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-05 00:00:00'},{ts '2009-08-06 00:00:00'},62.50,N'71',0.00,N'2105200908058975650227');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (112,20016,N'0215',N'0297',128,612013,N'032001610000128',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-05 00:00:00'},{ts '2009-08-06 00:00:00'},62.50,N'71',0.00,N'3015200908054949217817');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (113,20017,N'0215',N'0297',450,639262,N'032001610000450',null,{ts '2009-10-01 00:00:00'},200.00,{ts '2009-10-08 00:00:00'},{ts '2009-10-09 00:00:00'},200.00,N'71',0.00,N'040020091007N216100327');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (114,20018,N'0215',N'0297',265,612070,N'032001610000265',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-07 00:00:00'},{ts '2009-08-10 00:00:00'},62.50,N'71',0.00,N'3015200908078549219951');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (115,20019,N'0215',N'0297',451,650226,N'032001610000451',null,{ts '2009-11-02 00:00:00'},187.50,{ts '2009-11-02 00:00:00'},{ts '2009-11-03 00:00:00'},187.50,N'71',0.00,N'5479200911020089042488');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (116,20019,N'0215',N'0297',452,650227,N'032001610000452',null,{ts '2009-11-02 00:00:00'},187.50,{ts '2009-11-02 00:00:00'},{ts '2009-11-03 00:00:00'},187.50,N'71',0.00,N'2252200911027990207506');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (117,20020,N'0215',N'0297',437,612326,N'032001610000437',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-31 00:00:00'},{ts '2009-09-01 00:00:00'},62.50,N'71',0.00,N'1329200908318979674957');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (118,20020,N'0215',N'0297',441,624325,N'032001610000441',null,{ts '2009-09-01 00:00:00'},62.50,{ts '2009-08-31 00:00:00'},{ts '2009-09-01 00:00:00'},62.50,N'71',0.00,N'3015200908311219242042');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (119,20021,N'0215',N'0297',126,612012,N'032001610000126',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-10 00:00:00'},{ts '2009-08-11 00:00:00'},62.50,N'71',0.00,N'2255200908100976187639');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (120,20021,N'0215',N'0297',141,612024,N'032001610000141',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-10 00:00:00'},{ts '2009-08-11 00:00:00'},62.50,N'71',0.00,N'3611200908103061210250');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (121,20021,N'0215',N'0297',203,612050,N'032001610000203',null,{ts '2009-08-03 00:00:00'},62.50,{ts '2009-08-10 00:00:00'},{ts '2009-08-11 00:00:00'},62.50,N'71',0.00,N'3015200908101659221468');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (122,20022,N'0215',N'0297',439,624323,N'032001610000439',null,{ts '2009-09-01 00:00:00'},62.50,{ts '2009-09-01 00:00:00'},{ts '2009-09-02 00:00:00'},62.50,N'71',0.00,N'2313200909019977508888');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (123,20022,N'0215',N'0297',440,624324,N'032001610000440',null,{ts '2009-09-01 00:00:00'},62.50,{ts '2009-09-01 00:00:00'},{ts '2009-09-02 00:00:00'},62.50,N'71',0.00,N'7660200909010089004676');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (124,20022,N'0215',N'0297',442,624326,N'032001610000442',null,{ts '2009-09-01 00:00:00'},62.50,{ts '2009-09-01 00:00:00'},{ts '2009-09-02 00:00:00'},62.50,N'71',0.00,N'5507200909012978356091');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (125,20022,N'0215',N'0297',444,624328,N'032001610000444',null,{ts '2009-09-01 00:00:00'},62.50,{ts '2009-09-01 00:00:00'},{ts '2009-09-02 00:00:00'},62.50,N'71',0.00,N'5479200909010089008280');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (126,20023,N'0215',N'0297',438,624322,N'032001610000438',null,{ts '2009-09-01 00:00:00'},62.50,{ts '2009-09-02 00:00:00'},{ts '2009-09-03 00:00:00'},62.50,N'71',0.00,N'2313200909027980126466');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (127,20023,N'0215',N'0297',445,624329,N'032001610000445',null,{ts '2009-09-01 00:00:00'},62.50,{ts '2009-09-02 00:00:00'},{ts '2009-09-03 00:00:00'},62.50,N'71',0.00,N'7670200909023005777272');
+
+
+(1 rows affected)
+Executing: 
+INSERT INTO [tblbetlin] ([id],[betid],[pbssektionnr],[pbstranskode],[Nr],[faknr],[debitorkonto],[aftalenr],[betalingsdato],[belob],[indbetalingsdato],[bogforingsdato],[indbetalingsbelob],[pbskortart],[pbsgebyrbelob],[pbsarkivnr]) VALUES (128,20024,N'0215',N'0297',443,624327,N'032001610000443',null,{ts '2009-09-01 00:00:00'},62.50,{ts '2009-09-03 00:00:00'},{ts '2009-09-04 00:00:00'},62.50,N'71',0.00,N'3611200909033061247453');
+
+
+(1 rows affected)
+Executing: 
+SET IDENTITY_INSERT [tblbetlin] OFF
+
+
+(-1 rows affected)
