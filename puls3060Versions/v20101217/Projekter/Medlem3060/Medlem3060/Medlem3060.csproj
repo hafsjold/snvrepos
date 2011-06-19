@@ -66,10 +66,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\Excel.dll</HintPath>
     </Reference>
-    <Reference Include="Google.GData.AccessControl, Version=1.6.0.0, Culture=neutral, PublicKeyToken=b4b8eb9a7afc8328, processorArchitecture=MSIL" />
-    <Reference Include="Google.GData.Client, Version=1.6.0.0, Culture=neutral, PublicKeyToken=04a59ca9b0273830, processorArchitecture=MSIL" />
-    <Reference Include="Google.GData.Contacts, Version=1.6.0.0, Culture=neutral, PublicKeyToken=7e065189dd4b982f, processorArchitecture=MSIL" />
-    <Reference Include="Google.GData.Extensions, Version=1.6.0.0, Culture=neutral, PublicKeyToken=0b4c5df2ebf20876, processorArchitecture=MSIL" />
     <Reference Include="Interop.Excel, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\Interop.Excel.dll</HintPath>
@@ -111,8 +107,6 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="cls\clsRest.cs" />
-    <Compile Include="cls\clsSync.cs" />
     <Compile Include="cls\clsInfotekst.cs" />
     <Compile Include="cls\clsPbs603.cs" />
     <Compile Include="cls\clsOverfoersel.cs" />
@@ -120,15 +114,8 @@
     <Compile Include="cls\clsExcel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="cls\clsGoogle.cs" />
     <Compile Include="cls\clsSFTP.cs" />
-    <Compile Include="cls\clsRecovery.cs" />
     <Compile Include="cls\clsSumma.cs" />
-    <Compile Include="dbRecovery3060.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbRecovery3060.dbml</DependentUpon>
-    </Compile>
     <Compile Include="dsMedlem.cs">
       <DependentUpon>dsMedlem.xsd</DependentUpon>
       <SubType>Component</SubType>
@@ -253,9 +240,6 @@
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="dbRecovery3060.dbml.layout">
-      <DependentUpon>dbRecovery3060.dbml</DependentUpon>
-    </None>
     <EmbeddedResource Include="frm\frmBetalingsForslag.resx">
       <DependentUpon>frmBetalingsForslag.cs</DependentUpon>
     </EmbeddedResource>
@@ -344,11 +328,6 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="dbRecovery3060.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>dbRecovery3060.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Properties\DataSources\MemPbsnetdir.datasource" />
     <None Include="Properties\DataSources\Tblinfotekst.datasource" />
     <None Include="Properties\DataSources\Tblpbsfiles.datasource" />

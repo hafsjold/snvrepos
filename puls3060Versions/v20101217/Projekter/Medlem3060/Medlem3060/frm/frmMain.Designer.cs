@@ -36,9 +36,6 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.opretGendannelsespunktToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tilbageTilGendannelsesPunktToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.afslutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medlemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,8 +44,6 @@
             this.medlemmerTilRegnearkEksternToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.regnearkNotPBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.emailRykkerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.syncMedInternettetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.syncResetInternettetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.betalingerFraPBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,9 +58,9 @@
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.pbsfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoTekstToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reSendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reSendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -136,9 +131,6 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator1,
-            this.opretGendannelsespunktToolStripMenuItem,
-            this.tilbageTilGendannelsesPunktToolStripMenuItem,
-            this.toolStripSeparator3,
             this.afslutToolStripMenuItem,
             this.testToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -148,38 +140,19 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(278, 6);
-            // 
-            // opretGendannelsespunktToolStripMenuItem
-            // 
-            this.opretGendannelsespunktToolStripMenuItem.Name = "opretGendannelsespunktToolStripMenuItem";
-            this.opretGendannelsespunktToolStripMenuItem.Size = new System.Drawing.Size(281, 22);
-            this.opretGendannelsespunktToolStripMenuItem.Text = "Nyt GendannelsesPunkt";
-            this.opretGendannelsespunktToolStripMenuItem.Click += new System.EventHandler(this.opretGendannelsespunktToolStripMenuItem_Click);
-            // 
-            // tilbageTilGendannelsesPunktToolStripMenuItem
-            // 
-            this.tilbageTilGendannelsesPunktToolStripMenuItem.Name = "tilbageTilGendannelsesPunktToolStripMenuItem";
-            this.tilbageTilGendannelsesPunktToolStripMenuItem.Size = new System.Drawing.Size(281, 22);
-            this.tilbageTilGendannelsesPunktToolStripMenuItem.Text = "Tilbage til et tidligere GendannelsesPunkt";
-            this.tilbageTilGendannelsesPunktToolStripMenuItem.Click += new System.EventHandler(this.tilbageTilGendannelsesPunktToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(278, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(196, 6);
             // 
             // afslutToolStripMenuItem
             // 
             this.afslutToolStripMenuItem.Name = "afslutToolStripMenuItem";
-            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(281, 22);
+            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.afslutToolStripMenuItem.Text = "Afslut";
             this.afslutToolStripMenuItem.Click += new System.EventHandler(this.afslutToolStripMenuItem_Click);
             // 
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(281, 22);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.testToolStripMenuItem.Text = "Test";
             this.testToolStripMenuItem.Visible = false;
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
@@ -191,9 +164,7 @@
             this.medlemmerTilRegnearkToolStripMenuItem,
             this.medlemmerTilRegnearkEksternToolStripMenuItem,
             this.regnearkNotPBSToolStripMenuItem,
-            this.emailRykkerToolStripMenuItem,
-            this.syncMedInternettetToolStripMenuItem,
-            this.syncResetInternettetToolStripMenuItem});
+            this.emailRykkerToolStripMenuItem});
             this.medlemToolStripMenuItem.Name = "medlemToolStripMenuItem";
             this.medlemToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.medlemToolStripMenuItem.Text = "Medlem";
@@ -232,20 +203,6 @@
             this.emailRykkerToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
             this.emailRykkerToolStripMenuItem.Text = "E-mail rykker";
             this.emailRykkerToolStripMenuItem.Click += new System.EventHandler(this.emailRykkerToolStripMenuItem_Click);
-            // 
-            // syncMedInternettetToolStripMenuItem
-            // 
-            this.syncMedInternettetToolStripMenuItem.Name = "syncMedInternettetToolStripMenuItem";
-            this.syncMedInternettetToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.syncMedInternettetToolStripMenuItem.Text = "Sync med Internettet";
-            this.syncMedInternettetToolStripMenuItem.Click += new System.EventHandler(this.syncMedInternettetToolStripMenuItem_Click);
-            // 
-            // syncResetInternettetToolStripMenuItem
-            // 
-            this.syncResetInternettetToolStripMenuItem.Name = "syncResetInternettetToolStripMenuItem";
-            this.syncResetInternettetToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
-            this.syncResetInternettetToolStripMenuItem.Text = "Sync Reset Internettet";
-            this.syncResetInternettetToolStripMenuItem.Click += new System.EventHandler(this.syncResetInternettetToolStripMenuItem_Click);
             // 
             // pBSToolStripMenuItem
             // 
@@ -330,30 +287,37 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(132, 22);
             this.toolStripMenuItem2.Text = "Regnskab";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.regnskabToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
             this.toolStripMenuItem1.Text = "Kreditor";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.kerditorToolStripMenuItem_Click);
             // 
             // pbsfilesToolStripMenuItem
             // 
             this.pbsfilesToolStripMenuItem.Name = "pbsfilesToolStripMenuItem";
-            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.pbsfilesToolStripMenuItem.Text = "Pbsfiles";
             this.pbsfilesToolStripMenuItem.Click += new System.EventHandler(this.pbsfilesToolStripMenuItem_Click);
             // 
             // infoTekstToolStripMenuItem
             // 
             this.infoTekstToolStripMenuItem.Name = "infoTekstToolStripMenuItem";
-            this.infoTekstToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.infoTekstToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
             this.infoTekstToolStripMenuItem.Text = "Info tekst";
             this.infoTekstToolStripMenuItem.Click += new System.EventHandler(this.infoTekstToolStripMenuItem_Click);
+            // 
+            // reSendToolStripMenuItem
+            // 
+            this.reSendToolStripMenuItem.Name = "reSendToolStripMenuItem";
+            this.reSendToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.reSendToolStripMenuItem.Text = "ReSend";
+            this.reSendToolStripMenuItem.Click += new System.EventHandler(this.reSendToolStripMenuItem_Click);
             // 
             // hjælpToolStripMenuItem
             // 
@@ -369,13 +333,6 @@
             this.omToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
-            // 
-            // reSendToolStripMenuItem
-            // 
-            this.reSendToolStripMenuItem.Name = "reSendToolStripMenuItem";
-            this.reSendToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.reSendToolStripMenuItem.Text = "ReSend";
-            this.reSendToolStripMenuItem.Click += new System.EventHandler(this.reSendToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -428,9 +385,6 @@
         private System.Windows.Forms.ToolStripMenuItem pbsfilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hjælpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem omToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem opretGendannelsespunktToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem tilbageTilGendannelsesPunktToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem medlemmerTilRegnearkEksternToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem regnskabToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem posterTilExcelToolStripMenuItem;
@@ -438,10 +392,8 @@
         private System.Windows.Forms.ToolStripMenuItem emailRykkerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem infoTekstToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
-        private System.Windows.Forms.ToolStripMenuItem syncMedInternettetToolStripMenuItem;
         internal System.Windows.Forms.ToolStripProgressBar MainformProgressBar;
         internal System.Windows.Forms.ToolStripStatusLabel MainformProgressText;
-        private System.Windows.Forms.ToolStripMenuItem syncResetInternettetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem regnearkNotPBSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reSendToolStripMenuItem;
    }
