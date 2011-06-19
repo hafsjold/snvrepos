@@ -56,9 +56,6 @@ namespace nsPuls3060
             {
                 this.DatoKontingentTil.Value = this.DatoKontingentTil.Value.AddYears(1);
             }
-            this.Aarskontingent.Text = "150";
-            this.AarskontingentPbs.Text = "150";
-
             wt = m_initdate.AddMonths(1);
             this.DatoKontingentForfald.Value = clsOverfoersel.bankdageplus(wt.AddDays(-wt.Day + 2), 0);
 
@@ -93,7 +90,6 @@ namespace nsPuls3060
             bool indmeldelse = false;
             int AntalMedlemmer = 0;
             int AntalForslag = 0;
-            double dkontingent;
             int ikontingent;
 
             var qry_medlemmer = from h in Program.karMedlemmer
@@ -164,38 +160,9 @@ namespace nsPuls3060
                 {
                     AntalForslag++;
                     tilmeldtpbs = clsPbs.gettilmeldtpbs(m.Nr);
-                    switch (KontingentFradato.Month )
-                    {
-                        case 1:
-                        case 2:
-                        case 3:
-                        case 4:
-                        case 5:
-                        case 6:
-                            KontingentTildato = new DateTime(KontingentFradato.Year, 12, 31);
-                            if (indmeldelse)
-                            {
-                                dkontingent = double.Parse(this.AarskontingentPbs.Text);
-                            }
-                            else 
-                            {
-                                dkontingent = (tilmeldtpbs) ? double.Parse(this.AarskontingentPbs.Text) : double.Parse(this.Aarskontingent.Text);
-                            }
-                            break;
-                        
-                        default:
-                            KontingentTildato = new DateTime(KontingentFradato.Year + 1, 12, 31);
-                            if (indmeldelse)
-                            {
-                                dkontingent = double.Parse(this.AarskontingentPbs.Text) * 3 / 2;
-                            }
-                            else 
-                            {
-                                dkontingent = (tilmeldtpbs) ? double.Parse(this.AarskontingentPbs.Text) * 3 / 2 : double.Parse(this.Aarskontingent.Text) * 3 / 2;
-                            }
-                            break;
-                    }
-                    ikontingent = (int)dkontingent;
+                    clsKontingent objKontingent = new clsKontingent(KontingentFradato, m.Nr);
+                    KontingentTildato = objKontingent.KontingentTildato;
+                    ikontingent = (int)objKontingent.Kontingent;
 
                     ListViewItem it = lvwKontingent.Items.Add(m.Nr.ToString(), m.Navn, 0);
                     //it.Tag = m;

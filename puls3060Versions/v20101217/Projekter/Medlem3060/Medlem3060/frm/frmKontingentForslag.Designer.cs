@@ -31,11 +31,9 @@
             this.label_DatoKontingentTil = new System.Windows.Forms.Label();
             this.label_DatoKontingentForfald = new System.Windows.Forms.Label();
             this.label_DatoBetaltKontingentTil = new System.Windows.Forms.Label();
-            this.label_Aarskontingent = new System.Windows.Forms.Label();
             this.DatoKontingentTil = new System.Windows.Forms.DateTimePicker();
             this.DatoKontingentForfald = new System.Windows.Forms.DateTimePicker();
             this.DatoBetaltKontingentTil = new System.Windows.Forms.DateTimePicker();
-            this.Aarskontingent = new System.Windows.Forms.TextBox();
             this.cmdCancel = new System.Windows.Forms.Button();
             this.cmdFakturer = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -48,6 +46,8 @@
             this.columnHeaderMFradato = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderMKontingent = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderMTildato = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderMIndmeldelse = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderMTilmeldtpbs = new System.Windows.Forms.ColumnHeader();
             this.Label_Forslagstekst = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdForslag = new System.Windows.Forms.Button();
@@ -63,12 +63,8 @@
             this.columnHeaderKFradato = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderKKontingent = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderKTildato = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderMIndmeldelse = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderMTilmeldtpbs = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderKIndmeldelse = new System.Windows.Forms.ColumnHeader();
             this.columnHeaderKTilmeldtpbs = new System.Windows.Forms.ColumnHeader();
-            this.AarskontingentPbs = new System.Windows.Forms.TextBox();
-            this.label_AarskontingentPbs = new System.Windows.Forms.Label();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -101,15 +97,6 @@
             this.label_DatoBetaltKontingentTil.TabIndex = 0;
             this.label_DatoBetaltKontingentTil.Text = "Medlemmer som har betalt kontingent indtil::";
             // 
-            // label_Aarskontingent
-            // 
-            this.label_Aarskontingent.AutoSize = true;
-            this.label_Aarskontingent.Location = new System.Drawing.Point(15, 39);
-            this.label_Aarskontingent.Name = "label_Aarskontingent";
-            this.label_Aarskontingent.Size = new System.Drawing.Size(135, 13);
-            this.label_Aarskontingent.TabIndex = 0;
-            this.label_Aarskontingent.Text = "Kontingent for 12 måneder:";
-            // 
             // DatoKontingentTil
             // 
             this.DatoKontingentTil.Location = new System.Drawing.Point(195, 10);
@@ -132,13 +119,6 @@
             this.DatoBetaltKontingentTil.Name = "DatoBetaltKontingentTil";
             this.DatoBetaltKontingentTil.Size = new System.Drawing.Size(124, 20);
             this.DatoBetaltKontingentTil.TabIndex = 1;
-            // 
-            // Aarskontingent
-            // 
-            this.Aarskontingent.Location = new System.Drawing.Point(248, 37);
-            this.Aarskontingent.Name = "Aarskontingent";
-            this.Aarskontingent.Size = new System.Drawing.Size(45, 20);
-            this.Aarskontingent.TabIndex = 2;
             // 
             // cmdCancel
             // 
@@ -189,10 +169,6 @@
             this.splitContainer1.Panel2.Controls.Add(this.lvwKontingent);
             this.splitContainer1.Panel2.Controls.Add(this.label_DatoBetaltKontingentTil);
             this.splitContainer1.Panel2.Controls.Add(this.cmdFakturer);
-            this.splitContainer1.Panel2.Controls.Add(this.label_AarskontingentPbs);
-            this.splitContainer1.Panel2.Controls.Add(this.label_Aarskontingent);
-            this.splitContainer1.Panel2.Controls.Add(this.AarskontingentPbs);
-            this.splitContainer1.Panel2.Controls.Add(this.Aarskontingent);
             this.splitContainer1.Panel2.Controls.Add(this.DatoBetaltKontingentTil);
             this.splitContainer1.Size = new System.Drawing.Size(829, 513);
             this.splitContainer1.SplitterDistance = 409;
@@ -261,6 +237,14 @@
             // columnHeaderMTildato
             // 
             this.columnHeaderMTildato.Text = "Til dato";
+            // 
+            // columnHeaderMIndmeldelse
+            // 
+            this.columnHeaderMIndmeldelse.Text = "Indm";
+            // 
+            // columnHeaderMTilmeldtpbs
+            // 
+            this.columnHeaderMTilmeldtpbs.Text = "Pbs";
             // 
             // Label_Forslagstekst
             // 
@@ -392,14 +376,6 @@
             // 
             this.columnHeaderKTildato.Text = "Til dato";
             // 
-            // columnHeaderMIndmeldelse
-            // 
-            this.columnHeaderMIndmeldelse.Text = "Indm";
-            // 
-            // columnHeaderMTilmeldtpbs
-            // 
-            this.columnHeaderMTilmeldtpbs.Text = "Pbs";
-            // 
             // columnHeaderKIndmeldelse
             // 
             this.columnHeaderKIndmeldelse.Text = "Indm";
@@ -407,22 +383,6 @@
             // columnHeaderKTilmeldtpbs
             // 
             this.columnHeaderKTilmeldtpbs.Text = "Pbs";
-            // 
-            // AarskontingentPbs
-            // 
-            this.AarskontingentPbs.Location = new System.Drawing.Point(327, 36);
-            this.AarskontingentPbs.Name = "AarskontingentPbs";
-            this.AarskontingentPbs.Size = new System.Drawing.Size(45, 20);
-            this.AarskontingentPbs.TabIndex = 2;
-            // 
-            // label_AarskontingentPbs
-            // 
-            this.label_AarskontingentPbs.AutoSize = true;
-            this.label_AarskontingentPbs.Location = new System.Drawing.Point(298, 39);
-            this.label_AarskontingentPbs.Name = "label_AarskontingentPbs";
-            this.label_AarskontingentPbs.Size = new System.Drawing.Size(27, 13);
-            this.label_AarskontingentPbs.TabIndex = 0;
-            this.label_AarskontingentPbs.Text = "pbs:";
             // 
             // FrmKontingentForslag
             // 
@@ -450,11 +410,9 @@
         private System.Windows.Forms.Label label_DatoKontingentTil;
         private System.Windows.Forms.Label label_DatoKontingentForfald;
         private System.Windows.Forms.Label label_DatoBetaltKontingentTil;
-        private System.Windows.Forms.Label label_Aarskontingent;
         private System.Windows.Forms.DateTimePicker DatoKontingentTil;
         private System.Windows.Forms.DateTimePicker DatoKontingentForfald;
         private System.Windows.Forms.DateTimePicker DatoBetaltKontingentTil;
-        private System.Windows.Forms.TextBox Aarskontingent;
         private System.Windows.Forms.Button cmdCancel;
         private System.Windows.Forms.Button cmdFakturer;
         private System.Windows.Forms.SplitContainer splitContainer1;
@@ -486,7 +444,5 @@
         private System.Windows.Forms.ColumnHeader columnHeaderMTilmeldtpbs;
         private System.Windows.Forms.ColumnHeader columnHeaderKIndmeldelse;
         private System.Windows.Forms.ColumnHeader columnHeaderKTilmeldtpbs;
-        private System.Windows.Forms.TextBox AarskontingentPbs;
-        private System.Windows.Forms.Label label_AarskontingentPbs;
     }
 }

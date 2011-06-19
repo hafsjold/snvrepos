@@ -128,6 +128,8 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
+            clsKontingent obsKontingent = new clsKontingent(new DateTime(2011, 12, 11), new DateTime(1967, 05, 21));
+            int xys = 1;
             //clsSFTP objSFTP = new clsSFTP();
             //objSFTP.ReWriteTilSFtp(986);
             //clsRest objRest = new clsRest();
@@ -144,7 +146,6 @@ namespace nsPuls3060
             //objSync.actionMedlemlogxmlSync();
             //objSync.medlemlogxml();
             //objSync.medlemxmldelete();
-            int xys = 1;
             //objSync.actionSync(1);
             //objSync.actionSync(2);
             //decimal tal = 50;
