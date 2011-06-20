@@ -37,6 +37,7 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.afslutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CompactDataBaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medlemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vedligeholdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -132,6 +133,7 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripSeparator1,
             this.afslutToolStripMenuItem,
+            this.CompactDataBaseToolStripMenuItem,
             this.testToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
@@ -140,19 +142,26 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(196, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(173, 6);
             // 
             // afslutToolStripMenuItem
             // 
             this.afslutToolStripMenuItem.Name = "afslutToolStripMenuItem";
-            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.afslutToolStripMenuItem.Text = "Afslut";
             this.afslutToolStripMenuItem.Click += new System.EventHandler(this.afslutToolStripMenuItem_Click);
+            // 
+            // CompactDataBaseToolStripMenuItem
+            // 
+            this.CompactDataBaseToolStripMenuItem.Name = "CompactDataBaseToolStripMenuItem";
+            this.CompactDataBaseToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.CompactDataBaseToolStripMenuItem.Text = "Compatc DataBase";
+            this.CompactDataBaseToolStripMenuItem.Click += new System.EventHandler(this.CompactDataBaseToolStripMenuItem_Click);
             // 
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
             this.testToolStripMenuItem.Text = "Test";
             this.testToolStripMenuItem.Visible = false;
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
@@ -396,6 +405,7 @@
         internal System.Windows.Forms.ToolStripStatusLabel MainformProgressText;
         private System.Windows.Forms.ToolStripMenuItem regnearkNotPBSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reSendToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem CompactDataBaseToolStripMenuItem;
    }
 }
 

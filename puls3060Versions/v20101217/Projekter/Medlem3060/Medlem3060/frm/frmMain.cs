@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Reflection;
 using System.IO;
 using Excel;
+using System.Data.SqlServerCe;
 
 
 namespace nsPuls3060
@@ -514,5 +515,17 @@ namespace nsPuls3060
                 m_frmResend.Show();
             }
         }
+
+        private void CompactDataBaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.dbData3060.SubmitChanges();
+            Program.dbData3060.Connection.Close();
+            Program.dbData3060 = null;
+            string connectString = "Data Source = " + global::nsPuls3060.Properties.Settings.Default.DataBasePath;
+            SqlCeEngine engine = new SqlCeEngine(connectString);
+            engine.Compact(null);
+            this.Close();
+        }
+
     }
 }
