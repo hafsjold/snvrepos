@@ -311,30 +311,21 @@ namespace nsPuls3060
                     int numBytes = (int)rec_pbsnetdir.Size;
                     if (numBytes < 0) throw new Exception(m_sftp.LastErrorText);
 
-                    //byte[] b_data = null;
-                    //b_data = m_sftp.ReadFileBytes(handle, numBytes);
-                    //NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
-                    byte[] b_data = new byte[numBytes];
-                    byte[] pData = null;
-                    bool bEof = false;
-                    int chunkSizeGet = 10000;
+                    //---------------------------------------------------------------------
+                    byte[] b_data = null;
+                    bool bEof = false; 
+                    int chunkSizeGet = 10240;
                     int chunkSizeRead = 0;
-                    Int64 index = 0;
+                    m_sftp.ClearAccumulateBuffer();
                     while (bEof == false)
                     {
-                        pData = m_sftp.ReadFileBytes(handle, chunkSizeGet);
-                        if (m_sftp.LastReadFailed(handle) == true)
+                        chunkSizeRead = m_sftp.AccumulateBytes(handle, chunkSizeGet);
+                        if (chunkSizeRead == -1)
                             throw new Exception(m_sftp.LastErrorText); 
-                        else
-                        {
-                            chunkSizeRead = pData.Count();
-                            if (chunkSizeRead > 0)
-                                pData.CopyTo(b_data, index);
-                            index += chunkSizeRead;
-                        }
                         bEof = m_sftp.Eof(handle);
-                    }                    
-                    //NNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN
+                    }
+                    b_data = m_sftp.AccumulateBuffer;
+                    //---------------------------------------------------------------------
                     if (b_data == null) throw new Exception(m_sftp.LastErrorText);
                     sendAttachedFile(rec_pbsnetdir.Filename, b_data, false);
                     char[] c_data = System.Text.Encoding.GetEncoding("windows-1252").GetString(b_data).ToCharArray();
