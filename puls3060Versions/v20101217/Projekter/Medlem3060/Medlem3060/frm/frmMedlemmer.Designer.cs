@@ -1122,7 +1122,7 @@
             this.I_DT_FodtDato.Name = "I_DT_FodtDato";
             this.I_DT_FodtDato.Size = new System.Drawing.Size(78, 20);
             this.I_DT_FodtDato.TabIndex = 10;
-            this.I_DT_FodtDato.Value = new System.DateTime(2010, 1, 12, 8, 47, 59, 886);
+            this.I_DT_FodtDato.Value = new System.DateTime(2011, 1, 1, 0, 0, 0, 0);
             this.I_DT_FodtDato.Enter += new System.EventHandler(this.I_DT_FodtDato_Enter);
             // 
             // I_DT_Indmeldelsesdato
@@ -1132,7 +1132,7 @@
             this.I_DT_Indmeldelsesdato.Name = "I_DT_Indmeldelsesdato";
             this.I_DT_Indmeldelsesdato.Size = new System.Drawing.Size(78, 20);
             this.I_DT_Indmeldelsesdato.TabIndex = 12;
-            this.I_DT_Indmeldelsesdato.Value = new System.DateTime(2010, 1, 12, 8, 47, 59, 886);
+            this.I_DT_Indmeldelsesdato.Value = new System.DateTime(2011, 1, 1, 0, 0, 0, 0);
             // 
             // U_DT_NyAktivitetDato
             // 
@@ -1141,7 +1141,7 @@
             this.U_DT_NyAktivitetDato.Name = "U_DT_NyAktivitetDato";
             this.U_DT_NyAktivitetDato.Size = new System.Drawing.Size(78, 20);
             this.U_DT_NyAktivitetDato.TabIndex = 18;
-            this.U_DT_NyAktivitetDato.Value = new System.DateTime(2010, 1, 12, 8, 47, 59, 886);
+            this.U_DT_NyAktivitetDato.Value = new System.DateTime(2011, 1, 1, 0, 0, 0, 0);
             // 
             // U_DT_FodtDato
             // 
@@ -1150,7 +1150,7 @@
             this.U_DT_FodtDato.Name = "U_DT_FodtDato";
             this.U_DT_FodtDato.Size = new System.Drawing.Size(78, 20);
             this.U_DT_FodtDato.TabIndex = 10;
-            this.U_DT_FodtDato.Value = new System.DateTime(2010, 1, 12, 8, 47, 59, 886);
+            this.U_DT_FodtDato.Value = new System.DateTime(2011, 1, 1, 0, 0, 0, 0);
             this.U_DT_FodtDato.Enter += new System.EventHandler(this.U_DT_FodtDato_Enter);
             // 
             // nrDataGridViewTextBoxColumn
