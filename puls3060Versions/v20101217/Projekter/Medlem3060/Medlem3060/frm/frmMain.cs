@@ -131,6 +131,7 @@ namespace nsPuls3060
 
             clsKontingent obsKontingent = new clsKontingent(new DateTime(2011, 12, 11), new DateTime(1967, 05, 21));
             int xys = 1;
+            if (xys == 1) xys++;
             //clsSFTP objSFTP = new clsSFTP();
             //objSFTP.ReWriteTilSFtp(986);
             //clsRest objRest = new clsRest();
@@ -525,6 +526,16 @@ namespace nsPuls3060
             SqlCeEngine engine = new SqlCeEngine(connectString);
             engine.Compact(null);
             this.Close();
+        }
+
+        private void kontingentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("Kontingent"))
+            {
+                FrmKontingent m_frmKontingent = new FrmKontingent();
+                m_frmKontingent.MdiParent = this;
+                m_frmKontingent.Show();
+            }
         }
 
     }

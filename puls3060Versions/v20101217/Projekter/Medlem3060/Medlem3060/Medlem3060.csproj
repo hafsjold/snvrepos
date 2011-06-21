@@ -122,6 +122,12 @@
       <DependentUpon>dsMedlem.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="frm\frmKontingent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmKontingent.Designer.cs">
+      <DependentUpon>frmKontingent.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm\frmResend.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -251,6 +257,9 @@
     <EmbeddedResource Include="frm\frmInfotekst.resx">
       <DependentUpon>frmInfotekst.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmKontingent.resx">
+      <DependentUpon>frmKontingent.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm\frmKontingentForslag.resx">
       <DependentUpon>frmKontingentForslag.cs</DependentUpon>
     </EmbeddedResource>
@@ -332,6 +341,7 @@
   <ItemGroup>
     <None Include="Properties\DataSources\MemPbsnetdir.datasource" />
     <None Include="Properties\DataSources\Tblinfotekst.datasource" />
+    <None Include="Properties\DataSources\TblKontingent.datasource" />
     <None Include="Properties\DataSources\Tblpbsfiles.datasource" />
     <None Include="Resources\Add.bmp" />
     <Content Include="Resources\info.png" />

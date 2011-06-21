@@ -60,6 +60,7 @@
             this.pbsfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoTekstToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reSendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kontingentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
@@ -284,6 +285,7 @@
             // systemToolStripMenuItem
             // 
             this.systemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.kontingentToolStripMenuItem,
             this.toolStripMenuItem2,
             this.toolStripMenuItem1,
             this.pbsfilesToolStripMenuItem,
@@ -296,37 +298,44 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(132, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem2.Text = "Regnskab";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.regnskabToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(132, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.toolStripMenuItem1.Text = "Kreditor";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.kerditorToolStripMenuItem_Click);
             // 
             // pbsfilesToolStripMenuItem
             // 
             this.pbsfilesToolStripMenuItem.Name = "pbsfilesToolStripMenuItem";
-            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.pbsfilesToolStripMenuItem.Text = "Pbsfiles";
             this.pbsfilesToolStripMenuItem.Click += new System.EventHandler(this.pbsfilesToolStripMenuItem_Click);
             // 
             // infoTekstToolStripMenuItem
             // 
             this.infoTekstToolStripMenuItem.Name = "infoTekstToolStripMenuItem";
-            this.infoTekstToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.infoTekstToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.infoTekstToolStripMenuItem.Text = "Info tekst";
             this.infoTekstToolStripMenuItem.Click += new System.EventHandler(this.infoTekstToolStripMenuItem_Click);
             // 
             // reSendToolStripMenuItem
             // 
             this.reSendToolStripMenuItem.Name = "reSendToolStripMenuItem";
-            this.reSendToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.reSendToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.reSendToolStripMenuItem.Text = "ReSend";
             this.reSendToolStripMenuItem.Click += new System.EventHandler(this.reSendToolStripMenuItem_Click);
+            // 
+            // kontingentToolStripMenuItem
+            // 
+            this.kontingentToolStripMenuItem.Name = "kontingentToolStripMenuItem";
+            this.kontingentToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.kontingentToolStripMenuItem.Text = "Kontingent";
+            this.kontingentToolStripMenuItem.Click += new System.EventHandler(this.kontingentToolStripMenuItem_Click);
             // 
             // hjælpToolStripMenuItem
             // 
@@ -406,6 +415,7 @@
         private System.Windows.Forms.ToolStripMenuItem regnearkNotPBSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reSendToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CompactDataBaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem kontingentToolStripMenuItem;
    }
 }
 
