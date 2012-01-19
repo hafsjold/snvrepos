@@ -249,7 +249,8 @@ namespace nsPuls3060
         {
             var bogf = from f in Program.karFakturaer_k
                        where f.saldo != 0
-                       join o in Program.dbData3060.Tbloverforsel on f.fakid equals o.SFakID
+                       //join o in Program.dbData3060.Tbloverforsel on f.fakid equals o.SFakID
+                       join o in Program.dbData3060.Tbloverforsel on f.faknr equals o.SFaknr
                        where o.Tilpbsid == lobnr
                        join m in Program.karMedlemmer on o.Nr equals m.Nr
                        orderby o.Betalingsdato ascending
