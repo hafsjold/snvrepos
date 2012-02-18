@@ -49,7 +49,7 @@ namespace nsPuls3060
             string ln = null;
             recActebisordre rec;
             Regex regexKontoplan = new Regex(@"""(.*?)"";|([^;]*);|(.*)$");
-            using (StreamReader sr = new StreamReader(ts, Encoding.UTF8))
+            using (StreamReader sr = new StreamReader(ts, Encoding.Default))
             {
                 while ((ln = sr.ReadLine()) != null)
                 {

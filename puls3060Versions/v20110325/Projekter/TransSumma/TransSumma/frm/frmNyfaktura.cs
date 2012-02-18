@@ -20,7 +20,10 @@ namespace nsPuls3060
 
         private void FrmNyfaktura_Load(object sender, EventArgs e)
         {
-            this.tblwfakBindingSource.DataSource = Program.dbDataTransSumma.Tblwfak;
+            var qryTblwfak = from b in Program.dbDataTransSumma.Tblwfak select b;
+            this.tblwfakBindingSource.DataSource = qryTblwfak;
+            //this.tblwfakBindingSource.DataSource = Program.dbDataTransSumma.Tblwfak;
+            
             if (Program.karRegnskab.MomsPeriode() == 2)
             {
                 this.dataGridViewTextBoxMK.Visible = false;
