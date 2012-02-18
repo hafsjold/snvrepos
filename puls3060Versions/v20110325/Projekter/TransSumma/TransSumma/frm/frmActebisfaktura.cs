@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Data.Linq.SqlClient;
 
 namespace nsPuls3060
 {
@@ -19,6 +20,26 @@ namespace nsPuls3060
         private void FrmActebisfaktura_Load(object sender, EventArgs e)
         {
             this.tblactebisfakturaBindingSource.DataSource = Program.dbDataTransSumma.Tblactebisfaktura;
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            Sog();
+        }        
+        
+        private void Sog()
+        {
+            string strLike = "%" + FindTextBox.Text + "%";
+            IEnumerable<Tblactebisfaktura> qry;
+            qry = (from u in Program.dbDataTransSumma.Tblactebisordre
+                   where SqlMethods.Like(u.Beskrivelse, strLike)
+                      || SqlMethods.Like(u.Producent, strLike)
+                      || SqlMethods.Like(u.Serienr, strLike)
+                   join b in Program.dbDataTransSumma.Tblactebisfaktura on u.Fakpid equals b.Pid
+                   orderby b.Ordredato descending
+                   select b).Distinct();
+
+            this.tblactebisfakturaBindingSource.DataSource = qry;
         }
 
         private void Copy2NyFakturaToolStripButton_Click(object sender, EventArgs e)
@@ -119,5 +140,7 @@ namespace nsPuls3060
                     return false;
             }
         }
+
+ 
     }
 }

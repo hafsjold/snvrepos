@@ -76,8 +76,11 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tblactebisfakturaBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.Copy2NyFakturaToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.FindTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -401,7 +404,10 @@
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
             this.tblactebisfakturaBindingNavigatorSaveItem,
-            this.Copy2NyFakturaToolStripButton});
+            this.Copy2NyFakturaToolStripButton,
+            this.toolStripSeparator1,
+            this.FindTextBox,
+            this.toolStripButton1});
             this.tblactebisfakturaBindingNavigator.Location = new System.Drawing.Point(0, 3);
             this.tblactebisfakturaBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.tblactebisfakturaBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -510,6 +516,17 @@
             this.tblactebisfakturaBindingNavigatorSaveItem.Text = "Save Data";
             this.tblactebisfakturaBindingNavigatorSaveItem.Visible = false;
             // 
+            // Copy2NyFakturaToolStripButton
+            // 
+            this.Copy2NyFakturaToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.Copy2NyFakturaToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("Copy2NyFakturaToolStripButton.Image")));
+            this.Copy2NyFakturaToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.Copy2NyFakturaToolStripButton.Name = "Copy2NyFakturaToolStripButton";
+            this.Copy2NyFakturaToolStripButton.Size = new System.Drawing.Size(23, 22);
+            this.Copy2NyFakturaToolStripButton.Text = "&New";
+            this.Copy2NyFakturaToolStripButton.ToolTipText = "Copy to Ny Faktura";
+            this.Copy2NyFakturaToolStripButton.Click += new System.EventHandler(this.Copy2NyFakturaToolStripButton_Click);
+            // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -528,16 +545,25 @@
             this.splitContainer2.SplitterDistance = 463;
             this.splitContainer2.TabIndex = 2;
             // 
-            // Copy2NyFakturaToolStripButton
+            // FindTextBox
             // 
-            this.Copy2NyFakturaToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.Copy2NyFakturaToolStripButton.Image = ((System.Drawing.Image)(resources.GetObject("Copy2NyFakturaToolStripButton.Image")));
-            this.Copy2NyFakturaToolStripButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.Copy2NyFakturaToolStripButton.Name = "Copy2NyFakturaToolStripButton";
-            this.Copy2NyFakturaToolStripButton.Size = new System.Drawing.Size(23, 22);
-            this.Copy2NyFakturaToolStripButton.Text = "&New";
-            this.Copy2NyFakturaToolStripButton.ToolTipText = "Copy to Ny Faktura";
-            this.Copy2NyFakturaToolStripButton.Click += new System.EventHandler(this.Copy2NyFakturaToolStripButton_Click);
+            this.FindTextBox.Name = "FindTextBox";
+            this.FindTextBox.Size = new System.Drawing.Size(100, 25);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(31, 22);
+            this.toolStripButton1.Text = "Find";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // FrmActebisfaktura
             // 
@@ -613,5 +639,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxProducent;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxTblactebisfaktura;
         private System.Windows.Forms.ToolStripButton Copy2NyFakturaToolStripButton;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripTextBox FindTextBox;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }
