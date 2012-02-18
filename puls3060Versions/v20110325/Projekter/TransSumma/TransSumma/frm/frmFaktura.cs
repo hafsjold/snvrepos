@@ -142,5 +142,17 @@ namespace nsPuls3060
             Sog();
         }
 
+        private void cmdKopier_Click(object sender, EventArgs e)
+        {
+            FrmMain frmMain = this.ParentForm as FrmMain;
+            try
+            {
+                FrmNyfaktura frmNyfaktura = frmMain.GetChild("Ny faktura") as FrmNyfaktura;
+                Tblfak recFak = this.tblfakBindingSource.Current as Tblfak;
+                frmNyfaktura.AddNyFaktura(recFak);
+            }
+            catch { }
+        }
+
     }
 }

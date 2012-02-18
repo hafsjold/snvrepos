@@ -43,6 +43,49 @@ namespace nsPuls3060
             Program.dbDataTransSumma.SubmitChanges();
         }
 
+        public void AddNyActebisFaktura(Tblwfak recwFak)
+        {
+            this.tblwfakBindingSource.Add(recwFak);
+            this.tblwfakBindingSource.MoveLast();
+        }
+        
+        public void AddNyFaktura(Tblfak recFak)
+        {
+            var qry = from k in recFak.Tblfaklin
+                      select new Tblwfaklin
+                      {
+                          Varenr = k.Varenr,
+                          Tekst = k.Tekst,
+                          Konto = k.Konto,
+                          Momskode = k.Momskode,
+                          Antal = k.Antal,
+                          Enhed = k.Enhed,
+                          Pris = k.Pris,
+                          Rabat = k.Rabat,
+                          Moms = k.Moms,
+                          Nettobelob = k.Nettobelob,
+                          Bruttobelob = k.Bruttobelob,
+                      };
+            int antal = qry.Count();
+
+            if (antal > 0)
+            {
+                Tblwfak recwFak = new Tblwfak
+                {
+                    Sk = recFak.Sk,
+                    Dato = recFak.Dato,
+                    Konto = recFak.Konto,
+                };
+
+                foreach (var k in qry)
+                {
+                    recwFak.Tblwfaklin.Add(k);
+                }
+                this.tblwfakBindingSource.Add(recwFak);
+            }
+            this.tblwfakBindingSource.MoveLast();
+        }
+        
         private void tblwfaklinDataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
 
@@ -329,6 +372,9 @@ namespace nsPuls3060
             try
             {
                 Program.dbDataTransSumma.SubmitChanges();
+                //var qryTblwfak = from b in Program.dbDataTransSumma.Tblwfak select b;
+                //this.tblwfakBindingSource.DataSource = qryTblwfak;
+
             }
             catch { }
         }

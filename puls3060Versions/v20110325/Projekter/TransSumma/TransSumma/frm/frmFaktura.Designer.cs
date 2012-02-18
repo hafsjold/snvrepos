@@ -34,11 +34,11 @@
             System.Windows.Forms.Label datoLabel;
             System.Windows.Forms.Label kontoLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFaktura));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tblfakBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.tblfakBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -67,8 +67,6 @@
             this.textBoxSogeord = new System.Windows.Forms.TextBox();
             this.cmdSog = new System.Windows.Forms.Button();
             this.tblfaklinDataGridView = new System.Windows.Forms.DataGridView();
-            this.contextMenuLineCopyPaste = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewTextBoxPid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxFakpid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxRegnskabid = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -88,6 +86,9 @@
             this.dataGridViewTextBoxBruttobelob = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxOmkostbelob = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxTblfak = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuLineCopyPaste = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmdKopier = new System.Windows.Forms.Button();
             skLabel = new System.Windows.Forms.Label();
             faknrLabel = new System.Windows.Forms.Label();
             datoLabel = new System.Windows.Forms.Label();
@@ -297,6 +298,7 @@
             this.splitContainer1.Panel1.Controls.Add(this.kontoTextBox);
             this.splitContainer1.Panel1.Controls.Add(this.Sogeordlabel);
             this.splitContainer1.Panel1.Controls.Add(this.textBoxSogeord);
+            this.splitContainer1.Panel1.Controls.Add(this.cmdKopier);
             this.splitContainer1.Panel1.Controls.Add(this.cmdSog);
             // 
             // splitContainer1.Panel2
@@ -457,20 +459,6 @@
             this.tblfaklinDataGridView.TabIndex = 99;
             this.tblfaklinDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tblfaklinDataGridView_KeyDown);
             // 
-            // contextMenuLineCopyPaste
-            // 
-            this.contextMenuLineCopyPaste.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.copyToolStripMenuItem});
-            this.contextMenuLineCopyPaste.Name = "contextMenuLineCopyPaste";
-            this.contextMenuLineCopyPaste.Size = new System.Drawing.Size(111, 26);
-            // 
-            // copyToolStripMenuItem
-            // 
-            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
-            this.copyToolStripMenuItem.Text = "Copy";
-            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
-            // 
             // dataGridViewTextBoxPid
             // 
             this.dataGridViewTextBoxPid.DataPropertyName = "Pid";
@@ -570,10 +558,10 @@
             // dataGridViewTextBoxPris
             // 
             this.dataGridViewTextBoxPris.DataPropertyName = "Pris";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.Format = "N2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.dataGridViewTextBoxPris.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle11.Format = "N2";
+            dataGridViewCellStyle11.NullValue = null;
+            this.dataGridViewTextBoxPris.DefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridViewTextBoxPris.HeaderText = "Pris";
             this.dataGridViewTextBoxPris.Name = "dataGridViewTextBoxPris";
             this.dataGridViewTextBoxPris.ReadOnly = true;
@@ -590,10 +578,10 @@
             // dataGridViewTextBoxMoms
             // 
             this.dataGridViewTextBoxMoms.DataPropertyName = "Moms";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.dataGridViewTextBoxMoms.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle12.Format = "N2";
+            dataGridViewCellStyle12.NullValue = null;
+            this.dataGridViewTextBoxMoms.DefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridViewTextBoxMoms.HeaderText = "Moms";
             this.dataGridViewTextBoxMoms.Name = "dataGridViewTextBoxMoms";
             this.dataGridViewTextBoxMoms.ReadOnly = true;
@@ -602,10 +590,10 @@
             // dataGridViewTextBoxNettobelob
             // 
             this.dataGridViewTextBoxNettobelob.DataPropertyName = "Nettobelob";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.dataGridViewTextBoxNettobelob.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle13.Format = "N2";
+            dataGridViewCellStyle13.NullValue = null;
+            this.dataGridViewTextBoxNettobelob.DefaultCellStyle = dataGridViewCellStyle13;
             this.dataGridViewTextBoxNettobelob.HeaderText = "Nettobelob";
             this.dataGridViewTextBoxNettobelob.Name = "dataGridViewTextBoxNettobelob";
             this.dataGridViewTextBoxNettobelob.ReadOnly = true;
@@ -614,10 +602,10 @@
             // dataGridViewTextBoxBruttobelob
             // 
             this.dataGridViewTextBoxBruttobelob.DataPropertyName = "Bruttobelob";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.dataGridViewTextBoxBruttobelob.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle14.Format = "N2";
+            dataGridViewCellStyle14.NullValue = null;
+            this.dataGridViewTextBoxBruttobelob.DefaultCellStyle = dataGridViewCellStyle14;
             this.dataGridViewTextBoxBruttobelob.HeaderText = "Bruttobelob";
             this.dataGridViewTextBoxBruttobelob.Name = "dataGridViewTextBoxBruttobelob";
             this.dataGridViewTextBoxBruttobelob.ReadOnly = true;
@@ -626,10 +614,10 @@
             // dataGridViewTextBoxOmkostbelob
             // 
             this.dataGridViewTextBoxOmkostbelob.DataPropertyName = "Omkostbelob";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = null;
-            this.dataGridViewTextBoxOmkostbelob.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle15.Format = "N2";
+            dataGridViewCellStyle15.NullValue = null;
+            this.dataGridViewTextBoxOmkostbelob.DefaultCellStyle = dataGridViewCellStyle15;
             this.dataGridViewTextBoxOmkostbelob.HeaderText = "Omk";
             this.dataGridViewTextBoxOmkostbelob.Name = "dataGridViewTextBoxOmkostbelob";
             this.dataGridViewTextBoxOmkostbelob.ReadOnly = true;
@@ -642,6 +630,30 @@
             this.dataGridViewTextBoxTblfak.Name = "dataGridViewTextBoxTblfak";
             this.dataGridViewTextBoxTblfak.ReadOnly = true;
             this.dataGridViewTextBoxTblfak.Visible = false;
+            // 
+            // contextMenuLineCopyPaste
+            // 
+            this.contextMenuLineCopyPaste.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyToolStripMenuItem});
+            this.contextMenuLineCopyPaste.Name = "contextMenuLineCopyPaste";
+            this.contextMenuLineCopyPaste.Size = new System.Drawing.Size(111, 26);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(110, 22);
+            this.copyToolStripMenuItem.Text = "Copy";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+            // 
+            // cmdKopier
+            // 
+            this.cmdKopier.Location = new System.Drawing.Point(733, 11);
+            this.cmdKopier.Name = "cmdKopier";
+            this.cmdKopier.Size = new System.Drawing.Size(50, 23);
+            this.cmdKopier.TabIndex = 2;
+            this.cmdKopier.Text = "Kopier";
+            this.cmdKopier.UseVisualStyleBackColor = true;
+            this.cmdKopier.Click += new System.EventHandler(this.cmdKopier_Click);
             // 
             // FrmFaktura
             // 
@@ -724,5 +736,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxBruttobelob;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxOmkostbelob;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxTblfak;
+        private System.Windows.Forms.Button cmdKopier;
     }
 }

@@ -558,7 +558,7 @@ namespace nsPuls3060
                     {
                         Tekst = AndenKontoTekst,
                         Afstemningskonto = "Bank",
-                        Belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.Belob : BankBelob,
+                        Belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.Belob : AndenKontoBelob,
                         Konto = AndenKontoKonto
                     };
                     recwBilag.Tblwkladder.Add(recWkladder);
@@ -575,7 +575,7 @@ namespace nsPuls3060
                     {
                         Tekst = AndenKontoTekst,
                         Afstemningskonto = AndenKontoAfstemningskonto,
-                        Belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.Belob : BankBelob,
+                        Belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.Belob : AndenKontoBelob,
                         Konto = AndenKontoKonto,
                         Momskode = AndenKontoMomskode
                     };

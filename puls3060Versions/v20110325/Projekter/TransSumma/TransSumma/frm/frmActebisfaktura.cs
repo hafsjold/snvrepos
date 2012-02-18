@@ -81,8 +81,19 @@ namespace nsPuls3060
                 };
                 recWfak.Tblwfaklin.Add(recWfaklin);
             }
-            Program.dbDataTransSumma.Tblwfak.InsertOnSubmit(recWfak);
-            Program.dbDataTransSumma.SubmitChanges();
+
+            FrmMain frmMain = this.ParentForm as FrmMain;
+            try
+            {
+                FrmNyfaktura frmNyfaktura = frmMain.GetChild("Ny faktura") as FrmNyfaktura;
+                frmNyfaktura.AddNyActebisFaktura(recWfak);
+            }
+            catch
+            {
+
+                Program.dbDataTransSumma.Tblwfak.InsertOnSubmit(recWfak);
+                Program.dbDataTransSumma.SubmitChanges();
+            }
         }
 
         private string getVaretekst(Tblactebisfaktura recActebisfaktura, Tblactebisordre recActebisordre, bool bVareforbrug)

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmActebisfaktura));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tblactebisfakturaDataGridView = new System.Windows.Forms.DataGridView();
@@ -77,10 +77,10 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tblactebisfakturaBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.Copy2NyFakturaToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.FindTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -189,10 +189,10 @@
             // dataGridViewTextBoxOrdrebelob
             // 
             this.dataGridViewTextBoxOrdrebelob.DataPropertyName = "Ordrebelob";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle9.Format = "N2";
-            dataGridViewCellStyle9.NullValue = null;
-            this.dataGridViewTextBoxOrdrebelob.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.dataGridViewTextBoxOrdrebelob.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewTextBoxOrdrebelob.HeaderText = "Ordrebelob";
             this.dataGridViewTextBoxOrdrebelob.Name = "dataGridViewTextBoxOrdrebelob";
             this.dataGridViewTextBoxOrdrebelob.ReadOnly = true;
@@ -275,9 +275,9 @@
             // dataGridViewTextBoxPos
             // 
             this.dataGridViewTextBoxPos.DataPropertyName = "Pos";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle10.NullValue = null;
-            this.dataGridViewTextBoxPos.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.NullValue = null;
+            this.dataGridViewTextBoxPos.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxPos.HeaderText = "Pos";
             this.dataGridViewTextBoxPos.Name = "dataGridViewTextBoxPos";
             this.dataGridViewTextBoxPos.ReadOnly = true;
@@ -286,10 +286,10 @@
             // dataGridViewTextBoxAntal
             // 
             this.dataGridViewTextBoxAntal.DataPropertyName = "Antal";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.Format = "N0";
-            dataGridViewCellStyle11.NullValue = null;
-            this.dataGridViewTextBoxAntal.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = null;
+            this.dataGridViewTextBoxAntal.DefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewTextBoxAntal.HeaderText = "Antal";
             this.dataGridViewTextBoxAntal.Name = "dataGridViewTextBoxAntal";
             this.dataGridViewTextBoxAntal.ReadOnly = true;
@@ -322,10 +322,10 @@
             // dataGridViewTextBoxStkpris
             // 
             this.dataGridViewTextBoxStkpris.DataPropertyName = "Stkpris";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle12.Format = "N2";
-            dataGridViewCellStyle12.NullValue = null;
-            this.dataGridViewTextBoxStkpris.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.dataGridViewTextBoxStkpris.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewTextBoxStkpris.HeaderText = "Stkpris";
             this.dataGridViewTextBoxStkpris.Name = "dataGridViewTextBoxStkpris";
             this.dataGridViewTextBoxStkpris.ReadOnly = true;
@@ -527,6 +527,26 @@
             this.Copy2NyFakturaToolStripButton.ToolTipText = "Copy to Ny Faktura";
             this.Copy2NyFakturaToolStripButton.Click += new System.EventHandler(this.Copy2NyFakturaToolStripButton_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // FindTextBox
+            // 
+            this.FindTextBox.Name = "FindTextBox";
+            this.FindTextBox.Size = new System.Drawing.Size(100, 25);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(31, 22);
+            this.toolStripButton1.Text = "Find";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -544,26 +564,6 @@
             this.splitContainer2.Size = new System.Drawing.Size(1081, 495);
             this.splitContainer2.SplitterDistance = 463;
             this.splitContainer2.TabIndex = 2;
-            // 
-            // FindTextBox
-            // 
-            this.FindTextBox.Name = "FindTextBox";
-            this.FindTextBox.Size = new System.Drawing.Size(100, 25);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(31, 22);
-            this.toolStripButton1.Text = "Find";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // FrmActebisfaktura
             // 
