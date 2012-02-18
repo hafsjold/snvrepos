@@ -404,7 +404,11 @@ namespace nsPuls3060
                 var qry = from l in (this.tblwfakBindingSource.Current as Tblwfak).Tblwfaklin select l;
                 foreach (var l in qry)
                 {
-                    decimal momspct = KarMoms.getMomspct(l.Momskode) / 100;
+                    decimal momspct;
+                    if (KarMoms.isUdlandsmoms(l.Momskode))
+                        momspct = 0;
+                    else
+                        momspct = KarMoms.getMomspct(l.Momskode) / 100;
                     l.Nettobelob = l.Pris * l.Antal;
                     l.Moms = decimal.Round((decimal)(l.Nettobelob * momspct), 2);
                     l.Bruttobelob = l.Nettobelob + l.Moms;

@@ -18,7 +18,7 @@ namespace nsPuls3060
         public int? Momskonto { get; set; }
         public string Momsnavn { get; set; }
         public string Momsks { get; set; }
-        public int? Momsindex { get; set; }
+        public int? Momstype { get; set; }
     }
 
     public class KarMoms : List<recMoms>
@@ -77,7 +77,7 @@ namespace nsPuls3060
                             Momskonto = Microsoft.VisualBasic.Information.IsNumeric(value[3]) ? int.Parse(value[3]) : (int?)null,
                             Momsnavn = value[4],
                             Momsks = value[5],
-                            Momsindex = Microsoft.VisualBasic.Information.IsNumeric(value[6]) ? int.Parse(value[6]) : (int?)null
+                            Momstype = Microsoft.VisualBasic.Information.IsNumeric(value[6]) ? int.Parse(value[6]) : (int?)null
 
                         };
                         this.Add(rec);
@@ -99,6 +99,25 @@ namespace nsPuls3060
             catch
             {
                 return 0;
+            }
+        }
+
+        public static bool isUdlandsmoms(string momskode)
+        {
+            try
+            {
+                if ((int)(from m in Program.karMoms where m.Momskode == momskode select m.Momstype).First() == 1)
+                {
+                    return true;
+                }
+                else 
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
             }
         }
 
