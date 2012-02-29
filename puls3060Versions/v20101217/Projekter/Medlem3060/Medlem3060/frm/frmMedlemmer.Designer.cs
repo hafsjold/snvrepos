@@ -31,10 +31,23 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMedlemmer));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.nrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.navnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kaldenavnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.postnrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bynavnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.telefonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.konDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fodtDatoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bankDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kartotekBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dsMedlem = new nsPuls3060.dsMedlem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panelAdd = new System.Windows.Forms.Panel();
+            this.I_DT_FodtDato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
+            this.I_DT_Indmeldelsesdato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
             this.cmdSave_I_Record = new System.Windows.Forms.Button();
             this.cmdCancel_I_Record = new System.Windows.Forms.Button();
             this.I_Bynavn = new System.Windows.Forms.TextBox();
@@ -61,6 +74,8 @@
             this.label_I_Nr = new System.Windows.Forms.Label();
             this.panelUpdate = new System.Windows.Forms.Panel();
             this.U_NyAktivitet = new System.Windows.Forms.ComboBox();
+            this.U_DT_NyAktivitetDato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
+            this.U_DT_FodtDato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
             this.cmdSave_U_Record = new System.Windows.Forms.Button();
             this.cmdCancel_U_Record = new System.Windows.Forms.Button();
             this.U_Bynavn = new System.Windows.Forms.TextBox();
@@ -125,21 +140,7 @@
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.toolStripImportMedlem = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.I_DT_FodtDato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
-            this.I_DT_Indmeldelsesdato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
-            this.U_DT_NyAktivitetDato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
-            this.U_DT_FodtDato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
-            this.nrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.navnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kaldenavnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.adresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.postnrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bynavnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.telefonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.konDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fodtDatoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bankDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kartotekBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsMedlem)).BeginInit();
@@ -183,6 +184,83 @@
             this.dataGridView1.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellValueChanged);
             this.dataGridView1.Sorted += new System.EventHandler(this.dataGridView1_Sorted);
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            // 
+            // nrDataGridViewTextBoxColumn
+            // 
+            this.nrDataGridViewTextBoxColumn.DataPropertyName = "Nr";
+            this.nrDataGridViewTextBoxColumn.HeaderText = "Nr";
+            this.nrDataGridViewTextBoxColumn.Name = "nrDataGridViewTextBoxColumn";
+            this.nrDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // navnDataGridViewTextBoxColumn
+            // 
+            this.navnDataGridViewTextBoxColumn.DataPropertyName = "Navn";
+            this.navnDataGridViewTextBoxColumn.HeaderText = "Navn";
+            this.navnDataGridViewTextBoxColumn.Name = "navnDataGridViewTextBoxColumn";
+            this.navnDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // kaldenavnDataGridViewTextBoxColumn
+            // 
+            this.kaldenavnDataGridViewTextBoxColumn.DataPropertyName = "Kaldenavn";
+            this.kaldenavnDataGridViewTextBoxColumn.HeaderText = "Kaldenavn";
+            this.kaldenavnDataGridViewTextBoxColumn.Name = "kaldenavnDataGridViewTextBoxColumn";
+            this.kaldenavnDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // adresseDataGridViewTextBoxColumn
+            // 
+            this.adresseDataGridViewTextBoxColumn.DataPropertyName = "Adresse";
+            this.adresseDataGridViewTextBoxColumn.HeaderText = "Adresse";
+            this.adresseDataGridViewTextBoxColumn.Name = "adresseDataGridViewTextBoxColumn";
+            this.adresseDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // postnrDataGridViewTextBoxColumn
+            // 
+            this.postnrDataGridViewTextBoxColumn.DataPropertyName = "Postnr";
+            this.postnrDataGridViewTextBoxColumn.HeaderText = "Postnr";
+            this.postnrDataGridViewTextBoxColumn.Name = "postnrDataGridViewTextBoxColumn";
+            this.postnrDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // bynavnDataGridViewTextBoxColumn
+            // 
+            this.bynavnDataGridViewTextBoxColumn.DataPropertyName = "Bynavn";
+            this.bynavnDataGridViewTextBoxColumn.HeaderText = "By";
+            this.bynavnDataGridViewTextBoxColumn.Name = "bynavnDataGridViewTextBoxColumn";
+            this.bynavnDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // telefonDataGridViewTextBoxColumn
+            // 
+            this.telefonDataGridViewTextBoxColumn.DataPropertyName = "Telefon";
+            this.telefonDataGridViewTextBoxColumn.HeaderText = "Telefon";
+            this.telefonDataGridViewTextBoxColumn.Name = "telefonDataGridViewTextBoxColumn";
+            this.telefonDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // konDataGridViewTextBoxColumn
+            // 
+            this.konDataGridViewTextBoxColumn.DataPropertyName = "Kon";
+            this.konDataGridViewTextBoxColumn.HeaderText = "Køn";
+            this.konDataGridViewTextBoxColumn.Name = "konDataGridViewTextBoxColumn";
+            this.konDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // fodtDatoDataGridViewTextBoxColumn
+            // 
+            this.fodtDatoDataGridViewTextBoxColumn.DataPropertyName = "FodtDato";
+            this.fodtDatoDataGridViewTextBoxColumn.HeaderText = "Født Dato";
+            this.fodtDatoDataGridViewTextBoxColumn.Name = "fodtDatoDataGridViewTextBoxColumn";
+            this.fodtDatoDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // bankDataGridViewTextBoxColumn
+            // 
+            this.bankDataGridViewTextBoxColumn.DataPropertyName = "Bank";
+            this.bankDataGridViewTextBoxColumn.HeaderText = "Bank";
+            this.bankDataGridViewTextBoxColumn.Name = "bankDataGridViewTextBoxColumn";
+            this.bankDataGridViewTextBoxColumn.Visible = false;
             // 
             // kartotekBindingSource
             // 
@@ -249,6 +327,25 @@
             this.panelAdd.Size = new System.Drawing.Size(258, 360);
             this.panelAdd.TabIndex = 1;
             this.panelAdd.Visible = false;
+            // 
+            // I_DT_FodtDato
+            // 
+            this.I_DT_FodtDato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.I_DT_FodtDato.Location = new System.Drawing.Point(91, 241);
+            this.I_DT_FodtDato.Name = "I_DT_FodtDato";
+            this.I_DT_FodtDato.Size = new System.Drawing.Size(78, 20);
+            this.I_DT_FodtDato.TabIndex = 10;
+            this.I_DT_FodtDato.Value = new System.DateTime(2011, 1, 1, 0, 0, 0, 0);
+            this.I_DT_FodtDato.Enter += new System.EventHandler(this.I_DT_FodtDato_Enter);
+            // 
+            // I_DT_Indmeldelsesdato
+            // 
+            this.I_DT_Indmeldelsesdato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.I_DT_Indmeldelsesdato.Location = new System.Drawing.Point(91, 289);
+            this.I_DT_Indmeldelsesdato.Name = "I_DT_Indmeldelsesdato";
+            this.I_DT_Indmeldelsesdato.Size = new System.Drawing.Size(78, 20);
+            this.I_DT_Indmeldelsesdato.TabIndex = 12;
+            this.I_DT_Indmeldelsesdato.Value = new System.DateTime(2011, 1, 1, 0, 0, 0, 0);
             // 
             // cmdSave_I_Record
             // 
@@ -503,6 +600,25 @@
             this.U_NyAktivitet.Name = "U_NyAktivitet";
             this.U_NyAktivitet.Size = new System.Drawing.Size(148, 21);
             this.U_NyAktivitet.TabIndex = 19;
+            // 
+            // U_DT_NyAktivitetDato
+            // 
+            this.U_DT_NyAktivitetDato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.U_DT_NyAktivitetDato.Location = new System.Drawing.Point(170, 308);
+            this.U_DT_NyAktivitetDato.Name = "U_DT_NyAktivitetDato";
+            this.U_DT_NyAktivitetDato.Size = new System.Drawing.Size(78, 20);
+            this.U_DT_NyAktivitetDato.TabIndex = 18;
+            this.U_DT_NyAktivitetDato.Value = new System.DateTime(2011, 1, 1, 0, 0, 0, 0);
+            // 
+            // U_DT_FodtDato
+            // 
+            this.U_DT_FodtDato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.U_DT_FodtDato.Location = new System.Drawing.Point(91, 242);
+            this.U_DT_FodtDato.Name = "U_DT_FodtDato";
+            this.U_DT_FodtDato.Size = new System.Drawing.Size(78, 20);
+            this.U_DT_FodtDato.TabIndex = 10;
+            this.U_DT_FodtDato.Value = new System.DateTime(2011, 1, 1, 0, 0, 0, 0);
+            this.U_DT_FodtDato.Enter += new System.EventHandler(this.U_DT_FodtDato_Enter);
             // 
             // cmdSave_U_Record
             // 
@@ -996,7 +1112,8 @@
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddUpdateItem,
             this.bindingNavigatorAddNewItem,
-            this.toolStripImportMedlem});
+            this.toolStripImportMedlem,
+            this.toolStripButton1});
             this.bindingNavigator1.Location = new System.Drawing.Point(1, -1);
             this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -1004,7 +1121,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(309, 25);
+            this.bindingNavigator1.Size = new System.Drawing.Size(409, 25);
             this.bindingNavigator1.TabIndex = 1;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -1115,120 +1232,15 @@
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // I_DT_FodtDato
+            // toolStripButton1
             // 
-            this.I_DT_FodtDato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.I_DT_FodtDato.Location = new System.Drawing.Point(91, 241);
-            this.I_DT_FodtDato.Name = "I_DT_FodtDato";
-            this.I_DT_FodtDato.Size = new System.Drawing.Size(78, 20);
-            this.I_DT_FodtDato.TabIndex = 10;
-            this.I_DT_FodtDato.Value = new System.DateTime(2011, 1, 1, 0, 0, 0, 0);
-            this.I_DT_FodtDato.Enter += new System.EventHandler(this.I_DT_FodtDato_Enter);
-            // 
-            // I_DT_Indmeldelsesdato
-            // 
-            this.I_DT_Indmeldelsesdato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.I_DT_Indmeldelsesdato.Location = new System.Drawing.Point(91, 289);
-            this.I_DT_Indmeldelsesdato.Name = "I_DT_Indmeldelsesdato";
-            this.I_DT_Indmeldelsesdato.Size = new System.Drawing.Size(78, 20);
-            this.I_DT_Indmeldelsesdato.TabIndex = 12;
-            this.I_DT_Indmeldelsesdato.Value = new System.DateTime(2011, 1, 1, 0, 0, 0, 0);
-            // 
-            // U_DT_NyAktivitetDato
-            // 
-            this.U_DT_NyAktivitetDato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.U_DT_NyAktivitetDato.Location = new System.Drawing.Point(170, 308);
-            this.U_DT_NyAktivitetDato.Name = "U_DT_NyAktivitetDato";
-            this.U_DT_NyAktivitetDato.Size = new System.Drawing.Size(78, 20);
-            this.U_DT_NyAktivitetDato.TabIndex = 18;
-            this.U_DT_NyAktivitetDato.Value = new System.DateTime(2011, 1, 1, 0, 0, 0, 0);
-            // 
-            // U_DT_FodtDato
-            // 
-            this.U_DT_FodtDato.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.U_DT_FodtDato.Location = new System.Drawing.Point(91, 242);
-            this.U_DT_FodtDato.Name = "U_DT_FodtDato";
-            this.U_DT_FodtDato.Size = new System.Drawing.Size(78, 20);
-            this.U_DT_FodtDato.TabIndex = 10;
-            this.U_DT_FodtDato.Value = new System.DateTime(2011, 1, 1, 0, 0, 0, 0);
-            this.U_DT_FodtDato.Enter += new System.EventHandler(this.U_DT_FodtDato_Enter);
-            // 
-            // nrDataGridViewTextBoxColumn
-            // 
-            this.nrDataGridViewTextBoxColumn.DataPropertyName = "Nr";
-            this.nrDataGridViewTextBoxColumn.HeaderText = "Nr";
-            this.nrDataGridViewTextBoxColumn.Name = "nrDataGridViewTextBoxColumn";
-            this.nrDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // navnDataGridViewTextBoxColumn
-            // 
-            this.navnDataGridViewTextBoxColumn.DataPropertyName = "Navn";
-            this.navnDataGridViewTextBoxColumn.HeaderText = "Navn";
-            this.navnDataGridViewTextBoxColumn.Name = "navnDataGridViewTextBoxColumn";
-            this.navnDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // kaldenavnDataGridViewTextBoxColumn
-            // 
-            this.kaldenavnDataGridViewTextBoxColumn.DataPropertyName = "Kaldenavn";
-            this.kaldenavnDataGridViewTextBoxColumn.HeaderText = "Kaldenavn";
-            this.kaldenavnDataGridViewTextBoxColumn.Name = "kaldenavnDataGridViewTextBoxColumn";
-            this.kaldenavnDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // adresseDataGridViewTextBoxColumn
-            // 
-            this.adresseDataGridViewTextBoxColumn.DataPropertyName = "Adresse";
-            this.adresseDataGridViewTextBoxColumn.HeaderText = "Adresse";
-            this.adresseDataGridViewTextBoxColumn.Name = "adresseDataGridViewTextBoxColumn";
-            this.adresseDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // postnrDataGridViewTextBoxColumn
-            // 
-            this.postnrDataGridViewTextBoxColumn.DataPropertyName = "Postnr";
-            this.postnrDataGridViewTextBoxColumn.HeaderText = "Postnr";
-            this.postnrDataGridViewTextBoxColumn.Name = "postnrDataGridViewTextBoxColumn";
-            this.postnrDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // bynavnDataGridViewTextBoxColumn
-            // 
-            this.bynavnDataGridViewTextBoxColumn.DataPropertyName = "Bynavn";
-            this.bynavnDataGridViewTextBoxColumn.HeaderText = "By";
-            this.bynavnDataGridViewTextBoxColumn.Name = "bynavnDataGridViewTextBoxColumn";
-            this.bynavnDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // telefonDataGridViewTextBoxColumn
-            // 
-            this.telefonDataGridViewTextBoxColumn.DataPropertyName = "Telefon";
-            this.telefonDataGridViewTextBoxColumn.HeaderText = "Telefon";
-            this.telefonDataGridViewTextBoxColumn.Name = "telefonDataGridViewTextBoxColumn";
-            this.telefonDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            this.emailDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // konDataGridViewTextBoxColumn
-            // 
-            this.konDataGridViewTextBoxColumn.DataPropertyName = "Kon";
-            this.konDataGridViewTextBoxColumn.HeaderText = "Køn";
-            this.konDataGridViewTextBoxColumn.Name = "konDataGridViewTextBoxColumn";
-            this.konDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // fodtDatoDataGridViewTextBoxColumn
-            // 
-            this.fodtDatoDataGridViewTextBoxColumn.DataPropertyName = "FodtDato";
-            this.fodtDatoDataGridViewTextBoxColumn.HeaderText = "Født Dato";
-            this.fodtDatoDataGridViewTextBoxColumn.Name = "fodtDatoDataGridViewTextBoxColumn";
-            this.fodtDatoDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // bankDataGridViewTextBoxColumn
-            // 
-            this.bankDataGridViewTextBoxColumn.DataPropertyName = "Bank";
-            this.bankDataGridViewTextBoxColumn.HeaderText = "Bank";
-            this.bankDataGridViewTextBoxColumn.Name = "bankDataGridViewTextBoxColumn";
-            this.bankDataGridViewTextBoxColumn.Visible = false;
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(71, 22);
+            this.toolStripButton1.Text = "Opdater Alle";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // FrmMedlemmer
             // 
@@ -1379,6 +1391,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn konDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fodtDatoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn bankDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
 
 
     }

@@ -151,6 +151,14 @@
       <Column Name="Nr" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Kon" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
       <Column Name="FodtDato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Navn" Type="System.String" DbType="NVarChar(35)" CanBeNull="true" />
+      <Column Name="Kaldenavn" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="Adresse" Type="System.String" DbType="NVarChar(70)" CanBeNull="true" />
+      <Column Name="Postnr" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="Bynavn" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="Telefon" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Bank" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
       <Association Name="TblMedlem_TblMedlemLog" Member="TblMedlemLog" ThisKey="Nr" OtherKey="Nr" Type="TblMedlemLog" />
     </Type>
   </Table>
@@ -286,6 +294,15 @@
       <Column Name="certificate" Member="Certificate" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="tblsync" Member="Tblsync">
+    <Type Name="Tblsync">
+      <Column Name="nr" Member="Nr" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="source" Member="Source" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="source_id" Member="Source_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="field_id" Member="Field_id" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="value" Member="Value" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="tblSysinfo" Member="TblSysinfo">
     <Type Name="TblSysinfo">
       <Column Name="vkey" Member="Vkey" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -327,17 +344,6 @@
       <Column Name="bankkontonr" Member="Bankkontonr" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Column Name="faknr" Member="Faknr" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="TempBetalforslag_TempBetalforslaglinie" Member="TempBetalforslag" ThisKey="Betalforslagid" OtherKey="Id" Type="TempBetalforslag" IsForeignKey="true" DeleteOnNull="true" />
-    </Type>
-  </Table>
-  <Table Name="tempimpexp" Member="Tempimpexp">
-    <Type Name="Tempimpexp">
-      <Column Name="ie" Member="Ie" Type="System.String" DbType="NVarChar(1) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="nr" Member="Nr" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="source" Member="Source" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="source_id" Member="Source_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="field_id" Member="Field_id" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="value" Member="Value" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="act" Member="Act" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="tempKontforslag" Member="TempKontforslag">

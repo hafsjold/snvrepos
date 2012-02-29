@@ -527,5 +527,10 @@ namespace nsPuls3060
 
         }
 
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            this.dsMedlem.savedsMedlemAll();
+        }
+
     }
 }

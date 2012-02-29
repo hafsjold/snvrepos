@@ -91,6 +91,14 @@ namespace nsPuls3060
                             };
                             Program.dbData3060.TblMedlem.InsertOnSubmit(m_rec);
                         }
+                        m_rec.Navn = m.Navn;
+                        m_rec.Kaldenavn = (m.IsKaldenavnNull()) ? null : m.Kaldenavn;
+                        m_rec.Adresse = (m.IsAdresseNull()) ? null : m.Adresse;
+                        m_rec.Postnr = (m.IsPostnrNull()) ? null : m.Postnr;
+                        m_rec.Bynavn = (m.IsBynavnNull()) ? null : m.Bynavn;
+                        m_rec.Telefon = (m.IsTelefonNull()) ? null : (m.Telefon.Length > 8) ? m.Telefon.Substring(0, 4) + m.Telefon.Substring(5, 4) : m.Telefon;
+                        m_rec.Email = (m.IsEmailNull()) ? null : m.Email;
+                        m_rec.Bank = (m.IsBankNull()) ? null : m.Bank;
                         m_rec.Kon = (m.IsKonNull()) ? null : m.Kon;
                         m_rec.FodtDato = (m.IsFodtDatoNull()) ? (DateTime?)null : m.FodtDato;
                         m.AcceptChanges();
@@ -131,6 +139,14 @@ namespace nsPuls3060
                             };
                             Program.dbData3060.TblMedlem.InsertOnSubmit(m_rec);
                         }
+                        m_rec.Navn = m.Navn;
+                        m_rec.Kaldenavn = (m.IsKaldenavnNull()) ? null : m.Kaldenavn;
+                        m_rec.Adresse = (m.IsAdresseNull()) ? null : m.Adresse;
+                        m_rec.Postnr = (m.IsPostnrNull()) ? null : m.Postnr;
+                        m_rec.Bynavn = (m.IsBynavnNull()) ? null : m.Bynavn;
+                        m_rec.Telefon = (m.IsTelefonNull()) ? null : (m.Telefon.Length > 8) ? m.Telefon.Substring(0, 4) + m.Telefon.Substring(5, 4) : m.Telefon;
+                        m_rec.Email = (m.IsEmailNull()) ? null : m.Email;
+                        m_rec.Bank = (m.IsBankNull()) ? null : m.Bank;
                         m_rec.Kon = (m.IsKonNull()) ? null : m.Kon;
                         m_rec.FodtDato = (m.IsFodtDatoNull()) ? (DateTime?)null : m.FodtDato;
                         m.AcceptChanges();
@@ -141,5 +157,42 @@ namespace nsPuls3060
             Program.karKortnr.save();
             Program.karMedlemmer.Save();
         }
-    }
+
+        public void savedsMedlemAll()
+        {
+            foreach (KartotekRow m in tableKartotek.Rows)
+            {
+                var Nr_Key = m.Nr;
+                TblMedlem m_rec;
+                try
+                {
+                    m_rec = (from k in Program.dbData3060.TblMedlem
+                             where k.Nr == Nr_Key
+                             select k).First();
+                }
+                catch (System.InvalidOperationException)
+                {
+                    m_rec = new TblMedlem
+                    {
+                        Nr = Nr_Key
+                    };
+                    Program.dbData3060.TblMedlem.InsertOnSubmit(m_rec);
+                }
+                m_rec.Navn = m.Navn;
+                m_rec.Kaldenavn = (m.IsKaldenavnNull()) ? null : m.Kaldenavn;
+                m_rec.Adresse = (m.IsAdresseNull()) ? null : m.Adresse;
+                m_rec.Postnr = (m.IsPostnrNull()) ? null : m.Postnr;
+                m_rec.Bynavn = (m.IsBynavnNull()) ? null : m.Bynavn;
+                m_rec.Telefon = (m.IsTelefonNull()) ? null : (m.Telefon.Length > 8) ? m.Telefon.Substring(0, 4) + m.Telefon.Substring(5, 4) : m.Telefon;
+                m_rec.Email = (m.IsEmailNull()) ? null : m.Email;
+                m_rec.Bank = (m.IsBankNull()) ? null : m.Bank;
+                m_rec.Kon = (m.IsKonNull()) ? null : m.Kon;
+                m_rec.FodtDato = (m.IsFodtDatoNull()) ? (DateTime?)null : m.FodtDato;
+                m.AcceptChanges();
+
+            }
+        }
+
+
+     }
 }
