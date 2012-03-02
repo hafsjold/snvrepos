@@ -294,15 +294,6 @@
       <Column Name="certificate" Member="Certificate" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="tblsync" Member="Tblsync">
-    <Type Name="Tblsync">
-      <Column Name="nr" Member="Nr" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="source" Member="Source" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="source_id" Member="Source_id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="field_id" Member="Field_id" Type="System.Byte" DbType="TinyInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="value" Member="Value" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="tblSysinfo" Member="TblSysinfo">
     <Type Name="TblSysinfo">
       <Column Name="vkey" Member="Vkey" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />

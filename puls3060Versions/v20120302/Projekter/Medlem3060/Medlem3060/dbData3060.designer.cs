@@ -93,9 +93,6 @@ namespace nsPuls3060
     partial void InsertTblsftp(Tblsftp instance);
     partial void UpdateTblsftp(Tblsftp instance);
     partial void DeleteTblsftp(Tblsftp instance);
-    partial void InsertTblsync(Tblsync instance);
-    partial void UpdateTblsync(Tblsync instance);
-    partial void DeleteTblsync(Tblsync instance);
     partial void InsertTblSysinfo(TblSysinfo instance);
     partial void UpdateTblSysinfo(TblSysinfo instance);
     partial void DeleteTblSysinfo(TblSysinfo instance);
@@ -311,14 +308,6 @@ namespace nsPuls3060
 			get
 			{
 				return this.GetTable<Tblsftp>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Tblsync> Tblsync
-		{
-			get
-			{
-				return this.GetTable<Tblsync>();
 			}
 		}
 		
@@ -6400,164 +6389,6 @@ namespace nsPuls3060
 					this._Certificate = value;
 					this.SendPropertyChanged("Certificate");
 					this.OnCertificateChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[Table(Name="tblsync")]
-	public partial class Tblsync : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Nr;
-		
-		private byte _Source;
-		
-		private int _Source_id;
-		
-		private byte _Field_id;
-		
-		private string _Value;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnNrChanging(int value);
-    partial void OnNrChanged();
-    partial void OnSourceChanging(byte value);
-    partial void OnSourceChanged();
-    partial void OnSource_idChanging(int value);
-    partial void OnSource_idChanged();
-    partial void OnField_idChanging(byte value);
-    partial void OnField_idChanged();
-    partial void OnValueChanging(string value);
-    partial void OnValueChanged();
-    #endregion
-		
-		public Tblsync()
-		{
-			OnCreated();
-		}
-		
-		[Column(Name="nr", Storage="_Nr", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Nr
-		{
-			get
-			{
-				return this._Nr;
-			}
-			set
-			{
-				if ((this._Nr != value))
-				{
-					this.OnNrChanging(value);
-					this.SendPropertyChanging();
-					this._Nr = value;
-					this.SendPropertyChanged("Nr");
-					this.OnNrChanged();
-				}
-			}
-		}
-		
-		[Column(Name="source", Storage="_Source", DbType="TinyInt NOT NULL", IsPrimaryKey=true)]
-		public byte Source
-		{
-			get
-			{
-				return this._Source;
-			}
-			set
-			{
-				if ((this._Source != value))
-				{
-					this.OnSourceChanging(value);
-					this.SendPropertyChanging();
-					this._Source = value;
-					this.SendPropertyChanged("Source");
-					this.OnSourceChanged();
-				}
-			}
-		}
-		
-		[Column(Name="source_id", Storage="_Source_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Source_id
-		{
-			get
-			{
-				return this._Source_id;
-			}
-			set
-			{
-				if ((this._Source_id != value))
-				{
-					this.OnSource_idChanging(value);
-					this.SendPropertyChanging();
-					this._Source_id = value;
-					this.SendPropertyChanged("Source_id");
-					this.OnSource_idChanged();
-				}
-			}
-		}
-		
-		[Column(Name="field_id", Storage="_Field_id", DbType="TinyInt NOT NULL", IsPrimaryKey=true)]
-		public byte Field_id
-		{
-			get
-			{
-				return this._Field_id;
-			}
-			set
-			{
-				if ((this._Field_id != value))
-				{
-					this.OnField_idChanging(value);
-					this.SendPropertyChanging();
-					this._Field_id = value;
-					this.SendPropertyChanged("Field_id");
-					this.OnField_idChanged();
-				}
-			}
-		}
-		
-		[Column(Name="value", Storage="_Value", DbType="NVarChar(4000)")]
-		public string Value
-		{
-			get
-			{
-				return this._Value;
-			}
-			set
-			{
-				if ((this._Value != value))
-				{
-					this.OnValueChanging(value);
-					this.SendPropertyChanging();
-					this._Value = value;
-					this.SendPropertyChanged("Value");
-					this.OnValueChanged();
 				}
 			}
 		}
