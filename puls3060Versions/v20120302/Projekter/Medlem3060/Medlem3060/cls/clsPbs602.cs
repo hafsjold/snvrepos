@@ -13,12 +13,12 @@ namespace nsPuls3060
 
     class clsPbs602
     {
-        private Tblpbsforsendelse m_rec_pbsforsendelse;
-        private Tblpbsfiles m_rec_pbsfiles;
-        private Tblpbsfile m_rec_pbsfile;
-        private Tblfrapbs m_rec_frapbs;
-        private Tblbet m_rec_bet;
-        private Tblbetlin m_rec_betlin;
+        private tblpbsforsendelse m_rec_pbsforsendelse;
+        private tblpbsfile1 m_rec_pbsfiles;
+        private tblpbsfile m_rec_pbsfile;
+        private tblfrapb m_rec_frapbs;
+        private tblbet m_rec_bet;
+        private tblbetlin m_rec_betlin;
 
         public clsPbs602()
         {
@@ -52,9 +52,9 @@ namespace nsPuls3060
             }
             var leftqry_pbsnetdir =
                 from h in Program.memPbsnetdir
-                join d1 in Program.dbData3060.Tblpbsfiles on new { h.Path, h.Filename } equals new { d1.Path, d1.Filename } into details
-                from d1 in details.DefaultIfEmpty(new Tblpbsfiles { Id = -1, Type = (int?)null, Path = null, Filename = null, Size = (int?)null, Atime = (DateTime?)null, Mtime = (DateTime?)null, Perm = null, Uid = (int?)null, Gid = (int?)null })
-                where d1.Path == null && d1.Filename == null
+                join d1 in Program.dbData3060.tblpbsfile1s on new { path = h.Path, filename = h.Filename } equals new { d1.path, d1.filename } into details
+                from d1 in details.DefaultIfEmpty(new tblpbsfile1 { id = -1, type = (int?)null, path = null, filename = null, size = (int?)null, atime = (DateTime?)null, mtime = (DateTime?)null, perm = null, uid = (int?)null, gid = (int?)null })
+                where d1.path == null && d1.filename == null
                 select h;
 
             int AntalFiler = leftqry_pbsnetdir.Count();
@@ -62,19 +62,19 @@ namespace nsPuls3060
             {
                 foreach (var rec_pbsnetdir in leftqry_pbsnetdir)
                 {
-                    Tblpbsfiles m_rec_pbsfiles = new Tblpbsfiles
+                    tblpbsfile1 m_rec_pbsfiles = new tblpbsfile1
                    {
-                       Type = rec_pbsnetdir.Type,
-                       Path = rec_pbsnetdir.Path,
-                       Filename = rec_pbsnetdir.Filename,
-                       Size = rec_pbsnetdir.Size,
-                       Atime = rec_pbsnetdir.Atime,
-                       Mtime = rec_pbsnetdir.Mtime,
-                       Perm = rec_pbsnetdir.Perm,
-                       Uid = rec_pbsnetdir.Uid,
-                       Gid = rec_pbsnetdir.Gid
+                       type = rec_pbsnetdir.Type,
+                       path = rec_pbsnetdir.Path,
+                       filename = rec_pbsnetdir.Filename,
+                       size = rec_pbsnetdir.Size,
+                       atime = rec_pbsnetdir.Atime,
+                       mtime = rec_pbsnetdir.Mtime,
+                       perm = rec_pbsnetdir.Perm,
+                       uid = rec_pbsnetdir.Uid,
+                       gid = rec_pbsnetdir.Gid
                    };
-                    Program.dbData3060.Tblpbsfiles.InsertOnSubmit(m_rec_pbsfiles);
+                    Program.dbData3060.tblpbsfile1s.InsertOnSubmit(m_rec_pbsfiles);
 
                     string varFromFile = FraPBSFolderPath + rec_pbsnetdir.Filename;
                     int seqnr = 0;
@@ -85,15 +85,15 @@ namespace nsPuls3060
                         while ((ln = sr.ReadLine()) != null)
                         {
                             if (((seqnr == 0) && !(ln.Substring(0, 6) == "PBCNET")) || (seqnr > 0)) { seqnr++; }
-                            m_rec_pbsfile = new Tblpbsfile
+                            m_rec_pbsfile = new tblpbsfile
                             {
-                                Seqnr = seqnr,
-                                Data = ln
+                                seqnr = seqnr,
+                                data = ln
                             };
-                            m_rec_pbsfiles.Tblpbsfile.Add(m_rec_pbsfile);
+                            m_rec_pbsfiles.tblpbsfiles.Add(m_rec_pbsfile);
                         }
                     }
-                    m_rec_pbsfiles.Transmittime = DateTime.Now;
+                    m_rec_pbsfiles.transmittime = DateTime.Now;
                     Program.dbData3060.SubmitChanges();
                 }
             }
@@ -127,39 +127,39 @@ namespace nsPuls3060
             //  sektion = "0211"
             //  rec = "BS0420398564402360000000100000000001231312345678910120310000000012755000000125                         3112031112030000000012755"
 
-            var qrypbsfiles = from h in Program.dbData3060.Tblpbsfiles
-                              where h.Pbsforsendelseid == null
-                              join d in Program.dbData3060.Tblpbsfile on h.Id equals d.Pbsfilesid
-                              where d.Seqnr == 1 && d.Data.Substring(16, 4) == "0602" && d.Data.Substring(0, 2) == "BS"
+            var qrypbsfiles = from h in Program.dbData3060.tblpbsfile1s
+                              where h.pbsforsendelseid == null
+                              join d in Program.dbData3060.tblpbsfiles on h.id equals d.pbsfilesid
+                              where d.seqnr == 1 && d.data.Substring(16, 4) == "0602" && d.data.Substring(0, 2) == "BS"
                               select new
                               {
-                                  h.Id,
-                                  h.Path,
-                                  h.Filename,
-                                  leverancetype = d.Data.Substring(16, 4),
-                                  delsystem = d.Data.Substring(13, 3),
+                                  h.id,
+                                  h.path,
+                                  h.filename,
+                                  leverancetype = d.data.Substring(16, 4),
+                                  delsystem = d.data.Substring(13, 3),
                               };
 
             foreach (var rstpbsfiles in qrypbsfiles)
             {
                 try
                 {
-                    wpbsfilesid = rstpbsfiles.Id;
+                    wpbsfilesid = rstpbsfiles.id;
                     AntalFiler++;
                     leverancetype = "";
                     sektion = "";
                     leverancespecifikation = "";
 
-                    var qrypbsfile = from d in Program.dbData3060.Tblpbsfile
-                                     where d.Pbsfilesid == wpbsfilesid && d.Data.Substring(0, 6) != "PBCNET"
-                                     orderby d.Seqnr
+                    var qrypbsfile = from d in Program.dbData3060.tblpbsfiles
+                                     where d.pbsfilesid == wpbsfilesid && d.data.Substring(0, 6) != "PBCNET"
+                                     orderby d.seqnr
                                      select d;
 
                     foreach (var rstpbsfile in qrypbsfile)
                     {
-                        rec = rstpbsfile.Data;
+                        rec = rstpbsfile.data;
                         // -- Bestem Leverance Type
-                        if (rstpbsfile.Seqnr == 1)
+                        if (rstpbsfile.seqnr == 1)
                         {
                             if ((rec.Substring(0, 5) == "BS002"))
                             {
@@ -175,36 +175,36 @@ namespace nsPuls3060
                             if ((leverancetype == "0602"))
                             {
                                 // -- Leverance 0602
-                                var antal = (from c in Program.dbData3060.Tblfrapbs
-                                             where c.Leverancespecifikation == leverancespecifikation
+                                var antal = (from c in Program.dbData3060.tblfrapbs
+                                             where c.leverancespecifikation == leverancespecifikation
                                              select c).Count();
                                 if (antal > 0) { throw new Exception("242 - Leverance med pbsfilesid: " + wpbsfilesid + " og leverancespecifikation: " + leverancespecifikation + " er indlæst tidligere"); }
 
                                 wleveranceid = clsPbs.nextval("leveranceid");
-                                m_rec_pbsforsendelse = new Tblpbsforsendelse
+                                m_rec_pbsforsendelse = new tblpbsforsendelse
                                 {
-                                    Delsystem = "BS1",
-                                    Leverancetype = "0602",
-                                    Oprettetaf = "Bet",
-                                    Oprettet = DateTime.Now,
-                                    Leveranceid = wleveranceid
+                                    delsystem = "BS1",
+                                    leverancetype = "0602",
+                                    oprettetaf = "Bet",
+                                    oprettet = DateTime.Now,
+                                    leveranceid = wleveranceid
                                 };
-                                Program.dbData3060.Tblpbsforsendelse.InsertOnSubmit(m_rec_pbsforsendelse);
+                                Program.dbData3060.tblpbsforsendelses.InsertOnSubmit(m_rec_pbsforsendelse);
 
-                                m_rec_frapbs = new Tblfrapbs
+                                m_rec_frapbs = new tblfrapb
                                 {
-                                    Delsystem = "BS1",
-                                    Leverancetype = "0602",
-                                    Leverancespecifikation = leverancespecifikation,
-                                    Leverancedannelsesdato = leverancedannelsesdato,
-                                    Udtrukket = DateTime.Now
+                                    delsystem = "BS1",
+                                    leverancetype = "0602",
+                                    leverancespecifikation = leverancespecifikation,
+                                    leverancedannelsesdato = leverancedannelsesdato,
+                                    udtrukket = DateTime.Now
                                 };
-                                m_rec_pbsforsendelse.Tblfrapbs.Add(m_rec_frapbs);
+                                m_rec_pbsforsendelse.tblfrapbs.Add(m_rec_frapbs);
 
-                                m_rec_pbsfiles = (from c in Program.dbData3060.Tblpbsfiles
-                                                  where c.Id == rstpbsfiles.Id
+                                m_rec_pbsfiles = (from c in Program.dbData3060.tblpbsfile1s
+                                                  where c.id == rstpbsfiles.id
                                                   select c).First();
-                                m_rec_pbsforsendelse.Tblpbsfiles.Add(m_rec_pbsfiles);
+                                m_rec_pbsforsendelse.tblpbsfile1s.Add(m_rec_pbsfiles);
                             }
                         }
                         if ((leverancetype == "0602"))
@@ -274,7 +274,7 @@ namespace nsPuls3060
                                 }
                                 else
                                 {
-                                    throw new Exception("244 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
+                                    throw new Exception("244 - Rec# " + rstpbsfile.seqnr + " ukendt: " + rec);
                                 }
                             }
                             else if ((sektion == "0215"))
@@ -309,7 +309,7 @@ namespace nsPuls3060
                                 }
                                 else
                                 {
-                                    throw new Exception("245 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
+                                    throw new Exception("245 - Rec# " + rstpbsfile.seqnr + " ukendt: " + rec);
                                 }
                             }
                             else if ((rec.Substring(0, 5) == "BS992"))
@@ -320,25 +320,25 @@ namespace nsPuls3060
                             }
                             else
                             {
-                                throw new Exception("246 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
+                                throw new Exception("246 - Rec# " + rstpbsfile.seqnr + " ukendt: " + rec);
                             }
                         }
                         else
                         {
-                            throw new Exception("247 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
+                            throw new Exception("247 - Rec# " + rstpbsfile.seqnr + " ukendt: " + rec);
                         }
                     }  // slut rstpbsfile
 
                     // -- Update indbetalingsbelob
-                    foreach (Tblbet rec_bet in m_rec_frapbs.Tblbet)
+                    foreach (tblbet rec_bet in m_rec_frapbs.tblbets)
                     {
                         var SumIndbetalingsbelob = (
-                            from c in rec_bet.Tblbetlin
-                            group c by c.Betid into g
-                            select new { Betid = g.Key, SumIndbetalingsbelob = g.Sum(c => c.Indbetalingsbelob) }
+                            from c in rec_bet.tblbetlins
+                            group c by c.betid into g
+                            select new { Betid = g.Key, SumIndbetalingsbelob = g.Sum(c => c.indbetalingsbelob) }
                             ).First().SumIndbetalingsbelob;
 
-                        rec_bet.Indbetalingsbelob = SumIndbetalingsbelob;
+                        rec_bet.indbetalingsbelob = SumIndbetalingsbelob;
                     }
 
                 }
@@ -377,47 +377,47 @@ namespace nsPuls3060
             // - transkode 0237, afvist automatisk betaling
             // - transkode 0238, afmeldt automatisk betaling
             // - transkode 0239, tilbageført betaling
-            m_rec_betlin = new Tblbetlin
+            m_rec_betlin = new tblbetlin
             {
-                Pbssektionnr = sektion,
-                Pbstranskode = transkode
+                pbssektionnr = sektion,
+                pbstranskode = transkode
             };
 
             // --  debitorkonto
             if ((sektion == "0211"))
             {
                 m_rec_betlin.Nr = int.Parse(rec.Substring(33, 7));
-                m_rec_betlin.Debitorkonto = rec.Substring(25, 15);
+                m_rec_betlin.debitorkonto = rec.Substring(25, 15);
             }
             else if ((sektion == "0215"))
             {
                 m_rec_betlin.Nr = int.Parse(rec.Substring(37, 7));
-                m_rec_betlin.Debitorkonto = rec.Substring(29, 15);
+                m_rec_betlin.debitorkonto = rec.Substring(29, 15);
             }
             else
             {
                 m_rec_betlin.Nr = null;
-                m_rec_betlin.Debitorkonto = null;
+                m_rec_betlin.debitorkonto = null;
             }
 
             // --  aftalenr
             if ((sektion == "0211"))
             {
-                m_rec_betlin.Aftalenr = int.Parse(rec.Substring(40, 9));
+                m_rec_betlin.aftalenr = int.Parse(rec.Substring(40, 9));
             }
             else
             {
-                m_rec_betlin.Aftalenr = null;
+                m_rec_betlin.aftalenr = null;
             }
 
             // --  pbskortart
             if ((sektion == "0215"))
             {
-                m_rec_betlin.Pbskortart = rec.Substring(44, 2);
+                m_rec_betlin.pbskortart = rec.Substring(44, 2);
             }
             else
             {
-                m_rec_betlin.Pbskortart = null;
+                m_rec_betlin.pbskortart = null;
             }
 
             // --  pbsgebyrbelob
@@ -428,20 +428,20 @@ namespace nsPuls3060
                 belobmun = (belob / 100);
                 if ((fortegn == 0))
                 {
-                    m_rec_betlin.Pbsgebyrbelob = 0;
+                    m_rec_betlin.pbsgebyrbelob = 0;
                 }
                 else if ((fortegn == 1))
                 {
-                    m_rec_betlin.Pbsgebyrbelob = belobmun;
+                    m_rec_betlin.pbsgebyrbelob = belobmun;
                 }
                 else
                 {
-                    m_rec_betlin.Pbsgebyrbelob = 0;
+                    m_rec_betlin.pbsgebyrbelob = 0;
                 }
             }
             else
             {
-                m_rec_betlin.Pbsgebyrbelob = 0;
+                m_rec_betlin.pbsgebyrbelob = 0;
             }
 
             // --  betalingsdato
@@ -449,31 +449,31 @@ namespace nsPuls3060
             {
                 if ((rec.Substring(49, 6) != "000000"))
                 {
-                    m_rec_betlin.Betalingsdato = DateTime.Parse("20"
+                    m_rec_betlin.betalingsdato = DateTime.Parse("20"
                                 + (rec.Substring(53, 2) + ("-"
                                 + (rec.Substring(51, 2) + ("-" + rec.Substring(49, 2))))));
                 }
                 else
                 {
-                    m_rec_betlin.Betalingsdato = null;
+                    m_rec_betlin.betalingsdato = null;
                 }
             }
             else if ((sektion == "0215"))
             {
                 if ((rec.Substring(52, 6) != "000000"))
                 {
-                    m_rec_betlin.Betalingsdato = DateTime.Parse("20"
+                    m_rec_betlin.betalingsdato = DateTime.Parse("20"
                                 + (rec.Substring(56, 2) + ("-"
                                 + (rec.Substring(54, 2) + ("-" + rec.Substring(52, 2))))));
                 }
                 else
                 {
-                    m_rec_betlin.Betalingsdato = null;
+                    m_rec_betlin.betalingsdato = null;
                 }
             }
             else
             {
-                m_rec_betlin.Betalingsdato = null;
+                m_rec_betlin.betalingsdato = null;
             }
 
             // --  belob
@@ -484,19 +484,19 @@ namespace nsPuls3060
                 belobmun = (belob / 100);
                 if ((fortegn == 0))
                 {
-                    m_rec_betlin.Belob = 0;
+                    m_rec_betlin.belob = 0;
                 }
                 else if ((fortegn == 1))
                 {
-                    m_rec_betlin.Belob = belobmun;
+                    m_rec_betlin.belob = belobmun;
                 }
                 else if ((fortegn == 2))
                 {
-                    m_rec_betlin.Belob = (belobmun * -1);
+                    m_rec_betlin.belob = (belobmun * -1);
                 }
                 else
                 {
-                    m_rec_betlin.Belob = null;
+                    m_rec_betlin.belob = null;
                 }
             }
             else if ((sektion == "0215"))
@@ -506,68 +506,68 @@ namespace nsPuls3060
                 belobmun = (belob / 100);
                 if ((fortegn == 0))
                 {
-                    m_rec_betlin.Belob = 0;
+                    m_rec_betlin.belob = 0;
                 }
                 else if ((fortegn == 1))
                 {
-                    m_rec_betlin.Belob = belobmun;
+                    m_rec_betlin.belob = belobmun;
                 }
                 else
                 {
-                    m_rec_betlin.Belob = null;
+                    m_rec_betlin.belob = null;
                 }
             }
             else
             {
-                m_rec_betlin.Belob = null;
+                m_rec_betlin.belob = null;
             }
 
             // --  faknr
             if ((sektion == "0211"))
             {
-                m_rec_betlin.Faknr = int.Parse("0" + rec.Substring(69, 9).Trim());
+                m_rec_betlin.faknr = int.Parse("0" + rec.Substring(69, 9).Trim());
             }
             else if ((sektion == "0215"))
             {
-                m_rec_betlin.Faknr = int.Parse("0" + rec.Substring(72, 9).Trim());
+                m_rec_betlin.faknr = int.Parse("0" + rec.Substring(72, 9).Trim());
             }
             else
             {
-                m_rec_betlin.Faknr = null;
+                m_rec_betlin.faknr = null;
             }
 
             // --  pbsarkivnr
             if ((sektion == "0215"))
             {
-                m_rec_betlin.Pbsarkivnr = rec.Substring(81, 22);
+                m_rec_betlin.pbsarkivnr = rec.Substring(81, 22);
             }
             else
             {
-                m_rec_betlin.Pbsarkivnr = null;
+                m_rec_betlin.pbsarkivnr = null;
             }
 
             // --  indbetalingsdato
             if ((rec.Substring(103, 6) != "000000"))
             {
-                m_rec_betlin.Indbetalingsdato = DateTime.Parse("20"
+                m_rec_betlin.indbetalingsdato = DateTime.Parse("20"
                             + (rec.Substring(107, 2) + ("-"
                             + (rec.Substring(105, 2) + ("-" + rec.Substring(103, 2))))));
             }
             else
             {
-                m_rec_betlin.Indbetalingsdato = null;
+                m_rec_betlin.indbetalingsdato = null;
             }
 
             // --  bogforingsdato
             if ((rec.Substring(109, 6) != "000000"))
             {
-                m_rec_betlin.Bogforingsdato = DateTime.Parse("20"
+                m_rec_betlin.bogforingsdato = DateTime.Parse("20"
                             + (rec.Substring(113, 2) + ("-"
                             + (rec.Substring(111, 2) + ("-" + rec.Substring(109, 2))))));
             }
             else
             {
-                m_rec_betlin.Bogforingsdato = null;
+                m_rec_betlin.bogforingsdato = null;
             }
 
             // --  indbetalingsbelob
@@ -578,19 +578,19 @@ namespace nsPuls3060
                 belobmun = (belob / 100);
                 if ((fortegn == 0))
                 {
-                    m_rec_betlin.Indbetalingsbelob = 0;
+                    m_rec_betlin.indbetalingsbelob = 0;
                 }
                 else if ((fortegn == 1))
                 {
-                    m_rec_betlin.Indbetalingsbelob = belobmun;
+                    m_rec_betlin.indbetalingsbelob = belobmun;
                 }
                 else if ((fortegn == 2))
                 {
-                    m_rec_betlin.Indbetalingsbelob = (belobmun * -1);
+                    m_rec_betlin.indbetalingsbelob = (belobmun * -1);
                 }
                 else
                 {
-                    m_rec_betlin.Indbetalingsbelob = null;
+                    m_rec_betlin.indbetalingsbelob = null;
                 }
             }
             else if ((sektion == "0215"))
@@ -600,46 +600,46 @@ namespace nsPuls3060
                 belobmun = (belob / 100);
                 if ((fortegn == 0))
                 {
-                    m_rec_betlin.Indbetalingsbelob = 0;
+                    m_rec_betlin.indbetalingsbelob = 0;
                 }
                 else if ((fortegn == 1))
                 {
-                    m_rec_betlin.Indbetalingsbelob = belobmun;
+                    m_rec_betlin.indbetalingsbelob = belobmun;
                 }
                 else
                 {
-                    m_rec_betlin.Indbetalingsbelob = null;
+                    m_rec_betlin.indbetalingsbelob = null;
                 }
             }
             else
             {
-                m_rec_betlin.Indbetalingsbelob = null;
+                m_rec_betlin.indbetalingsbelob = null;
             }
 
 
             // Find or Create tblber record
             try
             {
-                m_rec_bet = (from c in m_rec_frapbs.Tblbet
-                             where c.Pbssektionnr == sektion
-                                && c.Transkode == transkode
-                                && c.Bogforingsdato == m_rec_betlin.Bogforingsdato
+                m_rec_bet = (from c in m_rec_frapbs.tblbets
+                             where c.pbssektionnr == sektion
+                                && c.transkode == transkode
+                                && c.bogforingsdato == m_rec_betlin.bogforingsdato
                              select c).First();
 
             }
             catch (System.InvalidOperationException)
             {
-                m_rec_bet = new Tblbet
+                m_rec_bet = new tblbet
                 {
-                    Pbssektionnr = sektion,
-                    Transkode = transkode,
-                    Bogforingsdato = m_rec_betlin.Bogforingsdato
+                    pbssektionnr = sektion,
+                    transkode = transkode,
+                    bogforingsdato = m_rec_betlin.bogforingsdato
                 };
-                m_rec_frapbs.Tblbet.Add(m_rec_bet);
+                m_rec_frapbs.tblbets.Add(m_rec_bet);
             }
 
             // Add tblbetlin
-            m_rec_bet.Tblbetlin.Add(m_rec_betlin);
+            m_rec_bet.tblbetlins.Add(m_rec_betlin);
         }
     }
 }

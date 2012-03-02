@@ -35,7 +35,7 @@ namespace nsPuls3060
 
     public class clsPbs601
     {
-        private Tblpbsfiles m_rec_pbsfiles;
+        private tblpbsfile1 m_rec_pbsfiles;
 
         public delegate void Pbs601DelegateHandler(int lobnr);
         public static event Pbs601DelegateHandler SetLobnr;
@@ -54,56 +54,56 @@ namespace nsPuls3060
             TilPBSFolderPath = rec_regnskab.TilPBS;
 
             var qry_selectfiles =
-                from h in Program.dbData3060.Tblpbsforsendelse
-                join d1 in Program.dbData3060.Tblpbsfiles on h.Id equals d1.Pbsforsendelseid into details1
+                from h in Program.dbData3060.tblpbsforsendelses
+                join d1 in Program.dbData3060.tblpbsfile1s on h.id equals d1.pbsforsendelseid into details1
                 from d1 in details1.DefaultIfEmpty()
-                where d1.Id != null && d1.Filename == null
-                join d2 in Program.dbData3060.Tbltilpbs on h.Id equals d2.Pbsforsendelseid into details2
+                where d1.id != null && d1.filename == null
+                join d2 in Program.dbData3060.tbltilpbs on h.id equals d2.pbsforsendelseid into details2
                 from d2 in details2.DefaultIfEmpty()
-                where d2.Id == lobnr
+                where d2.id == lobnr
                 select new
                  {
-                     tilpbsid = (int?)d2.Id,
-                     d2.Leverancespecifikation,
-                     d2.Delsystem,
-                     d2.Leverancetype,
-                     Bilagdato = (DateTime?)d2.Bilagdato,
-                     Pbsforsendelseid = (int?)d2.Pbsforsendelseid,
-                     Udtrukket = (DateTime?)d2.Udtrukket,
-                     pbsfilesid = (int?)d1.Id
+                     tilpbsid = (int?)d2.id,
+                     d2.leverancespecifikation,
+                     d2.delsystem,
+                     d2.leverancetype,
+                     Bilagdato = (DateTime?)d2.bilagdato,
+                     Pbsforsendelseid = (int?)d2.pbsforsendelseid,
+                     Udtrukket = (DateTime?)d2.udtrukket,
+                     pbsfilesid = (int?)d1.id
                  };
 
             foreach (var rec_selecfiles in qry_selectfiles)
             {
-                var qry_pbsfiles = from h in Program.dbData3060.Tblpbsfiles
-                                   where h.Id == rec_selecfiles.pbsfilesid
+                var qry_pbsfiles = from h in Program.dbData3060.tblpbsfile1s
+                                   where h.id == rec_selecfiles.pbsfilesid
                                    select h;
                 if (qry_pbsfiles.Count() > 0)
                 {
                     m_rec_pbsfiles = qry_pbsfiles.First();
-                    TilPBSFilename = "PBS" + rec_selecfiles.Leverancespecifikation + ".lst";
+                    TilPBSFilename = "PBS" + rec_selecfiles.leverancespecifikation + ".lst";
                     varToFile = TilPBSFolderPath + TilPBSFilename;
                     ts = new FileStream(varToFile, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
 
                     var qry_pbsfile =
-                        from h in m_rec_pbsfiles.Tblpbsfile
-                        orderby h.Seqnr
+                        from h in m_rec_pbsfiles.tblpbsfiles
+                        orderby h.seqnr
                         select h;
 
                     using (StreamWriter sr = new StreamWriter(ts, Encoding.Default))
                     {
                         foreach (var rec_pbsfile in qry_pbsfile)
                         {
-                            sr.WriteLine(rec_pbsfile.Data);
+                            sr.WriteLine(rec_pbsfile.data);
                         }
                     }
                     f = new FileInfo(varToFile);
-                    m_rec_pbsfiles.Type = 8;
-                    m_rec_pbsfiles.Path = f.Directory.Name;
-                    m_rec_pbsfiles.Filename = f.Name;
-                    m_rec_pbsfiles.Size = (int)f.Length;
-                    m_rec_pbsfiles.Atime = f.LastAccessTime;
-                    m_rec_pbsfiles.Mtime = f.LastWriteTime;
+                    m_rec_pbsfiles.type = 8;
+                    m_rec_pbsfiles.path = f.Directory.Name;
+                    m_rec_pbsfiles.filename = f.Name;
+                    m_rec_pbsfiles.size = (int)f.Length;
+                    m_rec_pbsfiles.atime = f.LastAccessTime;
+                    m_rec_pbsfiles.mtime = f.LastWriteTime;
                 }
             }
             return true;
@@ -117,56 +117,56 @@ namespace nsPuls3060
             int wantalrykkere;
             wantalrykkere = 0;
 
-            bool? wbsh = (from h in Program.dbData3060.TempRykkerforslag select h.Bsh).First();
+            bool? wbsh = (from h in Program.dbData3060.tempRykkerforslags select h.bsh).First();
             bool bsh = (wbsh == null) ? false : (bool)wbsh;
             string wDelsystem;
             if (bsh) wDelsystem = "BSH";
             else wDelsystem = "EML";
 
 
-            Tbltilpbs rec_tilpbs = new Tbltilpbs
+            tbltilpb rec_tilpbs = new tbltilpb
             {
-                Delsystem = wDelsystem,
-                Leverancetype = "0601",
-                Udtrukket = DateTime.Now
+                delsystem = wDelsystem,
+                leverancetype = "0601",
+                udtrukket = DateTime.Now
             };
-            Program.dbData3060.Tbltilpbs.InsertOnSubmit(rec_tilpbs);
+            Program.dbData3060.tbltilpbs.InsertOnSubmit(rec_tilpbs);
             Program.dbData3060.SubmitChanges();
-            lobnr = rec_tilpbs.Id;
+            lobnr = rec_tilpbs.id;
 
             var rstmedlems = from k in Program.karMedlemmer
-                             join l in Program.dbData3060.TempRykkerforslaglinie on k.Nr equals l.Nr
-                             join f in Program.dbData3060.Tblfak on l.Faknr equals f.Faknr
-                             join h in Program.dbData3060.TempRykkerforslag on l.Rykkerforslagid equals h.Id
+                             join l in Program.dbData3060.tempRykkerforslaglinies on k.Nr equals l.Nr
+                             join f in Program.dbData3060.tblfaks on l.faknr equals f.faknr
+                             join h in Program.dbData3060.tempRykkerforslags on l.Rykkerforslagid equals h.id
                              select new
                              {
                                  k.Nr,
                                  k.Navn,
-                                 h.Betalingsdato,
-                                 l.Advisbelob,
-                                 l.Faknr,
-                                 f.Fradato,
-                                 f.Tildato,
-                                 f.Indmeldelse,
-                                 f.Tilmeldtpbs
+                                 h.betalingsdato,
+                                 l.advisbelob,
+                                 l.faknr,
+                                 f.fradato,
+                                 f.tildato,
+                                 f.indmeldelse,
+                                 f.tilmeldtpbs
                              };
 
             foreach (var rstmedlem in rstmedlems)
             {
-                if (bsh) winfotekst = (rstmedlem.Indmeldelse) ? 21 : 20;
-                else winfotekst = (rstmedlem.Indmeldelse) ? 31 : 30;
+                if (bsh) winfotekst = (rstmedlem.indmeldelse) ? 21 : 20;
+                else winfotekst = (rstmedlem.indmeldelse) ? 31 : 30;
 
-                Tblrykker rec_rykker = new Tblrykker
+                tblrykker rec_rykker = new tblrykker
                 {
-                    Betalingsdato = rstmedlem.Betalingsdato,
+                    betalingsdato = rstmedlem.betalingsdato,
                     Nr = rstmedlem.Nr,
-                    Faknr = rstmedlem.Faknr,
-                    Advistekst = wadvistekst,
-                    Advisbelob = rstmedlem.Advisbelob,
-                    Infotekst = winfotekst,
-                    Rykkerdato = DateTime.Today,
+                    faknr = rstmedlem.faknr,
+                    advistekst = wadvistekst,
+                    advisbelob = rstmedlem.advisbelob,
+                    infotekst = winfotekst,
+                    rykkerdato = DateTime.Today,
                 };
-                rec_tilpbs.Tblrykker.Add(rec_rykker);
+                rec_tilpbs.tblrykkers.Add(rec_rykker);
                 wantalrykkere++;
             }
             Program.dbData3060.SubmitChanges();
@@ -183,58 +183,58 @@ namespace nsPuls3060
             int wantalfakturaer;
             wantalfakturaer = 0;
 
-            bool? wbsh = (from h in Program.dbData3060.TempKontforslag select h.Bsh).First();
+            bool? wbsh = (from h in Program.dbData3060.tempKontforslags select h.bsh).First();
             bool bsh = (wbsh == null) ? false : (bool)wbsh;
             string wDelsystem;
             if (bsh) wDelsystem = "BSH";
             else wDelsystem = "BS1";
 
-            Tbltilpbs rec_tilpbs = new Tbltilpbs
+            tbltilpb rec_tilpbs = new tbltilpb
             {
-                Delsystem = wDelsystem,
-                Leverancetype = "0601",
-                Udtrukket = DateTime.Now
+                delsystem = wDelsystem,
+                leverancetype = "0601",
+                udtrukket = DateTime.Now
             };
-            Program.dbData3060.Tbltilpbs.InsertOnSubmit(rec_tilpbs);
+            Program.dbData3060.tbltilpbs.InsertOnSubmit(rec_tilpbs);
             Program.dbData3060.SubmitChanges();
-            lobnr = rec_tilpbs.Id;
+            lobnr = rec_tilpbs.id;
 
             var rstmedlems = from k in Program.karMedlemmer
-                             join l in Program.dbData3060.TempKontforslaglinie on k.Nr equals l.Nr
-                             join h in Program.dbData3060.TempKontforslag on l.Kontforslagid equals h.Id
+                             join l in Program.dbData3060.tempKontforslaglinies on k.Nr equals l.Nr
+                             join h in Program.dbData3060.tempKontforslags on l.Kontforslagid equals h.id
                              select new
                              {
                                  k.Nr,
                                  k.Navn,
-                                 h.Betalingsdato,
-                                 l.Advisbelob,
-                                 l.Fradato,
-                                 l.Tildato,
-                                 l.Indmeldelse,
-                                 l.Tilmeldtpbs,
+                                 h.betalingsdato,
+                                 l.advisbelob,
+                                 l.fradato,
+                                 l.tildato,
+                                 l.indmeldelse,
+                                 l.tilmeldtpbs,
                              };
 
             foreach (var rstmedlem in rstmedlems)
             {
-                if (rstmedlem.Indmeldelse) winfotekst = 11;
-                else winfotekst = (rstmedlem.Tilmeldtpbs) ? 10 : 12;
+                if (rstmedlem.indmeldelse) winfotekst = 11;
+                else winfotekst = (rstmedlem.tilmeldtpbs) ? 10 : 12;
 
-                Tblfak rec_fak = new Tblfak
+                tblfak rec_fak = new tblfak
                 {
-                    Betalingsdato = rstmedlem.Betalingsdato,
+                    betalingsdato = rstmedlem.betalingsdato,
                     Nr = rstmedlem.Nr,
-                    Faknr = clsPbs.nextval("faknr"),
-                    Advistekst = wadvistekst,
-                    Advisbelob = rstmedlem.Advisbelob,
-                    Infotekst = winfotekst,
-                    Bogfkonto = 1800,
-                    Vnr = 1,
-                    Fradato = rstmedlem.Fradato,
-                    Tildato = rstmedlem.Tildato,
-                    Indmeldelse = rstmedlem.Indmeldelse,
-                    Tilmeldtpbs = rstmedlem.Tilmeldtpbs
+                    faknr = clsPbs.nextval("faknr"),
+                    advistekst = wadvistekst,
+                    advisbelob = rstmedlem.advisbelob,
+                    infotekst = winfotekst,
+                    bogfkonto = 1800,
+                    vnr = 1,
+                    fradato = rstmedlem.fradato,
+                    tildato = rstmedlem.tildato,
+                    indmeldelse = rstmedlem.indmeldelse,
+                    tilmeldtpbs = rstmedlem.tilmeldtpbs
                 };
-                rec_tilpbs.Tblfak.Add(rec_fak);
+                rec_tilpbs.tblfaks.Add(rec_fak);
                 wantalfakturaer++;
             }
             Program.dbData3060.SubmitChanges();
@@ -249,53 +249,53 @@ namespace nsPuls3060
             int? wSaveFaknr;
 
             {
-                var antal = (from c in Program.dbData3060.Tbltilpbs
-                             where c.Id == lobnr
+                var antal = (from c in Program.dbData3060.tbltilpbs
+                             where c.id == lobnr
                              select c).Count();
                 if (antal == 0) { throw new Exception("101 - Der er ingen PBS forsendelse for id: " + lobnr); }
             }
             {
-                var antal = (from c in Program.dbData3060.Tbltilpbs
-                             where c.Id == lobnr && c.Pbsforsendelseid != null
+                var antal = (from c in Program.dbData3060.tbltilpbs
+                             where c.id == lobnr && c.pbsforsendelseid != null
                              select c).Count();
                 if (antal > 0) { throw new Exception("102 - Pbsforsendelse for id: " + lobnr + " er allerede sendt"); }
             }
             {
-                var antal = (from c in Program.dbData3060.Tblrykker
-                             where c.Tilpbsid == lobnr
+                var antal = (from c in Program.dbData3060.tblrykkers
+                             where c.tilpbsid == lobnr
                              select c).Count();
                 if (antal == 0) { throw new Exception("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr); }
             }
 
-            var rsttil = (from c in Program.dbData3060.Tbltilpbs
-                          where c.Id == lobnr
+            var rsttil = (from c in Program.dbData3060.tbltilpbs
+                          where c.id == lobnr
                           select c).First();
-            if (rsttil.Udtrukket == null) { rsttil.Udtrukket = DateTime.Now; }
-            if (rsttil.Bilagdato == null) { rsttil.Bilagdato = rsttil.Udtrukket; }
-            if (rsttil.Delsystem == null) { rsttil.Delsystem = "EML"; }
-            if (rsttil.Leverancetype == null) { rsttil.Leverancetype = ""; }
+            if (rsttil.udtrukket == null) { rsttil.udtrukket = DateTime.Now; }
+            if (rsttil.bilagdato == null) { rsttil.bilagdato = rsttil.udtrukket; }
+            if (rsttil.delsystem == null) { rsttil.delsystem = "EML"; }
+            if (rsttil.leverancetype == null) { rsttil.leverancetype = ""; }
             Program.dbData3060.SubmitChanges();
 
             wleveranceid = clsPbs.nextval("leveranceid");
 
-            Tblpbsforsendelse rec_pbsforsendelse = new Tblpbsforsendelse
+            tblpbsforsendelse rec_pbsforsendelse = new tblpbsforsendelse
             {
-                Delsystem = rsttil.Delsystem,
-                Leverancetype = rsttil.Leverancetype,
-                Oprettetaf = "Ryk",
-                Oprettet = DateTime.Now,
-                Leveranceid = wleveranceid
+                delsystem = rsttil.delsystem,
+                leverancetype = rsttil.leverancetype,
+                oprettetaf = "Ryk",
+                oprettet = DateTime.Now,
+                leveranceid = wleveranceid
             };
-            Program.dbData3060.Tblpbsforsendelse.InsertOnSubmit(rec_pbsforsendelse);
-            rec_pbsforsendelse.Tbltilpbs.Add(rsttil);
+            Program.dbData3060.tblpbsforsendelses.InsertOnSubmit(rec_pbsforsendelse);
+            rec_pbsforsendelse.tbltilpbs.Add(rsttil);
 
             var rstdebs = from k in Program.karMedlemmer
-                          join r in Program.dbData3060.Tblrykker on k.Nr equals r.Nr
-                          where r.Tilpbsid == lobnr && r.Nr != null
-                          join f in Program.dbData3060.Tblfak on r.Faknr equals f.Faknr
-                          join b in Program.dbData3060.Tblindbetalingskort on r.Faknr equals b.Faknr into indbetalingskort
-                          from b in indbetalingskort.DefaultIfEmpty(new Tblindbetalingskort { Id = 0, Frapbsid = 0, Pbstranskode = null, Nr = 0, Faknr = null, Debitorkonto = null, Debgrpnr = null, Kortartkode = null, Fikreditornr = null, Indbetalerident = null, Dato = null, Belob = null, Pbssektionnr = null })
-                          orderby r.Faknr
+                          join r in Program.dbData3060.tblrykkers on k.Nr equals r.Nr
+                          where r.tilpbsid == lobnr && r.Nr != null
+                          join f in Program.dbData3060.tblfaks on r.faknr equals f.faknr
+                          join b in Program.dbData3060.tblindbetalingskorts on r.faknr equals b.faknr into indbetalingskort
+                          from b in indbetalingskort.DefaultIfEmpty(new tblindbetalingskort { id = 0, frapbsid = 0, pbstranskode = null, Nr = 0, faknr = null, debitorkonto = null, debgrpnr = null, kortartkode = null, fikreditornr = null, indbetalerident = null, dato = null, belob = null, pbssektionnr = null })
+                          orderby r.faknr
                           select new clsRstdeb
                           {
                               Nr = k.Nr,
@@ -304,15 +304,15 @@ namespace nsPuls3060
                               Navn = k.Navn,
                               Adresse = k.Adresse,
                               Postnr = k.Postnr,
-                              Faknr = r.Faknr,
-                              Betalingsdato = f.Betalingsdato,
-                              Fradato = f.Fradato,
-                              Tildato = f.Tildato,
-                              Infotekst = r.Infotekst,
-                              Tilpbsid = r.Tilpbsid,
-                              Advistekst = r.Advistekst,
-                              Belob = r.Advisbelob,
-                              OcrString = (b.Indbetalerident == null) ? null : ">" + b.Kortartkode + "< " + b.Indbetalerident + "+" + b.Fikreditornr + "<",
+                              Faknr = r.faknr,
+                              Betalingsdato = f.betalingsdato,
+                              Fradato = f.fradato,
+                              Tildato = f.tildato,
+                              Infotekst = r.infotekst,
+                              Tilpbsid = r.tilpbsid,
+                              Advistekst = r.advistekst,
+                              Belob = r.advisbelob,
+                              OcrString = (b.indbetalerident == null) ? null : ">" + b.kortartkode + "< " + b.indbetalerident + "+" + b.fikreditornr + "<",
                               Email = k.Email
                           };
 
@@ -346,8 +346,8 @@ namespace nsPuls3060
                 wSaveFaknr = rstdeb.Faknr;
             } // -- End rstdebs
 
-            rsttil.Udtrukket = DateTime.Now;
-            rsttil.Leverancespecifikation = wleveranceid.ToString();
+            rsttil.udtrukket = DateTime.Now;
+            rsttil.leverancespecifikation = wleveranceid.ToString();
             Program.dbData3060.SubmitChanges();
         }
 
@@ -400,59 +400,59 @@ namespace nsPuls3060
             antal022tot = 0;
 
             {
-                var antal = (from c in Program.dbData3060.Tbltilpbs
-                             where c.Id == lobnr
+                var antal = (from c in Program.dbData3060.tbltilpbs
+                             where c.id == lobnr
                              select c).Count();
                 if (antal == 0) { throw new Exception("101 - Der er ingen PBS forsendelse for id: " + lobnr); }
             }
             {
-                var antal = (from c in Program.dbData3060.Tbltilpbs
-                             where c.Id == lobnr && c.Pbsforsendelseid != null
+                var antal = (from c in Program.dbData3060.tbltilpbs
+                             where c.id == lobnr && c.pbsforsendelseid != null
                              select c).Count();
                 if (antal > 0) { throw new Exception("102 - Pbsforsendelse for id: " + lobnr + " er allerede sendt"); }
             }
             if (fakryk == fakType.fdfaktura) //KONTINGENT FAKTURA
             {
-                var antal = (from c in Program.dbData3060.Tblfak
-                             where c.Tilpbsid == lobnr
+                var antal = (from c in Program.dbData3060.tblfaks
+                             where c.tilpbsid == lobnr
                              select c).Count();
                 if (antal == 0) { throw new Exception("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr); }
             }
             if (fakryk == fakType.fdrykker) //RYKKER
             {
-                var antal = (from c in Program.dbData3060.Tblrykker
-                             where c.Tilpbsid == lobnr
+                var antal = (from c in Program.dbData3060.tblrykkers
+                             where c.tilpbsid == lobnr
                              select c).Count();
                 if (antal == 0) { throw new Exception("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr); }
             }
 
-            var rsttil = (from c in Program.dbData3060.Tbltilpbs
-                          where c.Id == lobnr
+            var rsttil = (from c in Program.dbData3060.tbltilpbs
+                          where c.id == lobnr
                           select c).First();
-            if (rsttil.Udtrukket == null) { rsttil.Udtrukket = DateTime.Now; }
-            if (rsttil.Bilagdato == null) { rsttil.Bilagdato = rsttil.Udtrukket; }
-            if (rsttil.Delsystem == null) { rsttil.Delsystem = "BS1"; }  // ????????????????
-            if (rsttil.Leverancetype == null) { rsttil.Leverancetype = ""; }
+            if (rsttil.udtrukket == null) { rsttil.udtrukket = DateTime.Now; }
+            if (rsttil.bilagdato == null) { rsttil.bilagdato = rsttil.udtrukket; }
+            if (rsttil.delsystem == null) { rsttil.delsystem = "BS1"; }  // ????????????????
+            if (rsttil.leverancetype == null) { rsttil.leverancetype = ""; }
             Program.dbData3060.SubmitChanges();
 
             wleveranceid = clsPbs.nextval("leveranceid");
 
-            Tblpbsforsendelse rec_pbsforsendelse = new Tblpbsforsendelse
+            tblpbsforsendelse rec_pbsforsendelse = new tblpbsforsendelse
             {
-                Delsystem = rsttil.Delsystem,
-                Leverancetype = rsttil.Leverancetype,
-                Oprettetaf = "Fak",
-                Oprettet = DateTime.Now,
-                Leveranceid = wleveranceid
+                delsystem = rsttil.delsystem,
+                leverancetype = rsttil.leverancetype,
+                oprettetaf = "Fak",
+                oprettet = DateTime.Now,
+                leveranceid = wleveranceid
             };
-            Program.dbData3060.Tblpbsforsendelse.InsertOnSubmit(rec_pbsforsendelse);
-            rec_pbsforsendelse.Tbltilpbs.Add(rsttil);
+            Program.dbData3060.tblpbsforsendelses.InsertOnSubmit(rec_pbsforsendelse);
+            rec_pbsforsendelse.tbltilpbs.Add(rsttil);
 
-            Tblpbsfiles rec_pbsfiles = new Tblpbsfiles();
-            rec_pbsforsendelse.Tblpbsfiles.Add(rec_pbsfiles);
+            tblpbsfile1 rec_pbsfiles = new tblpbsfile1();
+            rec_pbsforsendelse.tblpbsfile1s.Add(rec_pbsfiles);
 
-            var rstkrd = (from c in Program.dbData3060.Tblkreditor
-                          where c.Delsystem == rsttil.Delsystem
+            var rstkrd = (from c in Program.dbData3060.tblkreditors
+                          where c.delsystem == rsttil.delsystem
                           select c).First();
 
 
@@ -462,9 +462,9 @@ namespace nsPuls3060
             // - "0601"           - Leverancetype: 0601 (Betalingsoplysninger)
             // - wleveranceid     - Leveranceidentifikation: Løbenummer efter eget valg
             // - rsttil!udtrukket - Dato: 000000 eller leverancens dannelsesdato
-            rec = write002(rstkrd.Datalevnr, rsttil.Delsystem, "0601", wleveranceid.ToString(), (DateTime)rsttil.Udtrukket);
-            Tblpbsfile rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
-            rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+            rec = write002(rstkrd.datalevnr, rsttil.delsystem, "0601", wleveranceid.ToString(), (DateTime)rsttil.udtrukket);
+            tblpbsfile rec_pbsfile = new tblpbsfile { seqnr = ++seq, data = rec };
+            rec_pbsfiles.tblpbsfiles.Add(rec_pbsfile);
 
             // -- Sektion start - sektion 0112/0117
             // -  rstkrd.Pbsnr       - PBS-nr.: Kreditors PBS-nummer
@@ -475,9 +475,9 @@ namespace nsPuls3060
             // -  rstkrd.Regnr       - Reg.nr.: Overførselsregistreringsnummer
             // -  rstkrd.Kontonr     - Kontonr.: Overførselskontonummer
             // -  h_linie            - H-linie: Tekst til hovedlinie på advis
-            rec = write012(rstkrd.Pbsnr, rstkrd.Sektionnr, rstkrd.Debgrpnr, rstkrd.Datalevnavn, (DateTime)rsttil.Udtrukket, rstkrd.Regnr, rstkrd.Kontonr, h_linie);
-            rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
-            rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+            rec = write012(rstkrd.pbsnr, rstkrd.sektionnr, rstkrd.debgrpnr, rstkrd.datalevnavn, (DateTime)rsttil.udtrukket, rstkrd.regnr, rstkrd.kontonr, h_linie);
+            rec_pbsfile = new tblpbsfile { seqnr = ++seq, data = rec };
+            rec_pbsfiles.tblpbsfiles.Add(rec_pbsfile);
             antalsek++;
 
             IEnumerable<clsRstdeb> rstdebs;
@@ -485,8 +485,8 @@ namespace nsPuls3060
             {
 
                 rstdebs = from k in Program.karMedlemmer
-                          join f in Program.dbData3060.Tblfak on k.Nr equals f.Nr
-                          where f.Tilpbsid == lobnr && f.Nr != null
+                          join f in Program.dbData3060.tblfaks on k.Nr equals f.Nr
+                          where f.tilpbsid == lobnr && f.Nr != null
                           orderby f.Nr
                           select new clsRstdeb
                           {
@@ -496,25 +496,25 @@ namespace nsPuls3060
                               Navn = k.Navn,
                               Adresse = k.Adresse,
                               Postnr = k.Postnr,
-                              Faknr = f.Faknr,
-                              Betalingsdato = f.Betalingsdato,
-                              Fradato = f.Fradato,
-                              Tildato = f.Tildato,
-                              Infotekst = f.Infotekst,
-                              Tilpbsid = f.Tilpbsid,
-                              Advistekst = f.Advistekst,
-                              Belob = f.Advisbelob,
+                              Faknr = f.faknr,
+                              Betalingsdato = f.betalingsdato,
+                              Fradato = f.fradato,
+                              Tildato = f.tildato,
+                              Infotekst = f.infotekst,
+                              Tilpbsid = f.tilpbsid,
+                              Advistekst = f.advistekst,
+                              Belob = f.advisbelob,
                               OcrString = null
                           };
             }
             else if (fakryk == fakType.fdrykker) //RYKKER
             {
                 rstdebs = from k in Program.karMedlemmer
-                          join r in Program.dbData3060.Tblrykker on k.Nr equals r.Nr
-                          where r.Tilpbsid == lobnr && r.Nr != null
-                          join f in Program.dbData3060.Tblfak on r.Faknr equals f.Faknr
-                          join b in Program.dbData3060.Tblindbetalingskort on r.Faknr equals b.Faknr into indbetalingskort
-                          from b in indbetalingskort.DefaultIfEmpty(new Tblindbetalingskort { Id = 0, Frapbsid = 0, Pbstranskode = null, Nr = 0, Faknr = null, Debitorkonto = null, Debgrpnr = null, Kortartkode = null, Fikreditornr = null, Indbetalerident = null, Dato = null, Belob = null, Pbssektionnr = null })
+                          join r in Program.dbData3060.tblrykkers on k.Nr equals r.Nr
+                          where r.tilpbsid == lobnr && r.Nr != null
+                          join f in Program.dbData3060.tblfaks on r.faknr equals f.faknr
+                          join b in Program.dbData3060.tblindbetalingskorts on r.faknr equals b.faknr into indbetalingskort
+                          from b in indbetalingskort.DefaultIfEmpty(new tblindbetalingskort { id = 0, frapbsid = 0, pbstranskode = null, Nr = 0, faknr = null, debitorkonto = null, debgrpnr = null, kortartkode = null, fikreditornr = null, indbetalerident = null, dato = null, belob = null, pbssektionnr = null })
                           orderby r.Nr
                           select new clsRstdeb
                           {
@@ -524,15 +524,15 @@ namespace nsPuls3060
                               Navn = k.Navn,
                               Adresse = k.Adresse,
                               Postnr = k.Postnr,
-                              Faknr = r.Faknr,
-                              Betalingsdato = r.Betalingsdato,
-                              Fradato = f.Fradato,
-                              Tildato = f.Tildato,
-                              Infotekst = r.Infotekst,
-                              Tilpbsid = r.Tilpbsid,
-                              Advistekst = r.Advistekst,
-                              Belob = r.Advisbelob,
-                              OcrString = (b.Indbetalerident == null) ? null : ">" + b.Kortartkode + "< " + b.Indbetalerident + "+" + b.Fikreditornr + "<"
+                              Faknr = r.faknr,
+                              Betalingsdato = r.betalingsdato,
+                              Fradato = f.fradato,
+                              Tildato = f.tildato,
+                              Infotekst = r.infotekst,
+                              Tilpbsid = r.tilpbsid,
+                              Advistekst = r.advistekst,
+                              Belob = r.advisbelob,
+                              OcrString = (b.indbetalerident == null) ? null : ">" + b.kortartkode + "< " + b.indbetalerident + "+" + b.fikreditornr + "<"
                           };
             }
             else
@@ -551,11 +551,11 @@ namespace nsPuls3060
                 // - rstdeb.Kundenr   - Kundenr.: Debitors kundenummer hos kreditor
                 // - 0                - Aftalenr.: 000000000 eller 999999999
                 // - rstdeb.Navn      - Navn: Debitors navn
-                rec = write022(rstkrd.Sektionnr, rstkrd.Pbsnr, "0240", 1, rstkrd.Debgrpnr, rstdeb.Kundenr.ToString(), 0, rstdeb.Navn);
+                rec = write022(rstkrd.sektionnr, rstkrd.pbsnr, "0240", 1, rstkrd.debgrpnr, rstdeb.Kundenr.ToString(), 0, rstdeb.Navn);
                 antal022++;
                 antal022tot++;
-                rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
-                rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+                rec_pbsfile = new tblpbsfile { seqnr = ++seq, data = rec };
+                rec_pbsfiles.tblpbsfiles.Add(rec_pbsfile);
 
                 // Split adresse i 2 felter hvis længde > 35
                 string rstdeb_Adresse1 = null;
@@ -608,11 +608,11 @@ namespace nsPuls3060
                 // - rstdeb.Kundenr   - Kundenr.: Debitors kundenummer hos kreditor
                 // - 0                - Aftalenr.: 000000000 eller 999999999
                 // - rstdeb.Adresse   - Adresse 1: Adresselinie 1
-                rec = write022(rstkrd.Sektionnr, rstkrd.Pbsnr, "0240", 2, rstkrd.Debgrpnr, rstdeb.Kundenr.ToString(), 0, rstdeb_Adresse1);
+                rec = write022(rstkrd.sektionnr, rstkrd.pbsnr, "0240", 2, rstkrd.debgrpnr, rstdeb.Kundenr.ToString(), 0, rstdeb_Adresse1);
                 antal022++;
                 antal022tot++;
-                rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
-                rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+                rec_pbsfile = new tblpbsfile { seqnr = ++seq, data = rec };
+                rec_pbsfiles.tblpbsfiles.Add(rec_pbsfile);
 
                 if (!bStart_Adresse2)
                 {
@@ -625,11 +625,11 @@ namespace nsPuls3060
                     // - rstdeb.Kundenr   - Kundenr.: Debitors kundenummer hos kreditor
                     // - 0                - Aftalenr.: 000000000 eller 999999999
                     // - rstdeb.Adresse   - Adresse 1: Adresselinie 1
-                    rec = write022(rstkrd.Sektionnr, rstkrd.Pbsnr, "0240", 3, rstkrd.Debgrpnr, rstdeb.Kundenr.ToString(), 0, rstdeb_Adresse2);
+                    rec = write022(rstkrd.sektionnr, rstkrd.pbsnr, "0240", 3, rstkrd.debgrpnr, rstdeb.Kundenr.ToString(), 0, rstdeb_Adresse2);
                     antal022++;
                     antal022tot++;
-                    rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
-                    rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+                    rec_pbsfile = new tblpbsfile { seqnr = ++seq, data = rec };
+                    rec_pbsfiles.tblpbsfiles.Add(rec_pbsfile);
                 }
 
                 // -- Debitorpostnummer
@@ -641,11 +641,11 @@ namespace nsPuls3060
                 // - rstdeb.Kundenr   - Kundenr.: Debitors kundenummer hos kreditor
                 // - 0                - Aftalenr.: 000000000 eller 999999999
                 // - rstdeb.Postnr    - Postnr.: Postnummer
-                rec = write022(rstkrd.Sektionnr, rstkrd.Pbsnr, "0240", 9, rstkrd.Debgrpnr, rstdeb.Kundenr.ToString(), 0, rstdeb.Postnr.ToString());
+                rec = write022(rstkrd.sektionnr, rstkrd.pbsnr, "0240", 9, rstkrd.debgrpnr, rstdeb.Kundenr.ToString(), 0, rstdeb.Postnr.ToString());
                 antal022++;
                 antal022tot++;
-                rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
-                rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+                rec_pbsfile = new tblpbsfile { seqnr = ++seq, data = rec };
+                rec_pbsfiles.tblpbsfiles.Add(rec_pbsfile);
 
                 // -- Forfald betaling
                 if (rstdeb.Belob > 0)
@@ -679,11 +679,11 @@ namespace nsPuls3060
                 // - fortegn                  -
                 // - belobint                 - Beløb: Beløb i øre uden fortegn
                 // - rstdeb.Faknr             - faknr: Information vedrørende betalingen.
-                rec = write042(rstkrd.Sektionnr, rstkrd.Pbsnr, rstkrd.Transkodebetaling, rstkrd.Debgrpnr, rstdeb.Kundenr.ToString(), 0, (DateTime)rstdeb.Betalingsdato, fortegn, belobint, (int)rstdeb.Faknr);
+                rec = write042(rstkrd.sektionnr, rstkrd.pbsnr, rstkrd.transkodebetaling, rstkrd.debgrpnr, rstdeb.Kundenr.ToString(), 0, (DateTime)rstdeb.Betalingsdato, fortegn, belobint, (int)rstdeb.Faknr);
                 antal042++;
                 antal042tot++;
-                rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
-                rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+                rec_pbsfile = new tblpbsfile { seqnr = ++seq, data = rec };
+                rec_pbsfiles.tblpbsfiles.Add(rec_pbsfile);
 
                 recnr = 0;
                 string[] splitchars = { "\r\n" };
@@ -721,9 +721,9 @@ namespace nsPuls3060
                         // - 0.0               - Advisbeløb 1: Beløb på advis
                         // - ""                - Advistekst 2: Tekstlinie på advis
                         // - 0.0               - Advisbeløb 2: Beløb på advis
-                        rec = write052(rstkrd.Sektionnr, rstkrd.Pbsnr, "0241", recnr, rstkrd.Debgrpnr, rstdeb.Kundenr.ToString(), 0, advistekst, advisbelob, "", 0);
-                        rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
-                        rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+                        rec = write052(rstkrd.sektionnr, rstkrd.pbsnr, "0241", recnr, rstkrd.debgrpnr, rstdeb.Kundenr.ToString(), 0, advistekst, advisbelob, "", 0);
+                        rec_pbsfile = new tblpbsfile { seqnr = ++seq, data = rec };
+                        rec_pbsfiles.tblpbsfiles.Add(rec_pbsfile);
                     }
                 }
 
@@ -760,9 +760,9 @@ namespace nsPuls3060
                         // - 0.0                  - Advisbeløb 1: Beløb på advis
                         // - ""                   - Advistekst 2: Tekstlinie på advis
                         // - 0.0                  - Advisbeløb 2: Beløb på advis
-                        rec = write052(rstkrd.Sektionnr, rstkrd.Pbsnr, "0241", recnr, rstkrd.Debgrpnr, rstdeb.Kundenr.ToString(), 0, advisline, 0, "", 0);
-                        rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
-                        rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+                        rec = write052(rstkrd.sektionnr, rstkrd.pbsnr, "0241", recnr, rstkrd.debgrpnr, rstdeb.Kundenr.ToString(), 0, advisline, 0, "", 0);
+                        rec_pbsfile = new tblpbsfile { Seqnr = ++seq, Data = rec };
+                        rec_pbsfiles.tblpbsfiles.Add(rec_pbsfile);
                     }
                 }
 
@@ -776,9 +776,9 @@ namespace nsPuls3060
             // - belob042         - Beløb: Nettobeløb i 042 records
             // - antal052         - Antal 052: Antal foranstående 052 records
             // - antal022         - Antal 022: Antal foranstående 022 records
-            rec = write092(rstkrd.Pbsnr, rstkrd.Sektionnr, rstkrd.Debgrpnr, antal042, belob042, antal052, antal022);
-            rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
-            rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+            rec = write092(rstkrd.pbsnr, rstkrd.sektionnr, rstkrd.debgrpnr, antal042, belob042, antal052, antal022);
+            rec_pbsfile = new tblpbsfile { Seqnr = ++seq, Data = rec };
+            rec_pbsfiles.tblpbsfiles.Add(rec_pbsfile);
 
             // -- Leverance slut  - 0601 Betalingsoplysninger
             // - rstkrd.Datalevnr - Dataleverandørnr.: Dataleverandørens SE-nummer
@@ -789,12 +789,12 @@ namespace nsPuls3060
             // - belob042tot      - Beløb: Nettobeløb i 042 records
             // - antal052tot      - Antal 052: Antal foranstående 052 records
             // - antal022tot      - Antal 022: Antal foranstående 022 records
-            rec = write992(rstkrd.Datalevnr, rstkrd.Delsystem, "0601", antalsek, antal042tot, belob042tot, antal052tot, antal022tot);
-            rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
-            rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+            rec = write992(rstkrd.datalevnr, rstkrd.delsystem, "0601", antalsek, antal042tot, belob042tot, antal052tot, antal022tot);
+            rec_pbsfile = new tblpbsfile { seqnr = ++seq, data = rec };
+            rec_pbsfiles.tblpbsfiles.Add(rec_pbsfile);
 
-            rsttil.Udtrukket = DateTime.Now;
-            rsttil.Leverancespecifikation = wleveranceid.ToString();
+            rsttil.udtrukket = DateTime.Now;
+            rsttil.leverancespecifikation = wleveranceid.ToString();
             Program.dbData3060.SubmitChanges();
         }
 

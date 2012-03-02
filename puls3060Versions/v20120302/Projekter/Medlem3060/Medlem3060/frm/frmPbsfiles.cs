@@ -23,24 +23,24 @@ namespace nsPuls3060
         {
             m_listfile = true;
             this.Text = "Pbsfiles";
-            var qry = from p in Program.dbData3060.Tblpbsfiles
-                      join f in Program.dbData3060.Tblpbsforsendelse on p.Pbsforsendelseid equals f.Id into forsendelse
+            var qry = from p in Program.dbData3060.tblpbsfile1s
+                      join f in Program.dbData3060.tblpbsforsendelses on p.pbsforsendelseid equals f.id into forsendelse
                       from f in forsendelse.DefaultIfEmpty()
                       select new
                       {
-                          p.Id,
-                          p.Path,
-                          p.Filename,
-                          Size = (int?)p.Size,
-                          Atime = (DateTime?)p.Atime,
-                          Mtime = (DateTime?)p.Mtime,
-                          Pbsforsendelseid = (int?)f.Id,
-                          f.Delsystem,
-                          f.Leverancetype,
-                          f.Oprettetaf,
-                          Oprettet = (DateTime?)f.Oprettet,
-                          Leveranceid = (int?)f.Leveranceid,
-                          Transmittime = (DateTime?)p.Transmittime
+                          p.id,
+                          p.path,
+                          p.filename,
+                          Size = (int?)p.size,
+                          Atime = (DateTime?)p.atime,
+                          Mtime = (DateTime?)p.mtime,
+                          Pbsforsendelseid = (int?)f.id,
+                          f.delsystem,
+                          f.leverancetype,
+                          f.oprettetaf,
+                          Oprettet = (DateTime?)f.oprettet,
+                          Leveranceid = (int?)f.leveranceid,
+                          Transmittime = (DateTime?)p.transmittime
                       };
             bindingSource1.DataSource = qry;
             dataGridView1.DataSource = bindingSource1;
@@ -84,14 +84,14 @@ namespace nsPuls3060
         {
             m_listfile = false;
             this.Text = "Pbsfile";
-            var qry = from p in Program.dbData3060.Tblpbsfile
-                      join f in Program.dbData3060.Tblpbsfiles on p.Pbsfilesid equals f.Id
-                      orderby f.Id descending, p.Seqnr
+            var qry = from p in Program.dbData3060.tblpbsfiles
+                      join f in Program.dbData3060.tblpbsfile1s on p.pbsfilesid equals f.id
+                      orderby f.id descending, p.seqnr
                       select new
                       {
-                          seq = p.Id,
-                          file = f.Filename,
-                          data = p.Data
+                          seq = p.id,
+                          file = f.filename,
+                          data = p.data
                       };
             bindingSource1.DataSource = qry;
             dataGridView1.DataSource = bindingSource1;
@@ -105,7 +105,7 @@ namespace nsPuls3060
         {
             m_listfile = false;
             this.Text = "Pbsforsendelse";
-            bindingSource1.DataSource = Program.dbData3060.Tblpbsforsendelse;
+            bindingSource1.DataSource = Program.dbData3060.tblpbsforsendelses;
             dataGridView1.DataSource = bindingSource1;
 
             // Grid attributes 
@@ -140,9 +140,9 @@ namespace nsPuls3060
 
         private void fillrichData(int filesid)
         {
-            var src = from d in Program.dbData3060.Tblpbsfile
-                      where d.Pbsfilesid == filesid
-                      orderby d.Seqnr
+            var src = from d in Program.dbData3060.tblpbsfiles
+                      where d.pbsfilesid == filesid
+                      orderby d.seqnr
                       select d;
             int i = 0;
             int test = src.Count();
@@ -151,11 +151,11 @@ namespace nsPuls3060
             {
                 if (++i == 1)
                 {
-                    data = d.Data;
+                    data = d.data;
                 }
                 else
                 {
-                    data += "\n" + d.Data;
+                    data += "\n" + d.data;
                 }
             }
             this.richData.Text = data;

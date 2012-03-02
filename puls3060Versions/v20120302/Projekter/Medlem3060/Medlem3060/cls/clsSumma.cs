@@ -19,11 +19,11 @@ namespace nsPuls3060
             {
                 if (rec_regnskab.DatoLaas > Startdato) Startdato = rec_regnskab.DatoLaas;
             }
-            var qry_ord = from f in Program.dbData3060.Tblfak
-                          where f.SFakID == null && Startdato <= f.Betalingsdato && f.Betalingsdato <= Slutdato
-                          join b in Program.dbData3060.Tblbetlin on f.Faknr equals b.Faknr
-                          where b.Pbstranskode == "0236" || b.Pbstranskode == "0297"
-                          select new { f.Id, Pbsfaknr = f.Faknr, f.Nr, f.Advisbelob, f.Betalingsdato, f.Vnr, f.Bogfkonto, b.Indbetalingsdato };
+            var qry_ord = from f in Program.dbData3060.tblfaks
+                          where f.SFakID == null && Startdato <= f.betalingsdato && f.betalingsdato <= Slutdato
+                          join b in Program.dbData3060.tblbetlins on f.faknr equals b.faknr
+                          where b.pbstranskode == "0236" || b.pbstranskode == "0297"
+                          select new { f.id, Pbsfaknr = f.faknr, f.Nr, f.advisbelob, f.betalingsdato, f.vnr, f.bogfkonto, b.indbetalingsdato };
 
             int AntalOrdre = qry_ord.Count();
 
@@ -56,7 +56,7 @@ namespace nsPuls3060
                 {
                     SidsteSFakID++;
                     SidsteRec_no++;
-                    int orebelob = (int)o.Advisbelob * 100;
+                    int orebelob = (int)o.advisbelob * 100;
 
                     ordtype_s ord = new ordtype_s
                     (
@@ -85,18 +85,18 @@ namespace nsPuls3060
                     recFakturavarer_s rec_Fakturavarer_s = new recFakturavarer_s
                     {
                         Fakid = SidsteSFakID.ToString(),
-                        Varenr = (int)o.Vnr,
+                        Varenr = (int)o.vnr,
                         VareTekst = "Puls 3060 kontingent",
-                        Bogfkonto = (int)o.Bogfkonto,
+                        Bogfkonto = (int)o.bogfkonto,
                         Antal = 1,
-                        Fakturabelob = (double)o.Advisbelob
+                        Fakturabelob = (double)o.advisbelob
                     };
                     Program.karFakturavarer_s.Add(rec_Fakturavarer_s);
 
                     try
                     {
-                        Tblfak rec_fak = (from f in Program.dbData3060.Tblfak
-                                          where f.Id == o.Id
+                        tblfak rec_fak = (from f in Program.dbData3060.tblfaks
+                                          where f.id == o.id
                                           select f).First();
                         rec_fak.SFakID = SidsteSFakID;
                     }
@@ -133,9 +133,9 @@ namespace nsPuls3060
         {
             var qry = from k in Program.karFakturaer_s
                       where k.faknr > 0
-                      join f in Program.dbData3060.Tblfak on k.fakid equals f.SFakID
+                      join f in Program.dbData3060.tblfaks on k.fakid equals f.SFakID
                       where f.SFaknr == null
-                      select new { f.Id, SFaknr = k.faknr };
+                      select new { f.id, SFaknr = k.faknr };
 
             int AntalFakturaer = qry.Count();
             if (qry.Count() > 0)
@@ -144,8 +144,8 @@ namespace nsPuls3060
                 {
                     try
                     {
-                        Tblfak rec_fak = (from f in Program.dbData3060.Tblfak
-                                          where f.Id == k.Id
+                        tblfak rec_fak = (from f in Program.dbData3060.tblfaks
+                                          where f.id == k.id
                                           select f).First();
                         rec_fak.SFaknr = k.SFaknr;
                     }
@@ -164,26 +164,26 @@ namespace nsPuls3060
             int saveBetid = 0;
             var bogf = from s in Program.karFakturaer_s
                        //where s.saldo != 0
-                       join f in Program.dbData3060.Tblfak on s.fakid equals f.SFakID
+                       join f in Program.dbData3060.tblfaks on s.fakid equals f.SFakID
                        where f.SFaknr != null
                        join m in Program.karMedlemmer on f.Nr equals m.Nr
-                       join bl in Program.dbData3060.Tblbetlin on f.Faknr equals bl.Faknr
-                       join b in Program.dbData3060.Tblbet on bl.Betid equals b.Id
-                       where b.Summabogfort != true
-                       join p in Program.dbData3060.Tblfrapbs on b.Frapbsid equals p.Id
-                       orderby p.Id, b.Id, bl.Id
+                       join bl in Program.dbData3060.tblbetlins on f.faknr equals bl.faknr
+                       join b in Program.dbData3060.tblbets on bl.betid equals b.id
+                       where b.summabogfort != true
+                       join p in Program.dbData3060.tblfrapbs on b.frapbsid equals p.id
+                       orderby p.id, b.id, bl.id
                        select new
                        {
-                           Frapbsid = p.Id,
-                           p.Leverancespecifikation,
-                           Betid = b.Id,
-                           GruppeIndbetalingsbelob = b.Indbetalingsbelob,
-                           Betlinid = bl.Id,
-                           Fakid = f.Id,
-                           bl.Betalingsdato,
-                           bl.Indbetalingsdato,
+                           Frapbsid = p.id,
+                           p.leverancespecifikation,
+                           Betid = b.id,
+                           GruppeIndbetalingsbelob = b.indbetalingsbelob,
+                           Betlinid = bl.id,
+                           Fakid = f.id,
+                           bl.betalingsdato,
+                           bl.indbetalingsdato,
                            m.Navn,
-                           bl.Indbetalingsbelob,
+                           bl.indbetalingsbelob,
                            f.SFaknr
                        };
             int AntalBetalinger = bogf.Count();
@@ -214,7 +214,7 @@ namespace nsPuls3060
                         {
                             Dato = ToDay,    //(b.Betalingsdato > b.Indbetalingsdato) ? (DateTime)b.Betalingsdato : (DateTime)b.Indbetalingsdato,
                             Bilag = ++BS1_SidsteNr,
-                            Tekst = "Indbetalingskort K 81131945-" + ((DateTime)b.Indbetalingsdato).Day + "." + ((DateTime)b.Indbetalingsdato).Month,
+                            Tekst = "Indbetalingskort K 81131945-" + ((DateTime)b.indbetalingsdato).Day + "." + ((DateTime)b.indbetalingsdato).Month,
                             Afstemningskonto = "Bank",
                             Belob = b.GruppeIndbetalingsbelob,
                             Kontonr = null,
@@ -222,8 +222,8 @@ namespace nsPuls3060
                         };
                         Program.karKladde.Add(gkl);
 
-                        var rec_bet = (from ub in Program.dbData3060.Tblbet where ub.Id == b.Betid select ub).First();
-                        rec_bet.Summabogfort = true;
+                        var rec_bet = (from ub in Program.dbData3060.tblbets where ub.id == b.Betid select ub).First();
+                        rec_bet.summabogfort = true;
 
                     }
 
@@ -233,7 +233,7 @@ namespace nsPuls3060
                         Bilag = BS1_SidsteNr,
                         Tekst = "F" + b.SFaknr + " " + b.Navn,
                         Afstemningskonto = null,
-                        Belob = b.Indbetalingsbelob,
+                        Belob = b.indbetalingsbelob,
                         Kontonr = 56100,
                         Faknr = b.SFaknr
                     };
@@ -251,17 +251,17 @@ namespace nsPuls3060
             var bogf = from f in Program.karFakturaer_k
                        where f.saldo != 0
                        //join o in Program.dbData3060.Tbloverforsel on f.fakid equals o.SFakID
-                       join o in Program.dbData3060.Tbloverforsel on f.faknr equals o.SFaknr
-                       where o.Tilpbsid == lobnr
+                       join o in Program.dbData3060.tbloverforsels on f.faknr equals o.SFaknr
+                       where o.tilpbsid == lobnr
                        join m in Program.karMedlemmer on o.Nr equals m.Nr
-                       orderby o.Betalingsdato ascending
+                       orderby o.betalingsdato ascending
                        select new
                        {
-                           Fakid = o.Id,
+                           Fakid = o.id,
                            m.Navn,
                            o.SFaknr,
-                           o.Betalingsdato,
-                           o.Advisbelob
+                           o.betalingsdato,
+                           o.advisbelob
                        };
             int AntalBetalinger = bogf.Count();
             if (bogf.Count() > 0)
@@ -282,22 +282,22 @@ namespace nsPuls3060
                 {
                     recKladde gkl = new recKladde
                     {
-                        Dato = clsOverfoersel.bankdageplus((DateTime)b.Betalingsdato, -1),
+                        Dato = clsOverfoersel.bankdageplus((DateTime)b.betalingsdato, -1),
                         Bilag = ++BS1_SidsteNr,
                         Tekst = "Overførsel",
                         Afstemningskonto = "Bank",
-                        Belob = -b.Advisbelob,
+                        Belob = -b.advisbelob,
                         Kontonr = null,
                         Faknr = null
                     };
                     Program.karKladde.Add(gkl);
                     recKladde kl = new recKladde
                     {
-                        Dato = clsOverfoersel.bankdageplus((DateTime)b.Betalingsdato, -1),
+                        Dato = clsOverfoersel.bankdageplus((DateTime)b.betalingsdato, -1),
                         Bilag = BS1_SidsteNr,
                         Tekst = "KF" + b.SFaknr + " " + b.Navn,
                         Afstemningskonto = null,
-                        Belob = -b.Advisbelob,
+                        Belob = -b.advisbelob,
                         Kontonr = 65100,
                         Faknr = b.SFaknr
                     };

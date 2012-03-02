@@ -70,7 +70,7 @@
             // 
             // bsKreditor
             // 
-            this.bsKreditor.DataSource = typeof(nsPuls3060.Tblkreditor);
+            this.bsKreditor.DataSource = typeof(nsPuls3060.tblkreditor);
             // 
             // bNavKreditor
             // 

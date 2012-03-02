@@ -63,8 +63,8 @@ namespace nsPuls3060
                                join m in Program.karMedlemmer on h.kreditornr.ToString() equals m.Krdktonr
                                where Program.ValidatekBank(m.Bank)
                                //join f in Program.dbData3060.Tbloverforsel on h.fakid equals f.SFakID into overforsel
-                               join f in Program.dbData3060.Tbloverforsel on h.faknr equals f.SFaknr into overforsel
-                               from f in overforsel.DefaultIfEmpty(new Tbloverforsel { Id = 0, Tilpbsid = null, Nr = null, SFaknr = null, SFakID = null, Advistekst = null, Advisbelob = null, Emailtekst = null, Emailsent = null, Bankregnr = null, Bankkontonr = null, Betalingsdato = null })
+                               join f in Program.dbData3060.tbloverforsels on h.faknr equals f.SFaknr into overforsel
+                               from f in overforsel.DefaultIfEmpty(new tbloverforsel { id = 0, tilpbsid = null, Nr = null, SFaknr = null, SFakID = null, advistekst = null, advisbelob = null, emailtekst = null, emailsent = null, bankregnr = null, bankkontonr = null, betalingsdato = null })
                                //where f.SFakID == null
                                where f.SFaknr == null
                                select new
@@ -241,7 +241,7 @@ namespace nsPuls3060
             this.pgmBetal.Minimum = 0;
             this.pgmBetal.Value = 0;
             this.pgmBetal.Visible = true;
-            Program.dbData3060.TempBetalforslag.DeleteAllOnSubmit(Program.dbData3060.TempBetalforslag);
+            Program.dbData3060.tempBetalforslags.DeleteAllOnSubmit(Program.dbData3060.tempBetalforslags);
             Program.dbData3060.SubmitChanges();
             if ((imax == 0))
             {
@@ -250,11 +250,11 @@ namespace nsPuls3060
             }
             else
             {
-                TempBetalforslag rec_tempBetalforslag = new TempBetalforslag
+                tempBetalforslag rec_tempBetalforslag = new tempBetalforslag
                 {
-                    Betalingsdato = DateTime.Now,
+                    betalingsdato = DateTime.Now,
                 };
-                Program.dbData3060.TempBetalforslag.InsertOnSubmit(rec_tempBetalforslag);
+                Program.dbData3060.tempBetalforslags.InsertOnSubmit(rec_tempBetalforslag);
                 var i = 0;
                 foreach (ListViewItem lvi in lvwKrdFaktura.Items)
                 {
@@ -265,16 +265,16 @@ namespace nsPuls3060
                     advisbelob = decimal.Parse(lvi.SubItems[5].Text);
                     Bank = lvi.SubItems[6].Text;
 
-                    TempBetalforslaglinie rec_tempBetalforslaglinie = new TempBetalforslaglinie
+                    tempBetalforslaglinie rec_tempBetalforslaglinie = new tempBetalforslaglinie
                     {
                         Nr = Nr,
-                        Fakid = int.Parse(keyval),
-                        Advisbelob = (decimal)advisbelob,
-                        Bankregnr = Bank.Substring(0,4),
-                        Bankkontonr = Bank.Substring(5,10),
-                        Faknr = faknr,
+                        fakid = int.Parse(keyval),
+                        advisbelob = (decimal)advisbelob,
+                        bankregnr = Bank.Substring(0,4),
+                        bankkontonr = Bank.Substring(5,10),
+                        faknr = faknr,
                      };
-                    rec_tempBetalforslag.TempBetalforslaglinie.Add(rec_tempBetalforslaglinie);
+                    rec_tempBetalforslag.tempBetalforslaglinies.Add(rec_tempBetalforslaglinie);
                 }
                 Program.dbData3060.SubmitChanges();
 

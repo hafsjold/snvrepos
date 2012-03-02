@@ -29,7 +29,7 @@ namespace nsPuls3060
             string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xls";
 
             var MedlemmerAll = from h in Program.karMedlemmer
-                               join d1 in Program.dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
+                               join d1 in Program.dbData3060.tblMedlems on h.Nr equals d1.Nr into details1
                                from x in details1.DefaultIfEmpty()  //new TblMedlem { Nr = -1, Kon = "X", FodtDato = new DateTime(1900, 1, 1) })
                                select new clsMedlemInternAll
                                {
@@ -41,7 +41,7 @@ namespace nsPuls3060
                                    Bynavn = h.Bynavn,
                                    Telefon = h.Telefon,
                                    Email = h.Email,
-                                   Kon = x.Kon,
+                                   Kon = x.Kon.ToString(),
                                    FodtDato = x.FodtDato,
                                    Bank = h.Bank,
                                    erMedlem = (h.erMedlem()) ? 1 : 0,
@@ -184,7 +184,7 @@ namespace nsPuls3060
             string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xls";
 
             var MedlemmerAll = from h in Program.karMedlemmer
-                               join d1 in Program.dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
+                               join d1 in Program.dbData3060.tblMedlems on h.Nr equals d1.Nr into details1
                                from x in details1.DefaultIfEmpty()  //new TblMedlem { Nr = -1, Kon = "X", FodtDato = new DateTime(1900, 1, 1) })
                                select new clsMedlemExternAll
                                {
@@ -196,7 +196,7 @@ namespace nsPuls3060
                                    Bynavn = h.Bynavn,
                                    Telefon = h.Telefon,
                                    Email = h.Email,
-                                   Kon = x.Kon,
+                                   Kon = x.Kon.ToString(),
                                    FodtDato = x.FodtDato,
                                    erMedlem = (h.erMedlem()) ? 1 : 0,
                                    erPBS = (clsPbs.gettilmeldtpbs(h.Nr)) ? 1 : 0,
@@ -331,7 +331,7 @@ namespace nsPuls3060
             string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xls";
 
             var MedlemmerAll = from h in Program.karMedlemmer
-                               join d1 in Program.dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
+                               join d1 in Program.dbData3060.tblMedlems on h.Nr equals d1.Nr into details1
                                from x in details1.DefaultIfEmpty()  //new TblMedlem { Nr = -1, Kon = "X", FodtDato = new DateTime(1900, 1, 1) })
                                select new clsMedlemExternAll
                                {
@@ -343,7 +343,7 @@ namespace nsPuls3060
                                    Bynavn = h.Bynavn,
                                    Telefon = h.Telefon,
                                    Email = h.Email,
-                                   Kon = x.Kon,
+                                   Kon = x.Kon.ToString(),
                                    FodtDato = x.FodtDato,
                                    erMedlem = (h.erMedlem()) ? 1 : 0,
                                    erPBS = (clsPbs.gettilmeldtpbs(h.Nr)) ? 1 : 0,

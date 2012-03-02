@@ -19,17 +19,17 @@ namespace nsPuls3060
     public class clsSFTP
     {
         private SFtp m_sftp;
-        private Tblpbsfile m_rec_pbsfile;
-        private Tblsftp m_rec_sftp;
+        private tblpbsfile m_rec_pbsfile;
+        private tblsftp m_rec_sftp;
 
         public clsSFTP()
         {
 #if (DEBUG)
-            m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "TestHD36" select s).First();
-            //m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Test" select s).First();
-            //m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Produktion" select s).First();
+            m_rec_sftp = (from s in Program.dbData3060.tblsftps where s.navn == "TestHD36" select s).First();
+            //m_rec_sftp = (from s in Program.dbData3060.tblsftps where s.navn == "Test" select s).First();
+            //m_rec_sftp = (from s in Program.dbData3060.tblsftps where s.navn == "Produktion" select s).First();
 #else
-            m_rec_sftp = (from s in Program.dbData3060.Tblsftp where s.Navn == "Produktion" select s).First();
+            m_rec_sftp = (from s in Program.dbData3060.tblsftps where s.navn == "Produktion" select s).First();
 #endif
 
             m_sftp = new SFtp();
@@ -37,18 +37,18 @@ namespace nsPuls3060
             if (!success) throw new Exception(m_sftp.LastErrorText);
             m_sftp.ConnectTimeoutMs = 60000;
             m_sftp.IdleTimeoutMs = 55000;
-            success = m_sftp.Connect(m_rec_sftp.Host, int.Parse(m_rec_sftp.Port));
+            success = m_sftp.Connect(m_rec_sftp.host, int.Parse(m_rec_sftp.port));
             if (!success) throw new Exception(m_sftp.LastErrorText);
             Chilkat.SshKey key = new Chilkat.SshKey();
 
-            string privKey = m_rec_sftp.Certificate;
+            string privKey = m_rec_sftp.certificate;
             if (privKey == null) throw new Exception(m_sftp.LastErrorText);
 
-            key.Password = m_rec_sftp.Pincode;
+            key.Password = m_rec_sftp.pincode;
             success = key.FromOpenSshPrivateKey(privKey);
             if (!success) throw new Exception(m_sftp.LastErrorText);
 
-            success = m_sftp.AuthenticatePk(m_rec_sftp.User, key);
+            success = m_sftp.AuthenticatePk(m_rec_sftp.user, key);
             if (!success) throw new Exception(m_sftp.LastErrorText);
 
             //  After authenticating, the SFTP subsystem must be initialized:
@@ -69,24 +69,24 @@ namespace nsPuls3060
             var rec_regnskab = Program.qryAktivRegnskab();
 
             var qry_selectfiles =
-                from h in Program.dbData3060.Tblpbsforsendelse
-                join d1 in Program.dbData3060.Tblpbsfiles on h.Id equals d1.Pbsforsendelseid into details1
+                from h in Program.dbData3060.tblpbsforsendelses
+                join d1 in Program.dbData3060.tblpbsfile1s on h.id equals d1.pbsforsendelseid into details1
                 from d1 in details1.DefaultIfEmpty()
-                where d1.Id != null && d1.Filename == null
-                join d2 in Program.dbData3060.Tbltilpbs on h.Id equals d2.Pbsforsendelseid into details2
+                where d1.id != null && d1.filename == null
+                join d2 in Program.dbData3060.tbltilpbs on h.id equals d2.pbsforsendelseid into details2
                 from d2 in details2.DefaultIfEmpty()
-                where d2.Id == lobnr
+                where d2.id == lobnr
                 select new
                 {
-                    tilpbsid = (int?)d2.Id,
-                    d2.Leverancespecifikation,
-                    d2.Delsystem,
-                    d2.Leverancetype,
-                    Bilagdato = (DateTime?)d2.Bilagdato,
-                    Pbsforsendelseid = (int?)d2.Pbsforsendelseid,
-                    Udtrukket = (DateTime?)d2.Udtrukket,
-                    pbsfilesid = (int?)d1.Id,
-                    Leveranceid = (int)h.Leveranceid
+                    tilpbsid = (int?)d2.id,
+                    d2.leverancespecifikation,
+                    d2.delsystem,
+                    d2.leverancetype,
+                    Bilagdato = (DateTime?)d2.bilagdato,
+                    Pbsforsendelseid = (int?)d2.pbsforsendelseid,
+                    Udtrukket = (DateTime?)d2.udtrukket,
+                    pbsfilesid = (int?)d1.id,
+                    Leveranceid = (int)h.leveranceid
                 };
 
             int antal = qry_selectfiles.Count();
@@ -94,19 +94,19 @@ namespace nsPuls3060
             {
                 var rec_selecfiles = qry_selectfiles.First();
                 
-                var qry_pbsfiles = from h in Program.dbData3060.Tblpbsfiles
-                                   where h.Id == rec_selecfiles.pbsfilesid
+                var qry_pbsfiles = from h in Program.dbData3060.tblpbsfile1s
+                                   where h.id == rec_selecfiles.pbsfilesid
                                    select h;
                 if (qry_pbsfiles.Count() > 0)
                 {
-                    Tblpbsfiles m_rec_pbsfiles = qry_pbsfiles.First();
-                    TilPBSFilename = AddPbcnetRecords(rec_selecfiles.Delsystem, rec_selecfiles.Leveranceid, m_rec_pbsfiles.Id);
+                    tblpbsfile1 m_rec_pbsfiles = qry_pbsfiles.First();
+                    TilPBSFilename = AddPbcnetRecords(rec_selecfiles.delsystem, rec_selecfiles.Leveranceid, m_rec_pbsfiles.id);
                     bool success;
 
 
                     var qry_pbsfile =
-                        from h in m_rec_pbsfiles.Tblpbsfile
-                        orderby h.Seqnr
+                        from h in m_rec_pbsfiles.tblpbsfiles
+                        orderby h.seqnr
                         select h;
 
                     string TilPBSFile = "";
@@ -114,7 +114,7 @@ namespace nsPuls3060
                     foreach (var rec_pbsfile in qry_pbsfile)
                     {
                         if (i++ > 0) TilPBSFile += "\r\n";
-                        TilPBSFile += rec_pbsfile.Data;
+                        TilPBSFile += rec_pbsfile.data;
                     }
                     char[] c_TilPBSFile = TilPBSFile.ToCharArray();
                     byte[] b_TilPBSFile = System.Text.Encoding.GetEncoding("windows-1252").GetBytes(c_TilPBSFile);
@@ -122,7 +122,7 @@ namespace nsPuls3060
 
                     sendAttachedFile(TilPBSFilename, b_TilPBSFile, true);
 
-                    string fullpath = m_rec_sftp.Inbound + "/" + TilPBSFilename;
+                    string fullpath = m_rec_sftp.inbound + "/" + TilPBSFilename;
                     string handle = m_sftp.OpenFile(fullpath, "writeOnly", "createTruncate");
                     if (handle == null) throw new Exception(m_sftp.LastErrorText);
 
@@ -132,13 +132,13 @@ namespace nsPuls3060
                     success = m_sftp.CloseHandle(handle);
                     if (success != true) throw new Exception(m_sftp.LastErrorText);
 
-                    m_rec_pbsfiles.Type = 8;
-                    m_rec_pbsfiles.Path = m_rec_sftp.Inbound;
-                    m_rec_pbsfiles.Filename = TilPBSFilename;
-                    m_rec_pbsfiles.Size = FilesSize;
-                    m_rec_pbsfiles.Atime = DateTime.Now;
-                    m_rec_pbsfiles.Mtime = DateTime.Now;
-                    m_rec_pbsfiles.Transmittime = DateTime.Now;
+                    m_rec_pbsfiles.type = 8;
+                    m_rec_pbsfiles.path = m_rec_sftp.inbound;
+                    m_rec_pbsfiles.filename = TilPBSFilename;
+                    m_rec_pbsfiles.size = FilesSize;
+                    m_rec_pbsfiles.atime = DateTime.Now;
+                    m_rec_pbsfiles.mtime = DateTime.Now;
+                    m_rec_pbsfiles.transmittime = DateTime.Now;
                     Program.dbData3060.SubmitChanges();
                 }
             }
@@ -153,23 +153,23 @@ namespace nsPuls3060
             var rec_regnskab = Program.qryAktivRegnskab();
 
             var qry_selectfiles =
-                from h in Program.dbData3060.Tblpbsforsendelse
-                join d1 in Program.dbData3060.Tblpbsfiles on h.Id equals d1.Pbsforsendelseid into details1
+                from h in Program.dbData3060.tblpbsforsendelses
+                join d1 in Program.dbData3060.tblpbsfile1s on h.id equals d1.pbsforsendelseid into details1
                 from d1 in details1.DefaultIfEmpty()
-                where d1.Id == ppbsfilesid
-                join d2 in Program.dbData3060.Tbltilpbs on h.Id equals d2.Pbsforsendelseid into details2
+                where d1.id == ppbsfilesid
+                join d2 in Program.dbData3060.tbltilpbs on h.id equals d2.pbsforsendelseid into details2
                 from d2 in details2.DefaultIfEmpty()
                 select new
                 {
                     tilpbsid = (int?)d2.Id,
-                    d2.Leverancespecifikation,
-                    d2.Delsystem,
-                    d2.Leverancetype,
-                    Bilagdato = (DateTime?)d2.Bilagdato,
-                    Pbsforsendelseid = (int?)d2.Pbsforsendelseid,
-                    Udtrukket = (DateTime?)d2.Udtrukket,
-                    pbsfilesid = (int?)d1.Id,
-                    Leveranceid = (int)h.Leveranceid,
+                    d2.leverancespecifikation,
+                    d2.delsystem,
+                    d2.leverancetype,
+                    Bilagdato = (DateTime?)d2.bilagdato,
+                    Pbsforsendelseid = (int?)d2.pbsforsendelseid,
+                    Udtrukket = (DateTime?)d2.udtrukket,
+                    pbsfilesid = (int?)d1.id,
+                    Leveranceid = (int)h.leveranceid,
                 };
 
             int antal = qry_selectfiles.Count();
@@ -177,21 +177,21 @@ namespace nsPuls3060
             {
                 var rec_selecfiles = qry_selectfiles.First();
 
-                var qry_pbsfiles = from h in Program.dbData3060.Tblpbsfiles
-                                   where h.Id == rec_selecfiles.pbsfilesid
+                var qry_pbsfiles = from h in Program.dbData3060.tblpbsfile1s
+                                   where h.id == rec_selecfiles.pbsfilesid
                                    select h;
                 if (qry_pbsfiles.Count() > 0)
                 {
-                    Tblpbsfiles m_rec_pbsfiles = qry_pbsfiles.First();
-                    if (m_rec_pbsfiles.Filename != null)
+                    tblpbsfile1 m_rec_pbsfiles = qry_pbsfiles.First();
+                    if (m_rec_pbsfiles.filename != null)
                     {
-                        if (m_rec_pbsfiles.Filename.Length > 0) TilPBSFilename = m_rec_pbsfiles.Filename;
+                        if (m_rec_pbsfiles.filename.Length > 0) TilPBSFilename = m_rec_pbsfiles.filename;
                     }
                     bool success;
 
                     var qry_pbsfile =
-                        from h in m_rec_pbsfiles.Tblpbsfile
-                        orderby h.Seqnr
+                        from h in m_rec_pbsfiles.tblpbsfiles
+                        orderby h.seqnr
                         select h;
 
                     string TilPBSFile = "";
@@ -199,7 +199,7 @@ namespace nsPuls3060
                     foreach (var rec_pbsfile in qry_pbsfile)
                     {
                         if (i++ > 0) TilPBSFile += "\r\n";
-                        TilPBSFile += rec_pbsfile.Data;
+                        TilPBSFile += rec_pbsfile.data;
                     }
                     char[] c_TilPBSFile = TilPBSFile.ToCharArray();
                     byte[] b_TilPBSFile = System.Text.Encoding.GetEncoding("windows-1252").GetBytes(c_TilPBSFile);
@@ -207,7 +207,7 @@ namespace nsPuls3060
 
                     sendAttachedFile(TilPBSFilename, b_TilPBSFile, true);
 
-                    string fullpath = m_rec_sftp.Inbound + "/" + TilPBSFilename;
+                    string fullpath = m_rec_sftp.inbound + "/" + TilPBSFilename;
                     string handle = m_sftp.OpenFile(fullpath, "writeOnly", "createTruncate");
                     if (handle == null) throw new Exception(m_sftp.LastErrorText);
 
@@ -217,13 +217,13 @@ namespace nsPuls3060
                     success = m_sftp.CloseHandle(handle);
                     if (success != true) throw new Exception(m_sftp.LastErrorText);
 
-                    m_rec_pbsfiles.Type = 8;
-                    m_rec_pbsfiles.Path = m_rec_sftp.Inbound;
-                    m_rec_pbsfiles.Filename = TilPBSFilename;
-                    m_rec_pbsfiles.Size = FilesSize;
-                    m_rec_pbsfiles.Atime = DateTime.Now;
-                    m_rec_pbsfiles.Mtime = DateTime.Now;
-                    m_rec_pbsfiles.Transmittime = DateTime.Now;
+                    m_rec_pbsfiles.type = 8;
+                    m_rec_pbsfiles.path = m_rec_sftp.inbound;
+                    m_rec_pbsfiles.filename = TilPBSFilename;
+                    m_rec_pbsfiles.size = FilesSize;
+                    m_rec_pbsfiles.atime = DateTime.Now;
+                    m_rec_pbsfiles.mtime = DateTime.Now;
+                    m_rec_pbsfiles.transmittime = DateTime.Now;
                     Program.dbData3060.SubmitChanges();
                 }
             }
@@ -233,7 +233,7 @@ namespace nsPuls3060
         {
             string homedir = m_sftp.RealPath(".", "");
             //  Open a directory on the server...
-            string handle = m_sftp.OpenDir(m_rec_sftp.Outbound);
+            string handle = m_sftp.OpenDir(m_rec_sftp.outbound);
             if (handle == null) throw new Exception(m_sftp.LastErrorText);
 
             //  Download the directory listing:
@@ -288,19 +288,19 @@ namespace nsPuls3060
             {
                 foreach (var rec_pbsnetdir in leftqry_pbsnetdir)
                 {
-                    Tblpbsfiles m_rec_pbsfiles = new Tblpbsfiles
+                    tblpbsfile1 m_rec_pbsfiles = new tblpbsfile1
                     {
-                        Type = rec_pbsnetdir.Type,
-                        Path = rec_pbsnetdir.Path,
-                        Filename = rec_pbsnetdir.Filename,
-                        Size = rec_pbsnetdir.Size,
-                        Atime = rec_pbsnetdir.Atime,
-                        Mtime = rec_pbsnetdir.Mtime,
-                        Perm = rec_pbsnetdir.Perm,
-                        Uid = rec_pbsnetdir.Uid,
-                        Gid = rec_pbsnetdir.Gid
+                        type = rec_pbsnetdir.Type,
+                        path = rec_pbsnetdir.Path,
+                        filename = rec_pbsnetdir.Filename,
+                        size = rec_pbsnetdir.Size,
+                        atime = rec_pbsnetdir.Atime,
+                        mtime = rec_pbsnetdir.Mtime,
+                        perm = rec_pbsnetdir.Perm,
+                        uid = rec_pbsnetdir.Uid,
+                        gid = rec_pbsnetdir.Gid
                     };
-                    Program.dbData3060.Tblpbsfiles.InsertOnSubmit(m_rec_pbsfiles);
+                    Program.dbData3060.tblpbsfile1s.InsertOnSubmit(m_rec_pbsfiles);
 
                     //***********************************************************************
                     //  Open a file on the server:
@@ -346,16 +346,16 @@ namespace nsPuls3060
                         if (((seqnr == 0) && !(ln0_6 == "PBCNET")) || (seqnr > 0)) { seqnr++; }
                         if (ln.Length > 0)
                         {
-                            m_rec_pbsfile = new Tblpbsfile
+                            m_rec_pbsfile = new tblpbsfile
                             {
-                                Seqnr = seqnr,
-                                Data = ln
+                                seqnr = seqnr,
+                                data = ln
                             };
-                            m_rec_pbsfiles.Tblpbsfile.Add(m_rec_pbsfile);
+                            m_rec_pbsfiles.tblpbsfiles.Add(m_rec_pbsfile);
                         }
                     }
 
-                    m_rec_pbsfiles.Transmittime = DateTime.Now;
+                    m_rec_pbsfiles.transmittime = DateTime.Now;
                     Program.dbData3060.SubmitChanges();
 
                     //  Close the file.
@@ -372,7 +372,7 @@ namespace nsPuls3060
         {
             string homedir = m_sftp.RealPath(".", "");
             //  Open a directory on the server...
-            string handle = m_sftp.OpenDir(m_rec_sftp.Outbound);
+            string handle = m_sftp.OpenDir(m_rec_sftp.outbound);
             if (handle == null) throw new Exception(m_sftp.LastErrorText);
 
             //  Download the directory listing:
@@ -476,28 +476,28 @@ namespace nsPuls3060
             string filename;
             string rec;
 
-            pbcnetrecords = (from h in Program.dbData3060.Tblpbsfile
-                             where h.Pbsfilesid == pbsfilesid & (h.Seqnr == 0 | h.Seqnr == 9999)
+            pbcnetrecords = (from h in Program.dbData3060.tblpbsfiles
+                             where h.pbsfilesid == pbsfilesid & (h.seqnr == 0 | h.seqnr == 9999)
                              select h).Count();
 
             if (pbcnetrecords == 0)
             {
                 // Find antal records
-                antal = (from h in Program.dbData3060.Tblpbsfile
-                         where h.Pbsfilesid == pbsfilesid & h.Seqnr != 0 & h.Seqnr != 9999
+                antal = (from h in Program.dbData3060.tblpbsfiles
+                         where h.pbsfilesid == pbsfilesid & h.seqnr != 0 & h.seqnr != 9999
                          select h).Count();
                 transmisionsdato = DateTime.Now;
                 idlev = clsPbs.nextval("idlev");
 
-                Tblpbsfiles rec_pbsfiles = (from h in Program.dbData3060.Tblpbsfiles where h.Id == pbsfilesid select h).First();
+                tblpbsfile1 rec_pbsfiles = (from h in Program.dbData3060.tblpbsfile1s where h.id == pbsfilesid select h).First();
 
                 rec = write00(delsystem, transmisionsdato, idlev, leveranceid);
-                Tblpbsfile rec_pbsfile = new Tblpbsfile { Seqnr = 0, Data = rec };
-                rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+                tblpbsfile rec_pbsfile = new tblpbsfile { seqnr = 0, data = rec };
+                rec_pbsfiles.tblpbsfiles.Add(rec_pbsfile);
 
                 rec = write90(delsystem, transmisionsdato, idlev, leveranceid, antal);
-                rec_pbsfile = new Tblpbsfile { Seqnr = 9999, Data = rec };
-                rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+                rec_pbsfile = new tblpbsfile { seqnr = 9999, data = rec };
+                rec_pbsfiles.tblpbsfiles.Add(rec_pbsfile);
 
                 Program.dbData3060.SubmitChanges();
 

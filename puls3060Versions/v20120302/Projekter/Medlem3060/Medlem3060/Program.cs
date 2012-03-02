@@ -440,18 +440,18 @@ namespace nsPuls3060
             }
         }
 
-        public static TblRegnskab qryAktivRegnskab()
+        public static tblRegnskab qryAktivRegnskab()
         {
             try
             {
                 return (from a in Program.memAktivRegnskab
-                        join r in Program.dbData3060.TblRegnskab on a.Rid equals r.Rid
+                        join r in Program.dbData3060.tblRegnskabs on a.Rid equals r.Rid
                         select r).First();
 
             }
             catch (System.InvalidOperationException)
             {
-                return new TblRegnskab
+                return new tblRegnskab
                 {
                     Rid = 999,
                     Navn = "Vælg et eksisterende regnskab"

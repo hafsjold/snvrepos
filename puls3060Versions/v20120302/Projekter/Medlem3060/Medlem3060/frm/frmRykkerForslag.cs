@@ -55,40 +55,40 @@ namespace nsPuls3060
             if (this.RykketTidligere.Checked)
             {
                 qry_medlemmer = from h in Program.karMedlemmer
-                                join f in Program.dbData3060.Tblfak on h.Nr equals f.Nr
+                                join f in Program.dbData3060.tblfaks on h.Nr equals f.Nr
                                 where f.SFaknr == null &&
-                                      f.Rykkerstop == false &&
-                                      (int)(from q in Program.dbData3060.Tblrykker where q.Faknr == f.Faknr select q).Count() > 0
-                                orderby f.Fradato, f.Id
+                                      f.rykkerstop == false &&
+                                      (int)(from q in Program.dbData3060.tblrykkers where q.faknr == f.faknr select q).Count() > 0
+                                orderby f.fradato, f.id
                                 select new clsqry_medlemmer
                                 {
                                     Nr = h.Nr,
                                     Navn = h.Navn,
                                     Adresse = h.Adresse,
                                     Postnr = h.Postnr,
-                                    Betalingsdato = f.Betalingsdato,
-                                    Advisbelob = f.Advisbelob,
-                                    Faknr = f.Faknr
+                                    Betalingsdato = f.betalingsdato,
+                                    Advisbelob = f.advisbelob,
+                                    Faknr = f.faknr
                                 };
             }
             else
             {
                 qry_medlemmer = from h in Program.karMedlemmer
-                                join f in Program.dbData3060.Tblfak on h.Nr equals f.Nr
+                                join f in Program.dbData3060.tblfaks on h.Nr equals f.Nr
                                 where f.SFaknr == null &&
-                                      f.Rykkerstop == false &&
-                                      f.Betalingsdato.Value.AddDays(7) <= DateTime.Today &&
-                                      (int)(from q in Program.dbData3060.Tblrykker where q.Faknr == f.Faknr select q).Count() == 0
-                                orderby f.Fradato, f.Id
+                                      f.rykkerstop == false &&
+                                      f.betalingsdato.Value.AddDays(7) <= DateTime.Today &&
+                                      (int)(from q in Program.dbData3060.tblrykkers where q.faknr == f.faknr select q).Count() == 0
+                                orderby f.fradato, f.id
                                 select new clsqry_medlemmer
                                 {
                                     Nr = h.Nr,
                                     Navn = h.Navn,
                                     Adresse = h.Adresse,
                                     Postnr = h.Postnr,
-                                    Betalingsdato = f.Betalingsdato,
-                                    Advisbelob = f.Advisbelob,
-                                    Faknr = f.Faknr
+                                    Betalingsdato = f.betalingsdato,
+                                    Advisbelob = f.advisbelob,
+                                    Faknr = f.faknr
                                 };
             }
             this.lvwMedlem.Items.Clear();
@@ -257,7 +257,7 @@ namespace nsPuls3060
             this.pgmRykker.Minimum = 0;
             this.pgmRykker.Value = 0;
             this.pgmRykker.Visible = true;
-            Program.dbData3060.TempRykkerforslag.DeleteAllOnSubmit(Program.dbData3060.TempRykkerforslag);
+            Program.dbData3060.tempRykkerforslags.DeleteAllOnSubmit(Program.dbData3060.tempRykkerforslags);
             Program.dbData3060.SubmitChanges();
 
             if ((imax == 0))
@@ -267,12 +267,12 @@ namespace nsPuls3060
             }
             else
             {
-                TempRykkerforslag rec_tempRykkerforslag = new TempRykkerforslag
+                tempRykkerforslag rec_tempRykkerforslag = new tempRykkerforslag
                 {
-                    Betalingsdato = clsOverfoersel.bankdageplus(DateTime.Today, 5),
-                    Bsh = this.DelsystemBSH.Checked
+                    betalingsdato = clsOverfoersel.bankdageplus(DateTime.Today, 5),
+                    bsh = this.DelsystemBSH.Checked
                 };
-                Program.dbData3060.TempRykkerforslag.InsertOnSubmit(rec_tempRykkerforslag);
+                Program.dbData3060.tempRykkerforslags.InsertOnSubmit(rec_tempRykkerforslag);
                 var i = 0;
                 foreach (ListViewItem lvi in lvwRykker.Items)
                 {
@@ -281,13 +281,13 @@ namespace nsPuls3060
                     advisbelob = double.Parse(lvi.SubItems[5].Text);
                     faknr = int.Parse(lvi.SubItems[6].Text);
 
-                    TempRykkerforslaglinie rec_tempRykkerforslaglinie = new TempRykkerforslaglinie
+                    tempRykkerforslaglinie rec_tempRykkerforslaglinie = new tempRykkerforslaglinie
                     {
                         Nr = int.Parse(keyval),
-                        Advisbelob = (decimal)advisbelob,
-                        Faknr = faknr
+                        advisbelob = (decimal)advisbelob,
+                        faknr = faknr
                     };
-                    rec_tempRykkerforslag.TempRykkerforslaglinie.Add(rec_tempRykkerforslaglinie);
+                    rec_tempRykkerforslag.tempRykkerforslaglinies.Add(rec_tempRykkerforslaglinie);
                 }
                 Program.dbData3060.SubmitChanges();
 
@@ -318,8 +318,8 @@ namespace nsPuls3060
 
                 try
                 {
-                    var rec_tilpbs = (from t in Program.dbData3060.Tbltilpbs where t.Id == m_lobnr select t).First();
-                    TilPBSFilename = "PBS" + rec_tilpbs.Leverancespecifikation + ".lst";
+                    var rec_tilpbs = (from t in Program.dbData3060.tbltilpbs where t.id == m_lobnr select t).First();
+                    TilPBSFilename = "PBS" + rec_tilpbs.leverancespecifikation + ".lst";
                 }
                 catch (System.InvalidOperationException)
                 {

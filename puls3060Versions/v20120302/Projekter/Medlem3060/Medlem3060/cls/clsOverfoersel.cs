@@ -22,47 +22,47 @@ namespace nsPuls3060
             int wantalfakturaer;
             wantalfakturaer = 0;
 
-            Tbltilpbs rec_tilpbs = new Tbltilpbs
+            tbltilpb rec_tilpbs = new tbltilpb
             {
-                Delsystem = "OS1",
-                Leverancetype = null,
-                Udtrukket = DateTime.Now
+                delsystem = "OS1",
+                leverancetype = null,
+                udtrukket = DateTime.Now
             };
-            Program.dbData3060.Tbltilpbs.InsertOnSubmit(rec_tilpbs);
+            Program.dbData3060.tbltilpbs.InsertOnSubmit(rec_tilpbs);
             Program.dbData3060.SubmitChanges();
-            lobnr = rec_tilpbs.Id;
+            lobnr = rec_tilpbs.id;
 
             var rstmedlems = from k in Program.karMedlemmer
-                             join l in Program.dbData3060.TempBetalforslaglinie on k.Nr equals l.Nr
-                             join h in Program.dbData3060.TempBetalforslag on l.Betalforslagid equals h.Id
+                             join l in Program.dbData3060.tempBetalforslaglinies on k.Nr equals l.Nr
+                             join h in Program.dbData3060.tempBetalforslags on l.Betalforslagid equals h.id
                              select new
                              {
                                  k.Nr,
                                  k.Navn,
-                                 h.Betalingsdato,
-                                 l.Advisbelob,
-                                 l.Fakid,
-                                 l.Bankregnr,
-                                 l.Bankkontonr,
-                                 l.Faknr 
+                                 h.betalingsdato,
+                                 l.advisbelob,
+                                 l.fakid,
+                                 l.bankregnr,
+                                 l.bankkontonr,
+                                 l.faknr 
                              };
 
             foreach (var rstmedlem in rstmedlems)
             {
 
-                wadvistekst = "Puls3060-" + rstmedlem.Faknr;
-                Tbloverforsel rec_krdfak = new Tbloverforsel
+                wadvistekst = "Puls3060-" + rstmedlem.faknr;
+                tbloverforsel rec_krdfak = new tbloverforsel
                 {
                     Nr = rstmedlem.Nr,
-                    Advistekst = wadvistekst,
-                    Advisbelob = rstmedlem.Advisbelob,
-                    SFakID = rstmedlem.Fakid,
-                    SFaknr = rstmedlem.Faknr,
-                    Bankregnr = rstmedlem.Bankregnr,
-                    Bankkontonr = rstmedlem.Bankkontonr,
-                    Betalingsdato = clsOverfoersel.bankdageplus(rstmedlem.Betalingsdato, 0)
+                    advistekst = wadvistekst,
+                    advisbelob = rstmedlem.advisbelob,
+                    SFakID = rstmedlem.fakid,
+                    SFaknr = rstmedlem.faknr,
+                    bankregnr = rstmedlem.bankregnr,
+                    bankkontonr = rstmedlem.bankkontonr,
+                    betalingsdato = clsOverfoersel.bankdageplus(rstmedlem.betalingsdato, 0)
                 };
-                rec_tilpbs.Tbloverforsel.Add(rec_krdfak);
+                rec_tilpbs.tbloverforsels.Add(rec_krdfak);
                 wantalfakturaer++;
             }
             Program.dbData3060.SubmitChanges();
@@ -106,8 +106,8 @@ namespace nsPuls3060
 
 
             {
-                var antal = (from c in Program.dbData3060.Tbltilpbs
-                             where c.Id == lobnr
+                var antal = (from c in Program.dbData3060.tbltilpbs
+                             where c.id == lobnr
                              select c).Count();
                 if (antal == 0) { throw new Exception("101 - Der er ingen PBS forsendelse for id: " + lobnr); }
             }

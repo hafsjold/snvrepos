@@ -18,7 +18,7 @@ namespace nsPuls3060
 
         private void FrmKontingent_Load(object sender, EventArgs e)
         {
-            this.bsKontingent.DataSource = Program.dbData3060.TblKontingent;
+            this.bsKontingent.DataSource = Program.dbData3060.tblKontingents;
         }
 
         private void FrmKontingent_FormClosing(object sender, FormClosingEventArgs e)

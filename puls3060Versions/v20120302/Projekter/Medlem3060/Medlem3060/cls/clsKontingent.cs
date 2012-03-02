@@ -17,7 +17,7 @@ namespace nsPuls3060
             DateTime? fodtdato;
             try
             {
-                fodtdato = (from m in Program.dbData3060.TblMedlem where m.Nr == Nr select m.FodtDato).First();
+                fodtdato = (from m in Program.dbData3060.tblMedlems where m.Nr == Nr select m.FodtDato).First();
 
             }
             catch
@@ -86,15 +86,15 @@ namespace nsPuls3060
                     break;
             }
 
-            var qry1 = from k in Program.dbData3060.TblKontingent
-                      where (k.Startalder <= alder && k.Slutalder >= alder) && (k.Startdato.Date >= KontingentFradato.Date || k.Slutdato.Date >= KontingentFradato.Date)
+            var qry1 = from k in Program.dbData3060.tblKontingents
+                      where (k.startalder <= alder && k.slutalder >= alder) && (k.startdato.Date >= KontingentFradato.Date || k.slutdato.Date >= KontingentFradato.Date)
                       select k;
 
             int antal = qry1.Count();
 
             var qry2 = from k in qry1
-                       where k.Slutdato.Date <= KontingentTildato
-                       orderby k.Startdato
+                       where k.slutdato.Date <= KontingentTildato
+                       orderby k.startdato
                        select k;
 
             int antal2 = qry2.Count();
@@ -103,9 +103,9 @@ namespace nsPuls3060
             foreach (var k in qry2) 
             {
                 if ((n == 1) && (HalfPlusNextYear))
-                    kont += k.Aarskontingent/2;
+                    kont += k.aarskontingent/2;
                 else
-                    kont += k.Aarskontingent;
+                    kont += k.aarskontingent;
 
                 n++;
             }

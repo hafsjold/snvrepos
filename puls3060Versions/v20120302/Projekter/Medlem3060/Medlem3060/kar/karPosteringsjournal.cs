@@ -34,7 +34,7 @@ namespace nsPuls3060
         {
             var rec_regnskab = Program.qryAktivRegnskab();
             m_path = rec_regnskab.Eksportmappe + "Posteringsjournal.txt";
-            m_rid = rec_regnskab.Rid;
+            m_rid = rec_regnskab.rid;
             open();
         }
 

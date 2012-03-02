@@ -22,7 +22,7 @@ namespace nsPuls3060
             clsPbs objPbs = new clsPbs();
             objPbs.ReadRegnskaber();
             var rec_AktivRegnskab = Program.qryAktivRegnskab();
-            if (rec_AktivRegnskab.Rid == 999) this.cmdSidstAnventeRegnskab.Enabled = false;
+            if (rec_AktivRegnskab.rid == 999) this.cmdSidstAnventeRegnskab.Enabled = false;
             this.Regnskab.Text = rec_AktivRegnskab.Navn;
         }
 
@@ -37,10 +37,10 @@ namespace nsPuls3060
             this.cmdOpenRegnskab.Visible = false;
             this.cmdSidstAnventeRegnskab.Visible = false;
             this.Regnskab.Visible = false;
-            var rec_regnskab = (from r in Program.dbData3060.TblRegnskab select r);
+            var rec_regnskab = (from r in Program.dbData3060.tblRegnskabs select r);
             foreach (var r in rec_regnskab)
             {
-                ListViewItem it = this.listView1.Items.Add(r.Rid.ToString(), r.Navn, 0);
+                ListViewItem it = this.listView1.Items.Add(r.rid.ToString(), r.Navn, 0);
                 it.SubItems.Add((r.Afsluttet.Value == true) ? "Afsluttet" : "");
                  
             }

@@ -361,7 +361,7 @@ namespace nsPuls3060
 
     class clsPbs
     {
-        private TblRegnskab m_rec_Regnskab;
+        private tblRegnskab m_rec_Regnskab;
 
         public clsPbs() { }
 
@@ -445,10 +445,10 @@ namespace nsPuls3060
 
         public static bool gettilmeldtpbs(int? Nr)
         {
-            var pbsaftalestart = from s in Program.dbData3060.Tblaftalelin
+            var pbsaftalestart = from s in Program.dbData3060.tblaftalelins
                                  where s.Nr == Nr & (s.Pbstranskode == "0230" | s.Pbstranskode == "0231")
                                  select s;
-            var pbsaftaleslut = from s in Program.dbData3060.Tblaftalelin
+            var pbsaftaleslut = from s in Program.dbData3060.tblaftalelins
                                 where s.Nr == Nr & s.Pbstranskode != "0230" & s.Pbstranskode != "0231"
                                 select s;
 
