@@ -35,7 +35,7 @@ namespace nsPuls3060
 
     public class clsPbs601
     {
-        private tblpbsfile1 m_rec_pbsfiles;
+        private tblpbsfilename m_rec_pbsfiles;
 
         public delegate void Pbs601DelegateHandler(int lobnr);
         public static event Pbs601DelegateHandler SetLobnr;
@@ -55,7 +55,7 @@ namespace nsPuls3060
 
             var qry_selectfiles =
                 from h in Program.dbData3060.tblpbsforsendelses
-                join d1 in Program.dbData3060.tblpbsfile1s on h.id equals d1.pbsforsendelseid into details1
+                join d1 in Program.dbData3060.tblpbsfilenames on h.id equals d1.pbsforsendelseid into details1
                 from d1 in details1.DefaultIfEmpty()
                 where d1.id != null && d1.filename == null
                 join d2 in Program.dbData3060.tbltilpbs on h.id equals d2.pbsforsendelseid into details2
@@ -75,7 +75,7 @@ namespace nsPuls3060
 
             foreach (var rec_selecfiles in qry_selectfiles)
             {
-                var qry_pbsfiles = from h in Program.dbData3060.tblpbsfile1s
+                var qry_pbsfiles = from h in Program.dbData3060.tblpbsfilenames
                                    where h.id == rec_selecfiles.pbsfilesid
                                    select h;
                 if (qry_pbsfiles.Count() > 0)
@@ -448,8 +448,8 @@ namespace nsPuls3060
             Program.dbData3060.tblpbsforsendelses.InsertOnSubmit(rec_pbsforsendelse);
             rec_pbsforsendelse.tbltilpbs.Add(rsttil);
 
-            tblpbsfile1 rec_pbsfiles = new tblpbsfile1();
-            rec_pbsforsendelse.tblpbsfile1s.Add(rec_pbsfiles);
+            tblpbsfilename rec_pbsfiles = new tblpbsfilename();
+            rec_pbsforsendelse.tblpbsfilenames.Add(rec_pbsfiles);
 
             var rstkrd = (from c in Program.dbData3060.tblkreditors
                           where c.delsystem == rsttil.delsystem

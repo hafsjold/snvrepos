@@ -58,7 +58,7 @@ namespace nsPuls3060
                 var rec_regnskab = Program.qryAktivRegnskab();
                 this.toolStripStatusLabel1.Text = "Regnskab: " + rec_regnskab.rid + " " + rec_regnskab.Navn;
                 this.toolStripStatusLabel1.Alignment = ToolStripItemAlignment.Right;
-                this.toolStripStatusLabel2.Text = "Database: " + global::nsPuls3060.Properties.Settings.Default.DataBasePath;
+                this.toolStripStatusLabel2.Text = global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString_Prod;
                 this.toolStripStatusLabel2.Alignment = ToolStripItemAlignment.Right;
 
                 object ReadKontoplan = Program.karKontoplan;
@@ -129,9 +129,9 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
-            clsKontingent obsKontingent = new clsKontingent(new DateTime(2011, 12, 11), new DateTime(1967, 05, 21));
-            int xys = 1;
-            if (xys == 1) xys++;
+            //clsKontingent obsKontingent = new clsKontingent(new DateTime(2011, 12, 11), new DateTime(1967, 05, 21));
+            //int xys = 1;
+            //if (xys == 1) xys++;
             //clsSFTP objSFTP = new clsSFTP();
             //objSFTP.ReWriteTilSFtp(986);
             //clsRest objRest = new clsRest();

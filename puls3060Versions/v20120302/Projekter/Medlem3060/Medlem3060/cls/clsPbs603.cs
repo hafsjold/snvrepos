@@ -8,7 +8,7 @@ namespace nsPuls3060
     class clsPbs603
     {
         private tblpbsforsendelse m_rec_pbsforsendelse;
-        private tblpbsfile1 m_rec_pbsfiles;
+        private tblpbsfilename m_rec_pbsfiles;
         private tblfrapb m_rec_frapbs;
         private tblaftalelin m_rec_aftalelin;
         private tblindbetalingskort m_rec_indbetalingskort;
@@ -32,7 +32,7 @@ namespace nsPuls3060
             int AntalFiler = 0;
 
 
-            var qrypbsfiles = from h in Program.dbData3060.tblpbsfile1s
+            var qrypbsfiles = from h in Program.dbData3060.tblpbsfilenames
                               where h.pbsforsendelseid == null
                               join d in Program.dbData3060.tblpbsfiles on h.id equals d.pbsfilesid
                               where d.seqnr == 1 && d.data.Substring(16, 4) == "0603" && d.data.Substring(0, 2) == "BS"
@@ -109,10 +109,10 @@ namespace nsPuls3060
                                 };
                                 m_rec_pbsforsendelse.tblfrapbs.Add(m_rec_frapbs);
 
-                                m_rec_pbsfiles = (from c in Program.dbData3060.tblpbsfile1s
+                                m_rec_pbsfiles = (from c in Program.dbData3060.tblpbsfilenames
                                                   where c.id == rstpbsfiles.id
                                                   select c).First();
-                                m_rec_pbsforsendelse.tblpbsfile1s.Add(m_rec_pbsfiles);
+                                m_rec_pbsforsendelse.tblpbsfilenames.Add(m_rec_pbsfiles);
                             };
                         };
 

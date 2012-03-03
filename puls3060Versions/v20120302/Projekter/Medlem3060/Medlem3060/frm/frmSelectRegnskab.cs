@@ -37,8 +37,8 @@ namespace nsPuls3060
             this.cmdOpenRegnskab.Visible = false;
             this.cmdSidstAnventeRegnskab.Visible = false;
             this.Regnskab.Visible = false;
-            var rec_regnskab = (from r in Program.dbData3060.tblRegnskabs select r);
-            foreach (var r in rec_regnskab)
+            var rec_regnskaber = (from r in Program.memRegnskaber select r);
+            foreach (var r in rec_regnskaber)
             {
                 ListViewItem it = this.listView1.Items.Add(r.rid.ToString(), r.Navn, 0);
                 it.SubItems.Add((r.Afsluttet.Value == true) ? "Afsluttet" : "");

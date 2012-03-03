@@ -18,7 +18,7 @@ namespace nsPuls3060
 
         private void FrmRegnskab_Load(object sender, EventArgs e)
         {
-            this.bsRegnskab.DataSource = Program.dbData3060.tblRegnskabs;
+            this.bsRegnskab.DataSource = Program.memRegnskaber;
         }
 
         private void FrmRegnskab_FormClosing(object sender, FormClosingEventArgs e)

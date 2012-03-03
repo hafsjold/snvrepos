@@ -14,7 +14,7 @@ namespace nsPuls3060
     class clsPbs602
     {
         private tblpbsforsendelse m_rec_pbsforsendelse;
-        private tblpbsfile1 m_rec_pbsfiles;
+        private tblpbsfilename m_rec_pbsfiles;
         private tblpbsfile m_rec_pbsfile;
         private tblfrapb m_rec_frapbs;
         private tblbet m_rec_bet;
@@ -52,8 +52,8 @@ namespace nsPuls3060
             }
             var leftqry_pbsnetdir =
                 from h in Program.memPbsnetdir
-                join d1 in Program.dbData3060.tblpbsfile1s on new { path = h.Path, filename = h.Filename } equals new { d1.path, d1.filename } into details
-                from d1 in details.DefaultIfEmpty(new tblpbsfile1 { id = -1, type = (int?)null, path = null, filename = null, size = (int?)null, atime = (DateTime?)null, mtime = (DateTime?)null, perm = null, uid = (int?)null, gid = (int?)null })
+                join d1 in Program.dbData3060.tblpbsfilenames on new { path = h.Path, filename = h.Filename } equals new { d1.path, d1.filename } into details
+                from d1 in details.DefaultIfEmpty(new tblpbsfilename { id = -1, type = (int?)null, path = null, filename = null, size = (int?)null, atime = (DateTime?)null, mtime = (DateTime?)null, perm = null, uid = (int?)null, gid = (int?)null })
                 where d1.path == null && d1.filename == null
                 select h;
 
@@ -62,7 +62,7 @@ namespace nsPuls3060
             {
                 foreach (var rec_pbsnetdir in leftqry_pbsnetdir)
                 {
-                    tblpbsfile1 m_rec_pbsfiles = new tblpbsfile1
+                    tblpbsfilename m_rec_pbsfiles = new tblpbsfilename
                    {
                        type = rec_pbsnetdir.Type,
                        path = rec_pbsnetdir.Path,
@@ -74,7 +74,7 @@ namespace nsPuls3060
                        uid = rec_pbsnetdir.Uid,
                        gid = rec_pbsnetdir.Gid
                    };
-                    Program.dbData3060.tblpbsfile1s.InsertOnSubmit(m_rec_pbsfiles);
+                    Program.dbData3060.tblpbsfilenames.InsertOnSubmit(m_rec_pbsfiles);
 
                     string varFromFile = FraPBSFolderPath + rec_pbsnetdir.Filename;
                     int seqnr = 0;
@@ -127,7 +127,7 @@ namespace nsPuls3060
             //  sektion = "0211"
             //  rec = "BS0420398564402360000000100000000001231312345678910120310000000012755000000125                         3112031112030000000012755"
 
-            var qrypbsfiles = from h in Program.dbData3060.tblpbsfile1s
+            var qrypbsfiles = from h in Program.dbData3060.tblpbsfilenames
                               where h.pbsforsendelseid == null
                               join d in Program.dbData3060.tblpbsfiles on h.id equals d.pbsfilesid
                               where d.seqnr == 1 && d.data.Substring(16, 4) == "0602" && d.data.Substring(0, 2) == "BS"
@@ -201,10 +201,10 @@ namespace nsPuls3060
                                 };
                                 m_rec_pbsforsendelse.tblfrapbs.Add(m_rec_frapbs);
 
-                                m_rec_pbsfiles = (from c in Program.dbData3060.tblpbsfile1s
+                                m_rec_pbsfiles = (from c in Program.dbData3060.tblpbsfilenames
                                                   where c.id == rstpbsfiles.id
                                                   select c).First();
-                                m_rec_pbsforsendelse.tblpbsfile1s.Add(m_rec_pbsfiles);
+                                m_rec_pbsforsendelse.tblpbsfilenames.Add(m_rec_pbsfiles);
                             }
                         }
                         if ((leverancetype == "0602"))

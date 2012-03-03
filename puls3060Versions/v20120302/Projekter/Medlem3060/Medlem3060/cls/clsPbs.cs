@@ -361,7 +361,7 @@ namespace nsPuls3060
 
     class clsPbs
     {
-        private tblRegnskab m_rec_Regnskab;
+        private recRegnskaber m_rec_Regnskaber;
 
         public clsPbs() { }
 
@@ -492,7 +492,6 @@ namespace nsPuls3060
             }
             catch (System.NullReferenceException)
             {
-                Program.dbData3060.ExecuteCommand("DELETE FROM TblRegnskab;");
                 return false;
             }
             DirectoryInfo dir = new DirectoryInfo(Datamappe);
@@ -513,33 +512,32 @@ namespace nsPuls3060
 
                             try
                             {
-                                m_rec_Regnskab =
-                                    (from d in Program.dbData3060.tblRegnskabs
+                                m_rec_Regnskaber =
+                                    (from d in Program.memRegnskaber
                                      where d.rid.ToString() == RegnskabId
                                      select d).First();
 
                             }
                             catch (System.InvalidOperationException)
                             {
-                                m_rec_Regnskab = new tblRegnskab
+                                m_rec_Regnskaber = new recRegnskaber
                                 {
                                     rid = int.Parse(RegnskabId)
                                 };
-                                Program.dbData3060.tblRegnskabs.InsertOnSubmit(m_rec_Regnskab);
-                                Program.dbData3060.SubmitChanges();
+                                Program.memRegnskaber.Add(m_rec_Regnskaber);
                             }
                             RegnskabMappe = Datamappe + sub_dir.Name + @"\";
-                            m_rec_Regnskab.Placering = RegnskabMappe;
+                            m_rec_Regnskaber.Placering = RegnskabMappe;
 
-                            m_rec_Regnskab.Eksportmappe = Eksportmappe + @"\";
+                            m_rec_Regnskaber.Eksportmappe = Eksportmappe + @"\";
 
-                            if (m_rec_Regnskab.FraPBS == null)
+                            if (m_rec_Regnskaber.FraPBS == null)
                             {
-                                DirectoryInfo infoEksportmappe = new DirectoryInfo(m_rec_Regnskab.Eksportmappe);
+                                DirectoryInfo infoEksportmappe = new DirectoryInfo(m_rec_Regnskaber.Eksportmappe);
                                 if (infoEksportmappe.Exists)
                                 {
-                                    m_rec_Regnskab.FraPBS = Eksportmappe + @"\FraPBS\";
-                                    DirectoryInfo infoFraPBS = new DirectoryInfo(m_rec_Regnskab.FraPBS);
+                                    m_rec_Regnskaber.FraPBS = Eksportmappe + @"\FraPBS\";
+                                    DirectoryInfo infoFraPBS = new DirectoryInfo(m_rec_Regnskaber.FraPBS);
                                     if (!infoFraPBS.Exists)
                                     {
                                         infoFraPBS.Create();
@@ -547,13 +545,13 @@ namespace nsPuls3060
                                 }
                             }
 
-                            if (m_rec_Regnskab.TilPBS == null)
+                            if (m_rec_Regnskaber.TilPBS == null)
                             {
-                                DirectoryInfo infoEksportmappe = new DirectoryInfo(m_rec_Regnskab.Eksportmappe);
+                                DirectoryInfo infoEksportmappe = new DirectoryInfo(m_rec_Regnskaber.Eksportmappe);
                                 if (infoEksportmappe.Exists)
                                 {
-                                    m_rec_Regnskab.TilPBS = Eksportmappe + @"\TilPBS\";
-                                    DirectoryInfo infoTilPBS = new DirectoryInfo(m_rec_Regnskab.TilPBS);
+                                    m_rec_Regnskaber.TilPBS = Eksportmappe + @"\TilPBS\";
+                                    DirectoryInfo infoTilPBS = new DirectoryInfo(m_rec_Regnskaber.TilPBS);
                                     if (!infoTilPBS.Exists)
                                     {
                                         infoTilPBS.Create();
@@ -563,7 +561,7 @@ namespace nsPuls3060
                             string[] files = new string[2];
                             files[0] = RegnskabMappe + "regnskab.dat";
                             files[1] = RegnskabMappe + "status.dat";
-                            m_rec_Regnskab.Afsluttet = false;
+                            m_rec_Regnskaber.Afsluttet = false;
                             foreach (var file in files)
                             {
                                 ts = new FileStream(file, FileMode.Open, FileAccess.Read, FileShare.None);
@@ -577,25 +575,25 @@ namespace nsPuls3060
                                             switch (X[0])
                                             {
                                                 case "Navn":
-                                                    m_rec_Regnskab.Navn = X[1];
+                                                    m_rec_Regnskaber.Navn = X[1];
                                                     break;
                                                 case "Oprettet":
-                                                    m_rec_Regnskab.Oprettet = clsUtil.MSSerial2DateTime(double.Parse(X[1]));
+                                                    m_rec_Regnskaber.Oprettet = clsUtil.MSSerial2DateTime(double.Parse(X[1]));
                                                     break;
                                                 case "Start":
-                                                    m_rec_Regnskab.Start = clsUtil.MSSerial2DateTime(double.Parse(X[1]));
+                                                    m_rec_Regnskaber.Start = clsUtil.MSSerial2DateTime(double.Parse(X[1]));
                                                     break;
                                                 case "Slut":
-                                                    m_rec_Regnskab.Slut = clsUtil.MSSerial2DateTime(double.Parse(X[1]));
+                                                    m_rec_Regnskaber.Slut = clsUtil.MSSerial2DateTime(double.Parse(X[1]));
                                                     break;
                                                 case "DatoLaas":
-                                                    m_rec_Regnskab.DatoLaas = clsUtil.MSSerial2DateTime(double.Parse(X[1]));
+                                                    m_rec_Regnskaber.DatoLaas = clsUtil.MSSerial2DateTime(double.Parse(X[1]));
                                                     break;
                                                 case "Afsluttet":
-                                                    m_rec_Regnskab.Afsluttet = (X[1] == "1") ? true : false;
+                                                    m_rec_Regnskaber.Afsluttet = (X[1] == "1") ? true : false;
                                                     break;
                                                 case "Firmanavn":
-                                                    m_rec_Regnskab.Firmanavn = X[1];
+                                                    m_rec_Regnskaber.Firmanavn = X[1];
                                                     break;
                                             }
                                         }

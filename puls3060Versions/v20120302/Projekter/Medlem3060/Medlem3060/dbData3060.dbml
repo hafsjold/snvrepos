@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="puls3061_dk_db" Class="DbData3060" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=hd58;Initial Catalog=puls3061_dk_db;Persist Security Info=True;User ID=sa" SettingsObjectName="nsPuls3060.Properties.Settings" SettingsPropertyName="puls3061_dk_dbConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=hd58;Initial Catalog=puls3061_dk_db;Persist Security Info=True;User ID=sa" SettingsObjectName="nsPuls3060.Properties.Settings" SettingsPropertyName="puls3061_dk_dbConnectionString_Test" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tblaftalelin" Member="tblaftalelins">
     <Type Name="tblaftalelin">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -214,11 +214,11 @@
       <Column Name="pbsfilesid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="seqnr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="data" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
-      <Association Name="tblpbsfile1_tblpbsfile" Member="tblpbsfile1" ThisKey="pbsfilesid" OtherKey="id" Type="tblpbsfile1" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="tblpbsfilename_tblpbsfile" Member="tblpbsfilename" ThisKey="pbsfilesid" OtherKey="id" Type="tblpbsfilename" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tblpbsfiles" Member="tblpbsfile1s">
-    <Type Name="tblpbsfile1">
+  <Table Name="dbo.tblpbsfilename" Member="tblpbsfilenames">
+    <Type Name="tblpbsfilename">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="type" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="path" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
@@ -231,8 +231,8 @@
       <Column Name="gid" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="transmittime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="pbsforsendelseid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="tblpbsfile1_tblpbsfile" Member="tblpbsfiles" ThisKey="id" OtherKey="pbsfilesid" Type="tblpbsfile" />
-      <Association Name="tblpbsforsendelse_tblpbsfile1" Member="tblpbsforsendelse" ThisKey="pbsforsendelseid" OtherKey="id" Type="tblpbsforsendelse" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="tblpbsfilename_tblpbsfile" Member="tblpbsfiles" ThisKey="id" OtherKey="pbsfilesid" Type="tblpbsfile" />
+      <Association Name="tblpbsforsendelse_tblpbsfilename" Member="tblpbsforsendelse" ThisKey="pbsforsendelseid" OtherKey="id" Type="tblpbsforsendelse" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.tblpbsforsendelse" Member="tblpbsforsendelses">
@@ -244,7 +244,7 @@
       <Column Name="oprettet" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="leveranceid" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="tblpbsforsendelse_tblfrapb" Member="tblfrapbs" ThisKey="id" OtherKey="pbsforsendelseid" Type="tblfrapb" />
-      <Association Name="tblpbsforsendelse_tblpbsfile1" Member="tblpbsfile1s" ThisKey="id" OtherKey="pbsforsendelseid" Type="tblpbsfile1" />
+      <Association Name="tblpbsforsendelse_tblpbsfilename" Member="tblpbsfilenames" ThisKey="id" OtherKey="pbsforsendelseid" Type="tblpbsfilename" />
       <Association Name="tblpbsforsendelse_tbltilpb" Member="tbltilpbs" ThisKey="id" OtherKey="pbsforsendelseid" Type="tbltilpb" />
     </Type>
   </Table>
@@ -260,22 +260,6 @@
       <Column Name="[perm]" Member="perm" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="uid" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="gid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tblRegnskab" Member="tblRegnskabs">
-    <Type Name="tblRegnskab">
-      <Column Name="rid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Navn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Oprettet" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Start" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Slut" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DatoLaas" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Firmanavn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Placering" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Eksportmappe" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="TilPBS" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="FraPBS" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Afsluttet" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.tblrykker" Member="tblrykkers">

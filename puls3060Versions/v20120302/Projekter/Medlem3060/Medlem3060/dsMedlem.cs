@@ -99,7 +99,7 @@ namespace nsPuls3060
                         m_rec.Telefon = (m.IsTelefonNull()) ? null : (m.Telefon.Length > 8) ? m.Telefon.Substring(0, 4) + m.Telefon.Substring(5, 4) : m.Telefon;
                         m_rec.Email = (m.IsEmailNull()) ? null : m.Email;
                         m_rec.Bank = (m.IsBankNull()) ? null : m.Bank;
-                        //////m_rec.Kon = (m.IsKonNull()) ? null : m.Kon;
+                        m_rec.Kon = (m.IsKonNull()) ? (char?)null : (m.Kon.ToUpper() == "M") ? 'M' : 'K';
                         m_rec.FodtDato = (m.IsFodtDatoNull()) ? (DateTime?)null : m.FodtDato;
                         m.AcceptChanges();
                         break;
@@ -147,7 +147,7 @@ namespace nsPuls3060
                         m_rec.Telefon = (m.IsTelefonNull()) ? null : (m.Telefon.Length > 8) ? m.Telefon.Substring(0, 4) + m.Telefon.Substring(5, 4) : m.Telefon;
                         m_rec.Email = (m.IsEmailNull()) ? null : m.Email;
                         m_rec.Bank = (m.IsBankNull()) ? null : m.Bank;
-                        ///////m_rec.Kon = (m.IsKonNull()) ? null : m.Kon;
+                        m_rec.Kon = (m.IsKonNull()) ? (char?)null : (m.Kon.ToUpper() == "M") ? 'M' : 'K';
                         m_rec.FodtDato = (m.IsFodtDatoNull()) ? (DateTime?)null : m.FodtDato;
                         m.AcceptChanges();
                         break;
@@ -186,10 +186,9 @@ namespace nsPuls3060
                 m_rec.Telefon = (m.IsTelefonNull()) ? null : (m.Telefon.Length > 8) ? m.Telefon.Substring(0, 4) + m.Telefon.Substring(5, 4) : m.Telefon;
                 m_rec.Email = (m.IsEmailNull()) ? null : m.Email;
                 m_rec.Bank = (m.IsBankNull()) ? null : m.Bank;
-                ///////m_rec.Kon = (m.IsKonNull()) ? null : m.Kon;
+                m_rec.Kon = (m.IsKonNull()) ? (char?)null : (m.Kon.ToUpper() == "M") ? 'M' : 'K';
                 m_rec.FodtDato = (m.IsFodtDatoNull()) ? (DateTime?)null : m.FodtDato;
                 m.AcceptChanges();
-
             }
         }
 

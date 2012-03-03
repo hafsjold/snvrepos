@@ -4,11 +4,16 @@ using System.Linq;
 using System.Windows.Forms;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Security.Cryptography;
+using System.Text;
+
+
 
 namespace nsPuls3060
 {
     static class Program
     {
+        static byte[] s_aditionalEntropy = { 9, 8, 7, 6, 5 };
         private static string m_Smtphost;
         private static string m_Smtpport;
         private static string m_Smtpssl;
@@ -18,6 +23,7 @@ namespace nsPuls3060
         private static string m_MailToAddr;
         private static string m_MailFrom;
         private static string m_MailReply;
+        private static string m_Password;
 
         private static string m_path_to_lock_summasummarum_kontoplan;
         private static FileStream m_filestream_to_lock_summasummarum_kontoplan;
@@ -26,6 +32,7 @@ namespace nsPuls3060
         private static KarMedlemmer m_KarMedlemmer;
         private static MemMedlemDictionary m_dicMedlem;
         private static MemAktivRegnskab m_memAktivRegnskab;
+        private static MemRegnskaber m_memRegnskaber;
         private static MemPbsnetdir m_memPbsnetdir;
         private static KarDkkonti m_KarDkkonti;
         private static KarFakturaer_s m_KarFakturaer_s;
@@ -150,7 +157,17 @@ namespace nsPuls3060
                 m_MailReply = value;
             }
         }
-
+        public static string Password
+        {
+            get
+            {
+                return m_Password;
+            }
+            set
+            {
+                m_Password = value;
+            }
+        }
         public static string path_to_lock_summasummarum_kontoplan
         {
             get
@@ -179,28 +196,12 @@ namespace nsPuls3060
             {
                 if (m_dbData3060 == null)
                 {
-                    /*
-                    if (!File.Exists(global::nsPuls3060.Properties.Settings.Default.DataBasePath))
-                    {
-                        OpenFileDialog openFileDialog1 = new OpenFileDialog();
-                        openFileDialog1.DefaultExt = "sdf";
-                        openFileDialog1.FileName = global::nsPuls3060.Properties.Settings.Default.DataBasePath;
-                        openFileDialog1.CheckFileExists = true;
-                        openFileDialog1.CheckPathExists = true;
-                        openFileDialog1.Filter = "Database files (*.sdf)|*.sdf|All files (*.*)|*.*";
-                        openFileDialog1.FilterIndex = 1;
-                        openFileDialog1.Multiselect = false;
-                        openFileDialog1.Title = "Vælg SQL Database";
-
-                        DialogResult res = openFileDialog1.ShowDialog();
-                        if (res == DialogResult.OK)
-                        {
-                            global::nsPuls3060.Properties.Settings.Default.DataBasePath = openFileDialog1.FileName;
-                            global::nsPuls3060.Properties.Settings.Default.Save();
-                        }
-                    }
-                    */
-                    m_dbData3060 = new DbData3060(global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString + ";Password=mha733");
+                    DialogResult res = DialogResult.OK;
+                    m_Password = global::nsPuls3060.Properties.Settings.Default.UserPassword;
+                    if (Unprotect(m_Password) == null)
+                        res = (new FrmPassword()).ShowDialog();
+                    if (res != DialogResult.OK) return null;
+                    m_dbData3060 = new DbData3060(global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString_Prod + ";Password=" + Unprotect(m_Password));    
                 }
                 return m_dbData3060;
             }
@@ -259,6 +260,18 @@ namespace nsPuls3060
             set
             {
                 m_memAktivRegnskab = value;
+            }
+        }
+        public static MemRegnskaber memRegnskaber
+        {
+            get
+            {
+                if (m_memRegnskaber == null) m_memRegnskaber = new MemRegnskaber();
+                return m_memRegnskaber;
+            }
+            set
+            {
+                m_memRegnskaber = value;
             }
         }
         public static MemPbsnetdir memPbsnetdir
@@ -442,18 +455,18 @@ namespace nsPuls3060
             }
         }
 
-        public static tblRegnskab qryAktivRegnskab()
+        public static recRegnskaber qryAktivRegnskab()
         {
             try
             {
                 return (from a in Program.memAktivRegnskab
-                        join r in Program.dbData3060.tblRegnskabs on a.Rid equals r.rid
+                        join r in Program.memRegnskaber on a.Rid equals r.rid
                         select r).First();
 
             }
             catch (System.InvalidOperationException)
             {
-                return new tblRegnskab
+                return new recRegnskaber
                 {
                     rid = 999,
                     Navn = "Vælg et eksisterende regnskab"
@@ -538,6 +551,34 @@ namespace nsPuls3060
             }
             return false;
         }
+        public static string Protect(string secret)
+        {
+            try
+            {
+                var data = Encoding.Unicode.GetBytes(secret);
+                byte[] encrypted = ProtectedData.Protect(data, s_aditionalEntropy, DataProtectionScope.CurrentUser);
+                return Convert.ToBase64String(encrypted); 
+            }
+            catch (CryptographicException e)
+            {
+                return null;
+            }
+        }
+        public static string Unprotect(string cipher)
+        {
+            try
+            {
+                byte[] data = Convert.FromBase64String(cipher);
+                byte[] decrypted = ProtectedData.Unprotect(data, s_aditionalEntropy, DataProtectionScope.CurrentUser);
+                return Encoding.Unicode.GetString(decrypted); 
+
+            }
+            catch (CryptographicException e)
+            {
+                return null;
+            }
+        }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

@@ -78,18 +78,15 @@ namespace nsPuls3060
     partial void Inserttblpbsfile(tblpbsfile instance);
     partial void Updatetblpbsfile(tblpbsfile instance);
     partial void Deletetblpbsfile(tblpbsfile instance);
-    partial void Inserttblpbsfile1(tblpbsfile1 instance);
-    partial void Updatetblpbsfile1(tblpbsfile1 instance);
-    partial void Deletetblpbsfile1(tblpbsfile1 instance);
+    partial void Inserttblpbsfilename(tblpbsfilename instance);
+    partial void Updatetblpbsfilename(tblpbsfilename instance);
+    partial void Deletetblpbsfilename(tblpbsfilename instance);
     partial void Inserttblpbsforsendelse(tblpbsforsendelse instance);
     partial void Updatetblpbsforsendelse(tblpbsforsendelse instance);
     partial void Deletetblpbsforsendelse(tblpbsforsendelse instance);
     partial void Inserttblpbsnetdir(tblpbsnetdir instance);
     partial void Updatetblpbsnetdir(tblpbsnetdir instance);
     partial void Deletetblpbsnetdir(tblpbsnetdir instance);
-    partial void InserttblRegnskab(tblRegnskab instance);
-    partial void UpdatetblRegnskab(tblRegnskab instance);
-    partial void DeletetblRegnskab(tblRegnskab instance);
     partial void Inserttblrykker(tblrykker instance);
     partial void Updatetblrykker(tblrykker instance);
     partial void Deletetblrykker(tblrykker instance);
@@ -120,7 +117,7 @@ namespace nsPuls3060
     #endregion
 		
 		public DbData3060() : 
-				base(global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString, mappingSource)
+				base(global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString_Test, mappingSource)
 		{
 			OnCreated();
 		}
@@ -277,11 +274,11 @@ namespace nsPuls3060
 			}
 		}
 		
-		public System.Data.Linq.Table<tblpbsfile1> tblpbsfile1s
+		public System.Data.Linq.Table<tblpbsfilename> tblpbsfilenames
 		{
 			get
 			{
-				return this.GetTable<tblpbsfile1>();
+				return this.GetTable<tblpbsfilename>();
 			}
 		}
 		
@@ -298,14 +295,6 @@ namespace nsPuls3060
 			get
 			{
 				return this.GetTable<tblpbsnetdir>();
-			}
-		}
-		
-		public System.Data.Linq.Table<tblRegnskab> tblRegnskabs
-		{
-			get
-			{
-				return this.GetTable<tblRegnskab>();
 			}
 		}
 		
@@ -4688,7 +4677,7 @@ namespace nsPuls3060
 		
 		private string _data;
 		
-		private EntityRef<tblpbsfile1> _tblpbsfile1;
+		private EntityRef<tblpbsfilename> _tblpbsfilename;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -4706,7 +4695,7 @@ namespace nsPuls3060
 		
 		public tblpbsfile()
 		{
-			this._tblpbsfile1 = default(EntityRef<tblpbsfile1>);
+			this._tblpbsfilename = default(EntityRef<tblpbsfilename>);
 			OnCreated();
 		}
 		
@@ -4741,7 +4730,7 @@ namespace nsPuls3060
 			{
 				if ((this._pbsfilesid != value))
 				{
-					if (this._tblpbsfile1.HasLoadedOrAssignedValue)
+					if (this._tblpbsfilename.HasLoadedOrAssignedValue)
 					{
 						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
 					}
@@ -4794,26 +4783,26 @@ namespace nsPuls3060
 			}
 		}
 		
-		[Association(Name="tblpbsfile1_tblpbsfile", Storage="_tblpbsfile1", ThisKey="pbsfilesid", OtherKey="id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public tblpbsfile1 tblpbsfile1
+		[Association(Name="tblpbsfilename_tblpbsfile", Storage="_tblpbsfilename", ThisKey="pbsfilesid", OtherKey="id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public tblpbsfilename tblpbsfilename
 		{
 			get
 			{
-				return this._tblpbsfile1.Entity;
+				return this._tblpbsfilename.Entity;
 			}
 			set
 			{
-				tblpbsfile1 previousValue = this._tblpbsfile1.Entity;
+				tblpbsfilename previousValue = this._tblpbsfilename.Entity;
 				if (((previousValue != value) 
-							|| (this._tblpbsfile1.HasLoadedOrAssignedValue == false)))
+							|| (this._tblpbsfilename.HasLoadedOrAssignedValue == false)))
 				{
 					this.SendPropertyChanging();
 					if ((previousValue != null))
 					{
-						this._tblpbsfile1.Entity = null;
+						this._tblpbsfilename.Entity = null;
 						previousValue.tblpbsfiles.Remove(this);
 					}
-					this._tblpbsfile1.Entity = value;
+					this._tblpbsfilename.Entity = value;
 					if ((value != null))
 					{
 						value.tblpbsfiles.Add(this);
@@ -4823,7 +4812,7 @@ namespace nsPuls3060
 					{
 						this._pbsfilesid = default(int);
 					}
-					this.SendPropertyChanged("tblpbsfile1");
+					this.SendPropertyChanged("tblpbsfilename");
 				}
 			}
 		}
@@ -4849,8 +4838,8 @@ namespace nsPuls3060
 		}
 	}
 	
-	[Table(Name="dbo.tblpbsfiles")]
-	public partial class tblpbsfile1 : INotifyPropertyChanging, INotifyPropertyChanged
+	[Table(Name="dbo.tblpbsfilename")]
+	public partial class tblpbsfilename : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -4913,7 +4902,7 @@ namespace nsPuls3060
     partial void OnpbsforsendelseidChanged();
     #endregion
 		
-		public tblpbsfile1()
+		public tblpbsfilename()
 		{
 			this._tblpbsfiles = new EntitySet<tblpbsfile>(new Action<tblpbsfile>(this.attach_tblpbsfiles), new Action<tblpbsfile>(this.detach_tblpbsfiles));
 			this._tblpbsforsendelse = default(EntityRef<tblpbsforsendelse>);
@@ -5164,7 +5153,7 @@ namespace nsPuls3060
 			}
 		}
 		
-		[Association(Name="tblpbsfile1_tblpbsfile", Storage="_tblpbsfiles", ThisKey="id", OtherKey="pbsfilesid")]
+		[Association(Name="tblpbsfilename_tblpbsfile", Storage="_tblpbsfiles", ThisKey="id", OtherKey="pbsfilesid")]
 		public EntitySet<tblpbsfile> tblpbsfiles
 		{
 			get
@@ -5177,7 +5166,7 @@ namespace nsPuls3060
 			}
 		}
 		
-		[Association(Name="tblpbsforsendelse_tblpbsfile1", Storage="_tblpbsforsendelse", ThisKey="pbsforsendelseid", OtherKey="id", IsForeignKey=true, DeleteRule="CASCADE")]
+		[Association(Name="tblpbsforsendelse_tblpbsfilename", Storage="_tblpbsforsendelse", ThisKey="pbsforsendelseid", OtherKey="id", IsForeignKey=true, DeleteRule="CASCADE")]
 		public tblpbsforsendelse tblpbsforsendelse
 		{
 			get
@@ -5194,12 +5183,12 @@ namespace nsPuls3060
 					if ((previousValue != null))
 					{
 						this._tblpbsforsendelse.Entity = null;
-						previousValue.tblpbsfile1s.Remove(this);
+						previousValue.tblpbsfilenames.Remove(this);
 					}
 					this._tblpbsforsendelse.Entity = value;
 					if ((value != null))
 					{
-						value.tblpbsfile1s.Add(this);
+						value.tblpbsfilenames.Add(this);
 						this._pbsforsendelseid = value.id;
 					}
 					else
@@ -5234,13 +5223,13 @@ namespace nsPuls3060
 		private void attach_tblpbsfiles(tblpbsfile entity)
 		{
 			this.SendPropertyChanging();
-			entity.tblpbsfile1 = this;
+			entity.tblpbsfilename = this;
 		}
 		
 		private void detach_tblpbsfiles(tblpbsfile entity)
 		{
 			this.SendPropertyChanging();
-			entity.tblpbsfile1 = null;
+			entity.tblpbsfilename = null;
 		}
 	}
 	
@@ -5264,7 +5253,7 @@ namespace nsPuls3060
 		
 		private EntitySet<tblfrapb> _tblfrapbs;
 		
-		private EntitySet<tblpbsfile1> _tblpbsfile1s;
+		private EntitySet<tblpbsfilename> _tblpbsfilenames;
 		
 		private EntitySet<tbltilpb> _tbltilpbs;
 		
@@ -5289,7 +5278,7 @@ namespace nsPuls3060
 		public tblpbsforsendelse()
 		{
 			this._tblfrapbs = new EntitySet<tblfrapb>(new Action<tblfrapb>(this.attach_tblfrapbs), new Action<tblfrapb>(this.detach_tblfrapbs));
-			this._tblpbsfile1s = new EntitySet<tblpbsfile1>(new Action<tblpbsfile1>(this.attach_tblpbsfile1s), new Action<tblpbsfile1>(this.detach_tblpbsfile1s));
+			this._tblpbsfilenames = new EntitySet<tblpbsfilename>(new Action<tblpbsfilename>(this.attach_tblpbsfilenames), new Action<tblpbsfilename>(this.detach_tblpbsfilenames));
 			this._tbltilpbs = new EntitySet<tbltilpb>(new Action<tbltilpb>(this.attach_tbltilpbs), new Action<tbltilpb>(this.detach_tbltilpbs));
 			OnCreated();
 		}
@@ -5427,16 +5416,16 @@ namespace nsPuls3060
 			}
 		}
 		
-		[Association(Name="tblpbsforsendelse_tblpbsfile1", Storage="_tblpbsfile1s", ThisKey="id", OtherKey="pbsforsendelseid")]
-		public EntitySet<tblpbsfile1> tblpbsfile1s
+		[Association(Name="tblpbsforsendelse_tblpbsfilename", Storage="_tblpbsfilenames", ThisKey="id", OtherKey="pbsforsendelseid")]
+		public EntitySet<tblpbsfilename> tblpbsfilenames
 		{
 			get
 			{
-				return this._tblpbsfile1s;
+				return this._tblpbsfilenames;
 			}
 			set
 			{
-				this._tblpbsfile1s.Assign(value);
+				this._tblpbsfilenames.Assign(value);
 			}
 		}
 		
@@ -5485,13 +5474,13 @@ namespace nsPuls3060
 			entity.tblpbsforsendelse = null;
 		}
 		
-		private void attach_tblpbsfile1s(tblpbsfile1 entity)
+		private void attach_tblpbsfilenames(tblpbsfilename entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblpbsforsendelse = this;
 		}
 		
-		private void detach_tblpbsfile1s(tblpbsfile1 entity)
+		private void detach_tblpbsfilenames(tblpbsfilename entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblpbsforsendelse = null;
@@ -5763,332 +5752,6 @@ namespace nsPuls3060
 					this._gid = value;
 					this.SendPropertyChanged("gid");
 					this.OngidChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[Table(Name="dbo.tblRegnskab")]
-	public partial class tblRegnskab : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _rid;
-		
-		private string _Navn;
-		
-		private System.Nullable<System.DateTime> _Oprettet;
-		
-		private System.Nullable<System.DateTime> _Start;
-		
-		private System.Nullable<System.DateTime> _Slut;
-		
-		private System.Nullable<System.DateTime> _DatoLaas;
-		
-		private string _Firmanavn;
-		
-		private string _Placering;
-		
-		private string _Eksportmappe;
-		
-		private string _TilPBS;
-		
-		private string _FraPBS;
-		
-		private System.Nullable<bool> _Afsluttet;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnridChanging(int value);
-    partial void OnridChanged();
-    partial void OnNavnChanging(string value);
-    partial void OnNavnChanged();
-    partial void OnOprettetChanging(System.Nullable<System.DateTime> value);
-    partial void OnOprettetChanged();
-    partial void OnStartChanging(System.Nullable<System.DateTime> value);
-    partial void OnStartChanged();
-    partial void OnSlutChanging(System.Nullable<System.DateTime> value);
-    partial void OnSlutChanged();
-    partial void OnDatoLaasChanging(System.Nullable<System.DateTime> value);
-    partial void OnDatoLaasChanged();
-    partial void OnFirmanavnChanging(string value);
-    partial void OnFirmanavnChanged();
-    partial void OnPlaceringChanging(string value);
-    partial void OnPlaceringChanged();
-    partial void OnEksportmappeChanging(string value);
-    partial void OnEksportmappeChanged();
-    partial void OnTilPBSChanging(string value);
-    partial void OnTilPBSChanged();
-    partial void OnFraPBSChanging(string value);
-    partial void OnFraPBSChanged();
-    partial void OnAfsluttetChanging(System.Nullable<bool> value);
-    partial void OnAfsluttetChanged();
-    #endregion
-		
-		public tblRegnskab()
-		{
-			OnCreated();
-		}
-		
-		[Column(Storage="_rid", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int rid
-		{
-			get
-			{
-				return this._rid;
-			}
-			set
-			{
-				if ((this._rid != value))
-				{
-					this.OnridChanging(value);
-					this.SendPropertyChanging();
-					this._rid = value;
-					this.SendPropertyChanged("rid");
-					this.OnridChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Navn", DbType="NVarChar(50)")]
-		public string Navn
-		{
-			get
-			{
-				return this._Navn;
-			}
-			set
-			{
-				if ((this._Navn != value))
-				{
-					this.OnNavnChanging(value);
-					this.SendPropertyChanging();
-					this._Navn = value;
-					this.SendPropertyChanged("Navn");
-					this.OnNavnChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Oprettet", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Oprettet
-		{
-			get
-			{
-				return this._Oprettet;
-			}
-			set
-			{
-				if ((this._Oprettet != value))
-				{
-					this.OnOprettetChanging(value);
-					this.SendPropertyChanging();
-					this._Oprettet = value;
-					this.SendPropertyChanged("Oprettet");
-					this.OnOprettetChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Start", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Start
-		{
-			get
-			{
-				return this._Start;
-			}
-			set
-			{
-				if ((this._Start != value))
-				{
-					this.OnStartChanging(value);
-					this.SendPropertyChanging();
-					this._Start = value;
-					this.SendPropertyChanged("Start");
-					this.OnStartChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Slut", DbType="DateTime")]
-		public System.Nullable<System.DateTime> Slut
-		{
-			get
-			{
-				return this._Slut;
-			}
-			set
-			{
-				if ((this._Slut != value))
-				{
-					this.OnSlutChanging(value);
-					this.SendPropertyChanging();
-					this._Slut = value;
-					this.SendPropertyChanged("Slut");
-					this.OnSlutChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_DatoLaas", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DatoLaas
-		{
-			get
-			{
-				return this._DatoLaas;
-			}
-			set
-			{
-				if ((this._DatoLaas != value))
-				{
-					this.OnDatoLaasChanging(value);
-					this.SendPropertyChanging();
-					this._DatoLaas = value;
-					this.SendPropertyChanged("DatoLaas");
-					this.OnDatoLaasChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Firmanavn", DbType="NVarChar(50)")]
-		public string Firmanavn
-		{
-			get
-			{
-				return this._Firmanavn;
-			}
-			set
-			{
-				if ((this._Firmanavn != value))
-				{
-					this.OnFirmanavnChanging(value);
-					this.SendPropertyChanging();
-					this._Firmanavn = value;
-					this.SendPropertyChanged("Firmanavn");
-					this.OnFirmanavnChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Placering", DbType="NVarChar(255)")]
-		public string Placering
-		{
-			get
-			{
-				return this._Placering;
-			}
-			set
-			{
-				if ((this._Placering != value))
-				{
-					this.OnPlaceringChanging(value);
-					this.SendPropertyChanging();
-					this._Placering = value;
-					this.SendPropertyChanged("Placering");
-					this.OnPlaceringChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Eksportmappe", DbType="NVarChar(255)")]
-		public string Eksportmappe
-		{
-			get
-			{
-				return this._Eksportmappe;
-			}
-			set
-			{
-				if ((this._Eksportmappe != value))
-				{
-					this.OnEksportmappeChanging(value);
-					this.SendPropertyChanging();
-					this._Eksportmappe = value;
-					this.SendPropertyChanged("Eksportmappe");
-					this.OnEksportmappeChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_TilPBS", DbType="NVarChar(255)")]
-		public string TilPBS
-		{
-			get
-			{
-				return this._TilPBS;
-			}
-			set
-			{
-				if ((this._TilPBS != value))
-				{
-					this.OnTilPBSChanging(value);
-					this.SendPropertyChanging();
-					this._TilPBS = value;
-					this.SendPropertyChanged("TilPBS");
-					this.OnTilPBSChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_FraPBS", DbType="NVarChar(255)")]
-		public string FraPBS
-		{
-			get
-			{
-				return this._FraPBS;
-			}
-			set
-			{
-				if ((this._FraPBS != value))
-				{
-					this.OnFraPBSChanging(value);
-					this.SendPropertyChanging();
-					this._FraPBS = value;
-					this.SendPropertyChanged("FraPBS");
-					this.OnFraPBSChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_Afsluttet", DbType="Bit")]
-		public System.Nullable<bool> Afsluttet
-		{
-			get
-			{
-				return this._Afsluttet;
-			}
-			set
-			{
-				if ((this._Afsluttet != value))
-				{
-					this.OnAfsluttetChanging(value);
-					this.SendPropertyChanging();
-					this._Afsluttet = value;
-					this.SendPropertyChanged("Afsluttet");
-					this.OnAfsluttetChanged();
 				}
 			}
 		}

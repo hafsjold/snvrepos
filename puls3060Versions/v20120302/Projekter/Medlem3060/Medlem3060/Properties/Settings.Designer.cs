@@ -49,19 +49,6 @@ namespace nsPuls3060.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Documents and Settings\\mha\\Dokumenter\\Medlem3060\\Databaser\\SQLCompact\\dbData30" +
-            "60.sdf")]
-        public string DataBasePath {
-            get {
-                return ((string)(this["DataBasePath"]));
-            }
-            set {
-                this["DataBasePath"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
         public global::System.Drawing.Point frmMainPoint {
             get {
@@ -365,9 +352,32 @@ namespace nsPuls3060.Properties {
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=hd58;Initial Catalog=puls3061_dk_db;Persist Security Info=True;User I" +
             "D=sa")]
-        public string puls3061_dk_dbConnectionString {
+        public string puls3061_dk_dbConnectionString_Test {
             get {
-                return ((string)(this["puls3061_dk_dbConnectionString"]));
+                return ((string)(this["puls3061_dk_dbConnectionString_Test"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=mssql1.unoeuro.com;Initial Catalog=puls3061_dk_db;Integrated Security" +
+            "=False;Persist Security Info=True;User ID=puls3061_dk")]
+        public string puls3061_dk_dbConnectionString_Prod {
+            get {
+                return ((string)(this["puls3061_dk_dbConnectionString_Prod"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UserPassword {
+            get {
+                return ((string)(this["UserPassword"]));
+            }
+            set {
+                this["UserPassword"] = value;
             }
         }
     }

@@ -146,8 +146,8 @@ namespace nsPuls3060
             Program.dbData3060.tblpbsforsendelses.InsertOnSubmit(rec_pbsforsendelse);
             rec_pbsforsendelse.tbltilpbs.Add(rsttil);
 
-            tblpbsfile1 rec_pbsfiles = new tblpbsfile1();
-            rec_pbsforsendelse.tblpbsfile1s.Add(rec_pbsfiles);
+            tblpbsfilename rec_pbsfiles = new tblpbsfilename();
+            rec_pbsforsendelse.tblpbsfilenames.Add(rec_pbsfiles);
 
             tblkreditor krd = (from k in Program.dbData3060.tblkreditors
                                where k.delsystem == rsttil.delsystem

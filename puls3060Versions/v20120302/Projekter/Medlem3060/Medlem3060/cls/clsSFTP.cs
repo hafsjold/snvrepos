@@ -70,7 +70,7 @@ namespace nsPuls3060
 
             var qry_selectfiles =
                 from h in Program.dbData3060.tblpbsforsendelses
-                join d1 in Program.dbData3060.tblpbsfile1s on h.id equals d1.pbsforsendelseid into details1
+                join d1 in Program.dbData3060.tblpbsfilenames on h.id equals d1.pbsforsendelseid into details1
                 from d1 in details1.DefaultIfEmpty()
                 where d1.id != null && d1.filename == null
                 join d2 in Program.dbData3060.tbltilpbs on h.id equals d2.pbsforsendelseid into details2
@@ -94,12 +94,12 @@ namespace nsPuls3060
             {
                 var rec_selecfiles = qry_selectfiles.First();
                 
-                var qry_pbsfiles = from h in Program.dbData3060.tblpbsfile1s
+                var qry_pbsfiles = from h in Program.dbData3060.tblpbsfilenames
                                    where h.id == rec_selecfiles.pbsfilesid
                                    select h;
                 if (qry_pbsfiles.Count() > 0)
                 {
-                    tblpbsfile1 m_rec_pbsfiles = qry_pbsfiles.First();
+                    tblpbsfilename m_rec_pbsfiles = qry_pbsfiles.First();
                     TilPBSFilename = AddPbcnetRecords(rec_selecfiles.delsystem, rec_selecfiles.Leveranceid, m_rec_pbsfiles.id);
                     bool success;
 
@@ -154,7 +154,7 @@ namespace nsPuls3060
 
             var qry_selectfiles =
                 from h in Program.dbData3060.tblpbsforsendelses
-                join d1 in Program.dbData3060.tblpbsfile1s on h.id equals d1.pbsforsendelseid into details1
+                join d1 in Program.dbData3060.tblpbsfilenames on h.id equals d1.pbsforsendelseid into details1
                 from d1 in details1.DefaultIfEmpty()
                 where d1.id == ppbsfilesid
                 join d2 in Program.dbData3060.tbltilpbs on h.id equals d2.pbsforsendelseid into details2
@@ -177,12 +177,12 @@ namespace nsPuls3060
             {
                 var rec_selecfiles = qry_selectfiles.First();
 
-                var qry_pbsfiles = from h in Program.dbData3060.tblpbsfile1s
+                var qry_pbsfiles = from h in Program.dbData3060.tblpbsfilenames
                                    where h.id == rec_selecfiles.pbsfilesid
                                    select h;
                 if (qry_pbsfiles.Count() > 0)
                 {
-                    tblpbsfile1 m_rec_pbsfiles = qry_pbsfiles.First();
+                    tblpbsfilename m_rec_pbsfiles = qry_pbsfiles.First();
                     if (m_rec_pbsfiles.filename != null)
                     {
                         if (m_rec_pbsfiles.filename.Length > 0) TilPBSFilename = m_rec_pbsfiles.filename;
@@ -288,7 +288,7 @@ namespace nsPuls3060
             {
                 foreach (var rec_pbsnetdir in leftqry_pbsnetdir)
                 {
-                    tblpbsfile1 m_rec_pbsfiles = new tblpbsfile1
+                    tblpbsfilename m_rec_pbsfiles = new tblpbsfilename
                     {
                         type = rec_pbsnetdir.Type,
                         path = rec_pbsnetdir.Path,
@@ -300,7 +300,7 @@ namespace nsPuls3060
                         uid = rec_pbsnetdir.Uid,
                         gid = rec_pbsnetdir.Gid
                     };
-                    Program.dbData3060.tblpbsfile1s.InsertOnSubmit(m_rec_pbsfiles);
+                    Program.dbData3060.tblpbsfilenames.InsertOnSubmit(m_rec_pbsfiles);
 
                     //***********************************************************************
                     //  Open a file on the server:
@@ -489,7 +489,7 @@ namespace nsPuls3060
                 transmisionsdato = DateTime.Now;
                 idlev = clsPbs.nextval("idlev");
 
-                tblpbsfile1 rec_pbsfiles = (from h in Program.dbData3060.tblpbsfile1s where h.id == pbsfilesid select h).First();
+                tblpbsfilename rec_pbsfiles = (from h in Program.dbData3060.tblpbsfilenames where h.id == pbsfilesid select h).First();
 
                 rec = write00(delsystem, transmisionsdato, idlev, leveranceid);
                 tblpbsfile rec_pbsfile = new tblpbsfile { seqnr = 0, data = rec };
