@@ -314,7 +314,7 @@ namespace nsPuls3060
             this.pgmFaktura.Minimum = 0;
             this.pgmFaktura.Value = 0;
             this.pgmFaktura.Visible = true;
-            Program.dbData3060.TempKontforslag.DeleteAllOnSubmit(Program.dbData3060.TempKontforslag);
+            Program.dbData3060.tempKontforslags.DeleteAllOnSubmit(Program.dbData3060.tempKontforslags);
             Program.dbData3060.SubmitChanges();
             if ((imax == 0))
             {
@@ -323,12 +323,12 @@ namespace nsPuls3060
             }
             else
             {
-                TempKontforslag rec_tempKontforslag = new TempKontforslag
+                tempKontforslag rec_tempKontforslag = new tempKontforslag
                 {
-                    Betalingsdato = clsOverfoersel.bankdageplus(this.DatoKontingentForfald.Value,0),
-                    Bsh = this.DelsystemBSH.Checked
+                    betalingsdato = clsOverfoersel.bankdageplus(this.DatoKontingentForfald.Value,0),
+                    bsh = this.DelsystemBSH.Checked
                 };
-                Program.dbData3060.TempKontforslag.InsertOnSubmit(rec_tempKontforslag);
+                Program.dbData3060.tempKontforslags.InsertOnSubmit(rec_tempKontforslag);
                 var i = 0;
                 foreach (ListViewItem lvi in lvwKontingent.Items)
                 {
@@ -340,16 +340,16 @@ namespace nsPuls3060
                     indmeldelse = (lvi.SubItems[7].Text == "J") ? true : false;
                     tilmeldtpbs = (lvi.SubItems[8].Text == "J") ? true : false;
 
-                    TempKontforslaglinie rec_tempKontforslaglinie = new TempKontforslaglinie
+                    tempKontforslaglinie rec_tempKontforslaglinie = new tempKontforslaglinie
                     {
                         Nr = int.Parse(keyval),
-                        Advisbelob = (decimal)advisbelob,
-                        Fradato = fradato,
-                        Tildato = tildato,
-                        Indmeldelse = indmeldelse,
-                        Tilmeldtpbs = tilmeldtpbs,
+                        advisbelob = (decimal)advisbelob,
+                        fradato = fradato,
+                        tildato = tildato,
+                        indmeldelse = indmeldelse,
+                        tilmeldtpbs = tilmeldtpbs,
                     };
-                    rec_tempKontforslag.TempKontforslaglinie.Add(rec_tempKontforslaglinie);
+                    rec_tempKontforslag.tempKontforslaglinies.Add(rec_tempKontforslaglinie);
                 }
                 Program.dbData3060.SubmitChanges();
 

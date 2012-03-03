@@ -231,7 +231,7 @@ namespace nsPuls3060
             objFakturaer_s.save();
             int pNr = 3;
             DateTime pDate = DateTime.Now;
-            var qryMedlemLog = from m in Program.dbData3060.TblMedlemLog
+            var qryMedlemLog = from m in Program.dbData3060.tblMedlemLogs
                         where m.Nr == pNr && m.Logdato <= pDate
                         select new
                         {
@@ -241,8 +241,8 @@ namespace nsPuls3060
                             Akt_id = (int)m.Akt_id,
                             Akt_dato = (DateTime)m.Akt_dato
                         };
-            var qryFak = from f in Program.dbData3060.Tblfak
-                       join p in Program.dbData3060.Tbltilpbs on f.Tilpbsid equals p.Id
+            var qryFak = from f in Program.dbData3060.tblfaks
+                       join p in Program.dbData3060.tbltilpbs on f.Tilpbsid equals p.Id
                        where f.Nr == pNr && p.Bilagdato <= pDate
                        select new
                        {

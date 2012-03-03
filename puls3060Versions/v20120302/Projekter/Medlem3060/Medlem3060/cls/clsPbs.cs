@@ -369,29 +369,29 @@ namespace nsPuls3060
         {
             try
             {
-                var rst = (from c in Program.dbData3060.Tblnrserie
-                           where c.Nrserienavn == nrserienavn
+                var rst = (from c in Program.dbData3060.tblnrseries
+                           where c.nrserienavn == nrserienavn
                            select c).First();
 
-                if (rst.Sidstbrugtenr != null)
+                if (rst.sidstbrugtenr != null)
                 {
-                    rst.Sidstbrugtenr += 1;
-                    return rst.Sidstbrugtenr.Value;
+                    rst.sidstbrugtenr += 1;
+                    return rst.sidstbrugtenr.Value;
                 }
                 else
                 {
-                    rst.Sidstbrugtenr = 0;
-                    return rst.Sidstbrugtenr.Value;
+                    rst.sidstbrugtenr = 0;
+                    return rst.sidstbrugtenr.Value;
                 }
             }
             catch (System.InvalidOperationException)
             {
-                Tblnrserie rec_nrserie = new Tblnrserie
+                tblnrserie rec_nrserie = new tblnrserie
                 {
-                    Nrserienavn = nrserienavn,
-                    Sidstbrugtenr = 0
+                    nrserienavn = nrserienavn,
+                    sidstbrugtenr = 0
                 };
-                Program.dbData3060.Tblnrserie.InsertOnSubmit(rec_nrserie);
+                Program.dbData3060.tblnrseries.InsertOnSubmit(rec_nrserie);
                 Program.dbData3060.SubmitChanges();
 
                 return 0;
@@ -402,13 +402,13 @@ namespace nsPuls3060
         {
             try
             {
-                var rst = (from c in Program.dbData3060.Tblnrserie
-                           where c.Nrserienavn == nrserienavn
+                var rst = (from c in Program.dbData3060.tblnrseries
+                           where c.nrserienavn == nrserienavn
                            select c).First();
 
-                if (rst.Sidstbrugtenr != null)
+                if (rst.sidstbrugtenr != null)
                 {
-                    return rst.Sidstbrugtenr.Value + 1;
+                    return rst.sidstbrugtenr.Value + 1;
                 }
                 else
                 {
@@ -425,20 +425,20 @@ namespace nsPuls3060
         {
             try
             {
-                var rst = (from c in Program.dbData3060.Tblnrserie
-                           where c.Nrserienavn == nrserienavn
+                var rst = (from c in Program.dbData3060.tblnrseries
+                           where c.nrserienavn == nrserienavn
                            select c).First();
 
-                rst.Sidstbrugtenr = value;
+                rst.sidstbrugtenr = value;
             }
             catch (System.InvalidOperationException)
             {
-                Tblnrserie rec_nrserie = new Tblnrserie
+                tblnrserie rec_nrserie = new tblnrserie
                 {
-                    Nrserienavn = nrserienavn,
-                    Sidstbrugtenr = value
+                    nrserienavn = nrserienavn,
+                    sidstbrugtenr = value
                 };
-                Program.dbData3060.Tblnrserie.InsertOnSubmit(rec_nrserie);
+                Program.dbData3060.tblnrseries.InsertOnSubmit(rec_nrserie);
                 Program.dbData3060.SubmitChanges();
             }
         }
@@ -446,17 +446,17 @@ namespace nsPuls3060
         public static bool gettilmeldtpbs(int? Nr)
         {
             var pbsaftalestart = from s in Program.dbData3060.tblaftalelins
-                                 where s.Nr == Nr & (s.Pbstranskode == "0230" | s.Pbstranskode == "0231")
+                                 where s.Nr == Nr & (s.pbstranskode == "0230" | s.pbstranskode == "0231")
                                  select s;
             var pbsaftaleslut = from s in Program.dbData3060.tblaftalelins
-                                where s.Nr == Nr & s.Pbstranskode != "0230" & s.Pbstranskode != "0231"
+                                where s.Nr == Nr & s.pbstranskode != "0230" & s.pbstranskode != "0231"
                                 select s;
 
             var pbsaftale = from a in pbsaftalestart
-                            join s in pbsaftaleslut on a.Aftalenr equals s.Aftalenr into pbsaftaleslut2
+                            join s in pbsaftaleslut on a.aftalenr equals s.aftalenr into pbsaftaleslut2
                             from s in pbsaftaleslut2.DefaultIfEmpty()
-                            where s.Id == null
-                            orderby a.Aftalestartdato descending
+                            where s.id == null
+                            orderby a.aftalestartdato descending
                             select a;
 
             int antal = pbsaftale.Count();
@@ -466,9 +466,9 @@ namespace nsPuls3060
 
         public static bool getbetaltudmeldt(int? Nr)
         {
-            var qry = from l in Program.dbData3060.TblMedlemLog
+            var qry = from l in Program.dbData3060.tblMedlemLogs
                       where l.Nr == Nr
-                      orderby l.Logdato descending
+                      orderby l.logdato descending
                       select l;
 
             if (qry.Count() > 0) return true;
@@ -514,18 +514,18 @@ namespace nsPuls3060
                             try
                             {
                                 m_rec_Regnskab =
-                                    (from d in Program.dbData3060.TblRegnskab
-                                     where d.Rid.ToString() == RegnskabId
+                                    (from d in Program.dbData3060.tblRegnskabs
+                                     where d.rid.ToString() == RegnskabId
                                      select d).First();
 
                             }
                             catch (System.InvalidOperationException)
                             {
-                                m_rec_Regnskab = new TblRegnskab
+                                m_rec_Regnskab = new tblRegnskab
                                 {
-                                    Rid = int.Parse(RegnskabId)
+                                    rid = int.Parse(RegnskabId)
                                 };
-                                Program.dbData3060.TblRegnskab.InsertOnSubmit(m_rec_Regnskab);
+                                Program.dbData3060.tblRegnskabs.InsertOnSubmit(m_rec_Regnskab);
                                 Program.dbData3060.SubmitChanges();
                             }
                             RegnskabMappe = Datamappe + sub_dir.Name + @"\";

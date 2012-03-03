@@ -445,7 +445,7 @@ namespace nsPuls3060
             try
             {
                 return (from a in Program.memAktivRegnskab
-                        join r in Program.dbData3060.tblRegnskabs on a.Rid equals r.Rid
+                        join r in Program.dbData3060.tblRegnskabs on a.Rid equals r.rid
                         select r).First();
 
             }
@@ -453,54 +453,54 @@ namespace nsPuls3060
             {
                 return new tblRegnskab
                 {
-                    Rid = 999,
+                    rid = 999,
                     Navn = "Vælg et eksisterende regnskab"
                 };
             }
         }
         public static IQueryable<clsLog> qryLog()
         {
-            var qryMedlemLog = from m in Program.dbData3060.TblMedlemLog
+            var qryMedlemLog = from m in Program.dbData3060.tblMedlemLogs
                                select new clsLog
                                {
-                                   Id = (int?)m.Id,
+                                   Id = (int?)m.id,
                                    Nr = (int?)m.Nr,
-                                   Logdato = (DateTime?)m.Logdato,
-                                   Akt_id = (int?)m.Akt_id,
-                                   Akt_dato = (DateTime?)m.Akt_dato
+                                   Logdato = (DateTime?)m.logdato,
+                                   Akt_id = (int?)m.akt_id,
+                                   Akt_dato = (DateTime?)m.akt_dato
                                };
-            var qryFak = from f in Program.dbData3060.Tblfak
-                         join p in Program.dbData3060.Tbltilpbs on f.Tilpbsid equals p.Id
+            var qryFak = from f in Program.dbData3060.tblfaks
+                         join p in Program.dbData3060.tbltilpbs on f.tilpbsid equals p.id
                          select new clsLog
                          {
-                             Id = (int?)f.Id,
+                             Id = (int?)f.id,
                              Nr = (int?)f.Nr,
-                             Logdato = (DateTime)p.Bilagdato,
+                             Logdato = (DateTime)p.bilagdato,
                              Akt_id = (int?)20,
-                             Akt_dato = (DateTime?)f.Betalingsdato
+                             Akt_dato = (DateTime?)f.betalingsdato
                          };
 
-            var qryBetlin = from b in Program.dbData3060.Tblbetlin
-                            join f in Program.dbData3060.Tblfak on b.Faknr equals f.Faknr
-                            where b.Pbstranskode == "0236" || b.Pbstranskode == "0297"
+            var qryBetlin = from b in Program.dbData3060.tblbetlins
+                            join f in Program.dbData3060.tblfaks on b.faknr equals f.faknr
+                            where b.pbstranskode == "0236" || b.pbstranskode == "0297"
                             select new clsLog
                             {
-                                Id = (int?)b.Id,
+                                Id = (int?)b.id,
                                 Nr = (int?)b.Nr,
-                                Logdato = (DateTime?)b.Indbetalingsdato,
+                                Logdato = (DateTime?)b.indbetalingsdato,
                                 Akt_id = (int?)30,
-                                Akt_dato = (DateTime?)f.Tildato
+                                Akt_dato = (DateTime?)f.tildato
                             };
 
-            var qryBetlin40 = from b in Program.dbData3060.Tblbetlin
-                              where b.Pbstranskode == "0237"
+            var qryBetlin40 = from b in Program.dbData3060.tblbetlins
+                              where b.pbstranskode == "0237"
                               select new clsLog
                               {
-                                  Id = (int?)b.Id,
+                                  Id = (int?)b.id,
                                   Nr = (int?)b.Nr,
-                                  Logdato = (DateTime?)(((DateTime)b.Betalingsdato).AddSeconds(-30)),  //Workaround for problem med samme felt (b.Betalingsdato) 2 gange
+                                  Logdato = (DateTime?)(((DateTime)b.betalingsdato).AddSeconds(-30)),  //Workaround for problem med samme felt (b.Betalingsdato) 2 gange
                                   Akt_id = (int?)40,
-                                  Akt_dato = (DateTime?)b.Betalingsdato
+                                  Akt_dato = (DateTime?)b.betalingsdato
                               };
 
 

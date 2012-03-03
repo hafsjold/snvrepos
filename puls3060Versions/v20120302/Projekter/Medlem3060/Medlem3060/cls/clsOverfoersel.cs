@@ -112,66 +112,66 @@ namespace nsPuls3060
                 if (antal == 0) { throw new Exception("101 - Der er ingen PBS forsendelse for id: " + lobnr); }
             }
             {
-                var antal = (from c in Program.dbData3060.Tbltilpbs
-                             where c.Id == lobnr && c.Pbsforsendelseid != null
+                var antal = (from c in Program.dbData3060.tbltilpbs
+                             where c.id == lobnr && c.pbsforsendelseid != null
                              select c).Count();
                 if (antal > 0) { throw new Exception("102 - Pbsforsendelse for id: " + lobnr + " er allerede sendt"); }
             }
             {
-                var antal = (from c in Program.dbData3060.Tbloverforsel
-                             where c.Tilpbsid == lobnr
+                var antal = (from c in Program.dbData3060.tbloverforsels
+                             where c.tilpbsid == lobnr
                              select c).Count();
                 if (antal == 0) { throw new Exception("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr); }
             }
 
-            var rsttil = (from c in Program.dbData3060.Tbltilpbs
-                          where c.Id == lobnr
+            var rsttil = (from c in Program.dbData3060.tbltilpbs
+                          where c.id == lobnr
                           select c).First();
-            if (rsttil.Udtrukket == null) { rsttil.Udtrukket = DateTime.Now; }
-            if (rsttil.Bilagdato == null) { rsttil.Bilagdato = rsttil.Udtrukket; }
-            if (rsttil.Delsystem == null) { rsttil.Delsystem = "OS1"; }
-            if (rsttil.Leverancetype != null) { rsttil.Leverancetype = null; }
+            if (rsttil.udtrukket == null) { rsttil.udtrukket = DateTime.Now; }
+            if (rsttil.bilagdato == null) { rsttil.bilagdato = rsttil.udtrukket; }
+            if (rsttil.delsystem == null) { rsttil.delsystem = "OS1"; }
+            if (rsttil.leverancetype != null) { rsttil.leverancetype = null; }
             Program.dbData3060.SubmitChanges();
 
 
             wleveranceid = clsPbs.nextval("leveranceid");
-            Tblpbsforsendelse rec_pbsforsendelse = new Tblpbsforsendelse
+            tblpbsforsendelse rec_pbsforsendelse = new tblpbsforsendelse
             {
-                Delsystem = rsttil.Delsystem,
-                Leverancetype = rsttil.Leverancetype,
-                Oprettetaf = "Udb",
-                Oprettet = DateTime.Now,
-                Leveranceid = wleveranceid
+                delsystem = rsttil.delsystem,
+                leverancetype = rsttil.leverancetype,
+                oprettetaf = "Udb",
+                oprettet = DateTime.Now,
+                leveranceid = wleveranceid
             };
-            Program.dbData3060.Tblpbsforsendelse.InsertOnSubmit(rec_pbsforsendelse);
-            rec_pbsforsendelse.Tbltilpbs.Add(rsttil);
+            Program.dbData3060.tblpbsforsendelses.InsertOnSubmit(rec_pbsforsendelse);
+            rec_pbsforsendelse.tbltilpbs.Add(rsttil);
 
-            Tblpbsfiles rec_pbsfiles = new Tblpbsfiles();
-            rec_pbsforsendelse.Tblpbsfiles.Add(rec_pbsfiles);
+            tblpbsfile1 rec_pbsfiles = new tblpbsfile1();
+            rec_pbsforsendelse.tblpbsfile1s.Add(rec_pbsfiles);
 
-            Tblkreditor krd = (from k in Program.dbData3060.Tblkreditor
-                               where k.Delsystem == rsttil.Delsystem
+            tblkreditor krd = (from k in Program.dbData3060.tblkreditors
+                               where k.delsystem == rsttil.delsystem
                                select k).First();
 
 
             // -- Leverance Start - OS1
             // - rstkrd.Datalevnr - Dataleverandørnr.: Dataleverandørens SE-nummer
             // - wleveranceid     - Leveranceidentifikation: Løbenummer efter eget valg
-            rec = writeOS1(krd.Datalevnr, wleveranceid);
-            Tblpbsfile rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
-            rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+            rec = writeOS1(krd.datalevnr, wleveranceid);
+            tblpbsfile rec_pbsfile = new tblpbsfile { seqnr = ++seq, data = rec };
+            rec_pbsfiles.tblpbsfiles.Add(rec_pbsfile);
 
-            var qrydeb = from h in Program.dbData3060.Tbloverforsel
-                         where h.Tilpbsid == lobnr
+            var qrydeb = from h in Program.dbData3060.tbloverforsels
+                         where h.tilpbsid == lobnr
                          select h;
 
             // Start loop over betalinger i tbloverforsel
             int testantal = qrydeb.Count();
-            foreach (Tbloverforsel rec_overfoersel in qrydeb)
+            foreach (tbloverforsel rec_overfoersel in qrydeb)
             {
-                DateTime Betalingsdato = (rec_overfoersel.Betalingsdato == null) ? wdispositionsdato : (DateTime)rec_overfoersel.Betalingsdato;
+                DateTime Betalingsdato = (rec_overfoersel.betalingsdato == null) ? wdispositionsdato : (DateTime)rec_overfoersel.betalingsdato;
                 if (Betalingsdato < wdispositionsdato) Betalingsdato = wdispositionsdato;
-                rec_overfoersel.Betalingsdato = Betalingsdato; //opdater aktuel betalingsdato
+                rec_overfoersel.betalingsdato = Betalingsdato; //opdater aktuel betalingsdato
 
                 // Sektion start – (OS2)
                 antalos5 = 0;
@@ -182,16 +182,16 @@ namespace nsPuls3060
                 // - krd.regnr      - Reg.nr.: Overførselsregistreringsnummer
                 // - krd.kontonr    - Kontonr.: Overførselskontonummer
                 // - krd.datalevnr  - Dataleverandørnr.: Dataleverandørens SE-nummer
-                rec = writeOS2(Betalingsdato, krd.Regnr, krd.Kontonr, krd.Datalevnr);
-                rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
-                rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+                rec = writeOS2(Betalingsdato, krd.regnr, krd.kontonr, krd.datalevnr);
+                rec_pbsfile = new tblpbsfile { seqnr = ++seq, data = rec };
+                rec_pbsfiles.tblpbsfiles.Add(rec_pbsfile);
 
                 ++antalsek;
 
                 // -- Forfald betaling
-                if (rec_overfoersel.Advisbelob > 0)
+                if (rec_overfoersel.advisbelob > 0)
                 {
-                    belobint = (int)(rec_overfoersel.Advisbelob * ((decimal)100));
+                    belobint = (int)(rec_overfoersel.advisbelob * ((decimal)100));
                     belobos5 = belobos5 + belobint;
                     belobos5tot = belobos5tot + belobint;
                 }
@@ -209,9 +209,9 @@ namespace nsPuls3060
                 // - krd.kontonr         - Kontonr.: Overførselskontonummer
                 // - deb.advistekst      - Tekst på Betalingsmodtagers kontoudtog
                 // - deb.SFakID          - Ref til betalingsmodtager til eget brug
-                rec = writeOS5(rec_overfoersel.Bankregnr, rec_overfoersel.Bankkontonr, belobint, Betalingsdato, krd.Regnr, krd.Kontonr, rec_overfoersel.Advistekst, (int)rec_overfoersel.SFakID);
-                rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
-                rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+                rec = writeOS5(rec_overfoersel.bankregnr, rec_overfoersel.bankkontonr, belobint, Betalingsdato, krd.regnr, krd.kontonr, rec_overfoersel.advistekst, (int)rec_overfoersel.SFakID);
+                rec_pbsfile = new tblpbsfile { seqnr = ++seq, data = rec };
+                rec_pbsfiles.tblpbsfiles.Add(rec_pbsfile);
 
                 antalos5++;
                 antalos5tot++;
@@ -225,9 +225,9 @@ namespace nsPuls3060
                 // - krd.regnr         - Reg.nr.: Overførselsregistreringsnummer
                 // - krd.kontonr       - Kontonr.: Overførselskontonummer
                 // - krd.datalevnr     - Dataleverandørnr.: Dataleverandørens SE-nummer
-                rec = writeOS8(antalos5, belobos5, Betalingsdato, krd.Regnr, krd.Kontonr, krd.Datalevnr);
-                rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
-                rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+                rec = writeOS8(antalos5, belobos5, Betalingsdato, krd.regnr, krd.kontonr, krd.datalevnr);
+                rec_pbsfile = new tblpbsfile { seqnr = ++seq, data = rec };
+                rec_pbsfiles.tblpbsfiles.Add(rec_pbsfile);
 
             }
 
@@ -237,20 +237,20 @@ namespace nsPuls3060
             // - antalos5tot    - Antal 042: Antal foranstående 042 records
             // - belobos5tot    - Beløb: Nettobeløb i 042 records
             // - krd.datalevnr  - Dataleverandørnr.: Dataleverandørens SE-nummer
-            rec = writeOS9(antalos5tot, belobos5tot, krd.Datalevnr);
-            rec_pbsfile = new Tblpbsfile { Seqnr = ++seq, Data = rec };
-            rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
+            rec = writeOS9(antalos5tot, belobos5tot, krd.datalevnr);
+            rec_pbsfile = new tblpbsfile { seqnr = ++seq, data = rec };
+            rec_pbsfiles.tblpbsfiles.Add(rec_pbsfile);
 
-            rsttil.Udtrukket = DateTime.Now;
-            rsttil.Leverancespecifikation = wleveranceid.ToString();
+            rsttil.udtrukket = DateTime.Now;
+            rsttil.leverancespecifikation = wleveranceid.ToString();
             Program.dbData3060.SubmitChanges();
 
         }
 
         public void overfoersel_mail(int lobnr)
         {
-            var antal = (from c in Program.dbData3060.Tbltilpbs
-                         where c.Id == lobnr
+            var antal = (from c in Program.dbData3060.tbltilpbs
+                         where c.id == lobnr
                          select c).Count();
             if (antal == 0) { throw new Exception("101 - Der er ingen PBS forsendelse for id: " + lobnr); }
 
@@ -269,19 +269,19 @@ namespace nsPuls3060
             mailman.SmtpPassword = Program.Smtppasswd;
 
             var qrykrd = from k in Program.karMedlemmer
-                         join h in Program.dbData3060.Tbloverforsel on k.Nr equals h.Nr
-                         where h.Tilpbsid == lobnr
+                         join h in Program.dbData3060.tbloverforsels on k.Nr equals h.Nr
+                         where h.tilpbsid == lobnr
                          select new 
                          {
                            k.Nr,
                            k.Email,
                            k.Kaldenavn,
                            k.Navn,
-                           h.Betalingsdato,
-                           h.Advistekst,
-                           h.Advisbelob,
-                           h.Bankregnr,
-                           h.Bankkontonr,
+                           h.betalingsdato,
+                           h.advistekst,
+                           h.advisbelob,
+                           h.bankregnr,
+                           h.bankkontonr,
                          };
 
 
@@ -313,10 +313,10 @@ namespace nsPuls3060
                     infotekst_id = 40,
                     numofcol = null,
                     kaldenavn = krd.Kaldenavn,
-                    betalingsdato = krd.Betalingsdato,
-                    advisbelob = krd.Advisbelob,
-                    bankkonto = krd.Bankregnr + "-" + krd.Bankkontonr,
-                    advistekst = krd.Advistekst,
+                    betalingsdato = krd.betalingsdato,
+                    advisbelob = krd.advisbelob,
+                    bankkonto = krd.bankregnr + "-" + krd.bankkontonr,
+                    advistekst = krd.advistekst,
                     underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører"
                 }.getinfotekst();
 

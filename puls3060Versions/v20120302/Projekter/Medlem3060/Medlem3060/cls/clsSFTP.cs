@@ -161,7 +161,7 @@ namespace nsPuls3060
                 from d2 in details2.DefaultIfEmpty()
                 select new
                 {
-                    tilpbsid = (int?)d2.Id,
+                    tilpbsid = (int?)d2.id,
                     d2.leverancespecifikation,
                     d2.delsystem,
                     d2.leverancetype,

@@ -761,7 +761,7 @@ namespace nsPuls3060
                         // - ""                   - Advistekst 2: Tekstlinie på advis
                         // - 0.0                  - Advisbeløb 2: Beløb på advis
                         rec = write052(rstkrd.sektionnr, rstkrd.pbsnr, "0241", recnr, rstkrd.debgrpnr, rstdeb.Kundenr.ToString(), 0, advisline, 0, "", 0);
-                        rec_pbsfile = new tblpbsfile { Seqnr = ++seq, Data = rec };
+                        rec_pbsfile = new tblpbsfile { seqnr = ++seq, data = rec };
                         rec_pbsfiles.tblpbsfiles.Add(rec_pbsfile);
                     }
                 }
@@ -777,7 +777,7 @@ namespace nsPuls3060
             // - antal052         - Antal 052: Antal foranstående 052 records
             // - antal022         - Antal 022: Antal foranstående 022 records
             rec = write092(rstkrd.pbsnr, rstkrd.sektionnr, rstkrd.debgrpnr, antal042, belob042, antal052, antal022);
-            rec_pbsfile = new tblpbsfile { Seqnr = ++seq, Data = rec };
+            rec_pbsfile = new tblpbsfile { seqnr = ++seq, data = rec };
             rec_pbsfiles.tblpbsfiles.Add(rec_pbsfile);
 
             // -- Leverance slut  - 0601 Betalingsoplysninger

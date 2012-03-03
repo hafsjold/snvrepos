@@ -179,7 +179,7 @@
             // 
             // bsRegnskab
             // 
-            this.bsRegnskab.DataSource = typeof(nsPuls3060.TblRegnskab);
+            this.bsRegnskab.DataSource = typeof(nsPuls3060.tblRegnskab);
             // 
             // Navn
             // 
