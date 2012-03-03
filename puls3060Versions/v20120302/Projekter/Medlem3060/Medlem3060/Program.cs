@@ -179,6 +179,7 @@ namespace nsPuls3060
             {
                 if (m_dbData3060 == null)
                 {
+                    /*
                     if (!File.Exists(global::nsPuls3060.Properties.Settings.Default.DataBasePath))
                     {
                         OpenFileDialog openFileDialog1 = new OpenFileDialog();
@@ -198,7 +199,8 @@ namespace nsPuls3060
                             global::nsPuls3060.Properties.Settings.Default.Save();
                         }
                     }
-                    m_dbData3060 = new DbData3060(global::nsPuls3060.Properties.Settings.Default.DataBasePath);
+                    */
+                    m_dbData3060 = new DbData3060(global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString + ";Password=mha733");
                 }
                 return m_dbData3060;
             }
