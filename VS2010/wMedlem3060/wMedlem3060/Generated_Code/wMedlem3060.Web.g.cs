@@ -493,6 +493,361 @@ namespace wMedlem3060.Web
     }
     
     /// <summary>
+    /// The 'tblMedlem' entity class.
+    /// </summary>
+    [DataContract(Namespace="http://schemas.datacontract.org/2004/07/wMedlem3060.Web")]
+    public sealed partial class tblMedlem : Entity
+    {
+        
+        private string _adresse;
+        
+        private string _bank;
+        
+        private string _bynavn;
+        
+        private string _email;
+        
+        private Nullable<DateTime> _fodtDato;
+        
+        private string _kaldenavn;
+        
+        private string _kon;
+        
+        private string _navn;
+        
+        private int _nr;
+        
+        private string _postnr;
+        
+        private string _telefon;
+        
+        #region Extensibility Method Definitions
+
+        /// <summary>
+        /// This method is invoked from the constructor once initialization is complete and
+        /// can be used for further object setup.
+        /// </summary>
+        partial void OnCreated();
+        partial void OnAdresseChanging(string value);
+        partial void OnAdresseChanged();
+        partial void OnBankChanging(string value);
+        partial void OnBankChanged();
+        partial void OnBynavnChanging(string value);
+        partial void OnBynavnChanged();
+        partial void OnEmailChanging(string value);
+        partial void OnEmailChanged();
+        partial void OnFodtDatoChanging(Nullable<DateTime> value);
+        partial void OnFodtDatoChanged();
+        partial void OnKaldenavnChanging(string value);
+        partial void OnKaldenavnChanged();
+        partial void OnKonChanging(string value);
+        partial void OnKonChanged();
+        partial void OnNavnChanging(string value);
+        partial void OnNavnChanged();
+        partial void OnNrChanging(int value);
+        partial void OnNrChanged();
+        partial void OnPostnrChanging(string value);
+        partial void OnPostnrChanged();
+        partial void OnTelefonChanging(string value);
+        partial void OnTelefonChanged();
+
+        #endregion
+        
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="tblMedlem"/> class.
+        /// </summary>
+        public tblMedlem()
+        {
+            this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Adresse' value.
+        /// </summary>
+        [DataMember()]
+        [StringLength(70)]
+        public string Adresse
+        {
+            get
+            {
+                return this._adresse;
+            }
+            set
+            {
+                if ((this._adresse != value))
+                {
+                    this.OnAdresseChanging(value);
+                    this.RaiseDataMemberChanging("Adresse");
+                    this.ValidateProperty("Adresse", value);
+                    this._adresse = value;
+                    this.RaiseDataMemberChanged("Adresse");
+                    this.OnAdresseChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Bank' value.
+        /// </summary>
+        [DataMember()]
+        [StringLength(15)]
+        public string Bank
+        {
+            get
+            {
+                return this._bank;
+            }
+            set
+            {
+                if ((this._bank != value))
+                {
+                    this.OnBankChanging(value);
+                    this.RaiseDataMemberChanging("Bank");
+                    this.ValidateProperty("Bank", value);
+                    this._bank = value;
+                    this.RaiseDataMemberChanged("Bank");
+                    this.OnBankChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Bynavn' value.
+        /// </summary>
+        [DataMember()]
+        [StringLength(25)]
+        public string Bynavn
+        {
+            get
+            {
+                return this._bynavn;
+            }
+            set
+            {
+                if ((this._bynavn != value))
+                {
+                    this.OnBynavnChanging(value);
+                    this.RaiseDataMemberChanging("Bynavn");
+                    this.ValidateProperty("Bynavn", value);
+                    this._bynavn = value;
+                    this.RaiseDataMemberChanged("Bynavn");
+                    this.OnBynavnChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Email' value.
+        /// </summary>
+        [DataMember()]
+        [StringLength(50)]
+        public string Email
+        {
+            get
+            {
+                return this._email;
+            }
+            set
+            {
+                if ((this._email != value))
+                {
+                    this.OnEmailChanging(value);
+                    this.RaiseDataMemberChanging("Email");
+                    this.ValidateProperty("Email", value);
+                    this._email = value;
+                    this.RaiseDataMemberChanged("Email");
+                    this.OnEmailChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'FodtDato' value.
+        /// </summary>
+        [DataMember()]
+        public Nullable<DateTime> FodtDato
+        {
+            get
+            {
+                return this._fodtDato;
+            }
+            set
+            {
+                if ((this._fodtDato != value))
+                {
+                    this.OnFodtDatoChanging(value);
+                    this.RaiseDataMemberChanging("FodtDato");
+                    this.ValidateProperty("FodtDato", value);
+                    this._fodtDato = value;
+                    this.RaiseDataMemberChanged("FodtDato");
+                    this.OnFodtDatoChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Kaldenavn' value.
+        /// </summary>
+        [DataMember()]
+        [StringLength(25)]
+        public string Kaldenavn
+        {
+            get
+            {
+                return this._kaldenavn;
+            }
+            set
+            {
+                if ((this._kaldenavn != value))
+                {
+                    this.OnKaldenavnChanging(value);
+                    this.RaiseDataMemberChanging("Kaldenavn");
+                    this.ValidateProperty("Kaldenavn", value);
+                    this._kaldenavn = value;
+                    this.RaiseDataMemberChanged("Kaldenavn");
+                    this.OnKaldenavnChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Kon' value.
+        /// </summary>
+        [DataMember()]
+        [StringLength(1)]
+        public string Kon
+        {
+            get
+            {
+                return this._kon;
+            }
+            set
+            {
+                if ((this._kon != value))
+                {
+                    this.OnKonChanging(value);
+                    this.RaiseDataMemberChanging("Kon");
+                    this.ValidateProperty("Kon", value);
+                    this._kon = value;
+                    this.RaiseDataMemberChanged("Kon");
+                    this.OnKonChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Navn' value.
+        /// </summary>
+        [DataMember()]
+        [StringLength(35)]
+        public string Navn
+        {
+            get
+            {
+                return this._navn;
+            }
+            set
+            {
+                if ((this._navn != value))
+                {
+                    this.OnNavnChanging(value);
+                    this.RaiseDataMemberChanging("Navn");
+                    this.ValidateProperty("Navn", value);
+                    this._navn = value;
+                    this.RaiseDataMemberChanged("Navn");
+                    this.OnNavnChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Nr' value.
+        /// </summary>
+        [DataMember()]
+        [Editable(false, AllowInitialValue=true)]
+        [Key()]
+        [RoundtripOriginal()]
+        public int Nr
+        {
+            get
+            {
+                return this._nr;
+            }
+            set
+            {
+                if ((this._nr != value))
+                {
+                    this.OnNrChanging(value);
+                    this.ValidateProperty("Nr", value);
+                    this._nr = value;
+                    this.RaisePropertyChanged("Nr");
+                    this.OnNrChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Postnr' value.
+        /// </summary>
+        [DataMember()]
+        [StringLength(4)]
+        public string Postnr
+        {
+            get
+            {
+                return this._postnr;
+            }
+            set
+            {
+                if ((this._postnr != value))
+                {
+                    this.OnPostnrChanging(value);
+                    this.RaiseDataMemberChanging("Postnr");
+                    this.ValidateProperty("Postnr", value);
+                    this._postnr = value;
+                    this.RaiseDataMemberChanged("Postnr");
+                    this.OnPostnrChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Telefon' value.
+        /// </summary>
+        [DataMember()]
+        [StringLength(8)]
+        public string Telefon
+        {
+            get
+            {
+                return this._telefon;
+            }
+            set
+            {
+                if ((this._telefon != value))
+                {
+                    this.OnTelefonChanging(value);
+                    this.RaiseDataMemberChanging("Telefon");
+                    this.ValidateProperty("Telefon", value);
+                    this._telefon = value;
+                    this.RaiseDataMemberChanged("Telefon");
+                    this.OnTelefonChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Computes a value from the key fields that uniquely identifies this entity instance.
+        /// </summary>
+        /// <returns>An object instance that uniquely identifies this entity instance.</returns>
+        public override object GetIdentity()
+        {
+            return this._nr;
+        }
+    }
+    
+    /// <summary>
     /// The 'User' entity class.
     /// </summary>
     [DataContract(Namespace="http://schemas.datacontract.org/2004/07/wMedlem3060.Web")]
@@ -788,6 +1143,177 @@ namespace wMedlem3060.Web
             
             public UserRegistrationContextEntityContainer()
             {
+            }
+        }
+    }
+}
+namespace wMedlem3060.Web.Services
+{
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.ServiceModel;
+    using System.ServiceModel.DomainServices;
+    using System.ServiceModel.DomainServices.Client;
+    using System.ServiceModel.DomainServices.Client.ApplicationServices;
+    using System.ServiceModel.Web;
+    using wMedlem3060.Web;
+    
+    
+    /// <summary>
+    /// The DomainContext corresponding to the 'MedlemDomainService' DomainService.
+    /// </summary>
+    public sealed partial class MedlemDomainContext : DomainContext
+    {
+        
+        #region Extensibility Method Definitions
+
+        /// <summary>
+        /// This method is invoked from the constructor once initialization is complete and
+        /// can be used for further object setup.
+        /// </summary>
+        partial void OnCreated();
+
+        #endregion
+        
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MedlemDomainContext"/> class.
+        /// </summary>
+        public MedlemDomainContext() : 
+                this(new WebDomainClient<IMedlemDomainServiceContract>(new Uri("wMedlem3060-Web-Services-MedlemDomainService.svc", UriKind.Relative)))
+        {
+        }
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MedlemDomainContext"/> class with the specified service URI.
+        /// </summary>
+        /// <param name="serviceUri">The MedlemDomainService service URI.</param>
+        public MedlemDomainContext(Uri serviceUri) : 
+                this(new WebDomainClient<IMedlemDomainServiceContract>(serviceUri))
+        {
+        }
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MedlemDomainContext"/> class with the specified <paramref name="domainClient"/>.
+        /// </summary>
+        /// <param name="domainClient">The DomainClient instance to use for this DomainContext.</param>
+        public MedlemDomainContext(DomainClient domainClient) : 
+                base(domainClient)
+        {
+            this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Gets the set of <see cref="tblMedlem"/> entity instances that have been loaded into this <see cref="MedlemDomainContext"/> instance.
+        /// </summary>
+        public EntitySet<tblMedlem> tblMedlems
+        {
+            get
+            {
+                return base.EntityContainer.GetEntitySet<tblMedlem>();
+            }
+        }
+        
+        /// <summary>
+        /// Gets an EntityQuery instance that can be used to load <see cref="tblMedlem"/> entity instances using the 'GetTblMedlems' query.
+        /// </summary>
+        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="tblMedlem"/> entity instances.</returns>
+        public EntityQuery<tblMedlem> GetTblMedlemsQuery()
+        {
+            this.ValidateMethod("GetTblMedlemsQuery", null);
+            return base.CreateQuery<tblMedlem>("GetTblMedlems", null, false, true);
+        }
+        
+        /// <summary>
+        /// Gets an EntityQuery instance that can be used to load <see cref="tblMedlem"/> entity instances using the 'GetYoungTblMedlems' query.
+        /// </summary>
+        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="tblMedlem"/> entity instances.</returns>
+        public EntityQuery<tblMedlem> GetYoungTblMedlemsQuery()
+        {
+            this.ValidateMethod("GetYoungTblMedlemsQuery", null);
+            return base.CreateQuery<tblMedlem>("GetYoungTblMedlems", null, false, true);
+        }
+        
+        /// <summary>
+        /// Creates a new EntityContainer for this DomainContext's EntitySets.
+        /// </summary>
+        /// <returns>A new container instance.</returns>
+        protected override EntityContainer CreateEntityContainer()
+        {
+            return new MedlemDomainContextEntityContainer();
+        }
+        
+        /// <summary>
+        /// Service contract for the 'MedlemDomainService' DomainService.
+        /// </summary>
+        [ServiceContract()]
+        public interface IMedlemDomainServiceContract
+        {
+            
+            /// <summary>
+            /// Asynchronously invokes the 'GetTblMedlems' operation.
+            /// </summary>
+            /// <param name="callback">Callback to invoke on completion.</param>
+            /// <param name="asyncState">Optional state object.</param>
+            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/MedlemDomainService/GetTblMedlemsDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/MedlemDomainService/GetTblMedlems", ReplyAction="http://tempuri.org/MedlemDomainService/GetTblMedlemsResponse")]
+            [WebGet()]
+            IAsyncResult BeginGetTblMedlems(AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Completes the asynchronous operation begun by 'BeginGetTblMedlems'.
+            /// </summary>
+            /// <param name="result">The IAsyncResult returned from 'BeginGetTblMedlems'.</param>
+            /// <returns>The 'QueryResult' returned from the 'GetTblMedlems' operation.</returns>
+            QueryResult<tblMedlem> EndGetTblMedlems(IAsyncResult result);
+            
+            /// <summary>
+            /// Asynchronously invokes the 'GetYoungTblMedlems' operation.
+            /// </summary>
+            /// <param name="callback">Callback to invoke on completion.</param>
+            /// <param name="asyncState">Optional state object.</param>
+            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/MedlemDomainService/GetYoungTblMedlemsDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/MedlemDomainService/GetYoungTblMedlems", ReplyAction="http://tempuri.org/MedlemDomainService/GetYoungTblMedlemsResponse")]
+            [WebGet()]
+            IAsyncResult BeginGetYoungTblMedlems(AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Completes the asynchronous operation begun by 'BeginGetYoungTblMedlems'.
+            /// </summary>
+            /// <param name="result">The IAsyncResult returned from 'BeginGetYoungTblMedlems'.</param>
+            /// <returns>The 'QueryResult' returned from the 'GetYoungTblMedlems' operation.</returns>
+            QueryResult<tblMedlem> EndGetYoungTblMedlems(IAsyncResult result);
+            
+            /// <summary>
+            /// Asynchronously invokes the 'SubmitChanges' operation.
+            /// </summary>
+            /// <param name="changeSet">The change-set to submit.</param>
+            /// <param name="callback">Callback to invoke on completion.</param>
+            /// <param name="asyncState">Optional state object.</param>
+            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/MedlemDomainService/SubmitChangesDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/MedlemDomainService/SubmitChanges", ReplyAction="http://tempuri.org/MedlemDomainService/SubmitChangesResponse")]
+            IAsyncResult BeginSubmitChanges(IEnumerable<ChangeSetEntry> changeSet, AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Completes the asynchronous operation begun by 'BeginSubmitChanges'.
+            /// </summary>
+            /// <param name="result">The IAsyncResult returned from 'BeginSubmitChanges'.</param>
+            /// <returns>The collection of change-set entry elements returned from 'SubmitChanges'.</returns>
+            IEnumerable<ChangeSetEntry> EndSubmitChanges(IAsyncResult result);
+        }
+        
+        internal sealed class MedlemDomainContextEntityContainer : EntityContainer
+        {
+            
+            public MedlemDomainContextEntityContainer()
+            {
+                this.CreateEntitySet<tblMedlem>(EntitySetOperations.All);
             }
         }
     }

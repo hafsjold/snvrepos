@@ -1,0 +1,41 @@
+﻿<navigation:Page x:Class="wMedlem3060.Views.MedlemList" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           xmlns:datagrid="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data"
+           xmlns:riacontrols="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.DomainServices" 
+           xmlns:ds="clr-namespace:wMedlem3060.Web.Services"
+           xmlns:riadata="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.DomainServices"
+           d:DesignWidth="640" d:DesignHeight="480" 
+           Style="{StaticResource PageStyle}"
+           Title="Medlemmer">
+    <Grid x:Name="LayoutRoot">
+        <riacontrols:DomainDataSource x:Name="MyData" LoadSize="10" QueryName="GetTblMedlems" AutoLoad="True" >
+           <riacontrols:DomainDataSource.DomainContext>
+                <ds:MedlemDomainContext />
+            </riacontrols:DomainDataSource.DomainContext>
+            
+            <riacontrols:DomainDataSource.FilterDescriptors>
+                <riacontrols:FilterDescriptor  PropertyPath="Postnr" Operator="IsEqualTo" IgnoredValue="" Value="{Binding ElementName=PostnrFilter, Path=Text}" />
+                </riacontrols:DomainDataSource.FilterDescriptors>
+        </riacontrols:DomainDataSource>
+        
+        <ScrollViewer  Style="{StaticResource PageScrollViewerStyle}">
+            <StackPanel Margin="35,0" Orientation="Vertical" >
+                <TextBlock Text="Medlemmer" Style="{StaticResource HeaderTextStyle}" />
+                
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,-16,0,0" >
+                    <TextBlock VerticalAlignment="Center" Text="Postnr Filter: " />
+                    <TextBox x:Name="PostnrFilter" Width="75" FontSize="11" Margin="4" Text="3060" />
+                </StackPanel>
+                
+                <datagrid:DataGrid x:Name="MedlemGrid" MinHeight="100" IsReadOnly="True" ItemsSource="{Binding ElementName=MyData, Path=Data}"/>
+                
+                <datagrid:DataPager x:Name="MedlemPager" PageSize="15"  Margin="0,-1,0,0" Source="{Binding ElementName=MyData, Path=Data}" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</navigation:Page>

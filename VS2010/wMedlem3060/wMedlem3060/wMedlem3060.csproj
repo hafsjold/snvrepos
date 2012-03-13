@@ -60,6 +60,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Net" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Controls.Data, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Windows.Controls.Data.DataForm.Toolkit, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\System.Windows.Controls.Data.DataForm.Toolkit.dll</HintPath>
@@ -68,6 +69,7 @@
     <Reference Include="System.ServiceModel.DomainServices.Client" />
     <Reference Include="System.ServiceModel.DomainServices.Client.Web" />
     <Reference Include="System.ServiceModel.Web.Extensions" />
+    <Reference Include="System.Windows.Controls.DomainServices, Version=2.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Windows.Browser" />
     <Reference Include="System.Windows.Controls" />
@@ -139,6 +141,9 @@
     <Compile Include="Views\Login\RegistrationForm.xaml.cs">
       <DependentUpon>RegistrationForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\MedlemList.xaml.cs">
+      <DependentUpon>MedlemList.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -186,6 +191,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:MarkupCompilePass1</Generator>
     </Page>
+    <Page Include="Views\MedlemList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
@@ -222,6 +231,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\OutOfBrowserSettings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
