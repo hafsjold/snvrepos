@@ -36,5 +36,10 @@ namespace wMedlem3060.Views
         {
         }
 
+        private void SaveChangesButton_Click(object sender, RoutedEventArgs e)
+        {
+            MyData.SubmitChanges();
+        }
+
     }
 }

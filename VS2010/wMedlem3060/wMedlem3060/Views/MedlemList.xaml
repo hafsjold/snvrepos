@@ -9,11 +9,12 @@
            xmlns:riacontrols="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.DomainServices" 
            xmlns:ds="clr-namespace:wMedlem3060.Web.Services"
            xmlns:riadata="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.DomainServices"
+           xmlns:dataform="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.DataForm.Toolkit"
            d:DesignWidth="640" d:DesignHeight="480" 
            Style="{StaticResource PageStyle}"
            Title="Medlemmer">
     <Grid x:Name="LayoutRoot">
-        <riacontrols:DomainDataSource x:Name="MyData" LoadSize="10" QueryName="GetTblMedlems" AutoLoad="True" >
+        <riacontrols:DomainDataSource x:Name="MyData" LoadSize="20" QueryName="GetTblMedlems" AutoLoad="True" >
            <riacontrols:DomainDataSource.DomainContext>
                 <ds:MedlemDomainContext />
             </riacontrols:DomainDataSource.DomainContext>
@@ -34,7 +35,54 @@
                 
                 <datagrid:DataGrid x:Name="MedlemGrid" MinHeight="100" IsReadOnly="True" ItemsSource="{Binding ElementName=MyData, Path=Data}"/>
                 
-                <datagrid:DataPager x:Name="MedlemPager" PageSize="15"  Margin="0,-1,0,0" Source="{Binding ElementName=MyData, Path=Data}" />
+                <datagrid:DataPager x:Name="MedlemPager" PageSize="10"  Margin="0,-1,0,0" Source="{Binding ElementName=MyData, Path=Data}" />
+            
+                <dataform:DataForm x:Name="MedlemDetails" Header="Medlem" AutoGenerateFields="False" AutoEdit="False" AutoCommit="False"
+                 CurrentItem="{Binding ElementName=MedlemGrid, Path=SelectedItem}" Margin="0,12,0,0"  >
+                    <dataform:DataForm.EditTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <dataform:DataField Label="Nr">
+                                    <TextBox Text="{Binding Nr, Mode=TwoWay}" />
+                                </dataform:DataField>
+                                <dataform:DataField Label="Navn">
+                                    <TextBox Text="{Binding Navn, Mode=TwoWay}" />
+                                </dataform:DataField>
+                                <dataform:DataField Label="Kalde Navn">
+                                    <TextBox Text="{Binding Kaldenavn, Mode=TwoWay}" />
+                                </dataform:DataField>
+                                <dataform:DataField Label="Adresse">
+                                    <TextBox Text="{Binding Adresse, Mode=TwoWay}" />
+                                </dataform:DataField>
+                                <dataform:DataField Label="Postnr">
+                                    <TextBox Text="{Binding Postnr, Mode=TwoWay}" />
+                                </dataform:DataField>
+                                <dataform:DataField Label="By">
+                                    <TextBox Text="{Binding Bynavn, Mode=TwoWay}" />
+                                </dataform:DataField>
+                                <dataform:DataField Label="Telefon">
+                                    <TextBox Text="{Binding Telefon, Mode=TwoWay}" />
+                                </dataform:DataField>
+                                <dataform:DataField Label="Email">
+                                    <TextBox Text="{Binding Email, Mode=TwoWay}" />
+                                </dataform:DataField>
+                                <dataform:DataField Label="Køn">
+                                    <TextBox Text="{Binding Kon, Mode=TwoWay}" />
+                                </dataform:DataField>
+                                <dataform:DataField Label="Født dato">
+                                    <TextBox Text="{Binding FodtDato, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnExceptions=True}" />
+                                </dataform:DataField>
+                                <dataform:DataField Label="Bank konto">
+                                    <TextBox Text="{Binding Bank, Mode=TwoWay}" />
+                                </dataform:DataField>
+                                
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
+                                    <Button Content="Save Changes" x:Name="SaveChangesButton" Width="75" Height="23" Margin="4,0,0,0" Click="SaveChangesButton_Click"  />
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </dataform:DataForm.EditTemplate>
+                </dataform:DataForm>               
             </StackPanel>
         </ScrollViewer>
     </Grid>

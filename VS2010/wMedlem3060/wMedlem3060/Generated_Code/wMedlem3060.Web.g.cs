@@ -566,6 +566,7 @@ namespace wMedlem3060.Web
         /// Gets or sets the 'Adresse' value.
         /// </summary>
         [DataMember()]
+        [Required()]
         [StringLength(70)]
         public string Adresse
         {
@@ -616,6 +617,7 @@ namespace wMedlem3060.Web
         /// Gets or sets the 'Bynavn' value.
         /// </summary>
         [DataMember()]
+        [Required()]
         [StringLength(25)]
         public string Bynavn
         {
@@ -715,6 +717,8 @@ namespace wMedlem3060.Web
         /// Gets or sets the 'Kon' value.
         /// </summary>
         [DataMember()]
+        [RegularExpression("M|K")]
+        [Required()]
         [StringLength(1)]
         public string Kon
         {
@@ -740,6 +744,7 @@ namespace wMedlem3060.Web
         /// Gets or sets the 'Navn' value.
         /// </summary>
         [DataMember()]
+        [Required()]
         [StringLength(35)]
         public string Navn
         {
@@ -791,6 +796,8 @@ namespace wMedlem3060.Web
         /// Gets or sets the 'Postnr' value.
         /// </summary>
         [DataMember()]
+        [RegularExpression("[0-9]*")]
+        [Required()]
         [StringLength(4)]
         public string Postnr
         {
@@ -816,6 +823,7 @@ namespace wMedlem3060.Web
         /// Gets or sets the 'Telefon' value.
         /// </summary>
         [DataMember()]
+        [RegularExpression("[0-9]*")]
         [StringLength(8)]
         public string Telefon
         {

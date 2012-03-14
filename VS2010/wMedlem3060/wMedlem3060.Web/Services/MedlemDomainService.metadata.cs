@@ -32,28 +32,37 @@ namespace wMedlem3060.Web
             private tblMedlemMetadata()
             {
             }
+            public int Nr { get; set; }
 
-            public string Adresse { get; set; }
-
-            public string Bank { get; set; }
-
-            public string Bynavn { get; set; }
-
-            public string Email { get; set; }
-
-            public Nullable<DateTime> FodtDato { get; set; }
+            [Required()]
+            public string Navn { get; set; }
 
             public string Kaldenavn { get; set; }
 
-            public string Kon { get; set; }
+            [Required()]
+            public string Adresse { get; set; }
 
-            public string Navn { get; set; }
-
-            public int Nr { get; set; }
-
+            [Required()]
+            [RegularExpression("[0-9]*")]
+            [StringLength(4)]
             public string Postnr { get; set; }
 
+            [Required()]
+            public string Bynavn { get; set; }
+
+            [RegularExpression("[0-9]*")]
+            [StringLength(8)]
             public string Telefon { get; set; }
+
+            public string Email { get; set; }
+
+            [Required()]
+            [RegularExpression("M|K")]
+            public string Kon { get; set; }
+
+            public Nullable<DateTime> FodtDato { get; set; }
+
+            public string Bank { get; set; }
         }
     }
 }
