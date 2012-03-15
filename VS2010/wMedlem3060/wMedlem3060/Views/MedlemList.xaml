@@ -12,7 +12,7 @@
            xmlns:dataform="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.DataForm.Toolkit"
            d:DesignWidth="640" d:DesignHeight="480" 
            Style="{StaticResource PageStyle}"
-           Title="Medlemmer">
+           Title="Medlemmer" xmlns:my="clr-namespace:wMedlem3060.Web" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk">
     <Grid x:Name="LayoutRoot">
         <riacontrols:DomainDataSource x:Name="MyData" LoadSize="20" QueryName="GetTblMedlems" AutoLoad="True" >
            <riacontrols:DomainDataSource.DomainContext>
@@ -32,8 +32,33 @@
                     <TextBlock VerticalAlignment="Center" Text="Postnr Filter: " />
                     <TextBox x:Name="PostnrFilter" Width="75" FontSize="11" Margin="4" Text="3060" />
                 </StackPanel>
-                
-                <datagrid:DataGrid x:Name="MedlemGrid" MinHeight="100" IsReadOnly="True" ItemsSource="{Binding ElementName=MyData, Path=Data}"/>
+
+                <datagrid:DataGrid x:Name="MedlemGrid" AutoGenerateColumns="False" MinHeight="100" IsReadOnly="True" ItemsSource="{Binding ElementName=MyData, Path=Data}">
+                    <datagrid:DataGrid.Columns>
+                        <datagrid:DataGridTextColumn x:Name="nrColumn" Binding="{Binding Path=Nr, Mode=OneWay}" Header="Nr" IsReadOnly="True" Width="SizeToCells" MinWidth="40" />
+                        <datagrid:DataGridTextColumn x:Name="navnColumn" Binding="{Binding Path=Navn}" Header="Navn" Width="SizeToCells" MinWidth="50" />
+                        <datagrid:DataGridTextColumn x:Name="kaldenavnColumn" Binding="{Binding Path=Kaldenavn}" Header="Kaldenavn" Width="SizeToCells" MinWidth="50" />
+                        <datagrid:DataGridTextColumn x:Name="adresseColumn" Binding="{Binding Path=Adresse}" Header="Adresse" Width="SizeToCells" MinWidth="50" />
+                        <datagrid:DataGridTextColumn x:Name="postnrColumn" Binding="{Binding Path=Postnr}" Header="Postnr" Width="SizeToHeader" MinWidth="40" />
+                        <datagrid:DataGridTextColumn x:Name="bynavnColumn" Binding="{Binding Path=Bynavn}" Header="By" Width="SizeToCells" MinWidth="50"  Visibility="Collapsed" />
+                        <datagrid:DataGridTextColumn x:Name="telefonColumn" Binding="{Binding Path=Telefon}" Header="Telefon" Width="SizeToCells" MinWidth="50"  Visibility="Collapsed" />
+                        <datagrid:DataGridTextColumn x:Name="emailColumn" Binding="{Binding Path=Email}" Header="Email" Width="SizeToCells" MinWidth="50"  Visibility="Collapsed" />
+                        <datagrid:DataGridTextColumn x:Name="konColumn" Binding="{Binding Path=Kon}" Header="Køn" Width="SizeToHeader" MinWidth="40"  Visibility="Collapsed" />
+                        <datagrid:DataGridTemplateColumn x:Name="fodtDatoColumn" Header="Fodt Dato" Width="SizeToHeader" Visibility="Collapsed">
+                            <datagrid:DataGridTemplateColumn.CellEditingTemplate>
+                                <DataTemplate>
+                                    <sdk:DatePicker SelectedDate="{Binding Path=FodtDato, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true, TargetNullValue=''}" />
+                                </DataTemplate>
+                            </datagrid:DataGridTemplateColumn.CellEditingTemplate>
+                            <datagrid:DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Path=FodtDato, StringFormat=\{0:dd-MM-yyyy\}}" />
+                                </DataTemplate>
+                            </datagrid:DataGridTemplateColumn.CellTemplate>
+                        </datagrid:DataGridTemplateColumn>                        
+                        <datagrid:DataGridTextColumn x:Name="bankColumn" Binding="{Binding Path=Bank}" Header="Bank konto" Width="SizeToCells" MinWidth="50" Visibility="Collapsed" />
+                    </datagrid:DataGrid.Columns>
+                </datagrid:DataGrid>
                 
                 <datagrid:DataPager x:Name="MedlemPager" PageSize="10"  Margin="0,-1,0,0" Source="{Binding ElementName=MyData, Path=Data}" />
             
@@ -70,7 +95,7 @@
                                     <TextBox Text="{Binding Kon, Mode=TwoWay}" />
                                 </dataform:DataField>
                                 <dataform:DataField Label="Født dato">
-                                    <TextBox Text="{Binding FodtDato, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnExceptions=True}" />
+                                    <TextBox Text="{Binding FodtDato, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnExceptions=True, StringFormat=\{0:dd-MM-yyyy\}}" />
                                 </dataform:DataField>
                                 <dataform:DataField Label="Bank konto">
                                     <TextBox Text="{Binding Bank, Mode=TwoWay}" />
@@ -82,7 +107,7 @@
                             </StackPanel>
                         </DataTemplate>
                     </dataform:DataForm.EditTemplate>
-                </dataform:DataForm>               
+                </dataform:DataForm>
             </StackPanel>
         </ScrollViewer>
     </Grid>
