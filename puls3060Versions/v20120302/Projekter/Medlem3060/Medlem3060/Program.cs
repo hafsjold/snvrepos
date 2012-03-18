@@ -201,7 +201,11 @@ namespace nsPuls3060
                     if (Unprotect(m_Password) == null)
                         res = (new FrmPassword()).ShowDialog();
                     if (res != DialogResult.OK) return null;
-                    m_dbData3060 = new DbData3060(global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString_Prod + ";Password=" + Unprotect(m_Password));    
+#if (DEBUG)
+                   m_dbData3060 = new DbData3060(global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString_Test + ";Password=" + Unprotect(m_Password));    
+#else
+                   m_dbData3060 = new DbData3060(global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString_Prod + ";Password=" + Unprotect(m_Password));    
+#endif
                 }
                 return m_dbData3060;
             }
@@ -217,7 +221,7 @@ namespace nsPuls3060
                 if (m_dsMedlemImport == null)
                 {
                     m_dsMedlemImport = new dsMedlem();
-                    m_dsMedlemImport.filldsMedlem();
+                    m_dsMedlemImport.filldskarMedlemmer();
                 }
                 return m_dsMedlemImport;
             }
@@ -473,9 +477,11 @@ namespace nsPuls3060
                 };
             }
         }
+
         public static IQueryable<clsLog> qryLog()
         {
-            var qryMedlemLog = from m in Program.dbData3060.tblMedlemLogs
+
+            var qryLogResult = from m in Program.dbData3060.vMedlemLogs
                                select new clsLog
                                {
                                    Id = (int?)m.id,
@@ -484,44 +490,6 @@ namespace nsPuls3060
                                    Akt_id = (int?)m.akt_id,
                                    Akt_dato = (DateTime?)m.akt_dato
                                };
-            var qryFak = from f in Program.dbData3060.tblfaks
-                         join p in Program.dbData3060.tbltilpbs on f.tilpbsid equals p.id
-                         select new clsLog
-                         {
-                             Id = (int?)f.id,
-                             Nr = (int?)f.Nr,
-                             Logdato = (DateTime)p.bilagdato,
-                             Akt_id = (int?)20,
-                             Akt_dato = (DateTime?)f.betalingsdato
-                         };
-
-            var qryBetlin = from b in Program.dbData3060.tblbetlins
-                            join f in Program.dbData3060.tblfaks on b.faknr equals f.faknr
-                            where b.pbstranskode == "0236" || b.pbstranskode == "0297"
-                            select new clsLog
-                            {
-                                Id = (int?)b.id,
-                                Nr = (int?)b.Nr,
-                                Logdato = (DateTime?)b.indbetalingsdato,
-                                Akt_id = (int?)30,
-                                Akt_dato = (DateTime?)f.tildato
-                            };
-
-            var qryBetlin40 = from b in Program.dbData3060.tblbetlins
-                              where b.pbstranskode == "0237"
-                              select new clsLog
-                              {
-                                  Id = (int?)b.id,
-                                  Nr = (int?)b.Nr,
-                                  Logdato = (DateTime?)(((DateTime)b.betalingsdato).AddSeconds(-30)),  //Workaround for problem med samme felt (b.Betalingsdato) 2 gange
-                                  Akt_id = (int?)40,
-                                  Akt_dato = (DateTime?)b.betalingsdato
-                              };
-
-
-            var qryLogResult = qryMedlemLog.Union(qryFak)
-                                           .Union(qryBetlin)
-                                           .Union(qryBetlin40);
 
             return qryLogResult;
         }

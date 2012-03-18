@@ -134,7 +134,7 @@ namespace nsPuls3060
             Program.dbData3060.SubmitChanges();
             lobnr = rec_tilpbs.id;
 
-            var rstmedlems = from k in Program.karMedlemmer
+            var rstmedlems = from k in Program.dbData3060.tblMedlems
                              join l in Program.dbData3060.tempRykkerforslaglinies on k.Nr equals l.Nr
                              join f in Program.dbData3060.tblfaks on l.faknr equals f.faknr
                              join h in Program.dbData3060.tempRykkerforslags on l.Rykkerforslagid equals h.id
@@ -199,7 +199,7 @@ namespace nsPuls3060
             Program.dbData3060.SubmitChanges();
             lobnr = rec_tilpbs.id;
 
-            var rstmedlems = from k in Program.karMedlemmer
+            var rstmedlems = from k in Program.dbData3060.tblMedlems
                              join l in Program.dbData3060.tempKontforslaglinies on k.Nr equals l.Nr
                              join h in Program.dbData3060.tempKontforslags on l.Kontforslagid equals h.id
                              select new
@@ -289,7 +289,7 @@ namespace nsPuls3060
             Program.dbData3060.tblpbsforsendelses.InsertOnSubmit(rec_pbsforsendelse);
             rec_pbsforsendelse.tbltilpbs.Add(rsttil);
 
-            var rstdebs = from k in Program.karMedlemmer
+            var rstdebs = from k in Program.dbData3060.tblMedlems
                           join r in Program.dbData3060.tblrykkers on k.Nr equals r.Nr
                           where r.tilpbsid == lobnr && r.Nr != null
                           join f in Program.dbData3060.tblfaks on r.faknr equals f.faknr
@@ -484,7 +484,7 @@ namespace nsPuls3060
             if (fakryk == fakType.fdfaktura) //KONTINGENT FAKTURA
             {
 
-                rstdebs = from k in Program.karMedlemmer
+                rstdebs = from k in Program.dbData3060.tblMedlems
                           join f in Program.dbData3060.tblfaks on k.Nr equals f.Nr
                           where f.tilpbsid == lobnr && f.Nr != null
                           orderby f.Nr
@@ -509,7 +509,7 @@ namespace nsPuls3060
             }
             else if (fakryk == fakType.fdrykker) //RYKKER
             {
-                rstdebs = from k in Program.karMedlemmer
+                rstdebs = from k in Program.dbData3060.tblMedlems
                           join r in Program.dbData3060.tblrykkers on k.Nr equals r.Nr
                           where r.tilpbsid == lobnr && r.Nr != null
                           join f in Program.dbData3060.tblfaks on r.faknr equals f.faknr

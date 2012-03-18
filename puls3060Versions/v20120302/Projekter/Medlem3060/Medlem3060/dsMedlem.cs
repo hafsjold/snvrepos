@@ -9,7 +9,7 @@ namespace nsPuls3060
     public partial class dsMedlem
     {
 
-        public void filldsMedlem()
+        public void filldskarMedlemmer()
         {
             var qry_medlemmer = from h in Program.karMedlemmer
                                 join d1 in Program.dbData3060.tblMedlems on h.Nr equals d1.Nr into details1
@@ -51,7 +51,46 @@ namespace nsPuls3060
                 MyRow.AcceptChanges();
             }
         }
-        
+
+        public void filldstblMedlemmer()
+        {
+            var qry_medlemmer = from h in Program.dbData3060.tblMedlems
+                                select new
+                                {
+                                    h.Nr,
+                                    h.Navn,
+                                    h.Kaldenavn,
+                                    h.Adresse,
+                                    h.Postnr,
+                                    h.Bynavn,
+                                    h.Telefon,
+                                    h.Email,
+                                    h.Kon,
+                                    h.FodtDato,
+                                    h.Bank
+                                };
+
+            var antal = qry_medlemmer.Count();
+            foreach (var m in qry_medlemmer)
+            {
+                KartotekRow MyRow = (KartotekRow)tableKartotek.Rows.Add(
+                    m.Nr,
+                    m.Navn,
+                    m.Kaldenavn,
+                    m.Adresse,
+                    m.Postnr,
+                    m.Bynavn,
+                    m.Telefon,
+                    m.Email,
+                    m.Kon,
+                    m.FodtDato,
+                    m.Bank
+                  );
+
+                MyRow.AcceptChanges();
+            }
+        }
+
         public void savedsMedlem()
         {
             foreach (KartotekRow m in tableKartotek.Rows)
@@ -158,7 +197,7 @@ namespace nsPuls3060
             Program.karMedlemmer.Save();
         }
 
-        public void savedsMedlemAll()
+        public void savedstblMedlemmerAll()
         {
             foreach (KartotekRow m in tableKartotek.Rows)
             {
@@ -188,10 +227,59 @@ namespace nsPuls3060
                 m_rec.Bank = (m.IsBankNull()) ? null : m.Bank;
                 m_rec.Kon = (m.IsKonNull()) ? (char?)null : (m.Kon.ToUpper() == "M") ? 'M' : 'K';
                 m_rec.FodtDato = (m.IsFodtDatoNull()) ? (DateTime?)null : m.FodtDato;
-                m.AcceptChanges();
             }
         }
 
+        public void savedskarMedlemmerAll()
+        {
+            foreach (KartotekRow m in tableKartotek.Rows)
+            {
+                var Nr_Key = m.Nr;
+                clsMedlem k_rec;
+                try
+                {
+                    k_rec = (from k in Program.karMedlemmer
+                             where k.Nr == Nr_Key
+                             select k).First();
+                }
+                catch (System.InvalidOperationException)
+                {
+                    k_rec = null;
+                }
 
-     }
+                if (k_rec != null)  //Update
+                {
+                    k_rec.Navn = m.Navn;
+                    k_rec.Kaldenavn = (m.IsKaldenavnNull()) ? null : m.Kaldenavn;
+                    k_rec.Adresse = (m.IsAdresseNull()) ? null : m.Adresse;
+                    k_rec.Postnr = (m.IsPostnrNull()) ? null : m.Postnr;
+                    k_rec.Bynavn = (m.IsBynavnNull()) ? null : m.Bynavn;
+                    k_rec.Telefon = (m.IsTelefonNull()) ? null : m.Telefon;
+                    k_rec.Email = (m.IsEmailNull()) ? null : m.Email;
+                    k_rec.Bank = (m.IsBankNull()) ? null : m.Bank;
+                    k_rec.setKreditor();
+                    Program.karMedlemmer.Update(Nr_Key);
+                }
+                else
+                {
+                    k_rec = new clsMedlem
+                    {
+                        Nr = Nr_Key,
+                        Navn = m.Navn
+                    };
+                    k_rec.Kaldenavn = (m.IsKaldenavnNull()) ? null : m.Kaldenavn;
+                    k_rec.Adresse = (m.IsAdresseNull()) ? null : m.Adresse;
+                    k_rec.Postnr = (m.IsPostnrNull()) ? null : m.Postnr;
+                    k_rec.Bynavn = (m.IsBynavnNull()) ? null : m.Bynavn;
+                    k_rec.Telefon = (m.IsTelefonNull()) ? null : m.Telefon;
+                    k_rec.Email = (m.IsEmailNull()) ? null : m.Email;
+                    k_rec.Bank = (m.IsBankNull()) ? null : m.Bank;
+                    k_rec.setKreditor();
+                    k_rec.getNewCvsString();
+                    Program.karMedlemmer.Add(k_rec);
+                }
+            }
+        }
+
+    }
 }

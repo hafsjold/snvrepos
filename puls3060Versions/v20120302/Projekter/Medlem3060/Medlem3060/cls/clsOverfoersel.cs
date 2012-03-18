@@ -32,7 +32,7 @@ namespace nsPuls3060
             Program.dbData3060.SubmitChanges();
             lobnr = rec_tilpbs.id;
 
-            var rstmedlems = from k in Program.karMedlemmer
+            var rstmedlems = from k in Program.dbData3060.tblMedlems
                              join l in Program.dbData3060.tempBetalforslaglinies on k.Nr equals l.Nr
                              join h in Program.dbData3060.tempBetalforslags on l.Betalforslagid equals h.id
                              select new
@@ -268,7 +268,7 @@ namespace nsPuls3060
             mailman.SmtpUsername = Program.Smtpuser;
             mailman.SmtpPassword = Program.Smtppasswd;
 
-            var qrykrd = from k in Program.karMedlemmer
+            var qrykrd = from k in Program.dbData3060.tblMedlems
                          join h in Program.dbData3060.tbloverforsels on k.Nr equals h.Nr
                          where h.tilpbsid == lobnr
                          select new 

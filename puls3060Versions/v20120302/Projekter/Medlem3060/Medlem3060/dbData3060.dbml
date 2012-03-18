@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Database Name="puls3061_dk_db" Class="DbData3060" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=hd58;Initial Catalog=puls3061_dk_db;Persist Security Info=True;User ID=sa" SettingsObjectName="nsPuls3060.Properties.Settings" SettingsPropertyName="puls3061_dk_dbConnectionString_Test" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=hd58;Initial Catalog=puls3061_dk_db;Persist Security Info=True;User ID=sa" SettingsObjectName="nsPuls3060.Properties.Settings" SettingsPropertyName="puls3061_dk_dbConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tblaftalelin" Member="tblaftalelins">
     <Type Name="tblaftalelin">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -362,4 +362,46 @@
       <Association Name="tempRykkerforslag_tempRykkerforslaglinie" Member="tempRykkerforslaglinies" ThisKey="id" OtherKey="Rykkerforslagid" Type="tempRykkerforslaglinie" />
     </Type>
   </Table>
+  <Table Name="dbo.vMedlemLog" Member="vMedlemLogs">
+    <Type Name="vMedlemLog">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="logdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="akt_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="akt_dato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="parent" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Function Name="dbo.erMedlem" Method="erMedlem" IsComposable="true">
+    <Parameter Name="pNr" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Boolean" />
+  </Function>
+  <Function Name="dbo.forfaldsdato" Method="forfaldsdato" IsComposable="true">
+    <Parameter Name="pNr" Type="System.Int32" DbType="Int" />
+    <Return Type="System.DateTime" />
+  </Function>
+  <Function Name="dbo.udmeldtdato" Method="udmeldtdato" IsComposable="true">
+    <Parameter Name="pNr" Type="System.Int32" DbType="Int" />
+    <Return Type="System.DateTime" />
+  </Function>
+  <Function Name="dbo.forigekontingentdato" Method="forigekontingentdato" IsComposable="true">
+    <Parameter Name="pNr" Type="System.Int32" DbType="Int" />
+    <Return Type="System.DateTime" />
+  </Function>
+  <Function Name="dbo.indmeldtdato" Method="indmeldtdato" IsComposable="true">
+    <Parameter Name="pNr" Type="System.Int32" DbType="Int" />
+    <Return Type="System.DateTime" />
+  </Function>
+  <Function Name="dbo.kontingentdato" Method="kontingentdato" IsComposable="true">
+    <Parameter Name="pNr" Type="System.Int32" DbType="Int" />
+    <Return Type="System.DateTime" />
+  </Function>
+  <Function Name="dbo.tilbageførtkontingentdato" Method="tilbageførtkontingentdato" IsComposable="true">
+    <Parameter Name="pNr" Type="System.Int32" DbType="Int" />
+    <Return Type="System.DateTime" />
+  </Function>
+  <Function Name="dbo.kanRykkes" Method="kanRykkes" IsComposable="true">
+    <Parameter Name="pNr" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Boolean" />
+  </Function>
 </Database>

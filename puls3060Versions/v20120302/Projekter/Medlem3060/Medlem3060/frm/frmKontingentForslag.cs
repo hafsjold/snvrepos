@@ -92,8 +92,28 @@ namespace nsPuls3060
             int AntalForslag = 0;
             int ikontingent;
 
-            var qry_medlemmer = from h in Program.karMedlemmer
-                                select h;
+            var qry_medlemmer = from h in Program.dbData3060.tblMedlems
+                               select new clsMedlemInternAll
+                               {
+                                   Nr = h.Nr,
+                                   Navn = h.Navn,
+                                   Kaldenavn = h.Kaldenavn,
+                                   Adresse = h.Adresse,
+                                   Postnr = h.Postnr,
+                                   Bynavn = h.Bynavn,
+                                   Telefon = h.Telefon,
+                                   Email = h.Email,
+                                   Kon = h.Kon.ToString(),
+                                   FodtDato = h.FodtDato,
+                                   Bank = h.Bank,
+                                   erMedlem = ((bool)Program.dbData3060.erMedlem(h.Nr)) ? 1 : 0,
+                                   indmeldelsesDato = Program.dbData3060.indmeldtdato(h.Nr),
+                                   udmeldelsesDato = Program.dbData3060.udmeldtdato(h.Nr),
+                                   kontingentBetaltTilDato = Program.dbData3060.kontingentdato(h.Nr),
+                                   opkrævningsDato = Program.dbData3060.forfaldsdato(h.Nr),
+                                   kontingentTilbageførtDato = Program.dbData3060.tilbageførtkontingentdato(h.Nr),
+                               };
+
 
             this.lvwMedlem.Items.Clear();
             this.lvwKontingent.Items.Clear();
@@ -118,7 +138,7 @@ namespace nsPuls3060
                 tilmeldtpbs = false;
                 indmeldelse = false;
 
-                if (!m.erMedlem()) //er ikke medlem
+                if (m.erMedlem == 0) //er ikke medlem
                 {
                     bSelected = false;
                 }

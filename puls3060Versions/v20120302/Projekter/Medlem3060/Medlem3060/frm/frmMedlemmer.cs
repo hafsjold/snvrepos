@@ -32,7 +32,8 @@ namespace nsPuls3060
 
         private void frmMedlemmer_Load(object sender, EventArgs e)
         {
-            this.dsMedlem.filldsMedlem();
+            //this.dsMedlem.filldskarMedlemmer();
+            this.dsMedlem.filldstblMedlemmer();
             this.dataGridView1.AutoResizeColumns();
         }
 
@@ -54,11 +55,7 @@ namespace nsPuls3060
             this.lvwLog.Items.Clear();
             try
             {
-                var medlem = (from m in Program.karMedlemmer
-                              where m.Nr == P_Nr
-                              select m).First();
-
-                if (medlem.erMedlem())
+                if ((bool)Program.dbData3060.erMedlem(P_Nr))
                 {
                     this.Overskrift.ForeColor = System.Drawing.Color.Blue;
                 }
@@ -380,7 +377,7 @@ namespace nsPuls3060
             {
                 try
                 {
-                    var medlem = (from i in Program.karMedlemmer where i.Postnr == I_Postnr.Text select i).First();
+                    var medlem = (from i in Program.dbData3060.tblMedlems where i.Postnr == I_Postnr.Text select i).First();
                     I_Bynavn.Text = medlem.Bynavn;
                 }
                 catch (Exception)
@@ -395,7 +392,7 @@ namespace nsPuls3060
             {
                 try
                 {
-                    var medlem = (from i in Program.karMedlemmer where i.Postnr == U_Postnr.Text select i).First();
+                    var medlem = (from i in Program.dbData3060.tblMedlems where i.Postnr == U_Postnr.Text select i).First();
                     U_Bynavn.Text = medlem.Bynavn;
                 }
                 catch (Exception)
@@ -529,8 +526,15 @@ namespace nsPuls3060
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            this.dsMedlem.savedsMedlemAll();
+            this.dsMedlem.savedstblMedlemmerAll();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            this.dsMedlem.savedskarMedlemmerAll();
         }
 
     }
+
 }
+

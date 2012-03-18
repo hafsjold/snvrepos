@@ -205,7 +205,7 @@
         <classShapeMoniker Id="20f938df-85fb-47dc-8013-f951d35946f4" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(10.75 : 8.00787536621094); (11.0416666666667 : 8.00787536621094 : JumpStart); (11.2083333333333 : 8.00787536621094 : JumpEnd); (11.5 : 8.00787536621094)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(10.75 : 8.00787536621094); (11.5 : 8.00787536621094)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DbData3060/tblAktivitet/tblAktivitet_tblMedlemLog" />
       <nodes>
         <classShapeMoniker Id="e5097ac3-a6c0-46c2-9100-88951a850352" />
@@ -275,12 +275,18 @@
         <classShapeMoniker Id="f8a1dbce-ad09-452c-bd94-88efeef91496" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(10.75 : 10.7552502441406); (11.0416666666667 : 10.7552502441406 : JumpStart); (11.2083333333333 : 10.7552502441406 : JumpEnd); (11.5 : 10.7552502441406)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(10.75 : 10.7552502441406); (11.5 : 10.7552502441406)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DbData3060/tempRykkerforslag/tempRykkerforslag_tempRykkerforslaglinie" />
       <nodes>
         <classShapeMoniker Id="d476c563-4723-45e5-bb8b-0e4dfd133cfc" />
         <classShapeMoniker Id="af8ee325-f3b4-4dd8-ac3d-47675440235a" />
       </nodes>
     </associationConnector>
+    <classShape Id="585870ca-e70f-4223-8a80-4c200eabd37e" absoluteBounds="6.625, 0.5, 2, 1.75354248046875">
+      <DataClassMoniker Name="/DbData3060/vMedlemLog" />
+      <nestedChildShapes>
+        <elementListCompartment Id="939ff433-7a0c-4c1f-9124-2a4e461d806d" absoluteBounds="6.64, 0.96, 1.9700000000000002, 1.19354248046875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

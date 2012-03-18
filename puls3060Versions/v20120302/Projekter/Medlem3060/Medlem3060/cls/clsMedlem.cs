@@ -229,7 +229,7 @@ namespace nsPuls3060
                 if (Program.ValidatekBank(Bank))
                 {
                     Erkreditor = "1";
-                    if (Krdktonr.Length == 0)
+                    if ((Krdktonr == null)||(Krdktonr.Length == 0))
                     {
                         Krdgrup = "Standard";
                         Krdktonr = KarDkkonti.nextval().ToString();
@@ -305,12 +305,24 @@ namespace nsPuls3060
                     m_Csv.value_new = Email != null ? Email : "";
                     break;
 
+                case "12":
+                    m_Csv.value_new = Krdgrup != null ? Krdgrup : "";
+                    break;
+
                 case "13":
                     m_Csv.value_new = Telefon != null ? Telefon : "";
                     break;
 
                 case "16":
                     m_Csv.value_new = Bank != null ? Bank : "";
+                    break;
+
+                case "21":
+                    m_Csv.value_new = Krdktonr != null ? Krdktonr : "";
+                    break;
+
+                case "23":
+                    m_Csv.value_new = Erkreditor != null ? Erkreditor : "";
                     break;
 
                 default:

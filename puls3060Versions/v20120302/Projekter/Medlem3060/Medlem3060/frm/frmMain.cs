@@ -58,7 +58,12 @@ namespace nsPuls3060
                 var rec_regnskab = Program.qryAktivRegnskab();
                 this.toolStripStatusLabel1.Text = "Regnskab: " + rec_regnskab.rid + " " + rec_regnskab.Navn;
                 this.toolStripStatusLabel1.Alignment = ToolStripItemAlignment.Right;
+#if (DEBUG)
+                this.toolStripStatusLabel2.Text = global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString_Test;
+#else
                 this.toolStripStatusLabel2.Text = global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString_Prod;
+#endif
+
                 this.toolStripStatusLabel2.Alignment = ToolStripItemAlignment.Right;
 
                 object ReadKontoplan = Program.karKontoplan;
@@ -128,6 +133,7 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
+            bool? xx = Program.dbData3060.erMedlem(14);
 
             //clsKontingent obsKontingent = new clsKontingent(new DateTime(2011, 12, 11), new DateTime(1967, 05, 21));
             //int xys = 1;
@@ -390,49 +396,20 @@ namespace nsPuls3060
             int Antal603Filer = objPbs603.aftaleoplysninger_fra_pbs();
 
             clsSumma objSumma = new clsSumma();
-            int AntalOrdre = objSumma.Order2Summa();
+            int AntalBetalinger = objSumma.BogforIndBetalinger();
 
-            bigString = String.Format("Antal indlæste filer fra PBS: {0} \nAntal nye 602 filer: {1}\nAntal nye 603 filer: {3}\nAntal nye ordre: {2}.", AntalImportFiler, Antal602Filer, AntalOrdre, Antal603Filer);
-            if (AntalOrdre > 0)
+            bigString = String.Format("Antal indlæste filer fra PBS: {0} \nAntal nye 602 filer: {1}\nAntal nye 603 filer: {3}\nAntal nye ordre: {2}.", AntalImportFiler, Antal602Filer, AntalBetalinger, Antal603Filer);
+            if (AntalBetalinger > 0)
             {
-                smallString = String.Format("Åben SummaSummarum\nTryk på ikonet Bilag i venstre side\nbogfør de {0} nye ordre.", AntalOrdre);
+                smallString = String.Format("Åben SummaSummarum\nTryk på ikonet Kassekladde i venstre side\nbogfør den nye kassekladde med {0} betalinger.", AntalBetalinger);
             }
             else
             {
-                smallString = "Der er ingen nye odre";
+                smallString = "Der er ingen nye betalinger";
             }
 
             DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
                 "Betalinger fra PBS", //titleString 
-                bigString, //bigString 
-                smallString, //smallString
-                null, //leftButton
-                "OK", //rightButton
-                global::nsPuls3060.Properties.Resources.Message_info); //iconSet
-
-        }
-
-        private void betalingerTilKassekladeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            string bigString = null;
-            string smallString = null;
-
-            clsSumma objSumma = new clsSumma();
-            int AntalFakturaer = objSumma.OrderFaknrUpdate();
-            int AntalBetalinger = objSumma.BogforIndBetalinger();
-
-            bigString = String.Format("Antal bogførte fakturear: {0} \nAntal nye betalinger i kassekladde: {1}.", AntalFakturaer, AntalBetalinger);
-            if (AntalBetalinger > 0)
-            {
-                smallString = "Åben SummaSummarum\nTryk på ikonet Kassekladde i venstre side\nbogfør den nye kassekladde.";
-            }
-            else
-            {
-                smallString = "Der er ingen ny kassekladde";
-            }
-
-            DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
-                "Betalinger til Kassekladde", //titleString 
                 bigString, //bigString 
                 smallString, //smallString
                 null, //leftButton

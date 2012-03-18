@@ -117,7 +117,7 @@ namespace nsPuls3060
     #endregion
 		
 		public DbData3060() : 
-				base(global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString_Test, mappingSource)
+				base(global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -368,6 +368,62 @@ namespace nsPuls3060
 			{
 				return this.GetTable<tempRykkerforslag>();
 			}
+		}
+		
+		public System.Data.Linq.Table<vMedlemLog> vMedlemLogs
+		{
+			get
+			{
+				return this.GetTable<vMedlemLog>();
+			}
+		}
+		
+		[Function(Name="dbo.erMedlem", IsComposable=true)]
+		public System.Nullable<bool> erMedlem([Parameter(DbType="Int")] System.Nullable<int> pNr)
+		{
+			return ((System.Nullable<bool>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pNr).ReturnValue));
+		}
+		
+		[Function(Name="dbo.forfaldsdato", IsComposable=true)]
+		public System.Nullable<System.DateTime> forfaldsdato([Parameter(DbType="Int")] System.Nullable<int> pNr)
+		{
+			return ((System.Nullable<System.DateTime>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pNr).ReturnValue));
+		}
+		
+		[Function(Name="dbo.udmeldtdato", IsComposable=true)]
+		public System.Nullable<System.DateTime> udmeldtdato([Parameter(DbType="Int")] System.Nullable<int> pNr)
+		{
+			return ((System.Nullable<System.DateTime>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pNr).ReturnValue));
+		}
+		
+		[Function(Name="dbo.forigekontingentdato", IsComposable=true)]
+		public System.Nullable<System.DateTime> forigekontingentdato([Parameter(DbType="Int")] System.Nullable<int> pNr)
+		{
+			return ((System.Nullable<System.DateTime>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pNr).ReturnValue));
+		}
+		
+		[Function(Name="dbo.indmeldtdato", IsComposable=true)]
+		public System.Nullable<System.DateTime> indmeldtdato([Parameter(DbType="Int")] System.Nullable<int> pNr)
+		{
+			return ((System.Nullable<System.DateTime>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pNr).ReturnValue));
+		}
+		
+		[Function(Name="dbo.kontingentdato", IsComposable=true)]
+		public System.Nullable<System.DateTime> kontingentdato([Parameter(DbType="Int")] System.Nullable<int> pNr)
+		{
+			return ((System.Nullable<System.DateTime>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pNr).ReturnValue));
+		}
+		
+		[Function(Name="dbo.tilbageførtkontingentdato", IsComposable=true)]
+		public System.Nullable<System.DateTime> tilbageførtkontingentdato([Parameter(DbType="Int")] System.Nullable<int> pNr)
+		{
+			return ((System.Nullable<System.DateTime>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pNr).ReturnValue));
+		}
+		
+		[Function(Name="dbo.kanRykkes", IsComposable=true)]
+		public System.Nullable<bool> kanRykkes([Parameter(DbType="Int")] System.Nullable<int> pNr)
+		{
+			return ((System.Nullable<bool>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pNr).ReturnValue));
 		}
 	}
 	
@@ -7744,6 +7800,123 @@ namespace nsPuls3060
 		{
 			this.SendPropertyChanging();
 			entity.tempRykkerforslag = null;
+		}
+	}
+	
+	[Table(Name="dbo.vMedlemLog")]
+	public partial class vMedlemLog
+	{
+		
+		private int _id;
+		
+		private System.Nullable<int> _Nr;
+		
+		private System.Nullable<System.DateTime> _logdato;
+		
+		private System.Nullable<int> _akt_id;
+		
+		private System.Nullable<System.DateTime> _akt_dato;
+		
+		private int _parent;
+		
+		public vMedlemLog()
+		{
+		}
+		
+		[Column(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_Nr", DbType="Int")]
+		public System.Nullable<int> Nr
+		{
+			get
+			{
+				return this._Nr;
+			}
+			set
+			{
+				if ((this._Nr != value))
+				{
+					this._Nr = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_logdato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> logdato
+		{
+			get
+			{
+				return this._logdato;
+			}
+			set
+			{
+				if ((this._logdato != value))
+				{
+					this._logdato = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_akt_id", DbType="Int")]
+		public System.Nullable<int> akt_id
+		{
+			get
+			{
+				return this._akt_id;
+			}
+			set
+			{
+				if ((this._akt_id != value))
+				{
+					this._akt_id = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_akt_dato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> akt_dato
+		{
+			get
+			{
+				return this._akt_dato;
+			}
+			set
+			{
+				if ((this._akt_dato != value))
+				{
+					this._akt_dato = value;
+				}
+			}
+		}
+		
+		[Column(Storage="_parent", DbType="Int NOT NULL")]
+		public int parent
+		{
+			get
+			{
+				return this._parent;
+			}
+			set
+			{
+				if ((this._parent != value))
+				{
+					this._parent = value;
+				}
+			}
 		}
 	}
 }

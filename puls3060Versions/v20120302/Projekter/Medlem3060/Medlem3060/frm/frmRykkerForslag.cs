@@ -54,7 +54,7 @@ namespace nsPuls3060
             IEnumerable<clsqry_medlemmer> qry_medlemmer;
             if (this.RykketTidligere.Checked)
             {
-                qry_medlemmer = from h in Program.karMedlemmer
+                qry_medlemmer = from h in Program.dbData3060.tblMedlems
                                 join f in Program.dbData3060.tblfaks on h.Nr equals f.Nr
                                 where f.SFaknr == null &&
                                       f.rykkerstop == false &&
@@ -73,7 +73,7 @@ namespace nsPuls3060
             }
             else
             {
-                qry_medlemmer = from h in Program.karMedlemmer
+                qry_medlemmer = from h in Program.dbData3060.tblMedlems
                                 join f in Program.dbData3060.tblfaks on h.Nr equals f.Nr
                                 where f.SFaknr == null &&
                                       f.rykkerstop == false &&
@@ -109,8 +109,7 @@ namespace nsPuls3060
 
             foreach (var m in qry_medlemmer)
             {
-                clsMedlem medlem = (from k in Program.karMedlemmer where k.Nr == m.Nr select k).First();
-                if (medlem.kanRykkes())
+                if ((bool)Program.dbData3060.kanRykkes(m.Nr))
                 {
                     AntalForslag++;
                     ListViewItem it = lvwMedlem.Items.Add(m.Nr.ToString(), m.Navn, 0);

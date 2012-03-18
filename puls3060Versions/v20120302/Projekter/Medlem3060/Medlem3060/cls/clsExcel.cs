@@ -28,9 +28,7 @@ namespace nsPuls3060
             var rec_regnskab = Program.qryAktivRegnskab();
             string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xls";
 
-            var MedlemmerAll = from h in Program.karMedlemmer
-                               join d1 in Program.dbData3060.tblMedlems on h.Nr equals d1.Nr into details1
-                               from x in details1.DefaultIfEmpty()  //new TblMedlem { Nr = -1, Kon = "X", FodtDato = new DateTime(1900, 1, 1) })
+            var MedlemmerAll = from h in Program.dbData3060.tblMedlems
                                select new clsMedlemInternAll
                                {
                                    Nr = h.Nr,
@@ -41,15 +39,15 @@ namespace nsPuls3060
                                    Bynavn = h.Bynavn,
                                    Telefon = h.Telefon,
                                    Email = h.Email,
-                                   Kon = x.Kon.ToString(),
-                                   FodtDato = x.FodtDato,
+                                   Kon = h.Kon.ToString(),
+                                   FodtDato = h.FodtDato,
                                    Bank = h.Bank,
-                                   erMedlem = (h.erMedlem()) ? 1 : 0,
-                                   indmeldelsesDato = h.indmeldelsesDato,
-                                   udmeldelsesDato = h.udmeldelsesDato,
-                                   kontingentBetaltTilDato = h.kontingentBetaltTilDato,
-                                   opkrævningsDato = h.opkrævningsDato,
-                                   kontingentTilbageførtDato = h.kontingentTilbageførtDato,
+                                   erMedlem = ((bool)Program.dbData3060.erMedlem(h.Nr)) ? 1 : 0,
+                                   indmeldelsesDato = Program.dbData3060.indmeldtdato(h.Nr),
+                                   udmeldelsesDato = Program.dbData3060.udmeldtdato(h.Nr),
+                                   kontingentBetaltTilDato = Program.dbData3060.kontingentdato(h.Nr),
+                                   opkrævningsDato = Program.dbData3060.forfaldsdato(h.Nr),
+                                   kontingentTilbageførtDato = Program.dbData3060.tilbageførtkontingentdato(h.Nr),
                                };
 
 
@@ -70,7 +68,7 @@ namespace nsPuls3060
                     int row = 1;
                     this.MainformProgressBar.Value = 0;
                     this.MainformProgressBar.Minimum = 0;
-                    this.MainformProgressBar.Maximum = (from h in Program.karMedlemmer select h).Count();
+                    this.MainformProgressBar.Maximum = (from h in Program.dbData3060.tblMedlems select h).Count();
                     this.MainformProgressBar.Step = 1;
                     this.MainformProgressBar.Visible = true;
                     foreach (clsMedlemInternAll m in MedlemmerAll)
@@ -183,9 +181,7 @@ namespace nsPuls3060
             var rec_regnskab = Program.qryAktivRegnskab();
             string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xls";
 
-            var MedlemmerAll = from h in Program.karMedlemmer
-                               join d1 in Program.dbData3060.tblMedlems on h.Nr equals d1.Nr into details1
-                               from x in details1.DefaultIfEmpty()  //new TblMedlem { Nr = -1, Kon = "X", FodtDato = new DateTime(1900, 1, 1) })
+            var MedlemmerAll = from h in Program.dbData3060.tblMedlems
                                select new clsMedlemExternAll
                                {
                                    Nr = h.Nr,
@@ -196,9 +192,9 @@ namespace nsPuls3060
                                    Bynavn = h.Bynavn,
                                    Telefon = h.Telefon,
                                    Email = h.Email,
-                                   Kon = x.Kon.ToString(),
-                                   FodtDato = x.FodtDato,
-                                   erMedlem = (h.erMedlem()) ? 1 : 0,
+                                   Kon = h.Kon.ToString(),
+                                   FodtDato = h.FodtDato,
+                                   erMedlem = ((bool)Program.dbData3060.erMedlem(h.Nr)) ? 1 : 0,
                                    erPBS = (clsPbs.gettilmeldtpbs(h.Nr)) ? 1 : 0,
                                };
 
@@ -220,7 +216,7 @@ namespace nsPuls3060
                     int row = 1;
                     this.MainformProgressBar.Value = 0;
                     this.MainformProgressBar.Minimum = 0;
-                    this.MainformProgressBar.Maximum = (from h in Program.karMedlemmer select h).Count();
+                    this.MainformProgressBar.Maximum = (from h in Program.dbData3060.tblMedlems select h).Count();
                     this.MainformProgressBar.Step = 1;
                     this.MainformProgressBar.Visible = true;
                     foreach (clsMedlemExternAll m in MedlemmerAll)
@@ -330,9 +326,7 @@ namespace nsPuls3060
             var rec_regnskab = Program.qryAktivRegnskab();
             string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xls";
 
-            var MedlemmerAll = from h in Program.karMedlemmer
-                               join d1 in Program.dbData3060.tblMedlems on h.Nr equals d1.Nr into details1
-                               from x in details1.DefaultIfEmpty()  //new TblMedlem { Nr = -1, Kon = "X", FodtDato = new DateTime(1900, 1, 1) })
+            var MedlemmerAll = from h in Program.dbData3060.tblMedlems
                                select new clsMedlemExternAll
                                {
                                    Nr = h.Nr,
@@ -343,9 +337,9 @@ namespace nsPuls3060
                                    Bynavn = h.Bynavn,
                                    Telefon = h.Telefon,
                                    Email = h.Email,
-                                   Kon = x.Kon.ToString(),
-                                   FodtDato = x.FodtDato,
-                                   erMedlem = (h.erMedlem()) ? 1 : 0,
+                                   Kon = h.Kon.ToString(),
+                                   FodtDato = h.FodtDato,
+                                   erMedlem = ((bool)Program.dbData3060.erMedlem(h.Nr)) ? 1 : 0,
                                    erPBS = (clsPbs.gettilmeldtpbs(h.Nr)) ? 1 : 0,
                                };
             
@@ -384,7 +378,7 @@ namespace nsPuls3060
                     int row = 1;
                     this.MainformProgressBar.Value = 0;
                     this.MainformProgressBar.Minimum = 0;
-                    this.MainformProgressBar.Maximum = (from h in Program.karMedlemmer select h).Count();
+                    this.MainformProgressBar.Maximum = (from h in Program.dbData3060.tblMedlems select h).Count();
                     this.MainformProgressBar.Step = 1;
                     this.MainformProgressBar.Visible = true;
                     foreach (clsMedlemNotPBS m in MedlemmerNotPBS)
@@ -526,7 +520,7 @@ namespace nsPuls3060
                                    Beløb = h.Bruttobeløb,
                                };
 
-            var MedlemmerAll = from h in Program.karMedlemmer
+            var MedlemmerAll = from h in Program.dbData3060.tblMedlems
                                select new clsMedlemExternAll
                                {
                                    Nr = h.Nr,
@@ -539,7 +533,7 @@ namespace nsPuls3060
                                    Email = h.Email,
                                    Kon = "X",
                                    FodtDato = null,
-                                   erMedlem = (h.erMedlem()) ? 1 : 0,
+                                   erMedlem = ((bool)Program.dbData3060.erMedlem(h.Nr)) ? 1 : 0,
                                    erPBS = (clsPbs.gettilmeldtpbs(h.Nr)) ? 1 : 0,
                                };
 

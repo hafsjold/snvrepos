@@ -351,7 +351,7 @@ namespace nsPuls3060.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=hd58;Initial Catalog=puls3061_dk_db;Persist Security Info=True;User I" +
-            "D=sa")]
+            "D=puls3061_dk")]
         public string puls3061_dk_dbConnectionString_Test {
             get {
                 return ((string)(this["puls3061_dk_dbConnectionString_Test"]));
@@ -378,6 +378,17 @@ namespace nsPuls3060.Properties {
             }
             set {
                 this["UserPassword"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=hd58;Initial Catalog=puls3061_dk_db;Persist Security Info=True;User I" +
+            "D=sa;Password=mha733")]
+        public string puls3061_dk_dbConnectionString {
+            get {
+                return ((string)(this["puls3061_dk_dbConnectionString"]));
             }
         }
     }
