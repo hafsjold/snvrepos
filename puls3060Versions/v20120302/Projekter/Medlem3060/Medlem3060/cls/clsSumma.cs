@@ -26,7 +26,7 @@ namespace nsPuls3060
                        join bl in Program.dbData3060.tblbetlins on f.faknr equals bl.faknr
                        where bl.pbstranskode == "0236" || bl.pbstranskode == "0297"
                        join b in Program.dbData3060.tblbets on bl.betid equals b.id
-                       where b.summabogfort != true
+                       where b.summabogfort == null ||  b.summabogfort == false
                        join p in Program.dbData3060.tblfrapbs on b.frapbsid equals p.id
                        orderby p.id, b.id, bl.id
                        select new
