@@ -404,4 +404,8 @@
     <Parameter Name="pNr" Type="System.Int32" DbType="Int" />
     <Return Type="System.Boolean" />
   </Function>
+  <Function Name="dbo.OcrString" Method="OcrString" IsComposable="true">
+    <Parameter Name="pFaknr" Type="System.Int32" DbType="Int" />
+    <Return Type="System.String" />
+  </Function>
 </Database>

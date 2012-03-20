@@ -425,6 +425,12 @@ namespace nsPuls3060
 		{
 			return ((System.Nullable<bool>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pNr).ReturnValue));
 		}
+		
+		[Function(Name="dbo.OcrString", IsComposable=true)]
+		public string OcrString([Parameter(DbType="Int")] System.Nullable<int> pFaknr)
+		{
+			return ((string)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pFaknr).ReturnValue));
+		}
 	}
 	
 	[Table(Name="dbo.tblaftalelin")]

@@ -293,8 +293,6 @@ namespace nsPuls3060
                           join r in Program.dbData3060.tblrykkers on k.Nr equals r.Nr
                           where r.tilpbsid == lobnr && r.Nr != null
                           join f in Program.dbData3060.tblfaks on r.faknr equals f.faknr
-                          join b in Program.dbData3060.tblindbetalingskorts on r.faknr equals b.faknr into indbetalingskort
-                          from b in indbetalingskort.DefaultIfEmpty(new tblindbetalingskort { id = 0, frapbsid = 0, pbstranskode = null, Nr = 0, faknr = null, debitorkonto = null, debgrpnr = null, kortartkode = null, fikreditornr = null, indbetalerident = null, dato = null, belob = null, pbssektionnr = null })
                           orderby r.faknr
                           select new clsRstdeb
                           {
@@ -312,7 +310,6 @@ namespace nsPuls3060
                               Tilpbsid = r.tilpbsid,
                               Advistekst = r.advistekst,
                               Belob = r.advisbelob,
-                              OcrString = (b.indbetalerident == null) ? null : ">" + b.kortartkode + "< " + b.indbetalerident + "+" + b.fikreditornr + "<",
                               Email = k.Email
                           };
 
@@ -331,7 +328,7 @@ namespace nsPuls3060
                         tildato = rstdeb.Tildato,
                         betalingsdato = rstdeb.Betalingsdato,
                         advisbelob = rstdeb.Belob,
-                        ocrstring = rstdeb.OcrString,
+                        ocrstring = Program.dbData3060.OcrString(rstdeb.Faknr),
                         underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører"
                     }.getinfotekst();
 
@@ -504,7 +501,6 @@ namespace nsPuls3060
                               Tilpbsid = f.tilpbsid,
                               Advistekst = f.advistekst,
                               Belob = f.advisbelob,
-                              OcrString = null
                           };
             }
             else if (fakryk == fakType.fdrykker) //RYKKER
@@ -513,8 +509,6 @@ namespace nsPuls3060
                           join r in Program.dbData3060.tblrykkers on k.Nr equals r.Nr
                           where r.tilpbsid == lobnr && r.Nr != null
                           join f in Program.dbData3060.tblfaks on r.faknr equals f.faknr
-                          join b in Program.dbData3060.tblindbetalingskorts on r.faknr equals b.faknr into indbetalingskort
-                          from b in indbetalingskort.DefaultIfEmpty(new tblindbetalingskort { id = 0, frapbsid = 0, pbstranskode = null, Nr = 0, faknr = null, debitorkonto = null, debgrpnr = null, kortartkode = null, fikreditornr = null, indbetalerident = null, dato = null, belob = null, pbssektionnr = null })
                           orderby r.Nr
                           select new clsRstdeb
                           {
@@ -532,7 +526,6 @@ namespace nsPuls3060
                               Tilpbsid = r.tilpbsid,
                               Advistekst = r.advistekst,
                               Belob = r.advisbelob,
-                              OcrString = (b.indbetalerident == null) ? null : ">" + b.kortartkode + "< " + b.indbetalerident + "+" + b.fikreditornr + "<"
                           };
             }
             else
@@ -736,7 +729,7 @@ namespace nsPuls3060
                     tildato = rstdeb.Tildato, 
                     betalingsdato = rstdeb.Betalingsdato,
                     advisbelob = rstdeb.Belob, 
-                    ocrstring = rstdeb.OcrString, 
+                    ocrstring = Program.dbData3060.OcrString(rstdeb.Faknr), 
                     underskrift_navn= "\r\nMogens Hafsjold\r\nRegnskabsfører"
                 }.getinfotekst();
                 
@@ -1200,7 +1193,7 @@ namespace nsPuls3060
         public int? Tilpbsid { get; set; }
         public string Advistekst { get; set; }
         public decimal? Belob { get; set; }
-        public string OcrString { get; set; }
+        //public string OcrString { get; set; }
         public string Email { get; set; }
 
     }
