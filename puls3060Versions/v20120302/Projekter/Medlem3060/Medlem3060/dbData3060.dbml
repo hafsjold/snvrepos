@@ -408,4 +408,8 @@
     <Parameter Name="pFaknr" Type="System.Int32" DbType="Int" />
     <Return Type="System.String" />
   </Function>
+  <Function Name="dbo.erPBS" Method="erPBS" IsComposable="true">
+    <Parameter Name="pNr" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Boolean" />
+  </Function>
 </Database>

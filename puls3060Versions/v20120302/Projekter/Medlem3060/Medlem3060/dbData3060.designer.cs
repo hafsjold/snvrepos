@@ -431,6 +431,12 @@ namespace nsPuls3060
 		{
 			return ((string)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pFaknr).ReturnValue));
 		}
+		
+		[Function(Name="dbo.erPBS", IsComposable=true)]
+		public System.Nullable<bool> erPBS([Parameter(DbType="Int")] System.Nullable<int> pNr)
+		{
+			return ((System.Nullable<bool>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pNr).ReturnValue));
+		}
 	}
 	
 	[Table(Name="dbo.tblaftalelin")]

@@ -195,7 +195,7 @@ namespace nsPuls3060
                                    Kon = h.Kon.ToString(),
                                    FodtDato = h.FodtDato,
                                    erMedlem = ((bool)Program.dbData3060.erMedlem(h.Nr)) ? 1 : 0,
-                                   erPBS = (clsPbs.gettilmeldtpbs(h.Nr)) ? 1 : 0,
+                                   erPBS = ((bool)Program.dbData3060.erPBS(h.Nr)) ? 1 : 0,
                                };
 
 
@@ -340,7 +340,7 @@ namespace nsPuls3060
                                    Kon = h.Kon.ToString(),
                                    FodtDato = h.FodtDato,
                                    erMedlem = ((bool)Program.dbData3060.erMedlem(h.Nr)) ? 1 : 0,
-                                   erPBS = (clsPbs.gettilmeldtpbs(h.Nr)) ? 1 : 0,
+                                   erPBS = ((bool)Program.dbData3060.erPBS(h.Nr)) ? 1 : 0,
                                };
             
             var MedlemmerNotPBS = from h in MedlemmerAll
@@ -534,7 +534,7 @@ namespace nsPuls3060
                                    Kon = "X",
                                    FodtDato = null,
                                    erMedlem = ((bool)Program.dbData3060.erMedlem(h.Nr)) ? 1 : 0,
-                                   erPBS = (clsPbs.gettilmeldtpbs(h.Nr)) ? 1 : 0,
+                                   erPBS = ((bool)Program.dbData3060.erPBS(h.Nr)) ? 1 : 0,
                                };
 
             var erMedlem = from h in MedlemmerAll
