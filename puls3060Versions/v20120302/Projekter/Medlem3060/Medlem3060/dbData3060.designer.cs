@@ -117,7 +117,7 @@ namespace nsPuls3060
     #endregion
 		
 		public DbData3060() : 
-				base(global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString_Test, mappingSource)
+				base(global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

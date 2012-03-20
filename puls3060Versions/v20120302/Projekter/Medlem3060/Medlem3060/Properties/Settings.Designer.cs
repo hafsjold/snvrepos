@@ -380,5 +380,16 @@ namespace nsPuls3060.Properties {
                 this["UserPassword"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=hd58;Initial Catalog=puls3061_dk_db;Persist Security Info=True;User I" +
+            "D=sa")]
+        public string puls3061_dk_dbConnectionString {
+            get {
+                return ((string)(this["puls3061_dk_dbConnectionString"]));
+            }
+        }
     }
 }

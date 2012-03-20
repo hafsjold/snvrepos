@@ -41,6 +41,7 @@ namespace nsPuls3060
                            bl.indbetalingsdato,
                            m.Navn,
                            bl.indbetalingsbelob,
+                           f.Nr,
                            f.bogfkonto,
                            f.faknr
                        };
@@ -89,7 +90,7 @@ namespace nsPuls3060
                     {
                         Dato = ToDay,
                         Bilag = BS1_SidsteNr,
-                        Tekst = ("Kont F" + b.faknr + " " + b.Navn).PadRight(40,' ').Substring(0,40),
+                        Tekst = ("F" + b.faknr + " " + b.Nr + " " + b.Navn).PadRight(40, ' ').Substring(0, 40),
                         Afstemningskonto = null,
                         Belob = b.indbetalingsbelob,
                         Kontonr = b.bogfkonto,
