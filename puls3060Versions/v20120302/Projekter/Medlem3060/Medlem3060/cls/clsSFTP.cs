@@ -475,7 +475,7 @@ namespace nsPuls3060
                          where h.pbsfilesid == pbsfilesid & h.seqnr != 0 & h.seqnr != 9999
                          select h).Count();
                 transmisionsdato = DateTime.Now;
-                idlev = clsPbs.nextval("idlev");
+                idlev = Program.dbData3060.nextval("idlev");
 
                 tblpbsfilename rec_pbsfiles = (from h in Program.dbData3060.tblpbsfilenames where h.id == pbsfilesid select h).First();
 

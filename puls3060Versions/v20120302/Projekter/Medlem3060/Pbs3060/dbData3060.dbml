@@ -53,19 +53,6 @@
       <Association Name="tblpbsforsendelse_tbltilpb" Member="tbltilpbs" ThisKey="id" OtherKey="pbsforsendelseid" Type="tbltilpb" />
     </Type>
   </Table>
-  <Table Name="dbo.tblnrserie" Member="tblnrseries">
-    <Type Name="tblnrserie">
-      <Column Name="nrserienavn" Type="System.String" DbType="NVarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="sidstbrugtenr" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tblSysinfo" Member="tblSysinfos">
-    <Type Name="tblSysinfo">
-      <Column Name="vkey" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="val" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.tbltilpbs" Member="tbltilpbs">
     <Type Name="tbltilpb">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -82,5 +69,9 @@
   <Function Name="dbo.GetSysinfo" Method="GetSysinfo" IsComposable="true">
     <Parameter Name="Pvkey" Parameter="pvkey" Type="System.String" DbType="NVarChar(10)" />
     <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.nextval" Method="nextval">
+    <Parameter Name="Pnrserienavn" Parameter="pnrserienavn" Type="System.String" DbType="NVarChar(30)" />
+    <Return Type="System.Int32" />
   </Function>
 </Database>

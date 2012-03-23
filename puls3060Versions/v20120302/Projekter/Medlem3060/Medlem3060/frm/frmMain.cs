@@ -133,7 +133,7 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
-            bool? xx = Program.dbData3060.erMedlem(14);
+            int yy = Program.dbData3060.nextval("mha");
 
             //clsKontingent obsKontingent = new clsKontingent(new DateTime(2011, 12, 11), new DateTime(1967, 05, 21));
             //int xys = 1;

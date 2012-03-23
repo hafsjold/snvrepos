@@ -40,18 +40,6 @@
         <classShapeMoniker Id="14f91b98-e3d4-4e1a-a980-fb54f8e0381f" />
       </nodes>
     </associationConnector>
-    <classShape Id="970f6dd9-c3b9-4565-8847-e28d0e329d1e" absoluteBounds="5.875, 3.25, 2, 1.0961531575520833">
-      <DataClassMoniker Name="/dbData3060DataContext/tblnrserie" />
-      <nestedChildShapes>
-        <elementListCompartment Id="24506fd2-3567-4c01-965c-15ba6002f7db" absoluteBounds="5.89, 3.71, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="ea77d884-8a84-414f-9b90-30b8f6a4b0fa" absoluteBounds="5.875, 4.75, 2, 1.26050048828125">
-      <DataClassMoniker Name="/dbData3060DataContext/tblSysinfo" />
-      <nestedChildShapes>
-        <elementListCompartment Id="9d1c60cb-2e95-4cad-8058-ca2ade072031" absoluteBounds="5.89, 5.21, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
     <classShape Id="512c98fb-4ca7-431e-9308-35363ce288d8" absoluteBounds="0.5, 1.125, 2, 2.0822371419270831">
       <DataClassMoniker Name="/dbData3060DataContext/tbltilpb" />
       <nestedChildShapes>

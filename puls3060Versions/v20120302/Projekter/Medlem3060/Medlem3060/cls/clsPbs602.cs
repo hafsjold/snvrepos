@@ -180,7 +180,7 @@ namespace nsPuls3060
                                              select c).Count();
                                 if (antal > 0) { throw new Exception("242 - Leverance med pbsfilesid: " + wpbsfilesid + " og leverancespecifikation: " + leverancespecifikation + " er indlæst tidligere"); }
 
-                                wleveranceid = clsPbs.nextval("leveranceid");
+                                wleveranceid = Program.dbData3060.nextval("leveranceid");
                                 m_rec_pbsforsendelse = new tblpbsforsendelse
                                 {
                                     delsystem = "BS1",

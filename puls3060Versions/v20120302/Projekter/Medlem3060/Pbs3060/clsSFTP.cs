@@ -17,10 +17,11 @@ namespace nsPbs3060
         private tblpbsfile m_rec_pbsfile;
         private tblsftp m_rec_sftp;
 
-        public clsSFTP()
+        private clsSFTP() { }
+        public clsSFTP(string dbConnectionString)
         {
+            m_dbData3060 = new dbData3060DataContext(dbConnectionString);
 #if (DEBUG)
-            m_dbData3060 = new dbData3060DataContext();
             m_rec_sftp = (from s in m_dbData3060.tblsftps where s.navn == "TestHD36" select s).First();
             //m_rec_sftp = (from s in m_dbData3060.tblsftps where s.navn == "Test" select s).First();
             //m_rec_sftp = (from s in m_dbData3060.tblsftps where s.navn == "Produktion" select s).First();
@@ -480,7 +481,8 @@ namespace nsPbs3060
                          where h.pbsfilesid == pbsfilesid & h.seqnr != 0 & h.seqnr != 9999
                          select h).Count();
                 transmisionsdato = DateTime.Now;
-                idlev = nextval("idlev");
+
+                idlev = m_dbData3060.nextval("idlev");
 
                 tblpbsfilename rec_pbsfiles = (from h in m_dbData3060.tblpbsfilenames where h.id == pbsfilesid select h).First();
 
@@ -550,39 +552,6 @@ namespace nsPbs3060
         {
             string Val = oVal.ToString();
             return Val.PadRight(Length, PadChar);
-        }
-
-        public static int nextval(string nrserienavn)
-        {
-            try
-            {
-                var rst = (from c in m_dbData3060.tblnrseries
-                           where c.nrserienavn == nrserienavn
-                           select c).First();
-
-                if (rst.sidstbrugtenr != null)
-                {
-                    rst.sidstbrugtenr += 1;
-                    return rst.sidstbrugtenr.Value;
-                }
-                else
-                {
-                    rst.sidstbrugtenr = 0;
-                    return rst.sidstbrugtenr.Value;
-                }
-            }
-            catch (System.InvalidOperationException)
-            {
-                tblnrserie rec_nrserie = new tblnrserie
-                {
-                    nrserienavn = nrserienavn,
-                    sidstbrugtenr = 0
-                };
-                m_dbData3060.tblnrseries.InsertOnSubmit(rec_nrserie);
-                m_dbData3060.SubmitChanges();
-
-                return 0;
-            }
         }
 
     }

@@ -42,12 +42,6 @@ namespace nsPbs3060
     partial void Inserttblpbsforsendelse(tblpbsforsendelse instance);
     partial void Updatetblpbsforsendelse(tblpbsforsendelse instance);
     partial void Deletetblpbsforsendelse(tblpbsforsendelse instance);
-    partial void Inserttblnrserie(tblnrserie instance);
-    partial void Updatetblnrserie(tblnrserie instance);
-    partial void Deletetblnrserie(tblnrserie instance);
-    partial void InserttblSysinfo(tblSysinfo instance);
-    partial void UpdatetblSysinfo(tblSysinfo instance);
-    partial void DeletetblSysinfo(tblSysinfo instance);
     partial void Inserttbltilpb(tbltilpb instance);
     partial void Updatetbltilpb(tbltilpb instance);
     partial void Deletetbltilpb(tbltilpb instance);
@@ -115,22 +109,6 @@ namespace nsPbs3060
 			}
 		}
 		
-		public System.Data.Linq.Table<tblnrserie> tblnrseries
-		{
-			get
-			{
-				return this.GetTable<tblnrserie>();
-			}
-		}
-		
-		public System.Data.Linq.Table<tblSysinfo> tblSysinfos
-		{
-			get
-			{
-				return this.GetTable<tblSysinfo>();
-			}
-		}
-		
 		public System.Data.Linq.Table<tbltilpb> tbltilpbs
 		{
 			get
@@ -143,6 +121,13 @@ namespace nsPbs3060
 		public string GetSysinfo([Parameter(Name="Pvkey", DbType="NVarChar(10)")] string pvkey)
 		{
 			return ((string)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pvkey).ReturnValue));
+		}
+		
+		[Function(Name="dbo.nextval")]
+		public int nextval([Parameter(Name="Pnrserienavn", DbType="NVarChar(30)")] string pnrserienavn)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pnrserienavn);
+			return ((int)(result.ReturnValue));
 		}
 	}
 	
@@ -1205,202 +1190,6 @@ namespace nsPbs3060
 		{
 			this.SendPropertyChanging();
 			entity.tblpbsforsendelse = null;
-		}
-	}
-	
-	[Table(Name="dbo.tblnrserie")]
-	public partial class tblnrserie : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _nrserienavn;
-		
-		private System.Nullable<int> _sidstbrugtenr;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnnrserienavnChanging(string value);
-    partial void OnnrserienavnChanged();
-    partial void OnsidstbrugtenrChanging(System.Nullable<int> value);
-    partial void OnsidstbrugtenrChanged();
-    #endregion
-		
-		public tblnrserie()
-		{
-			OnCreated();
-		}
-		
-		[Column(Storage="_nrserienavn", DbType="NVarChar(30) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string nrserienavn
-		{
-			get
-			{
-				return this._nrserienavn;
-			}
-			set
-			{
-				if ((this._nrserienavn != value))
-				{
-					this.OnnrserienavnChanging(value);
-					this.SendPropertyChanging();
-					this._nrserienavn = value;
-					this.SendPropertyChanged("nrserienavn");
-					this.OnnrserienavnChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_sidstbrugtenr", DbType="Int")]
-		public System.Nullable<int> sidstbrugtenr
-		{
-			get
-			{
-				return this._sidstbrugtenr;
-			}
-			set
-			{
-				if ((this._sidstbrugtenr != value))
-				{
-					this.OnsidstbrugtenrChanging(value);
-					this.SendPropertyChanging();
-					this._sidstbrugtenr = value;
-					this.SendPropertyChanged("sidstbrugtenr");
-					this.OnsidstbrugtenrChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[Table(Name="dbo.tblSysinfo")]
-	public partial class tblSysinfo : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private string _vkey;
-		
-		private string _val;
-		
-		private int _id;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnvkeyChanging(string value);
-    partial void OnvkeyChanged();
-    partial void OnvalChanging(string value);
-    partial void OnvalChanged();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    #endregion
-		
-		public tblSysinfo()
-		{
-			OnCreated();
-		}
-		
-		[Column(Storage="_vkey", DbType="NVarChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string vkey
-		{
-			get
-			{
-				return this._vkey;
-			}
-			set
-			{
-				if ((this._vkey != value))
-				{
-					this.OnvkeyChanging(value);
-					this.SendPropertyChanging();
-					this._vkey = value;
-					this.SendPropertyChanged("vkey");
-					this.OnvkeyChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_val", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string val
-		{
-			get
-			{
-				return this._val;
-			}
-			set
-			{
-				if ((this._val != value))
-				{
-					this.OnvalChanging(value);
-					this.SendPropertyChanging();
-					this._val = value;
-					this.SendPropertyChanged("val");
-					this.OnvalChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_id", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 	

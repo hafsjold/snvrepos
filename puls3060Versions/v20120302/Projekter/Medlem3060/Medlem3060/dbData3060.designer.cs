@@ -437,6 +437,13 @@ namespace nsPuls3060
 		{
 			return ((System.Nullable<bool>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pNr).ReturnValue));
 		}
+		
+		[Function(Name="dbo.nextval")]
+		public int nextval([Parameter(Name="Pnrserienavn", DbType="NVarChar(30)")] string pnrserienavn)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pnrserienavn);
+			return ((int)(result.ReturnValue));
+		}
 	}
 	
 	[Table(Name="dbo.tblaftalelin")]

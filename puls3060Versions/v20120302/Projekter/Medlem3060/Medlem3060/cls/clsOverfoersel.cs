@@ -134,7 +134,7 @@ namespace nsPuls3060
             Program.dbData3060.SubmitChanges();
 
 
-            wleveranceid = clsPbs.nextval("leveranceid");
+            wleveranceid = Program.dbData3060.nextval("leveranceid");
             tblpbsforsendelse rec_pbsforsendelse = new tblpbsforsendelse
             {
                 delsystem = rsttil.delsystem,

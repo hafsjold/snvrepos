@@ -412,4 +412,8 @@
     <Parameter Name="pNr" Type="System.Int32" DbType="Int" />
     <Return Type="System.Boolean" />
   </Function>
+  <Function Name="dbo.nextval" Method="nextval">
+    <Parameter Name="Pnrserienavn" Parameter="pnrserienavn" Type="System.String" DbType="NVarChar(30)" />
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

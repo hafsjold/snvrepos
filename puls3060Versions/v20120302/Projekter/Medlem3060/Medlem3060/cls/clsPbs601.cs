@@ -223,7 +223,7 @@ namespace nsPuls3060
                 {
                     betalingsdato = rstmedlem.betalingsdato,
                     Nr = rstmedlem.Nr,
-                    faknr = clsPbs.nextval("faknr"),
+                    faknr = Program.dbData3060.nextval("faknr"),
                     advistekst = wadvistekst,
                     advisbelob = rstmedlem.advisbelob,
                     infotekst = winfotekst,
@@ -276,7 +276,7 @@ namespace nsPuls3060
             if (rsttil.leverancetype == null) { rsttil.leverancetype = ""; }
             Program.dbData3060.SubmitChanges();
 
-            wleveranceid = clsPbs.nextval("leveranceid");
+            wleveranceid = Program.dbData3060.nextval("leveranceid");
 
             tblpbsforsendelse rec_pbsforsendelse = new tblpbsforsendelse
             {
@@ -432,7 +432,7 @@ namespace nsPuls3060
             if (rsttil.leverancetype == null) { rsttil.leverancetype = ""; }
             Program.dbData3060.SubmitChanges();
 
-            wleveranceid = clsPbs.nextval("leveranceid");
+            wleveranceid = Program.dbData3060.nextval("leveranceid");
 
             tblpbsforsendelse rec_pbsforsendelse = new tblpbsforsendelse
             {
