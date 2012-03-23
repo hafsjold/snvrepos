@@ -20,7 +20,7 @@
         <elementListCompartment Id="e29e9cc0-be56-4777-a76b-faa87da6aa5f" absoluteBounds="3.39, 3.46, 1.9700000000000002, 2.17962646484375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.375 : 5.73962646484375); (4.375 : 6.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.375 : 5.73962646484375); (4.375 : 6.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/dbData3060DataContext/tblpbsfilename/tblpbsfilename_tblpbsfile" />
       <nodes>
         <classShapeMoniker Id="14f91b98-e3d4-4e1a-a980-fb54f8e0381f" />
@@ -33,7 +33,7 @@
         <elementListCompartment Id="4d19937b-5bda-47d5-9ef5-48c94fccd3b7" absoluteBounds="3.3899999999999997, 0.96, 1.9700000000000002, 1.19354248046875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.375 : 2.25354248046875); (4.375 : 3)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.375 : 2.25354248046875); (4.375 : 3)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/dbData3060DataContext/tblpbsforsendelse/tblpbsforsendelse_tblpbsfilename" />
       <nodes>
         <classShapeMoniker Id="da8d46bf-d136-4c4e-b928-4ed5518799eb" />
@@ -58,7 +58,7 @@
         <elementListCompartment Id="55702686-1064-43b3-90e5-7e53e8f44a9b" absoluteBounds="0.51500000000000012, 1.585, 1.9700000000000002, 1.5222371419270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3.375 : 1.68927124023438); (2.5 : 1.68927124023438)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.375 : 1.68927124023438); (2.5 : 1.68927124023438)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/dbData3060DataContext/tblpbsforsendelse/tblpbsforsendelse_tbltilpb" />
       <nodes>
         <classShapeMoniker Id="da8d46bf-d136-4c4e-b928-4ed5518799eb" />

@@ -418,13 +418,13 @@ namespace nsPbs3060
             if (success != true) throw new Exception(mailman.LastErrorText);
 
             //  Use the GMail SMTP server
-            mailman.SmtpHost = "";// Program.Smtphost;
-            mailman.SmtpPort = 25;// int.Parse(Program.Smtpport);
-            mailman.SmtpSsl = false;// bool.Parse(Program.Smtpssl);
+            mailman.SmtpHost = m_dbData3060.GetSysinfo("SMTPHOST");
+            mailman.SmtpPort = int.Parse(m_dbData3060.GetSysinfo("SMTPPORT"));
+            mailman.SmtpSsl = bool.Parse(m_dbData3060.GetSysinfo("SMTPSSL"));
 
             //  Set the SMTP login/password.
-            mailman.SmtpUsername = "";// Program.Smtpuser;
-            mailman.SmtpPassword = "";// Program.Smtppasswd;
+            mailman.SmtpUsername = m_dbData3060.GetSysinfo("SMTPUSER");
+            mailman.SmtpPassword = m_dbData3060.GetSysinfo("SMTPPASSWD");
 
             //  Create a new email object
             Chilkat.Email email = new Chilkat.Email();
@@ -449,11 +449,11 @@ namespace nsPbs3060
                 email.Body = "Fra PBS: " + local_filename;
 #endif
             }
-            //email.AddTo(Program.MailToName, Program.MailToAddr);
-            //email.From = Program.MailFrom;
-            //email.ReplyTo = Program.MailReply;
-            //email.AddDataAttachment2(local_filename, data, "text/plain");
-            //email.UnzipAttachments();
+            email.AddTo(m_dbData3060.GetSysinfo("MAILTONAME"), m_dbData3060.GetSysinfo("MAILTOADDR"));
+            email.From = m_dbData3060.GetSysinfo("MAILFROM");
+            email.ReplyTo = m_dbData3060.GetSysinfo("MAILREPLY");
+            email.AddDataAttachment2(local_filename, data, "text/plain");
+            email.UnzipAttachments();
 
             success = mailman.SendEmail(email);
             if (success != true) throw new Exception(email.LastErrorText);

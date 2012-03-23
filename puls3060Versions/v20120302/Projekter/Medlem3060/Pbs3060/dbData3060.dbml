@@ -79,4 +79,8 @@
       <Association Name="tblpbsforsendelse_tbltilpb" Member="tblpbsforsendelse" ThisKey="pbsforsendelseid" OtherKey="id" Type="tblpbsforsendelse" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
+  <Function Name="dbo.GetSysinfo" Method="GetSysinfo" IsComposable="true">
+    <Parameter Name="Pvkey" Parameter="pvkey" Type="System.String" DbType="NVarChar(10)" />
+    <Return Type="System.String" />
+  </Function>
 </Database>
