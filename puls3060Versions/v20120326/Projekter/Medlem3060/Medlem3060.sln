@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medlem3060", "Medlem3060\Medlem3060.csproj", "{8CCA55A9-515D-4149-A500-78F3923C92D0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pbs3060", "Pbs3060\Pbs3060.csproj", "{B65FF3FB-C71D-448A-9ECC-D2E96707F9E5}"
