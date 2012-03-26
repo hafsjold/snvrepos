@@ -416,4 +416,8 @@
     <Parameter Name="Pnrserienavn" Parameter="pnrserienavn" Type="System.String" DbType="NVarChar(30)" />
     <Return Type="System.Int32" />
   </Function>
+  <Function Name="dbo.GetSysinfo" Method="GetSysinfo" IsComposable="true">
+    <Parameter Name="Pvkey" Parameter="pvkey" Type="System.String" DbType="NVarChar(10)" />
+    <Return Type="System.String" />
+  </Function>
 </Database>

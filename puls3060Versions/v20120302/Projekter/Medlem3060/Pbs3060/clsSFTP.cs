@@ -368,7 +368,7 @@ namespace nsPbs3060
 
             email.To.Add(new MailAddress( m_dbData3060.GetSysinfo("MAILTOADDR"),m_dbData3060.GetSysinfo("MAILTONAME")));
             email.From = new MailAddress(m_dbData3060.GetSysinfo("MAILFROM"));
-            email.ReplyToList.Add(new MailAddress(m_dbData3060.GetSysinfo("MAILREPLY")));
+            email.ReplyTo = new MailAddress(m_dbData3060.GetSysinfo("MAILREPLY"));
             email.Attachments.Add(new Attachment(new MemoryStream(data),local_filename,"text/plain"));
             smtp.Send(email);
         }

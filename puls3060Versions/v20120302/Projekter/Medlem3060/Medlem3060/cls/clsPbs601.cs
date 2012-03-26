@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Net;
+using System.Net.Mail;
 
 namespace nsPuls3060
 {
@@ -1140,6 +1142,7 @@ namespace nsPuls3060
         }
         public void sendRykkerEmail(string ToName, string ToAddr, string subject, string body)
         {
+            /*
             Chilkat.MailMan mailman = new Chilkat.MailMan();
             bool success;
             success = mailman.UnlockComponent("HAFSJOMAILQ_9QYSMgP0oR1h");
@@ -1156,24 +1159,37 @@ namespace nsPuls3060
 
             //  Create a new email object
             Chilkat.Email email = new Chilkat.Email();
+            */
+            string SmtpUsername = Program.dbData3060.GetSysinfo("SMTPUSER");
+            string SmtpPassword = Program.dbData3060.GetSysinfo("SMTPPASSWD");
+            var smtp = new SmtpClient
+            {
+                Host = Program.dbData3060.GetSysinfo("SMTPHOST"),
+                Port = int.Parse(Program.dbData3060.GetSysinfo("SMTPPORT")),
+                EnableSsl = bool.Parse(Program.dbData3060.GetSysinfo("SMTPSSL")),
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(SmtpUsername, SmtpPassword)
+            };
 
+            MailMessage email = new MailMessage();
 
 #if (DEBUG)
-            email.AddTo(Program.MailToName, Program.MailToAddr);
+            email.To.Add(new MailAddress(Program.dbData3060.GetSysinfo("MAILTOADDR"), Program.dbData3060.GetSysinfo("MAILTONAME"))); 
             email.Subject = "TEST " + subject + " skal sendes til: " + ToName + " " + ToAddr;
 #else
-            email.AddTo(ToName, ToAddr);
+            email.To.Add(new MailAddress(ToAddr, ToName));
+
             email.Subject = subject;
-            email.AddCC("Claus Knudsen", "claus@puls3060.dk");
-            email.AddBcc(Program.MailToName, Program.MailToAddr);
+            email.CC.Add(new MailAddress("claus@puls3060.dk","Claus Knudsen"));
+            email.Bcc.Add(new MailAddress(Program.dbData3060.GetSysinfo("MAILTOADDR"), Program.dbData3060.GetSysinfo("MAILTONAME"))); 
+
 #endif
             email.Body = body;
-            email.From = Program.MailFrom;
-            email.ReplyTo = Program.MailReply;
+            email.From = new MailAddress(Program.dbData3060.GetSysinfo("MAILFROM"));
+            email.ReplyTo = new MailAddress(Program.dbData3060.GetSysinfo("MAILREPLY"));
 
-            success = mailman.SendEmail(email);
-            if (success != true) throw new Exception(email.LastErrorText);
-
+            smtp.Send(email);
         }
     }
 

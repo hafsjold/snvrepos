@@ -444,6 +444,12 @@ namespace nsPuls3060
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pnrserienavn);
 			return ((int)(result.ReturnValue));
 		}
+		
+		[Function(Name="dbo.GetSysinfo", IsComposable=true)]
+		public string GetSysinfo([Parameter(Name="Pvkey", DbType="NVarChar(10)")] string pvkey)
+		{
+			return ((string)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pvkey).ReturnValue));
+		}
 	}
 	
 	[Table(Name="dbo.tblaftalelin")]

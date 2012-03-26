@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Net;
+using System.Net.Mail;
 
 namespace nsPuls3060
 {
@@ -254,20 +256,19 @@ namespace nsPuls3060
                          select c).Count();
             if (antal == 0) { throw new Exception("101 - Der er ingen PBS forsendelse for id: " + lobnr); }
 
-            Chilkat.MailMan mailman = new Chilkat.MailMan();
-            bool success;
-            success = mailman.UnlockComponent("HAFSJOMAILQ_9QYSMgP0oR1h");
-            if (success != true) throw new Exception(mailman.LastErrorText);
+            string SmtpUsername = Program.dbData3060.GetSysinfo("SMTPUSER");
+            string SmtpPassword = Program.dbData3060.GetSysinfo("SMTPPASSWD");
+            var smtp = new SmtpClient
+            {
+                Host = Program.dbData3060.GetSysinfo("SMTPHOST"),
+                Port = int.Parse(Program.dbData3060.GetSysinfo("SMTPPORT")),
+                EnableSsl = bool.Parse(Program.dbData3060.GetSysinfo("SMTPSSL")),
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(SmtpUsername, SmtpPassword)
+            };
 
-            //  Use the GMail SMTP server
-            mailman.SmtpHost = Program.Smtphost;
-            mailman.SmtpPort = int.Parse(Program.Smtpport);
-            mailman.SmtpSsl = bool.Parse(Program.Smtpssl);
-
-            //  Set the SMTP login/password.
-            mailman.SmtpUsername = Program.Smtpuser;
-            mailman.SmtpPassword = Program.Smtppasswd;
-
+            
             var qrykrd = from k in Program.dbData3060.tblMedlems
                          join h in Program.dbData3060.tbloverforsels on k.Nr equals h.Nr
                          where h.tilpbsid == lobnr
@@ -290,22 +291,22 @@ namespace nsPuls3060
             foreach (var krd in qrykrd)
             {
                 //  Create a new email object
-                Chilkat.Email email = new Chilkat.Email();
+                MailMessage email = new MailMessage();
 
 #if (DEBUG)
-                email.Subject = "TEST Bankoverførsel fra Puls 3060: skal sendes til " + Program.MailToName + " " + Program.MailToAddr;
-                email.AddTo(Program.MailToName, Program.MailToAddr);
+                email.Subject = "TEST Bankoverførsel fra Puls 3060: skal sendes til " + Program.dbData3060.GetSysinfo("MAILTONAME") + " " + Program.dbData3060.GetSysinfo("MAILTOADDR");
+                email.To.Add(new MailAddress(Program.dbData3060.GetSysinfo("MAILTOADDR"), Program.dbData3060.GetSysinfo("MAILTONAME"))); 
 #else
                 email.Subject = "Bankoverførsel fra Puls 3060";
                 if (krd.Email.Length > 0)
                 {
-                    email.AddTo(krd.Navn, krd.Email);
-                    email.AddBcc(Program.MailToName,Program.MailToAddr);
+                    email.To.Add(new MailAddress(krd.Email, krd.Navn));
+                    email.Bcc.Add(new MailAddress(Program.dbData3060.GetSysinfo("MAILTOADDR"), Program.dbData3060.GetSysinfo("MAILTONAME"))); 
                 }
                 else
                 {
                     email.Subject += ": skal sendes til " + krd.Navn;
-                    email.AddTo(Program.MailToName,Program.MailToAddr);
+                    email.To.Add(new MailAddress(Program.dbData3060.GetSysinfo("MAILTOADDR"), Program.dbData3060.GetSysinfo("MAILTONAME")));
                 }
 #endif
                 email.Body = new clsInfotekst
@@ -320,11 +321,10 @@ namespace nsPuls3060
                     underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører"
                 }.getinfotekst();
 
-                email.From = Program.MailFrom;
-                email.ReplyTo = Program.MailReply;
+                email.From = new MailAddress(Program.dbData3060.GetSysinfo("MAILFROM"));
+                email.ReplyTo = new MailAddress(Program.dbData3060.GetSysinfo("MAILREPLY"));
 
-                success = mailman.SendEmail(email);
-                if (success != true) throw new Exception(email.LastErrorText);
+                smtp.Send(email);
             }
         }
 

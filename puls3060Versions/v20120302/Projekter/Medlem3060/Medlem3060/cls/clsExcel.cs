@@ -8,6 +8,8 @@ using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
 using System.IO;
+using System.Net;
+using System.Net.Mail;
 using Excel;
 
 namespace nsPuls3060
@@ -294,7 +296,7 @@ namespace nsPuls3060
                     oXL.Visible = true;
                     this.MainformProgressBar.Visible = false;
 
-                    this.sendMedlem(SaveAs);
+                    this.emailExcelFile(SaveAs, "Puls3060 Medlems-oplysninger");
 
                     //oXL.Quit();
                     //oXL = null;
@@ -456,7 +458,7 @@ namespace nsPuls3060
                     oXL.Visible = true;
                     this.MainformProgressBar.Visible = false;
 
-                    this.sendNotPBS(SaveAs);
+                    this.emailExcelFile(SaveAs, "Puls3060 Medlemmer ikke tilmeldt PBS");
 
                     //oXL.Quit();
                     //oXL = null;
@@ -719,7 +721,7 @@ namespace nsPuls3060
                     oXL.Visible = true;
                     this.MainformProgressBar.Visible = false;
 
-                    this.sendPoster(SaveAs);
+                    this.emailExcelFile(SaveAs, "Puls3060 Regnskab");
 
 
                     //oXL.Quit();
@@ -738,113 +740,33 @@ namespace nsPuls3060
             }
         }
 
-        private void sendMedlem(string filename)
+        public void emailExcelFile(string filename, string PSubjectBody)
         {
             FileInfo f = new FileInfo(filename);
             string local_filename = f.Name;
-            Chilkat.MailMan mailman = new Chilkat.MailMan();
-            bool success;
-            success = mailman.UnlockComponent("HAFSJOMAILQ_9QYSMgP0oR1h");
-            if (success != true) throw new Exception(mailman.LastErrorText);
+            FileStream fs = f.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
 
-            //  Use the GMail SMTP server
-            mailman.SmtpHost = Program.Smtphost;
-            mailman.SmtpPort = int.Parse(Program.Smtpport);
-            mailman.SmtpSsl = bool.Parse(Program.Smtpssl);
+            string SmtpUsername = Program.dbData3060.GetSysinfo("SMTPUSER");
+            string SmtpPassword = Program.dbData3060.GetSysinfo("SMTPPASSWD");
+            var smtp = new SmtpClient
+            {
+                Host = Program.dbData3060.GetSysinfo("SMTPHOST"),
+                Port = int.Parse(Program.dbData3060.GetSysinfo("SMTPPORT")),
+                EnableSsl = bool.Parse(Program.dbData3060.GetSysinfo("SMTPSSL")),
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(SmtpUsername, SmtpPassword)
+            };
 
-            //  Set the SMTP login/password.
-            mailman.SmtpUsername = Program.Smtpuser;
-            mailman.SmtpPassword = Program.Smtppasswd;
+            MailMessage email = new MailMessage();
+            email.Subject = PSubjectBody + ": " + local_filename;
+            email.Body = PSubjectBody + ": " + local_filename;
 
-            //  Create a new email object
-            Chilkat.Email email = new Chilkat.Email();
-
-            email.Subject = "Puls3060 Medlems-oplysninger: " + local_filename;
-            email.Body = "Puls3060 Medlems-oplysninger: " + local_filename;
-
-            //email.AddTo(Program.MailToName, Program.MailToAddr);
-            email.From = Program.MailFrom;
-            email.ReplyTo = Program.MailReply;
-            email.AddBcc(Program.MailToName, Program.MailToAddr);
-
-            email.AddFileAttachment(filename);
-            email.UnzipAttachments();
-
-            success = mailman.SendEmail(email);
-            if (success != true) throw new Exception(email.LastErrorText);
-
-        }
-        private void sendNotPBS(string filename)
-        {
-            FileInfo f = new FileInfo(filename);
-            string local_filename = f.Name;
-            Chilkat.MailMan mailman = new Chilkat.MailMan();
-            bool success;
-            success = mailman.UnlockComponent("HAFSJOMAILQ_9QYSMgP0oR1h");
-            if (success != true) throw new Exception(mailman.LastErrorText);
-
-            //  Use the GMail SMTP server
-            mailman.SmtpHost = Program.Smtphost;
-            mailman.SmtpPort = int.Parse(Program.Smtpport);
-            mailman.SmtpSsl = bool.Parse(Program.Smtpssl);
-
-            //  Set the SMTP login/password.
-            mailman.SmtpUsername = Program.Smtpuser;
-            mailman.SmtpPassword = Program.Smtppasswd;
-
-            //  Create a new email object
-            Chilkat.Email email = new Chilkat.Email();
-
-            email.Subject = "Puls3060 Medlemmer ikke tilmeldt PBS: " + local_filename;
-            email.Body = "Puls3060 Medlemmer ikke tilmeldt PBS: " + local_filename;
-
-            //email.AddTo(Program.MailToName, Program.MailToAddr);
-            email.From = Program.MailFrom;
-            email.ReplyTo = Program.MailReply;
-            email.AddBcc(Program.MailToName, Program.MailToAddr);
-
-            email.AddFileAttachment(filename);
-            email.UnzipAttachments();
-
-            success = mailman.SendEmail(email);
-            if (success != true) throw new Exception(email.LastErrorText);
-
-        }
-        private void sendPoster(string filename)
-        {
-            FileInfo f = new FileInfo(filename);
-            string local_filename = f.Name;
-            Chilkat.MailMan mailman = new Chilkat.MailMan();
-            bool success;
-            success = mailman.UnlockComponent("HAFSJOMAILQ_9QYSMgP0oR1h");
-            if (success != true) throw new Exception(mailman.LastErrorText);
-
-            //  Use the GMail SMTP server
-            mailman.SmtpHost = Program.Smtphost;
-            mailman.SmtpPort = int.Parse(Program.Smtpport);
-            mailman.SmtpSsl = bool.Parse(Program.Smtpssl);
-
-            //  Set the SMTP login/password.
-            mailman.SmtpUsername = Program.Smtpuser;
-            mailman.SmtpPassword = Program.Smtppasswd;
-
-            //  Create a new email object
-            Chilkat.Email email = new Chilkat.Email();
-
-            email.Subject = "Puls3060 Regnskab: " + local_filename;
-            email.Body = "Puls3060 Regnskab: " + local_filename;
-
-            //email.AddTo(Program.MailToName, Program.MailToAddr);
-            email.From = Program.MailFrom;
-            email.ReplyTo = Program.MailReply;
-            email.AddBcc(Program.MailToName, Program.MailToAddr);
-            
-            email.AddFileAttachment(filename);
-            email.UnzipAttachments();
-
-            success = mailman.SendEmail(email);
-            if (success != true) throw new Exception(email.LastErrorText);
-
+            email.From = new MailAddress(Program.dbData3060.GetSysinfo("MAILFROM"));
+            email.ReplyTo = new MailAddress(Program.dbData3060.GetSysinfo("MAILREPLY"));
+            email.Bcc.Add(new MailAddress(Program.dbData3060.GetSysinfo("MAILTOADDR"), Program.dbData3060.GetSysinfo("MAILTONAME")));
+            email.Attachments.Add(new Attachment(fs, local_filename, "application/vnd.ms-excel"));
+            smtp.Send(email);
         }
     }
 }
