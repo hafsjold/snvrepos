@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="puls3061_dk_db" Class="dbData3060DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=hd58;Initial Catalog=puls3061_dk_db;Persist Security Info=True;User ID=sa" SettingsObjectName="nsPbs3060.Properties.Settings" SettingsPropertyName="puls3061_dk_dbConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tblsftp" Member="tblsftps">
+    <Type Name="tblsftp">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="navn" Type="System.String" DbType="NVarChar(64) NOT NULL" CanBeNull="false" />
+      <Column Name="host" Type="System.String" DbType="NVarChar(64) NOT NULL" CanBeNull="false" />
+      <Column Name="port" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="[user]" Member="user" Type="System.String" DbType="NVarChar(16) NOT NULL" CanBeNull="false" />
+      <Column Name="outbound" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
+      <Column Name="inbound" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
+      <Column Name="pincode" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
+      <Column Name="certificate" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblpbsfile" Member="tblpbsfiles">
+    <Type Name="tblpbsfile">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="pbsfilesid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="seqnr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="data" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Association Name="tblpbsfilename_tblpbsfile" Member="tblpbsfilename" ThisKey="pbsfilesid" OtherKey="id" Type="tblpbsfilename" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblpbsfilename" Member="tblpbsfilenames">
+    <Type Name="tblpbsfilename">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="type" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="path" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="filename" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="size" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="atime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="mtime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="[perm]" Member="perm" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="uid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="gid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="transmittime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="pbsforsendelseid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblpbsfilename_tblpbsfile" Member="tblpbsfiles" ThisKey="id" OtherKey="pbsfilesid" Type="tblpbsfile" />
+      <Association Name="tblpbsforsendelse_tblpbsfilename" Member="tblpbsforsendelse" ThisKey="pbsforsendelseid" OtherKey="id" Type="tblpbsforsendelse" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblpbsforsendelse" Member="tblpbsforsendelses">
+    <Type Name="tblpbsforsendelse">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="delsystem" Type="System.String" DbType="NVarChar(3) NOT NULL" CanBeNull="false" />
+      <Column Name="leverancetype" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="oprettetaf" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="oprettet" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="leveranceid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblpbsforsendelse_tblpbsfilename" Member="tblpbsfilenames" ThisKey="id" OtherKey="pbsforsendelseid" Type="tblpbsfilename" />
+      <Association Name="tblpbsforsendelse_tbltilpb" Member="tbltilpbs" ThisKey="id" OtherKey="pbsforsendelseid" Type="tbltilpb" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbltilpbs" Member="tbltilpbs">
+    <Type Name="tbltilpb">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="delsystem" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="leverancetype" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="bilagdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="pbsforsendelseid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="udtrukket" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="leverancespecifikation" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="leverancedannelsesdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="tblpbsforsendelse_tbltilpb" Member="tblpbsforsendelse" ThisKey="pbsforsendelseid" OtherKey="id" Type="tblpbsforsendelse" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Function Name="dbo.GetSysinfo" Method="GetSysinfo" IsComposable="true">
+    <Parameter Name="Pvkey" Parameter="pvkey" Type="System.String" DbType="NVarChar(10)" />
+    <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.nextval" Method="nextval">
+    <Parameter Name="Pnrserienavn" Parameter="pnrserienavn" Type="System.String" DbType="NVarChar(30)" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
