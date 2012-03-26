@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Chilkat;
 using System.IO;
+using System.Net;
+using System.Net.Mail;
+using Renci.SshNet;
+using Renci.SshNet.Sftp;
+
 
 namespace nsPbs3060
 {
     
     public class clsSFTP
     {
-        private static dbData3060DataContext m_dbData3060;
-        private static MemPbsnetdir m_memPbsnetdir;
-        
-        private SFtp m_sftp;
+        private dbData3060DataContext m_dbData3060;
+        public MemPbsnetdir m_memPbsnetdir;
+        private SftpClient m_sftp;
         private tblpbsfile m_rec_pbsfile;
         private tblsftp m_rec_sftp;
 
@@ -22,40 +25,24 @@ namespace nsPbs3060
         {
             m_dbData3060 = new dbData3060DataContext(dbConnectionString);
 #if (DEBUG)
-            m_rec_sftp = (from s in m_dbData3060.tblsftps where s.navn == "TestHD36" select s).First();
-            //m_rec_sftp = (from s in m_dbData3060.tblsftps where s.navn == "Test" select s).First();
+            //m_rec_sftp = (from s in m_dbData3060.tblsftps where s.navn == "TestHD36" select s).First();
+            m_rec_sftp = (from s in m_dbData3060.tblsftps where s.navn == "Test" select s).First();
             //m_rec_sftp = (from s in m_dbData3060.tblsftps where s.navn == "Produktion" select s).First();
 #else
-            m_rec_sftp = (from s in m_dbData3060.tblsftps where s.navn == "Produktion" select s).First();
+            m_rec_sftp = (from s in m_dbData3060.tblsftps where s.navn == "Test" select s).First();
+            //m_rec_sftp = (from s in m_dbData3060.tblsftps where s.navn == "Produktion" select s).First();
 #endif
 
-            m_sftp = new SFtp();
-            bool success = m_sftp.UnlockComponent("HAFSJOSSH_6pspJCMP1QnW");
-            if (!success) throw new Exception(m_sftp.LastErrorText);
-            m_sftp.ConnectTimeoutMs = 60000;
-            m_sftp.IdleTimeoutMs = 55000;
-            success = m_sftp.Connect(m_rec_sftp.host, int.Parse(m_rec_sftp.port));
-            if (!success) throw new Exception(m_sftp.LastErrorText);
-            Chilkat.SshKey key = new Chilkat.SshKey();
-
-            string privKey = m_rec_sftp.certificate;
-            if (privKey == null) throw new Exception(m_sftp.LastErrorText);
-
-            key.Password = m_rec_sftp.pincode;
-            success = key.FromOpenSshPrivateKey(privKey);
-            if (!success) throw new Exception(m_sftp.LastErrorText);
-
-            success = m_sftp.AuthenticatePk(m_rec_sftp.user, key);
-            if (!success) throw new Exception(m_sftp.LastErrorText);
-
-            //  After authenticating, the SFTP subsystem must be initialized:
-            success = m_sftp.InitializeSftp();
-            if (!success) throw new Exception(m_sftp.LastErrorText);
+            byte[] bPK = Encoding.UTF8.GetBytes(m_rec_sftp.certificate);
+            MemoryStream mPK = new MemoryStream(bPK);
+            PrivateKeyFile PK = new PrivateKeyFile(mPK, m_rec_sftp.pincode);
+            m_sftp = new SftpClient(m_rec_sftp.host, int.Parse(m_rec_sftp.port), m_rec_sftp.user, PK);
+            m_sftp.Connect();
         }
 
         public void DisconnectSFtp()
         {
-            m_sftp.Disconnect();
+             m_sftp.Disconnect();
         }
 
         public string WriteTilSFtp(int lobnr)
@@ -96,8 +83,6 @@ namespace nsPbs3060
                 {
                     tblpbsfilename m_rec_pbsfiles = qry_pbsfiles.First();
                     TilPBSFilename = AddPbcnetRecords(rec_selecfiles.delsystem, rec_selecfiles.Leveranceid, m_rec_pbsfiles.id);
-                    bool success;
-
 
                     var qry_pbsfile =
                         from h in m_rec_pbsfiles.tblpbsfiles
@@ -118,14 +103,8 @@ namespace nsPbs3060
                     sendAttachedFile(TilPBSFilename, b_TilPBSFile, true);
 
                     string fullpath = m_rec_sftp.inbound + "/" + TilPBSFilename;
-                    string handle = m_sftp.OpenFile(fullpath, "writeOnly", "createTruncate");
-                    if (handle == null) throw new Exception(m_sftp.LastErrorText);
-
-                    success = m_sftp.WriteFileBytes(handle, b_TilPBSFile);
-                    if (!success) throw new Exception(m_sftp.LastErrorText);
-
-                    success = m_sftp.CloseHandle(handle);
-                    if (success != true) throw new Exception(m_sftp.LastErrorText);
+                    MemoryStream ms_TilPBSFile = new MemoryStream(b_TilPBSFile);
+                    m_sftp.UploadFile(ms_TilPBSFile, fullpath);
 
                     m_rec_pbsfiles.type = 8;
                     m_rec_pbsfiles.path = m_rec_sftp.inbound;
@@ -180,8 +159,7 @@ namespace nsPbs3060
                     {
                         if (m_rec_pbsfiles.filename.Length > 0) TilPBSFilename = m_rec_pbsfiles.filename;
                     }
-                    bool success;
-
+ 
                     var qry_pbsfile =
                         from h in m_rec_pbsfiles.tblpbsfiles
                         orderby h.seqnr
@@ -201,15 +179,9 @@ namespace nsPbs3060
                     sendAttachedFile(TilPBSFilename, b_TilPBSFile, true);
 
                     string fullpath = m_rec_sftp.inbound + "/" + TilPBSFilename;
-                    string handle = m_sftp.OpenFile(fullpath, "writeOnly", "createTruncate");
-                    if (handle == null) throw new Exception(m_sftp.LastErrorText);
-
-                    success = m_sftp.WriteFileBytes(handle, b_TilPBSFile);
-                    if (!success) throw new Exception(m_sftp.LastErrorText);
-
-                    success = m_sftp.CloseHandle(handle);
-                    if (success != true) throw new Exception(m_sftp.LastErrorText);
-
+                    MemoryStream ms_TilPBSFile = new MemoryStream(b_TilPBSFile);
+                    m_sftp.UploadFile(ms_TilPBSFile, fullpath);
+                    
                     m_rec_pbsfiles.type = 8;
                     m_rec_pbsfiles.path = m_rec_sftp.inbound;
                     m_rec_pbsfiles.filename = TilPBSFilename;
@@ -222,53 +194,33 @@ namespace nsPbs3060
             }
         }
 
+        
         public int ReadFraSFtp()
         {
-            string homedir = m_sftp.RealPath(".", "");
-            //  Open a directory on the server...
-            string handle = m_sftp.OpenDir(m_rec_sftp.outbound);
-            if (handle == null) throw new Exception(m_sftp.LastErrorText);
-
-            //  Download the directory listing:
-            Chilkat.SFtpDir dirListing = null;
-            dirListing = m_sftp.ReadDir(handle);
-            if (dirListing == null) throw new Exception(m_sftp.LastErrorText);
-
-            m_memPbsnetdir = null; //opret ny memPbsnetdir
+            m_memPbsnetdir = new MemPbsnetdir(); //opret ny memPbsnetdir
 
             //  Iterate over the files.
-            int i;
-            int n = dirListing.NumFilesAndDirs;
-            if (n > 0)
+            foreach (SftpFile fileObj in m_sftp.ListDirectory(m_rec_sftp.outbound))
             {
-                for (i = 0; i <= n - 1; i++)
+                if (fileObj.Name != "." && fileObj.Name != "..")
                 {
-                    Chilkat.SFtpFile fileObj = null;
-                    fileObj = dirListing.GetFileObject(i);
-                    if (!fileObj.IsDirectory)
+                    recPbsnetdir rec = new recPbsnetdir
                     {
-                        recPbsnetdir rec = new recPbsnetdir
-                        {
-                            Type = 8,
-                            Path = dirListing.OriginalPath,
-                            Filename = fileObj.Filename,
-                            Size = (int)fileObj.Size32,
-                            Atime = fileObj.LastAccessTime,
-                            Mtime = fileObj.LastModifiedTime,
-                            Gid = fileObj.Gid,
-                            Uid = fileObj.Uid,
-                            Perm = fileObj.Permissions.ToString()
+                        Type = 8,
+                        Path = m_rec_sftp.outbound,
+                        Filename = fileObj.Name,
+                        Size = (int)fileObj.Length,
+                        Atime = fileObj.LastAccessTime,
+                        Mtime = fileObj.LastWriteTime,
+                        Gid = fileObj.GroupId,
+                        Uid = fileObj.UserId,
+                        Perm = ""
 
-                        };
-                        m_memPbsnetdir.Add(rec);
-                    }
+                    };
+                    m_memPbsnetdir.Add(rec);
                 }
-            }
-
-            //  Close the directory
-            bool success = m_sftp.CloseHandle(handle);
-            if (!success) throw new Exception(m_sftp.LastErrorText);
-
+            }                  
+            
             var leftqry_pbsnetdir =
                 from h in m_memPbsnetdir
                 //join d1 in m_dbData3060.Tblpbsfiles on new { h.Path, h.Filename } equals new { d1.Path, d1.Filename } into details
@@ -298,28 +250,11 @@ namespace nsPbs3060
                     //***********************************************************************
                     //  Open a file on the server:
                     string fullpath = rec_pbsnetdir.Path + "/" + rec_pbsnetdir.Filename;
-                    string filehandle = m_sftp.OpenFile(fullpath, "readOnly", "openExisting");
-                    if (filehandle == null) throw new Exception(m_sftp.LastErrorText);
-
                     int numBytes = (int)rec_pbsnetdir.Size;
-                    if (numBytes < 0) throw new Exception(m_sftp.LastErrorText);
-
-                    //---------------------------------------------------------------------
-                    byte[] b_data = null;
-                    bool bEof = false;
-                    int chunkSizeGet = 10240;
-                    int chunkSizeRead = 0;
-                    m_sftp.ClearAccumulateBuffer();
-                    while (bEof == false)
-                    {
-                        chunkSizeRead = m_sftp.AccumulateBytes(handle, chunkSizeGet);
-                        if (chunkSizeRead == -1)
-                            throw new Exception(m_sftp.LastErrorText);
-                        bEof = m_sftp.Eof(handle);
-                    }
-                    b_data = m_sftp.AccumulateBuffer;
-                    //---------------------------------------------------------------------
-                    if (b_data == null) throw new Exception(m_sftp.LastErrorText);
+ 
+                    byte[] b_data = new byte[numBytes];
+                    MemoryStream stream = new MemoryStream(b_data, true);
+                    m_sftp.DownloadFile(fullpath, stream);
                     sendAttachedFile(rec_pbsnetdir.Filename, b_data, false);
                     char[] c_data = System.Text.Encoding.GetEncoding("windows-1252").GetString(b_data).ToCharArray();
                     string filecontens = new string(c_data);
@@ -352,84 +287,64 @@ namespace nsPbs3060
                     m_rec_pbsfiles.transmittime = DateTime.Now;
                     m_dbData3060.SubmitChanges();
 
-                    //  Close the file.
-                    success = m_sftp.CloseHandle(filehandle);
-                    if (success != true) throw new Exception(m_sftp.LastErrorText);
-                    //***********************************************************************************
                 }
             }
             m_dbData3060.SubmitChanges();
             return AntalFiler;
         }
-
-        public void ReadDirFraSFtp()
+        
+        
+        public int ReadDirFraSFtp()
         {
-            string homedir = m_sftp.RealPath(".", "");
-            //  Open a directory on the server...
-            string handle = m_sftp.OpenDir(m_rec_sftp.outbound);
-            if (handle == null) throw new Exception(m_sftp.LastErrorText);
+            int AntalFiler = 0;
 
-            //  Download the directory listing:
-            Chilkat.SFtpDir dirListing = null;
-            dirListing = m_sftp.ReadDir(handle);
-            if (dirListing == null) throw new Exception(m_sftp.LastErrorText);
+            m_memPbsnetdir = new MemPbsnetdir(); //opret ny memPbsnetdir
 
-            m_memPbsnetdir = null; //opret ny memPbsnetdir
-
-            //  Iterate over the files.
-            int i;
-            int n = dirListing.NumFilesAndDirs;
-            if (n > 0)
+            //  Iterate over the files. 
+            foreach (SftpFile fileObj in m_sftp.ListDirectory(m_rec_sftp.outbound))
             {
-                for (i = 0; i <= n - 1; i++)
+                if (fileObj.Name != "." && fileObj.Name != "..")
                 {
-                    Chilkat.SFtpFile fileObj = null;
-                    fileObj = dirListing.GetFileObject(i);
-                    if (!fileObj.IsDirectory)
+                    recPbsnetdir rec = new recPbsnetdir
                     {
-                        recPbsnetdir rec = new recPbsnetdir
-                        {
-                            Type = 8,
-                            Path = dirListing.OriginalPath,
-                            Filename = fileObj.Filename,
-                            Size = (int)fileObj.Size32,
-                            Atime = fileObj.LastAccessTime,
-                            Mtime = fileObj.LastModifiedTime,
-                            Gid = fileObj.Gid,
-                            Uid = fileObj.Uid,
-                            Perm = fileObj.Permissions.ToString()
+                        Type = 8,
+                        Path = m_rec_sftp.outbound,
+                        Filename = fileObj.Name,
+                        Size = (int)fileObj.Length,
+                        Atime = fileObj.LastAccessTime,
+                        Mtime = fileObj.LastWriteTime,
+                        Gid = fileObj.GroupId,
+                        Uid = fileObj.UserId,
+                        Perm = ""
 
-                        };
-                        m_memPbsnetdir.Add(rec);
-                    }
+                    };
+                    m_memPbsnetdir.Add(rec);
+                    AntalFiler++;
+
                 }
-            }
-
-            //  Close the directory
-            bool success = m_sftp.CloseHandle(handle);
-            if (!success) throw new Exception(m_sftp.LastErrorText);
+            }            
+            
+            return AntalFiler;
         }
+        
         
         public void sendAttachedFile(string filename, byte[] data, bool bTilPBS)
         {
             string local_filename = filename.Replace('.', '_') + ".txt";
-            Chilkat.MailMan mailman = new Chilkat.MailMan();
-            bool success;
-            success = mailman.UnlockComponent("HAFSJOMAILQ_9QYSMgP0oR1h");
-            if (success != true) throw new Exception(mailman.LastErrorText);
 
-            //  Use the GMail SMTP server
-            mailman.SmtpHost = m_dbData3060.GetSysinfo("SMTPHOST");
-            mailman.SmtpPort = int.Parse(m_dbData3060.GetSysinfo("SMTPPORT"));
-            mailman.SmtpSsl = bool.Parse(m_dbData3060.GetSysinfo("SMTPSSL"));
+            string SmtpUsername = m_dbData3060.GetSysinfo("SMTPUSER");
+            string SmtpPassword = m_dbData3060.GetSysinfo("SMTPPASSWD"); 
+            var smtp = new SmtpClient
+            {
+                Host = m_dbData3060.GetSysinfo("SMTPHOST"),
+                Port = int.Parse(m_dbData3060.GetSysinfo("SMTPPORT")),
+                EnableSsl = bool.Parse(m_dbData3060.GetSysinfo("SMTPSSL")),
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(SmtpUsername, SmtpPassword)
+            };
 
-            //  Set the SMTP login/password.
-            mailman.SmtpUsername = m_dbData3060.GetSysinfo("SMTPUSER");
-            mailman.SmtpPassword = m_dbData3060.GetSysinfo("SMTPPASSWD");
-
-            //  Create a new email object
-            Chilkat.Email email = new Chilkat.Email();
-
+            MailMessage email = new MailMessage();
             if (bTilPBS)
             {
 #if (DEBUG)
@@ -450,17 +365,16 @@ namespace nsPbs3060
                 email.Body = "Fra PBS: " + local_filename;
 #endif
             }
-            email.AddTo(m_dbData3060.GetSysinfo("MAILTONAME"), m_dbData3060.GetSysinfo("MAILTOADDR"));
-            email.From = m_dbData3060.GetSysinfo("MAILFROM");
-            email.ReplyTo = m_dbData3060.GetSysinfo("MAILREPLY");
-            email.AddDataAttachment2(local_filename, data, "text/plain");
-            email.UnzipAttachments();
 
-            success = mailman.SendEmail(email);
-            if (success != true) throw new Exception(email.LastErrorText);
-
+            email.To.Add(new MailAddress( m_dbData3060.GetSysinfo("MAILTOADDR"),m_dbData3060.GetSysinfo("MAILTONAME")));
+            email.From = new MailAddress(m_dbData3060.GetSysinfo("MAILFROM"));
+            email.ReplyToList.Add(new MailAddress(m_dbData3060.GetSysinfo("MAILREPLY")));
+            email.Attachments.Add(new Attachment(new MemoryStream(data),local_filename,"text/plain"));
+            smtp.Send(email);
         }
         
+
+
         public string AddPbcnetRecords(string delsystem, int leveranceid, int pbsfilesid)
         {
             int antal;
