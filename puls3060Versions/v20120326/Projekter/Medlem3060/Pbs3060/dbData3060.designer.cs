@@ -45,10 +45,52 @@ namespace nsPbs3060
     partial void Inserttbltilpb(tbltilpb instance);
     partial void Updatetbltilpb(tbltilpb instance);
     partial void Deletetbltilpb(tbltilpb instance);
+    partial void Inserttblfrapb(tblfrapb instance);
+    partial void Updatetblfrapb(tblfrapb instance);
+    partial void Deletetblfrapb(tblfrapb instance);
+    partial void Inserttblbet(tblbet instance);
+    partial void Updatetblbet(tblbet instance);
+    partial void Deletetblbet(tblbet instance);
+    partial void Inserttblbetlin(tblbetlin instance);
+    partial void Updatetblbetlin(tblbetlin instance);
+    partial void Deletetblbetlin(tblbetlin instance);
+    partial void Inserttblaftalelin(tblaftalelin instance);
+    partial void Updatetblaftalelin(tblaftalelin instance);
+    partial void Deletetblaftalelin(tblaftalelin instance);
+    partial void Inserttblindbetalingskort(tblindbetalingskort instance);
+    partial void Updatetblindbetalingskort(tblindbetalingskort instance);
+    partial void Deletetblindbetalingskort(tblindbetalingskort instance);
+    partial void InserttblMedlem(tblMedlem instance);
+    partial void UpdatetblMedlem(tblMedlem instance);
+    partial void DeletetblMedlem(tblMedlem instance);
+    partial void Inserttblfak(tblfak instance);
+    partial void Updatetblfak(tblfak instance);
+    partial void Deletetblfak(tblfak instance);
+    partial void Inserttblrykker(tblrykker instance);
+    partial void Updatetblrykker(tblrykker instance);
+    partial void Deletetblrykker(tblrykker instance);
+    partial void InserttempKontforslag(tempKontforslag instance);
+    partial void UpdatetempKontforslag(tempKontforslag instance);
+    partial void DeletetempKontforslag(tempKontforslag instance);
+    partial void InserttempKontforslaglinie(tempKontforslaglinie instance);
+    partial void UpdatetempKontforslaglinie(tempKontforslaglinie instance);
+    partial void DeletetempKontforslaglinie(tempKontforslaglinie instance);
+    partial void InserttempRykkerforslag(tempRykkerforslag instance);
+    partial void UpdatetempRykkerforslag(tempRykkerforslag instance);
+    partial void DeletetempRykkerforslag(tempRykkerforslag instance);
+    partial void InserttempRykkerforslaglinie(tempRykkerforslaglinie instance);
+    partial void UpdatetempRykkerforslaglinie(tempRykkerforslaglinie instance);
+    partial void DeletetempRykkerforslaglinie(tempRykkerforslaglinie instance);
+    partial void Inserttblkreditor(tblkreditor instance);
+    partial void Updatetblkreditor(tblkreditor instance);
+    partial void Deletetblkreditor(tblkreditor instance);
+    partial void Inserttblinfotekst(tblinfotekst instance);
+    partial void Updatetblinfotekst(tblinfotekst instance);
+    partial void Deletetblinfotekst(tblinfotekst instance);
     #endregion
 		
 		public dbData3060DataContext() : 
-				base(global::nsPbs3060.Properties.Settings.Default.puls3061_dk_dbConnectionString, mappingSource)
+				base(global::nsPbs3060.Properties.Settings.Default.puls3061_dk_dbConnectionString1, mappingSource)
 		{
 			OnCreated();
 		}
@@ -117,6 +159,118 @@ namespace nsPbs3060
 			}
 		}
 		
+		public System.Data.Linq.Table<tblfrapb> tblfrapbs
+		{
+			get
+			{
+				return this.GetTable<tblfrapb>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblbet> tblbets
+		{
+			get
+			{
+				return this.GetTable<tblbet>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblbetlin> tblbetlins
+		{
+			get
+			{
+				return this.GetTable<tblbetlin>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblaftalelin> tblaftalelins
+		{
+			get
+			{
+				return this.GetTable<tblaftalelin>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblindbetalingskort> tblindbetalingskorts
+		{
+			get
+			{
+				return this.GetTable<tblindbetalingskort>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblMedlem> tblMedlems
+		{
+			get
+			{
+				return this.GetTable<tblMedlem>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblfak> tblfaks
+		{
+			get
+			{
+				return this.GetTable<tblfak>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblrykker> tblrykkers
+		{
+			get
+			{
+				return this.GetTable<tblrykker>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tempKontforslag> tempKontforslags
+		{
+			get
+			{
+				return this.GetTable<tempKontforslag>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tempKontforslaglinie> tempKontforslaglinies
+		{
+			get
+			{
+				return this.GetTable<tempKontforslaglinie>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tempRykkerforslag> tempRykkerforslags
+		{
+			get
+			{
+				return this.GetTable<tempRykkerforslag>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tempRykkerforslaglinie> tempRykkerforslaglinies
+		{
+			get
+			{
+				return this.GetTable<tempRykkerforslaglinie>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblkreditor> tblkreditors
+		{
+			get
+			{
+				return this.GetTable<tblkreditor>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblinfotekst> tblinfoteksts
+		{
+			get
+			{
+				return this.GetTable<tblinfotekst>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetSysinfo", IsComposable=true)]
 		public string GetSysinfo([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Pvkey", DbType="NVarChar(10)")] string pvkey)
 		{
@@ -128,6 +282,12 @@ namespace nsPbs3060
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pnrserienavn);
 			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.OcrString", IsComposable=true)]
+		public string OcrString([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pFaknr)
+		{
+			return ((string)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pFaknr).ReturnValue));
 		}
 	}
 	
@@ -977,6 +1137,8 @@ namespace nsPbs3060
 		
 		private EntitySet<tbltilpb> _tbltilpbs;
 		
+		private EntitySet<tblfrapb> _tblfrapbs;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -999,6 +1161,7 @@ namespace nsPbs3060
 		{
 			this._tblpbsfilenames = new EntitySet<tblpbsfilename>(new Action<tblpbsfilename>(this.attach_tblpbsfilenames), new Action<tblpbsfilename>(this.detach_tblpbsfilenames));
 			this._tbltilpbs = new EntitySet<tbltilpb>(new Action<tbltilpb>(this.attach_tbltilpbs), new Action<tbltilpb>(this.detach_tbltilpbs));
+			this._tblfrapbs = new EntitySet<tblfrapb>(new Action<tblfrapb>(this.attach_tblfrapbs), new Action<tblfrapb>(this.detach_tblfrapbs));
 			OnCreated();
 		}
 		
@@ -1148,6 +1311,19 @@ namespace nsPbs3060
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblpbsforsendelse_tblfrapb", Storage="_tblfrapbs", ThisKey="id", OtherKey="pbsforsendelseid")]
+		public EntitySet<tblfrapb> tblfrapbs
+		{
+			get
+			{
+				return this._tblfrapbs;
+			}
+			set
+			{
+				this._tblfrapbs.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -1191,6 +1367,18 @@ namespace nsPbs3060
 			this.SendPropertyChanging();
 			entity.tblpbsforsendelse = null;
 		}
+		
+		private void attach_tblfrapbs(tblfrapb entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblpbsforsendelse = this;
+		}
+		
+		private void detach_tblfrapbs(tblfrapb entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblpbsforsendelse = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbltilpbs")]
@@ -1214,6 +1402,10 @@ namespace nsPbs3060
 		private string _leverancespecifikation;
 		
 		private System.Nullable<System.DateTime> _leverancedannelsesdato;
+		
+		private EntitySet<tblfak> _tblfaks;
+		
+		private EntitySet<tblrykker> _tblrykkers;
 		
 		private EntityRef<tblpbsforsendelse> _tblpbsforsendelse;
 		
@@ -1241,6 +1433,8 @@ namespace nsPbs3060
 		
 		public tbltilpb()
 		{
+			this._tblfaks = new EntitySet<tblfak>(new Action<tblfak>(this.attach_tblfaks), new Action<tblfak>(this.detach_tblfaks));
+			this._tblrykkers = new EntitySet<tblrykker>(new Action<tblrykker>(this.attach_tblrykkers), new Action<tblrykker>(this.detach_tblrykkers));
 			this._tblpbsforsendelse = default(EntityRef<tblpbsforsendelse>);
 			OnCreated();
 		}
@@ -1409,6 +1603,32 @@ namespace nsPbs3060
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbltilpb_tblfak", Storage="_tblfaks", ThisKey="id", OtherKey="tilpbsid")]
+		public EntitySet<tblfak> tblfaks
+		{
+			get
+			{
+				return this._tblfaks;
+			}
+			set
+			{
+				this._tblfaks.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbltilpb_tblrykker", Storage="_tblrykkers", ThisKey="id", OtherKey="tilpbsid")]
+		public EntitySet<tblrykker> tblrykkers
+		{
+			get
+			{
+				return this._tblrykkers;
+			}
+			set
+			{
+				this._tblrykkers.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblpbsforsendelse_tbltilpb", Storage="_tblpbsforsendelse", ThisKey="pbsforsendelseid", OtherKey="id", IsForeignKey=true, DeleteRule="CASCADE")]
 		public tblpbsforsendelse tblpbsforsendelse
 		{
@@ -1439,6 +1659,4171 @@ namespace nsPbs3060
 						this._pbsforsendelseid = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("tblpbsforsendelse");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tblfaks(tblfak entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbltilpb = this;
+		}
+		
+		private void detach_tblfaks(tblfak entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbltilpb = null;
+		}
+		
+		private void attach_tblrykkers(tblrykker entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbltilpb = this;
+		}
+		
+		private void detach_tblrykkers(tblrykker entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbltilpb = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblfrapbs")]
+	public partial class tblfrapb : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _delsystem;
+		
+		private string _leverancetype;
+		
+		private System.Nullable<System.DateTime> _udtrukket;
+		
+		private System.Nullable<System.DateTime> _bilagdato;
+		
+		private System.Nullable<int> _pbsforsendelseid;
+		
+		private string _leverancespecifikation;
+		
+		private System.Nullable<System.DateTime> _leverancedannelsesdato;
+		
+		private EntitySet<tblbet> _tblbets;
+		
+		private EntitySet<tblaftalelin> _tblaftalelins;
+		
+		private EntitySet<tblindbetalingskort> _tblindbetalingskorts;
+		
+		private EntityRef<tblpbsforsendelse> _tblpbsforsendelse;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OndelsystemChanging(string value);
+    partial void OndelsystemChanged();
+    partial void OnleverancetypeChanging(string value);
+    partial void OnleverancetypeChanged();
+    partial void OnudtrukketChanging(System.Nullable<System.DateTime> value);
+    partial void OnudtrukketChanged();
+    partial void OnbilagdatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnbilagdatoChanged();
+    partial void OnpbsforsendelseidChanging(System.Nullable<int> value);
+    partial void OnpbsforsendelseidChanged();
+    partial void OnleverancespecifikationChanging(string value);
+    partial void OnleverancespecifikationChanged();
+    partial void OnleverancedannelsesdatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnleverancedannelsesdatoChanged();
+    #endregion
+		
+		public tblfrapb()
+		{
+			this._tblbets = new EntitySet<tblbet>(new Action<tblbet>(this.attach_tblbets), new Action<tblbet>(this.detach_tblbets));
+			this._tblaftalelins = new EntitySet<tblaftalelin>(new Action<tblaftalelin>(this.attach_tblaftalelins), new Action<tblaftalelin>(this.detach_tblaftalelins));
+			this._tblindbetalingskorts = new EntitySet<tblindbetalingskort>(new Action<tblindbetalingskort>(this.attach_tblindbetalingskorts), new Action<tblindbetalingskort>(this.detach_tblindbetalingskorts));
+			this._tblpbsforsendelse = default(EntityRef<tblpbsforsendelse>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_delsystem", DbType="NVarChar(3)")]
+		public string delsystem
+		{
+			get
+			{
+				return this._delsystem;
+			}
+			set
+			{
+				if ((this._delsystem != value))
+				{
+					this.OndelsystemChanging(value);
+					this.SendPropertyChanging();
+					this._delsystem = value;
+					this.SendPropertyChanged("delsystem");
+					this.OndelsystemChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_leverancetype", DbType="NVarChar(4)")]
+		public string leverancetype
+		{
+			get
+			{
+				return this._leverancetype;
+			}
+			set
+			{
+				if ((this._leverancetype != value))
+				{
+					this.OnleverancetypeChanging(value);
+					this.SendPropertyChanging();
+					this._leverancetype = value;
+					this.SendPropertyChanged("leverancetype");
+					this.OnleverancetypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_udtrukket", DbType="DateTime")]
+		public System.Nullable<System.DateTime> udtrukket
+		{
+			get
+			{
+				return this._udtrukket;
+			}
+			set
+			{
+				if ((this._udtrukket != value))
+				{
+					this.OnudtrukketChanging(value);
+					this.SendPropertyChanging();
+					this._udtrukket = value;
+					this.SendPropertyChanged("udtrukket");
+					this.OnudtrukketChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bilagdato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> bilagdato
+		{
+			get
+			{
+				return this._bilagdato;
+			}
+			set
+			{
+				if ((this._bilagdato != value))
+				{
+					this.OnbilagdatoChanging(value);
+					this.SendPropertyChanging();
+					this._bilagdato = value;
+					this.SendPropertyChanged("bilagdato");
+					this.OnbilagdatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pbsforsendelseid", DbType="Int")]
+		public System.Nullable<int> pbsforsendelseid
+		{
+			get
+			{
+				return this._pbsforsendelseid;
+			}
+			set
+			{
+				if ((this._pbsforsendelseid != value))
+				{
+					if (this._tblpbsforsendelse.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnpbsforsendelseidChanging(value);
+					this.SendPropertyChanging();
+					this._pbsforsendelseid = value;
+					this.SendPropertyChanged("pbsforsendelseid");
+					this.OnpbsforsendelseidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_leverancespecifikation", DbType="NVarChar(50)")]
+		public string leverancespecifikation
+		{
+			get
+			{
+				return this._leverancespecifikation;
+			}
+			set
+			{
+				if ((this._leverancespecifikation != value))
+				{
+					this.OnleverancespecifikationChanging(value);
+					this.SendPropertyChanging();
+					this._leverancespecifikation = value;
+					this.SendPropertyChanged("leverancespecifikation");
+					this.OnleverancespecifikationChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_leverancedannelsesdato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> leverancedannelsesdato
+		{
+			get
+			{
+				return this._leverancedannelsesdato;
+			}
+			set
+			{
+				if ((this._leverancedannelsesdato != value))
+				{
+					this.OnleverancedannelsesdatoChanging(value);
+					this.SendPropertyChanging();
+					this._leverancedannelsesdato = value;
+					this.SendPropertyChanged("leverancedannelsesdato");
+					this.OnleverancedannelsesdatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblfrapb_tblbet", Storage="_tblbets", ThisKey="id", OtherKey="frapbsid")]
+		public EntitySet<tblbet> tblbets
+		{
+			get
+			{
+				return this._tblbets;
+			}
+			set
+			{
+				this._tblbets.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblfrapb_tblaftalelin", Storage="_tblaftalelins", ThisKey="id", OtherKey="frapbsid")]
+		public EntitySet<tblaftalelin> tblaftalelins
+		{
+			get
+			{
+				return this._tblaftalelins;
+			}
+			set
+			{
+				this._tblaftalelins.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblfrapb_tblindbetalingskort", Storage="_tblindbetalingskorts", ThisKey="id", OtherKey="frapbsid")]
+		public EntitySet<tblindbetalingskort> tblindbetalingskorts
+		{
+			get
+			{
+				return this._tblindbetalingskorts;
+			}
+			set
+			{
+				this._tblindbetalingskorts.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblpbsforsendelse_tblfrapb", Storage="_tblpbsforsendelse", ThisKey="pbsforsendelseid", OtherKey="id", IsForeignKey=true, DeleteRule="CASCADE")]
+		public tblpbsforsendelse tblpbsforsendelse
+		{
+			get
+			{
+				return this._tblpbsforsendelse.Entity;
+			}
+			set
+			{
+				tblpbsforsendelse previousValue = this._tblpbsforsendelse.Entity;
+				if (((previousValue != value) 
+							|| (this._tblpbsforsendelse.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblpbsforsendelse.Entity = null;
+						previousValue.tblfrapbs.Remove(this);
+					}
+					this._tblpbsforsendelse.Entity = value;
+					if ((value != null))
+					{
+						value.tblfrapbs.Add(this);
+						this._pbsforsendelseid = value.id;
+					}
+					else
+					{
+						this._pbsforsendelseid = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tblpbsforsendelse");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tblbets(tblbet entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblfrapb = this;
+		}
+		
+		private void detach_tblbets(tblbet entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblfrapb = null;
+		}
+		
+		private void attach_tblaftalelins(tblaftalelin entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblfrapb = this;
+		}
+		
+		private void detach_tblaftalelins(tblaftalelin entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblfrapb = null;
+		}
+		
+		private void attach_tblindbetalingskorts(tblindbetalingskort entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblfrapb = this;
+		}
+		
+		private void detach_tblindbetalingskorts(tblindbetalingskort entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblfrapb = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblbet")]
+	public partial class tblbet : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private System.Nullable<int> _frapbsid;
+		
+		private string _pbssektionnr;
+		
+		private string _transkode;
+		
+		private System.Nullable<System.DateTime> _bogforingsdato;
+		
+		private System.Nullable<decimal> _indbetalingsbelob;
+		
+		private System.Nullable<bool> _summabogfort;
+		
+		private EntitySet<tblbetlin> _tblbetlins;
+		
+		private EntityRef<tblfrapb> _tblfrapb;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnfrapbsidChanging(System.Nullable<int> value);
+    partial void OnfrapbsidChanged();
+    partial void OnpbssektionnrChanging(string value);
+    partial void OnpbssektionnrChanged();
+    partial void OntranskodeChanging(string value);
+    partial void OntranskodeChanged();
+    partial void OnbogforingsdatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnbogforingsdatoChanged();
+    partial void OnindbetalingsbelobChanging(System.Nullable<decimal> value);
+    partial void OnindbetalingsbelobChanged();
+    partial void OnsummabogfortChanging(System.Nullable<bool> value);
+    partial void OnsummabogfortChanged();
+    #endregion
+		
+		public tblbet()
+		{
+			this._tblbetlins = new EntitySet<tblbetlin>(new Action<tblbetlin>(this.attach_tblbetlins), new Action<tblbetlin>(this.detach_tblbetlins));
+			this._tblfrapb = default(EntityRef<tblfrapb>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_frapbsid", DbType="Int")]
+		public System.Nullable<int> frapbsid
+		{
+			get
+			{
+				return this._frapbsid;
+			}
+			set
+			{
+				if ((this._frapbsid != value))
+				{
+					if (this._tblfrapb.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnfrapbsidChanging(value);
+					this.SendPropertyChanging();
+					this._frapbsid = value;
+					this.SendPropertyChanged("frapbsid");
+					this.OnfrapbsidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pbssektionnr", DbType="NVarChar(4)")]
+		public string pbssektionnr
+		{
+			get
+			{
+				return this._pbssektionnr;
+			}
+			set
+			{
+				if ((this._pbssektionnr != value))
+				{
+					this.OnpbssektionnrChanging(value);
+					this.SendPropertyChanging();
+					this._pbssektionnr = value;
+					this.SendPropertyChanged("pbssektionnr");
+					this.OnpbssektionnrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_transkode", DbType="NVarChar(4)")]
+		public string transkode
+		{
+			get
+			{
+				return this._transkode;
+			}
+			set
+			{
+				if ((this._transkode != value))
+				{
+					this.OntranskodeChanging(value);
+					this.SendPropertyChanging();
+					this._transkode = value;
+					this.SendPropertyChanged("transkode");
+					this.OntranskodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bogforingsdato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> bogforingsdato
+		{
+			get
+			{
+				return this._bogforingsdato;
+			}
+			set
+			{
+				if ((this._bogforingsdato != value))
+				{
+					this.OnbogforingsdatoChanging(value);
+					this.SendPropertyChanging();
+					this._bogforingsdato = value;
+					this.SendPropertyChanged("bogforingsdato");
+					this.OnbogforingsdatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_indbetalingsbelob", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> indbetalingsbelob
+		{
+			get
+			{
+				return this._indbetalingsbelob;
+			}
+			set
+			{
+				if ((this._indbetalingsbelob != value))
+				{
+					this.OnindbetalingsbelobChanging(value);
+					this.SendPropertyChanging();
+					this._indbetalingsbelob = value;
+					this.SendPropertyChanged("indbetalingsbelob");
+					this.OnindbetalingsbelobChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_summabogfort", DbType="Bit")]
+		public System.Nullable<bool> summabogfort
+		{
+			get
+			{
+				return this._summabogfort;
+			}
+			set
+			{
+				if ((this._summabogfort != value))
+				{
+					this.OnsummabogfortChanging(value);
+					this.SendPropertyChanging();
+					this._summabogfort = value;
+					this.SendPropertyChanged("summabogfort");
+					this.OnsummabogfortChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblbet_tblbetlin", Storage="_tblbetlins", ThisKey="id", OtherKey="betid")]
+		public EntitySet<tblbetlin> tblbetlins
+		{
+			get
+			{
+				return this._tblbetlins;
+			}
+			set
+			{
+				this._tblbetlins.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblfrapb_tblbet", Storage="_tblfrapb", ThisKey="frapbsid", OtherKey="id", IsForeignKey=true, DeleteRule="CASCADE")]
+		public tblfrapb tblfrapb
+		{
+			get
+			{
+				return this._tblfrapb.Entity;
+			}
+			set
+			{
+				tblfrapb previousValue = this._tblfrapb.Entity;
+				if (((previousValue != value) 
+							|| (this._tblfrapb.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblfrapb.Entity = null;
+						previousValue.tblbets.Remove(this);
+					}
+					this._tblfrapb.Entity = value;
+					if ((value != null))
+					{
+						value.tblbets.Add(this);
+						this._frapbsid = value.id;
+					}
+					else
+					{
+						this._frapbsid = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tblfrapb");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tblbetlins(tblbetlin entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblbet = this;
+		}
+		
+		private void detach_tblbetlins(tblbetlin entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblbet = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblbetlin")]
+	public partial class tblbetlin : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private System.Nullable<int> _betid;
+		
+		private string _pbssektionnr;
+		
+		private string _pbstranskode;
+		
+		private System.Nullable<int> _Nr;
+		
+		private System.Nullable<int> _faknr;
+		
+		private string _debitorkonto;
+		
+		private System.Nullable<int> _aftalenr;
+		
+		private System.Nullable<System.DateTime> _betalingsdato;
+		
+		private System.Nullable<decimal> _belob;
+		
+		private System.Nullable<System.DateTime> _indbetalingsdato;
+		
+		private System.Nullable<System.DateTime> _bogforingsdato;
+		
+		private System.Nullable<decimal> _indbetalingsbelob;
+		
+		private string _pbskortart;
+		
+		private System.Nullable<decimal> _pbsgebyrbelob;
+		
+		private string _pbsarkivnr;
+		
+		private EntityRef<tblbet> _tblbet;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnbetidChanging(System.Nullable<int> value);
+    partial void OnbetidChanged();
+    partial void OnpbssektionnrChanging(string value);
+    partial void OnpbssektionnrChanged();
+    partial void OnpbstranskodeChanging(string value);
+    partial void OnpbstranskodeChanged();
+    partial void OnNrChanging(System.Nullable<int> value);
+    partial void OnNrChanged();
+    partial void OnfaknrChanging(System.Nullable<int> value);
+    partial void OnfaknrChanged();
+    partial void OndebitorkontoChanging(string value);
+    partial void OndebitorkontoChanged();
+    partial void OnaftalenrChanging(System.Nullable<int> value);
+    partial void OnaftalenrChanged();
+    partial void OnbetalingsdatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnbetalingsdatoChanged();
+    partial void OnbelobChanging(System.Nullable<decimal> value);
+    partial void OnbelobChanged();
+    partial void OnindbetalingsdatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnindbetalingsdatoChanged();
+    partial void OnbogforingsdatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnbogforingsdatoChanged();
+    partial void OnindbetalingsbelobChanging(System.Nullable<decimal> value);
+    partial void OnindbetalingsbelobChanged();
+    partial void OnpbskortartChanging(string value);
+    partial void OnpbskortartChanged();
+    partial void OnpbsgebyrbelobChanging(System.Nullable<decimal> value);
+    partial void OnpbsgebyrbelobChanged();
+    partial void OnpbsarkivnrChanging(string value);
+    partial void OnpbsarkivnrChanged();
+    #endregion
+		
+		public tblbetlin()
+		{
+			this._tblbet = default(EntityRef<tblbet>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_betid", DbType="Int")]
+		public System.Nullable<int> betid
+		{
+			get
+			{
+				return this._betid;
+			}
+			set
+			{
+				if ((this._betid != value))
+				{
+					if (this._tblbet.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnbetidChanging(value);
+					this.SendPropertyChanging();
+					this._betid = value;
+					this.SendPropertyChanged("betid");
+					this.OnbetidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pbssektionnr", DbType="NVarChar(4)")]
+		public string pbssektionnr
+		{
+			get
+			{
+				return this._pbssektionnr;
+			}
+			set
+			{
+				if ((this._pbssektionnr != value))
+				{
+					this.OnpbssektionnrChanging(value);
+					this.SendPropertyChanging();
+					this._pbssektionnr = value;
+					this.SendPropertyChanged("pbssektionnr");
+					this.OnpbssektionnrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pbstranskode", DbType="NVarChar(4)")]
+		public string pbstranskode
+		{
+			get
+			{
+				return this._pbstranskode;
+			}
+			set
+			{
+				if ((this._pbstranskode != value))
+				{
+					this.OnpbstranskodeChanging(value);
+					this.SendPropertyChanging();
+					this._pbstranskode = value;
+					this.SendPropertyChanged("pbstranskode");
+					this.OnpbstranskodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nr", DbType="Int")]
+		public System.Nullable<int> Nr
+		{
+			get
+			{
+				return this._Nr;
+			}
+			set
+			{
+				if ((this._Nr != value))
+				{
+					this.OnNrChanging(value);
+					this.SendPropertyChanging();
+					this._Nr = value;
+					this.SendPropertyChanged("Nr");
+					this.OnNrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_faknr", DbType="Int")]
+		public System.Nullable<int> faknr
+		{
+			get
+			{
+				return this._faknr;
+			}
+			set
+			{
+				if ((this._faknr != value))
+				{
+					this.OnfaknrChanging(value);
+					this.SendPropertyChanging();
+					this._faknr = value;
+					this.SendPropertyChanged("faknr");
+					this.OnfaknrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_debitorkonto", DbType="NVarChar(15)")]
+		public string debitorkonto
+		{
+			get
+			{
+				return this._debitorkonto;
+			}
+			set
+			{
+				if ((this._debitorkonto != value))
+				{
+					this.OndebitorkontoChanging(value);
+					this.SendPropertyChanging();
+					this._debitorkonto = value;
+					this.SendPropertyChanged("debitorkonto");
+					this.OndebitorkontoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_aftalenr", DbType="Int")]
+		public System.Nullable<int> aftalenr
+		{
+			get
+			{
+				return this._aftalenr;
+			}
+			set
+			{
+				if ((this._aftalenr != value))
+				{
+					this.OnaftalenrChanging(value);
+					this.SendPropertyChanging();
+					this._aftalenr = value;
+					this.SendPropertyChanged("aftalenr");
+					this.OnaftalenrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_betalingsdato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> betalingsdato
+		{
+			get
+			{
+				return this._betalingsdato;
+			}
+			set
+			{
+				if ((this._betalingsdato != value))
+				{
+					this.OnbetalingsdatoChanging(value);
+					this.SendPropertyChanging();
+					this._betalingsdato = value;
+					this.SendPropertyChanged("betalingsdato");
+					this.OnbetalingsdatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_belob", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> belob
+		{
+			get
+			{
+				return this._belob;
+			}
+			set
+			{
+				if ((this._belob != value))
+				{
+					this.OnbelobChanging(value);
+					this.SendPropertyChanging();
+					this._belob = value;
+					this.SendPropertyChanged("belob");
+					this.OnbelobChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_indbetalingsdato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> indbetalingsdato
+		{
+			get
+			{
+				return this._indbetalingsdato;
+			}
+			set
+			{
+				if ((this._indbetalingsdato != value))
+				{
+					this.OnindbetalingsdatoChanging(value);
+					this.SendPropertyChanging();
+					this._indbetalingsdato = value;
+					this.SendPropertyChanged("indbetalingsdato");
+					this.OnindbetalingsdatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bogforingsdato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> bogforingsdato
+		{
+			get
+			{
+				return this._bogforingsdato;
+			}
+			set
+			{
+				if ((this._bogforingsdato != value))
+				{
+					this.OnbogforingsdatoChanging(value);
+					this.SendPropertyChanging();
+					this._bogforingsdato = value;
+					this.SendPropertyChanged("bogforingsdato");
+					this.OnbogforingsdatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_indbetalingsbelob", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> indbetalingsbelob
+		{
+			get
+			{
+				return this._indbetalingsbelob;
+			}
+			set
+			{
+				if ((this._indbetalingsbelob != value))
+				{
+					this.OnindbetalingsbelobChanging(value);
+					this.SendPropertyChanging();
+					this._indbetalingsbelob = value;
+					this.SendPropertyChanged("indbetalingsbelob");
+					this.OnindbetalingsbelobChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pbskortart", DbType="NVarChar(2)")]
+		public string pbskortart
+		{
+			get
+			{
+				return this._pbskortart;
+			}
+			set
+			{
+				if ((this._pbskortart != value))
+				{
+					this.OnpbskortartChanging(value);
+					this.SendPropertyChanging();
+					this._pbskortart = value;
+					this.SendPropertyChanged("pbskortart");
+					this.OnpbskortartChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pbsgebyrbelob", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> pbsgebyrbelob
+		{
+			get
+			{
+				return this._pbsgebyrbelob;
+			}
+			set
+			{
+				if ((this._pbsgebyrbelob != value))
+				{
+					this.OnpbsgebyrbelobChanging(value);
+					this.SendPropertyChanging();
+					this._pbsgebyrbelob = value;
+					this.SendPropertyChanged("pbsgebyrbelob");
+					this.OnpbsgebyrbelobChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pbsarkivnr", DbType="NVarChar(22)")]
+		public string pbsarkivnr
+		{
+			get
+			{
+				return this._pbsarkivnr;
+			}
+			set
+			{
+				if ((this._pbsarkivnr != value))
+				{
+					this.OnpbsarkivnrChanging(value);
+					this.SendPropertyChanging();
+					this._pbsarkivnr = value;
+					this.SendPropertyChanged("pbsarkivnr");
+					this.OnpbsarkivnrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblbet_tblbetlin", Storage="_tblbet", ThisKey="betid", OtherKey="id", IsForeignKey=true, DeleteRule="CASCADE")]
+		public tblbet tblbet
+		{
+			get
+			{
+				return this._tblbet.Entity;
+			}
+			set
+			{
+				tblbet previousValue = this._tblbet.Entity;
+				if (((previousValue != value) 
+							|| (this._tblbet.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblbet.Entity = null;
+						previousValue.tblbetlins.Remove(this);
+					}
+					this._tblbet.Entity = value;
+					if ((value != null))
+					{
+						value.tblbetlins.Add(this);
+						this._betid = value.id;
+					}
+					else
+					{
+						this._betid = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tblbet");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblaftalelin")]
+	public partial class tblaftalelin : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private int _frapbsid;
+		
+		private string _pbstranskode;
+		
+		private int _Nr;
+		
+		private string _debitorkonto;
+		
+		private string _debgrpnr;
+		
+		private System.Nullable<int> _aftalenr;
+		
+		private System.Nullable<System.DateTime> _aftalestartdato;
+		
+		private System.Nullable<System.DateTime> _aftaleslutdato;
+		
+		private string _pbssektionnr;
+		
+		private EntityRef<tblfrapb> _tblfrapb;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnfrapbsidChanging(int value);
+    partial void OnfrapbsidChanged();
+    partial void OnpbstranskodeChanging(string value);
+    partial void OnpbstranskodeChanged();
+    partial void OnNrChanging(int value);
+    partial void OnNrChanged();
+    partial void OndebitorkontoChanging(string value);
+    partial void OndebitorkontoChanged();
+    partial void OndebgrpnrChanging(string value);
+    partial void OndebgrpnrChanged();
+    partial void OnaftalenrChanging(System.Nullable<int> value);
+    partial void OnaftalenrChanged();
+    partial void OnaftalestartdatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnaftalestartdatoChanged();
+    partial void OnaftaleslutdatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnaftaleslutdatoChanged();
+    partial void OnpbssektionnrChanging(string value);
+    partial void OnpbssektionnrChanged();
+    #endregion
+		
+		public tblaftalelin()
+		{
+			this._tblfrapb = default(EntityRef<tblfrapb>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_frapbsid", DbType="Int NOT NULL")]
+		public int frapbsid
+		{
+			get
+			{
+				return this._frapbsid;
+			}
+			set
+			{
+				if ((this._frapbsid != value))
+				{
+					if (this._tblfrapb.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnfrapbsidChanging(value);
+					this.SendPropertyChanging();
+					this._frapbsid = value;
+					this.SendPropertyChanged("frapbsid");
+					this.OnfrapbsidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pbstranskode", DbType="NVarChar(4) NOT NULL", CanBeNull=false)]
+		public string pbstranskode
+		{
+			get
+			{
+				return this._pbstranskode;
+			}
+			set
+			{
+				if ((this._pbstranskode != value))
+				{
+					this.OnpbstranskodeChanging(value);
+					this.SendPropertyChanging();
+					this._pbstranskode = value;
+					this.SendPropertyChanged("pbstranskode");
+					this.OnpbstranskodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nr", DbType="Int NOT NULL")]
+		public int Nr
+		{
+			get
+			{
+				return this._Nr;
+			}
+			set
+			{
+				if ((this._Nr != value))
+				{
+					this.OnNrChanging(value);
+					this.SendPropertyChanging();
+					this._Nr = value;
+					this.SendPropertyChanged("Nr");
+					this.OnNrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_debitorkonto", DbType="NVarChar(15) NOT NULL", CanBeNull=false)]
+		public string debitorkonto
+		{
+			get
+			{
+				return this._debitorkonto;
+			}
+			set
+			{
+				if ((this._debitorkonto != value))
+				{
+					this.OndebitorkontoChanging(value);
+					this.SendPropertyChanging();
+					this._debitorkonto = value;
+					this.SendPropertyChanged("debitorkonto");
+					this.OndebitorkontoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_debgrpnr", DbType="NVarChar(5) NOT NULL", CanBeNull=false)]
+		public string debgrpnr
+		{
+			get
+			{
+				return this._debgrpnr;
+			}
+			set
+			{
+				if ((this._debgrpnr != value))
+				{
+					this.OndebgrpnrChanging(value);
+					this.SendPropertyChanging();
+					this._debgrpnr = value;
+					this.SendPropertyChanged("debgrpnr");
+					this.OndebgrpnrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_aftalenr", DbType="Int")]
+		public System.Nullable<int> aftalenr
+		{
+			get
+			{
+				return this._aftalenr;
+			}
+			set
+			{
+				if ((this._aftalenr != value))
+				{
+					this.OnaftalenrChanging(value);
+					this.SendPropertyChanging();
+					this._aftalenr = value;
+					this.SendPropertyChanged("aftalenr");
+					this.OnaftalenrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_aftalestartdato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> aftalestartdato
+		{
+			get
+			{
+				return this._aftalestartdato;
+			}
+			set
+			{
+				if ((this._aftalestartdato != value))
+				{
+					this.OnaftalestartdatoChanging(value);
+					this.SendPropertyChanging();
+					this._aftalestartdato = value;
+					this.SendPropertyChanged("aftalestartdato");
+					this.OnaftalestartdatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_aftaleslutdato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> aftaleslutdato
+		{
+			get
+			{
+				return this._aftaleslutdato;
+			}
+			set
+			{
+				if ((this._aftaleslutdato != value))
+				{
+					this.OnaftaleslutdatoChanging(value);
+					this.SendPropertyChanging();
+					this._aftaleslutdato = value;
+					this.SendPropertyChanged("aftaleslutdato");
+					this.OnaftaleslutdatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pbssektionnr", DbType="NVarChar(5) NOT NULL", CanBeNull=false)]
+		public string pbssektionnr
+		{
+			get
+			{
+				return this._pbssektionnr;
+			}
+			set
+			{
+				if ((this._pbssektionnr != value))
+				{
+					this.OnpbssektionnrChanging(value);
+					this.SendPropertyChanging();
+					this._pbssektionnr = value;
+					this.SendPropertyChanged("pbssektionnr");
+					this.OnpbssektionnrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblfrapb_tblaftalelin", Storage="_tblfrapb", ThisKey="frapbsid", OtherKey="id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public tblfrapb tblfrapb
+		{
+			get
+			{
+				return this._tblfrapb.Entity;
+			}
+			set
+			{
+				tblfrapb previousValue = this._tblfrapb.Entity;
+				if (((previousValue != value) 
+							|| (this._tblfrapb.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblfrapb.Entity = null;
+						previousValue.tblaftalelins.Remove(this);
+					}
+					this._tblfrapb.Entity = value;
+					if ((value != null))
+					{
+						value.tblaftalelins.Add(this);
+						this._frapbsid = value.id;
+					}
+					else
+					{
+						this._frapbsid = default(int);
+					}
+					this.SendPropertyChanged("tblfrapb");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblindbetalingskort")]
+	public partial class tblindbetalingskort : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private int _frapbsid;
+		
+		private string _pbstranskode;
+		
+		private int _Nr;
+		
+		private System.Nullable<int> _faknr;
+		
+		private string _debitorkonto;
+		
+		private string _debgrpnr;
+		
+		private string _kortartkode;
+		
+		private string _fikreditornr;
+		
+		private string _indbetalerident;
+		
+		private System.Nullable<System.DateTime> _dato;
+		
+		private System.Nullable<decimal> _belob;
+		
+		private string _pbssektionnr;
+		
+		private EntityRef<tblfrapb> _tblfrapb;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnfrapbsidChanging(int value);
+    partial void OnfrapbsidChanged();
+    partial void OnpbstranskodeChanging(string value);
+    partial void OnpbstranskodeChanged();
+    partial void OnNrChanging(int value);
+    partial void OnNrChanged();
+    partial void OnfaknrChanging(System.Nullable<int> value);
+    partial void OnfaknrChanged();
+    partial void OndebitorkontoChanging(string value);
+    partial void OndebitorkontoChanged();
+    partial void OndebgrpnrChanging(string value);
+    partial void OndebgrpnrChanged();
+    partial void OnkortartkodeChanging(string value);
+    partial void OnkortartkodeChanged();
+    partial void OnfikreditornrChanging(string value);
+    partial void OnfikreditornrChanged();
+    partial void OnindbetaleridentChanging(string value);
+    partial void OnindbetaleridentChanged();
+    partial void OndatoChanging(System.Nullable<System.DateTime> value);
+    partial void OndatoChanged();
+    partial void OnbelobChanging(System.Nullable<decimal> value);
+    partial void OnbelobChanged();
+    partial void OnpbssektionnrChanging(string value);
+    partial void OnpbssektionnrChanged();
+    #endregion
+		
+		public tblindbetalingskort()
+		{
+			this._tblfrapb = default(EntityRef<tblfrapb>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_frapbsid", DbType="Int NOT NULL")]
+		public int frapbsid
+		{
+			get
+			{
+				return this._frapbsid;
+			}
+			set
+			{
+				if ((this._frapbsid != value))
+				{
+					if (this._tblfrapb.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnfrapbsidChanging(value);
+					this.SendPropertyChanging();
+					this._frapbsid = value;
+					this.SendPropertyChanged("frapbsid");
+					this.OnfrapbsidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pbstranskode", DbType="NVarChar(4) NOT NULL", CanBeNull=false)]
+		public string pbstranskode
+		{
+			get
+			{
+				return this._pbstranskode;
+			}
+			set
+			{
+				if ((this._pbstranskode != value))
+				{
+					this.OnpbstranskodeChanging(value);
+					this.SendPropertyChanging();
+					this._pbstranskode = value;
+					this.SendPropertyChanged("pbstranskode");
+					this.OnpbstranskodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nr", DbType="Int NOT NULL")]
+		public int Nr
+		{
+			get
+			{
+				return this._Nr;
+			}
+			set
+			{
+				if ((this._Nr != value))
+				{
+					this.OnNrChanging(value);
+					this.SendPropertyChanging();
+					this._Nr = value;
+					this.SendPropertyChanged("Nr");
+					this.OnNrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_faknr", DbType="Int")]
+		public System.Nullable<int> faknr
+		{
+			get
+			{
+				return this._faknr;
+			}
+			set
+			{
+				if ((this._faknr != value))
+				{
+					this.OnfaknrChanging(value);
+					this.SendPropertyChanging();
+					this._faknr = value;
+					this.SendPropertyChanged("faknr");
+					this.OnfaknrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_debitorkonto", DbType="NVarChar(15) NOT NULL", CanBeNull=false)]
+		public string debitorkonto
+		{
+			get
+			{
+				return this._debitorkonto;
+			}
+			set
+			{
+				if ((this._debitorkonto != value))
+				{
+					this.OndebitorkontoChanging(value);
+					this.SendPropertyChanging();
+					this._debitorkonto = value;
+					this.SendPropertyChanged("debitorkonto");
+					this.OndebitorkontoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_debgrpnr", DbType="NVarChar(5) NOT NULL", CanBeNull=false)]
+		public string debgrpnr
+		{
+			get
+			{
+				return this._debgrpnr;
+			}
+			set
+			{
+				if ((this._debgrpnr != value))
+				{
+					this.OndebgrpnrChanging(value);
+					this.SendPropertyChanging();
+					this._debgrpnr = value;
+					this.SendPropertyChanged("debgrpnr");
+					this.OndebgrpnrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_kortartkode", DbType="NVarChar(2) NOT NULL", CanBeNull=false)]
+		public string kortartkode
+		{
+			get
+			{
+				return this._kortartkode;
+			}
+			set
+			{
+				if ((this._kortartkode != value))
+				{
+					this.OnkortartkodeChanging(value);
+					this.SendPropertyChanging();
+					this._kortartkode = value;
+					this.SendPropertyChanged("kortartkode");
+					this.OnkortartkodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fikreditornr", DbType="NVarChar(8) NOT NULL", CanBeNull=false)]
+		public string fikreditornr
+		{
+			get
+			{
+				return this._fikreditornr;
+			}
+			set
+			{
+				if ((this._fikreditornr != value))
+				{
+					this.OnfikreditornrChanging(value);
+					this.SendPropertyChanging();
+					this._fikreditornr = value;
+					this.SendPropertyChanged("fikreditornr");
+					this.OnfikreditornrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_indbetalerident", DbType="NVarChar(19) NOT NULL", CanBeNull=false)]
+		public string indbetalerident
+		{
+			get
+			{
+				return this._indbetalerident;
+			}
+			set
+			{
+				if ((this._indbetalerident != value))
+				{
+					this.OnindbetaleridentChanging(value);
+					this.SendPropertyChanging();
+					this._indbetalerident = value;
+					this.SendPropertyChanged("indbetalerident");
+					this.OnindbetaleridentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> dato
+		{
+			get
+			{
+				return this._dato;
+			}
+			set
+			{
+				if ((this._dato != value))
+				{
+					this.OndatoChanging(value);
+					this.SendPropertyChanging();
+					this._dato = value;
+					this.SendPropertyChanged("dato");
+					this.OndatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_belob", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> belob
+		{
+			get
+			{
+				return this._belob;
+			}
+			set
+			{
+				if ((this._belob != value))
+				{
+					this.OnbelobChanging(value);
+					this.SendPropertyChanging();
+					this._belob = value;
+					this.SendPropertyChanged("belob");
+					this.OnbelobChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pbssektionnr", DbType="NVarChar(5) NOT NULL", CanBeNull=false)]
+		public string pbssektionnr
+		{
+			get
+			{
+				return this._pbssektionnr;
+			}
+			set
+			{
+				if ((this._pbssektionnr != value))
+				{
+					this.OnpbssektionnrChanging(value);
+					this.SendPropertyChanging();
+					this._pbssektionnr = value;
+					this.SendPropertyChanged("pbssektionnr");
+					this.OnpbssektionnrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblfrapb_tblindbetalingskort", Storage="_tblfrapb", ThisKey="frapbsid", OtherKey="id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public tblfrapb tblfrapb
+		{
+			get
+			{
+				return this._tblfrapb.Entity;
+			}
+			set
+			{
+				tblfrapb previousValue = this._tblfrapb.Entity;
+				if (((previousValue != value) 
+							|| (this._tblfrapb.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblfrapb.Entity = null;
+						previousValue.tblindbetalingskorts.Remove(this);
+					}
+					this._tblfrapb.Entity = value;
+					if ((value != null))
+					{
+						value.tblindbetalingskorts.Add(this);
+						this._frapbsid = value.id;
+					}
+					else
+					{
+						this._frapbsid = default(int);
+					}
+					this.SendPropertyChanged("tblfrapb");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblMedlem")]
+	public partial class tblMedlem : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Nr;
+		
+		private string _Kon;
+		
+		private System.Nullable<System.DateTime> _FodtDato;
+		
+		private string _Navn;
+		
+		private string _Kaldenavn;
+		
+		private string _Adresse;
+		
+		private string _Postnr;
+		
+		private string _Bynavn;
+		
+		private string _Telefon;
+		
+		private string _Email;
+		
+		private string _Bank;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnNrChanging(int value);
+    partial void OnNrChanged();
+    partial void OnKonChanging(string value);
+    partial void OnKonChanged();
+    partial void OnFodtDatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnFodtDatoChanged();
+    partial void OnNavnChanging(string value);
+    partial void OnNavnChanged();
+    partial void OnKaldenavnChanging(string value);
+    partial void OnKaldenavnChanged();
+    partial void OnAdresseChanging(string value);
+    partial void OnAdresseChanged();
+    partial void OnPostnrChanging(string value);
+    partial void OnPostnrChanged();
+    partial void OnBynavnChanging(string value);
+    partial void OnBynavnChanged();
+    partial void OnTelefonChanging(string value);
+    partial void OnTelefonChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnBankChanging(string value);
+    partial void OnBankChanged();
+    #endregion
+		
+		public tblMedlem()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nr", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Nr
+		{
+			get
+			{
+				return this._Nr;
+			}
+			set
+			{
+				if ((this._Nr != value))
+				{
+					this.OnNrChanging(value);
+					this.SendPropertyChanging();
+					this._Nr = value;
+					this.SendPropertyChanged("Nr");
+					this.OnNrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Kon", DbType="NVarChar(1)")]
+		public string Kon
+		{
+			get
+			{
+				return this._Kon;
+			}
+			set
+			{
+				if ((this._Kon != value))
+				{
+					this.OnKonChanging(value);
+					this.SendPropertyChanging();
+					this._Kon = value;
+					this.SendPropertyChanged("Kon");
+					this.OnKonChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FodtDato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FodtDato
+		{
+			get
+			{
+				return this._FodtDato;
+			}
+			set
+			{
+				if ((this._FodtDato != value))
+				{
+					this.OnFodtDatoChanging(value);
+					this.SendPropertyChanging();
+					this._FodtDato = value;
+					this.SendPropertyChanged("FodtDato");
+					this.OnFodtDatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Navn", DbType="NVarChar(35)")]
+		public string Navn
+		{
+			get
+			{
+				return this._Navn;
+			}
+			set
+			{
+				if ((this._Navn != value))
+				{
+					this.OnNavnChanging(value);
+					this.SendPropertyChanging();
+					this._Navn = value;
+					this.SendPropertyChanged("Navn");
+					this.OnNavnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Kaldenavn", DbType="NVarChar(25)")]
+		public string Kaldenavn
+		{
+			get
+			{
+				return this._Kaldenavn;
+			}
+			set
+			{
+				if ((this._Kaldenavn != value))
+				{
+					this.OnKaldenavnChanging(value);
+					this.SendPropertyChanging();
+					this._Kaldenavn = value;
+					this.SendPropertyChanged("Kaldenavn");
+					this.OnKaldenavnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Adresse", DbType="NVarChar(70)")]
+		public string Adresse
+		{
+			get
+			{
+				return this._Adresse;
+			}
+			set
+			{
+				if ((this._Adresse != value))
+				{
+					this.OnAdresseChanging(value);
+					this.SendPropertyChanging();
+					this._Adresse = value;
+					this.SendPropertyChanged("Adresse");
+					this.OnAdresseChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Postnr", DbType="NVarChar(4)")]
+		public string Postnr
+		{
+			get
+			{
+				return this._Postnr;
+			}
+			set
+			{
+				if ((this._Postnr != value))
+				{
+					this.OnPostnrChanging(value);
+					this.SendPropertyChanging();
+					this._Postnr = value;
+					this.SendPropertyChanged("Postnr");
+					this.OnPostnrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Bynavn", DbType="NVarChar(25)")]
+		public string Bynavn
+		{
+			get
+			{
+				return this._Bynavn;
+			}
+			set
+			{
+				if ((this._Bynavn != value))
+				{
+					this.OnBynavnChanging(value);
+					this.SendPropertyChanging();
+					this._Bynavn = value;
+					this.SendPropertyChanged("Bynavn");
+					this.OnBynavnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefon", DbType="NVarChar(8)")]
+		public string Telefon
+		{
+			get
+			{
+				return this._Telefon;
+			}
+			set
+			{
+				if ((this._Telefon != value))
+				{
+					this.OnTelefonChanging(value);
+					this.SendPropertyChanging();
+					this._Telefon = value;
+					this.SendPropertyChanged("Telefon");
+					this.OnTelefonChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(50)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Bank", DbType="NVarChar(15)")]
+		public string Bank
+		{
+			get
+			{
+				return this._Bank;
+			}
+			set
+			{
+				if ((this._Bank != value))
+				{
+					this.OnBankChanging(value);
+					this.SendPropertyChanging();
+					this._Bank = value;
+					this.SendPropertyChanged("Bank");
+					this.OnBankChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblfak")]
+	public partial class tblfak : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private System.Nullable<int> _tilpbsid;
+		
+		private System.Nullable<System.DateTime> _betalingsdato;
+		
+		private System.Nullable<int> _Nr;
+		
+		private System.Nullable<int> _faknr;
+		
+		private string _advistekst;
+		
+		private System.Nullable<decimal> _advisbelob;
+		
+		private System.Nullable<int> _infotekst;
+		
+		private System.Nullable<int> _bogfkonto;
+		
+		private System.Nullable<int> _vnr;
+		
+		private System.Nullable<System.DateTime> _fradato;
+		
+		private System.Nullable<System.DateTime> _tildato;
+		
+		private System.Nullable<int> _SFakID;
+		
+		private System.Nullable<int> _SFaknr;
+		
+		private System.Nullable<System.DateTime> _rykkerdato;
+		
+		private System.Nullable<System.DateTime> _maildato;
+		
+		private bool _rykkerstop;
+		
+		private bool _betalt;
+		
+		private bool _tilmeldtpbs;
+		
+		private bool _indmeldelse;
+		
+		private EntityRef<tbltilpb> _tbltilpb;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OntilpbsidChanging(System.Nullable<int> value);
+    partial void OntilpbsidChanged();
+    partial void OnbetalingsdatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnbetalingsdatoChanged();
+    partial void OnNrChanging(System.Nullable<int> value);
+    partial void OnNrChanged();
+    partial void OnfaknrChanging(System.Nullable<int> value);
+    partial void OnfaknrChanged();
+    partial void OnadvistekstChanging(string value);
+    partial void OnadvistekstChanged();
+    partial void OnadvisbelobChanging(System.Nullable<decimal> value);
+    partial void OnadvisbelobChanged();
+    partial void OninfotekstChanging(System.Nullable<int> value);
+    partial void OninfotekstChanged();
+    partial void OnbogfkontoChanging(System.Nullable<int> value);
+    partial void OnbogfkontoChanged();
+    partial void OnvnrChanging(System.Nullable<int> value);
+    partial void OnvnrChanged();
+    partial void OnfradatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnfradatoChanged();
+    partial void OntildatoChanging(System.Nullable<System.DateTime> value);
+    partial void OntildatoChanged();
+    partial void OnSFakIDChanging(System.Nullable<int> value);
+    partial void OnSFakIDChanged();
+    partial void OnSFaknrChanging(System.Nullable<int> value);
+    partial void OnSFaknrChanged();
+    partial void OnrykkerdatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnrykkerdatoChanged();
+    partial void OnmaildatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnmaildatoChanged();
+    partial void OnrykkerstopChanging(bool value);
+    partial void OnrykkerstopChanged();
+    partial void OnbetaltChanging(bool value);
+    partial void OnbetaltChanged();
+    partial void OntilmeldtpbsChanging(bool value);
+    partial void OntilmeldtpbsChanged();
+    partial void OnindmeldelseChanging(bool value);
+    partial void OnindmeldelseChanged();
+    #endregion
+		
+		public tblfak()
+		{
+			this._tbltilpb = default(EntityRef<tbltilpb>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tilpbsid", DbType="Int")]
+		public System.Nullable<int> tilpbsid
+		{
+			get
+			{
+				return this._tilpbsid;
+			}
+			set
+			{
+				if ((this._tilpbsid != value))
+				{
+					if (this._tbltilpb.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OntilpbsidChanging(value);
+					this.SendPropertyChanging();
+					this._tilpbsid = value;
+					this.SendPropertyChanged("tilpbsid");
+					this.OntilpbsidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_betalingsdato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> betalingsdato
+		{
+			get
+			{
+				return this._betalingsdato;
+			}
+			set
+			{
+				if ((this._betalingsdato != value))
+				{
+					this.OnbetalingsdatoChanging(value);
+					this.SendPropertyChanging();
+					this._betalingsdato = value;
+					this.SendPropertyChanged("betalingsdato");
+					this.OnbetalingsdatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nr", DbType="Int")]
+		public System.Nullable<int> Nr
+		{
+			get
+			{
+				return this._Nr;
+			}
+			set
+			{
+				if ((this._Nr != value))
+				{
+					this.OnNrChanging(value);
+					this.SendPropertyChanging();
+					this._Nr = value;
+					this.SendPropertyChanged("Nr");
+					this.OnNrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_faknr", DbType="Int")]
+		public System.Nullable<int> faknr
+		{
+			get
+			{
+				return this._faknr;
+			}
+			set
+			{
+				if ((this._faknr != value))
+				{
+					this.OnfaknrChanging(value);
+					this.SendPropertyChanging();
+					this._faknr = value;
+					this.SendPropertyChanged("faknr");
+					this.OnfaknrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_advistekst", DbType="NVarChar(4000)")]
+		public string advistekst
+		{
+			get
+			{
+				return this._advistekst;
+			}
+			set
+			{
+				if ((this._advistekst != value))
+				{
+					this.OnadvistekstChanging(value);
+					this.SendPropertyChanging();
+					this._advistekst = value;
+					this.SendPropertyChanged("advistekst");
+					this.OnadvistekstChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_advisbelob", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> advisbelob
+		{
+			get
+			{
+				return this._advisbelob;
+			}
+			set
+			{
+				if ((this._advisbelob != value))
+				{
+					this.OnadvisbelobChanging(value);
+					this.SendPropertyChanging();
+					this._advisbelob = value;
+					this.SendPropertyChanged("advisbelob");
+					this.OnadvisbelobChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_infotekst", DbType="Int")]
+		public System.Nullable<int> infotekst
+		{
+			get
+			{
+				return this._infotekst;
+			}
+			set
+			{
+				if ((this._infotekst != value))
+				{
+					this.OninfotekstChanging(value);
+					this.SendPropertyChanging();
+					this._infotekst = value;
+					this.SendPropertyChanged("infotekst");
+					this.OninfotekstChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bogfkonto", DbType="Int")]
+		public System.Nullable<int> bogfkonto
+		{
+			get
+			{
+				return this._bogfkonto;
+			}
+			set
+			{
+				if ((this._bogfkonto != value))
+				{
+					this.OnbogfkontoChanging(value);
+					this.SendPropertyChanging();
+					this._bogfkonto = value;
+					this.SendPropertyChanged("bogfkonto");
+					this.OnbogfkontoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_vnr", DbType="Int")]
+		public System.Nullable<int> vnr
+		{
+			get
+			{
+				return this._vnr;
+			}
+			set
+			{
+				if ((this._vnr != value))
+				{
+					this.OnvnrChanging(value);
+					this.SendPropertyChanging();
+					this._vnr = value;
+					this.SendPropertyChanged("vnr");
+					this.OnvnrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fradato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> fradato
+		{
+			get
+			{
+				return this._fradato;
+			}
+			set
+			{
+				if ((this._fradato != value))
+				{
+					this.OnfradatoChanging(value);
+					this.SendPropertyChanging();
+					this._fradato = value;
+					this.SendPropertyChanged("fradato");
+					this.OnfradatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tildato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> tildato
+		{
+			get
+			{
+				return this._tildato;
+			}
+			set
+			{
+				if ((this._tildato != value))
+				{
+					this.OntildatoChanging(value);
+					this.SendPropertyChanging();
+					this._tildato = value;
+					this.SendPropertyChanged("tildato");
+					this.OntildatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SFakID", DbType="Int")]
+		public System.Nullable<int> SFakID
+		{
+			get
+			{
+				return this._SFakID;
+			}
+			set
+			{
+				if ((this._SFakID != value))
+				{
+					this.OnSFakIDChanging(value);
+					this.SendPropertyChanging();
+					this._SFakID = value;
+					this.SendPropertyChanged("SFakID");
+					this.OnSFakIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SFaknr", DbType="Int")]
+		public System.Nullable<int> SFaknr
+		{
+			get
+			{
+				return this._SFaknr;
+			}
+			set
+			{
+				if ((this._SFaknr != value))
+				{
+					this.OnSFaknrChanging(value);
+					this.SendPropertyChanging();
+					this._SFaknr = value;
+					this.SendPropertyChanged("SFaknr");
+					this.OnSFaknrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rykkerdato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> rykkerdato
+		{
+			get
+			{
+				return this._rykkerdato;
+			}
+			set
+			{
+				if ((this._rykkerdato != value))
+				{
+					this.OnrykkerdatoChanging(value);
+					this.SendPropertyChanging();
+					this._rykkerdato = value;
+					this.SendPropertyChanged("rykkerdato");
+					this.OnrykkerdatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_maildato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> maildato
+		{
+			get
+			{
+				return this._maildato;
+			}
+			set
+			{
+				if ((this._maildato != value))
+				{
+					this.OnmaildatoChanging(value);
+					this.SendPropertyChanging();
+					this._maildato = value;
+					this.SendPropertyChanged("maildato");
+					this.OnmaildatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rykkerstop", DbType="Bit NOT NULL")]
+		public bool rykkerstop
+		{
+			get
+			{
+				return this._rykkerstop;
+			}
+			set
+			{
+				if ((this._rykkerstop != value))
+				{
+					this.OnrykkerstopChanging(value);
+					this.SendPropertyChanging();
+					this._rykkerstop = value;
+					this.SendPropertyChanged("rykkerstop");
+					this.OnrykkerstopChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_betalt", DbType="Bit NOT NULL")]
+		public bool betalt
+		{
+			get
+			{
+				return this._betalt;
+			}
+			set
+			{
+				if ((this._betalt != value))
+				{
+					this.OnbetaltChanging(value);
+					this.SendPropertyChanging();
+					this._betalt = value;
+					this.SendPropertyChanged("betalt");
+					this.OnbetaltChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tilmeldtpbs", DbType="Bit NOT NULL")]
+		public bool tilmeldtpbs
+		{
+			get
+			{
+				return this._tilmeldtpbs;
+			}
+			set
+			{
+				if ((this._tilmeldtpbs != value))
+				{
+					this.OntilmeldtpbsChanging(value);
+					this.SendPropertyChanging();
+					this._tilmeldtpbs = value;
+					this.SendPropertyChanged("tilmeldtpbs");
+					this.OntilmeldtpbsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_indmeldelse", DbType="Bit NOT NULL")]
+		public bool indmeldelse
+		{
+			get
+			{
+				return this._indmeldelse;
+			}
+			set
+			{
+				if ((this._indmeldelse != value))
+				{
+					this.OnindmeldelseChanging(value);
+					this.SendPropertyChanging();
+					this._indmeldelse = value;
+					this.SendPropertyChanged("indmeldelse");
+					this.OnindmeldelseChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbltilpb_tblfak", Storage="_tbltilpb", ThisKey="tilpbsid", OtherKey="id", IsForeignKey=true, DeleteRule="CASCADE")]
+		public tbltilpb tbltilpb
+		{
+			get
+			{
+				return this._tbltilpb.Entity;
+			}
+			set
+			{
+				tbltilpb previousValue = this._tbltilpb.Entity;
+				if (((previousValue != value) 
+							|| (this._tbltilpb.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tbltilpb.Entity = null;
+						previousValue.tblfaks.Remove(this);
+					}
+					this._tbltilpb.Entity = value;
+					if ((value != null))
+					{
+						value.tblfaks.Add(this);
+						this._tilpbsid = value.id;
+					}
+					else
+					{
+						this._tilpbsid = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tbltilpb");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblrykker")]
+	public partial class tblrykker : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private System.Nullable<int> _tilpbsid;
+		
+		private System.Nullable<System.DateTime> _betalingsdato;
+		
+		private System.Nullable<int> _Nr;
+		
+		private System.Nullable<int> _faknr;
+		
+		private string _advistekst;
+		
+		private System.Nullable<decimal> _advisbelob;
+		
+		private System.Nullable<int> _infotekst;
+		
+		private System.Nullable<System.DateTime> _rykkerdato;
+		
+		private System.Nullable<System.DateTime> _maildato;
+		
+		private EntityRef<tbltilpb> _tbltilpb;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OntilpbsidChanging(System.Nullable<int> value);
+    partial void OntilpbsidChanged();
+    partial void OnbetalingsdatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnbetalingsdatoChanged();
+    partial void OnNrChanging(System.Nullable<int> value);
+    partial void OnNrChanged();
+    partial void OnfaknrChanging(System.Nullable<int> value);
+    partial void OnfaknrChanged();
+    partial void OnadvistekstChanging(string value);
+    partial void OnadvistekstChanged();
+    partial void OnadvisbelobChanging(System.Nullable<decimal> value);
+    partial void OnadvisbelobChanged();
+    partial void OninfotekstChanging(System.Nullable<int> value);
+    partial void OninfotekstChanged();
+    partial void OnrykkerdatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnrykkerdatoChanged();
+    partial void OnmaildatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnmaildatoChanged();
+    #endregion
+		
+		public tblrykker()
+		{
+			this._tbltilpb = default(EntityRef<tbltilpb>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tilpbsid", DbType="Int")]
+		public System.Nullable<int> tilpbsid
+		{
+			get
+			{
+				return this._tilpbsid;
+			}
+			set
+			{
+				if ((this._tilpbsid != value))
+				{
+					if (this._tbltilpb.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OntilpbsidChanging(value);
+					this.SendPropertyChanging();
+					this._tilpbsid = value;
+					this.SendPropertyChanged("tilpbsid");
+					this.OntilpbsidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_betalingsdato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> betalingsdato
+		{
+			get
+			{
+				return this._betalingsdato;
+			}
+			set
+			{
+				if ((this._betalingsdato != value))
+				{
+					this.OnbetalingsdatoChanging(value);
+					this.SendPropertyChanging();
+					this._betalingsdato = value;
+					this.SendPropertyChanged("betalingsdato");
+					this.OnbetalingsdatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nr", DbType="Int")]
+		public System.Nullable<int> Nr
+		{
+			get
+			{
+				return this._Nr;
+			}
+			set
+			{
+				if ((this._Nr != value))
+				{
+					this.OnNrChanging(value);
+					this.SendPropertyChanging();
+					this._Nr = value;
+					this.SendPropertyChanged("Nr");
+					this.OnNrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_faknr", DbType="Int")]
+		public System.Nullable<int> faknr
+		{
+			get
+			{
+				return this._faknr;
+			}
+			set
+			{
+				if ((this._faknr != value))
+				{
+					this.OnfaknrChanging(value);
+					this.SendPropertyChanging();
+					this._faknr = value;
+					this.SendPropertyChanged("faknr");
+					this.OnfaknrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_advistekst", DbType="NVarChar(4000)")]
+		public string advistekst
+		{
+			get
+			{
+				return this._advistekst;
+			}
+			set
+			{
+				if ((this._advistekst != value))
+				{
+					this.OnadvistekstChanging(value);
+					this.SendPropertyChanging();
+					this._advistekst = value;
+					this.SendPropertyChanged("advistekst");
+					this.OnadvistekstChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_advisbelob", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> advisbelob
+		{
+			get
+			{
+				return this._advisbelob;
+			}
+			set
+			{
+				if ((this._advisbelob != value))
+				{
+					this.OnadvisbelobChanging(value);
+					this.SendPropertyChanging();
+					this._advisbelob = value;
+					this.SendPropertyChanged("advisbelob");
+					this.OnadvisbelobChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_infotekst", DbType="Int")]
+		public System.Nullable<int> infotekst
+		{
+			get
+			{
+				return this._infotekst;
+			}
+			set
+			{
+				if ((this._infotekst != value))
+				{
+					this.OninfotekstChanging(value);
+					this.SendPropertyChanging();
+					this._infotekst = value;
+					this.SendPropertyChanged("infotekst");
+					this.OninfotekstChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rykkerdato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> rykkerdato
+		{
+			get
+			{
+				return this._rykkerdato;
+			}
+			set
+			{
+				if ((this._rykkerdato != value))
+				{
+					this.OnrykkerdatoChanging(value);
+					this.SendPropertyChanging();
+					this._rykkerdato = value;
+					this.SendPropertyChanged("rykkerdato");
+					this.OnrykkerdatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_maildato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> maildato
+		{
+			get
+			{
+				return this._maildato;
+			}
+			set
+			{
+				if ((this._maildato != value))
+				{
+					this.OnmaildatoChanging(value);
+					this.SendPropertyChanging();
+					this._maildato = value;
+					this.SendPropertyChanged("maildato");
+					this.OnmaildatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbltilpb_tblrykker", Storage="_tbltilpb", ThisKey="tilpbsid", OtherKey="id", IsForeignKey=true, DeleteRule="CASCADE")]
+		public tbltilpb tbltilpb
+		{
+			get
+			{
+				return this._tbltilpb.Entity;
+			}
+			set
+			{
+				tbltilpb previousValue = this._tbltilpb.Entity;
+				if (((previousValue != value) 
+							|| (this._tbltilpb.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tbltilpb.Entity = null;
+						previousValue.tblrykkers.Remove(this);
+					}
+					this._tbltilpb.Entity = value;
+					if ((value != null))
+					{
+						value.tblrykkers.Add(this);
+						this._tilpbsid = value.id;
+					}
+					else
+					{
+						this._tilpbsid = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tbltilpb");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tempKontforslag")]
+	public partial class tempKontforslag : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private System.DateTime _betalingsdato;
+		
+		private System.Nullable<bool> _bsh;
+		
+		private EntitySet<tempKontforslaglinie> _tempKontforslaglinies;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnbetalingsdatoChanging(System.DateTime value);
+    partial void OnbetalingsdatoChanged();
+    partial void OnbshChanging(System.Nullable<bool> value);
+    partial void OnbshChanged();
+    #endregion
+		
+		public tempKontforslag()
+		{
+			this._tempKontforslaglinies = new EntitySet<tempKontforslaglinie>(new Action<tempKontforslaglinie>(this.attach_tempKontforslaglinies), new Action<tempKontforslaglinie>(this.detach_tempKontforslaglinies));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_betalingsdato", DbType="DateTime NOT NULL")]
+		public System.DateTime betalingsdato
+		{
+			get
+			{
+				return this._betalingsdato;
+			}
+			set
+			{
+				if ((this._betalingsdato != value))
+				{
+					this.OnbetalingsdatoChanging(value);
+					this.SendPropertyChanging();
+					this._betalingsdato = value;
+					this.SendPropertyChanged("betalingsdato");
+					this.OnbetalingsdatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bsh", DbType="Bit")]
+		public System.Nullable<bool> bsh
+		{
+			get
+			{
+				return this._bsh;
+			}
+			set
+			{
+				if ((this._bsh != value))
+				{
+					this.OnbshChanging(value);
+					this.SendPropertyChanging();
+					this._bsh = value;
+					this.SendPropertyChanged("bsh");
+					this.OnbshChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tempKontforslag_tempKontforslaglinie", Storage="_tempKontforslaglinies", ThisKey="id", OtherKey="Kontforslagid")]
+		public EntitySet<tempKontforslaglinie> tempKontforslaglinies
+		{
+			get
+			{
+				return this._tempKontforslaglinies;
+			}
+			set
+			{
+				this._tempKontforslaglinies.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tempKontforslaglinies(tempKontforslaglinie entity)
+		{
+			this.SendPropertyChanging();
+			entity.tempKontforslag = this;
+		}
+		
+		private void detach_tempKontforslaglinies(tempKontforslaglinie entity)
+		{
+			this.SendPropertyChanging();
+			entity.tempKontforslag = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tempKontforslaglinie")]
+	public partial class tempKontforslaglinie : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private int _Nr;
+		
+		private int _Kontforslagid;
+		
+		private System.DateTime _fradato;
+		
+		private decimal _advisbelob;
+		
+		private System.Nullable<System.DateTime> _tildato;
+		
+		private bool _tilmeldtpbs;
+		
+		private bool _indmeldelse;
+		
+		private EntityRef<tempKontforslag> _tempKontforslag;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnNrChanging(int value);
+    partial void OnNrChanged();
+    partial void OnKontforslagidChanging(int value);
+    partial void OnKontforslagidChanged();
+    partial void OnfradatoChanging(System.DateTime value);
+    partial void OnfradatoChanged();
+    partial void OnadvisbelobChanging(decimal value);
+    partial void OnadvisbelobChanged();
+    partial void OntildatoChanging(System.Nullable<System.DateTime> value);
+    partial void OntildatoChanged();
+    partial void OntilmeldtpbsChanging(bool value);
+    partial void OntilmeldtpbsChanged();
+    partial void OnindmeldelseChanging(bool value);
+    partial void OnindmeldelseChanged();
+    #endregion
+		
+		public tempKontforslaglinie()
+		{
+			this._tempKontforslag = default(EntityRef<tempKontforslag>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nr", DbType="Int NOT NULL")]
+		public int Nr
+		{
+			get
+			{
+				return this._Nr;
+			}
+			set
+			{
+				if ((this._Nr != value))
+				{
+					this.OnNrChanging(value);
+					this.SendPropertyChanging();
+					this._Nr = value;
+					this.SendPropertyChanged("Nr");
+					this.OnNrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Kontforslagid", DbType="Int NOT NULL")]
+		public int Kontforslagid
+		{
+			get
+			{
+				return this._Kontforslagid;
+			}
+			set
+			{
+				if ((this._Kontforslagid != value))
+				{
+					if (this._tempKontforslag.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnKontforslagidChanging(value);
+					this.SendPropertyChanging();
+					this._Kontforslagid = value;
+					this.SendPropertyChanged("Kontforslagid");
+					this.OnKontforslagidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fradato", DbType="DateTime NOT NULL")]
+		public System.DateTime fradato
+		{
+			get
+			{
+				return this._fradato;
+			}
+			set
+			{
+				if ((this._fradato != value))
+				{
+					this.OnfradatoChanging(value);
+					this.SendPropertyChanging();
+					this._fradato = value;
+					this.SendPropertyChanged("fradato");
+					this.OnfradatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_advisbelob", DbType="Decimal(18,2) NOT NULL")]
+		public decimal advisbelob
+		{
+			get
+			{
+				return this._advisbelob;
+			}
+			set
+			{
+				if ((this._advisbelob != value))
+				{
+					this.OnadvisbelobChanging(value);
+					this.SendPropertyChanging();
+					this._advisbelob = value;
+					this.SendPropertyChanged("advisbelob");
+					this.OnadvisbelobChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tildato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> tildato
+		{
+			get
+			{
+				return this._tildato;
+			}
+			set
+			{
+				if ((this._tildato != value))
+				{
+					this.OntildatoChanging(value);
+					this.SendPropertyChanging();
+					this._tildato = value;
+					this.SendPropertyChanged("tildato");
+					this.OntildatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tilmeldtpbs", DbType="Bit NOT NULL")]
+		public bool tilmeldtpbs
+		{
+			get
+			{
+				return this._tilmeldtpbs;
+			}
+			set
+			{
+				if ((this._tilmeldtpbs != value))
+				{
+					this.OntilmeldtpbsChanging(value);
+					this.SendPropertyChanging();
+					this._tilmeldtpbs = value;
+					this.SendPropertyChanged("tilmeldtpbs");
+					this.OntilmeldtpbsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_indmeldelse", DbType="Bit NOT NULL")]
+		public bool indmeldelse
+		{
+			get
+			{
+				return this._indmeldelse;
+			}
+			set
+			{
+				if ((this._indmeldelse != value))
+				{
+					this.OnindmeldelseChanging(value);
+					this.SendPropertyChanging();
+					this._indmeldelse = value;
+					this.SendPropertyChanged("indmeldelse");
+					this.OnindmeldelseChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tempKontforslag_tempKontforslaglinie", Storage="_tempKontforslag", ThisKey="Kontforslagid", OtherKey="id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public tempKontforslag tempKontforslag
+		{
+			get
+			{
+				return this._tempKontforslag.Entity;
+			}
+			set
+			{
+				tempKontforslag previousValue = this._tempKontforslag.Entity;
+				if (((previousValue != value) 
+							|| (this._tempKontforslag.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tempKontforslag.Entity = null;
+						previousValue.tempKontforslaglinies.Remove(this);
+					}
+					this._tempKontforslag.Entity = value;
+					if ((value != null))
+					{
+						value.tempKontforslaglinies.Add(this);
+						this._Kontforslagid = value.id;
+					}
+					else
+					{
+						this._Kontforslagid = default(int);
+					}
+					this.SendPropertyChanged("tempKontforslag");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tempRykkerforslag")]
+	public partial class tempRykkerforslag : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private System.DateTime _betalingsdato;
+		
+		private System.Nullable<bool> _bsh;
+		
+		private EntitySet<tempRykkerforslaglinie> _tempRykkerforslaglinies;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnbetalingsdatoChanging(System.DateTime value);
+    partial void OnbetalingsdatoChanged();
+    partial void OnbshChanging(System.Nullable<bool> value);
+    partial void OnbshChanged();
+    #endregion
+		
+		public tempRykkerforslag()
+		{
+			this._tempRykkerforslaglinies = new EntitySet<tempRykkerforslaglinie>(new Action<tempRykkerforslaglinie>(this.attach_tempRykkerforslaglinies), new Action<tempRykkerforslaglinie>(this.detach_tempRykkerforslaglinies));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_betalingsdato", DbType="DateTime NOT NULL")]
+		public System.DateTime betalingsdato
+		{
+			get
+			{
+				return this._betalingsdato;
+			}
+			set
+			{
+				if ((this._betalingsdato != value))
+				{
+					this.OnbetalingsdatoChanging(value);
+					this.SendPropertyChanging();
+					this._betalingsdato = value;
+					this.SendPropertyChanged("betalingsdato");
+					this.OnbetalingsdatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bsh", DbType="Bit")]
+		public System.Nullable<bool> bsh
+		{
+			get
+			{
+				return this._bsh;
+			}
+			set
+			{
+				if ((this._bsh != value))
+				{
+					this.OnbshChanging(value);
+					this.SendPropertyChanging();
+					this._bsh = value;
+					this.SendPropertyChanged("bsh");
+					this.OnbshChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tempRykkerforslag_tempRykkerforslaglinie", Storage="_tempRykkerforslaglinies", ThisKey="id", OtherKey="Rykkerforslagid")]
+		public EntitySet<tempRykkerforslaglinie> tempRykkerforslaglinies
+		{
+			get
+			{
+				return this._tempRykkerforslaglinies;
+			}
+			set
+			{
+				this._tempRykkerforslaglinies.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tempRykkerforslaglinies(tempRykkerforslaglinie entity)
+		{
+			this.SendPropertyChanging();
+			entity.tempRykkerforslag = this;
+		}
+		
+		private void detach_tempRykkerforslaglinies(tempRykkerforslaglinie entity)
+		{
+			this.SendPropertyChanging();
+			entity.tempRykkerforslag = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tempRykkerforslaglinie")]
+	public partial class tempRykkerforslaglinie : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private int _Rykkerforslagid;
+		
+		private int _Nr;
+		
+		private int _faknr;
+		
+		private string _advistekst;
+		
+		private decimal _advisbelob;
+		
+		private EntityRef<tempRykkerforslag> _tempRykkerforslag;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnRykkerforslagidChanging(int value);
+    partial void OnRykkerforslagidChanged();
+    partial void OnNrChanging(int value);
+    partial void OnNrChanged();
+    partial void OnfaknrChanging(int value);
+    partial void OnfaknrChanged();
+    partial void OnadvistekstChanging(string value);
+    partial void OnadvistekstChanged();
+    partial void OnadvisbelobChanging(decimal value);
+    partial void OnadvisbelobChanged();
+    #endregion
+		
+		public tempRykkerforslaglinie()
+		{
+			this._tempRykkerforslag = default(EntityRef<tempRykkerforslag>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Rykkerforslagid", DbType="Int NOT NULL")]
+		public int Rykkerforslagid
+		{
+			get
+			{
+				return this._Rykkerforslagid;
+			}
+			set
+			{
+				if ((this._Rykkerforslagid != value))
+				{
+					if (this._tempRykkerforslag.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnRykkerforslagidChanging(value);
+					this.SendPropertyChanging();
+					this._Rykkerforslagid = value;
+					this.SendPropertyChanged("Rykkerforslagid");
+					this.OnRykkerforslagidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nr", DbType="Int NOT NULL")]
+		public int Nr
+		{
+			get
+			{
+				return this._Nr;
+			}
+			set
+			{
+				if ((this._Nr != value))
+				{
+					this.OnNrChanging(value);
+					this.SendPropertyChanging();
+					this._Nr = value;
+					this.SendPropertyChanged("Nr");
+					this.OnNrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_faknr", DbType="Int NOT NULL")]
+		public int faknr
+		{
+			get
+			{
+				return this._faknr;
+			}
+			set
+			{
+				if ((this._faknr != value))
+				{
+					this.OnfaknrChanging(value);
+					this.SendPropertyChanging();
+					this._faknr = value;
+					this.SendPropertyChanged("faknr");
+					this.OnfaknrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_advistekst", DbType="NVarChar(4000)")]
+		public string advistekst
+		{
+			get
+			{
+				return this._advistekst;
+			}
+			set
+			{
+				if ((this._advistekst != value))
+				{
+					this.OnadvistekstChanging(value);
+					this.SendPropertyChanging();
+					this._advistekst = value;
+					this.SendPropertyChanged("advistekst");
+					this.OnadvistekstChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_advisbelob", DbType="Decimal(18,2) NOT NULL")]
+		public decimal advisbelob
+		{
+			get
+			{
+				return this._advisbelob;
+			}
+			set
+			{
+				if ((this._advisbelob != value))
+				{
+					this.OnadvisbelobChanging(value);
+					this.SendPropertyChanging();
+					this._advisbelob = value;
+					this.SendPropertyChanged("advisbelob");
+					this.OnadvisbelobChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tempRykkerforslag_tempRykkerforslaglinie", Storage="_tempRykkerforslag", ThisKey="Rykkerforslagid", OtherKey="id", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public tempRykkerforslag tempRykkerforslag
+		{
+			get
+			{
+				return this._tempRykkerforslag.Entity;
+			}
+			set
+			{
+				tempRykkerforslag previousValue = this._tempRykkerforslag.Entity;
+				if (((previousValue != value) 
+							|| (this._tempRykkerforslag.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tempRykkerforslag.Entity = null;
+						previousValue.tempRykkerforslaglinies.Remove(this);
+					}
+					this._tempRykkerforslag.Entity = value;
+					if ((value != null))
+					{
+						value.tempRykkerforslaglinies.Add(this);
+						this._Rykkerforslagid = value.id;
+					}
+					else
+					{
+						this._Rykkerforslagid = default(int);
+					}
+					this.SendPropertyChanged("tempRykkerforslag");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblkreditor")]
+	public partial class tblkreditor : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _datalevnr;
+		
+		private string _datalevnavn;
+		
+		private string _pbsnr;
+		
+		private string _delsystem;
+		
+		private string _regnr;
+		
+		private string _kontonr;
+		
+		private string _debgrpnr;
+		
+		private string _sektionnr;
+		
+		private string _transkodebetaling;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OndatalevnrChanging(string value);
+    partial void OndatalevnrChanged();
+    partial void OndatalevnavnChanging(string value);
+    partial void OndatalevnavnChanged();
+    partial void OnpbsnrChanging(string value);
+    partial void OnpbsnrChanged();
+    partial void OndelsystemChanging(string value);
+    partial void OndelsystemChanged();
+    partial void OnregnrChanging(string value);
+    partial void OnregnrChanged();
+    partial void OnkontonrChanging(string value);
+    partial void OnkontonrChanged();
+    partial void OndebgrpnrChanging(string value);
+    partial void OndebgrpnrChanged();
+    partial void OnsektionnrChanging(string value);
+    partial void OnsektionnrChanged();
+    partial void OntranskodebetalingChanging(string value);
+    partial void OntranskodebetalingChanged();
+    #endregion
+		
+		public tblkreditor()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_datalevnr", DbType="NVarChar(8) NOT NULL", CanBeNull=false)]
+		public string datalevnr
+		{
+			get
+			{
+				return this._datalevnr;
+			}
+			set
+			{
+				if ((this._datalevnr != value))
+				{
+					this.OndatalevnrChanging(value);
+					this.SendPropertyChanging();
+					this._datalevnr = value;
+					this.SendPropertyChanged("datalevnr");
+					this.OndatalevnrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_datalevnavn", DbType="NVarChar(15) NOT NULL", CanBeNull=false)]
+		public string datalevnavn
+		{
+			get
+			{
+				return this._datalevnavn;
+			}
+			set
+			{
+				if ((this._datalevnavn != value))
+				{
+					this.OndatalevnavnChanging(value);
+					this.SendPropertyChanging();
+					this._datalevnavn = value;
+					this.SendPropertyChanged("datalevnavn");
+					this.OndatalevnavnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pbsnr", DbType="NVarChar(8) NOT NULL", CanBeNull=false)]
+		public string pbsnr
+		{
+			get
+			{
+				return this._pbsnr;
+			}
+			set
+			{
+				if ((this._pbsnr != value))
+				{
+					this.OnpbsnrChanging(value);
+					this.SendPropertyChanging();
+					this._pbsnr = value;
+					this.SendPropertyChanged("pbsnr");
+					this.OnpbsnrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_delsystem", DbType="NVarChar(3)")]
+		public string delsystem
+		{
+			get
+			{
+				return this._delsystem;
+			}
+			set
+			{
+				if ((this._delsystem != value))
+				{
+					this.OndelsystemChanging(value);
+					this.SendPropertyChanging();
+					this._delsystem = value;
+					this.SendPropertyChanged("delsystem");
+					this.OndelsystemChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_regnr", DbType="NVarChar(4) NOT NULL", CanBeNull=false)]
+		public string regnr
+		{
+			get
+			{
+				return this._regnr;
+			}
+			set
+			{
+				if ((this._regnr != value))
+				{
+					this.OnregnrChanging(value);
+					this.SendPropertyChanging();
+					this._regnr = value;
+					this.SendPropertyChanged("regnr");
+					this.OnregnrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_kontonr", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string kontonr
+		{
+			get
+			{
+				return this._kontonr;
+			}
+			set
+			{
+				if ((this._kontonr != value))
+				{
+					this.OnkontonrChanging(value);
+					this.SendPropertyChanging();
+					this._kontonr = value;
+					this.SendPropertyChanged("kontonr");
+					this.OnkontonrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_debgrpnr", DbType="NVarChar(5) NOT NULL", CanBeNull=false)]
+		public string debgrpnr
+		{
+			get
+			{
+				return this._debgrpnr;
+			}
+			set
+			{
+				if ((this._debgrpnr != value))
+				{
+					this.OndebgrpnrChanging(value);
+					this.SendPropertyChanging();
+					this._debgrpnr = value;
+					this.SendPropertyChanged("debgrpnr");
+					this.OndebgrpnrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sektionnr", DbType="NVarChar(4) NOT NULL", CanBeNull=false)]
+		public string sektionnr
+		{
+			get
+			{
+				return this._sektionnr;
+			}
+			set
+			{
+				if ((this._sektionnr != value))
+				{
+					this.OnsektionnrChanging(value);
+					this.SendPropertyChanging();
+					this._sektionnr = value;
+					this.SendPropertyChanged("sektionnr");
+					this.OnsektionnrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_transkodebetaling", DbType="NVarChar(4) NOT NULL", CanBeNull=false)]
+		public string transkodebetaling
+		{
+			get
+			{
+				return this._transkodebetaling;
+			}
+			set
+			{
+				if ((this._transkodebetaling != value))
+				{
+					this.OntranskodebetalingChanging(value);
+					this.SendPropertyChanging();
+					this._transkodebetaling = value;
+					this.SendPropertyChanged("transkodebetaling");
+					this.OntranskodebetalingChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblinfotekst")]
+	public partial class tblinfotekst : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _navn;
+		
+		private string _msgtext;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnnavnChanging(string value);
+    partial void OnnavnChanged();
+    partial void OnmsgtextChanging(string value);
+    partial void OnmsgtextChanged();
+    #endregion
+		
+		public tblinfotekst()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_navn", DbType="NVarChar(50)")]
+		public string navn
+		{
+			get
+			{
+				return this._navn;
+			}
+			set
+			{
+				if ((this._navn != value))
+				{
+					this.OnnavnChanging(value);
+					this.SendPropertyChanging();
+					this._navn = value;
+					this.SendPropertyChanged("navn");
+					this.OnnavnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_msgtext", DbType="NVarChar(4000)")]
+		public string msgtext
+		{
+			get
+			{
+				return this._msgtext;
+			}
+			set
+			{
+				if ((this._msgtext != value))
+				{
+					this.OnmsgtextChanging(value);
+					this.SendPropertyChanging();
+					this._msgtext = value;
+					this.SendPropertyChanged("msgtext");
+					this.OnmsgtextChanged();
 				}
 			}
 		}

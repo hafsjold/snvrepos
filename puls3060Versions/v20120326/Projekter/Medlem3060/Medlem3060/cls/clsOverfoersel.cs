@@ -294,7 +294,7 @@ namespace nsPuls3060
                 MailMessage email = new MailMessage();
 
 #if (DEBUG)
-                email.Subject = "TEST Bankoverførsel fra Puls 3060: skal sendes til " + Program.dbData3060.GetSysinfo("MAILTONAME") + " " + Program.dbData3060.GetSysinfo("MAILTOADDR");
+                email.Subject = "TEST Bankoverførsel fra Puls 3060: skal sendes til " + Program.dbData3060.GetSysinfo("MAILTONAME") + " - " + Program.dbData3060.GetSysinfo("MAILTOADDR");
                 email.To.Add(new MailAddress(Program.dbData3060.GetSysinfo("MAILTOADDR"), Program.dbData3060.GetSysinfo("MAILTONAME"))); 
 #else
                 email.Subject = "Bankoverførsel fra Puls 3060";
@@ -322,7 +322,7 @@ namespace nsPuls3060
                 }.getinfotekst();
 
                 email.From = new MailAddress(Program.dbData3060.GetSysinfo("MAILFROM"));
-                email.ReplyTo = new MailAddress(Program.dbData3060.GetSysinfo("MAILREPLY"));
+                email.ReplyToList.Add( new MailAddress(Program.dbData3060.GetSysinfo("MAILREPLY")));
 
                 smtp.Send(email);
             }

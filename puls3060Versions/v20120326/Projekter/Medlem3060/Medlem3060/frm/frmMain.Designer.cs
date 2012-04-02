@@ -72,43 +72,43 @@
             this.toolStripStatusLabel2,
             this.MainformProgressBar,
             this.MainformProgressText});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 778);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 776);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1024, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1024, 24);
             this.statusStrip1.TabIndex = 1;
             // 
             // toolStripStatusLabel1
             // 
-            this.toolStripStatusLabel1.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.toolStripStatusLabel1.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.toolStripStatusLabel1.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(113, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(122, 19);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
             // toolStripStatusLabel2
             // 
-            this.toolStripStatusLabel2.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.toolStripStatusLabel2.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.toolStripStatusLabel2.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(493, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(547, 19);
             this.toolStripStatusLabel2.Text = "C:\\Documents and Settings\\mha\\Dokumenter\\Medlem3060\\Databaser\\SQLCompact\\dbData30" +
-                "60.sdf";
+    "60.sdf";
             // 
             // MainformProgressBar
             // 
             this.MainformProgressBar.Name = "MainformProgressBar";
-            this.MainformProgressBar.Size = new System.Drawing.Size(100, 16);
+            this.MainformProgressBar.Size = new System.Drawing.Size(100, 18);
             this.MainformProgressBar.Visible = false;
             // 
             // MainformProgressText
             // 
-            this.MainformProgressText.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.MainformProgressText.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.MainformProgressText.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.MainformProgressText.Name = "MainformProgressText";
-            this.MainformProgressText.Size = new System.Drawing.Size(119, 17);
+            this.MainformProgressText.Size = new System.Drawing.Size(131, 19);
             this.MainformProgressText.Text = "MainformProgressText";
             this.MainformProgressText.Visible = false;
             // 
@@ -134,25 +134,25 @@
             this.afslutToolStripMenuItem,
             this.testToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(110, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(102, 6);
             // 
             // afslutToolStripMenuItem
             // 
             this.afslutToolStripMenuItem.Name = "afslutToolStripMenuItem";
-            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.afslutToolStripMenuItem.Text = "Afslut";
             this.afslutToolStripMenuItem.Click += new System.EventHandler(this.afslutToolStripMenuItem_Click);
             // 
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.testToolStripMenuItem.Text = "Test";
             this.testToolStripMenuItem.Visible = false;
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
@@ -166,41 +166,41 @@
             this.regnearkNotPBSToolStripMenuItem,
             this.emailRykkerToolStripMenuItem});
             this.medlemToolStripMenuItem.Name = "medlemToolStripMenuItem";
-            this.medlemToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
+            this.medlemToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
             this.medlemToolStripMenuItem.Text = "Medlem";
             // 
             // vedligeholdToolStripMenuItem
             // 
             this.vedligeholdToolStripMenuItem.Name = "vedligeholdToolStripMenuItem";
-            this.vedligeholdToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.vedligeholdToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.vedligeholdToolStripMenuItem.Text = "Vedligehold Medlemmer";
             this.vedligeholdToolStripMenuItem.Click += new System.EventHandler(this.medlemmerToolStripMenuItem_Click);
             // 
             // medlemmerTilRegnearkToolStripMenuItem
             // 
             this.medlemmerTilRegnearkToolStripMenuItem.Name = "medlemmerTilRegnearkToolStripMenuItem";
-            this.medlemmerTilRegnearkToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.medlemmerTilRegnearkToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.medlemmerTilRegnearkToolStripMenuItem.Text = "Regneark internt";
             this.medlemmerTilRegnearkToolStripMenuItem.Click += new System.EventHandler(this.excelInterntToolStripMenuItem_Click);
             // 
             // medlemmerTilRegnearkEksternToolStripMenuItem
             // 
             this.medlemmerTilRegnearkEksternToolStripMenuItem.Name = "medlemmerTilRegnearkEksternToolStripMenuItem";
-            this.medlemmerTilRegnearkEksternToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.medlemmerTilRegnearkEksternToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.medlemmerTilRegnearkEksternToolStripMenuItem.Text = "Regneark eksternt";
             this.medlemmerTilRegnearkEksternToolStripMenuItem.Click += new System.EventHandler(this.excelExterntToolStripMenuItem_Click);
             // 
             // regnearkNotPBSToolStripMenuItem
             // 
             this.regnearkNotPBSToolStripMenuItem.Name = "regnearkNotPBSToolStripMenuItem";
-            this.regnearkNotPBSToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.regnearkNotPBSToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.regnearkNotPBSToolStripMenuItem.Text = "Regneark notPBS";
             this.regnearkNotPBSToolStripMenuItem.Click += new System.EventHandler(this.regnearkNotPBSToolStripMenuItem_Click);
             // 
             // emailRykkerToolStripMenuItem
             // 
             this.emailRykkerToolStripMenuItem.Name = "emailRykkerToolStripMenuItem";
-            this.emailRykkerToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
+            this.emailRykkerToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.emailRykkerToolStripMenuItem.Text = "E-mail rykker";
             this.emailRykkerToolStripMenuItem.Click += new System.EventHandler(this.emailRykkerToolStripMenuItem_Click);
             // 
@@ -213,39 +213,39 @@
             this.kontingentForslagToolStripMenuItem,
             this.betalingsForslagToolStripMenuItem});
             this.pBSToolStripMenuItem.Name = "pBSToolStripMenuItem";
-            this.pBSToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.pBSToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.pBSToolStripMenuItem.Text = "PBS";
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(175, 22);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(174, 22);
             this.toolStripMenuItem3.Text = "PBS Filer";
             this.toolStripMenuItem3.Click += new System.EventHandler(this.pbsFilertoolStripMenuItem_Click);
             // 
             // betalingerFraPBSToolStripMenuItem
             // 
             this.betalingerFraPBSToolStripMenuItem.Name = "betalingerFraPBSToolStripMenuItem";
-            this.betalingerFraPBSToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.betalingerFraPBSToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.betalingerFraPBSToolStripMenuItem.Text = "Betalinger fra PBS";
             this.betalingerFraPBSToolStripMenuItem.Click += new System.EventHandler(this.betalingerFraPBSToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(172, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(171, 6);
             // 
             // kontingentForslagToolStripMenuItem
             // 
             this.kontingentForslagToolStripMenuItem.Name = "kontingentForslagToolStripMenuItem";
-            this.kontingentForslagToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.kontingentForslagToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.kontingentForslagToolStripMenuItem.Text = "Kontingent Forslag";
             this.kontingentForslagToolStripMenuItem.Click += new System.EventHandler(this.kontingentForslagToolStripMenuItem_Click);
             // 
             // betalingsForslagToolStripMenuItem
             // 
             this.betalingsForslagToolStripMenuItem.Name = "betalingsForslagToolStripMenuItem";
-            this.betalingsForslagToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.betalingsForslagToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
             this.betalingsForslagToolStripMenuItem.Text = "Betalings Forslag";
             this.betalingsForslagToolStripMenuItem.Click += new System.EventHandler(this.betalingsForslagToolStripMenuItem_Click);
             // 
@@ -254,13 +254,13 @@
             this.regnskabToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.posterTilExcelToolStripMenuItem});
             this.regnskabToolStripMenuItem.Name = "regnskabToolStripMenuItem";
-            this.regnskabToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.regnskabToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
             this.regnskabToolStripMenuItem.Text = "Regnskab";
             // 
             // posterTilExcelToolStripMenuItem
             // 
             this.posterTilExcelToolStripMenuItem.Name = "posterTilExcelToolStripMenuItem";
-            this.posterTilExcelToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.posterTilExcelToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.posterTilExcelToolStripMenuItem.Text = "Poster til Regneark";
             this.posterTilExcelToolStripMenuItem.Click += new System.EventHandler(this.posterTilExcelToolStripMenuItem_Click);
             // 
@@ -274,48 +274,48 @@
             this.infoTekstToolStripMenuItem,
             this.reSendToolStripMenuItem});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
-            this.systemToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.systemToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.systemToolStripMenuItem.Text = "System";
             // 
             // kontingentToolStripMenuItem
             // 
             this.kontingentToolStripMenuItem.Name = "kontingentToolStripMenuItem";
-            this.kontingentToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.kontingentToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.kontingentToolStripMenuItem.Text = "Kontingent";
             this.kontingentToolStripMenuItem.Click += new System.EventHandler(this.kontingentToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(137, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(133, 22);
             this.toolStripMenuItem2.Text = "Regnskab";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.regnskabToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(137, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
             this.toolStripMenuItem1.Text = "Kreditor";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.kerditorToolStripMenuItem_Click);
             // 
             // pbsfilesToolStripMenuItem
             // 
             this.pbsfilesToolStripMenuItem.Name = "pbsfilesToolStripMenuItem";
-            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.pbsfilesToolStripMenuItem.Text = "Pbsfiles";
             this.pbsfilesToolStripMenuItem.Click += new System.EventHandler(this.pbsfilesToolStripMenuItem_Click);
             // 
             // infoTekstToolStripMenuItem
             // 
             this.infoTekstToolStripMenuItem.Name = "infoTekstToolStripMenuItem";
-            this.infoTekstToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.infoTekstToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.infoTekstToolStripMenuItem.Text = "Info tekst";
             this.infoTekstToolStripMenuItem.Click += new System.EventHandler(this.infoTekstToolStripMenuItem_Click);
             // 
             // reSendToolStripMenuItem
             // 
             this.reSendToolStripMenuItem.Name = "reSendToolStripMenuItem";
-            this.reSendToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.reSendToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
             this.reSendToolStripMenuItem.Text = "ReSend";
             this.reSendToolStripMenuItem.Click += new System.EventHandler(this.reSendToolStripMenuItem_Click);
             // 
@@ -324,13 +324,13 @@
             this.hjælpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.omToolStripMenuItem});
             this.hjælpToolStripMenuItem.Name = "hjælpToolStripMenuItem";
-            this.hjælpToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.hjælpToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
             this.hjælpToolStripMenuItem.Text = "Hjælp";
             // 
             // omToolStripMenuItem
             // 
             this.omToolStripMenuItem.Name = "omToolStripMenuItem";
-            this.omToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.omToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
@@ -350,8 +350,8 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Puls 3060";
-            this.Load += new System.EventHandler(this.FrmMain_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
+            this.Load += new System.EventHandler(this.FrmMain_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);

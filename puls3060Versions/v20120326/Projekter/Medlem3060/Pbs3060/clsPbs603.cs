@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace nsPuls3060
+namespace nsPbs3060
 {
-    class clsPbs603
+    public class clsPbs603
     {
         private tblpbsforsendelse m_rec_pbsforsendelse;
         private tblpbsfilename m_rec_pbsfiles;
@@ -13,12 +13,9 @@ namespace nsPuls3060
         private tblaftalelin m_rec_aftalelin;
         private tblindbetalingskort m_rec_indbetalingskort;
 
-        public clsPbs603()
-        {
-        
-        }
-        
-        public int aftaleoplysninger_fra_pbs()
+        public clsPbs603() { }
+
+        public int aftaleoplysninger_fra_pbs(dbData3060DataContext m_dbData3060)
         {
 
             int dummy = 0;
@@ -32,9 +29,9 @@ namespace nsPuls3060
             int AntalFiler = 0;
 
 
-            var qrypbsfiles = from h in Program.dbData3060.tblpbsfilenames
+            var qrypbsfiles = from h in m_dbData3060.tblpbsfilenames
                               where h.pbsforsendelseid == null
-                              join d in Program.dbData3060.tblpbsfiles on h.id equals d.pbsfilesid
+                              join d in m_dbData3060.tblpbsfiles on h.id equals d.pbsfilesid
                               where d.seqnr == 1 && d.data.Substring(16, 4) == "0603" && d.data.Substring(0, 2) == "BS"
                               select new
                               {
@@ -57,7 +54,7 @@ namespace nsPuls3060
                     leverancespecifikation = "";
 
 
-                    var qrypbsfile = from d in Program.dbData3060.tblpbsfiles
+                    var qrypbsfile = from d in m_dbData3060.tblpbsfiles
                                      where d.pbsfilesid == wpbsfilesid && d.data.Substring(0,6) != "PBCNET"
                                      orderby d.seqnr
                                      select d;
@@ -83,12 +80,12 @@ namespace nsPuls3060
                             if (leverance == "0603")
                             {
                                 // -- Leverance 0603
-                                var antal = (from c in Program.dbData3060.tblfrapbs
+                                var antal = (from c in m_dbData3060.tblfrapbs
                                              where c.leverancespecifikation == leverancespecifikation
                                              select c).Count();
                                 if (antal > 0) { throw new Exception("242 - Leverance med pbsfilesid: " + wpbsfilesid + " og leverancespecifikation: " + leverancespecifikation + " er indlæst tidligere"); }
 
-                                wleveranceid = Program.dbData3060.nextval("leveranceid");
+                                wleveranceid = m_dbData3060.nextval("leveranceid");
                                 m_rec_pbsforsendelse = new tblpbsforsendelse
                                 {
                                     delsystem = "BS1",
@@ -97,7 +94,7 @@ namespace nsPuls3060
                                     oprettet = DateTime.Now,
                                     leveranceid = wleveranceid
                                 };
-                                Program.dbData3060.tblpbsforsendelses.InsertOnSubmit(m_rec_pbsforsendelse);
+                                m_dbData3060.tblpbsforsendelses.InsertOnSubmit(m_rec_pbsforsendelse);
 
                                 m_rec_frapbs = new tblfrapb
                                 {
@@ -109,7 +106,7 @@ namespace nsPuls3060
                                 };
                                 m_rec_pbsforsendelse.tblfrapbs.Add(m_rec_frapbs);
 
-                                m_rec_pbsfiles = (from c in Program.dbData3060.tblpbsfilenames
+                                m_rec_pbsfiles = (from c in m_dbData3060.tblpbsfilenames
                                                   where c.id == rstpbsfiles.id
                                                   select c).First();
                                 m_rec_pbsforsendelse.tblpbsfilenames.Add(m_rec_pbsfiles);
@@ -153,7 +150,7 @@ namespace nsPuls3060
                                 else if ((rec.Substring(0, 5) == "BS042") && (rec.Substring(13, 4) == "0230"))
                                 {  //  Aktive aftaler
                                     //  BEHANDL: Aktive aftaler
-                                    readaftale042(sektion, "0230", rec);
+                                    readaftale042(m_dbData3060, sektion, "0230", rec);
 
                                 }
                                 else if ((rec.Substring(0, 5) == "BS092") && (rec.Substring(13, 4) == "0210"))
@@ -179,25 +176,25 @@ namespace nsPuls3060
                                 else if ((rec.Substring(0, 5) == "BS042") && (rec.Substring(13, 4) == "0231"))
                                 {  //  Tilgang af nye betalingsaftaler
                                     //  BEHANDL: Tilgang af nye betalingsaftaler
-                                    readaftale042( sektion, "0231", rec);
+                                    readaftale042(m_dbData3060, sektion, "0231", rec);
 
                                 }
                                 else if ((rec.Substring(0, 5) == "BS042") && (rec.Substring(13, 4) == "0232"))
                                 {  //  Aftale afmeldt af pengeinstitut
                                     //  BEHANDL: aftale afmeldt af pengeinstitut
-                                    readaftale042(sektion, "0232", rec);
+                                    readaftale042(m_dbData3060, sektion, "0232", rec);
 
                                 }
                                 else if ((rec.Substring(0, 5) == "BS042") && (rec.Substring(13, 4) == "0233"))
                                 {  //  Aftaler afmeldt af kreditor
                                     //  BEHANDL: aftaler afmeldt af kreditor
-                                    readaftale042(sektion, "0233", rec);
+                                    readaftale042(m_dbData3060, sektion, "0233", rec);
 
                                 }
                                 else if ((rec.Substring(0, 5) == "BS042") && (rec.Substring(13, 4) == "0234"))
                                 {  //  Aftaler afmeldt af betalingsservice
                                     //  BEHANDL: aftaler afmeldt af betalingsservice
-                                    readaftale042(sektion, "0234", rec);
+                                    readaftale042(m_dbData3060, sektion, "0234", rec);
 
                                 }
                                 else if ((rec.Substring(0, 5) == "BS092") && (rec.Substring(13, 4) == "0212"))
@@ -281,7 +278,7 @@ namespace nsPuls3060
                                 else if ((rec.Substring(0, 5) == "BS042") && (rec.Substring(13, 4) == "0295"))
                                 {  //  Oplysninger fra indbetalingskort
                                     //  BEHANDL: Oplysninger fra indbetalingskort
-                                    readgirokort042(sektion, "0295", rec);
+                                    readgirokort042(m_dbData3060, sektion, "0295", rec);
 
                                 }
                                 else if ((rec.Substring(0, 5) == "BS092") && (rec.Substring(13, 4) == "0217"))
@@ -367,11 +364,11 @@ namespace nsPuls3060
                 */
             }
             if (dummy == 1) dummy = 2;
-            Program.dbData3060.SubmitChanges();
+            m_dbData3060.SubmitChanges();
             return AntalFiler;
         }
 
-        public void readaftale042(string sektion, string transkode, string rec)
+        public void readaftale042(dbData3060DataContext m_dbData3060, string sektion, string transkode, string rec)
         {
             // --  pbssektionnr
             // --  pbstranskode
@@ -424,14 +421,14 @@ namespace nsPuls3060
                 m_rec_aftalelin.aftaleslutdato = null;
             };
 
-            if ((from h in Program.dbData3060.tblMedlems where h.Nr == m_rec_aftalelin.Nr select h).Count() == 1)
+            if ((from h in m_dbData3060.tblMedlems where h.Nr == m_rec_aftalelin.Nr select h).Count() == 1)
             {
                 // Add tblaftalelin
                 m_rec_frapbs.tblaftalelins.Add(m_rec_aftalelin);
             }
         }
 
-        public void readgirokort042(string sektion, string transkode, string rec)
+        public void readgirokort042(dbData3060DataContext m_dbData3060, string sektion, string transkode, string rec)
         {
             // --  pbssektionnr
             // --  pbstranskode
@@ -488,9 +485,9 @@ namespace nsPuls3060
             //  Faknr
             m_rec_indbetalingskort.faknr = int.Parse(rec.Substring(88, 9));
 
-            if ((from h in Program.dbData3060.tblMedlems where h.Nr == m_rec_indbetalingskort.Nr select h).Count() == 1)
+            if ((from h in m_dbData3060.tblMedlems where h.Nr == m_rec_indbetalingskort.Nr select h).Count() == 1)
             {
-                if ((from k in Program.dbData3060.tblindbetalingskorts where k.Nr == m_rec_indbetalingskort.Nr && k.indbetalerident == m_rec_indbetalingskort.indbetalerident select k).Count() == 0)
+                if ((from k in m_dbData3060.tblindbetalingskorts where k.Nr == m_rec_indbetalingskort.Nr && k.indbetalerident == m_rec_indbetalingskort.indbetalerident select k).Count() == 0)
                 {
                     // Add tblindbetalingskort
                     m_rec_frapbs.tblindbetalingskorts.Add(m_rec_indbetalingskort);

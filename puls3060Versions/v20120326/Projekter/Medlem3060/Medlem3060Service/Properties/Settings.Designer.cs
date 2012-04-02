@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace nsPbs3060.Properties {
+namespace nsMedlem3060Service.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -26,8 +26,7 @@ namespace nsPbs3060.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=hd58;Initial Catalog=puls3061_dk_db;Persist Security Info=True;User I" +
-            "D=sa")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=HD58;Initial Catalog=puls3061_dk_db;User ID=sa")]
         public string puls3061_dk_dbConnectionString {
             get {
                 return ((string)(this["puls3061_dk_dbConnectionString"]));
@@ -37,7 +36,7 @@ namespace nsPbs3060.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=HD58;Initial Catalog=puls3061_dk_db;User ID=sa")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=HD58;Initial Catalog=puls3061_dk_db;User ID=sa;Password=mha733")]
         public string puls3061_dk_dbConnectionString1 {
             get {
                 return ((string)(this["puls3061_dk_dbConnectionString1"]));

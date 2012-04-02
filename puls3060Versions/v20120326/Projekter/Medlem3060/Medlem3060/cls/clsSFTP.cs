@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-//using Chilkat;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
@@ -101,7 +100,6 @@ namespace nsPuls3060
                     sendAttachedFile(TilPBSFilename, b_TilPBSFile, true);
 
                     string fullpath = m_rec_sftp.inbound + "/" + TilPBSFilename;
-
                     MemoryStream ms_TilPBSFile = new MemoryStream(b_TilPBSFile);
                     m_sftp.UploadFile(ms_TilPBSFile, fullpath);
 
@@ -178,7 +176,6 @@ namespace nsPuls3060
                     sendAttachedFile(TilPBSFilename, b_TilPBSFile, true);
 
                     string fullpath = m_rec_sftp.inbound + "/" + TilPBSFilename;
-
                     MemoryStream ms_TilPBSFile = new MemoryStream(b_TilPBSFile);
                     m_sftp.UploadFile(ms_TilPBSFile, fullpath);
 
@@ -361,7 +358,7 @@ namespace nsPuls3060
 
             email.To.Add(new MailAddress(Program.dbData3060.GetSysinfo("MAILTOADDR"), Program.dbData3060.GetSysinfo("MAILTONAME")));
             email.From = new MailAddress(Program.dbData3060.GetSysinfo("MAILFROM"));
-            email.ReplyTo = new MailAddress(Program.dbData3060.GetSysinfo("MAILREPLY"));
+            email.ReplyToList.Add( new MailAddress(Program.dbData3060.GetSysinfo("MAILREPLY")));
             email.Attachments.Add(new Attachment(new MemoryStream(data), local_filename, "text/plain"));
             smtp.Send(email);
         }

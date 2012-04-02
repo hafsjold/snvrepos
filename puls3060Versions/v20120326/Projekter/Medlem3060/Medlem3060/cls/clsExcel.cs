@@ -763,7 +763,7 @@ namespace nsPuls3060
             email.Body = PSubjectBody + ": " + local_filename;
 
             email.From = new MailAddress(Program.dbData3060.GetSysinfo("MAILFROM"));
-            email.ReplyTo = new MailAddress(Program.dbData3060.GetSysinfo("MAILREPLY"));
+            email.ReplyToList.Add( new MailAddress(Program.dbData3060.GetSysinfo("MAILREPLY")));
             email.Bcc.Add(new MailAddress(Program.dbData3060.GetSysinfo("MAILTOADDR"), Program.dbData3060.GetSysinfo("MAILTONAME")));
             email.Attachments.Add(new Attachment(fs, local_filename, "application/vnd.ms-excel"));
             smtp.Send(email);
