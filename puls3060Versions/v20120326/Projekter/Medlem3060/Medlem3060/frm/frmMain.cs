@@ -505,5 +505,15 @@ namespace nsPuls3060
             }
         }
 
+        private void databasePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("Indtast Password"))
+            {
+                FrmPassword m_frmPassword = new FrmPassword();
+                m_frmPassword.MdiParent = this;
+                m_frmPassword.Show();
+            }
+        }
+
     }
 }

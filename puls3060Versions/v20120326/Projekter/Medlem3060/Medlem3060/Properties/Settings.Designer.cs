@@ -361,8 +361,8 @@ namespace nsPuls3060.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=mssql1.unoeuro.com;Initial Catalog=puls3061_dk_db;Integrated Security" +
-            "=False;Persist Security Info=True;User ID=puls3061_dk")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=mssql2.unoeuro.com;Initial Catalog=puls3060_dk_db;Integrated Security" +
+            "=False;Persist Security Info=True;User ID=puls3060_dk")]
         public string puls3061_dk_dbConnectionString_Prod {
             get {
                 return ((string)(this["puls3061_dk_dbConnectionString_Prod"]));

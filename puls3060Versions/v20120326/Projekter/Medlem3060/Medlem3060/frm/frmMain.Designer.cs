@@ -61,6 +61,7 @@
             this.reSendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.databasePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -272,7 +273,8 @@
             this.toolStripMenuItem1,
             this.pbsfilesToolStripMenuItem,
             this.infoTekstToolStripMenuItem,
-            this.reSendToolStripMenuItem});
+            this.reSendToolStripMenuItem,
+            this.databasePasswordToolStripMenuItem});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
             this.systemToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.systemToolStripMenuItem.Text = "System";
@@ -280,42 +282,42 @@
             // kontingentToolStripMenuItem
             // 
             this.kontingentToolStripMenuItem.Name = "kontingentToolStripMenuItem";
-            this.kontingentToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.kontingentToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.kontingentToolStripMenuItem.Text = "Kontingent";
             this.kontingentToolStripMenuItem.Click += new System.EventHandler(this.kontingentToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(133, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(175, 22);
             this.toolStripMenuItem2.Text = "Regnskab";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.regnskabToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(133, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(175, 22);
             this.toolStripMenuItem1.Text = "Kreditor";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.kerditorToolStripMenuItem_Click);
             // 
             // pbsfilesToolStripMenuItem
             // 
             this.pbsfilesToolStripMenuItem.Name = "pbsfilesToolStripMenuItem";
-            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.pbsfilesToolStripMenuItem.Text = "Pbsfiles";
             this.pbsfilesToolStripMenuItem.Click += new System.EventHandler(this.pbsfilesToolStripMenuItem_Click);
             // 
             // infoTekstToolStripMenuItem
             // 
             this.infoTekstToolStripMenuItem.Name = "infoTekstToolStripMenuItem";
-            this.infoTekstToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.infoTekstToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.infoTekstToolStripMenuItem.Text = "Info tekst";
             this.infoTekstToolStripMenuItem.Click += new System.EventHandler(this.infoTekstToolStripMenuItem_Click);
             // 
             // reSendToolStripMenuItem
             // 
             this.reSendToolStripMenuItem.Name = "reSendToolStripMenuItem";
-            this.reSendToolStripMenuItem.Size = new System.Drawing.Size(133, 22);
+            this.reSendToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.reSendToolStripMenuItem.Text = "ReSend";
             this.reSendToolStripMenuItem.Click += new System.EventHandler(this.reSendToolStripMenuItem_Click);
             // 
@@ -333,6 +335,13 @@
             this.omToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
+            // 
+            // databasePasswordToolStripMenuItem
+            // 
+            this.databasePasswordToolStripMenuItem.Name = "databasePasswordToolStripMenuItem";
+            this.databasePasswordToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.databasePasswordToolStripMenuItem.Text = "Database Password";
+            this.databasePasswordToolStripMenuItem.Click += new System.EventHandler(this.databasePasswordToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -396,6 +405,7 @@
         private System.Windows.Forms.ToolStripMenuItem regnearkNotPBSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reSendToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kontingentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem databasePasswordToolStripMenuItem;
    }
 }
 
