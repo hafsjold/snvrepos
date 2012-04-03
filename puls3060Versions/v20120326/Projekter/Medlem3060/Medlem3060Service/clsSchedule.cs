@@ -21,8 +21,8 @@ namespace nsMedlem3060Service
             return (T)Enum.Parse(typeof(T), name);
         }
 
-        public static void LoadSchedule() { LoadSchedule(2); }
-        public static void LoadSchedule(int days)
+ 
+        public static void LoadSchedule(int days = 2)
         {
             dbJobQDataContext dbJobQ = Program.dbJobQDataContextFactory();
             var Schedules = from s in dbJobQ.tblSchedules orderby s.start select s;

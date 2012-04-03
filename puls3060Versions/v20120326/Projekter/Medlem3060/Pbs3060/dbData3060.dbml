@@ -65,6 +65,7 @@
       <Column Name="leverancedannelsesdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Association Name="tbltilpb_tblfak" Member="tblfaks" ThisKey="id" OtherKey="tilpbsid" Type="tblfak" />
       <Association Name="tbltilpb_tblrykker" Member="tblrykkers" ThisKey="id" OtherKey="tilpbsid" Type="tblrykker" />
+      <Association Name="tbltilpb_tbloverforsel" Member="tbloverforsels" ThisKey="id" OtherKey="tilpbsid" Type="tbloverforsel" />
       <Association Name="tblpbsforsendelse_tbltilpb" Member="tblpbsforsendelse" ThisKey="pbsforsendelseid" OtherKey="id" Type="tblpbsforsendelse" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
@@ -265,6 +266,43 @@
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="navn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="msgtext" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tempBetalforslag" Member="tempBetalforslags">
+    <Type Name="tempBetalforslag">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="betalingsdato" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="tempBetalforslag_tempBetalforslaglinie" Member="tempBetalforslaglinies" ThisKey="id" OtherKey="Betalforslagid" Type="tempBetalforslaglinie" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tempBetalforslaglinie" Member="tempBetalforslaglinies">
+    <Type Name="tempBetalforslaglinie">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Betalforslagid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="advisbelob" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="fakid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="bankregnr" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="bankkontonr" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="faknr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tempBetalforslag_tempBetalforslaglinie" Member="tempBetalforslag" ThisKey="Betalforslagid" OtherKey="id" Type="tempBetalforslag" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbloverforsel" Member="tbloverforsels">
+    <Type Name="tbloverforsel">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tilpbsid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Nr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SFaknr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SFakID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="advistekst" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="advisbelob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="emailtekst" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="emailsent" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bankregnr" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="bankkontonr" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="betalingsdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="tbltilpb_tbloverforsel" Member="tbltilpb" ThisKey="tilpbsid" OtherKey="id" Type="tbltilpb" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Function Name="dbo.GetSysinfo" Method="GetSysinfo" IsComposable="true">

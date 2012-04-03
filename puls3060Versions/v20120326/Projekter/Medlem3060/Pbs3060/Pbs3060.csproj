@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsInfotekst.cs" />
+    <Compile Include="clsOverfoersel.cs" />
     <Compile Include="clsPbs601.cs" />
     <Compile Include="clsPbs602.cs" />
     <Compile Include="clsPbs603.cs" />
