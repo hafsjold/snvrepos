@@ -27,8 +27,8 @@ namespace nsPbs3060
             //m_rec_sftp = (from s in p_dbData3060.tblsftps where s.navn == "Test" select s).First();
             //m_rec_sftp = (from s in p_dbData3060.tblsftps where s.navn == "Produktion" select s).First();
 #else
-            m_rec_sftp = (from s in p_dbData3060.tblsftps where s.navn == "Test" select s).First();
-            //m_rec_sftp = (from s in p_dbData3060.tblsftps where s.navn == "Produktion" select s).First();
+            //m_rec_sftp = (from s in p_dbData3060.tblsftps where s.navn == "Test" select s).First();
+            m_rec_sftp = (from s in p_dbData3060.tblsftps where s.navn == "Produktion" select s).First();
 #endif
 
             byte[] bPK = Encoding.UTF8.GetBytes(m_rec_sftp.certificate);
