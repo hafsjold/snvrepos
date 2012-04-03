@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using nsPbs3060;
 
 namespace nsPuls3060
 {
@@ -21,8 +22,8 @@ namespace nsPuls3060
             int pbsfilesid = int.Parse(txtpbsfilesid.Text);
             button1.Enabled = false;
             txtpbsfilesid.Enabled = false;
-            clsSFTP objSFTP = new clsSFTP();
-            objSFTP.ReWriteTilSFtp(pbsfilesid);
+            clsSFTP objSFTP = new clsSFTP(Program.XdbData3060);
+            objSFTP.ReWriteTilSFtp(Program.XdbData3060, pbsfilesid);
             objSFTP.DisconnectSFtp();
             objSFTP = null;
             button1.Text = "Udført";

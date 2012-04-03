@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Data;
+using nsPbs3060;
 
 namespace nsPuls3060
 {
@@ -12,8 +13,8 @@ namespace nsPuls3060
         public void filldskarMedlemmer()
         {
             var qry_medlemmer = from h in Program.karMedlemmer
-                                join d1 in Program.dbData3060.tblMedlems on h.Nr equals d1.Nr into details1
-                                from x in details1.DefaultIfEmpty(new tblMedlem { Nr = -1, Kon = null, FodtDato = (DateTime?)null })
+                                join d1 in Program.XdbData3060.tblMedlems on h.Nr equals d1.Nr into details1
+                                from x in details1.DefaultIfEmpty()
                                 //where x.Nr == -1
                                 select new
                                 {
@@ -54,7 +55,7 @@ namespace nsPuls3060
 
         public void filldstblMedlemmer()
         {
-            var qry_medlemmer = from h in Program.dbData3060.tblMedlems
+            var qry_medlemmer = from h in Program.XdbData3060.tblMedlems
                                 select new
                                 {
                                     h.Nr,
@@ -115,20 +116,20 @@ namespace nsPuls3060
                         k_rec.getNewCvsString();
                         Program.karMedlemmer.Add(k_rec);
 
-                        tblMedlem m_rec;
+                        nsPbs3060.tblMedlem m_rec;
                         try
                         {
-                            m_rec = (from k in Program.dbData3060.tblMedlems
+                            m_rec = (from k in Program.XdbData3060.tblMedlems
                                      where k.Nr == Nr_Key
                                      select k).First();
                         }
                         catch (System.InvalidOperationException)
                         {
-                            m_rec = new tblMedlem
+                            m_rec = new nsPbs3060.tblMedlem
                             {
                                 Nr = Nr_Key
                             };
-                            Program.dbData3060.tblMedlems.InsertOnSubmit(m_rec);
+                            Program.XdbData3060.tblMedlems.InsertOnSubmit(m_rec);
                         }
                         m_rec.Navn = m.Navn;
                         m_rec.Kaldenavn = (m.IsKaldenavnNull()) ? null : m.Kaldenavn;
@@ -138,7 +139,7 @@ namespace nsPuls3060
                         m_rec.Telefon = (m.IsTelefonNull()) ? null : (m.Telefon.Length > 8) ? m.Telefon.Substring(0, 4) + m.Telefon.Substring(5, 4) : m.Telefon;
                         m_rec.Email = (m.IsEmailNull()) ? null : m.Email;
                         m_rec.Bank = (m.IsBankNull()) ? null : m.Bank;
-                        m_rec.Kon = (m.IsKonNull()) ? (char?)null : (m.Kon.ToUpper() == "M") ? 'M' : 'K';
+                        //m_rec.Kon = (m.IsKonNull()) ? (char?)null : (m.Kon.ToUpper() == "M") ? 'M' : 'K'; //***MHA***
                         m_rec.FodtDato = (m.IsFodtDatoNull()) ? (DateTime?)null : m.FodtDato;
                         m.AcceptChanges();
                         break;
@@ -166,17 +167,17 @@ namespace nsPuls3060
 
                         try
                         {
-                            m_rec = (from k in Program.dbData3060.tblMedlems
+                            m_rec = (from k in Program.XdbData3060.tblMedlems
                                      where k.Nr == Nr_Key
                                      select k).First();
                         }
                         catch (System.InvalidOperationException)
                         {
-                            m_rec = new tblMedlem
+                            m_rec = new nsPbs3060.tblMedlem
                             {
                                 Nr = Nr_Key
                             };
-                            Program.dbData3060.tblMedlems.InsertOnSubmit(m_rec);
+                            Program.XdbData3060.tblMedlems.InsertOnSubmit(m_rec);
                         }
                         m_rec.Navn = m.Navn;
                         m_rec.Kaldenavn = (m.IsKaldenavnNull()) ? null : m.Kaldenavn;
@@ -186,7 +187,7 @@ namespace nsPuls3060
                         m_rec.Telefon = (m.IsTelefonNull()) ? null : (m.Telefon.Length > 8) ? m.Telefon.Substring(0, 4) + m.Telefon.Substring(5, 4) : m.Telefon;
                         m_rec.Email = (m.IsEmailNull()) ? null : m.Email;
                         m_rec.Bank = (m.IsBankNull()) ? null : m.Bank;
-                        m_rec.Kon = (m.IsKonNull()) ? (char?)null : (m.Kon.ToUpper() == "M") ? 'M' : 'K';
+                        //m_rec.Kon = (m.IsKonNull()) ? (char?)null : (m.Kon.ToUpper() == "M") ? 'M' : 'K'; //***MHA***
                         m_rec.FodtDato = (m.IsFodtDatoNull()) ? (DateTime?)null : m.FodtDato;
                         m.AcceptChanges();
                         break;
@@ -202,20 +203,20 @@ namespace nsPuls3060
             foreach (KartotekRow m in tableKartotek.Rows)
             {
                 var Nr_Key = m.Nr;
-                tblMedlem m_rec;
+                nsPbs3060.tblMedlem m_rec;
                 try
                 {
-                    m_rec = (from k in Program.dbData3060.tblMedlems
+                    m_rec = (from k in Program.XdbData3060.tblMedlems
                              where k.Nr == Nr_Key
                              select k).First();
                 }
                 catch (System.InvalidOperationException)
                 {
-                    m_rec = new tblMedlem
+                    m_rec = new nsPbs3060.tblMedlem
                     {
                         Nr = Nr_Key
                     };
-                    Program.dbData3060.tblMedlems.InsertOnSubmit(m_rec);
+                    Program.XdbData3060.tblMedlems.InsertOnSubmit(m_rec);
                 }
                 m_rec.Navn = m.Navn;
                 m_rec.Kaldenavn = (m.IsKaldenavnNull()) ? null : m.Kaldenavn;
@@ -225,7 +226,7 @@ namespace nsPuls3060
                 m_rec.Telefon = (m.IsTelefonNull()) ? null : (m.Telefon.Length > 8) ? m.Telefon.Substring(0, 4) + m.Telefon.Substring(5, 4) : m.Telefon;
                 m_rec.Email = (m.IsEmailNull()) ? null : m.Email;
                 m_rec.Bank = (m.IsBankNull()) ? null : m.Bank;
-                m_rec.Kon = (m.IsKonNull()) ? (char?)null : (m.Kon.ToUpper() == "M") ? 'M' : 'K';
+                //m_rec.Kon = (m.IsKonNull()) ? (char?)null : (m.Kon.ToUpper() == "M") ? 'M' : 'K'; //***MHA***
                 m_rec.FodtDato = (m.IsFodtDatoNull()) ? (DateTime?)null : m.FodtDato;
             }
         }

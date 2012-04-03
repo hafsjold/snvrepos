@@ -64,7 +64,7 @@
             // 
             // bsKontingent
             // 
-            this.bsKontingent.DataSource = typeof(nsPuls3060.tblKontingent);
+            this.bsKontingent.DataSource = typeof(nsPbs3060.tblKontingent);
             // 
             // bnKontingent
             // 

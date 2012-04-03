@@ -43,7 +43,7 @@ namespace nsPuls3060
             try
             {
                 int maxNr1 = (from k in Program.karKortnr orderby k.Nr descending select k.Nr).First();
-                int maxNr2 = (from k in Program.dbData3060.tblMedlems orderby k.Nr descending select k.Nr).First();
+                int maxNr2 = (from k in Program.XdbData3060.tblMedlems orderby k.Nr descending select k.Nr).First();
                 int maxNr = 0;
                 if (maxNr1 > maxNr2)
                 {

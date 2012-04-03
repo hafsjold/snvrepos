@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 18.75, 14.875" name="dbData3060">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 18.75, 16.75" name="dbData3060">
   <DataContextMoniker Name="/dbData3060DataContext" />
   <nestedChildShapes>
     <classShape Id="4c0225d2-e49c-40d2-92c5-e9189c0232d9" absoluteBounds="16.25, 0.625, 2, 2.5401025390625">
@@ -225,12 +225,50 @@
         <elementListCompartment Id="a3a06348-57bd-4027-bb61-bc24afce8a4e" absoluteBounds="3.515, 8.585, 1.9700000000000002, 2.5570068359375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.75 : 2.78970261393229); (5.21875 : 2.78970261393229); (5.21875 : 8.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.75 : 2.78970261393229); (5.21875 : 2.78970261393229); (5.21875 : 8.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/dbData3060DataContext/tbltilpb/tbltilpb_tbloverforsel" />
       <nodes>
         <classShapeMoniker Id="512c98fb-4ca7-431e-9308-35363ce288d8" />
         <classShapeMoniker Id="660ead98-3e4e-484b-92e0-d0b0e195e4c2" />
       </nodes>
     </associationConnector>
+    <classShape Id="311790d2-c122-43a9-8e71-82c140dc6a95" absoluteBounds="8.25, 11.75, 2, 1.9631982421875">
+      <DataClassMoniker Name="/dbData3060DataContext/tblKontingent" />
+      <nestedChildShapes>
+        <elementListCompartment Id="23b7e8f7-619b-4fd1-b00f-bfe67e9f5310" absoluteBounds="8.265, 12.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2a986591-3146-4ff2-8962-f936edf55724" absoluteBounds="5.625, 14.875, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/dbData3060DataContext/tblAktivitet" />
+      <nestedChildShapes>
+        <elementListCompartment Id="249a45b3-8072-4737-b2ee-f359958d80d9" absoluteBounds="5.64, 15.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7813048b-4a88-4d18-bb31-1d739259fff3" absoluteBounds="5.625, 12.625, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/dbData3060DataContext/tblMedlemLog" />
+      <nestedChildShapes>
+        <elementListCompartment Id="aec700b7-23c2-4461-a9b6-ae4aabc0c506" absoluteBounds="5.6400000000000006, 13.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(6.625 : 12.1747054036458); (6.625 : 12.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dbData3060DataContext/tblMedlem/tblMedlem_tblMedlemLog" />
+      <nodes>
+        <classShapeMoniker Id="67dfebf5-2ce2-4769-ad6d-a0f5e36390c3" />
+        <classShapeMoniker Id="7813048b-4a88-4d18-bb31-1d739259fff3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.625 : 14.875); (6.625 : 14.3958968098958)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dbData3060DataContext/tblAktivitet/tblAktivitet_tblMedlemLog" />
+      <nodes>
+        <classShapeMoniker Id="2a986591-3146-4ff2-8962-f936edf55724" />
+        <classShapeMoniker Id="7813048b-4a88-4d18-bb31-1d739259fff3" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="0274d780-b4b8-48f1-8c1c-cf1dbedd1818" absoluteBounds="8.375, 14.5, 2, 1.9631982421875">
+      <DataClassMoniker Name="/dbData3060DataContext/vMedlemLog" />
+      <nestedChildShapes>
+        <elementListCompartment Id="be4ca331-de5e-41c5-8b0c-611ecd98dc91" absoluteBounds="8.39, 14.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

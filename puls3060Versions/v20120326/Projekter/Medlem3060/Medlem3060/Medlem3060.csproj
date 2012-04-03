@@ -114,18 +114,11 @@
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
     <Compile Include="cls\clsKontingent.cs" />
-    <Compile Include="cls\clsInfotekst.cs" />
-    <Compile Include="cls\clsPbs603.cs" />
-    <Compile Include="cls\clsOverfoersel.cs" />
     <Compile Include="cls\clsImportMedlem.cs" />
     <Compile Include="cls\clsExcel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="cls\clsSFTP.cs" />
     <Compile Include="cls\clsSumma.cs" />
-    <Compile Include="dbData3060.cs">
-      <DependentUpon>dbData3060.dbml</DependentUpon>
-    </Compile>
     <Compile Include="dsMedlem.cs">
       <DependentUpon>dsMedlem.xsd</DependentUpon>
       <SubType>Component</SubType>
@@ -216,14 +209,7 @@
     </Compile>
     <Compile Include="kar\karMedlemmer.cs" />
     <Compile Include="cls\clsPbs.cs" />
-    <Compile Include="cls\clsPbs601.cs" />
-    <Compile Include="cls\clsPbs602.cs" />
     <Compile Include="cls\clsUtil.cs" />
-    <Compile Include="dbData3060.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dbData3060.dbml</DependentUpon>
-    </Compile>
     <Compile Include="mem\memMedlemDictionary.cs" />
     <Compile Include="dsMedlem.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -257,9 +243,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="app.config" />
     <None Include="mem\app.config" />
-    <None Include="dbData3060.dbml.layout">
-      <DependentUpon>dbData3060.dbml</DependentUpon>
-    </None>
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
@@ -318,11 +301,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="dbData3060.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>dbData3060.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
     <None Include="dsMedlem.xsc">
       <DependentUpon>dsMedlem.xsd</DependentUpon>
     </None>
@@ -402,6 +380,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Pbs3060\Pbs3060.csproj">
+      <Project>{B65FF3FB-C71D-448A-9ECC-D2E96707F9E5}</Project>
+      <Name>Pbs3060</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

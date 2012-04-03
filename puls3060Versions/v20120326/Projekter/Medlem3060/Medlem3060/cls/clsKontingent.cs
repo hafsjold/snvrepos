@@ -17,7 +17,7 @@ namespace nsPuls3060
             DateTime? fodtdato;
             try
             {
-                fodtdato = (from m in Program.dbData3060.tblMedlems where m.Nr == Nr select m.FodtDato).First();
+                fodtdato = (from m in Program.XdbData3060.tblMedlems where m.Nr == Nr select m.FodtDato).First();
 
             }
             catch
@@ -86,7 +86,7 @@ namespace nsPuls3060
                     break;
             }
 
-            var qry1 = from k in Program.dbData3060.tblKontingents
+            var qry1 = from k in Program.XdbData3060.tblKontingents
                       where (k.startalder <= alder && k.slutalder >= alder) && (k.startdato.Date >= KontingentFradato.Date || k.slutdato.Date >= KontingentFradato.Date)
                       select k;
 

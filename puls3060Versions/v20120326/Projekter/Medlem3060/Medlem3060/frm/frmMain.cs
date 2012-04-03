@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Reflection;
 using System.IO;
 using Excel;
+using nsPbs3060;
 
 
 
@@ -74,7 +75,7 @@ namespace nsPuls3060
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Program.dbData3060.SubmitChanges();
+            Program.XdbData3060.SubmitChanges();
             Properties.Settings.Default.Save();
         }
 
@@ -133,7 +134,7 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
-            int yy = Program.dbData3060.nextval("mha");
+            int yy = Program.XdbData3060.nextval("mha");
 
             //clsKontingent obsKontingent = new clsKontingent(new DateTime(2011, 12, 11), new DateTime(1967, 05, 21));
             //int xys = 1;
@@ -386,14 +387,14 @@ namespace nsPuls3060
             clsPbs602 objPbs602 = new clsPbs602();
             clsPbs603 objPbs603 = new clsPbs603();
 
-            clsSFTP objSFTP = new clsSFTP();
-            AntalImportFiler = objSFTP.ReadFraSFtp();  //Læs direkte SFTP
+            clsSFTP objSFTP = new clsSFTP(Program.XdbData3060);
+            AntalImportFiler = objSFTP.ReadFraSFtp(Program.XdbData3060);  //Læs direkte SFTP
             objSFTP.DisconnectSFtp();
             objSFTP = null;
             //AntalImportFiler = objPbs602.ReadFraPbsFile(); //Læs fra Directory FraPBS
 
-            int Antal602Filer = objPbs602.betalinger_fra_pbs();
-            int Antal603Filer = objPbs603.aftaleoplysninger_fra_pbs();
+            int Antal602Filer = objPbs602.betalinger_fra_pbs(Program.XdbData3060);
+            int Antal603Filer = objPbs603.aftaleoplysninger_fra_pbs(Program.XdbData3060);
 
             clsSumma objSumma = new clsSumma();
             int AntalBetalinger = objSumma.BogforIndBetalinger();

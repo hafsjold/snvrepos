@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using nsPbs3060;
 
 namespace nsPuls3060
 {
@@ -55,7 +56,7 @@ namespace nsPuls3060
             this.lvwLog.Items.Clear();
             try
             {
-                if ((bool)Program.dbData3060.erMedlem(P_Nr))
+                if ((bool)Program.XdbData3060.erMedlem(P_Nr))
                 {
                     this.Overskrift.ForeColor = System.Drawing.Color.Blue;
                 }
@@ -70,7 +71,7 @@ namespace nsPuls3060
                                     .OrderByDescending(u => u.Logdato);
 
                 var qry = from l in qrylog
-                          join a in Program.dbData3060.tblAktivitets on l.Akt_id equals a.id
+                          join a in Program.XdbData3060.tblAktivitets on l.Akt_id equals a.id
                           select new { l.Akt_dato, a.akt_tekst };
 
 
@@ -233,16 +234,16 @@ namespace nsPuls3060
                 try
                 {
                     DateTime nu = DateTime.Now;
-                    tblMedlemLog recLog = new tblMedlemLog
+                    nsPbs3060.tblMedlemLog recLog = new nsPbs3060.tblMedlemLog
                     {
-                        id = Program.dbData3060.nextval("tblMedlemlog"),
+                        id = Program.XdbData3060.nextval("tblMedlemlog"),
                         Nr = tblMedlem_nr,
                         logdato = new DateTime(nu.Year, nu.Month, nu.Day),
                         akt_id = 10,
                         akt_dato = (DateTime)I_DT_Indmeldelsesdato.Value
                     };
-                    Program.dbData3060.tblMedlemLogs.InsertOnSubmit(recLog);
-                    Program.dbData3060.SubmitChanges();
+                    Program.XdbData3060.tblMedlemLogs.InsertOnSubmit(recLog);
+                    Program.XdbData3060.SubmitChanges();
                 }
                 catch (Exception)
                 {
@@ -339,16 +340,16 @@ namespace nsPuls3060
                     try
                     {
                         DateTime aktdt = (DateTime)U_DT_NyAktivitetDato.Value;
-                        tblMedlemLog recLog = new tblMedlemLog
+                        nsPbs3060.tblMedlemLog recLog = new nsPbs3060.tblMedlemLog
                         {
-                            id = Program.dbData3060.nextval("tblMedlemlog"),
+                            id = Program.XdbData3060.nextval("tblMedlemlog"),
                             Nr = tblMedlem_nr,
                             logdato = DateTime.Now,
                             akt_id = Akt_id,
                             akt_dato = new DateTime(aktdt.Year, aktdt.Month, aktdt.Day)
                         };
-                        Program.dbData3060.tblMedlemLogs.InsertOnSubmit(recLog);
-                        Program.dbData3060.SubmitChanges();
+                        Program.XdbData3060.tblMedlemLogs.InsertOnSubmit(recLog);
+                        Program.XdbData3060.SubmitChanges();
                     }
                     catch (Exception)
                     {
@@ -377,7 +378,7 @@ namespace nsPuls3060
             {
                 try
                 {
-                    var medlem = (from i in Program.dbData3060.tblMedlems where i.Postnr == I_Postnr.Text select i).First();
+                    var medlem = (from i in Program.XdbData3060.tblMedlems where i.Postnr == I_Postnr.Text select i).First();
                     I_Bynavn.Text = medlem.Bynavn;
                 }
                 catch (Exception)
@@ -392,7 +393,7 @@ namespace nsPuls3060
             {
                 try
                 {
-                    var medlem = (from i in Program.dbData3060.tblMedlems where i.Postnr == U_Postnr.Text select i).First();
+                    var medlem = (from i in Program.XdbData3060.tblMedlems where i.Postnr == U_Postnr.Text select i).First();
                     U_Bynavn.Text = medlem.Bynavn;
                 }
                 catch (Exception)
@@ -491,16 +492,16 @@ namespace nsPuls3060
                     try
                     {
                         DateTime nu = DateTime.Now;
-                        tblMedlemLog recLog = new tblMedlemLog
+                        nsPbs3060.tblMedlemLog recLog = new nsPbs3060.tblMedlemLog
                         {
-                            id = Program.dbData3060.nextval("tblMedlemlog"),
+                            id = Program.XdbData3060.nextval("tblMedlemlog"),
                             Nr = tblMedlem_nr,
                             logdato = new DateTime(nu.Year, nu.Month, nu.Day),
                             akt_id = 10,
                             akt_dato = Indmeldelsesdato
                         };
-                        Program.dbData3060.tblMedlemLogs.InsertOnSubmit(recLog);
-                        Program.dbData3060.SubmitChanges();
+                        Program.XdbData3060.tblMedlemLogs.InsertOnSubmit(recLog);
+                        Program.XdbData3060.SubmitChanges();
                     }
                     catch (Exception)
                     {

@@ -165,6 +165,7 @@
       <Column Name="Telefon" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
       <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Bank" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Association Name="tblMedlem_tblMedlemLog" Member="tblMedlemLogs" ThisKey="Nr" OtherKey="Nr" Type="tblMedlemLog" />
     </Type>
   </Table>
   <Table Name="dbo.tblfak" Member="tblfaks">
@@ -305,6 +306,44 @@
       <Association Name="tbltilpb_tbloverforsel" Member="tbltilpb" ThisKey="tilpbsid" OtherKey="id" Type="tbltilpb" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
+  <Table Name="dbo.tblKontingent" Member="tblKontingents">
+    <Type Name="tblKontingent">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="startdato" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="slutdato" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="startalder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="slutalder" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="aarskontingent" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblAktivitet" Member="tblAktivitets">
+    <Type Name="tblAktivitet">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="akt_tekst" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Association Name="tblAktivitet_tblMedlemLog" Member="tblMedlemLogs" ThisKey="id" OtherKey="akt_id" Type="tblMedlemLog" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblMedlemLog" Member="tblMedlemLogs">
+    <Type Name="tblMedlemLog">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Nr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="logdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="akt_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="akt_dato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="tblMedlem_tblMedlemLog" Member="tblMedlem" ThisKey="Nr" OtherKey="Nr" Type="tblMedlem" IsForeignKey="true" />
+      <Association Name="tblAktivitet_tblMedlemLog" Member="tblAktivitet" ThisKey="akt_id" OtherKey="id" Type="tblAktivitet" IsForeignKey="true" DeleteRule="SET NULL" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vMedlemLog" Member="vMedlemLogs">
+    <Type Name="vMedlemLog">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="logdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="akt_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="akt_dato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="parent" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
   <Function Name="dbo.GetSysinfo" Method="GetSysinfo" IsComposable="true">
     <Parameter Name="Pvkey" Parameter="pvkey" Type="System.String" DbType="NVarChar(10)" />
     <Return Type="System.String" />
@@ -316,5 +355,41 @@
   <Function Name="dbo.OcrString" Method="OcrString" IsComposable="true">
     <Parameter Name="pFaknr" Type="System.Int32" DbType="Int" />
     <Return Type="System.String" />
+  </Function>
+  <Function Name="dbo.erMedlem" Method="erMedlem" IsComposable="true">
+    <Parameter Name="pNr" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Boolean" />
+  </Function>
+  <Function Name="dbo.erPBS" Method="erPBS" IsComposable="true">
+    <Parameter Name="pNr" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Boolean" />
+  </Function>
+  <Function Name="dbo.forfaldsdato" Method="forfaldsdato" IsComposable="true">
+    <Parameter Name="pNr" Type="System.Int32" DbType="Int" />
+    <Return Type="System.DateTime" />
+  </Function>
+  <Function Name="dbo.forigekontingentdato" Method="forigekontingentdato" IsComposable="true">
+    <Parameter Name="pNr" Type="System.Int32" DbType="Int" />
+    <Return Type="System.DateTime" />
+  </Function>
+  <Function Name="dbo.indmeldtdato" Method="indmeldtdato" IsComposable="true">
+    <Parameter Name="pNr" Type="System.Int32" DbType="Int" />
+    <Return Type="System.DateTime" />
+  </Function>
+  <Function Name="dbo.kanRykkes" Method="kanRykkes" IsComposable="true">
+    <Parameter Name="pNr" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Boolean" />
+  </Function>
+  <Function Name="dbo.kontingentdato" Method="kontingentdato" IsComposable="true">
+    <Parameter Name="pNr" Type="System.Int32" DbType="Int" />
+    <Return Type="System.DateTime" />
+  </Function>
+  <Function Name="dbo.tilbageførtkontingentdato" Method="tilbageførtkontingentdato" IsComposable="true">
+    <Parameter Name="pNr" Type="System.Int32" DbType="Int" />
+    <Return Type="System.DateTime" />
+  </Function>
+  <Function Name="dbo.udmeldtdato" Method="udmeldtdato" IsComposable="true">
+    <Parameter Name="pNr" Type="System.Int32" DbType="Int" />
+    <Return Type="System.DateTime" />
   </Function>
 </Database>

@@ -96,6 +96,15 @@ namespace nsPbs3060
     partial void Inserttbloverforsel(tbloverforsel instance);
     partial void Updatetbloverforsel(tbloverforsel instance);
     partial void Deletetbloverforsel(tbloverforsel instance);
+    partial void InserttblKontingent(tblKontingent instance);
+    partial void UpdatetblKontingent(tblKontingent instance);
+    partial void DeletetblKontingent(tblKontingent instance);
+    partial void InserttblAktivitet(tblAktivitet instance);
+    partial void UpdatetblAktivitet(tblAktivitet instance);
+    partial void DeletetblAktivitet(tblAktivitet instance);
+    partial void InserttblMedlemLog(tblMedlemLog instance);
+    partial void UpdatetblMedlemLog(tblMedlemLog instance);
+    partial void DeletetblMedlemLog(tblMedlemLog instance);
     #endregion
 		
 		public dbData3060DataContext() : 
@@ -304,6 +313,38 @@ namespace nsPbs3060
 			}
 		}
 		
+		public System.Data.Linq.Table<tblKontingent> tblKontingents
+		{
+			get
+			{
+				return this.GetTable<tblKontingent>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblAktivitet> tblAktivitets
+		{
+			get
+			{
+				return this.GetTable<tblAktivitet>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblMedlemLog> tblMedlemLogs
+		{
+			get
+			{
+				return this.GetTable<tblMedlemLog>();
+			}
+		}
+		
+		public System.Data.Linq.Table<vMedlemLog> vMedlemLogs
+		{
+			get
+			{
+				return this.GetTable<vMedlemLog>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetSysinfo", IsComposable=true)]
 		public string GetSysinfo([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Pvkey", DbType="NVarChar(10)")] string pvkey)
 		{
@@ -321,6 +362,60 @@ namespace nsPbs3060
 		public string OcrString([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pFaknr)
 		{
 			return ((string)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pFaknr).ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.erMedlem", IsComposable=true)]
+		public System.Nullable<bool> erMedlem([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pNr)
+		{
+			return ((System.Nullable<bool>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pNr).ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.erPBS", IsComposable=true)]
+		public System.Nullable<bool> erPBS([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pNr)
+		{
+			return ((System.Nullable<bool>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pNr).ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.forfaldsdato", IsComposable=true)]
+		public System.Nullable<System.DateTime> forfaldsdato([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pNr)
+		{
+			return ((System.Nullable<System.DateTime>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pNr).ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.forigekontingentdato", IsComposable=true)]
+		public System.Nullable<System.DateTime> forigekontingentdato([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pNr)
+		{
+			return ((System.Nullable<System.DateTime>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pNr).ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.indmeldtdato", IsComposable=true)]
+		public System.Nullable<System.DateTime> indmeldtdato([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pNr)
+		{
+			return ((System.Nullable<System.DateTime>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pNr).ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.kanRykkes", IsComposable=true)]
+		public System.Nullable<bool> kanRykkes([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pNr)
+		{
+			return ((System.Nullable<bool>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pNr).ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.kontingentdato", IsComposable=true)]
+		public System.Nullable<System.DateTime> kontingentdato([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pNr)
+		{
+			return ((System.Nullable<System.DateTime>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pNr).ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.tilbageførtkontingentdato", IsComposable=true)]
+		public System.Nullable<System.DateTime> tilbageførtkontingentdato([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pNr)
+		{
+			return ((System.Nullable<System.DateTime>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pNr).ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.udmeldtdato", IsComposable=true)]
+		public System.Nullable<System.DateTime> udmeldtdato([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pNr)
+		{
+			return ((System.Nullable<System.DateTime>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pNr).ReturnValue));
 		}
 	}
 	
@@ -3600,6 +3695,8 @@ namespace nsPbs3060
 		
 		private string _Bank;
 		
+		private EntitySet<tblMedlemLog> _tblMedlemLogs;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -3630,6 +3727,7 @@ namespace nsPbs3060
 		
 		public tblMedlem()
 		{
+			this._tblMedlemLogs = new EntitySet<tblMedlemLog>(new Action<tblMedlemLog>(this.attach_tblMedlemLogs), new Action<tblMedlemLog>(this.detach_tblMedlemLogs));
 			OnCreated();
 		}
 		
@@ -3853,6 +3951,19 @@ namespace nsPbs3060
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblMedlem_tblMedlemLog", Storage="_tblMedlemLogs", ThisKey="Nr", OtherKey="Nr")]
+		public EntitySet<tblMedlemLog> tblMedlemLogs
+		{
+			get
+			{
+				return this._tblMedlemLogs;
+			}
+			set
+			{
+				this._tblMedlemLogs.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -3871,6 +3982,18 @@ namespace nsPbs3060
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_tblMedlemLogs(tblMedlemLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblMedlem = this;
+		}
+		
+		private void detach_tblMedlemLogs(tblMedlemLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblMedlem = null;
 		}
 	}
 	
@@ -6658,6 +6781,659 @@ namespace nsPbs3060
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblKontingent")]
+	public partial class tblKontingent : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private System.DateTime _startdato;
+		
+		private System.DateTime _slutdato;
+		
+		private int _startalder;
+		
+		private int _slutalder;
+		
+		private decimal _aarskontingent;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnstartdatoChanging(System.DateTime value);
+    partial void OnstartdatoChanged();
+    partial void OnslutdatoChanging(System.DateTime value);
+    partial void OnslutdatoChanged();
+    partial void OnstartalderChanging(int value);
+    partial void OnstartalderChanged();
+    partial void OnslutalderChanging(int value);
+    partial void OnslutalderChanged();
+    partial void OnaarskontingentChanging(decimal value);
+    partial void OnaarskontingentChanged();
+    #endregion
+		
+		public tblKontingent()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_startdato", DbType="DateTime NOT NULL")]
+		public System.DateTime startdato
+		{
+			get
+			{
+				return this._startdato;
+			}
+			set
+			{
+				if ((this._startdato != value))
+				{
+					this.OnstartdatoChanging(value);
+					this.SendPropertyChanging();
+					this._startdato = value;
+					this.SendPropertyChanged("startdato");
+					this.OnstartdatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_slutdato", DbType="DateTime NOT NULL")]
+		public System.DateTime slutdato
+		{
+			get
+			{
+				return this._slutdato;
+			}
+			set
+			{
+				if ((this._slutdato != value))
+				{
+					this.OnslutdatoChanging(value);
+					this.SendPropertyChanging();
+					this._slutdato = value;
+					this.SendPropertyChanged("slutdato");
+					this.OnslutdatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_startalder", DbType="Int NOT NULL")]
+		public int startalder
+		{
+			get
+			{
+				return this._startalder;
+			}
+			set
+			{
+				if ((this._startalder != value))
+				{
+					this.OnstartalderChanging(value);
+					this.SendPropertyChanging();
+					this._startalder = value;
+					this.SendPropertyChanged("startalder");
+					this.OnstartalderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_slutalder", DbType="Int NOT NULL")]
+		public int slutalder
+		{
+			get
+			{
+				return this._slutalder;
+			}
+			set
+			{
+				if ((this._slutalder != value))
+				{
+					this.OnslutalderChanging(value);
+					this.SendPropertyChanging();
+					this._slutalder = value;
+					this.SendPropertyChanged("slutalder");
+					this.OnslutalderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_aarskontingent", DbType="Decimal(18,2) NOT NULL")]
+		public decimal aarskontingent
+		{
+			get
+			{
+				return this._aarskontingent;
+			}
+			set
+			{
+				if ((this._aarskontingent != value))
+				{
+					this.OnaarskontingentChanging(value);
+					this.SendPropertyChanging();
+					this._aarskontingent = value;
+					this.SendPropertyChanged("aarskontingent");
+					this.OnaarskontingentChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblAktivitet")]
+	public partial class tblAktivitet : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _akt_tekst;
+		
+		private EntitySet<tblMedlemLog> _tblMedlemLogs;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void Onakt_tekstChanging(string value);
+    partial void Onakt_tekstChanged();
+    #endregion
+		
+		public tblAktivitet()
+		{
+			this._tblMedlemLogs = new EntitySet<tblMedlemLog>(new Action<tblMedlemLog>(this.attach_tblMedlemLogs), new Action<tblMedlemLog>(this.detach_tblMedlemLogs));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_akt_tekst", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string akt_tekst
+		{
+			get
+			{
+				return this._akt_tekst;
+			}
+			set
+			{
+				if ((this._akt_tekst != value))
+				{
+					this.Onakt_tekstChanging(value);
+					this.SendPropertyChanging();
+					this._akt_tekst = value;
+					this.SendPropertyChanged("akt_tekst");
+					this.Onakt_tekstChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblAktivitet_tblMedlemLog", Storage="_tblMedlemLogs", ThisKey="id", OtherKey="akt_id")]
+		public EntitySet<tblMedlemLog> tblMedlemLogs
+		{
+			get
+			{
+				return this._tblMedlemLogs;
+			}
+			set
+			{
+				this._tblMedlemLogs.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tblMedlemLogs(tblMedlemLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblAktivitet = this;
+		}
+		
+		private void detach_tblMedlemLogs(tblMedlemLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblAktivitet = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblMedlemLog")]
+	public partial class tblMedlemLog : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private System.Nullable<int> _Nr;
+		
+		private System.Nullable<System.DateTime> _logdato;
+		
+		private System.Nullable<int> _akt_id;
+		
+		private System.Nullable<System.DateTime> _akt_dato;
+		
+		private EntityRef<tblMedlem> _tblMedlem;
+		
+		private EntityRef<tblAktivitet> _tblAktivitet;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnNrChanging(System.Nullable<int> value);
+    partial void OnNrChanged();
+    partial void OnlogdatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnlogdatoChanged();
+    partial void Onakt_idChanging(System.Nullable<int> value);
+    partial void Onakt_idChanged();
+    partial void Onakt_datoChanging(System.Nullable<System.DateTime> value);
+    partial void Onakt_datoChanged();
+    #endregion
+		
+		public tblMedlemLog()
+		{
+			this._tblMedlem = default(EntityRef<tblMedlem>);
+			this._tblAktivitet = default(EntityRef<tblAktivitet>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nr", DbType="Int")]
+		public System.Nullable<int> Nr
+		{
+			get
+			{
+				return this._Nr;
+			}
+			set
+			{
+				if ((this._Nr != value))
+				{
+					if (this._tblMedlem.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnNrChanging(value);
+					this.SendPropertyChanging();
+					this._Nr = value;
+					this.SendPropertyChanged("Nr");
+					this.OnNrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_logdato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> logdato
+		{
+			get
+			{
+				return this._logdato;
+			}
+			set
+			{
+				if ((this._logdato != value))
+				{
+					this.OnlogdatoChanging(value);
+					this.SendPropertyChanging();
+					this._logdato = value;
+					this.SendPropertyChanged("logdato");
+					this.OnlogdatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_akt_id", DbType="Int")]
+		public System.Nullable<int> akt_id
+		{
+			get
+			{
+				return this._akt_id;
+			}
+			set
+			{
+				if ((this._akt_id != value))
+				{
+					if (this._tblAktivitet.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onakt_idChanging(value);
+					this.SendPropertyChanging();
+					this._akt_id = value;
+					this.SendPropertyChanged("akt_id");
+					this.Onakt_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_akt_dato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> akt_dato
+		{
+			get
+			{
+				return this._akt_dato;
+			}
+			set
+			{
+				if ((this._akt_dato != value))
+				{
+					this.Onakt_datoChanging(value);
+					this.SendPropertyChanging();
+					this._akt_dato = value;
+					this.SendPropertyChanged("akt_dato");
+					this.Onakt_datoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblMedlem_tblMedlemLog", Storage="_tblMedlem", ThisKey="Nr", OtherKey="Nr", IsForeignKey=true)]
+		public tblMedlem tblMedlem
+		{
+			get
+			{
+				return this._tblMedlem.Entity;
+			}
+			set
+			{
+				tblMedlem previousValue = this._tblMedlem.Entity;
+				if (((previousValue != value) 
+							|| (this._tblMedlem.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblMedlem.Entity = null;
+						previousValue.tblMedlemLogs.Remove(this);
+					}
+					this._tblMedlem.Entity = value;
+					if ((value != null))
+					{
+						value.tblMedlemLogs.Add(this);
+						this._Nr = value.Nr;
+					}
+					else
+					{
+						this._Nr = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tblMedlem");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblAktivitet_tblMedlemLog", Storage="_tblAktivitet", ThisKey="akt_id", OtherKey="id", IsForeignKey=true, DeleteRule="SET NULL")]
+		public tblAktivitet tblAktivitet
+		{
+			get
+			{
+				return this._tblAktivitet.Entity;
+			}
+			set
+			{
+				tblAktivitet previousValue = this._tblAktivitet.Entity;
+				if (((previousValue != value) 
+							|| (this._tblAktivitet.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblAktivitet.Entity = null;
+						previousValue.tblMedlemLogs.Remove(this);
+					}
+					this._tblAktivitet.Entity = value;
+					if ((value != null))
+					{
+						value.tblMedlemLogs.Add(this);
+						this._akt_id = value.id;
+					}
+					else
+					{
+						this._akt_id = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tblAktivitet");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vMedlemLog")]
+	public partial class vMedlemLog
+	{
+		
+		private int _id;
+		
+		private System.Nullable<int> _Nr;
+		
+		private System.Nullable<System.DateTime> _logdato;
+		
+		private System.Nullable<int> _akt_id;
+		
+		private System.Nullable<System.DateTime> _akt_dato;
+		
+		private int _parent;
+		
+		public vMedlemLog()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int NOT NULL")]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nr", DbType="Int")]
+		public System.Nullable<int> Nr
+		{
+			get
+			{
+				return this._Nr;
+			}
+			set
+			{
+				if ((this._Nr != value))
+				{
+					this._Nr = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_logdato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> logdato
+		{
+			get
+			{
+				return this._logdato;
+			}
+			set
+			{
+				if ((this._logdato != value))
+				{
+					this._logdato = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_akt_id", DbType="Int")]
+		public System.Nullable<int> akt_id
+		{
+			get
+			{
+				return this._akt_id;
+			}
+			set
+			{
+				if ((this._akt_id != value))
+				{
+					this._akt_id = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_akt_dato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> akt_dato
+		{
+			get
+			{
+				return this._akt_dato;
+			}
+			set
+			{
+				if ((this._akt_dato != value))
+				{
+					this._akt_dato = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_parent", DbType="Int NOT NULL")]
+		public int parent
+		{
+			get
+			{
+				return this._parent;
+			}
+			set
+			{
+				if ((this._parent != value))
+				{
+					this._parent = value;
+				}
 			}
 		}
 	}

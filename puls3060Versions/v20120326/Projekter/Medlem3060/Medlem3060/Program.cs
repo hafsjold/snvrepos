@@ -6,6 +6,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 using System.Security.Cryptography;
 using System.Text;
+using nsPbs3060;
 
 
 
@@ -13,11 +14,46 @@ namespace nsPuls3060
 {
     static class Program
     {
+        private static dbData3060DataContext m_dbData3060DataContext;
+        public static string dbConnectionString()
+        {
+            DialogResult res = DialogResult.OK;
+            m_Password = global::nsPuls3060.Properties.Settings.Default.UserPassword;
+            if (Unprotect(m_Password) == null)
+                res = (new FrmPassword()).ShowDialog();
+            if (res != DialogResult.OK) return null;
+#if (DEBUG)
+            string con = global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString_Test + ";Password=" + Unprotect(m_Password);
+#else
+            string con = global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString_Prod + ";Password=" + Unprotect(m_Password);    
+#endif
+            return con;
+        }
+        public static dbData3060DataContext dbData3060DataContextFactory()
+        {
+            return new dbData3060DataContext(dbConnectionString());
+        }
+        public static dbData3060DataContext XdbData3060
+        {
+            get
+            {
+                if (m_dbData3060DataContext == null)
+                {
+                    m_dbData3060DataContext = dbData3060DataContextFactory();
+                }
+                return m_dbData3060DataContext;
+            }
+            set
+            {
+                m_dbData3060DataContext = value;
+            }
+        }
+        //**************************************
+        
         static byte[] s_aditionalEntropy = { 9, 8, 7, 6, 5 };
         private static string m_Password;
         private static string m_path_to_lock_summasummarum_kontoplan;
         private static FileStream m_filestream_to_lock_summasummarum_kontoplan;
-        private static DbData3060 m_dbData3060;
         private static dsMedlem m_dsMedlemImport;
         private static KarMedlemmer m_KarMedlemmer;
         private static MemMedlemDictionary m_dicMedlem;
@@ -70,30 +106,6 @@ namespace nsPuls3060
             set
             {
                 m_filestream_to_lock_summasummarum_kontoplan = value;
-            }
-        }
-        public static DbData3060 dbData3060
-        {
-            get
-            {
-                if (m_dbData3060 == null)
-                {
-                    DialogResult res = DialogResult.OK;
-                    m_Password = global::nsPuls3060.Properties.Settings.Default.UserPassword;
-                    if (Unprotect(m_Password) == null)
-                        res = (new FrmPassword()).ShowDialog();
-                    if (res != DialogResult.OK) return null;
-#if (DEBUG)
-                   m_dbData3060 = new DbData3060(global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString_Test + ";Password=" + Unprotect(m_Password));    
-#else
-                   m_dbData3060 = new DbData3060(global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString_Prod + ";Password=" + Unprotect(m_Password));    
-#endif
-                }
-                return m_dbData3060;
-            }
-            set
-            {
-                m_dbData3060 = value;
             }
         }
         public static dsMedlem dsMedlemImport
@@ -363,7 +375,7 @@ namespace nsPuls3060
         public static IQueryable<clsLog> qryLog()
         {
 
-            var qryLogResult = from m in Program.dbData3060.vMedlemLogs
+            var qryLogResult = from m in Program.XdbData3060.vMedlemLogs
                                select new clsLog
                                {
                                    Id = (int?)m.id,

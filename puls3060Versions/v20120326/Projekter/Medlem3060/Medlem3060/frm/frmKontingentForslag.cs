@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Collections;
+using nsPbs3060;
 
 namespace nsPuls3060
 {
@@ -16,8 +17,6 @@ namespace nsPuls3060
         ColumnSorter lvwKontingent_ColumnSorter;
         private string DragDropKey;
         private DateTime m_initdate;
-        private int m_lobnr  = 0;
-
 
         public FrmKontingentForslag()
         {
@@ -92,7 +91,7 @@ namespace nsPuls3060
             int AntalForslag = 0;
             int ikontingent;
 
-            var qry_medlemmer = from h in Program.dbData3060.tblMedlems
+            var qry_medlemmer = from h in Program.XdbData3060.tblMedlems
                                select new clsMedlemInternAll
                                {
                                    Nr = h.Nr,
@@ -106,12 +105,12 @@ namespace nsPuls3060
                                    Kon = h.Kon.ToString(),
                                    FodtDato = h.FodtDato,
                                    Bank = h.Bank,
-                                   erMedlem = ((bool)Program.dbData3060.erMedlem(h.Nr)) ? 1 : 0,
-                                   indmeldelsesDato = Program.dbData3060.indmeldtdato(h.Nr),
-                                   udmeldelsesDato = Program.dbData3060.udmeldtdato(h.Nr),
-                                   kontingentBetaltTilDato = Program.dbData3060.kontingentdato(h.Nr),
-                                   opkrævningsDato = Program.dbData3060.forfaldsdato(h.Nr),
-                                   kontingentTilbageførtDato = Program.dbData3060.tilbageførtkontingentdato(h.Nr),
+                                   erMedlem = ((bool)Program.XdbData3060.erMedlem(h.Nr)) ? 1 : 0,
+                                   indmeldelsesDato = Program.XdbData3060.indmeldtdato(h.Nr),
+                                   udmeldelsesDato = Program.XdbData3060.udmeldtdato(h.Nr),
+                                   kontingentBetaltTilDato = Program.XdbData3060.kontingentdato(h.Nr),
+                                   opkrævningsDato = Program.XdbData3060.forfaldsdato(h.Nr),
+                                   kontingentTilbageførtDato = Program.XdbData3060.tilbageførtkontingentdato(h.Nr),
                                };
 
 
@@ -179,7 +178,7 @@ namespace nsPuls3060
                 if (bSelected)
                 {
                     AntalForslag++;
-                    tilmeldtpbs = (bool)Program.dbData3060.erPBS(m.Nr);
+                    tilmeldtpbs = (bool)Program.XdbData3060.erPBS(m.Nr);
                     clsKontingent objKontingent = new clsKontingent(KontingentFradato, m.Nr);
                     KontingentTildato = objKontingent.KontingentTildato;
                     ikontingent = (int)objKontingent.Kontingent;
@@ -315,6 +314,7 @@ namespace nsPuls3060
         {
             string TilPBSFilename = "Unknown";
             int AntalFakturaer;
+            int lobnr;
             int imax;
             string keyval;
             DateTime fradato;
@@ -334,8 +334,8 @@ namespace nsPuls3060
             this.pgmFaktura.Minimum = 0;
             this.pgmFaktura.Value = 0;
             this.pgmFaktura.Visible = true;
-            Program.dbData3060.tempKontforslags.DeleteAllOnSubmit(Program.dbData3060.tempKontforslags);
-            Program.dbData3060.SubmitChanges();
+            Program.XdbData3060.tempKontforslags.DeleteAllOnSubmit(Program.XdbData3060.tempKontforslags);
+            Program.XdbData3060.SubmitChanges();
             if ((imax == 0))
             {
                 this.Label_Fakturatekst.Text = "Der ikke noget at fakturere";
@@ -343,12 +343,12 @@ namespace nsPuls3060
             }
             else
             {
-                tempKontforslag rec_tempKontforslag = new tempKontforslag
+                nsPbs3060.tempKontforslag rec_tempKontforslag = new nsPbs3060.tempKontforslag
                 {
                     betalingsdato = clsOverfoersel.bankdageplus(this.DatoKontingentForfald.Value,0),
                     bsh = this.DelsystemBSH.Checked
                 };
-                Program.dbData3060.tempKontforslags.InsertOnSubmit(rec_tempKontforslag);
+                Program.XdbData3060.tempKontforslags.InsertOnSubmit(rec_tempKontforslag);
                 var i = 0;
                 foreach (ListViewItem lvi in lvwKontingent.Items)
                 {
@@ -360,7 +360,7 @@ namespace nsPuls3060
                     indmeldelse = (lvi.SubItems[7].Text == "J") ? true : false;
                     tilmeldtpbs = (lvi.SubItems[8].Text == "J") ? true : false;
 
-                    tempKontforslaglinie rec_tempKontforslaglinie = new tempKontforslaglinie
+                    nsPbs3060.tempKontforslaglinie rec_tempKontforslaglinie = new nsPbs3060.tempKontforslaglinie
                     {
                         Nr = int.Parse(keyval),
                         advisbelob = (decimal)advisbelob,
@@ -371,19 +371,20 @@ namespace nsPuls3060
                     };
                     rec_tempKontforslag.tempKontforslaglinies.Add(rec_tempKontforslaglinie);
                 }
-                Program.dbData3060.SubmitChanges();
+                Program.XdbData3060.SubmitChanges();
 
                 clsPbs601 objPbs601 = new clsPbs601();
-                nsPuls3060.clsPbs601.SetLobnr += new nsPuls3060.clsPbs601.Pbs601DelegateHandler(On_clsPbs601_SetLobnr);
-
-                AntalFakturaer = objPbs601.kontingent_fakturer_bs1();
+ 
+                Tuple<int,int> tresult = objPbs601.kontingent_fakturer_bs1(Program.XdbData3060);
+                AntalFakturaer = tresult.Item1;
+                lobnr = tresult.Item2;
                 this.pgmFaktura.Value = imax * 2;
                 if ((AntalFakturaer > 0))
                 {
-                    objPbs601.faktura_og_rykker_601_action(m_lobnr, fakType.fdfaktura);
+                    objPbs601.faktura_og_rykker_601_action(Program.XdbData3060, lobnr, fakType.fdfaktura);
                     this.pgmFaktura.Value = (imax * 3);
-                    clsSFTP objSFTP = new clsSFTP();
-                    TilPBSFilename = objSFTP.WriteTilSFtp(m_lobnr);
+                    clsSFTP objSFTP = new clsSFTP(Program.XdbData3060);
+                    TilPBSFilename = objSFTP.WriteTilSFtp(Program.XdbData3060, lobnr);
                     objSFTP.DisconnectSFtp();
                     objSFTP = null;
                 }
@@ -395,12 +396,5 @@ namespace nsPuls3060
                 this.pgmFaktura.Visible = false;
             }
         }
-        
-        private void On_clsPbs601_SetLobnr(int lobnr)
-        {
-            m_lobnr = lobnr;
-        }
-
-
     }
 }
