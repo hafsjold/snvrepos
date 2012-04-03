@@ -54,11 +54,11 @@ namespace nsPuls3060
             IEnumerable<clsqry_medlemmer> qry_medlemmer;
             if (this.RykketTidligere.Checked)
             {
-                qry_medlemmer = from h in Program.XdbData3060.tblMedlems
-                                join f in Program.XdbData3060.tblfaks on h.Nr equals f.Nr
+                qry_medlemmer = from h in Program.dbData3060.tblMedlems
+                                join f in Program.dbData3060.tblfaks on h.Nr equals f.Nr
                                 where f.SFaknr == null &&
                                       f.rykkerstop == false &&
-                                      (int)(from q in Program.XdbData3060.tblrykkers where q.faknr == f.faknr select q).Count() > 0
+                                      (int)(from q in Program.dbData3060.tblrykkers where q.faknr == f.faknr select q).Count() > 0
                                 orderby f.fradato, f.id
                                 select new clsqry_medlemmer
                                 {
@@ -73,12 +73,12 @@ namespace nsPuls3060
             }
             else
             {
-                qry_medlemmer = from h in Program.XdbData3060.tblMedlems
-                                join f in Program.XdbData3060.tblfaks on h.Nr equals f.Nr
+                qry_medlemmer = from h in Program.dbData3060.tblMedlems
+                                join f in Program.dbData3060.tblfaks on h.Nr equals f.Nr
                                 where f.SFaknr == null &&
                                       f.rykkerstop == false &&
                                       f.betalingsdato.Value.AddDays(7) <= DateTime.Today &&
-                                      (int)(from q in Program.XdbData3060.tblrykkers where q.faknr == f.faknr select q).Count() == 0
+                                      (int)(from q in Program.dbData3060.tblrykkers where q.faknr == f.faknr select q).Count() == 0
                                 orderby f.fradato, f.id
                                 select new clsqry_medlemmer
                                 {
@@ -109,7 +109,7 @@ namespace nsPuls3060
 
             foreach (var m in qry_medlemmer)
             {
-                if ((bool)Program.XdbData3060.kanRykkes(m.Nr))
+                if ((bool)Program.dbData3060.kanRykkes(m.Nr))
                 {
                     AntalForslag++;
                     ListViewItem it = lvwMedlem.Items.Add(m.Nr.ToString(), m.Navn, 0);
@@ -257,8 +257,8 @@ namespace nsPuls3060
             this.pgmRykker.Minimum = 0;
             this.pgmRykker.Value = 0;
             this.pgmRykker.Visible = true;
-            Program.XdbData3060.tempRykkerforslags.DeleteAllOnSubmit(Program.XdbData3060.tempRykkerforslags);
-            Program.XdbData3060.SubmitChanges();
+            Program.dbData3060.tempRykkerforslags.DeleteAllOnSubmit(Program.dbData3060.tempRykkerforslags);
+            Program.dbData3060.SubmitChanges();
 
             if ((imax == 0))
             {
@@ -272,7 +272,7 @@ namespace nsPuls3060
                     betalingsdato = clsOverfoersel.bankdageplus(DateTime.Today, 5),
                     bsh = this.DelsystemBSH.Checked
                 };
-                Program.XdbData3060.tempRykkerforslags.InsertOnSubmit(rec_tempRykkerforslag);
+                Program.dbData3060.tempRykkerforslags.InsertOnSubmit(rec_tempRykkerforslag);
                 var i = 0;
                 foreach (ListViewItem lvi in lvwRykker.Items)
                 {
@@ -289,10 +289,10 @@ namespace nsPuls3060
                     };
                     rec_tempRykkerforslag.tempRykkerforslaglinies.Add(rec_tempRykkerforslaglinie);
                 }
-                Program.XdbData3060.SubmitChanges();
+                Program.dbData3060.SubmitChanges();
 
                 clsPbs601 objPbs601 = new clsPbs601();
-                Tuple<int,int> tresult = objPbs601.rykkere_bsh(Program.XdbData3060);
+                Tuple<int,int> tresult = objPbs601.rykkere_bsh(Program.dbData3060);
                 AntalRykkere = tresult.Item1;
                 lobnr = tresult.Item2;
                 this.pgmRykker.Value = imax * 2;
@@ -300,16 +300,16 @@ namespace nsPuls3060
                 {
                     if (this.DelsystemBSH.Checked) //RYKKERE med Indbetalingskort
                     {
-                        objPbs601.faktura_og_rykker_601_action(Program.XdbData3060, lobnr, fakType.fdrykker);
+                        objPbs601.faktura_og_rykker_601_action(Program.dbData3060, lobnr, fakType.fdrykker);
                         this.pgmRykker.Value = (imax * 3);
-                        clsSFTP objSFTP = new clsSFTP(Program.XdbData3060);
-                        objSFTP.WriteTilSFtp(Program.XdbData3060, lobnr);
+                        clsSFTP objSFTP = new clsSFTP(Program.dbData3060);
+                        objSFTP.WriteTilSFtp(Program.dbData3060, lobnr);
                         objSFTP.DisconnectSFtp();
                         objSFTP = null;
                     }
                     else //RYKKERE som emails
                     {
-                        objPbs601.rykker_email(Program.XdbData3060, lobnr);
+                        objPbs601.rykker_email(Program.dbData3060, lobnr);
                         this.pgmRykker.Value = (imax * 3);
                     }
                 }
@@ -318,7 +318,7 @@ namespace nsPuls3060
 
                 try
                 {
-                    var rec_tilpbs = (from t in Program.XdbData3060.tbltilpbs where t.id == lobnr select t).First();
+                    var rec_tilpbs = (from t in Program.dbData3060.tbltilpbs where t.id == lobnr select t).First();
                     TilPBSFilename = "PBS" + rec_tilpbs.leverancespecifikation + ".lst";
                 }
                 catch (System.InvalidOperationException)

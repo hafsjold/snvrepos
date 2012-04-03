@@ -62,7 +62,7 @@ namespace nsPuls3060
                                join m in Program.karMedlemmer on h.kreditornr.ToString() equals m.Krdktonr
                                where Program.ValidatekBank(m.Bank)
                                //join f in Program.dbData3060.tbloverforsels on h.fakid equals f.SFakID into overforsel
-                               join f in Program.XdbData3060.tbloverforsels on h.faknr equals f.SFaknr into overforsel
+                               join f in Program.dbData3060.tbloverforsels on h.faknr equals f.SFaknr into overforsel
                                from f in overforsel.DefaultIfEmpty(new nsPbs3060.tbloverforsel { id = 0, tilpbsid = null, Nr = null, SFaknr = null, SFakID = null, advistekst = null, advisbelob = null, emailtekst = null, emailsent = null, bankregnr = null, bankkontonr = null, betalingsdato = null })
                                //where f.SFakID == null
                                where f.SFaknr == null
@@ -241,8 +241,8 @@ namespace nsPuls3060
             this.pgmBetal.Minimum = 0;
             this.pgmBetal.Value = 0;
             this.pgmBetal.Visible = true;
-            Program.XdbData3060.tempBetalforslags.DeleteAllOnSubmit(Program.XdbData3060.tempBetalforslags);
-            Program.XdbData3060.SubmitChanges();
+            Program.dbData3060.tempBetalforslags.DeleteAllOnSubmit(Program.dbData3060.tempBetalforslags);
+            Program.dbData3060.SubmitChanges();
             if ((imax == 0))
             {
                 this.Label_Betaltekst.Text = "Der ikke noget at betale";
@@ -254,7 +254,7 @@ namespace nsPuls3060
                 {
                     betalingsdato = DateTime.Now,
                 };
-                Program.XdbData3060.tempBetalforslags.InsertOnSubmit(rec_tempBetalforslag);
+                Program.dbData3060.tempBetalforslags.InsertOnSubmit(rec_tempBetalforslag);
                 var i = 0;
                 foreach (ListViewItem lvi in lvwKrdFaktura.Items)
                 {
@@ -276,23 +276,23 @@ namespace nsPuls3060
                      };
                     rec_tempBetalforslag.tempBetalforslaglinies.Add(rec_tempBetalforslaglinie);
                 }
-                Program.XdbData3060.SubmitChanges();
+                Program.dbData3060.SubmitChanges();
 
                 clsOverfoersel objOverfoersel = new clsOverfoersel();
 
-                Tuple<int,int> t = objOverfoersel.kreditor_fakturer_os1(Program.XdbData3060); 
+                Tuple<int,int> t = objOverfoersel.kreditor_fakturer_os1(Program.dbData3060); 
                 AntalBetalinger = t.Item1;
                 lobnr = t.Item2;
                 this.pgmBetal.Value = imax * 2;
                 if ((AntalBetalinger > 0))
                 {
-                    objOverfoersel.krdfaktura_overfoersel_action(Program.XdbData3060, lobnr);
+                    objOverfoersel.krdfaktura_overfoersel_action(Program.dbData3060, lobnr);
                     this.pgmBetal.Value = (imax * 3);
-                    clsSFTP objSFTP = new clsSFTP(Program.XdbData3060);
-                    TilPBSFilename = objSFTP.WriteTilSFtp(Program.XdbData3060, lobnr);
+                    clsSFTP objSFTP = new clsSFTP(Program.dbData3060);
+                    TilPBSFilename = objSFTP.WriteTilSFtp(Program.dbData3060, lobnr);
                     objSFTP.DisconnectSFtp();
                     objSFTP = null;
-                    objOverfoersel.overfoersel_mail(Program.XdbData3060, lobnr);
+                    objOverfoersel.overfoersel_mail(Program.dbData3060, lobnr);
                     clsSumma objSumma = new clsSumma();
                     objSumma.BogforUdBetalinger(lobnr);
                 }

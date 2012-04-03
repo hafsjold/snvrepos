@@ -33,7 +33,7 @@ namespace nsPuls3060
         {
             return new dbData3060DataContext(dbConnectionString());
         }
-        public static dbData3060DataContext XdbData3060
+        public static dbData3060DataContext dbData3060
         {
             get
             {
@@ -48,7 +48,6 @@ namespace nsPuls3060
                 m_dbData3060DataContext = value;
             }
         }
-        //**************************************
         
         static byte[] s_aditionalEntropy = { 9, 8, 7, 6, 5 };
         private static string m_Password;
@@ -375,7 +374,7 @@ namespace nsPuls3060
         public static IQueryable<clsLog> qryLog()
         {
 
-            var qryLogResult = from m in Program.XdbData3060.vMedlemLogs
+            var qryLogResult = from m in Program.dbData3060.vMedlemLogs
                                select new clsLog
                                {
                                    Id = (int?)m.id,

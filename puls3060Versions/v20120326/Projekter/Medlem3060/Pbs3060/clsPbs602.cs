@@ -30,7 +30,7 @@ namespace nsPbs3060
             "  1212031212030000000012755";
             read042(sektion, transkode, rec);
         }
-        public int betalinger_fra_pbs(dbData3060DataContext m_dbData3060)
+        public int betalinger_fra_pbs(dbData3060DataContext p_dbData3060)
         {
             string rec;
             string leverancetype;
@@ -45,9 +45,9 @@ namespace nsPbs3060
             //  sektion = "0211"
             //  rec = "BS0420398564402360000000100000000001231312345678910120310000000012755000000125                         3112031112030000000012755"
 
-            var qrypbsfiles = from h in m_dbData3060.tblpbsfilenames
+            var qrypbsfiles = from h in p_dbData3060.tblpbsfilenames
                               where h.pbsforsendelseid == null
-                              join d in m_dbData3060.tblpbsfiles on h.id equals d.pbsfilesid
+                              join d in p_dbData3060.tblpbsfiles on h.id equals d.pbsfilesid
                               where d.seqnr == 1 && d.data.Substring(16, 4) == "0602" && d.data.Substring(0, 2) == "BS"
                               select new
                               {
@@ -68,7 +68,7 @@ namespace nsPbs3060
                     sektion = "";
                     leverancespecifikation = "";
 
-                    var qrypbsfile = from d in m_dbData3060.tblpbsfiles
+                    var qrypbsfile = from d in p_dbData3060.tblpbsfiles
                                      where d.pbsfilesid == wpbsfilesid && d.data.Substring(0, 6) != "PBCNET"
                                      orderby d.seqnr
                                      select d;
@@ -93,12 +93,12 @@ namespace nsPbs3060
                             if ((leverancetype == "0602"))
                             {
                                 // -- Leverance 0602
-                                var antal = (from c in m_dbData3060.tblfrapbs
+                                var antal = (from c in p_dbData3060.tblfrapbs
                                              where c.leverancespecifikation == leverancespecifikation
                                              select c).Count();
                                 if (antal > 0) { throw new Exception("242 - Leverance med pbsfilesid: " + wpbsfilesid + " og leverancespecifikation: " + leverancespecifikation + " er indlæst tidligere"); }
 
-                                wleveranceid = m_dbData3060.nextval("leveranceid");
+                                wleveranceid = p_dbData3060.nextval("leveranceid");
                                 m_rec_pbsforsendelse = new tblpbsforsendelse
                                 {
                                     delsystem = "BS1",
@@ -107,7 +107,7 @@ namespace nsPbs3060
                                     oprettet = DateTime.Now,
                                     leveranceid = wleveranceid
                                 };
-                                m_dbData3060.tblpbsforsendelses.InsertOnSubmit(m_rec_pbsforsendelse);
+                                p_dbData3060.tblpbsforsendelses.InsertOnSubmit(m_rec_pbsforsendelse);
 
                                 m_rec_frapbs = new tblfrapb
                                 {
@@ -119,7 +119,7 @@ namespace nsPbs3060
                                 };
                                 m_rec_pbsforsendelse.tblfrapbs.Add(m_rec_frapbs);
 
-                                m_rec_pbsfiles = (from c in m_dbData3060.tblpbsfilenames
+                                m_rec_pbsfiles = (from c in p_dbData3060.tblpbsfilenames
                                                   where c.id == rstpbsfiles.id
                                                   select c).First();
                                 m_rec_pbsforsendelse.tblpbsfilenames.Add(m_rec_pbsfiles);
@@ -279,7 +279,7 @@ namespace nsPbs3060
                     }
                 }
             }  // slut rstpbsfiles
-            m_dbData3060.SubmitChanges();
+            p_dbData3060.SubmitChanges();
             return AntalFiler;
         }
 

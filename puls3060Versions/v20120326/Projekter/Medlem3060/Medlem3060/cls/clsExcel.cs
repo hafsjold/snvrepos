@@ -30,7 +30,7 @@ namespace nsPuls3060
             var rec_regnskab = Program.qryAktivRegnskab();
             string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xls";
 
-            var MedlemmerAll = from h in Program.XdbData3060.tblMedlems
+            var MedlemmerAll = from h in Program.dbData3060.tblMedlems
                                select new clsMedlemInternAll
                                {
                                    Nr = h.Nr,
@@ -44,12 +44,12 @@ namespace nsPuls3060
                                    Kon = h.Kon.ToString(),
                                    FodtDato = h.FodtDato,
                                    Bank = h.Bank,
-                                   erMedlem = ((bool)Program.XdbData3060.erMedlem(h.Nr)) ? 1 : 0,
-                                   indmeldelsesDato = Program.XdbData3060.indmeldtdato(h.Nr),
-                                   udmeldelsesDato = Program.XdbData3060.udmeldtdato(h.Nr),
-                                   kontingentBetaltTilDato = Program.XdbData3060.kontingentdato(h.Nr),
-                                   opkrævningsDato = Program.XdbData3060.forfaldsdato(h.Nr),
-                                   kontingentTilbageførtDato = Program.XdbData3060.tilbageførtkontingentdato(h.Nr),
+                                   erMedlem = ((bool)Program.dbData3060.erMedlem(h.Nr)) ? 1 : 0,
+                                   indmeldelsesDato = Program.dbData3060.indmeldtdato(h.Nr),
+                                   udmeldelsesDato = Program.dbData3060.udmeldtdato(h.Nr),
+                                   kontingentBetaltTilDato = Program.dbData3060.kontingentdato(h.Nr),
+                                   opkrævningsDato = Program.dbData3060.forfaldsdato(h.Nr),
+                                   kontingentTilbageførtDato = Program.dbData3060.tilbageførtkontingentdato(h.Nr),
                                };
 
 
@@ -70,7 +70,7 @@ namespace nsPuls3060
                     int row = 1;
                     this.MainformProgressBar.Value = 0;
                     this.MainformProgressBar.Minimum = 0;
-                    this.MainformProgressBar.Maximum = (from h in Program.XdbData3060.tblMedlems select h).Count();
+                    this.MainformProgressBar.Maximum = (from h in Program.dbData3060.tblMedlems select h).Count();
                     this.MainformProgressBar.Step = 1;
                     this.MainformProgressBar.Visible = true;
                     foreach (clsMedlemInternAll m in MedlemmerAll)
@@ -183,7 +183,7 @@ namespace nsPuls3060
             var rec_regnskab = Program.qryAktivRegnskab();
             string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xls";
 
-            var MedlemmerAll = from h in Program.XdbData3060.tblMedlems
+            var MedlemmerAll = from h in Program.dbData3060.tblMedlems
                                select new clsMedlemExternAll
                                {
                                    Nr = h.Nr,
@@ -196,8 +196,8 @@ namespace nsPuls3060
                                    Email = h.Email,
                                    Kon = h.Kon.ToString(),
                                    FodtDato = h.FodtDato,
-                                   erMedlem = ((bool)Program.XdbData3060.erMedlem(h.Nr)) ? 1 : 0,
-                                   erPBS = ((bool)Program.XdbData3060.erPBS(h.Nr)) ? 1 : 0,
+                                   erMedlem = ((bool)Program.dbData3060.erMedlem(h.Nr)) ? 1 : 0,
+                                   erPBS = ((bool)Program.dbData3060.erPBS(h.Nr)) ? 1 : 0,
                                };
 
 
@@ -218,7 +218,7 @@ namespace nsPuls3060
                     int row = 1;
                     this.MainformProgressBar.Value = 0;
                     this.MainformProgressBar.Minimum = 0;
-                    this.MainformProgressBar.Maximum = (from h in Program.XdbData3060.tblMedlems select h).Count();
+                    this.MainformProgressBar.Maximum = (from h in Program.dbData3060.tblMedlems select h).Count();
                     this.MainformProgressBar.Step = 1;
                     this.MainformProgressBar.Visible = true;
                     foreach (clsMedlemExternAll m in MedlemmerAll)
@@ -328,7 +328,7 @@ namespace nsPuls3060
             var rec_regnskab = Program.qryAktivRegnskab();
             string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xls";
 
-            var MedlemmerAll = from h in Program.XdbData3060.tblMedlems
+            var MedlemmerAll = from h in Program.dbData3060.tblMedlems
                                select new clsMedlemExternAll
                                {
                                    Nr = h.Nr,
@@ -341,8 +341,8 @@ namespace nsPuls3060
                                    Email = h.Email,
                                    Kon = h.Kon.ToString(),
                                    FodtDato = h.FodtDato,
-                                   erMedlem = ((bool)Program.XdbData3060.erMedlem(h.Nr)) ? 1 : 0,
-                                   erPBS = ((bool)Program.XdbData3060.erPBS(h.Nr)) ? 1 : 0,
+                                   erMedlem = ((bool)Program.dbData3060.erMedlem(h.Nr)) ? 1 : 0,
+                                   erPBS = ((bool)Program.dbData3060.erPBS(h.Nr)) ? 1 : 0,
                                };
             
             var MedlemmerNotPBS = from h in MedlemmerAll
@@ -380,7 +380,7 @@ namespace nsPuls3060
                     int row = 1;
                     this.MainformProgressBar.Value = 0;
                     this.MainformProgressBar.Minimum = 0;
-                    this.MainformProgressBar.Maximum = (from h in Program.XdbData3060.tblMedlems select h).Count();
+                    this.MainformProgressBar.Maximum = (from h in Program.dbData3060.tblMedlems select h).Count();
                     this.MainformProgressBar.Step = 1;
                     this.MainformProgressBar.Visible = true;
                     foreach (clsMedlemNotPBS m in MedlemmerNotPBS)
@@ -522,7 +522,7 @@ namespace nsPuls3060
                                    Beløb = h.Bruttobeløb,
                                };
 
-            var MedlemmerAll = from h in Program.XdbData3060.tblMedlems
+            var MedlemmerAll = from h in Program.dbData3060.tblMedlems
                                select new clsMedlemExternAll
                                {
                                    Nr = h.Nr,
@@ -535,8 +535,8 @@ namespace nsPuls3060
                                    Email = h.Email,
                                    Kon = "X",
                                    FodtDato = null,
-                                   erMedlem = ((bool)Program.XdbData3060.erMedlem(h.Nr)) ? 1 : 0,
-                                   erPBS = ((bool)Program.XdbData3060.erPBS(h.Nr)) ? 1 : 0,
+                                   erMedlem = ((bool)Program.dbData3060.erMedlem(h.Nr)) ? 1 : 0,
+                                   erPBS = ((bool)Program.dbData3060.erPBS(h.Nr)) ? 1 : 0,
                                };
 
             var erMedlem = from h in MedlemmerAll
@@ -746,13 +746,13 @@ namespace nsPuls3060
             string local_filename = f.Name;
             FileStream fs = f.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
 
-            string SmtpUsername = Program.XdbData3060.GetSysinfo("SMTPUSER");
-            string SmtpPassword = Program.XdbData3060.GetSysinfo("SMTPPASSWD");
+            string SmtpUsername = Program.dbData3060.GetSysinfo("SMTPUSER");
+            string SmtpPassword = Program.dbData3060.GetSysinfo("SMTPPASSWD");
             var smtp = new SmtpClient
             {
-                Host = Program.XdbData3060.GetSysinfo("SMTPHOST"),
-                Port = int.Parse(Program.XdbData3060.GetSysinfo("SMTPPORT")),
-                EnableSsl = bool.Parse(Program.XdbData3060.GetSysinfo("SMTPSSL")),
+                Host = Program.dbData3060.GetSysinfo("SMTPHOST"),
+                Port = int.Parse(Program.dbData3060.GetSysinfo("SMTPPORT")),
+                EnableSsl = bool.Parse(Program.dbData3060.GetSysinfo("SMTPSSL")),
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
                 Credentials = new NetworkCredential(SmtpUsername, SmtpPassword)
@@ -762,9 +762,9 @@ namespace nsPuls3060
             email.Subject = PSubjectBody + ": " + local_filename;
             email.Body = PSubjectBody + ": " + local_filename;
 
-            email.From = new MailAddress(Program.XdbData3060.GetSysinfo("MAILFROM"));
-            email.ReplyToList.Add( new MailAddress(Program.XdbData3060.GetSysinfo("MAILREPLY")));
-            email.Bcc.Add(new MailAddress(Program.XdbData3060.GetSysinfo("MAILTOADDR"), Program.XdbData3060.GetSysinfo("MAILTONAME")));
+            email.From = new MailAddress(Program.dbData3060.GetSysinfo("MAILFROM"));
+            email.ReplyToList.Add( new MailAddress(Program.dbData3060.GetSysinfo("MAILREPLY")));
+            email.Bcc.Add(new MailAddress(Program.dbData3060.GetSysinfo("MAILTOADDR"), Program.dbData3060.GetSysinfo("MAILTONAME")));
             email.Attachments.Add(new Attachment(fs, local_filename, "application/vnd.ms-excel"));
             smtp.Send(email);
         }

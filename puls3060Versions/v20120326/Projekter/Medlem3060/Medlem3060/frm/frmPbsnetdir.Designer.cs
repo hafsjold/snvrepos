@@ -248,7 +248,7 @@
             // 
             // bsMemPbsnetdir
             // 
-            this.bsMemPbsnetdir.DataSource = typeof(nsPuls3060.recPbsnetdir);
+            this.bsMemPbsnetdir.DataSource = typeof(nsPbs3060.recPbsnetdir);
             // 
             // FrmPbsnetdir
             // 

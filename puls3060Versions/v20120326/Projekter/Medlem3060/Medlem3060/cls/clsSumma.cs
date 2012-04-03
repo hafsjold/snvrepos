@@ -21,14 +21,14 @@ namespace nsPuls3060
                 if (rec_regnskab.DatoLaas > Startdato) Startdato = rec_regnskab.DatoLaas;
             }
             int saveBetid = 0;
-            var bogf = from f in Program.XdbData3060.tblfaks
+            var bogf = from f in Program.dbData3060.tblfaks
                        where Startdato <= f.betalingsdato && f.betalingsdato <= Slutdato
-                       join m in Program.XdbData3060.tblMedlems on f.Nr equals m.Nr
-                       join bl in Program.XdbData3060.tblbetlins on f.faknr equals bl.faknr
+                       join m in Program.dbData3060.tblMedlems on f.Nr equals m.Nr
+                       join bl in Program.dbData3060.tblbetlins on f.faknr equals bl.faknr
                        where bl.pbstranskode == "0236" || bl.pbstranskode == "0297"
-                       join b in Program.XdbData3060.tblbets on bl.betid equals b.id
+                       join b in Program.dbData3060.tblbets on bl.betid equals b.id
                        where b.summabogfort == null ||  b.summabogfort == false
-                       join p in Program.XdbData3060.tblfrapbs on b.frapbsid equals p.id
+                       join p in Program.dbData3060.tblfrapbs on b.frapbsid equals p.id
                        orderby p.id, b.id, bl.id
                        select new
                        {
@@ -82,7 +82,7 @@ namespace nsPuls3060
                         };
                         Program.karKladde.Add(gkl);
 
-                        var rec_bet = (from ub in Program.XdbData3060.tblbets where ub.id == b.Betid select ub).First();
+                        var rec_bet = (from ub in Program.dbData3060.tblbets where ub.id == b.Betid select ub).First();
                         rec_bet.summabogfort = true;
 
                     }
@@ -101,7 +101,7 @@ namespace nsPuls3060
                 }
                 Program.karStatus.save();
                 Program.karKladde.save();
-                Program.XdbData3060.SubmitChanges();
+                Program.dbData3060.SubmitChanges();
             }
             return AntalBetalinger;
         }
@@ -111,9 +111,9 @@ namespace nsPuls3060
             var bogf = from f in Program.karFakturaer_k
                        where f.saldo != 0
                        //join o in Program.dbData3060.tbloverforsels on f.fakid equals o.SFakID
-                       join o in Program.XdbData3060.tbloverforsels on f.faknr equals o.SFaknr
+                       join o in Program.dbData3060.tbloverforsels on f.faknr equals o.SFaknr
                        where o.tilpbsid == lobnr
-                       join m in Program.XdbData3060.tblMedlems on o.Nr equals m.Nr
+                       join m in Program.dbData3060.tblMedlems on o.Nr equals m.Nr
                        orderby o.betalingsdato ascending
                        select new
                        {
@@ -166,7 +166,7 @@ namespace nsPuls3060
 
                 Program.karStatus.save();
                 Program.karKladde.save();
-                Program.XdbData3060.SubmitChanges();
+                Program.dbData3060.SubmitChanges();
             }
             return AntalBetalinger;
         }

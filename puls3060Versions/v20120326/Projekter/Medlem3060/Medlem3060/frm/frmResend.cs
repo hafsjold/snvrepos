@@ -22,8 +22,8 @@ namespace nsPuls3060
             int pbsfilesid = int.Parse(txtpbsfilesid.Text);
             button1.Enabled = false;
             txtpbsfilesid.Enabled = false;
-            clsSFTP objSFTP = new clsSFTP(Program.XdbData3060);
-            objSFTP.ReWriteTilSFtp(Program.XdbData3060, pbsfilesid);
+            clsSFTP objSFTP = new clsSFTP(Program.dbData3060);
+            objSFTP.ReWriteTilSFtp(Program.dbData3060, pbsfilesid);
             objSFTP.DisconnectSFtp();
             objSFTP = null;
             button1.Text = "Udført";

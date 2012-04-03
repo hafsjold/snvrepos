@@ -23,8 +23,8 @@ namespace nsPuls3060
         {
             m_listfile = true;
             this.Text = "Pbsfiles";
-            var qry = from p in Program.XdbData3060.tblpbsfilenames
-                      join f in Program.XdbData3060.tblpbsforsendelses on p.pbsforsendelseid equals f.id into forsendelse
+            var qry = from p in Program.dbData3060.tblpbsfilenames
+                      join f in Program.dbData3060.tblpbsforsendelses on p.pbsforsendelseid equals f.id into forsendelse
                       from f in forsendelse.DefaultIfEmpty()
                       select new
                       {
@@ -84,8 +84,8 @@ namespace nsPuls3060
         {
             m_listfile = false;
             this.Text = "Pbsfile";
-            var qry = from p in Program.XdbData3060.tblpbsfiles
-                      join f in Program.XdbData3060.tblpbsfilenames on p.pbsfilesid equals f.id
+            var qry = from p in Program.dbData3060.tblpbsfiles
+                      join f in Program.dbData3060.tblpbsfilenames on p.pbsfilesid equals f.id
                       orderby f.id descending, p.seqnr
                       select new
                       {
@@ -105,7 +105,7 @@ namespace nsPuls3060
         {
             m_listfile = false;
             this.Text = "Pbsforsendelse";
-            bindingSource1.DataSource = Program.XdbData3060.tblpbsforsendelses;
+            bindingSource1.DataSource = Program.dbData3060.tblpbsforsendelses;
             dataGridView1.DataSource = bindingSource1;
 
             // Grid attributes 
@@ -140,7 +140,7 @@ namespace nsPuls3060
 
         private void fillrichData(int filesid)
         {
-            var src = from d in Program.XdbData3060.tblpbsfiles
+            var src = from d in Program.dbData3060.tblpbsfiles
                       where d.pbsfilesid == filesid
                       orderby d.seqnr
                       select d;

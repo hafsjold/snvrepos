@@ -193,7 +193,6 @@
     <Compile Include="kar\karPosteringsjournal.cs" />
     <Compile Include="kar\karKladde.cs" />
     <Compile Include="mem\memRegnskaber.cs" />
-    <Compile Include="mem\memPbsnetdir.cs" />
     <Compile Include="mem\memAktivRegnskab.cs" />
     <Compile Include="frm\frmKreditor.cs">
       <SubType>Form</SubType>

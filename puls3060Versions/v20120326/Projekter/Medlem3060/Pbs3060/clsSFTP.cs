@@ -20,15 +20,15 @@ namespace nsPbs3060
         private tblsftp m_rec_sftp;
 
         private clsSFTP() { }
-        public clsSFTP(dbData3060DataContext m_dbData3060)
+        public clsSFTP(dbData3060DataContext p_dbData3060)
         {
 #if (DEBUG)
-            //m_rec_sftp = (from s in m_dbData3060.tblsftps where s.navn == "TestHD36" select s).First();
-            m_rec_sftp = (from s in m_dbData3060.tblsftps where s.navn == "Test" select s).First();
-            //m_rec_sftp = (from s in m_dbData3060.tblsftps where s.navn == "Produktion" select s).First();
+            m_rec_sftp = (from s in p_dbData3060.tblsftps where s.navn == "TestHD36" select s).First();
+            //m_rec_sftp = (from s in p_dbData3060.tblsftps where s.navn == "Test" select s).First();
+            //m_rec_sftp = (from s in p_dbData3060.tblsftps where s.navn == "Produktion" select s).First();
 #else
-            m_rec_sftp = (from s in m_dbData3060.tblsftps where s.navn == "Test" select s).First();
-            //m_rec_sftp = (from s in m_dbData3060.tblsftps where s.navn == "Produktion" select s).First();
+            m_rec_sftp = (from s in p_dbData3060.tblsftps where s.navn == "Test" select s).First();
+            //m_rec_sftp = (from s in p_dbData3060.tblsftps where s.navn == "Produktion" select s).First();
 #endif
 
             byte[] bPK = Encoding.UTF8.GetBytes(m_rec_sftp.certificate);
@@ -43,17 +43,17 @@ namespace nsPbs3060
              m_sftp.Disconnect();
         }
 
-        public string WriteTilSFtp(dbData3060DataContext m_dbData3060, int lobnr)
+        public string WriteTilSFtp(dbData3060DataContext p_dbData3060, int lobnr)
         {
             string TilPBSFilename = "Unknown";
             int FilesSize;
 
             var qry_selectfiles =
-                from h in m_dbData3060.tblpbsforsendelses
-                join d1 in m_dbData3060.tblpbsfilenames on h.id equals d1.pbsforsendelseid into details1
+                from h in p_dbData3060.tblpbsforsendelses
+                join d1 in p_dbData3060.tblpbsfilenames on h.id equals d1.pbsforsendelseid into details1
                 from d1 in details1.DefaultIfEmpty()
                 where d1.id != null && d1.filename == null
-                join d2 in m_dbData3060.tbltilpbs on h.id equals d2.pbsforsendelseid into details2
+                join d2 in p_dbData3060.tbltilpbs on h.id equals d2.pbsforsendelseid into details2
                 from d2 in details2.DefaultIfEmpty()
                 where d2.id == lobnr
                 select new
@@ -74,13 +74,13 @@ namespace nsPbs3060
             {
                 var rec_selecfiles = qry_selectfiles.First();
 
-                var qry_pbsfiles = from h in m_dbData3060.tblpbsfilenames
+                var qry_pbsfiles = from h in p_dbData3060.tblpbsfilenames
                                    where h.id == rec_selecfiles.pbsfilesid
                                    select h;
                 if (qry_pbsfiles.Count() > 0)
                 {
                     tblpbsfilename m_rec_pbsfiles = qry_pbsfiles.First();
-                    TilPBSFilename = AddPbcnetRecords(m_dbData3060, rec_selecfiles.delsystem, rec_selecfiles.Leveranceid, m_rec_pbsfiles.id);
+                    TilPBSFilename = AddPbcnetRecords(p_dbData3060, rec_selecfiles.delsystem, rec_selecfiles.Leveranceid, m_rec_pbsfiles.id);
 
                     var qry_pbsfile =
                         from h in m_rec_pbsfiles.tblpbsfiles
@@ -98,7 +98,7 @@ namespace nsPbs3060
                     byte[] b_TilPBSFile = System.Text.Encoding.GetEncoding("windows-1252").GetBytes(c_TilPBSFile);
                     FilesSize = b_TilPBSFile.Length;
 
-                    sendAttachedFile(m_dbData3060, TilPBSFilename, b_TilPBSFile, true);
+                    sendAttachedFile(p_dbData3060, TilPBSFilename, b_TilPBSFile, true);
 
                     string fullpath = m_rec_sftp.inbound + "/" + TilPBSFilename;
                     MemoryStream ms_TilPBSFile = new MemoryStream(b_TilPBSFile);
@@ -111,23 +111,23 @@ namespace nsPbs3060
                     m_rec_pbsfiles.atime = DateTime.Now;
                     m_rec_pbsfiles.mtime = DateTime.Now;
                     m_rec_pbsfiles.transmittime = DateTime.Now;
-                    m_dbData3060.SubmitChanges();
+                    p_dbData3060.SubmitChanges();
                 }
             }
             return TilPBSFilename;
         }
 
-        public void ReWriteTilSFtp(dbData3060DataContext m_dbData3060, int ppbsfilesid)
+        public void ReWriteTilSFtp(dbData3060DataContext p_dbData3060, int ppbsfilesid)
         {
             string TilPBSFilename = "Unknown";
             int FilesSize;
 
             var qry_selectfiles =
-                from h in m_dbData3060.tblpbsforsendelses
-                join d1 in m_dbData3060.tblpbsfilenames on h.id equals d1.pbsforsendelseid into details1
+                from h in p_dbData3060.tblpbsforsendelses
+                join d1 in p_dbData3060.tblpbsfilenames on h.id equals d1.pbsforsendelseid into details1
                 from d1 in details1.DefaultIfEmpty()
                 where d1.id == ppbsfilesid
-                join d2 in m_dbData3060.tbltilpbs on h.id equals d2.pbsforsendelseid into details2
+                join d2 in p_dbData3060.tbltilpbs on h.id equals d2.pbsforsendelseid into details2
                 from d2 in details2.DefaultIfEmpty()
                 select new
                 {
@@ -147,7 +147,7 @@ namespace nsPbs3060
             {
                 var rec_selecfiles = qry_selectfiles.First();
 
-                var qry_pbsfiles = from h in m_dbData3060.tblpbsfilenames
+                var qry_pbsfiles = from h in p_dbData3060.tblpbsfilenames
                                    where h.id == rec_selecfiles.pbsfilesid
                                    select h;
                 if (qry_pbsfiles.Count() > 0)
@@ -174,7 +174,7 @@ namespace nsPbs3060
                     byte[] b_TilPBSFile = System.Text.Encoding.GetEncoding("windows-1252").GetBytes(c_TilPBSFile);
                     FilesSize = b_TilPBSFile.Length;
 
-                    sendAttachedFile(m_dbData3060, TilPBSFilename, b_TilPBSFile, true);
+                    sendAttachedFile(p_dbData3060, TilPBSFilename, b_TilPBSFile, true);
 
                     string fullpath = m_rec_sftp.inbound + "/" + TilPBSFilename;
                     MemoryStream ms_TilPBSFile = new MemoryStream(b_TilPBSFile);
@@ -187,12 +187,12 @@ namespace nsPbs3060
                     m_rec_pbsfiles.atime = DateTime.Now;
                     m_rec_pbsfiles.mtime = DateTime.Now;
                     m_rec_pbsfiles.transmittime = DateTime.Now;
-                    m_dbData3060.SubmitChanges();
+                    p_dbData3060.SubmitChanges();
                 }
             }
         }
 
-        public int ReadFraSFtp(dbData3060DataContext m_dbData3060)
+        public int ReadFraSFtp(dbData3060DataContext p_dbData3060)
         {
             m_memPbsnetdir = new MemPbsnetdir(); //opret ny memPbsnetdir
 
@@ -220,7 +220,7 @@ namespace nsPbs3060
             
             var leftqry_pbsnetdir =
                 from h in m_memPbsnetdir
-                //join d1 in m_dbData3060.Tblpbsfiles on new { h.Path, h.Filename } equals new { d1.Path, d1.Filename } into details
+                //join d1 in p_dbData3060.Tblpbsfiles on new { h.Path, h.Filename } equals new { d1.Path, d1.Filename } into details
                 //from d1 in details.DefaultIfEmpty(new Tblpbsfiles { Id = -1, Type = (int?)null, Path = null, Filename = null, Size = (int?)null, Atime = (DateTime?)null, Mtime = (DateTime?)null, Perm = null, Uid = (int?)null, Gid = (int?)null })
                 //where d1.Path == null && d1.Filename == null
                 select h;
@@ -242,7 +242,7 @@ namespace nsPbs3060
                         uid = rec_pbsnetdir.Uid,
                         gid = rec_pbsnetdir.Gid
                     };
-                    m_dbData3060.tblpbsfilenames.InsertOnSubmit(m_rec_pbsfiles);
+                    p_dbData3060.tblpbsfilenames.InsertOnSubmit(m_rec_pbsfiles);
 
                     //***********************************************************************
                     //  Open a file on the server:
@@ -252,7 +252,7 @@ namespace nsPbs3060
                     byte[] b_data = new byte[numBytes];
                     MemoryStream stream = new MemoryStream(b_data, true);
                     m_sftp.DownloadFile(fullpath, stream);
-                    sendAttachedFile(m_dbData3060,rec_pbsnetdir.Filename, b_data, false);
+                    sendAttachedFile(p_dbData3060,rec_pbsnetdir.Filename, b_data, false);
                     char[] c_data = System.Text.Encoding.GetEncoding("windows-1252").GetString(b_data).ToCharArray();
                     string filecontens = new string(c_data);
 
@@ -282,11 +282,11 @@ namespace nsPbs3060
                     }
 
                     m_rec_pbsfiles.transmittime = DateTime.Now;
-                    m_dbData3060.SubmitChanges();
+                    p_dbData3060.SubmitChanges();
 
                 }
             }
-            m_dbData3060.SubmitChanges();
+            p_dbData3060.SubmitChanges();
             return AntalFiler;
         }
        
@@ -325,17 +325,17 @@ namespace nsPbs3060
         }
         
         
-        public void sendAttachedFile(dbData3060DataContext m_dbData3060, string filename, byte[] data, bool bTilPBS)
+        public void sendAttachedFile(dbData3060DataContext p_dbData3060, string filename, byte[] data, bool bTilPBS)
         {
             string local_filename = filename.Replace('.', '_') + ".txt";
 
-            string SmtpUsername = m_dbData3060.GetSysinfo("SMTPUSER");
-            string SmtpPassword = m_dbData3060.GetSysinfo("SMTPPASSWD"); 
+            string SmtpUsername = p_dbData3060.GetSysinfo("SMTPUSER");
+            string SmtpPassword = p_dbData3060.GetSysinfo("SMTPPASSWD"); 
             var smtp = new SmtpClient
             {
-                Host = m_dbData3060.GetSysinfo("SMTPHOST"),
-                Port = int.Parse(m_dbData3060.GetSysinfo("SMTPPORT")),
-                EnableSsl = bool.Parse(m_dbData3060.GetSysinfo("SMTPSSL")),
+                Host = p_dbData3060.GetSysinfo("SMTPHOST"),
+                Port = int.Parse(p_dbData3060.GetSysinfo("SMTPPORT")),
+                EnableSsl = bool.Parse(p_dbData3060.GetSysinfo("SMTPSSL")),
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
                 Credentials = new NetworkCredential(SmtpUsername, SmtpPassword)
@@ -363,16 +363,16 @@ namespace nsPbs3060
 #endif
             }
 
-            email.To.Add(new MailAddress( m_dbData3060.GetSysinfo("MAILTOADDR"),m_dbData3060.GetSysinfo("MAILTONAME")));
-            email.From = new MailAddress(m_dbData3060.GetSysinfo("MAILFROM"));
-            email.ReplyToList.Add(new MailAddress(m_dbData3060.GetSysinfo("MAILREPLY")));
+            email.To.Add(new MailAddress( p_dbData3060.GetSysinfo("MAILTOADDR"),p_dbData3060.GetSysinfo("MAILTONAME")));
+            email.From = new MailAddress(p_dbData3060.GetSysinfo("MAILFROM"));
+            email.ReplyToList.Add(new MailAddress(p_dbData3060.GetSysinfo("MAILREPLY")));
             email.Attachments.Add(new Attachment(new MemoryStream(data),local_filename,"text/plain"));
             smtp.Send(email);
         }
         
 
 
-        public string AddPbcnetRecords(dbData3060DataContext m_dbData3060, string delsystem, int leveranceid, int pbsfilesid)
+        public string AddPbcnetRecords(dbData3060DataContext p_dbData3060, string delsystem, int leveranceid, int pbsfilesid)
         {
             int antal;
             int pbcnetrecords;
@@ -381,21 +381,21 @@ namespace nsPbs3060
             string filename;
             string rec;
 
-            pbcnetrecords = (from h in m_dbData3060.tblpbsfiles
+            pbcnetrecords = (from h in p_dbData3060.tblpbsfiles
                              where h.pbsfilesid == pbsfilesid & (h.seqnr == 0 | h.seqnr == 9999)
                              select h).Count();
 
             if (pbcnetrecords == 0)
             {
                 // Find antal records
-                antal = (from h in m_dbData3060.tblpbsfiles
+                antal = (from h in p_dbData3060.tblpbsfiles
                          where h.pbsfilesid == pbsfilesid & h.seqnr != 0 & h.seqnr != 9999
                          select h).Count();
                 transmisionsdato = DateTime.Now;
 
-                idlev = m_dbData3060.nextval("idlev");
+                idlev = p_dbData3060.nextval("idlev");
 
-                tblpbsfilename rec_pbsfiles = (from h in m_dbData3060.tblpbsfilenames where h.id == pbsfilesid select h).First();
+                tblpbsfilename rec_pbsfiles = (from h in p_dbData3060.tblpbsfilenames where h.id == pbsfilesid select h).First();
 
                 rec = write00(delsystem, transmisionsdato, idlev, leveranceid);
                 tblpbsfile rec_pbsfile = new tblpbsfile { seqnr = 0, data = rec };
@@ -405,7 +405,7 @@ namespace nsPbs3060
                 rec_pbsfile = new tblpbsfile { seqnr = 9999, data = rec };
                 rec_pbsfiles.tblpbsfiles.Add(rec_pbsfile);
 
-                m_dbData3060.SubmitChanges();
+                p_dbData3060.SubmitChanges();
 
                 filename = "D";
                 filename += lpad(String.Format("{0:yyMMdd}", transmisionsdato), 6, '?');

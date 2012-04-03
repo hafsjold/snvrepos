@@ -19,11 +19,11 @@ namespace nsPuls3060
 
         private void FrmPbsnetdir_Load(object sender, EventArgs e)
         {
-            clsSFTP objSFTP = new clsSFTP(Program.XdbData3060);
+            clsSFTP objSFTP = new clsSFTP(Program.dbData3060);
             objSFTP.ReadDirFraSFtp();
+            this.bsMemPbsnetdir.DataSource = objSFTP.m_memPbsnetdir;
             objSFTP.DisconnectSFtp();
             objSFTP = null;
-            this.bsMemPbsnetdir.DataSource = Program.memPbsnetdir; //***MHA***
-        }
+         }
     }
 }

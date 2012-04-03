@@ -18,7 +18,7 @@ namespace nsPuls3060
 
         private void FrmInfotekst_Load(object sender, EventArgs e)
         {
-            this.bsInfotekst.DataSource = Program.XdbData3060.tblinfoteksts;
+            this.bsInfotekst.DataSource = Program.dbData3060.tblinfoteksts;
         }
     }
 }
