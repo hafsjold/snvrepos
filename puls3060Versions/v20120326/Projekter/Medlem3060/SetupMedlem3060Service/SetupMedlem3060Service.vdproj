@@ -15,13 +15,7 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_1E3B0A0C36AE95E325B1381BD42F5C9E"
-        "OwnerKey" = "8:_73BC74B86F16437387BFD4EFC580AEEC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_72BF8783489273124102D52D4296CAB9"
+        "MsmKey" = "8:_25B4D2CE726B718AC1F7821BD043FC14"
         "OwnerKey" = "8:_73BC74B86F16437387BFD4EFC580AEEC"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -33,38 +27,44 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_B3999D3624AA597B43A212BC7C17C5E7"
-        "OwnerKey" = "8:_72BF8783489273124102D52D4296CAB9"
+        "MsmKey" = "8:_DD4ED4632B162420EC2B1413DE0AE345"
+        "OwnerKey" = "8:_73BC74B86F16437387BFD4EFC580AEEC"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_B3999D3624AA597B43A212BC7C17C5E7"
+        "MsmKey" = "8:_EC4369DE9AA50D49A6DBC7B8EAC1D87D"
+        "OwnerKey" = "8:_25B4D2CE726B718AC1F7821BD043FC14"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_EC4369DE9AA50D49A6DBC7B8EAC1D87D"
         "OwnerKey" = "8:_73BC74B86F16437387BFD4EFC580AEEC"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_1E3B0A0C36AE95E325B1381BD42F5C9E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_72BF8783489273124102D52D4296CAB9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B3999D3624AA597B43A212BC7C17C5E7"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_73BC74B86F16437387BFD4EFC580AEEC"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_DD4ED4632B162420EC2B1413DE0AE345"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_25B4D2CE726B718AC1F7821BD043FC14"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_EC4369DE9AA50D49A6DBC7B8EAC1D87D"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -92,6 +92,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:C:\\Users\\mha\\Documents\\Medlem3060v20120326\\3060Install\\Medlem3060Service\\"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
         "Release"
@@ -109,6 +122,27 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:\\\\hd11\\F_Drev\\Medlem3060ServiceInstal"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
+            }
         }
     }
     "Deployable"
@@ -166,45 +200,14 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_1E3B0A0C36AE95E325B1381BD42F5C9E"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:NCrontab, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_1E3B0A0C36AE95E325B1381BD42F5C9E"
-                    {
-                    "Name" = "8:NCrontab.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:NCrontab.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_75E5581E763241CF91081EF3E5060AA7"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_72BF8783489273124102D52D4296CAB9"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_25B4D2CE726B718AC1F7821BD043FC14"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:Pbs3060, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_72BF8783489273124102D52D4296CAB9"
+                    "_25B4D2CE726B718AC1F7821BD043FC14"
                     {
                     "Name" = "8:Pbs3060.dll"
                     "Attributes" = "3:512"
@@ -228,14 +231,45 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B3999D3624AA597B43A212BC7C17C5E7"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_DD4ED4632B162420EC2B1413DE0AE345"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:NCrontab, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_DD4ED4632B162420EC2B1413DE0AE345"
+                    {
+                    "Name" = "8:NCrontab.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:NCrontab.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_75E5581E763241CF91081EF3E5060AA7"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_EC4369DE9AA50D49A6DBC7B8EAC1D87D"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:Renci.SshNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_B3999D3624AA597B43A212BC7C17C5E7"
+                    "_EC4369DE9AA50D49A6DBC7B8EAC1D87D"
                     {
                     "Name" = "8:Renci.SshNet.dll"
                     "Attributes" = "3:512"
@@ -316,7 +350,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Medlem3060Service"
         "ProductCode" = "8:{628E3B4C-BC32-4F35-ADB5-BD1202983D79}"
-        "PackageCode" = "8:{7385F2C1-736C-4F9C-9246-0EDD26628156}"
+        "PackageCode" = "8:{1D2D77B2-4304-4F90-98CC-8B5EEF80A37C}"
         "UpgradeCode" = "8:{10717FCF-B543-4619-BAFE-EC6E7AF8DA71}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -837,7 +871,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_73BC74B86F16437387BFD4EFC580AEEC"
             {
-            "SourcePath" = "8:..\\Medlem3060Service\\obj\\Debug\\Medlem3060Service.exe"
+            "SourcePath" = "8:..\\Medlem3060Service\\obj\\Release\\Medlem3060Service.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_75E5581E763241CF91081EF3E5060AA7"
