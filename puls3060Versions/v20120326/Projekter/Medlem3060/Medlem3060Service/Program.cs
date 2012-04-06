@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceProcess;
 using System.Text;
+using System.Diagnostics;
 
 namespace nsMedlem3060Service
 {
@@ -48,6 +49,19 @@ namespace nsMedlem3060Service
         /// </summary>
         static void Main()
         {
+            Trace.Listeners.RemoveAt(0);
+            DefaultTraceListener defaultListener;
+            defaultListener = new DefaultTraceListener();
+            Trace.Listeners.Add(defaultListener);
+            
+            if (!EventLog.SourceExists("Medlem3060"))
+                EventLog.CreateEventSource("Medlem3060", "Application");
+            
+            Trace.Listeners.Add(new EventLogTraceListener("Medlem3060"));
+            Trace.WriteLine("Medlem3060Service Starter");
+            EventLog.WriteEntry("Medlem3060", "message string", EventLogEntryType.Information, 101);
+
+
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[] 
 			{ 

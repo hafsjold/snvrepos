@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Security.Cryptography;
 using System.Text;
 using nsPbs3060;
+using System.Diagnostics;
 
 
 
@@ -15,6 +16,25 @@ namespace nsPuls3060
     static class Program
     {
         private static dbData3060DataContext m_dbData3060DataContext;
+        public static string ConnectStringWithoutPassword
+        {
+            get
+            {
+                if (m_ConnectStringWithoutPassword == null)
+                {
+#if (DEBUG)
+                    m_ConnectStringWithoutPassword = global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString_Test;
+#else
+                    m_ConnectStringWithoutPassword = global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString_Prod;
+#endif
+                }
+                return m_ConnectStringWithoutPassword;
+            }
+            set
+            {
+                m_ConnectStringWithoutPassword = value;
+            }
+        }
         public static string dbConnectionString()
         {
             DialogResult res = DialogResult.OK;
@@ -22,12 +42,8 @@ namespace nsPuls3060
             if (Unprotect(m_Password) == null)
                 res = (new FrmPassword()).ShowDialog();
             if (res != DialogResult.OK) return null;
-#if (DEBUG)
-            string con = global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString_Test + ";Password=" + Unprotect(m_Password);
-#else
-            string con = global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString_Prod + ";Password=" + Unprotect(m_Password);    
-#endif
-            return con;
+            Trace.WriteLine(ConnectStringWithoutPassword, "ConnectString");
+            return ConnectStringWithoutPassword + ";Password=" + Unprotect(m_Password);
         }
         public static dbData3060DataContext dbData3060DataContextFactory()
         {
@@ -48,8 +64,9 @@ namespace nsPuls3060
                 m_dbData3060DataContext = value;
             }
         }
-        
+
         static byte[] s_aditionalEntropy = { 9, 8, 7, 6, 5 };
+        private static string m_ConnectStringWithoutPassword;
         private static string m_Password;
         private static string m_path_to_lock_summasummarum_kontoplan;
         private static FileStream m_filestream_to_lock_summasummarum_kontoplan;
@@ -418,7 +435,7 @@ namespace nsPuls3060
             {
                 var data = Encoding.Unicode.GetBytes(secret);
                 byte[] encrypted = ProtectedData.Protect(data, s_aditionalEntropy, DataProtectionScope.CurrentUser);
-                return Convert.ToBase64String(encrypted); 
+                return Convert.ToBase64String(encrypted);
             }
             catch (CryptographicException)
             {
@@ -431,7 +448,7 @@ namespace nsPuls3060
             {
                 byte[] data = Convert.FromBase64String(cipher);
                 byte[] decrypted = ProtectedData.Unprotect(data, s_aditionalEntropy, DataProtectionScope.CurrentUser);
-                return Encoding.Unicode.GetString(decrypted); 
+                return Encoding.Unicode.GetString(decrypted);
 
             }
             catch (CryptographicException)
@@ -446,6 +463,15 @@ namespace nsPuls3060
         [STAThread]
         static void Main()
         {
+            Trace.Listeners.RemoveAt(0);
+            DefaultTraceListener defaultListener;
+            defaultListener = new DefaultTraceListener();
+            Trace.Listeners.Add(defaultListener);
+            if (!EventLog.SourceExists("Medlem3060"))
+                EventLog.CreateEventSource("Medlem3060", "Application");
+            Trace.Listeners.Add(new EventLogTraceListener("Medlem3060"));
+
+            Trace.WriteLine("Starter Medlem3060");
             System.Diagnostics.Process[] p = System.Diagnostics.Process.GetProcessesByName("Medlem3060");
             if (p.Length > 1)
             {

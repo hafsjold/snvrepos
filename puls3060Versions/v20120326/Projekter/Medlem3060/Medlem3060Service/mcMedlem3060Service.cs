@@ -21,6 +21,7 @@ namespace nsMedlem3060Service
         public mcMedlem3060Service()
         {
             InitializeComponent();
+/*
 #if (DEBUG)
             clsSchedule.LoadSchedule();
             Thread t = new Thread(Scheduler);
@@ -28,18 +29,19 @@ namespace nsMedlem3060Service
             t.Start();
             t.Join();
 #endif
-
+*/
         }
 
         protected override void OnStart(string[] args)
         {
-#if (RELEASE)
+//#if (RELEASE)
+            Trace.WriteLine("Medlem3060Service Starter #2");
             clsSchedule.LoadSchedule();
             Thread t = new Thread(Scheduler);
             t.Name = "Scheduler";
             t.Start();
             t.Join();
-#endif
+//#endif
         }
 
         protected override void OnStop()
@@ -52,6 +54,7 @@ namespace nsMedlem3060Service
             dbJobQDataContext dbJobQ = Program.dbJobQDataContextFactory();
             while (true)
             {
+                Trace.WriteLine("Medlem3060Service Starter #3");
                 int? id = null;
                 string jobname = null;
                 if (dbJobQ.jobqueuenext(ref id, ref jobname) == 0)

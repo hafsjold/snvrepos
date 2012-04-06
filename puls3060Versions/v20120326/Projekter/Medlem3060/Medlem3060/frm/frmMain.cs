@@ -11,6 +11,7 @@ using System.Reflection;
 using System.IO;
 using Excel;
 using nsPbs3060;
+using System.Diagnostics;
 
 
 
@@ -59,15 +60,10 @@ namespace nsPuls3060
                 var rec_regnskab = Program.qryAktivRegnskab();
                 this.toolStripStatusLabel1.Text = "Regnskab: " + rec_regnskab.rid + " " + rec_regnskab.Navn;
                 this.toolStripStatusLabel1.Alignment = ToolStripItemAlignment.Right;
-#if (DEBUG)
-                this.toolStripStatusLabel2.Text = global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString_Test;
-#else
-                this.toolStripStatusLabel2.Text = global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString_Prod;
-#endif
-
+                this.toolStripStatusLabel2.Text = Program.ConnectStringWithoutPassword;
                 this.toolStripStatusLabel2.Alignment = ToolStripItemAlignment.Right;
 
-                object ReadKontoplan = Program.karKontoplan;
+                KarKontoplan ReadKontoplan = Program.karKontoplan;
                 Program.path_to_lock_summasummarum_kontoplan = rec_regnskab.Placering + "kontoplan.dat";
                 Program.filestream_to_lock_summasummarum_kontoplan = new FileStream(Program.path_to_lock_summasummarum_kontoplan, FileMode.Open, FileAccess.Read, FileShare.None);
             }
