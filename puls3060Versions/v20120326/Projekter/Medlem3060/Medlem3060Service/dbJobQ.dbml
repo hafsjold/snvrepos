@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="puls3061_dk_db" Class="dbJobQDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=HD58;Initial Catalog=puls3061_dk_db;User ID=sa" SettingsObjectName="nsMedlem3060Service.Properties.Settings" SettingsPropertyName="puls3061_dk_dbConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=hd58;Initial Catalog=puls3061_dk_db;User ID=puls3061_dk" SettingsObjectName="nsMedlem3060Service.Properties.Settings" SettingsPropertyName="puls3061_dk_dbConnectionString_Test" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tblJobqueue" Member="tblJobqueues">
     <Type Name="tblJobqueue">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />

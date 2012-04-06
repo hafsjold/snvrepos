@@ -2,19 +2,19 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="dbJobQ">
   <DataContextMoniker Name="/dbJobQDataContext" />
   <nestedChildShapes>
-    <classShape Id="4973bac3-6919-4607-aa52-f6c617f75463" absoluteBounds="1.875, 3.5, 2, 2.1554996744791666">
+    <classShape Id="4973bac3-6919-4607-aa52-f6c617f75463" absoluteBounds="0.875, 3.375, 2, 2.1554996744791666">
       <DataClassMoniker Name="/dbJobQDataContext/tblJobqueue" />
       <nestedChildShapes>
-        <elementListCompartment Id="94285e53-1f77-461f-9ca4-998bd6324377" absoluteBounds="1.8899999999999997, 3.96, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="94285e53-1f77-461f-9ca4-998bd6324377" absoluteBounds="0.88999999999999968, 3.835, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="716977dc-4bf9-49ae-acf6-47fa2f9dbea4" absoluteBounds="1.875, 0.75, 2, 1.7708968098958331">
+    <classShape Id="716977dc-4bf9-49ae-acf6-47fa2f9dbea4" absoluteBounds="0.75, 0.75, 2, 1.7708968098958331">
       <DataClassMoniker Name="/dbJobQDataContext/tblSchedule" />
       <nestedChildShapes>
-        <elementListCompartment Id="08bcafa9-2a22-46e6-90f7-1b4cc4ed425a" absoluteBounds="1.8900000000000001, 1.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="08bcafa9-2a22-46e6-90f7-1b4cc4ed425a" absoluteBounds="0.76500000000000012, 1.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.875 : 2.52089680989583); (2.875 : 3.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(1.8125 : 2.52089680989583); (1.8125 : 3.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/dbJobQDataContext/tblSchedule/tblSchedule_tblJobqueue" />
       <nodes>
         <classShapeMoniker Id="716977dc-4bf9-49ae-acf6-47fa2f9dbea4" />

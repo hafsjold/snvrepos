@@ -14,47 +14,60 @@ using nsPbs3060;
 
 namespace nsMedlem3060Service
 {
+    public enum enumTask
+    {
+        ReceiveFilesFromPBS = 1,
+        ProcessType602Files,
+        ProcessType603Files,
+        SendFilesToPBS,
+        LoadSchedule
+    }
+
     public partial class mcMedlem3060Service : ServiceBase
     {
         static EventWaitHandle _waitStopHandle = new ManualResetEvent(false);
+        static Thread _SchedulerThread;
 
         public mcMedlem3060Service()
         {
             InitializeComponent();
 /*
-#if (DEBUG)
-            clsSchedule.LoadSchedule();
-            Thread t = new Thread(Scheduler);
-            t.Name = "Scheduler";
-            t.Start();
-            t.Join();
-#endif
+//#if (DEBUG)            
+            Trace.WriteLine("Medlem3060Service Starter #2");
+            _SchedulerThread = new Thread(Scheduler);
+            _SchedulerThread.Name = "Scheduler";
+            _SchedulerThread.Start();
+            _SchedulerThread.Join();
+//#endif
 */
+        }
+
+        private T StringToEnum<T>(string name)
+        {
+            return (T)Enum.Parse(typeof(T), name);
         }
 
         protected override void OnStart(string[] args)
         {
-//#if (RELEASE)
-            Trace.WriteLine("Medlem3060Service Starter #2");
-            clsSchedule.LoadSchedule();
-            Thread t = new Thread(Scheduler);
-            t.Name = "Scheduler";
-            t.Start();
-            t.Join();
-//#endif
+            Trace.WriteLine("Medlem3060Service OnStart()");
+            _SchedulerThread = new Thread(Scheduler);
+            _SchedulerThread.Name = "Scheduler";
+            _SchedulerThread.Start();
         }
 
         protected override void OnStop()
         {
             _waitStopHandle.Set();
+            _SchedulerThread.Join();
         }
 
         private void Scheduler()
         {
-            dbJobQDataContext dbJobQ = Program.dbJobQDataContextFactory();
-            while (true)
+            LoadSchedule();
+            dbJobQDataContext dbJobQ = Program.dbJobQDataContextFactory();            
+             while (true)
             {
-                Trace.WriteLine("Medlem3060Service Starter #3");
+                Trace.WriteLine("Medlem3060Service Scheduler() loop start");
                 int? id = null;
                 string jobname = null;
                 if (dbJobQ.jobqueuenext(ref id, ref jobname) == 0)
@@ -83,7 +96,7 @@ namespace nsMedlem3060Service
             if (Enum.IsDefined(typeof(enumTask), jobname))
             {
                 dbData3060DataContext m_dbData3060 = new dbData3060DataContext(Program.dbConnectionString()); 
-                enumTask job = clsSchedule.StringToEnum<enumTask>(jobname);
+                enumTask job = StringToEnum<enumTask>(jobname);
                 switch (job)
                 {
                     case enumTask.ReceiveFilesFromPBS:
@@ -110,12 +123,39 @@ namespace nsMedlem3060Service
                     
                     case enumTask.SendFilesToPBS:
                         break;
+
+                    case enumTask.LoadSchedule:
+                        LoadSchedule();
+                        break;                    
                     
                     default:
                         break;
                 }
             }
             return 0;
+        }
+
+        private void LoadSchedule(int days = 2)
+        {
+            Trace.WriteLine("Medlem3060Service LoadSchedule()");
+            try
+            {
+                dbJobQDataContext dbJobQ = Program.dbJobQDataContextFactory();
+                var Schedules = from s in dbJobQ.tblSchedules orderby s.start select s;
+                foreach (var s in Schedules)
+                {
+                    if (Enum.IsDefined(typeof(enumTask), s.jobname))
+                    {
+                        var occurrence = CrontabSchedule.Parse(s.schedule).GetNextOccurrences(DateTime.Now, DateTime.Now.AddDays(days)).GetEnumerator();
+                        while (occurrence.MoveNext())
+                            dbJobQ.jobqueueadd(occurrence.Current, s.jobname, s.id, false);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                Trace.WriteLine("Medlem3060Service LoadSchedule() failed");
+            }
         }
 
     }

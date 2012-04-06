@@ -2,21 +2,16 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="nsMedlem3060Service.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="puls3061_dk_dbConnectionString" Type="(Connection string)" Scope="Application">
+    <Setting Name="puls3061_dk_dbConnectionString_Test" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=HD58;Initial Catalog=puls3061_dk_db;User ID=sa&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=hd58;Initial Catalog=puls3061_dk_db;User ID=puls3061_dk&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=HD58;Initial Catalog=puls3061_dk_db;User ID=sa</Value>
+      <Value Profile="(Default)">Data Source=hd58;Initial Catalog=puls3061_dk_db;User ID=puls3061_dk</Value>
     </Setting>
-    <Setting Name="puls3061_dk_dbConnectionString1" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=HD58;Initial Catalog=puls3061_dk_db;User ID=sa;Password=mha733&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=HD58;Initial Catalog=puls3061_dk_db;User ID=sa;Password=mha733</Value>
+    <Setting Name="puls3061_dk_dbConnectionString_Prod" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Data Source=mssql2.unoeuro.com;Initial Catalog=puls3060_dk_db;Integrated Security=False;Persist Security Info=True;User ID=puls3060_dk</Value>
     </Setting>
   </Settings>
 </SettingsFile>

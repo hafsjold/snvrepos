@@ -4,22 +4,29 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Text;
 using System.Diagnostics;
+using System.Data.SqlClient;
 
 namespace nsMedlem3060Service
 {
 
     static class Program
     {
+        private static readonly object _locker1 = new object();
         private static dbJobQDataContext m_dbJobQ;
 
         public static string dbConnectionString()
         {
-
+            string con;
+            lock (_locker1)
+            {
 #if (DEBUG)
-            string con = global::nsMedlem3060Service.Properties.Settings.Default.puls3061_dk_dbConnectionString + ";Password=mha733";
+            con = global::nsMedlem3060Service.Properties.Settings.Default.puls3061_dk_dbConnectionString_Test + ";Password=mha733";
 #else
-            string con = global::nsMedlem3060Service.Properties.Settings.Default.puls3061_dk_dbConnectionString + ";Password=mha733";   
+            con = global::nsMedlem3060Service.Properties.Settings.Default.puls3061_dk_dbConnectionString_Prod + ";Password=fnyakb6c";
 #endif
+            var cb = new SqlConnectionStringBuilder(con);
+            Trace.WriteLine(string.Format("Medlem3060Service ConnectString to SQL Database {0} on {1}", cb.InitialCatalog, cb.DataSource)); 
+            }
             return con;
         }
 
@@ -59,7 +66,7 @@ namespace nsMedlem3060Service
             
             Trace.Listeners.Add(new EventLogTraceListener("Medlem3060"));
             Trace.WriteLine("Medlem3060Service Starter");
-            EventLog.WriteEntry("Medlem3060", "message string", EventLogEntryType.Information, 101);
+            EventLog.WriteEntry("Medlem3060", "Medlem3060Service Starter", EventLogEntryType.Information, 101);
 
 
             ServiceBase[] ServicesToRun;
