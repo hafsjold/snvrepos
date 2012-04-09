@@ -169,7 +169,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Visual Studio 2010\Projects2\ncrontab\src\NCrontab\NCrontab.csproj">
+    <ProjectReference Include="..\NCrontab\NCrontab.csproj">
       <Project>{1948D266-8DCB-4AC5-98E6-A609713011CB}</Project>
       <Name>NCrontab</Name>
     </ProjectReference>
