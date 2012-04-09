@@ -305,7 +305,6 @@ namespace nsPbs3060
             return AntalFiler;
         }
        
-        
         public int ReadDirFraSFtp()
         {
             int AntalFiler = 0;
@@ -338,8 +337,82 @@ namespace nsPbs3060
             
             return AntalFiler;
         }
-        
-        
+
+        public int ReadFromLocalFile(dbData3060DataContext p_dbData3060, string FilePath)
+        {
+            FileInfo file;
+            try
+            {
+                file = new FileInfo(FilePath);
+                if (!(file.Exists))
+                    return 0;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }            
+
+            //***********************************************************************
+            //  Open a local file:
+            string fullpath = file.FullName;
+            int numBytes = (int)file.Length;
+            byte[] b_data = new byte[numBytes];
+
+            Trace.WriteLine(string.Format("Start Reading of {0}", fullpath));
+            using (FileStream ts = file.Open(FileMode.Open, FileAccess.Read, FileShare.None))
+            {
+                ts.Read(b_data, 0, numBytes);
+            }
+            Trace.WriteLine(string.Format("{0} Reading Completed", fullpath));
+
+            sendAttachedFile(p_dbData3060, file.Name, b_data, false);
+            char[] c_data = System.Text.Encoding.GetEncoding("windows-1252").GetString(b_data).ToCharArray();
+            string filecontens = new string(c_data);
+
+            string filecontens2 = filecontens.TrimEnd('\n');
+            string filecontens3 = filecontens2.TrimEnd('\r');
+            string filecontens4 = filecontens3.TrimEnd('\n');
+
+            string[] lines = filecontens4.Split('\n');
+            string ln = null;
+            int seqnr = 0;
+            string ln0_6;
+            
+            tblpbsfilename m_rec_pbsfiles = new tblpbsfilename
+            {
+                type = 8,
+                path = file.Directory.FullName,
+                filename = file.Name,
+                size = (int)file.Length,
+                atime = file.LastAccessTime,
+                mtime = file.LastWriteTime
+            };
+            p_dbData3060.tblpbsfilenames.InsertOnSubmit(m_rec_pbsfiles);           
+            for (int idx = 0; idx < lines.Count(); idx++)
+            {
+                ln = lines[idx].TrimEnd('\r');
+                try { ln0_6 = ln.Substring(0, 6); }
+                catch { ln0_6 = ""; }
+                if (((seqnr == 0) && !(ln0_6 == "PBCNET")) || (seqnr > 0)) { seqnr++; }
+                if (ln.Length > 0)
+                {
+                    m_rec_pbsfile = new tblpbsfile
+                    {
+                        seqnr = seqnr,
+                        data = ln
+                    };
+                    m_rec_pbsfiles.tblpbsfiles.Add(m_rec_pbsfile);
+                }
+            }
+
+            m_rec_pbsfiles.transmittime = DateTime.Now;
+            var cb = new SqlConnectionStringBuilder(p_dbData3060.Connection.ConnectionString);
+            Trace.WriteLine(string.Format("Start Write {0} to SQL Database {1} on {2}", file.Name, cb.InitialCatalog, cb.DataSource));
+            p_dbData3060.SubmitChanges();
+            Trace.WriteLine(string.Format("{0} Write to SQL Database Completed", file.Name));
+            return 1;
+        }        
+
         public void sendAttachedFile(dbData3060DataContext p_dbData3060, string filename, byte[] data, bool bTilPBS)
         {
             string local_filename = filename.Replace('.', '_') + ".txt";

@@ -64,27 +64,38 @@ namespace nsMedlem3060Service
         private void Scheduler()
         {
             LoadSchedule();
-            dbJobQDataContext dbJobQ = Program.dbJobQDataContextFactory();            
-             while (true)
+          
+            while (true)
             {
-                Trace.WriteLine("Medlem3060Service Scheduler() loop start");
-                int? id = null;
-                string jobname = null;
-                if (dbJobQ.jobqueuenext(ref id, ref jobname) == 0)
+                try
                 {
-                    if (Enum.IsDefined(typeof(enumTask), jobname))
+                    Trace.WriteLine("Medlem3060Service Scheduler() loop start");
+                    dbJobQDataContext dbJobQ = Program.dbJobQDataContextFactory();
+                    int? id = null;
+                    string jobname = null;
+                    if (dbJobQ.jobqueuenext(ref id, ref jobname) == 0)
                     {
-                        Task<int> task = new Task<int>(() => JobWorker(jobname));
-                        task.Start();
-                        int resultat = task.Result;
+                        if (Enum.IsDefined(typeof(enumTask), jobname))
+                        {
+                            Task<int> task = new Task<int>(() => JobWorker(jobname));
+                            task.Start();
+                            int resultat = task.Result;
+                        }
+
+                        dbJobQ.jobqueuecomplete((int)id);
+
                     }
+                    else
+                    {
 
-                    dbJobQ.jobqueuecomplete((int)id);
-
+                        if (_waitStopHandle.WaitOne(2 * 60000))
+                            break;
+                    }
                 }
-                else
+                catch (Exception e)
                 {
-                    if (_waitStopHandle.WaitOne(60000))
+                    Trace.WriteLine(string.Format("Medlem3060Service Scheduler() loop failed with message: {0}", e.Message ));
+                    if (_waitStopHandle.WaitOne(5 * 60000))
                         break;
                 }
             }
@@ -93,46 +104,54 @@ namespace nsMedlem3060Service
 
         private int JobWorker(string jobname)
         {
-            if (Enum.IsDefined(typeof(enumTask), jobname))
+            try
             {
-                dbData3060DataContext m_dbData3060 = new dbData3060DataContext(Program.dbConnectionString()); 
-                enumTask job = StringToEnum<enumTask>(jobname);
-                switch (job)
+                if (Enum.IsDefined(typeof(enumTask), jobname))
                 {
-                    case enumTask.ReceiveFilesFromPBS:
-                        clsSFTP objSFTP = new clsSFTP(m_dbData3060);
-                        int AntalImportFiler = objSFTP.ReadFraSFtp(m_dbData3060);  //Læs direkte SFTP
-                        objSFTP.DisconnectSFtp();
-                        objSFTP = null;
+                    dbData3060DataContext m_dbData3060 = new dbData3060DataContext(Program.dbConnectionString());
+                    enumTask job = StringToEnum<enumTask>(jobname);
+                    switch (job)
+                    {
+                        case enumTask.ReceiveFilesFromPBS:
+                            clsSFTP objSFTP = new clsSFTP(m_dbData3060);
+                            int AntalImportFiler = objSFTP.ReadFraSFtp(m_dbData3060);  //Læs direkte SFTP
+                            objSFTP.DisconnectSFtp();
+                            objSFTP = null;
 
-                        clsPbs602 objPbs602 = new clsPbs602();
-                        int Antal602Filer = objPbs602.betalinger_fra_pbs(m_dbData3060);
-                        objPbs602 = null;
-                        
-                        clsPbs603 objPbs603 = new clsPbs603();
-                        int Antal603Filer = objPbs603.aftaleoplysninger_fra_pbs(m_dbData3060);
-                        objPbs603 = null;
-                        
-                        break;
-                    
-                    case enumTask.ProcessType602Files:
-                        break;
-                    
-                    case enumTask.ProcessType603Files:
-                        break;
-                    
-                    case enumTask.SendFilesToPBS:
-                        break;
+                            clsPbs602 objPbs602 = new clsPbs602();
+                            int Antal602Filer = objPbs602.betalinger_fra_pbs(m_dbData3060);
+                            objPbs602 = null;
 
-                    case enumTask.LoadSchedule:
-                        LoadSchedule();
-                        break;                    
-                    
-                    default:
-                        break;
+                            clsPbs603 objPbs603 = new clsPbs603();
+                            int Antal603Filer = objPbs603.aftaleoplysninger_fra_pbs(m_dbData3060);
+                            objPbs603 = null;
+
+                            break;
+
+                        case enumTask.ProcessType602Files:
+                            break;
+
+                        case enumTask.ProcessType603Files:
+                            break;
+
+                        case enumTask.SendFilesToPBS:
+                            break;
+
+                        case enumTask.LoadSchedule:
+                            LoadSchedule();
+                            break;
+
+                        default:
+                            break;
+                    }
                 }
+                return 0;
             }
-            return 0;
+            catch (Exception e)
+            {
+                Trace.WriteLine(string.Format("Medlem3060Service JobWorker() failed with message: {0}", e.Message));
+                return -1;
+            }
         }
 
         private void LoadSchedule(int days = 2)
@@ -152,9 +171,9 @@ namespace nsMedlem3060Service
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                Trace.WriteLine("Medlem3060Service LoadSchedule() failed");
+                Trace.WriteLine(string.Format("Medlem3060Service LoadSchedule() failed with message: {0}", e.Message));
             }
         }
 

@@ -121,10 +121,6 @@
       <HintPath>Libraries\Interop.VBIDE.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="Renci.SshNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Libraries\Renci.SshNet.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -167,6 +163,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dsMedlem.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="frm\frmImportPBSFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmImportPBSFile.Designer.cs">
+      <DependentUpon>frmImportPBSFile.cs</DependentUpon>
     </Compile>
     <Compile Include="frm\frmPassword.cs">
       <SubType>Form</SubType>
@@ -289,6 +291,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm\BetterDialog.resx">
       <DependentUpon>BetterDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmImportPBSFile.resx">
+      <DependentUpon>frmImportPBSFile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm\frmInfotekst.resx">
       <DependentUpon>frmInfotekst.cs</DependentUpon>

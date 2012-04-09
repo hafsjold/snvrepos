@@ -511,5 +511,15 @@ namespace nsPuls3060
             }
         }
 
+        private void importerFileFraPBSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("Importer file fra PBS"))
+            {
+                FrmImportPBSFile m_frmImportPBSFile = new FrmImportPBSFile();
+                m_frmImportPBSFile.MdiParent = this;
+                m_frmImportPBSFile.Show();
+            }
+        }
+
     }
 }
