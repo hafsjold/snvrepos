@@ -88,7 +88,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="MedlemModel">
-        <EntityTypeShape EntityType="nsMedlemModel.tblMedlem" Width="1.5" PointX="0.75" PointY="0.75" Height="3.1340950520833335" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsMedlemModel.tblMedlem" Width="1.5" PointX="2.75" PointY="0.75" Height="3.1340950520833335" IsExpanded="true" />
       </Diagram>
     </Diagrams>
   </Designer>
