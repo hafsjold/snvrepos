@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="nsMedlemModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="nsMedlemModelStoreContainer">
+          <EntitySet Name="tblMedlem" EntityType="nsMedlemModel.Store.tblMedlem" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="tblMedlem">
+          <Key>
+            <PropertyRef Name="Nr" />
+          </Key>
+          <Property Name="Nr" Type="int" Nullable="false" />
+          <Property Name="Kon" Type="nvarchar" MaxLength="1" />
+          <Property Name="FodtDato" Type="datetime" />
+          <Property Name="Navn" Type="nvarchar" MaxLength="35" />
+          <Property Name="Kaldenavn" Type="nvarchar" MaxLength="25" />
+          <Property Name="Adresse" Type="nvarchar" MaxLength="70" />
+          <Property Name="Postnr" Type="nvarchar" MaxLength="4" />
+          <Property Name="Bynavn" Type="nvarchar" MaxLength="25" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="8" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Bank" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="nsMedlemModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="MedlemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblMedlems" EntityType="nsMedlemModel.tblMedlem" />
+        </EntityContainer>
+        <EntityType Name="tblMedlem">
+          <Key>
+            <PropertyRef Name="Nr" />
+          </Key>
+          <Property Name="Nr" Type="Int32" Nullable="false" />
+          <Property Name="Kon" Type="String" MaxLength="1" Unicode="true" FixedLength="false" />
+          <Property Name="FodtDato" Type="DateTime" />
+          <Property Name="Navn" Type="String" MaxLength="35" Unicode="true" FixedLength="false" />
+          <Property Name="Kaldenavn" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="Adresse" Type="String" MaxLength="70" Unicode="true" FixedLength="false" />
+          <Property Name="Postnr" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="Bynavn" Type="String" MaxLength="25" Unicode="true" FixedLength="false" />
+          <Property Name="Telefon" Type="String" MaxLength="8" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Bank" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="nsMedlemModelStoreContainer" CdmEntityContainer="MedlemEntities">
+          <EntitySetMapping Name="tblMedlems"><EntityTypeMapping TypeName="nsMedlemModel.tblMedlem"><MappingFragment StoreEntitySet="tblMedlem">
+            <ScalarProperty Name="Nr" ColumnName="Nr" />
+            <ScalarProperty Name="Kon" ColumnName="Kon" />
+            <ScalarProperty Name="FodtDato" ColumnName="FodtDato" />
+            <ScalarProperty Name="Navn" ColumnName="Navn" />
+            <ScalarProperty Name="Kaldenavn" ColumnName="Kaldenavn" />
+            <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+            <ScalarProperty Name="Postnr" ColumnName="Postnr" />
+            <ScalarProperty Name="Bynavn" ColumnName="Bynavn" />
+            <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="Bank" ColumnName="Bank" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="MedlemModel">
+        <EntityTypeShape EntityType="nsMedlemModel.tblMedlem" Width="1.5" PointX="2.75" PointY="0.75" Height="3.1340950520833335" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
