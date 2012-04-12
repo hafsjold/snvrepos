@@ -40,6 +40,7 @@
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
+            
             WebContext.Current.Authentication.Logout(logoutOperation =>
             {
                 if (logoutOperation.HasError)

@@ -17,7 +17,7 @@
         {
             InitializeComponent();
         }
-
+      
         /// <summary>
         /// After the Frame navigates, ensure the <see cref="HyperlinkButton"/> representing the current page is selected
         /// </summary>

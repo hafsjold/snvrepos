@@ -34,6 +34,7 @@ namespace wMedlem3060.Views
         // Executes when the user navigates to this page.
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+
         }
 
         private void SaveChangesButton_Click(object sender, RoutedEventArgs e)

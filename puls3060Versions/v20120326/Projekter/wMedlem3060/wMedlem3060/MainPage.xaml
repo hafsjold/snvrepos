@@ -6,14 +6,17 @@
   xmlns:uriMapper="clr-namespace:System.Windows.Navigation;assembly=System.Windows.Controls.Navigation"
   xmlns:dataControls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.DataForm.Toolkit" 
   xmlns:login="clr-namespace:wMedlem3060.LoginUI"
-  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  xmlns:local="clr-namespace:wMedlem3060.ContextLoader"
   mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480">
 
     <Grid x:Name="LayoutRoot" Style="{StaticResource LayoutRootGridStyle}">
 
         <Border x:Name="ContentBorder" Style="{StaticResource ContentBorderStyle}">
-            <navigation:Frame x:Name="ContentFrame" Style="{StaticResource ContentFrameStyle}" 
-                              Source="/Home" Navigated="ContentFrame_Navigated" NavigationFailed="ContentFrame_NavigationFailed">
+            <navigation:Frame x:Name="ContentFrame" Style="{StaticResource ContentFrameStyle}" Source="/Home" Navigated="ContentFrame_Navigated" NavigationFailed="ContentFrame_NavigationFailed">
+                <navigation:Frame.ContentLoader>
+                    <local:AuthenticatingContentLoader SecuredFolder="Views\SecurePages"></local:AuthenticatingContentLoader>
+                </navigation:Frame.ContentLoader>
                 <navigation:Frame.UriMapper>
                     <uriMapper:UriMapper>
                         <uriMapper:UriMapping Uri="" MappedUri="/Views/Home.xaml"/>
@@ -45,7 +48,7 @@
                         <Rectangle x:Name="Divider1" Style="{StaticResource DividerStyle}"/>
 
                         <HyperlinkButton x:Name="Link3" Style="{StaticResource LinkStyle}" 
-                                     NavigateUri="/MedlemList" TargetName="ContentFrame" Content="Medlemmer"/>
+                                     NavigateUri="/SecurePages/MedlemList" TargetName="ContentFrame" Content="Medlemmer"/>
                         
                         <Rectangle x:Name="Divider2" Style="{StaticResource DividerStyle}"/>
 
@@ -58,7 +61,7 @@
             </Grid>
 
             <Border Style="{StaticResource LoginContainerStyle}">
-                <login:LoginStatus/>
+                <login:LoginStatus DataContext="{Binding}" />
             </Border>
         </Grid>
 
