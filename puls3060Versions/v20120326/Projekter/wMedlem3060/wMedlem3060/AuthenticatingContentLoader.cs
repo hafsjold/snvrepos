@@ -26,8 +26,7 @@ namespace wMedlem3060.ContextLoader
 
         public bool CanLoad(Uri targetUri, Uri currentUri)
         {
-            var UserIsAuthenticated = WebContext.Current.User.IsAuthenticated;
-            if (!UserIsAuthenticated)
+            if (!WebContext.Current.User.IsAuthenticated)
             {
                 if (System.IO.Path.GetDirectoryName(targetUri.ToString()).Trim('\\') == SecuredFolder)
                 {
