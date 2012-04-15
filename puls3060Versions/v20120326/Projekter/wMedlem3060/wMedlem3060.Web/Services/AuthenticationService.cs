@@ -35,7 +35,8 @@
 
         private User GetUserForMembershipUser(MembershipUser membershipUser)
         {
-            return this.GetAuthenticatedUser(new GenericPrincipal(new GenericIdentity(membershipUser.UserName), new string[0]));
+            var us = this.GetAuthenticatedUser(new GenericPrincipal(new GenericIdentity(membershipUser.UserName), new string[0]));
+            return us;
         }
 
     }

@@ -63,7 +63,7 @@
                 <datagrid:DataPager x:Name="MedlemPager" PageSize="10"  Margin="0,-1,0,0" Source="{Binding ElementName=MyData, Path=Data}" />
             
                 <dataform:DataForm x:Name="MedlemDetails" Header="Medlem" AutoGenerateFields="False" AutoEdit="False" AutoCommit="False"
-                 CurrentItem="{Binding ElementName=MedlemGrid, Path=SelectedItem}" Margin="0,12,0,0"  >
+                                   CurrentItem="{Binding ElementName=MedlemGrid, Path=SelectedItem}" Margin="0,12,0,0"  >
                     <dataform:DataForm.EditTemplate>
                         <DataTemplate>
                             <StackPanel>
