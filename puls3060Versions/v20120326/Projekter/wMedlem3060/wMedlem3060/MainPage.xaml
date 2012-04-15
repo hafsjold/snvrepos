@@ -17,12 +17,15 @@
                 <navigation:Frame.ContentLoader>
                     <local:AuthenticatingContentLoader SecuredFolder="Views\SecurePages"></local:AuthenticatingContentLoader>
                 </navigation:Frame.ContentLoader>
+                
                 <navigation:Frame.UriMapper>
                     <uriMapper:UriMapper>
-                        <uriMapper:UriMapping Uri="" MappedUri="/Views/Home.xaml"/>
+                        <uriMapper:UriMapping Uri="" MappedUri="/Views/Home.xaml" />
+                        <uriMapper:UriMapping Uri="/Views/{part1}/{part2}" MappedUri="/Views/{part1}/{part2}" />
                         <uriMapper:UriMapping Uri="/{pageName}" MappedUri="/Views/{pageName}.xaml" />
                     </uriMapper:UriMapper>
                 </navigation:Frame.UriMapper>
+            
             </navigation:Frame>
         </Border>
 

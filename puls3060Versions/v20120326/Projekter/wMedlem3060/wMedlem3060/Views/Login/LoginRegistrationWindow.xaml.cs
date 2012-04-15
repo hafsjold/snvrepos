@@ -110,15 +110,14 @@
 
         private void childWindow_Closed(object sender, EventArgs e)
         {
-            if (targetUri != null)
+            if (WebContext.Current.User.IsAuthenticated && targetUri != null)
             {
                 MainPage m;
                 if (Application.Current.RootVisual.GetType().Name == "BusyIndicator")
                     m = (MainPage)((BusyIndicator)Application.Current.RootVisual).Content;
                 else
                     m = (MainPage)Application.Current.RootVisual;
-                string u = targetUri.OriginalString.Replace(@"/Views/", @"/").Replace(@".xaml", "");
-                m.ContentFrame.Navigate(new Uri(u, UriKind.Relative));
+                m.ContentFrame.Navigate(targetUri);
             }
         }
     }

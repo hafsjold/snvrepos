@@ -29,7 +29,6 @@ namespace wMedlem3060.ContextLoader
             var UserIsAuthenticated = WebContext.Current.User.IsAuthenticated;
             if (!UserIsAuthenticated)
             {
-                var targetfolder = System.IO.Path.GetDirectoryName(targetUri.ToString()).Trim('\\');
                 if (System.IO.Path.GetDirectoryName(targetUri.ToString()).Trim('\\') == SecuredFolder)
                 {
                     var winLogin = new LoginRegistrationWindow();

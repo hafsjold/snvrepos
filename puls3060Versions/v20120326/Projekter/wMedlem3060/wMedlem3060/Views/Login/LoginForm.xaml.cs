@@ -106,12 +106,14 @@
         {
             if (this.loginInfo.CurrentLoginOperation != null && this.loginInfo.CurrentLoginOperation.CanCancel)
             {
+
                 this.loginInfo.CurrentLoginOperation.Cancel();
             }
             else
             {
                 this.parentWindow.DialogResult = false;
             }
+
         }
 
         /// <summary>
