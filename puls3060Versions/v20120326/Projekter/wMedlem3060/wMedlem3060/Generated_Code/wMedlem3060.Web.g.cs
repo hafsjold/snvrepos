@@ -149,6 +149,16 @@ namespace wMedlem3060.Web
         }
         
         /// <summary>
+        /// Gets an EntityQuery instance that can be used to load <see cref="User"/> entity instances using the 'GetAllUsers' query.
+        /// </summary>
+        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="User"/> entity instances.</returns>
+        public EntityQuery<User> GetAllUsersQuery()
+        {
+            this.ValidateMethod("GetAllUsersQuery", null);
+            return base.CreateQuery<User>("GetAllUsers", null, false, true);
+        }
+        
+        /// <summary>
         /// Gets an EntityQuery instance that can be used to load <see cref="User"/> entity instances using the 'GetUser' query.
         /// </summary>
         /// <returns>An EntityQuery that can be loaded to retrieve <see cref="User"/> entity instances.</returns>
@@ -202,6 +212,24 @@ namespace wMedlem3060.Web
         [ServiceContract()]
         public interface IAuthenticationServiceContract
         {
+            
+            /// <summary>
+            /// Asynchronously invokes the 'GetAllUsers' operation.
+            /// </summary>
+            /// <param name="callback">Callback to invoke on completion.</param>
+            /// <param name="asyncState">Optional state object.</param>
+            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/AuthenticationService/GetAllUsersDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/AuthenticationService/GetAllUsers", ReplyAction="http://tempuri.org/AuthenticationService/GetAllUsersResponse")]
+            [WebGet()]
+            IAsyncResult BeginGetAllUsers(AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Completes the asynchronous operation begun by 'BeginGetAllUsers'.
+            /// </summary>
+            /// <param name="result">The IAsyncResult returned from 'BeginGetAllUsers'.</param>
+            /// <returns>The 'QueryResult' returned from the 'GetAllUsers' operation.</returns>
+            QueryResult<User> EndGetAllUsers(IAsyncResult result);
             
             /// <summary>
             /// Asynchronously invokes the 'GetUser' operation.

@@ -14,7 +14,7 @@
            Style="{StaticResource PageStyle}"
            Title="Medlemmer" xmlns:my="clr-namespace:wMedlem3060.Web" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk">
     <Grid x:Name="LayoutRoot">
-        <riacontrols:DomainDataSource x:Name="MyData" LoadSize="20" QueryName="GetTblMedlems" AutoLoad="True" >
+        <riacontrols:DomainDataSource x:Name="MyData" LoadedData="tblMedlemDomainDataSource_LoadedData" LoadingData="MyData_LoadingData" LoadSize="20" QueryName="GetTblMedlems" AutoLoad="True" >
            <riacontrols:DomainDataSource.DomainContext>
                 <ds:MedlemDomainContext />
             </riacontrols:DomainDataSource.DomainContext>

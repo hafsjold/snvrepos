@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
+using wMedlem3060.LoginUI;
 
 namespace wMedlem3060.ContextLoader
 {
@@ -17,8 +18,13 @@ namespace wMedlem3060.ContextLoader
         public string SecuredFolder {get; set;}
                
         private PageResourceContentLoader loader = new PageResourceContentLoader();
-
+        
         public IAsyncResult BeginLoad(Uri targetUri, Uri currentUri, AsyncCallback userCallback, object asyncState)
+        {
+            return loader.BeginLoad(targetUri, currentUri, userCallback, asyncState);
+        }
+
+        public bool CanLoad(Uri targetUri, Uri currentUri)
         {
             var UserIsAuthenticated = WebContext.Current.User.IsAuthenticated;
             if (!UserIsAuthenticated)
@@ -26,14 +32,12 @@ namespace wMedlem3060.ContextLoader
                 var targetfolder = System.IO.Path.GetDirectoryName(targetUri.ToString()).Trim('\\');
                 if (System.IO.Path.GetDirectoryName(targetUri.ToString()).Trim('\\') == SecuredFolder)
                 {
-                    targetUri = new Uri("/Views/Home.xaml", UriKind.Relative);
+                    var winLogin = new LoginRegistrationWindow();
+                    winLogin.targetUri = targetUri;
+                    winLogin.Show();
+                    return false;
                 }
             }
-            return loader.BeginLoad(targetUri, currentUri, userCallback, asyncState);
-        }
-
-        public bool CanLoad(Uri targetUri, Uri currentUri)
-        {
             return loader.CanLoad(targetUri, currentUri);
         }
 
@@ -46,5 +50,6 @@ namespace wMedlem3060.ContextLoader
         {
             return loader.EndLoad(asyncResult);            
         }
+
     }
 }

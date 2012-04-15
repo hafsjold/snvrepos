@@ -20,7 +20,7 @@
                 <navigation:Frame.UriMapper>
                     <uriMapper:UriMapper>
                         <uriMapper:UriMapping Uri="" MappedUri="/Views/Home.xaml"/>
-                        <uriMapper:UriMapping Uri="/{pageName}" MappedUri="/Views/{pageName}.xaml"/>
+                        <uriMapper:UriMapping Uri="/{pageName}" MappedUri="/Views/{pageName}.xaml" />
                     </uriMapper:UriMapper>
                 </navigation:Frame.UriMapper>
             </navigation:Frame>
@@ -43,13 +43,22 @@
                     <StackPanel x:Name="LinksStackPanel" Style="{StaticResource LinksStackPanelStyle}">
 
                         <HyperlinkButton x:Name="Link1" Style="{StaticResource LinkStyle}" 
-                                     NavigateUri="/Home" TargetName="ContentFrame" Content="{Binding Path=Strings.HomePageTitle, Source={StaticResource ApplicationResources}}"/>
+                                     NavigateUri="/Home" TargetName="ContentFrame" Content="{Binding Path=Strings.HomePageTitle, Source={StaticResource ApplicationResources}}" />
 
-                        <Rectangle x:Name="Divider1" Style="{StaticResource DividerStyle}"/>
+                        <Rectangle x:Name="Divider1" Style="{StaticResource DividerStyle}"
+                                     Visibility="{Binding Path=User.IsAuthenticated, Source={StaticResource WebContext}, Converter={StaticResource VisibilityConverter1}}"/>
 
                         <HyperlinkButton x:Name="Link3" Style="{StaticResource LinkStyle}" 
-                                     NavigateUri="/SecurePages/MedlemList" TargetName="ContentFrame" Content="Medlemmer"/>
-                        
+                                     NavigateUri="/SecurePages/MedlemList" TargetName="ContentFrame" Content="Medlemmer" 
+                                     Visibility="{Binding Path=User.IsAuthenticated, Source={StaticResource WebContext}, Converter={StaticResource VisibilityConverter1}}"
+                                  />
+
+                        <Rectangle x:Name="Divider3" Style="{StaticResource DividerStyle}"/>
+
+                        <HyperlinkButton x:Name="Link4" Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/SecurePages/Admin" TargetName="ContentFrame" Content="Admin"/>
+
+
                         <Rectangle x:Name="Divider2" Style="{StaticResource DividerStyle}"/>
 
                         <HyperlinkButton x:Name="Link2" Style="{StaticResource LinkStyle}" 

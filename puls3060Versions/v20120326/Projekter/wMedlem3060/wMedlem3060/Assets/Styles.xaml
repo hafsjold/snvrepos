@@ -1772,4 +1772,9 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="DetailsStackPanelStyle" TargetType="StackPanel">
+        <Setter Property="Orientation" Value="Horizontal"/>
+        <Setter Property="Margin" Value="0,5,-10,0"/>
+    </Style>
 </ResourceDictionary>

@@ -36,7 +36,7 @@
 
             // Show some UI to the user while LoadUser is in progress
             this.InitializeRootVisual();
-        }
+         }
 
         /// <summary>
         /// Invoked when the <see cref="LoadUserOperation"/> completes.

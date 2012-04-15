@@ -5,6 +5,11 @@
     using System.ServiceModel.DomainServices.Server;
     using System.ServiceModel.DomainServices.Server.ApplicationServices;
     using System.Threading;
+    using System.Collections.Generic;
+    using System.Web.Security;
+    using System.Security.Principal;
+    using System.Linq;
+
 
     // TODO: Switch to a secure endpoint when deploying the application.
     //       The user's name and password should only be passed using https.
@@ -20,5 +25,18 @@
     /// Most of the functionality is already provided by the AuthenticationBase class.
     /// </summary>
     [EnableClientAccess]
-    public class AuthenticationService : AuthenticationBase<User> { }
+    public class AuthenticationService : AuthenticationBase<User>
+    {
+         [RequiresRole("Administrator")]
+         public IEnumerable<User> GetAllUsers()
+         {
+             return Membership.GetAllUsers().Cast<MembershipUser>().Select(mu => this.GetUserForMembershipUser(mu));
+         }
+
+        private User GetUserForMembershipUser(MembershipUser membershipUser)
+        {
+            return this.GetAuthenticatedUser(new GenericPrincipal(new GenericIdentity(membershipUser.UserName), new string[0]));
+        }
+
+    }
 }

@@ -52,5 +52,10 @@ namespace wMedlem3060.Views
             }
         }
 
+        private void MyData_LoadingData(object sender, LoadingDataEventArgs e)
+        {
+            e.Cancel = !WebContext.Current.User.IsAuthenticated;
+        }
+
     }
 }

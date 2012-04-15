@@ -8,7 +8,7 @@
   MinWidth="400" 
   Title="{Binding Path=Strings.LoginWindowTitle, Source={StaticResource ApplicationResources}}"
   Style="{StaticResource LogRegWindowStyle}"
-  Closing="LoginWindow_Closing">
+  Closing="LoginWindow_Closing" Closed="childWindow_Closed">
 
     <Grid x:Name="LayoutRoot" >
         <Grid.RowDefinitions>

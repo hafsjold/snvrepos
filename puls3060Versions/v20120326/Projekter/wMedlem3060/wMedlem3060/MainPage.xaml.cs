@@ -4,6 +4,7 @@
     using System.Windows.Controls;
     using System.Windows.Navigation;
     using wMedlem3060.LoginUI;
+    using System;
 
     /// <summary>
     /// <see cref="UserControl"/> class providing the main UI for the application.
@@ -46,7 +47,8 @@
         private void ContentFrame_NavigationFailed(object sender, NavigationFailedEventArgs e)
         {
             e.Handled = true;
-            ErrorWindow.CreateNew(e.Exception);
+            //ErrorWindow.CreateNew(e.Exception); //***MHA***
         }
+
     }
 }

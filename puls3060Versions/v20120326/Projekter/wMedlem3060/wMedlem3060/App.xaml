@@ -4,8 +4,8 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:app="clr-namespace:wMedlem3060"
   Startup="Application_Startup"
-  UnhandledException="Application_UnhandledException">
-
+  UnhandledException="Application_UnhandledException" 
+  >
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -13,6 +13,7 @@
                 <ResourceDictionary>
                     <app:ApplicationResources x:Key="ApplicationResources" />
                     <app:NotOperatorValueConverter x:Key="NotOperatorValueConverter" />
+                    <app:VisibilityConverter x:Key="VisibilityConverter1" />
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>                

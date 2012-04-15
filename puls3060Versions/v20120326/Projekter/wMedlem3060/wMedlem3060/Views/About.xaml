@@ -7,17 +7,18 @@
   mc:Ignorable="d" d:DesignWidth="640" d:DesignHeight="480"  
   Style="{StaticResource PageStyle}">
 
-  <Grid x:Name="LayoutRoot">
-    <ScrollViewer x:Name="PageScrollViewer" Style="{StaticResource PageScrollViewerStyle}">
+    <Grid x:Name="LayoutRoot">
+        <ScrollViewer x:Name="PageScrollViewer" Style="{StaticResource PageScrollViewerStyle}">
 
-      <StackPanel x:Name="ContentStackPanel" Style="{StaticResource ContentStackPanelStyle}">
+            <StackPanel x:Name="ContentStackPanel" Style="{StaticResource ContentStackPanelStyle}">
 
-        <TextBlock x:Name="HeaderText" Style="{StaticResource HeaderTextStyle}" 
-                           Text="{Binding Path=Strings.AboutPageTitle, Source={StaticResource ApplicationResources}}"/>
+                <TextBlock x:Name="HeaderText" Style="{StaticResource HeaderTextStyle}" 
+                           Text="{Binding Path=Strings.AboutPageTitle, Source={StaticResource ApplicationResources}}" />
 
-      </StackPanel>
 
-    </ScrollViewer>
-  </Grid>
+            </StackPanel>
+
+        </ScrollViewer>
+    </Grid>
 
 </navigation:Page>

@@ -7,12 +7,15 @@
     using System.ServiceModel.DomainServices.Client.ApplicationServices;
     using System.Windows;
     using System.Windows.Controls;
+    using wMedlem3060.Controls;
 
     /// <summary>
     /// <see cref="ChildWindow"/> class that controls the registration process.
     /// </summary>
     public partial class LoginRegistrationWindow : ChildWindow
     {
+        public Uri targetUri { get; set; }
+
         private IList<OperationBase> possiblyPendingOperations = new List<OperationBase>();
 
         /// <summary>
@@ -102,6 +105,20 @@
                         eventArgs.Cancel = true;
                     }
                 }
+            }
+        }
+
+        private void childWindow_Closed(object sender, EventArgs e)
+        {
+            if (targetUri != null)
+            {
+                MainPage m;
+                if (Application.Current.RootVisual.GetType().Name == "BusyIndicator")
+                    m = (MainPage)((BusyIndicator)Application.Current.RootVisual).Content;
+                else
+                    m = (MainPage)Application.Current.RootVisual;
+                string u = targetUri.OriginalString.Replace(@"/Views/", @"/").Replace(@".xaml", "");
+                m.ContentFrame.Navigate(new Uri(u, UriKind.Relative));
             }
         }
     }

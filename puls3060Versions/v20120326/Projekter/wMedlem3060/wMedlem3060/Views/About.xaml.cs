@@ -23,6 +23,8 @@
         /// </summary>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+
         }
+
     }
 }
