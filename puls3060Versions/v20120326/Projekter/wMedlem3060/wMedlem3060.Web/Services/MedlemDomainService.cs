@@ -26,16 +26,19 @@ namespace wMedlem3060.Web.Services
         // Consider constraining the results of your query method.  If you need additional input you can
         // add parameters to this method or create additional query methods with different names.
         // To support paging you will need to add ordering to the 'tblMedlems' query.
+        [RequiresRole("Administrator")]
         public IQueryable<tblMedlem> GetTblMedlems()
         {
             return this.ObjectContext.tblMedlems.OrderBy(e=>e.Nr);
         }
-        
+
+        [RequiresRole("Administrator")]
         public IQueryable<tblMedlem> GetYoungTblMedlems()
         {
             return this.ObjectContext.tblMedlems.Where(e => e.FodtDato < new DateTime(1982,01,01)).OrderBy(e => e.Nr);
         }
-        
+
+        [RequiresRole("Administrator")]
         public void InsertTblMedlem(tblMedlem tblMedlem)
         {
             if ((tblMedlem.EntityState != EntityState.Detached))
@@ -48,11 +51,13 @@ namespace wMedlem3060.Web.Services
             }
         }
 
+        [RequiresRole("Administrator")]
         public void UpdateTblMedlem(tblMedlem currenttblMedlem)
         {
             this.ObjectContext.tblMedlems.AttachAsModified(currenttblMedlem, this.ChangeSet.GetOriginal(currenttblMedlem));
         }
 
+        [RequiresRole("Administrator")]
         public void DeleteTblMedlem(tblMedlem tblMedlem)
         {
             if ((tblMedlem.EntityState != EntityState.Detached))
