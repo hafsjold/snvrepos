@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="puls3061_dk_db" Class="dbData3060DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=HD58;Initial Catalog=puls3061_dk_db;User ID=sa" SettingsObjectName="nsPbs3060.Properties.Settings" SettingsPropertyName="puls3061_dk_dbConnectionString1" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=mssql1.unoeuro.com;Initial Catalog=puls3061_dk_db;Persist Security Info=True;User ID=puls3061_dk;Encrypt=True;TrustServerCertificate=True" SettingsObjectName="nsPbs3060.Properties.Settings" SettingsPropertyName="puls3061_dk_dbConnectionString2" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tblsftp" Member="tblsftps">
     <Type Name="tblsftp">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -11,15 +11,6 @@
       <Column Name="inbound" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
       <Column Name="pincode" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
       <Column Name="certificate" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tblpbsfile" Member="tblpbsfiles">
-    <Type Name="tblpbsfile">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="pbsfilesid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="seqnr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="data" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
-      <Association Name="tblpbsfilename_tblpbsfile" Member="tblpbsfilename" ThisKey="pbsfilesid" OtherKey="id" Type="tblpbsfilename" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.tblpbsfilename" Member="tblpbsfilenames">
@@ -342,6 +333,15 @@
       <Column Name="akt_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="akt_dato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="parent" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblpbsfile" Member="tblpbsfiles">
+    <Type Name="tblpbsfile">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="pbsfilesid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="seqnr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="data" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Association Name="tblpbsfilename_tblpbsfile" Member="tblpbsfilename" ThisKey="pbsfilesid" OtherKey="id" Type="tblpbsfilename" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.GetSysinfo" Method="GetSysinfo" IsComposable="true">
