@@ -61,7 +61,11 @@
                         <HyperlinkButton x:Name="Link4" Style="{StaticResource LinkStyle}" 
                                      NavigateUri="/SecurePages/Admin" TargetName="ContentFrame" Content="Admin"/>
 
+                        <Rectangle x:Name="Divider4" Style="{StaticResource DividerStyle}"/>
 
+                        <HyperlinkButton x:Name="Link5" Style="{StaticResource LinkStyle}" 
+                                     NavigateUri="/SecurePages/Users" TargetName="ContentFrame" Content="Users"/>
+                        
                         <Rectangle x:Name="Divider2" Style="{StaticResource DividerStyle}"/>
 
                         <HyperlinkButton x:Name="Link2" Style="{StaticResource LinkStyle}" 

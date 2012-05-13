@@ -108,6 +108,7 @@
     <Compile Include="Models\RegistrationData.cs" />
     <Compile Include="Services\MedlemDomainService.cs" />
     <Compile Include="Services\MedlemDomainService.metadata.cs" />
+    <Compile Include="Services\MyDomainService.cs" />
     <Compile Include="Services\UserRegistrationService.cs" />
     <Compile Include="Models\Shared\User.shared.cs" />
   </ItemGroup>

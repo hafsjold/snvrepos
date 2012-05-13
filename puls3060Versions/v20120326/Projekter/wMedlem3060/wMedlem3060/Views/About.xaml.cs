@@ -2,6 +2,8 @@
 {
     using System.Windows.Controls;
     using System.Windows.Navigation;
+    using wMedlem3060.Web;
+    using System.ServiceModel.DomainServices.Client;
 
     /// <summary>
     /// <see cref="Page"/> class to present information about the current application.
@@ -26,5 +28,17 @@
 
         }
 
+        private void button1_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            MyDomainContext MyContext = new MyDomainContext();
+            object myState = new object();
+            MyContext.GetLocalTemperature("KBH", GetLocalTemperature_Completed, myState);
+        }
+
+        private void GetLocalTemperature_Completed(InvokeOperation<int> temp) 
+        {
+            var xx = temp.Value;
+            int y = 2 + 3;
+        }
     }
 }

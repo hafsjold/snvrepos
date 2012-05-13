@@ -339,6 +339,122 @@ namespace wMedlem3060.Web
     }
     
     /// <summary>
+    /// The DomainContext corresponding to the 'MyDomainService' DomainService.
+    /// </summary>
+    public sealed partial class MyDomainContext : DomainContext
+    {
+        
+        #region Extensibility Method Definitions
+
+        /// <summary>
+        /// This method is invoked from the constructor once initialization is complete and
+        /// can be used for further object setup.
+        /// </summary>
+        partial void OnCreated();
+
+        #endregion
+        
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MyDomainContext"/> class.
+        /// </summary>
+        public MyDomainContext() : 
+                this(new WebDomainClient<IMyDomainServiceContract>(new Uri("wMedlem3060-Web-MyDomainService.svc", UriKind.Relative)))
+        {
+        }
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MyDomainContext"/> class with the specified service URI.
+        /// </summary>
+        /// <param name="serviceUri">The MyDomainService service URI.</param>
+        public MyDomainContext(Uri serviceUri) : 
+                this(new WebDomainClient<IMyDomainServiceContract>(serviceUri))
+        {
+        }
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MyDomainContext"/> class with the specified <paramref name="domainClient"/>.
+        /// </summary>
+        /// <param name="domainClient">The DomainClient instance to use for this DomainContext.</param>
+        public MyDomainContext(DomainClient domainClient) : 
+                base(domainClient)
+        {
+            this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Asynchronously invokes the 'GetLocalTemperature' method of the DomainService.
+        /// </summary>
+        /// <param name="postalcode">The value for the 'postalcode' parameter of this action.</param>
+        /// <param name="callback">Callback to invoke when the operation completes.</param>
+        /// <param name="userState">Value to pass to the callback.  It can be <c>null</c>.</param>
+        /// <returns>An operation instance that can be used to manage the asynchronous request.</returns>
+        public InvokeOperation<int> GetLocalTemperature(string postalcode, Action<InvokeOperation<int>> callback, object userState)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("postalcode", postalcode);
+            this.ValidateMethod("GetLocalTemperature", parameters);
+            return ((InvokeOperation<int>)(this.InvokeOperation("GetLocalTemperature", typeof(int), parameters, true, callback, userState)));
+        }
+        
+        /// <summary>
+        /// Asynchronously invokes the 'GetLocalTemperature' method of the DomainService.
+        /// </summary>
+        /// <param name="postalcode">The value for the 'postalcode' parameter of this action.</param>
+        /// <returns>An operation instance that can be used to manage the asynchronous request.</returns>
+        public InvokeOperation<int> GetLocalTemperature(string postalcode)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("postalcode", postalcode);
+            this.ValidateMethod("GetLocalTemperature", parameters);
+            return ((InvokeOperation<int>)(this.InvokeOperation("GetLocalTemperature", typeof(int), parameters, true, null, null)));
+        }
+        
+        /// <summary>
+        /// Creates a new EntityContainer for this DomainContext's EntitySets.
+        /// </summary>
+        /// <returns>A new container instance.</returns>
+        protected override EntityContainer CreateEntityContainer()
+        {
+            return new MyDomainContextEntityContainer();
+        }
+        
+        /// <summary>
+        /// Service contract for the 'MyDomainService' DomainService.
+        /// </summary>
+        [ServiceContract()]
+        public interface IMyDomainServiceContract
+        {
+            
+            /// <summary>
+            /// Asynchronously invokes the 'GetLocalTemperature' operation.
+            /// </summary>
+            /// <param name="postalcode">The value for the 'postalcode' parameter of this action.</param>
+            /// <param name="callback">Callback to invoke on completion.</param>
+            /// <param name="asyncState">Optional state object.</param>
+            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/MyDomainService/GetLocalTemperatureDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/MyDomainService/GetLocalTemperature", ReplyAction="http://tempuri.org/MyDomainService/GetLocalTemperatureResponse")]
+            IAsyncResult BeginGetLocalTemperature(string postalcode, AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Completes the asynchronous operation begun by 'BeginGetLocalTemperature'.
+            /// </summary>
+            /// <param name="result">The IAsyncResult returned from 'BeginGetLocalTemperature'.</param>
+            /// <returns>The 'Int32' returned from the 'GetLocalTemperature' operation.</returns>
+            int EndGetLocalTemperature(IAsyncResult result);
+        }
+        
+        internal sealed class MyDomainContextEntityContainer : EntityContainer
+        {
+            
+            public MyDomainContextEntityContainer()
+            {
+            }
+        }
+    }
+    
+    /// <summary>
     /// The 'RegistrationData' class.
     /// </summary>
     [DataContract(Namespace="http://schemas.datacontract.org/2004/07/wMedlem3060.Web")]

@@ -15,19 +15,19 @@
            Title="Medlemmer" xmlns:my="clr-namespace:wMedlem3060.Web" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk">
     <Grid x:Name="LayoutRoot">
         <riacontrols:DomainDataSource x:Name="MyData" LoadedData="tblMedlemDomainDataSource_LoadedData" LoadingData="MyData_LoadingData" LoadSize="20" QueryName="GetTblMedlems" AutoLoad="True" >
-           <riacontrols:DomainDataSource.DomainContext>
+            <riacontrols:DomainDataSource.DomainContext>
                 <ds:MedlemDomainContext />
             </riacontrols:DomainDataSource.DomainContext>
-            
+
             <riacontrols:DomainDataSource.FilterDescriptors>
                 <riacontrols:FilterDescriptor  PropertyPath="Postnr" Operator="IsEqualTo" IgnoredValue="" Value="{Binding ElementName=PostnrFilter, Path=Text}" />
-                </riacontrols:DomainDataSource.FilterDescriptors>
+            </riacontrols:DomainDataSource.FilterDescriptors>
         </riacontrols:DomainDataSource>
-        
+
         <ScrollViewer  Style="{StaticResource PageScrollViewerStyle}">
             <StackPanel Margin="35,0" Orientation="Vertical" >
                 <TextBlock Text="Medlemmer" Style="{StaticResource HeaderTextStyle}" />
-                
+
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,-16,0,0" >
                     <TextBlock VerticalAlignment="Center" Text="Postnr Filter: " />
                     <TextBox x:Name="PostnrFilter" Width="75" FontSize="11" Margin="4" Text="3060" />
@@ -55,13 +55,13 @@
                                     <TextBlock Text="{Binding Path=FodtDato, StringFormat=\{0:dd-MM-yyyy\}}" />
                                 </DataTemplate>
                             </datagrid:DataGridTemplateColumn.CellTemplate>
-                        </datagrid:DataGridTemplateColumn>                        
+                        </datagrid:DataGridTemplateColumn>
                         <datagrid:DataGridTextColumn x:Name="bankColumn" Binding="{Binding Path=Bank}" Header="Bank konto" Width="SizeToCells" MinWidth="50" Visibility="Collapsed" />
                     </datagrid:DataGrid.Columns>
                 </datagrid:DataGrid>
-                
+
                 <datagrid:DataPager x:Name="MedlemPager" PageSize="10"  Margin="0,-1,0,0" Source="{Binding ElementName=MyData, Path=Data}" />
-            
+
                 <dataform:DataForm x:Name="MedlemDetails" Header="Medlem" AutoGenerateFields="False" AutoEdit="False" AutoCommit="False"
                                    CurrentItem="{Binding ElementName=MedlemGrid, Path=SelectedItem}" Margin="0,12,0,0"  >
                     <dataform:DataForm.EditTemplate>
@@ -100,7 +100,7 @@
                                 <dataform:DataField Label="Bank konto">
                                     <TextBox Text="{Binding Bank, Mode=TwoWay}" />
                                 </dataform:DataField>
-                                
+
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
                                     <Button Content="Save Changes" x:Name="SaveChangesButton" Width="75" Height="23" Margin="4,0,0,0" Click="SaveChangesButton_Click"  />
                                 </StackPanel>

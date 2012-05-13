@@ -148,6 +148,9 @@
     <Compile Include="Views\SecurePages\MedlemList.xaml.cs">
       <DependentUpon>MedlemList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SecurePages\Users.xaml.cs">
+      <DependentUpon>Users.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VisibilityConverter.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -204,6 +207,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\SecurePages\Users.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
@@ -241,6 +248,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\DataSources\wMedlem3060.Web.Services.MedlemDomainContext.datasource" />
+    <None Include="Properties\DataSources\wMedlem3060.Web.User.datasource" />
     <None Include="Properties\OutOfBrowserSettings.xml" />
   </ItemGroup>
   <ItemGroup>
