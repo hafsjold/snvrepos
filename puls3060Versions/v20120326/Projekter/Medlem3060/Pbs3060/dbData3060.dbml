@@ -57,6 +57,7 @@
       <Association Name="tbltilpb_tblfak" Member="tblfaks" ThisKey="id" OtherKey="tilpbsid" Type="tblfak" />
       <Association Name="tbltilpb_tblrykker" Member="tblrykkers" ThisKey="id" OtherKey="tilpbsid" Type="tblrykker" />
       <Association Name="tbltilpb_tbloverforsel" Member="tbloverforsels" ThisKey="id" OtherKey="tilpbsid" Type="tbloverforsel" />
+      <Association Name="tbltilpb_tbladvi" Member="tbladvis" ThisKey="id" OtherKey="tilpbsid" Type="tbladvi" />
       <Association Name="tblpbsforsendelse_tbltilpb" Member="tblpbsforsendelse" ThisKey="pbsforsendelseid" OtherKey="id" Type="tblpbsforsendelse" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
@@ -123,24 +124,6 @@
       <Column Name="aftaleslutdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="pbssektionnr" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
       <Association Name="tblfrapb_tblaftalelin" Member="tblfrapb" ThisKey="frapbsid" OtherKey="id" Type="tblfrapb" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tblindbetalingskort" Member="tblindbetalingskorts">
-    <Type Name="tblindbetalingskort">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="frapbsid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="pbstranskode" Type="System.String" DbType="NVarChar(4) NOT NULL" CanBeNull="false" />
-      <Column Name="Nr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="faknr" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="debitorkonto" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
-      <Column Name="debgrpnr" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
-      <Column Name="kortartkode" Type="System.String" DbType="NVarChar(2) NOT NULL" CanBeNull="false" />
-      <Column Name="fikreditornr" Type="System.String" DbType="NVarChar(8) NOT NULL" CanBeNull="false" />
-      <Column Name="indbetalerident" Type="System.String" DbType="NVarChar(19) NOT NULL" CanBeNull="false" />
-      <Column Name="dato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="pbssektionnr" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
-      <Association Name="tblfrapb_tblindbetalingskort" Member="tblfrapb" ThisKey="frapbsid" OtherKey="id" Type="tblfrapb" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.tblMedlem" Member="tblMedlems">
@@ -344,6 +327,57 @@
       <Association Name="tblpbsfilename_tblpbsfile" Member="tblpbsfilename" ThisKey="pbsfilesid" OtherKey="id" Type="tblpbsfilename" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.tblindbetalingskort" Member="tblindbetalingskorts">
+    <Type Name="tblindbetalingskort">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="frapbsid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="pbstranskode" Type="System.String" DbType="NVarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="Nr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="faknr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="debitorkonto" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="debgrpnr" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="kortartkode" Type="System.String" DbType="NVarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="fikreditornr" Type="System.String" DbType="NVarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="indbetalerident" Type="System.String" DbType="NVarChar(19) NOT NULL" CanBeNull="false" />
+      <Column Name="dato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="pbssektionnr" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="regnr" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+      <Association Name="tblfrapb_tblindbetalingskort" Member="tblfrapb" ThisKey="frapbsid" OtherKey="id" Type="tblfrapb" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbladvis" Member="tbladvis">
+    <Type Name="tbladvi">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tilpbsid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="betalingsdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Nr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="faknr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="advistekst" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="advisbelob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="infotekst" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="maildato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="tbltilpb_tbladvi" Member="tbltilpb" ThisKey="tilpbsid" OtherKey="id" Type="tbltilpb" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.vAdvis_indbetalingskort" Member="vAdvis_indbetalingskorts">
+    <Type Name="vAdvis_indbetalingskort">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="frapbsid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="pbstranskode" Type="System.String" DbType="NVarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="Nr" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="faknr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="debitorkonto" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="debgrpnr" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="kortartkode" Type="System.String" DbType="NVarChar(2) NOT NULL" CanBeNull="false" />
+      <Column Name="fikreditornr" Type="System.String" DbType="NVarChar(8) NOT NULL" CanBeNull="false" />
+      <Column Name="indbetalerident" Type="System.String" DbType="NVarChar(19) NOT NULL" CanBeNull="false" />
+      <Column Name="dato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="pbssektionnr" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
+      <Column Name="regnr" Type="System.String" DbType="VarChar(4)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.GetSysinfo" Method="GetSysinfo" IsComposable="true">
     <Parameter Name="Pvkey" Parameter="pvkey" Type="System.String" DbType="NVarChar(10)" />
     <Return Type="System.String" />
@@ -391,5 +425,9 @@
   <Function Name="dbo.udmeldtdato" Method="udmeldtdato" IsComposable="true">
     <Parameter Name="pNr" Type="System.Int32" DbType="Int" />
     <Return Type="System.DateTime" />
+  </Function>
+  <Function Name="dbo.SendtSomString" Method="SendtSomString" IsComposable="true">
+    <Parameter Name="pFaknr" Type="System.Int32" DbType="Int" />
+    <Return Type="System.String" />
   </Function>
 </Database>

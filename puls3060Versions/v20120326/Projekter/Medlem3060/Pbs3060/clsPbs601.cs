@@ -26,6 +26,168 @@ namespace nsPbs3060
     {
         public clsPbs601() { }
 
+        public Tuple<int, int> advis_bsh(dbData3060DataContext p_dbData3060)
+        {
+            int lobnr = 0;
+            string wadvistekst = "";
+            int winfotekst;
+            int wantaladvis = 0;
+            string wDelsystem = "EML";
+ 
+            var rstmedlems = from i in p_dbData3060.vAdvis_indbetalingskorts
+                             where i.dato > DateTime.Today
+                             join f in p_dbData3060.tblfaks on i.faknr equals f.faknr
+                             select new
+                             {
+                                 i.Nr,
+                                 betalingsdato=i.dato,
+                                 advisbelob=i.belob,
+                                 i.faknr,
+                                 f.indmeldelse
+                             };
+            
+            int adviscount = rstmedlems.Count();
+            if (adviscount > 0)
+            {
+                tbltilpb rec_tilpbs = new tbltilpb
+                {
+                    delsystem = wDelsystem,
+                    leverancetype = "0601",
+                    udtrukket = DateTime.Now
+                };
+                p_dbData3060.tbltilpbs.InsertOnSubmit(rec_tilpbs);
+                p_dbData3060.SubmitChanges();
+                lobnr = rec_tilpbs.id;
+
+                foreach (var rstmedlem in rstmedlems)
+                {
+                    winfotekst = (rstmedlem.indmeldelse) ? 51 : 50;
+
+                    tbladvi rec_advis = new tbladvi
+                    {
+                        betalingsdato = rstmedlem.betalingsdato,
+                        Nr = rstmedlem.Nr,
+                        faknr = rstmedlem.faknr,
+                        advistekst = wadvistekst,
+                        advisbelob = rstmedlem.advisbelob,
+                        infotekst = winfotekst,
+                        maildato = DateTime.Today,
+                    };
+                    rec_tilpbs.tbladvis.Add(rec_advis);
+                    wantaladvis++;
+                }
+                p_dbData3060.SubmitChanges();
+            }
+            return new Tuple<int, int>(wantaladvis, lobnr);
+        }
+
+        public void advis_email(dbData3060DataContext p_dbData3060, int lobnr)
+        {
+            int wleveranceid;
+            int? wSaveFaknr;
+
+            {
+                var antal = (from c in p_dbData3060.tbltilpbs
+                             where c.id == lobnr
+                             select c).Count();
+                if (antal == 0) { throw new Exception("101 - Der er ingen PBS forsendelse for id: " + lobnr); }
+            }
+            {
+                var antal = (from c in p_dbData3060.tbltilpbs
+                             where c.id == lobnr && c.pbsforsendelseid != null
+                             select c).Count();
+                if (antal > 0) { throw new Exception("102 - Pbsforsendelse for id: " + lobnr + " er allerede sendt"); }
+            }
+            {
+                var antal = (from c in p_dbData3060.tbladvis
+                             where c.tilpbsid == lobnr
+                             select c).Count();
+                if (antal == 0) { throw new Exception("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr); }
+            }
+
+            var rsttil = (from c in p_dbData3060.tbltilpbs
+                          where c.id == lobnr
+                          select c).First();
+            if (rsttil.udtrukket == null) { rsttil.udtrukket = DateTime.Now; }
+            if (rsttil.bilagdato == null) { rsttil.bilagdato = rsttil.udtrukket; }
+            if (rsttil.delsystem == null) { rsttil.delsystem = "EML"; }
+            if (rsttil.leverancetype == null) { rsttil.leverancetype = ""; }
+            p_dbData3060.SubmitChanges();
+
+            wleveranceid = p_dbData3060.nextval("leveranceid");
+
+            tblpbsforsendelse rec_pbsforsendelse = new tblpbsforsendelse
+            {
+                delsystem = rsttil.delsystem,
+                leverancetype = rsttil.leverancetype,
+                oprettetaf = "Adv",
+                oprettet = DateTime.Now,
+                leveranceid = wleveranceid
+            };
+            p_dbData3060.tblpbsforsendelses.InsertOnSubmit(rec_pbsforsendelse);
+            rec_pbsforsendelse.tbltilpbs.Add(rsttil);
+
+            var rstdebs = from k in p_dbData3060.tblMedlems
+                          join r in p_dbData3060.tbladvis on k.Nr equals r.Nr
+                          where r.tilpbsid == lobnr && r.Nr != null
+                          join f in p_dbData3060.tblfaks on r.faknr equals f.faknr
+                          orderby r.faknr
+                          select new clsRstdeb
+                          {
+                              Nr = k.Nr,
+                              Kundenr = 32001610000000 + k.Nr,
+                              Kaldenavn = k.Kaldenavn,
+                              Navn = k.Navn,
+                              Adresse = k.Adresse,
+                              Postnr = k.Postnr,
+                              Faknr = r.faknr,
+                              Betalingsdato = f.betalingsdato,
+                              Fradato = f.fradato,
+                              Tildato = f.tildato,
+                              Infotekst = r.infotekst,
+                              Tilpbsid = r.tilpbsid,
+                              Advistekst = r.advistekst,
+                              Belob = r.advisbelob,
+                              Email = k.Email
+                          };
+
+            wSaveFaknr = 0;
+            foreach (var rstdeb in rstdebs)
+            {
+                if (rstdeb.Faknr != wSaveFaknr) //Løser problem med mere flere PBS Tblindbetalingskort records pr Faknr
+                {
+
+                    string infotekst = new clsInfotekst
+                    {
+                        infotekst_id = rstdeb.Infotekst,
+                        numofcol = null,
+                        navn_medlem = rstdeb.Navn,
+                        kaldenavn = rstdeb.Kaldenavn,
+                        fradato = rstdeb.Fradato,
+                        tildato = rstdeb.Tildato,
+                        betalingsdato = rstdeb.Betalingsdato,
+                        advisbelob = rstdeb.Belob,
+                        ocrstring = p_dbData3060.OcrString(rstdeb.Faknr),
+                        underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører",
+                        sendtsom = p_dbData3060.SendtSomString(rstdeb.Faknr)
+                    }.getinfotekst(p_dbData3060);
+
+                    if (infotekst.Length > 0)
+                    {
+
+                        //Send email
+                        sendAdvisRykkerEmail(p_dbData3060, rstdeb.Navn, rstdeb.Email, "Betaling af Puls 3060 Kontingent", infotekst);
+
+                    }
+                }
+                wSaveFaknr = rstdeb.Faknr;
+            } // -- End rstdebs
+
+            rsttil.udtrukket = DateTime.Now;
+            rsttil.leverancespecifikation = wleveranceid.ToString();
+            p_dbData3060.SubmitChanges();
+        }
+
         public Tuple<int, int> rykkere_bsh(dbData3060DataContext p_dbData3060)
         {
             int lobnr;
@@ -232,6 +394,7 @@ namespace nsPbs3060
             {
                 if (rstdeb.Faknr != wSaveFaknr) //Løser problem med mere flere PBS Tblindbetalingskort records pr Faknr
                 {
+                    
                     string infotekst = new clsInfotekst
                     {
                         infotekst_id = rstdeb.Infotekst,
@@ -243,14 +406,15 @@ namespace nsPbs3060
                         betalingsdato = rstdeb.Betalingsdato,
                         advisbelob = rstdeb.Belob,
                         ocrstring = p_dbData3060.OcrString(rstdeb.Faknr),
-                        underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører"
+                        underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører",
+                        sendtsom = p_dbData3060.SendtSomString(rstdeb.Faknr)
                     }.getinfotekst(p_dbData3060);
 
                     if (infotekst.Length > 0)
                     {
 
                         //Send email
-                        sendRykkerEmail(p_dbData3060, rstdeb.Navn, rstdeb.Email, "Betaling af Puls 3060 Kontingent", infotekst);
+                        sendAdvisRykkerEmail(p_dbData3060, rstdeb.Navn, rstdeb.Email, "Betaling af Puls 3060 Kontingent", infotekst);
 
                     }
                 }
@@ -1053,26 +1217,9 @@ namespace nsPbs3060
             return Val.PadRight(Length, PadChar);
         }
         
-        public void sendRykkerEmail(dbData3060DataContext p_dbData3060, string ToName, string ToAddr, string subject, string body)
+        public void sendAdvisRykkerEmail(dbData3060DataContext p_dbData3060, string ToName, string ToAddr, string subject, string body)
         {
-            /*
-            Chilkat.MailMan mailman = new Chilkat.MailMan();
-            bool success;
-            success = mailman.UnlockComponent("HAFSJOMAILQ_9QYSMgP0oR1h");
-            if (success != true) throw new Exception(mailman.LastErrorText);
 
-            //  Use the GMail SMTP server
-            mailman.SmtpHost = Program.Smtphost;
-            mailman.SmtpPort = int.Parse(Program.Smtpport);
-            mailman.SmtpSsl = bool.Parse(Program.Smtpssl);
-
-            //  Set the SMTP login/password.
-            mailman.SmtpUsername = Program.Smtpuser;
-            mailman.SmtpPassword = Program.Smtppasswd;
-
-            //  Create a new email object
-            Chilkat.Email email = new Chilkat.Email();
-            */
             string SmtpUsername = p_dbData3060.GetSysinfo("SMTPUSER");
             string SmtpPassword = p_dbData3060.GetSysinfo("SMTPPASSWD");
             var smtp = new SmtpClient
