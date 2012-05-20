@@ -179,7 +179,7 @@ namespace nsPuls3060
                 {
                     AntalForslag++;
                     tilmeldtpbs = (bool)Program.dbData3060.erPBS(m.Nr);
-                    clsKontingent objKontingent = new clsKontingent(KontingentFradato, m.Nr);
+                    clsKontingent objKontingent = new clsKontingent(Program.dbData3060, KontingentFradato, m.Nr);
                     KontingentTildato = objKontingent.KontingentTildato;
                     ikontingent = (int)objKontingent.Kontingent;
 

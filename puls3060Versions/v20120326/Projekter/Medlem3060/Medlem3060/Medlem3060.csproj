@@ -148,7 +148,6 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="cls\clsKontingent.cs" />
     <Compile Include="cls\clsImportMedlem.cs" />
     <Compile Include="cls\clsExcel.cs">
       <SubType>Form</SubType>

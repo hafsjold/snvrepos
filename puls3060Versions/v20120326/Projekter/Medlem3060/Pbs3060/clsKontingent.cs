@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace nsPuls3060
+namespace nsPbs3060
 {
     public class clsKontingent
     {
@@ -12,27 +12,27 @@ namespace nsPuls3060
 
         private clsKontingent() { }
 
-        public clsKontingent(DateTime startdato, int? Nr)
+        public clsKontingent(dbData3060DataContext p_dbData3060, DateTime startdato, int? Nr)
         {
             DateTime? fodtdato;
             try
             {
-                fodtdato = (from m in Program.dbData3060.tblMedlems where m.Nr == Nr select m.FodtDato).First();
+                fodtdato = (from m in p_dbData3060.tblMedlems where m.Nr == Nr select m.FodtDato).First();
 
             }
             catch
             {
                 fodtdato = null;
-            } 
-            this.BeregnKontingent(startdato, fodtdato); 
+            }
+            this.BeregnKontingent(p_dbData3060, startdato, fodtdato); 
         }
 
-        public clsKontingent(DateTime startdato, DateTime? fodtdato)
+        public clsKontingent(dbData3060DataContext p_dbData3060, DateTime startdato, DateTime? fodtdato)
         {
-            this.BeregnKontingent(startdato, fodtdato);
+            this.BeregnKontingent(p_dbData3060, startdato, fodtdato);
         }
 
-        private void BeregnKontingent(DateTime startdato, DateTime? fodtdato) 
+        private void BeregnKontingent(dbData3060DataContext p_dbData3060, DateTime startdato, DateTime? fodtdato) 
         {
             int alder;
             if (fodtdato == null) 
@@ -86,7 +86,7 @@ namespace nsPuls3060
                     break;
             }
 
-            var qry1 = from k in Program.dbData3060.tblKontingents
+            var qry1 = from k in p_dbData3060.tblKontingents
                       where (k.startalder <= alder && k.slutalder >= alder) && (k.startdato.Date >= KontingentFradato.Date || k.slutdato.Date >= KontingentFradato.Date)
                       select k;
 

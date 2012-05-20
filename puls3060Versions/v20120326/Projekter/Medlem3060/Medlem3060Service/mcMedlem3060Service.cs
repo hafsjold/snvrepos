@@ -21,6 +21,7 @@ namespace nsMedlem3060Service
         ProcessType603Files,
         SendFilesToPBS,
         LoadSchedule,
+        KontingentNyeMedlemmer,
         SendEmailRykker
     }
 
@@ -157,11 +158,26 @@ namespace nsMedlem3060Service
                             LoadSchedule();
                             break;
 
+                        case enumTask.KontingentNyeMedlemmer:
+                            clsPbs601 objPbs601c = new clsPbs601();
+                            Tuple<int, int> tresultc = objPbs601c.kontingent_fakturer_auto(m_dbData3060);
+                            int AntalKontingent = tresultc.Item1;
+                            int lobnrc = tresultc.Item2;
+                            if ((AntalKontingent > 0)){
+                                objPbs601c.faktura_og_rykker_601_action(m_dbData3060, lobnrc, fakType.fdfaktura);
+                                clsSFTP objSFTPc = new clsSFTP(m_dbData3060);
+                                objSFTPc.WriteTilSFtp(m_dbData3060, lobnrc);
+                                objSFTPc.DisconnectSFtp();
+                                objSFTPc = null;
+                            }
+                            objPbs601c = null;
+                            break;
+
                         case enumTask.SendEmailRykker:
                             clsPbs601 objPbs601b = new clsPbs601();
-                            Tuple<int, int> tresultx = objPbs601b.rykker_auto(m_dbData3060);
-                            int AntalRykker = tresultx.Item1;
-                            int lobnrb = tresultx.Item2;
+                            Tuple<int, int> tresultb = objPbs601b.rykker_auto(m_dbData3060);
+                            int AntalRykker = tresultb.Item1;
+                            int lobnrb = tresultb.Item2;
                             if ((AntalRykker > 0))
                                 objPbs601b.rykker_email(m_dbData3060, lobnrb);
                             objPbs601b = null;

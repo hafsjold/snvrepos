@@ -33,19 +33,19 @@ namespace nsPbs3060
             int winfotekst;
             int wantaladvis = 0;
             string wDelsystem = "EML";
- 
+
             var rstmedlems = from i in p_dbData3060.vAdvis_indbetalingskorts
                              where i.dato > DateTime.Today
                              join f in p_dbData3060.tblfaks on i.faknr equals f.faknr
                              select new
                              {
                                  i.Nr,
-                                 betalingsdato=i.dato,
-                                 advisbelob=i.belob,
+                                 betalingsdato = i.dato,
+                                 advisbelob = i.belob,
                                  i.faknr,
                                  f.indmeldelse
                              };
-            
+
             int adviscount = rstmedlems.Count();
             if (adviscount > 0)
             {
@@ -208,19 +208,19 @@ namespace nsPbs3060
 
             var rstmedlems = from h in p_dbData3060.tblMedlems
                              join f in p_dbData3060.tblfaks on h.Nr equals f.Nr
-                                where f.SFaknr == null &&
-                                      f.rykkerstop == false &&
-                                      f.betalingsdato.Value.AddDays(7) <= DateTime.Today &&
-                                      (int)(from q in p_dbData3060.tblrykkers where q.faknr == f.faknr select q).Count() == 0
-                                orderby f.fradato, f.id
-                                select new 
-                                {
-                                    h.Nr,
-                                    f.betalingsdato,
-                                    f.advisbelob,
-                                    f.faknr,
-                                    f.indmeldelse
-                                };
+                             where f.SFaknr == null &&
+                                   f.rykkerstop == false &&
+                                   f.betalingsdato.Value.AddDays(7) <= DateTime.Today &&
+                                   (int)(from q in p_dbData3060.tblrykkers where q.faknr == f.faknr select q).Count() == 0
+                             orderby f.fradato, f.id
+                             select new
+                             {
+                                 h.Nr,
+                                 f.betalingsdato,
+                                 f.advisbelob,
+                                 f.faknr,
+                                 f.indmeldelse
+                             };
 
             foreach (var rstmedlem in rstmedlems)
             {
@@ -311,7 +311,133 @@ namespace nsPbs3060
             return new Tuple<int, int>(wantalrykkere, lobnr);
         }
 
-        public Tuple<int,int> kontingent_fakturer_bs1(dbData3060DataContext p_dbData3060)
+        public Tuple<int, int> kontingent_fakturer_auto(dbData3060DataContext p_dbData3060)
+        {
+            int lobnr = 0;
+            string wadvistekst = "";
+            int winfotekst = 0;
+            int wantalfakturaer = 0;
+            string wDelsystem;
+            wDelsystem = "BSH";
+
+            DateTime KontingentFradato = DateTime.MinValue;
+            bool tilmeldtpbs = false;
+            bool indmeldelse = false;
+            int AntalForslag = 0;
+            MemKont memKont = new MemKont();
+
+            var qry_medlemmer = from h in p_dbData3060.tblMedlems
+                                select new
+                                {
+                                    Nr = h.Nr,
+                                    Navn = h.Navn,
+                                    FodtDato = h.FodtDato,
+                                    erMedlem = ((bool)p_dbData3060.erMedlem(h.Nr)) ? 1 : 0,
+                                    indmeldelsesDato = p_dbData3060.indmeldtdato(h.Nr),
+                                    udmeldelsesDato = p_dbData3060.udmeldtdato(h.Nr),
+                                    kontingentBetaltTilDato = p_dbData3060.kontingentdato(h.Nr),
+                                    opkrævningsDato = p_dbData3060.forfaldsdato(h.Nr),
+                                };
+
+            foreach (var m in qry_medlemmer)
+            {
+                bool bSelected = true;
+                tilmeldtpbs = false;
+                indmeldelse = false;
+
+                if (m.erMedlem == 0) //er ikke medlem
+                {
+                    bSelected = false;
+                }
+                else //Er medlem
+                {
+                    if ((m.kontingentBetaltTilDato != null) && (m.kontingentBetaltTilDato > m.indmeldelsesDato))  //'Der findes en kontingent-betaling
+                    {
+                        bSelected = false;
+                    }
+                    else  //Der findes ingen kontingent-betaling
+                    {
+                        KontingentFradato = (DateTime)m.indmeldelsesDato;
+                        indmeldelse = true;
+                    }
+                }
+
+                if (bSelected)
+                {
+                    if (m.opkrævningsDato != null) //Der findes en opkrævning
+                    {
+                        if (((DateTime)m.opkrævningsDato) > KontingentFradato)
+                        {
+                            bSelected = false;
+                        }
+                    }
+                }
+
+
+                if (bSelected && indmeldelse)
+                {
+                    AntalForslag++;
+                    tilmeldtpbs = (bool)p_dbData3060.erPBS(m.Nr);
+                    clsKontingent objKontingent = new clsKontingent(p_dbData3060, KontingentFradato, m.Nr);
+
+                    recKont rec = new recKont
+                    {
+                        Nr = m.Nr,
+                        Navn = m.Navn,
+                        betalingsdato = clsOverfoersel.bankdageplus(DateTime.Today, 8),
+                        advisbelob = objKontingent.Kontingent,
+                        fradato = KontingentFradato,
+                        tildato = objKontingent.KontingentTildato,
+                        indmeldelse = true,
+                        tilmeldtpbs = tilmeldtpbs
+                    };
+                    memKont.Add(rec);
+                }
+            }
+
+
+            if (AntalForslag > 0)
+            {
+                tbltilpb rec_tilpbs = new tbltilpb
+                {
+                    delsystem = wDelsystem,
+                    leverancetype = "0601",
+                    udtrukket = DateTime.Now
+                };
+                p_dbData3060.tbltilpbs.InsertOnSubmit(rec_tilpbs);
+                p_dbData3060.SubmitChanges();
+                lobnr = rec_tilpbs.id;
+
+                foreach (var rstmedlem in memKont)
+                {
+                    if (rstmedlem.indmeldelse) winfotekst = 11;
+                    else winfotekst = (rstmedlem.tilmeldtpbs) ? 10 : 12;
+
+                    tblfak rec_fak = new tblfak
+                    {
+                        betalingsdato = rstmedlem.betalingsdato,
+                        Nr = rstmedlem.Nr,
+                        faknr = p_dbData3060.nextval("faknr"),
+                        advistekst = wadvistekst,
+                        advisbelob = rstmedlem.advisbelob,
+                        infotekst = winfotekst,
+                        bogfkonto = 1800,
+                        vnr = 1,
+                        fradato = rstmedlem.fradato,
+                        tildato = rstmedlem.tildato,
+                        indmeldelse = rstmedlem.indmeldelse,
+                        tilmeldtpbs = rstmedlem.tilmeldtpbs
+                    };
+                    rec_tilpbs.tblfaks.Add(rec_fak);
+                    wantalfakturaer++;
+                }
+                p_dbData3060.SubmitChanges();
+            }
+            return new Tuple<int, int>(wantalfakturaer, lobnr);
+
+        }
+
+        public Tuple<int, int> kontingent_fakturer_bs1(dbData3060DataContext p_dbData3060)
         {
             int lobnr;
             string wadvistekst = "";
@@ -453,7 +579,7 @@ namespace nsPbs3060
             {
                 if (rstdeb.Faknr != wSaveFaknr) //Løser problem med mere flere PBS Tblindbetalingskort records pr Faknr
                 {
-                    
+
                     string infotekst = new clsInfotekst
                     {
                         infotekst_id = rstdeb.Infotekst,
@@ -857,19 +983,20 @@ namespace nsPbs3060
                     }
                 }
 
-                string infotekst = new clsInfotekst { 
+                string infotekst = new clsInfotekst
+                {
                     infotekst_id = rstdeb.Infotekst,
                     numofcol = 60,
                     navn_medlem = rstdeb.Navn,
-                    kaldenavn = rstdeb.Kaldenavn, 
-                    fradato = rstdeb.Fradato, 
-                    tildato = rstdeb.Tildato, 
+                    kaldenavn = rstdeb.Kaldenavn,
+                    fradato = rstdeb.Fradato,
+                    tildato = rstdeb.Tildato,
                     betalingsdato = rstdeb.Betalingsdato,
-                    advisbelob = rstdeb.Belob, 
-                    ocrstring = p_dbData3060.OcrString(rstdeb.Faknr), 
-                    underskrift_navn= "\r\nMogens Hafsjold\r\nRegnskabsfører"
+                    advisbelob = rstdeb.Belob,
+                    ocrstring = p_dbData3060.OcrString(rstdeb.Faknr),
+                    underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører"
                 }.getinfotekst(p_dbData3060);
-                
+
                 if (infotekst.Length > 0)
                 {
                     arradvis = infotekst.Split(splitchars, StringSplitOptions.None);
@@ -1244,7 +1371,7 @@ namespace nsPbs3060
 
             return rec;
         }
-        
+
         private string write992(string datalevnr, string delsystem, string levtype, long antal1, long antal2, long belob2, long antal3, long antal4)
         {
 
@@ -1275,7 +1402,7 @@ namespace nsPbs3060
             string Val = oVal.ToString();
             return Val.PadRight(Length, PadChar);
         }
-        
+
         public void sendAdvisRykkerEmail(dbData3060DataContext p_dbData3060, string ToName, string ToAddr, string subject, string body)
         {
 
@@ -1294,7 +1421,7 @@ namespace nsPbs3060
             MailMessage email = new MailMessage();
 
 #if (DEBUG)
-            email.To.Add(new MailAddress(p_dbData3060.GetSysinfo("MAILTOADDR"), p_dbData3060.GetSysinfo("MAILTONAME"))); 
+            email.To.Add(new MailAddress(p_dbData3060.GetSysinfo("MAILTOADDR"), p_dbData3060.GetSysinfo("MAILTONAME")));
             email.Subject = "TEST " + subject + " skal sendes til: " + ToName + " - " + ToAddr;
 #else
             if (ToAddr.Length > 0)
@@ -1313,7 +1440,7 @@ namespace nsPbs3060
 #endif
             email.Body = body;
             email.From = new MailAddress(p_dbData3060.GetSysinfo("MAILFROM"));
-            email.ReplyToList.Add( new MailAddress(p_dbData3060.GetSysinfo("MAILREPLY")));
+            email.ReplyToList.Add(new MailAddress(p_dbData3060.GetSysinfo("MAILREPLY")));
 
             smtp.Send(email);
         }
@@ -1337,6 +1464,23 @@ namespace nsPbs3060
         public decimal? Belob { get; set; }
         //public string OcrString { get; set; }
         public string Email { get; set; }
+
+    }
+
+    public class recKont
+    {
+        public int Nr { get; set; }
+        public string Navn { get; set; }
+        public DateTime betalingsdato { get; set; }
+        public decimal advisbelob { get; set; }
+        public DateTime fradato { get; set; }
+        public DateTime tildato { get; set; }
+        public bool indmeldelse { get; set; }
+        public bool tilmeldtpbs { get; set; }
+
+    }
+    public class MemKont : List<recKont>
+    {
 
     }
 }
