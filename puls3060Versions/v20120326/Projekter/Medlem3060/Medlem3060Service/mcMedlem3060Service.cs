@@ -20,7 +20,8 @@ namespace nsMedlem3060Service
         ProcessType602Files,
         ProcessType603Files,
         SendFilesToPBS,
-        LoadSchedule
+        LoadSchedule,
+        SendEmailRykker
     }
 
     public partial class mcMedlem3060Service : ServiceBase
@@ -31,15 +32,15 @@ namespace nsMedlem3060Service
         public mcMedlem3060Service()
         {
             InitializeComponent();
-/*
-//#if (DEBUG)            
-            Trace.WriteLine("Medlem3060Service Starter #2");
-            _SchedulerThread = new Thread(Scheduler);
-            _SchedulerThread.Name = "Scheduler";
-            _SchedulerThread.Start();
-            _SchedulerThread.Join();
-//#endif
-*/
+            /*
+            //#if (DEBUG)            
+                        Trace.WriteLine("Medlem3060Service Starter #2");
+                        _SchedulerThread = new Thread(Scheduler);
+                        _SchedulerThread.Name = "Scheduler";
+                        _SchedulerThread.Start();
+                        _SchedulerThread.Join();
+            //#endif
+            */
         }
 
         private T StringToEnum<T>(string name)
@@ -64,7 +65,7 @@ namespace nsMedlem3060Service
         private void Scheduler()
         {
             LoadSchedule();
-          
+
             while (true)
             {
                 try
@@ -94,7 +95,7 @@ namespace nsMedlem3060Service
                 }
                 catch (Exception e)
                 {
-                    Trace.WriteLine(string.Format("Medlem3060Service Scheduler() loop failed with message: {0}", e.Message ));
+                    Trace.WriteLine(string.Format("Medlem3060Service Scheduler() loop failed with message: {0}", e.Message));
                     if (_waitStopHandle.WaitOne(5 * 60000))
                         break;
                 }
@@ -126,6 +127,21 @@ namespace nsMedlem3060Service
                             int Antal603Filer = objPbs603.aftaleoplysninger_fra_pbs(m_dbData3060);
                             objPbs603 = null;
 
+                            clsPbs686 objPbs686 = new clsPbs686();
+                            int Antal686Filer = objPbs686.aftaleoplysninger_fra_pbs(m_dbData3060);
+                            objPbs686 = null;
+
+                            if (Antal686Filer > 0)
+                            {
+                                clsPbs601 objPbs601a = new clsPbs601();
+                                Tuple<int, int> tresult = objPbs601a.advis_auto(m_dbData3060);
+                                int AntalAdvis = tresult.Item1;
+                                int lobnra = tresult.Item2;
+                                if ((AntalAdvis > 0))
+                                    objPbs601a.advis_email(m_dbData3060, lobnra);
+                                objPbs601a = null;
+                            }
+
                             break;
 
                         case enumTask.ProcessType602Files:
@@ -139,6 +155,16 @@ namespace nsMedlem3060Service
 
                         case enumTask.LoadSchedule:
                             LoadSchedule();
+                            break;
+
+                        case enumTask.SendEmailRykker:
+                            clsPbs601 objPbs601b = new clsPbs601();
+                            Tuple<int, int> tresultx = objPbs601b.rykker_auto(m_dbData3060);
+                            int AntalRykker = tresultx.Item1;
+                            int lobnrb = tresultx.Item2;
+                            if ((AntalRykker > 0))
+                                objPbs601b.rykker_email(m_dbData3060, lobnrb);
+                            objPbs601b = null;
                             break;
 
                         default:

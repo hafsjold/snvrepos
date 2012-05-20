@@ -26,7 +26,7 @@ namespace nsPbs3060
     {
         public clsPbs601() { }
 
-        public Tuple<int, int> advis_bsh(dbData3060DataContext p_dbData3060)
+        public Tuple<int, int> advis_auto(dbData3060DataContext p_dbData3060)
         {
             int lobnr = 0;
             string wadvistekst = "";
@@ -186,6 +186,65 @@ namespace nsPbs3060
             rsttil.udtrukket = DateTime.Now;
             rsttil.leverancespecifikation = wleveranceid.ToString();
             p_dbData3060.SubmitChanges();
+        }
+
+        public Tuple<int, int> rykker_auto(dbData3060DataContext p_dbData3060)
+        {
+            int lobnr;
+            string wadvistekst = "";
+            int winfotekst = 0;
+            int wantalrykkere = 0;
+            string wDelsystem = "EML";
+
+            tbltilpb rec_tilpbs = new tbltilpb
+            {
+                delsystem = wDelsystem,
+                leverancetype = "0601",
+                udtrukket = DateTime.Now
+            };
+            p_dbData3060.tbltilpbs.InsertOnSubmit(rec_tilpbs);
+            p_dbData3060.SubmitChanges();
+            lobnr = rec_tilpbs.id;
+
+            var rstmedlems = from h in p_dbData3060.tblMedlems
+                             join f in p_dbData3060.tblfaks on h.Nr equals f.Nr
+                                where f.SFaknr == null &&
+                                      f.rykkerstop == false &&
+                                      f.betalingsdato.Value.AddDays(7) <= DateTime.Today &&
+                                      (int)(from q in p_dbData3060.tblrykkers where q.faknr == f.faknr select q).Count() == 0
+                                orderby f.fradato, f.id
+                                select new 
+                                {
+                                    h.Nr,
+                                    f.betalingsdato,
+                                    f.advisbelob,
+                                    f.faknr,
+                                    f.indmeldelse
+                                };
+
+            foreach (var rstmedlem in rstmedlems)
+            {
+                if ((bool)p_dbData3060.kanRykkes(rstmedlem.Nr))
+                {
+                    winfotekst = (rstmedlem.indmeldelse) ? 31 : 30;
+
+                    tblrykker rec_rykker = new tblrykker
+                    {
+                        betalingsdato = rstmedlem.betalingsdato,
+                        Nr = rstmedlem.Nr,
+                        faknr = rstmedlem.faknr,
+                        advistekst = wadvistekst,
+                        advisbelob = rstmedlem.advisbelob,
+                        infotekst = winfotekst,
+                        rykkerdato = DateTime.Today,
+                    };
+                    rec_tilpbs.tblrykkers.Add(rec_rykker);
+                    wantalrykkere++;
+
+                }
+            }
+            p_dbData3060.SubmitChanges();
+            return new Tuple<int, int>(wantalrykkere, lobnr);
         }
 
         public Tuple<int, int> rykkere_bsh(dbData3060DataContext p_dbData3060)
