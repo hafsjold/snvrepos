@@ -130,222 +130,37 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
-            int yy = Program.dbData3060.nextval("mha");
+            // START TEST TEST TEST TEST TEST TEST
 
-            //clsKontingent obsKontingent = new clsKontingent(new DateTime(2011, 12, 11), new DateTime(1967, 05, 21));
-            //int xys = 1;
-            //if (xys == 1) xys++;
-            //clsSFTP objSFTP = new clsSFTP();
-            //objSFTP.ReWriteTilSFtp(986);
-            //clsRest objRest = new clsRest();
-            //string resp = objRest.HttpGet2("Medlem");
-            //clsSync objSync = new clsSync();
-            //objSync.actionSync(1);
-            //objSync.actionSync(2);
-            //objSync.actionSync(3);
-            //clsPbs.ExecuteSQLScript(@"sql\scriptexp.sql");
-            //clsPbs.ExecuteSQLScript(@"sql\scriptimpexp.sql");
-            //objSync.importeksport(ImpExp.fdEksport);
-            //objSync.medlemxml();
-            //objSync.actionMedlemxmlSync();
-            //objSync.actionMedlemlogxmlSync();
-            //objSync.medlemlogxml();
-            //objSync.medlemxmldelete();
-            //objSync.actionSync(1);
-            //objSync.actionSync(2);
-            //decimal tal = 50;
-            //string uden1 = tal.ToString();
-            //string uden2 = tal.ToString("0.00");
-            //string infotxt = clsPbs.getinfotekst(11, null, null, null,null,null,"Mogens Hafsjold");
-            //bool tilmeldtpbs = clsPbs.gettilmeldtpbs(386);
-            //clsSumma objSumma = new clsSumma();
-            //objSumma.BogforUdBetalinger(11);
-            //string txt = @"p0: {0}, p1: {1},p5: {5}";
-            //string ptxt = string.Format(txt, "x0", "x1", "x2", "x3", "x4", "x5", "x6");
-            //DateTime dato = new DateTime(2010, 5, 20, 
-            //    13, 25, 00);
-            //int plusdage = 2;
-            //DateTime wdispositionsdato = clsOverfoersel.bankdageplus(dato, plusdage);
-            //clsPbs603 objPbs603 = new clsPbs603();
-            //objPbs603.aftaleoplysninger_fra_pbs();
-            //int xx = 0;
-
-            //clsOverfoersel objOverfoersel = new clsOverfoersel();
-            //objOverfoersel.overfoersel_mail(617);
-            //KarFakturastr_k objKarFakturastr_k = new KarFakturastr_k();
-            //objKarFakturastr_k.open();
-            //int xx = 1;
-            //clsImportMedlem objImportMedlem = new clsImportMedlem();
-            //clsGoogle objGoogle = new clsGoogle();
-            //objGoogle.test();
-            //clsRecovery objRecovery = new clsRecovery();
-            //objRecovery.TestRecovery();
-            //clsSFTP objSFTP = new clsSFTP();
-            //byte[] data ={96,97,98};
-            //objSFTP.sendAttachedFile("testfile", data, false);
-            //objSFTP.WriteTilSFtp(606);
-            //clsPbs objPbs = new clsPbs();
-            //clsPbs601 objPbs601 = new clsPbs601();
-            //clsPbs602 objPbs602 = new clsPbs602();
-            //Program.karDkkonti.save();
-            //Program.karKortnr.save();
-            //clsSumma objSumma = new clsSumma();
-            //objSumma.Order2Summa();
-            //objSumma.OrderFaknrUpdate();
-            //objSumma.BogforBetalinger();
-            //objPbs601.faktura_601_action(1);
-            //objPbs602.TestRead042();
-            //objPbs602.ReadFraPbsFile();
-            //objPbs602.betalinger_fra_pbs();
-            //bool x = objPbs.erMedlem(93);
-            //objPbs601.WriteTilPbsFile(606);
-            //objPbs.ReadRegnskaber();
-            //objPbs.SetAktivRegnskaber();
-            //DateTime dt = new DateTime(2009, 10, 31);
-            //double ssdate = clsUtil.SummaDateTime2Serial(dt);
-            //double testdaynr = objPbs.GregorianDate2JulianDayNumber(dt);
-            //DateTime testdate = objPbs.JulianDayNumber2GregorianDate(testdaynr);
-            //KarStatus myKarStatus = new KarStatus();
-            //myKarStatus.save();
-            //var qry_medlemmer = from k in objMedlemmer
-            //                    join m in Program.dbData3060.TblMedlem on k.Nr equals m.Nr
-            //                    where m.FodtDato > DateTime.Parse("1980-01-01")
-            //                    select new { k.Nr, k.Navn, k.Kaldenavn, k.Adresse, k.Postnr, k.Bynavn, k.Email, k.Telefon, m.Kon, m.FodtDato };
-            //
-            //var antal = qry_medlemmer.Count();
-            //foreach (var mx in qry_medlemmer) 
-            //{
-            //    var medlem = mx;
-            //}
             /*
-             clsMedlem nytmedlem = new clsMedlem() 
+            // case enumTask.KontingentNyeMedlemmer:
+            clsPbs601 objPbs601c = new clsPbs601();
+            Tuple<int, int> tresultc = objPbs601c.kontingent_fakturer_auto(Program.dbData3060);
+            int AntalKontingent = tresultc.Item1;
+            int lobnrc = tresultc.Item2;
+            if ((AntalKontingent > 0))
             {
-                Nr = 483,
-                Navn = "Nyt Medlem",
-                //Kaldenavn = "Nyt",
-                Adresse = "Ny adresse 25",
-                Postnr = "3060",
-                Bynavn = "Espergærde",
-                Telefon = "1234 5432",
-                Email = "dex@dfres.dk"
-            };
-            string nystring = nytmedlem.getNewCvsString();
-            KarFakturaer_s objFakturaer_s = new KarFakturaer_s();
-            objFakturaer_s.save();
-            int pNr = 3;
-            DateTime pDate = DateTime.Now;
-            var qryMedlemLog = from m in Program.dbData3060.tblMedlemLogs
-                        where m.Nr == pNr && m.Logdato <= pDate
-                        select new
-                        {
-                            Id = (int)m.Id,
-                            Nr = (int)m.Nr,
-                            Logdato = (DateTime)m.Logdato,
-                            Akt_id = (int)m.Akt_id,
-                            Akt_dato = (DateTime)m.Akt_dato
-                        };
-            var qryFak = from f in Program.dbData3060.tblfaks
-                       join p in Program.dbData3060.tbltilpbs on f.Tilpbsid equals p.Id
-                       where f.Nr == pNr && p.Bilagdato <= pDate
-                       select new
-                       {
-                           Id = (int)f.Id,
-                           Nr = (int)f.Nr,
-                           Logdato = (DateTime)p.Bilagdato,
-                           Akt_id = (int)20,
-                           Akt_dato = (DateTime)f.Betalingsdato
-                       };
-
-            var qryUnion = qryMedlemLog.Union(qryFak).OrderByDescending(u => u.Logdato);
-
-            foreach (var l in qryUnion)
-            {
-                var x = l.Logdato;
+                objPbs601c.faktura_og_rykker_601_action(Program.dbData3060, lobnrc, fakType.fdfaktura);
+                clsSFTP objSFTPc = new clsSFTP(Program.dbData3060);
+                objSFTPc.WriteTilSFtp(Program.dbData3060, lobnrc);
+                objSFTPc.DisconnectSFtp();
+                objSFTPc = null;
             }
+            objPbs601c = null;
+            */
+            
+            //case enumTask.SendEmailRykker:
+            clsPbs601 objPbs601b = new clsPbs601();
+            Tuple<int, int> tresultb = objPbs601b.rykker_auto(Program.dbData3060);
+            int AntalRykker = tresultb.Item1;
+            int lobnrb = tresultb.Item2;
+            if ((AntalRykker > 0))
+                objPbs601b.rykker_email(Program.dbData3060, lobnrb);
+            objPbs601b = null;
 
-            DateTime qryStart = DateTime.Now;
-            var MedlemmerAll = from h in Program.karMedlemmer
-                               join d1 in Program.dbData3060.TblMedlem on h.Nr equals d1.Nr into details1
-                               from x in details1.DefaultIfEmpty(new TblMedlem { Nr = -1, Kon = "X", FodtDato = new DateTime(1900, 1, 1) })
-                               select new clsMedlemAll
-                               {
-                                   Nr = h.Nr,
-                                   Navn = h.Navn,
-                                   Kaldenavn = h.Kaldenavn,
-                                   Adresse = h.Adresse,
-                                   Postnr = h.Postnr,
-                                   Bynavn = h.Bynavn,
-                                   Telefon = h.Telefon,
-                                   Email = h.Email,
-                                   Kon = x.Kon == null ? "X" : x.Kon,
-                                   FodtDato = (DateTime)(x.FodtDato == null ? new DateTime(1900, 01, 01) : x.FodtDato)
-                               };
 
-            var qry = from t in MedlemmerAll
-                      select new
-                      {
-                          MNr = t.Nr,
-                          t.Kon,
-                          t.FodtDato,
-                          t.Navn,
-                          log10 = (from w in Program.qryLog()
-                                 where w.Nr == t.Nr && w.Akt_id == 10
-                                orderby w.Logdato descending
-                                select new
-                                {
-                                    w.Id,
-                                    LNr = w.Nr,
-                                    w.Logdato,
-                                    w.Akt_id,
-                                    w.Akt_dato
-                                }).FirstOrDefault(),
-                          log20 = (from w in Program.qryLog()
-                                 where w.Nr == t.Nr && w.Akt_id == 20
-                                 orderby w.Logdato descending
-                                 select new
-                                 {
-                                     w.Id,
-                                     LNr = w.Nr,
-                                     w.Logdato,
-                                     w.Akt_id,
-                                     w.Akt_dato
-                                 }).FirstOrDefault(),
-                          log30 = (from w in Program.qryLog()
-                                 where w.Nr == t.Nr && w.Akt_id == 30
-                                orderby w.Logdato descending
-                                select new
-                                {
-                                    w.Id,
-                                    LNr = w.Nr,
-                                    w.Logdato,
-                                    w.Akt_id,
-                                    w.Akt_dato
-                                }).FirstOrDefault(),
-                          log50 = (from w in Program.qryLog()
-                                 where w.Nr == t.Nr && w.Akt_id == 50
-                                orderby w.Logdato descending
-                                select new
-                                {
-                                    w.Id,
-                                    LNr = w.Nr,
-                                    w.Logdato,
-                                    w.Akt_id,
-                                    w.Akt_dato
-                                }).FirstOrDefault()
 
-                      };
-            foreach (var q in qry)
-            {
-                var x = q;
-                //foreach (var y in x) 
-                //{
-                //    var z = y.Akt_dato;
-                //}
-            }
-
-            DateTime qrySlut = DateTime.Now;
-            TimeSpan Tid = qrySlut - qryStart;
-        */
+            // SLUT TEST TEST TEST TEST TEST TEST
 #endif
         }
 

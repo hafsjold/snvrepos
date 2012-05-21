@@ -190,21 +190,12 @@ namespace nsPbs3060
 
         public Tuple<int, int> rykker_auto(dbData3060DataContext p_dbData3060)
         {
-            int lobnr;
+            int lobnr = 0;
             string wadvistekst = "";
             int winfotekst = 0;
             int wantalrykkere = 0;
             string wDelsystem = "EML";
-
-            tbltilpb rec_tilpbs = new tbltilpb
-            {
-                delsystem = wDelsystem,
-                leverancetype = "0601",
-                udtrukket = DateTime.Now
-            };
-            p_dbData3060.tbltilpbs.InsertOnSubmit(rec_tilpbs);
-            p_dbData3060.SubmitChanges();
-            lobnr = rec_tilpbs.id;
+            MemRyk memRyk = new MemRyk();
 
             var rstmedlems = from h in p_dbData3060.tblMedlems
                              join f in p_dbData3060.tblfaks on h.Nr equals f.Nr
@@ -222,28 +213,53 @@ namespace nsPbs3060
                                  f.indmeldelse
                              };
 
-            foreach (var rstmedlem in rstmedlems)
+            foreach (var m in rstmedlems)
             {
-                if ((bool)p_dbData3060.kanRykkes(rstmedlem.Nr))
+                if ((bool)p_dbData3060.kanRykkes(m.Nr))
                 {
-                    winfotekst = (rstmedlem.indmeldelse) ? 31 : 30;
-
-                    tblrykker rec_rykker = new tblrykker
+                    recRyk rec = new recRyk
                     {
-                        betalingsdato = rstmedlem.betalingsdato,
-                        Nr = rstmedlem.Nr,
-                        faknr = rstmedlem.faknr,
-                        advistekst = wadvistekst,
-                        advisbelob = rstmedlem.advisbelob,
-                        infotekst = winfotekst,
-                        rykkerdato = DateTime.Today,
+                        Nr = m.Nr,
+                        betalingsdato = m.betalingsdato,
+                        advisbelob = m.advisbelob,
+                        faknr = m.faknr,
+                        indmeldelse = m.indmeldelse
                     };
-                    rec_tilpbs.tblrykkers.Add(rec_rykker);
+                    memRyk.Add(rec);
                     wantalrykkere++;
-
                 }
             }
-            p_dbData3060.SubmitChanges();
+
+            if (wantalrykkere > 0)
+            {
+                tbltilpb rec_tilpbs = new tbltilpb
+                {
+                    delsystem = wDelsystem,
+                    leverancetype = "0601",
+                    udtrukket = DateTime.Now
+                };
+                p_dbData3060.tbltilpbs.InsertOnSubmit(rec_tilpbs);
+                p_dbData3060.SubmitChanges();
+                lobnr = rec_tilpbs.id;
+
+                foreach (var rstmedlem in memRyk)
+                {
+                        winfotekst = (rstmedlem.indmeldelse) ? 31 : 30;
+
+                        tblrykker rec_rykker = new tblrykker
+                        {
+                            betalingsdato = rstmedlem.betalingsdato,
+                            Nr = rstmedlem.Nr,
+                            faknr = rstmedlem.faknr,
+                            advistekst = wadvistekst,
+                            advisbelob = rstmedlem.advisbelob,
+                            infotekst = winfotekst,
+                            rykkerdato = DateTime.Today,
+                        };
+                        rec_tilpbs.tblrykkers.Add(rec_rykker);
+                }
+                p_dbData3060.SubmitChanges();
+            }
             return new Tuple<int, int>(wantalrykkere, lobnr);
         }
 
@@ -1480,6 +1496,19 @@ namespace nsPbs3060
 
     }
     public class MemKont : List<recKont>
+    {
+
+    }
+
+    public class recRyk
+    {
+        public int Nr { get; set; }
+        public DateTime? betalingsdato { get; set; }
+        public decimal? advisbelob { get; set; }
+        public int? faknr { get; set; }
+        public bool indmeldelse { get; set; }
+    }
+    public class MemRyk : List<recRyk>
     {
 
     }
