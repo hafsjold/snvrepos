@@ -133,6 +133,12 @@ namespace nsPuls3060
             // START TEST TEST TEST TEST TEST TEST
 
             /*
+            clsPbs686 objPbs686 = new clsPbs686();
+            int Antal686Filer = objPbs686.aftaleoplysninger_fra_pbs(Program.dbData3060);
+            objPbs686 = null;
+            */
+
+            /*
             // case enumTask.KontingentNyeMedlemmer:
             clsPbs601 objPbs601c = new clsPbs601();
             Tuple<int, int> tresultc = objPbs601c.kontingent_fakturer_auto(Program.dbData3060);
@@ -148,7 +154,8 @@ namespace nsPuls3060
             }
             objPbs601c = null;
             */
-            
+
+            /*
             //case enumTask.SendEmailRykker:
             clsPbs601 objPbs601b = new clsPbs601();
             Tuple<int, int> tresultb = objPbs601b.rykker_auto(Program.dbData3060);
@@ -157,7 +164,7 @@ namespace nsPuls3060
             if ((AntalRykker > 0))
                 objPbs601b.rykker_email(Program.dbData3060, lobnrb);
             objPbs601b = null;
-
+            */
 
 
             // SLUT TEST TEST TEST TEST TEST TEST
@@ -195,8 +202,10 @@ namespace nsPuls3060
             string smallString = null;
             int AntalImportFiler = 0;
 
+            clsPbs601 objPbs601 = new clsPbs601();
             clsPbs602 objPbs602 = new clsPbs602();
             clsPbs603 objPbs603 = new clsPbs603();
+            clsPbs686 objPbs686 = new clsPbs686();
 
             clsSFTP objSFTP = new clsSFTP(Program.dbData3060);
             AntalImportFiler = objSFTP.ReadFraSFtp(Program.dbData3060);  //Læs direkte SFTP
@@ -206,11 +215,18 @@ namespace nsPuls3060
 
             int Antal602Filer = objPbs602.betalinger_fra_pbs(Program.dbData3060);
             int Antal603Filer = objPbs603.aftaleoplysninger_fra_pbs(Program.dbData3060);
+            int Antal686Filer = objPbs686.aftaleoplysninger_fra_pbs(Program.dbData3060);
+
+            Tuple<int, int> tresult = objPbs601.advis_auto(Program.dbData3060);
+            int AntalAdvis = tresult.Item1;
+            int lobnr = tresult.Item2;
+            if ((AntalAdvis > 0))
+                objPbs601.advis_email(Program.dbData3060, lobnr);
 
             clsSumma objSumma = new clsSumma();
             int AntalBetalinger = objSumma.BogforIndBetalinger();
 
-            bigString = String.Format("Antal indlæste filer fra PBS: {0} \nAntal nye 602 filer: {1}\nAntal nye 603 filer: {3}\nAntal nye ordre: {2}.", AntalImportFiler, Antal602Filer, AntalBetalinger, Antal603Filer);
+            bigString = String.Format("Antal indlæste filer fra PBS: {0} \nAntal nye 602 filer: {1}\nAntal nye 603 filer: {3}\nAntal nye 686 filer: {4}\nAntal nye ordre: {2}.", AntalImportFiler, Antal602Filer, AntalBetalinger, Antal603Filer, Antal686Filer);
             if (AntalBetalinger > 0)
             {
                 smallString = String.Format("Åben SummaSummarum\nTryk på ikonet Kassekladde i venstre side\nbogfør den nye kassekladde med {0} betalinger.", AntalBetalinger);
@@ -219,6 +235,8 @@ namespace nsPuls3060
             {
                 smallString = "Der er ingen nye betalinger";
             }
+
+
 
             DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
                 "Betalinger fra PBS", //titleString 

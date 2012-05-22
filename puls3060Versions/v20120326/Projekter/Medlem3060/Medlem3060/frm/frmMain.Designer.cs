@@ -60,9 +60,9 @@
             this.infoTekstToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reSendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.databasePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importerFileFraPBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.importerFileFraPBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -229,7 +229,7 @@
             // 
             this.betalingerFraPBSToolStripMenuItem.Name = "betalingerFraPBSToolStripMenuItem";
             this.betalingerFraPBSToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.betalingerFraPBSToolStripMenuItem.Text = "Betalinger fra PBS";
+            this.betalingerFraPBSToolStripMenuItem.Text = "Hent PBS Filer";
             this.betalingerFraPBSToolStripMenuItem.Click += new System.EventHandler(this.betalingerFraPBSToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
@@ -330,6 +330,13 @@
             this.databasePasswordToolStripMenuItem.Text = "Database Password";
             this.databasePasswordToolStripMenuItem.Click += new System.EventHandler(this.databasePasswordToolStripMenuItem_Click);
             // 
+            // importerFileFraPBSToolStripMenuItem
+            // 
+            this.importerFileFraPBSToolStripMenuItem.Name = "importerFileFraPBSToolStripMenuItem";
+            this.importerFileFraPBSToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+            this.importerFileFraPBSToolStripMenuItem.Text = "Importer file fra PBS";
+            this.importerFileFraPBSToolStripMenuItem.Click += new System.EventHandler(this.importerFileFraPBSToolStripMenuItem_Click);
+            // 
             // hjælpToolStripMenuItem
             // 
             this.hjælpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -344,13 +351,6 @@
             this.omToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
-            // 
-            // importerFileFraPBSToolStripMenuItem
-            // 
-            this.importerFileFraPBSToolStripMenuItem.Name = "importerFileFraPBSToolStripMenuItem";
-            this.importerFileFraPBSToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
-            this.importerFileFraPBSToolStripMenuItem.Text = "Importer file fra PBS";
-            this.importerFileFraPBSToolStripMenuItem.Click += new System.EventHandler(this.importerFileFraPBSToolStripMenuItem_Click);
             // 
             // FrmMain
             // 

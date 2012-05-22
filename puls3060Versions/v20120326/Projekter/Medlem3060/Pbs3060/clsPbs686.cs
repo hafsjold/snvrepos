@@ -356,7 +356,7 @@ namespace nsPbs3060
             m_rec_indbetalingskort.fikreditornr  = rec.Substring(130, 8);
 
             //  Indbetalerident
-            m_rec_indbetalingskort.indbetalerident  = rec.Substring(82, 16);
+            m_rec_indbetalingskort.indbetalerident  = "000" + rec.Substring(82, 16); //Tidligere 19 lang i 217 record
 
             //  dato
             if (rec.Substring(51, 8) != "00000000")
