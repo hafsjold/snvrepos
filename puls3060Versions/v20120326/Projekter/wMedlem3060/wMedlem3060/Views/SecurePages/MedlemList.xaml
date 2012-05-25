@@ -45,7 +45,7 @@
                 <StackPanel Orientation="Horizontal" >
 
                     <StackPanel Orientation="Vertical" Margin="0,0,5,0" Width="250">
-                        <dataform:DataForm x:Name="MedlemDetails"  Header="Medlem" AutoGenerateFields="False" AutoEdit="False" AutoCommit="False" ItemsSource="{Binding ElementName=MyData, Path=Data}" CurrentItem="{Binding ElementName=MedlemGrid, Path=SelectedItem}" CommandButtonsVisibility="Add, Edit, Commit, Cancel">
+                        <dataform:DataForm x:Name="MedlemDetails"  Header="Medlem" AutoGenerateFields="False" AutoEdit="False" AutoCommit="False" ItemsSource="{Binding ElementName=MyData, Path=Data}" CurrentItem="{Binding ElementName=MedlemGrid, Path=SelectedItem}" CommandButtonsVisibility="Navigation, Add, Edit, Commit, Cancel" AddingNewItem="MedlemDetails_AddingNewItem" BeginningEdit="MedlemDetails_BeginningEdit" EditEnding="MedlemDetails_EditEnding">
                             <dataform:DataForm.ReadOnlyTemplate>
                                 <DataTemplate>
                                     <StackPanel>
@@ -131,7 +131,7 @@
                                         <dataform:DataField Label="Nr">
                                             <TextBox  Text="{Binding Nr, Mode=TwoWay}" />
                                         </dataform:DataField>
-                                        <dataform:DataField Label="YYNavn">
+                                        <dataform:DataField Label="Navn">
                                             <TextBox Text="{Binding Navn, Mode=TwoWay}" />
                                         </dataform:DataField>
                                         <dataform:DataField Label="Kalde Navn">
@@ -160,6 +160,9 @@
                                         </dataform:DataField>
                                         <dataform:DataField Label="Bank konto">
                                             <TextBox Text="{Binding Bank, Mode=TwoWay}" />
+                                        </dataform:DataField>
+                                        <dataform:DataField Label="Medlem fra">
+                                            <TextBox  Name="MedlemsFraDato"  />
                                         </dataform:DataField>
                                     </StackPanel>
                                 </DataTemplate>

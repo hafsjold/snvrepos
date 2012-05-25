@@ -79,5 +79,20 @@ namespace wMedlem3060.Views
             e.Cancel = !WebContext.Current.User.IsAuthenticated;
         }
 
+        private void MedlemDetails_AddingNewItem(object sender, DataFormAddingNewItemEventArgs e)
+        {
+            int x = 1;
+        }
+
+        private void MedlemDetails_BeginningEdit(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            int x = 1;
+        }
+
+        private void MedlemDetails_EditEnding(object sender, DataFormEditEndingEventArgs e)
+        {
+            int x = 1;
+        }
+
     }
 }
