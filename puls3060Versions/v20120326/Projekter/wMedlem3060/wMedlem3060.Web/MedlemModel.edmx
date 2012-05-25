@@ -4,10 +4,37 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="nsMedlemModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="nsMedlemModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="nsMedlemModelStoreContainer">
+          <EntitySet Name="tblAktivitet" EntityType="nsMedlemModel.Store.tblAktivitet" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="tblMedlem" EntityType="nsMedlemModel.Store.tblMedlem" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblMedlemLog" EntityType="nsMedlemModel.Store.tblMedlemLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="vMedlemLog" EntityType="nsMedlemModel.Store.vMedlemLog" store:Type="Views" store:Schema="dbo" store:Name="vMedlemLog">
+            <DefiningQuery>SELECT 
+      [vMedlemLog].[id] AS [id], 
+      [vMedlemLog].[Nr] AS [Nr], 
+      [vMedlemLog].[logdato] AS [logdato], 
+      [vMedlemLog].[akt_id] AS [akt_id], 
+      [vMedlemLog].[akt_dato] AS [akt_dato], 
+      [vMedlemLog].[parent] AS [parent]
+      FROM [dbo].[vMedlemLog] AS [vMedlemLog]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Log_Medlem" Association="nsMedlemModel.Store.FK_Log_Medlem">
+            <End Role="tblMedlem" EntitySet="tblMedlem" />
+            <End Role="tblMedlemLog" EntitySet="tblMedlemLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblAktivitet_Log" Association="nsMedlemModel.Store.FK_tblAktivitet_Log">
+            <End Role="tblAktivitet" EntitySet="tblAktivitet" />
+            <End Role="tblMedlemLog" EntitySet="tblMedlemLog" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="tblAktivitet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="akt_tekst" Type="nvarchar" Nullable="false" MaxLength="30" />
+        </EntityType>
         <EntityType Name="tblMedlem">
           <Key>
             <PropertyRef Name="Nr" />
@@ -24,13 +51,72 @@
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="Bank" Type="nvarchar" MaxLength="15" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+        <EntityType Name="tblMedlemLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Nr" Type="int" />
+          <Property Name="logdato" Type="datetime" />
+          <Property Name="akt_id" Type="int" />
+          <Property Name="akt_dato" Type="datetime" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'puls3061_dk_db.dbo.vMedlemLog' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="vMedlemLog">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="parent" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Nr" Type="int" />
+          <Property Name="logdato" Type="datetime" />
+          <Property Name="akt_id" Type="int" />
+          <Property Name="akt_dato" Type="datetime" />
+          <Property Name="parent" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Log_Medlem">
+          <End Role="tblMedlem" Type="nsMedlemModel.Store.tblMedlem" Multiplicity="0..1" />
+          <End Role="tblMedlemLog" Type="nsMedlemModel.Store.tblMedlemLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMedlem">
+              <PropertyRef Name="Nr" />
+            </Principal>
+            <Dependent Role="tblMedlemLog">
+              <PropertyRef Name="Nr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblAktivitet_Log">
+          <End Role="tblAktivitet" Type="nsMedlemModel.Store.tblAktivitet" Multiplicity="0..1" />
+          <End Role="tblMedlemLog" Type="nsMedlemModel.Store.tblMedlemLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAktivitet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblMedlemLog">
+              <PropertyRef Name="akt_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="nsMedlemModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="MedlemEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tblMedlems" EntityType="nsMedlemModel.tblMedlem" />
+          <EntitySet Name="tblAktivitets" EntityType="nsMedlemModel.tblAktivitet" />
+          <EntitySet Name="tblMedlemLogs" EntityType="nsMedlemModel.tblMedlemLog" />
+          <AssociationSet Name="FK_tblAktivitet_Log" Association="nsMedlemModel.FK_tblAktivitet_Log">
+            <End Role="tblAktivitet" EntitySet="tblAktivitets" />
+            <End Role="tblMedlemLog" EntitySet="tblMedlemLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Log_Medlem" Association="nsMedlemModel.FK_Log_Medlem">
+            <End Role="tblMedlem" EntitySet="tblMedlems" />
+            <End Role="tblMedlemLog" EntitySet="tblMedlemLogs" />
+          </AssociationSet>
+          <EntitySet Name="vMedlemLogs" EntityType="nsMedlemModel.vMedlemLog" />
         </EntityContainer>
         <EntityType Name="tblMedlem">
           <Key>
@@ -47,6 +133,63 @@
           <Property Name="Telefon" Type="String" MaxLength="8" Unicode="true" FixedLength="false" />
           <Property Name="Email" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="Bank" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="tblMedlemLogs" Relationship="nsMedlemModel.FK_Log_Medlem" FromRole="tblMedlem" ToRole="tblMedlemLog" />
+        </EntityType>
+        <EntityType Name="tblAktivitet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="akt_tekst" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblMedlemLogs" Relationship="nsMedlemModel.FK_tblAktivitet_Log" FromRole="tblAktivitet" ToRole="tblMedlemLog" />
+        </EntityType>
+        <EntityType Name="tblMedlemLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="Nr" />
+          <Property Type="DateTime" Name="logdato" />
+          <Property Type="Int32" Name="akt_id" />
+          <Property Type="DateTime" Name="akt_dato" />
+          <NavigationProperty Name="tblAktivitet" Relationship="nsMedlemModel.FK_tblAktivitet_Log" FromRole="tblMedlemLog" ToRole="tblAktivitet" />
+          <NavigationProperty Name="tblMedlem" Relationship="nsMedlemModel.FK_Log_Medlem" FromRole="tblMedlemLog" ToRole="tblMedlem" />
+        </EntityType>
+        <Association Name="FK_tblAktivitet_Log">
+          <End Type="nsMedlemModel.tblAktivitet" Role="tblAktivitet" Multiplicity="0..1" />
+          <End Type="nsMedlemModel.tblMedlemLog" Role="tblMedlemLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAktivitet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblMedlemLog">
+              <PropertyRef Name="akt_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Log_Medlem">
+          <End Type="nsMedlemModel.tblMedlem" Role="tblMedlem" Multiplicity="0..1" />
+          <End Type="nsMedlemModel.tblMedlemLog" Role="tblMedlemLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMedlem">
+              <PropertyRef Name="Nr" />
+            </Principal>
+            <Dependent Role="tblMedlemLog">
+              <PropertyRef Name="Nr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vMedlemLog">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="parent" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="Int32" Name="Nr" />
+          <Property Type="DateTime" Name="logdato" />
+          <Property Type="Int32" Name="akt_id" />
+          <Property Type="DateTime" Name="akt_dato" />
+          <Property Type="Int32" Name="parent" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -54,19 +197,54 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="nsMedlemModelStoreContainer" CdmEntityContainer="MedlemEntities">
-          <EntitySetMapping Name="tblMedlems"><EntityTypeMapping TypeName="nsMedlemModel.tblMedlem"><MappingFragment StoreEntitySet="tblMedlem">
-            <ScalarProperty Name="Nr" ColumnName="Nr" />
-            <ScalarProperty Name="Kon" ColumnName="Kon" />
-            <ScalarProperty Name="FodtDato" ColumnName="FodtDato" />
-            <ScalarProperty Name="Navn" ColumnName="Navn" />
-            <ScalarProperty Name="Kaldenavn" ColumnName="Kaldenavn" />
-            <ScalarProperty Name="Adresse" ColumnName="Adresse" />
-            <ScalarProperty Name="Postnr" ColumnName="Postnr" />
-            <ScalarProperty Name="Bynavn" ColumnName="Bynavn" />
-            <ScalarProperty Name="Telefon" ColumnName="Telefon" />
-            <ScalarProperty Name="Email" ColumnName="Email" />
-            <ScalarProperty Name="Bank" ColumnName="Bank" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblMedlems">
+            <EntityTypeMapping TypeName="IsTypeOf(nsMedlemModel.tblMedlem)">
+              <MappingFragment StoreEntitySet="tblMedlem">
+                <ScalarProperty Name="Nr" ColumnName="Nr" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Bynavn" ColumnName="Bynavn" />
+                <ScalarProperty Name="Postnr" ColumnName="Postnr" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Kaldenavn" ColumnName="Kaldenavn" />
+                <ScalarProperty Name="Navn" ColumnName="Navn" />
+                <ScalarProperty Name="FodtDato" ColumnName="FodtDato" />
+                <ScalarProperty Name="Kon" ColumnName="Kon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            </EntitySetMapping>
+          <EntitySetMapping Name="tblAktivitets">
+            <EntityTypeMapping TypeName="nsMedlemModel.tblAktivitet">
+              <MappingFragment StoreEntitySet="tblAktivitet">
+                <ScalarProperty Name="akt_tekst" ColumnName="akt_tekst" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMedlemLogs">
+            <EntityTypeMapping TypeName="nsMedlemModel.tblMedlemLog">
+              <MappingFragment StoreEntitySet="tblMedlemLog">
+                <ScalarProperty Name="akt_dato" ColumnName="akt_dato" />
+                <ScalarProperty Name="akt_id" ColumnName="akt_id" />
+                <ScalarProperty Name="logdato" ColumnName="logdato" />
+                <ScalarProperty Name="Nr" ColumnName="Nr" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vMedlemLogs">
+            <EntityTypeMapping TypeName="nsMedlemModel.vMedlemLog">
+              <MappingFragment StoreEntitySet="vMedlemLog">
+                <ScalarProperty Name="parent" ColumnName="parent" />
+                <ScalarProperty Name="akt_dato" ColumnName="akt_dato" />
+                <ScalarProperty Name="akt_id" ColumnName="akt_id" />
+                <ScalarProperty Name="logdato" ColumnName="logdato" />
+                <ScalarProperty Name="Nr" ColumnName="Nr" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -81,7 +259,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
       </DesignerInfoPropertySet>
     </Options>
@@ -89,6 +267,18 @@
     <Diagrams>
       <Diagram Name="MedlemModel">
         <EntityTypeShape EntityType="nsMedlemModel.tblMedlem" Width="1.5" PointX="2.75" PointY="1" Height="3.1540950520833331" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsMedlemModel.tblAktivitet" Width="1.5" PointX="2.75" PointY="5.875" Height="1.5956835937499996" />
+        <EntityTypeShape EntityType="nsMedlemModel.tblMedlemLog" Width="1.5" PointX="5" PointY="4.5" Height="2.3648893229166656" />
+        <AssociationConnector Association="nsMedlemModel.FK_tblAktivitet_Log" >
+          <ConnectorPoint PointX="4.25" PointY="6.3699446614583328" />
+          <ConnectorPoint PointX="5" PointY="6.3699446614583328" />
+        </AssociationConnector>
+        <AssociationConnector Association="nsMedlemModel.FK_Log_Medlem" >
+          <ConnectorPoint PointX="4.25" PointY="3.6557421874999996" />
+          <ConnectorPoint PointX="5.15625" PointY="3.6557421874999996" />
+          <ConnectorPoint PointX="5.15625" PointY="4.5" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="nsMedlemModel.vMedlemLog" Width="1.5" PointX="0.625" PointY="4.25" Height="2.1725878906249996" />
       </Diagram>
     </Diagrams>
   </Designer>

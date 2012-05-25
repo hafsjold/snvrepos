@@ -90,6 +90,7 @@ namespace wMedlem3060.Web
     using System.ServiceModel.DomainServices.Client;
     using System.ServiceModel.DomainServices.Client.ApplicationServices;
     using System.ServiceModel.Web;
+    using System.Xml.Serialization;
     using wMedlem3060.Web.Resources;
     
     
@@ -637,6 +638,136 @@ namespace wMedlem3060.Web
     }
     
     /// <summary>
+    /// The 'tblAktivitet' entity class.
+    /// </summary>
+    [DataContract(Namespace="http://schemas.datacontract.org/2004/07/wMedlem3060.Web")]
+    public sealed partial class tblAktivitet : Entity
+    {
+        
+        private string _akt_tekst;
+        
+        private int _id;
+        
+        private EntityCollection<tblMedlemLog> _tblMedlemLogs;
+        
+        #region Extensibility Method Definitions
+
+        /// <summary>
+        /// This method is invoked from the constructor once initialization is complete and
+        /// can be used for further object setup.
+        /// </summary>
+        partial void OnCreated();
+        partial void Onakt_tekstChanging(string value);
+        partial void Onakt_tekstChanged();
+        partial void OnidChanging(int value);
+        partial void OnidChanged();
+
+        #endregion
+        
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="tblAktivitet"/> class.
+        /// </summary>
+        public tblAktivitet()
+        {
+            this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'akt_tekst' value.
+        /// </summary>
+        [DataMember()]
+        [Required()]
+        [StringLength(30)]
+        public string akt_tekst
+        {
+            get
+            {
+                return this._akt_tekst;
+            }
+            set
+            {
+                if ((this._akt_tekst != value))
+                {
+                    this.Onakt_tekstChanging(value);
+                    this.RaiseDataMemberChanging("akt_tekst");
+                    this.ValidateProperty("akt_tekst", value);
+                    this._akt_tekst = value;
+                    this.RaiseDataMemberChanged("akt_tekst");
+                    this.Onakt_tekstChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'id' value.
+        /// </summary>
+        [DataMember()]
+        [Editable(false, AllowInitialValue=true)]
+        [Key()]
+        [RoundtripOriginal()]
+        public int id
+        {
+            get
+            {
+                return this._id;
+            }
+            set
+            {
+                if ((this._id != value))
+                {
+                    this.OnidChanging(value);
+                    this.ValidateProperty("id", value);
+                    this._id = value;
+                    this.RaisePropertyChanged("id");
+                    this.OnidChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets the collection of associated <see cref="tblMedlemLog"/> entity instances.
+        /// </summary>
+        [Association("tblAktivitet_tblMedlemLog", "id", "akt_id")]
+        [XmlIgnore()]
+        public EntityCollection<tblMedlemLog> tblMedlemLogs
+        {
+            get
+            {
+                if ((this._tblMedlemLogs == null))
+                {
+                    this._tblMedlemLogs = new EntityCollection<tblMedlemLog>(this, "tblMedlemLogs", this.FiltertblMedlemLogs, this.AttachtblMedlemLogs, this.DetachtblMedlemLogs);
+                }
+                return this._tblMedlemLogs;
+            }
+        }
+        
+        private void AttachtblMedlemLogs(tblMedlemLog entity)
+        {
+            entity.tblAktivitet = this;
+        }
+        
+        private void DetachtblMedlemLogs(tblMedlemLog entity)
+        {
+            entity.tblAktivitet = null;
+        }
+        
+        private bool FiltertblMedlemLogs(tblMedlemLog entity)
+        {
+            return (entity.akt_id == this.id);
+        }
+        
+        /// <summary>
+        /// Computes a value from the key fields that uniquely identifies this entity instance.
+        /// </summary>
+        /// <returns>An object instance that uniquely identifies this entity instance.</returns>
+        public override object GetIdentity()
+        {
+            return this._id;
+        }
+    }
+    
+    /// <summary>
     /// The 'tblMedlem' entity class.
     /// </summary>
     [DataContract(Namespace="http://schemas.datacontract.org/2004/07/wMedlem3060.Web")]
@@ -662,6 +793,8 @@ namespace wMedlem3060.Web
         private int _nr;
         
         private string _postnr;
+        
+        private EntityCollection<tblMedlemLog> _tblMedlemLogs;
         
         private string _telefon;
         
@@ -964,6 +1097,23 @@ namespace wMedlem3060.Web
         }
         
         /// <summary>
+        /// Gets the collection of associated <see cref="tblMedlemLog"/> entity instances.
+        /// </summary>
+        [Association("tblMedlem_tblMedlemLog", "Nr", "Nr")]
+        [XmlIgnore()]
+        public EntityCollection<tblMedlemLog> tblMedlemLogs
+        {
+            get
+            {
+                if ((this._tblMedlemLogs == null))
+                {
+                    this._tblMedlemLogs = new EntityCollection<tblMedlemLog>(this, "tblMedlemLogs", this.FiltertblMedlemLogs, this.AttachtblMedlemLogs, this.DetachtblMedlemLogs);
+                }
+                return this._tblMedlemLogs;
+            }
+        }
+        
+        /// <summary>
         /// Gets or sets the 'Telefon' value.
         /// </summary>
         [DataMember()]
@@ -989,6 +1139,21 @@ namespace wMedlem3060.Web
             }
         }
         
+        private void AttachtblMedlemLogs(tblMedlemLog entity)
+        {
+            entity.tblMedlem = this;
+        }
+        
+        private void DetachtblMedlemLogs(tblMedlemLog entity)
+        {
+            entity.tblMedlem = null;
+        }
+        
+        private bool FiltertblMedlemLogs(tblMedlemLog entity)
+        {
+            return (entity.Nr == this.Nr);
+        }
+        
         /// <summary>
         /// Computes a value from the key fields that uniquely identifies this entity instance.
         /// </summary>
@@ -996,6 +1161,288 @@ namespace wMedlem3060.Web
         public override object GetIdentity()
         {
             return this._nr;
+        }
+    }
+    
+    /// <summary>
+    /// The 'tblMedlemLog' entity class.
+    /// </summary>
+    [DataContract(Namespace="http://schemas.datacontract.org/2004/07/wMedlem3060.Web")]
+    public sealed partial class tblMedlemLog : Entity
+    {
+        
+        private Nullable<DateTime> _akt_dato;
+        
+        private Nullable<int> _akt_id;
+        
+        private int _id;
+        
+        private Nullable<DateTime> _logdato;
+        
+        private Nullable<int> _nr;
+        
+        private EntityRef<tblAktivitet> _tblAktivitet;
+        
+        private EntityRef<tblMedlem> _tblMedlem;
+        
+        #region Extensibility Method Definitions
+
+        /// <summary>
+        /// This method is invoked from the constructor once initialization is complete and
+        /// can be used for further object setup.
+        /// </summary>
+        partial void OnCreated();
+        partial void Onakt_datoChanging(Nullable<DateTime> value);
+        partial void Onakt_datoChanged();
+        partial void Onakt_idChanging(Nullable<int> value);
+        partial void Onakt_idChanged();
+        partial void OnidChanging(int value);
+        partial void OnidChanged();
+        partial void OnlogdatoChanging(Nullable<DateTime> value);
+        partial void OnlogdatoChanged();
+        partial void OnNrChanging(Nullable<int> value);
+        partial void OnNrChanged();
+
+        #endregion
+        
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="tblMedlemLog"/> class.
+        /// </summary>
+        public tblMedlemLog()
+        {
+            this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'akt_dato' value.
+        /// </summary>
+        [DataMember()]
+        public Nullable<DateTime> akt_dato
+        {
+            get
+            {
+                return this._akt_dato;
+            }
+            set
+            {
+                if ((this._akt_dato != value))
+                {
+                    this.Onakt_datoChanging(value);
+                    this.RaiseDataMemberChanging("akt_dato");
+                    this.ValidateProperty("akt_dato", value);
+                    this._akt_dato = value;
+                    this.RaiseDataMemberChanged("akt_dato");
+                    this.Onakt_datoChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'akt_id' value.
+        /// </summary>
+        [DataMember()]
+        [RoundtripOriginal()]
+        public Nullable<int> akt_id
+        {
+            get
+            {
+                return this._akt_id;
+            }
+            set
+            {
+                if ((this._akt_id != value))
+                {
+                    this.Onakt_idChanging(value);
+                    this.RaiseDataMemberChanging("akt_id");
+                    this.ValidateProperty("akt_id", value);
+                    this._akt_id = value;
+                    this.RaiseDataMemberChanged("akt_id");
+                    this.Onakt_idChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'id' value.
+        /// </summary>
+        [DataMember()]
+        [Editable(false, AllowInitialValue=true)]
+        [Key()]
+        [RoundtripOriginal()]
+        public int id
+        {
+            get
+            {
+                return this._id;
+            }
+            set
+            {
+                if ((this._id != value))
+                {
+                    this.OnidChanging(value);
+                    this.ValidateProperty("id", value);
+                    this._id = value;
+                    this.RaisePropertyChanged("id");
+                    this.OnidChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'logdato' value.
+        /// </summary>
+        [DataMember()]
+        public Nullable<DateTime> logdato
+        {
+            get
+            {
+                return this._logdato;
+            }
+            set
+            {
+                if ((this._logdato != value))
+                {
+                    this.OnlogdatoChanging(value);
+                    this.RaiseDataMemberChanging("logdato");
+                    this.ValidateProperty("logdato", value);
+                    this._logdato = value;
+                    this.RaiseDataMemberChanged("logdato");
+                    this.OnlogdatoChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Nr' value.
+        /// </summary>
+        [DataMember()]
+        [RoundtripOriginal()]
+        public Nullable<int> Nr
+        {
+            get
+            {
+                return this._nr;
+            }
+            set
+            {
+                if ((this._nr != value))
+                {
+                    this.OnNrChanging(value);
+                    this.RaiseDataMemberChanging("Nr");
+                    this.ValidateProperty("Nr", value);
+                    this._nr = value;
+                    this.RaiseDataMemberChanged("Nr");
+                    this.OnNrChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the associated <see cref="tblAktivitet"/> entity.
+        /// </summary>
+        [Association("tblAktivitet_tblMedlemLog", "akt_id", "id", IsForeignKey=true)]
+        [XmlIgnore()]
+        public tblAktivitet tblAktivitet
+        {
+            get
+            {
+                if ((this._tblAktivitet == null))
+                {
+                    this._tblAktivitet = new EntityRef<tblAktivitet>(this, "tblAktivitet", this.FiltertblAktivitet);
+                }
+                return this._tblAktivitet.Entity;
+            }
+            set
+            {
+                tblAktivitet previous = this.tblAktivitet;
+                if ((previous != value))
+                {
+                    this.ValidateProperty("tblAktivitet", value);
+                    if ((previous != null))
+                    {
+                        this._tblAktivitet.Entity = null;
+                        previous.tblMedlemLogs.Remove(this);
+                    }
+                    if ((value != null))
+                    {
+                        this.akt_id = value.id;
+                    }
+                    else
+                    {
+                        this.akt_id = default(Nullable<int>);
+                    }
+                    this._tblAktivitet.Entity = value;
+                    if ((value != null))
+                    {
+                        value.tblMedlemLogs.Add(this);
+                    }
+                    this.RaisePropertyChanged("tblAktivitet");
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the associated <see cref="tblMedlem"/> entity.
+        /// </summary>
+        [Association("tblMedlem_tblMedlemLog", "Nr", "Nr", IsForeignKey=true)]
+        [XmlIgnore()]
+        public tblMedlem tblMedlem
+        {
+            get
+            {
+                if ((this._tblMedlem == null))
+                {
+                    this._tblMedlem = new EntityRef<tblMedlem>(this, "tblMedlem", this.FiltertblMedlem);
+                }
+                return this._tblMedlem.Entity;
+            }
+            set
+            {
+                tblMedlem previous = this.tblMedlem;
+                if ((previous != value))
+                {
+                    this.ValidateProperty("tblMedlem", value);
+                    if ((previous != null))
+                    {
+                        this._tblMedlem.Entity = null;
+                        previous.tblMedlemLogs.Remove(this);
+                    }
+                    if ((value != null))
+                    {
+                        this.Nr = value.Nr;
+                    }
+                    else
+                    {
+                        this.Nr = default(Nullable<int>);
+                    }
+                    this._tblMedlem.Entity = value;
+                    if ((value != null))
+                    {
+                        value.tblMedlemLogs.Add(this);
+                    }
+                    this.RaisePropertyChanged("tblMedlem");
+                }
+            }
+        }
+        
+        private bool FiltertblAktivitet(tblAktivitet entity)
+        {
+            return (entity.id == this.akt_id);
+        }
+        
+        private bool FiltertblMedlem(tblMedlem entity)
+        {
+            return (entity.Nr == this.Nr);
+        }
+        
+        /// <summary>
+        /// Computes a value from the key fields that uniquely identifies this entity instance.
+        /// </summary>
+        /// <returns>An object instance that uniquely identifies this entity instance.</returns>
+        public override object GetIdentity()
+        {
+            return this._id;
         }
     }
     
@@ -1298,6 +1745,214 @@ namespace wMedlem3060.Web
             }
         }
     }
+    
+    /// <summary>
+    /// The 'vMedlemLog' entity class.
+    /// </summary>
+    [DataContract(Namespace="http://schemas.datacontract.org/2004/07/wMedlem3060.Web")]
+    public sealed partial class vMedlemLog : Entity
+    {
+        
+        private Nullable<DateTime> _akt_dato;
+        
+        private Nullable<int> _akt_id;
+        
+        private int _id;
+        
+        private Nullable<DateTime> _logdato;
+        
+        private Nullable<int> _nr;
+        
+        private int _parent;
+        
+        #region Extensibility Method Definitions
+
+        /// <summary>
+        /// This method is invoked from the constructor once initialization is complete and
+        /// can be used for further object setup.
+        /// </summary>
+        partial void OnCreated();
+        partial void Onakt_datoChanging(Nullable<DateTime> value);
+        partial void Onakt_datoChanged();
+        partial void Onakt_idChanging(Nullable<int> value);
+        partial void Onakt_idChanged();
+        partial void OnidChanging(int value);
+        partial void OnidChanged();
+        partial void OnlogdatoChanging(Nullable<DateTime> value);
+        partial void OnlogdatoChanged();
+        partial void OnNrChanging(Nullable<int> value);
+        partial void OnNrChanged();
+        partial void OnparentChanging(int value);
+        partial void OnparentChanged();
+
+        #endregion
+        
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="vMedlemLog"/> class.
+        /// </summary>
+        public vMedlemLog()
+        {
+            this.OnCreated();
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'akt_dato' value.
+        /// </summary>
+        [DataMember()]
+        public Nullable<DateTime> akt_dato
+        {
+            get
+            {
+                return this._akt_dato;
+            }
+            set
+            {
+                if ((this._akt_dato != value))
+                {
+                    this.Onakt_datoChanging(value);
+                    this.RaiseDataMemberChanging("akt_dato");
+                    this.ValidateProperty("akt_dato", value);
+                    this._akt_dato = value;
+                    this.RaiseDataMemberChanged("akt_dato");
+                    this.Onakt_datoChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'akt_id' value.
+        /// </summary>
+        [DataMember()]
+        public Nullable<int> akt_id
+        {
+            get
+            {
+                return this._akt_id;
+            }
+            set
+            {
+                if ((this._akt_id != value))
+                {
+                    this.Onakt_idChanging(value);
+                    this.RaiseDataMemberChanging("akt_id");
+                    this.ValidateProperty("akt_id", value);
+                    this._akt_id = value;
+                    this.RaiseDataMemberChanged("akt_id");
+                    this.Onakt_idChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'id' value.
+        /// </summary>
+        [DataMember()]
+        [Editable(false, AllowInitialValue=true)]
+        [Key()]
+        [RoundtripOriginal()]
+        public int id
+        {
+            get
+            {
+                return this._id;
+            }
+            set
+            {
+                if ((this._id != value))
+                {
+                    this.OnidChanging(value);
+                    this.ValidateProperty("id", value);
+                    this._id = value;
+                    this.RaisePropertyChanged("id");
+                    this.OnidChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'logdato' value.
+        /// </summary>
+        [DataMember()]
+        public Nullable<DateTime> logdato
+        {
+            get
+            {
+                return this._logdato;
+            }
+            set
+            {
+                if ((this._logdato != value))
+                {
+                    this.OnlogdatoChanging(value);
+                    this.RaiseDataMemberChanging("logdato");
+                    this.ValidateProperty("logdato", value);
+                    this._logdato = value;
+                    this.RaiseDataMemberChanged("logdato");
+                    this.OnlogdatoChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Nr' value.
+        /// </summary>
+        [DataMember()]
+        public Nullable<int> Nr
+        {
+            get
+            {
+                return this._nr;
+            }
+            set
+            {
+                if ((this._nr != value))
+                {
+                    this.OnNrChanging(value);
+                    this.RaiseDataMemberChanging("Nr");
+                    this.ValidateProperty("Nr", value);
+                    this._nr = value;
+                    this.RaiseDataMemberChanged("Nr");
+                    this.OnNrChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'parent' value.
+        /// </summary>
+        [DataMember()]
+        [Editable(false, AllowInitialValue=true)]
+        [Key()]
+        [RoundtripOriginal()]
+        public int parent
+        {
+            get
+            {
+                return this._parent;
+            }
+            set
+            {
+                if ((this._parent != value))
+                {
+                    this.OnparentChanging(value);
+                    this.ValidateProperty("parent", value);
+                    this._parent = value;
+                    this.RaisePropertyChanged("parent");
+                    this.OnparentChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Computes a value from the key fields that uniquely identifies this entity instance.
+        /// </summary>
+        /// <returns>An object instance that uniquely identifies this entity instance.</returns>
+        public override object GetIdentity()
+        {
+            return EntityKey.Create(this._id, this._parent);
+        }
+    }
 }
 namespace wMedlem3060.Web.Services
 {
@@ -1359,6 +2014,28 @@ namespace wMedlem3060.Web.Services
         }
         
         /// <summary>
+        /// Gets the set of <see cref="tblAktivitet"/> entity instances that have been loaded into this <see cref="MedlemDomainContext"/> instance.
+        /// </summary>
+        public EntitySet<tblAktivitet> tblAktivitets
+        {
+            get
+            {
+                return base.EntityContainer.GetEntitySet<tblAktivitet>();
+            }
+        }
+        
+        /// <summary>
+        /// Gets the set of <see cref="tblMedlemLog"/> entity instances that have been loaded into this <see cref="MedlemDomainContext"/> instance.
+        /// </summary>
+        public EntitySet<tblMedlemLog> tblMedlemLogs
+        {
+            get
+            {
+                return base.EntityContainer.GetEntitySet<tblMedlemLog>();
+            }
+        }
+        
+        /// <summary>
         /// Gets the set of <see cref="tblMedlem"/> entity instances that have been loaded into this <see cref="MedlemDomainContext"/> instance.
         /// </summary>
         public EntitySet<tblMedlem> tblMedlems
@@ -1367,6 +2044,37 @@ namespace wMedlem3060.Web.Services
             {
                 return base.EntityContainer.GetEntitySet<tblMedlem>();
             }
+        }
+        
+        /// <summary>
+        /// Gets the set of <see cref="vMedlemLog"/> entity instances that have been loaded into this <see cref="MedlemDomainContext"/> instance.
+        /// </summary>
+        public EntitySet<vMedlemLog> vMedlemLogs
+        {
+            get
+            {
+                return base.EntityContainer.GetEntitySet<vMedlemLog>();
+            }
+        }
+        
+        /// <summary>
+        /// Gets an EntityQuery instance that can be used to load <see cref="tblAktivitet"/> entity instances using the 'GetTblAktivitets' query.
+        /// </summary>
+        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="tblAktivitet"/> entity instances.</returns>
+        public EntityQuery<tblAktivitet> GetTblAktivitetsQuery()
+        {
+            this.ValidateMethod("GetTblAktivitetsQuery", null);
+            return base.CreateQuery<tblAktivitet>("GetTblAktivitets", null, false, true);
+        }
+        
+        /// <summary>
+        /// Gets an EntityQuery instance that can be used to load <see cref="tblMedlemLog"/> entity instances using the 'GetTblMedlemLogs' query.
+        /// </summary>
+        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="tblMedlemLog"/> entity instances.</returns>
+        public EntityQuery<tblMedlemLog> GetTblMedlemLogsQuery()
+        {
+            this.ValidateMethod("GetTblMedlemLogsQuery", null);
+            return base.CreateQuery<tblMedlemLog>("GetTblMedlemLogs", null, false, true);
         }
         
         /// <summary>
@@ -1380,13 +2088,26 @@ namespace wMedlem3060.Web.Services
         }
         
         /// <summary>
+        /// Gets an EntityQuery instance that can be used to load <see cref="vMedlemLog"/> entity instances using the 'GetvMedlemLogs' query.
+        /// </summary>
+        /// <returns>An EntityQuery that can be loaded to retrieve <see cref="vMedlemLog"/> entity instances.</returns>
+        public EntityQuery<vMedlemLog> GetvMedlemLogsQuery()
+        {
+            this.ValidateMethod("GetvMedlemLogsQuery", null);
+            return base.CreateQuery<vMedlemLog>("GetvMedlemLogs", null, false, true);
+        }
+        
+        /// <summary>
         /// Gets an EntityQuery instance that can be used to load <see cref="tblMedlem"/> entity instances using the 'GetYoungTblMedlems' query.
         /// </summary>
+        /// <param name="pFodtdato">The value for the 'pFodtdato' parameter of the query.</param>
         /// <returns>An EntityQuery that can be loaded to retrieve <see cref="tblMedlem"/> entity instances.</returns>
-        public EntityQuery<tblMedlem> GetYoungTblMedlemsQuery()
+        public EntityQuery<tblMedlem> GetYoungTblMedlemsQuery(DateTime pFodtdato)
         {
-            this.ValidateMethod("GetYoungTblMedlemsQuery", null);
-            return base.CreateQuery<tblMedlem>("GetYoungTblMedlems", null, false, true);
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("pFodtdato", pFodtdato);
+            this.ValidateMethod("GetYoungTblMedlemsQuery", parameters);
+            return base.CreateQuery<tblMedlem>("GetYoungTblMedlems", parameters, false, true);
         }
         
         /// <summary>
@@ -1404,6 +2125,42 @@ namespace wMedlem3060.Web.Services
         [ServiceContract()]
         public interface IMedlemDomainServiceContract
         {
+            
+            /// <summary>
+            /// Asynchronously invokes the 'GetTblAktivitets' operation.
+            /// </summary>
+            /// <param name="callback">Callback to invoke on completion.</param>
+            /// <param name="asyncState">Optional state object.</param>
+            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/MedlemDomainService/GetTblAktivitetsDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/MedlemDomainService/GetTblAktivitets", ReplyAction="http://tempuri.org/MedlemDomainService/GetTblAktivitetsResponse")]
+            [WebGet()]
+            IAsyncResult BeginGetTblAktivitets(AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Completes the asynchronous operation begun by 'BeginGetTblAktivitets'.
+            /// </summary>
+            /// <param name="result">The IAsyncResult returned from 'BeginGetTblAktivitets'.</param>
+            /// <returns>The 'QueryResult' returned from the 'GetTblAktivitets' operation.</returns>
+            QueryResult<tblAktivitet> EndGetTblAktivitets(IAsyncResult result);
+            
+            /// <summary>
+            /// Asynchronously invokes the 'GetTblMedlemLogs' operation.
+            /// </summary>
+            /// <param name="callback">Callback to invoke on completion.</param>
+            /// <param name="asyncState">Optional state object.</param>
+            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/MedlemDomainService/GetTblMedlemLogsDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/MedlemDomainService/GetTblMedlemLogs", ReplyAction="http://tempuri.org/MedlemDomainService/GetTblMedlemLogsResponse")]
+            [WebGet()]
+            IAsyncResult BeginGetTblMedlemLogs(AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Completes the asynchronous operation begun by 'BeginGetTblMedlemLogs'.
+            /// </summary>
+            /// <param name="result">The IAsyncResult returned from 'BeginGetTblMedlemLogs'.</param>
+            /// <returns>The 'QueryResult' returned from the 'GetTblMedlemLogs' operation.</returns>
+            QueryResult<tblMedlemLog> EndGetTblMedlemLogs(IAsyncResult result);
             
             /// <summary>
             /// Asynchronously invokes the 'GetTblMedlems' operation.
@@ -1424,15 +2181,34 @@ namespace wMedlem3060.Web.Services
             QueryResult<tblMedlem> EndGetTblMedlems(IAsyncResult result);
             
             /// <summary>
+            /// Asynchronously invokes the 'GetvMedlemLogs' operation.
+            /// </summary>
+            /// <param name="callback">Callback to invoke on completion.</param>
+            /// <param name="asyncState">Optional state object.</param>
+            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/MedlemDomainService/GetvMedlemLogsDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/MedlemDomainService/GetvMedlemLogs", ReplyAction="http://tempuri.org/MedlemDomainService/GetvMedlemLogsResponse")]
+            [WebGet()]
+            IAsyncResult BeginGetvMedlemLogs(AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Completes the asynchronous operation begun by 'BeginGetvMedlemLogs'.
+            /// </summary>
+            /// <param name="result">The IAsyncResult returned from 'BeginGetvMedlemLogs'.</param>
+            /// <returns>The 'QueryResult' returned from the 'GetvMedlemLogs' operation.</returns>
+            QueryResult<vMedlemLog> EndGetvMedlemLogs(IAsyncResult result);
+            
+            /// <summary>
             /// Asynchronously invokes the 'GetYoungTblMedlems' operation.
             /// </summary>
+            /// <param name="pFodtdato">The value for the 'pFodtdato' parameter of this action.</param>
             /// <param name="callback">Callback to invoke on completion.</param>
             /// <param name="asyncState">Optional state object.</param>
             /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
             [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/MedlemDomainService/GetYoungTblMedlemsDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
             [OperationContract(AsyncPattern=true, Action="http://tempuri.org/MedlemDomainService/GetYoungTblMedlems", ReplyAction="http://tempuri.org/MedlemDomainService/GetYoungTblMedlemsResponse")]
             [WebGet()]
-            IAsyncResult BeginGetYoungTblMedlems(AsyncCallback callback, object asyncState);
+            IAsyncResult BeginGetYoungTblMedlems(DateTime pFodtdato, AsyncCallback callback, object asyncState);
             
             /// <summary>
             /// Completes the asynchronous operation begun by 'BeginGetYoungTblMedlems'.
@@ -1465,7 +2241,10 @@ namespace wMedlem3060.Web.Services
             
             public MedlemDomainContextEntityContainer()
             {
+                this.CreateEntitySet<tblAktivitet>(EntitySetOperations.None);
                 this.CreateEntitySet<tblMedlem>(EntitySetOperations.All);
+                this.CreateEntitySet<tblMedlemLog>(EntitySetOperations.All);
+                this.CreateEntitySet<vMedlemLog>(EntitySetOperations.None);
             }
         }
     }

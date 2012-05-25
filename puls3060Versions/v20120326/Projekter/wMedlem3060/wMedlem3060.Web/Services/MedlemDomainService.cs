@@ -33,9 +33,9 @@ namespace wMedlem3060.Web.Services
         }
 
         [RequiresRole("Administrator")]
-        public IQueryable<tblMedlem> GetYoungTblMedlems()
+        public IQueryable<tblMedlem> GetYoungTblMedlems(DateTime pFodtdato)
         {
-            return this.ObjectContext.tblMedlems.Where(e => e.FodtDato < new DateTime(1982,01,01)).OrderBy(e => e.Nr);
+            return this.ObjectContext.tblMedlems.Where(e => e.FodtDato < pFodtdato).OrderBy(e => e.Nr);
         }
 
         [RequiresRole("Administrator")]
@@ -69,6 +69,60 @@ namespace wMedlem3060.Web.Services
                 this.ObjectContext.tblMedlems.Attach(tblMedlem);
                 this.ObjectContext.tblMedlems.DeleteObject(tblMedlem);
             }
+        }
+
+        
+        [RequiresRole("Administrator")]
+        public IQueryable<vMedlemLog> GetvMedlemLogs()
+        {
+            return this.ObjectContext.vMedlemLogs.OrderBy(e => e.Nr);
+        }
+
+
+        [RequiresRole("Administrator")]
+        public IQueryable<tblMedlemLog> GetTblMedlemLogs()
+        {
+            return this.ObjectContext.tblMedlemLogs.OrderBy(e => e.Nr);
+        }
+
+
+        [RequiresRole("Administrator")]
+        public void InsertTblMedlemLog(tblMedlemLog tblMedlemLog)
+        {
+            if ((tblMedlemLog.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblMedlemLog, EntityState.Added);
+            }
+            else
+            {
+                this.ObjectContext.tblMedlemLogs.AddObject(tblMedlemLog);
+            }
+        }
+
+        [RequiresRole("Administrator")]
+        public void UpdateTblMedlemLog(tblMedlemLog currenttblMedlemLog)
+        {
+            this.ObjectContext.tblMedlemLogs.AttachAsModified(currenttblMedlemLog, this.ChangeSet.GetOriginal(currenttblMedlemLog));
+        }
+
+        [RequiresRole("Administrator")]
+        public void DeleteTblMedlemLog(tblMedlemLog tblMedlemLog)
+        {
+            if ((tblMedlemLog.EntityState != EntityState.Detached))
+            {
+                this.ObjectContext.ObjectStateManager.ChangeObjectState(tblMedlemLog, EntityState.Deleted);
+            }
+            else
+            {
+                this.ObjectContext.tblMedlemLogs.Attach(tblMedlemLog);
+                this.ObjectContext.tblMedlemLogs.DeleteObject(tblMedlemLog);
+            }
+        }
+
+        [RequiresRole("Administrator")]
+        public IQueryable<tblAktivitet> GetTblAktivitets()
+        {
+            return this.ObjectContext.tblAktivitets.OrderBy(e => e.id);
         }
     }
 }

@@ -31,6 +31,13 @@ namespace wMedlem3060.Views
         }
         */
 
+        void Test()
+        {
+            MedlemDomainContext ctx = new MedlemDomainContext();
+            var qry = from r in ctx.vMedlemLogs select r;
+            int cnt = qry.Count();
+        }
+
         // Executes when the user navigates to this page.
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

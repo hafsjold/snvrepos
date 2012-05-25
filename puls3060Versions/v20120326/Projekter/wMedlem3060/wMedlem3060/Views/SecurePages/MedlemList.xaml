@@ -69,9 +69,7 @@
                                         <dataform:DataField Label="Bank konto">
                                             <TextBox Text="{Binding Bank, Mode=TwoWay}" />
                                         </dataform:DataField>
-                                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
-                                            <Button Content="Save Changes" x:Name="SaveChangesButton" Width="75" Height="23" Margin="4,0,0,0" Click="SaveChangesButton_Click" />
-                                        </StackPanel>
+
                                     </StackPanel>
                                 </DataTemplate>
                             </dataform:DataForm.EditTemplate>
@@ -115,6 +113,9 @@
                         <datagrid:DataPager x:Name="MedlemPager" PageSize="15"  Margin="0,-1,0,0" Source="{Binding ElementName=MyData, Path=Data}" />
                         
                     </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
+                    <Button Content="Save Changes" x:Name="SaveChangesButton" Width="90" Height="23" Margin="4,0,0,0" Click="SaveChangesButton_Click" />
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

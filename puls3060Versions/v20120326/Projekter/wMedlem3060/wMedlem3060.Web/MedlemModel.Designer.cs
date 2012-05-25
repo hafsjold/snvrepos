@@ -16,6 +16,12 @@ using System.Xml.Serialization;
 using System.Runtime.Serialization;
 
 [assembly: EdmSchemaAttribute()]
+#region EDM Relationship Metadata
+
+[assembly: EdmRelationshipAttribute("nsMedlemModel", "FK_tblAktivitet_Log", "tblAktivitet", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(wMedlem3060.Web.tblAktivitet), "tblMedlemLog", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(wMedlem3060.Web.tblMedlemLog), true)]
+[assembly: EdmRelationshipAttribute("nsMedlemModel", "FK_Log_Medlem", "tblMedlem", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(wMedlem3060.Web.tblMedlem), "tblMedlemLog", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(wMedlem3060.Web.tblMedlemLog), true)]
+
+#endregion
 
 namespace wMedlem3060.Web
 {
@@ -80,6 +86,54 @@ namespace wMedlem3060.Web
             }
         }
         private ObjectSet<tblMedlem> _tblMedlems;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<tblAktivitet> tblAktivitets
+        {
+            get
+            {
+                if ((_tblAktivitets == null))
+                {
+                    _tblAktivitets = base.CreateObjectSet<tblAktivitet>("tblAktivitets");
+                }
+                return _tblAktivitets;
+            }
+        }
+        private ObjectSet<tblAktivitet> _tblAktivitets;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<tblMedlemLog> tblMedlemLogs
+        {
+            get
+            {
+                if ((_tblMedlemLogs == null))
+                {
+                    _tblMedlemLogs = base.CreateObjectSet<tblMedlemLog>("tblMedlemLogs");
+                }
+                return _tblMedlemLogs;
+            }
+        }
+        private ObjectSet<tblMedlemLog> _tblMedlemLogs;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<vMedlemLog> vMedlemLogs
+        {
+            get
+            {
+                if ((_vMedlemLogs == null))
+                {
+                    _vMedlemLogs = base.CreateObjectSet<vMedlemLog>("vMedlemLogs");
+                }
+                return _vMedlemLogs;
+            }
+        }
+        private ObjectSet<vMedlemLog> _vMedlemLogs;
 
         #endregion
         #region AddTo Methods
@@ -91,6 +145,30 @@ namespace wMedlem3060.Web
         {
             base.AddObject("tblMedlems", tblMedlem);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the tblAktivitets EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTotblAktivitets(tblAktivitet tblAktivitet)
+        {
+            base.AddObject("tblAktivitets", tblAktivitet);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the tblMedlemLogs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTotblMedlemLogs(tblMedlemLog tblMedlemLog)
+        {
+            base.AddObject("tblMedlemLogs", tblMedlemLog);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the vMedlemLogs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTovMedlemLogs(vMedlemLog vMedlemLog)
+        {
+            base.AddObject("vMedlemLogs", vMedlemLog);
+        }
 
         #endregion
     }
@@ -99,6 +177,112 @@ namespace wMedlem3060.Web
     #endregion
     
     #region Entities
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="nsMedlemModel", Name="tblAktivitet")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class tblAktivitet : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new tblAktivitet object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        /// <param name="akt_tekst">Initial value of the akt_tekst property.</param>
+        public static tblAktivitet CreatetblAktivitet(global::System.Int32 id, global::System.String akt_tekst)
+        {
+            tblAktivitet tblAktivitet = new tblAktivitet();
+            tblAktivitet.id = id;
+            tblAktivitet.akt_tekst = akt_tekst;
+            return tblAktivitet;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String akt_tekst
+        {
+            get
+            {
+                return _akt_tekst;
+            }
+            set
+            {
+                Onakt_tekstChanging(value);
+                ReportPropertyChanging("akt_tekst");
+                _akt_tekst = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("akt_tekst");
+                Onakt_tekstChanged();
+            }
+        }
+        private global::System.String _akt_tekst;
+        partial void Onakt_tekstChanging(global::System.String value);
+        partial void Onakt_tekstChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("nsMedlemModel", "FK_tblAktivitet_Log", "tblMedlemLog")]
+        public EntityCollection<tblMedlemLog> tblMedlemLogs
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tblMedlemLog>("nsMedlemModel.FK_tblAktivitet_Log", "tblMedlemLog");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tblMedlemLog>("nsMedlemModel.FK_tblAktivitet_Log", "tblMedlemLog", value);
+                }
+            }
+        }
+
+        #endregion
+    }
     
     /// <summary>
     /// No Metadata Documentation available.
@@ -390,6 +574,441 @@ namespace wMedlem3060.Web
         private global::System.String _Bank;
         partial void OnBankChanging(global::System.String value);
         partial void OnBankChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("nsMedlemModel", "FK_Log_Medlem", "tblMedlemLog")]
+        public EntityCollection<tblMedlemLog> tblMedlemLogs
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tblMedlemLog>("nsMedlemModel.FK_Log_Medlem", "tblMedlemLog");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tblMedlemLog>("nsMedlemModel.FK_Log_Medlem", "tblMedlemLog", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="nsMedlemModel", Name="tblMedlemLog")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class tblMedlemLog : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new tblMedlemLog object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        public static tblMedlemLog CreatetblMedlemLog(global::System.Int32 id)
+        {
+            tblMedlemLog tblMedlemLog = new tblMedlemLog();
+            tblMedlemLog.id = id;
+            return tblMedlemLog;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Nr
+        {
+            get
+            {
+                return _Nr;
+            }
+            set
+            {
+                OnNrChanging(value);
+                ReportPropertyChanging("Nr");
+                _Nr = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Nr");
+                OnNrChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Nr;
+        partial void OnNrChanging(Nullable<global::System.Int32> value);
+        partial void OnNrChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> logdato
+        {
+            get
+            {
+                return _logdato;
+            }
+            set
+            {
+                OnlogdatoChanging(value);
+                ReportPropertyChanging("logdato");
+                _logdato = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("logdato");
+                OnlogdatoChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _logdato;
+        partial void OnlogdatoChanging(Nullable<global::System.DateTime> value);
+        partial void OnlogdatoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> akt_id
+        {
+            get
+            {
+                return _akt_id;
+            }
+            set
+            {
+                Onakt_idChanging(value);
+                ReportPropertyChanging("akt_id");
+                _akt_id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("akt_id");
+                Onakt_idChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _akt_id;
+        partial void Onakt_idChanging(Nullable<global::System.Int32> value);
+        partial void Onakt_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> akt_dato
+        {
+            get
+            {
+                return _akt_dato;
+            }
+            set
+            {
+                Onakt_datoChanging(value);
+                ReportPropertyChanging("akt_dato");
+                _akt_dato = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("akt_dato");
+                Onakt_datoChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _akt_dato;
+        partial void Onakt_datoChanging(Nullable<global::System.DateTime> value);
+        partial void Onakt_datoChanged();
+
+        #endregion
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("nsMedlemModel", "FK_tblAktivitet_Log", "tblAktivitet")]
+        public tblAktivitet tblAktivitet
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblAktivitet>("nsMedlemModel.FK_tblAktivitet_Log", "tblAktivitet").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblAktivitet>("nsMedlemModel.FK_tblAktivitet_Log", "tblAktivitet").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<tblAktivitet> tblAktivitetReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblAktivitet>("nsMedlemModel.FK_tblAktivitet_Log", "tblAktivitet");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tblAktivitet>("nsMedlemModel.FK_tblAktivitet_Log", "tblAktivitet", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("nsMedlemModel", "FK_Log_Medlem", "tblMedlem")]
+        public tblMedlem tblMedlem
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblMedlem>("nsMedlemModel.FK_Log_Medlem", "tblMedlem").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblMedlem>("nsMedlemModel.FK_Log_Medlem", "tblMedlem").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<tblMedlem> tblMedlemReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblMedlem>("nsMedlemModel.FK_Log_Medlem", "tblMedlem");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tblMedlem>("nsMedlemModel.FK_Log_Medlem", "tblMedlem", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="nsMedlemModel", Name="vMedlemLog")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class vMedlemLog : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new vMedlemLog object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        /// <param name="parent">Initial value of the parent property.</param>
+        public static vMedlemLog CreatevMedlemLog(global::System.Int32 id, global::System.Int32 parent)
+        {
+            vMedlemLog vMedlemLog = new vMedlemLog();
+            vMedlemLog.id = id;
+            vMedlemLog.parent = parent;
+            return vMedlemLog;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Nr
+        {
+            get
+            {
+                return _Nr;
+            }
+            set
+            {
+                OnNrChanging(value);
+                ReportPropertyChanging("Nr");
+                _Nr = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("Nr");
+                OnNrChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Nr;
+        partial void OnNrChanging(Nullable<global::System.Int32> value);
+        partial void OnNrChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> logdato
+        {
+            get
+            {
+                return _logdato;
+            }
+            set
+            {
+                OnlogdatoChanging(value);
+                ReportPropertyChanging("logdato");
+                _logdato = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("logdato");
+                OnlogdatoChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _logdato;
+        partial void OnlogdatoChanging(Nullable<global::System.DateTime> value);
+        partial void OnlogdatoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> akt_id
+        {
+            get
+            {
+                return _akt_id;
+            }
+            set
+            {
+                Onakt_idChanging(value);
+                ReportPropertyChanging("akt_id");
+                _akt_id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("akt_id");
+                Onakt_idChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _akt_id;
+        partial void Onakt_idChanging(Nullable<global::System.Int32> value);
+        partial void Onakt_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> akt_dato
+        {
+            get
+            {
+                return _akt_dato;
+            }
+            set
+            {
+                Onakt_datoChanging(value);
+                ReportPropertyChanging("akt_dato");
+                _akt_dato = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("akt_dato");
+                Onakt_datoChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _akt_dato;
+        partial void Onakt_datoChanging(Nullable<global::System.DateTime> value);
+        partial void Onakt_datoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 parent
+        {
+            get
+            {
+                return _parent;
+            }
+            set
+            {
+                if (_parent != value)
+                {
+                    OnparentChanging(value);
+                    ReportPropertyChanging("parent");
+                    _parent = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("parent");
+                    OnparentChanged();
+                }
+            }
+        }
+        private global::System.Int32 _parent;
+        partial void OnparentChanging(global::System.Int32 value);
+        partial void OnparentChanged();
 
         #endregion
     
