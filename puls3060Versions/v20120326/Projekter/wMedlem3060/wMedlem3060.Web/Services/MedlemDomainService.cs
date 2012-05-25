@@ -75,7 +75,7 @@ namespace wMedlem3060.Web.Services
         [RequiresRole("Administrator")]
         public IQueryable<vMedlemLog> GetvMedlemLogs()
         {
-            return this.ObjectContext.vMedlemLogs.OrderBy(e => e.Nr);
+            return this.ObjectContext.vMedlemLogs.OrderBy(e => e.Nr).OrderByDescending(e => e.logdato);
         }
 
 

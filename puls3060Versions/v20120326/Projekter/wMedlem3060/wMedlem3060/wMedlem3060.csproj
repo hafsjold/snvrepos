@@ -103,6 +103,7 @@
     </Compile>
     <Compile Include="AuthenticatingContentLoader.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Helpers\AktivitetlValueConverter.cs" />
     <Compile Include="Models\LoginInfo.cs" />
     <Compile Include="Models\User.partial.cs" />
     <Compile Include="Models\RegistrationData.partial.cs" />
