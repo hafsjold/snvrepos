@@ -124,6 +124,11 @@ namespace wMedlem3060.Web.Services
         {
             return this.ObjectContext.tblAktivitets.OrderBy(e => e.id);
         }
+
+        public int? Getnextval(string Pnrserienavn)
+        {
+            return this.ObjectContext.nextval(Pnrserienavn).First();
+        }
     }
 }
 

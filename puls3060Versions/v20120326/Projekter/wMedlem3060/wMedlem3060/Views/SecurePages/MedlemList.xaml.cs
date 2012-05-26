@@ -11,11 +11,14 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Windows.Navigation;
 using wMedlem3060.Web.Services;
+using wMedlem3060.Web;
+using System.ServiceModel.DomainServices.Client;
 
 namespace wMedlem3060.Views
 {
     public partial class MedlemList : Page
     {
+        
         public MedlemList()
         {
             InitializeComponent();
@@ -33,9 +36,33 @@ namespace wMedlem3060.Views
 
         void Test()
         {
-            MedlemDomainContext ctx = new MedlemDomainContext();
+            MedlemDomainContext ctx = MyvLogData.DomainContext as MedlemDomainContext;
             var qry = from r in ctx.vMedlemLogs select r;
             int cnt = qry.Count();
+        }
+
+        void Test2()
+        {
+            MedlemDomainContext ctx = MyvLogData.DomainContext as MedlemDomainContext;
+            string keyname = "tblMedlemlog";
+            object myState = new object();
+            var key = ctx.Getnextval(keyname, Getnextval_Completed, myState);
+        }
+
+        private void Getnextval_Completed(InvokeOperation<int?> temp)
+        {
+            MedlemDomainContext ctx = MyvLogData.DomainContext as MedlemDomainContext;
+            var xx = temp.Value;
+            tblMedlemLog rec = new tblMedlemLog
+            {
+                id = 2000,
+                logdato = DateTime.Today,
+                Nr = 5,
+                akt_id = 10,
+                akt_dato = DateTime.Today,
+            };
+            ctx.tblMedlemLogs.Add(rec);
+            ctx.SubmitChanges();
         }
 
         // Executes when the user navigates to this page.
@@ -47,6 +74,7 @@ namespace wMedlem3060.Views
         private void SaveChangesButton_Click(object sender, RoutedEventArgs e)
         {
             MyData.SubmitChanges();
+            Test2();
         }
 
         private void tblMedlemDomainDataSource_LoadedData(object sender, LoadedDataEventArgs e)
@@ -91,7 +119,25 @@ namespace wMedlem3060.Views
 
         private void MedlemDetails_EditEnding(object sender, DataFormEditEndingEventArgs e)
         {
+            DataForm objMedlemDetails = sender as DataForm; 
+
             int x = 1;
+ 
+        }
+
+        private void MedlemGrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            tblMedlem m = e.Row.DataContext as tblMedlem;
+            if (m != null && m.Nr == 5)
+            {
+                e.Row.Background = new SolidColorBrush(Colors.Yellow);
+                e.Row.Foreground = new SolidColorBrush(Colors.Green);
+            }
+            else 
+            {
+                e.Row.Background = new SolidColorBrush(Colors.LightGray);
+                e.Row.Foreground = new SolidColorBrush(Colors.Black);           
+            }
         }
 
     }

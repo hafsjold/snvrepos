@@ -100,6 +100,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="erMedlem" ReturnType="bit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pNr" Type="int" Mode="In" />
+        </Function>
+        <Function Name="nextval" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Pnrserienavn" Type="nvarchar" Mode="In" />
+        </Function>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -117,6 +123,9 @@
             <End Role="tblMedlemLog" EntitySet="tblMedlemLogs" />
           </AssociationSet>
           <EntitySet Name="vMedlemLogs" EntityType="nsMedlemModel.vMedlemLog" />
+          <FunctionImport Name="nextval" ReturnType="Collection(Int32)">
+          <Parameter Name="Pnrserienavn" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblMedlem">
           <Key>
@@ -245,6 +254,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="nextval" FunctionName="nsMedlemModel.Store.nextval" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

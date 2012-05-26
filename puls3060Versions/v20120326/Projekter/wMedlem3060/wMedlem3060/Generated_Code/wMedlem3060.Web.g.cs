@@ -2111,6 +2111,34 @@ namespace wMedlem3060.Web.Services
         }
         
         /// <summary>
+        /// Asynchronously invokes the 'Getnextval' method of the DomainService.
+        /// </summary>
+        /// <param name="Pnrserienavn">The value for the 'Pnrserienavn' parameter of this action.</param>
+        /// <param name="callback">Callback to invoke when the operation completes.</param>
+        /// <param name="userState">Value to pass to the callback.  It can be <c>null</c>.</param>
+        /// <returns>An operation instance that can be used to manage the asynchronous request.</returns>
+        public InvokeOperation<Nullable<int>> Getnextval(string Pnrserienavn, Action<InvokeOperation<Nullable<int>>> callback, object userState)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("Pnrserienavn", Pnrserienavn);
+            this.ValidateMethod("Getnextval", parameters);
+            return ((InvokeOperation<Nullable<int>>)(this.InvokeOperation("Getnextval", typeof(Nullable<int>), parameters, true, callback, userState)));
+        }
+        
+        /// <summary>
+        /// Asynchronously invokes the 'Getnextval' method of the DomainService.
+        /// </summary>
+        /// <param name="Pnrserienavn">The value for the 'Pnrserienavn' parameter of this action.</param>
+        /// <returns>An operation instance that can be used to manage the asynchronous request.</returns>
+        public InvokeOperation<Nullable<int>> Getnextval(string Pnrserienavn)
+        {
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
+            parameters.Add("Pnrserienavn", Pnrserienavn);
+            this.ValidateMethod("Getnextval", parameters);
+            return ((InvokeOperation<Nullable<int>>)(this.InvokeOperation("Getnextval", typeof(Nullable<int>), parameters, true, null, null)));
+        }
+        
+        /// <summary>
         /// Creates a new EntityContainer for this DomainContext's EntitySets.
         /// </summary>
         /// <returns>A new container instance.</returns>
@@ -2125,6 +2153,24 @@ namespace wMedlem3060.Web.Services
         [ServiceContract()]
         public interface IMedlemDomainServiceContract
         {
+            
+            /// <summary>
+            /// Asynchronously invokes the 'Getnextval' operation.
+            /// </summary>
+            /// <param name="Pnrserienavn">The value for the 'Pnrserienavn' parameter of this action.</param>
+            /// <param name="callback">Callback to invoke on completion.</param>
+            /// <param name="asyncState">Optional state object.</param>
+            /// <returns>An IAsyncResult that can be used to monitor the request.</returns>
+            [FaultContract(typeof(DomainServiceFault), Action="http://tempuri.org/MedlemDomainService/GetnextvalDomainServiceFault", Name="DomainServiceFault", Namespace="DomainServices")]
+            [OperationContract(AsyncPattern=true, Action="http://tempuri.org/MedlemDomainService/Getnextval", ReplyAction="http://tempuri.org/MedlemDomainService/GetnextvalResponse")]
+            IAsyncResult BeginGetnextval(string Pnrserienavn, AsyncCallback callback, object asyncState);
+            
+            /// <summary>
+            /// Completes the asynchronous operation begun by 'BeginGetnextval'.
+            /// </summary>
+            /// <param name="result">The IAsyncResult returned from 'BeginGetnextval'.</param>
+            /// <returns>The 'Nullable`1' returned from the 'Getnextval' operation.</returns>
+            Nullable<int> EndGetnextval(IAsyncResult result);
             
             /// <summary>
             /// Asynchronously invokes the 'GetTblAktivitets' operation.

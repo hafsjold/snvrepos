@@ -27,7 +27,7 @@
             </riacontrols:DomainDataSource.FilterDescriptors>
         </riacontrols:DomainDataSource>
 
-        <riacontrols:DomainDataSource x:Name="MyvLogData" LoadedData="vMedlemLogDomainDataSource_LoadedData" LoadingData="MyvLogData_LoadingData" LoadSize="20" QueryName="GetvMedlemLogs" AutoLoad="True" >
+        <riacontrols:DomainDataSource x:Name="MyvLogData" LoadedData="vMedlemLogDomainDataSource_LoadedData" LoadingData="MyvLogData_LoadingData" LoadSize="20" QueryName="GetvMedlemLogs" AutoLoad="True" DataContext="{Binding}">
             <riacontrols:DomainDataSource.DomainContext>
                 <ds:MedlemDomainContext />
             </riacontrols:DomainDataSource.DomainContext>
@@ -200,7 +200,7 @@
                             <TextBox x:Name="PostnrFilter" Width="75" FontSize="11" Margin="4" Text="3060" />
                         </StackPanel>
 
-                        <datagrid:DataGrid x:Name="MedlemGrid" AutoGenerateColumns="False" MinHeight="100" IsReadOnly="True" ItemsSource="{Binding ElementName=MyData, Path=Data}">
+                        <datagrid:DataGrid x:Name="MedlemGrid" AutoGenerateColumns="False" MinHeight="100" IsReadOnly="True" ItemsSource="{Binding ElementName=MyData, Path=Data}" LoadingRow="MedlemGrid_LoadingRow">
                             <datagrid:DataGrid.Columns>
                                 <datagrid:DataGridTextColumn x:Name="nrColumn" Binding="{Binding Path=Nr, Mode=OneWay}" Header="Nr" IsReadOnly="True" Width="SizeToHeader" MinWidth="40" />
                                 <datagrid:DataGridTextColumn x:Name="navnColumn" Binding="{Binding Path=Navn}" Header="Navn" Width="SizeToCells" MinWidth="180" MaxWidth="180" />

@@ -171,6 +171,28 @@ namespace wMedlem3060.Web
         }
 
         #endregion
+        #region Function Imports
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        /// <param name="pnrserienavn">No Metadata Documentation available.</param>
+        public ObjectResult<Nullable<global::System.Int32>> nextval(global::System.String pnrserienavn)
+        {
+            ObjectParameter pnrserienavnParameter;
+            if (pnrserienavn != null)
+            {
+                pnrserienavnParameter = new ObjectParameter("Pnrserienavn", pnrserienavn);
+            }
+            else
+            {
+                pnrserienavnParameter = new ObjectParameter("Pnrserienavn", typeof(global::System.String));
+            }
+    
+            return base.ExecuteFunction<Nullable<global::System.Int32>>("nextval", pnrserienavnParameter);
+        }
+
+        #endregion
     }
     
 
