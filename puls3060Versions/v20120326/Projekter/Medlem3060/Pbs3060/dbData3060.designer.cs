@@ -54,9 +54,6 @@ namespace nsPbs3060
     partial void Inserttblaftalelin(tblaftalelin instance);
     partial void Updatetblaftalelin(tblaftalelin instance);
     partial void Deletetblaftalelin(tblaftalelin instance);
-    partial void InserttblMedlem(tblMedlem instance);
-    partial void UpdatetblMedlem(tblMedlem instance);
-    partial void DeletetblMedlem(tblMedlem instance);
     partial void Inserttblfak(tblfak instance);
     partial void Updatetblfak(tblfak instance);
     partial void Deletetblfak(tblfak instance);
@@ -108,10 +105,13 @@ namespace nsPbs3060
     partial void Inserttbladvi(tbladvi instance);
     partial void Updatetbladvi(tbladvi instance);
     partial void Deletetbladvi(tbladvi instance);
+    partial void InserttblMedlem(tblMedlem instance);
+    partial void UpdatetblMedlem(tblMedlem instance);
+    partial void DeletetblMedlem(tblMedlem instance);
     #endregion
 		
 		public dbData3060DataContext() : 
-				base(global::nsPbs3060.Properties.Settings.Default.puls3061_dk_dbConnectionString2, mappingSource)
+				base(global::nsPbs3060.Properties.Settings.Default.puls3061_dk_dbConnectionString3, mappingSource)
 		{
 			OnCreated();
 		}
@@ -201,14 +201,6 @@ namespace nsPbs3060
 			get
 			{
 				return this.GetTable<tblaftalelin>();
-			}
-		}
-		
-		public System.Data.Linq.Table<tblMedlem> tblMedlems
-		{
-			get
-			{
-				return this.GetTable<tblMedlem>();
 			}
 		}
 		
@@ -361,6 +353,14 @@ namespace nsPbs3060
 			get
 			{
 				return this.GetTable<vAdvis_indbetalingskort>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblMedlem> tblMedlems
+		{
+			get
+			{
+				return this.GetTable<tblMedlem>();
 			}
 		}
 		
@@ -3151,336 +3151,6 @@ namespace nsPbs3060
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblMedlem")]
-	public partial class tblMedlem : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Nr;
-		
-		private string _Kon;
-		
-		private System.Nullable<System.DateTime> _FodtDato;
-		
-		private string _Navn;
-		
-		private string _Kaldenavn;
-		
-		private string _Adresse;
-		
-		private string _Postnr;
-		
-		private string _Bynavn;
-		
-		private string _Telefon;
-		
-		private string _Email;
-		
-		private string _Bank;
-		
-		private EntitySet<tblMedlemLog> _tblMedlemLogs;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnNrChanging(int value);
-    partial void OnNrChanged();
-    partial void OnKonChanging(string value);
-    partial void OnKonChanged();
-    partial void OnFodtDatoChanging(System.Nullable<System.DateTime> value);
-    partial void OnFodtDatoChanged();
-    partial void OnNavnChanging(string value);
-    partial void OnNavnChanged();
-    partial void OnKaldenavnChanging(string value);
-    partial void OnKaldenavnChanged();
-    partial void OnAdresseChanging(string value);
-    partial void OnAdresseChanged();
-    partial void OnPostnrChanging(string value);
-    partial void OnPostnrChanged();
-    partial void OnBynavnChanging(string value);
-    partial void OnBynavnChanged();
-    partial void OnTelefonChanging(string value);
-    partial void OnTelefonChanged();
-    partial void OnEmailChanging(string value);
-    partial void OnEmailChanged();
-    partial void OnBankChanging(string value);
-    partial void OnBankChanged();
-    #endregion
-		
-		public tblMedlem()
-		{
-			this._tblMedlemLogs = new EntitySet<tblMedlemLog>(new Action<tblMedlemLog>(this.attach_tblMedlemLogs), new Action<tblMedlemLog>(this.detach_tblMedlemLogs));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nr", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int Nr
-		{
-			get
-			{
-				return this._Nr;
-			}
-			set
-			{
-				if ((this._Nr != value))
-				{
-					this.OnNrChanging(value);
-					this.SendPropertyChanging();
-					this._Nr = value;
-					this.SendPropertyChanged("Nr");
-					this.OnNrChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Kon", DbType="NVarChar(1)")]
-		public string Kon
-		{
-			get
-			{
-				return this._Kon;
-			}
-			set
-			{
-				if ((this._Kon != value))
-				{
-					this.OnKonChanging(value);
-					this.SendPropertyChanging();
-					this._Kon = value;
-					this.SendPropertyChanged("Kon");
-					this.OnKonChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FodtDato", DbType="DateTime")]
-		public System.Nullable<System.DateTime> FodtDato
-		{
-			get
-			{
-				return this._FodtDato;
-			}
-			set
-			{
-				if ((this._FodtDato != value))
-				{
-					this.OnFodtDatoChanging(value);
-					this.SendPropertyChanging();
-					this._FodtDato = value;
-					this.SendPropertyChanged("FodtDato");
-					this.OnFodtDatoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Navn", DbType="NVarChar(35)")]
-		public string Navn
-		{
-			get
-			{
-				return this._Navn;
-			}
-			set
-			{
-				if ((this._Navn != value))
-				{
-					this.OnNavnChanging(value);
-					this.SendPropertyChanging();
-					this._Navn = value;
-					this.SendPropertyChanged("Navn");
-					this.OnNavnChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Kaldenavn", DbType="NVarChar(25)")]
-		public string Kaldenavn
-		{
-			get
-			{
-				return this._Kaldenavn;
-			}
-			set
-			{
-				if ((this._Kaldenavn != value))
-				{
-					this.OnKaldenavnChanging(value);
-					this.SendPropertyChanging();
-					this._Kaldenavn = value;
-					this.SendPropertyChanged("Kaldenavn");
-					this.OnKaldenavnChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Adresse", DbType="NVarChar(70)")]
-		public string Adresse
-		{
-			get
-			{
-				return this._Adresse;
-			}
-			set
-			{
-				if ((this._Adresse != value))
-				{
-					this.OnAdresseChanging(value);
-					this.SendPropertyChanging();
-					this._Adresse = value;
-					this.SendPropertyChanged("Adresse");
-					this.OnAdresseChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Postnr", DbType="NVarChar(4)")]
-		public string Postnr
-		{
-			get
-			{
-				return this._Postnr;
-			}
-			set
-			{
-				if ((this._Postnr != value))
-				{
-					this.OnPostnrChanging(value);
-					this.SendPropertyChanging();
-					this._Postnr = value;
-					this.SendPropertyChanged("Postnr");
-					this.OnPostnrChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Bynavn", DbType="NVarChar(25)")]
-		public string Bynavn
-		{
-			get
-			{
-				return this._Bynavn;
-			}
-			set
-			{
-				if ((this._Bynavn != value))
-				{
-					this.OnBynavnChanging(value);
-					this.SendPropertyChanging();
-					this._Bynavn = value;
-					this.SendPropertyChanged("Bynavn");
-					this.OnBynavnChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefon", DbType="NVarChar(8)")]
-		public string Telefon
-		{
-			get
-			{
-				return this._Telefon;
-			}
-			set
-			{
-				if ((this._Telefon != value))
-				{
-					this.OnTelefonChanging(value);
-					this.SendPropertyChanging();
-					this._Telefon = value;
-					this.SendPropertyChanged("Telefon");
-					this.OnTelefonChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(50)")]
-		public string Email
-		{
-			get
-			{
-				return this._Email;
-			}
-			set
-			{
-				if ((this._Email != value))
-				{
-					this.OnEmailChanging(value);
-					this.SendPropertyChanging();
-					this._Email = value;
-					this.SendPropertyChanged("Email");
-					this.OnEmailChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Bank", DbType="NVarChar(15)")]
-		public string Bank
-		{
-			get
-			{
-				return this._Bank;
-			}
-			set
-			{
-				if ((this._Bank != value))
-				{
-					this.OnBankChanging(value);
-					this.SendPropertyChanging();
-					this._Bank = value;
-					this.SendPropertyChanged("Bank");
-					this.OnBankChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblMedlem_tblMedlemLog", Storage="_tblMedlemLogs", ThisKey="Nr", OtherKey="Nr")]
-		public EntitySet<tblMedlemLog> tblMedlemLogs
-		{
-			get
-			{
-				return this._tblMedlemLogs;
-			}
-			set
-			{
-				this._tblMedlemLogs.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_tblMedlemLogs(tblMedlemLog entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblMedlem = this;
-		}
-		
-		private void detach_tblMedlemLogs(tblMedlemLog entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblMedlem = null;
 		}
 	}
 	
@@ -6584,9 +6254,9 @@ namespace nsPbs3060
 		
 		private System.Nullable<System.DateTime> _akt_dato;
 		
-		private EntityRef<tblMedlem> _tblMedlem;
-		
 		private EntityRef<tblAktivitet> _tblAktivitet;
+		
+		private EntityRef<tblMedlem> _tblMedlem;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -6606,8 +6276,8 @@ namespace nsPbs3060
 		
 		public tblMedlemLog()
 		{
-			this._tblMedlem = default(EntityRef<tblMedlem>);
 			this._tblAktivitet = default(EntityRef<tblAktivitet>);
+			this._tblMedlem = default(EntityRef<tblMedlem>);
 			OnCreated();
 		}
 		
@@ -6719,40 +6389,6 @@ namespace nsPbs3060
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblMedlem_tblMedlemLog", Storage="_tblMedlem", ThisKey="Nr", OtherKey="Nr", IsForeignKey=true)]
-		public tblMedlem tblMedlem
-		{
-			get
-			{
-				return this._tblMedlem.Entity;
-			}
-			set
-			{
-				tblMedlem previousValue = this._tblMedlem.Entity;
-				if (((previousValue != value) 
-							|| (this._tblMedlem.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tblMedlem.Entity = null;
-						previousValue.tblMedlemLogs.Remove(this);
-					}
-					this._tblMedlem.Entity = value;
-					if ((value != null))
-					{
-						value.tblMedlemLogs.Add(this);
-						this._Nr = value.Nr;
-					}
-					else
-					{
-						this._Nr = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("tblMedlem");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblAktivitet_tblMedlemLog", Storage="_tblAktivitet", ThisKey="akt_id", OtherKey="id", IsForeignKey=true, DeleteRule="SET NULL")]
 		public tblAktivitet tblAktivitet
 		{
@@ -6783,6 +6419,40 @@ namespace nsPbs3060
 						this._akt_id = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("tblAktivitet");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblMedlem_tblMedlemLog", Storage="_tblMedlem", ThisKey="Nr", OtherKey="Nr", IsForeignKey=true)]
+		public tblMedlem tblMedlem
+		{
+			get
+			{
+				return this._tblMedlem.Entity;
+			}
+			set
+			{
+				tblMedlem previousValue = this._tblMedlem.Entity;
+				if (((previousValue != value) 
+							|| (this._tblMedlem.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblMedlem.Entity = null;
+						previousValue.tblMedlemLogs.Remove(this);
+					}
+					this._tblMedlem.Entity = value;
+					if ((value != null))
+					{
+						value.tblMedlemLogs.Add(this);
+						this._Nr = value.Nr;
+					}
+					else
+					{
+						this._Nr = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tblMedlem");
 				}
 			}
 		}
@@ -8068,6 +7738,360 @@ namespace nsPbs3060
 					this._regnr = value;
 				}
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblMedlem")]
+	public partial class tblMedlem : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Nr;
+		
+		private string _Kon;
+		
+		private System.Nullable<System.DateTime> _FodtDato;
+		
+		private string _Navn;
+		
+		private string _Kaldenavn;
+		
+		private string _Adresse;
+		
+		private string _Postnr;
+		
+		private string _Bynavn;
+		
+		private string _Telefon;
+		
+		private string _Email;
+		
+		private string _Bank;
+		
+		private System.Nullable<int> _Status;
+		
+		private EntitySet<tblMedlemLog> _tblMedlemLogs;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnNrChanging(int value);
+    partial void OnNrChanged();
+    partial void OnKonChanging(string value);
+    partial void OnKonChanged();
+    partial void OnFodtDatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnFodtDatoChanged();
+    partial void OnNavnChanging(string value);
+    partial void OnNavnChanged();
+    partial void OnKaldenavnChanging(string value);
+    partial void OnKaldenavnChanged();
+    partial void OnAdresseChanging(string value);
+    partial void OnAdresseChanged();
+    partial void OnPostnrChanging(string value);
+    partial void OnPostnrChanged();
+    partial void OnBynavnChanging(string value);
+    partial void OnBynavnChanged();
+    partial void OnTelefonChanging(string value);
+    partial void OnTelefonChanged();
+    partial void OnEmailChanging(string value);
+    partial void OnEmailChanged();
+    partial void OnBankChanging(string value);
+    partial void OnBankChanged();
+    partial void OnStatusChanging(System.Nullable<int> value);
+    partial void OnStatusChanged();
+    #endregion
+		
+		public tblMedlem()
+		{
+			this._tblMedlemLogs = new EntitySet<tblMedlemLog>(new Action<tblMedlemLog>(this.attach_tblMedlemLogs), new Action<tblMedlemLog>(this.detach_tblMedlemLogs));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nr", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Nr
+		{
+			get
+			{
+				return this._Nr;
+			}
+			set
+			{
+				if ((this._Nr != value))
+				{
+					this.OnNrChanging(value);
+					this.SendPropertyChanging();
+					this._Nr = value;
+					this.SendPropertyChanged("Nr");
+					this.OnNrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Kon", DbType="NVarChar(1)")]
+		public string Kon
+		{
+			get
+			{
+				return this._Kon;
+			}
+			set
+			{
+				if ((this._Kon != value))
+				{
+					this.OnKonChanging(value);
+					this.SendPropertyChanging();
+					this._Kon = value;
+					this.SendPropertyChanged("Kon");
+					this.OnKonChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FodtDato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> FodtDato
+		{
+			get
+			{
+				return this._FodtDato;
+			}
+			set
+			{
+				if ((this._FodtDato != value))
+				{
+					this.OnFodtDatoChanging(value);
+					this.SendPropertyChanging();
+					this._FodtDato = value;
+					this.SendPropertyChanged("FodtDato");
+					this.OnFodtDatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Navn", DbType="NVarChar(35)")]
+		public string Navn
+		{
+			get
+			{
+				return this._Navn;
+			}
+			set
+			{
+				if ((this._Navn != value))
+				{
+					this.OnNavnChanging(value);
+					this.SendPropertyChanging();
+					this._Navn = value;
+					this.SendPropertyChanged("Navn");
+					this.OnNavnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Kaldenavn", DbType="NVarChar(25)")]
+		public string Kaldenavn
+		{
+			get
+			{
+				return this._Kaldenavn;
+			}
+			set
+			{
+				if ((this._Kaldenavn != value))
+				{
+					this.OnKaldenavnChanging(value);
+					this.SendPropertyChanging();
+					this._Kaldenavn = value;
+					this.SendPropertyChanged("Kaldenavn");
+					this.OnKaldenavnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Adresse", DbType="NVarChar(70)")]
+		public string Adresse
+		{
+			get
+			{
+				return this._Adresse;
+			}
+			set
+			{
+				if ((this._Adresse != value))
+				{
+					this.OnAdresseChanging(value);
+					this.SendPropertyChanging();
+					this._Adresse = value;
+					this.SendPropertyChanged("Adresse");
+					this.OnAdresseChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Postnr", DbType="NVarChar(4)")]
+		public string Postnr
+		{
+			get
+			{
+				return this._Postnr;
+			}
+			set
+			{
+				if ((this._Postnr != value))
+				{
+					this.OnPostnrChanging(value);
+					this.SendPropertyChanging();
+					this._Postnr = value;
+					this.SendPropertyChanged("Postnr");
+					this.OnPostnrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Bynavn", DbType="NVarChar(25)")]
+		public string Bynavn
+		{
+			get
+			{
+				return this._Bynavn;
+			}
+			set
+			{
+				if ((this._Bynavn != value))
+				{
+					this.OnBynavnChanging(value);
+					this.SendPropertyChanging();
+					this._Bynavn = value;
+					this.SendPropertyChanged("Bynavn");
+					this.OnBynavnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Telefon", DbType="NVarChar(8)")]
+		public string Telefon
+		{
+			get
+			{
+				return this._Telefon;
+			}
+			set
+			{
+				if ((this._Telefon != value))
+				{
+					this.OnTelefonChanging(value);
+					this.SendPropertyChanging();
+					this._Telefon = value;
+					this.SendPropertyChanged("Telefon");
+					this.OnTelefonChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Email", DbType="NVarChar(50)")]
+		public string Email
+		{
+			get
+			{
+				return this._Email;
+			}
+			set
+			{
+				if ((this._Email != value))
+				{
+					this.OnEmailChanging(value);
+					this.SendPropertyChanging();
+					this._Email = value;
+					this.SendPropertyChanged("Email");
+					this.OnEmailChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Bank", DbType="NVarChar(15)")]
+		public string Bank
+		{
+			get
+			{
+				return this._Bank;
+			}
+			set
+			{
+				if ((this._Bank != value))
+				{
+					this.OnBankChanging(value);
+					this.SendPropertyChanging();
+					this._Bank = value;
+					this.SendPropertyChanged("Bank");
+					this.OnBankChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="Int")]
+		public System.Nullable<int> Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblMedlem_tblMedlemLog", Storage="_tblMedlemLogs", ThisKey="Nr", OtherKey="Nr")]
+		public EntitySet<tblMedlemLog> tblMedlemLogs
+		{
+			get
+			{
+				return this._tblMedlemLogs;
+			}
+			set
+			{
+				this._tblMedlemLogs.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tblMedlemLogs(tblMedlemLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblMedlem = this;
+		}
+		
+		private void detach_tblMedlemLogs(tblMedlemLog entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblMedlem = null;
 		}
 	}
 }

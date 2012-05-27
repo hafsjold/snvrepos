@@ -54,5 +54,17 @@ namespace nsPbs3060.Properties {
                 return ((string)(this["puls3061_dk_dbConnectionString2"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=mssql1.unoeuro.com;Initial Catalog=puls3061_dk_db;Persist Security In" +
+            "fo=True;User ID=puls3061_dk;MultipleActiveResultSets=True;Encrypt=True;TrustServ" +
+            "erCertificate=True;Application Name=EntityFramework")]
+        public string puls3061_dk_dbConnectionString3 {
+            get {
+                return ((string)(this["puls3061_dk_dbConnectionString3"]));
+            }
+        }
     }
 }
