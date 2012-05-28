@@ -52,10 +52,10 @@ namespace wMedlem3060.Views
         private void Getnextval_Completed(InvokeOperation<int?> temp)
         {
             MedlemDomainContext ctx = MyvLogData.DomainContext as MedlemDomainContext;
-            var xx = temp.Value;
+            int next_id = (int)temp.Value;
             tblMedlemLog rec = new tblMedlemLog
             {
-                id = 2000,
+                id = next_id,
                 logdato = DateTime.Today,
                 Nr = 5,
                 akt_id = 10,
@@ -63,6 +63,7 @@ namespace wMedlem3060.Views
             };
             ctx.tblMedlemLogs.Add(rec);
             ctx.SubmitChanges();
+            MyData.SubmitChanges();
         }
 
         // Executes when the user navigates to this page.
@@ -73,8 +74,9 @@ namespace wMedlem3060.Views
 
         private void SaveChangesButton_Click(object sender, RoutedEventArgs e)
         {
+            //Test2(); 
             MyData.SubmitChanges();
-            Test2();
+
         }
 
         private void tblMedlemDomainDataSource_LoadedData(object sender, LoadedDataEventArgs e)

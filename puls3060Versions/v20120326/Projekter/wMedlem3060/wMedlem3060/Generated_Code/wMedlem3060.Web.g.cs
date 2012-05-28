@@ -794,6 +794,8 @@ namespace wMedlem3060.Web
         
         private string _postnr;
         
+        private Nullable<int> _status;
+        
         private EntityCollection<tblMedlemLog> _tblMedlemLogs;
         
         private string _telefon;
@@ -825,6 +827,8 @@ namespace wMedlem3060.Web
         partial void OnNrChanged();
         partial void OnPostnrChanging(string value);
         partial void OnPostnrChanged();
+        partial void OnStatusChanging(Nullable<int> value);
+        partial void OnStatusChanged();
         partial void OnTelefonChanging(string value);
         partial void OnTelefonChanged();
 
@@ -1092,6 +1096,30 @@ namespace wMedlem3060.Web
                     this._postnr = value;
                     this.RaiseDataMemberChanged("Postnr");
                     this.OnPostnrChanged();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Gets or sets the 'Status' value.
+        /// </summary>
+        [DataMember()]
+        public Nullable<int> Status
+        {
+            get
+            {
+                return this._status;
+            }
+            set
+            {
+                if ((this._status != value))
+                {
+                    this.OnStatusChanging(value);
+                    this.RaiseDataMemberChanging("Status");
+                    this.ValidateProperty("Status", value);
+                    this._status = value;
+                    this.RaiseDataMemberChanged("Status");
+                    this.OnStatusChanged();
                 }
             }
         }
