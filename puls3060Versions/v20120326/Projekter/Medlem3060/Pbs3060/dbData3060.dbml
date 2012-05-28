@@ -431,4 +431,7 @@
     <Parameter Name="pFaknr" Type="System.Int32" DbType="Int" />
     <Return Type="System.String" />
   </Function>
+  <Function Name="dbo.UpdateMedlemStatus" Method="UpdateMedlemStatus">
+    <Return Type="System.Int32" />
+  </Function>
 </Database>

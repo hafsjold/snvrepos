@@ -22,7 +22,8 @@ namespace nsMedlem3060Service
         SendFilesToPBS,
         LoadSchedule,
         KontingentNyeMedlemmer,
-        SendEmailRykker
+        SendEmailRykker,
+        UpdateMedlemStatus
     }
 
     public partial class mcMedlem3060Service : ServiceBase
@@ -181,6 +182,10 @@ namespace nsMedlem3060Service
                             if ((AntalRykker > 0))
                                 objPbs601b.rykker_email(m_dbData3060, lobnrb);
                             objPbs601b = null;
+                            break;
+
+                        case enumTask.UpdateMedlemStatus:
+                            m_dbData3060.UpdateMedlemStatus();
                             break;
 
                         default:

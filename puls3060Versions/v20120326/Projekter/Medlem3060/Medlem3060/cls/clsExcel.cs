@@ -16,6 +16,8 @@ namespace nsPuls3060
 {
     public partial class FrmMain : Form
     {
+
+        
         private void excelInternt()
         {
             DateTime pReadDate = DateTime.Now;
@@ -169,6 +171,36 @@ namespace nsPuls3060
             }
         }
 
+        [Flags]
+        public enum statusMedlem
+        {
+            Medlem = 0x1,
+            NytMedlem = 0x2,
+            Restance = 0x4,
+            Rykket = 0x8
+        }        
+        private string GetStatusText(int? Status) 
+        {
+            if (Status == null) return "";
+            statusMedlem e = (statusMedlem)Status;
+            string s;
+
+            if ((e & statusMedlem.Medlem) == statusMedlem.Medlem)
+                s = "Medlem";
+            else if ((e & statusMedlem.NytMedlem) == statusMedlem.NytMedlem)
+                s = "NytMedlem";
+            else
+                s = "IkkeMedlem";
+
+            if ((e & statusMedlem.Restance) == statusMedlem.Restance)
+                s += " i Restance";
+
+            if ((e & statusMedlem.Rykket) == statusMedlem.Rykket)
+                s += " er Rykket";
+           
+            return s;
+        }
+
         private void excelExternt()
         {
             DateTime pReadDate = DateTime.Now;
@@ -196,8 +228,7 @@ namespace nsPuls3060
                                    Email = h.Email,
                                    Kon = h.Kon.ToString(),
                                    FodtDato = h.FodtDato,
-                                   erMedlem = ((bool)Program.dbData3060.erMedlem(h.Nr)) ? 1 : 0,
-                                   erPBS = ((bool)Program.dbData3060.erPBS(h.Nr)) ? 1 : 0,
+                                   stStatus = GetStatusText(h.Status)
                                };
 
 
@@ -329,7 +360,7 @@ namespace nsPuls3060
             string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xls";
 
             var MedlemmerAll = from h in Program.dbData3060.tblMedlems
-                               select new clsMedlemExternAll
+                               select new clsMedlemNotPBSAll
                                {
                                    Nr = h.Nr,
                                    Navn = h.Navn,
@@ -476,7 +507,6 @@ namespace nsPuls3060
             }
         }
 
-
         private string IUAP(string Type, string DK)
         {
             if (Type == "Drift")
@@ -522,25 +552,8 @@ namespace nsPuls3060
                                    Beløb = h.Bruttobeløb,
                                };
 
-            var MedlemmerAll = from h in Program.dbData3060.tblMedlems
-                               select new clsMedlemExternAll
-                               {
-                                   Nr = h.Nr,
-                                   Navn = h.Navn,
-                                   Kaldenavn = h.Kaldenavn,
-                                   Adresse = h.Adresse,
-                                   Postnr = h.Postnr,
-                                   Bynavn = h.Bynavn,
-                                   Telefon = h.Telefon,
-                                   Email = h.Email,
-                                   Kon = "X",
-                                   FodtDato = null,
-                                   erMedlem = ((bool)Program.dbData3060.erMedlem(h.Nr)) ? 1 : 0,
-                                   erPBS = ((bool)Program.dbData3060.erPBS(h.Nr)) ? 1 : 0,
-                               };
-
-            var erMedlem = from h in MedlemmerAll
-                           where h.erMedlem == 1
+            var erMedlem = from h in Program.dbData3060.tblMedlems
+                           where h.Status == 1
                            select h;
 
 

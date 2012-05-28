@@ -842,7 +842,7 @@ namespace nsPuls3060
         public DateTime? kontingentTilbageførtDato { get; set; }
     }
 
-    public class clsMedlemExternAll
+    public class clsMedlemNotPBSAll
     {
         [Fieldattr(Heading = "Nr")]
         public int? Nr { get; set; }
@@ -868,6 +868,32 @@ namespace nsPuls3060
         public int? erMedlem { get; set; }
         [Fieldattr(Heading = "tilmeldtPBS")]
         public int? erPBS { get; set; }
+     }
+
+    public class clsMedlemExternAll
+    {
+        [Fieldattr(Heading = "Nr")]
+        public int? Nr { get; set; }
+        [Fieldattr(Heading = "Navn")]
+        public string Navn { get; set; }
+        [Fieldattr(Heading = "Kaldenavn")]
+        public string Kaldenavn { get; set; }
+        [Fieldattr(Heading = "Adresse")]
+        public string Adresse { get; set; }
+        [Fieldattr(Heading = "Postnr")]
+        public string Postnr { get; set; }
+        [Fieldattr(Heading = "By")]
+        public string Bynavn { get; set; }
+        [Fieldattr(Heading = "Email")]
+        public string Email { get; set; }
+        [Fieldattr(Heading = "Telefon")]
+        public string Telefon { get; set; }
+        [Fieldattr(Heading = "Køn")]
+        public string Kon { get; set; }
+        [Fieldattr(Heading = "Født")]
+        public DateTime? FodtDato { get; set; }
+        [Fieldattr(Heading = "Status")]
+        public string stStatus { get; set; }
     }
     
     public class clsMedlemNotPBS
