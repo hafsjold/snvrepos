@@ -383,10 +383,6 @@
     <Parameter Name="Pvkey" Parameter="pvkey" Type="System.String" DbType="NVarChar(10)" />
     <Return Type="System.String" />
   </Function>
-  <Function Name="dbo.nextval" Method="nextval">
-    <Parameter Name="Pnrserienavn" Parameter="pnrserienavn" Type="System.String" DbType="NVarChar(30)" />
-    <Return Type="System.Int32" />
-  </Function>
   <Function Name="dbo.OcrString" Method="OcrString" IsComposable="true">
     <Parameter Name="pFaknr" Type="System.Int32" DbType="Int" />
     <Return Type="System.String" />
@@ -433,5 +429,11 @@
   </Function>
   <Function Name="dbo.UpdateMedlemStatus" Method="UpdateMedlemStatus">
     <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.nextval" Method="nextval">
+    <Parameter Name="Pnrserienavn" Parameter="pnrserienavn" Type="System.String" DbType="NVarChar(30)" />
+    <ElementType Name="nextvalResult">
+      <Column Name="id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
   </Function>
 </Database>

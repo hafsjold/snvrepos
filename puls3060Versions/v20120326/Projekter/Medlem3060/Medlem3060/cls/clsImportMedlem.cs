@@ -33,8 +33,8 @@ namespace nsPuls3060
         public string Kon { get; set; }
         [Fieldattr(Heading = "Født")]
         public DateTime? FodtDato { get; set; }
-        [Fieldattr(Heading = "erMedlem")]
-        public int? erMedlem { get; set; }
+        [Fieldattr(Heading = "Status")]
+        public string stStatus { get; set; }
     }
 
 
@@ -200,15 +200,15 @@ namespace nsPuls3060
                                     r.FodtDato = null;
                                 }
                                 break;
-                            case "erMedlem":
-                                try
+                            case "Status":
+                                if (rec.ItemArray[i].ToString().Length > 0)
                                 {
-                                    r.erMedlem = int.Parse(rec.ItemArray[i].ToString());
+                                    r.stStatus = rec.ItemArray[i].ToString();
                                     NotEmptyCount++;
                                 }
-                                catch
+                                else
                                 {
-                                    r.erMedlem = null;
+                                    r.stStatus = null;
                                 }
                                 break;
 
@@ -216,7 +216,7 @@ namespace nsPuls3060
                                 break;
                         }
                     }
-                    if ((NotEmptyCount > 0) && (r.erMedlem == null))
+                    if ((NotEmptyCount > 0) && (r.stStatus == null))
                     {
                         this.Add(r);
                     }

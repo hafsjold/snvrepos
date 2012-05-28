@@ -150,20 +150,42 @@ namespace nsPuls3060
 
                     case DataRowState.Modified:
                         Nr_Key = m.Nr;
-                        k_rec = (from k in Program.karMedlemmer
-                                 where k.Nr == Nr_Key
-                                 select k).First();
+                        try
+                        {
+                            k_rec = (from k in Program.karMedlemmer
+                                     where k.Nr == Nr_Key
+                                     select k).First();
 
-                        k_rec.Navn = m.Navn;
-                        k_rec.Kaldenavn = (m.IsKaldenavnNull()) ? null : m.Kaldenavn;
-                        k_rec.Adresse = (m.IsAdresseNull()) ? null : m.Adresse;
-                        k_rec.Postnr = (m.IsPostnrNull()) ? null : m.Postnr;
-                        k_rec.Bynavn = (m.IsBynavnNull()) ? null : m.Bynavn;
-                        k_rec.Telefon = (m.IsTelefonNull()) ? null : m.Telefon;
-                        k_rec.Email = (m.IsEmailNull()) ? null : m.Email;
-                        k_rec.Bank = (m.IsBankNull()) ? null : m.Bank;
-                        k_rec.setKreditor();
-                        Program.karMedlemmer.Update(Nr_Key);
+                            k_rec.Navn = m.Navn;
+                            k_rec.Kaldenavn = (m.IsKaldenavnNull()) ? null : m.Kaldenavn;
+                            k_rec.Adresse = (m.IsAdresseNull()) ? null : m.Adresse;
+                            k_rec.Postnr = (m.IsPostnrNull()) ? null : m.Postnr;
+                            k_rec.Bynavn = (m.IsBynavnNull()) ? null : m.Bynavn;
+                            k_rec.Telefon = (m.IsTelefonNull()) ? null : m.Telefon;
+                            k_rec.Email = (m.IsEmailNull()) ? null : m.Email;
+                            k_rec.Bank = (m.IsBankNull()) ? null : m.Bank;
+                            k_rec.setKreditor();
+                            Program.karMedlemmer.Update(Nr_Key);
+                        }
+                        catch (System.InvalidOperationException)
+                        {
+                            k_rec = new clsMedlem()
+                            {
+                                Nr = Nr_Key,
+                                Navn = m.Navn
+                            };
+                            k_rec.Kaldenavn = (m.IsKaldenavnNull()) ? null : m.Kaldenavn;
+                            k_rec.Adresse = (m.IsAdresseNull()) ? null : m.Adresse;
+                            k_rec.Postnr = (m.IsPostnrNull()) ? null : m.Postnr;
+                            k_rec.Bynavn = (m.IsBynavnNull()) ? null : m.Bynavn;
+                            k_rec.Telefon = (m.IsTelefonNull()) ? null : m.Telefon;
+                            k_rec.Email = (m.IsEmailNull()) ? null : m.Email;
+                            k_rec.Bank = (m.IsBankNull()) ? null : m.Bank;
+                            k_rec.setKreditor();
+                            k_rec.getNewCvsString();
+                            Program.karMedlemmer.Add(k_rec);
+                        }
+
 
                         try
                         {

@@ -114,8 +114,7 @@ namespace nsPbs3060
             if (rsttil.leverancetype == null) { rsttil.leverancetype = ""; }
             p_dbData3060.SubmitChanges();
 
-            wleveranceid = p_dbData3060.nextval("leveranceid");
-
+            wleveranceid = (int)(from r in p_dbData3060.nextval("leveranceid") select r.id).First(); 
             tblpbsforsendelse rec_pbsforsendelse = new tblpbsforsendelse
             {
                 delsystem = rsttil.delsystem,
@@ -428,12 +427,12 @@ namespace nsPbs3060
                 {
                     if (rstmedlem.indmeldelse) winfotekst = 11;
                     else winfotekst = (rstmedlem.tilmeldtpbs) ? 10 : 12;
-
+                    int next_faknr = (int)(from r in p_dbData3060.nextval("faknr") select r.id).First();
                     tblfak rec_fak = new tblfak
                     {
                         betalingsdato = rstmedlem.betalingsdato,
                         Nr = rstmedlem.Nr,
-                        faknr = p_dbData3060.nextval("faknr"),
+                        faknr = next_faknr,
                         advistekst = wadvistekst,
                         advisbelob = rstmedlem.advisbelob,
                         infotekst = winfotekst,
@@ -496,12 +495,12 @@ namespace nsPbs3060
             {
                 if (rstmedlem.indmeldelse) winfotekst = 11;
                 else winfotekst = (rstmedlem.tilmeldtpbs) ? 10 : 12;
-
+                int next_faknr = (int)(from r in p_dbData3060.nextval("faknr") select r.id).First();
                 tblfak rec_fak = new tblfak
                 {
                     betalingsdato = rstmedlem.betalingsdato,
                     Nr = rstmedlem.Nr,
-                    faknr = p_dbData3060.nextval("faknr"),
+                    faknr = next_faknr,
                     advistekst = wadvistekst,
                     advisbelob = rstmedlem.advisbelob,
                     infotekst = winfotekst,
@@ -553,8 +552,7 @@ namespace nsPbs3060
             if (rsttil.leverancetype == null) { rsttil.leverancetype = ""; }
             p_dbData3060.SubmitChanges();
 
-            wleveranceid = p_dbData3060.nextval("leveranceid");
-
+            wleveranceid = (int)(from r in p_dbData3060.nextval("leveranceid") select r.id).First();  
             tblpbsforsendelse rec_pbsforsendelse = new tblpbsforsendelse
             {
                 delsystem = rsttil.delsystem,
@@ -711,8 +709,7 @@ namespace nsPbs3060
             if (rsttil.leverancetype == null) { rsttil.leverancetype = ""; }
             p_dbData3060.SubmitChanges();
 
-            wleveranceid = p_dbData3060.nextval("leveranceid");
-
+            wleveranceid = (int)(from r in p_dbData3060.nextval("leveranceid") select r.id).First(); 
             tblpbsforsendelse rec_pbsforsendelse = new tblpbsforsendelse
             {
                 delsystem = rsttil.delsystem,

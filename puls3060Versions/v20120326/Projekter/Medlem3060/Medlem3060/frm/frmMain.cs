@@ -131,7 +131,6 @@ namespace nsPuls3060
         {
 #if (DEBUG)
             // START TEST TEST TEST TEST TEST TEST
-
             /*
             clsPbs686 objPbs686 = new clsPbs686();
             int Antal686Filer = objPbs686.aftaleoplysninger_fra_pbs(Program.dbData3060);

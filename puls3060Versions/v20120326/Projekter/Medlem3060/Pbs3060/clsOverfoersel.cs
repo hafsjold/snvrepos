@@ -129,7 +129,7 @@ namespace nsPbs3060
             p_dbData3060.SubmitChanges();
 
 
-            wleveranceid = p_dbData3060.nextval("leveranceid");
+            wleveranceid = (int)(from r in p_dbData3060.nextval("leveranceid") select r.id).First(); 
             tblpbsforsendelse rec_pbsforsendelse = new tblpbsforsendelse
             {
                 delsystem = rsttil.delsystem,

@@ -481,7 +481,7 @@ namespace nsPbs3060
                          select h).Count();
                 transmisionsdato = DateTime.Now;
 
-                idlev = p_dbData3060.nextval("idlev");
+                idlev = (int)(from r in p_dbData3060.nextval("idlev") select r.id).First();  
 
                 tblpbsfilename rec_pbsfiles = (from h in p_dbData3060.tblpbsfilenames where h.id == pbsfilesid select h).First();
 

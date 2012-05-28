@@ -370,13 +370,6 @@ namespace nsPbs3060
 			return ((string)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pvkey).ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.nextval")]
-		public int nextval([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Pnrserienavn", DbType="NVarChar(30)")] string pnrserienavn)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pnrserienavn);
-			return ((int)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.OcrString", IsComposable=true)]
 		public string OcrString([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pFaknr)
 		{
@@ -448,6 +441,13 @@ namespace nsPbs3060
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((int)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.nextval")]
+		public ISingleResult<nextvalResult> nextval([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Pnrserienavn", DbType="NVarChar(30)")] string pnrserienavn)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pnrserienavn);
+			return ((ISingleResult<nextvalResult>)(result.ReturnValue));
 		}
 	}
 	
@@ -8099,6 +8099,32 @@ namespace nsPbs3060
 		{
 			this.SendPropertyChanging();
 			entity.tblMedlem = null;
+		}
+	}
+	
+	public partial class nextvalResult
+	{
+		
+		private System.Nullable<int> _id;
+		
+		public nextvalResult()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int")]
+		public System.Nullable<int> id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this._id = value;
+				}
+			}
 		}
 	}
 }

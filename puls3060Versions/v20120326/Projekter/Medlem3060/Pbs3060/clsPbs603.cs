@@ -85,7 +85,7 @@ namespace nsPbs3060
                                              select c).Count();
                                 if (antal > 0) { throw new Exception("242 - Leverance med pbsfilesid: " + wpbsfilesid + " og leverancespecifikation: " + leverancespecifikation + " er indlæst tidligere"); }
 
-                                wleveranceid = p_dbData3060.nextval("leveranceid");
+                                wleveranceid = (int)(from r in p_dbData3060.nextval("leveranceid") select r.id).First(); 
                                 m_rec_pbsforsendelse = new tblpbsforsendelse
                                 {
                                     delsystem = "BS1",
