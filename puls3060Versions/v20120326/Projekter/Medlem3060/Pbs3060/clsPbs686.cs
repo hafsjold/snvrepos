@@ -319,10 +319,10 @@ namespace nsPbs3060
         public void readindbetalingskort042(dbData3060DataContext p_dbData3060, string sektion, string transkode, string rec)
         {
             // --  pbssektionnr
+            // ---  sektion 0195, indbetalingskort til e-Boks
+            // ---  sektion 0196, elektronisk indbetalingskort i netbank
+            // ---  sektion 0197, papirindbetalingskort
             // --  pbstranskode
-            // ---  transkode 0195, indbetalingskort til e-Boks
-            // ---  transkode 0196, elektronisk indbetalingskort i netbank
-            // ---  transkode 0197, papirindbetalingskort
 
             decimal belobmun;
             int belob;
@@ -377,7 +377,7 @@ namespace nsPbs3060
             m_rec_indbetalingskort.faknr = int.Parse(rec.Substring(73, 9));
 
             //  Netbank regnr
-            if (transkode == "0196")
+            if (sektion == "0196")
                 m_rec_indbetalingskort.regnr = rec.Substring(138, 4);
 
             if ((from h in p_dbData3060.tblMedlems where h.Nr == m_rec_indbetalingskort.Nr select h).Count() == 1)
