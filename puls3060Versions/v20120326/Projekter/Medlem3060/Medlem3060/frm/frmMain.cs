@@ -131,6 +131,16 @@ namespace nsPuls3060
         {
 #if (DEBUG)
             // START TEST TEST TEST TEST TEST TEST
+            string bigString = "BIGSTRING";
+            string smallString = "smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString";
+            DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
+                "Betalinger fra PBS", //titleString 
+                bigString, //bigString 
+                smallString, //smallString
+                null, //leftButton
+                "OK", //rightButton
+                global::nsPuls3060.Properties.Resources.Message_info); //iconSet
+            
             /*
             clsPbs686 objPbs686 = new clsPbs686();
             int Antal686Filer = objPbs686.aftaleoplysninger_fra_pbs(Program.dbData3060);
@@ -225,20 +235,20 @@ namespace nsPuls3060
             clsSumma objSumma = new clsSumma();
             int AntalBetalinger = objSumma.BogforIndBetalinger();
 
-            bigString = String.Format("Antal indlæste filer fra PBS: {0} \nAntal nye 602 filer: {1}\nAntal nye 603 filer: {3}\nAntal nye 686 filer: {4}\nAntal nye ordre: {2}.", AntalImportFiler, Antal602Filer, AntalBetalinger, Antal603Filer, Antal686Filer);
             if (AntalBetalinger > 0)
             {
-                smallString = String.Format("Åben SummaSummarum\nTryk på ikonet Kassekladde i venstre side\nbogfør den nye kassekladde med {0} betalinger.", AntalBetalinger);
+                bigString = String.Format("Der er {0} bogførte betalinger.", AntalBetalinger);
             }
             else
             {
-                smallString = "Der er ingen nye betalinger";
+                bigString = "Der er ingen nye betalinger";
             }
+            smallString = String.Format("Antal indlæste filer fra PBS: {0} \nAntal nye 602 filer: {1}\nAntal nye 603 filer: {3}\nAntal nye 686 filer: {4}\nAntal nye betalinger: {2}.", AntalImportFiler, Antal602Filer, AntalBetalinger, Antal603Filer, Antal686Filer);
 
 
 
             DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
-                "Betalinger fra PBS", //titleString 
+                "Filer fra PBS", //titleString 
                 bigString, //bigString 
                 smallString, //smallString
                 null, //leftButton
