@@ -132,6 +132,15 @@
       <Column Name="saldo" Member="Saldo" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="tblkontoudtog" Member="Tblkontoudtog">
+    <Type Name="Tblkontoudtog">
+      <Column Name="pid" Member="Pid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name" Member="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="savefile" Member="Savefile" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="bogfkonto" Member="Bogfkonto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="afstemningskonto" Member="Afstemningskonto" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="tblnrserie" Member="Tblnrserie">
     <Type Name="Tblnrserie">
       <Column Name="nrserienavn" Member="Nrserienavn" Type="System.String" DbType="NVarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />

@@ -18,17 +18,30 @@ namespace nsPuls3060
         public decimal? bsaldo { get; set; }
         public string bstatus { get; set; }
         public string bafstemt { get; set; }
+        public int? bbankkontoid { get; set; }
     }
 
 
     public class KarBankkontoudtogDanskebank : List<recBankkontoudtogDanskebank>
     {
+        private int m_bankkontoid { get; set; }
         private string m_path { get; set; }
 
-        public KarBankkontoudtogDanskebank()
+        public KarBankkontoudtogDanskebank(int bankkontoid)
         {
+            m_bankkontoid = bankkontoid;
+            string csvfile;
+            try
+            {
+                csvfile = (from w in Program.dbDataTransSumma.Tblkontoudtog where w.Pid == m_bankkontoid select w).First().Savefile;
+            }
+            catch
+            {
+                csvfile = "NoFile";
+            }
+            
             var rec_regnskab = Program.qryAktivRegnskab();
-            m_path = rec_regnskab.Eksportmappe + "Danske Erhverv.csv";
+            m_path = rec_regnskab.Eksportmappe + csvfile;
             open();
         }
 
@@ -70,7 +83,8 @@ namespace nsPuls3060
                             bbeløb = Microsoft.VisualBasic.Information.IsNumeric(value[2]) ? decimal.Parse(value[2]) : (decimal?)null,
                             bsaldo = Microsoft.VisualBasic.Information.IsNumeric(value[3]) ? decimal.Parse(value[3]) : (decimal?)null,
                             bstatus =  value[4],
-                            bafstemt = value[5]
+                            bafstemt = value[5],
+                            bbankkontoid = m_bankkontoid
                        };
                        if (rec.bstatus == "Udført")
                             this.Add(rec);
@@ -84,7 +98,7 @@ namespace nsPuls3060
         public void load()
         {
             var qry = from w in this
-                      join b in Program.dbDataTransSumma.Tblbankkonto on new { dato = w.bdato, belob = w.bbeløb, saldo = w.bsaldo } equals new { dato = b.Dato, belob = b.Belob, saldo = b.Saldo } into bankkonto
+                      join b in Program.dbDataTransSumma.Tblbankkonto on new { dato = w.bdato, belob = w.bbeløb, saldo = w.bsaldo, bankkontoid = w.bbankkontoid } equals new { dato = b.Dato, belob = b.Belob, saldo = b.Saldo, bankkontoid = b.Bankkontoid } into bankkonto
                       from b in bankkonto.DefaultIfEmpty(new Tblbankkonto { Pid = 0, Belob = null })
                       where b.Belob == null 
                       orderby w.bdato
@@ -97,6 +111,7 @@ namespace nsPuls3060
                 Tblbankkonto recBankkonto = new Tblbankkonto
                 {
                     Pid = clsPbs.nextval("Tblbankkonto"),
+                    Bankkontoid = b.bbankkontoid,
                     Saldo = b.bsaldo,
                     Dato = b.bdato,
                     Tekst = b.btekst,

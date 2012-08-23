@@ -115,7 +115,7 @@
         <elementListCompartment Id="f99c265f-3202-49d1-8db1-01c0112eed56" absoluteBounds="5.89, 3.71, 1.9700000000000002, 3.7108154296875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(6.75 : 2.84780110677083); (6.75 : 3.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.75 : 2.84780110677083); (6.75 : 3.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DbDataTransSumma/Tblfak/Tblfak_Tblfaklin" />
       <nodes>
         <classShapeMoniker Id="d1c012e1-c533-4293-af49-962bc82f3094" />
@@ -166,5 +166,11 @@
         <classShapeMoniker Id="be9b13e4-3306-4441-bb6f-b9e01f0bbf59" />
       </nodes>
     </associationConnector>
+    <classShape Id="f4e66fd9-ac99-4f00-a881-d59c214e5ad3" absoluteBounds="3.125, 11.625, 2, 1.7708968098958344">
+      <DataClassMoniker Name="/DbDataTransSumma/Tblkontoudtog" />
+      <nestedChildShapes>
+        <elementListCompartment Id="da849820-b02b-40a5-adaa-56acf653be2f" absoluteBounds="3.14, 12.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

@@ -342,9 +342,16 @@ namespace nsPuls3060
 
         private void importDanskebankToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            KarBankkontoudtogDanskebank recBankkontoudtogDanskebank = new KarBankkontoudtogDanskebank();
+            KarBankkontoudtogDanskebank recBankkontoudtogDanskebank = new KarBankkontoudtogDanskebank(1);
             recBankkontoudtogDanskebank.load();
         }
+        
+        private void importDanskebank2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KarBankkontoudtogDanskebank recBankkontoudtogDanskebank = new KarBankkontoudtogDanskebank(2);
+            recBankkontoudtogDanskebank.load();
+        }
+        
         private void printBilagToolStripMenuItem_Click(object sender, EventArgs e)
         {
             clsBilagsudskrift.Bilagsudskrift(false);

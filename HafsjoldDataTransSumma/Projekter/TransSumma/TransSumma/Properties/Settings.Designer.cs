@@ -326,7 +326,7 @@ namespace nsPuls3060.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("829, 389")]
+        [global::System.Configuration.DefaultSettingValueAttribute("829, 513")]
         public global::System.Drawing.Size BankafstemningSize {
             get {
                 return ((global::System.Drawing.Size)(this["BankafstemningSize"]));

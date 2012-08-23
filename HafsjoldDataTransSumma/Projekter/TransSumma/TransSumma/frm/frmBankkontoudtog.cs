@@ -13,21 +13,33 @@ namespace nsPuls3060
 {
     public partial class FrmBankkontoudtog : Form
     {
+        private Tblkontoudtog m_recKontoudtog;
+
         public FrmBankkontoudtog()
         {
             InitializeComponent();
+
+            int bankkontoid = 2;
+            try
+            {
+                m_recKontoudtog = (from w in Program.dbDataTransSumma.Tblkontoudtog where w.Pid == bankkontoid select w).First();
+            }
+            catch
+            {
+                m_recKontoudtog = null;
+            }
         }
 
         private void FrmKladder_Load(object sender, EventArgs e)
         {
             var qryAfstemte = from u in Program.dbDataTransSumma.Tblbankkonto
-                              where u.Afstem != null && (u.Skjul == null || u.Skjul == false)
+                              where u.Afstem != null && u.Bankkontoid == m_recKontoudtog.Pid  && (u.Skjul == null || u.Skjul == false)
                               orderby u.Dato descending
                               select u;
             this.tblbankkontoBindingSourceAfstemte.DataSource = qryAfstemte; 
             
             var qryUafstemte = from u in Program.dbDataTransSumma.Tblbankkonto
-                               where u.Afstem == null && (u.Skjul == null || u.Skjul == false)
+                               where u.Afstem == null && u.Bankkontoid == m_recKontoudtog.Pid && (u.Skjul == null || u.Skjul == false)
                                orderby u.Dato ascending
                                select u;
             this.tblbankkontoBindingSourceUafstemte.DataSource = qryUafstemte;
@@ -48,7 +60,7 @@ namespace nsPuls3060
         {
             string strLike = "%" + textBoxSogeord.Text + "%";
             var qryAfstemte = from u in Program.dbDataTransSumma.Tblbankkonto
-                              where u.Afstem != null && (u.Skjul == null || u.Skjul == false) && SqlMethods.Like(u.Tekst, strLike)
+                              where u.Afstem != null && u.Bankkontoid == m_recKontoudtog.Pid && (u.Skjul == null || u.Skjul == false) && SqlMethods.Like(u.Tekst, strLike)
                               orderby u.Dato descending
                               select u;
             this.tblbankkontoBindingSourceAfstemte.DataSource = qryAfstemte;
@@ -80,7 +92,7 @@ namespace nsPuls3060
                 this.textBoxSogeord.Text = recBankkonto.Tekst;
                 string strLike = "%" + this.textBoxSogeord.Text + "%";
                 var qryAfstemte = from u in Program.dbDataTransSumma.Tblbankkonto
-                                  where u.Afstem != null && (u.Skjul == null || u.Skjul == false) && SqlMethods.Like(u.Tekst, strLike)
+                                  where u.Afstem != null && u.Bankkontoid == m_recKontoudtog.Pid && (u.Skjul == null || u.Skjul == false) && SqlMethods.Like(u.Tekst, strLike)
                                   orderby u.Dato descending
                                   select u;
                 this.tblbankkontoBindingSourceAfstemte.DataSource = qryAfstemte;

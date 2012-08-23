@@ -60,6 +60,9 @@ namespace nsPuls3060
     partial void InsertTblkonto(Tblkonto instance);
     partial void UpdateTblkonto(Tblkonto instance);
     partial void DeleteTblkonto(Tblkonto instance);
+    partial void InsertTblkontoudtog(Tblkontoudtog instance);
+    partial void UpdateTblkontoudtog(Tblkontoudtog instance);
+    partial void DeleteTblkontoudtog(Tblkontoudtog instance);
     partial void InsertTblnrserie(Tblnrserie instance);
     partial void UpdateTblnrserie(Tblnrserie instance);
     partial void DeleteTblnrserie(Tblnrserie instance);
@@ -187,6 +190,14 @@ namespace nsPuls3060
 			get
 			{
 				return this.GetTable<Tblkonto>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Tblkontoudtog> Tblkontoudtog
+		{
+			get
+			{
+				return this.GetTable<Tblkontoudtog>();
 			}
 		}
 		
@@ -2918,6 +2929,164 @@ namespace nsPuls3060
 					this._Saldo = value;
 					this.SendPropertyChanged("Saldo");
 					this.OnSaldoChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="tblkontoudtog")]
+	public partial class Tblkontoudtog : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Pid;
+		
+		private string _Name;
+		
+		private string _Savefile;
+		
+		private System.Nullable<int> _Bogfkonto;
+		
+		private string _Afstemningskonto;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPidChanging(int value);
+    partial void OnPidChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    partial void OnSavefileChanging(string value);
+    partial void OnSavefileChanged();
+    partial void OnBogfkontoChanging(System.Nullable<int> value);
+    partial void OnBogfkontoChanged();
+    partial void OnAfstemningskontoChanging(string value);
+    partial void OnAfstemningskontoChanged();
+    #endregion
+		
+		public Tblkontoudtog()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="pid", Storage="_Pid", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Pid
+		{
+			get
+			{
+				return this._Pid;
+			}
+			set
+			{
+				if ((this._Pid != value))
+				{
+					this.OnPidChanging(value);
+					this.SendPropertyChanging();
+					this._Pid = value;
+					this.SendPropertyChanged("Pid");
+					this.OnPidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="name", Storage="_Name", DbType="NVarChar(50)")]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="savefile", Storage="_Savefile", DbType="NVarChar(50)")]
+		public string Savefile
+		{
+			get
+			{
+				return this._Savefile;
+			}
+			set
+			{
+				if ((this._Savefile != value))
+				{
+					this.OnSavefileChanging(value);
+					this.SendPropertyChanging();
+					this._Savefile = value;
+					this.SendPropertyChanged("Savefile");
+					this.OnSavefileChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="bogfkonto", Storage="_Bogfkonto", DbType="Int")]
+		public System.Nullable<int> Bogfkonto
+		{
+			get
+			{
+				return this._Bogfkonto;
+			}
+			set
+			{
+				if ((this._Bogfkonto != value))
+				{
+					this.OnBogfkontoChanging(value);
+					this.SendPropertyChanging();
+					this._Bogfkonto = value;
+					this.SendPropertyChanged("Bogfkonto");
+					this.OnBogfkontoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="afstemningskonto", Storage="_Afstemningskonto", DbType="NVarChar(50)")]
+		public string Afstemningskonto
+		{
+			get
+			{
+				return this._Afstemningskonto;
+			}
+			set
+			{
+				if ((this._Afstemningskonto != value))
+				{
+					this.OnAfstemningskontoChanging(value);
+					this.SendPropertyChanging();
+					this._Afstemningskonto = value;
+					this.SendPropertyChanged("Afstemningskonto");
+					this.OnAfstemningskontoChanged();
 				}
 			}
 		}

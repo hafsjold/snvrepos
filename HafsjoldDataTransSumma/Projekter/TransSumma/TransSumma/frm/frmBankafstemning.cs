@@ -20,11 +20,13 @@ namespace nsPuls3060
         private string DragDropKey;
         private decimal sumAfstemBank;
         private decimal sumAfstemTrans;
-
+        private Tblkontoudtog m_recKontoudtog;
 
         public FrmBankafstemning()
         {
+
             InitializeComponent();
+
             this.lvwBank_ColumnSorter = new ColumnSorter();
             this.lvwBank.ListViewItemSorter = lvwBank_ColumnSorter;
             this.lvwTrans_ColumnSorter = new ColumnSorter();
@@ -33,6 +35,16 @@ namespace nsPuls3060
             this.lvwAfstemBank.ListViewItemSorter = lvwAfstemBank_ColumnSorter;
             this.lvwAfstemTrans_ColumnSorter = new ColumnSorter();
             this.lvwAfstemTrans.ListViewItemSorter = lvwAfstemTrans_ColumnSorter;
+        
+            int bankkontoid = 1;
+            try
+            {
+                m_recKontoudtog = (from w in Program.dbDataTransSumma.Tblkontoudtog where w.Pid == bankkontoid select w).First();
+            }
+            catch 
+            {
+                m_recKontoudtog = null;
+            }
         }
 
         private void lvwBank_ColumnClick(object sender, ColumnClickEventArgs e)
@@ -83,7 +95,7 @@ namespace nsPuls3060
             if (this.AfstemtTidligere.Checked)
             {
                 qry_bank = from b in Program.dbDataTransSumma.Tblbankkonto
-                           where b.Afstem > 0 && (b.Skjul == null || b.Skjul == false)
+                           where b.Afstem > 0 && b.Bankkontoid == m_recKontoudtog.Pid && (b.Skjul == null || b.Skjul == false)
                            orderby b.Dato ascending
                            select new clsqry_bank
                            {
@@ -97,7 +109,7 @@ namespace nsPuls3060
             {
 
                 qry_bank = from b in Program.dbDataTransSumma.Tblbankkonto
-                           where b.Afstem == null && (b.Skjul == null || b.Skjul == false)
+                           where b.Afstem == null && b.Bankkontoid == m_recKontoudtog.Pid && (b.Skjul == null || b.Skjul == false)
                            orderby b.Dato ascending
                            select new clsqry_bank
                            {
@@ -147,7 +159,7 @@ namespace nsPuls3060
             {
                 qry_trans = from t in Program.dbDataTransSumma.Tbltrans
                             join b in Program.dbDataTransSumma.Tblbilag on t.Bilagpid equals b.Pid
-                            where t.Afstem > 0 && t.Kontonr == 58000
+                            where t.Afstem > 0 && t.Kontonr == m_recKontoudtog.Bogfkonto
                             orderby b.Dato ascending
                             select new clsqry_trans
                             {
@@ -163,7 +175,7 @@ namespace nsPuls3060
 
                 qry_trans = from t in Program.dbDataTransSumma.Tbltrans
                             join b in Program.dbDataTransSumma.Tblbilag on t.Bilagpid equals b.Pid
-                            where t.Afstem == null && t.Kontonr == 58000
+                            where t.Afstem == null && t.Kontonr == m_recKontoudtog.Bogfkonto
                             orderby b.Dato ascending
                             select new clsqry_trans
                             {

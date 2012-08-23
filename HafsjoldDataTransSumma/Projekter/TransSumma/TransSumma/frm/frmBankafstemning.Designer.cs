@@ -31,37 +31,37 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.lvwBank = new System.Windows.Forms.ListView();
-            this.columnHeaderBDato = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderBTekst = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderBBelob = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderBDato = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderBTekst = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderBBelob = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.lvwAfstemBank = new System.Windows.Forms.ListView();
-            this.columnHeaderABDato = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderABTekst = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderABBelob = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderABDato = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderABTekst = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderABBelob = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvwSumBank = new System.Windows.Forms.ListView();
-            this.columnHeaderSBDato = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderSBTekst = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderSBBelob = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderSBDato = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderSBTekst = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderSBBelob = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.AfstemtTidligere = new System.Windows.Forms.CheckBox();
             this.cmdForslag = new System.Windows.Forms.Button();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.lvwTrans = new System.Windows.Forms.ListView();
-            this.columnHeaderTDato = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderTBilag = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderTTekst = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderTBelob = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderTDato = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderTBilag = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderTTekst = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderTBelob = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.splitContainer5 = new System.Windows.Forms.SplitContainer();
             this.lvwAfstemTrans = new System.Windows.Forms.ListView();
-            this.columnHeaderATDato = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderATBilag = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderATTekst = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderATBelob = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderATDato = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderATBilag = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderATTekst = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderATBelob = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvwSumTrans = new System.Windows.Forms.ListView();
-            this.columnHeaderSTDato = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderSTBilag = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderSTTekst = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderSTBelob = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderSTDato = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderSTBilag = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderSTTekst = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderSTBelob = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cmdAfstemt = new System.Windows.Forms.Button();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -113,8 +113,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer2.Size = new System.Drawing.Size(344, 389);
-            this.splitContainer2.SplitterDistance = 240;
+            this.splitContainer2.Size = new System.Drawing.Size(274, 513);
+            this.splitContainer2.SplitterDistance = 316;
             this.splitContainer2.TabIndex = 0;
             // 
             // lvwBank
@@ -129,14 +129,14 @@
             this.lvwBank.GridLines = true;
             this.lvwBank.Location = new System.Drawing.Point(0, 0);
             this.lvwBank.Name = "lvwBank";
-            this.lvwBank.Size = new System.Drawing.Size(344, 240);
+            this.lvwBank.Size = new System.Drawing.Size(274, 316);
             this.lvwBank.TabIndex = 0;
             this.lvwBank.UseCompatibleStateImageBehavior = false;
             this.lvwBank.View = System.Windows.Forms.View.Details;
-            this.lvwBank.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvwBank_DragDrop);
             this.lvwBank.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwBank_ColumnClick);
-            this.lvwBank.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvwBank_DragEnter);
             this.lvwBank.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvwBank_ItemDrag);
+            this.lvwBank.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvwBank_DragDrop);
+            this.lvwBank.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvwBank_DragEnter);
             // 
             // columnHeaderBDato
             // 
@@ -169,8 +169,8 @@
             this.splitContainer4.Panel2.Controls.Add(this.lvwSumBank);
             this.splitContainer4.Panel2.Controls.Add(this.AfstemtTidligere);
             this.splitContainer4.Panel2.Controls.Add(this.cmdForslag);
-            this.splitContainer4.Size = new System.Drawing.Size(344, 145);
-            this.splitContainer4.SplitterDistance = 90;
+            this.splitContainer4.Size = new System.Drawing.Size(274, 193);
+            this.splitContainer4.SplitterDistance = 119;
             this.splitContainer4.TabIndex = 0;
             // 
             // lvwAfstemBank
@@ -185,14 +185,14 @@
             this.lvwAfstemBank.GridLines = true;
             this.lvwAfstemBank.Location = new System.Drawing.Point(0, 0);
             this.lvwAfstemBank.Name = "lvwAfstemBank";
-            this.lvwAfstemBank.Size = new System.Drawing.Size(344, 90);
+            this.lvwAfstemBank.Size = new System.Drawing.Size(274, 119);
             this.lvwAfstemBank.TabIndex = 1;
             this.lvwAfstemBank.UseCompatibleStateImageBehavior = false;
             this.lvwAfstemBank.View = System.Windows.Forms.View.Details;
-            this.lvwAfstemBank.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvwAfstemBank_DragDrop);
             this.lvwAfstemBank.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwAfstemBank_ColumnClick);
-            this.lvwAfstemBank.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvwAfstemBank_DragEnter);
             this.lvwAfstemBank.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvwAfstemBank_ItemDrag);
+            this.lvwAfstemBank.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvwAfstemBank_DragDrop);
+            this.lvwAfstemBank.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvwAfstemBank_DragEnter);
             // 
             // columnHeaderABDato
             // 
@@ -220,7 +220,7 @@
             this.lvwSumBank.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvwSumBank.Location = new System.Drawing.Point(0, 0);
             this.lvwSumBank.Name = "lvwSumBank";
-            this.lvwSumBank.Size = new System.Drawing.Size(344, 17);
+            this.lvwSumBank.Size = new System.Drawing.Size(274, 17);
             this.lvwSumBank.TabIndex = 9;
             this.lvwSumBank.UseCompatibleStateImageBehavior = false;
             this.lvwSumBank.View = System.Windows.Forms.View.Details;
@@ -274,8 +274,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer5);
-            this.splitContainer3.Size = new System.Drawing.Size(481, 389);
-            this.splitContainer3.SplitterDistance = 241;
+            this.splitContainer3.Size = new System.Drawing.Size(551, 513);
+            this.splitContainer3.SplitterDistance = 317;
             this.splitContainer3.TabIndex = 0;
             // 
             // lvwTrans
@@ -291,14 +291,14 @@
             this.lvwTrans.GridLines = true;
             this.lvwTrans.Location = new System.Drawing.Point(0, 0);
             this.lvwTrans.Name = "lvwTrans";
-            this.lvwTrans.Size = new System.Drawing.Size(481, 241);
+            this.lvwTrans.Size = new System.Drawing.Size(551, 317);
             this.lvwTrans.TabIndex = 0;
             this.lvwTrans.UseCompatibleStateImageBehavior = false;
             this.lvwTrans.View = System.Windows.Forms.View.Details;
-            this.lvwTrans.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvwTrans_DragDrop);
             this.lvwTrans.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwTrans_ColumnClick);
-            this.lvwTrans.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvwTrans_DragEnter);
             this.lvwTrans.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvwTrans_ItemDrag);
+            this.lvwTrans.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvwTrans_DragDrop);
+            this.lvwTrans.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvwTrans_DragEnter);
             // 
             // columnHeaderTDato
             // 
@@ -335,8 +335,8 @@
             // 
             this.splitContainer5.Panel2.Controls.Add(this.lvwSumTrans);
             this.splitContainer5.Panel2.Controls.Add(this.cmdAfstemt);
-            this.splitContainer5.Size = new System.Drawing.Size(481, 144);
-            this.splitContainer5.SplitterDistance = 90;
+            this.splitContainer5.Size = new System.Drawing.Size(551, 192);
+            this.splitContainer5.SplitterDistance = 120;
             this.splitContainer5.TabIndex = 0;
             // 
             // lvwAfstemTrans
@@ -352,14 +352,14 @@
             this.lvwAfstemTrans.GridLines = true;
             this.lvwAfstemTrans.Location = new System.Drawing.Point(0, 0);
             this.lvwAfstemTrans.Name = "lvwAfstemTrans";
-            this.lvwAfstemTrans.Size = new System.Drawing.Size(481, 90);
+            this.lvwAfstemTrans.Size = new System.Drawing.Size(551, 120);
             this.lvwAfstemTrans.TabIndex = 2;
             this.lvwAfstemTrans.UseCompatibleStateImageBehavior = false;
             this.lvwAfstemTrans.View = System.Windows.Forms.View.Details;
-            this.lvwAfstemTrans.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvwAfstemTrans_DragDrop);
             this.lvwAfstemTrans.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwAfstemTrans_ColumnClick);
-            this.lvwAfstemTrans.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvwAfstemTrans_DragEnter);
             this.lvwAfstemTrans.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvwAfstemTrans_ItemDrag);
+            this.lvwAfstemTrans.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvwAfstemTrans_DragDrop);
+            this.lvwAfstemTrans.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvwAfstemTrans_DragEnter);
             // 
             // columnHeaderATDato
             // 
@@ -393,7 +393,7 @@
             this.lvwSumTrans.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvwSumTrans.Location = new System.Drawing.Point(0, 0);
             this.lvwSumTrans.Name = "lvwSumTrans";
-            this.lvwSumTrans.Size = new System.Drawing.Size(481, 17);
+            this.lvwSumTrans.Size = new System.Drawing.Size(551, 17);
             this.lvwSumTrans.TabIndex = 3;
             this.lvwSumTrans.UseCompatibleStateImageBehavior = false;
             this.lvwSumTrans.View = System.Windows.Forms.View.Details;

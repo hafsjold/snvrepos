@@ -57,9 +57,11 @@
             this.importDanskebankToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.excelRegnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importerNordeaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importActebisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.varekontoTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.actebisFakturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -71,8 +73,6 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.importActebisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.actebisFakturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -85,43 +85,43 @@
             this.toolStripStatusLabel2,
             this.MainformProgressBar,
             this.MainformProgressText});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 778);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 776);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1024, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1024, 24);
             this.statusStrip1.TabIndex = 1;
             // 
             // toolStripStatusLabel1
             // 
-            this.toolStripStatusLabel1.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.toolStripStatusLabel1.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.toolStripStatusLabel1.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(113, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(122, 19);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
             // toolStripStatusLabel2
             // 
-            this.toolStripStatusLabel2.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.toolStripStatusLabel2.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.toolStripStatusLabel2.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(493, 17);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(547, 19);
             this.toolStripStatusLabel2.Text = "C:\\Documents and Settings\\mha\\Dokumenter\\Medlem3060\\Databaser\\SQLCompact\\dbData30" +
-                "60.sdf";
+    "60.sdf";
             // 
             // MainformProgressBar
             // 
             this.MainformProgressBar.Name = "MainformProgressBar";
-            this.MainformProgressBar.Size = new System.Drawing.Size(100, 16);
+            this.MainformProgressBar.Size = new System.Drawing.Size(100, 18);
             this.MainformProgressBar.Visible = false;
             // 
             // MainformProgressText
             // 
-            this.MainformProgressText.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.MainformProgressText.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.MainformProgressText.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.MainformProgressText.Name = "MainformProgressText";
-            this.MainformProgressText.Size = new System.Drawing.Size(119, 17);
+            this.MainformProgressText.Size = new System.Drawing.Size(131, 19);
             this.MainformProgressText.Text = "MainformProgressText";
             this.MainformProgressText.Visible = false;
             // 
@@ -147,25 +147,25 @@
             this.afslutToolStripMenuItem,
             this.testToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(110, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(102, 6);
             // 
             // afslutToolStripMenuItem
             // 
             this.afslutToolStripMenuItem.Name = "afslutToolStripMenuItem";
-            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.afslutToolStripMenuItem.Text = "Afslut";
             this.afslutToolStripMenuItem.Click += new System.EventHandler(this.afslutToolStripMenuItem_Click);
             // 
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.testToolStripMenuItem.Text = "Test";
             this.testToolStripMenuItem.Visible = false;
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
@@ -181,7 +181,7 @@
             this.printBilagToolStripMenuItem,
             this.bilagToolStripMenuItem});
             this.medlemToolStripMenuItem.Name = "medlemToolStripMenuItem";
-            this.medlemToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
+            this.medlemToolStripMenuItem.Size = new System.Drawing.Size(72, 20);
             this.medlemToolStripMenuItem.Text = "Bogføring";
             // 
             // BankafstemningToolStripMenuItem
@@ -240,27 +240,27 @@
             this.nyFakturaToolStripMenuItem1,
             this.fakturaToolStripMenuItem1});
             this.faktureringToolStripMenuItem.Name = "faktureringToolStripMenuItem";
-            this.faktureringToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
+            this.faktureringToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
             this.faktureringToolStripMenuItem.Text = "Fakturering";
             // 
             // indtastFakturaToolStripMenuItem
             // 
             this.indtastFakturaToolStripMenuItem.Name = "indtastFakturaToolStripMenuItem";
-            this.indtastFakturaToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.indtastFakturaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.indtastFakturaToolStripMenuItem.Text = "Indtast Faktura";
             this.indtastFakturaToolStripMenuItem.Click += new System.EventHandler(this.indtastFakturaToolStripMenuItem_Click);
             // 
             // nyFakturaToolStripMenuItem1
             // 
             this.nyFakturaToolStripMenuItem1.Name = "nyFakturaToolStripMenuItem1";
-            this.nyFakturaToolStripMenuItem1.Size = new System.Drawing.Size(160, 22);
+            this.nyFakturaToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.nyFakturaToolStripMenuItem1.Text = "Ny Faktura";
             this.nyFakturaToolStripMenuItem1.Click += new System.EventHandler(this.nyFakturaToolStripMenuItem1_Click);
             // 
             // fakturaToolStripMenuItem1
             // 
             this.fakturaToolStripMenuItem1.Name = "fakturaToolStripMenuItem1";
-            this.fakturaToolStripMenuItem1.Size = new System.Drawing.Size(160, 22);
+            this.fakturaToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.fakturaToolStripMenuItem1.Text = "Faktura";
             this.fakturaToolStripMenuItem1.Click += new System.EventHandler(this.fakturaToolStripMenuItem1_Click);
             // 
@@ -270,47 +270,54 @@
             this.importerTransaktionerToolStripMenuItem,
             this.importFakturaToolStripMenuItem,
             this.importDanskebankToolStripMenuItem,
-            this.excelRegnskabToolStripMenuItem,
             this.importerNordeaToolStripMenuItem,
+            this.excelRegnskabToolStripMenuItem,
             this.importActebisToolStripMenuItem});
             this.regnskabToolStripMenuItem.Name = "regnskabToolStripMenuItem";
-            this.regnskabToolStripMenuItem.Size = new System.Drawing.Size(66, 20);
+            this.regnskabToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
             this.regnskabToolStripMenuItem.Text = "Regnskab";
             // 
             // importerTransaktionerToolStripMenuItem
             // 
             this.importerTransaktionerToolStripMenuItem.Name = "importerTransaktionerToolStripMenuItem";
-            this.importerTransaktionerToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.importerTransaktionerToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.importerTransaktionerToolStripMenuItem.Text = "Import Bilag";
             this.importerTransaktionerToolStripMenuItem.Click += new System.EventHandler(this.importerTransaktionerToolStripMenuItem_Click);
             // 
             // importFakturaToolStripMenuItem
             // 
             this.importFakturaToolStripMenuItem.Name = "importFakturaToolStripMenuItem";
-            this.importFakturaToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.importFakturaToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.importFakturaToolStripMenuItem.Text = "Import Faktura";
             this.importFakturaToolStripMenuItem.Click += new System.EventHandler(this.importFakturaToolStripMenuItem_Click);
             // 
             // importDanskebankToolStripMenuItem
             // 
             this.importDanskebankToolStripMenuItem.Name = "importDanskebankToolStripMenuItem";
-            this.importDanskebankToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.importDanskebankToolStripMenuItem.Text = "Import Danskebank";
+            this.importDanskebankToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.importDanskebankToolStripMenuItem.Text = "Import Danske Erhverv";
             this.importDanskebankToolStripMenuItem.Click += new System.EventHandler(this.importDanskebankToolStripMenuItem_Click);
             // 
             // excelRegnskabToolStripMenuItem
             // 
             this.excelRegnskabToolStripMenuItem.Name = "excelRegnskabToolStripMenuItem";
-            this.excelRegnskabToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
+            this.excelRegnskabToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.excelRegnskabToolStripMenuItem.Text = "Excel Regnskab";
             this.excelRegnskabToolStripMenuItem.Click += new System.EventHandler(this.excelRegnskabToolStripMenuItem_Click);
             // 
             // importerNordeaToolStripMenuItem
             // 
             this.importerNordeaToolStripMenuItem.Name = "importerNordeaToolStripMenuItem";
-            this.importerNordeaToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.importerNordeaToolStripMenuItem.Text = "Import Nordea";
-            this.importerNordeaToolStripMenuItem.Click += new System.EventHandler(this.importerNordeaToolStripMenuItem_Click);
+            this.importerNordeaToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.importerNordeaToolStripMenuItem.Text = "Import MasterCard     ";
+            this.importerNordeaToolStripMenuItem.Click += new System.EventHandler(this.importDanskebank2ToolStripMenuItem_Click);
+            // 
+            // importActebisToolStripMenuItem
+            // 
+            this.importActebisToolStripMenuItem.Name = "importActebisToolStripMenuItem";
+            this.importActebisToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.importActebisToolStripMenuItem.Text = "Import Actebis";
+            this.importActebisToolStripMenuItem.Click += new System.EventHandler(this.importActebisToolStripMenuItem_Click);
             // 
             // systemToolStripMenuItem
             // 
@@ -319,35 +326,42 @@
             this.varekontoTypeToolStripMenuItem,
             this.actebisFakturaToolStripMenuItem});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
-            this.systemToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.systemToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.systemToolStripMenuItem.Text = "System";
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(158, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(155, 22);
             this.toolStripMenuItem2.Text = "Regnskab";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.regnskabToolStripMenuItem_Click);
             // 
             // varekontoTypeToolStripMenuItem
             // 
             this.varekontoTypeToolStripMenuItem.Name = "varekontoTypeToolStripMenuItem";
-            this.varekontoTypeToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.varekontoTypeToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.varekontoTypeToolStripMenuItem.Text = "VarekontoType";
             this.varekontoTypeToolStripMenuItem.Click += new System.EventHandler(this.varekontoTypeToolStripMenuItem_Click);
+            // 
+            // actebisFakturaToolStripMenuItem
+            // 
+            this.actebisFakturaToolStripMenuItem.Name = "actebisFakturaToolStripMenuItem";
+            this.actebisFakturaToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.actebisFakturaToolStripMenuItem.Text = "Actebis Faktura";
+            this.actebisFakturaToolStripMenuItem.Click += new System.EventHandler(this.actebisFakturaToolStripMenuItem_Click);
             // 
             // hjælpToolStripMenuItem
             // 
             this.hjælpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.omToolStripMenuItem});
             this.hjælpToolStripMenuItem.Name = "hjælpToolStripMenuItem";
-            this.hjælpToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.hjælpToolStripMenuItem.Size = new System.Drawing.Size(51, 20);
             this.hjælpToolStripMenuItem.Text = "Hjælp";
             // 
             // omToolStripMenuItem
             // 
             this.omToolStripMenuItem.Name = "omToolStripMenuItem";
-            this.omToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.omToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
@@ -375,7 +389,7 @@
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(68, 22);
+            this.toolStripButton1.Size = new System.Drawing.Size(76, 22);
             this.toolStripButton1.Text = "Import Bilag";
             this.toolStripButton1.Click += new System.EventHandler(this.importerTransaktionerToolStripMenuItem_Click);
             // 
@@ -390,7 +404,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(58, 22);
+            this.toolStripButton2.Size = new System.Drawing.Size(65, 22);
             this.toolStripButton2.Text = "Print Bilag";
             this.toolStripButton2.Click += new System.EventHandler(this.printBilagToolStripMenuItem_Click);
             // 
@@ -405,7 +419,7 @@
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(71, 22);
+            this.toolStripButton3.Size = new System.Drawing.Size(78, 22);
             this.toolStripButton3.Text = "Afstem Bank";
             this.toolStripButton3.Click += new System.EventHandler(this.BankafstemningToolStripMenuItem_Click);
             // 
@@ -420,7 +434,7 @@
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(71, 22);
+            this.toolStripButton4.Size = new System.Drawing.Size(76, 22);
             this.toolStripButton4.Text = "Indtast Bilag";
             this.toolStripButton4.Click += new System.EventHandler(this.bilagsindtastningToolStripMenuItem_Click);
             // 
@@ -428,20 +442,6 @@
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
-            // 
-            // importActebisToolStripMenuItem
-            // 
-            this.importActebisToolStripMenuItem.Name = "importActebisToolStripMenuItem";
-            this.importActebisToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
-            this.importActebisToolStripMenuItem.Text = "Import Actebis";
-            this.importActebisToolStripMenuItem.Click += new System.EventHandler(this.importActebisToolStripMenuItem_Click);
-            // 
-            // actebisFakturaToolStripMenuItem
-            // 
-            this.actebisFakturaToolStripMenuItem.Name = "actebisFakturaToolStripMenuItem";
-            this.actebisFakturaToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.actebisFakturaToolStripMenuItem.Text = "Actebis Faktura";
-            this.actebisFakturaToolStripMenuItem.Click += new System.EventHandler(this.actebisFakturaToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -460,8 +460,8 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Trans Summa";
-            this.Load += new System.EventHandler(this.FrmMain_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
+            this.Load += new System.EventHandler(this.FrmMain_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
