@@ -60,7 +60,7 @@ namespace nsPuls3060
         {
             string strLike = "%" + textBoxSogeord.Text + "%";
             var qryAfstemte = from u in Program.dbDataTransSumma.Tblbankkonto
-                              where u.Afstem != null && u.Bankkontoid == m_recKontoudtog.Pid && (u.Skjul == null || u.Skjul == false) && SqlMethods.Like(u.Tekst, strLike)
+                              where u.Afstem != null && (u.Skjul == null || u.Skjul == false) && SqlMethods.Like(u.Tekst, strLike)
                               orderby u.Dato descending
                               select u;
             this.tblbankkontoBindingSourceAfstemte.DataSource = qryAfstemte;

@@ -576,10 +576,15 @@ namespace nsPuls3060
                     && (bAndenKonto)
                     && (bAfstem))
                     {
+                        string WrkAfstemningskonto;
+                        if (AndenKontoAfstemningskonto == "MasterCard")
+                            WrkAfstemningskonto = "Bank";
+                        else
+                            WrkAfstemningskonto = AndenKontoAfstemningskonto;
                         Tblwkladder recWkladder = new Tblwkladder
                         {
                             Tekst = AndenKontoTekst,
-                            Afstemningskonto = AndenKontoAfstemningskonto,
+                            Afstemningskonto = WrkAfstemningskonto,
                             Belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.Belob : AndenKontoBelob,
                             Konto = AndenKontoKonto,
                             Momskode = AndenKontoMomskode
