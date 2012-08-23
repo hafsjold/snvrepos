@@ -57,6 +57,7 @@
       <Column Name="tekst" Member="Tekst" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="belob" Member="Belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="afstem" Member="Afstem" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="bankkontoid" Member="Bankkontoid" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="Tblafstem_Tblbankkonto" Member="Tblafstem" ThisKey="Afstem" OtherKey="Pid" Type="Tblafstem" IsForeignKey="true" />
     </Type>
   </Table>

@@ -1244,6 +1244,8 @@ namespace nsPuls3060
 		
 		private System.Nullable<int> _Afstem;
 		
+		private System.Nullable<int> _Bankkontoid;
+		
 		private EntityRef<Tblafstem> _Tblafstem;
 		
     #region Extensibility Method Definitions
@@ -1264,6 +1266,8 @@ namespace nsPuls3060
     partial void OnBelobChanged();
     partial void OnAfstemChanging(System.Nullable<int> value);
     partial void OnAfstemChanged();
+    partial void OnBankkontoidChanging(System.Nullable<int> value);
+    partial void OnBankkontoidChanged();
     #endregion
 		
 		public Tblbankkonto()
@@ -1408,6 +1412,26 @@ namespace nsPuls3060
 					this._Afstem = value;
 					this.SendPropertyChanged("Afstem");
 					this.OnAfstemChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="bankkontoid", Storage="_Bankkontoid", DbType="Int")]
+		public System.Nullable<int> Bankkontoid
+		{
+			get
+			{
+				return this._Bankkontoid;
+			}
+			set
+			{
+				if ((this._Bankkontoid != value))
+				{
+					this.OnBankkontoidChanging(value);
+					this.SendPropertyChanging();
+					this._Bankkontoid = value;
+					this.SendPropertyChanged("Bankkontoid");
+					this.OnBankkontoidChanged();
 				}
 			}
 		}
