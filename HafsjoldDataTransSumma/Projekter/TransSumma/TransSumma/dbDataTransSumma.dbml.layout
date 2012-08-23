@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 14.875" name="dbDataTransSumma">
+  <DataContextMoniker Name="/DbDataTransSumma" />
+  <nestedChildShapes>
+    <classShape Id="9ca88365-fcc6-46fd-a585-40e611d8aebe" absoluteBounds="3.125, 8.875, 2, 1.9178898111979166">
+      <DataClassMoniker Name="/DbDataTransSumma/Tblbankkonto" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4f362f20-809e-45b1-90f8-489682d8390d" absoluteBounds="3.1400000000000006, 9.335, 1.9700000000000002, 1.3578898111979165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="916f8c8a-f66a-464c-9e00-bcb0d32fe69e" absoluteBounds="1.875, 0.5, 2, 1.5891951497395831">
+      <DataClassMoniker Name="/DbDataTransSumma/Tblbilag" />
+      <nestedChildShapes>
+        <elementListCompartment Id="0240a448-16d1-4412-8be8-0a17b0971aa1" absoluteBounds="1.8900000000000001, 0.96, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="716395c8-0131-4ee2-af28-f64eda28ab7c" absoluteBounds="0.875, 2.875, 2, 2.4109318033854166">
+      <DataClassMoniker Name="/DbDataTransSumma/Tblkladder" />
+      <nestedChildShapes>
+        <elementListCompartment Id="05300ef9-2aa6-47ee-b368-7323d005d973" absoluteBounds="0.89000000000000012, 3.335, 1.9700000000000002, 1.8509318033854165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="3ff4535c-aba3-401c-ace3-bc6c515a1706" absoluteBounds="8.25, 3, 2, 1.5891951497395827">
+      <DataClassMoniker Name="/DbDataTransSumma/Tblkonto" />
+      <nestedChildShapes>
+        <elementListCompartment Id="be3f0489-0087-45e8-9f95-c7803eef4abe" absoluteBounds="8.265, 3.46, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9ab8d00e-8d0a-4766-8d94-4fa8dc58b3e8" absoluteBounds="8.25, 0.5, 2, 2.4109318033854166">
+      <DataClassMoniker Name="/DbDataTransSumma/Tblregnskab" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4a790cbc-69dd-4297-970b-376160101578" absoluteBounds="8.265, 0.96, 1.9700000000000002, 1.8509318033854165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1b991bc3-fd2f-451a-b6f2-b78d54f1a3f8" absoluteBounds="3.125, 2.875, 2, 3.0683211263020831">
+      <DataClassMoniker Name="/DbDataTransSumma/Tbltrans" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3ce7076e-196d-45c3-a750-b0933fb9c5f6" absoluteBounds="3.1400000000000006, 3.335, 1.9700000000000002, 2.508321126302083" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.375 : 2.08919514973958); (2.375 : 2.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DbDataTransSumma/Tblbilag/Tblbilag_Tblkladder" />
+      <nodes>
+        <classShapeMoniker Id="916f8c8a-f66a-464c-9e00-bcb0d32fe69e" />
+        <classShapeMoniker Id="716395c8-0131-4ee2-af28-f64eda28ab7c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.5 : 2.08919514973958); (3.5 : 2.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DbDataTransSumma/Tblbilag/Tblbilag_Tbltrans" />
+      <nodes>
+        <classShapeMoniker Id="916f8c8a-f66a-464c-9e00-bcb0d32fe69e" />
+        <classShapeMoniker Id="1b991bc3-fd2f-451a-b6f2-b78d54f1a3f8" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="d4bf6f60-a2d4-4d2f-8fb7-f207a80b4e49" absoluteBounds="8.25, 4.75, 2, 1.0961531575520833">
+      <DataClassMoniker Name="/DbDataTransSumma/Tblnrserie" />
+      <nestedChildShapes>
+        <elementListCompartment Id="67b91b2a-3ee7-439f-906f-d8505a8428df" absoluteBounds="8.265, 5.21, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4da3e154-ed7a-4135-9bd2-b6978f4daf16" absoluteBounds="8.25, 6, 2, 1.4248478190104168">
+      <DataClassMoniker Name="/DbDataTransSumma/Tblbankafsteminit" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4730fa0e-cd32-4c56-b067-f6e9bab6a4ef" absoluteBounds="8.265, 6.46, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b17886bc-59fd-4c22-8050-fdc4c21a63c7" absoluteBounds="3.125, 6.625, 2, 1.0961531575520833">
+      <DataClassMoniker Name="/DbDataTransSumma/Tblafstem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a5f12325-98ef-46e5-8623-7a19ad546196" absoluteBounds="3.1399999999999997, 7.085, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.125 : 7.72115315755208); (4.125 : 8.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DbDataTransSumma/Tblafstem/Tblafstem_Tblbankkonto" />
+      <nodes>
+        <classShapeMoniker Id="b17886bc-59fd-4c22-8050-fdc4c21a63c7" />
+        <classShapeMoniker Id="9ca88365-fcc6-46fd-a585-40e611d8aebe" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.125 : 6.625); (4.125 : 5.94332112630208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DbDataTransSumma/Tblafstem/Tblafstem_Tbltrans" />
+      <nodes>
+        <classShapeMoniker Id="b17886bc-59fd-4c22-8050-fdc4c21a63c7" />
+        <classShapeMoniker Id="1b991bc3-fd2f-451a-b6f2-b78d54f1a3f8" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="f8cff965-96e1-4a1f-8e45-387fd6d51893" absoluteBounds="0.875, 6.625, 2, 1.26050048828125">
+      <DataClassMoniker Name="/DbDataTransSumma/Tblwbilag" />
+      <nestedChildShapes>
+        <elementListCompartment Id="5550c2f6-369a-4163-ad2f-764de996d25b" absoluteBounds="0.89000000000000012, 7.085, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5581cf46-ea97-4d5d-b924-0131cd601c2e" absoluteBounds="0.875, 8.875, 2, 2.0822371419270831">
+      <DataClassMoniker Name="/DbDataTransSumma/Tblwkladder" />
+      <nestedChildShapes>
+        <elementListCompartment Id="28da8635-6c56-430c-ab96-b66166e5d99a" absoluteBounds="0.89000000000000012, 9.335, 1.9700000000000002, 1.5222371419270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.875 : 7.88550048828125); (1.875 : 8.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DbDataTransSumma/Tblwbilag/Tblwbilag_Tblwkladder" />
+      <nodes>
+        <classShapeMoniker Id="f8cff965-96e1-4a1f-8e45-387fd6d51893" />
+        <classShapeMoniker Id="5581cf46-ea97-4d5d-b924-0131cd601c2e" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="d1c012e1-c533-4293-af49-962bc82f3094" absoluteBounds="5.875, 0.5, 2, 2.0822371419270831">
+      <DataClassMoniker Name="/DbDataTransSumma/Tblfak" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f3ea17ea-5e2b-4433-83be-9987b62f1758" absoluteBounds="5.89, 0.96, 1.9700000000000002, 1.5222371419270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="928fe8ee-0a79-484f-a650-137293d81c1a" absoluteBounds="5.875, 3.25, 2, 3.7257104492187496">
+      <DataClassMoniker Name="/DbDataTransSumma/Tblfaklin" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f99c265f-3202-49d1-8db1-01c0112eed56" absoluteBounds="5.89, 3.71, 1.9700000000000002, 3.16571044921875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(6.875 : 2.58223714192708); (6.875 : 3.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DbDataTransSumma/Tblfak/Tblfak_Tblfaklin" />
+      <nodes>
+        <classShapeMoniker Id="d1c012e1-c533-4293-af49-962bc82f3094" />
+        <classShapeMoniker Id="928fe8ee-0a79-484f-a650-137293d81c1a" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="079590b9-a7c9-42e6-819c-af6fdb3d7449" absoluteBounds="5.875, 7.625, 2, 1.5891951497395827">
+      <DataClassMoniker Name="/DbDataTransSumma/Tblwfak" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e52905fd-2e2c-4baf-a0fc-4e9dadc867f0" absoluteBounds="5.89, 8.085, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1fb269c0-231d-4539-838d-c88d3d06e1bf" absoluteBounds="5.875, 9.875, 2, 2.9039737955729166">
+      <DataClassMoniker Name="/DbDataTransSumma/Tblwfaklin" />
+      <nestedChildShapes>
+        <elementListCompartment Id="28ec43b2-0209-4c94-bd19-d823cf380192" absoluteBounds="5.89, 10.335, 1.9700000000000002, 2.3439737955729165" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(6.875 : 9.21419514973958); (6.875 : 9.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DbDataTransSumma/Tblwfak/Tblwfak_Tblwfaklin" />
+      <nodes>
+        <classShapeMoniker Id="079590b9-a7c9-42e6-819c-af6fdb3d7449" />
+        <classShapeMoniker Id="1fb269c0-231d-4539-838d-c88d3d06e1bf" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="ae08dd9c-ad62-4b1d-aea0-99ebeb7afb92" absoluteBounds="8.25, 7.625, 2, 1.0961531575520833">
+      <DataClassMoniker Name="/DbDataTransSumma/Tblvareomkostninger" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fa45ad41-0e66-4e07-abb0-7e9efaf3201d" absoluteBounds="8.265, 8.085, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="be9b13e4-3306-4441-bb6f-b9e01f0bbf59" absoluteBounds="8.25, 11.5, 2, 3.0683211263020826">
+      <DataClassMoniker Name="/DbDataTransSumma/Tblactebisordre" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ca9eed07-9143-4d75-b04e-f26d2c9d3905" absoluteBounds="8.265, 11.96, 1.9700000000000002, 2.508321126302083" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c7692f93-2b27-4ab1-a36d-5c9e7452a743" absoluteBounds="8.25, 8.875, 2, 2.24658447265625">
+      <DataClassMoniker Name="/DbDataTransSumma/Tblactebisfaktura" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4c9c30e9-719d-4954-b61e-3992bb6172cd" absoluteBounds="8.265, 9.335, 1.9700000000000002, 1.68658447265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(9.25 : 11.1215844726563); (9.25 : 11.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/DbDataTransSumma/Tblactebisfaktura/Tblactebisfaktura_Tblactebisordre" />
+      <nodes>
+        <classShapeMoniker Id="c7692f93-2b27-4ab1-a36d-5c9e7452a743" />
+        <classShapeMoniker Id="be9b13e4-3306-4441-bb6f-b9e01f0bbf59" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
