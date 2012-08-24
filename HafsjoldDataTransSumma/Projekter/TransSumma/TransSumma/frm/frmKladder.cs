@@ -89,6 +89,25 @@ namespace nsPuls3060
             catch { }
         }
 
+        private void cmdPrivat_Click(object sender, EventArgs e)
+        {
+            FrmMain frmMain = this.ParentForm as FrmMain;
+            Tblbankkonto recBankkonto = null;
+            try
+            {
+                FrmBankkontoudtog frmBankkontoudtog = frmMain.GetChild("Bank kontoudtog") as FrmBankkontoudtog;
+                recBankkonto = frmBankkontoudtog.GetrecBankkonto();
+            }
+            catch { }
+
+            try
+            {
+                FrmNyekladder frmNyekladder = frmMain.GetChild("Nye kladder") as FrmNyekladder;
+                frmNyekladder.AddNyPrivatKladde(recBankkonto);
+            }
+            catch { }
+        }
+
     }
 
 }

@@ -31,10 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label datoLabel;
             System.Windows.Forms.Label bilagLabel;
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmKladder));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.cmdKopier = new System.Windows.Forms.Button();
             this.cmdSog = new System.Windows.Forms.Button();
@@ -45,17 +45,6 @@
             this.bilagTextBox = new System.Windows.Forms.TextBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tblkladderDataGridView = new System.Windows.Forms.DataGridView();
-            this.tblkladderBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tblbilagBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,6 +58,18 @@
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuLineCopyPaste = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tblkladderBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tblbilagBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
+            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.cmdPrivat = new System.Windows.Forms.Button();
             datoLabel = new System.Windows.Forms.Label();
             bilagLabel = new System.Windows.Forms.Label();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -79,16 +80,16 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblkladderDataGridView)).BeginInit();
+            this.contextMenuLineCopyPaste.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblkladderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblbilagBindingNavigator)).BeginInit();
             this.tblbilagBindingNavigator.SuspendLayout();
-            this.contextMenuLineCopyPaste.SuspendLayout();
             this.SuspendLayout();
             // 
             // datoLabel
             // 
             datoLabel.AutoSize = true;
-            datoLabel.Location = new System.Drawing.Point(6, 19);
+            datoLabel.Location = new System.Drawing.Point(4, 19);
             datoLabel.Name = "datoLabel";
             datoLabel.Size = new System.Drawing.Size(33, 13);
             datoLabel.TabIndex = 4;
@@ -97,7 +98,7 @@
             // bilagLabel
             // 
             bilagLabel.AutoSize = true;
-            bilagLabel.Location = new System.Drawing.Point(125, 19);
+            bilagLabel.Location = new System.Drawing.Point(117, 19);
             bilagLabel.Name = "bilagLabel";
             bilagLabel.Size = new System.Drawing.Size(33, 13);
             bilagLabel.TabIndex = 6;
@@ -113,6 +114,7 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.AutoScroll = true;
+            this.splitContainer1.Panel1.Controls.Add(this.cmdPrivat);
             this.splitContainer1.Panel1.Controls.Add(this.cmdKopier);
             this.splitContainer1.Panel1.Controls.Add(this.cmdSog);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
@@ -125,13 +127,13 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(530, 259);
+            this.splitContainer1.Size = new System.Drawing.Size(526, 259);
             this.splitContainer1.SplitterDistance = 52;
             this.splitContainer1.TabIndex = 7;
             // 
             // cmdKopier
             // 
-            this.cmdKopier.Location = new System.Drawing.Point(454, 16);
+            this.cmdKopier.Location = new System.Drawing.Point(416, 16);
             this.cmdKopier.Name = "cmdKopier";
             this.cmdKopier.Size = new System.Drawing.Size(45, 23);
             this.cmdKopier.TabIndex = 12;
@@ -141,7 +143,7 @@
             // 
             // cmdSog
             // 
-            this.cmdSog.Location = new System.Drawing.Point(378, 15);
+            this.cmdSog.Location = new System.Drawing.Point(364, 15);
             this.cmdSog.Name = "cmdSog";
             this.cmdSog.Size = new System.Drawing.Size(43, 23);
             this.cmdSog.TabIndex = 11;
@@ -152,7 +154,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(221, 19);
+            this.label1.Location = new System.Drawing.Point(205, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 13);
             this.label1.TabIndex = 10;
@@ -160,7 +162,7 @@
             // 
             // textBoxSogeord
             // 
-            this.textBoxSogeord.Location = new System.Drawing.Point(270, 16);
+            this.textBoxSogeord.Location = new System.Drawing.Point(254, 16);
             this.textBoxSogeord.Name = "textBoxSogeord";
             this.textBoxSogeord.Size = new System.Drawing.Size(102, 20);
             this.textBoxSogeord.TabIndex = 9;
@@ -169,7 +171,7 @@
             // 
             this.datoTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.datoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tblbilagBindingSource, "Dato", true));
-            this.datoTextBox.Location = new System.Drawing.Point(40, 16);
+            this.datoTextBox.Location = new System.Drawing.Point(37, 16);
             this.datoTextBox.Name = "datoTextBox";
             this.datoTextBox.ReadOnly = true;
             this.datoTextBox.Size = new System.Drawing.Size(75, 20);
@@ -183,7 +185,7 @@
             // 
             this.bilagTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.bilagTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tblbilagBindingSource, "Bilag", true));
-            this.bilagTextBox.Location = new System.Drawing.Point(164, 16);
+            this.bilagTextBox.Location = new System.Drawing.Point(154, 16);
             this.bilagTextBox.Name = "bilagTextBox";
             this.bilagTextBox.ReadOnly = true;
             this.bilagTextBox.Size = new System.Drawing.Size(46, 20);
@@ -205,7 +207,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tblbilagBindingNavigator);
-            this.splitContainer2.Size = new System.Drawing.Size(530, 203);
+            this.splitContainer2.Size = new System.Drawing.Size(526, 203);
             this.splitContainer2.SplitterDistance = 174;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -234,8 +236,118 @@
             this.tblkladderDataGridView.Location = new System.Drawing.Point(0, 0);
             this.tblkladderDataGridView.Name = "tblkladderDataGridView";
             this.tblkladderDataGridView.ReadOnly = true;
-            this.tblkladderDataGridView.Size = new System.Drawing.Size(530, 174);
+            this.tblkladderDataGridView.Size = new System.Drawing.Size(526, 174);
             this.tblkladderDataGridView.TabIndex = 0;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Pid";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Pid";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Regnskabid";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Regnskabid";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Bilagpid";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Bilagpid";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Tekst";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Tekst";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Afstemningskonto";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Afstem";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "Belob";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridViewTextBoxColumn6.HeaderText = "Beløb";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            this.dataGridViewTextBoxColumn6.Width = 60;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "Konto";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewTextBoxColumn7.HeaderText = "Konto";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Width = 60;
+            // 
+            // MKdataGridViewTextBoxColumn
+            // 
+            this.MKdataGridViewTextBoxColumn.DataPropertyName = "Momskode";
+            this.MKdataGridViewTextBoxColumn.HeaderText = "MK";
+            this.MKdataGridViewTextBoxColumn.Name = "MKdataGridViewTextBoxColumn";
+            this.MKdataGridViewTextBoxColumn.ReadOnly = true;
+            this.MKdataGridViewTextBoxColumn.Width = 40;
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "Faktura";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridViewTextBoxColumn9.HeaderText = "Faktura";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            this.dataGridViewTextBoxColumn9.Width = 40;
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.DataPropertyName = "Id";
+            this.dataGridViewTextBoxColumn10.HeaderText = "Id";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            this.dataGridViewTextBoxColumn10.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn11
+            // 
+            this.dataGridViewTextBoxColumn11.DataPropertyName = "Tblbilag";
+            this.dataGridViewTextBoxColumn11.HeaderText = "Tblbilag";
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.ReadOnly = true;
+            this.dataGridViewTextBoxColumn11.Visible = false;
+            // 
+            // contextMenuLineCopyPaste
+            // 
+            this.contextMenuLineCopyPaste.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyToolStripMenuItem});
+            this.contextMenuLineCopyPaste.Name = "contextMenuLineCopyPaste";
+            this.contextMenuLineCopyPaste.Size = new System.Drawing.Size(103, 26);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.copyToolStripMenuItem.Text = "Copy";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyMenuLineCopyPastItem_Click);
             // 
             // tblkladderBindingSource
             // 
@@ -266,14 +378,14 @@
             this.tblbilagBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.tblbilagBindingNavigator.Name = "tblbilagBindingNavigator";
             this.tblbilagBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.tblbilagBindingNavigator.Size = new System.Drawing.Size(530, 25);
+            this.tblbilagBindingNavigator.Size = new System.Drawing.Size(526, 25);
             this.tblbilagBindingNavigator.TabIndex = 8;
             this.tblbilagBindingNavigator.Text = "bindingNavigator1";
             // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(36, 22);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
@@ -337,115 +449,15 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
-            // dataGridViewTextBoxColumn1
+            // cmdPrivat
             // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Pid";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Pid";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Regnskabid";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Regnskabid";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Bilagpid";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Bilagpid";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            this.dataGridViewTextBoxColumn3.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Tekst";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Tekst";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            this.dataGridViewTextBoxColumn4.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Afstemningskonto";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Afstem";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            this.dataGridViewTextBoxColumn5.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "Belob";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.Format = "N2";
-            dataGridViewCellStyle7.NullValue = null;
-            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle7;
-            this.dataGridViewTextBoxColumn6.HeaderText = "Beløb";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.ReadOnly = true;
-            this.dataGridViewTextBoxColumn6.Width = 60;
-            // 
-            // dataGridViewTextBoxColumn7
-            // 
-            this.dataGridViewTextBoxColumn7.DataPropertyName = "Konto";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle8;
-            this.dataGridViewTextBoxColumn7.HeaderText = "Konto";
-            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            this.dataGridViewTextBoxColumn7.Width = 60;
-            // 
-            // MKdataGridViewTextBoxColumn
-            // 
-            this.MKdataGridViewTextBoxColumn.DataPropertyName = "Momskode";
-            this.MKdataGridViewTextBoxColumn.HeaderText = "MK";
-            this.MKdataGridViewTextBoxColumn.Name = "MKdataGridViewTextBoxColumn";
-            this.MKdataGridViewTextBoxColumn.ReadOnly = true;
-            this.MKdataGridViewTextBoxColumn.Width = 40;
-            // 
-            // dataGridViewTextBoxColumn9
-            // 
-            this.dataGridViewTextBoxColumn9.DataPropertyName = "Faktura";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle9;
-            this.dataGridViewTextBoxColumn9.HeaderText = "Faktura";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.ReadOnly = true;
-            this.dataGridViewTextBoxColumn9.Width = 40;
-            // 
-            // dataGridViewTextBoxColumn10
-            // 
-            this.dataGridViewTextBoxColumn10.DataPropertyName = "Id";
-            this.dataGridViewTextBoxColumn10.HeaderText = "Id";
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            this.dataGridViewTextBoxColumn10.ReadOnly = true;
-            this.dataGridViewTextBoxColumn10.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn11
-            // 
-            this.dataGridViewTextBoxColumn11.DataPropertyName = "Tblbilag";
-            this.dataGridViewTextBoxColumn11.HeaderText = "Tblbilag";
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            this.dataGridViewTextBoxColumn11.ReadOnly = true;
-            this.dataGridViewTextBoxColumn11.Visible = false;
-            // 
-            // contextMenuLineCopyPaste
-            // 
-            this.contextMenuLineCopyPaste.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.copyToolStripMenuItem});
-            this.contextMenuLineCopyPaste.Name = "contextMenuLineCopyPaste";
-            this.contextMenuLineCopyPaste.Size = new System.Drawing.Size(111, 26);
-            // 
-            // copyToolStripMenuItem
-            // 
-            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.copyToolStripMenuItem.Text = "Copy";
-            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyMenuLineCopyPastItem_Click);
+            this.cmdPrivat.Location = new System.Drawing.Point(467, 16);
+            this.cmdPrivat.Name = "cmdPrivat";
+            this.cmdPrivat.Size = new System.Drawing.Size(48, 23);
+            this.cmdPrivat.TabIndex = 13;
+            this.cmdPrivat.Text = "Privat";
+            this.cmdPrivat.UseVisualStyleBackColor = true;
+            this.cmdPrivat.Click += new System.EventHandler(this.cmdPrivat_Click);
             // 
             // FrmKladder
             // 
@@ -469,11 +481,11 @@
             this.splitContainer2.Panel2.PerformLayout();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tblkladderDataGridView)).EndInit();
+            this.contextMenuLineCopyPaste.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tblkladderBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblbilagBindingNavigator)).EndInit();
             this.tblbilagBindingNavigator.ResumeLayout(false);
             this.tblbilagBindingNavigator.PerformLayout();
-            this.contextMenuLineCopyPaste.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -514,5 +526,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.ContextMenuStrip contextMenuLineCopyPaste;
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
+        private System.Windows.Forms.Button cmdPrivat;
     }
 }

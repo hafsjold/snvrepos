@@ -81,6 +81,59 @@ namespace nsPuls3060
 
         }
 
+        public void AddNyPrivatKladde(Tblbankkonto recBankkonto)
+        {
+            int bilagnr = 0;
+
+            try
+            {
+                bilagnr = (from b in ((IList<Tblwbilag>)this.tblwbilagBindingSource.List) select b.Bilag).Max();
+                bilagnr++;
+            }
+            catch
+            {
+                bilagnr = Program.karStatus.BS1_NæsteNr();
+            }
+
+            DateTime BankDato;
+            try
+            {
+                BankDato = (DateTime)recBankkonto.Dato;
+            }
+            catch
+            {
+                BankDato = DateTime.Today;
+            }
+
+            Tblwbilag recwBilag = new Tblwbilag
+            {
+                Bilag = bilagnr,
+                Dato = BankDato
+            };
+
+            string WrkAfstemningskonto;
+            try
+            {
+                WrkAfstemningskonto = (from w in Program.dbDataTransSumma.Tblkontoudtog where w.Pid == recBankkonto.Bankkontoid select w).First().Afstemningskonto;
+            }
+            catch
+            {
+                WrkAfstemningskonto = "";
+            }
+
+            Tblwkladder recWkladder = new Tblwkladder
+            {
+                Tekst = recBankkonto.Tekst + " - Ref ",
+                Afstemningskonto = WrkAfstemningskonto,
+                Belob = (decimal)recBankkonto.Belob,
+                Konto = 64110,
+                Momskode = ""
+            };
+            recwBilag.Tblwkladder.Add(recWkladder);
+            this.tblwbilagBindingSource.Add(recwBilag);
+            this.tblwbilagBindingSource.MoveLast();
+        }
+
         private void FrmNyekladder_FormClosed(object sender, FormClosedEventArgs e)
         {
             Program.dbDataTransSumma.SubmitChanges();
