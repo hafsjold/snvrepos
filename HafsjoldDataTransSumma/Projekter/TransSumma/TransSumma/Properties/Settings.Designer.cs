@@ -314,7 +314,7 @@ namespace nsPuls3060.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("274")]
+        [global::System.Configuration.DefaultSettingValueAttribute("383")]
         public int BankafstemningSplitterDistancr {
             get {
                 return ((int)(this["BankafstemningSplitterDistancr"]));

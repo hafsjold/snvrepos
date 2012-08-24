@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.lvwBank = new System.Windows.Forms.ListView();
@@ -39,6 +40,8 @@
             this.columnHeaderABDato = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderABTekst = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderABBelob = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cbBankkonto = new System.Windows.Forms.ComboBox();
+            this.tblkontoudtogBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lvwSumBank = new System.Windows.Forms.ListView();
             this.columnHeaderSBDato = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderSBTekst = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -72,6 +75,7 @@
             this.splitContainer4.Panel1.SuspendLayout();
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tblkontoudtogBindingSource)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
@@ -113,7 +117,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer2.Size = new System.Drawing.Size(274, 513);
+            this.splitContainer2.Size = new System.Drawing.Size(383, 513);
             this.splitContainer2.SplitterDistance = 316;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -129,7 +133,7 @@
             this.lvwBank.GridLines = true;
             this.lvwBank.Location = new System.Drawing.Point(0, 0);
             this.lvwBank.Name = "lvwBank";
-            this.lvwBank.Size = new System.Drawing.Size(274, 316);
+            this.lvwBank.Size = new System.Drawing.Size(383, 316);
             this.lvwBank.TabIndex = 0;
             this.lvwBank.UseCompatibleStateImageBehavior = false;
             this.lvwBank.View = System.Windows.Forms.View.Details;
@@ -166,11 +170,12 @@
             // 
             // splitContainer4.Panel2
             // 
+            this.splitContainer4.Panel2.Controls.Add(this.cbBankkonto);
             this.splitContainer4.Panel2.Controls.Add(this.lvwSumBank);
             this.splitContainer4.Panel2.Controls.Add(this.AfstemtTidligere);
             this.splitContainer4.Panel2.Controls.Add(this.cmdForslag);
-            this.splitContainer4.Size = new System.Drawing.Size(274, 193);
-            this.splitContainer4.SplitterDistance = 119;
+            this.splitContainer4.Size = new System.Drawing.Size(383, 193);
+            this.splitContainer4.SplitterDistance = 120;
             this.splitContainer4.TabIndex = 0;
             // 
             // lvwAfstemBank
@@ -185,7 +190,7 @@
             this.lvwAfstemBank.GridLines = true;
             this.lvwAfstemBank.Location = new System.Drawing.Point(0, 0);
             this.lvwAfstemBank.Name = "lvwAfstemBank";
-            this.lvwAfstemBank.Size = new System.Drawing.Size(274, 119);
+            this.lvwAfstemBank.Size = new System.Drawing.Size(383, 120);
             this.lvwAfstemBank.TabIndex = 1;
             this.lvwAfstemBank.UseCompatibleStateImageBehavior = false;
             this.lvwAfstemBank.View = System.Windows.Forms.View.Details;
@@ -208,6 +213,22 @@
             this.columnHeaderABBelob.Text = "Beløb";
             this.columnHeaderABBelob.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // cbBankkonto
+            // 
+            this.cbBankkonto.DataSource = this.tblkontoudtogBindingSource;
+            this.cbBankkonto.DisplayMember = "Name";
+            this.cbBankkonto.FormattingEnabled = true;
+            this.cbBankkonto.Location = new System.Drawing.Point(7, 26);
+            this.cbBankkonto.Name = "cbBankkonto";
+            this.cbBankkonto.Size = new System.Drawing.Size(172, 21);
+            this.cbBankkonto.TabIndex = 10;
+            this.cbBankkonto.ValueMember = "Pid";
+            this.cbBankkonto.SelectedValueChanged += new System.EventHandler(this.cbBankkonto_SelectedValueChanged);
+            // 
+            // tblkontoudtogBindingSource
+            // 
+            this.tblkontoudtogBindingSource.DataSource = typeof(nsPuls3060.Tblkontoudtog);
+            // 
             // lvwSumBank
             // 
             this.lvwSumBank.AllowDrop = true;
@@ -220,7 +241,7 @@
             this.lvwSumBank.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvwSumBank.Location = new System.Drawing.Point(0, 0);
             this.lvwSumBank.Name = "lvwSumBank";
-            this.lvwSumBank.Size = new System.Drawing.Size(274, 17);
+            this.lvwSumBank.Size = new System.Drawing.Size(383, 17);
             this.lvwSumBank.TabIndex = 9;
             this.lvwSumBank.UseCompatibleStateImageBehavior = false;
             this.lvwSumBank.View = System.Windows.Forms.View.Details;
@@ -243,7 +264,7 @@
             // AfstemtTidligere
             // 
             this.AfstemtTidligere.AutoSize = true;
-            this.AfstemtTidligere.Location = new System.Drawing.Point(150, 23);
+            this.AfstemtTidligere.Location = new System.Drawing.Point(197, 28);
             this.AfstemtTidligere.Name = "AfstemtTidligere";
             this.AfstemtTidligere.Size = new System.Drawing.Size(100, 17);
             this.AfstemtTidligere.TabIndex = 8;
@@ -252,7 +273,7 @@
             // 
             // cmdForslag
             // 
-            this.cmdForslag.Location = new System.Drawing.Point(255, 23);
+            this.cmdForslag.Location = new System.Drawing.Point(303, 23);
             this.cmdForslag.Name = "cmdForslag";
             this.cmdForslag.Size = new System.Drawing.Size(61, 25);
             this.cmdForslag.TabIndex = 3;
@@ -274,7 +295,7 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.splitContainer5);
-            this.splitContainer3.Size = new System.Drawing.Size(551, 513);
+            this.splitContainer3.Size = new System.Drawing.Size(442, 513);
             this.splitContainer3.SplitterDistance = 317;
             this.splitContainer3.TabIndex = 0;
             // 
@@ -291,7 +312,7 @@
             this.lvwTrans.GridLines = true;
             this.lvwTrans.Location = new System.Drawing.Point(0, 0);
             this.lvwTrans.Name = "lvwTrans";
-            this.lvwTrans.Size = new System.Drawing.Size(551, 317);
+            this.lvwTrans.Size = new System.Drawing.Size(442, 317);
             this.lvwTrans.TabIndex = 0;
             this.lvwTrans.UseCompatibleStateImageBehavior = false;
             this.lvwTrans.View = System.Windows.Forms.View.Details;
@@ -335,7 +356,7 @@
             // 
             this.splitContainer5.Panel2.Controls.Add(this.lvwSumTrans);
             this.splitContainer5.Panel2.Controls.Add(this.cmdAfstemt);
-            this.splitContainer5.Size = new System.Drawing.Size(551, 192);
+            this.splitContainer5.Size = new System.Drawing.Size(442, 192);
             this.splitContainer5.SplitterDistance = 120;
             this.splitContainer5.TabIndex = 0;
             // 
@@ -352,7 +373,7 @@
             this.lvwAfstemTrans.GridLines = true;
             this.lvwAfstemTrans.Location = new System.Drawing.Point(0, 0);
             this.lvwAfstemTrans.Name = "lvwAfstemTrans";
-            this.lvwAfstemTrans.Size = new System.Drawing.Size(551, 120);
+            this.lvwAfstemTrans.Size = new System.Drawing.Size(442, 120);
             this.lvwAfstemTrans.TabIndex = 2;
             this.lvwAfstemTrans.UseCompatibleStateImageBehavior = false;
             this.lvwAfstemTrans.View = System.Windows.Forms.View.Details;
@@ -393,7 +414,7 @@
             this.lvwSumTrans.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.lvwSumTrans.Location = new System.Drawing.Point(0, 0);
             this.lvwSumTrans.Name = "lvwSumTrans";
-            this.lvwSumTrans.Size = new System.Drawing.Size(551, 17);
+            this.lvwSumTrans.Size = new System.Drawing.Size(442, 17);
             this.lvwSumTrans.TabIndex = 3;
             this.lvwSumTrans.UseCompatibleStateImageBehavior = false;
             this.lvwSumTrans.View = System.Windows.Forms.View.Details;
@@ -420,7 +441,7 @@
             // cmdAfstemt
             // 
             this.cmdAfstemt.Enabled = false;
-            this.cmdAfstemt.Location = new System.Drawing.Point(306, 23);
+            this.cmdAfstemt.Location = new System.Drawing.Point(300, 22);
             this.cmdAfstemt.Name = "cmdAfstemt";
             this.cmdAfstemt.Size = new System.Drawing.Size(61, 25);
             this.cmdAfstemt.TabIndex = 3;
@@ -450,6 +471,7 @@
             this.splitContainer4.Panel2.ResumeLayout(false);
             this.splitContainer4.Panel2.PerformLayout();
             this.splitContainer4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tblkontoudtogBindingSource)).EndInit();
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel2.ResumeLayout(false);
             this.splitContainer3.ResumeLayout(false);
@@ -497,5 +519,7 @@
         private System.Windows.Forms.ColumnHeader columnHeaderSBTekst;
         private System.Windows.Forms.ColumnHeader columnHeaderSBBelob;
         private System.Windows.Forms.Button cmdAfstemt;
+        private System.Windows.Forms.ComboBox cbBankkonto;
+        private System.Windows.Forms.BindingSource tblkontoudtogBindingSource;
     }
 }

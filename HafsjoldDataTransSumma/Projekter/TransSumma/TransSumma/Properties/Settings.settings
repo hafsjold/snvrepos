@@ -75,7 +75,7 @@
       <Value Profile="(Default)">100, 100</Value>
     </Setting>
     <Setting Name="BankafstemningSplitterDistancr" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">274</Value>
+      <Value Profile="(Default)">383</Value>
     </Setting>
     <Setting Name="BankafstemningSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">829, 513</Value>

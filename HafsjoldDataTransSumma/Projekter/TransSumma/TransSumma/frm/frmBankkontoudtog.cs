@@ -18,21 +18,32 @@ namespace nsPuls3060
         public FrmBankkontoudtog()
         {
             InitializeComponent();
+        }
 
-            int bankkontoid = 2;
-            try
+        private void FrmKladder_Load(object sender, EventArgs e)
+        {
+            this.tblkontoudtogBindingSource.DataSource = Program.dbDataTransSumma.Tblkontoudtog;
+            cbBankkonto.SelectedValue = (int)1;
+            
+            setKontoudtog(1);
+            setBindingsorces();
+        }
+
+        private void setKontoudtog(int bankkontoid) 
+        {
+             try
             {
                 m_recKontoudtog = (from w in Program.dbDataTransSumma.Tblkontoudtog where w.Pid == bankkontoid select w).First();
             }
             catch
             {
                 m_recKontoudtog = null;
-            }
+            }       
         }
 
-        private void FrmKladder_Load(object sender, EventArgs e)
+        private void setBindingsorces() 
         {
-            var qryAfstemte = from u in Program.dbDataTransSumma.Tblbankkonto
+             var qryAfstemte = from u in Program.dbDataTransSumma.Tblbankkonto
                               where u.Afstem != null && u.Bankkontoid == m_recKontoudtog.Pid  && (u.Skjul == null || u.Skjul == false)
                               orderby u.Dato descending
                               select u;
@@ -42,7 +53,7 @@ namespace nsPuls3060
                                where u.Afstem == null && u.Bankkontoid == m_recKontoudtog.Pid && (u.Skjul == null || u.Skjul == false)
                                orderby u.Dato ascending
                                select u;
-            this.tblbankkontoBindingSourceUafstemte.DataSource = qryUafstemte;
+            this.tblbankkontoBindingSourceUafstemte.DataSource = qryUafstemte;       
         }
 
         public Tblbankkonto GetrecBankkonto() 
@@ -96,6 +107,21 @@ namespace nsPuls3060
                                   orderby u.Dato descending
                                   select u;
                 this.tblbankkontoBindingSourceAfstemte.DataSource = qryAfstemte;
+            }
+            catch {}
+        }
+
+        private void cbBankkonto_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int pid = (int)cbBankkonto.SelectedValue;
+                if (pid != m_recKontoudtog.Pid)
+                {
+                    setKontoudtog(pid);
+                    setBindingsorces();
+                    tblbankkontoBindingSourceUafstemte_PositionChanged(sender, e);
+                }
             }
             catch {}
         }

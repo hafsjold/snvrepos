@@ -35,13 +35,19 @@ namespace nsPuls3060
             this.lvwAfstemBank.ListViewItemSorter = lvwAfstemBank_ColumnSorter;
             this.lvwAfstemTrans_ColumnSorter = new ColumnSorter();
             this.lvwAfstemTrans.ListViewItemSorter = lvwAfstemTrans_ColumnSorter;
-        
-            int bankkontoid = 1;
+
+            this.tblkontoudtogBindingSource.DataSource = Program.dbDataTransSumma.Tblkontoudtog;
+            cbBankkonto.SelectedValue = (int)1;
+            setKontoudtog(1);
+        }
+
+        private void setKontoudtog(int bankkontoid)
+        {
             try
             {
                 m_recKontoudtog = (from w in Program.dbDataTransSumma.Tblkontoudtog where w.Pid == bankkontoid select w).First();
             }
-            catch 
+            catch
             {
                 m_recKontoudtog = null;
             }
@@ -581,6 +587,21 @@ namespace nsPuls3060
                 this.lvwSumBank.Items.Clear();
                 this.lvwSumTrans.Items.Clear();
             }
+        }
+
+        private void cbBankkonto_SelectedValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                int pid = (int)cbBankkonto.SelectedValue;
+                if (pid != m_recKontoudtog.Pid)
+                {
+                    setKontoudtog(pid);
+                    getBankkonto();
+                    getTrans();
+                }
+            }
+            catch { }
         }
     }
 

@@ -71,7 +71,6 @@ namespace nsPuls3060
 
             if (!ReducerBilag(recwBilag, recBilag, recBankkonto))
             {
-
                 foreach (var k in qry)
                 {
                     recwBilag.Tblwkladder.Add(k);
@@ -475,6 +474,17 @@ namespace nsPuls3060
             bool bAfstem = false;
             bool bMomskode = false;
 
+            var qry = from k in recBilag.Tblkladder
+                      select new Tblwkladder
+                      {
+                          Tekst = k.Tekst,
+                          Afstemningskonto = k.Afstemningskonto,
+                          Belob = k.Belob,
+                          Konto = k.Konto,
+                          Momskode = k.Momskode,
+                          Faktura = k.Faktura
+                      };
+
             int AntalLinier = recBilag.Tblkladder.Count;
 
 
@@ -567,6 +577,27 @@ namespace nsPuls3060
                             Konto = AndenKontoKonto
                         };
                         recwBilag.Tblwkladder.Add(recWkladder);
+                        this.tblwbilagBindingSource.Add(recwBilag);
+                        return true;
+                    }
+
+
+                    if ((AntalLinier == 2)
+                    && (bBankKonto)
+                    && (bAndenKonto)
+                    && (!bAfstem))
+                    {
+                        foreach (Tblwkladder k in qry)
+                        {
+                            if (IsFound_BankKontoudtog)
+                            {
+                                if (k.Konto == 58000)
+                                    k.Belob = -(decimal)recBankkonto.Belob;
+                                else
+                                    k.Belob = (decimal)recBankkonto.Belob;
+                            }
+                            recwBilag.Tblwkladder.Add(k);
+                        }
                         this.tblwbilagBindingSource.Add(recwBilag);
                         return true;
                     }
@@ -689,6 +720,25 @@ namespace nsPuls3060
                         return true;
                     }
 
+                    if ((AntalLinier == 2)
+                    && (bBankKonto)
+                    && (bAndenKonto)
+                    && (!bAfstem))
+                    {
+                        foreach (Tblwkladder k in qry)
+                        {
+                            if (IsFound_BankKontoudtog)
+                            {
+                                if (k.Konto == 58310)
+                                    k.Belob = -(decimal)recBankkonto.Belob;
+                                else
+                                    k.Belob = (decimal)recBankkonto.Belob;
+                            }
+                            recwBilag.Tblwkladder.Add(k);
+                        }
+                        this.tblwbilagBindingSource.Add(recwBilag);
+                        return true;
+                    }
                     if ((AntalLinier == 1)
                     && (!bBankKonto)
                     && (bAndenKonto)
