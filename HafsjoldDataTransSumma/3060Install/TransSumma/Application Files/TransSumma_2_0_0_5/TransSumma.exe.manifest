@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1">
+  <asmv1:assemblyIdentity name="TransSumma.exe" version="2.0.0.5" publicKeyToken="79e243cf59b55a55" language="en" processorArchitecture="msil" type="win32" />
+  <application />
+  <entryPoint>
+    <assemblyIdentity name="TransSumma" version="2.1.0.0" language="neutral" processorArchitecture="msil" />
+    <commandLine file="TransSumma.exe" parameters="" />
+  </entryPoint>
+  <trustInfo>
+    <security>
+      <applicationRequestMinimum>
+        <PermissionSet Unrestricted="true" ID="Custom" SameSite="site" />
+        <defaultAssemblyRequest permissionSetReference="Custom" />
+      </applicationRequestMinimum>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!--
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the 
+          requestedExecutionLevel node with one of the following.
+
+        <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
+        <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
+        <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
+
+         If you want to utilize File and Registry Virtualization for backward 
+         compatibility then delete the requestedExecutionLevel node.
+    -->
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  <dependency>
+    <dependentOS>
+      <osVersionInfo>
+        <os majorVersion="5" minorVersion="1" buildNumber="2600" servicePackMajor="0" />
+      </osVersionInfo>
+    </dependentOS>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="Microsoft.Windows.CommonLanguageRuntime" version="2.0.50727.0" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="System.Core" version="3.5.0.0" publicKeyToken="b77a5c561934e089" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="System.Data.Entity" version="3.5.0.0" publicKeyToken="b77a5c561934e089" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="System.Data.SqlServerCe" version="3.5.1.0" publicKeyToken="89845DCD8080CC91" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="WindowsBase" version="3.0.0.0" publicKeyToken="31bf3856ad364e35" language="neutral" processorArchitecture="msil" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Interop.Excel.dll" size="1093632">
+      <assemblyIdentity name="Interop.Excel" version="1.5.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>+5yy3ifKS2m4QxGOsejkI2BJS7o=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Interop.VBIDE.dll" size="57344">
+      <assemblyIdentity name="Interop.VBIDE" version="5.3.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>UTLyOVPpoJmLnlFleCYGuym+TaI=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="TransSumma.exe" size="499712">
+      <assemblyIdentity name="TransSumma" version="2.1.0.0" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+        <dsig:DigestValue>Qj8LJy0U+V4upyiPYSSNj7vwlTo=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <file name="Resources\info.png" size="1526">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>XQRx6k4YuOiH9YK+6jAosCsApGs=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\logopart.jpg" size="3833">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>v8iEXeanQ184pDpOsw9C339eXF0=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="TransSumma.exe.config" size="7505">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>CtWCbA6m3JjUveVvhQCZGx2Crmg=</dsig:DigestValue>
+    </hash>
+  </file>
+<publisherIdentity name="CN=Hafsjold Data ApS" issuerKeyHash="df8394a80a5a9c87ac3ce58e721adf867a101f9f" /><Signature Id="StrongNameSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>C/ZzQtr/knKC2QY4upn5+QsTWQY=</DigestValue></Reference></SignedInfo><SignatureValue>Qd+l1shsS3smTJPxsFhgxBWyWuea81mS+UBUNU0iUFyxx2AVq4GLTjNf7RMpjfCJRIAvlnWqq3/SvhgDxwCQUfV9hhQmZRk9VA8Gou8CDgO2VX3ceO2AcYEs3Yahhee/3mke4bwl+yzMCpvN/viAxz/0meGnyeE5JVIlkR6QpqFpg0JjJL6PIn2SUu8eQUaIeo+HnLInK7y88IiR56wGKeYEyS+0eh+jKTsVPt0GUp+kAilbNcgOhsAHb93/fuZVZwIJ0HC7pNnDPTlgMCNrK+tM8rAnlnCdRGi1LTxzi3GIYdjgkmezVl6bmQEYTwdJImE2SHC0JCbZ4u9fGVmBGw==</SignatureValue><KeyInfo Id="StrongNameKeyInfo"><KeyValue><RSAKeyValue><Modulus>0VHEAuCKuGIy6j3Z+ugWt4kK/YgZ/O9ckDzHrNX+b5a+SLv8SyC3UqNvfuOgmkl3Tw/TkHS/oWy85Qa9C8bwZM378BP7O4qB6ArdzEKA+aTiz51XX7NMD15kXiouxBUkcCA05y4qpfoksl+rdslWi1fkuYfhUHA/oJy5xSOHq8sdx+bgz7W/8j6XxLz6SetsjTUhM0ff70KoPw14aW/eYliKJNjqEYtnxJ2kimShHKzSGgzmarbgzb6YAF3Kg1vvGMaaHRQeWGlFT9bGnQWjNabs5LZeU2gbNN2GhRjspoAlQMBt6XxSZXUK95fYdeQ9pA/5QqHOlnVHVeITB26law==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><msrel:RelData xmlns:msrel="http://schemas.microsoft.com/windows/rel/2005/reldata"><r:license xmlns:r="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:as="http://schemas.microsoft.com/windows/pki/2005/Authenticode"><r:grant><as:ManifestInformation Hash="0659130bf9f999ba3806d9827292ffda4273f60b" Description="" Url=""><as:assemblyIdentity name="TransSumma.exe" version="2.0.0.5" publicKeyToken="79e243cf59b55a55" language="en" processorArchitecture="msil" type="win32" /></as:ManifestInformation><as:SignedBy /><as:AuthenticodePublisher><as:X509SubjectName>CN=Hafsjold Data ApS</as:X509SubjectName></as:AuthenticodePublisher></r:grant><r:issuer><Signature Id="AuthenticodeSignature" xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1" /><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature" /><Transform Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#" /></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" /><DigestValue>Bc6P4VS1c+7u24K6h9RY9jMfiBo=</DigestValue></Reference></SignedInfo><SignatureValue>b3AlQDb6LMQJfC29ollEAsBsIy/GF4OKtlPwwyZ/WFDPQAWBhhocGTTlta+fXvdbtqCEgZ4Ix+ojsvCiXopa64fzapsKykuzYhxmvWkdK1WvipSfKvZF1C8y3fa9GNalYwqkF7bmPXBOfT3Xwp2IAplCYtZJ+CSl5dkDc19aWRvbv59SrgCpkhSWw7rpUM0b4znuYV/4082W9jumnIySaHQENTm9JplDkm9l6oInS76ZRStb5aZw34+2Yt0GKpHQRvD1iYknwJLQ830/XYySNBAqUBKcTE1BzpOAC2IuC+LGXDtu2PQCYeGlfOac/dM8J/MH6CkzSfli9Dust/2wBg==</SignatureValue><KeyInfo><KeyValue><RSAKeyValue><Modulus>0VHEAuCKuGIy6j3Z+ugWt4kK/YgZ/O9ckDzHrNX+b5a+SLv8SyC3UqNvfuOgmkl3Tw/TkHS/oWy85Qa9C8bwZM378BP7O4qB6ArdzEKA+aTiz51XX7NMD15kXiouxBUkcCA05y4qpfoksl+rdslWi1fkuYfhUHA/oJy5xSOHq8sdx+bgz7W/8j6XxLz6SetsjTUhM0ff70KoPw14aW/eYliKJNjqEYtnxJ2kimShHKzSGgzmarbgzb6YAF3Kg1vvGMaaHRQeWGlFT9bGnQWjNabs5LZeU2gbNN2GhRjspoAlQMBt6XxSZXUK95fYdeQ9pA/5QqHOlnVHVeITB26law==</Modulus><Exponent>AQAB</Exponent></RSAKeyValue></KeyValue><X509Data><X509Certificate>MIIFQjCCBCqgAwIBAgIKGiSnegAAAAAAETANBgkqhkiG9w0BAQUFADBJMRUwEwYKCZImiZPyLGQBGRYFbG9jYWwxGDAWBgoJkiaJk/IsZAEZFghoYWZzam9sZDEWMBQGA1UEAxMNdHJ1c3RoYWZzam9sZDAeFw0xMDEyMjIxOTM0MDJaFw0xMjEyMjExOTM0MDJaMBwxGjAYBgNVBAMTEUhhZnNqb2xkIERhdGEgQXBTMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0VHEAuCKuGIy6j3Z+ugWt4kK/YgZ/O9ckDzHrNX+b5a+SLv8SyC3UqNvfuOgmkl3Tw/TkHS/oWy85Qa9C8bwZM378BP7O4qB6ArdzEKA+aTiz51XX7NMD15kXiouxBUkcCA05y4qpfoksl+rdslWi1fkuYfhUHA/oJy5xSOHq8sdx+bgz7W/8j6XxLz6SetsjTUhM0ff70KoPw14aW/eYliKJNjqEYtnxJ2kimShHKzSGgzmarbgzb6YAF3Kg1vvGMaaHRQeWGlFT9bGnQWjNabs5LZeU2gbNN2GhRjspoAlQMBt6XxSZXUK95fYdeQ9pA/5QqHOlnVHVeITB26lawIDAQABo4ICVzCCAlMwDgYDVR0PAQH/BAQDAgeAMB0GA1UdDgQWBBRmYCgf81pQ20aqlh19qMLhkZ8pLTA8BgkrBgEEAYI3FQcELzAtBiUrBgEEAYI3FQiHqOVPguXNHYKlnyuN1TmDo5tHTIT88hOFqsxOAgFkAgECMB8GA1UdIwQYMBaAFN+DlKgKWpyHrDzljnIa34Z6EB+fMIHLBgNVHR8EgcMwgcAwgb2ggbqggbeGgbRsZGFwOi8vL0NOPXRydXN0aGFmc2pvbGQsQ049SEQxMSxDTj1DRFAsQ049UHVibGljJTIwS2V5JTIwU2VydmljZXMsQ049U2VydmljZXMsQ049Q29uZmlndXJhdGlvbixEQz1oYWZzam9sZCxEQz1sb2NhbD9jZXJ0aWZpY2F0ZVJldm9jYXRpb25MaXN0P2Jhc2U/b2JqZWN0Q2xhc3M9Y1JMRGlzdHJpYnV0aW9uUG9pbnQwgcIGCCsGAQUFBwEBBIG1MIGyMIGvBggrBgEFBQcwAoaBomxkYXA6Ly8vQ049dHJ1c3RoYWZzam9sZCxDTj1BSUEsQ049UHVibGljJTIwS2V5JTIwU2VydmljZXMsQ049U2VydmljZXMsQ049Q29uZmlndXJhdGlvbixEQz1oYWZzam9sZCxEQz1sb2NhbD9jQUNlcnRpZmljYXRlP2Jhc2U/b2JqZWN0Q2xhc3M9Y2VydGlmaWNhdGlvbkF1dGhvcml0eTATBgNVHSUEDDAKBggrBgEFBQcDAzAbBgkrBgEEAYI3FQoEDjAMMAoGCCsGAQUFBwMDMA0GCSqGSIb3DQEBBQUAA4IBAQA5ruEwifO2yZgWJyO5rxmXDX3jegSOtaMzfyRhvD9RPPNFGOqkqifKbN6EromvkrTUxXZlAg0x4OjZsCAp7GBSV78CC6Y+kc7WBjp5df5EwiZhFABRjI8hnMQglpn0BFqcoN6xnGe/1BplLx8f4Q4GjucXclTB+4Lb2/9UtMudM+k1ysPfQpRUR39fIW9e4dGEx/CphgF3lkwkyQJM6p0uWqjyoBXhYHRvoGDQa2wfA9PxcbJUOzINXk44EWnLXKliXvYiTu7zNfR4KlqkJsvk26TNI1bzi74mNZuG3RJhEzGHDWNLzzVI9ILBAl/Y19q1vqN2UTAmKAXAgQ/qlmq5</X509Certificate></X509Data></KeyInfo><Object><as:Timestamp>MIIKGQYJKoZIhvcNAQcCoIIKCjCCCgYCAQExCzAJBgUrDgMCGgUAMIIBEwYJKoZI
+hvcNAQcBoIIBBASCAQBvcCVANvosxAl8Lb2iWUQCwGwjL8YXg4q2U/DDJn9YUM9A
+BYGGGhwZNOW1r59e91u2oISBngjH6iOy8KJeilrrh/NqmwrKS7NiHGa9aR0rVa+K
+lJ8q9kXULzLd9r0Y1qVjCqQXtuY9cE59PdfCnYgCmUJi1kn4JKXl2QNzX1pZG9u/
+n1KuAKmSFJbDuulQzRvjOe5hX/jTzZb2O6acjJJodAQ1Ob0mmUOSb2XqgidLvplF
+K1vlpnDfj7Zi3QYqkdBG8PWJiSfAktDzfT9djJI0ECpQEpxMTUHOk4ALYi4L4sZc
+O27Y9AJh4aV85pz90zwn8wfoKTNJ+WL0O6y3/bAGoIIHazCCA58wggKHoAMCAQIC
+EHmipYX50RVCE9m4Pva2je0wDQYJKoZIhvcNAQEFBQAwUzELMAkGA1UEBhMCVVMx
+FzAVBgNVBAoTDlZlcmlTaWduLCBJbmMuMSswKQYDVQQDEyJWZXJpU2lnbiBUaW1l
+IFN0YW1waW5nIFNlcnZpY2VzIENBMB4XDTEyMDUwMTAwMDAwMFoXDTEyMTIzMTIz
+NTk1OVowYjELMAkGA1UEBhMCVVMxHTAbBgNVBAoTFFN5bWFudGVjIENvcnBvcmF0
+aW9uMTQwMgYDVQQDEytTeW1hbnRlYyBUaW1lIFN0YW1waW5nIFNlcnZpY2VzIFNp
+Z25lciAtIEczMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCpWWZ02j2KfXrY
+/PWARHv+R2oUVU5QRwvs0+3O9jj3T2m5sfC2eIIKjHYWZ+ICrbcNpYr2A/xm0/wI
+Lcy1c1l7idwzbmZaXlI3tGLRklk1FItFrFmyTSSimJRoQnKfOmjia4ueIi30mE6a
+xq+z5KCrPCi/I+HXcqTyEFNnrnevUQIDAQABo4HjMIHgMAwGA1UdEwEB/wQCMAAw
+MwYDVR0fBCwwKjAooCagJIYiaHR0cDovL2NybC52ZXJpc2lnbi5jb20vdHNzLWNh
+LmNybDAWBgNVHSUBAf8EDDAKBggrBgEFBQcDCDA0BggrBgEFBQcBAQQoMCYwJAYI
+KwYBBQUHMAGGGGh0dHA6Ly9vY3NwLnZlcmlzaWduLmNvbTAOBgNVHQ8BAf8EBAMC
+B4AwHgYDVR0RBBcwFaQTMBExDzANBgNVBAMTBlRTQTEtMzAdBgNVHQ4EFgQUtLfx
+iUkmYOdl6nOu3NM4zb9Xkm8wDQYJKoZIhvcNAQEFBQADggEBAB6Yqie3eLUItcly
+bbffwA6YpjXEiMnS9m3xSxr71fktmQCe0eebi+E/vTmADGbNB7xcmFSmlLoQ0U6L
+q/VvZcxnCaKAfFLoDgPWa3rGBRjsyKxCfAcspz0IZtwA7f2UHXPycpiTsRHWj++O
+6qz0llEM0I3fMVJPXq99p0p15k7OK58pK+fPXZ8Dfm4neyOtYilmr5LoLM69nH/c
+zRc8Q8IJP3VFx57k12B/l8bkqsdp9fzNdKwssEjBUE5wVh61NdOOvrHtrL3+DOyF
+fdW7hWZEGV2fk+uCumOe03xh/8gb2SNYfzCjZqE5Jl6SwzzLNzL69aON3NWwo+kl
+NlXXgfowggPEMIIDLaADAgECAhBHvxmV341SRkP3221IDTGkMA0GCSqGSIb3DQEB
+BQUAMIGLMQswCQYDVQQGEwJaQTEVMBMGA1UECBMMV2VzdGVybiBDYXBlMRQwEgYD
+VQQHEwtEdXJiYW52aWxsZTEPMA0GA1UEChMGVGhhd3RlMR0wGwYDVQQLExRUaGF3
+dGUgQ2VydGlmaWNhdGlvbjEfMB0GA1UEAxMWVGhhd3RlIFRpbWVzdGFtcGluZyBD
+QTAeFw0wMzEyMDQwMDAwMDBaFw0xMzEyMDMyMzU5NTlaMFMxCzAJBgNVBAYTAlVT
+MRcwFQYDVQQKEw5WZXJpU2lnbiwgSW5jLjErMCkGA1UEAxMiVmVyaVNpZ24gVGlt
+ZSBTdGFtcGluZyBTZXJ2aWNlcyBDQTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCC
+AQoCggEBAKnKsqTMzSCvCn2JrId18LRO8d/BD79nYb2jZBzau/nKM6uEMIlYfozb
+a902ng+/0ex48nemfm88v5OvDbpo9GyUyr1SLatIPfW21V1fGwKf+i9rHqT3o5qm
+GsgC4X9MUuMOYOxAHH65Dd4/x7Tfh71femoxLgOZgROoRyDOMXMNVy3NeDQzlRKZ
+ErneaC+q5uPCiowqw4shh2a9g1hXb3W/PKomh13KEBU8n4TqVMEKbsT+xUrduQcR
+lyJ82z4n0R547J8xyfHmIhnbxLNHQ5oaX6AekORe9e588X2rYgGP9U0L3tAiVqiV
+za6Idq7uug3z5E3ZoPtooK4UO7OHwbsCAwEAAaOB2zCB2DA0BggrBgEFBQcBAQQo
+MCYwJAYIKwYBBQUHMAGGGGh0dHA6Ly9vY3NwLnZlcmlzaWduLmNvbTASBgNVHRMB
+Af8ECDAGAQH/AgEAMEEGA1UdHwQ6MDgwNqA0oDKGMGh0dHA6Ly9jcmwudmVyaXNp
+Z24uY29tL1RoYXd0ZVRpbWVzdGFtcGluZ0NBLmNybDATBgNVHSUEDDAKBggrBgEF
+BQcDCDAOBgNVHQ8BAf8EBAMCAQYwJAYDVR0RBB0wG6QZMBcxFTATBgNVBAMTDFRT
+QTIwNDgtMS01MzANBgkqhkiG9w0BAQUFAAOBgQBKa/nqWMJEHDGJeZkrlr+CrAHW
+HEzNsIpYbt8IKaNeyMqTE+cEUg3vRycvADiw5MmTTprUImIV9z83IU9wMYDxiziH
+s+jolwD+z1WWTiTSqSdOeq63YUHzKs7nydle3bsrhT61nbXZ4Vf/vrTFfvXPDJ7w
+l/4r0ztSGxs4J/c/SjGCAWwwggFoAgEBMGcwUzELMAkGA1UEBhMCVVMxFzAVBgNV
+BAoTDlZlcmlTaWduLCBJbmMuMSswKQYDVQQDEyJWZXJpU2lnbiBUaW1lIFN0YW1w
+aW5nIFNlcnZpY2VzIENBAhB5oqWF+dEVQhPZuD72to3tMAkGBSsOAwIaBQCgXTAY
+BgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0xMjA4MjUy
+MTQ4NDJaMCMGCSqGSIb3DQEJBDEWBBRGS1KlOMcg3jpXszIl1UzNcw5q1TANBgkq
+hkiG9w0BAQEFAASBgDYrv4Qgu7FVSnHgePfM/L5ads6tKscNmJRXmQ2Pm5pbJ1pW
+DiF+OSgHu9RdrNMeMhDdRBaVWOOEQKnuMBhtTkg3cYqeYDd5MO1GvaThzmfLA8qr
+fYi1Jkqc8rsGrOWsN3JqxCzsx4J+HiDrlXz7e1zZUw5Ra+UaJqcYdnaDu5Od
+</as:Timestamp></Object></Signature></r:issuer></r:license></msrel:RelData></KeyInfo></Signature></asmv1:assembly>

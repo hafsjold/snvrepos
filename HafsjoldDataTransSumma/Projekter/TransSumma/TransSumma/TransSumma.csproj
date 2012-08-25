@@ -36,7 +36,7 @@
     <ProductName>TransSumma</ProductName>
     <PublisherName>Hafsjold</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -121,6 +121,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dbDataTransSumma.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="frm\frmTemplate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmTemplate.Designer.cs">
+      <DependentUpon>frmTemplate.cs</DependentUpon>
     </Compile>
     <Compile Include="frm\frmVareList.cs">
       <SubType>Form</SubType>
@@ -244,6 +250,9 @@
     <None Include="dbDataTransSumma.dbml.layout">
       <DependentUpon>dbDataTransSumma.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="frm\frmTemplate.resx">
+      <DependentUpon>frmTemplate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm\frmVareList.resx">
       <DependentUpon>frmVareList.cs</DependentUpon>
     </EmbeddedResource>

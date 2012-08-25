@@ -143,5 +143,14 @@
     <Setting Name="frmVareListLocation" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">0, 0</Value>
     </Setting>
+    <Setting Name="frmTemplateLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="frmTemplateSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">730, 297</Value>
+    </Setting>
+    <Setting Name="frmTemplateWinState" Type="System.Windows.Forms.FormWindowState" Scope="User">
+      <Value Profile="(Default)">Normal</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

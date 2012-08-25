@@ -451,6 +451,16 @@ namespace nsPuls3060
             }
         }
 
+        private void templatesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("Template"))
+            {
+                FrmTemplate m_Template = new FrmTemplate();
+                m_Template.MdiParent = this;
+                m_Template.Show();
+            }
+        }
+
 
 
     }

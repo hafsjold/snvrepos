@@ -587,5 +587,41 @@ namespace nsPuls3060.Properties {
                 this["frmVareListLocation"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point frmTemplateLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["frmTemplateLocation"]));
+            }
+            set {
+                this["frmTemplateLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("730, 297")]
+        public global::System.Drawing.Size frmTemplateSize {
+            get {
+                return ((global::System.Drawing.Size)(this["frmTemplateSize"]));
+            }
+            set {
+                this["frmTemplateSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
+        public global::System.Windows.Forms.FormWindowState frmTemplateWinState {
+            get {
+                return ((global::System.Windows.Forms.FormWindowState)(this["frmTemplateWinState"]));
+            }
+            set {
+                this["frmTemplateWinState"] = value;
+            }
+        }
     }
 }
