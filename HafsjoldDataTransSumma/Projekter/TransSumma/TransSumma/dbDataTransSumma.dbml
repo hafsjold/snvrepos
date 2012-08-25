@@ -161,6 +161,15 @@
       <Column Name="afsluttet" Member="Afsluttet" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="tbltemplate" Member="Tbltemplate">
+    <Type Name="Tbltemplate">
+      <Column Name="pid" Member="Pid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="navn" Member="Navn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="tekst" Member="Tekst" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="konto" Member="Konto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="momskode" Member="Momskode" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Table Name="tbltrans" Member="Tbltrans">
     <Type Name="Tbltrans">
       <Column Name="pid" Member="Pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />

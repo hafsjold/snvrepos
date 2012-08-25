@@ -31,9 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.Label datoLabel;
             System.Windows.Forms.Label bilagLabel;
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmKladder));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.cmdKopier = new System.Windows.Forms.Button();
@@ -69,7 +69,6 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.cmdPrivat = new System.Windows.Forms.Button();
             datoLabel = new System.Windows.Forms.Label();
             bilagLabel = new System.Windows.Forms.Label();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -114,7 +113,6 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.AutoScroll = true;
-            this.splitContainer1.Panel1.Controls.Add(this.cmdPrivat);
             this.splitContainer1.Panel1.Controls.Add(this.cmdKopier);
             this.splitContainer1.Panel1.Controls.Add(this.cmdSog);
             this.splitContainer1.Panel1.Controls.Add(this.label1);
@@ -127,7 +125,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(526, 259);
+            this.splitContainer1.Size = new System.Drawing.Size(530, 259);
             this.splitContainer1.SplitterDistance = 52;
             this.splitContainer1.TabIndex = 7;
             // 
@@ -207,7 +205,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tblbilagBindingNavigator);
-            this.splitContainer2.Size = new System.Drawing.Size(526, 203);
+            this.splitContainer2.Size = new System.Drawing.Size(530, 203);
             this.splitContainer2.SplitterDistance = 174;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -236,7 +234,7 @@
             this.tblkladderDataGridView.Location = new System.Drawing.Point(0, 0);
             this.tblkladderDataGridView.Name = "tblkladderDataGridView";
             this.tblkladderDataGridView.ReadOnly = true;
-            this.tblkladderDataGridView.Size = new System.Drawing.Size(526, 174);
+            this.tblkladderDataGridView.Size = new System.Drawing.Size(530, 174);
             this.tblkladderDataGridView.TabIndex = 0;
             // 
             // dataGridViewTextBoxColumn1
@@ -282,10 +280,10 @@
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.DataPropertyName = "Belob";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.Format = "N2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = null;
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewTextBoxColumn6.HeaderText = "Beløb";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
@@ -294,8 +292,8 @@
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.DataPropertyName = "Konto";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewTextBoxColumn7.HeaderText = "Konto";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
@@ -312,8 +310,8 @@
             // dataGridViewTextBoxColumn9
             // 
             this.dataGridViewTextBoxColumn9.DataPropertyName = "Faktura";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewTextBoxColumn9.HeaderText = "Faktura";
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             this.dataGridViewTextBoxColumn9.ReadOnly = true;
@@ -378,7 +376,7 @@
             this.tblbilagBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.tblbilagBindingNavigator.Name = "tblbilagBindingNavigator";
             this.tblbilagBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.tblbilagBindingNavigator.Size = new System.Drawing.Size(526, 25);
+            this.tblbilagBindingNavigator.Size = new System.Drawing.Size(530, 25);
             this.tblbilagBindingNavigator.TabIndex = 8;
             this.tblbilagBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -449,16 +447,6 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
-            // cmdPrivat
-            // 
-            this.cmdPrivat.Location = new System.Drawing.Point(467, 16);
-            this.cmdPrivat.Name = "cmdPrivat";
-            this.cmdPrivat.Size = new System.Drawing.Size(48, 23);
-            this.cmdPrivat.TabIndex = 13;
-            this.cmdPrivat.Text = "Privat";
-            this.cmdPrivat.UseVisualStyleBackColor = true;
-            this.cmdPrivat.Click += new System.EventHandler(this.cmdPrivat_Click);
-            // 
             // FrmKladder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -526,6 +514,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.ContextMenuStrip contextMenuLineCopyPaste;
         private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
-        private System.Windows.Forms.Button cmdPrivat;
     }
 }

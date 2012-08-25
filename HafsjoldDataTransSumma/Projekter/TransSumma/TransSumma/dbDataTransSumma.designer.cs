@@ -69,6 +69,9 @@ namespace nsPuls3060
     partial void InsertTblregnskab(Tblregnskab instance);
     partial void UpdateTblregnskab(Tblregnskab instance);
     partial void DeleteTblregnskab(Tblregnskab instance);
+    partial void InsertTbltemplate(Tbltemplate instance);
+    partial void UpdateTbltemplate(Tbltemplate instance);
+    partial void DeleteTbltemplate(Tbltemplate instance);
     partial void InsertTbltrans(Tbltrans instance);
     partial void UpdateTbltrans(Tbltrans instance);
     partial void DeleteTbltrans(Tbltrans instance);
@@ -214,6 +217,14 @@ namespace nsPuls3060
 			get
 			{
 				return this.GetTable<Tblregnskab>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Tbltemplate> Tbltemplate
+		{
+			get
+			{
+				return this.GetTable<Tbltemplate>();
 			}
 		}
 		
@@ -3451,6 +3462,164 @@ namespace nsPuls3060
 					this._Afsluttet = value;
 					this.SendPropertyChanged("Afsluttet");
 					this.OnAfsluttetChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="tbltemplate")]
+	public partial class Tbltemplate : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Pid;
+		
+		private string _Navn;
+		
+		private string _Tekst;
+		
+		private System.Nullable<int> _Konto;
+		
+		private string _Momskode;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnPidChanging(int value);
+    partial void OnPidChanged();
+    partial void OnNavnChanging(string value);
+    partial void OnNavnChanged();
+    partial void OnTekstChanging(string value);
+    partial void OnTekstChanged();
+    partial void OnKontoChanging(System.Nullable<int> value);
+    partial void OnKontoChanged();
+    partial void OnMomskodeChanging(string value);
+    partial void OnMomskodeChanged();
+    #endregion
+		
+		public Tbltemplate()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="pid", Storage="_Pid", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int Pid
+		{
+			get
+			{
+				return this._Pid;
+			}
+			set
+			{
+				if ((this._Pid != value))
+				{
+					this.OnPidChanging(value);
+					this.SendPropertyChanging();
+					this._Pid = value;
+					this.SendPropertyChanged("Pid");
+					this.OnPidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="navn", Storage="_Navn", DbType="NVarChar(50)")]
+		public string Navn
+		{
+			get
+			{
+				return this._Navn;
+			}
+			set
+			{
+				if ((this._Navn != value))
+				{
+					this.OnNavnChanging(value);
+					this.SendPropertyChanging();
+					this._Navn = value;
+					this.SendPropertyChanged("Navn");
+					this.OnNavnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="tekst", Storage="_Tekst", DbType="NVarChar(50)")]
+		public string Tekst
+		{
+			get
+			{
+				return this._Tekst;
+			}
+			set
+			{
+				if ((this._Tekst != value))
+				{
+					this.OnTekstChanging(value);
+					this.SendPropertyChanging();
+					this._Tekst = value;
+					this.SendPropertyChanged("Tekst");
+					this.OnTekstChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="konto", Storage="_Konto", DbType="Int")]
+		public System.Nullable<int> Konto
+		{
+			get
+			{
+				return this._Konto;
+			}
+			set
+			{
+				if ((this._Konto != value))
+				{
+					this.OnKontoChanging(value);
+					this.SendPropertyChanging();
+					this._Konto = value;
+					this.SendPropertyChanged("Konto");
+					this.OnKontoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="momskode", Storage="_Momskode", DbType="NVarChar(3)")]
+		public string Momskode
+		{
+			get
+			{
+				return this._Momskode;
+			}
+			set
+			{
+				if ((this._Momskode != value))
+				{
+					this.OnMomskodeChanging(value);
+					this.SendPropertyChanging();
+					this._Momskode = value;
+					this.SendPropertyChanged("Momskode");
+					this.OnMomskodeChanged();
 				}
 			}
 		}

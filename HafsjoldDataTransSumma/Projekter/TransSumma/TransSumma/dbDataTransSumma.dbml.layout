@@ -38,7 +38,7 @@
         <elementListCompartment Id="3ce7076e-196d-45c3-a750-b0933fb9c5f6" absoluteBounds="3.2650000000000006, 3.335, 1.9700000000000002, 2.941609700520833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.375 : 2.27089680989583); (2.375 : 2.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.375 : 2.27089680989583); (2.375 : 2.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DbDataTransSumma/Tblbilag/Tblbilag_Tblkladder" />
       <nodes>
         <classShapeMoniker Id="916f8c8a-f66a-464c-9e00-bcb0d32fe69e" />
@@ -96,7 +96,7 @@
         <elementListCompartment Id="28da8635-6c56-430c-ab96-b66166e5d99a" absoluteBounds="0.89000000000000012, 9.335, 1.9700000000000002, 1.7878011067708333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(1.875 : 8.1362939453125); (1.875 : 8.875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(1.875 : 8.1362939453125); (1.875 : 8.875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DbDataTransSumma/Tblwbilag/Tblwbilag_Tblwkladder" />
       <nodes>
         <classShapeMoniker Id="f8cff965-96e1-4a1f-8e45-387fd6d51893" />
@@ -170,6 +170,12 @@
       <DataClassMoniker Name="/DbDataTransSumma/Tblkontoudtog" />
       <nestedChildShapes>
         <elementListCompartment Id="da849820-b02b-40a5-adaa-56acf653be2f" absoluteBounds="3.14, 12.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="25df53c3-d701-42d0-bbbe-ae855fb965c5" absoluteBounds="0.875, 11.625, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/DbDataTransSumma/Tbltemplate" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1aeef2b9-0bb3-4343-bc8c-7d87b4e66891" absoluteBounds="0.89, 12.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

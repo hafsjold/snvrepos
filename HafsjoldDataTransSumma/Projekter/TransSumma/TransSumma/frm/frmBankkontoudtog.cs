@@ -126,6 +126,19 @@ namespace nsPuls3060
             catch {}
         }
 
+        private void cmdPrivat_Click(object sender, EventArgs e)
+        {
+            FrmMain frmMain = this.ParentForm as FrmMain;
+            try
+            {
+                FrmNyekladder frmNyekladder = frmMain.GetChild("Nye kladder") as FrmNyekladder;
+                Tbltemplate recTemplate = (from w in Program.dbDataTransSumma.Tbltemplate where w.Pid == 1 select w).First();
+                Tblbankkonto recBankkonto = this.tblbankkontoBindingSourceUafstemte.Current as Tblbankkonto;
+                frmNyekladder.AddNyPrivatKladde(recTemplate, recBankkonto);
+            }
+            catch { }
+        }
+
     }
 
 }

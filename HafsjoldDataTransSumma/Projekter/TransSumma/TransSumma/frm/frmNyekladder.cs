@@ -81,7 +81,7 @@ namespace nsPuls3060
 
         }
 
-        public void AddNyPrivatKladde(Tblbankkonto recBankkonto)
+        public void AddNyPrivatKladde(Tbltemplate recTemplate, Tblbankkonto recBankkonto)
         {
             int bilagnr = 0;
 
@@ -123,11 +123,11 @@ namespace nsPuls3060
 
             Tblwkladder recWkladder = new Tblwkladder
             {
-                Tekst = recBankkonto.Tekst + " - Ref ",
+                Tekst = recBankkonto.Tekst,
                 Afstemningskonto = WrkAfstemningskonto,
                 Belob = (decimal)recBankkonto.Belob,
-                Konto = 64110,
-                Momskode = ""
+                Konto = recTemplate.Konto,
+                Momskode = recTemplate.Momskode
             };
             recwBilag.Tblwkladder.Add(recWkladder);
             this.tblwbilagBindingSource.Add(recwBilag);
