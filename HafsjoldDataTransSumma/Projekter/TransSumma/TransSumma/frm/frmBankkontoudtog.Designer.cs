@@ -33,9 +33,13 @@
             System.Windows.Forms.Label tekstLabel;
             System.Windows.Forms.Label belobLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBankkontoudtog));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.labelcbBankkonto = new System.Windows.Forms.Label();
+            this.labelcbTemplate = new System.Windows.Forms.Label();
+            this.cbTemplate = new System.Windows.Forms.ComboBox();
+            this.tbltemplateBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cmdPrivat = new System.Windows.Forms.Button();
             this.cbBankkonto = new System.Windows.Forms.ComboBox();
             this.tblkontoudtogBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -66,8 +70,6 @@
             this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblbankkontoBindingSourceAfstemte = new System.Windows.Forms.BindingSource(this.components);
-            this.comboBoxTemplate = new System.Windows.Forms.ComboBox();
-            this.labelcomboBoxTemplate = new System.Windows.Forms.Label();
             datoLabel = new System.Windows.Forms.Label();
             tekstLabel = new System.Windows.Forms.Label();
             belobLabel = new System.Windows.Forms.Label();
@@ -77,6 +79,7 @@
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbltemplateBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblkontoudtogBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblbankkontoBindingSourceUafstemte)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblbankkontoBindingNavigator)).BeginInit();
@@ -127,8 +130,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tblbankkonto2DataGridView);
-            this.splitContainer1.Size = new System.Drawing.Size(381, 505);
-            this.splitContainer1.SplitterDistance = 180;
+            this.splitContainer1.Size = new System.Drawing.Size(393, 493);
+            this.splitContainer1.SplitterDistance = 175;
             this.splitContainer1.TabIndex = 7;
             // 
             // splitContainer3
@@ -141,8 +144,9 @@
             // splitContainer3.Panel1
             // 
             this.splitContainer3.Panel1.AutoScroll = true;
-            this.splitContainer3.Panel1.Controls.Add(this.labelcomboBoxTemplate);
-            this.splitContainer3.Panel1.Controls.Add(this.comboBoxTemplate);
+            this.splitContainer3.Panel1.Controls.Add(this.labelcbBankkonto);
+            this.splitContainer3.Panel1.Controls.Add(this.labelcbTemplate);
+            this.splitContainer3.Panel1.Controls.Add(this.cbTemplate);
             this.splitContainer3.Panel1.Controls.Add(this.cmdPrivat);
             this.splitContainer3.Panel1.Controls.Add(this.cbBankkonto);
             this.splitContainer3.Panel1.Controls.Add(this.cmdSog);
@@ -158,17 +162,50 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.tblbankkontoBindingNavigator);
-            this.splitContainer3.Size = new System.Drawing.Size(381, 180);
-            this.splitContainer3.SplitterDistance = 142;
+            this.splitContainer3.Size = new System.Drawing.Size(393, 175);
+            this.splitContainer3.SplitterDistance = 146;
             this.splitContainer3.TabIndex = 0;
+            // 
+            // labelcbBankkonto
+            // 
+            this.labelcbBankkonto.AutoSize = true;
+            this.labelcbBankkonto.Location = new System.Drawing.Point(11, 14);
+            this.labelcbBankkonto.Name = "labelcbBankkonto";
+            this.labelcbBankkonto.Size = new System.Drawing.Size(62, 13);
+            this.labelcbBankkonto.TabIndex = 17;
+            this.labelcbBankkonto.Text = "Kontoudtog";
+            // 
+            // labelcbTemplate
+            // 
+            this.labelcbTemplate.AutoSize = true;
+            this.labelcbTemplate.Location = new System.Drawing.Point(11, 121);
+            this.labelcbTemplate.Name = "labelcbTemplate";
+            this.labelcbTemplate.Size = new System.Drawing.Size(51, 13);
+            this.labelcbTemplate.TabIndex = 16;
+            this.labelcbTemplate.Text = "Template";
+            // 
+            // cbTemplate
+            // 
+            this.cbTemplate.DataSource = this.tbltemplateBindingSource;
+            this.cbTemplate.DisplayMember = "Navn";
+            this.cbTemplate.FormattingEnabled = true;
+            this.cbTemplate.Location = new System.Drawing.Point(97, 114);
+            this.cbTemplate.Name = "cbTemplate";
+            this.cbTemplate.Size = new System.Drawing.Size(190, 21);
+            this.cbTemplate.TabIndex = 15;
+            this.cbTemplate.ValueMember = "Pid";
+            // 
+            // tbltemplateBindingSource
+            // 
+            this.tbltemplateBindingSource.DataSource = typeof(nsPuls3060.Tbltemplate);
             // 
             // cmdPrivat
             // 
-            this.cmdPrivat.Location = new System.Drawing.Point(292, 113);
+            this.cmdPrivat.Location = new System.Drawing.Point(301, 113);
             this.cmdPrivat.Name = "cmdPrivat";
             this.cmdPrivat.Size = new System.Drawing.Size(48, 23);
             this.cmdPrivat.TabIndex = 14;
-            this.cmdPrivat.Text = "Privat";
+            this.cmdPrivat.Text = "Kopier";
             this.cmdPrivat.UseVisualStyleBackColor = true;
             this.cmdPrivat.Click += new System.EventHandler(this.cmdPrivat_Click);
             // 
@@ -177,9 +214,9 @@
             this.cbBankkonto.DataSource = this.tblkontoudtogBindingSource;
             this.cbBankkonto.DisplayMember = "Name";
             this.cbBankkonto.FormattingEnabled = true;
-            this.cbBankkonto.Location = new System.Drawing.Point(15, 11);
+            this.cbBankkonto.Location = new System.Drawing.Point(98, 11);
             this.cbBankkonto.Name = "cbBankkonto";
-            this.cbBankkonto.Size = new System.Drawing.Size(230, 21);
+            this.cbBankkonto.Size = new System.Drawing.Size(189, 21);
             this.cbBankkonto.TabIndex = 9;
             this.cbBankkonto.ValueMember = "Pid";
             this.cbBankkonto.SelectedValueChanged += new System.EventHandler(this.cbBankkonto_SelectedValueChanged);
@@ -190,7 +227,7 @@
             // 
             // cmdSog
             // 
-            this.cmdSog.Location = new System.Drawing.Point(292, 83);
+            this.cmdSog.Location = new System.Drawing.Point(301, 83);
             this.cmdSog.Name = "cmdSog";
             this.cmdSog.Size = new System.Drawing.Size(48, 23);
             this.cmdSog.TabIndex = 8;
@@ -268,14 +305,14 @@
             this.tblbankkontoBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.tblbankkontoBindingNavigator.Name = "tblbankkontoBindingNavigator";
             this.tblbankkontoBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.tblbankkontoBindingNavigator.Size = new System.Drawing.Size(381, 34);
+            this.tblbankkontoBindingNavigator.Size = new System.Drawing.Size(393, 25);
             this.tblbankkontoBindingNavigator.TabIndex = 8;
             this.tblbankkontoBindingNavigator.Text = "bindingNavigator1";
             // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 31);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
@@ -285,7 +322,7 @@
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 31);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMoveFirstItem.Text = "of {0}";
             // 
             // bindingNavigatorMovePreviousItem
@@ -294,13 +331,13 @@
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 31);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMovePreviousItem.Text = "Move previous";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 34);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -314,7 +351,7 @@
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 34);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -322,7 +359,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 31);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMoveNextItem.Text = "of {0}";
             // 
             // bindingNavigatorMoveLastItem
@@ -331,13 +368,13 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 31);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorMoveLastItem.Text = "of {0}";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 34);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // tblbankkonto2DataGridView
             // 
@@ -361,7 +398,7 @@
             this.tblbankkonto2DataGridView.Name = "tblbankkonto2DataGridView";
             this.tblbankkonto2DataGridView.ReadOnly = true;
             this.tblbankkonto2DataGridView.RowHeadersWidth = 15;
-            this.tblbankkonto2DataGridView.Size = new System.Drawing.Size(381, 321);
+            this.tblbankkonto2DataGridView.Size = new System.Drawing.Size(393, 314);
             this.tblbankkonto2DataGridView.TabIndex = 0;
             this.tblbankkonto2DataGridView.SelectionChanged += new System.EventHandler(this.tblbankkonto2DataGridView_SelectionChanged);
             // 
@@ -408,10 +445,10 @@
             // dataGridViewTextBoxColumn14
             // 
             this.dataGridViewTextBoxColumn14.DataPropertyName = "Belob";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.Format = "N2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.dataGridViewTextBoxColumn14.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.dataGridViewTextBoxColumn14.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewTextBoxColumn14.HeaderText = "Belob";
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
             this.dataGridViewTextBoxColumn14.ReadOnly = true;
@@ -437,23 +474,6 @@
             // 
             this.tblbankkontoBindingSourceAfstemte.DataSource = typeof(nsPuls3060.Tblbankkonto);
             // 
-            // comboBoxTemplate
-            // 
-            this.comboBoxTemplate.FormattingEnabled = true;
-            this.comboBoxTemplate.Location = new System.Drawing.Point(97, 114);
-            this.comboBoxTemplate.Name = "comboBoxTemplate";
-            this.comboBoxTemplate.Size = new System.Drawing.Size(190, 21);
-            this.comboBoxTemplate.TabIndex = 15;
-            // 
-            // labelcomboBoxTemplate
-            // 
-            this.labelcomboBoxTemplate.AutoSize = true;
-            this.labelcomboBoxTemplate.Location = new System.Drawing.Point(11, 121);
-            this.labelcomboBoxTemplate.Name = "labelcomboBoxTemplate";
-            this.labelcomboBoxTemplate.Size = new System.Drawing.Size(51, 13);
-            this.labelcomboBoxTemplate.TabIndex = 16;
-            this.labelcomboBoxTemplate.Text = "Template";
-            // 
             // FrmBankkontoudtog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -474,6 +494,7 @@
             this.splitContainer3.Panel2.ResumeLayout(false);
             this.splitContainer3.Panel2.PerformLayout();
             this.splitContainer3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tbltemplateBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblkontoudtogBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblbankkontoBindingSourceUafstemte)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblbankkontoBindingNavigator)).EndInit();
@@ -519,7 +540,9 @@
         private System.Windows.Forms.ComboBox cbBankkonto;
         private System.Windows.Forms.BindingSource tblkontoudtogBindingSource;
         private System.Windows.Forms.Button cmdPrivat;
-        private System.Windows.Forms.Label labelcomboBoxTemplate;
-        private System.Windows.Forms.ComboBox comboBoxTemplate;
+        private System.Windows.Forms.Label labelcbTemplate;
+        private System.Windows.Forms.ComboBox cbTemplate;
+        private System.Windows.Forms.BindingSource tbltemplateBindingSource;
+        private System.Windows.Forms.Label labelcbBankkonto;
     }
 }

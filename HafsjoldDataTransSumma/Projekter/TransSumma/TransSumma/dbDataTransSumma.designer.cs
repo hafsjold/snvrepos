@@ -3503,6 +3503,8 @@ namespace nsPuls3060
 		
 		private string _Momskode;
 		
+		private string _Afstemningskonto;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -3517,6 +3519,8 @@ namespace nsPuls3060
     partial void OnKontoChanged();
     partial void OnMomskodeChanging(string value);
     partial void OnMomskodeChanged();
+    partial void OnAfstemningskontoChanging(string value);
+    partial void OnAfstemningskontoChanged();
     #endregion
 		
 		public Tbltemplate()
@@ -3620,6 +3624,26 @@ namespace nsPuls3060
 					this._Momskode = value;
 					this.SendPropertyChanged("Momskode");
 					this.OnMomskodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="afstemningskonto", Storage="_Afstemningskonto", DbType="NVarChar(50)")]
+		public string Afstemningskonto
+		{
+			get
+			{
+				return this._Afstemningskonto;
+			}
+			set
+			{
+				if ((this._Afstemningskonto != value))
+				{
+					this.OnAfstemningskontoChanging(value);
+					this.SendPropertyChanging();
+					this._Afstemningskonto = value;
+					this.SendPropertyChanged("Afstemningskonto");
+					this.OnAfstemningskontoChanged();
 				}
 			}
 		}

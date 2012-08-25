@@ -81,7 +81,7 @@ namespace nsPuls3060
 
         }
 
-        public void AddNyPrivatKladde(Tbltemplate recTemplate, Tblbankkonto recBankkonto)
+        public void AddNyTemplateKladde(Tbltemplate recTemplate, Tblbankkonto recBankkonto)
         {
             int bilagnr = 0;
 
@@ -111,23 +111,58 @@ namespace nsPuls3060
                 Dato = BankDato
             };
 
-            string WrkAfstemningskonto;
-            try
+            string WrkTekst;
+            if ((recTemplate.Tekst != null) && (recTemplate.Tekst.Length > 0))
             {
-                WrkAfstemningskonto = (from w in Program.dbDataTransSumma.Tblkontoudtog where w.Pid == recBankkonto.Bankkontoid select w).First().Afstemningskonto;
+                WrkTekst = recTemplate.Tekst;
             }
-            catch
+            else
             {
-                WrkAfstemningskonto = "";
+                WrkTekst = recBankkonto.Tekst;
+            }
+
+
+            string WrkAfstemningskonto;
+            if ((recTemplate.Afstemningskonto != null) && (recTemplate.Afstemningskonto.Length > 0))
+            {
+                WrkAfstemningskonto = recTemplate.Afstemningskonto;
+            }
+            else
+            {
+                try
+                {
+                    WrkAfstemningskonto = (from w in Program.dbDataTransSumma.Tblkontoudtog where w.Pid == recBankkonto.Bankkontoid select w).First().Afstemningskonto;
+                }
+                catch
+                {
+                    WrkAfstemningskonto = "";
+                }
+            }
+
+            string WrkMomskode;
+            if ((recTemplate.Momskode != null) && (recTemplate.Momskode.Length > 0))
+            {
+                WrkMomskode = recTemplate.Momskode;
+            }
+            else
+            {
+                try
+                {
+                    WrkMomskode = (from w in Program.karKontoplan where w.Kontonr == recTemplate.Konto select w).First().Moms;
+                }
+                catch
+                {
+                    WrkMomskode = "";
+                }
             }
 
             Tblwkladder recWkladder = new Tblwkladder
             {
-                Tekst = recBankkonto.Tekst,
+                Tekst = WrkTekst,
                 Afstemningskonto = WrkAfstemningskonto,
                 Belob = (decimal)recBankkonto.Belob,
                 Konto = recTemplate.Konto,
-                Momskode = recTemplate.Momskode
+                Momskode = WrkMomskode
             };
             recwBilag.Tblwkladder.Add(recWkladder);
             this.tblwbilagBindingSource.Add(recwBilag);

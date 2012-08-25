@@ -44,6 +44,8 @@ namespace nsPuls3060
 #if (DEBUG)
             testToolStripMenuItem.Visible = true;
 #endif
+
+
             if (clsUtil.IsProcessOpen("Summa"))
             {
                 DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
@@ -79,6 +81,22 @@ namespace nsPuls3060
                 object ReadKontoplan = Program.karKontoplan;
                 Program.path_to_lock_summasummarum_kontoplan = rec_regnskab.Placering + "kontoplan.dat";
                 Program.filestream_to_lock_summasummarum_kontoplan = new FileStream(Program.path_to_lock_summasummarum_kontoplan, FileMode.Open, FileAccess.Read, FileShare.None);
+            }
+
+            if (Program.HafsjoldDataApS)
+            {
+                importDanskebankToolStripMenuItem.Visible = true;
+                importerMasterCardToolStripMenuItem.Visible = true;
+                importActebisToolStripMenuItem.Visible = true;
+                actebisFakturaToolStripMenuItem.Visible = true;
+                toolStripButtonPrintBilag.Visible = true;
+                toolStripSeparator3.Visible = true;
+                printBilagToolStripMenuItem.Visible = true;
+            }
+
+            if (Program.Puls3060)
+            {
+                importNordeaToolStripMenuItem.Visible = true;
             }
         }
 
@@ -334,24 +352,24 @@ namespace nsPuls3060
             bankKontoudtogToolStripMenuItem_Click(sender, e);
         }
 
-        private void importerNordeaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            KarBankkontoudtogNordea recBankkontoudtogNordea = new KarBankkontoudtogNordea();
-            recBankkontoudtogNordea.load();
-        }
-
         private void importDanskebankToolStripMenuItem_Click(object sender, EventArgs e)
         {
             KarBankkontoudtogDanskebank recBankkontoudtogDanskebank = new KarBankkontoudtogDanskebank(1);
             recBankkontoudtogDanskebank.load();
         }
         
-        private void importDanskebank2ToolStripMenuItem_Click(object sender, EventArgs e)
+        private void importMasterCardToolStripMenuItem_Click(object sender, EventArgs e)
         {
             KarBankkontoudtogDanskebank recBankkontoudtogDanskebank = new KarBankkontoudtogDanskebank(2);
             recBankkontoudtogDanskebank.load();
         }
-        
+         
+        private void importNordeaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KarBankkontoudtogNordea recBankkontoudtogNordea = new KarBankkontoudtogNordea(3);
+            recBankkontoudtogNordea.load();
+        }
+       
         private void printBilagToolStripMenuItem_Click(object sender, EventArgs e)
         {
             clsBilagsudskrift.Bilagsudskrift(false);
@@ -432,6 +450,8 @@ namespace nsPuls3060
                 m_Actebisfaktura.Show();
             }
         }
+
+
 
     }
 

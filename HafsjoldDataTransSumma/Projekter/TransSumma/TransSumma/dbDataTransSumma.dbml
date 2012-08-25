@@ -168,6 +168,7 @@
       <Column Name="tekst" Member="Tekst" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="konto" Member="Konto" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="momskode" Member="Momskode" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="afstemningskonto" Member="Afstemningskonto" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </Type>
   </Table>
   <Table Name="tbltrans" Member="Tbltrans">

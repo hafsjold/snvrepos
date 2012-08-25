@@ -22,9 +22,10 @@ namespace nsPuls3060
 
         private void FrmKladder_Load(object sender, EventArgs e)
         {
-            this.tblkontoudtogBindingSource.DataSource = Program.dbDataTransSumma.Tblkontoudtog;
+           this.tbltemplateBindingSource.DataSource = Program.dbDataTransSumma.Tbltemplate;
+           this.tblkontoudtogBindingSource.DataSource = Program.dbDataTransSumma.Tblkontoudtog;
             cbBankkonto.SelectedValue = (int)1;
-            
+ 
             setKontoudtog(1);
             setBindingsorces();
         }
@@ -132,9 +133,9 @@ namespace nsPuls3060
             try
             {
                 FrmNyekladder frmNyekladder = frmMain.GetChild("Nye kladder") as FrmNyekladder;
-                Tbltemplate recTemplate = (from w in Program.dbDataTransSumma.Tbltemplate where w.Pid == 1 select w).First();
+                Tbltemplate recTemplate = this.tbltemplateBindingSource.Current as Tbltemplate;
                 Tblbankkonto recBankkonto = this.tblbankkontoBindingSourceUafstemte.Current as Tblbankkonto;
-                frmNyekladder.AddNyPrivatKladde(recTemplate, recBankkonto);
+                frmNyekladder.AddNyTemplateKladde(recTemplate, recBankkonto);
             }
             catch { }
         }

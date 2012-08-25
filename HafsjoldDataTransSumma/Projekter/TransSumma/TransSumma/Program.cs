@@ -348,6 +348,32 @@ namespace nsPuls3060
                 };
             }
         }
+        public static bool HafsjoldDataApS
+        {
+            get
+            {
+                recMemRegnskab AktivRegnskab = Program.qryAktivRegnskab();
+                string Firma = AktivRegnskab.Firmanavn;
+                if (Firma == @"Hafsjold Data ApS")
+                    return true;
+                else
+                    return false;
+            }
+        }
+
+        public static bool Puls3060
+        {
+            get
+            {
+                recMemRegnskab AktivRegnskab = Program.qryAktivRegnskab();
+                string Firma = AktivRegnskab.Firmanavn;
+                if (Firma == @"Løbeklubben PULS 3060")
+                    return true;
+                else
+                    return false;
+            }
+        }
+
         public static FrmMain frmMain { get; set; }
 
         /// <summary>
