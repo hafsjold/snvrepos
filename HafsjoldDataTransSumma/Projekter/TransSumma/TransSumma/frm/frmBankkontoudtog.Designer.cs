@@ -33,7 +33,7 @@
             System.Windows.Forms.Label tekstLabel;
             System.Windows.Forms.Label belobLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBankkontoudtog));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.labelcbBankkonto = new System.Windows.Forms.Label();
@@ -130,8 +130,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tblbankkonto2DataGridView);
-            this.splitContainer1.Size = new System.Drawing.Size(393, 493);
-            this.splitContainer1.SplitterDistance = 175;
+            this.splitContainer1.Size = new System.Drawing.Size(393, 416);
+            this.splitContainer1.SplitterDistance = 147;
             this.splitContainer1.TabIndex = 7;
             // 
             // splitContainer3
@@ -162,8 +162,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.tblbankkontoBindingNavigator);
-            this.splitContainer3.Size = new System.Drawing.Size(393, 175);
-            this.splitContainer3.SplitterDistance = 146;
+            this.splitContainer3.Size = new System.Drawing.Size(393, 147);
+            this.splitContainer3.SplitterDistance = 118;
             this.splitContainer3.TabIndex = 0;
             // 
             // labelcbBankkonto
@@ -398,7 +398,7 @@
             this.tblbankkonto2DataGridView.Name = "tblbankkonto2DataGridView";
             this.tblbankkonto2DataGridView.ReadOnly = true;
             this.tblbankkonto2DataGridView.RowHeadersWidth = 15;
-            this.tblbankkonto2DataGridView.Size = new System.Drawing.Size(393, 314);
+            this.tblbankkonto2DataGridView.Size = new System.Drawing.Size(393, 265);
             this.tblbankkonto2DataGridView.TabIndex = 0;
             this.tblbankkonto2DataGridView.SelectionChanged += new System.EventHandler(this.tblbankkonto2DataGridView_SelectionChanged);
             // 
@@ -445,10 +445,10 @@
             // dataGridViewTextBoxColumn14
             // 
             this.dataGridViewTextBoxColumn14.DataPropertyName = "Belob";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.dataGridViewTextBoxColumn14.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.dataGridViewTextBoxColumn14.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewTextBoxColumn14.HeaderText = "Belob";
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
             this.dataGridViewTextBoxColumn14.ReadOnly = true;

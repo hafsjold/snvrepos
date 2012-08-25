@@ -37,8 +37,7 @@ namespace nsPuls3060
             this.lvwAfstemTrans.ListViewItemSorter = lvwAfstemTrans_ColumnSorter;
 
             this.tblkontoudtogBindingSource.DataSource = Program.dbDataTransSumma.Tblkontoudtog;
-            cbBankkonto.SelectedValue = (int)1;
-            setKontoudtog(1);
+            m_recKontoudtog = (from w in Program.dbDataTransSumma.Tblkontoudtog select w).First();
         }
 
         private void setKontoudtog(int bankkontoid)

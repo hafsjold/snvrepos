@@ -24,10 +24,8 @@ namespace nsPuls3060
         {
            this.tbltemplateBindingSource.DataSource = Program.dbDataTransSumma.Tbltemplate;
            this.tblkontoudtogBindingSource.DataSource = Program.dbDataTransSumma.Tblkontoudtog;
-            cbBankkonto.SelectedValue = (int)1;
- 
-            setKontoudtog(1);
-            setBindingsorces();
+           m_recKontoudtog = (from w in Program.dbDataTransSumma.Tblkontoudtog select w).First();
+           setBindingsorces();
         }
 
         private void setKontoudtog(int bankkontoid) 
