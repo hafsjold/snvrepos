@@ -623,5 +623,29 @@ namespace nsPuls3060.Properties {
                 this["frmTemplateWinState"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("324, 250")]
+        public global::System.Drawing.Size frmKontoudtogSize {
+            get {
+                return ((global::System.Drawing.Size)(this["frmKontoudtogSize"]));
+            }
+            set {
+                this["frmKontoudtogSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point frmKontoudtogLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["frmKontoudtogLocation"]));
+            }
+            set {
+                this["frmKontoudtogLocation"] = value;
+            }
+        }
     }
 }

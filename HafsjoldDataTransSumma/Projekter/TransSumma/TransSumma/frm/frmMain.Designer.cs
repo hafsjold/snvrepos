@@ -63,6 +63,7 @@
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.varekontoTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.actebisFakturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.templatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -74,7 +75,7 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonIndtastBilag = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.templatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.kontoudtogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -340,7 +341,8 @@
             this.toolStripMenuItem2,
             this.varekontoTypeToolStripMenuItem,
             this.actebisFakturaToolStripMenuItem,
-            this.templatesToolStripMenuItem});
+            this.templatesToolStripMenuItem,
+            this.kontoudtogToolStripMenuItem});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
             this.systemToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.systemToolStripMenuItem.Text = "System";
@@ -366,6 +368,13 @@
             this.actebisFakturaToolStripMenuItem.Text = "Actebis Faktura";
             this.actebisFakturaToolStripMenuItem.Visible = false;
             this.actebisFakturaToolStripMenuItem.Click += new System.EventHandler(this.actebisFakturaToolStripMenuItem_Click);
+            // 
+            // templatesToolStripMenuItem
+            // 
+            this.templatesToolStripMenuItem.Name = "templatesToolStripMenuItem";
+            this.templatesToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.templatesToolStripMenuItem.Text = "Templates";
+            this.templatesToolStripMenuItem.Click += new System.EventHandler(this.templatesToolStripMenuItem_Click);
             // 
             // hjælpToolStripMenuItem
             // 
@@ -462,12 +471,12 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
-            // templatesToolStripMenuItem
+            // kontoudtogToolStripMenuItem
             // 
-            this.templatesToolStripMenuItem.Name = "templatesToolStripMenuItem";
-            this.templatesToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.templatesToolStripMenuItem.Text = "Templates";
-            this.templatesToolStripMenuItem.Click += new System.EventHandler(this.templatesToolStripMenuItem_Click);
+            this.kontoudtogToolStripMenuItem.Name = "kontoudtogToolStripMenuItem";
+            this.kontoudtogToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.kontoudtogToolStripMenuItem.Text = "Kontoudtog";
+            this.kontoudtogToolStripMenuItem.Click += new System.EventHandler(this.kontoudtogToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -547,6 +556,7 @@
         private System.Windows.Forms.ToolStripMenuItem actebisFakturaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importNordeaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem templatesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem kontoudtogToolStripMenuItem;
     }
 }
 

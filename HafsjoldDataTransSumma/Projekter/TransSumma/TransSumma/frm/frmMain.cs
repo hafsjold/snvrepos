@@ -461,6 +461,16 @@ namespace nsPuls3060
             }
         }
 
+        private void kontoudtogToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("Kontoudtog"))
+            {
+                FrmKontoudtog m_Kontoudtog = new FrmKontoudtog();
+                m_Kontoudtog.MdiParent = this;
+                m_Kontoudtog.Show();
+            }
+        }
+
 
 
     }
