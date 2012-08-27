@@ -323,8 +323,24 @@
     </Compile>
     <None Include="Properties\DataSources\tblactebisfaktura.datasource" />
     <None Include="Properties\DataSources\tblactebisordre.datasource" />
+    <None Include="Properties\DataSources\tblafstem.datasource" />
+    <None Include="Properties\DataSources\tblbankafsteminit.datasource" />
+    <None Include="Properties\DataSources\tblbankkonto.datasource" />
+    <None Include="Properties\DataSources\tblbilag.datasource" />
     <None Include="Properties\DataSources\tblfak.datasource" />
     <None Include="Properties\DataSources\tblfaklin.datasource" />
+    <None Include="Properties\DataSources\tblkladder.datasource" />
+    <None Include="Properties\DataSources\tblkonto.datasource" />
+    <None Include="Properties\DataSources\tblkontoudtog.datasource" />
+    <None Include="Properties\DataSources\tblnrserie.datasource" />
+    <None Include="Properties\DataSources\tblregnskab.datasource" />
+    <None Include="Properties\DataSources\tbltemplate.datasource" />
+    <None Include="Properties\DataSources\tbltran.datasource" />
+    <None Include="Properties\DataSources\tblvareomkostninger.datasource" />
+    <None Include="Properties\DataSources\tblwbilag.datasource" />
+    <None Include="Properties\DataSources\tblwfak.datasource" />
+    <None Include="Properties\DataSources\tblwfaklin.datasource" />
+    <None Include="Properties\DataSources\tblwkladder.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
