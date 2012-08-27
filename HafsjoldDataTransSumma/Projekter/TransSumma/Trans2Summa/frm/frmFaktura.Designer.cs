@@ -34,14 +34,10 @@
             System.Windows.Forms.Label datoLabel;
             System.Windows.Forms.Label kontoLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmFaktura));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tblfakBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            Trans2Summa.Properties.Settings settings1 = new Trans2Summa.Properties.Settings();
+            this.bnTblfak = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.tblfakBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bsTblfak = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -53,7 +49,7 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tblfakBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.tblfaklinBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bsTblfaklin = new System.Windows.Forms.BindingSource(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.labelKontonavn = new System.Windows.Forms.Label();
             this.checkBoxSalg = new System.Windows.Forms.CheckBox();
@@ -65,38 +61,39 @@
             this.kontoTextBox = new System.Windows.Forms.TextBox();
             this.Sogeordlabel = new System.Windows.Forms.Label();
             this.textBoxSogeord = new System.Windows.Forms.TextBox();
+            this.cmdKopier = new System.Windows.Forms.Button();
             this.cmdSog = new System.Windows.Forms.Button();
             this.tblfaklinDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxPid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxFakpid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxRegnskabid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxSk = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxFakid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxFaklinnr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxVarenr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxTekst = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxKonto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxMK = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxAntal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxEnhed = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxPris = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxRabat = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxMoms = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxNettobelob = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxBruttobelob = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxOmkostbelob = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxTblfak = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuLineCopyPaste = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cmdKopier = new System.Windows.Forms.Button();
+            this.pidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fakpidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.regnskabidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.skDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fakidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.faklinnrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.varenrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tekstDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kontoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.momskodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.antalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.enhedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.prisDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rabatDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.momsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nettobelobDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bruttobelobDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.omkostbelobDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblfakDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             skLabel = new System.Windows.Forms.Label();
             faknrLabel = new System.Windows.Forms.Label();
             datoLabel = new System.Windows.Forms.Label();
             kontoLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.tblfakBindingNavigator)).BeginInit();
-            this.tblfakBindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tblfakBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tblfaklinBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bnTblfak)).BeginInit();
+            this.bnTblfak.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTblfak)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTblfaklin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -140,14 +137,14 @@
             kontoLabel.TabIndex = 9;
             kontoLabel.Text = "Konto";
             // 
-            // tblfakBindingNavigator
+            // bnTblfak
             // 
-            this.tblfakBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
-            this.tblfakBindingNavigator.BindingSource = this.tblfakBindingSource;
-            this.tblfakBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.tblfakBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
-            this.tblfakBindingNavigator.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tblfakBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bnTblfak.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.bnTblfak.BindingSource = this.bsTblfak;
+            this.bnTblfak.CountItem = this.bindingNavigatorCountItem;
+            this.bnTblfak.DeleteItem = this.bindingNavigatorDeleteItem;
+            this.bnTblfak.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.bnTblfak.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
             this.bindingNavigatorMovePreviousItem,
             this.bindingNavigatorSeparator,
@@ -160,16 +157,16 @@
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
             this.tblfakBindingNavigatorSaveItem});
-            this.tblfakBindingNavigator.Location = new System.Drawing.Point(0, 235);
-            this.tblfakBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
-            this.tblfakBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
-            this.tblfakBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
-            this.tblfakBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
-            this.tblfakBindingNavigator.Name = "tblfakBindingNavigator";
-            this.tblfakBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.tblfakBindingNavigator.Size = new System.Drawing.Size(825, 25);
-            this.tblfakBindingNavigator.TabIndex = 0;
-            this.tblfakBindingNavigator.Text = "bindingNavigator1";
+            this.bnTblfak.Location = new System.Drawing.Point(0, 235);
+            this.bnTblfak.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
+            this.bnTblfak.MoveLastItem = this.bindingNavigatorMoveLastItem;
+            this.bnTblfak.MoveNextItem = this.bindingNavigatorMoveNextItem;
+            this.bnTblfak.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
+            this.bnTblfak.Name = "bnTblfak";
+            this.bnTblfak.PositionItem = this.bindingNavigatorPositionItem;
+            this.bnTblfak.Size = new System.Drawing.Size(825, 25);
+            this.bnTblfak.TabIndex = 0;
+            this.bnTblfak.Text = "bindingNavigator1";
             // 
             // bindingNavigatorAddNewItem
             // 
@@ -180,14 +177,14 @@
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorAddNewItem.Text = "Add new";
             // 
-            // tblfakBindingSource
+            // bsTblfak
             // 
-            this.tblfakBindingSource.DataSource = typeof(Trans2Summa.tblfak);
+            this.bsTblfak.DataSource = typeof(Trans2Summa.tblfak);
             // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(36, 22);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
@@ -269,10 +266,10 @@
             this.tblfakBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
             this.tblfakBindingNavigatorSaveItem.Text = "Save Data";
             // 
-            // tblfaklinBindingSource
+            // bsTblfaklin
             // 
-            this.tblfaklinBindingSource.DataMember = "Tblfaklin";
-            this.tblfaklinBindingSource.DataSource = this.tblfakBindingSource;
+            this.bsTblfaklin.DataMember = "tblfaklins";
+            this.bsTblfaklin.DataSource = this.bsTblfak;
             // 
             // splitContainer1
             // 
@@ -359,7 +356,7 @@
             // skTextBox
             // 
             this.skTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.skTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tblfakBindingSource, "Sk", true));
+            this.skTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsTblfak, "Sk", true));
             this.skTextBox.Location = new System.Drawing.Point(48, 12);
             this.skTextBox.Name = "skTextBox";
             this.skTextBox.ReadOnly = true;
@@ -369,7 +366,7 @@
             // faknrTextBox
             // 
             this.faknrTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.faknrTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tblfakBindingSource, "Faknr", true));
+            this.faknrTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsTblfak, "Faknr", true));
             this.faknrTextBox.Location = new System.Drawing.Point(223, 12);
             this.faknrTextBox.Name = "faknrTextBox";
             this.faknrTextBox.ReadOnly = true;
@@ -379,7 +376,7 @@
             // datoTextBox
             // 
             this.datoTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.datoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tblfakBindingSource, "Dato", true));
+            this.datoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsTblfak, "Dato", true));
             this.datoTextBox.Location = new System.Drawing.Point(118, 12);
             this.datoTextBox.Name = "datoTextBox";
             this.datoTextBox.ReadOnly = true;
@@ -389,7 +386,7 @@
             // kontoTextBox
             // 
             this.kontoTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.kontoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tblfakBindingSource, "Konto", true));
+            this.kontoTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsTblfak, "Konto", true));
             this.kontoTextBox.Location = new System.Drawing.Point(48, 38);
             this.kontoTextBox.Name = "kontoTextBox";
             this.kontoTextBox.ReadOnly = true;
@@ -413,6 +410,16 @@
             this.textBoxSogeord.Size = new System.Drawing.Size(102, 20);
             this.textBoxSogeord.TabIndex = 1;
             // 
+            // cmdKopier
+            // 
+            this.cmdKopier.Location = new System.Drawing.Point(733, 11);
+            this.cmdKopier.Name = "cmdKopier";
+            this.cmdKopier.Size = new System.Drawing.Size(50, 23);
+            this.cmdKopier.TabIndex = 2;
+            this.cmdKopier.Text = "Kopier";
+            this.cmdKopier.UseVisualStyleBackColor = true;
+            this.cmdKopier.Click += new System.EventHandler(this.cmdKopier_Click);
+            // 
             // cmdSog
             // 
             this.cmdSog.Location = new System.Drawing.Point(529, 12);
@@ -430,27 +437,27 @@
             this.tblfaklinDataGridView.AutoGenerateColumns = false;
             this.tblfaklinDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblfaklinDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxPid,
-            this.dataGridViewTextBoxFakpid,
-            this.dataGridViewTextBoxRegnskabid,
-            this.dataGridViewTextBoxSk,
-            this.dataGridViewTextBoxFakid,
-            this.dataGridViewTextBoxFaklinnr,
-            this.dataGridViewTextBoxVarenr,
-            this.dataGridViewTextBoxTekst,
-            this.dataGridViewTextBoxKonto,
-            this.dataGridViewTextBoxMK,
-            this.dataGridViewTextBoxAntal,
-            this.dataGridViewTextBoxEnhed,
-            this.dataGridViewTextBoxPris,
-            this.dataGridViewTextBoxRabat,
-            this.dataGridViewTextBoxMoms,
-            this.dataGridViewTextBoxNettobelob,
-            this.dataGridViewTextBoxBruttobelob,
-            this.dataGridViewTextBoxOmkostbelob,
-            this.dataGridViewTextBoxTblfak});
+            this.pidDataGridViewTextBoxColumn,
+            this.fakpidDataGridViewTextBoxColumn,
+            this.regnskabidDataGridViewTextBoxColumn,
+            this.skDataGridViewTextBoxColumn,
+            this.fakidDataGridViewTextBoxColumn,
+            this.faklinnrDataGridViewTextBoxColumn,
+            this.varenrDataGridViewTextBoxColumn,
+            this.tekstDataGridViewTextBoxColumn,
+            this.kontoDataGridViewTextBoxColumn,
+            this.momskodeDataGridViewTextBoxColumn,
+            this.antalDataGridViewTextBoxColumn,
+            this.enhedDataGridViewTextBoxColumn,
+            this.prisDataGridViewTextBoxColumn,
+            this.rabatDataGridViewTextBoxColumn,
+            this.momsDataGridViewTextBoxColumn,
+            this.nettobelobDataGridViewTextBoxColumn,
+            this.bruttobelobDataGridViewTextBoxColumn,
+            this.omkostbelobDataGridViewTextBoxColumn,
+            this.tblfakDataGridViewTextBoxColumn});
             this.tblfaklinDataGridView.ContextMenuStrip = this.contextMenuLineCopyPaste;
-            this.tblfaklinDataGridView.DataSource = this.tblfaklinBindingSource;
+            this.tblfaklinDataGridView.DataSource = this.bsTblfaklin;
             this.tblfaklinDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblfaklinDataGridView.Location = new System.Drawing.Point(0, 0);
             this.tblfaklinDataGridView.Name = "tblfaklinDataGridView";
@@ -458,178 +465,6 @@
             this.tblfaklinDataGridView.Size = new System.Drawing.Size(825, 166);
             this.tblfaklinDataGridView.TabIndex = 99;
             this.tblfaklinDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tblfaklinDataGridView_KeyDown);
-            // 
-            // dataGridViewTextBoxPid
-            // 
-            this.dataGridViewTextBoxPid.DataPropertyName = "Pid";
-            this.dataGridViewTextBoxPid.HeaderText = "Pid";
-            this.dataGridViewTextBoxPid.Name = "dataGridViewTextBoxPid";
-            this.dataGridViewTextBoxPid.ReadOnly = true;
-            this.dataGridViewTextBoxPid.Visible = false;
-            // 
-            // dataGridViewTextBoxFakpid
-            // 
-            this.dataGridViewTextBoxFakpid.DataPropertyName = "Fakpid";
-            this.dataGridViewTextBoxFakpid.HeaderText = "Fakpid";
-            this.dataGridViewTextBoxFakpid.Name = "dataGridViewTextBoxFakpid";
-            this.dataGridViewTextBoxFakpid.ReadOnly = true;
-            this.dataGridViewTextBoxFakpid.Visible = false;
-            // 
-            // dataGridViewTextBoxRegnskabid
-            // 
-            this.dataGridViewTextBoxRegnskabid.DataPropertyName = "Regnskabid";
-            this.dataGridViewTextBoxRegnskabid.HeaderText = "Regnskabid";
-            this.dataGridViewTextBoxRegnskabid.Name = "dataGridViewTextBoxRegnskabid";
-            this.dataGridViewTextBoxRegnskabid.ReadOnly = true;
-            this.dataGridViewTextBoxRegnskabid.Visible = false;
-            // 
-            // dataGridViewTextBoxSk
-            // 
-            this.dataGridViewTextBoxSk.DataPropertyName = "Sk";
-            this.dataGridViewTextBoxSk.HeaderText = "Sk";
-            this.dataGridViewTextBoxSk.Name = "dataGridViewTextBoxSk";
-            this.dataGridViewTextBoxSk.ReadOnly = true;
-            this.dataGridViewTextBoxSk.Visible = false;
-            // 
-            // dataGridViewTextBoxFakid
-            // 
-            this.dataGridViewTextBoxFakid.DataPropertyName = "Fakid";
-            this.dataGridViewTextBoxFakid.HeaderText = "Fakid";
-            this.dataGridViewTextBoxFakid.Name = "dataGridViewTextBoxFakid";
-            this.dataGridViewTextBoxFakid.ReadOnly = true;
-            this.dataGridViewTextBoxFakid.Visible = false;
-            // 
-            // dataGridViewTextBoxFaklinnr
-            // 
-            this.dataGridViewTextBoxFaklinnr.DataPropertyName = "Faklinnr";
-            this.dataGridViewTextBoxFaklinnr.HeaderText = "Faklinnr";
-            this.dataGridViewTextBoxFaklinnr.Name = "dataGridViewTextBoxFaklinnr";
-            this.dataGridViewTextBoxFaklinnr.ReadOnly = true;
-            this.dataGridViewTextBoxFaklinnr.Visible = false;
-            // 
-            // dataGridViewTextBoxVarenr
-            // 
-            this.dataGridViewTextBoxVarenr.DataPropertyName = "Varenr";
-            this.dataGridViewTextBoxVarenr.HeaderText = "Varenr";
-            this.dataGridViewTextBoxVarenr.Name = "dataGridViewTextBoxVarenr";
-            this.dataGridViewTextBoxVarenr.ReadOnly = true;
-            this.dataGridViewTextBoxVarenr.Width = 80;
-            // 
-            // dataGridViewTextBoxTekst
-            // 
-            this.dataGridViewTextBoxTekst.DataPropertyName = "Tekst";
-            this.dataGridViewTextBoxTekst.HeaderText = "Tekst";
-            this.dataGridViewTextBoxTekst.Name = "dataGridViewTextBoxTekst";
-            this.dataGridViewTextBoxTekst.ReadOnly = true;
-            this.dataGridViewTextBoxTekst.Width = 200;
-            // 
-            // dataGridViewTextBoxKonto
-            // 
-            this.dataGridViewTextBoxKonto.DataPropertyName = "Konto";
-            this.dataGridViewTextBoxKonto.HeaderText = "Konto";
-            this.dataGridViewTextBoxKonto.Name = "dataGridViewTextBoxKonto";
-            this.dataGridViewTextBoxKonto.ReadOnly = true;
-            this.dataGridViewTextBoxKonto.Width = 60;
-            // 
-            // dataGridViewTextBoxMK
-            // 
-            this.dataGridViewTextBoxMK.DataPropertyName = "Momskode";
-            this.dataGridViewTextBoxMK.HeaderText = "MK";
-            this.dataGridViewTextBoxMK.Name = "dataGridViewTextBoxMK";
-            this.dataGridViewTextBoxMK.ReadOnly = true;
-            this.dataGridViewTextBoxMK.Width = 40;
-            // 
-            // dataGridViewTextBoxAntal
-            // 
-            this.dataGridViewTextBoxAntal.DataPropertyName = "Antal";
-            this.dataGridViewTextBoxAntal.HeaderText = "Antal";
-            this.dataGridViewTextBoxAntal.Name = "dataGridViewTextBoxAntal";
-            this.dataGridViewTextBoxAntal.ReadOnly = true;
-            this.dataGridViewTextBoxAntal.Width = 40;
-            // 
-            // dataGridViewTextBoxEnhed
-            // 
-            this.dataGridViewTextBoxEnhed.DataPropertyName = "Enhed";
-            this.dataGridViewTextBoxEnhed.HeaderText = "Enhed";
-            this.dataGridViewTextBoxEnhed.Name = "dataGridViewTextBoxEnhed";
-            this.dataGridViewTextBoxEnhed.ReadOnly = true;
-            this.dataGridViewTextBoxEnhed.Width = 40;
-            // 
-            // dataGridViewTextBoxPris
-            // 
-            this.dataGridViewTextBoxPris.DataPropertyName = "Pris";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle11.Format = "N2";
-            dataGridViewCellStyle11.NullValue = null;
-            this.dataGridViewTextBoxPris.DefaultCellStyle = dataGridViewCellStyle11;
-            this.dataGridViewTextBoxPris.HeaderText = "Pris";
-            this.dataGridViewTextBoxPris.Name = "dataGridViewTextBoxPris";
-            this.dataGridViewTextBoxPris.ReadOnly = true;
-            this.dataGridViewTextBoxPris.Width = 60;
-            // 
-            // dataGridViewTextBoxRabat
-            // 
-            this.dataGridViewTextBoxRabat.DataPropertyName = "Rabat";
-            this.dataGridViewTextBoxRabat.HeaderText = "Rabat";
-            this.dataGridViewTextBoxRabat.Name = "dataGridViewTextBoxRabat";
-            this.dataGridViewTextBoxRabat.ReadOnly = true;
-            this.dataGridViewTextBoxRabat.Visible = false;
-            // 
-            // dataGridViewTextBoxMoms
-            // 
-            this.dataGridViewTextBoxMoms.DataPropertyName = "Moms";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle12.Format = "N2";
-            dataGridViewCellStyle12.NullValue = null;
-            this.dataGridViewTextBoxMoms.DefaultCellStyle = dataGridViewCellStyle12;
-            this.dataGridViewTextBoxMoms.HeaderText = "Moms";
-            this.dataGridViewTextBoxMoms.Name = "dataGridViewTextBoxMoms";
-            this.dataGridViewTextBoxMoms.ReadOnly = true;
-            this.dataGridViewTextBoxMoms.Width = 60;
-            // 
-            // dataGridViewTextBoxNettobelob
-            // 
-            this.dataGridViewTextBoxNettobelob.DataPropertyName = "Nettobelob";
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle13.Format = "N2";
-            dataGridViewCellStyle13.NullValue = null;
-            this.dataGridViewTextBoxNettobelob.DefaultCellStyle = dataGridViewCellStyle13;
-            this.dataGridViewTextBoxNettobelob.HeaderText = "Nettobelob";
-            this.dataGridViewTextBoxNettobelob.Name = "dataGridViewTextBoxNettobelob";
-            this.dataGridViewTextBoxNettobelob.ReadOnly = true;
-            this.dataGridViewTextBoxNettobelob.Width = 70;
-            // 
-            // dataGridViewTextBoxBruttobelob
-            // 
-            this.dataGridViewTextBoxBruttobelob.DataPropertyName = "Bruttobelob";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle14.Format = "N2";
-            dataGridViewCellStyle14.NullValue = null;
-            this.dataGridViewTextBoxBruttobelob.DefaultCellStyle = dataGridViewCellStyle14;
-            this.dataGridViewTextBoxBruttobelob.HeaderText = "Bruttobelob";
-            this.dataGridViewTextBoxBruttobelob.Name = "dataGridViewTextBoxBruttobelob";
-            this.dataGridViewTextBoxBruttobelob.ReadOnly = true;
-            this.dataGridViewTextBoxBruttobelob.Width = 70;
-            // 
-            // dataGridViewTextBoxOmkostbelob
-            // 
-            this.dataGridViewTextBoxOmkostbelob.DataPropertyName = "Omkostbelob";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle15.Format = "N2";
-            dataGridViewCellStyle15.NullValue = null;
-            this.dataGridViewTextBoxOmkostbelob.DefaultCellStyle = dataGridViewCellStyle15;
-            this.dataGridViewTextBoxOmkostbelob.HeaderText = "Omk";
-            this.dataGridViewTextBoxOmkostbelob.Name = "dataGridViewTextBoxOmkostbelob";
-            this.dataGridViewTextBoxOmkostbelob.ReadOnly = true;
-            this.dataGridViewTextBoxOmkostbelob.Width = 50;
-            // 
-            // dataGridViewTextBoxTblfak
-            // 
-            this.dataGridViewTextBoxTblfak.DataPropertyName = "Tblfak";
-            this.dataGridViewTextBoxTblfak.HeaderText = "Tblfak";
-            this.dataGridViewTextBoxTblfak.Name = "dataGridViewTextBoxTblfak";
-            this.dataGridViewTextBoxTblfak.ReadOnly = true;
-            this.dataGridViewTextBoxTblfak.Visible = false;
             // 
             // contextMenuLineCopyPaste
             // 
@@ -645,38 +480,234 @@
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
             // 
-            // cmdKopier
+            // pidDataGridViewTextBoxColumn
             // 
-            this.cmdKopier.Location = new System.Drawing.Point(733, 11);
-            this.cmdKopier.Name = "cmdKopier";
-            this.cmdKopier.Size = new System.Drawing.Size(50, 23);
-            this.cmdKopier.TabIndex = 2;
-            this.cmdKopier.Text = "Kopier";
-            this.cmdKopier.UseVisualStyleBackColor = true;
-            this.cmdKopier.Click += new System.EventHandler(this.cmdKopier_Click);
+            this.pidDataGridViewTextBoxColumn.DataPropertyName = "pid";
+            this.pidDataGridViewTextBoxColumn.HeaderText = "pid";
+            this.pidDataGridViewTextBoxColumn.Name = "pidDataGridViewTextBoxColumn";
+            this.pidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.pidDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // fakpidDataGridViewTextBoxColumn
+            // 
+            this.fakpidDataGridViewTextBoxColumn.DataPropertyName = "fakpid";
+            this.fakpidDataGridViewTextBoxColumn.HeaderText = "fakpid";
+            this.fakpidDataGridViewTextBoxColumn.Name = "fakpidDataGridViewTextBoxColumn";
+            this.fakpidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fakpidDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // regnskabidDataGridViewTextBoxColumn
+            // 
+            this.regnskabidDataGridViewTextBoxColumn.DataPropertyName = "regnskabid";
+            this.regnskabidDataGridViewTextBoxColumn.HeaderText = "regnskabid";
+            this.regnskabidDataGridViewTextBoxColumn.Name = "regnskabidDataGridViewTextBoxColumn";
+            this.regnskabidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.regnskabidDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // skDataGridViewTextBoxColumn
+            // 
+            this.skDataGridViewTextBoxColumn.DataPropertyName = "sk";
+            this.skDataGridViewTextBoxColumn.HeaderText = "sk";
+            this.skDataGridViewTextBoxColumn.Name = "skDataGridViewTextBoxColumn";
+            this.skDataGridViewTextBoxColumn.ReadOnly = true;
+            this.skDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // fakidDataGridViewTextBoxColumn
+            // 
+            this.fakidDataGridViewTextBoxColumn.DataPropertyName = "fakid";
+            this.fakidDataGridViewTextBoxColumn.HeaderText = "fakid";
+            this.fakidDataGridViewTextBoxColumn.Name = "fakidDataGridViewTextBoxColumn";
+            this.fakidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fakidDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // faklinnrDataGridViewTextBoxColumn
+            // 
+            this.faklinnrDataGridViewTextBoxColumn.DataPropertyName = "faklinnr";
+            this.faklinnrDataGridViewTextBoxColumn.HeaderText = "faklinnr";
+            this.faklinnrDataGridViewTextBoxColumn.Name = "faklinnrDataGridViewTextBoxColumn";
+            this.faklinnrDataGridViewTextBoxColumn.ReadOnly = true;
+            this.faklinnrDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // varenrDataGridViewTextBoxColumn
+            // 
+            this.varenrDataGridViewTextBoxColumn.DataPropertyName = "varenr";
+            this.varenrDataGridViewTextBoxColumn.HeaderText = "Varenr";
+            this.varenrDataGridViewTextBoxColumn.Name = "varenrDataGridViewTextBoxColumn";
+            this.varenrDataGridViewTextBoxColumn.ReadOnly = true;
+            this.varenrDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // tekstDataGridViewTextBoxColumn
+            // 
+            this.tekstDataGridViewTextBoxColumn.DataPropertyName = "tekst";
+            this.tekstDataGridViewTextBoxColumn.HeaderText = "Tekst";
+            this.tekstDataGridViewTextBoxColumn.Name = "tekstDataGridViewTextBoxColumn";
+            this.tekstDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tekstDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // kontoDataGridViewTextBoxColumn
+            // 
+            this.kontoDataGridViewTextBoxColumn.DataPropertyName = "konto";
+            this.kontoDataGridViewTextBoxColumn.HeaderText = "Konto";
+            this.kontoDataGridViewTextBoxColumn.Name = "kontoDataGridViewTextBoxColumn";
+            this.kontoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.kontoDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // momskodeDataGridViewTextBoxColumn
+            // 
+            this.momskodeDataGridViewTextBoxColumn.DataPropertyName = "momskode";
+            this.momskodeDataGridViewTextBoxColumn.HeaderText = "MK";
+            this.momskodeDataGridViewTextBoxColumn.Name = "momskodeDataGridViewTextBoxColumn";
+            this.momskodeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.momskodeDataGridViewTextBoxColumn.Width = 40;
+            // 
+            // antalDataGridViewTextBoxColumn
+            // 
+            this.antalDataGridViewTextBoxColumn.DataPropertyName = "antal";
+            this.antalDataGridViewTextBoxColumn.HeaderText = "Antal";
+            this.antalDataGridViewTextBoxColumn.Name = "antalDataGridViewTextBoxColumn";
+            this.antalDataGridViewTextBoxColumn.ReadOnly = true;
+            this.antalDataGridViewTextBoxColumn.Width = 40;
+            // 
+            // enhedDataGridViewTextBoxColumn
+            // 
+            this.enhedDataGridViewTextBoxColumn.DataPropertyName = "enhed";
+            this.enhedDataGridViewTextBoxColumn.HeaderText = "Enhed";
+            this.enhedDataGridViewTextBoxColumn.Name = "enhedDataGridViewTextBoxColumn";
+            this.enhedDataGridViewTextBoxColumn.ReadOnly = true;
+            this.enhedDataGridViewTextBoxColumn.Width = 40;
+            // 
+            // prisDataGridViewTextBoxColumn
+            // 
+            this.prisDataGridViewTextBoxColumn.DataPropertyName = "pris";
+            this.prisDataGridViewTextBoxColumn.HeaderText = "Pris";
+            this.prisDataGridViewTextBoxColumn.Name = "prisDataGridViewTextBoxColumn";
+            this.prisDataGridViewTextBoxColumn.ReadOnly = true;
+            this.prisDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // rabatDataGridViewTextBoxColumn
+            // 
+            this.rabatDataGridViewTextBoxColumn.DataPropertyName = "rabat";
+            this.rabatDataGridViewTextBoxColumn.HeaderText = "rabat";
+            this.rabatDataGridViewTextBoxColumn.Name = "rabatDataGridViewTextBoxColumn";
+            this.rabatDataGridViewTextBoxColumn.ReadOnly = true;
+            this.rabatDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // momsDataGridViewTextBoxColumn
+            // 
+            this.momsDataGridViewTextBoxColumn.DataPropertyName = "moms";
+            this.momsDataGridViewTextBoxColumn.HeaderText = "Moms";
+            this.momsDataGridViewTextBoxColumn.Name = "momsDataGridViewTextBoxColumn";
+            this.momsDataGridViewTextBoxColumn.ReadOnly = true;
+            this.momsDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // nettobelobDataGridViewTextBoxColumn
+            // 
+            this.nettobelobDataGridViewTextBoxColumn.DataPropertyName = "nettobelob";
+            this.nettobelobDataGridViewTextBoxColumn.HeaderText = "Nettobeløb";
+            this.nettobelobDataGridViewTextBoxColumn.Name = "nettobelobDataGridViewTextBoxColumn";
+            this.nettobelobDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nettobelobDataGridViewTextBoxColumn.Width = 70;
+            // 
+            // bruttobelobDataGridViewTextBoxColumn
+            // 
+            this.bruttobelobDataGridViewTextBoxColumn.DataPropertyName = "bruttobelob";
+            this.bruttobelobDataGridViewTextBoxColumn.HeaderText = "Bruttobeløb";
+            this.bruttobelobDataGridViewTextBoxColumn.Name = "bruttobelobDataGridViewTextBoxColumn";
+            this.bruttobelobDataGridViewTextBoxColumn.ReadOnly = true;
+            this.bruttobelobDataGridViewTextBoxColumn.Width = 70;
+            // 
+            // omkostbelobDataGridViewTextBoxColumn
+            // 
+            this.omkostbelobDataGridViewTextBoxColumn.DataPropertyName = "omkostbelob";
+            this.omkostbelobDataGridViewTextBoxColumn.HeaderText = "Omk";
+            this.omkostbelobDataGridViewTextBoxColumn.Name = "omkostbelobDataGridViewTextBoxColumn";
+            this.omkostbelobDataGridViewTextBoxColumn.ReadOnly = true;
+            this.omkostbelobDataGridViewTextBoxColumn.Width = 50;
+            // 
+            // tblfakDataGridViewTextBoxColumn
+            // 
+            this.tblfakDataGridViewTextBoxColumn.DataPropertyName = "tblfak";
+            this.tblfakDataGridViewTextBoxColumn.HeaderText = "tblfak";
+            this.tblfakDataGridViewTextBoxColumn.Name = "tblfakDataGridViewTextBoxColumn";
+            this.tblfakDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tblfakDataGridViewTextBoxColumn.Visible = false;
             // 
             // FrmFaktura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = global::Trans2Summa.Properties.Settings.Default.frmFakturaerSize;
+            settings1.BankafstemningSize = new System.Drawing.Size(829, 513);
+            settings1.BankafstemningSplitterDistancr = 383;
+            settings1.BetalingsFristiDageGamleMedlemmer = 31;
+            settings1.BetalingsFristiDageNyeMedlemmer = 61;
+            settings1.checkBoxMedsaldo = true;
+            //settings1.dbDataTransSummaConnectionString = resources.GetString("settings1.dbDataTransSummaConnectionString");
+            settings1.FrmActebisfakturaLocation = new System.Drawing.Point(0, 0);
+            settings1.FrmActebisfakturaSize = new System.Drawing.Size(1081, 495);
+            settings1.FrmBankkontoudtogLocation = new System.Drawing.Point(0, 0);
+            settings1.frmBankkontoudtogSize = new System.Drawing.Size(393, 416);
+            settings1.FrmBetalingsForslagPoint = new System.Drawing.Point(0, 0);
+            settings1.FrmBetalingsForslagSize = new System.Drawing.Size(800, 600);
+            settings1.frmBilagLoacation = new System.Drawing.Point(0, 0);
+            settings1.frmBilagSize = new System.Drawing.Size(870, 346);
+            settings1.frmBilagSplitDistance = 246;
+            settings1.frmFakturaerLocation = new System.Drawing.Point(0, 0);
+            settings1.frmFakturaerSize = new System.Drawing.Size(825, 260);
+            settings1.frmKladderLocation = new System.Drawing.Point(0, 0);
+            settings1.frmKladderSize = new System.Drawing.Size(530, 259);
+            settings1.frmKontingentForslagPoint = new System.Drawing.Point(0, 0);
+            settings1.frmKontingentForslagSize = new System.Drawing.Size(829, 513);
+            settings1.frmKontoplanListCheckboxmedsaldo = true;
+            settings1.frmKontoplanListLocation = new System.Drawing.Point(0, 0);
+            settings1.frmKontoudtogLocation = new System.Drawing.Point(0, 0);
+            settings1.frmKontoudtogSize = new System.Drawing.Size(324, 250);
+            settings1.frmKreditorPoint = new System.Drawing.Point(10, 10);
+            settings1.frmKreditorSize = new System.Drawing.Size(304, 300);
+            settings1.frmKreditorState = System.Windows.Forms.FormWindowState.Normal;
+            settings1.frmMainPoint = new System.Drawing.Point(100, 100);
+            settings1.frmMainSize = new System.Drawing.Size(1024, 800);
+            settings1.frmMedlemmerPoint = new System.Drawing.Point(100, 100);
+            settings1.frmMedlemmerSize = new System.Drawing.Size(800, 600);
+            settings1.frmMedlemmerSplitteDist = 280;
+            settings1.frmNyeFakturaerLocation = new System.Drawing.Point(0, 0);
+            settings1.frmNyeFakturaerSize = new System.Drawing.Size(803, 354);
+            settings1.frmNyeKladderLocation = new System.Drawing.Point(0, 0);
+            settings1.frmNyeKladderSize = new System.Drawing.Size(521, 259);
+            settings1.frmPbsfilesPoint = new System.Drawing.Point(0, 0);
+            settings1.frmPbsfilesSize = new System.Drawing.Size(707, 511);
+            settings1.frmPbsnetdirPoint = new System.Drawing.Point(100, 100);
+            settings1.frmPbsnetdirSize = new System.Drawing.Size(416, 211);
+            settings1.frmRegnskabPoint = new System.Drawing.Point(0, 0);
+            settings1.frmRegnskabSize = new System.Drawing.Size(531, 398);
+            settings1.frmRegnskabState = System.Windows.Forms.FormWindowState.Normal;
+            settings1.frmRykkerForslagClientSize = new System.Drawing.Size(829, 513);
+            settings1.frmRykkerForslagPoint = new System.Drawing.Point(0, 0);
+            settings1.frmTemplateLocation = new System.Drawing.Point(0, 0);
+            settings1.frmTemplateSize = new System.Drawing.Size(730, 297);
+            settings1.frmTemplateWinState = System.Windows.Forms.FormWindowState.Normal;
+            settings1.FrmVarekontoTypeLocation = new System.Drawing.Point(0, 0);
+            settings1.FrmVarekontoTypeSize = new System.Drawing.Size(302, 106);
+            settings1.frmVareListLocation = new System.Drawing.Point(0, 0);
+            settings1.SettingsKey = "";
+            this.ClientSize = settings1.frmFakturaerSize;
             this.Controls.Add(this.splitContainer1);
-            this.Controls.Add(this.tblfakBindingNavigator);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::Trans2Summa.Properties.Settings.Default, "frmFakturaerSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::Trans2Summa.Properties.Settings.Default, "frmFakturaerLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.Location = global::Trans2Summa.Properties.Settings.Default.frmFakturaerLocation;
+            this.Controls.Add(this.bnTblfak);
+            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", settings1, "frmFakturaerSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", settings1, "frmFakturaerLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.Location = settings1.frmFakturaerLocation;
             this.Name = "FrmFaktura";
             this.Text = "Faktura";
-            this.Load += new System.EventHandler(this.FrmFaktura_Load);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmFaktura_FormClosed);
-            ((System.ComponentModel.ISupportInitialize)(this.tblfakBindingNavigator)).EndInit();
-            this.tblfakBindingNavigator.ResumeLayout(false);
-            this.tblfakBindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tblfakBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tblfaklinBindingSource)).EndInit();
+            this.Load += new System.EventHandler(this.FrmFaktura_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.bnTblfak)).EndInit();
+            this.bnTblfak.ResumeLayout(false);
+            this.bnTblfak.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTblfak)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTblfaklin)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tblfaklinDataGridView)).EndInit();
             this.contextMenuLineCopyPaste.ResumeLayout(false);
@@ -687,8 +718,8 @@
 
         #endregion
 
-        private System.Windows.Forms.BindingSource tblfakBindingSource;
-        private System.Windows.Forms.BindingNavigator tblfakBindingNavigator;
+        private System.Windows.Forms.BindingSource bsTblfak;
+        private System.Windows.Forms.BindingNavigator bnTblfak;
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
@@ -701,7 +732,7 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton tblfakBindingNavigatorSaveItem;
-        private System.Windows.Forms.BindingSource tblfaklinBindingSource;
+        private System.Windows.Forms.BindingSource bsTblfaklin;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.TextBox kontoTextBox;
         private System.Windows.Forms.TextBox faknrTextBox;
@@ -717,25 +748,25 @@
         private System.Windows.Forms.CheckBox checkBoxKøb;
         private System.Windows.Forms.Label labelKontonavn;
         private System.Windows.Forms.CheckBox checkBoxVareforbrug;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxPid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxFakpid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxRegnskabid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxSk;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxFakid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxFaklinnr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxVarenr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxTekst;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxKonto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxMK;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxAntal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxEnhed;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxPris;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxRabat;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxMoms;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxNettobelob;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxBruttobelob;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxOmkostbelob;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxTblfak;
         private System.Windows.Forms.Button cmdKopier;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fakpidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn regnskabidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn skDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fakidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn faklinnrDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn varenrDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tekstDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kontoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn momskodeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn antalDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn enhedDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn prisDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rabatDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn momsDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nettobelobDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bruttobelobDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn omkostbelobDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblfakDataGridViewTextBoxColumn;
     }
 }

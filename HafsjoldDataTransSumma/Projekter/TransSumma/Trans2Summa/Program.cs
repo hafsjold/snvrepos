@@ -62,26 +62,7 @@ namespace Trans2Summa
             {
                 if (m_dbDataTransSumma == null)
                 {
-                    if (!File.Exists(global::Trans2Summa.Properties.Settings.Default.DataBasePath))
-                    {
-                        OpenFileDialog openFileDialog1 = new OpenFileDialog();
-                        openFileDialog1.DefaultExt = "sdf";
-                        openFileDialog1.FileName = global::Trans2Summa.Properties.Settings.Default.DataBasePath;
-                        openFileDialog1.CheckFileExists = true;
-                        openFileDialog1.CheckPathExists = true;
-                        openFileDialog1.Filter = "Database files (*.sdf)|*.sdf|All files (*.*)|*.*";
-                        openFileDialog1.FilterIndex = 1;
-                        openFileDialog1.Multiselect = false;
-                        openFileDialog1.Title = "Vælg SQL Database";
-
-                        DialogResult res = openFileDialog1.ShowDialog();
-                        if (res == DialogResult.OK)
-                        {
-                            global::Trans2Summa.Properties.Settings.Default.DataBasePath = openFileDialog1.FileName;
-                            global::Trans2Summa.Properties.Settings.Default.Save();
-                        }
-                    }
-                    m_dbDataTransSumma = new DbDataTransSumma(global::Trans2Summa.Properties.Settings.Default.DataBasePath);
+                    m_dbDataTransSumma = new DbDataTransSumma(global::Trans2Summa.Properties.Settings.Default.dbDataTransSummaConnectionString);
                 }
                 return m_dbDataTransSumma;
             }

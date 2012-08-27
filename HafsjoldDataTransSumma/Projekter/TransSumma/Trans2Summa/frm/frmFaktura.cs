@@ -19,12 +19,12 @@ namespace Trans2Summa
 
         private void FrmFaktura_Load(object sender, EventArgs e)
         {
-            this.tblfakBindingSource.DataSource = Program.dbDataTransSumma.tblfaks;
+            this.bsTblfak.DataSource = Program.dbDataTransSumma.tblfaks;
             if (Program.karRegnskab.MomsPeriode() == 2)
             {
-                this.dataGridViewTextBoxMK.Visible = false;
-                this.dataGridViewTextBoxMoms.Visible = false;
-                this.dataGridViewTextBoxBruttobelob.Visible = false;
+                this.momskodeDataGridViewTextBoxColumn.Visible = false;
+                this.momsDataGridViewTextBoxColumn.Visible = false;
+                this.bruttobelobDataGridViewTextBoxColumn.Visible = false;
             }
         }
 
@@ -101,7 +101,7 @@ namespace Trans2Summa
 
             var qryAfstemte = from b in qry orderby b.dato descending select b;
 
-            this.tblfakBindingSource.DataSource = qryAfstemte;
+            this.bsTblfak.DataSource = qryAfstemte;
         }
 
         private void kontoTextBox_TextChanged(object sender, EventArgs e)
@@ -148,7 +148,7 @@ namespace Trans2Summa
             try
             {
                 FrmNyfaktura frmNyfaktura = frmMain.GetChild("Ny faktura") as FrmNyfaktura;
-                tblfak recFak = this.tblfakBindingSource.Current as tblfak;
+                tblfak recFak = this.bsTblfak.Current as tblfak;
                 frmNyfaktura.AddNyFaktura(recFak);
             }
             catch { }

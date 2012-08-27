@@ -29,41 +29,37 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmActebisfaktura));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tblactebisfakturaDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxPid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxImport = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxOrdredato = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxOrdrenr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxFakturanr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxOrdreref = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxOrdrebelob = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxOrdrestatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxLeveringsadresse = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblactebisfakturaBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.importDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ordredatoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ordrenrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fakturanrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ordrerefDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ordrebelobDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ordrestatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.leveringsadresseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsTblactebisfaktura = new System.Windows.Forms.BindingSource(this.components);
             this.tblactebisordreDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxOrdpid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxFakpid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxOrderOrdrenr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxPos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxAntal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxVarenr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxBeskrivelse = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxOrdrerefpos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxStkpris = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxLeveringsnr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxSku = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxSerienr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxOrdrestatuspos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxProducent = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxTblactebisfaktura = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblactebisordreBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tblactebisfakturaBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.pidDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fakpidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ordrenrDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.posDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.antalDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.varenrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.beskrivelseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ordrerefposDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.stkprisDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.leveringsnrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.skuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.serienrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ordrestatusposDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.producentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblactebisfakturaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bsTblactebisordre = new System.Windows.Forms.BindingSource(this.components);
+            this.bnTblactebisfaktura = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
@@ -81,15 +77,17 @@
             this.FindTextBox = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblactebisfakturaDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tblactebisfakturaBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTblactebisfaktura)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblactebisordreDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tblactebisordreBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tblactebisfakturaBindingNavigator)).BeginInit();
-            this.tblactebisfakturaBindingNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTblactebisordre)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bnTblactebisfaktura)).BeginInit();
+            this.bnTblactebisfaktura.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
@@ -122,101 +120,88 @@
             this.tblactebisfakturaDataGridView.AutoGenerateColumns = false;
             this.tblactebisfakturaDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblactebisfakturaDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxPid,
-            this.dataGridViewTextBoxImport,
-            this.dataGridViewTextBoxOrdredato,
-            this.dataGridViewTextBoxOrdrenr,
-            this.dataGridViewTextBoxFakturanr,
-            this.dataGridViewTextBoxOrdreref,
-            this.dataGridViewTextBoxOrdrebelob,
-            this.dataGridViewTextBoxOrdrestatus,
-            this.dataGridViewTextBoxLeveringsadresse});
-            this.tblactebisfakturaDataGridView.DataSource = this.tblactebisfakturaBindingSource;
+            this.pidDataGridViewTextBoxColumn,
+            this.importDataGridViewTextBoxColumn,
+            this.ordredatoDataGridViewTextBoxColumn,
+            this.ordrenrDataGridViewTextBoxColumn,
+            this.fakturanrDataGridViewTextBoxColumn,
+            this.ordrerefDataGridViewTextBoxColumn,
+            this.ordrebelobDataGridViewTextBoxColumn,
+            this.ordrestatusDataGridViewTextBoxColumn,
+            this.leveringsadresseDataGridViewTextBoxColumn});
+            this.tblactebisfakturaDataGridView.DataSource = this.bsTblactebisfaktura;
             this.tblactebisfakturaDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblactebisfakturaDataGridView.Location = new System.Drawing.Point(0, 0);
             this.tblactebisfakturaDataGridView.Name = "tblactebisfakturaDataGridView";
             this.tblactebisfakturaDataGridView.Size = new System.Drawing.Size(1081, 255);
             this.tblactebisfakturaDataGridView.TabIndex = 0;
             // 
-            // dataGridViewTextBoxPid
+            // pidDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxPid.DataPropertyName = "Pid";
-            this.dataGridViewTextBoxPid.HeaderText = "Pid";
-            this.dataGridViewTextBoxPid.Name = "dataGridViewTextBoxPid";
-            this.dataGridViewTextBoxPid.Visible = false;
+            this.pidDataGridViewTextBoxColumn.DataPropertyName = "pid";
+            this.pidDataGridViewTextBoxColumn.HeaderText = "pid";
+            this.pidDataGridViewTextBoxColumn.Name = "pidDataGridViewTextBoxColumn";
+            this.pidDataGridViewTextBoxColumn.Visible = false;
             // 
-            // dataGridViewTextBoxImport
+            // importDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxImport.DataPropertyName = "Import";
-            this.dataGridViewTextBoxImport.HeaderText = "Import";
-            this.dataGridViewTextBoxImport.Name = "dataGridViewTextBoxImport";
-            this.dataGridViewTextBoxImport.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxImport.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxImport.Width = 40;
+            this.importDataGridViewTextBoxColumn.DataPropertyName = "import";
+            this.importDataGridViewTextBoxColumn.HeaderText = "Import";
+            this.importDataGridViewTextBoxColumn.Name = "importDataGridViewTextBoxColumn";
+            this.importDataGridViewTextBoxColumn.Width = 40;
             // 
-            // dataGridViewTextBoxOrdredato
+            // ordredatoDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxOrdredato.DataPropertyName = "Ordredato";
-            this.dataGridViewTextBoxOrdredato.HeaderText = "Ordredato";
-            this.dataGridViewTextBoxOrdredato.Name = "dataGridViewTextBoxOrdredato";
-            this.dataGridViewTextBoxOrdredato.ReadOnly = true;
-            this.dataGridViewTextBoxOrdredato.Width = 70;
+            this.ordredatoDataGridViewTextBoxColumn.DataPropertyName = "ordredato";
+            this.ordredatoDataGridViewTextBoxColumn.HeaderText = "Ordredato";
+            this.ordredatoDataGridViewTextBoxColumn.Name = "ordredatoDataGridViewTextBoxColumn";
+            this.ordredatoDataGridViewTextBoxColumn.Width = 70;
             // 
-            // dataGridViewTextBoxOrdrenr
+            // ordrenrDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxOrdrenr.DataPropertyName = "Ordrenr";
-            this.dataGridViewTextBoxOrdrenr.HeaderText = "Ordrenr";
-            this.dataGridViewTextBoxOrdrenr.Name = "dataGridViewTextBoxOrdrenr";
-            this.dataGridViewTextBoxOrdrenr.ReadOnly = true;
-            this.dataGridViewTextBoxOrdrenr.Width = 70;
+            this.ordrenrDataGridViewTextBoxColumn.DataPropertyName = "ordrenr";
+            this.ordrenrDataGridViewTextBoxColumn.HeaderText = "Ordrenr";
+            this.ordrenrDataGridViewTextBoxColumn.Name = "ordrenrDataGridViewTextBoxColumn";
+            this.ordrenrDataGridViewTextBoxColumn.Width = 70;
             // 
-            // dataGridViewTextBoxFakturanr
+            // fakturanrDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxFakturanr.DataPropertyName = "Fakturanr";
-            this.dataGridViewTextBoxFakturanr.HeaderText = "Fakturanr";
-            this.dataGridViewTextBoxFakturanr.Name = "dataGridViewTextBoxFakturanr";
-            this.dataGridViewTextBoxFakturanr.ReadOnly = true;
-            this.dataGridViewTextBoxFakturanr.Width = 70;
+            this.fakturanrDataGridViewTextBoxColumn.DataPropertyName = "fakturanr";
+            this.fakturanrDataGridViewTextBoxColumn.HeaderText = "Fakturanr";
+            this.fakturanrDataGridViewTextBoxColumn.Name = "fakturanrDataGridViewTextBoxColumn";
+            this.fakturanrDataGridViewTextBoxColumn.Width = 70;
             // 
-            // dataGridViewTextBoxOrdreref
+            // ordrerefDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxOrdreref.DataPropertyName = "Ordreref";
-            this.dataGridViewTextBoxOrdreref.HeaderText = "Ordreref";
-            this.dataGridViewTextBoxOrdreref.Name = "dataGridViewTextBoxOrdreref";
-            this.dataGridViewTextBoxOrdreref.ReadOnly = true;
-            this.dataGridViewTextBoxOrdreref.Width = 150;
+            this.ordrerefDataGridViewTextBoxColumn.DataPropertyName = "ordreref";
+            this.ordrerefDataGridViewTextBoxColumn.HeaderText = "Ordreref";
+            this.ordrerefDataGridViewTextBoxColumn.Name = "ordrerefDataGridViewTextBoxColumn";
+            this.ordrerefDataGridViewTextBoxColumn.Width = 150;
             // 
-            // dataGridViewTextBoxOrdrebelob
+            // ordrebelobDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxOrdrebelob.DataPropertyName = "Ordrebelob";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.Format = "N2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.dataGridViewTextBoxOrdrebelob.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewTextBoxOrdrebelob.HeaderText = "Ordrebelob";
-            this.dataGridViewTextBoxOrdrebelob.Name = "dataGridViewTextBoxOrdrebelob";
-            this.dataGridViewTextBoxOrdrebelob.ReadOnly = true;
-            this.dataGridViewTextBoxOrdrebelob.Width = 80;
+            this.ordrebelobDataGridViewTextBoxColumn.DataPropertyName = "ordrebelob";
+            this.ordrebelobDataGridViewTextBoxColumn.HeaderText = "Ordrebeløb";
+            this.ordrebelobDataGridViewTextBoxColumn.Name = "ordrebelobDataGridViewTextBoxColumn";
+            this.ordrebelobDataGridViewTextBoxColumn.Width = 80;
             // 
-            // dataGridViewTextBoxOrdrestatus
+            // ordrestatusDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxOrdrestatus.DataPropertyName = "Ordrestatus";
-            this.dataGridViewTextBoxOrdrestatus.HeaderText = "Ordrestatus";
-            this.dataGridViewTextBoxOrdrestatus.Name = "dataGridViewTextBoxOrdrestatus";
-            this.dataGridViewTextBoxOrdrestatus.ReadOnly = true;
-            this.dataGridViewTextBoxOrdrestatus.Visible = false;
+            this.ordrestatusDataGridViewTextBoxColumn.DataPropertyName = "ordrestatus";
+            this.ordrestatusDataGridViewTextBoxColumn.HeaderText = "Ordrestatus";
+            this.ordrestatusDataGridViewTextBoxColumn.Name = "ordrestatusDataGridViewTextBoxColumn";
+            this.ordrestatusDataGridViewTextBoxColumn.Visible = false;
             // 
-            // dataGridViewTextBoxLeveringsadresse
+            // leveringsadresseDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxLeveringsadresse.DataPropertyName = "Leveringsadresse";
-            this.dataGridViewTextBoxLeveringsadresse.HeaderText = "Leveringsadresse";
-            this.dataGridViewTextBoxLeveringsadresse.Name = "dataGridViewTextBoxLeveringsadresse";
-            this.dataGridViewTextBoxLeveringsadresse.ReadOnly = true;
-            this.dataGridViewTextBoxLeveringsadresse.Width = 425;
+            this.leveringsadresseDataGridViewTextBoxColumn.DataPropertyName = "leveringsadresse";
+            this.leveringsadresseDataGridViewTextBoxColumn.HeaderText = "Leveringsadresse";
+            this.leveringsadresseDataGridViewTextBoxColumn.Name = "leveringsadresseDataGridViewTextBoxColumn";
+            this.leveringsadresseDataGridViewTextBoxColumn.Width = 425;
             // 
-            // tblactebisfakturaBindingSource
+            // bsTblactebisfaktura
             // 
-            this.tblactebisfakturaBindingSource.DataSource = typeof(Trans2Summa.tblactebisfaktura);
+            this.bsTblactebisfaktura.DataSource = typeof(Trans2Summa.tblactebisfaktura);
             // 
             // tblactebisordreDataGridView
             // 
@@ -225,22 +210,22 @@
             this.tblactebisordreDataGridView.AutoGenerateColumns = false;
             this.tblactebisordreDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblactebisordreDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxOrdpid,
-            this.dataGridViewTextBoxFakpid,
-            this.dataGridViewTextBoxOrderOrdrenr,
-            this.dataGridViewTextBoxPos,
-            this.dataGridViewTextBoxAntal,
-            this.dataGridViewTextBoxVarenr,
-            this.dataGridViewTextBoxBeskrivelse,
-            this.dataGridViewTextBoxOrdrerefpos,
-            this.dataGridViewTextBoxStkpris,
-            this.dataGridViewTextBoxLeveringsnr,
-            this.dataGridViewTextBoxSku,
-            this.dataGridViewTextBoxSerienr,
-            this.dataGridViewTextBoxOrdrestatuspos,
-            this.dataGridViewTextBoxProducent,
-            this.dataGridViewTextBoxTblactebisfaktura});
-            this.tblactebisordreDataGridView.DataSource = this.tblactebisordreBindingSource;
+            this.pidDataGridViewTextBoxColumn1,
+            this.fakpidDataGridViewTextBoxColumn,
+            this.ordrenrDataGridViewTextBoxColumn1,
+            this.posDataGridViewTextBoxColumn,
+            this.antalDataGridViewTextBoxColumn,
+            this.varenrDataGridViewTextBoxColumn,
+            this.beskrivelseDataGridViewTextBoxColumn,
+            this.ordrerefposDataGridViewTextBoxColumn,
+            this.stkprisDataGridViewTextBoxColumn,
+            this.leveringsnrDataGridViewTextBoxColumn,
+            this.skuDataGridViewTextBoxColumn,
+            this.serienrDataGridViewTextBoxColumn,
+            this.ordrestatusposDataGridViewTextBoxColumn,
+            this.producentDataGridViewTextBoxColumn,
+            this.tblactebisfakturaDataGridViewTextBoxColumn});
+            this.tblactebisordreDataGridView.DataSource = this.bsTblactebisordre;
             this.tblactebisordreDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblactebisordreDataGridView.Location = new System.Drawing.Point(0, 0);
             this.tblactebisordreDataGridView.Name = "tblactebisordreDataGridView";
@@ -248,150 +233,139 @@
             this.tblactebisordreDataGridView.Size = new System.Drawing.Size(1081, 204);
             this.tblactebisordreDataGridView.TabIndex = 0;
             // 
-            // dataGridViewTextBoxOrdpid
+            // pidDataGridViewTextBoxColumn1
             // 
-            this.dataGridViewTextBoxOrdpid.DataPropertyName = "Pid";
-            this.dataGridViewTextBoxOrdpid.HeaderText = "Pid";
-            this.dataGridViewTextBoxOrdpid.Name = "dataGridViewTextBoxOrdpid";
-            this.dataGridViewTextBoxOrdpid.ReadOnly = true;
-            this.dataGridViewTextBoxOrdpid.Visible = false;
+            this.pidDataGridViewTextBoxColumn1.DataPropertyName = "pid";
+            this.pidDataGridViewTextBoxColumn1.HeaderText = "pid";
+            this.pidDataGridViewTextBoxColumn1.Name = "pidDataGridViewTextBoxColumn1";
+            this.pidDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.pidDataGridViewTextBoxColumn1.Visible = false;
             // 
-            // dataGridViewTextBoxFakpid
+            // fakpidDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxFakpid.DataPropertyName = "Fakpid";
-            this.dataGridViewTextBoxFakpid.HeaderText = "Fakpid";
-            this.dataGridViewTextBoxFakpid.Name = "dataGridViewTextBoxFakpid";
-            this.dataGridViewTextBoxFakpid.ReadOnly = true;
-            this.dataGridViewTextBoxFakpid.Visible = false;
+            this.fakpidDataGridViewTextBoxColumn.DataPropertyName = "fakpid";
+            this.fakpidDataGridViewTextBoxColumn.HeaderText = "fakpid";
+            this.fakpidDataGridViewTextBoxColumn.Name = "fakpidDataGridViewTextBoxColumn";
+            this.fakpidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fakpidDataGridViewTextBoxColumn.Visible = false;
             // 
-            // dataGridViewTextBoxOrderOrdrenr
+            // ordrenrDataGridViewTextBoxColumn1
             // 
-            this.dataGridViewTextBoxOrderOrdrenr.DataPropertyName = "Ordrenr";
-            this.dataGridViewTextBoxOrderOrdrenr.HeaderText = "Ordrenr";
-            this.dataGridViewTextBoxOrderOrdrenr.Name = "dataGridViewTextBoxOrderOrdrenr";
-            this.dataGridViewTextBoxOrderOrdrenr.ReadOnly = true;
-            this.dataGridViewTextBoxOrderOrdrenr.Visible = false;
+            this.ordrenrDataGridViewTextBoxColumn1.DataPropertyName = "ordrenr";
+            this.ordrenrDataGridViewTextBoxColumn1.HeaderText = "ordrenr";
+            this.ordrenrDataGridViewTextBoxColumn1.Name = "ordrenrDataGridViewTextBoxColumn1";
+            this.ordrenrDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.ordrenrDataGridViewTextBoxColumn1.Visible = false;
             // 
-            // dataGridViewTextBoxPos
+            // posDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxPos.DataPropertyName = "Pos";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.NullValue = null;
-            this.dataGridViewTextBoxPos.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewTextBoxPos.HeaderText = "Pos";
-            this.dataGridViewTextBoxPos.Name = "dataGridViewTextBoxPos";
-            this.dataGridViewTextBoxPos.ReadOnly = true;
-            this.dataGridViewTextBoxPos.Width = 40;
+            this.posDataGridViewTextBoxColumn.DataPropertyName = "pos";
+            this.posDataGridViewTextBoxColumn.HeaderText = "Pos";
+            this.posDataGridViewTextBoxColumn.Name = "posDataGridViewTextBoxColumn";
+            this.posDataGridViewTextBoxColumn.ReadOnly = true;
+            this.posDataGridViewTextBoxColumn.Width = 40;
             // 
-            // dataGridViewTextBoxAntal
+            // antalDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxAntal.DataPropertyName = "Antal";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Format = "N0";
-            dataGridViewCellStyle3.NullValue = null;
-            this.dataGridViewTextBoxAntal.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dataGridViewTextBoxAntal.HeaderText = "Antal";
-            this.dataGridViewTextBoxAntal.Name = "dataGridViewTextBoxAntal";
-            this.dataGridViewTextBoxAntal.ReadOnly = true;
-            this.dataGridViewTextBoxAntal.Width = 40;
+            this.antalDataGridViewTextBoxColumn.DataPropertyName = "antal";
+            this.antalDataGridViewTextBoxColumn.HeaderText = "Antal";
+            this.antalDataGridViewTextBoxColumn.Name = "antalDataGridViewTextBoxColumn";
+            this.antalDataGridViewTextBoxColumn.ReadOnly = true;
+            this.antalDataGridViewTextBoxColumn.Width = 40;
             // 
-            // dataGridViewTextBoxVarenr
+            // varenrDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxVarenr.DataPropertyName = "Varenr";
-            this.dataGridViewTextBoxVarenr.HeaderText = "Varenr";
-            this.dataGridViewTextBoxVarenr.Name = "dataGridViewTextBoxVarenr";
-            this.dataGridViewTextBoxVarenr.ReadOnly = true;
-            this.dataGridViewTextBoxVarenr.Width = 70;
+            this.varenrDataGridViewTextBoxColumn.DataPropertyName = "varenr";
+            this.varenrDataGridViewTextBoxColumn.HeaderText = "Varenr";
+            this.varenrDataGridViewTextBoxColumn.Name = "varenrDataGridViewTextBoxColumn";
+            this.varenrDataGridViewTextBoxColumn.ReadOnly = true;
+            this.varenrDataGridViewTextBoxColumn.Width = 70;
             // 
-            // dataGridViewTextBoxBeskrivelse
+            // beskrivelseDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxBeskrivelse.DataPropertyName = "Beskrivelse";
-            this.dataGridViewTextBoxBeskrivelse.HeaderText = "Beskrivelse";
-            this.dataGridViewTextBoxBeskrivelse.Name = "dataGridViewTextBoxBeskrivelse";
-            this.dataGridViewTextBoxBeskrivelse.ReadOnly = true;
-            this.dataGridViewTextBoxBeskrivelse.Width = 200;
+            this.beskrivelseDataGridViewTextBoxColumn.DataPropertyName = "beskrivelse";
+            this.beskrivelseDataGridViewTextBoxColumn.HeaderText = "Beskrivelse";
+            this.beskrivelseDataGridViewTextBoxColumn.Name = "beskrivelseDataGridViewTextBoxColumn";
+            this.beskrivelseDataGridViewTextBoxColumn.ReadOnly = true;
+            this.beskrivelseDataGridViewTextBoxColumn.Width = 200;
             // 
-            // dataGridViewTextBoxOrdrerefpos
+            // ordrerefposDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxOrdrerefpos.DataPropertyName = "Ordrerefpos";
-            this.dataGridViewTextBoxOrdrerefpos.HeaderText = "Ordrerefpos";
-            this.dataGridViewTextBoxOrdrerefpos.Name = "dataGridViewTextBoxOrdrerefpos";
-            this.dataGridViewTextBoxOrdrerefpos.ReadOnly = true;
-            this.dataGridViewTextBoxOrdrerefpos.Visible = false;
+            this.ordrerefposDataGridViewTextBoxColumn.DataPropertyName = "ordrerefpos";
+            this.ordrerefposDataGridViewTextBoxColumn.HeaderText = "ordrerefpos";
+            this.ordrerefposDataGridViewTextBoxColumn.Name = "ordrerefposDataGridViewTextBoxColumn";
+            this.ordrerefposDataGridViewTextBoxColumn.ReadOnly = true;
+            this.ordrerefposDataGridViewTextBoxColumn.Visible = false;
             // 
-            // dataGridViewTextBoxStkpris
+            // stkprisDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxStkpris.DataPropertyName = "Stkpris";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.dataGridViewTextBoxStkpris.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridViewTextBoxStkpris.HeaderText = "Stkpris";
-            this.dataGridViewTextBoxStkpris.Name = "dataGridViewTextBoxStkpris";
-            this.dataGridViewTextBoxStkpris.ReadOnly = true;
-            this.dataGridViewTextBoxStkpris.Width = 60;
+            this.stkprisDataGridViewTextBoxColumn.DataPropertyName = "stkpris";
+            this.stkprisDataGridViewTextBoxColumn.HeaderText = "Stkpris";
+            this.stkprisDataGridViewTextBoxColumn.Name = "stkprisDataGridViewTextBoxColumn";
+            this.stkprisDataGridViewTextBoxColumn.ReadOnly = true;
+            this.stkprisDataGridViewTextBoxColumn.Width = 60;
             // 
-            // dataGridViewTextBoxLeveringsnr
+            // leveringsnrDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxLeveringsnr.DataPropertyName = "Leveringsnr";
-            this.dataGridViewTextBoxLeveringsnr.HeaderText = "Leveringsnr";
-            this.dataGridViewTextBoxLeveringsnr.Name = "dataGridViewTextBoxLeveringsnr";
-            this.dataGridViewTextBoxLeveringsnr.ReadOnly = true;
-            this.dataGridViewTextBoxLeveringsnr.Width = 70;
+            this.leveringsnrDataGridViewTextBoxColumn.DataPropertyName = "leveringsnr";
+            this.leveringsnrDataGridViewTextBoxColumn.HeaderText = "Leveringsnr";
+            this.leveringsnrDataGridViewTextBoxColumn.Name = "leveringsnrDataGridViewTextBoxColumn";
+            this.leveringsnrDataGridViewTextBoxColumn.ReadOnly = true;
+            this.leveringsnrDataGridViewTextBoxColumn.Width = 70;
             // 
-            // dataGridViewTextBoxSku
+            // skuDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxSku.DataPropertyName = "Sku";
-            this.dataGridViewTextBoxSku.HeaderText = "Sku";
-            this.dataGridViewTextBoxSku.Name = "dataGridViewTextBoxSku";
-            this.dataGridViewTextBoxSku.ReadOnly = true;
-            this.dataGridViewTextBoxSku.Width = 90;
+            this.skuDataGridViewTextBoxColumn.DataPropertyName = "sku";
+            this.skuDataGridViewTextBoxColumn.HeaderText = "Sku";
+            this.skuDataGridViewTextBoxColumn.Name = "skuDataGridViewTextBoxColumn";
+            this.skuDataGridViewTextBoxColumn.ReadOnly = true;
+            this.skuDataGridViewTextBoxColumn.Width = 90;
             // 
-            // dataGridViewTextBoxSerienr
+            // serienrDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxSerienr.DataPropertyName = "Serienr";
-            this.dataGridViewTextBoxSerienr.HeaderText = "Serienr";
-            this.dataGridViewTextBoxSerienr.Name = "dataGridViewTextBoxSerienr";
-            this.dataGridViewTextBoxSerienr.ReadOnly = true;
-            this.dataGridViewTextBoxSerienr.Width = 150;
+            this.serienrDataGridViewTextBoxColumn.DataPropertyName = "serienr";
+            this.serienrDataGridViewTextBoxColumn.HeaderText = "Serienr";
+            this.serienrDataGridViewTextBoxColumn.Name = "serienrDataGridViewTextBoxColumn";
+            this.serienrDataGridViewTextBoxColumn.ReadOnly = true;
+            this.serienrDataGridViewTextBoxColumn.Width = 150;
             // 
-            // dataGridViewTextBoxOrdrestatuspos
+            // ordrestatusposDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxOrdrestatuspos.DataPropertyName = "Ordrestatuspos";
-            this.dataGridViewTextBoxOrdrestatuspos.HeaderText = "Ordrestatuspos";
-            this.dataGridViewTextBoxOrdrestatuspos.Name = "dataGridViewTextBoxOrdrestatuspos";
-            this.dataGridViewTextBoxOrdrestatuspos.ReadOnly = true;
-            this.dataGridViewTextBoxOrdrestatuspos.Width = 150;
+            this.ordrestatusposDataGridViewTextBoxColumn.DataPropertyName = "ordrestatuspos";
+            this.ordrestatusposDataGridViewTextBoxColumn.HeaderText = "Ordrestatuspos";
+            this.ordrestatusposDataGridViewTextBoxColumn.Name = "ordrestatusposDataGridViewTextBoxColumn";
+            this.ordrestatusposDataGridViewTextBoxColumn.ReadOnly = true;
+            this.ordrestatusposDataGridViewTextBoxColumn.Width = 150;
             // 
-            // dataGridViewTextBoxProducent
+            // producentDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxProducent.DataPropertyName = "Producent";
-            this.dataGridViewTextBoxProducent.HeaderText = "Producent";
-            this.dataGridViewTextBoxProducent.Name = "dataGridViewTextBoxProducent";
-            this.dataGridViewTextBoxProducent.ReadOnly = true;
-            this.dataGridViewTextBoxProducent.Width = 150;
+            this.producentDataGridViewTextBoxColumn.DataPropertyName = "producent";
+            this.producentDataGridViewTextBoxColumn.HeaderText = "Producent";
+            this.producentDataGridViewTextBoxColumn.Name = "producentDataGridViewTextBoxColumn";
+            this.producentDataGridViewTextBoxColumn.ReadOnly = true;
+            this.producentDataGridViewTextBoxColumn.Width = 150;
             // 
-            // dataGridViewTextBoxTblactebisfaktura
+            // tblactebisfakturaDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxTblactebisfaktura.DataPropertyName = "Tblactebisfaktura";
-            this.dataGridViewTextBoxTblactebisfaktura.HeaderText = "Tblactebisfaktura";
-            this.dataGridViewTextBoxTblactebisfaktura.Name = "dataGridViewTextBoxTblactebisfaktura";
-            this.dataGridViewTextBoxTblactebisfaktura.ReadOnly = true;
-            this.dataGridViewTextBoxTblactebisfaktura.Visible = false;
+            this.tblactebisfakturaDataGridViewTextBoxColumn.DataPropertyName = "tblactebisfaktura";
+            this.tblactebisfakturaDataGridViewTextBoxColumn.HeaderText = "tblactebisfaktura";
+            this.tblactebisfakturaDataGridViewTextBoxColumn.Name = "tblactebisfakturaDataGridViewTextBoxColumn";
+            this.tblactebisfakturaDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tblactebisfakturaDataGridViewTextBoxColumn.Visible = false;
             // 
-            // tblactebisordreBindingSource
+            // bsTblactebisordre
             // 
-            this.tblactebisordreBindingSource.DataMember = "Tblactebisordre";
-            this.tblactebisordreBindingSource.DataSource = this.tblactebisfakturaBindingSource;
+            this.bsTblactebisordre.DataMember = "tblactebisordres";
+            this.bsTblactebisordre.DataSource = this.bsTblactebisfaktura;
             // 
-            // tblactebisfakturaBindingNavigator
+            // bnTblactebisfaktura
             // 
-            this.tblactebisfakturaBindingNavigator.AddNewItem = this.bindingNavigatorAddNewItem;
-            this.tblactebisfakturaBindingNavigator.BindingSource = this.tblactebisfakturaBindingSource;
-            this.tblactebisfakturaBindingNavigator.CountItem = this.bindingNavigatorCountItem;
-            this.tblactebisfakturaBindingNavigator.DeleteItem = this.bindingNavigatorDeleteItem;
-            this.tblactebisfakturaBindingNavigator.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tblactebisfakturaBindingNavigator.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bnTblactebisfaktura.AddNewItem = this.bindingNavigatorAddNewItem;
+            this.bnTblactebisfaktura.BindingSource = this.bsTblactebisfaktura;
+            this.bnTblactebisfaktura.CountItem = this.bindingNavigatorCountItem;
+            this.bnTblactebisfaktura.DeleteItem = this.bindingNavigatorDeleteItem;
+            this.bnTblactebisfaktura.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.bnTblactebisfaktura.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
             this.bindingNavigatorMovePreviousItem,
             this.bindingNavigatorSeparator,
@@ -408,16 +382,16 @@
             this.toolStripSeparator1,
             this.FindTextBox,
             this.toolStripButton1});
-            this.tblactebisfakturaBindingNavigator.Location = new System.Drawing.Point(0, 3);
-            this.tblactebisfakturaBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
-            this.tblactebisfakturaBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
-            this.tblactebisfakturaBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
-            this.tblactebisfakturaBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
-            this.tblactebisfakturaBindingNavigator.Name = "tblactebisfakturaBindingNavigator";
-            this.tblactebisfakturaBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.tblactebisfakturaBindingNavigator.Size = new System.Drawing.Size(1081, 25);
-            this.tblactebisfakturaBindingNavigator.TabIndex = 1;
-            this.tblactebisfakturaBindingNavigator.Text = "bindingNavigator1";
+            this.bnTblactebisfaktura.Location = new System.Drawing.Point(0, 3);
+            this.bnTblactebisfaktura.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
+            this.bnTblactebisfaktura.MoveLastItem = this.bindingNavigatorMoveLastItem;
+            this.bnTblactebisfaktura.MoveNextItem = this.bindingNavigatorMoveNextItem;
+            this.bnTblactebisfaktura.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
+            this.bnTblactebisfaktura.Name = "bnTblactebisfaktura";
+            this.bnTblactebisfaktura.PositionItem = this.bindingNavigatorPositionItem;
+            this.bnTblactebisfaktura.Size = new System.Drawing.Size(1081, 25);
+            this.bnTblactebisfaktura.TabIndex = 1;
+            this.bnTblactebisfaktura.Text = "bindingNavigator1";
             // 
             // bindingNavigatorAddNewItem
             // 
@@ -432,7 +406,7 @@
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(36, 22);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
@@ -543,7 +517,7 @@
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(31, 22);
+            this.toolStripButton1.Size = new System.Drawing.Size(34, 22);
             this.toolStripButton1.Text = "Find";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -560,7 +534,7 @@
             // 
             // splitContainer2.Panel2
             // 
-            this.splitContainer2.Panel2.Controls.Add(this.tblactebisfakturaBindingNavigator);
+            this.splitContainer2.Panel2.Controls.Add(this.bnTblactebisfaktura);
             this.splitContainer2.Size = new System.Drawing.Size(1081, 495);
             this.splitContainer2.SplitterDistance = 463;
             this.splitContainer2.TabIndex = 2;
@@ -571,23 +545,24 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1081, 495);
             this.Controls.Add(this.splitContainer2);
-            this.Location = global::Trans2Summa.Properties.Settings.Default.FrmActebisfakturaLocation;
             this.Name = "FrmActebisfaktura";
             this.Text = "Actebis Faktura";
             this.Load += new System.EventHandler(this.FrmActebisfaktura_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tblactebisfakturaDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tblactebisfakturaBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTblactebisfaktura)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblactebisordreDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tblactebisordreBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tblactebisfakturaBindingNavigator)).EndInit();
-            this.tblactebisfakturaBindingNavigator.ResumeLayout(false);
-            this.tblactebisfakturaBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTblactebisordre)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bnTblactebisfaktura)).EndInit();
+            this.bnTblactebisfaktura.ResumeLayout(false);
+            this.bnTblactebisfaktura.PerformLayout();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -596,9 +571,9 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.BindingNavigator tblactebisfakturaBindingNavigator;
+        private System.Windows.Forms.BindingNavigator bnTblactebisfaktura;
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
-        private System.Windows.Forms.BindingSource tblactebisfakturaBindingSource;
+        private System.Windows.Forms.BindingSource bsTblactebisfaktura;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
@@ -612,7 +587,7 @@
         private System.Windows.Forms.ToolStripButton tblactebisfakturaBindingNavigatorSaveItem;
         private System.Windows.Forms.DataGridView tblactebisfakturaDataGridView;
         private System.Windows.Forms.DataGridView tblactebisordreDataGridView;
-        private System.Windows.Forms.BindingSource tblactebisordreBindingSource;
+        private System.Windows.Forms.BindingSource bsTblactebisordre;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxPid;
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewTextBoxImport;
@@ -642,5 +617,29 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripTextBox FindTextBox;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn importDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ordredatoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ordrenrDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fakturanrDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ordrerefDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ordrebelobDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ordrestatusDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn leveringsadresseDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pidDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fakpidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ordrenrDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn posDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn antalDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn varenrDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn beskrivelseDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ordrerefposDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn stkprisDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn leveringsnrDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn skuDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn serienrDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ordrestatusposDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn producentDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblactebisfakturaDataGridViewTextBoxColumn;
     }
 }

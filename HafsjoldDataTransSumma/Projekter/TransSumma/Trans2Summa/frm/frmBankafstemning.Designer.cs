@@ -41,7 +41,7 @@
             this.columnHeaderABTekst = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderABBelob = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cbBankkonto = new System.Windows.Forms.ComboBox();
-            this.tblkontoudtogBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bsTblkontoudtog = new System.Windows.Forms.BindingSource(this.components);
             this.lvwSumBank = new System.Windows.Forms.ListView();
             this.columnHeaderSBDato = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderSBTekst = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -75,7 +75,7 @@
             this.splitContainer4.Panel1.SuspendLayout();
             this.splitContainer4.Panel2.SuspendLayout();
             this.splitContainer4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tblkontoudtogBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTblkontoudtog)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
@@ -215,7 +215,7 @@
             // 
             // cbBankkonto
             // 
-            this.cbBankkonto.DataSource = this.tblkontoudtogBindingSource;
+            this.cbBankkonto.DataSource = this.bsTblkontoudtog;
             this.cbBankkonto.DisplayMember = "Name";
             this.cbBankkonto.FormattingEnabled = true;
             this.cbBankkonto.Location = new System.Drawing.Point(7, 26);
@@ -225,9 +225,9 @@
             this.cbBankkonto.ValueMember = "Pid";
             this.cbBankkonto.SelectedValueChanged += new System.EventHandler(this.cbBankkonto_SelectedValueChanged);
             // 
-            // tblkontoudtogBindingSource
+            // bsTblkontoudtog
             // 
-            this.tblkontoudtogBindingSource.DataSource = typeof(Trans2Summa.tblkontoudtog);
+            this.bsTblkontoudtog.DataSource = typeof(Trans2Summa.tblkontoudtog);
             // 
             // lvwSumBank
             // 
@@ -471,7 +471,7 @@
             this.splitContainer4.Panel2.ResumeLayout(false);
             this.splitContainer4.Panel2.PerformLayout();
             this.splitContainer4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.tblkontoudtogBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTblkontoudtog)).EndInit();
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel2.ResumeLayout(false);
             this.splitContainer3.ResumeLayout(false);
@@ -520,6 +520,6 @@
         private System.Windows.Forms.ColumnHeader columnHeaderSBBelob;
         private System.Windows.Forms.Button cmdAfstemt;
         private System.Windows.Forms.ComboBox cbBankkonto;
-        private System.Windows.Forms.BindingSource tblkontoudtogBindingSource;
+        private System.Windows.Forms.BindingSource bsTblkontoudtog;
     }
 }

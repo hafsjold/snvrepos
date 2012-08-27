@@ -36,7 +36,7 @@ namespace Trans2Summa
             this.lvwAfstemTrans_ColumnSorter = new ColumnSorter();
             this.lvwAfstemTrans.ListViewItemSorter = lvwAfstemTrans_ColumnSorter;
 
-            this.tblkontoudtogBindingSource.DataSource = Program.dbDataTransSumma.tblkontoudtogs;
+            this.bsTblkontoudtog.DataSource = Program.dbDataTransSumma.tblkontoudtogs;
             m_recKontoudtog = (from w in Program.dbDataTransSumma.tblkontoudtogs select w).First();
         }
 

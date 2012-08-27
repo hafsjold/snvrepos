@@ -49,19 +49,6 @@ namespace Trans2Summa.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Documents and Settings\\mha\\Dokumenter\\HafsjoldDataTransSumma\\Databaser\\SQLComp" +
-            "act\\dbDataTransSumma.sdf")]
-        public string DataBasePath {
-            get {
-                return ((string)(this["DataBasePath"]));
-            }
-            set {
-                this["DataBasePath"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
         public global::System.Drawing.Point frmMainPoint {
             get {

@@ -75,7 +75,7 @@ namespace Trans2Summa
                 var rec_regnskab = Program.qryAktivRegnskab();
                 this.toolStripStatusLabel1.Text = "Regnskab: " + rec_regnskab.Rid + " " + rec_regnskab.Navn;
                 this.toolStripStatusLabel1.Alignment = ToolStripItemAlignment.Right;
-                this.toolStripStatusLabel2.Text = "Database: " + global::Trans2Summa.Properties.Settings.Default.DataBasePath;
+                this.toolStripStatusLabel2.Text = "Database: ";
                 this.toolStripStatusLabel2.Alignment = ToolStripItemAlignment.Right;
 
                 object ReadKontoplan = Program.karKontoplan;

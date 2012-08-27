@@ -19,7 +19,7 @@ namespace Trans2Summa
 
         private void FrmActebisfaktura_Load(object sender, EventArgs e)
         {
-            this.tblactebisfakturaBindingSource.DataSource = Program.dbDataTransSumma.tblactebisfakturas;
+            this.bsTblactebisfaktura.DataSource = Program.dbDataTransSumma.tblactebisfakturas;
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -39,13 +39,13 @@ namespace Trans2Summa
                    orderby b.ordredato descending
                    select b).Distinct();
 
-            this.tblactebisfakturaBindingSource.DataSource = qry;
+            this.bsTblactebisfaktura.DataSource = qry;
         }
 
         private void Copy2NyFakturaToolStripButton_Click(object sender, EventArgs e)
         {
             bool bVareforbrug = true;
-            tblactebisfaktura recActebisfaktura = tblactebisfakturaBindingSource.Current as tblactebisfaktura;
+            tblactebisfaktura recActebisfaktura = bsTblactebisfaktura.Current as tblactebisfaktura;
             if (recActebisfaktura.leveringsadresse.ToUpper().Contains("HAFSJOLD"))
             {
                 DialogResult result = DotNetPerls.BetterDialog.ShowDialog(

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmActebisfaktura));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tblactebisfakturaDataGridView = new System.Windows.Forms.DataGridView();
@@ -189,10 +189,10 @@
             // dataGridViewTextBoxOrdrebelob
             // 
             this.dataGridViewTextBoxOrdrebelob.DataPropertyName = "Ordrebelob";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.Format = "N2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.dataGridViewTextBoxOrdrebelob.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = null;
+            this.dataGridViewTextBoxOrdrebelob.DefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridViewTextBoxOrdrebelob.HeaderText = "Ordrebelob";
             this.dataGridViewTextBoxOrdrebelob.Name = "dataGridViewTextBoxOrdrebelob";
             this.dataGridViewTextBoxOrdrebelob.ReadOnly = true;
@@ -275,9 +275,9 @@
             // dataGridViewTextBoxPos
             // 
             this.dataGridViewTextBoxPos.DataPropertyName = "Pos";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.NullValue = null;
-            this.dataGridViewTextBoxPos.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.NullValue = null;
+            this.dataGridViewTextBoxPos.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridViewTextBoxPos.HeaderText = "Pos";
             this.dataGridViewTextBoxPos.Name = "dataGridViewTextBoxPos";
             this.dataGridViewTextBoxPos.ReadOnly = true;
@@ -286,10 +286,10 @@
             // dataGridViewTextBoxAntal
             // 
             this.dataGridViewTextBoxAntal.DataPropertyName = "Antal";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Format = "N0";
-            dataGridViewCellStyle3.NullValue = null;
-            this.dataGridViewTextBoxAntal.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.Format = "N0";
+            dataGridViewCellStyle7.NullValue = null;
+            this.dataGridViewTextBoxAntal.DefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridViewTextBoxAntal.HeaderText = "Antal";
             this.dataGridViewTextBoxAntal.Name = "dataGridViewTextBoxAntal";
             this.dataGridViewTextBoxAntal.ReadOnly = true;
@@ -322,10 +322,10 @@
             // dataGridViewTextBoxStkpris
             // 
             this.dataGridViewTextBoxStkpris.DataPropertyName = "Stkpris";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.dataGridViewTextBoxStkpris.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle8.Format = "N2";
+            dataGridViewCellStyle8.NullValue = null;
+            this.dataGridViewTextBoxStkpris.DefaultCellStyle = dataGridViewCellStyle8;
             this.dataGridViewTextBoxStkpris.HeaderText = "Stkpris";
             this.dataGridViewTextBoxStkpris.Name = "dataGridViewTextBoxStkpris";
             this.dataGridViewTextBoxStkpris.ReadOnly = true;
@@ -432,7 +432,7 @@
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(36, 22);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
@@ -543,7 +543,7 @@
             this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(31, 22);
+            this.toolStripButton1.Size = new System.Drawing.Size(34, 22);
             this.toolStripButton1.Text = "Find";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
