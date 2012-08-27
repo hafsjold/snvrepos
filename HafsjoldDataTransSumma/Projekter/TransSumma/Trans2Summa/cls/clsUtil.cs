@@ -25,29 +25,29 @@ namespace Trans2Summa
         {
             try
             {
-                var rst = (from c in Program.dbDataTransSumma.Tblnrserie
-                           where c.Nrserienavn == nrserienavn
+                var rst = (from c in Program.dbDataTransSumma.tblnrseries
+                           where c.nrserienavn == nrserienavn
                            select c).First();
 
-                if (rst.Sidstbrugtenr != null)
+                if (rst.sidstbrugtenr != null)
                 {
-                    rst.Sidstbrugtenr += 1;
-                    return rst.Sidstbrugtenr.Value;
+                    rst.sidstbrugtenr += 1;
+                    return rst.sidstbrugtenr.Value;
                 }
                 else
                 {
-                    rst.Sidstbrugtenr = 0;
-                    return rst.Sidstbrugtenr.Value;
+                    rst.sidstbrugtenr = 0;
+                    return rst.sidstbrugtenr.Value;
                 }
             }
             catch (System.InvalidOperationException)
             {
-                Tblnrserie rec_nrserie = new Tblnrserie
+                tblnrserie rec_nrserie = new tblnrserie
                 {
-                    Nrserienavn = nrserienavn,
-                    Sidstbrugtenr = 0
+                    nrserienavn = nrserienavn,
+                    sidstbrugtenr = 0
                 };
-                Program.dbDataTransSumma.Tblnrserie.InsertOnSubmit(rec_nrserie);
+                Program.dbDataTransSumma.tblnrseries.InsertOnSubmit(rec_nrserie);
                 Program.dbDataTransSumma.SubmitChanges();
 
                 return 0;

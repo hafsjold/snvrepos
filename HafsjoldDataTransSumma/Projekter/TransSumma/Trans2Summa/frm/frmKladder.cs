@@ -20,7 +20,7 @@ namespace Trans2Summa
 
         private void FrmKladder_Load(object sender, EventArgs e)
         {
-            this.tblbilagBindingSource.DataSource = Program.dbDataTransSumma.Tblbilag;
+            this.tblbilagBindingSource.DataSource = Program.dbDataTransSumma.tblbilags;
             if (Program.karRegnskab.MomsPeriode() == 2)
                 this.MKdataGridViewTextBoxColumn.Visible = false;
         }
@@ -50,20 +50,20 @@ namespace Trans2Summa
         private void cmdSog_Click(object sender, EventArgs e)
         {
             string strLike = "%" + textBoxSogeord.Text + "%";
-            var qry = (from u in Program.dbDataTransSumma.Tbltrans
-                       where SqlMethods.Like(u.Tekst, strLike)
-                       join b in Program.dbDataTransSumma.Tblbilag on u.Bilagpid equals b.Pid
-                       orderby b.Dato descending
+            var qry = (from u in Program.dbDataTransSumma.tbltrans
+                       where SqlMethods.Like(u.tekst, strLike)
+                       join b in Program.dbDataTransSumma.tblbilags on u.bilagpid equals b.pid
+                       orderby b.dato descending
                        select b).Distinct();
-            var qryAfstemte = from b in qry orderby b.Dato descending select b;
+            var qryAfstemte = from b in qry orderby b.dato descending select b;
 
             this.tblbilagBindingSource.DataSource = qryAfstemte;
         }
 
         public void findBilag(int? Bilagpid)
         {
-            var qryAfstemte = from b in Program.dbDataTransSumma.Tblbilag
-                              where b.Pid == Bilagpid
+            var qryAfstemte = from b in Program.dbDataTransSumma.tblbilags
+                              where b.pid == Bilagpid
                               select b;
 
             this.tblbilagBindingSource.DataSource = qryAfstemte;
@@ -72,7 +72,7 @@ namespace Trans2Summa
         private void cmdKopier_Click(object sender, EventArgs e)
         {
             FrmMain frmMain = this.ParentForm as FrmMain;
-            Tblbankkonto recBankkonto = null;
+            tblbankkonto recBankkonto = null;
             try
             {
                 FrmBankkontoudtog frmBankkontoudtog = frmMain.GetChild("Bank kontoudtog") as FrmBankkontoudtog;
@@ -83,7 +83,7 @@ namespace Trans2Summa
             try
             {
                 FrmNyekladder frmNyekladder = frmMain.GetChild("Nye kladder") as FrmNyekladder;
-                Tblbilag recBilag = this.tblbilagBindingSource.Current as Tblbilag;
+                tblbilag recBilag = this.tblbilagBindingSource.Current as tblbilag;
                 frmNyekladder.AddNyKladde(recBilag, recBankkonto);
             }
             catch { }

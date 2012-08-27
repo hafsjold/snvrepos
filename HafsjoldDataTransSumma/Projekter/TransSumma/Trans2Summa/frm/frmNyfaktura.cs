@@ -20,7 +20,7 @@ namespace Trans2Summa
 
         private void FrmNyfaktura_Load(object sender, EventArgs e)
         {
-            var qryTblwfak = from b in Program.dbDataTransSumma.Tblwfak select b;
+            var qryTblwfak = from b in Program.dbDataTransSumma.tblwfaks select b;
             this.tblwfakBindingSource.DataSource = qryTblwfak;
             //this.tblwfakBindingSource.DataSource = Program.dbDataTransSumma.Tblwfak;
 
@@ -43,43 +43,43 @@ namespace Trans2Summa
             Program.dbDataTransSumma.SubmitChanges();
         }
 
-        public void AddNyActebisFaktura(Tblwfak recwFak)
+        public void AddNyActebisFaktura(tblwfak recwFak)
         {
             this.tblwfakBindingSource.Add(recwFak);
             this.tblwfakBindingSource.MoveLast();
         }
 
-        public void AddNyFaktura(Tblfak recFak)
+        public void AddNyFaktura(tblfak recFak)
         {
-            var qry = from k in recFak.Tblfaklin
-                      select new Tblwfaklin
+            var qry = from k in recFak.tblfaklins
+                      select new tblwfaklin
                       {
-                          Varenr = k.Varenr,
-                          Tekst = k.Tekst,
-                          Konto = k.Konto,
-                          Momskode = k.Momskode,
-                          Antal = k.Antal,
-                          Enhed = k.Enhed,
-                          Pris = k.Pris,
-                          Rabat = k.Rabat,
-                          Moms = k.Moms,
-                          Nettobelob = k.Nettobelob,
-                          Bruttobelob = k.Bruttobelob,
+                          varenr = k.varenr,
+                          tekst = k.tekst,
+                          konto = k.konto,
+                          momskode = k.momskode,
+                          antal = k.antal,
+                          enhed = k.enhed,
+                          pris = k.pris,
+                          rabat = k.rabat,
+                          moms = k.moms,
+                          nettobelob = k.nettobelob,
+                          bruttobelob = k.bruttobelob,
                       };
             int antal = qry.Count();
 
             if (antal > 0)
             {
-                Tblwfak recwFak = new Tblwfak
+                tblwfak recwFak = new tblwfak
                 {
-                    Sk = recFak.Sk,
-                    Dato = recFak.Dato,
-                    Konto = recFak.Konto,
+                    sk = recFak.sk,
+                    dato = recFak.dato,
+                    konto = recFak.konto,
                 };
 
                 foreach (var k in qry)
                 {
-                    recwFak.Tblwfaklin.Add(k);
+                    recwFak.tblwfaklins.Add(k);
                 }
                 this.tblwfakBindingSource.Add(recwFak);
             }
@@ -140,26 +140,26 @@ namespace Trans2Summa
                     m_frmVareList.Close();
                     if (selectedVarenr != null)
                     {
-                        Tblwfak recWfak = tblwfakBindingSource.Current as Tblwfak;
-                        Tblwfaklin recWfaklin = ((DataGridView)sender).Rows[hit.RowIndex].DataBoundItem as Tblwfaklin;
+                        tblwfak recWfak = tblwfakBindingSource.Current as tblwfak;
+                        tblwfaklin recWfaklin = ((DataGridView)sender).Rows[hit.RowIndex].DataBoundItem as tblwfaklin;
                         if (recWfaklin != null)
                         {
                             try
                             {
                                 recVarer rec = (from k in Program.karVarer where k.Varenr == selectedVarenr select k).First();
-                                recWfaklin.Varenr = rec.Varenr.ToString();
-                                recWfaklin.Tekst = rec.Varenavn;
-                                recWfaklin.Enhed = rec.Enhed;
-                                if (recWfak.Sk == "S")
+                                recWfaklin.varenr = rec.Varenr.ToString();
+                                recWfaklin.tekst = rec.Varenavn;
+                                recWfaklin.enhed = rec.Enhed;
+                                if (recWfak.sk == "S")
                                 {
-                                    recWfaklin.Konto = rec.Salgskonto;
-                                    recWfaklin.Momskode = KarKontoplan.getMomskode(rec.Salgskonto);
-                                    recWfaklin.Pris = rec.Salgspris;
-                                } if (recWfak.Sk == "K")
+                                    recWfaklin.konto = rec.Salgskonto;
+                                    recWfaklin.momskode = KarKontoplan.getMomskode(rec.Salgskonto);
+                                    recWfaklin.pris = rec.Salgspris;
+                                } if (recWfak.sk == "K")
                                 {
-                                    recWfaklin.Konto = rec.Kobskonto;
-                                    recWfaklin.Momskode = KarKontoplan.getMomskode(rec.Kobskonto);
-                                    recWfaklin.Pris = rec.Kobspris;
+                                    recWfaklin.konto = rec.Kobskonto;
+                                    recWfaklin.momskode = KarKontoplan.getMomskode(rec.Kobskonto);
+                                    recWfaklin.pris = rec.Kobspris;
                                 }
                             }
                             catch { }
@@ -178,11 +178,11 @@ namespace Trans2Summa
                     m_frmKontoplanList.Close();
                     if (selectedKontonr != null)
                     {
-                        Tblwfaklin recWfaklin = ((DataGridView)sender).Rows[hit.RowIndex].DataBoundItem as Tblwfaklin;
+                        tblwfaklin recWfaklin = ((DataGridView)sender).Rows[hit.RowIndex].DataBoundItem as tblwfaklin;
                         if (recWfaklin != null)
                         {
-                            recWfaklin.Konto = selectedKontonr;
-                            recWfaklin.Momskode = selectedMomskode;
+                            recWfaklin.konto = selectedKontonr;
+                            recWfaklin.momskode = selectedMomskode;
                         }
                     }
                 }
@@ -233,8 +233,8 @@ namespace Trans2Summa
             string[] sep = { "\r\n", "\n" };
             string[] lines = csv.TrimEnd('\0').Split(sep, StringSplitOptions.RemoveEmptyEntries);
             int row = tblwfaklinDataGridView.NewRowIndex;
-            Tblwfak recWfak = (Tblwfak)tblwfakBindingSource.Current;
-            String TargetType = recWfak.Sk;
+            tblwfak recWfak = (tblwfak)tblwfakBindingSource.Current;
+            String TargetType = recWfak.sk;
             foreach (string line in lines)
             {
                 if (line.Length > 0)
@@ -281,59 +281,59 @@ namespace Trans2Summa
 
                         if (value[3] != null) //konto
                         {
-                            Tblwfaklin recWfaklin;
+                            tblwfaklin recWfaklin;
                             decimal? Omkostbelob;
                             if (Program.karRegnskab.MomsPeriode() == 2)
                             {
-                                recWfaklin = new Tblwfaklin
+                                recWfaklin = new tblwfaklin
                                 {
-                                    Varenr = value[1],
-                                    Tekst = value[2],
-                                    Konto = Microsoft.VisualBasic.Information.IsNumeric(value[3]) ? int.Parse(value[3]) : (int?)null,
-                                    Momskode = "",
-                                    Antal = Microsoft.VisualBasic.Information.IsNumeric(value[4]) ? decimal.Parse(value[4]) : (decimal?)null,
-                                    Enhed = value[5],
-                                    Pris = Microsoft.VisualBasic.Information.IsNumeric(value[6]) ? decimal.Parse(value[6]) : (decimal?)null,
-                                    Moms = 0,
-                                    Nettobelob = Microsoft.VisualBasic.Information.IsNumeric(value[7]) ? decimal.Parse(value[7]) : (decimal?)null,
-                                    Bruttobelob = Microsoft.VisualBasic.Information.IsNumeric(value[7]) ? decimal.Parse(value[7]) : (decimal?)null,
+                                    varenr = value[1],
+                                    tekst = value[2],
+                                    konto = Microsoft.VisualBasic.Information.IsNumeric(value[3]) ? int.Parse(value[3]) : (int?)null,
+                                    momskode = "",
+                                    antal = Microsoft.VisualBasic.Information.IsNumeric(value[4]) ? decimal.Parse(value[4]) : (decimal?)null,
+                                    enhed = value[5],
+                                    pris = Microsoft.VisualBasic.Information.IsNumeric(value[6]) ? decimal.Parse(value[6]) : (decimal?)null,
+                                    moms = 0,
+                                    nettobelob = Microsoft.VisualBasic.Information.IsNumeric(value[7]) ? decimal.Parse(value[7]) : (decimal?)null,
+                                    bruttobelob = Microsoft.VisualBasic.Information.IsNumeric(value[7]) ? decimal.Parse(value[7]) : (decimal?)null,
                                 };
                                 Omkostbelob = Microsoft.VisualBasic.Information.IsNumeric(value[8]) ? decimal.Parse(value[8]) : (decimal?)null;
                                 if ((TargetType == "S") && (Omkostbelob != null))
                                 {
-                                    recWfaklin.Konto = getVaresalgsKonto(recWfaklin.Konto);
-                                    decimal momspct = KarMoms.getMomspct(recWfaklin.Momskode) / 100;
-                                    recWfaklin.Pris += decimal.Round((decimal)(Omkostbelob / recWfaklin.Antal), 2);
-                                    recWfaklin.Nettobelob = decimal.Round((decimal)(recWfaklin.Pris * recWfaklin.Antal), 2);
-                                    recWfaklin.Moms = decimal.Round((decimal)(recWfaklin.Nettobelob * momspct), 2);
-                                    recWfaklin.Bruttobelob = decimal.Round((decimal)(recWfaklin.Nettobelob + recWfaklin.Moms), 2);
+                                    recWfaklin.konto = getVaresalgsKonto(recWfaklin.konto);
+                                    decimal momspct = KarMoms.getMomspct(recWfaklin.momskode) / 100;
+                                    recWfaklin.pris += decimal.Round((decimal)(Omkostbelob / recWfaklin.antal), 2);
+                                    recWfaklin.nettobelob = decimal.Round((decimal)(recWfaklin.pris * recWfaklin.antal), 2);
+                                    recWfaklin.moms = decimal.Round((decimal)(recWfaklin.nettobelob * momspct), 2);
+                                    recWfaklin.bruttobelob = decimal.Round((decimal)(recWfaklin.nettobelob + recWfaklin.moms), 2);
                                 }
                             }
                             else
                             {
-                                recWfaklin = new Tblwfaklin
+                                recWfaklin = new tblwfaklin
                                 {
-                                    Varenr = value[1],
-                                    Tekst = value[2],
-                                    Konto = Microsoft.VisualBasic.Information.IsNumeric(value[3]) ? int.Parse(value[3]) : (int?)null,
-                                    Momskode = value[4],
-                                    Antal = Microsoft.VisualBasic.Information.IsNumeric(value[5]) ? decimal.Parse(value[5]) : (decimal?)null,
-                                    Enhed = value[6],
-                                    Pris = Microsoft.VisualBasic.Information.IsNumeric(value[7]) ? decimal.Parse(value[7]) : (decimal?)null,
-                                    Moms = Microsoft.VisualBasic.Information.IsNumeric(value[8]) ? decimal.Parse(value[8]) : (decimal?)null,
-                                    Nettobelob = Microsoft.VisualBasic.Information.IsNumeric(value[9]) ? decimal.Parse(value[9]) : (decimal?)null,
-                                    Bruttobelob = Microsoft.VisualBasic.Information.IsNumeric(value[10]) ? decimal.Parse(value[10]) : (decimal?)null
+                                    varenr = value[1],
+                                    tekst = value[2],
+                                    konto = Microsoft.VisualBasic.Information.IsNumeric(value[3]) ? int.Parse(value[3]) : (int?)null,
+                                    momskode = value[4],
+                                    antal = Microsoft.VisualBasic.Information.IsNumeric(value[5]) ? decimal.Parse(value[5]) : (decimal?)null,
+                                    enhed = value[6],
+                                    pris = Microsoft.VisualBasic.Information.IsNumeric(value[7]) ? decimal.Parse(value[7]) : (decimal?)null,
+                                    moms = Microsoft.VisualBasic.Information.IsNumeric(value[8]) ? decimal.Parse(value[8]) : (decimal?)null,
+                                    nettobelob = Microsoft.VisualBasic.Information.IsNumeric(value[9]) ? decimal.Parse(value[9]) : (decimal?)null,
+                                    bruttobelob = Microsoft.VisualBasic.Information.IsNumeric(value[10]) ? decimal.Parse(value[10]) : (decimal?)null
                                 };
                                 Omkostbelob = Microsoft.VisualBasic.Information.IsNumeric(value[11]) ? decimal.Parse(value[11]) : (decimal?)null;
                                 if ((TargetType == "S") && (Omkostbelob != null))
                                 {
-                                    recWfaklin.Konto = getVaresalgsKonto(recWfaklin.Konto);
-                                    recWfaklin.Momskode = "S25";
-                                    decimal momspct = KarMoms.getMomspct(recWfaklin.Momskode) / 100;
-                                    recWfaklin.Pris += decimal.Round((decimal)(Omkostbelob / recWfaklin.Antal), 2);
-                                    recWfaklin.Nettobelob = decimal.Round((decimal)(recWfaklin.Pris * recWfaklin.Antal), 2);
-                                    recWfaklin.Moms = decimal.Round((decimal)(recWfaklin.Nettobelob * momspct), 2);
-                                    recWfaklin.Bruttobelob = decimal.Round((decimal)(recWfaklin.Nettobelob + recWfaklin.Moms), 2);
+                                    recWfaklin.konto = getVaresalgsKonto(recWfaklin.konto);
+                                    recWfaklin.momskode = "S25";
+                                    decimal momspct = KarMoms.getMomspct(recWfaklin.momskode) / 100;
+                                    recWfaklin.pris += decimal.Round((decimal)(Omkostbelob / recWfaklin.antal), 2);
+                                    recWfaklin.nettobelob = decimal.Round((decimal)(recWfaklin.pris * recWfaklin.antal), 2);
+                                    recWfaklin.moms = decimal.Round((decimal)(recWfaklin.nettobelob * momspct), 2);
+                                    recWfaklin.bruttobelob = decimal.Round((decimal)(recWfaklin.nettobelob + recWfaklin.moms), 2);
                                 }
                             }
 
@@ -393,8 +393,8 @@ namespace Trans2Summa
             if (Valider())
             {
                 clsFaktura objFaktura = new clsFaktura();
-                objFaktura.SalgsOrder2Summa((IList<Tblwfak>)this.tblwfakBindingSource.List);
-                objFaktura.KøbsOrder2Summa((IList<Tblwfak>)this.tblwfakBindingSource.List);
+                objFaktura.SalgsOrder2Summa((IList<tblwfak>)this.tblwfakBindingSource.List);
+                objFaktura.KøbsOrder2Summa((IList<tblwfak>)this.tblwfakBindingSource.List);
                 objFaktura = null;
 
                 int iMax = this.tblwfakBindingSource.List.Count - 1;
@@ -413,32 +413,32 @@ namespace Trans2Summa
         {
             bool OK = true;
             string[] aSk = { "S", "K" };
-            var qry = from f in (IList<Tblwfak>)this.tblwfakBindingSource.List select f;
+            var qry = from f in (IList<tblwfak>)this.tblwfakBindingSource.List select f;
             foreach (var f in qry)
             {
-                if ((from l in f.Tblwfaklin select l).Count() > 0)
+                if ((from l in f.tblwfaklins select l).Count() > 0)
                 {
-                    if (!aSk.Contains(f.Sk))
+                    if (!aSk.Contains(f.sk))
                         OK = false;
-                    if (f.Dato == null)
+                    if (f.dato == null)
                         OK = false;
                     try
                     {
-                        string Kontonavn = (from k in Program.karKartotek where k.Kontonr == f.Konto select k.Kontonavn).First();
+                        string Kontonavn = (from k in Program.karKartotek where k.Kontonr == f.konto select k.Kontonavn).First();
                     }
                     catch
                     {
                         OK = false;
                     }
-                    if (f.Sk == "K")
-                        if (f.Kreditorbilagsnr == null)
+                    if (f.sk == "K")
+                        if (f.kreditorbilagsnr == null)
                             OK = false;
                 }
             }
             return OK;
         }
 
-        private void visfejl(Tblwfak f, string p)
+        private void visfejl(tblwfak f, string p)
         {
             throw new NotImplementedException();
         }
@@ -450,18 +450,18 @@ namespace Trans2Summa
             decimal? fakturabelob = 0;
             try
             {
-                var qry = from l in (this.tblwfakBindingSource.Current as Tblwfak).Tblwfaklin select l;
+                var qry = from l in (this.tblwfakBindingSource.Current as tblwfak).tblwfaklins select l;
                 foreach (var l in qry)
                 {
                     decimal momspct;
-                    if (KarMoms.isUdlandsmoms(l.Momskode))
+                    if (KarMoms.isUdlandsmoms(l.momskode))
                         momspct = 0;
                     else
-                        momspct = KarMoms.getMomspct(l.Momskode) / 100;
-                    l.Nettobelob = l.Pris * l.Antal;
-                    l.Moms = decimal.Round((decimal)(l.Nettobelob * momspct), 2);
-                    l.Bruttobelob = l.Nettobelob + l.Moms;
-                    fakturabelob += l.Bruttobelob;
+                        momspct = KarMoms.getMomspct(l.momskode) / 100;
+                    l.nettobelob = l.pris * l.antal;
+                    l.moms = decimal.Round((decimal)(l.nettobelob * momspct), 2);
+                    l.bruttobelob = l.nettobelob + l.moms;
+                    fakturabelob += l.bruttobelob;
                 }
             }
             catch { }
@@ -501,7 +501,7 @@ namespace Trans2Summa
             DateTime SidsteDato;
             try
             {
-                SidsteDato = (DateTime)(from b in ((IList<Tblwfak>)this.tblwfakBindingSource.List) select b.Dato).Last();
+                SidsteDato = (DateTime)(from b in ((IList<tblwfak>)this.tblwfakBindingSource.List) select b.dato).Last();
             }
             catch
             {
@@ -510,17 +510,17 @@ namespace Trans2Summa
             String SidsteSk;
             try
             {
-                SidsteSk = (from b in ((IList<Tblwfak>)this.tblwfakBindingSource.List) select b.Sk).Last();
+                SidsteSk = (from b in ((IList<tblwfak>)this.tblwfakBindingSource.List) select b.sk).Last();
             }
             catch
             {
                 SidsteSk = "S";
             }
 
-            Tblwfak recwBilag = new Tblwfak
+            tblwfak recwBilag = new tblwfak
             {
-                Dato = SidsteDato,
-                Sk = SidsteSk
+                dato = SidsteDato,
+                sk = SidsteSk
             };
             try
             {
@@ -552,7 +552,7 @@ namespace Trans2Summa
         {
             try
             {
-                string Omktype = (from fl in Program.dbDataTransSumma.Tblvareomkostninger where fl.Kontonr == konto select fl.Omktype).First();
+                string Omktype = (from fl in Program.dbDataTransSumma.tblvareomkostningers where fl.kontonr == konto select fl.omktype).First();
                 if (Omktype == "vareforb")
                     return 1000;
                 else

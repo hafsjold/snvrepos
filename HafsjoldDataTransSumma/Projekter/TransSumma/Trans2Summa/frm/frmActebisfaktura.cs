@@ -19,7 +19,7 @@ namespace Trans2Summa
 
         private void FrmActebisfaktura_Load(object sender, EventArgs e)
         {
-            this.tblactebisfakturaBindingSource.DataSource = Program.dbDataTransSumma.Tblactebisfaktura;
+            this.tblactebisfakturaBindingSource.DataSource = Program.dbDataTransSumma.tblactebisfakturas;
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -30,13 +30,13 @@ namespace Trans2Summa
         private void Sog()
         {
             string strLike = "%" + FindTextBox.Text + "%";
-            IEnumerable<Tblactebisfaktura> qry;
-            qry = (from u in Program.dbDataTransSumma.Tblactebisordre
-                   where SqlMethods.Like(u.Beskrivelse, strLike)
-                      || SqlMethods.Like(u.Producent, strLike)
-                      || SqlMethods.Like(u.Serienr, strLike)
-                   join b in Program.dbDataTransSumma.Tblactebisfaktura on u.Fakpid equals b.Pid
-                   orderby b.Ordredato descending
+            IEnumerable<tblactebisfaktura> qry;
+            qry = (from u in Program.dbDataTransSumma.tblactebisordres
+                   where SqlMethods.Like(u.beskrivelse, strLike)
+                      || SqlMethods.Like(u.producent, strLike)
+                      || SqlMethods.Like(u.serienr, strLike)
+                   join b in Program.dbDataTransSumma.tblactebisfakturas on u.fakpid equals b.pid
+                   orderby b.ordredato descending
                    select b).Distinct();
 
             this.tblactebisfakturaBindingSource.DataSource = qry;
@@ -45,8 +45,8 @@ namespace Trans2Summa
         private void Copy2NyFakturaToolStripButton_Click(object sender, EventArgs e)
         {
             bool bVareforbrug = true;
-            Tblactebisfaktura recActebisfaktura = tblactebisfakturaBindingSource.Current as Tblactebisfaktura;
-            if (recActebisfaktura.Leveringsadresse.ToUpper().Contains("HAFSJOLD"))
+            tblactebisfaktura recActebisfaktura = tblactebisfakturaBindingSource.Current as tblactebisfaktura;
+            if (recActebisfaktura.leveringsadresse.ToUpper().Contains("HAFSJOLD"))
             {
                 DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
                     "Trans2Summa", //titleString 
@@ -59,27 +59,27 @@ namespace Trans2Summa
                 if (result == DialogResult.OK)
                     bVareforbrug = false;
             }
-            Tblwfak recWfak = new Tblwfak
+            tblwfak recWfak = new tblwfak
             {
-                Sk = "K",
-                Dato = recActebisfaktura.Ordredato,
-                Konto = 200064,
-                Kreditorbilagsnr = recActebisfaktura.Fakturanr
+                sk = "K",
+                dato = recActebisfaktura.ordredato,
+                konto = 200064,
+                kreditorbilagsnr = recActebisfaktura.fakturanr
             };
-            foreach (Tblactebisordre recActebisordre in recActebisfaktura.Tblactebisordre)
+            foreach (tblactebisordre recActebisordre in recActebisfaktura.tblactebisordres)
             {
-                Tblwfaklin recWfaklin = new Tblwfaklin
+                tblwfaklin recWfaklin = new tblwfaklin
                 {
-                    Antal = recActebisordre.Antal,
-                    Enhed = "stk",
-                    Pris = recActebisordre.Stkpris,
-                    Varenr = recActebisordre.Varenr.ToString(),
-                    Nettobelob = recActebisordre.Antal * recActebisordre.Stkpris,
-                    Tekst = getVaretekst(recActebisfaktura, recActebisordre, bVareforbrug),
-                    Konto = getVarenrKonto(recActebisordre.Varenr, bVareforbrug),
-                    Momskode = KarKontoplan.getMomskode(getVarenrKonto(recActebisordre.Varenr, bVareforbrug))
+                    antal = recActebisordre.antal,
+                    enhed = "stk",
+                    pris = recActebisordre.stkpris,
+                    varenr = recActebisordre.varenr.ToString(),
+                    nettobelob = recActebisordre.antal * recActebisordre.stkpris,
+                    tekst = getVaretekst(recActebisfaktura, recActebisordre, bVareforbrug),
+                    konto = getVarenrKonto(recActebisordre.varenr, bVareforbrug),
+                    momskode = KarKontoplan.getMomskode(getVarenrKonto(recActebisordre.varenr, bVareforbrug))
                 };
-                recWfak.Tblwfaklin.Add(recWfaklin);
+                recWfak.tblwfaklins.Add(recWfaklin);
             }
 
             FrmMain frmMain = this.ParentForm as FrmMain;
@@ -91,27 +91,27 @@ namespace Trans2Summa
             catch
             {
 
-                Program.dbDataTransSumma.Tblwfak.InsertOnSubmit(recWfak);
+                Program.dbDataTransSumma.tblwfaks.InsertOnSubmit(recWfak);
                 Program.dbDataTransSumma.SubmitChanges();
             }
         }
 
-        private string getVaretekst(Tblactebisfaktura recActebisfaktura, Tblactebisordre recActebisordre, bool bVareforbrug)
+        private string getVaretekst(tblactebisfaktura recActebisfaktura, tblactebisordre recActebisordre, bool bVareforbrug)
         {
-            string Tekst = recActebisordre.Beskrivelse.Trim();
-            if (!bOmkostningsVarenr(recActebisordre.Varenr))
+            string Tekst = recActebisordre.beskrivelse.Trim();
+            if (!bOmkostningsVarenr(recActebisordre.varenr))
             {
                 if (bVareforbrug)
                 {
-                    if ((recActebisfaktura.Ordreref != null) && (recActebisfaktura.Ordreref.Length > 0))
-                        Tekst += ". Indkøbsordre: " + recActebisfaktura.Ordreref.Trim();
+                    if ((recActebisfaktura.ordreref != null) && (recActebisfaktura.ordreref.Length > 0))
+                        Tekst += ". Indkøbsordre: " + recActebisfaktura.ordreref.Trim();
                 }
-                if ((recActebisordre.Sku != null) && (recActebisordre.Sku.Length > 0))
-                    Tekst += ". Producent varenr: " + recActebisordre.Sku.Trim();
-                if ((recActebisordre.Serienr != null) && (recActebisordre.Serienr.Length > 0))
-                    Tekst += ". Serienr: " + recActebisordre.Serienr.Trim();
-                if ((recActebisordre.Producent != null) && (recActebisordre.Producent.Length > 0))
-                    Tekst += ". Producent: " + recActebisordre.Producent.Trim();
+                if ((recActebisordre.sku != null) && (recActebisordre.sku.Length > 0))
+                    Tekst += ". Producent varenr: " + recActebisordre.sku.Trim();
+                if ((recActebisordre.serienr != null) && (recActebisordre.serienr.Length > 0))
+                    Tekst += ". Serienr: " + recActebisordre.serienr.Trim();
+                if ((recActebisordre.producent != null) && (recActebisordre.producent.Length > 0))
+                    Tekst += ". Producent: " + recActebisordre.producent.Trim();
             }
             if (Tekst.Length > 512)
                 return Tekst.Substring(0, 511);

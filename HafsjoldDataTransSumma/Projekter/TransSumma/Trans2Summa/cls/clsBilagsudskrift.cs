@@ -17,27 +17,27 @@ namespace Trans2Summa
     {
         public static void Bilagsudskrift(bool bDialog)
         {
-            Tblbilag[] Bilag;
-            var qry = from b in Program.dbDataTransSumma.Tblbilag
-                      where b.Udskriv == true
-                      && b.Tbltrans.Count() > 0
+            tblbilag[] Bilag;
+            var qry = from b in Program.dbDataTransSumma.tblbilags
+                      where b.udskriv == true
+                      && b.tbltrans.Count() > 0
                       select b;
             int count = qry.Count();
             int iMax = 99999;
             if (count > iMax)
             {
-                Bilag = new Tblbilag[iMax];
+                Bilag = new tblbilag[iMax];
             }
             else
             {
-                Bilag = new Tblbilag[count];
+                Bilag = new tblbilag[count];
             }
 
             int i = 0;
             foreach (var b in qry)
             {
                 Bilag[i++] = b;
-                b.Udskriv = false;
+                b.udskriv = false;
                 if (i >= iMax) break;
             }
 
@@ -55,17 +55,17 @@ namespace Trans2Summa
     {
         private int _RowsPerPage;
         private Size _PageSize;
-        private Tblbilag[] _Bilag;
+        private tblbilag[] _Bilag;
         private int[] _BilagPages;
 
-        public BilagsudskriftPaginator(Tblbilag[] Bilag, Size pageSize)
+        public BilagsudskriftPaginator(tblbilag[] Bilag, Size pageSize)
         {
             PageSize = pageSize;
             _Bilag = Bilag;
             _BilagPages = new int[Bilag.Length];
             for (var i = 0; i < Bilag.Length; i++)
             {
-                int wRows = Bilag[i].Tbltrans.Count;
+                int wRows = Bilag[i].tbltrans.Count;
                 _BilagPages[i] = (wRows / _RowsPerPage) + 1;
             }
         }
@@ -73,44 +73,44 @@ namespace Trans2Summa
         public override DocumentPage GetPage(int pageNumber)
         {
 
-            Tblbilag Bilag = null;
+            tblbilag Bilag = null;
             int wpageNumber = 0;
             for (int i = 0; i < _BilagPages.Length; i++)
             {
                 if ((pageNumber >= wpageNumber) && (pageNumber < wpageNumber + _BilagPages[i]))
                 {
-                    Bilag = new Tblbilag
+                    Bilag = new tblbilag
                     {
-                        Pid = _Bilag[i].Pid,
-                        Regnskabid = _Bilag[i].Regnskabid,
-                        Bilag = _Bilag[i].Bilag,
-                        Dato = _Bilag[i].Dato,
-                        Udskriv = _Bilag[i].Udskriv
+                        pid = _Bilag[i].pid,
+                        regnskabid = _Bilag[i].regnskabid,
+                        bilag = _Bilag[i].bilag,
+                        dato = _Bilag[i].dato,
+                        udskriv = _Bilag[i].udskriv
                     };
 
                     int jMin = (pageNumber - wpageNumber) * _RowsPerPage;
-                    int jMax = Math.Min(_Bilag[i].Tbltrans.Count(), jMin + _RowsPerPage);
+                    int jMax = Math.Min(_Bilag[i].tbltrans.Count(), jMin + _RowsPerPage);
                     Debug.Assert(jMin >= 0);
                     for (int j = jMin; j < jMax; j++)
                     {
-                        Tbltrans Trans = new Tbltrans
+                        tbltran Trans = new tbltran
                         {
-                            Pid = _Bilag[i].Tbltrans[j].Pid,
-                            Regnskabid = _Bilag[i].Tbltrans[j].Regnskabid,
-                            Skjul = _Bilag[i].Tbltrans[j].Skjul,
-                            Bilagpid = _Bilag[i].Tbltrans[j].Bilagpid,
-                            Tekst = _Bilag[i].Tbltrans[j].Tekst,
-                            Kontonr = _Bilag[i].Tbltrans[j].Kontonr,
-                            Kontonavn = _Bilag[i].Tbltrans[j].Kontonavn,
-                            Moms = _Bilag[i].Tbltrans[j].Moms,
-                            Debet = _Bilag[i].Tbltrans[j].Debet,
-                            Kredit = _Bilag[i].Tbltrans[j].Kredit,
-                            Id = _Bilag[i].Tbltrans[j].Id,
-                            Nr = _Bilag[i].Tbltrans[j].Nr,
-                            Belob = _Bilag[i].Tbltrans[j].Belob,
-                            Afstem = _Bilag[i].Tbltrans[j].Afstem,
+                            pid = _Bilag[i].tbltrans[j].pid,
+                            regnskabid = _Bilag[i].tbltrans[j].regnskabid,
+                            skjul = _Bilag[i].tbltrans[j].skjul,
+                            bilagpid = _Bilag[i].tbltrans[j].bilagpid,
+                            tekst = _Bilag[i].tbltrans[j].tekst,
+                            kontonr = _Bilag[i].tbltrans[j].kontonr,
+                            kontonavn = _Bilag[i].tbltrans[j].kontonavn,
+                            moms = _Bilag[i].tbltrans[j].moms,
+                            debet = _Bilag[i].tbltrans[j].debet,
+                            kredit = _Bilag[i].tbltrans[j].kredit,
+                            id = _Bilag[i].tbltrans[j].id,
+                            nr = _Bilag[i].tbltrans[j].nr,
+                            belob = _Bilag[i].tbltrans[j].belob,
+                            afstem = _Bilag[i].tbltrans[j].afstem,
                         };
-                        Bilag.Tbltrans.Add(Trans);
+                        Bilag.tbltrans.Add(Trans);
                     }
                     break;
                 }
@@ -170,9 +170,9 @@ namespace Trans2Summa
         private const int HeaderHeight = 200;
         private const int LineHeight = 30;
 
-        private Tblbilag _Bilag;
+        private tblbilag _Bilag;
         private Pen _Pen;
-        public PageElement(Tblbilag Bilag)
+        public PageElement(tblbilag Bilag)
         {
             Margin = new Thickness(PageMargin);
             _Bilag = Bilag;
@@ -252,12 +252,12 @@ namespace Trans2Summa
 
             _Pen.Brush = myLinearGradientBrush;
 
-            int Regnskabid = (int)_Bilag.Regnskabid;
+            int Regnskabid = (int)_Bilag.regnskabid;
             recMemRegnskab rec_regnskab = (from r in Program.memRegnskab where r.Rid == Regnskabid select r).First();
             string firma = rec_regnskab.Firmanavn;
             DateTime startdato = (DateTime)rec_regnskab.Start;
             DateTime slutdato = (DateTime)rec_regnskab.Slut;
-            DateTime bilagsdato = (DateTime)_Bilag.Dato;
+            DateTime bilagsdato = (DateTime)_Bilag.dato;
 
             int startMonth = startdato.Month;
             int bilagMonth = bilagsdato.Month;
@@ -280,7 +280,7 @@ namespace Trans2Summa
             textPoint.X = 0;
             dc.DrawText(MakeHeader1("Dato", 50, TextAlignment.Left), textPoint);
             textPoint.X += 50;
-            dc.DrawText(MakeHeader1(((DateTime)_Bilag.Dato).ToShortDateString(), 80, TextAlignment.Left), textPoint);
+            dc.DrawText(MakeHeader1(((DateTime)_Bilag.dato).ToShortDateString(), 80, TextAlignment.Left), textPoint);
 
             textPoint.X = ((Width - 2 * PageMargin) / 2) - 60;
             dc.DrawText(MakeHeader1("Periode", 60, TextAlignment.Left), textPoint);
@@ -290,7 +290,7 @@ namespace Trans2Summa
             textPoint.X = Width - (2 * PageMargin + 30 + 30);
             dc.DrawText(MakeHeader1("Bilag", 30, TextAlignment.Left), textPoint);
             textPoint.X += 30;
-            dc.DrawText(MakeHeader1(((int)_Bilag.Bilag).ToString(), 30, TextAlignment.Right), textPoint);
+            dc.DrawText(MakeHeader1(((int)_Bilag.bilag).ToString(), 30, TextAlignment.Right), textPoint);
 
             textPoint.Y += 72;
             textPoint.X = 5.5;
@@ -311,24 +311,24 @@ namespace Trans2Summa
 
 
 
-            foreach (var t in _Bilag.Tbltrans)
+            foreach (var t in _Bilag.tbltrans)
             {
                 textPoint.Y += LineHeight;
                 textPoint.X = 5.5;
 
-                TextinBox(dc, t.Tekst, 248, TextAlignment.Left, textPoint);
+                TextinBox(dc, t.tekst, 248, TextAlignment.Left, textPoint);
                 textPoint.X += 248;
 
-                TextinBox(dc, t.Kontonr.ToString(), 50, TextAlignment.Right, textPoint);
+                TextinBox(dc, t.kontonr.ToString(), 50, TextAlignment.Right, textPoint);
                 textPoint.X += 50;
 
-                TextinBox(dc, t.Kontonavn, 172, TextAlignment.Left, textPoint);
+                TextinBox(dc, t.kontonavn, 172, TextAlignment.Left, textPoint);
                 textPoint.X += 172;
 
-                TextinBox(dc, t.Debet.ToString(), 85, TextAlignment.Right, textPoint);
+                TextinBox(dc, t.debet.ToString(), 85, TextAlignment.Right, textPoint);
                 textPoint.X += 85;
 
-                TextinBox(dc, t.Kredit.ToString(), 85, TextAlignment.Right, textPoint);
+                TextinBox(dc, t.kredit.ToString(), 85, TextAlignment.Right, textPoint);
             }
         }
         private void TextinBox(DrawingContext dc, string txt, double width, TextAlignment al, Point textPoint)

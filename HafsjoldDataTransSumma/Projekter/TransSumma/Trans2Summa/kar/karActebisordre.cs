@@ -106,7 +106,7 @@ namespace Trans2Summa
         {
             var qry = from w in this
                       where w.Ordrestatus == "lukket"
-                      join a in Program.dbDataTransSumma.Tblactebisordre
+                      join a in Program.dbDataTransSumma.tblactebisordres
                       on new
                       {
                           w.Ordrenr,
@@ -114,60 +114,60 @@ namespace Trans2Summa
                       }
                       equals new
                       {
-                          a.Ordrenr,
-                          a.Pos,
+                          Ordrenr = a.ordrenr,
+                          Pos = a.pos,
                       }
                       into actebisordre
-                      from a in actebisordre.DefaultIfEmpty(new Tblactebisordre { Pid = 0, Ordrenr = null })
-                      where a.Ordrenr == null
+                      from a in actebisordre.DefaultIfEmpty(new tblactebisordre { pid = 0, ordrenr = null })
+                      where a.ordrenr == null
                       orderby w.Fakturanr, w.Pos
                       select w;
 
 
             int antal = qry.Count();
             int? lastFakturanr = null;
-            Tblactebisfaktura recActebisfaktura = null;
+            tblactebisfaktura recActebisfaktura = null;
             foreach (var w in qry)
             {
                 if ((w.Fakturanr != lastFakturanr) && (w.Fakturanr != null))
                 {
                     try
                     {
-                        recActebisfaktura = (from f in Program.dbDataTransSumma.Tblactebisfaktura where f.Fakturanr == w.Fakturanr select f).First();
+                        recActebisfaktura = (from f in Program.dbDataTransSumma.tblactebisfakturas where f.fakturanr == w.Fakturanr select f).First();
                     }
                     catch
                     {
-                        recActebisfaktura = new Tblactebisfaktura
+                        recActebisfaktura = new tblactebisfaktura
                         {
-                            Import = true,
-                            Ordredato = w.Ordredato,
-                            Fakturanr = w.Fakturanr,
-                            Ordrenr = w.Ordrenr,
-                            Ordreref = w.Ordreref,
-                            Ordrebelob = w.Ordrebelob,
-                            Ordrestatus = w.Ordrestatus,
-                            Leveringsadresse = w.Leveringsadresse,
+                            import = true,
+                            ordredato = w.Ordredato,
+                            fakturanr = w.Fakturanr,
+                            ordrenr = w.Ordrenr,
+                            ordreref = w.Ordreref,
+                            ordrebelob = w.Ordrebelob,
+                            ordrestatus = w.Ordrestatus,
+                            leveringsadresse = w.Leveringsadresse,
                         };
-                        Program.dbDataTransSumma.Tblactebisfaktura.InsertOnSubmit(recActebisfaktura);
+                        Program.dbDataTransSumma.tblactebisfakturas.InsertOnSubmit(recActebisfaktura);
                     }
                 }
 
-                Tblactebisordre recActebisordre = new Tblactebisordre
+                tblactebisordre recActebisordre = new tblactebisordre
                 {
-                    Ordrenr = w.Ordrenr,
-                    Pos = w.Pos,
-                    Antal = w.Antal,
-                    Varenr = w.Varenr,
-                    Sku = w.Sku,
-                    Beskrivelse = w.Beskrivelse,
-                    Ordrerefpos = w.Ordrerefpos,
-                    Stkpris = w.Stkpris,
-                    Leveringsnr = w.Leveringsnr,
-                    Serienr = w.Serienr,
-                    Ordrestatuspos = w.Ordrestatuspos,
-                    Producent = w.Producent,
+                    ordrenr = w.Ordrenr,
+                    pos = w.Pos,
+                    antal = w.Antal,
+                    varenr = w.Varenr,
+                    sku = w.Sku,
+                    beskrivelse = w.Beskrivelse,
+                    ordrerefpos = w.Ordrerefpos,
+                    stkpris = w.Stkpris,
+                    leveringsnr = w.Leveringsnr,
+                    serienr = w.Serienr,
+                    ordrestatuspos = w.Ordrestatuspos,
+                    producent = w.Producent,
                 };
-                recActebisfaktura.Tblactebisordre.Add(recActebisordre);
+                recActebisfaktura.tblactebisordres.Add(recActebisordre);
                 lastFakturanr = w.Fakturanr;
             }
             Program.dbDataTransSumma.SubmitChanges();

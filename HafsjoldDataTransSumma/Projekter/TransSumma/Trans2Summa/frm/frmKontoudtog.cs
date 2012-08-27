@@ -18,7 +18,7 @@ namespace Trans2Summa
 
         private void FrmKontoudtog_Load(object sender, EventArgs e)
         {
-            this.bsTblkontoudtog.DataSource = Program.dbDataTransSumma.Tblkontoudtog;
+            this.bsTblkontoudtog.DataSource = Program.dbDataTransSumma.tblkontoudtogs;
         }
 
         private void FrmKontoudtog_FormClosing(object sender, FormClosingEventArgs e)

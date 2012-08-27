@@ -33,7 +33,7 @@ namespace Trans2Summa
             string csvfile;
             try
             {
-                csvfile = (from w in Program.dbDataTransSumma.Tblkontoudtog where w.Pid == m_bankkontoid select w).First().Savefile;
+                csvfile = (from w in Program.dbDataTransSumma.tblkontoudtogs where w.pid == m_bankkontoid select w).First().savefile;
             }
             catch
             {
@@ -98,9 +98,9 @@ namespace Trans2Summa
         public void load()
         {
             var qry = from w in this
-                      join b in Program.dbDataTransSumma.Tblbankkonto on new { dato = w.bdato, belob = w.bbeløb, saldo = w.bsaldo, bankkontoid = w.bbankkontoid } equals new { dato = b.Dato, belob = b.Belob, saldo = b.Saldo, bankkontoid = b.Bankkontoid } into bankkonto
-                      from b in bankkonto.DefaultIfEmpty(new Tblbankkonto { Pid = 0, Belob = null })
-                      where b.Belob == null
+                      join b in Program.dbDataTransSumma.tblbankkontos on new { dato = w.bdato, belob = w.bbeløb, saldo = w.bsaldo, bankkontoid = w.bbankkontoid } equals new { dato = b.dato, belob = b.belob, saldo = b.saldo, bankkontoid = b.bankkontoid } into bankkonto
+                      from b in bankkonto.DefaultIfEmpty(new tblbankkonto { pid = 0, belob = null })
+                      where b.belob == null
                       orderby w.bdato
                       select w;
 
@@ -108,16 +108,16 @@ namespace Trans2Summa
             int antal = qry.Count();
             foreach (var b in qry)
             {
-                Tblbankkonto recBankkonto = new Tblbankkonto
+                tblbankkonto recBankkonto = new tblbankkonto
                 {
-                    Pid = clsPbs.nextval("Tblbankkonto"),
-                    Bankkontoid = b.bbankkontoid,
-                    Saldo = b.bsaldo,
-                    Dato = b.bdato,
-                    Tekst = b.btekst,
-                    Belob = b.bbeløb
+                    pid = clsPbs.nextval("Tblbankkonto"),
+                    bankkontoid = b.bbankkontoid,
+                    saldo = b.bsaldo,
+                    dato = b.bdato,
+                    tekst = b.btekst,
+                    belob = b.bbeløb
                 };
-                Program.dbDataTransSumma.Tblbankkonto.InsertOnSubmit(recBankkonto);
+                Program.dbDataTransSumma.tblbankkontos.InsertOnSubmit(recBankkonto);
 
             }
             Program.dbDataTransSumma.SubmitChanges();

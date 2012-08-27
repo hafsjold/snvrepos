@@ -18,7 +18,7 @@ namespace Trans2Summa
 
         private void FrmTemplate_Load(object sender, EventArgs e)
         {
-            this.bsTbltemplate.DataSource = Program.dbDataTransSumma.Tbltemplate;
+            this.bsTbltemplate.DataSource = Program.dbDataTransSumma.tbltemplates;
         }
 
         private void FrmTemplate_FormClosing(object sender, FormClosingEventArgs e)

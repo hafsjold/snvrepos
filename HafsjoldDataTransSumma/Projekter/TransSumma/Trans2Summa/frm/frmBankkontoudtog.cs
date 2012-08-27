@@ -13,7 +13,7 @@ namespace Trans2Summa
 {
     public partial class FrmBankkontoudtog : Form
     {
-        private Tblkontoudtog m_recKontoudtog;
+        private tblkontoudtog m_recKontoudtog;
 
         public FrmBankkontoudtog()
         {
@@ -22,9 +22,9 @@ namespace Trans2Summa
 
         private void FrmKladder_Load(object sender, EventArgs e)
         {
-            this.tbltemplateBindingSource.DataSource = Program.dbDataTransSumma.Tbltemplate;
-            this.tblkontoudtogBindingSource.DataSource = Program.dbDataTransSumma.Tblkontoudtog;
-            m_recKontoudtog = (from w in Program.dbDataTransSumma.Tblkontoudtog select w).First();
+            this.tbltemplateBindingSource.DataSource = Program.dbDataTransSumma.tbltemplates;
+            this.tblkontoudtogBindingSource.DataSource = Program.dbDataTransSumma.tblkontoudtogs;
+            m_recKontoudtog = (from w in Program.dbDataTransSumma.tblkontoudtogs select w).First();
             setBindingsorces();
         }
 
@@ -32,7 +32,7 @@ namespace Trans2Summa
         {
             try
             {
-                m_recKontoudtog = (from w in Program.dbDataTransSumma.Tblkontoudtog where w.Pid == bankkontoid select w).First();
+                m_recKontoudtog = (from w in Program.dbDataTransSumma.tblkontoudtogs where w.pid == bankkontoid select w).First();
             }
             catch
             {
@@ -42,25 +42,25 @@ namespace Trans2Summa
 
         private void setBindingsorces()
         {
-            var qryAfstemte = from u in Program.dbDataTransSumma.Tblbankkonto
-                              where u.Afstem != null && u.Bankkontoid == m_recKontoudtog.Pid && (u.Skjul == null || u.Skjul == false)
-                              orderby u.Dato descending
+            var qryAfstemte = from u in Program.dbDataTransSumma.tblbankkontos
+                              where u.afstem != null && u.bankkontoid == m_recKontoudtog.pid && (u.skjul == null || u.skjul == false)
+                              orderby u.dato descending
                               select u;
             this.tblbankkontoBindingSourceAfstemte.DataSource = qryAfstemte;
 
-            var qryUafstemte = from u in Program.dbDataTransSumma.Tblbankkonto
-                               where u.Afstem == null && u.Bankkontoid == m_recKontoudtog.Pid && (u.Skjul == null || u.Skjul == false)
-                               orderby u.Dato ascending
+            var qryUafstemte = from u in Program.dbDataTransSumma.tblbankkontos
+                               where u.afstem == null && u.bankkontoid == m_recKontoudtog.pid && (u.skjul == null || u.skjul == false)
+                               orderby u.dato ascending
                                select u;
             this.tblbankkontoBindingSourceUafstemte.DataSource = qryUafstemte;
         }
 
-        public Tblbankkonto GetrecBankkonto()
+        public tblbankkonto GetrecBankkonto()
         {
-            Tblbankkonto recBankkonto = null;
+            tblbankkonto recBankkonto = null;
             try
             {
-                recBankkonto = this.tblbankkontoBindingSourceUafstemte.Current as Tblbankkonto;
+                recBankkonto = this.tblbankkontoBindingSourceUafstemte.Current as tblbankkonto;
             }
             catch { }
             return recBankkonto;
@@ -69,9 +69,9 @@ namespace Trans2Summa
         private void cmdSog_Click(object sender, EventArgs e)
         {
             string strLike = "%" + textBoxSogeord.Text + "%";
-            var qryAfstemte = from u in Program.dbDataTransSumma.Tblbankkonto
-                              where u.Afstem != null && (u.Skjul == null || u.Skjul == false) && SqlMethods.Like(u.Tekst, strLike)
-                              orderby u.Dato descending
+            var qryAfstemte = from u in Program.dbDataTransSumma.tblbankkontos
+                              where u.afstem != null && (u.skjul == null || u.skjul == false) && SqlMethods.Like(u.tekst, strLike)
+                              orderby u.dato descending
                               select u;
             this.tblbankkontoBindingSourceAfstemte.DataSource = qryAfstemte;
         }
@@ -83,10 +83,10 @@ namespace Trans2Summa
                 FrmMain frmMain = this.ParentForm as FrmMain;
                 FrmKladder frmKladder = frmMain.GetChild("Kladder") as FrmKladder;
 
-                Tblbankkonto recBankkonto = this.tblbankkontoBindingSourceAfstemte.Current as Tblbankkonto;
-                int? Bilagpid = (from t in Program.dbDataTransSumma.Tbltrans
-                                 where t.Afstem == recBankkonto.Afstem
-                                 select t.Bilagpid).First();
+                tblbankkonto recBankkonto = this.tblbankkontoBindingSourceAfstemte.Current as tblbankkonto;
+                int? Bilagpid = (from t in Program.dbDataTransSumma.tbltrans
+                                 where t.afstem == recBankkonto.afstem
+                                 select t.bilagpid).First();
                 frmKladder.findBilag(Bilagpid);
             }
             catch
@@ -98,12 +98,12 @@ namespace Trans2Summa
         {
             try
             {
-                Tblbankkonto recBankkonto = tblbankkontoBindingSourceUafstemte.Current as Tblbankkonto;
-                this.textBoxSogeord.Text = recBankkonto.Tekst;
+                tblbankkonto recBankkonto = tblbankkontoBindingSourceUafstemte.Current as tblbankkonto;
+                this.textBoxSogeord.Text = recBankkonto.tekst;
                 string strLike = "%" + this.textBoxSogeord.Text + "%";
-                var qryAfstemte = from u in Program.dbDataTransSumma.Tblbankkonto
-                                  where u.Afstem != null && u.Bankkontoid == m_recKontoudtog.Pid && (u.Skjul == null || u.Skjul == false) && SqlMethods.Like(u.Tekst, strLike)
-                                  orderby u.Dato descending
+                var qryAfstemte = from u in Program.dbDataTransSumma.tblbankkontos
+                                  where u.afstem != null && u.bankkontoid == m_recKontoudtog.pid && (u.skjul == null || u.skjul == false) && SqlMethods.Like(u.tekst, strLike)
+                                  orderby u.dato descending
                                   select u;
                 this.tblbankkontoBindingSourceAfstemte.DataSource = qryAfstemte;
             }
@@ -115,7 +115,7 @@ namespace Trans2Summa
             try
             {
                 int pid = (int)cbBankkonto.SelectedValue;
-                if (pid != m_recKontoudtog.Pid)
+                if (pid != m_recKontoudtog.pid)
                 {
                     setKontoudtog(pid);
                     setBindingsorces();
@@ -131,8 +131,8 @@ namespace Trans2Summa
             try
             {
                 FrmNyekladder frmNyekladder = frmMain.GetChild("Nye kladder") as FrmNyekladder;
-                Tbltemplate recTemplate = this.tbltemplateBindingSource.Current as Tbltemplate;
-                Tblbankkonto recBankkonto = this.tblbankkontoBindingSourceUafstemte.Current as Tblbankkonto;
+                tbltemplate recTemplate = this.tbltemplateBindingSource.Current as tbltemplate;
+                tblbankkonto recBankkonto = this.tblbankkontoBindingSourceUafstemte.Current as tblbankkonto;
                 frmNyekladder.AddNyTemplateKladde(recTemplate, recBankkonto);
             }
             catch { }

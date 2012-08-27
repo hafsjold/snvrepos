@@ -20,7 +20,7 @@ namespace Trans2Summa
         private string DragDropKey;
         private decimal sumAfstemBank;
         private decimal sumAfstemTrans;
-        private Tblkontoudtog m_recKontoudtog;
+        private tblkontoudtog m_recKontoudtog;
 
         public FrmBankafstemning()
         {
@@ -36,15 +36,15 @@ namespace Trans2Summa
             this.lvwAfstemTrans_ColumnSorter = new ColumnSorter();
             this.lvwAfstemTrans.ListViewItemSorter = lvwAfstemTrans_ColumnSorter;
 
-            this.tblkontoudtogBindingSource.DataSource = Program.dbDataTransSumma.Tblkontoudtog;
-            m_recKontoudtog = (from w in Program.dbDataTransSumma.Tblkontoudtog select w).First();
+            this.tblkontoudtogBindingSource.DataSource = Program.dbDataTransSumma.tblkontoudtogs;
+            m_recKontoudtog = (from w in Program.dbDataTransSumma.tblkontoudtogs select w).First();
         }
 
         private void setKontoudtog(int bankkontoid)
         {
             try
             {
-                m_recKontoudtog = (from w in Program.dbDataTransSumma.Tblkontoudtog where w.Pid == bankkontoid select w).First();
+                m_recKontoudtog = (from w in Program.dbDataTransSumma.tblkontoudtogs where w.pid == bankkontoid select w).First();
             }
             catch
             {
@@ -99,29 +99,29 @@ namespace Trans2Summa
             IEnumerable<clsqry_bank> qry_bank;
             if (this.AfstemtTidligere.Checked)
             {
-                qry_bank = from b in Program.dbDataTransSumma.Tblbankkonto
-                           where b.Afstem > 0 && b.Bankkontoid == m_recKontoudtog.Pid && (b.Skjul == null || b.Skjul == false)
-                           orderby b.Dato ascending
+                qry_bank = from b in Program.dbDataTransSumma.tblbankkontos
+                           where b.afstem > 0 && b.bankkontoid == m_recKontoudtog.pid && (b.skjul == null || b.skjul == false)
+                           orderby b.dato ascending
                            select new clsqry_bank
                            {
-                               Pid = b.Pid,
-                               Dato = b.Dato,
-                               Tekst = b.Tekst,
-                               Belob = b.Belob
+                               Pid = b.pid,
+                               Dato = b.dato,
+                               Tekst = b.tekst,
+                               Belob = b.belob
                            };
             }
             else
             {
 
-                qry_bank = from b in Program.dbDataTransSumma.Tblbankkonto
-                           where b.Afstem == null && b.Bankkontoid == m_recKontoudtog.Pid && (b.Skjul == null || b.Skjul == false)
-                           orderby b.Dato ascending
+                qry_bank = from b in Program.dbDataTransSumma.tblbankkontos
+                           where b.afstem == null && b.bankkontoid == m_recKontoudtog.pid && (b.skjul == null || b.skjul == false)
+                           orderby b.dato ascending
                            select new clsqry_bank
                            {
-                               Pid = b.Pid,
-                               Dato = b.Dato,
-                               Tekst = b.Tekst,
-                               Belob = b.Belob
+                               Pid = b.pid,
+                               Dato = b.dato,
+                               Tekst = b.tekst,
+                               Belob = b.belob
                            };
             }
 
@@ -162,33 +162,33 @@ namespace Trans2Summa
             IEnumerable<clsqry_trans> qry_trans;
             if (this.AfstemtTidligere.Checked)
             {
-                qry_trans = from t in Program.dbDataTransSumma.Tbltrans
-                            join b in Program.dbDataTransSumma.Tblbilag on t.Bilagpid equals b.Pid
-                            where t.Afstem > 0 && t.Kontonr == m_recKontoudtog.Bogfkonto
-                            orderby b.Dato ascending
+                qry_trans = from t in Program.dbDataTransSumma.tbltrans
+                            join b in Program.dbDataTransSumma.tblbilags on t.bilagpid equals b.pid
+                            where t.afstem > 0 && t.kontonr == m_recKontoudtog.bogfkonto
+                            orderby b.dato ascending
                             select new clsqry_trans
                             {
-                                Pid = t.Pid,
-                                Dato = b.Dato,
-                                Bilag = b.Bilag,
-                                Tekst = t.Tekst,
-                                Belob = t.Belob
+                                Pid = t.pid,
+                                Dato = b.dato,
+                                Bilag = b.bilag,
+                                Tekst = t.tekst,
+                                Belob = t.belob
                             };
             }
             else
             {
 
-                qry_trans = from t in Program.dbDataTransSumma.Tbltrans
-                            join b in Program.dbDataTransSumma.Tblbilag on t.Bilagpid equals b.Pid
-                            where t.Afstem == null && t.Kontonr == m_recKontoudtog.Bogfkonto
-                            orderby b.Dato ascending
+                qry_trans = from t in Program.dbDataTransSumma.tbltrans
+                            join b in Program.dbDataTransSumma.tblbilags on t.bilagpid equals b.pid
+                            where t.afstem == null && t.kontonr == m_recKontoudtog.bogfkonto
+                            orderby b.dato ascending
                             select new clsqry_trans
                             {
-                                Pid = t.Pid,
-                                Dato = b.Dato,
-                                Bilag = b.Bilag,
-                                Tekst = t.Tekst,
-                                Belob = t.Belob
+                                Pid = t.pid,
+                                Dato = b.dato,
+                                Bilag = b.bilag,
+                                Tekst = t.tekst,
+                                Belob = t.belob
                             };
             }
 
@@ -556,30 +556,30 @@ namespace Trans2Summa
         private void cmdAfstemt_Click(object sender, EventArgs e)
         {
             int count = 0;
-            Tblafstem recAfstem = new Tblafstem
+            tblafstem recAfstem = new tblafstem
             {
-                Udskriv = true
+                udskriv = true
             };
 
             foreach (ListViewItem lvi in lvwAfstemBank.Items)
             {
                 string keyval = lvi.Name;
                 int pid = int.Parse(keyval);
-                Tblbankkonto recBankkonto = (from b in Program.dbDataTransSumma.Tblbankkonto where b.Pid == pid select b).First();
-                recAfstem.Tblbankkonto.Add(recBankkonto);
+                tblbankkonto recBankkonto = (from b in Program.dbDataTransSumma.tblbankkontos where b.pid == pid select b).First();
+                recAfstem.tblbankkontos.Add(recBankkonto);
                 count++;
             }
             foreach (ListViewItem lvi in lvwAfstemTrans.Items)
             {
                 string keyval = lvi.Name;
                 int pid = int.Parse(keyval);
-                Tbltrans recTrans = (from b in Program.dbDataTransSumma.Tbltrans where b.Pid == pid select b).First();
-                recAfstem.Tbltrans.Add(recTrans);
+                tbltran recTrans = (from b in Program.dbDataTransSumma.tbltrans where b.pid == pid select b).First();
+                recAfstem.tbltrans.Add(recTrans);
                 count++;
             }
             if (count > 0)
             {
-                Program.dbDataTransSumma.Tblafstem.InsertOnSubmit(recAfstem);
+                Program.dbDataTransSumma.tblafstems.InsertOnSubmit(recAfstem);
                 Program.dbDataTransSumma.SubmitChanges();
                 this.lvwAfstemBank.Items.Clear();
                 this.lvwAfstemTrans.Items.Clear();
@@ -593,7 +593,7 @@ namespace Trans2Summa
             try
             {
                 int pid = (int)cbBankkonto.SelectedValue;
-                if (pid != m_recKontoudtog.Pid)
+                if (pid != m_recKontoudtog.pid)
                 {
                     setKontoudtog(pid);
                     getBankkonto();

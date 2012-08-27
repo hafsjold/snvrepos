@@ -18,7 +18,7 @@ namespace Trans2Summa
 
         private void FrmBilag_Load(object sender, EventArgs e)
         {
-            var qryTblbilag = from b in Program.dbDataTransSumma.Tblbilag orderby b.Dato descending select b;
+            var qryTblbilag = from b in Program.dbDataTransSumma.tblbilags orderby b.dato descending select b;
             this.tblbilagBindingSource.DataSource = qryTblbilag;
         }
         private void FrmBilag_FormClosed(object sender, FormClosedEventArgs e)

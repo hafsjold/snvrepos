@@ -18,7 +18,7 @@ namespace Trans2Summa
 
         private void FrmVarekontoType_Load(object sender, EventArgs e)
         {
-            this.tblvareomkostningerBindingSource.DataSource = Program.dbDataTransSumma.Tblvareomkostninger;
+            this.tblvareomkostningerBindingSource.DataSource = Program.dbDataTransSumma.tblvareomkostningers;
         }
 
         private void FrmVarekontoType_FormClosed(object sender, FormClosedEventArgs e)

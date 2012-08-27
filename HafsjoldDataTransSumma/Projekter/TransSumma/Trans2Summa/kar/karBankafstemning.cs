@@ -90,28 +90,28 @@ namespace Trans2Summa
             {
                 if (lastBid != b.bid)
                 {
-                    Tblbankkonto recBankkonto = new Tblbankkonto
+                    tblbankkonto recBankkonto = new tblbankkonto
                     {
-                        Pid = (int)b.bid,
-                        Saldo = b.bsaldo,
-                        Skjul = b.bskjul,
-                        Dato = b.bdato,
-                        Tekst = b.btekst,
-                        Belob = b.bbeløb
+                        pid = (int)b.bid,
+                        saldo = b.bsaldo,
+                        skjul = b.bskjul,
+                        dato = b.bdato,
+                        tekst = b.btekst,
+                        belob = b.bbeløb
                     };
-                    Program.dbDataTransSumma.Tblbankkonto.InsertOnSubmit(recBankkonto);
+                    Program.dbDataTransSumma.tblbankkontos.InsertOnSubmit(recBankkonto);
                 }
 
                 if ((b.rid != null) && (b.tid != null) && (b.tnr != null))
                 {
-                    Tblbankafsteminit recBankafsteminit = new Tblbankafsteminit
+                    tblbankafsteminit recBankafsteminit = new tblbankafsteminit
                     {
-                        Bid = (int)b.bid,
-                        Rid = (int)b.rid,
-                        Tid = (int)b.tid,
-                        Tnr = (int)b.tnr
+                        bid = (int)b.bid,
+                        rid = (int)b.rid,
+                        tid = (int)b.tid,
+                        tnr = (int)b.tnr
                     };
-                    Program.dbDataTransSumma.Tblbankafsteminit.InsertOnSubmit(recBankafsteminit);
+                    Program.dbDataTransSumma.tblbankafsteminits.InsertOnSubmit(recBankafsteminit);
                 }
 
                 lastBid = b.bid;

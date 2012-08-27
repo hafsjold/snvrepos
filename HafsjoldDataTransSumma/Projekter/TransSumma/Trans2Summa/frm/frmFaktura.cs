@@ -19,7 +19,7 @@ namespace Trans2Summa
 
         private void FrmFaktura_Load(object sender, EventArgs e)
         {
-            this.tblfakBindingSource.DataSource = Program.dbDataTransSumma.Tblfak;
+            this.tblfakBindingSource.DataSource = Program.dbDataTransSumma.tblfaks;
             if (Program.karRegnskab.MomsPeriode() == 2)
             {
                 this.dataGridViewTextBoxMK.Visible = false;
@@ -73,33 +73,33 @@ namespace Trans2Summa
             if (!checkBoxKøb.Checked)
                 aSk[1] = "y";
             string strLike = "%" + textBoxSogeord.Text + "%";
-            IEnumerable<Tblfak> qry;
+            IEnumerable<tblfak> qry;
             if (checkBoxVareforbrug.Checked)
             {
                 checkBoxSalg.Checked = false;
                 aSk[1] = "x";
                 checkBoxKøb.Checked = true;
                 aSk[1] = "K";
-                qry = (from u in Program.dbDataTransSumma.Tblfaklin
-                       where SqlMethods.Like(u.Tekst, strLike)
-                       join fl in Program.dbDataTransSumma.Tblvareomkostninger on u.Konto equals fl.Kontonr
-                       where fl.Omktype == "vareforb"
-                       join b in Program.dbDataTransSumma.Tblfak on u.Fakpid equals b.Pid
-                       where aSk.Contains(b.Sk)
-                       orderby b.Dato descending
+                qry = (from u in Program.dbDataTransSumma.tblfaklins
+                       where SqlMethods.Like(u.tekst, strLike)
+                       join fl in Program.dbDataTransSumma.tblvareomkostningers on u.konto equals fl.kontonr
+                       where fl.omktype == "vareforb"
+                       join b in Program.dbDataTransSumma.tblfaks on u.fakpid equals b.pid
+                       where aSk.Contains(b.sk)
+                       orderby b.dato descending
                        select b).Distinct();
             }
             else
             {
-                qry = (from u in Program.dbDataTransSumma.Tblfaklin
-                       where SqlMethods.Like(u.Tekst, strLike)
-                       join b in Program.dbDataTransSumma.Tblfak on u.Fakpid equals b.Pid
-                       where aSk.Contains(b.Sk)
-                       orderby b.Dato descending
+                qry = (from u in Program.dbDataTransSumma.tblfaklins
+                       where SqlMethods.Like(u.tekst, strLike)
+                       join b in Program.dbDataTransSumma.tblfaks on u.fakpid equals b.pid
+                       where aSk.Contains(b.sk)
+                       orderby b.dato descending
                        select b).Distinct();
             }
 
-            var qryAfstemte = from b in qry orderby b.Dato descending select b;
+            var qryAfstemte = from b in qry orderby b.dato descending select b;
 
             this.tblfakBindingSource.DataSource = qryAfstemte;
         }
@@ -148,7 +148,7 @@ namespace Trans2Summa
             try
             {
                 FrmNyfaktura frmNyfaktura = frmMain.GetChild("Ny faktura") as FrmNyfaktura;
-                Tblfak recFak = this.tblfakBindingSource.Current as Tblfak;
+                tblfak recFak = this.tblfakBindingSource.Current as tblfak;
                 frmNyfaktura.AddNyFaktura(recFak);
             }
             catch { }

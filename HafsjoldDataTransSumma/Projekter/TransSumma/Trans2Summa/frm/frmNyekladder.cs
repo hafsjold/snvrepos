@@ -19,7 +19,7 @@ namespace Trans2Summa
 
         private void FrmNyekladder_Load(object sender, EventArgs e)
         {
-            this.tblwbilagBindingSource.DataSource = Program.dbDataTransSumma.Tblwbilag;
+            this.tblwbilagBindingSource.DataSource = Program.dbDataTransSumma.tblwbilags;
             this.karKontoplanBindingSource.DataSource = Program.karKontoplan;
             this.karAfstemningskontiBindingSource.DataSource = Program.karAfstemningskonti;
             this.karMomsBindingSource.DataSource = Program.karMoms;
@@ -27,17 +27,17 @@ namespace Trans2Summa
                 this.MKdataGridViewComboBox.Visible = false;
         }
 
-        public void AddNyKladde(Tblbilag recBilag, Tblbankkonto recBankkonto)
+        public void AddNyKladde(tblbilag recBilag, tblbankkonto recBankkonto)
         {
-            var qry = from k in recBilag.Tblkladder
-                      select new Tblwkladder
+            var qry = from k in recBilag.tblkladders
+                      select new tblwkladder
                       {
-                          Tekst = k.Tekst,
-                          Afstemningskonto = k.Afstemningskonto,
-                          Belob = k.Belob,
-                          Konto = k.Konto,
-                          Momskode = k.Momskode,
-                          Faktura = k.Faktura
+                          tekst = k.tekst,
+                          afstemningskonto = k.afstemningskonto,
+                          belob = k.belob,
+                          konto = k.konto,
+                          momskode = k.momskode,
+                          faktura = k.faktura
                       };
             int antal = qry.Count();
 
@@ -45,7 +45,7 @@ namespace Trans2Summa
 
             try
             {
-                bilagnr = (from b in ((IList<Tblwbilag>)this.tblwbilagBindingSource.List) select b.Bilag).Max();
+                bilagnr = (from b in ((IList<tblwbilag>)this.tblwbilagBindingSource.List) select b.bilag).Max();
                 bilagnr++;
             }
             catch
@@ -56,24 +56,24 @@ namespace Trans2Summa
             DateTime BankDato;
             try
             {
-                BankDato = (DateTime)recBankkonto.Dato;
+                BankDato = (DateTime)recBankkonto.dato;
             }
             catch
             {
                 BankDato = DateTime.Today;
             }
 
-            Tblwbilag recwBilag = new Tblwbilag
+            tblwbilag recwBilag = new tblwbilag
             {
-                Bilag = bilagnr,
-                Dato = BankDato
+                bilag = bilagnr,
+                dato = BankDato
             };
 
             if (!ReducerBilag(recwBilag, recBilag, recBankkonto))
             {
                 foreach (var k in qry)
                 {
-                    recwBilag.Tblwkladder.Add(k);
+                    recwBilag.tblwkladders.Add(k);
                 }
                 this.tblwbilagBindingSource.Add(recwBilag);
             }
@@ -81,13 +81,13 @@ namespace Trans2Summa
 
         }
 
-        public void AddNyTemplateKladde(Tbltemplate recTemplate, Tblbankkonto recBankkonto)
+        public void AddNyTemplateKladde(tbltemplate recTemplate, tblbankkonto recBankkonto)
         {
             int bilagnr = 0;
 
             try
             {
-                bilagnr = (from b in ((IList<Tblwbilag>)this.tblwbilagBindingSource.List) select b.Bilag).Max();
+                bilagnr = (from b in ((IList<tblwbilag>)this.tblwbilagBindingSource.List) select b.bilag).Max();
                 bilagnr++;
             }
             catch
@@ -98,40 +98,40 @@ namespace Trans2Summa
             DateTime BankDato;
             try
             {
-                BankDato = (DateTime)recBankkonto.Dato;
+                BankDato = (DateTime)recBankkonto.dato;
             }
             catch
             {
                 BankDato = DateTime.Today;
             }
 
-            Tblwbilag recwBilag = new Tblwbilag
+            tblwbilag recwBilag = new tblwbilag
             {
-                Bilag = bilagnr,
-                Dato = BankDato
+                bilag = bilagnr,
+                dato = BankDato
             };
 
             string WrkTekst;
-            if ((recTemplate.Tekst != null) && (recTemplate.Tekst.Length > 0))
+            if ((recTemplate.tekst != null) && (recTemplate.tekst.Length > 0))
             {
-                WrkTekst = recTemplate.Tekst;
+                WrkTekst = recTemplate.tekst;
             }
             else
             {
-                WrkTekst = recBankkonto.Tekst;
+                WrkTekst = recBankkonto.tekst;
             }
 
 
             string WrkAfstemningskonto;
-            if ((recTemplate.Afstemningskonto != null) && (recTemplate.Afstemningskonto.Length > 0))
+            if ((recTemplate.afstemningskonto != null) && (recTemplate.afstemningskonto.Length > 0))
             {
-                WrkAfstemningskonto = recTemplate.Afstemningskonto;
+                WrkAfstemningskonto = recTemplate.afstemningskonto;
             }
             else
             {
                 try
                 {
-                    WrkAfstemningskonto = (from w in Program.dbDataTransSumma.Tblkontoudtog where w.Pid == recBankkonto.Bankkontoid select w).First().Afstemningskonto;
+                    WrkAfstemningskonto = (from w in Program.dbDataTransSumma.tblkontoudtogs where w.pid == recBankkonto.bankkontoid select w).First().afstemningskonto;
                 }
                 catch
                 {
@@ -140,15 +140,15 @@ namespace Trans2Summa
             }
 
             string WrkMomskode;
-            if ((recTemplate.Momskode != null) && (recTemplate.Momskode.Length > 0))
+            if ((recTemplate.momskode != null) && (recTemplate.momskode.Length > 0))
             {
-                WrkMomskode = recTemplate.Momskode;
+                WrkMomskode = recTemplate.momskode;
             }
             else
             {
                 try
                 {
-                    WrkMomskode = (from w in Program.karKontoplan where w.Kontonr == recTemplate.Konto select w).First().Moms;
+                    WrkMomskode = (from w in Program.karKontoplan where w.Kontonr == recTemplate.konto select w).First().Moms;
                 }
                 catch
                 {
@@ -156,15 +156,15 @@ namespace Trans2Summa
                 }
             }
 
-            Tblwkladder recWkladder = new Tblwkladder
+            tblwkladder recWkladder = new tblwkladder
             {
-                Tekst = WrkTekst,
-                Afstemningskonto = WrkAfstemningskonto,
-                Belob = (decimal)recBankkonto.Belob,
-                Konto = recTemplate.Konto,
-                Momskode = WrkMomskode
+                tekst = WrkTekst,
+                afstemningskonto = WrkAfstemningskonto,
+                belob = (decimal)recBankkonto.belob,
+                konto = recTemplate.konto,
+                momskode = WrkMomskode
             };
-            recwBilag.Tblwkladder.Add(recWkladder);
+            recwBilag.tblwkladders.Add(recWkladder);
             this.tblwbilagBindingSource.Add(recwBilag);
             this.tblwbilagBindingSource.MoveLast();
         }
@@ -237,7 +237,7 @@ namespace Trans2Summa
             string[] sep = { "\r\n", "\n" };
             string[] lines = csv.TrimEnd('\0').Split(sep, StringSplitOptions.RemoveEmptyEntries);
             int row = tblwkladderDataGridView.NewRowIndex;
-            Tblwbilag recWbilag = (Tblwbilag)tblwbilagBindingSource.Current;
+            tblwbilag recWbilag = (tblwbilag)tblwbilagBindingSource.Current;
             foreach (string line in lines)
             {
                 if (line.Length > 0)
@@ -284,30 +284,30 @@ namespace Trans2Summa
 
                         if (value[3] != null) //belob
                         {
-                            Tblwkladder recWkladder;
+                            tblwkladder recWkladder;
                             if (Program.karRegnskab.MomsPeriode() == 2) // Ingen moms
                             {
-                                recWkladder = new Tblwkladder
+                                recWkladder = new tblwkladder
                                     {
 
-                                        Tekst = value[1],
-                                        Afstemningskonto = value[2],
-                                        Belob = Microsoft.VisualBasic.Information.IsNumeric(value[3]) ? decimal.Parse(value[3]) : (decimal?)null,
-                                        Konto = Microsoft.VisualBasic.Information.IsNumeric(value[4]) ? int.Parse(value[4]) : (int?)null,
-                                        Faktura = Microsoft.VisualBasic.Information.IsNumeric(value[5]) ? int.Parse(value[5]) : (int?)null
+                                        tekst = value[1],
+                                        afstemningskonto = value[2],
+                                        belob = Microsoft.VisualBasic.Information.IsNumeric(value[3]) ? decimal.Parse(value[3]) : (decimal?)null,
+                                        konto = Microsoft.VisualBasic.Information.IsNumeric(value[4]) ? int.Parse(value[4]) : (int?)null,
+                                        faktura = Microsoft.VisualBasic.Information.IsNumeric(value[5]) ? int.Parse(value[5]) : (int?)null
                                     };
                             }
                             else
                             {
-                                recWkladder = new Tblwkladder
+                                recWkladder = new tblwkladder
                                 {
 
-                                    Tekst = value[1],
-                                    Afstemningskonto = value[2],
-                                    Belob = Microsoft.VisualBasic.Information.IsNumeric(value[3]) ? decimal.Parse(value[3]) : (decimal?)null,
-                                    Konto = Microsoft.VisualBasic.Information.IsNumeric(value[4]) ? int.Parse(value[4]) : (int?)null,
-                                    Momskode = value[5],
-                                    Faktura = Microsoft.VisualBasic.Information.IsNumeric(value[6]) ? int.Parse(value[6]) : (int?)null
+                                    tekst = value[1],
+                                    afstemningskonto = value[2],
+                                    belob = Microsoft.VisualBasic.Information.IsNumeric(value[3]) ? decimal.Parse(value[3]) : (decimal?)null,
+                                    konto = Microsoft.VisualBasic.Information.IsNumeric(value[4]) ? int.Parse(value[4]) : (int?)null,
+                                    momskode = value[5],
+                                    faktura = Microsoft.VisualBasic.Information.IsNumeric(value[6]) ? int.Parse(value[6]) : (int?)null
                                 };
                             }
                             tblwkladderBindingSource.Insert(row, recWkladder);
@@ -376,21 +376,21 @@ namespace Trans2Summa
         {
 
             KarKladde karKladde = new KarKladde();
-            var qry = from wb in ((IList<Tblwbilag>)this.tblwbilagBindingSource.List) select wb;
-            foreach (Tblwbilag wb in qry)
+            var qry = from wb in ((IList<tblwbilag>)this.tblwbilagBindingSource.List) select wb;
+            foreach (tblwbilag wb in qry)
             {
-                foreach (Tblwkladder wk in wb.Tblwkladder)
+                foreach (tblwkladder wk in wb.tblwkladders)
                 {
                     recKladde k = new recKladde
                              {
-                                 Dato = wb.Dato,
-                                 Bilag = wb.Bilag,
-                                 Tekst = wk.Tekst,
-                                 Afstemningskonto = wk.Afstemningskonto,
-                                 Belob = wk.Belob,
-                                 Kontonr = wk.Konto,
-                                 Momskode = wk.Momskode,
-                                 Faknr = wk.Faktura
+                                 Dato = wb.dato,
+                                 Bilag = wb.bilag,
+                                 Tekst = wk.tekst,
+                                 Afstemningskonto = wk.afstemningskonto,
+                                 Belob = wk.belob,
+                                 Kontonr = wk.konto,
+                                 Momskode = wk.momskode,
+                                 Faknr = wk.faktura
                              };
                     karKladde.Add(k);
                 }
@@ -409,17 +409,17 @@ namespace Trans2Summa
             decimal Balance = 0;
             try
             {
-                var qry2 = from k in (this.tblwbilagBindingSource.Current as Tblwbilag).Tblwkladder select k;
+                var qry2 = from k in (this.tblwbilagBindingSource.Current as tblwbilag).tblwkladders select k;
                 foreach (var k in qry2)
                 {
-                    if (!((k.Afstemningskonto != null)
-                    && (k.Afstemningskonto != "")
-                    && (k.Konto != null)))
+                    if (!((k.afstemningskonto != null)
+                    && (k.afstemningskonto != "")
+                    && (k.konto != null)))
                     {
-                        if (k.Konto != null)
-                            Balance -= (k.Belob != null) ? (decimal)k.Belob : 0;
+                        if (k.konto != null)
+                            Balance -= (k.belob != null) ? (decimal)k.belob : 0;
                         else
-                            Balance += (k.Belob != null) ? (decimal)k.Belob : 0;
+                            Balance += (k.belob != null) ? (decimal)k.belob : 0;
                     }
                 }
             }
@@ -460,11 +460,11 @@ namespace Trans2Summa
                     m_frmKontoplanList.Close();
                     if (selectedKontonr != null)
                     {
-                        Tblwkladder recWkladder = ((DataGridView)sender).Rows[hit.RowIndex].DataBoundItem as Tblwkladder;
+                        tblwkladder recWkladder = ((DataGridView)sender).Rows[hit.RowIndex].DataBoundItem as tblwkladder;
                         if (recWkladder != null)
                         {
-                            recWkladder.Konto = selectedKontonr;
-                            recWkladder.Momskode = selectedMomskode;
+                            recWkladder.konto = selectedKontonr;
+                            recWkladder.momskode = selectedMomskode;
                         }
                     }
                 }
@@ -481,7 +481,7 @@ namespace Trans2Summa
             {
                 if (e.RowIndex >= 0)
                 {
-                    Tblwkladder recWkladder = ((DataGridView)sender).Rows[e.RowIndex].DataBoundItem as Tblwkladder;
+                    tblwkladder recWkladder = ((DataGridView)sender).Rows[e.RowIndex].DataBoundItem as tblwkladder;
                     if (recWkladder != null)
                     {
                         string kontonavn;
@@ -499,7 +499,7 @@ namespace Trans2Summa
                                                                          Type = k.Type
                                                                      };
                             IEnumerable<recKontoplan> qry_Join = qry_Kontoplan.Union(qry_Kartotek);
-                            kontonavn = (from k in qry_Join where k.Kontonr == recWkladder.Konto select k.Kontonavn).First();
+                            kontonavn = (from k in qry_Join where k.Kontonr == recWkladder.konto select k.Kontonavn).First();
                         }
                         catch
                         {
@@ -519,9 +519,9 @@ namespace Trans2Summa
                 try
                 {
                     DataGridViewTextBoxCell cell = cells[0] as DataGridViewTextBoxCell;
-                    Tblwkladder recWkladder = cell.OwningRow.DataBoundItem as Tblwkladder;
-                    decimal momspct = 1 + KarMoms.getMomspct(recWkladder.Momskode) / 100;
-                    recWkladder.Belob *= momspct;
+                    tblwkladder recWkladder = cell.OwningRow.DataBoundItem as tblwkladder;
+                    decimal momspct = 1 + KarMoms.getMomspct(recWkladder.momskode) / 100;
+                    recWkladder.belob *= momspct;
 
                 }
                 catch { }
@@ -537,15 +537,15 @@ namespace Trans2Summa
                 try
                 {
                     DataGridViewTextBoxCell cell = cells[0] as DataGridViewTextBoxCell;
-                    Tblwkladder recWkladder = cell.OwningRow.DataBoundItem as Tblwkladder;
-                    decimal momspct = 1 + KarMoms.getMomspct(recWkladder.Momskode) / 100;
-                    recWkladder.Belob /= momspct;
+                    tblwkladder recWkladder = cell.OwningRow.DataBoundItem as tblwkladder;
+                    decimal momspct = 1 + KarMoms.getMomspct(recWkladder.momskode) / 100;
+                    recWkladder.belob /= momspct;
                 }
                 catch { }
             }
         }
 
-        private bool ReducerBilag(Tblwbilag recwBilag, Tblbilag recBilag, Tblbankkonto recBankkonto)
+        private bool ReducerBilag(tblwbilag recwBilag, tblbilag recBilag, tblbankkonto recBankkonto)
         {
             bool IsFound_BankKontoudtog = (recBankkonto != null);
             decimal BankBelob = 0;
@@ -562,64 +562,64 @@ namespace Trans2Summa
             bool bAfstem = false;
             bool bMomskode = false;
 
-            var qry = from k in recBilag.Tblkladder
-                      select new Tblwkladder
+            var qry = from k in recBilag.tblkladders
+                      select new tblwkladder
                       {
-                          Tekst = k.Tekst,
-                          Afstemningskonto = k.Afstemningskonto,
-                          Belob = k.Belob,
-                          Konto = k.Konto,
-                          Momskode = k.Momskode,
-                          Faktura = k.Faktura
+                          tekst = k.tekst,
+                          afstemningskonto = k.afstemningskonto,
+                          belob = k.belob,
+                          konto = k.konto,
+                          momskode = k.momskode,
+                          faktura = k.faktura
                       };
 
-            int AntalLinier = recBilag.Tblkladder.Count;
+            int AntalLinier = recBilag.tblkladders.Count;
 
 
-            if ((!IsFound_BankKontoudtog) || (IsFound_BankKontoudtog && recBankkonto.Bankkontoid == 1)) //BANK
+            if ((!IsFound_BankKontoudtog) || (IsFound_BankKontoudtog && recBankkonto.bankkontoid == 1)) //BANK
             {
                 if (AntalLinier <= 3)
                 {
-                    foreach (Tblkladder recKladder in recBilag.Tblkladder)
+                    foreach (tblkladder recKladder in recBilag.tblkladders)
                     {
-                        if ((recKladder.Afstemningskonto != null) && (recKladder.Afstemningskonto != ""))
+                        if ((recKladder.afstemningskonto != null) && (recKladder.afstemningskonto != ""))
                             bAfstem = true;
 
-                        if (recKladder.Konto != null)
+                        if (recKladder.konto != null)
                         {
-                            switch (recKladder.Konto)
+                            switch (recKladder.konto)
                             {
                                 case 58000:
                                     bBankKonto = true;
-                                    BankBelob = (decimal)recKladder.Belob;
+                                    BankBelob = (decimal)recKladder.belob;
                                     break;
 
                                 case 66100:
                                     bMomsKonto = true;
-                                    MomsBelob = (decimal)recKladder.Belob;
+                                    MomsBelob = (decimal)recKladder.belob;
                                     MK = "S25";
                                     break;
 
                                 case 66200:
                                     bMomsKonto = true;
-                                    MomsBelob = (decimal)recKladder.Belob;
+                                    MomsBelob = (decimal)recKladder.belob;
                                     MK = "K25";
                                     break;
 
                                 default:
                                     bAndenKonto = true;
-                                    AndenKontoBelob = (decimal)recKladder.Belob;
-                                    AndenKontoTekst = recKladder.Tekst;
-                                    AndenKontoKonto = (int)recKladder.Konto;
-                                    if ((recKladder.Afstemningskonto != null) && (recKladder.Afstemningskonto != ""))
-                                        AndenKontoAfstemningskonto = recKladder.Afstemningskonto;
-                                    if ((recKladder.Momskode != null) && (recKladder.Momskode != ""))
-                                        AndenKontoMomskode = recKladder.Momskode;
+                                    AndenKontoBelob = (decimal)recKladder.belob;
+                                    AndenKontoTekst = recKladder.tekst;
+                                    AndenKontoKonto = (int)recKladder.konto;
+                                    if ((recKladder.afstemningskonto != null) && (recKladder.afstemningskonto != ""))
+                                        AndenKontoAfstemningskonto = recKladder.afstemningskonto;
+                                    if ((recKladder.momskode != null) && (recKladder.momskode != ""))
+                                        AndenKontoMomskode = recKladder.momskode;
                                     break;
                             }
                         }
 
-                        if ((recKladder.Momskode != null) && (recKladder.Momskode != ""))
+                        if ((recKladder.momskode != null) && (recKladder.momskode != ""))
                             bMomskode = true;
                     }
 
@@ -636,15 +636,15 @@ namespace Trans2Summa
                         if ((MomsBelobDif > -decimal.Parse(" 0,01"))
                         && (MomsBelobDif < decimal.Parse(" 0,01")))
                         {
-                            Tblwkladder recWkladder = new Tblwkladder
+                            tblwkladder recWkladder = new tblwkladder
                             {
-                                Tekst = AndenKontoTekst,
-                                Afstemningskonto = "Bank",
-                                Belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.Belob : BankBelob,
-                                Konto = AndenKontoKonto,
-                                Momskode = MK
+                                tekst = AndenKontoTekst,
+                                afstemningskonto = "Bank",
+                                belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.belob : BankBelob,
+                                konto = AndenKontoKonto,
+                                momskode = MK
                             };
-                            recwBilag.Tblwkladder.Add(recWkladder);
+                            recwBilag.tblwkladders.Add(recWkladder);
                             this.tblwbilagBindingSource.Add(recwBilag);
                             return true;
                         }
@@ -657,14 +657,14 @@ namespace Trans2Summa
                     && (!bAfstem)
                     && (!bMomskode))
                     {
-                        Tblwkladder recWkladder = new Tblwkladder
+                        tblwkladder recWkladder = new tblwkladder
                         {
-                            Tekst = AndenKontoTekst,
-                            Afstemningskonto = "Bank",
-                            Belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.Belob : AndenKontoBelob,
-                            Konto = AndenKontoKonto
+                            tekst = AndenKontoTekst,
+                            afstemningskonto = "Bank",
+                            belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.belob : AndenKontoBelob,
+                            konto = AndenKontoKonto
                         };
-                        recwBilag.Tblwkladder.Add(recWkladder);
+                        recwBilag.tblwkladders.Add(recWkladder);
                         this.tblwbilagBindingSource.Add(recwBilag);
                         return true;
                     }
@@ -675,16 +675,16 @@ namespace Trans2Summa
                     && (bAndenKonto)
                     && (!bAfstem))
                     {
-                        foreach (Tblwkladder k in qry)
+                        foreach (tblwkladder k in qry)
                         {
                             if (IsFound_BankKontoudtog)
                             {
-                                if (k.Konto == 58000)
-                                    k.Belob = -(decimal)recBankkonto.Belob;
+                                if (k.konto == 58000)
+                                    k.belob = -(decimal)recBankkonto.belob;
                                 else
-                                    k.Belob = (decimal)recBankkonto.Belob;
+                                    k.belob = (decimal)recBankkonto.belob;
                             }
-                            recwBilag.Tblwkladder.Add(k);
+                            recwBilag.tblwkladders.Add(k);
                         }
                         this.tblwbilagBindingSource.Add(recwBilag);
                         return true;
@@ -700,65 +700,65 @@ namespace Trans2Summa
                             WrkAfstemningskonto = "Bank";
                         else
                             WrkAfstemningskonto = AndenKontoAfstemningskonto;
-                        Tblwkladder recWkladder = new Tblwkladder
+                        tblwkladder recWkladder = new tblwkladder
                         {
-                            Tekst = AndenKontoTekst,
-                            Afstemningskonto = WrkAfstemningskonto,
-                            Belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.Belob : AndenKontoBelob,
-                            Konto = AndenKontoKonto,
-                            Momskode = AndenKontoMomskode
+                            tekst = AndenKontoTekst,
+                            afstemningskonto = WrkAfstemningskonto,
+                            belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.belob : AndenKontoBelob,
+                            konto = AndenKontoKonto,
+                            momskode = AndenKontoMomskode
                         };
-                        recwBilag.Tblwkladder.Add(recWkladder);
+                        recwBilag.tblwkladders.Add(recWkladder);
                         this.tblwbilagBindingSource.Add(recwBilag);
                         return true;
                     }
                 }
             }
 
-            else if (IsFound_BankKontoudtog && recBankkonto.Bankkontoid == 2)  //MASTERCARD
+            else if (IsFound_BankKontoudtog && recBankkonto.bankkontoid == 2)  //MASTERCARD
             {
                 if (AntalLinier <= 3)
                 {
-                    foreach (Tblkladder recKladder in recBilag.Tblkladder)
+                    foreach (tblkladder recKladder in recBilag.tblkladders)
                     {
-                        if ((recKladder.Afstemningskonto != null) && (recKladder.Afstemningskonto != ""))
+                        if ((recKladder.afstemningskonto != null) && (recKladder.afstemningskonto != ""))
                             bAfstem = true;
 
-                        if (recKladder.Konto != null)
+                        if (recKladder.konto != null)
                         {
-                            switch (recKladder.Konto)
+                            switch (recKladder.konto)
                             {
                                 case 58310:
                                     bBankKonto = true;
-                                    BankBelob = (decimal)recKladder.Belob;
+                                    BankBelob = (decimal)recKladder.belob;
                                     break;
 
                                 case 66100:
                                     bMomsKonto = true;
-                                    MomsBelob = (decimal)recKladder.Belob;
+                                    MomsBelob = (decimal)recKladder.belob;
                                     MK = "S25";
                                     break;
 
                                 case 66200:
                                     bMomsKonto = true;
-                                    MomsBelob = (decimal)recKladder.Belob;
+                                    MomsBelob = (decimal)recKladder.belob;
                                     MK = "K25";
                                     break;
 
                                 default:
                                     bAndenKonto = true;
-                                    AndenKontoBelob = (decimal)recKladder.Belob;
-                                    AndenKontoTekst = recKladder.Tekst;
-                                    AndenKontoKonto = (int)recKladder.Konto;
-                                    if ((recKladder.Afstemningskonto != null) && (recKladder.Afstemningskonto != ""))
-                                        AndenKontoAfstemningskonto = recKladder.Afstemningskonto;
-                                    if ((recKladder.Momskode != null) && (recKladder.Momskode != ""))
-                                        AndenKontoMomskode = recKladder.Momskode;
+                                    AndenKontoBelob = (decimal)recKladder.belob;
+                                    AndenKontoTekst = recKladder.tekst;
+                                    AndenKontoKonto = (int)recKladder.konto;
+                                    if ((recKladder.afstemningskonto != null) && (recKladder.afstemningskonto != ""))
+                                        AndenKontoAfstemningskonto = recKladder.afstemningskonto;
+                                    if ((recKladder.momskode != null) && (recKladder.momskode != ""))
+                                        AndenKontoMomskode = recKladder.momskode;
                                     break;
                             }
                         }
 
-                        if ((recKladder.Momskode != null) && (recKladder.Momskode != ""))
+                        if ((recKladder.momskode != null) && (recKladder.momskode != ""))
                             bMomskode = true;
                     }
 
@@ -775,15 +775,15 @@ namespace Trans2Summa
                         if ((MomsBelobDif > -decimal.Parse(" 0,01"))
                         && (MomsBelobDif < decimal.Parse(" 0,01")))
                         {
-                            Tblwkladder recWkladder = new Tblwkladder
+                            tblwkladder recWkladder = new tblwkladder
                             {
-                                Tekst = AndenKontoTekst,
-                                Afstemningskonto = "MasterCard",
-                                Belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.Belob : BankBelob,
-                                Konto = AndenKontoKonto,
-                                Momskode = MK
+                                tekst = AndenKontoTekst,
+                                afstemningskonto = "MasterCard",
+                                belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.belob : BankBelob,
+                                konto = AndenKontoKonto,
+                                momskode = MK
                             };
-                            recwBilag.Tblwkladder.Add(recWkladder);
+                            recwBilag.tblwkladders.Add(recWkladder);
                             this.tblwbilagBindingSource.Add(recwBilag);
                             return true;
                         }
@@ -796,14 +796,14 @@ namespace Trans2Summa
                     && (!bAfstem)
                     && (!bMomskode))
                     {
-                        Tblwkladder recWkladder = new Tblwkladder
+                        tblwkladder recWkladder = new tblwkladder
                         {
-                            Tekst = AndenKontoTekst,
-                            Afstemningskonto = "MasterCard",
-                            Belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.Belob : AndenKontoBelob,
-                            Konto = AndenKontoKonto
+                            tekst = AndenKontoTekst,
+                            afstemningskonto = "MasterCard",
+                            belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.belob : AndenKontoBelob,
+                            konto = AndenKontoKonto
                         };
-                        recwBilag.Tblwkladder.Add(recWkladder);
+                        recwBilag.tblwkladders.Add(recWkladder);
                         this.tblwbilagBindingSource.Add(recwBilag);
                         return true;
                     }
@@ -813,16 +813,16 @@ namespace Trans2Summa
                     && (bAndenKonto)
                     && (!bAfstem))
                     {
-                        foreach (Tblwkladder k in qry)
+                        foreach (tblwkladder k in qry)
                         {
                             if (IsFound_BankKontoudtog)
                             {
-                                if (k.Konto == 58310)
-                                    k.Belob = -(decimal)recBankkonto.Belob;
+                                if (k.konto == 58310)
+                                    k.belob = -(decimal)recBankkonto.belob;
                                 else
-                                    k.Belob = (decimal)recBankkonto.Belob;
+                                    k.belob = (decimal)recBankkonto.belob;
                             }
-                            recwBilag.Tblwkladder.Add(k);
+                            recwBilag.tblwkladders.Add(k);
                         }
                         this.tblwbilagBindingSource.Add(recwBilag);
                         return true;
@@ -838,15 +838,15 @@ namespace Trans2Summa
                         else
                             WrkAfstemningskonto = AndenKontoAfstemningskonto;
 
-                        Tblwkladder recWkladder = new Tblwkladder
+                        tblwkladder recWkladder = new tblwkladder
                         {
-                            Tekst = AndenKontoTekst,
-                            Afstemningskonto = WrkAfstemningskonto,
-                            Belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.Belob : AndenKontoBelob,
-                            Konto = AndenKontoKonto,
-                            Momskode = AndenKontoMomskode
+                            tekst = AndenKontoTekst,
+                            afstemningskonto = WrkAfstemningskonto,
+                            belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.belob : AndenKontoBelob,
+                            konto = AndenKontoKonto,
+                            momskode = AndenKontoMomskode
                         };
-                        recwBilag.Tblwkladder.Add(recWkladder);
+                        recwBilag.tblwkladders.Add(recWkladder);
                         this.tblwbilagBindingSource.Add(recwBilag);
                         return true;
                     }
@@ -874,7 +874,7 @@ namespace Trans2Summa
 
             try
             {
-                bilagnr = (from b in ((IList<Tblwbilag>)this.tblwbilagBindingSource.List) select b.Bilag).Max();
+                bilagnr = (from b in ((IList<tblwbilag>)this.tblwbilagBindingSource.List) select b.bilag).Max();
                 bilagnr++;
             }
             catch
@@ -885,17 +885,17 @@ namespace Trans2Summa
             DateTime SidsteDato;
             try
             {
-                SidsteDato = (from b in ((IList<Tblwbilag>)this.tblwbilagBindingSource.List) select b.Dato).Last();
+                SidsteDato = (from b in ((IList<tblwbilag>)this.tblwbilagBindingSource.List) select b.dato).Last();
             }
             catch
             {
                 SidsteDato = DateTime.Today;
             }
 
-            Tblwbilag recwBilag = new Tblwbilag
+            tblwbilag recwBilag = new tblwbilag
             {
-                Bilag = bilagnr,
-                Dato = SidsteDato
+                bilag = bilagnr,
+                dato = SidsteDato
             };
             try
             {

@@ -206,11 +206,11 @@ namespace Trans2Summa
         {
             int? lastBilag = null;
             string Kontonavn = null;
-            Tblbilag recBilag = null;
+            tblbilag recBilag = null;
             var qryPosteringer = from p in Program.karPosteringer
-                                 join b in Program.dbDataTransSumma.Tbltrans on new { p.Regnskabid, p.Id, p.Nr } equals new { b.Regnskabid, b.Id, b.Nr } into tbltrans
-                                 from b in tbltrans.DefaultIfEmpty(new Tbltrans { Pid = 0, Regnskabid = null, Id = null, Nr = null })
-                                 where b.Pid == 0
+                                 join b in Program.dbDataTransSumma.tbltrans on new { p.Regnskabid, p.Id, p.Nr } equals new { Regnskabid = b.regnskabid, Id = b.id, Nr = b.nr } into tbltrans
+                                 from b in tbltrans.DefaultIfEmpty(new tbltran { pid = 0, regnskabid = null, id = null, nr = null })
+                                 where b.pid == 0
                                  orderby p.Regnskabid, p.Bilag, p.Id, p.Nr
                                  select p;
             int antal = qryPosteringer.Count();
@@ -220,20 +220,20 @@ namespace Trans2Summa
                 {
                     try
                     {
-                        recBilag = (from b in Program.dbDataTransSumma.Tblbilag
-                                    where b.Regnskabid == p.Regnskabid && b.Bilag == p.Bilag
+                        recBilag = (from b in Program.dbDataTransSumma.tblbilags
+                                    where b.regnskabid == p.Regnskabid && b.bilag == p.Bilag
                                     select b).First();
                     }
                     catch
                     {
-                        recBilag = new Tblbilag
+                        recBilag = new tblbilag
                         {
-                            Regnskabid = p.Regnskabid,
-                            Bilag = p.Bilag,
-                            Dato = p.Dato,
-                            Udskriv = true,
+                            regnskabid = p.Regnskabid,
+                            bilag = p.Bilag,
+                            dato = p.Dato,
+                            udskriv = true,
                         };
-                        Program.dbDataTransSumma.Tblbilag.InsertOnSubmit(recBilag);
+                        Program.dbDataTransSumma.tblbilags.InsertOnSubmit(recBilag);
                     }
                 }
 
@@ -246,21 +246,21 @@ namespace Trans2Summa
                     Kontonavn = null;
                 }
 
-                Tbltrans recTrans = new Tbltrans
+                tbltran recTrans = new tbltran
                 {
-                    Regnskabid = p.Regnskabid,
-                    Tekst = p.Tekst,
-                    Kontonr = p.Konto,
-                    Kontonavn = Kontonavn,
-                    Id = p.Id,
-                    Nr = p.Nr,
-                    Belob = p.Nettobeløb + p.Momsbeløb,
-                    Moms = p.Momsbeløb,
-                    Debet = (p.Nettobeløb >= 0) ? p.Nettobeløb : (decimal?)null,
-                    Kredit = (p.Nettobeløb < 0) ? -p.Nettobeløb : (decimal?)null,
+                    regnskabid = p.Regnskabid,
+                    tekst = p.Tekst,
+                    kontonr = p.Konto,
+                    kontonavn = Kontonavn,
+                    id = p.Id,
+                    nr = p.Nr,
+                    belob = p.Nettobeløb + p.Momsbeløb,
+                    moms = p.Momsbeløb,
+                    debet = (p.Nettobeløb >= 0) ? p.Nettobeløb : (decimal?)null,
+                    kredit = (p.Nettobeløb < 0) ? -p.Nettobeløb : (decimal?)null,
                 };
-                Program.dbDataTransSumma.Tbltrans.InsertOnSubmit(recTrans);
-                if (!(p.Bilag == 0)) recBilag.Tbltrans.Add(recTrans);
+                Program.dbDataTransSumma.tbltrans.InsertOnSubmit(recTrans);
+                if (!(p.Bilag == 0)) recBilag.tbltrans.Add(recTrans);
                 lastBilag = p.Bilag;
             }
             Program.dbDataTransSumma.SubmitChanges();
@@ -268,9 +268,9 @@ namespace Trans2Summa
 
             lastBilag = 0;
             var qryKladder = from k in Program.karKladder
-                             join b in Program.dbDataTransSumma.Tblkladder on new { k.Regnskabid, k.Id } equals new { b.Regnskabid, b.Id } into tblkladder
-                             from b in tblkladder.DefaultIfEmpty(new Tblkladder { Pid = 0, Regnskabid = null, Id = null })
-                             where b.Pid == 0
+                             join b in Program.dbDataTransSumma.tblkladders on new { k.Regnskabid, k.Id } equals new { Regnskabid = b.regnskabid, Id = b.id } into tblkladder
+                             from b in tblkladder.DefaultIfEmpty(new tblkladder { pid = 0, regnskabid = null, id = null })
+                             where b.pid == 0
                              orderby k.Regnskabid, k.Bilag, k.Id
                              select k;
             antal = qryKladder.Count();
@@ -280,36 +280,36 @@ namespace Trans2Summa
                 {
                     try
                     {
-                        recBilag = (from b in Program.dbDataTransSumma.Tblbilag
-                                    where b.Regnskabid == k.Regnskabid && b.Bilag == k.Bilag
+                        recBilag = (from b in Program.dbDataTransSumma.tblbilags
+                                    where b.regnskabid == k.Regnskabid && b.bilag == k.Bilag
                                     select b).First();
                     }
                     catch
                     {
-                        recBilag = new Tblbilag
+                        recBilag = new tblbilag
                         {
-                            Regnskabid = k.Regnskabid,
-                            Bilag = k.Bilag,
-                            Dato = k.Dato,
-                            Udskriv = true,
+                            regnskabid = k.Regnskabid,
+                            bilag = k.Bilag,
+                            dato = k.Dato,
+                            udskriv = true,
                         };
-                        Program.dbDataTransSumma.Tblbilag.InsertOnSubmit(recBilag);
+                        Program.dbDataTransSumma.tblbilags.InsertOnSubmit(recBilag);
                     }
                 }
 
-                Tblkladder recKladder = new Tblkladder
+                tblkladder recKladder = new tblkladder
                 {
-                    Regnskabid = k.Regnskabid,
-                    Tekst = k.Tekst,
-                    Afstemningskonto = k.Afstemningskonto,
-                    Belob = k.Belob,
-                    Konto = k.Konto,
-                    Momskode = k.Momskode,
-                    Faktura = k.Faktura,
-                    Id = k.Id,
+                    regnskabid = k.Regnskabid,
+                    tekst = k.Tekst,
+                    afstemningskonto = k.Afstemningskonto,
+                    belob = k.Belob,
+                    konto = k.Konto,
+                    momskode = k.Momskode,
+                    faktura = k.Faktura,
+                    id = k.Id,
                 };
-                Program.dbDataTransSumma.Tblkladder.InsertOnSubmit(recKladder);
-                if (!(k.Bilag == 0)) recBilag.Tblkladder.Add(recKladder);
+                Program.dbDataTransSumma.tblkladders.InsertOnSubmit(recKladder);
+                if (!(k.Bilag == 0)) recBilag.tblkladders.Add(recKladder);
                 lastBilag = k.Bilag;
             }
             Program.dbDataTransSumma.SubmitChanges();
