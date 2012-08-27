@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace nsPuls3060.Properties {
+namespace Trans2Summa.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -49,8 +49,8 @@ namespace nsPuls3060.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Documents and Settings\\mha\\Dokumenter\\Medlem3060\\Databaser\\SQLCompact\\dbDataTr" +
-            "ansSumma.sdf")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Documents and Settings\\mha\\Dokumenter\\HafsjoldDataTransSumma\\Databaser\\SQLComp" +
+            "act\\dbDataTransSumma.sdf")]
         public string DataBasePath {
             get {
                 return ((string)(this["DataBasePath"]));

@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransSumma", "TransSumma\TransSumma.csproj", "{B8080DB1-341B-47D7-BCA4-8C7D48E1B81C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trans2Summa", "Trans2Summa\Trans2Summa.csproj", "{08C9C8A5-BAB5-4B6E-BD07-A46394140046}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{B8080DB1-341B-47D7-BCA4-8C7D48E1B81C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8080DB1-341B-47D7-BCA4-8C7D48E1B81C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8080DB1-341B-47D7-BCA4-8C7D48E1B81C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{08C9C8A5-BAB5-4B6E-BD07-A46394140046}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{08C9C8A5-BAB5-4B6E-BD07-A46394140046}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{08C9C8A5-BAB5-4B6E-BD07-A46394140046}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{08C9C8A5-BAB5-4B6E-BD07-A46394140046}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
