@@ -111,7 +111,7 @@
             // 
             // bsTblkontoudtog
             // 
-            this.bsTblkontoudtog.DataSource = typeof(Trans2Summa.Tblkontoudtog);
+            this.bsTblkontoudtog.DataSource = typeof(Trans2Summa.tblkontoudtog);
             // 
             // bnTblkontoudtog
             // 

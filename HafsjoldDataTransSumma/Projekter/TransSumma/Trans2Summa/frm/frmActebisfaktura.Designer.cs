@@ -216,7 +216,7 @@
             // 
             // tblactebisfakturaBindingSource
             // 
-            this.tblactebisfakturaBindingSource.DataSource = typeof(Trans2Summa.Tblactebisfaktura);
+            this.tblactebisfakturaBindingSource.DataSource = typeof(Trans2Summa.tblactebisfaktura);
             // 
             // tblactebisordreDataGridView
             // 

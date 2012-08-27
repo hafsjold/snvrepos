@@ -197,7 +197,7 @@
             // 
             // tbltemplateBindingSource
             // 
-            this.tbltemplateBindingSource.DataSource = typeof(Trans2Summa.Tbltemplate);
+            this.tbltemplateBindingSource.DataSource = typeof(Trans2Summa.tbltemplate);
             // 
             // cmdPrivat
             // 
@@ -223,7 +223,7 @@
             // 
             // tblkontoudtogBindingSource
             // 
-            this.tblkontoudtogBindingSource.DataSource = typeof(Trans2Summa.Tblkontoudtog);
+            this.tblkontoudtogBindingSource.DataSource = typeof(Trans2Summa.tblkontoudtog);
             // 
             // cmdSog
             // 
@@ -262,7 +262,7 @@
             // 
             // tblbankkontoBindingSourceUafstemte
             // 
-            this.tblbankkontoBindingSourceUafstemte.DataSource = typeof(Trans2Summa.Tblbankkonto);
+            this.tblbankkontoBindingSourceUafstemte.DataSource = typeof(Trans2Summa.tblbankkonto);
             this.tblbankkontoBindingSourceUafstemte.PositionChanged += new System.EventHandler(this.tblbankkontoBindingSourceUafstemte_PositionChanged);
             // 
             // tekstTextBox
@@ -472,7 +472,7 @@
             // 
             // tblbankkontoBindingSourceAfstemte
             // 
-            this.tblbankkontoBindingSourceAfstemte.DataSource = typeof(Trans2Summa.Tblbankkonto);
+            this.tblbankkontoBindingSourceAfstemte.DataSource = typeof(Trans2Summa.tblbankkonto);
             // 
             // FrmBankkontoudtog
             // 

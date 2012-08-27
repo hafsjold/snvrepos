@@ -227,7 +227,7 @@
             // 
             // tblkontoudtogBindingSource
             // 
-            this.tblkontoudtogBindingSource.DataSource = typeof(Trans2Summa.Tblkontoudtog);
+            this.tblkontoudtogBindingSource.DataSource = typeof(Trans2Summa.tblkontoudtog);
             // 
             // lvwSumBank
             // 

@@ -76,7 +76,7 @@
             // 
             // tblvareomkostningerBindingSource
             // 
-            this.tblvareomkostningerBindingSource.DataSource = typeof(Trans2Summa.Tblvareomkostninger);
+            this.tblvareomkostningerBindingSource.DataSource = typeof(Trans2Summa.tblvareomkostninger);
             // 
             // tblvareomkostningerBindingNavigator
             // 

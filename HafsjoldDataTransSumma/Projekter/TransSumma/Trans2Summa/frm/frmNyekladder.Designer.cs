@@ -117,7 +117,7 @@
             // 
             // tblwbilagBindingSource
             // 
-            this.tblwbilagBindingSource.DataSource = typeof(Trans2Summa.Tblwbilag);
+            this.tblwbilagBindingSource.DataSource = typeof(Trans2Summa.tblwbilag);
             // 
             // tblwbilagBindingNavigator
             // 

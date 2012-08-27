@@ -144,7 +144,7 @@
             // 
             // tblbilagBindingSource
             // 
-            this.tblbilagBindingSource.DataSource = typeof(Trans2Summa.Tblbilag);
+            this.tblbilagBindingSource.DataSource = typeof(Trans2Summa.tblbilag);
             // 
             // tbltransDataGridView
             // 

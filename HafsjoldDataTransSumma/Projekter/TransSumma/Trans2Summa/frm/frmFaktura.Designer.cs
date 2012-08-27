@@ -182,7 +182,7 @@
             // 
             // tblfakBindingSource
             // 
-            this.tblfakBindingSource.DataSource = typeof(Trans2Summa.Tblfak);
+            this.tblfakBindingSource.DataSource = typeof(Trans2Summa.tblfak);
             // 
             // bindingNavigatorCountItem
             // 

@@ -59,7 +59,7 @@
             // 
             // bsTbltemplate
             // 
-            this.bsTbltemplate.DataSource = typeof(Trans2Summa.Tbltemplate);
+            this.bsTbltemplate.DataSource = typeof(Trans2Summa.tbltemplate);
             // 
             // bnTbltemplate
             // 

@@ -180,7 +180,7 @@
             // 
             // tblwfakBindingSource
             // 
-            this.tblwfakBindingSource.DataSource = typeof(Trans2Summa.Tblwfak);
+            this.tblwfakBindingSource.DataSource = typeof(Trans2Summa.tblwfak);
             // 
             // skComboBox
             // 
