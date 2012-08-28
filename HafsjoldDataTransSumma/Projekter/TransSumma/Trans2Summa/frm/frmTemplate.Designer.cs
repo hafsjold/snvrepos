@@ -45,12 +45,12 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tbltemplateBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.tbltemplateDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.navnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tekstDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kontoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.momskodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.afstemningskontoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.bsTbltemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bnTbltemplate)).BeginInit();
             this.bnTbltemplate.SuspendLayout();
@@ -192,12 +192,12 @@
             this.tbltemplateDataGridView.AutoGenerateColumns = false;
             this.tbltemplateDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tbltemplateDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6});
+            this.pidDataGridViewTextBoxColumn,
+            this.navnDataGridViewTextBoxColumn,
+            this.tekstDataGridViewTextBoxColumn,
+            this.kontoDataGridViewTextBoxColumn,
+            this.momskodeDataGridViewTextBoxColumn,
+            this.afstemningskontoDataGridViewTextBoxColumn});
             this.tbltemplateDataGridView.DataSource = this.bsTbltemplate;
             this.tbltemplateDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbltemplateDataGridView.Location = new System.Drawing.Point(0, 0);
@@ -205,47 +205,47 @@
             this.tbltemplateDataGridView.Size = new System.Drawing.Size(730, 272);
             this.tbltemplateDataGridView.TabIndex = 1;
             // 
-            // dataGridViewTextBoxColumn1
+            // pidDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Pid";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Nr";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.Width = 50;
+            this.pidDataGridViewTextBoxColumn.DataPropertyName = "pid";
+            this.pidDataGridViewTextBoxColumn.HeaderText = "Nr";
+            this.pidDataGridViewTextBoxColumn.Name = "pidDataGridViewTextBoxColumn";
+            this.pidDataGridViewTextBoxColumn.Width = 50;
             // 
-            // dataGridViewTextBoxColumn2
+            // navnDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Navn";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Navn";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 150;
+            this.navnDataGridViewTextBoxColumn.DataPropertyName = "navn";
+            this.navnDataGridViewTextBoxColumn.HeaderText = "Navn";
+            this.navnDataGridViewTextBoxColumn.Name = "navnDataGridViewTextBoxColumn";
+            this.navnDataGridViewTextBoxColumn.Width = 150;
             // 
-            // dataGridViewTextBoxColumn3
+            // tekstDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Tekst";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Tekst";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 150;
+            this.tekstDataGridViewTextBoxColumn.DataPropertyName = "tekst";
+            this.tekstDataGridViewTextBoxColumn.HeaderText = "Tekst";
+            this.tekstDataGridViewTextBoxColumn.Name = "tekstDataGridViewTextBoxColumn";
+            this.tekstDataGridViewTextBoxColumn.Width = 150;
             // 
-            // dataGridViewTextBoxColumn4
+            // kontoDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Konto";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Konto";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Width = 50;
+            this.kontoDataGridViewTextBoxColumn.DataPropertyName = "konto";
+            this.kontoDataGridViewTextBoxColumn.HeaderText = "Konto";
+            this.kontoDataGridViewTextBoxColumn.Name = "kontoDataGridViewTextBoxColumn";
+            this.kontoDataGridViewTextBoxColumn.Width = 50;
             // 
-            // dataGridViewTextBoxColumn5
+            // momskodeDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Momskode";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Moms";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 50;
+            this.momskodeDataGridViewTextBoxColumn.DataPropertyName = "momskode";
+            this.momskodeDataGridViewTextBoxColumn.HeaderText = "MK";
+            this.momskodeDataGridViewTextBoxColumn.Name = "momskodeDataGridViewTextBoxColumn";
+            this.momskodeDataGridViewTextBoxColumn.Width = 50;
             // 
-            // dataGridViewTextBoxColumn6
+            // afstemningskontoDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "Afstemningskonto";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Afstemning";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.Width = 150;
+            this.afstemningskontoDataGridViewTextBoxColumn.DataPropertyName = "afstemningskonto";
+            this.afstemningskontoDataGridViewTextBoxColumn.HeaderText = "Afstemning";
+            this.afstemningskontoDataGridViewTextBoxColumn.Name = "afstemningskontoDataGridViewTextBoxColumn";
+            this.afstemningskontoDataGridViewTextBoxColumn.Width = 150;
             // 
             // FrmTemplate
             // 
@@ -290,11 +290,12 @@
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton tbltemplateBindingNavigatorSaveItem;
         private System.Windows.Forms.DataGridView tbltemplateDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+ 
+        private System.Windows.Forms.DataGridViewTextBoxColumn pidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn navnDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tekstDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kontoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn momskodeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn afstemningskontoDataGridViewTextBoxColumn;
     }
 }

@@ -22,7 +22,7 @@ namespace Trans2Summa
         {
             this.tblbilagBindingSource.DataSource = Program.dbDataTransSumma.tblbilags;
             if (Program.karRegnskab.MomsPeriode() == 2)
-                this.MKdataGridViewTextBoxColumn.Visible = false;
+                this.momskodeDataGridViewTextBoxColumn.Visible = false;
         }
 
         private void copyMenuLineCopyPastItem_Click(object sender, EventArgs e)

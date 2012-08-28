@@ -26,9 +26,9 @@ namespace Trans2Summa
 
             if (Program.karRegnskab.MomsPeriode() == 2)
             {
-                this.dataGridViewTextBoxMK.Visible = false;
-                this.dataGridViewTextBoxMoms.Visible = false;
-                this.dataGridViewTextBoxBruttobelob.Visible = false;
+                this.momskodeDataGridViewTextBoxColumn.Visible = false;
+                this.momsDataGridViewTextBoxColumn.Visible = false;
+                this.bruttobelobDataGridViewTextBoxColumn.Visible = false;
             }
 
             int antal_fak = this.tblwfakBindingSource.Count;

@@ -130,8 +130,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tblbankkonto2DataGridView);
-            this.splitContainer1.Size = new System.Drawing.Size(393, 416);
-            this.splitContainer1.SplitterDistance = 147;
+            this.splitContainer1.Size = new System.Drawing.Size(393, 514);
+            this.splitContainer1.SplitterDistance = 181;
             this.splitContainer1.TabIndex = 7;
             // 
             // splitContainer3
@@ -162,8 +162,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.tblbankkontoBindingNavigator);
-            this.splitContainer3.Size = new System.Drawing.Size(393, 147);
-            this.splitContainer3.SplitterDistance = 118;
+            this.splitContainer3.Size = new System.Drawing.Size(393, 181);
+            this.splitContainer3.SplitterDistance = 145;
             this.splitContainer3.TabIndex = 0;
             // 
             // labelcbBankkonto
@@ -305,14 +305,14 @@
             this.tblbankkontoBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.tblbankkontoBindingNavigator.Name = "tblbankkontoBindingNavigator";
             this.tblbankkontoBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.tblbankkontoBindingNavigator.Size = new System.Drawing.Size(393, 25);
+            this.tblbankkontoBindingNavigator.Size = new System.Drawing.Size(393, 32);
             this.tblbankkontoBindingNavigator.TabIndex = 8;
             this.tblbankkontoBindingNavigator.Text = "bindingNavigator1";
             // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 29);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
@@ -322,7 +322,7 @@
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 29);
             this.bindingNavigatorMoveFirstItem.Text = "of {0}";
             // 
             // bindingNavigatorMovePreviousItem
@@ -331,13 +331,13 @@
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 29);
             this.bindingNavigatorMovePreviousItem.Text = "Move previous";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 32);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -351,7 +351,7 @@
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 32);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -359,7 +359,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 29);
             this.bindingNavigatorMoveNextItem.Text = "of {0}";
             // 
             // bindingNavigatorMoveLastItem
@@ -368,13 +368,13 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 29);
             this.bindingNavigatorMoveLastItem.Text = "of {0}";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 32);
             // 
             // tblbankkonto2DataGridView
             // 
@@ -398,7 +398,7 @@
             this.tblbankkonto2DataGridView.Name = "tblbankkonto2DataGridView";
             this.tblbankkonto2DataGridView.ReadOnly = true;
             this.tblbankkonto2DataGridView.RowHeadersWidth = 15;
-            this.tblbankkonto2DataGridView.Size = new System.Drawing.Size(393, 265);
+            this.tblbankkonto2DataGridView.Size = new System.Drawing.Size(393, 329);
             this.tblbankkonto2DataGridView.TabIndex = 0;
             this.tblbankkonto2DataGridView.SelectionChanged += new System.EventHandler(this.tblbankkonto2DataGridView_SelectionChanged);
             // 

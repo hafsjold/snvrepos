@@ -24,7 +24,7 @@ namespace Trans2Summa
             this.karAfstemningskontiBindingSource.DataSource = Program.karAfstemningskonti;
             this.karMomsBindingSource.DataSource = Program.karMoms;
             if (Program.karRegnskab.MomsPeriode() == 2)
-                this.MKdataGridViewComboBox.Visible = false;
+                this.momskodeDataGridViewTextBoxColumn.Visible = false;
         }
 
         public void AddNyKladde(tblbilag recBilag, tblbankkonto recBankkonto)

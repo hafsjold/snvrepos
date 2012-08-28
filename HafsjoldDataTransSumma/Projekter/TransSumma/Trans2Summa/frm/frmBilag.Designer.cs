@@ -33,8 +33,24 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tblbilagDataGridView = new System.Windows.Forms.DataGridView();
+            this.pidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.regnskabidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bilagDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.datoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.udskrivDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tblbilagBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tbltransDataGridView = new System.Windows.Forms.DataGridView();
+            this.tbltransBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tblbilagBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
+            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.pidDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.regnskabidDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.skjulDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,22 +67,6 @@
             this.afstemDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblafstemDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblbilagDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tbltransBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tblbilagBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.pidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.regnskabidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bilagDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.datoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.udskrivDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -140,6 +140,43 @@
             this.tblbilagDataGridView.Size = new System.Drawing.Size(246, 317);
             this.tblbilagDataGridView.TabIndex = 0;
             // 
+            // pidDataGridViewTextBoxColumn
+            // 
+            this.pidDataGridViewTextBoxColumn.DataPropertyName = "pid";
+            this.pidDataGridViewTextBoxColumn.HeaderText = "pid";
+            this.pidDataGridViewTextBoxColumn.Name = "pidDataGridViewTextBoxColumn";
+            this.pidDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // regnskabidDataGridViewTextBoxColumn
+            // 
+            this.regnskabidDataGridViewTextBoxColumn.DataPropertyName = "regnskabid";
+            this.regnskabidDataGridViewTextBoxColumn.HeaderText = "regnskabid";
+            this.regnskabidDataGridViewTextBoxColumn.Name = "regnskabidDataGridViewTextBoxColumn";
+            this.regnskabidDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // bilagDataGridViewTextBoxColumn
+            // 
+            this.bilagDataGridViewTextBoxColumn.DataPropertyName = "bilag";
+            this.bilagDataGridViewTextBoxColumn.HeaderText = "Bilag";
+            this.bilagDataGridViewTextBoxColumn.Name = "bilagDataGridViewTextBoxColumn";
+            this.bilagDataGridViewTextBoxColumn.Width = 35;
+            // 
+            // datoDataGridViewTextBoxColumn
+            // 
+            this.datoDataGridViewTextBoxColumn.DataPropertyName = "dato";
+            this.datoDataGridViewTextBoxColumn.HeaderText = "Dato";
+            this.datoDataGridViewTextBoxColumn.Name = "datoDataGridViewTextBoxColumn";
+            this.datoDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // udskrivDataGridViewTextBoxColumn
+            // 
+            this.udskrivDataGridViewTextBoxColumn.DataPropertyName = "udskriv";
+            this.udskrivDataGridViewTextBoxColumn.HeaderText = "Udskriv";
+            this.udskrivDataGridViewTextBoxColumn.Name = "udskrivDataGridViewTextBoxColumn";
+            this.udskrivDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.udskrivDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.udskrivDataGridViewTextBoxColumn.Width = 60;
+            // 
             // tblbilagBindingSource
             // 
             this.tblbilagBindingSource.DataSource = typeof(Trans2Summa.tblbilag);
@@ -174,134 +211,6 @@
             this.tbltransDataGridView.ReadOnly = true;
             this.tbltransDataGridView.Size = new System.Drawing.Size(620, 317);
             this.tbltransDataGridView.TabIndex = 0;
-            // 
-            // pidDataGridViewTextBoxColumn1
-            // 
-            this.pidDataGridViewTextBoxColumn1.DataPropertyName = "pid";
-            this.pidDataGridViewTextBoxColumn1.HeaderText = "pid";
-            this.pidDataGridViewTextBoxColumn1.Name = "pidDataGridViewTextBoxColumn1";
-            this.pidDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.pidDataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // regnskabidDataGridViewTextBoxColumn1
-            // 
-            this.regnskabidDataGridViewTextBoxColumn1.DataPropertyName = "regnskabid";
-            this.regnskabidDataGridViewTextBoxColumn1.HeaderText = "regnskabid";
-            this.regnskabidDataGridViewTextBoxColumn1.Name = "regnskabidDataGridViewTextBoxColumn1";
-            this.regnskabidDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.regnskabidDataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // skjulDataGridViewTextBoxColumn
-            // 
-            this.skjulDataGridViewTextBoxColumn.DataPropertyName = "skjul";
-            this.skjulDataGridViewTextBoxColumn.HeaderText = "skjul";
-            this.skjulDataGridViewTextBoxColumn.Name = "skjulDataGridViewTextBoxColumn";
-            this.skjulDataGridViewTextBoxColumn.ReadOnly = true;
-            this.skjulDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // bilagpidDataGridViewTextBoxColumn
-            // 
-            this.bilagpidDataGridViewTextBoxColumn.DataPropertyName = "bilagpid";
-            this.bilagpidDataGridViewTextBoxColumn.HeaderText = "bilagpid";
-            this.bilagpidDataGridViewTextBoxColumn.Name = "bilagpidDataGridViewTextBoxColumn";
-            this.bilagpidDataGridViewTextBoxColumn.ReadOnly = true;
-            this.bilagpidDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // tekstDataGridViewTextBoxColumn
-            // 
-            this.tekstDataGridViewTextBoxColumn.DataPropertyName = "tekst";
-            this.tekstDataGridViewTextBoxColumn.HeaderText = "Tekst";
-            this.tekstDataGridViewTextBoxColumn.Name = "tekstDataGridViewTextBoxColumn";
-            this.tekstDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tekstDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // kontonrDataGridViewTextBoxColumn
-            // 
-            this.kontonrDataGridViewTextBoxColumn.DataPropertyName = "kontonr";
-            this.kontonrDataGridViewTextBoxColumn.HeaderText = "Konto";
-            this.kontonrDataGridViewTextBoxColumn.Name = "kontonrDataGridViewTextBoxColumn";
-            this.kontonrDataGridViewTextBoxColumn.ReadOnly = true;
-            this.kontonrDataGridViewTextBoxColumn.Width = 50;
-            // 
-            // kontonavnDataGridViewTextBoxColumn
-            // 
-            this.kontonavnDataGridViewTextBoxColumn.DataPropertyName = "kontonavn";
-            this.kontonavnDataGridViewTextBoxColumn.HeaderText = "Kontonavn";
-            this.kontonavnDataGridViewTextBoxColumn.Name = "kontonavnDataGridViewTextBoxColumn";
-            this.kontonavnDataGridViewTextBoxColumn.ReadOnly = true;
-            this.kontonavnDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // momsDataGridViewTextBoxColumn
-            // 
-            this.momsDataGridViewTextBoxColumn.DataPropertyName = "moms";
-            this.momsDataGridViewTextBoxColumn.HeaderText = "Moms";
-            this.momsDataGridViewTextBoxColumn.Name = "momsDataGridViewTextBoxColumn";
-            this.momsDataGridViewTextBoxColumn.ReadOnly = true;
-            this.momsDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // debetDataGridViewTextBoxColumn
-            // 
-            this.debetDataGridViewTextBoxColumn.DataPropertyName = "debet";
-            this.debetDataGridViewTextBoxColumn.HeaderText = "debet";
-            this.debetDataGridViewTextBoxColumn.Name = "debetDataGridViewTextBoxColumn";
-            this.debetDataGridViewTextBoxColumn.ReadOnly = true;
-            this.debetDataGridViewTextBoxColumn.Width = 80;
-            // 
-            // kreditDataGridViewTextBoxColumn
-            // 
-            this.kreditDataGridViewTextBoxColumn.DataPropertyName = "kredit";
-            this.kreditDataGridViewTextBoxColumn.HeaderText = "kredit";
-            this.kreditDataGridViewTextBoxColumn.Name = "kreditDataGridViewTextBoxColumn";
-            this.kreditDataGridViewTextBoxColumn.ReadOnly = true;
-            this.kreditDataGridViewTextBoxColumn.Width = 80;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // nrDataGridViewTextBoxColumn
-            // 
-            this.nrDataGridViewTextBoxColumn.DataPropertyName = "nr";
-            this.nrDataGridViewTextBoxColumn.HeaderText = "nr";
-            this.nrDataGridViewTextBoxColumn.Name = "nrDataGridViewTextBoxColumn";
-            this.nrDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nrDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // belobDataGridViewTextBoxColumn
-            // 
-            this.belobDataGridViewTextBoxColumn.DataPropertyName = "belob";
-            this.belobDataGridViewTextBoxColumn.HeaderText = "belob";
-            this.belobDataGridViewTextBoxColumn.Name = "belobDataGridViewTextBoxColumn";
-            this.belobDataGridViewTextBoxColumn.ReadOnly = true;
-            this.belobDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // afstemDataGridViewTextBoxColumn
-            // 
-            this.afstemDataGridViewTextBoxColumn.DataPropertyName = "afstem";
-            this.afstemDataGridViewTextBoxColumn.HeaderText = "afstem";
-            this.afstemDataGridViewTextBoxColumn.Name = "afstemDataGridViewTextBoxColumn";
-            this.afstemDataGridViewTextBoxColumn.ReadOnly = true;
-            this.afstemDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // tblafstemDataGridViewTextBoxColumn
-            // 
-            this.tblafstemDataGridViewTextBoxColumn.DataPropertyName = "tblafstem";
-            this.tblafstemDataGridViewTextBoxColumn.HeaderText = "tblafstem";
-            this.tblafstemDataGridViewTextBoxColumn.Name = "tblafstemDataGridViewTextBoxColumn";
-            this.tblafstemDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tblafstemDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // tblbilagDataGridViewTextBoxColumn
-            // 
-            this.tblbilagDataGridViewTextBoxColumn.DataPropertyName = "tblbilag";
-            this.tblbilagDataGridViewTextBoxColumn.HeaderText = "tblbilag";
-            this.tblbilagDataGridViewTextBoxColumn.Name = "tblbilagDataGridViewTextBoxColumn";
-            this.tblbilagDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tblbilagDataGridViewTextBoxColumn.Visible = false;
             // 
             // tbltransBindingSource
             // 
@@ -403,42 +312,133 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
-            // pidDataGridViewTextBoxColumn
+            // pidDataGridViewTextBoxColumn1
             // 
-            this.pidDataGridViewTextBoxColumn.DataPropertyName = "pid";
-            this.pidDataGridViewTextBoxColumn.HeaderText = "pid";
-            this.pidDataGridViewTextBoxColumn.Name = "pidDataGridViewTextBoxColumn";
-            this.pidDataGridViewTextBoxColumn.Visible = false;
+            this.pidDataGridViewTextBoxColumn1.DataPropertyName = "pid";
+            this.pidDataGridViewTextBoxColumn1.HeaderText = "pid";
+            this.pidDataGridViewTextBoxColumn1.Name = "pidDataGridViewTextBoxColumn1";
+            this.pidDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.pidDataGridViewTextBoxColumn1.Visible = false;
             // 
-            // regnskabidDataGridViewTextBoxColumn
+            // regnskabidDataGridViewTextBoxColumn1
             // 
-            this.regnskabidDataGridViewTextBoxColumn.DataPropertyName = "regnskabid";
-            this.regnskabidDataGridViewTextBoxColumn.HeaderText = "regnskabid";
-            this.regnskabidDataGridViewTextBoxColumn.Name = "regnskabidDataGridViewTextBoxColumn";
-            this.regnskabidDataGridViewTextBoxColumn.Visible = false;
+            this.regnskabidDataGridViewTextBoxColumn1.DataPropertyName = "regnskabid";
+            this.regnskabidDataGridViewTextBoxColumn1.HeaderText = "regnskabid";
+            this.regnskabidDataGridViewTextBoxColumn1.Name = "regnskabidDataGridViewTextBoxColumn1";
+            this.regnskabidDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.regnskabidDataGridViewTextBoxColumn1.Visible = false;
             // 
-            // bilagDataGridViewTextBoxColumn
+            // skjulDataGridViewTextBoxColumn
             // 
-            this.bilagDataGridViewTextBoxColumn.DataPropertyName = "bilag";
-            this.bilagDataGridViewTextBoxColumn.HeaderText = "Bilag";
-            this.bilagDataGridViewTextBoxColumn.Name = "bilagDataGridViewTextBoxColumn";
-            this.bilagDataGridViewTextBoxColumn.Width = 35;
+            this.skjulDataGridViewTextBoxColumn.DataPropertyName = "skjul";
+            this.skjulDataGridViewTextBoxColumn.HeaderText = "skjul";
+            this.skjulDataGridViewTextBoxColumn.Name = "skjulDataGridViewTextBoxColumn";
+            this.skjulDataGridViewTextBoxColumn.ReadOnly = true;
+            this.skjulDataGridViewTextBoxColumn.Visible = false;
             // 
-            // datoDataGridViewTextBoxColumn
+            // bilagpidDataGridViewTextBoxColumn
             // 
-            this.datoDataGridViewTextBoxColumn.DataPropertyName = "dato";
-            this.datoDataGridViewTextBoxColumn.HeaderText = "Dato";
-            this.datoDataGridViewTextBoxColumn.Name = "datoDataGridViewTextBoxColumn";
-            this.datoDataGridViewTextBoxColumn.Width = 80;
+            this.bilagpidDataGridViewTextBoxColumn.DataPropertyName = "bilagpid";
+            this.bilagpidDataGridViewTextBoxColumn.HeaderText = "bilagpid";
+            this.bilagpidDataGridViewTextBoxColumn.Name = "bilagpidDataGridViewTextBoxColumn";
+            this.bilagpidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.bilagpidDataGridViewTextBoxColumn.Visible = false;
             // 
-            // udskrivDataGridViewTextBoxColumn
+            // tekstDataGridViewTextBoxColumn
             // 
-            this.udskrivDataGridViewTextBoxColumn.DataPropertyName = "udskriv";
-            this.udskrivDataGridViewTextBoxColumn.HeaderText = "Udskriv";
-            this.udskrivDataGridViewTextBoxColumn.Name = "udskrivDataGridViewTextBoxColumn";
-            this.udskrivDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.udskrivDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.udskrivDataGridViewTextBoxColumn.Width = 60;
+            this.tekstDataGridViewTextBoxColumn.DataPropertyName = "tekst";
+            this.tekstDataGridViewTextBoxColumn.HeaderText = "Tekst";
+            this.tekstDataGridViewTextBoxColumn.Name = "tekstDataGridViewTextBoxColumn";
+            this.tekstDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tekstDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // kontonrDataGridViewTextBoxColumn
+            // 
+            this.kontonrDataGridViewTextBoxColumn.DataPropertyName = "kontonr";
+            this.kontonrDataGridViewTextBoxColumn.HeaderText = "Konto";
+            this.kontonrDataGridViewTextBoxColumn.Name = "kontonrDataGridViewTextBoxColumn";
+            this.kontonrDataGridViewTextBoxColumn.ReadOnly = true;
+            this.kontonrDataGridViewTextBoxColumn.Width = 50;
+            // 
+            // kontonavnDataGridViewTextBoxColumn
+            // 
+            this.kontonavnDataGridViewTextBoxColumn.DataPropertyName = "kontonavn";
+            this.kontonavnDataGridViewTextBoxColumn.HeaderText = "Kontonavn";
+            this.kontonavnDataGridViewTextBoxColumn.Name = "kontonavnDataGridViewTextBoxColumn";
+            this.kontonavnDataGridViewTextBoxColumn.ReadOnly = true;
+            this.kontonavnDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // momsDataGridViewTextBoxColumn
+            // 
+            this.momsDataGridViewTextBoxColumn.DataPropertyName = "moms";
+            this.momsDataGridViewTextBoxColumn.HeaderText = "Moms";
+            this.momsDataGridViewTextBoxColumn.Name = "momsDataGridViewTextBoxColumn";
+            this.momsDataGridViewTextBoxColumn.ReadOnly = true;
+            this.momsDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // debetDataGridViewTextBoxColumn
+            // 
+            this.debetDataGridViewTextBoxColumn.DataPropertyName = "debet";
+            this.debetDataGridViewTextBoxColumn.HeaderText = "Debet";
+            this.debetDataGridViewTextBoxColumn.Name = "debetDataGridViewTextBoxColumn";
+            this.debetDataGridViewTextBoxColumn.ReadOnly = true;
+            this.debetDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // kreditDataGridViewTextBoxColumn
+            // 
+            this.kreditDataGridViewTextBoxColumn.DataPropertyName = "kredit";
+            this.kreditDataGridViewTextBoxColumn.HeaderText = "Kredit";
+            this.kreditDataGridViewTextBoxColumn.Name = "kreditDataGridViewTextBoxColumn";
+            this.kreditDataGridViewTextBoxColumn.ReadOnly = true;
+            this.kreditDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // nrDataGridViewTextBoxColumn
+            // 
+            this.nrDataGridViewTextBoxColumn.DataPropertyName = "nr";
+            this.nrDataGridViewTextBoxColumn.HeaderText = "nr";
+            this.nrDataGridViewTextBoxColumn.Name = "nrDataGridViewTextBoxColumn";
+            this.nrDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nrDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // belobDataGridViewTextBoxColumn
+            // 
+            this.belobDataGridViewTextBoxColumn.DataPropertyName = "belob";
+            this.belobDataGridViewTextBoxColumn.HeaderText = "belob";
+            this.belobDataGridViewTextBoxColumn.Name = "belobDataGridViewTextBoxColumn";
+            this.belobDataGridViewTextBoxColumn.ReadOnly = true;
+            this.belobDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // afstemDataGridViewTextBoxColumn
+            // 
+            this.afstemDataGridViewTextBoxColumn.DataPropertyName = "afstem";
+            this.afstemDataGridViewTextBoxColumn.HeaderText = "afstem";
+            this.afstemDataGridViewTextBoxColumn.Name = "afstemDataGridViewTextBoxColumn";
+            this.afstemDataGridViewTextBoxColumn.ReadOnly = true;
+            this.afstemDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // tblafstemDataGridViewTextBoxColumn
+            // 
+            this.tblafstemDataGridViewTextBoxColumn.DataPropertyName = "tblafstem";
+            this.tblafstemDataGridViewTextBoxColumn.HeaderText = "tblafstem";
+            this.tblafstemDataGridViewTextBoxColumn.Name = "tblafstemDataGridViewTextBoxColumn";
+            this.tblafstemDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tblafstemDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // tblbilagDataGridViewTextBoxColumn
+            // 
+            this.tblbilagDataGridViewTextBoxColumn.DataPropertyName = "tblbilag";
+            this.tblbilagDataGridViewTextBoxColumn.HeaderText = "tblbilag";
+            this.tblbilagDataGridViewTextBoxColumn.Name = "tblbilagDataGridViewTextBoxColumn";
+            this.tblbilagDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tblbilagDataGridViewTextBoxColumn.Visible = false;
             // 
             // FrmBilag
             // 
@@ -491,6 +491,11 @@
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.DataGridView tbltransDataGridView;
         private System.Windows.Forms.BindingSource tbltransBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn regnskabidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bilagDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn datoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn udskrivDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn pidDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn regnskabidDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn skjulDataGridViewTextBoxColumn;
@@ -507,11 +512,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn afstemDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tblafstemDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tblbilagDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn regnskabidDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bilagDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn datoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn udskrivDataGridViewTextBoxColumn;
 
     }
 }

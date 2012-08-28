@@ -33,7 +33,6 @@
             System.Windows.Forms.Label tekstLabel;
             System.Windows.Forms.Label belobLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmBankkontoudtog));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.labelcbBankkonto = new System.Windows.Forms.Label();
@@ -61,21 +60,24 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tblbankkonto2DataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.saldoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.skjulDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.datoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tekstDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.belobDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.afstemDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bankkontoidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblafstemDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblbankkontoBindingSourceAfstemte = new System.Windows.Forms.BindingSource(this.components);
             datoLabel = new System.Windows.Forms.Label();
             tekstLabel = new System.Windows.Forms.Label();
             belobLabel = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
@@ -131,7 +133,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.tblbankkonto2DataGridView);
             this.splitContainer1.Size = new System.Drawing.Size(393, 416);
-            this.splitContainer1.SplitterDistance = 147;
+            this.splitContainer1.SplitterDistance = 146;
             this.splitContainer1.TabIndex = 7;
             // 
             // splitContainer3
@@ -162,8 +164,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.tblbankkontoBindingNavigator);
-            this.splitContainer3.Size = new System.Drawing.Size(393, 147);
-            this.splitContainer3.SplitterDistance = 118;
+            this.splitContainer3.Size = new System.Drawing.Size(393, 146);
+            this.splitContainer3.SplitterDistance = 116;
             this.splitContainer3.TabIndex = 0;
             // 
             // labelcbBankkonto
@@ -305,14 +307,14 @@
             this.tblbankkontoBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.tblbankkontoBindingNavigator.Name = "tblbankkontoBindingNavigator";
             this.tblbankkontoBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.tblbankkontoBindingNavigator.Size = new System.Drawing.Size(393, 25);
+            this.tblbankkontoBindingNavigator.Size = new System.Drawing.Size(393, 26);
             this.tblbankkontoBindingNavigator.TabIndex = 8;
             this.tblbankkontoBindingNavigator.Text = "bindingNavigator1";
             // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 23);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
@@ -322,7 +324,7 @@
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(23, 23);
             this.bindingNavigatorMoveFirstItem.Text = "of {0}";
             // 
             // bindingNavigatorMovePreviousItem
@@ -331,13 +333,13 @@
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(23, 23);
             this.bindingNavigatorMovePreviousItem.Text = "Move previous";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 25);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 26);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -351,7 +353,7 @@
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 26);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -359,7 +361,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(23, 23);
             this.bindingNavigatorMoveNextItem.Text = "of {0}";
             // 
             // bindingNavigatorMoveLastItem
@@ -368,13 +370,13 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(23, 23);
             this.bindingNavigatorMoveLastItem.Text = "of {0}";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 26);
             // 
             // tblbankkonto2DataGridView
             // 
@@ -384,91 +386,96 @@
             this.tblbankkonto2DataGridView.BackgroundColor = System.Drawing.SystemColors.Window;
             this.tblbankkonto2DataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblbankkonto2DataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn10,
-            this.dataGridViewTextBoxColumn11,
-            this.dataGridViewTextBoxColumn12,
-            this.dataGridViewTextBoxColumn13,
-            this.dataGridViewTextBoxColumn14,
-            this.dataGridViewTextBoxColumn15,
-            this.dataGridViewTextBoxColumn16});
+            this.pidDataGridViewTextBoxColumn,
+            this.saldoDataGridViewTextBoxColumn,
+            this.skjulDataGridViewTextBoxColumn,
+            this.datoDataGridViewTextBoxColumn,
+            this.tekstDataGridViewTextBoxColumn,
+            this.belobDataGridViewTextBoxColumn,
+            this.afstemDataGridViewTextBoxColumn,
+            this.bankkontoidDataGridViewTextBoxColumn,
+            this.tblafstemDataGridViewTextBoxColumn});
             this.tblbankkonto2DataGridView.DataSource = this.tblbankkontoBindingSourceAfstemte;
             this.tblbankkonto2DataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblbankkonto2DataGridView.Location = new System.Drawing.Point(0, 0);
             this.tblbankkonto2DataGridView.Name = "tblbankkonto2DataGridView";
             this.tblbankkonto2DataGridView.ReadOnly = true;
             this.tblbankkonto2DataGridView.RowHeadersWidth = 15;
-            this.tblbankkonto2DataGridView.Size = new System.Drawing.Size(393, 265);
+            this.tblbankkonto2DataGridView.Size = new System.Drawing.Size(393, 266);
             this.tblbankkonto2DataGridView.TabIndex = 0;
             this.tblbankkonto2DataGridView.SelectionChanged += new System.EventHandler(this.tblbankkonto2DataGridView_SelectionChanged);
             // 
-            // dataGridViewTextBoxColumn9
+            // pidDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxColumn9.DataPropertyName = "Pid";
-            this.dataGridViewTextBoxColumn9.HeaderText = "Pid";
-            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.ReadOnly = true;
-            this.dataGridViewTextBoxColumn9.Visible = false;
+            this.pidDataGridViewTextBoxColumn.DataPropertyName = "pid";
+            this.pidDataGridViewTextBoxColumn.HeaderText = "pid";
+            this.pidDataGridViewTextBoxColumn.Name = "pidDataGridViewTextBoxColumn";
+            this.pidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.pidDataGridViewTextBoxColumn.Visible = false;
             // 
-            // dataGridViewTextBoxColumn10
+            // saldoDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxColumn10.DataPropertyName = "Saldo";
-            this.dataGridViewTextBoxColumn10.HeaderText = "Saldo";
-            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            this.dataGridViewTextBoxColumn10.ReadOnly = true;
-            this.dataGridViewTextBoxColumn10.Visible = false;
+            this.saldoDataGridViewTextBoxColumn.DataPropertyName = "saldo";
+            this.saldoDataGridViewTextBoxColumn.HeaderText = "saldo";
+            this.saldoDataGridViewTextBoxColumn.Name = "saldoDataGridViewTextBoxColumn";
+            this.saldoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.saldoDataGridViewTextBoxColumn.Visible = false;
             // 
-            // dataGridViewTextBoxColumn11
+            // skjulDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxColumn11.DataPropertyName = "Skjul";
-            this.dataGridViewTextBoxColumn11.HeaderText = "Skjul";
-            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            this.dataGridViewTextBoxColumn11.ReadOnly = true;
-            this.dataGridViewTextBoxColumn11.Visible = false;
+            this.skjulDataGridViewTextBoxColumn.DataPropertyName = "skjul";
+            this.skjulDataGridViewTextBoxColumn.HeaderText = "skjul";
+            this.skjulDataGridViewTextBoxColumn.Name = "skjulDataGridViewTextBoxColumn";
+            this.skjulDataGridViewTextBoxColumn.ReadOnly = true;
+            this.skjulDataGridViewTextBoxColumn.Visible = false;
             // 
-            // dataGridViewTextBoxColumn12
+            // datoDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxColumn12.DataPropertyName = "Dato";
-            this.dataGridViewTextBoxColumn12.HeaderText = "Dato";
-            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-            this.dataGridViewTextBoxColumn12.ReadOnly = true;
-            this.dataGridViewTextBoxColumn12.Width = 83;
+            this.datoDataGridViewTextBoxColumn.DataPropertyName = "dato";
+            this.datoDataGridViewTextBoxColumn.HeaderText = "Dato";
+            this.datoDataGridViewTextBoxColumn.Name = "datoDataGridViewTextBoxColumn";
+            this.datoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.datoDataGridViewTextBoxColumn.Width = 83;
             // 
-            // dataGridViewTextBoxColumn13
+            // tekstDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxColumn13.DataPropertyName = "Tekst";
-            this.dataGridViewTextBoxColumn13.HeaderText = "Tekst";
-            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
-            this.dataGridViewTextBoxColumn13.ReadOnly = true;
-            this.dataGridViewTextBoxColumn13.Width = 190;
+            this.tekstDataGridViewTextBoxColumn.DataPropertyName = "tekst";
+            this.tekstDataGridViewTextBoxColumn.HeaderText = "Tekst";
+            this.tekstDataGridViewTextBoxColumn.Name = "tekstDataGridViewTextBoxColumn";
+            this.tekstDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tekstDataGridViewTextBoxColumn.Width = 190;
             // 
-            // dataGridViewTextBoxColumn14
+            // belobDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxColumn14.DataPropertyName = "Belob";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.Format = "N2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.dataGridViewTextBoxColumn14.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataGridViewTextBoxColumn14.HeaderText = "Belob";
-            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
-            this.dataGridViewTextBoxColumn14.ReadOnly = true;
-            this.dataGridViewTextBoxColumn14.Width = 81;
+            this.belobDataGridViewTextBoxColumn.DataPropertyName = "belob";
+            this.belobDataGridViewTextBoxColumn.HeaderText = "Beløb";
+            this.belobDataGridViewTextBoxColumn.Name = "belobDataGridViewTextBoxColumn";
+            this.belobDataGridViewTextBoxColumn.ReadOnly = true;
+            this.belobDataGridViewTextBoxColumn.Width = 81;
             // 
-            // dataGridViewTextBoxColumn15
+            // afstemDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxColumn15.DataPropertyName = "Afstem";
-            this.dataGridViewTextBoxColumn15.HeaderText = "Afstem";
-            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
-            this.dataGridViewTextBoxColumn15.ReadOnly = true;
-            this.dataGridViewTextBoxColumn15.Visible = false;
+            this.afstemDataGridViewTextBoxColumn.DataPropertyName = "afstem";
+            this.afstemDataGridViewTextBoxColumn.HeaderText = "afstem";
+            this.afstemDataGridViewTextBoxColumn.Name = "afstemDataGridViewTextBoxColumn";
+            this.afstemDataGridViewTextBoxColumn.ReadOnly = true;
+            this.afstemDataGridViewTextBoxColumn.Visible = false;
             // 
-            // dataGridViewTextBoxColumn16
+            // bankkontoidDataGridViewTextBoxColumn
             // 
-            this.dataGridViewTextBoxColumn16.DataPropertyName = "Tblafstem";
-            this.dataGridViewTextBoxColumn16.HeaderText = "Tblafstem";
-            this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
-            this.dataGridViewTextBoxColumn16.ReadOnly = true;
-            this.dataGridViewTextBoxColumn16.Visible = false;
+            this.bankkontoidDataGridViewTextBoxColumn.DataPropertyName = "bankkontoid";
+            this.bankkontoidDataGridViewTextBoxColumn.HeaderText = "bankkontoid";
+            this.bankkontoidDataGridViewTextBoxColumn.Name = "bankkontoidDataGridViewTextBoxColumn";
+            this.bankkontoidDataGridViewTextBoxColumn.ReadOnly = true;
+            this.bankkontoidDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // tblafstemDataGridViewTextBoxColumn
+            // 
+            this.tblafstemDataGridViewTextBoxColumn.DataPropertyName = "tblafstem";
+            this.tblafstemDataGridViewTextBoxColumn.HeaderText = "tblafstem";
+            this.tblafstemDataGridViewTextBoxColumn.Name = "tblafstemDataGridViewTextBoxColumn";
+            this.tblafstemDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tblafstemDataGridViewTextBoxColumn.Visible = false;
             // 
             // tblbankkontoBindingSourceAfstemte
             // 
@@ -488,11 +495,13 @@
             this.Load += new System.EventHandler(this.FrmKladder_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel1.PerformLayout();
             this.splitContainer3.Panel2.ResumeLayout(false);
             this.splitContainer3.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tbltemplateBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblkontoudtogBindingSource)).EndInit();
@@ -529,14 +538,6 @@
         private System.Windows.Forms.Button cmdSog;
         private System.Windows.Forms.Label labeltextBoxSogeord;
         private System.Windows.Forms.TextBox textBoxSogeord;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
         private System.Windows.Forms.ComboBox cbBankkonto;
         private System.Windows.Forms.BindingSource tblkontoudtogBindingSource;
         private System.Windows.Forms.Button cmdPrivat;
@@ -544,5 +545,14 @@
         private System.Windows.Forms.ComboBox cbTemplate;
         private System.Windows.Forms.BindingSource tbltemplateBindingSource;
         private System.Windows.Forms.Label labelcbBankkonto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn saldoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn skjulDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn datoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tekstDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn belobDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn afstemDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bankkontoidDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tblafstemDataGridViewTextBoxColumn;
     }
 }
