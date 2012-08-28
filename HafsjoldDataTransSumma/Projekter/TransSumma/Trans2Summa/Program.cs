@@ -363,7 +363,7 @@ namespace Trans2Summa
         [STAThread]
         static void Main()
         {
-            System.Diagnostics.Process[] p = System.Diagnostics.Process.GetProcessesByName("Medlem3060");
+            System.Diagnostics.Process[] p = System.Diagnostics.Process.GetProcessesByName("Trans2Summa");
             if (p.Length > 1)
             {
                 clsUtil.SetForegroundWindow(p[0].MainWindowHandle);
