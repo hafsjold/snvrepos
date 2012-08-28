@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Hafsjold Data ApS")]
 [assembly: AssemblyProduct("Trans2Summa")]
-[assembly: AssemblyCopyright("Copyright © Hafsjold Data ApS 2010")]
+[assembly: AssemblyCopyright("Copyright © Hafsjold Data ApS 2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
