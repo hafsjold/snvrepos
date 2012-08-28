@@ -36,7 +36,7 @@
             this.cmdOK = new System.Windows.Forms.Button();
             this.cmdCancel = new System.Windows.Forms.Button();
             this.lvwFolders = new System.Windows.Forms.ListView();
-            this.colHdFoldere = new System.Windows.Forms.ColumnHeader();
+            this.colHdFoldere = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.testmenuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.BackupFolder = new System.Windows.Forms.TextBox();
@@ -45,6 +45,7 @@
             this.cmdAddFolderToList = new System.Windows.Forms.Button();
             this.SelectBackupFile = new System.Windows.Forms.Button();
             this.bd = new System.Windows.Forms.OpenFileDialog();
+            this.DB = new System.Windows.Forms.Button();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -76,7 +77,7 @@
             // 
             // cmdOK
             // 
-            this.cmdOK.Location = new System.Drawing.Point(395, 412);
+            this.cmdOK.Location = new System.Drawing.Point(289, 412);
             this.cmdOK.Name = "cmdOK";
             this.cmdOK.Size = new System.Drawing.Size(70, 21);
             this.cmdOK.TabIndex = 3;
@@ -86,7 +87,7 @@
             // 
             // cmdCancel
             // 
-            this.cmdCancel.Location = new System.Drawing.Point(300, 412);
+            this.cmdCancel.Location = new System.Drawing.Point(194, 412);
             this.cmdCancel.Name = "cmdCancel";
             this.cmdCancel.Size = new System.Drawing.Size(70, 21);
             this.cmdCancel.TabIndex = 3;
@@ -175,11 +176,22 @@
             // 
             this.bd.FileName = "openFileDialog1";
             // 
+            // DB
+            // 
+            this.DB.Location = new System.Drawing.Point(387, 412);
+            this.DB.Name = "DB";
+            this.DB.Size = new System.Drawing.Size(75, 23);
+            this.DB.TabIndex = 5;
+            this.DB.Text = "DB";
+            this.DB.UseVisualStyleBackColor = true;
+            this.DB.Click += new System.EventHandler(this.DB_Click);
+            // 
             // frmBackup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(517, 451);
+            this.Controls.Add(this.DB);
             this.Controls.Add(this.lvwFolders);
             this.Controls.Add(this.SelectBackupDir);
             this.Controls.Add(this.cmdCancel);
@@ -218,6 +230,7 @@
         private System.Windows.Forms.Button cmdAddFolderToList;
         private System.Windows.Forms.Button SelectBackupFile;
         private System.Windows.Forms.OpenFileDialog bd;
+        private System.Windows.Forms.Button DB;
     }
 }
 

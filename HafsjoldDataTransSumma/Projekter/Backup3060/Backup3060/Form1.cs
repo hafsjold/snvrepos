@@ -10,9 +10,12 @@ using Microsoft.Win32;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
+using System.Data.SqlClient;
 
 
-// Add a Reference to COM Microsoft Access 11.0 Object Library (Access 2003)
+
+
+
 
 namespace Backup3060
 {
@@ -42,6 +45,17 @@ namespace Backup3060
             masterKey.Close();
         }
 
+        private void DB_Click(object sender, EventArgs e)
+        {
+            string sqlConnectionString = @"Data Source=(localdb)\localdb;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
+            string script = @"BACKUP DATABASE [dbDataTransSumma] TO  [SQLBackupDevice] WITH NOFORMAT, INIT,  NAME = N'dbDataTransSumma-Full Database Backup', SKIP, NOREWIND, NOUNLOAD,  STATS = 10";
+            SqlConnection conn = new SqlConnection(sqlConnectionString);
+            conn.Open();
+            SqlCommand cmd = new SqlCommand(script, conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+        
         private void frmBackup_FormClosing(object sender, FormClosingEventArgs e)
         {
             SaveReg();
@@ -225,6 +239,6 @@ namespace Backup3060
 
         }
 
-
+ 
     }
 }
