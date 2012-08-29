@@ -30,10 +30,10 @@ namespace Backup3060
             RegistryKey masterKey = Registry.CurrentUser.OpenSubKey(regKey);
             if (masterKey == null)
             {
-                RegistryKey masterKeyCreate = Registry.CurrentUser.OpenSubKey(@"Software",true);
+                RegistryKey masterKeyCreate = Registry.CurrentUser.OpenSubKey(@"Software", true);
                 masterKey = masterKeyCreate.CreateSubKey(@"Hafsjold\Puls3060\Start");
             }
-            this.BackupDir.Text = (string)masterKey.GetValue("BackupDir","");
+            this.BackupDir.Text = (string)masterKey.GetValue("BackupDir", "");
             string[] folders = (string[])masterKey.GetValue("BackupFolders");
             if (folders != null)
             {
@@ -42,6 +42,10 @@ namespace Backup3060
                     this.lvwFolders.Items.Add(folder);
                 }
             }
+
+            int bBackupDatabase = (int)masterKey.GetValue("BackupDatabase", 0);
+            this.BackupDatabase.Checked = bBackupDatabase == 0 ? false : true;
+
             this.DBBackupFolder.Text = (string)masterKey.GetValue("DBBackupFolder", "");
             this.SQLServer.Text = (string)masterKey.GetValue("SQLServer", "");
             this.Database.Text = (string)masterKey.GetValue("Database", "");
@@ -55,18 +59,30 @@ namespace Backup3060
             string strDatabase = this.Database.Text; //@"dbDataTransSumma";
             string strDatabaseBackupfile = this.DBBackupFolder.Text + @"\" + strDatabase + @"_Backup.bak";
             string script = @"BACKUP DATABASE [" + strDatabase + @"] TO DISK = N'" + strDatabaseBackupfile + @"' WITH NOFORMAT, INIT,  NAME = N'dbDataTransSumma-Full Database Backup', SKIP, NOREWIND, NOUNLOAD,  STATS = 10";
-            SqlConnection conn = new SqlConnection(sqlConnectionString);
-            conn.Open();
-            SqlCommand cmd = new SqlCommand(script, conn);
-            cmd.ExecuteNonQuery();
-            conn.Close();
+            DateTime Nu = DateTime.Now;
+            string fdt = Nu.ToString("dd-MM-yyyy HH:mm");
+            try
+            {
+                SqlConnection conn = new SqlConnection(sqlConnectionString);
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(script, conn);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                this.DBMessage.Text = strDatabase + " Backup OK " + fdt;
+                this.DBMessage.ForeColor = System.Drawing.Color.DodgerBlue;
+            }
+            catch
+            {
+                this.DBMessage.Text = strDatabase + " Not Backed up " + fdt;
+                this.DBMessage.ForeColor = System.Drawing.Color.Red;
+            }
         }
-        
+
         private void frmBackup_FormClosing(object sender, FormClosingEventArgs e)
         {
             SaveReg();
         }
-        
+
         private void SaveReg()
         {
             RegistryKey masterKey = Registry.CurrentUser.CreateSubKey(regKey);
@@ -78,12 +94,14 @@ namespace Backup3060
                 folders[i] = this.lvwFolders.Items[i].Text;
             }
             masterKey.SetValue("BackupFolders", folders, RegistryValueKind.MultiString);
+            int bBackupDatabase = this.BackupDatabase.Checked ? 1 : 0;
+            masterKey.SetValue("BackupDatabase", bBackupDatabase, RegistryValueKind.DWord);
             masterKey.SetValue("DBBackupFolder", this.DBBackupFolder.Text, RegistryValueKind.String);
             masterKey.SetValue("SQLServer", this.SQLServer.Text, RegistryValueKind.String);
             masterKey.SetValue("Database", this.Database.Text, RegistryValueKind.String);
             masterKey.Close();
         }
-        
+
         private void SelectBackupDir_Click(object sender, EventArgs e)
         {
             this.bf.SelectedPath = this.BackupDir.Text;
@@ -99,14 +117,14 @@ namespace Backup3060
             this.bf.ShowDialog();
             this.BackupFolder.Text = this.bf.SelectedPath;
         }
-        
+
         private void SelectBackupFile_Click(object sender, EventArgs e)
         {
             this.bd.FileName = this.BackupFolder.Text;
             this.bd.ShowDialog();
             this.BackupFolder.Text = this.bd.FileName;
         }
-        
+
         private void cmdAddFolderToList_Click(object sender, EventArgs e)
         {
             if (selectedIndes == -1)
@@ -134,7 +152,7 @@ namespace Backup3060
         private void cmdOK_Click(object sender, EventArgs e)
         {
             SaveReg();
-            DB_Backup();
+            if (this.BackupDatabase.Checked)  DB_Backup();
             execZip();
         }
 
@@ -257,6 +275,5 @@ namespace Backup3060
             this.DBBackupFolder.Text = this.bf.SelectedPath;
         }
 
- 
     }
 }
