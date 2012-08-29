@@ -42,13 +42,19 @@ namespace Backup3060
                     this.lvwFolders.Items.Add(folder);
                 }
             }
+            this.DBBackupFolder.Text = (string)masterKey.GetValue("DBBackupFolder", "");
+            this.SQLServer.Text = (string)masterKey.GetValue("SQLServer", "");
+            this.Database.Text = (string)masterKey.GetValue("Database", "");
             masterKey.Close();
         }
 
-        private void DB_Click(object sender, EventArgs e)
+        private void DB_Backup()
         {
-            string sqlConnectionString = @"Data Source=(localdb)\localdb;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
-            string script = @"BACKUP DATABASE [dbDataTransSumma] TO  [SQLBackupDevice] WITH NOFORMAT, INIT,  NAME = N'dbDataTransSumma-Full Database Backup', SKIP, NOREWIND, NOUNLOAD,  STATS = 10";
+            string strSQLServer = this.SQLServer.Text;  //@"(localdb)\localdb";
+            string sqlConnectionString = @"Data Source=" + strSQLServer + @";Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False";
+            string strDatabase = this.Database.Text; //@"dbDataTransSumma";
+            string strDatabaseBackupfile = this.DBBackupFolder.Text + @"\" + strDatabase + @"_Backup.bak";
+            string script = @"BACKUP DATABASE [" + strDatabase + @"] TO DISK = N'" + strDatabaseBackupfile + @"' WITH NOFORMAT, INIT,  NAME = N'dbDataTransSumma-Full Database Backup', SKIP, NOREWIND, NOUNLOAD,  STATS = 10";
             SqlConnection conn = new SqlConnection(sqlConnectionString);
             conn.Open();
             SqlCommand cmd = new SqlCommand(script, conn);
@@ -72,6 +78,9 @@ namespace Backup3060
                 folders[i] = this.lvwFolders.Items[i].Text;
             }
             masterKey.SetValue("BackupFolders", folders, RegistryValueKind.MultiString);
+            masterKey.SetValue("DBBackupFolder", this.DBBackupFolder.Text, RegistryValueKind.String);
+            masterKey.SetValue("SQLServer", this.SQLServer.Text, RegistryValueKind.String);
+            masterKey.SetValue("Database", this.Database.Text, RegistryValueKind.String);
             masterKey.Close();
         }
         
@@ -125,6 +134,7 @@ namespace Backup3060
         private void cmdOK_Click(object sender, EventArgs e)
         {
             SaveReg();
+            DB_Backup();
             execZip();
         }
 
@@ -237,6 +247,14 @@ namespace Backup3060
                 sr.WriteLine(Data);
             }
 
+        }
+
+        private void SelectDBBackupFile_Click(object sender, EventArgs e)
+        {
+            this.bf.SelectedPath = this.DBBackupFolder.Text;
+            this.bf.ShowNewFolderButton = true;
+            this.bf.ShowDialog();
+            this.DBBackupFolder.Text = this.bf.SelectedPath;
         }
 
  
