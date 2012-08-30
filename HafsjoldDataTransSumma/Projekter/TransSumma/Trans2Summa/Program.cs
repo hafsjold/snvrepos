@@ -10,6 +10,47 @@ namespace Trans2Summa
 {
     static class Program
     {
+        public static string ConnectStringWithoutPassword
+        {
+            get
+            {
+                if (m_ConnectStringWithoutPassword == null)
+                {
+#if (DEBUG)
+                    m_ConnectStringWithoutPassword = global::Trans2Summa.Properties.Settings.Default.dbDataTransSummaConnectionString;
+#else
+                    m_ConnectStringWithoutPassword = global::Trans2Summa.Properties.Settings.Default.dbDataTransSummaConnectionString;
+#endif
+                }
+                return m_ConnectStringWithoutPassword;
+            }
+            set
+            {
+                m_ConnectStringWithoutPassword = value;
+            }
+        }
+        
+        public static string dbConnectionString()
+        {
+             return ConnectStringWithoutPassword;
+        }
+       
+        public static DbDataTransSumma dbDataTransSumma
+        {
+            get
+            {
+                if (m_dbDataTransSumma == null)
+                {
+                    m_dbDataTransSumma = new DbDataTransSumma(dbConnectionString());
+                }
+                return m_dbDataTransSumma;
+            }
+            set
+            {
+                m_dbDataTransSumma = value;
+            }
+        }
+        private static string m_ConnectStringWithoutPassword;
         private static string m_path_to_lock_summasummarum_kontoplan;
         private static FileStream m_filestream_to_lock_summasummarum_kontoplan;
         private static DbDataTransSumma m_dbDataTransSumma;
@@ -56,21 +97,7 @@ namespace Trans2Summa
                 m_filestream_to_lock_summasummarum_kontoplan = value;
             }
         }
-        public static DbDataTransSumma dbDataTransSumma
-        {
-            get
-            {
-                if (m_dbDataTransSumma == null)
-                {
-                    m_dbDataTransSumma = new DbDataTransSumma(global::Trans2Summa.Properties.Settings.Default.dbDataTransSummaConnectionString);
-                }
-                return m_dbDataTransSumma;
-            }
-            set
-            {
-                m_dbDataTransSumma = value;
-            }
-        }
+ 
         public static MemRegnskab memRegnskab
         {
             get

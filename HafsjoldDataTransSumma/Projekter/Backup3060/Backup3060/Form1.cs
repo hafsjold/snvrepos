@@ -11,8 +11,8 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
 using System.Data.SqlClient;
-
-
+using Microsoft.SqlServer.Management.Common;
+using Microsoft.SqlServer.Management.Smo;
 
 
 
@@ -50,6 +50,56 @@ namespace Backup3060
             this.SQLServer.Text = (string)masterKey.GetValue("SQLServer", "");
             this.Database.Text = (string)masterKey.GetValue("Database", "");
             masterKey.Close();
+        }
+
+        private void DB_Restore()
+        {
+            /*
+            RESTORE DATABASE dbDataTransSummaCopy
+               FROM DISK = 'C:\Users\mha\Documents\WORK\dbDataTransSumma_Backup.bak'
+               WITH MOVE 'dbDataTransSumma' TO 'C:\Users\mha\Documents\WORK\dbDataTransSummaCopy.MDF',
+                  MOVE 'dbDataTransSumma_log' TO 'C:\Users\mha\Documents\WORK\dbDataTransSummaCopy_log.LDF', REPLACE;
+            */
+            String databaseNameNew = @"dbDataTransSummaCopy2";
+            String databaseNameFrom = @"dbDataTransSumma";
+            String filePath = @"C:\Users\mha\Documents\WORK\dbDataTransSumma_Backup.bak";
+            String serverName = @"(localdb)\localdb";
+            String dataFilePath = @"C:\Users\mha\Documents\WORK";
+            String logFilePath = @"C:\Users\mha\Documents\WORK";
+
+            // Create Restore instance
+            Restore sqlRestore = new Restore();
+            BackupDeviceItem deviceItem = new BackupDeviceItem(filePath, DeviceType.File);
+            sqlRestore.Devices.Add(deviceItem);
+            sqlRestore.Database = databaseNameNew;
+
+            // Connect to DB Server
+            SqlConnection sqlCon = new SqlConnection(@"Data Source=" + serverName + @";Integrated Security=True;");
+            ServerConnection connection = new ServerConnection(sqlCon);
+
+            // Restoring
+            Server sqlServer = new Server(connection);
+            Database db = sqlServer.Databases[databaseNameNew];
+            sqlRestore.Action = RestoreActionType.Database;
+            String dataFileLocation = dataFilePath + databaseNameNew + ".mdf";
+            String logFileLocation = logFilePath + databaseNameNew + "_Log.ldf";
+            db = sqlServer.Databases[databaseNameNew];
+            sqlRestore.RelocateFiles.Add(new RelocateFile(databaseNameFrom, dataFileLocation));
+            sqlRestore.RelocateFiles.Add(new RelocateFile(databaseNameFrom + "_log", logFileLocation));
+            sqlRestore.ReplaceDatabase = true;
+            sqlRestore.PercentCompleteNotification = 10;
+            try
+            {
+                sqlRestore.SqlRestore(sqlServer);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.InnerException.ToString());
+            }
+
+            db = sqlServer.Databases[databaseNameNew];
+            db.SetOnline();
+            sqlServer.Refresh();
         }
 
         private void DB_Backup()
@@ -275,5 +325,6 @@ namespace Backup3060
             this.DBBackupFolder.Text = this.bf.SelectedPath;
         }
 
+ 
     }
 }
