@@ -325,10 +325,16 @@ namespace Trans2Summa
                 TextinBox(dc, t.kontonavn, 172, TextAlignment.Left, textPoint);
                 textPoint.X += 172;
 
-                TextinBox(dc, t.debet.ToString(), 85, TextAlignment.Right, textPoint);
+                if (t.debet != null)
+                    TextinBox(dc, ((decimal)(t.debet)).ToString("#,0.00;-#,0.00"), 85, TextAlignment.Right, textPoint);
+                else
+                    TextinBox(dc, t.debet.ToString(), 85, TextAlignment.Right, textPoint);
                 textPoint.X += 85;
-
-                TextinBox(dc, t.kredit.ToString(), 85, TextAlignment.Right, textPoint);
+     
+                if (t.kredit != null)
+                    TextinBox(dc, ((decimal)(t.kredit)).ToString("#,0.00;-#,0.00"), 85, TextAlignment.Right, textPoint);
+                else
+                    TextinBox(dc, t.kredit.ToString(), 85, TextAlignment.Right, textPoint);      
             }
         }
         private void TextinBox(DrawingContext dc, string txt, double width, TextAlignment al, Point textPoint)

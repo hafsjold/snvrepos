@@ -133,7 +133,12 @@ namespace Trans2Summa
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
-            KarVarer objVarer = new KarVarer();
+            decimal? tal = -decimal.Parse("0,12342");
+            string talformated = "";
+            if (tal != null)
+                talformated = ((decimal)tal).ToString("#,0.00;-#,0.00");
+            var x = talformated;
+            //KarVarer objVarer = new KarVarer();
             //object xx = Program.karFakturaer_k;
             //KarKartotek recKartotek = new KarKartotek();
             //int testx = 1;
