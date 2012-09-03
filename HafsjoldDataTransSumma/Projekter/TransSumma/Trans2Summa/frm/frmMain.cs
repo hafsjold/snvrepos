@@ -83,7 +83,9 @@ namespace Trans2Summa
                 Program.filestream_to_lock_summasummarum_kontoplan = new FileStream(Program.path_to_lock_summasummarum_kontoplan, FileMode.Open, FileAccess.Read, FileShare.None);
             }
 
+#if (RELEASE)
             if (Program.HafsjoldDataApS)
+#endif            
             {
                 importDanskebankToolStripMenuItem.Visible = true;
                 importerMasterCardToolStripMenuItem.Visible = true;
@@ -94,7 +96,9 @@ namespace Trans2Summa
                 printBilagToolStripMenuItem.Visible = true;
             }
 
+#if (RELEASE)
             if (Program.Puls3060)
+#endif
             {
                 importNordeaToolStripMenuItem.Visible = true;
             }

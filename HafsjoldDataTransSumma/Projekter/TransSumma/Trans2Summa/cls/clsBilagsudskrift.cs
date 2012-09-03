@@ -209,6 +209,17 @@ namespace Trans2Summa
             ft.TextAlignment = alm;
             return ft;
         }
+        
+        private void TextinBox(DrawingContext dc, string txt, double width, TextAlignment al, Point textPoint)
+        {
+            Point rectPoint = textPoint;
+            rectPoint.X -= 5;
+            rectPoint.Y -= 12;
+            if (al == TextAlignment.Right)
+                textPoint.X -= 5;
+            dc.DrawRectangle(null, _Pen, new Rect(rectPoint, new Size(width, LineHeight)));
+            dc.DrawText(MakeHeader2(txt, width - 4, al), textPoint);
+        }
 
         private static FormattedText MakeText(string text, double len, TextAlignment alm)
         {
@@ -218,7 +229,6 @@ namespace Trans2Summa
             ft.TextAlignment = alm;
             return ft;
         }
-
         public static int CalculateBitLength(string strData, d.Font font)
         {
             using (d.Graphics graphics = d.Graphics.FromImage(new d.Bitmap(1, 1)))
@@ -310,7 +320,6 @@ namespace Trans2Summa
             TextinBox(dc, "Kredit", 85, TextAlignment.Right, textPoint);
 
 
-
             foreach (var t in _Bilag.tbltrans)
             {
                 textPoint.Y += LineHeight;
@@ -336,17 +345,11 @@ namespace Trans2Summa
                 else
                     TextinBox(dc, t.kredit.ToString(), 85, TextAlignment.Right, textPoint);      
             }
-        }
-        private void TextinBox(DrawingContext dc, string txt, double width, TextAlignment al, Point textPoint)
-        {
-            Point rectPoint = textPoint;
-            rectPoint.X -= 5;
-            rectPoint.Y -= 12;
-            if (al == TextAlignment.Right)
-                textPoint.X -= 5;
-            dc.DrawRectangle(null, _Pen, new Rect(rectPoint, new Size(width, LineHeight)));
-            dc.DrawText(MakeHeader2(txt, width - 4, al), textPoint);
 
+            textPoint.Y = 956;
+            textPoint.X = 0;
+            dc.DrawText(MakeHeader1(".", 25, TextAlignment.Left), textPoint);
         }
+        
     }
 }
