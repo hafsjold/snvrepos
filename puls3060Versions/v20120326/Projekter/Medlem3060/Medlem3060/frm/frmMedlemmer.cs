@@ -338,24 +338,20 @@ namespace nsPuls3060
                 }
                 if (Akt_id != 0)
                 {
-                    try
+                    DateTime aktdt = (DateTime)U_DT_NyAktivitetDato.Value;
+                    int next_id = (int)(from r in Program.dbData3060.nextval("tblMedlemlog") select r.id).First();
+                    Program.dbData3060.SubmitChanges();
+                    
+                    nsPbs3060.tblMedlemLog recLog = new nsPbs3060.tblMedlemLog
                     {
-                        DateTime aktdt = (DateTime)U_DT_NyAktivitetDato.Value;
-                        int next_id = (int)(from r in Program.dbData3060.nextval("tblMedlemlog") select r.id).First();
-                        nsPbs3060.tblMedlemLog recLog = new nsPbs3060.tblMedlemLog
-                        {
-                            id = next_id,
-                            Nr = tblMedlem_nr,
-                            logdato = DateTime.Now,
-                            akt_id = Akt_id,
-                            akt_dato = new DateTime(aktdt.Year, aktdt.Month, aktdt.Day)
-                        };
-                        Program.dbData3060.tblMedlemLogs.InsertOnSubmit(recLog);
-                        Program.dbData3060.SubmitChanges();
-                    }
-                    catch (Exception)
-                    {
-                    }
+                        id = next_id,
+                        Nr = tblMedlem_nr,
+                        logdato = DateTime.Now,
+                        akt_id = Akt_id,
+                        akt_dato = new DateTime(aktdt.Year, aktdt.Month, aktdt.Day)
+                    };
+                    Program.dbData3060.tblMedlemLogs.InsertOnSubmit(recLog);
+                    Program.dbData3060.SubmitChanges();
                 }
             }
             this.dataGridView1.Update();
