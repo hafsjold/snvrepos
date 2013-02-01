@@ -34,6 +34,14 @@ namespace docdb
                 Console.WriteLine(file);
                 Guid id = Guid.NewGuid();
                 FileInfo fileInfo = new FileInfo(file);
+                string navn = fileInfo.Name;
+
+                Tbldoc rec_doc = new Tbldoc 
+                {
+                    Id = id,
+                    Navn = navn
+                };
+                db.Tbldoc.InsertOnSubmit(rec_doc);
                 
                 FileStream fs = fileInfo.OpenRead();
                 long ln = fileInfo.Length;
@@ -55,13 +63,24 @@ namespace docdb
 
         private void butReadDoc_Click(object sender, EventArgs e)
         {
-            TblData rec_Data = (from data in db.TblData select data).Single();
-            byte[] file_byte = rec_Data.Data.ToArray();
-            string path = @"c:\mhatest\testfile";
-            FileInfo fileInfo = new FileInfo(path);
-            FileStream fs = fileInfo.OpenWrite();
-            fs.Write(file_byte, 0, file_byte.Length);
-            fs.Flush();
+            var qry = from doc in db.Tbldoc
+                                join data in db.TblData on doc.Id equals data.Id
+                                select new 
+                                {
+                                   Id = doc.Id,
+                                   Navn = doc.Navn,
+                                   Data = data.Data
+                                };
+
+            foreach (var rec in qry)
+            {
+                byte[] file_byte = rec.Data.ToArray();
+                string path = @"c:\mhatest\" + rec.Navn;
+                FileInfo fileInfo = new FileInfo(path);
+                FileStream fs = fileInfo.OpenWrite();
+                fs.Write(file_byte, 0, file_byte.Length);
+                fs.Flush();
+            }
         }
     }
 }
