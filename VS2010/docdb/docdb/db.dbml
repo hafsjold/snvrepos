@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="docdb.sdf" Class="Docdb_Sdf" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Table Name="tblData" Member="TblData">
+    <Type Name="TblData">
+      <Column Name="id" Member="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="data" Member="Data" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="TblData_Tbldoc" Member="Tbldoc" ThisKey="Id" OtherKey="Id" Type="Tbldoc" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="tbldoc" Member="Tbldoc">
+    <Type Name="Tbldoc">
+      <Column Name="id" Member="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="navn" Member="Navn" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Association Name="TblData_Tbldoc" Member="TblData" ThisKey="Id" OtherKey="Id" Type="TblData" IsForeignKey="true" DeleteOnNull="true" />
+    </Type>
+  </Table>
+</Database>
