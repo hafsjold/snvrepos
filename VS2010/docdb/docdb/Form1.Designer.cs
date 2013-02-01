@@ -28,13 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.butReadDoc = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // butReadDoc
+            // 
+            this.butReadDoc.Location = new System.Drawing.Point(369, 343);
+            this.butReadDoc.Name = "butReadDoc";
+            this.butReadDoc.Size = new System.Drawing.Size(111, 23);
+            this.butReadDoc.TabIndex = 0;
+            this.butReadDoc.Text = "Read Doc";
+            this.butReadDoc.UseVisualStyleBackColor = true;
+            this.butReadDoc.Click += new System.EventHandler(this.butReadDoc_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(562, 390);
+            this.Controls.Add(this.butReadDoc);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -42,6 +54,8 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Button butReadDoc;
 
     }
 }

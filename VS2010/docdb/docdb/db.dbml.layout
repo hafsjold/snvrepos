@@ -2,19 +2,19 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="db">
   <DataContextMoniker Name="/Docdb_Sdf" />
   <nestedChildShapes>
-    <classShape Id="508a488d-ce53-449c-ad61-e2ec0141be2e" absoluteBounds="1.5, 0.75, 2, 1.1939925130208335">
+    <classShape Id="508a488d-ce53-449c-ad61-e2ec0141be2e" absoluteBounds="1.375, 3.625, 2, 1.1939925130208335">
       <DataClassMoniker Name="/Docdb_Sdf/TblData" />
       <nestedChildShapes>
-        <elementListCompartment Id="2ff6591a-aba9-474a-9a8d-c9d28286ffa2" absoluteBounds="1.5150000000000001, 1.21, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="2ff6591a-aba9-474a-9a8d-c9d28286ffa2" absoluteBounds="1.3900000000000001, 4.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="6d86921a-5376-4044-8a09-8a9517af2044" absoluteBounds="1.5, 2.625, 2, 1.1939925130208335">
+    <classShape Id="6d86921a-5376-4044-8a09-8a9517af2044" absoluteBounds="1.375, 1, 2, 1.1939925130208335">
       <DataClassMoniker Name="/Docdb_Sdf/Tbldoc" />
       <nestedChildShapes>
-        <elementListCompartment Id="c032baa5-4c1c-4ae6-9dce-271ad8510275" absoluteBounds="1.5150000000000001, 3.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="c032baa5-4c1c-4ae6-9dce-271ad8510275" absoluteBounds="1.3900000000000001, 1.46, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.5 : 1.94399251302083); (2.5 : 2.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.375 : 3.625); (2.375 : 2.19399251302083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/Docdb_Sdf/TblData/TblData_Tbldoc" />
       <nodes>
         <classShapeMoniker Id="508a488d-ce53-449c-ad61-e2ec0141be2e" />
