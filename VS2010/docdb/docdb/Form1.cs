@@ -13,13 +13,20 @@ namespace docdb
     public partial class Form1 : Form
     {
         Docdb_Sdf db;
+        string Database;
+
         public Form1()
         {
             InitializeComponent();
+
             this.AllowDrop = true;
             this.DragEnter += new DragEventHandler(Form1_DragEnter);
             this.DragDrop += new DragEventHandler(Form1_DragDrop);
-            db = new Docdb_Sdf(@"C:\Users\mha\Documents\Visual Studio 2010\Projects\docdb\docdb\docdb.sdf");
+            txtBoxDatabase.Text = @"C:\Users\mha\Documents\Visual Studio 2010\Projects\docdb\docdb\docdb.sdf";
+            //db = new Docdb_Sdf(Database);
+            //txtBoxDatabase.Text = Database;
+            //var qry = from doc in db.Tbldoc select doc;
+            //tbldocBindingSource.DataSource = qry;
         }
         void Form1_DragEnter(object sender, DragEventArgs e)
         {
@@ -31,15 +38,21 @@ namespace docdb
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             foreach (string file in files) 
             {
-                Console.WriteLine(file);
                 Guid id = Guid.NewGuid();
                 FileInfo fileInfo = new FileInfo(file);
                 string navn = fileInfo.Name;
 
+                frmAddDoc m_frmAddDoc = new frmAddDoc();
+                m_frmAddDoc.Dokument = navn;
+                m_frmAddDoc.ShowDialog();
+
                 Tbldoc rec_doc = new Tbldoc 
                 {
                     Id = id,
-                    Navn = navn
+                    Navn = navn,
+                    Selskab = m_frmAddDoc.Selskab,
+                    åR = m_frmAddDoc.År,
+                    Produkt = m_frmAddDoc.Produkt
                 };
                 db.Tbldoc.InsertOnSubmit(rec_doc);
                 
@@ -57,6 +70,8 @@ namespace docdb
                 };
                 db.TblData.InsertOnSubmit(rec_Data);
                 db.SubmitChanges();
+                var qry = from doc in db.Tbldoc select doc;
+                tbldocBindingSource.DataSource = qry;
           
             }
         }
@@ -81,6 +96,23 @@ namespace docdb
                 fs.Write(file_byte, 0, file_byte.Length);
                 fs.Flush();
             }
+        }
+
+        private void butDatabase_Click(object sender, EventArgs e)
+        {
+            Database = txtBoxDatabase.Text;
+            FileInfo DatabasefileInfo = new FileInfo(Database);
+            if (!DatabasefileInfo.Exists)
+            {
+                db = new Docdb_Sdf(Database);
+                db.CreateDatabase();
+            }
+            else
+            {
+                db = new Docdb_Sdf(Database);
+            }
+            var qry = from doc in db.Tbldoc select doc;
+            tbldocBindingSource.DataSource = qry;
         }
     }
 }

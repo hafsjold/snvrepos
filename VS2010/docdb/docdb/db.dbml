@@ -10,6 +10,9 @@
     <Type Name="Tbldoc">
       <Column Name="id" Member="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="navn" Member="Navn" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="selskab" Member="Selskab" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="år" Member="åR" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="produkt" Member="Produkt" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
       <Association Name="TblData_Tbldoc" Member="TblData" ThisKey="Id" OtherKey="Id" Type="TblData" IsForeignKey="true" DeleteOnNull="true" />
     </Type>
   </Table>

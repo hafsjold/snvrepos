@@ -207,6 +207,12 @@ namespace docdb
 		
 		private string _Navn;
 		
+		private string _Selskab;
+		
+		private System.Nullable<int> _åR;
+		
+		private string _Produkt;
+		
 		private EntityRef<TblData> _TblData;
 		
     #region Extensibility Method Definitions
@@ -217,6 +223,12 @@ namespace docdb
     partial void OnIdChanged();
     partial void OnNavnChanging(string value);
     partial void OnNavnChanged();
+    partial void OnSelskabChanging(string value);
+    partial void OnSelskabChanged();
+    partial void OnåRChanging(System.Nullable<int> value);
+    partial void OnåRChanged();
+    partial void OnProduktChanging(string value);
+    partial void OnProduktChanged();
     #endregion
 		
 		public Tbldoc()
@@ -261,6 +273,66 @@ namespace docdb
 					this._Navn = value;
 					this.SendPropertyChanged("Navn");
 					this.OnNavnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="selskab", Storage="_Selskab", DbType="NVarChar(256)")]
+		public string Selskab
+		{
+			get
+			{
+				return this._Selskab;
+			}
+			set
+			{
+				if ((this._Selskab != value))
+				{
+					this.OnSelskabChanging(value);
+					this.SendPropertyChanging();
+					this._Selskab = value;
+					this.SendPropertyChanged("Selskab");
+					this.OnSelskabChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="år", Storage="_åR", DbType="Int")]
+		public System.Nullable<int> åR
+		{
+			get
+			{
+				return this._åR;
+			}
+			set
+			{
+				if ((this._åR != value))
+				{
+					this.OnåRChanging(value);
+					this.SendPropertyChanging();
+					this._åR = value;
+					this.SendPropertyChanged("åR");
+					this.OnåRChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="produkt", Storage="_Produkt", DbType="NVarChar(256)")]
+		public string Produkt
+		{
+			get
+			{
+				return this._Produkt;
+			}
+			set
+			{
+				if ((this._Produkt != value))
+				{
+					this.OnProduktChanging(value);
+					this.SendPropertyChanging();
+					this._Produkt = value;
+					this.SendPropertyChanged("Produkt");
+					this.OnProduktChanged();
 				}
 			}
 		}

@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "docdb", "docdb\docdb.csproj", "{F6474E24-9C1C-4CAC-A68E-AD10610D06E9}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupDocdb", "SetupDocdb\SetupDocdb.vdproj", "{A9C30919-EF51-4915-986B-6BBD26278408}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +15,8 @@ Global
 		{F6474E24-9C1C-4CAC-A68E-AD10610D06E9}.Debug|x86.Build.0 = Debug|x86
 		{F6474E24-9C1C-4CAC-A68E-AD10610D06E9}.Release|x86.ActiveCfg = Release|x86
 		{F6474E24-9C1C-4CAC-A68E-AD10610D06E9}.Release|x86.Build.0 = Release|x86
+		{A9C30919-EF51-4915-986B-6BBD26278408}.Debug|x86.ActiveCfg = Debug
+		{A9C30919-EF51-4915-986B-6BBD26278408}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
