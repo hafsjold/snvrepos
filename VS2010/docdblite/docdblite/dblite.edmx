@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="docdbliteModel.Store" Alias="Self" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="docdbliteModelStoreContainer">
+          <EntitySet Name="tblData" EntityType="docdbliteModel.Store.tblData" store:Type="Tables" />
+          <EntitySet Name="tbldoc" EntityType="docdbliteModel.Store.tbldoc" store:Type="Tables" />
+          <AssociationSet Name="FK_tblData_0_0" Association="docdbliteModel.Store.FK_tblData_0_0">
+            <End Role="tbldoc" EntitySet="tbldoc" />
+            <End Role="tblData" EntitySet="tblData" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblData">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="data" Type="blob" />
+        </EntityType>
+        <EntityType Name="tbldoc">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="navn" Type="nvarchar" MaxLength="256" />
+          <Property Name="selskab" Type="nvarchar" MaxLength="256" />
+          <Property Name="år" Type="int" />
+          <Property Name="produkt" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <Association Name="FK_tblData_0_0">
+          <End Role="tbldoc" Type="docdbliteModel.Store.tbldoc" Multiplicity="1" />
+          <End Role="tblData" Type="docdbliteModel.Store.tblData" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tbldoc">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblData">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="docdbliteModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="docdbliteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblData" EntityType="docdbliteModel.tblData" />
+          <EntitySet Name="tbldoc" EntityType="docdbliteModel.tbldoc" />
+          <AssociationSet Name="FK_tblData_0_0" Association="docdbliteModel.FK_tblData_0_0">
+            <End Role="tbldoc" EntitySet="tbldoc" />
+            <End Role="tblData" EntitySet="tblData" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblData">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="data" Type="Binary" MaxLength="2147483647" FixedLength="false" />
+          <NavigationProperty Name="tbldoc" Relationship="docdbliteModel.FK_tblData_0_0" FromRole="tblData" ToRole="tbldoc" />
+        </EntityType>
+        <EntityType Name="tbldoc">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Guid" Nullable="false" />
+          <Property Name="navn" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="selskab" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="år" Type="Int32" />
+          <Property Name="produkt" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="tblData" Relationship="docdbliteModel.FK_tblData_0_0" FromRole="tbldoc" ToRole="tblData" />
+        </EntityType>
+        <Association Name="FK_tblData_0_0">
+          <End Role="tbldoc" Type="docdbliteModel.tbldoc" Multiplicity="1" />
+          <End Role="tblData" Type="docdbliteModel.tblData" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tbldoc">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblData">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="docdbliteModelStoreContainer" CdmEntityContainer="docdbliteEntities">
+          <EntitySetMapping Name="tblData"><EntityTypeMapping TypeName="docdbliteModel.tblData"><MappingFragment StoreEntitySet="tblData">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="data" ColumnName="data" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tbldoc"><EntityTypeMapping TypeName="docdbliteModel.tbldoc"><MappingFragment StoreEntitySet="tbldoc">
+            <ScalarProperty Name="id" ColumnName="id" />
+            <ScalarProperty Name="navn" ColumnName="navn" />
+            <ScalarProperty Name="selskab" ColumnName="selskab" />
+            <ScalarProperty Name="år" ColumnName="år" />
+            <ScalarProperty Name="produkt" ColumnName="produkt" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="docdbliteModel.tblData" Width="1.5" PointX="0.75" PointY="3.875" Height="1.5956835937499998" IsExpanded="true" />
+        <EntityTypeShape EntityType="docdbliteModel.tbldoc" Width="1.5" PointX="0.75" PointY="0.875" Height="2.1725878906249996" IsExpanded="true" />
+        <AssociationConnector Association="docdbliteModel.FK_tblData_0_0" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.5" PointY="3.0475878906249996" />
+          <ConnectorPoint PointX="1.5" PointY="3.875" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>
