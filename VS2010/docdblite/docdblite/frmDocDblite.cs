@@ -18,6 +18,8 @@ namespace docdblite
         string DatabaseFile;
         string connectionString;
         frmIE m_frmIE;
+        SortableBindingList<tbldoc> blSortableBindingList;
+        bool bLastDatabase;
 
         public frmDocDblite()
         {
@@ -26,12 +28,92 @@ namespace docdblite
             this.AllowDrop = true;
             this.DragEnter += new DragEventHandler(Form1_DragEnter);
             this.DragDrop += new DragEventHandler(Form1_DragDrop);
+            bLastDatabase = false;
+            try
+            {
+                FileInfo LastDatabasefileInfo = new FileInfo(global::docdblite.Properties.Settings.Default.strLastDatabase);
+                if (LastDatabasefileInfo.Exists) bLastDatabase = true;
+            }
+            catch { }
+
 #if (DEBUG)
-            txtBoxDatabase.Text = @"C:\Users\mha\Documents\Visual Studio 2010\Projects\docdblite\docdblite\docdblite.db3";
-#else
-            txtBoxDatabase.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\docdblite.db3";
+            if (bLastDatabase)
+            {
+                txtBoxDatabase.Text = global::docdblite.Properties.Settings.Default.strLastDatabase;
+                DatabaseFile = global::docdblite.Properties.Settings.Default.strLastDatabase;
+                openDatabase();
+            }
+            else
+                txtBoxDatabase.Text = @"C:\Users\mha\Documents\Visual Studio 2010\Projects\docdblite\docdblite\docdblite.db3";
+//#else
+            if (bLastDatabase)
+            {
+                txtBoxDatabase.Text = global::docdblite.Properties.Settings.Default.strLastDatabase;
+                DatabaseFile = global::docdblite.Properties.Settings.Default.strLastDatabase;
+                openDatabase();
+            }
+            else
+                txtBoxDatabase.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\docdblite.db3";
 #endif
+
         }
+
+        private bool createNewDatabase(string DatabaseFile)
+        {
+            FileInfo DatabasefileInfo = new FileInfo(DatabaseFile);
+            if (!DatabasefileInfo.Exists)
+            {
+                SQLiteConnection.CreateFile(DatabaseFile);
+                string datasource = "Data Source=" + DatabaseFile + ";Version=3";
+                SQLiteConnection conn = new SQLiteConnection(datasource);
+                conn.Open();
+                SQLiteCommand cmd = conn.CreateCommand();
+                cmd.CommandText =
+                "CREATE TABLE [tblData] ( " +
+                "  [id] GUID NOT NULL REFERENCES [tbldoc]([id]) ON DELETE CASCADE ON UPDATE CASCADE, " +
+                "  [data] IMAGE, " +
+                "  CONSTRAINT [] PRIMARY KEY ([id]) ON CONFLICT ROLLBACK); " +
+                " " +
+                " " +
+                "CREATE TABLE [tbldoc] ( " +
+                "  [id] GUID NOT NULL, " +
+                "  [ref_nr] INT, " +
+                "  [virksomhed] NVARCHAR(50), " +
+                "  [emne] VARCHAR(50), " +
+                "  [dokument_type] VARCHAR(50), " +
+                "  [år] INT, " +
+                "  [ekstern_kilde] VARCHAR(50), " +
+                "  [beskrivelse] NVARCHAR(100), " +
+                "  [oprettes_af] VARCHAR(25), " +
+                "  [oprettet_dato] DATETIME, " +
+                "  [kilde_sti] NVARCHAR(512), " +
+                "  CONSTRAINT [] PRIMARY KEY ([id]) ON CONFLICT ROLLBACK); " +
+                " " +
+                " " +
+                "CREATE TABLE [tblrefnr] ( " +
+                "  [keyname] NVARCHAR(10) NOT NULL, " +
+                "  [nr] INT NOT NULL DEFAULT (0), " +
+                "  CONSTRAINT [] PRIMARY KEY ([keyname]));";
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                return true;
+            }
+            return false;
+        }
+
+        private bool openDatabase() 
+        {
+            connectionString = @"metadata=res://*/dblite.csdl|res://*/dblite.ssdl|res://*/dblite.msl;provider=System.Data.SQLite;provider connection string='data source=""" + DatabaseFile + @""" '";
+            dblite = new docdbliteEntities(connectionString);
+
+            IEnumerable<tbldoc> qry = from doc in dblite.tbldoc select doc;
+            blSortableBindingList = new SortableBindingList<tbldoc>();
+            foreach (tbldoc rec in qry) blSortableBindingList.Add(rec);
+            tbldocBindingSource.DataSource = blSortableBindingList;
+
+            global::docdblite.Properties.Settings.Default.strLastDatabase = DatabaseFile; return false;
+        }
+
         void Form1_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
@@ -83,6 +165,7 @@ namespace docdblite
                     };
                     dblite.tbldoc.AddObject(rec_doc);
                     dblite.SaveChanges();
+                    blSortableBindingList.Add(rec_doc);
 
                     FileStream fs = fileInfo.OpenRead();
                     long ln = fileInfo.Length;
@@ -96,68 +179,12 @@ namespace docdblite
                     };
                     dblite.tblData.AddObject(rec_Data);
                     dblite.SaveChanges();
-
-                    List<tbldoc> lst = (from doc in dblite.tbldoc select doc).ToList<tbldoc>();
-                    SortableBindingList<tbldoc> lbindingList = new SortableBindingList<tbldoc>();
-                    foreach (tbldoc c in lst) lbindingList.Add(c);
-                    tbldocBindingSource.DataSource = lbindingList;
-                }
+                    
+                 }
             }
         }
 
-        private void butDatabase_Click(object sender, EventArgs e)
-        {
-            DatabaseFile = txtBoxDatabase.Text;
-            FileInfo DatabasefileInfo = new FileInfo(DatabaseFile);
-            connectionString = @"metadata=res://*/dblite.csdl|res://*/dblite.ssdl|res://*/dblite.msl;provider=System.Data.SQLite;provider connection string='data source=""" + DatabaseFile + @""" '";
-            if (!DatabasefileInfo.Exists)
-            {
-                SQLiteConnection.CreateFile(DatabaseFile);
-                string datasource = "Data Source=" + DatabaseFile + ";Version=3";
-                SQLiteConnection conn = new SQLiteConnection(datasource);
-                conn.Open();
-                SQLiteCommand cmd = conn.CreateCommand();
-                cmd.CommandText =
-                "CREATE TABLE [tblData] ( " +
-                "  [id] GUID NOT NULL REFERENCES [tbldoc]([id]) ON DELETE CASCADE ON UPDATE CASCADE, " +
-                "  [data] IMAGE, " +
-                "  CONSTRAINT [] PRIMARY KEY ([id]) ON CONFLICT ROLLBACK); " +
-                " " +
-                " " +
-                "CREATE TABLE [tbldoc] ( " +
-                "  [id] GUID NOT NULL, " +
-                "  [ref_nr] INT, " +
-                "  [virksomhed] NVARCHAR(50), " +
-                "  [emne] VARCHAR(50), " +
-                "  [dokument_type] VARCHAR(50), " +
-                "  [år] INT, " +
-                "  [ekstern_kilde] VARCHAR(50), " +
-                "  [beskrivelse] NVARCHAR(100), " +
-                "  [oprettes_af] VARCHAR(25), " +
-                "  [oprettet_dato] DATETIME, " +
-                "  [kilde_sti] NVARCHAR(512), " +
-                "  CONSTRAINT [] PRIMARY KEY ([id]) ON CONFLICT ROLLBACK); " +
-                " " +
-                " " +
-                "CREATE TABLE [tblrefnr] ( " +
-                "  [keyname] NVARCHAR(10) NOT NULL, " +
-                "  [nr] INT NOT NULL DEFAULT (0), " +
-                "  CONSTRAINT [] PRIMARY KEY ([keyname]));";
-                cmd.ExecuteNonQuery();
-                conn.Close();
-                dblite = new docdbliteEntities(connectionString);
-            }
-            else
-            {
-                dblite = new docdbliteEntities(connectionString);
-            }
-            var qry = from doc in dblite.tbldoc select doc;
-
-            List<tbldoc> lst = (from doc in dblite.tbldoc select doc).ToList<tbldoc>();
-            SortableBindingList<tbldoc> lbindingList = new SortableBindingList<tbldoc>();
-            foreach (tbldoc c in lst) lbindingList.Add(c);
-            tbldocBindingSource.DataSource = lbindingList;
-        }
+ 
         private void tbldocDataGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
 
@@ -189,29 +216,202 @@ namespace docdblite
                         m_frmIE.WebBrowser1.LoadBytes(bytes, MediaTypeNames.Application.Pdf);
                         m_frmIE.Show();
                     }
-                    else
-                    {
-                        SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-                        saveFileDialog1.Filter = "|*" + Ext;
-                        saveFileDialog1.Title = "Save File";
-                        saveFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                        saveFileDialog1.FileName = Name;
-                        saveFileDialog1.ShowDialog();
-
-                        string path = saveFileDialog1.FileName;
-                        byte[] file_byte = rec.Data.ToArray();
-
-                        FileInfo fileInfo = new FileInfo(path);
-                        FileStream fs = fileInfo.OpenWrite();
-                        fs.Write(file_byte, 0, file_byte.Length);
-                        fs.Flush();
-                    }
-                }
+                  }
             }
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+ 
+        private void tbldocDataGridView_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            {
+                DataGridView.HitTestInfo hit = tbldocDataGridView.HitTest(e.X, e.Y);
+                int hitcol = hit.ColumnIndex;
+                if (hit.Type == DataGridViewHitTestType.Cell)
+                {
+                    tbldocDataGridView.ClearSelection();
+                    tbldocDataGridView.Rows[hit.RowIndex].Cells[hit.ColumnIndex].Selected = true;
+                    this.contextMenuDoc.Show(this.tbldocDataGridView, new Point(e.X, e.Y));
+                }
+ 
+            }
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataGridViewSelectedCellCollection cells = tbldocDataGridView.SelectedCells;
+            if (cells.Count > 0)
+            {
+                try
+                {
+                    DataGridViewTextBoxCell cell = cells[0] as DataGridViewTextBoxCell;
+                    tbldoc rec_doc_view = cell.OwningRow.DataBoundItem as tbldoc;
+                    frmAddDoc m_frmAddDoc = new frmAddDoc();
+                    m_frmAddDoc.Ref_nr = (int)rec_doc_view.ref_nr;
+                    m_frmAddDoc.Dokument = rec_doc_view.kilde_sti;
+                    m_frmAddDoc.Virksomhed = rec_doc_view.virksomhed;
+                    m_frmAddDoc.Emne = rec_doc_view.emne;
+                    m_frmAddDoc.Dokument_type = rec_doc_view.dokument_type;
+                    m_frmAddDoc.År = (int)rec_doc_view.år;
+                    m_frmAddDoc.Ekstern_kilde = rec_doc_view.ekstern_kilde;
+                    m_frmAddDoc.Beskrivelse = rec_doc_view.beskrivelse;
+                    m_frmAddDoc.Oprettet_af = rec_doc_view.oprettes_af;
+                    m_frmAddDoc.Oprettet_dato = (DateTime)rec_doc_view.oprettet_dato;
+                    m_frmAddDoc.Opret = false;
+                    DialogResult Result = m_frmAddDoc.ShowDialog();
+                    if (Result == System.Windows.Forms.DialogResult.OK)
+                    {
+                        tbldoc rec_doc_db = null;
+                        try
+                        {
+                            rec_doc_db = (from doc in dblite.tbldoc where doc.id == rec_doc_view.id select doc).First();
+
+                            rec_doc_db.virksomhed = m_frmAddDoc.Virksomhed;
+                            rec_doc_db.emne = m_frmAddDoc.Emne;
+                            rec_doc_db.dokument_type = m_frmAddDoc.Dokument_type;
+                            rec_doc_db.år = m_frmAddDoc.År;
+                            rec_doc_db.ekstern_kilde = m_frmAddDoc.Ekstern_kilde;
+                            rec_doc_db.beskrivelse = m_frmAddDoc.Beskrivelse;
+
+                            rec_doc_view.virksomhed = m_frmAddDoc.Virksomhed;
+                            rec_doc_view.emne = m_frmAddDoc.Emne;
+                            rec_doc_view.dokument_type = m_frmAddDoc.Dokument_type;
+                            rec_doc_view.år = m_frmAddDoc.År;
+                            rec_doc_view.ekstern_kilde = m_frmAddDoc.Ekstern_kilde;
+                            rec_doc_view.beskrivelse = m_frmAddDoc.Beskrivelse;
+
+                            dblite.SaveChanges();
+                        }
+                        catch { }
+                    }
+
+                }
+                catch { }
+            }
+        }
+
+        private void frmDocDblite_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.Save();
+        }
+
+        private void visDokumentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataGridViewSelectedCellCollection cells = tbldocDataGridView.SelectedCells;
+            if (cells.Count > 0)
+            {
+                try
+                {
+                    DataGridViewTextBoxCell cell = cells[0] as DataGridViewTextBoxCell;
+                    tbldoc rec_doc_view = cell.OwningRow.DataBoundItem as tbldoc;
+ 
+                    var rec = (from doc in dblite.tbldoc
+                              where doc.id == rec_doc_view.id
+                              join data in dblite.tblData on doc.id equals data.id
+                              select new
+                              {
+                                  Id = doc.id,
+                                  kilde_sti = doc.kilde_sti,
+                                  Data = data.data
+                              }).First();
+
+                    FileInfo fi = new FileInfo(rec.kilde_sti);
+                    var Ext = fi.Extension;
+                    var Name = fi.Name;
+
+                    if (Ext.ToLower() == ".pdf")
+                    {
+                        byte[] bytes = rec.Data;
+                        m_frmIE = new frmIE();
+                        m_frmIE.WebBrowser1.LoadBytes(bytes, MediaTypeNames.Application.Pdf);
+                        m_frmIE.Show();
+                    }
+                }
+                catch { }
+            }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataGridViewSelectedCellCollection cells = tbldocDataGridView.SelectedCells;
+            if (cells.Count > 0)
+            {
+                try
+                {
+                    DataGridViewTextBoxCell cell = cells[0] as DataGridViewTextBoxCell;
+                    tbldoc rec_doc_view = cell.OwningRow.DataBoundItem as tbldoc;
+
+                    var rec = (from doc in dblite.tbldoc
+                               where doc.id == rec_doc_view.id
+                               join data in dblite.tblData on doc.id equals data.id
+                               select new
+                               {
+                                   Id = doc.id,
+                                   kilde_sti = doc.kilde_sti,
+                                   Data = data.data
+                               }).First();
+
+                    FileInfo fi = new FileInfo(rec.kilde_sti);
+                    var Ext = fi.Extension;
+                    var Name = fi.Name;
+
+                    SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                    saveFileDialog1.Filter = "|*" + Ext;
+                    saveFileDialog1.Title = "Save File";
+                    saveFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                    saveFileDialog1.FileName = Name;
+                    saveFileDialog1.ShowDialog();
+
+                    string path = saveFileDialog1.FileName;
+                    byte[] file_byte = rec.Data.ToArray();
+
+                    FileInfo fileInfo = new FileInfo(path);
+                    FileStream fs = fileInfo.OpenWrite();
+                    fs.Write(file_byte, 0, file_byte.Length);
+                    fs.Flush();
+                }
+                catch { }
+            }
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataGridViewSelectedCellCollection cells = tbldocDataGridView.SelectedCells;
+            if (cells.Count > 0)
+            {
+                try
+                {
+                    DataGridViewTextBoxCell cell = cells[0] as DataGridViewTextBoxCell;
+                    tbldoc rec_doc_view = cell.OwningRow.DataBoundItem as tbldoc;
+
+                    tbldoc rec = (from doc in dblite.tbldoc where doc.id == rec_doc_view.id select doc).First();
+                    dblite.tbldoc.DeleteObject(rec);
+                    dblite.SaveChanges();
+                    blSortableBindingList.Remove(rec);
+                 }
+                catch { }
+            }
+        }
+
+        private void åbenDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "Database Files|*.db3";
+            openFileDialog1.Title = "Select a Database File";
+            openFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            openFileDialog1.CheckFileExists = true;
+            openFileDialog1.CheckPathExists = true;
+            openFileDialog1.ValidateNames = true;
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                txtBoxDatabase.Text = openFileDialog1.FileName;
+                DatabaseFile = openFileDialog1.FileName;
+                openDatabase();
+            }
+        }
+
+        private void nyDatabaseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
             openFileDialog1.Filter = "Database Files|*.db3";
@@ -222,48 +422,20 @@ namespace docdblite
             openFileDialog1.ValidateNames = true;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                txtBoxDatabase.Text = openFileDialog1.FileName;
+                txtBoxDatabase.Text = openFileDialog1.FileName; 
+                DatabaseFile = txtBoxDatabase.Text;
+                FileInfo DatabasefileInfo = new FileInfo(DatabaseFile);
+                if (!DatabasefileInfo.Exists)
+                    createNewDatabase(DatabaseFile);
+                openDatabase();
             }
+
         }
-        
-        private void tbldocDataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+
+        private void lukProgramToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
-            int column = e.ColumnIndex;
-            DataGridViewColumn newColumn = tbldocDataGridView.Columns[e.ColumnIndex];
-
-            DataGridViewColumn oldColumn = tbldocDataGridView.SortedColumn;
-            ListSortDirection direction;
-
-            // If oldColumn is null, then the DataGridView is not currently sorted.
-            if (oldColumn != null)
-            {
-                // Sort the same column again, reversing the SortOrder.
-                if (oldColumn == newColumn &&
-                    tbldocDataGridView.SortOrder == SortOrder.Ascending)
-                {
-                    direction = ListSortDirection.Descending;
-                }
-                else
-                {
-                    // Sort a new column and remove the old SortGlyph.
-                    direction = ListSortDirection.Ascending;
-                    oldColumn.HeaderCell.SortGlyphDirection = SortOrder.None;
-                }
-            }
-            else
-            {
-                direction = ListSortDirection.Ascending;
-            }
-
-            tbldocDataGridView.Sort(newColumn, direction);
-
-            newColumn.HeaderCell.SortGlyphDirection =
-                direction == ListSortDirection.Ascending ?
-                SortOrder.Ascending : SortOrder.Descending;
-
+            this.Close();
         }
-  
 
     }
 }

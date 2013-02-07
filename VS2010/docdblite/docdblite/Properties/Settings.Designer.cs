@@ -22,5 +22,65 @@ namespace docdblite.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point frmAddDocLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["frmAddDocLocation"]));
+            }
+            set {
+                this["frmAddDocLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point frmDocDbliteLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["frmDocDbliteLocation"]));
+            }
+            set {
+                this["frmDocDbliteLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("893, 399")]
+        public global::System.Drawing.Size frmDocDbliteSize {
+            get {
+                return ((global::System.Drawing.Size)(this["frmDocDbliteSize"]));
+            }
+            set {
+                this["frmDocDbliteSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string strLastDatabase {
+            get {
+                return ((string)(this["strLastDatabase"]));
+            }
+            set {
+                this["strLastDatabase"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("54")]
+        public int frmDocDbliteSplitterDistance {
+            get {
+                return ((int)(this["frmDocDbliteSplitterDistance"]));
+            }
+            set {
+                this["frmDocDbliteSplitterDistance"] = value;
+            }
+        }
     }
 }

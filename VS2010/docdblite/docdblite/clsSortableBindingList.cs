@@ -29,10 +29,8 @@ namespace docdblite
                     PropertyDescriptor property = SortPropertyCore;
                     if (property != null)
                     {
-                        object lhsValue = lhs == null ? null :
-                        property.GetValue(lhs);
-                        object rhsValue = rhs == null ? null :
-                        property.GetValue(rhs);
+                        object lhsValue = lhs == null ? null : property.GetValue(lhs);
+                        object rhsValue = rhs == null ? null : property.GetValue(rhs);
                         int result;
                         if (lhsValue == null)
                         {
@@ -44,11 +42,9 @@ namespace docdblite
                         }
                         else
                         {
-                            result =
-                            Comparer.Default.Compare(lhsValue, rhsValue);
+                            result = Comparer.Default.Compare(lhsValue, rhsValue);
                         }
-                        if (SortDirectionCore ==
-                        ListSortDirection.Descending)
+                        if (SortDirectionCore ==  ListSortDirection.Descending)
                         {
                             result = -result;
                         }
@@ -91,10 +87,8 @@ namespace docdblite
             {
                 if (sortProperty != null)
                 {
-                    object lhsValue = lhs == null ? null :
-                    sortProperty.GetValue(lhs);
-                    object rhsValue = rhs == null ? null :
-                    sortProperty.GetValue(rhs);
+                    object lhsValue = lhs == null ? null : sortProperty.GetValue(lhs);
+                    object rhsValue = rhs == null ? null : sortProperty.GetValue(rhs);
                     int result;
                     if (lhsValue == null)
                     {
@@ -106,8 +100,7 @@ namespace docdblite
                     }
                     else
                     {
-                        result = Comparer.Default.Compare(lhsValue,
-                        rhsValue);
+                        result = Comparer.Default.Compare(lhsValue, rhsValue);
                     }
                     if (sortDirection == ListSortDirection.Descending)
                     {

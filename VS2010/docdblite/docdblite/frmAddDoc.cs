@@ -6,11 +6,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Threading;
+using System.Security.Principal;
 
 namespace docdblite
 {
     public partial class frmAddDoc : Form
     {
+        private int m_Ref_nr;
         private string m_Dokument;
         private string m_Virksomhed;
         private string m_Emne;
@@ -20,59 +23,123 @@ namespace docdblite
         private string m_Beskrivelse;
         private string m_Oprettet_af;
         private DateTime m_Oprettet_dato;
+        private bool m_Opret;
 
+        public int Ref_nr
+        {
+            get { return m_Ref_nr; }
+            set { m_Ref_nr = value; }
+        }
         public string Dokument
         {
             get { return m_Dokument; }
             set
             {
                 m_Dokument = value;
-                txtBoxDokument.Text = m_Dokument;
+                txtBoxDokument.Text = value;
             }
         }
         public string Virksomhed
         {
             get { return m_Virksomhed; }
-            set { m_Virksomhed = value; }
+            set 
+            {
+                m_Virksomhed = value;
+                txtBoxVirksomhed.Text = value;
+            }
         }
         public string Emne
         {
             get { return m_Emne; }
-            set { m_Emne = value; }
+            set 
+            {
+                m_Emne = value;
+                txtBoxEmne.Text = value;
+            }
         }
         public string Dokument_type
         {
             get { return m_Dokument_type; }
-            set { m_Dokument_type = value; }
+            set 
+            {
+                m_Dokument_type = value;
+                txtBoxDokument_type.Text = value;
+            }
         }
         public int År
         {
             get { return m_År; }
-            set { m_År = value; }
+            set 
+            {
+                m_År = value;
+                txtBoxÅr.Text = value.ToString();      
+            }
         }
         public string Ekstern_kilde
         {
             get { return m_Ekstern_kilde; }
-            set { m_Ekstern_kilde = value; }
+            set 
+            { 
+                m_Ekstern_kilde = value;
+                txtBoxEkstern_kilde.Text = value;
+            
+            }
         }
         public string Beskrivelse
         {
             get { return m_Beskrivelse; }
-            set { m_Beskrivelse = value; }
+            set 
+            {
+                m_Beskrivelse = value;
+                txtBoxBeskrivelse.Text = value;
+            }
         }
         public string Oprettet_af
         {
             get { return m_Oprettet_af; }
-            set { m_Oprettet_af = value; }
+            set 
+            {
+                m_Oprettet_af = value;   
+            }
         }
         public DateTime Oprettet_dato
         {
             get { return m_Oprettet_dato; }
-            set { m_Oprettet_dato = value; }
+            set 
+            {
+                m_Oprettet_dato = value; 
+            }
+        }
+        public bool Opret
+        {
+            get { return m_Opret; }
+            set
+            {
+                m_Opret = value;
+                if (m_Opret)
+                {
+                    this.butOK.Text = "Opret";
+                    this.Text = "Opret dokument";
+                    m_Ref_nr = 0;
+                    txtBoxRef_nr.Text = "";
+                }
+                else
+                {
+                    this.butOK.Text = "Gem";
+                    this.Text = "Opdater dokument";
+                    txtBoxRef_nr.Text = m_Ref_nr.ToString();
+                }
+            }
         }
 
         public frmAddDoc()
         {
+            InitializeComponent();
+        }
+
+        public frmAddDoc(Point Start)
+        {
+            global::docdblite.Properties.Settings.Default.frmAddDocLocation = Start;
             InitializeComponent();
         }
 
@@ -92,7 +159,12 @@ namespace docdblite
             }
             Ekstern_kilde = txtBoxEkstern_kilde.Text;
             Beskrivelse = txtBoxBeskrivelse.Text;
-            Oprettet_af = @"BUUSJENSEN\mha";
+
+            AppDomain appDomain = Thread.GetDomain();
+            appDomain.SetPrincipalPolicy(PrincipalPolicy.WindowsPrincipal);
+            WindowsPrincipal windowsPrincipal = (WindowsPrincipal)Thread.CurrentPrincipal;
+            Oprettet_af = windowsPrincipal.Identity.Name;
+            
             Oprettet_dato = DateTime.Now;
             this.DialogResult = DialogResult.OK;
             this.Close();

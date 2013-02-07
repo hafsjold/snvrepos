@@ -30,13 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDocDblite));
-            this.butDatabase = new System.Windows.Forms.Button();
-            this.labelDatabase = new System.Windows.Forms.Label();
-            this.txtBoxDatabase = new System.Windows.Forms.TextBox();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.button1 = new System.Windows.Forms.Button();
-            this.tbldocDataGridView = new System.Windows.Forms.DataGridView();
-            this.tbldocBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.contextMenuDoc = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.visDokumentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.tbldocBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
@@ -50,6 +49,20 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tbldocBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.TopToolStripPanel = new System.Windows.Forms.ToolStripPanel();
+            this.RightToolStripPanel = new System.Windows.Forms.ToolStripPanel();
+            this.LeftToolStripPanel = new System.Windows.Forms.ToolStripPanel();
+            this.ContentPanel = new System.Windows.Forms.ToolStripContentPanel();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.txtBoxDatabase = new System.Windows.Forms.TextBox();
+            this.labelDatabase = new System.Windows.Forms.Label();
+            this.tbldocDataGridView = new System.Windows.Forms.DataGridView();
+            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.toolStripContainer2 = new System.Windows.Forms.ToolStripContainer();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.åbenDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nyDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,105 +75,69 @@
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tbldocBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lukProgramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuDoc.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbldocBindingNavigator)).BeginInit();
+            this.tbldocBindingNavigator.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbldocDataGridView)).BeginInit();
+            this.toolStripContainer1.SuspendLayout();
+            this.toolStripContainer2.ContentPanel.SuspendLayout();
+            this.toolStripContainer2.TopToolStripPanel.SuspendLayout();
+            this.toolStripContainer2.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbldocBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbldocBindingNavigator)).BeginInit();
-            this.tbldocBindingNavigator.SuspendLayout();
             this.SuspendLayout();
             // 
-            // butDatabase
+            // contextMenuDoc
             // 
-            this.butDatabase.Location = new System.Drawing.Point(561, 27);
-            this.butDatabase.Name = "butDatabase";
-            this.butDatabase.Size = new System.Drawing.Size(106, 23);
-            this.butDatabase.TabIndex = 0;
-            this.butDatabase.Text = "Åben Database";
-            this.butDatabase.UseVisualStyleBackColor = true;
-            this.butDatabase.Click += new System.EventHandler(this.butDatabase_Click);
+            this.contextMenuDoc.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.visDokumentToolStripMenuItem,
+            this.editToolStripMenuItem,
+            this.deleteToolStripMenuItem,
+            this.saveToolStripMenuItem});
+            this.contextMenuDoc.Name = "contextMenuDoc";
+            this.contextMenuDoc.Size = new System.Drawing.Size(148, 92);
             // 
-            // labelDatabase
+            // visDokumentToolStripMenuItem
             // 
-            this.labelDatabase.AutoSize = true;
-            this.labelDatabase.Location = new System.Drawing.Point(17, 33);
-            this.labelDatabase.Name = "labelDatabase";
-            this.labelDatabase.Size = new System.Drawing.Size(53, 13);
-            this.labelDatabase.TabIndex = 1;
-            this.labelDatabase.Text = "Database";
+            this.visDokumentToolStripMenuItem.Name = "visDokumentToolStripMenuItem";
+            this.visDokumentToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.visDokumentToolStripMenuItem.Text = "Vis dokument";
+            this.visDokumentToolStripMenuItem.Click += new System.EventHandler(this.visDokumentToolStripMenuItem_Click);
             // 
-            // txtBoxDatabase
+            // editToolStripMenuItem
             // 
-            this.txtBoxDatabase.Enabled = false;
-            this.txtBoxDatabase.Location = new System.Drawing.Point(76, 30);
-            this.txtBoxDatabase.Name = "txtBoxDatabase";
-            this.txtBoxDatabase.Size = new System.Drawing.Size(430, 20);
-            this.txtBoxDatabase.TabIndex = 2;
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
-            // splitContainer1
+            // deleteToolStripMenuItem
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.deleteToolStripMenuItem.Text = "Delete";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
-            // splitContainer1.Panel1
+            // saveToolStripMenuItem
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.button1);
-            this.splitContainer1.Panel1.Controls.Add(this.txtBoxDatabase);
-            this.splitContainer1.Panel1.Controls.Add(this.butDatabase);
-            this.splitContainer1.Panel1.Controls.Add(this.labelDatabase);
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
-            // splitContainer1.Panel2
+            // BottomToolStripPanel
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.tbldocDataGridView);
-            this.splitContainer1.Size = new System.Drawing.Size(893, 399);
-            this.splitContainer1.SplitterDistance = 90;
-            this.splitContainer1.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Verdana", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(518, 28);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(32, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "...";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // tbldocDataGridView
-            // 
-            this.tbldocDataGridView.AllowUserToAddRows = false;
-            this.tbldocDataGridView.AutoGenerateColumns = false;
-            this.tbldocDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tbldocDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn7,
-            this.dataGridViewTextBoxColumn9,
-            this.dataGridViewTextBoxColumn10,
-            this.dataGridViewTextBoxColumn11,
-            this.dataGridViewTextBoxColumn12,
-            this.dataGridViewTextBoxColumn8,
-            this.dataGridViewTextBoxColumn13,
-            this.dataGridViewTextBoxColumn14,
-            this.dataGridViewTextBoxColumn15,
-            this.dataGridViewTextBoxColumn16,
-            this.dataGridViewTextBoxColumn17,
-            this.dataGridViewTextBoxColumn18});
-            this.tbldocDataGridView.DataSource = this.tbldocBindingSource;
-            this.tbldocDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbldocDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.tbldocDataGridView.Name = "tbldocDataGridView";
-            this.tbldocDataGridView.Size = new System.Drawing.Size(893, 305);
-            this.tbldocDataGridView.TabIndex = 0;
-            this.tbldocDataGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.tbldocDataGridView_CellMouseDoubleClick);
-            this.tbldocDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.tbldocDataGridView_ColumnHeaderMouseClick);
-            // 
-            // tbldocBindingSource
-            // 
-            this.tbldocBindingSource.DataSource = typeof(docdblite.tbldoc);
+            this.BottomToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            this.BottomToolStripPanel.Name = "BottomToolStripPanel";
+            this.BottomToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.BottomToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.BottomToolStripPanel.Size = new System.Drawing.Size(0, 0);
             // 
             // tbldocBindingNavigator
             // 
@@ -182,7 +159,7 @@
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
             this.tbldocBindingNavigatorSaveItem});
-            this.tbldocBindingNavigator.Location = new System.Drawing.Point(0, 374);
+            this.tbldocBindingNavigator.Location = new System.Drawing.Point(0, 292);
             this.tbldocBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.tbldocBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.tbldocBindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
@@ -201,6 +178,7 @@
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorAddNewItem.Text = "Add new";
+            this.bindingNavigatorAddNewItem.Visible = false;
             // 
             // bindingNavigatorCountItem
             // 
@@ -217,6 +195,7 @@
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorDeleteItem.Text = "Delete";
+            this.bindingNavigatorDeleteItem.Visible = false;
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -277,6 +256,7 @@
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.bindingNavigatorSeparator2.Visible = false;
             // 
             // tbldocBindingNavigatorSaveItem
             // 
@@ -286,109 +266,321 @@
             this.tbldocBindingNavigatorSaveItem.Name = "tbldocBindingNavigatorSaveItem";
             this.tbldocBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
             this.tbldocBindingNavigatorSaveItem.Text = "Save Data";
+            this.tbldocBindingNavigatorSaveItem.Visible = false;
+            // 
+            // TopToolStripPanel
+            // 
+            this.TopToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            this.TopToolStripPanel.Name = "TopToolStripPanel";
+            this.TopToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.TopToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.TopToolStripPanel.Size = new System.Drawing.Size(0, 0);
+            // 
+            // RightToolStripPanel
+            // 
+            this.RightToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            this.RightToolStripPanel.Name = "RightToolStripPanel";
+            this.RightToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.RightToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.RightToolStripPanel.Size = new System.Drawing.Size(0, 0);
+            // 
+            // LeftToolStripPanel
+            // 
+            this.LeftToolStripPanel.Location = new System.Drawing.Point(0, 0);
+            this.LeftToolStripPanel.Name = "LeftToolStripPanel";
+            this.LeftToolStripPanel.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.LeftToolStripPanel.RowMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
+            this.LeftToolStripPanel.Size = new System.Drawing.Size(0, 0);
+            // 
+            // ContentPanel
+            // 
+            this.ContentPanel.AutoScroll = true;
+            this.ContentPanel.Size = new System.Drawing.Size(843, 324);
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.DataBindings.Add(new System.Windows.Forms.Binding("SplitterDistance", global::docdblite.Properties.Settings.Default, "frmDocDbliteSplitterDistance", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.txtBoxDatabase);
+            this.splitContainer1.Panel1.Controls.Add(this.labelDatabase);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.tbldocDataGridView);
+            this.splitContainer1.Panel2.Controls.Add(this.tbldocBindingNavigator);
+            this.splitContainer1.Size = new System.Drawing.Size(893, 375);
+            this.splitContainer1.SplitterDistance = global::docdblite.Properties.Settings.Default.frmDocDbliteSplitterDistance;
+            this.splitContainer1.TabIndex = 0;
+            // 
+            // txtBoxDatabase
+            // 
+            this.txtBoxDatabase.Enabled = false;
+            this.txtBoxDatabase.Location = new System.Drawing.Point(76, 15);
+            this.txtBoxDatabase.Name = "txtBoxDatabase";
+            this.txtBoxDatabase.Size = new System.Drawing.Size(684, 20);
+            this.txtBoxDatabase.TabIndex = 2;
+            // 
+            // labelDatabase
+            // 
+            this.labelDatabase.AutoSize = true;
+            this.labelDatabase.Location = new System.Drawing.Point(17, 18);
+            this.labelDatabase.Name = "labelDatabase";
+            this.labelDatabase.Size = new System.Drawing.Size(53, 13);
+            this.labelDatabase.TabIndex = 1;
+            this.labelDatabase.Text = "Database";
+            // 
+            // tbldocDataGridView
+            // 
+            this.tbldocDataGridView.AllowUserToAddRows = false;
+            this.tbldocDataGridView.AllowUserToDeleteRows = false;
+            this.tbldocDataGridView.AllowUserToOrderColumns = true;
+            this.tbldocDataGridView.AutoGenerateColumns = false;
+            this.tbldocDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.tbldocDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tbldocDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10,
+            this.dataGridViewTextBoxColumn11,
+            this.dataGridViewTextBoxColumn12,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn13,
+            this.dataGridViewTextBoxColumn14,
+            this.dataGridViewTextBoxColumn15,
+            this.dataGridViewTextBoxColumn16,
+            this.dataGridViewTextBoxColumn17,
+            this.dataGridViewTextBoxColumn18});
+            this.tbldocDataGridView.DataSource = this.tbldocBindingSource;
+            this.tbldocDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbldocDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.tbldocDataGridView.Name = "tbldocDataGridView";
+            this.tbldocDataGridView.ReadOnly = true;
+            this.tbldocDataGridView.Size = new System.Drawing.Size(893, 292);
+            this.tbldocDataGridView.TabIndex = 0;
+            this.tbldocDataGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.tbldocDataGridView_CellMouseDoubleClick);
+            this.tbldocDataGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tbldocDataGridView_MouseDown);
+            // 
+            // toolStripContainer1
+            // 
+            // 
+            // toolStripContainer1.ContentPanel
+            // 
+            this.toolStripContainer1.ContentPanel.AutoScroll = true;
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(893, 374);
+            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStripContainer1.LeftToolStripPanelVisible = false;
+            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
+            this.toolStripContainer1.Name = "toolStripContainer1";
+            this.toolStripContainer1.RightToolStripPanelVisible = false;
+            this.toolStripContainer1.Size = new System.Drawing.Size(893, 399);
+            this.toolStripContainer1.TabIndex = 3;
+            this.toolStripContainer1.Text = "toolStripContainer1";
+            // 
+            // toolStripContainer2
+            // 
+            // 
+            // toolStripContainer2.ContentPanel
+            // 
+            this.toolStripContainer2.ContentPanel.Controls.Add(this.splitContainer1);
+            this.toolStripContainer2.ContentPanel.Size = new System.Drawing.Size(893, 375);
+            this.toolStripContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStripContainer2.Location = new System.Drawing.Point(0, 0);
+            this.toolStripContainer2.Name = "toolStripContainer2";
+            this.toolStripContainer2.Size = new System.Drawing.Size(893, 399);
+            this.toolStripContainer2.TabIndex = 4;
+            this.toolStripContainer2.Text = "toolStripContainer2";
+            // 
+            // toolStripContainer2.TopToolStripPanel
+            // 
+            this.toolStripContainer2.TopToolStripPanel.Controls.Add(this.menuStrip1);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(893, 24);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.åbenDatabaseToolStripMenuItem,
+            this.nyDatabaseToolStripMenuItem,
+            this.lukProgramToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // åbenDatabaseToolStripMenuItem
+            // 
+            this.åbenDatabaseToolStripMenuItem.Name = "åbenDatabaseToolStripMenuItem";
+            this.åbenDatabaseToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.åbenDatabaseToolStripMenuItem.Text = "Åben Database";
+            this.åbenDatabaseToolStripMenuItem.Click += new System.EventHandler(this.åbenDatabaseToolStripMenuItem_Click);
+            // 
+            // nyDatabaseToolStripMenuItem
+            // 
+            this.nyDatabaseToolStripMenuItem.Name = "nyDatabaseToolStripMenuItem";
+            this.nyDatabaseToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.nyDatabaseToolStripMenuItem.Text = "Ny Database";
+            this.nyDatabaseToolStripMenuItem.Click += new System.EventHandler(this.nyDatabaseToolStripMenuItem_Click);
             // 
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.DataPropertyName = "id";
             this.dataGridViewTextBoxColumn7.HeaderText = "id";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
-            this.dataGridViewTextBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
             this.dataGridViewTextBoxColumn7.Visible = false;
+            this.dataGridViewTextBoxColumn7.Width = 40;
             // 
             // dataGridViewTextBoxColumn9
             // 
             this.dataGridViewTextBoxColumn9.DataPropertyName = "ref_nr";
             this.dataGridViewTextBoxColumn9.HeaderText = "Ref";
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
-            this.dataGridViewTextBoxColumn9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.dataGridViewTextBoxColumn9.Width = 60;
+            this.dataGridViewTextBoxColumn9.ReadOnly = true;
+            this.dataGridViewTextBoxColumn9.Width = 49;
             // 
             // dataGridViewTextBoxColumn10
             // 
             this.dataGridViewTextBoxColumn10.DataPropertyName = "virksomhed";
             this.dataGridViewTextBoxColumn10.HeaderText = "Virksomhed";
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
-            this.dataGridViewTextBoxColumn10.Width = 200;
+            this.dataGridViewTextBoxColumn10.ReadOnly = true;
+            this.dataGridViewTextBoxColumn10.Width = 87;
             // 
             // dataGridViewTextBoxColumn11
             // 
             this.dataGridViewTextBoxColumn11.DataPropertyName = "emne";
             this.dataGridViewTextBoxColumn11.HeaderText = "Emne";
             this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
-            this.dataGridViewTextBoxColumn11.Width = 150;
+            this.dataGridViewTextBoxColumn11.ReadOnly = true;
+            this.dataGridViewTextBoxColumn11.Width = 59;
             // 
             // dataGridViewTextBoxColumn12
             // 
             this.dataGridViewTextBoxColumn12.DataPropertyName = "dokument_type";
             this.dataGridViewTextBoxColumn12.HeaderText = "Doktype";
             this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            this.dataGridViewTextBoxColumn12.ReadOnly = true;
+            this.dataGridViewTextBoxColumn12.Width = 72;
             // 
             // dataGridViewTextBoxColumn8
             // 
             this.dataGridViewTextBoxColumn8.DataPropertyName = "år";
             this.dataGridViewTextBoxColumn8.HeaderText = "År";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
-            this.dataGridViewTextBoxColumn8.Width = 60;
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn8.Width = 42;
             // 
             // dataGridViewTextBoxColumn13
             // 
             this.dataGridViewTextBoxColumn13.DataPropertyName = "ekstern_kilde";
             this.dataGridViewTextBoxColumn13.HeaderText = "Ekstern kilde";
             this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
+            this.dataGridViewTextBoxColumn13.ReadOnly = true;
+            this.dataGridViewTextBoxColumn13.Width = 93;
             // 
             // dataGridViewTextBoxColumn14
             // 
             this.dataGridViewTextBoxColumn14.DataPropertyName = "beskrivelse";
             this.dataGridViewTextBoxColumn14.HeaderText = "Beskrivelse";
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
-            this.dataGridViewTextBoxColumn14.Width = 200;
+            this.dataGridViewTextBoxColumn14.ReadOnly = true;
+            this.dataGridViewTextBoxColumn14.Width = 86;
             // 
             // dataGridViewTextBoxColumn15
             // 
             this.dataGridViewTextBoxColumn15.DataPropertyName = "oprettes_af";
             this.dataGridViewTextBoxColumn15.HeaderText = "Oprettet af";
             this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
+            this.dataGridViewTextBoxColumn15.ReadOnly = true;
+            this.dataGridViewTextBoxColumn15.Width = 82;
             // 
             // dataGridViewTextBoxColumn16
             // 
             this.dataGridViewTextBoxColumn16.DataPropertyName = "oprettet_dato";
             this.dataGridViewTextBoxColumn16.HeaderText = "Oprettet dato";
             this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
+            this.dataGridViewTextBoxColumn16.ReadOnly = true;
+            this.dataGridViewTextBoxColumn16.Width = 94;
             // 
             // dataGridViewTextBoxColumn17
             // 
             this.dataGridViewTextBoxColumn17.DataPropertyName = "kilde_sti";
             this.dataGridViewTextBoxColumn17.HeaderText = "Kilde sti";
             this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
+            this.dataGridViewTextBoxColumn17.ReadOnly = true;
+            this.dataGridViewTextBoxColumn17.Width = 68;
             // 
             // dataGridViewTextBoxColumn18
             // 
             this.dataGridViewTextBoxColumn18.DataPropertyName = "tblData";
             this.dataGridViewTextBoxColumn18.HeaderText = "tblData";
             this.dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
+            this.dataGridViewTextBoxColumn18.ReadOnly = true;
             this.dataGridViewTextBoxColumn18.Visible = false;
+            this.dataGridViewTextBoxColumn18.Width = 66;
+            // 
+            // tbldocBindingSource
+            // 
+            this.tbldocBindingSource.DataSource = typeof(docdblite.tbldoc);
+            // 
+            // lukProgramToolStripMenuItem
+            // 
+            this.lukProgramToolStripMenuItem.Name = "lukProgramToolStripMenuItem";
+            this.lukProgramToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.lukProgramToolStripMenuItem.Text = "Luk Program";
+            this.lukProgramToolStripMenuItem.Click += new System.EventHandler(this.lukProgramToolStripMenuItem_Click);
             // 
             // frmDocDblite
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(893, 399);
-            this.Controls.Add(this.tbldocBindingNavigator);
-            this.Controls.Add(this.splitContainer1);
+            this.AutoScroll = true;
+            this.AutoSize = true;
+            this.ClientSize = global::docdblite.Properties.Settings.Default.frmDocDbliteSize;
+            this.Controls.Add(this.toolStripContainer2);
+            this.Controls.Add(this.toolStripContainer1);
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::docdblite.Properties.Settings.Default, "frmDocDbliteLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::docdblite.Properties.Settings.Default, "frmDocDbliteSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.Location = global::docdblite.Properties.Settings.Default.frmDocDbliteLocation;
             this.Name = "frmDocDblite";
             this.Text = "DocDblite";
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel1.PerformLayout();
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.tbldocDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbldocBindingSource)).EndInit();
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDocDblite_FormClosing);
+            this.contextMenuDoc.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tbldocBindingNavigator)).EndInit();
             this.tbldocBindingNavigator.ResumeLayout(false);
             this.tbldocBindingNavigator.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tbldocDataGridView)).EndInit();
+            this.toolStripContainer1.ResumeLayout(false);
+            this.toolStripContainer1.PerformLayout();
+            this.toolStripContainer2.ContentPanel.ResumeLayout(false);
+            this.toolStripContainer2.TopToolStripPanel.ResumeLayout(false);
+            this.toolStripContainer2.TopToolStripPanel.PerformLayout();
+            this.toolStripContainer2.ResumeLayout(false);
+            this.toolStripContainer2.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbldocBindingSource)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -400,16 +592,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.Label labelDatabase;
-        private System.Windows.Forms.TextBox txtBoxDatabase;
-        private System.Windows.Forms.Button butDatabase;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn selskabDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn produktDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn navnDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridView tbldocDataGridView;
         private System.Windows.Forms.BindingSource tbldocBindingSource;
+        private System.Windows.Forms.ContextMenuStrip contextMenuDoc;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem visDokumentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripPanel BottomToolStripPanel;
         private System.Windows.Forms.BindingNavigator tbldocBindingNavigator;
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
@@ -423,6 +615,14 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton tbldocBindingNavigatorSaveItem;
+        private System.Windows.Forms.ToolStripPanel TopToolStripPanel;
+        private System.Windows.Forms.ToolStripPanel RightToolStripPanel;
+        private System.Windows.Forms.ToolStripPanel LeftToolStripPanel;
+        private System.Windows.Forms.ToolStripContentPanel ContentPanel;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.TextBox txtBoxDatabase;
+        private System.Windows.Forms.Label labelDatabase;
+        private System.Windows.Forms.DataGridView tbldocDataGridView;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
@@ -435,6 +635,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
+        private System.Windows.Forms.ToolStripContainer toolStripContainer1;
+        private System.Windows.Forms.ToolStripContainer toolStripContainer2;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem åbenDatabaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nyDatabaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lukProgramToolStripMenuItem;
 
 
     }
