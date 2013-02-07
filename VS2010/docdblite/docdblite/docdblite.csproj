@@ -74,6 +74,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="clsSortableBindingList.cs" />
     <Compile Include="clsWebBrowserEx.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -127,6 +128,7 @@
       <LastGenOutput>dblite.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="Properties\DataSources\docdbliteEntities.datasource" />
+    <None Include="Properties\DataSources\tbldoc.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

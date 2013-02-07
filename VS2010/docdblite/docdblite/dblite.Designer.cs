@@ -101,6 +101,22 @@ namespace docdblite
             }
         }
         private ObjectSet<tbldoc> _tbldoc;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<tblrefnr> tblrefnr
+        {
+            get
+            {
+                if ((_tblrefnr == null))
+                {
+                    _tblrefnr = base.CreateObjectSet<tblrefnr>("tblrefnr");
+                }
+                return _tblrefnr;
+            }
+        }
+        private ObjectSet<tblrefnr> _tblrefnr;
 
         #endregion
         #region AddTo Methods
@@ -119,6 +135,14 @@ namespace docdblite
         public void AddTotbldoc(tbldoc tbldoc)
         {
             base.AddObject("tbldoc", tbldoc);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the tblrefnr EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTotblrefnr(tblrefnr tblrefnr)
+        {
+            base.AddObject("tblrefnr", tblrefnr);
         }
 
         #endregion
@@ -305,54 +329,6 @@ namespace docdblite
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String navn
-        {
-            get
-            {
-                return _navn;
-            }
-            set
-            {
-                OnnavnChanging(value);
-                ReportPropertyChanging("navn");
-                _navn = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("navn");
-                OnnavnChanged();
-            }
-        }
-        private global::System.String _navn;
-        partial void OnnavnChanging(global::System.String value);
-        partial void OnnavnChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public global::System.String selskab
-        {
-            get
-            {
-                return _selskab;
-            }
-            set
-            {
-                OnselskabChanging(value);
-                ReportPropertyChanging("selskab");
-                _selskab = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("selskab");
-                OnselskabChanged();
-            }
-        }
-        private global::System.String _selskab;
-        partial void OnselskabChanging(global::System.String value);
-        partial void OnselskabChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public Nullable<global::System.Int32> år
         {
             get
@@ -377,24 +353,216 @@ namespace docdblite
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String produkt
+        public Nullable<global::System.Int32> ref_nr
         {
             get
             {
-                return _produkt;
+                return _ref_nr;
             }
             set
             {
-                OnproduktChanging(value);
-                ReportPropertyChanging("produkt");
-                _produkt = StructuralObject.SetValidValue(value, true);
-                ReportPropertyChanged("produkt");
-                OnproduktChanged();
+                Onref_nrChanging(value);
+                ReportPropertyChanging("ref_nr");
+                _ref_nr = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ref_nr");
+                Onref_nrChanged();
             }
         }
-        private global::System.String _produkt;
-        partial void OnproduktChanging(global::System.String value);
-        partial void OnproduktChanged();
+        private Nullable<global::System.Int32> _ref_nr;
+        partial void Onref_nrChanging(Nullable<global::System.Int32> value);
+        partial void Onref_nrChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String virksomhed
+        {
+            get
+            {
+                return _virksomhed;
+            }
+            set
+            {
+                OnvirksomhedChanging(value);
+                ReportPropertyChanging("virksomhed");
+                _virksomhed = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("virksomhed");
+                OnvirksomhedChanged();
+            }
+        }
+        private global::System.String _virksomhed;
+        partial void OnvirksomhedChanging(global::System.String value);
+        partial void OnvirksomhedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String emne
+        {
+            get
+            {
+                return _emne;
+            }
+            set
+            {
+                OnemneChanging(value);
+                ReportPropertyChanging("emne");
+                _emne = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("emne");
+                OnemneChanged();
+            }
+        }
+        private global::System.String _emne;
+        partial void OnemneChanging(global::System.String value);
+        partial void OnemneChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String dokument_type
+        {
+            get
+            {
+                return _dokument_type;
+            }
+            set
+            {
+                Ondokument_typeChanging(value);
+                ReportPropertyChanging("dokument_type");
+                _dokument_type = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("dokument_type");
+                Ondokument_typeChanged();
+            }
+        }
+        private global::System.String _dokument_type;
+        partial void Ondokument_typeChanging(global::System.String value);
+        partial void Ondokument_typeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String ekstern_kilde
+        {
+            get
+            {
+                return _ekstern_kilde;
+            }
+            set
+            {
+                Onekstern_kildeChanging(value);
+                ReportPropertyChanging("ekstern_kilde");
+                _ekstern_kilde = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("ekstern_kilde");
+                Onekstern_kildeChanged();
+            }
+        }
+        private global::System.String _ekstern_kilde;
+        partial void Onekstern_kildeChanging(global::System.String value);
+        partial void Onekstern_kildeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String beskrivelse
+        {
+            get
+            {
+                return _beskrivelse;
+            }
+            set
+            {
+                OnbeskrivelseChanging(value);
+                ReportPropertyChanging("beskrivelse");
+                _beskrivelse = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("beskrivelse");
+                OnbeskrivelseChanged();
+            }
+        }
+        private global::System.String _beskrivelse;
+        partial void OnbeskrivelseChanging(global::System.String value);
+        partial void OnbeskrivelseChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String oprettes_af
+        {
+            get
+            {
+                return _oprettes_af;
+            }
+            set
+            {
+                Onoprettes_afChanging(value);
+                ReportPropertyChanging("oprettes_af");
+                _oprettes_af = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("oprettes_af");
+                Onoprettes_afChanged();
+            }
+        }
+        private global::System.String _oprettes_af;
+        partial void Onoprettes_afChanging(global::System.String value);
+        partial void Onoprettes_afChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> oprettet_dato
+        {
+            get
+            {
+                return _oprettet_dato;
+            }
+            set
+            {
+                Onoprettet_datoChanging(value);
+                ReportPropertyChanging("oprettet_dato");
+                _oprettet_dato = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("oprettet_dato");
+                Onoprettet_datoChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _oprettet_dato;
+        partial void Onoprettet_datoChanging(Nullable<global::System.DateTime> value);
+        partial void Onoprettet_datoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String kilde_sti
+        {
+            get
+            {
+                return _kilde_sti;
+            }
+            set
+            {
+                Onkilde_stiChanging(value);
+                ReportPropertyChanging("kilde_sti");
+                _kilde_sti = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("kilde_sti");
+                Onkilde_stiChanged();
+            }
+        }
+        private global::System.String _kilde_sti;
+        partial void Onkilde_stiChanging(global::System.String value);
+        partial void Onkilde_stiChanged();
 
         #endregion
     
@@ -439,6 +607,87 @@ namespace docdblite
         }
 
         #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="docdbliteModel", Name="tblrefnr")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class tblrefnr : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new tblrefnr object.
+        /// </summary>
+        /// <param name="keyname">Initial value of the keyname property.</param>
+        /// <param name="nr">Initial value of the nr property.</param>
+        public static tblrefnr Createtblrefnr(global::System.String keyname, global::System.Int32 nr)
+        {
+            tblrefnr tblrefnr = new tblrefnr();
+            tblrefnr.keyname = keyname;
+            tblrefnr.nr = nr;
+            return tblrefnr;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String keyname
+        {
+            get
+            {
+                return _keyname;
+            }
+            set
+            {
+                if (_keyname != value)
+                {
+                    OnkeynameChanging(value);
+                    ReportPropertyChanging("keyname");
+                    _keyname = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("keyname");
+                    OnkeynameChanged();
+                }
+            }
+        }
+        private global::System.String _keyname;
+        partial void OnkeynameChanging(global::System.String value);
+        partial void OnkeynameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 nr
+        {
+            get
+            {
+                return _nr;
+            }
+            set
+            {
+                OnnrChanging(value);
+                ReportPropertyChanging("nr");
+                _nr = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("nr");
+                OnnrChanged();
+            }
+        }
+        private global::System.Int32 _nr;
+        partial void OnnrChanging(global::System.Int32 value);
+        partial void OnnrChanged();
+
+        #endregion
+    
     }
 
     #endregion

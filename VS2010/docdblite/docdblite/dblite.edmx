@@ -4,10 +4,11 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="docdbliteModel.Store" Alias="Self" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="docdbliteModel.Store" Alias="Self" Provider="System.Data.SQLite" ProviderManifestToken="ISO8601" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="docdbliteModelStoreContainer">
           <EntitySet Name="tblData" EntityType="docdbliteModel.Store.tblData" store:Type="Tables" />
           <EntitySet Name="tbldoc" EntityType="docdbliteModel.Store.tbldoc" store:Type="Tables" />
+          <EntitySet Name="tblrefnr" EntityType="docdbliteModel.Store.tblrefnr" store:Type="Tables" />
           <AssociationSet Name="FK_tblData_0_0" Association="docdbliteModel.Store.FK_tblData_0_0">
             <End Role="tbldoc" EntitySet="tbldoc" />
             <End Role="tblData" EntitySet="tblData" />
@@ -25,10 +26,23 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="navn" Type="nvarchar" MaxLength="256" />
-          <Property Name="selskab" Type="nvarchar" MaxLength="256" />
+          <Property Name="ref_nr" Type="int" />
+          <Property Name="virksomhed" Type="nvarchar" MaxLength="50" />
+          <Property Name="emne" Type="nvarchar" MaxLength="50" />
+          <Property Name="dokument_type" Type="nvarchar" MaxLength="50" />
           <Property Name="år" Type="int" />
-          <Property Name="produkt" Type="nvarchar" MaxLength="256" />
+          <Property Name="ekstern_kilde" Type="nvarchar" MaxLength="50" />
+          <Property Name="beskrivelse" Type="nvarchar" MaxLength="100" />
+          <Property Name="oprettes_af" Type="nvarchar" MaxLength="25" />
+          <Property Name="oprettet_dato" Type="datetime" />
+          <Property Name="kilde_sti" Type="nvarchar" MaxLength="512" />
+        </EntityType>
+        <EntityType Name="tblrefnr">
+          <Key>
+            <PropertyRef Name="keyname" />
+          </Key>
+          <Property Name="keyname" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="nr" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_tblData_0_0">
           <End Role="tbldoc" Type="docdbliteModel.Store.tbldoc" Multiplicity="1" />
@@ -42,8 +56,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="docdbliteModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
@@ -51,9 +64,10 @@
           <EntitySet Name="tblData" EntityType="docdbliteModel.tblData" />
           <EntitySet Name="tbldoc" EntityType="docdbliteModel.tbldoc" />
           <AssociationSet Name="FK_tblData_0_0" Association="docdbliteModel.FK_tblData_0_0">
-            <End Role="tbldoc" EntitySet="tbldoc" />
-            <End Role="tblData" EntitySet="tblData" />
+            <End EntitySet="tbldoc" Role="tbldoc" />
+            <End EntitySet="tblData" Role="tblData" />
           </AssociationSet>
+          <EntitySet Name="tblrefnr" EntityType="docdbliteModel.tblrefnr" />
         </EntityContainer>
         <EntityType Name="tblData">
           <Key>
@@ -67,16 +81,22 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Guid" Nullable="false" />
-          <Property Name="navn" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-          <Property Name="selskab" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="id" Nullable="false" Type="Guid" />
           <Property Name="år" Type="Int32" />
-          <Property Name="produkt" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="tblData" Relationship="docdbliteModel.FK_tblData_0_0" FromRole="tbldoc" ToRole="tblData" />
+          <Property Type="Int32" Name="ref_nr" />
+          <Property Type="String" Name="virksomhed" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="emne" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="dokument_type" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ekstern_kilde" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="beskrivelse" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="oprettes_af" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="oprettet_dato" />
+          <Property Type="String" Name="kilde_sti" MaxLength="512" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_tblData_0_0">
-          <End Role="tbldoc" Type="docdbliteModel.tbldoc" Multiplicity="1" />
-          <End Role="tblData" Type="docdbliteModel.tblData" Multiplicity="0..1" />
+          <End Type="docdbliteModel.tbldoc" Multiplicity="1" Role="tbldoc" />
+          <End Type="docdbliteModel.tblData" Multiplicity="0..1" Role="tblData" />
           <ReferentialConstraint>
             <Principal Role="tbldoc">
               <PropertyRef Name="id" />
@@ -86,6 +106,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="tblrefnr">
+          <Key>
+            <PropertyRef Name="keyname" />
+          </Key>
+          <Property Type="String" Name="keyname" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="nr" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -97,12 +124,26 @@
             <ScalarProperty Name="data" ColumnName="data" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="tbldoc"><EntityTypeMapping TypeName="docdbliteModel.tbldoc"><MappingFragment StoreEntitySet="tbldoc">
-            <ScalarProperty Name="id" ColumnName="id" />
-            <ScalarProperty Name="navn" ColumnName="navn" />
-            <ScalarProperty Name="selskab" ColumnName="selskab" />
+                <ScalarProperty Name="ref_nr" ColumnName="ref_nr" />
+                <ScalarProperty Name="kilde_sti" ColumnName="kilde_sti" />
+                <ScalarProperty Name="oprettet_dato" ColumnName="oprettet_dato" />
+                <ScalarProperty Name="oprettes_af" ColumnName="oprettes_af" />
+                <ScalarProperty Name="beskrivelse" ColumnName="beskrivelse" />
+                <ScalarProperty Name="ekstern_kilde" ColumnName="ekstern_kilde" />
+                <ScalarProperty Name="dokument_type" ColumnName="dokument_type" />
+                <ScalarProperty Name="emne" ColumnName="emne" />
+                <ScalarProperty Name="virksomhed" ColumnName="virksomhed" />
+                <ScalarProperty Name="id" ColumnName="id" />
             <ScalarProperty Name="år" ColumnName="år" />
-            <ScalarProperty Name="produkt" ColumnName="produkt" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblrefnr">
+            <EntityTypeMapping TypeName="docdbliteModel.tblrefnr">
+              <MappingFragment StoreEntitySet="tblrefnr">
+                <ScalarProperty Name="nr" ColumnName="nr" />
+                <ScalarProperty Name="keyname" ColumnName="keyname" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -124,12 +165,13 @@
     <!-- Diagram content (shape and connector positions) -->
     <Diagrams>
       <Diagram Name="Model1">
-        <EntityTypeShape EntityType="docdbliteModel.tblData" Width="1.5" PointX="0.75" PointY="3.875" Height="1.5956835937499998" IsExpanded="true" />
-        <EntityTypeShape EntityType="docdbliteModel.tbldoc" Width="1.5" PointX="0.75" PointY="0.875" Height="2.1725878906249996" IsExpanded="true" />
-        <AssociationConnector Association="docdbliteModel.FK_tblData_0_0" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.5" PointY="3.0475878906249996" />
-          <ConnectorPoint PointX="1.5" PointY="3.875" />
+        <EntityTypeShape EntityType="docdbliteModel.tblData" Width="1.5" PointX="1.375" PointY="5.375" Height="1.5956835937499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="docdbliteModel.tbldoc" PointX="1.375" PointY="0.5" Width="1.5" Height="3.3263964843749996" IsExpanded="true" />
+        <AssociationConnector ManuallyRouted="false" Association="docdbliteModel.FK_tblData_0_0">
+          <ConnectorPoint PointX="2.125" PointY="3.8263964843749996" />
+          <ConnectorPoint PointX="2.125" PointY="5.375" />
         </AssociationConnector>
+        <EntityTypeShape EntityType="docdbliteModel.tblrefnr" Width="1.5" PointX="4" PointY="0.625" Height="1.4033821614583326" />
       </Diagram>
     </Diagrams>
   </Designer>

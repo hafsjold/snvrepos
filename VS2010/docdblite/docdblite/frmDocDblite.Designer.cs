@@ -30,9 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDocDblite));
+            this.butDatabase = new System.Windows.Forms.Button();
+            this.labelDatabase = new System.Windows.Forms.Label();
+            this.txtBoxDatabase = new System.Windows.Forms.TextBox();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.button1 = new System.Windows.Forms.Button();
+            this.tbldocDataGridView = new System.Windows.Forms.DataGridView();
+            this.tbldocBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tbldocBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.tbldocBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -44,27 +50,117 @@
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tbldocBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
-            this.tbldocDataGridView = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.selskabDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.årDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.produktDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblDataDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.navnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.butDatabase = new System.Windows.Forms.Button();
-            this.labelDatabase = new System.Windows.Forms.Label();
-            this.txtBoxDatabase = new System.Windows.Forms.TextBox();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.button1 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.tbldocBindingNavigator)).BeginInit();
-            this.tbldocBindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbldocBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbldocDataGridView)).BeginInit();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbldocDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbldocBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbldocBindingNavigator)).BeginInit();
+            this.tbldocBindingNavigator.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // butDatabase
+            // 
+            this.butDatabase.Location = new System.Drawing.Point(561, 27);
+            this.butDatabase.Name = "butDatabase";
+            this.butDatabase.Size = new System.Drawing.Size(106, 23);
+            this.butDatabase.TabIndex = 0;
+            this.butDatabase.Text = "Åben Database";
+            this.butDatabase.UseVisualStyleBackColor = true;
+            this.butDatabase.Click += new System.EventHandler(this.butDatabase_Click);
+            // 
+            // labelDatabase
+            // 
+            this.labelDatabase.AutoSize = true;
+            this.labelDatabase.Location = new System.Drawing.Point(17, 33);
+            this.labelDatabase.Name = "labelDatabase";
+            this.labelDatabase.Size = new System.Drawing.Size(53, 13);
+            this.labelDatabase.TabIndex = 1;
+            this.labelDatabase.Text = "Database";
+            // 
+            // txtBoxDatabase
+            // 
+            this.txtBoxDatabase.Enabled = false;
+            this.txtBoxDatabase.Location = new System.Drawing.Point(76, 30);
+            this.txtBoxDatabase.Name = "txtBoxDatabase";
+            this.txtBoxDatabase.Size = new System.Drawing.Size(430, 20);
+            this.txtBoxDatabase.TabIndex = 2;
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.button1);
+            this.splitContainer1.Panel1.Controls.Add(this.txtBoxDatabase);
+            this.splitContainer1.Panel1.Controls.Add(this.butDatabase);
+            this.splitContainer1.Panel1.Controls.Add(this.labelDatabase);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.tbldocDataGridView);
+            this.splitContainer1.Size = new System.Drawing.Size(893, 399);
+            this.splitContainer1.SplitterDistance = 90;
+            this.splitContainer1.TabIndex = 0;
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Verdana", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(518, 28);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(32, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "...";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // tbldocDataGridView
+            // 
+            this.tbldocDataGridView.AllowUserToAddRows = false;
+            this.tbldocDataGridView.AutoGenerateColumns = false;
+            this.tbldocDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tbldocDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10,
+            this.dataGridViewTextBoxColumn11,
+            this.dataGridViewTextBoxColumn12,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn13,
+            this.dataGridViewTextBoxColumn14,
+            this.dataGridViewTextBoxColumn15,
+            this.dataGridViewTextBoxColumn16,
+            this.dataGridViewTextBoxColumn17,
+            this.dataGridViewTextBoxColumn18});
+            this.tbldocDataGridView.DataSource = this.tbldocBindingSource;
+            this.tbldocDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbldocDataGridView.Location = new System.Drawing.Point(0, 0);
+            this.tbldocDataGridView.Name = "tbldocDataGridView";
+            this.tbldocDataGridView.Size = new System.Drawing.Size(893, 305);
+            this.tbldocDataGridView.TabIndex = 0;
+            this.tbldocDataGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.tbldocDataGridView_CellMouseDoubleClick);
+            this.tbldocDataGridView.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.tbldocDataGridView_ColumnHeaderMouseClick);
+            // 
+            // tbldocBindingSource
+            // 
+            this.tbldocBindingSource.DataSource = typeof(docdblite.tbldoc);
             // 
             // tbldocBindingNavigator
             // 
@@ -93,8 +189,8 @@
             this.tbldocBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.tbldocBindingNavigator.Name = "tbldocBindingNavigator";
             this.tbldocBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.tbldocBindingNavigator.Size = new System.Drawing.Size(823, 25);
-            this.tbldocBindingNavigator.TabIndex = 0;
+            this.tbldocBindingNavigator.Size = new System.Drawing.Size(893, 25);
+            this.tbldocBindingNavigator.TabIndex = 1;
             this.tbldocBindingNavigator.Text = "bindingNavigator1";
             // 
             // bindingNavigatorAddNewItem
@@ -105,10 +201,6 @@
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorAddNewItem.Text = "Add new";
-            // 
-            // tbldocBindingSource
-            // 
-            this.tbldocBindingSource.DataSource = typeof(docdblite.tbldoc);
             // 
             // bindingNavigatorCountItem
             // 
@@ -195,155 +287,106 @@
             this.tbldocBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
             this.tbldocBindingNavigatorSaveItem.Text = "Save Data";
             // 
-            // tbldocDataGridView
+            // dataGridViewTextBoxColumn7
             // 
-            this.tbldocDataGridView.AllowUserToAddRows = false;
-            this.tbldocDataGridView.AllowUserToDeleteRows = false;
-            this.tbldocDataGridView.AutoGenerateColumns = false;
-            this.tbldocDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.tbldocDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.selskabDataGridViewTextBoxColumn,
-            this.årDataGridViewTextBoxColumn,
-            this.produktDataGridViewTextBoxColumn,
-            this.tblDataDataGridViewTextBoxColumn,
-            this.navnDataGridViewTextBoxColumn});
-            this.tbldocDataGridView.DataSource = this.tbldocBindingSource;
-            this.tbldocDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tbldocDataGridView.Location = new System.Drawing.Point(0, 0);
-            this.tbldocDataGridView.Name = "tbldocDataGridView";
-            this.tbldocDataGridView.ReadOnly = true;
-            this.tbldocDataGridView.Size = new System.Drawing.Size(823, 283);
-            this.tbldocDataGridView.TabIndex = 1;
-            this.tbldocDataGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.tbldocDataGridView_CellMouseDoubleClick);
+            this.dataGridViewTextBoxColumn7.DataPropertyName = "id";
+            this.dataGridViewTextBoxColumn7.HeaderText = "id";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn7.Visible = false;
             // 
-            // idDataGridViewTextBoxColumn
+            // dataGridViewTextBoxColumn9
             // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Visible = false;
+            this.dataGridViewTextBoxColumn9.DataPropertyName = "ref_nr";
+            this.dataGridViewTextBoxColumn9.HeaderText = "Ref";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            this.dataGridViewTextBoxColumn9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.dataGridViewTextBoxColumn9.Width = 60;
             // 
-            // selskabDataGridViewTextBoxColumn
+            // dataGridViewTextBoxColumn10
             // 
-            this.selskabDataGridViewTextBoxColumn.DataPropertyName = "selskab";
-            this.selskabDataGridViewTextBoxColumn.HeaderText = "Selskab";
-            this.selskabDataGridViewTextBoxColumn.Name = "selskabDataGridViewTextBoxColumn";
-            this.selskabDataGridViewTextBoxColumn.ReadOnly = true;
-            this.selskabDataGridViewTextBoxColumn.Width = 200;
+            this.dataGridViewTextBoxColumn10.DataPropertyName = "virksomhed";
+            this.dataGridViewTextBoxColumn10.HeaderText = "Virksomhed";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
+            this.dataGridViewTextBoxColumn10.Width = 200;
             // 
-            // årDataGridViewTextBoxColumn
+            // dataGridViewTextBoxColumn11
             // 
-            this.årDataGridViewTextBoxColumn.DataPropertyName = "år";
-            this.årDataGridViewTextBoxColumn.HeaderText = "År";
-            this.årDataGridViewTextBoxColumn.MaxInputLength = 4;
-            this.årDataGridViewTextBoxColumn.Name = "årDataGridViewTextBoxColumn";
-            this.årDataGridViewTextBoxColumn.ReadOnly = true;
-            this.årDataGridViewTextBoxColumn.Width = 50;
+            this.dataGridViewTextBoxColumn11.DataPropertyName = "emne";
+            this.dataGridViewTextBoxColumn11.HeaderText = "Emne";
+            this.dataGridViewTextBoxColumn11.Name = "dataGridViewTextBoxColumn11";
+            this.dataGridViewTextBoxColumn11.Width = 150;
             // 
-            // produktDataGridViewTextBoxColumn
+            // dataGridViewTextBoxColumn12
             // 
-            this.produktDataGridViewTextBoxColumn.DataPropertyName = "produkt";
-            this.produktDataGridViewTextBoxColumn.HeaderText = "Produkt";
-            this.produktDataGridViewTextBoxColumn.Name = "produktDataGridViewTextBoxColumn";
-            this.produktDataGridViewTextBoxColumn.ReadOnly = true;
-            this.produktDataGridViewTextBoxColumn.Width = 200;
+            this.dataGridViewTextBoxColumn12.DataPropertyName = "dokument_type";
+            this.dataGridViewTextBoxColumn12.HeaderText = "Doktype";
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
             // 
-            // tblDataDataGridViewTextBoxColumn
+            // dataGridViewTextBoxColumn8
             // 
-            this.tblDataDataGridViewTextBoxColumn.DataPropertyName = "tblData";
-            this.tblDataDataGridViewTextBoxColumn.HeaderText = "tblData";
-            this.tblDataDataGridViewTextBoxColumn.Name = "tblDataDataGridViewTextBoxColumn";
-            this.tblDataDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tblDataDataGridViewTextBoxColumn.Visible = false;
+            this.dataGridViewTextBoxColumn8.DataPropertyName = "år";
+            this.dataGridViewTextBoxColumn8.HeaderText = "År";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.Width = 60;
             // 
-            // navnDataGridViewTextBoxColumn
+            // dataGridViewTextBoxColumn13
             // 
-            this.navnDataGridViewTextBoxColumn.DataPropertyName = "navn";
-            this.navnDataGridViewTextBoxColumn.HeaderText = "Fil";
-            this.navnDataGridViewTextBoxColumn.Name = "navnDataGridViewTextBoxColumn";
-            this.navnDataGridViewTextBoxColumn.ReadOnly = true;
-            this.navnDataGridViewTextBoxColumn.Width = 200;
+            this.dataGridViewTextBoxColumn13.DataPropertyName = "ekstern_kilde";
+            this.dataGridViewTextBoxColumn13.HeaderText = "Ekstern kilde";
+            this.dataGridViewTextBoxColumn13.Name = "dataGridViewTextBoxColumn13";
             // 
-            // butDatabase
+            // dataGridViewTextBoxColumn14
             // 
-            this.butDatabase.Location = new System.Drawing.Point(561, 27);
-            this.butDatabase.Name = "butDatabase";
-            this.butDatabase.Size = new System.Drawing.Size(106, 23);
-            this.butDatabase.TabIndex = 2;
-            this.butDatabase.Text = "Åben Database";
-            this.butDatabase.UseVisualStyleBackColor = true;
-            this.butDatabase.Click += new System.EventHandler(this.butDatabase_Click);
+            this.dataGridViewTextBoxColumn14.DataPropertyName = "beskrivelse";
+            this.dataGridViewTextBoxColumn14.HeaderText = "Beskrivelse";
+            this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
+            this.dataGridViewTextBoxColumn14.Width = 200;
             // 
-            // labelDatabase
+            // dataGridViewTextBoxColumn15
             // 
-            this.labelDatabase.AutoSize = true;
-            this.labelDatabase.Location = new System.Drawing.Point(17, 33);
-            this.labelDatabase.Name = "labelDatabase";
-            this.labelDatabase.Size = new System.Drawing.Size(53, 13);
-            this.labelDatabase.TabIndex = 1;
-            this.labelDatabase.Text = "Database";
+            this.dataGridViewTextBoxColumn15.DataPropertyName = "oprettes_af";
+            this.dataGridViewTextBoxColumn15.HeaderText = "Oprettet af";
+            this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
             // 
-            // txtBoxDatabase
+            // dataGridViewTextBoxColumn16
             // 
-            this.txtBoxDatabase.Enabled = false;
-            this.txtBoxDatabase.Location = new System.Drawing.Point(76, 30);
-            this.txtBoxDatabase.Name = "txtBoxDatabase";
-            this.txtBoxDatabase.Size = new System.Drawing.Size(430, 20);
-            this.txtBoxDatabase.TabIndex = 0;
+            this.dataGridViewTextBoxColumn16.DataPropertyName = "oprettet_dato";
+            this.dataGridViewTextBoxColumn16.HeaderText = "Oprettet dato";
+            this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
             // 
-            // splitContainer1
+            // dataGridViewTextBoxColumn17
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            this.dataGridViewTextBoxColumn17.DataPropertyName = "kilde_sti";
+            this.dataGridViewTextBoxColumn17.HeaderText = "Kilde sti";
+            this.dataGridViewTextBoxColumn17.Name = "dataGridViewTextBoxColumn17";
             // 
-            // splitContainer1.Panel1
+            // dataGridViewTextBoxColumn18
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.button1);
-            this.splitContainer1.Panel1.Controls.Add(this.txtBoxDatabase);
-            this.splitContainer1.Panel1.Controls.Add(this.butDatabase);
-            this.splitContainer1.Panel1.Controls.Add(this.labelDatabase);
-            // 
-            // splitContainer1.Panel2
-            // 
-            this.splitContainer1.Panel2.Controls.Add(this.tbldocDataGridView);
-            this.splitContainer1.Size = new System.Drawing.Size(823, 374);
-            this.splitContainer1.SplitterDistance = 87;
-            this.splitContainer1.TabIndex = 3;
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Verdana", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(518, 28);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(32, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "...";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.dataGridViewTextBoxColumn18.DataPropertyName = "tblData";
+            this.dataGridViewTextBoxColumn18.HeaderText = "tblData";
+            this.dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
+            this.dataGridViewTextBoxColumn18.Visible = false;
             // 
             // frmDocDblite
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(823, 399);
-            this.Controls.Add(this.splitContainer1);
+            this.ClientSize = new System.Drawing.Size(893, 399);
             this.Controls.Add(this.tbldocBindingNavigator);
+            this.Controls.Add(this.splitContainer1);
             this.Name = "frmDocDblite";
             this.Text = "DocDblite";
-            ((System.ComponentModel.ISupportInitialize)(this.tbldocBindingNavigator)).EndInit();
-            this.tbldocBindingNavigator.ResumeLayout(false);
-            this.tbldocBindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbldocBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbldocDataGridView)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tbldocDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbldocBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tbldocBindingNavigator)).EndInit();
+            this.tbldocBindingNavigator.ResumeLayout(false);
+            this.tbldocBindingNavigator.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -351,6 +394,21 @@
 
         #endregion
 
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.Label labelDatabase;
+        private System.Windows.Forms.TextBox txtBoxDatabase;
+        private System.Windows.Forms.Button butDatabase;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn selskabDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn produktDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn navnDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridView tbldocDataGridView;
         private System.Windows.Forms.BindingSource tbldocBindingSource;
         private System.Windows.Forms.BindingNavigator tbldocBindingNavigator;
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
@@ -365,24 +423,18 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton tbldocBindingNavigatorSaveItem;
-        private System.Windows.Forms.DataGridView tbldocDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.Label labelDatabase;
-        private System.Windows.Forms.TextBox txtBoxDatabase;
-        private System.Windows.Forms.Button butDatabase;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn selskabDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn årDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn produktDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tblDataDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn navnDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
 
 
     }
