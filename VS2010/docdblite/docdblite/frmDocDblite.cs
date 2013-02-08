@@ -45,7 +45,7 @@ namespace docdblite
             }
             else
                 txtBoxDatabase.Text = @"C:\Users\mha\Documents\Visual Studio 2010\Projects\docdblite\docdblite\docdblite.db3";
-//#else
+            //#else
             if (bLastDatabase)
             {
                 txtBoxDatabase.Text = global::docdblite.Properties.Settings.Default.strLastDatabase;
@@ -101,7 +101,7 @@ namespace docdblite
             return false;
         }
 
-        private bool openDatabase() 
+        private bool openDatabase()
         {
             connectionString = @"metadata=res://*/dblite.csdl|res://*/dblite.ssdl|res://*/dblite.msl;provider=System.Data.SQLite;provider connection string='data source=""" + DatabaseFile + @""" '";
             dblite = new docdbliteEntities(connectionString);
@@ -117,10 +117,95 @@ namespace docdblite
         void Form1_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
+            if (e.Data.GetDataPresent("FileGroupDescriptor")) e.Effect = DragDropEffects.All;
         }
 
         void Form1_DragDrop(object sender, DragEventArgs e)
         {
+            if (e.Data.GetDataPresent("FileGroupDescriptor"))
+                Outlook_DragDrop(sender, e);
+            else
+                Stifinder_DragDrop(sender, e);
+        }
+
+        void Outlook_DragDrop(object sender, DragEventArgs e)
+        {
+            //wrap standard IDataObject in OutlookDataObject
+            OutlookDataObject dataObject = new OutlookDataObject(e.Data);
+
+            //get the names and data streams of the files dropped
+            string[] filenames = (string[])dataObject.GetData("FileGroupDescriptor");
+            MemoryStream[] filestreams = (MemoryStream[])dataObject.GetData("FileContents");
+
+            for (int fileIndex = 0; fileIndex < filenames.Length; fileIndex++)
+            {
+                //use the fileindex to get the name and data stream
+                string file = filenames[fileIndex];
+                MemoryStream fs = filestreams[fileIndex];
+
+                FileInfo fileInfo = new FileInfo(file);
+                string kilde_sti = fileInfo.Name;
+
+                frmAddDoc m_frmAddDoc = new frmAddDoc();
+                m_frmAddDoc.Dokument = kilde_sti;
+                DialogResult Result = m_frmAddDoc.ShowDialog();
+                if (Result == System.Windows.Forms.DialogResult.OK)
+                {
+                    Guid id = Guid.NewGuid();
+                    int ref_nr = 0;
+                    try
+                    {
+                        tblrefnr rec_refnr = (from n in dblite.tblrefnr where n.keyname == "ref_nr" select n).First();
+                        rec_refnr.nr++;
+                        ref_nr = rec_refnr.nr;
+                        dblite.SaveChanges();
+                    }
+                    catch
+                    {
+                        ref_nr = 1;
+                        tblrefnr rec_refnr = new tblrefnr { keyname = "ref_nr", nr = ref_nr };
+                        dblite.tblrefnr.AddObject(rec_refnr);
+                        dblite.SaveChanges();
+                    }
+
+                    tbldoc rec_doc = new tbldoc
+                    {
+                        id = id,
+                        ref_nr = ref_nr,
+                        virksomhed = m_frmAddDoc.Virksomhed,
+                        emne = m_frmAddDoc.Emne,
+                        dokument_type = m_frmAddDoc.Dokument_type,
+                        år = m_frmAddDoc.År,
+                        ekstern_kilde = m_frmAddDoc.Ekstern_kilde,
+                        beskrivelse = m_frmAddDoc.Beskrivelse,
+                        oprettes_af = m_frmAddDoc.Oprettet_af,
+                        oprettet_dato = m_frmAddDoc.Oprettet_dato,
+                        kilde_sti = kilde_sti
+                    };
+                    dblite.tbldoc.AddObject(rec_doc);
+                    dblite.SaveChanges();
+                    blSortableBindingList.Add(rec_doc);
+
+                    //FileStream fs = fileInfo.OpenRead();
+                    long ln = fs.Length;
+                    byte[] file_bytes = new byte[ln];
+                    fs.Read(file_bytes, 0, (int)ln);
+
+                    tblData rec_Data = new tblData
+                    {
+                        id = id,
+                        data = file_bytes
+                    };
+                    dblite.tblData.AddObject(rec_Data);
+                    dblite.SaveChanges();
+
+                }
+             }
+        }
+
+        void Stifinder_DragDrop(object sender, DragEventArgs e)
+        {
+
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             foreach (string file in files)
             {
@@ -179,12 +264,12 @@ namespace docdblite
                     };
                     dblite.tblData.AddObject(rec_Data);
                     dblite.SaveChanges();
-                    
-                 }
+
+                }
             }
         }
 
- 
+
         private void tbldocDataGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
 
@@ -216,12 +301,12 @@ namespace docdblite
                         m_frmIE.WebBrowser1.LoadBytes(bytes, MediaTypeNames.Application.Pdf);
                         m_frmIE.Show();
                     }
-                  }
+                }
             }
 
         }
 
- 
+
         private void tbldocDataGridView_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Right)
@@ -234,7 +319,7 @@ namespace docdblite
                     tbldocDataGridView.Rows[hit.RowIndex].Cells[hit.ColumnIndex].Selected = true;
                     this.contextMenuDoc.Show(this.tbldocDataGridView, new Point(e.X, e.Y));
                 }
- 
+
             }
         }
 
@@ -305,16 +390,16 @@ namespace docdblite
                 {
                     DataGridViewTextBoxCell cell = cells[0] as DataGridViewTextBoxCell;
                     tbldoc rec_doc_view = cell.OwningRow.DataBoundItem as tbldoc;
- 
+
                     var rec = (from doc in dblite.tbldoc
-                              where doc.id == rec_doc_view.id
-                              join data in dblite.tblData on doc.id equals data.id
-                              select new
-                              {
-                                  Id = doc.id,
-                                  kilde_sti = doc.kilde_sti,
-                                  Data = data.data
-                              }).First();
+                               where doc.id == rec_doc_view.id
+                               join data in dblite.tblData on doc.id equals data.id
+                               select new
+                               {
+                                   Id = doc.id,
+                                   kilde_sti = doc.kilde_sti,
+                                   Data = data.data
+                               }).First();
 
                     FileInfo fi = new FileInfo(rec.kilde_sti);
                     var Ext = fi.Extension;
@@ -389,7 +474,7 @@ namespace docdblite
                     dblite.tbldoc.DeleteObject(rec);
                     dblite.SaveChanges();
                     blSortableBindingList.Remove(rec);
-                 }
+                }
                 catch { }
             }
         }
@@ -422,7 +507,7 @@ namespace docdblite
             openFileDialog1.ValidateNames = true;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                txtBoxDatabase.Text = openFileDialog1.FileName; 
+                txtBoxDatabase.Text = openFileDialog1.FileName;
                 DatabaseFile = txtBoxDatabase.Text;
                 FileInfo DatabasefileInfo = new FileInfo(DatabaseFile);
                 if (!DatabasefileInfo.Exists)
@@ -436,7 +521,6 @@ namespace docdblite
         {
             this.Close();
         }
-
     }
 }
 

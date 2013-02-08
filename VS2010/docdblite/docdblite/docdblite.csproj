@@ -101,6 +101,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dblite.edmx</DependentUpon>
     </Compile>
+    <Compile Include="OutlookDataObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="app.config" />

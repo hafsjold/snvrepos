@@ -38,6 +38,7 @@
             this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
             this.tbldocBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.tbldocBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -57,12 +58,6 @@
             this.txtBoxDatabase = new System.Windows.Forms.TextBox();
             this.labelDatabase = new System.Windows.Forms.Label();
             this.tbldocDataGridView = new System.Windows.Forms.DataGridView();
-            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
-            this.toolStripContainer2 = new System.Windows.Forms.ToolStripContainer();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.åbenDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nyDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -75,11 +70,17 @@
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tbldocBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.toolStripContainer2 = new System.Windows.Forms.ToolStripContainer();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.åbenDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nyDatabaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lukProgramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuDoc.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbldocBindingNavigator)).BeginInit();
             this.tbldocBindingNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbldocBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -90,7 +91,6 @@
             this.toolStripContainer2.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbldocBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuDoc
@@ -179,6 +179,10 @@
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorAddNewItem.Text = "Add new";
             this.bindingNavigatorAddNewItem.Visible = false;
+            // 
+            // tbldocBindingSource
+            // 
+            this.tbldocBindingSource.DataSource = typeof(docdblite.tbldoc);
             // 
             // bindingNavigatorCountItem
             // 
@@ -366,75 +370,6 @@
             this.tbldocDataGridView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.tbldocDataGridView_CellMouseDoubleClick);
             this.tbldocDataGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tbldocDataGridView_MouseDown);
             // 
-            // toolStripContainer1
-            // 
-            // 
-            // toolStripContainer1.ContentPanel
-            // 
-            this.toolStripContainer1.ContentPanel.AutoScroll = true;
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(893, 374);
-            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStripContainer1.LeftToolStripPanelVisible = false;
-            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
-            this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.RightToolStripPanelVisible = false;
-            this.toolStripContainer1.Size = new System.Drawing.Size(893, 399);
-            this.toolStripContainer1.TabIndex = 3;
-            this.toolStripContainer1.Text = "toolStripContainer1";
-            // 
-            // toolStripContainer2
-            // 
-            // 
-            // toolStripContainer2.ContentPanel
-            // 
-            this.toolStripContainer2.ContentPanel.Controls.Add(this.splitContainer1);
-            this.toolStripContainer2.ContentPanel.Size = new System.Drawing.Size(893, 375);
-            this.toolStripContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.toolStripContainer2.Location = new System.Drawing.Point(0, 0);
-            this.toolStripContainer2.Name = "toolStripContainer2";
-            this.toolStripContainer2.Size = new System.Drawing.Size(893, 399);
-            this.toolStripContainer2.TabIndex = 4;
-            this.toolStripContainer2.Text = "toolStripContainer2";
-            // 
-            // toolStripContainer2.TopToolStripPanel
-            // 
-            this.toolStripContainer2.TopToolStripPanel.Controls.Add(this.menuStrip1);
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(893, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.åbenDatabaseToolStripMenuItem,
-            this.nyDatabaseToolStripMenuItem,
-            this.lukProgramToolStripMenuItem});
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // åbenDatabaseToolStripMenuItem
-            // 
-            this.åbenDatabaseToolStripMenuItem.Name = "åbenDatabaseToolStripMenuItem";
-            this.åbenDatabaseToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.åbenDatabaseToolStripMenuItem.Text = "Åben Database";
-            this.åbenDatabaseToolStripMenuItem.Click += new System.EventHandler(this.åbenDatabaseToolStripMenuItem_Click);
-            // 
-            // nyDatabaseToolStripMenuItem
-            // 
-            this.nyDatabaseToolStripMenuItem.Name = "nyDatabaseToolStripMenuItem";
-            this.nyDatabaseToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
-            this.nyDatabaseToolStripMenuItem.Text = "Ny Database";
-            this.nyDatabaseToolStripMenuItem.Click += new System.EventHandler(this.nyDatabaseToolStripMenuItem_Click);
-            // 
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.DataPropertyName = "id";
@@ -533,9 +468,74 @@
             this.dataGridViewTextBoxColumn18.Visible = false;
             this.dataGridViewTextBoxColumn18.Width = 66;
             // 
-            // tbldocBindingSource
+            // toolStripContainer1
             // 
-            this.tbldocBindingSource.DataSource = typeof(docdblite.tbldoc);
+            // 
+            // toolStripContainer1.ContentPanel
+            // 
+            this.toolStripContainer1.ContentPanel.AutoScroll = true;
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(893, 374);
+            this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStripContainer1.LeftToolStripPanelVisible = false;
+            this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
+            this.toolStripContainer1.Name = "toolStripContainer1";
+            this.toolStripContainer1.RightToolStripPanelVisible = false;
+            this.toolStripContainer1.Size = new System.Drawing.Size(893, 399);
+            this.toolStripContainer1.TabIndex = 3;
+            this.toolStripContainer1.Text = "toolStripContainer1";
+            // 
+            // toolStripContainer2
+            // 
+            // 
+            // toolStripContainer2.ContentPanel
+            // 
+            this.toolStripContainer2.ContentPanel.Controls.Add(this.splitContainer1);
+            this.toolStripContainer2.ContentPanel.Size = new System.Drawing.Size(893, 375);
+            this.toolStripContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.toolStripContainer2.Location = new System.Drawing.Point(0, 0);
+            this.toolStripContainer2.Name = "toolStripContainer2";
+            this.toolStripContainer2.Size = new System.Drawing.Size(893, 399);
+            this.toolStripContainer2.TabIndex = 4;
+            this.toolStripContainer2.Text = "toolStripContainer2";
+            // 
+            // toolStripContainer2.TopToolStripPanel
+            // 
+            this.toolStripContainer2.TopToolStripPanel.Controls.Add(this.menuStrip1);
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(893, 24);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.åbenDatabaseToolStripMenuItem,
+            this.nyDatabaseToolStripMenuItem,
+            this.lukProgramToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // åbenDatabaseToolStripMenuItem
+            // 
+            this.åbenDatabaseToolStripMenuItem.Name = "åbenDatabaseToolStripMenuItem";
+            this.åbenDatabaseToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.åbenDatabaseToolStripMenuItem.Text = "Åben Database";
+            this.åbenDatabaseToolStripMenuItem.Click += new System.EventHandler(this.åbenDatabaseToolStripMenuItem_Click);
+            // 
+            // nyDatabaseToolStripMenuItem
+            // 
+            this.nyDatabaseToolStripMenuItem.Name = "nyDatabaseToolStripMenuItem";
+            this.nyDatabaseToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
+            this.nyDatabaseToolStripMenuItem.Text = "Ny Database";
+            this.nyDatabaseToolStripMenuItem.Click += new System.EventHandler(this.nyDatabaseToolStripMenuItem_Click);
             // 
             // lukProgramToolStripMenuItem
             // 
@@ -563,6 +563,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tbldocBindingNavigator)).EndInit();
             this.tbldocBindingNavigator.ResumeLayout(false);
             this.tbldocBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbldocBindingSource)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -579,7 +580,6 @@
             this.toolStripContainer2.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbldocBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
