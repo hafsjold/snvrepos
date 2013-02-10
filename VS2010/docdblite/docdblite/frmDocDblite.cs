@@ -45,7 +45,7 @@ namespace docdblite
             }
             else
                 txtBoxDatabase.Text = @"C:\Users\mha\Documents\Visual Studio 2010\Projects\docdblite\docdblite\docdblite.db3";
-            //#else
+#else
             if (bLastDatabase)
             {
                 txtBoxDatabase.Text = global::docdblite.Properties.Settings.Default.strLastDatabase;
