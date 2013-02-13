@@ -76,9 +76,6 @@
   <ItemGroup>
     <Compile Include="clsArkiv.cs" />
     <Compile Include="clsSortableBindingList.cs" />
-    <Compile Include="clsWebBrowserEx.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="frmbjArkiv.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,12 +87,6 @@
     </Compile>
     <Compile Include="frmAddDoc.Designer.cs">
       <DependentUpon>frmAddDoc.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmIE.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmIE.Designer.cs">
-      <DependentUpon>frmIE.cs</DependentUpon>
     </Compile>
     <Compile Include="dblite.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -112,9 +103,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAddDoc.resx">
       <DependentUpon>frmAddDoc.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmIE.resx">
-      <DependentUpon>frmIE.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

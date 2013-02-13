@@ -17,7 +17,6 @@ namespace bjArkiv
     {
         docdbliteEntities dblite;
         string connectionString;
-        frmIE m_frmIE;
         SortableBindingList<tbldoc> blSortableBindingList;
         bool bLastArkiv;
         string arkiv_root_folder;
@@ -304,21 +303,11 @@ namespace bjArkiv
 
                 foreach (var rec in qry)
                 {
-                    FileInfo fi_intern = new FileInfo(rec.kilde_sti);
-                    var Ext = fi_intern.Extension;
-                    var Name = fi_intern.Name;
-
-                    if (Ext.ToLower() == ".pdf")
+                    try
                     {
-                        FileInfo fi_extern = new FileInfo(arkiv_root_folder + @"\" + rec.kilde_sti);
-                        FileStream fs = fi_extern.OpenRead();
-                        long ln = fi_extern.Length;
-                        byte[] bytes = new byte[ln];
-                        fs.Read(bytes, 0, (int)ln);
-                        m_frmIE = new frmIE();
-                        m_frmIE.WebBrowser1.LoadBytes(bytes, MediaTypeNames.Application.Pdf);
-                        m_frmIE.Show();
+                        Process cc = Process.Start(arkiv_root_folder + @"\" + rec.kilde_sti);
                     }
+                    catch { }
                 }
             }
         }
@@ -407,10 +396,6 @@ namespace bjArkiv
                     tbldoc rec_doc_view = cell.OwningRow.DataBoundItem as tbldoc;
 
                     var rec = (from doc in dblite.tbldoc where doc.id == rec_doc_view.id select doc).First();
-
-                    FileInfo fi_intern = new FileInfo(rec.kilde_sti);
-                    var Ext = fi_intern.Extension;
-                    var Name = fi_intern.Name;
                     Process cc = Process.Start(arkiv_root_folder + @"\" + rec.kilde_sti);
                 }
                 catch { }
