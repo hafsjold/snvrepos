@@ -69,7 +69,6 @@
             this.dataGridViewTextBoxColumn15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.toolStripContainer2 = new System.Windows.Forms.ToolStripContainer();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -78,6 +77,8 @@
             this.NytArkivToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lukProgramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bjArkivWatcher = new System.IO.FileSystemWatcher();
             this.contextMenuDoc.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbldocBindingNavigator)).BeginInit();
             this.tbldocBindingNavigator.SuspendLayout();
@@ -92,6 +93,7 @@
             this.toolStripContainer2.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bjArkivWatcher)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuDoc
@@ -359,8 +361,7 @@
             this.dataGridViewTextBoxColumn14,
             this.dataGridViewTextBoxColumn15,
             this.dataGridViewTextBoxColumn16,
-            this.dataGridViewTextBoxColumn17,
-            this.dataGridViewTextBoxColumn18});
+            this.dataGridViewTextBoxColumn17});
             this.tbldocDataGridView.DataSource = this.tbldocBindingSource;
             this.tbldocDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbldocDataGridView.Location = new System.Drawing.Point(0, 0);
@@ -460,15 +461,6 @@
             this.dataGridViewTextBoxColumn17.ReadOnly = true;
             this.dataGridViewTextBoxColumn17.Width = 68;
             // 
-            // dataGridViewTextBoxColumn18
-            // 
-            this.dataGridViewTextBoxColumn18.DataPropertyName = "tblData";
-            this.dataGridViewTextBoxColumn18.HeaderText = "tblData";
-            this.dataGridViewTextBoxColumn18.Name = "dataGridViewTextBoxColumn18";
-            this.dataGridViewTextBoxColumn18.ReadOnly = true;
-            this.dataGridViewTextBoxColumn18.Visible = false;
-            this.dataGridViewTextBoxColumn18.Width = 66;
-            // 
             // toolStripContainer1
             // 
             // 
@@ -519,7 +511,8 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.åbenArkivToolStripMenuItem,
             this.NytArkivToolStripMenuItem,
-            this.lukProgramToolStripMenuItem});
+            this.lukProgramToolStripMenuItem,
+            this.testToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -544,6 +537,21 @@
             this.lukProgramToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.lukProgramToolStripMenuItem.Text = "Luk Program";
             this.lukProgramToolStripMenuItem.Click += new System.EventHandler(this.lukProgramToolStripMenuItem_Click);
+            // 
+            // testToolStripMenuItem
+            // 
+            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.testToolStripMenuItem.Text = "Test";
+            this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
+            // 
+            // bjArkivWatcher
+            // 
+            this.bjArkivWatcher.EnableRaisingEvents = true;
+            this.bjArkivWatcher.IncludeSubdirectories = true;
+            this.bjArkivWatcher.NotifyFilter = System.IO.NotifyFilters.FileName;
+            this.bjArkivWatcher.SynchronizingObject = this;
+            this.bjArkivWatcher.Created += new System.IO.FileSystemEventHandler(this.bjArkivWatcher_Created);
             // 
             // frmbjArkiv
             // 
@@ -581,6 +589,7 @@
             this.toolStripContainer2.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bjArkivWatcher)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -644,6 +653,8 @@
         private System.Windows.Forms.ToolStripMenuItem NytArkivToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lukProgramToolStripMenuItem;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
+        private System.IO.FileSystemWatcher bjArkivWatcher;
 
 
     }

@@ -9,12 +9,12 @@ using System.Windows.Forms;
 using System.IO;
 using System.Net.Mime;
 using System.Data.SQLite;
+using System.Diagnostics;
 
 namespace bjArkiv
 {
     public partial class frmbjArkiv : Form
     {
-        const string BJARKIV = @"\.bja\bjArkiv.db3";
         docdbliteEntities dblite;
         string connectionString;
         frmIE m_frmIE;
@@ -24,7 +24,7 @@ namespace bjArkiv
 
         public string Database
         {
-            get { return arkiv_root_folder + BJARKIV; }
+            get { return arkiv_root_folder + Program.BJARKIV; }
         }
 
 
@@ -40,7 +40,7 @@ namespace bjArkiv
                 DirectoryInfo LastbjArkivdirInfo = new DirectoryInfo(global::bjArkiv.Properties.Settings.Default.strLastbjArkiv);
                 if (LastbjArkivdirInfo.Exists)
                 {
-                    FileInfo fi = new FileInfo(LastbjArkivdirInfo.FullName + BJARKIV);
+                    FileInfo fi = new FileInfo(LastbjArkivdirInfo.FullName + Program.BJARKIV);
                     if (fi.Exists) bLastArkiv = true;
                 }
             }
@@ -50,27 +50,32 @@ namespace bjArkiv
             if (bLastArkiv)
             {
                 arkiv_root_folder = global::bjArkiv.Properties.Settings.Default.strLastbjArkiv;
+                bjArkivWatcher.Path = arkiv_root_folder;
                 txtBoxbjArkiv.Text = arkiv_root_folder;
                 openDatabase();
             }
             else
             {
                 arkiv_root_folder = "";
+                bjArkivWatcher.Path = arkiv_root_folder;
                 txtBoxbjArkiv.Text = arkiv_root_folder;
             }
 #else
             if (bLastDatabase)
             {
                 arkiv_root_folder = global::bjArkiv.Properties.Settings.Default.strLastbjArkiv;
+                bjArkivWatcher.Path = arkiv_root_folder;
                 txtBoxbjArkiv.Text = arkiv_root_folder;
                 openDatabase();
             }
             else
             {
                 arkiv_root_folder = "";
+                bjArkivWatcher.Path = arkiv_root_folder;
                 txtBoxbjArkiv.Text = arkiv_root_folder;
             }
 #endif
+
         }
 
         private void CreateMissingFolders(DirectoryInfo di)
@@ -179,142 +184,111 @@ namespace bjArkiv
 
         void Outlook_DragDrop(object sender, DragEventArgs e)
         {
-            //wrap standard IDataObject in OutlookDataObject
             OutlookDataObject dataObject = new OutlookDataObject(e.Data);
-
-            //get the names and data streams of the files dropped
             string[] filenames = (string[])dataObject.GetData("FileGroupDescriptor");
             MemoryStream[] filestreams = (MemoryStream[])dataObject.GetData("FileContents");
-
             for (int fileIndex = 0; fileIndex < filenames.Length; fileIndex++)
             {
-                //use the fileindex to get the name and data stream
                 string file = filenames[fileIndex];
                 MemoryStream fs = filestreams[fileIndex];
 
-                FileInfo fileInfo = new FileInfo(file);
-                string kilde_sti = fileInfo.Name;
-                string kilde_file = fileInfo.Name;
-
-                frmAddDoc m_frmAddDoc = new frmAddDoc();
-                m_frmAddDoc.Dokument = kilde_sti;
-                DialogResult Result = m_frmAddDoc.ShowDialog();
-                if (Result == System.Windows.Forms.DialogResult.OK)
+                FileInfo from_fileinfo = new FileInfo(file);
+                string to_path = arkiv_root_folder + @"\" + from_fileinfo.Name;
+                //********************************************************************
+                FolderBrowserDialog openFileDialog1 = new FolderBrowserDialog();
+                openFileDialog1.Description = "Vælg Arkiv Folder";
+                openFileDialog1.RootFolder = Environment.SpecialFolder.MyDocuments;
+                openFileDialog1.ShowNewFolderButton = true;
+                openFileDialog1.SelectedPath = arkiv_root_folder;
+                bool bFound = false;
+                while (!bFound)
                 {
-                    Guid id = Guid.NewGuid();
-                    int ref_nr = 0;
-                    
-                    try
+                    if (openFileDialog1.ShowDialog() == DialogResult.OK)
                     {
-                        tblrefnr rec_refnr = (from n in dblite.tblrefnr where n.keyname == "ref_nr" select n).First();
-                        rec_refnr.nr++;
-                        ref_nr = rec_refnr.nr;
-                        dblite.SaveChanges();
+                        if (openFileDialog1.SelectedPath.StartsWith(arkiv_root_folder, StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            if (!openFileDialog1.SelectedPath.StartsWith(arkiv_root_folder + @"\.bja", StringComparison.CurrentCultureIgnoreCase))
+                            {
+                                to_path = openFileDialog1.SelectedPath + @"\" + from_fileinfo.Name;
+                                bFound = true;
+                            }
+                        }
                     }
-                    catch
+                    else
                     {
-                        ref_nr = 1;
-                        tblrefnr rec_refnr = new tblrefnr { keyname = "ref_nr", nr = ref_nr };
-                        dblite.tblrefnr.AddObject(rec_refnr);
-                        dblite.SaveChanges();
+                        return;
                     }
-                    
-                    //***************************************************************************
-                    string to_path = arkiv_root_folder + @"\" + kilde_file;
-                    FileInfo to_file = new FileInfo(to_path);
-
-                    DirectoryInfo to_dir = new DirectoryInfo(to_file.DirectoryName);
-                    if (!to_dir.Exists)
-                        to_dir.Create();
-
+                }
+                //********************************************************************
+                FileInfo to_fileinfo = new FileInfo(to_path);
+                DirectoryInfo to_dir = new DirectoryInfo(to_fileinfo.DirectoryName);
+                try
+                {
+                    if (!to_dir.Exists) to_dir.Create();
                     FileStream outputStream = File.Create(to_path);
                     fs.WriteTo(outputStream);
                     outputStream.Close();
-                    //*************************************************************************** 
-                    
-                    tbldoc rec_doc = new tbldoc
-                    {
-                        id = id,
-                        ref_nr = ref_nr,
-                        virksomhed = m_frmAddDoc.Virksomhed,
-                        emne = m_frmAddDoc.Emne,
-                        dokument_type = m_frmAddDoc.Dokument_type,
-                        år = m_frmAddDoc.År,
-                        ekstern_kilde = m_frmAddDoc.Ekstern_kilde,
-                        beskrivelse = m_frmAddDoc.Beskrivelse,
-                        oprettes_af = m_frmAddDoc.Oprettet_af,
-                        oprettet_dato = m_frmAddDoc.Oprettet_dato,
-                        kilde_sti = kilde_file
-                    };
-                    dblite.tbldoc.AddObject(rec_doc);
-                    dblite.SaveChanges();
-                    blSortableBindingList.Add(rec_doc);
+                }
+                catch
+                {
+                    string messageBoxText = "Kan ikke tilføje  " + file + " til Arkiv";
+                    string caption = "bjArkiv";
+                    MessageBoxButtons button = MessageBoxButtons.OK;
+                    MessageBoxIcon icon = MessageBoxIcon.Warning;
+                    MessageBox.Show(messageBoxText, caption, button, icon);
+                    return;
                 }
             }
         }
 
         void Stifinder_DragDrop(object sender, DragEventArgs e)
         {
-
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             foreach (string file in files)
             {
-                FileInfo fileInfo = new FileInfo(file);
-                string kilde_sti = fileInfo.FullName;
-                string kilde_file = fileInfo.Name;
-
-                frmAddDoc m_frmAddDoc = new frmAddDoc();
-                m_frmAddDoc.Dokument = kilde_sti;
-                DialogResult Result = m_frmAddDoc.ShowDialog();
-                if (Result == System.Windows.Forms.DialogResult.OK)
+                FileInfo from_fileinfo = new FileInfo(file);
+                string to_path = arkiv_root_folder + @"\" + from_fileinfo.Name;
+                //********************************************************************
+                FolderBrowserDialog openFileDialog1 = new FolderBrowserDialog();
+                openFileDialog1.Description = "Vælg Arkiv Folder";
+                openFileDialog1.RootFolder = Environment.SpecialFolder.MyDocuments;
+                openFileDialog1.ShowNewFolderButton = true;
+                openFileDialog1.SelectedPath = arkiv_root_folder;
+                bool bFound = false;
+                while (!bFound)
                 {
-                    Guid id = Guid.NewGuid();
-                    int ref_nr = 0;
-                    
-                    try
+                    if (openFileDialog1.ShowDialog() == DialogResult.OK)
                     {
-                        tblrefnr rec_refnr = (from n in dblite.tblrefnr where n.keyname == "ref_nr" select n).First();
-                        rec_refnr.nr++;
-                        ref_nr = rec_refnr.nr;
-                        dblite.SaveChanges();
+                        if (openFileDialog1.SelectedPath.StartsWith(arkiv_root_folder, StringComparison.CurrentCultureIgnoreCase))
+                        {
+                            if (!openFileDialog1.SelectedPath.StartsWith(arkiv_root_folder + @"\.bja", StringComparison.CurrentCultureIgnoreCase))
+                            {
+                                to_path = openFileDialog1.SelectedPath + @"\" + from_fileinfo.Name;
+                                bFound = true;
+                            }
+                        }
                     }
-                    catch
+                    else
                     {
-                        ref_nr = 1;
-                        tblrefnr rec_refnr = new tblrefnr { keyname = "ref_nr", nr = ref_nr };
-                        dblite.tblrefnr.AddObject(rec_refnr);
-                        dblite.SaveChanges();
+                        return;
                     }
-                    
-                    //***************************************************************************
-                    string from_path = kilde_sti;
-                    string to_path = arkiv_root_folder + @"\" + kilde_file;
-
-                    FileInfo from_file = new FileInfo(from_path);
-                    FileInfo to_file = new FileInfo(to_path);
-                    DirectoryInfo to_dir = new DirectoryInfo(to_file.DirectoryName);
-                    if (!to_dir.Exists)
-                        to_dir.Create();
-                    from_file.CopyTo(to_path);
-                    //***************************************************************************
-                    
-                    tbldoc rec_doc = new tbldoc
-                    {
-                        id = id,
-                        ref_nr = ref_nr,
-                        virksomhed = m_frmAddDoc.Virksomhed,
-                        emne = m_frmAddDoc.Emne,
-                        dokument_type = m_frmAddDoc.Dokument_type,
-                        år = m_frmAddDoc.År,
-                        ekstern_kilde = m_frmAddDoc.Ekstern_kilde,
-                        beskrivelse = m_frmAddDoc.Beskrivelse,
-                        oprettes_af = m_frmAddDoc.Oprettet_af,
-                        oprettet_dato = m_frmAddDoc.Oprettet_dato,
-                        kilde_sti = kilde_file
-                    };
-                    dblite.tbldoc.AddObject(rec_doc);
-                    dblite.SaveChanges();
-                    blSortableBindingList.Add(rec_doc);
+                }
+                //********************************************************************
+                FileInfo to_fileinfo = new FileInfo(to_path);
+                DirectoryInfo to_dir = new DirectoryInfo(to_fileinfo.DirectoryName);
+                try
+                {
+                    if (!to_dir.Exists) to_dir.Create();
+                    from_fileinfo.CopyTo(to_path);
+                }
+                catch
+                {
+                    string messageBoxText = "Kan ikke tilføje  " + file + " til Arkiv";
+                    string caption = "bjArkiv";
+                    MessageBoxButtons button = MessageBoxButtons.OK;
+                    MessageBoxIcon icon = MessageBoxIcon.Warning;
+                    MessageBox.Show(messageBoxText, caption, button, icon);
+                    return;
                 }
             }
         }
@@ -427,7 +401,7 @@ namespace bjArkiv
             DataGridViewSelectedCellCollection cells = tbldocDataGridView.SelectedCells;
             if (cells.Count > 0)
             {
-                try
+                 try
                 {
                     DataGridViewTextBoxCell cell = cells[0] as DataGridViewTextBoxCell;
                     tbldoc rec_doc_view = cell.OwningRow.DataBoundItem as tbldoc;
@@ -437,18 +411,7 @@ namespace bjArkiv
                     FileInfo fi_intern = new FileInfo(rec.kilde_sti);
                     var Ext = fi_intern.Extension;
                     var Name = fi_intern.Name;
-
-                    if (Ext.ToLower() == ".pdf")
-                    {
-                        FileInfo fi_extern = new FileInfo(arkiv_root_folder + @"\" + rec.kilde_sti);
-                        FileStream fs = fi_extern.OpenRead();
-                        long ln = fi_extern.Length;
-                        byte[] bytes = new byte[ln];
-                        fs.Read(bytes, 0, (int)ln);
-                        m_frmIE = new frmIE();
-                        m_frmIE.WebBrowser1.LoadBytes(bytes, MediaTypeNames.Application.Pdf);
-                        m_frmIE.Show();
-                    }
+                    Process cc = Process.Start(arkiv_root_folder + @"\" + rec.kilde_sti);
                 }
                 catch { }
             }
@@ -464,7 +427,7 @@ namespace bjArkiv
                     DataGridViewTextBoxCell cell = cells[0] as DataGridViewTextBoxCell;
                     tbldoc rec_doc_view = cell.OwningRow.DataBoundItem as tbldoc;
 
-                    var rec = (from doc in dblite.tbldoc where doc.id == rec_doc_view.id select doc ).First();
+                    var rec = (from doc in dblite.tbldoc where doc.id == rec_doc_view.id select doc).First();
 
                     FileInfo fi_intern = new FileInfo(rec.kilde_sti);
                     var Ext = fi_intern.Extension;
@@ -500,11 +463,11 @@ namespace bjArkiv
                 {
                     DataGridViewTextBoxCell cell = cells[0] as DataGridViewTextBoxCell;
                     tbldoc rec_doc_view = cell.OwningRow.DataBoundItem as tbldoc;
-                    
+
                     tbldoc rec = (from doc in dblite.tbldoc where doc.id == rec_doc_view.id select doc).First();
                     FileInfo fi_extern = new FileInfo(arkiv_root_folder + @"\" + rec.kilde_sti);
                     fi_extern.Delete();
-                    
+
                     dblite.tbldoc.DeleteObject(rec);
                     dblite.SaveChanges();
                     blSortableBindingList.Remove(rec);
@@ -522,6 +485,7 @@ namespace bjArkiv
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 arkiv_root_folder = openFileDialog1.SelectedPath;
+                bjArkivWatcher.Path = arkiv_root_folder;
                 txtBoxbjArkiv.Text = arkiv_root_folder;
                 openDatabase();
             }
@@ -537,6 +501,7 @@ namespace bjArkiv
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 arkiv_root_folder = openFileDialog1.SelectedPath;
+                bjArkivWatcher.Path = arkiv_root_folder;
                 txtBoxbjArkiv.Text = arkiv_root_folder;
                 FileInfo DatabasefileInfo = new FileInfo(Database);
                 if (!DatabasefileInfo.Exists)
@@ -548,6 +513,31 @@ namespace bjArkiv
         private void lukProgramToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void testToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clsArkiv arkiv = new clsArkiv();
+            //arkiv.EditMetadata(@"C:\Users\mha\Documents\Visual Studio 2010\Projects\testclient\testclient\testclient.csproj");
+            //arkiv.EditMetadata(@"C:\Users\mha\Documents\mha_test_arkiv2\NYSvampeangreb0001.pdf");
+        }
+
+        private void bjArkivWatcher_Created(object sender, FileSystemEventArgs e)
+        {
+            AddToArkiv(e.FullPath);
+        }
+
+        private void AddToArkiv(string file)
+        {
+            if (file.StartsWith(bjArkivWatcher.Path + @"\.bja", StringComparison.CurrentCultureIgnoreCase))
+                return;
+            clsArkiv arkiv = new clsArkiv();
+            arkiv.EditMetadata(file);
+            try
+            {
+                blSortableBindingList.Add(arkiv.rec);
+            }
+            catch { }
         }
     }
 }
