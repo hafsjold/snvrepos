@@ -170,5 +170,29 @@ namespace bjArkiv
             }
         }
 
+        private void fldrView_NodeClick(object sender, LogicNP.FolderViewControl.FolderViewEventArgs e)
+        {
+            if (e.Node.IsFolder()) { }
+            arkivpath = GetbjArkiv(e.Node.Path);
+            if (arkivpath == string.Empty)
+            {
+                flView.DeleteCustomColumn("Virksomhed");
+                flView.DeleteCustomColumn("Emne");
+                flView.DeleteCustomColumn("Doktype");
+                flView.DeleteCustomColumn("År");
+                flView.DeleteCustomColumn("Ekstern kilde");
+                flView.DeleteCustomColumn("Beskrivelse");
+            }
+            else
+            {
+                flView.AddCustomColumn("Virksomhed", ColumnTextJustificationStyles.Left, 100);
+                flView.AddCustomColumn("Emne", ColumnTextJustificationStyles.Left, 100);
+                flView.AddCustomColumn("Doktype", ColumnTextJustificationStyles.Left, 100);
+                flView.AddCustomColumn("År", ColumnTextJustificationStyles.Left, 100);
+                flView.AddCustomColumn("Ekstern kilde", ColumnTextJustificationStyles.Left, 100);
+                flView.AddCustomColumn("Beskrivelse", ColumnTextJustificationStyles.Left, 100);
+            }
+        }
+
     }
 }

@@ -119,6 +119,7 @@
             this.fldrView.Size = new System.Drawing.Size(150, 388);
             this.fldrView.TabIndex = 0;
             this.fldrView.Text = "folderView1";
+            this.fldrView.NodeClick += new LogicNP.FolderViewControl.FolderViewEventHandler(this.fldrView_NodeClick);
             // 
             // frmFileView
             // 
