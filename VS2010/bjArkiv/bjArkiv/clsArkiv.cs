@@ -22,7 +22,24 @@ namespace bjArkiv
         {
         
         }
-        
+
+        public tbldoc GetMetadata(string pfile)
+        {
+            file = pfile;
+            if (OpenArkiv())
+            {
+                rec = null;
+                try
+                {
+                    return (from doc in dblite.tbldoc where doc.kilde_sti.ToLower() == file_local.ToLower() select doc).First();
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+            return null;
+        }
 
         public bool EditMetadata(string pfile) 
         {
@@ -116,7 +133,16 @@ namespace bjArkiv
 
         private bool OpenArkiv()
         {
-            FileInfo fi = new FileInfo(file);
+            FileInfo fi;
+            try
+            {
+                fi = new FileInfo(file);
+            }
+            catch
+            {
+                return false;
+            }                
+ 
             if (!fi.Exists) return false;
             DirectoryInfo di = fi.Directory;
             if (!dbPathExist(di)) return false;

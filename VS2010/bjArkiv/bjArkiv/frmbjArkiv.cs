@@ -502,7 +502,11 @@ namespace bjArkiv
 
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            clsArkiv arkiv = new clsArkiv();
+            
+            frmFileView fileView = new frmFileView();
+            fileView.Show();
+
+            //clsArkiv arkiv = new clsArkiv();
             //arkiv.EditMetadata(@"C:\Users\mha\Documents\Visual Studio 2010\Projects\testclient\testclient\testclient.csproj");
             //arkiv.EditMetadata(@"C:\Users\mha\Documents\mha_test_arkiv2\NYSvampeangreb0001.pdf");
         }

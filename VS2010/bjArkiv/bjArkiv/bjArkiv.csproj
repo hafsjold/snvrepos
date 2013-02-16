@@ -49,6 +49,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LogicNP.FileView, Version=13.0.0.0, Culture=neutral, PublicKeyToken=ff6f27194af4af75" />
+    <Reference Include="LogicNP.FolderView, Version=13.0.0.0, Culture=neutral, PublicKeyToken=ff6f27194af4af75" />
+    <Reference Include="LogicNP.ShComboBox, Version=13.0.0.0, Culture=neutral, PublicKeyToken=ff6f27194af4af75" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
@@ -94,6 +97,12 @@
       <DependentUpon>dblite.edmx</DependentUpon>
     </Compile>
     <Compile Include="clsCOM.cs" />
+    <Compile Include="frmFileView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmFileView.Designer.cs">
+      <DependentUpon>frmFileView.cs</DependentUpon>
+    </Compile>
     <Compile Include="OutlookDataObject.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -104,6 +113,10 @@
     <EmbeddedResource Include="frmAddDoc.resx">
       <DependentUpon>frmAddDoc.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmFileView.resx">
+      <DependentUpon>frmFileView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
