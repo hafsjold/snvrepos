@@ -51,7 +51,6 @@
   <ItemGroup>
     <Reference Include="LogicNP.FileView, Version=13.0.0.0, Culture=neutral, PublicKeyToken=ff6f27194af4af75" />
     <Reference Include="LogicNP.FolderView, Version=13.0.0.0, Culture=neutral, PublicKeyToken=ff6f27194af4af75" />
-    <Reference Include="LogicNP.ShComboBox, Version=13.0.0.0, Culture=neutral, PublicKeyToken=ff6f27194af4af75" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
@@ -78,13 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsArkiv.cs" />
-    <Compile Include="clsSortableBindingList.cs" />
-    <Compile Include="frmbjArkiv.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmbjArkiv.Designer.cs">
-      <DependentUpon>frmbjArkiv.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmAddDoc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,7 +88,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dblite.edmx</DependentUpon>
     </Compile>
-    <Compile Include="clsCOM.cs" />
     <Compile Include="frmFileView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,9 +98,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <None Include="app.config" />
-    <EmbeddedResource Include="frmbjArkiv.resx">
-      <DependentUpon>frmbjArkiv.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmAddDoc.resx">
       <DependentUpon>frmAddDoc.cs</DependentUpon>
     </EmbeddedResource>

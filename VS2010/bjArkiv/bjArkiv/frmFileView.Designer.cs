@@ -135,6 +135,7 @@
             this.Controls.Add(this.splitHorisontal);
             this.Name = "frmFileView";
             this.Text = "frmFileView";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmFileView_FormClosing);
             this.splitHorisontal.Panel1.ResumeLayout(false);
             this.splitHorisontal.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitHorisontal)).EndInit();

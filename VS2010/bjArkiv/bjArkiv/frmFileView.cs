@@ -8,7 +8,6 @@ using System.Text;
 using System.Windows.Forms;
 using LogicNP.FileViewControl;
 using System.IO;
-using LogicNP.ShComboBoxControl;
 
 namespace bjArkiv
 {
@@ -34,17 +33,9 @@ namespace bjArkiv
             Program.bjArkivWatcher.Created += new System.IO.FileSystemEventHandler(this.bjArkivWatcher_Created);
         }
 
-        private void btnGoUp_Click(object sender, EventArgs e)
-        {
-            flView.GoUp();
-        }
-
         private void flView_CurrentFolderChanged(object sender, EventArgs e)
         {
-            //string columnName = flView.GetColumnName("IsFolder", -1); 
-
-            //flView.SetColumnDisplayIndex("Date Modified", -1, 1);
-
+            /*
             for (var i = 0; i < 6; i++)
             {
                 Guid guidColumn = Guid.Empty;
@@ -55,7 +46,7 @@ namespace bjArkiv
                 int DisplayIndex = flView.GetColumnDisplayIndex(string.Empty, i);
                 string colunmName = flView.GetColumnName(string.Empty, i);
             }
-
+            */
         }
 
         private void flView_BeforeColumnAdd(object sender, LogicNP.FileViewControl.ColumnAddEventArgs e)
@@ -265,6 +256,11 @@ namespace bjArkiv
                 clsArkiv arkiv = new clsArkiv();
                 arkiv.createNewbjArkiv(Databasefile);
             }
+        }
+
+        private void frmFileView_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.Save();
         }
 
     }

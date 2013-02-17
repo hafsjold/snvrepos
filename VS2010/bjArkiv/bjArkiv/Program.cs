@@ -17,7 +17,6 @@ namespace bjArkiv
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new frmbjArkiv());
             Application.Run(new frmFileView());
         }
     }
