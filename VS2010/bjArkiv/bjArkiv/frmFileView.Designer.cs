@@ -47,6 +47,7 @@
             // flView
             // 
             this.flView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flView.FullRowSelect = true;
             this.flView.Location = new System.Drawing.Point(0, 0);
             this.flView.Name = "flView";
@@ -58,8 +59,10 @@
             this.flView.ViewStyle = LogicNP.FileViewControl.ViewStyles.Report;
             this.flView.AfterItemAdd += new LogicNP.FileViewControl.AfterItemAddEventHandler(this.flView_AfterItemAdd);
             this.flView.BeforeColumnAdd += new LogicNP.FileViewControl.BeforeColumnAddEventHandler(this.flView_BeforeColumnAdd);
+            this.flView.CustomContextMenuItemSelect += new LogicNP.FileViewControl.CustomContextMenuItemSelectEventHandler(this.flView_CustomContextMenuItemSelect);
             this.flView.ItemDblClick += new LogicNP.FileViewControl.ItemDblClickEventHandler(this.flView_ItemDblClick);
             this.flView.CurrentFolderChanged += new LogicNP.FileViewControl.CurrentFolderChangedEventHandler(this.flView_CurrentFolderChanged);
+            this.flView.PopupContextMenu += new LogicNP.FileViewControl.PopupContextMenuEventHandler(this.flView_PopupContextMenu);
             // 
             // btnTest
             // 
@@ -112,6 +115,7 @@
             // 
             this.fldrView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.fldrView.FileView = this.flView;
+            this.fldrView.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fldrView.Location = new System.Drawing.Point(0, 0);
             this.fldrView.Name = "fldrView";
             this.fldrView.ShowHiddenObjects = false;
@@ -119,6 +123,8 @@
             this.fldrView.Size = new System.Drawing.Size(150, 388);
             this.fldrView.TabIndex = 0;
             this.fldrView.Text = "folderView1";
+            this.fldrView.CustomContextMenuItemSelect += new LogicNP.FolderViewControl.CustomContextMenuItemSelectHandler(this.fldrView_CustomContextMenuItemSelect);
+            this.fldrView.PopupContextMenu += new LogicNP.FolderViewControl.PopupContextMenuEventHandler(this.fldrView_PopupContextMenu);
             this.fldrView.NodeClick += new LogicNP.FolderViewControl.FolderViewEventHandler(this.fldrView_NodeClick);
             // 
             // frmFileView

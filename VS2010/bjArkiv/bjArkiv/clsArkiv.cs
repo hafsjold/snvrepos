@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Windows.Forms;
+using System.Data.SQLite;
 
 namespace bjArkiv
 {
@@ -20,7 +21,7 @@ namespace bjArkiv
 
         public clsArkiv()
         {
-        
+
         }
 
         public tbldoc GetMetadata(string pfile)
@@ -41,7 +42,7 @@ namespace bjArkiv
             return null;
         }
 
-        public bool EditMetadata(string pfile) 
+        public bool EditMetadata(string pfile)
         {
             file = pfile;
             if (OpenArkiv())
@@ -78,7 +79,7 @@ namespace bjArkiv
                 {
                     frmAddDoc m_frmAddDoc = new frmAddDoc();
                     m_frmAddDoc.Dokument = file_local;
-                    m_frmAddDoc.Opret = true; 
+                    m_frmAddDoc.Opret = true;
                     DialogResult Result = m_frmAddDoc.ShowDialog();
                     if (Result == System.Windows.Forms.DialogResult.OK)
                     {
@@ -119,7 +120,7 @@ namespace bjArkiv
                     }
                 }
             }
-            else 
+            else
             {
                 string messageBoxText = "Der findes ikke noget Arkiv til: " + file;
                 string caption = "bjArkiv";
@@ -141,8 +142,8 @@ namespace bjArkiv
             catch
             {
                 return false;
-            }                
- 
+            }
+
             if (!fi.Exists) return false;
             DirectoryInfo di = fi.Directory;
             if (!dbPathExist(di)) return false;
@@ -150,10 +151,13 @@ namespace bjArkiv
             try
             {
                 dblite = new docdbliteEntities(connectionString);
+                Program.bjArkivWatcher.Path = arkivpath;
+                Program.bjArkivWatcher.EnableRaisingEvents = true;
                 return true;
             }
-            catch 
+            catch
             {
+                Program.bjArkivWatcher.EnableRaisingEvents = false;
                 return false;
             }
         }
@@ -176,12 +180,60 @@ namespace bjArkiv
             }
         }
 
-        private string ArkivLocalPath(string path) 
+        private string ArkivLocalPath(string path)
         {
             if (file.StartsWith(arkivpath, StringComparison.CurrentCultureIgnoreCase))
-                 return file.Substring(arkivpath.Length + 1);  
+                return file.Substring(arkivpath.Length + 1);
             else
                 return "";
+        }
+        
+        private void CreateMissingFolders(DirectoryInfo di)
+        {
+            if (!di.Exists)
+            {
+                CreateMissingFolders(di.Parent);
+                di.Create();
+            }
+        }
+
+        public bool createNewbjArkiv(string DatabaseFile)
+        {
+            FileInfo DatabasefileInfo = new FileInfo(DatabaseFile);
+            CreateMissingFolders(DatabasefileInfo.Directory);
+
+            if (!DatabasefileInfo.Exists)
+            {
+                SQLiteConnection.CreateFile(DatabaseFile);
+                string datasource = "Data Source=" + DatabaseFile + ";Version=3";
+                SQLiteConnection conn = new SQLiteConnection(datasource);
+                conn.Open();
+                SQLiteCommand cmd = conn.CreateCommand();
+                cmd.CommandText =
+                "CREATE TABLE [tbldoc] ( " +
+                "  [id] GUID NOT NULL, " +
+                "  [ref_nr] INT, " +
+                "  [virksomhed] NVARCHAR(50), " +
+                "  [emne] VARCHAR(50), " +
+                "  [dokument_type] VARCHAR(50), " +
+                "  [år] INT, " +
+                "  [ekstern_kilde] VARCHAR(50), " +
+                "  [beskrivelse] NVARCHAR(100), " +
+                "  [oprettes_af] VARCHAR(25), " +
+                "  [oprettet_dato] DATETIME, " +
+                "  [kilde_sti] NVARCHAR(512), " +
+                "  CONSTRAINT [] PRIMARY KEY ([id]) ON CONFLICT ROLLBACK); " +
+                " " +
+                " " +
+                "CREATE TABLE [tblrefnr] ( " +
+                "  [keyname] NVARCHAR(10) NOT NULL, " +
+                "  [nr] INT NOT NULL DEFAULT (0), " +
+                "  CONSTRAINT [] PRIMARY KEY ([keyname]));";
+                cmd.ExecuteNonQuery();
+                conn.Close();
+                return true;
+            }
+            return false;
         }
 
     }

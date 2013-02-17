@@ -76,9 +76,8 @@
             this.åbenArkivToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.NytArkivToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lukProgramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.bjArkivWatcher = new System.IO.FileSystemWatcher();
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
             this.contextMenuDoc.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbldocBindingNavigator)).BeginInit();
             this.tbldocBindingNavigator.SuspendLayout();
@@ -93,7 +92,6 @@
             this.toolStripContainer2.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer2.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bjArkivWatcher)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuDoc
@@ -520,38 +518,30 @@
             // åbenArkivToolStripMenuItem
             // 
             this.åbenArkivToolStripMenuItem.Name = "åbenArkivToolStripMenuItem";
-            this.åbenArkivToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.åbenArkivToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.åbenArkivToolStripMenuItem.Text = "Åben Arkiv";
             this.åbenArkivToolStripMenuItem.Click += new System.EventHandler(this.åbenArkivToolStripMenuItem_Click);
             // 
             // NytArkivToolStripMenuItem
             // 
             this.NytArkivToolStripMenuItem.Name = "NytArkivToolStripMenuItem";
-            this.NytArkivToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.NytArkivToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.NytArkivToolStripMenuItem.Text = "Nyt Arkiv";
             this.NytArkivToolStripMenuItem.Click += new System.EventHandler(this.NytArkivToolStripMenuItem_Click);
             // 
             // lukProgramToolStripMenuItem
             // 
             this.lukProgramToolStripMenuItem.Name = "lukProgramToolStripMenuItem";
-            this.lukProgramToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.lukProgramToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.lukProgramToolStripMenuItem.Text = "Luk Program";
             this.lukProgramToolStripMenuItem.Click += new System.EventHandler(this.lukProgramToolStripMenuItem_Click);
             // 
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
             this.testToolStripMenuItem.Text = "Test";
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
-            // 
-            // bjArkivWatcher
-            // 
-            this.bjArkivWatcher.EnableRaisingEvents = true;
-            this.bjArkivWatcher.IncludeSubdirectories = true;
-            this.bjArkivWatcher.NotifyFilter = System.IO.NotifyFilters.FileName;
-            this.bjArkivWatcher.SynchronizingObject = this;
-            this.bjArkivWatcher.Created += new System.IO.FileSystemEventHandler(this.bjArkivWatcher_Created);
             // 
             // frmbjArkiv
             // 
@@ -589,7 +579,6 @@
             this.toolStripContainer2.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bjArkivWatcher)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -654,7 +643,6 @@
         private System.Windows.Forms.ToolStripMenuItem lukProgramToolStripMenuItem;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
-        private System.IO.FileSystemWatcher bjArkivWatcher;
 
 
     }

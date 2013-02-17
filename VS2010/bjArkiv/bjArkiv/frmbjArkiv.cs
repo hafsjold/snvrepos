@@ -49,14 +49,12 @@ namespace bjArkiv
             if (bLastArkiv)
             {
                 arkiv_root_folder = global::bjArkiv.Properties.Settings.Default.strLastbjArkiv;
-                bjArkivWatcher.Path = arkiv_root_folder;
                 txtBoxbjArkiv.Text = arkiv_root_folder;
                 openDatabase();
             }
             else
             {
                 arkiv_root_folder = "";
-                bjArkivWatcher.Path = arkiv_root_folder;
                 txtBoxbjArkiv.Text = arkiv_root_folder;
             }
 #else
@@ -470,8 +468,7 @@ namespace bjArkiv
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 arkiv_root_folder = openFileDialog1.SelectedPath;
-                bjArkivWatcher.Path = arkiv_root_folder;
-                txtBoxbjArkiv.Text = arkiv_root_folder;
+                 txtBoxbjArkiv.Text = arkiv_root_folder;
                 openDatabase();
             }
         }
@@ -486,7 +483,6 @@ namespace bjArkiv
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 arkiv_root_folder = openFileDialog1.SelectedPath;
-                bjArkivWatcher.Path = arkiv_root_folder;
                 txtBoxbjArkiv.Text = arkiv_root_folder;
                 FileInfo DatabasefileInfo = new FileInfo(Database);
                 if (!DatabasefileInfo.Exists)
@@ -511,23 +507,6 @@ namespace bjArkiv
             //arkiv.EditMetadata(@"C:\Users\mha\Documents\mha_test_arkiv2\NYSvampeangreb0001.pdf");
         }
 
-        private void bjArkivWatcher_Created(object sender, FileSystemEventArgs e)
-        {
-            AddToArkiv(e.FullPath);
-        }
-
-        private void AddToArkiv(string file)
-        {
-            if (file.StartsWith(bjArkivWatcher.Path + @"\.bja", StringComparison.CurrentCultureIgnoreCase))
-                return;
-            clsArkiv arkiv = new clsArkiv();
-            arkiv.EditMetadata(file);
-            try
-            {
-                blSortableBindingList.Add(arkiv.rec);
-            }
-            catch { }
-        }
-    }
+     }
 }
 

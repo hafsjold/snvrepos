@@ -24,6 +24,14 @@ namespace bjArkiv
             arkivpath = string.Empty;
             m_lastFolder = string.Empty;
             m_lastFolderIsArkiv = false;
+
+            // bjArkivWatcher
+            Program.bjArkivWatcher = new System.IO.FileSystemWatcher();
+            Program.bjArkivWatcher.EnableRaisingEvents = false;
+            Program.bjArkivWatcher.IncludeSubdirectories = true;
+            Program.bjArkivWatcher.NotifyFilter = System.IO.NotifyFilters.FileName;
+            Program.bjArkivWatcher.SynchronizingObject = this;
+            Program.bjArkivWatcher.Created += new System.IO.FileSystemEventHandler(this.bjArkivWatcher_Created);
         }
 
         private void btnGoUp_Click(object sender, EventArgs e)
@@ -72,7 +80,15 @@ namespace bjArkiv
 
         private int testCash(string path)
         {
-            string folder = new FileInfo(path).DirectoryName;
+            string folder = string.Empty;
+            try
+            {
+                folder = new FileInfo(path).DirectoryName;
+            }
+            catch
+            {
+                return 4; // not a valid file file
+            }
             if (folder.ToUpperInvariant() == m_lastFolder.ToUpperInvariant())
                 if (m_lastFolderIsArkiv) return 1; // found arkiv
                 else return 2; // found not Arkiv 
@@ -93,6 +109,7 @@ namespace bjArkiv
                     m_lastFolder = new FileInfo(file).DirectoryName;
                     m_lastFolderIsArkiv = false;
                 }
+                if (test == 4) return;
                 clsArkiv arkiv = new clsArkiv();
                 tbldoc rec = arkiv.GetMetadata(file);
                 try
@@ -127,7 +144,7 @@ namespace bjArkiv
             {
                 di = new DirectoryInfo(path);
             }
-            catch 
+            catch
             {
                 return string.Empty;
             }
@@ -145,7 +162,7 @@ namespace bjArkiv
             }
         }
 
-  
+
         private void flView_ItemDblClick(object sender, FileViewCancelEventArgs e)
         {
             if (e.Item.IsFolder()) { }
@@ -191,6 +208,62 @@ namespace bjArkiv
                 flView.AddCustomColumn("År", ColumnTextJustificationStyles.Left, 100);
                 flView.AddCustomColumn("Ekstern kilde", ColumnTextJustificationStyles.Left, 100);
                 flView.AddCustomColumn("Beskrivelse", ColumnTextJustificationStyles.Left, 100);
+            }
+        }
+
+        private void bjArkivWatcher_Created(object sender, FileSystemEventArgs e)
+        {
+            AddToArkiv(e.FullPath);
+        }
+
+        private void AddToArkiv(string file)
+        {
+            if (file.StartsWith(Program.bjArkivWatcher.Path + @"\.bja", StringComparison.CurrentCultureIgnoreCase))
+                return;
+            clsArkiv arkiv = new clsArkiv();
+            arkiv.EditMetadata(file);
+        }
+
+        private void flView_PopupContextMenu(object sender, PopupContextMenuEventArgs e)
+        {
+            if (!e.BackgroundMenu) // background menu 
+            {
+                e.ShellMenu.InsertItem("Edit Metadata",1);
+            }
+        }
+
+        private void flView_CustomContextMenuItemSelect(object sender, CustomContextMenuItemSelectEventArgs e)
+        {
+            if (e.Caption.Contains("Edit Metadata")) // custom menu item added to item menu 
+            {
+                // Write path of each selected item in separate lines
+                foreach (ListItem item in flView.SelectedItems)
+                {
+                    if (item.IsFolder()) return;
+                    string file = item.Path;
+                    if (file.StartsWith(Program.bjArkivWatcher.Path + @"\.bja", StringComparison.CurrentCultureIgnoreCase))
+                        return;
+                    clsArkiv arkiv = new clsArkiv();
+                    arkiv.EditMetadata(file);
+                }
+            }
+        }
+
+        private void fldrView_PopupContextMenu(object sender, LogicNP.FolderViewControl.PopupContextMenuEventArgs e)
+        {
+            if (e.Node.IsFolder()) 
+            {
+                e.ShellMenu.InsertItem("Opret Arkiv", 1);
+            }
+        }
+
+        private void fldrView_CustomContextMenuItemSelect(object sender, LogicNP.FolderViewControl.FolderViewCustomContextMenuItemSelectEventArgs e)
+        {
+            if (e.Caption.Contains("Opret Arkiv")) // custom menu item added to item menu 
+            {
+                string Databasefile = fldrView.SelectedNode.Path + Program.BJARKIV;
+                clsArkiv arkiv = new clsArkiv();
+                arkiv.createNewbjArkiv(Databasefile);
             }
         }
 
