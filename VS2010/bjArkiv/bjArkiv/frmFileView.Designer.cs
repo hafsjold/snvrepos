@@ -30,14 +30,18 @@
         {
             this.components = new System.ComponentModel.Container();
             this.flView = new LogicNP.FileViewControl.FileView(this.components);
-            this.btnTest = new System.Windows.Forms.Button();
             this.splitHorisontal = new System.Windows.Forms.SplitContainer();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.opretNytArkivToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.afslutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitVertical = new System.Windows.Forms.SplitContainer();
             this.fldrView = new LogicNP.FolderViewControl.FolderView();
             ((System.ComponentModel.ISupportInitialize)(this.splitHorisontal)).BeginInit();
             this.splitHorisontal.Panel1.SuspendLayout();
             this.splitHorisontal.Panel2.SuspendLayout();
             this.splitHorisontal.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitVertical)).BeginInit();
             this.splitVertical.Panel1.SuspendLayout();
             this.splitVertical.Panel2.SuspendLayout();
@@ -53,7 +57,7 @@
             this.flView.Name = "flView";
             this.flView.ShowHiddenItems = false;
             this.flView.ShowSpecialFolders = false;
-            this.flView.Size = new System.Drawing.Size(532, 388);
+            this.flView.Size = new System.Drawing.Size(532, 413);
             this.flView.TabIndex = 0;
             this.flView.Text = "fileView1";
             this.flView.ViewStyle = LogicNP.FileViewControl.ViewStyles.Report;
@@ -63,16 +67,6 @@
             this.flView.ItemDblClick += new LogicNP.FileViewControl.ItemDblClickEventHandler(this.flView_ItemDblClick);
             this.flView.CurrentFolderChanged += new LogicNP.FileViewControl.CurrentFolderChangedEventHandler(this.flView_CurrentFolderChanged);
             this.flView.PopupContextMenu += new LogicNP.FileViewControl.PopupContextMenuEventHandler(this.flView_PopupContextMenu);
-            // 
-            // btnTest
-            // 
-            this.btnTest.Location = new System.Drawing.Point(635, 12);
-            this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(39, 24);
-            this.btnTest.TabIndex = 3;
-            this.btnTest.Text = "Test";
-            this.btnTest.UseVisualStyleBackColor = true;
-            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
             // splitHorisontal
             // 
@@ -86,13 +80,47 @@
             // splitHorisontal.Panel1
             // 
             this.splitHorisontal.Panel1.AccessibleName = "";
-            this.splitHorisontal.Panel1.Controls.Add(this.btnTest);
+            this.splitHorisontal.Panel1.Controls.Add(this.menuStrip1);
             // 
             // splitHorisontal.Panel2
             // 
             this.splitHorisontal.Panel2.Controls.Add(this.splitVertical);
             this.splitHorisontal.Size = new System.Drawing.Size(686, 442);
+            this.splitHorisontal.SplitterDistance = 25;
             this.splitHorisontal.TabIndex = 4;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(686, 24);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.opretNytArkivToolStripMenuItem,
+            this.afslutToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // opretNytArkivToolStripMenuItem
+            // 
+            this.opretNytArkivToolStripMenuItem.Name = "opretNytArkivToolStripMenuItem";
+            this.opretNytArkivToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.opretNytArkivToolStripMenuItem.Text = "Opret Nyt Arkiv";
+            this.opretNytArkivToolStripMenuItem.Click += new System.EventHandler(this.opretNytArkivToolStripMenuItem_Click);
+            // 
+            // afslutToolStripMenuItem
+            // 
+            this.afslutToolStripMenuItem.Name = "afslutToolStripMenuItem";
+            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.afslutToolStripMenuItem.Text = "Afslut";
+            this.afslutToolStripMenuItem.Click += new System.EventHandler(this.afslutToolStripMenuItem_Click);
             // 
             // splitVertical
             // 
@@ -107,7 +135,7 @@
             // splitVertical.Panel2
             // 
             this.splitVertical.Panel2.Controls.Add(this.flView);
-            this.splitVertical.Size = new System.Drawing.Size(686, 388);
+            this.splitVertical.Size = new System.Drawing.Size(686, 413);
             this.splitVertical.SplitterDistance = 150;
             this.splitVertical.TabIndex = 0;
             // 
@@ -120,26 +148,31 @@
             this.fldrView.Name = "fldrView";
             this.fldrView.ShowHiddenObjects = false;
             this.fldrView.ShowSpecialFolders = false;
-            this.fldrView.Size = new System.Drawing.Size(150, 388);
+            this.fldrView.Size = new System.Drawing.Size(150, 413);
             this.fldrView.TabIndex = 0;
             this.fldrView.Text = "folderView1";
-            this.fldrView.CustomContextMenuItemSelect += new LogicNP.FolderViewControl.CustomContextMenuItemSelectHandler(this.fldrView_CustomContextMenuItemSelect);
-            this.fldrView.PopupContextMenu += new LogicNP.FolderViewControl.PopupContextMenuEventHandler(this.fldrView_PopupContextMenu);
             this.fldrView.NodeClick += new LogicNP.FolderViewControl.FolderViewEventHandler(this.fldrView_NodeClick);
             // 
             // frmFileView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(686, 442);
+            this.ClientSize = global::bjArkiv.Properties.Settings.Default.frmFileVirwSize;
             this.Controls.Add(this.splitHorisontal);
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::bjArkiv.Properties.Settings.Default, "frmFileViewLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::bjArkiv.Properties.Settings.Default, "frmFileVirwSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.Location = global::bjArkiv.Properties.Settings.Default.frmFileViewLocation;
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmFileView";
             this.Text = "frmFileView";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmFileView_FormClosing);
             this.splitHorisontal.Panel1.ResumeLayout(false);
+            this.splitHorisontal.Panel1.PerformLayout();
             this.splitHorisontal.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitHorisontal)).EndInit();
             this.splitHorisontal.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.splitVertical.Panel1.ResumeLayout(false);
             this.splitVertical.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitVertical)).EndInit();
@@ -151,9 +184,12 @@
         #endregion
 
         private LogicNP.FileViewControl.FileView flView;
-        private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.SplitContainer splitHorisontal;
         private System.Windows.Forms.SplitContainer splitVertical;
         private LogicNP.FolderViewControl.FolderView fldrView;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem opretNytArkivToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem afslutToolStripMenuItem;
     }
 }

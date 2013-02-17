@@ -82,5 +82,40 @@ namespace bjArkiv.Properties {
                 this["strLastbjArkiv"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point frmFileViewLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["frmFileViewLocation"]));
+            }
+            set {
+                this["frmFileViewLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("686, 442")]
+        public global::System.Drawing.Size frmFileVirwSize {
+            get {
+                return ((global::System.Drawing.Size)(this["frmFileVirwSize"]));
+            }
+            set {
+                this["frmFileVirwSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::bjArkiv.Columns frmFileViewColoumns {
+            get {
+                return ((global::bjArkiv.Columns)(this["frmFileViewColoumns"]));
+            }
+            set {
+                this["frmFileViewColoumns"] = value;
+            }
+        }
     }
 }
