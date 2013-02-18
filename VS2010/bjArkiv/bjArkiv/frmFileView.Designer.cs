@@ -31,13 +31,13 @@
             this.components = new System.ComponentModel.Container();
             this.flView = new LogicNP.FileViewControl.FileView(this.components);
             this.splitHorisontal = new System.Windows.Forms.SplitContainer();
+            this.labelPath = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.opretNytArkivToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afslutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitVertical = new System.Windows.Forms.SplitContainer();
             this.fldrView = new LogicNP.FolderViewControl.FolderView();
-            this.labelPath = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitHorisontal)).BeginInit();
             this.splitHorisontal.Panel1.SuspendLayout();
             this.splitHorisontal.Panel2.SuspendLayout();
@@ -94,6 +94,15 @@
             this.splitHorisontal.SplitterDistance = 25;
             this.splitHorisontal.TabIndex = 4;
             // 
+            // labelPath
+            // 
+            this.labelPath.AutoSize = true;
+            this.labelPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPath.Location = new System.Drawing.Point(154, 7);
+            this.labelPath.Name = "labelPath";
+            this.labelPath.Size = new System.Drawing.Size(0, 18);
+            this.labelPath.TabIndex = 1;
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -143,6 +152,7 @@
             this.splitVertical.Size = new System.Drawing.Size(686, 413);
             this.splitVertical.SplitterDistance = 150;
             this.splitVertical.TabIndex = 0;
+            this.splitVertical.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitVertical_SplitterMoved);
             // 
             // fldrView
             // 
@@ -156,16 +166,7 @@
             this.fldrView.Size = new System.Drawing.Size(150, 413);
             this.fldrView.TabIndex = 0;
             this.fldrView.Text = "folderView1";
-            this.fldrView.NodeClick += new LogicNP.FolderViewControl.FolderViewEventHandler(this.fldrView_NodeClick);
-            // 
-            // labelPath
-            // 
-            this.labelPath.AutoSize = true;
-            this.labelPath.Location = new System.Drawing.Point(154, 6);
-            this.labelPath.Name = "labelPath";
-            this.labelPath.Size = new System.Drawing.Size(35, 13);
-            this.labelPath.TabIndex = 1;
-            this.labelPath.Text = "label1";
+            this.fldrView.AfterSelect += new LogicNP.FolderViewControl.AfterSelectHandler(this.fldrView_AfterSelect);
             // 
             // frmFileView
             // 
@@ -178,7 +179,7 @@
             this.Location = global::bjArkiv.Properties.Settings.Default.frmFileViewLocation;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmFileView";
-            this.Text = "frmFileView";
+            this.Text = "bjArkiv";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmFileView_FormClosing);
             this.Load += new System.EventHandler(this.frmFileView_Load);
             this.splitHorisontal.Panel1.ResumeLayout(false);

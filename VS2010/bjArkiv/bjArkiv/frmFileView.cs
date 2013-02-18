@@ -48,7 +48,7 @@ namespace bjArkiv
             arkivpath = string.Empty;
             m_lastFolder = string.Empty;
             m_lastFolderIsArkiv = false;
-
+ 
             // bjArkivWatcher
             Program.bjArkivWatcher = new System.IO.FileSystemWatcher();
             Program.bjArkivWatcher.EnableRaisingEvents = false;
@@ -188,7 +188,7 @@ namespace bjArkiv
         {
             if (e.Item.IsFolder())
             {
-                labelPath.Text = e.Item.Path;
+                setlabelPath(e.Item.Path);
                 m_lastFolderVisited = e.Item.Path;
                 arkivpath = GetbjArkiv(e.Item.Path);
                 if (!IsArkivFolder)
@@ -198,11 +198,11 @@ namespace bjArkiv
             }
         }
 
-        private void fldrView_NodeClick(object sender, LogicNP.FolderViewControl.FolderViewEventArgs e)
+        private void fldrView_AfterSelect(object sender, LogicNP.FolderViewControl.FolderViewEventArgs e)
         {
             if (e.Node.IsFolder())
             {
-                labelPath.Text = e.Node.Path;
+                setlabelPath(e.Node.Path);
                 m_lastFolderVisited = e.Node.Path;
                 arkivpath = GetbjArkiv(e.Node.Path);
                 if (!IsArkivFolder)
@@ -293,6 +293,19 @@ namespace bjArkiv
         private void frmFileView_Load(object sender, EventArgs e)
         {
             //flView.CurrentFolder = m_lastFolderVisited;
+        }
+
+        private void splitVertical_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+            labelPath.Location = new Point(splitVertical.SplitterDistance + 5, labelPath.Location.Y);
+        }
+
+        private void setlabelPath(string path)
+        {
+            if (path.StartsWith("::"))
+                labelPath.Text = "";
+            else
+                labelPath.Text = path;
         }
 
      }
