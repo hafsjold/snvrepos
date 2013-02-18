@@ -23,7 +23,7 @@ namespace bjArkiv
         public void WriteXml(System.Xml.XmlWriter writer)
         {
             writer.WriteAttributeString("Name", Name);
-            writer.WriteAttributeString("ColumnGuid", ColumnGuid.ToString()); 
+            writer.WriteAttributeString("ColumnGuid", ColumnGuid.ToString());
             writer.WriteAttributeString("ColumnPid", ColumnPid.ToString());
             writer.WriteAttributeString("Width", Width.ToString());
             writer.WriteAttributeString("ColumnDisplayIndex", ColumnDisplayIndex.ToString());
@@ -42,7 +42,7 @@ namespace bjArkiv
     [Serializable()]
     public class Columns : Dictionary<String, Column>, IXmlSerializable
     {
-        public void SetColoumnWidths(FileView flView)
+        public void SetColoumnWidthAndDisplayindex(FileView flView)
         {
             int i = 0;
             while (true)
@@ -60,6 +60,7 @@ namespace bjArkiv
                         this[colunmName] = new Column { Name = colunmName, ColumnGuid = columnGuid, ColumnPid = columnPid, Width = 150, ColumnDisplayIndex = columnDisplayIndex };
                     }
                     flView.SetColumnWidth(string.Empty, i, this[colunmName].Width);
+                    flView.SetColumnDisplayIndex(string.Empty, i, this[colunmName].ColumnDisplayIndex);
                 }
                 else
                     return;
@@ -67,7 +68,7 @@ namespace bjArkiv
             }
         }
 
-        public void GetColoumnWidths(FileView flView)
+        public void ReadColoumnAttributes(FileView flView)
         {
             int i = 0;
             while (true)
@@ -88,16 +89,38 @@ namespace bjArkiv
             }
         }
 
-        public void AddCustomColumn(FileView flView) 
+        public void AddCustomColumn(FileView flView)
         {
             foreach (string key in Program.customColumns.Keys)
                 if (!this.ContainsKey(key))
-                     this[key] = Program.customColumns[key];
+                    this[key] = Program.customColumns[key];
+            ReadColoumnAttributes(flView);
+            foreach (string key in Program.customColumns.Keys)
+                if (flView.GetColumnDisplayIndex(this[key].Name, -1) < 0)
+                    flView.AddCustomColumn(this[key].Name, ColumnTextJustificationStyles.Left, this[key].Width);
 
+        }
+
+        public void DeleteCustomColumn(FileView flView)
+        {
+            foreach (string key in Program.customColumns.Keys)
+                if (!this.ContainsKey(key))
+                    this[key] = Program.customColumns[key];
+            ReadColoumnAttributes(flView);
             foreach (string key in Program.customColumns.Keys)
             {
-                flView.AddCustomColumn(this[key].Name, ColumnTextJustificationStyles.Left, this[key].Width);
+                flView.DeleteCustomColumn(this[key].Name);
             }
+        }
+
+        public bool Exists(Guid guid, int pid) 
+        {
+            foreach (Column col in this.Values)
+            {
+                if (col.ColumnGuid == guid && col.ColumnPid == pid)
+                    return true;
+            }
+            return false;
         }
 
         public XmlSchema GetSchema() { return null; }

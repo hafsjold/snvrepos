@@ -117,5 +117,17 @@ namespace bjArkiv.Properties {
                 this["frmFileViewColoumns"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string lastFolderVisited {
+            get {
+                return ((string)(this["lastFolderVisited"]));
+            }
+            set {
+                this["lastFolderVisited"] = value;
+            }
+        }
     }
 }

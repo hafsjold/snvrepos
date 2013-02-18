@@ -16,11 +16,35 @@ namespace bjArkiv
         private string arkivpath { get; set; }
         private string m_lastFolder;
         private bool m_lastFolderIsArkiv;
+        private Columns m_customColumns;
+        private string m_lastFolderVisited;
+
+        public bool IsArkivFolder
+        {
+            get
+            {
+                if (arkivpath == string.Empty)
+                    return false;
+                else
+                    return true;
+            }
+        }
 
         public frmFileView()
         {
 
             InitializeComponent();
+            if (global::bjArkiv.Properties.Settings.Default.frmFileViewColoumns == null)
+                m_customColumns = Program.customColumns;
+            else
+            {
+                m_customColumns = global::bjArkiv.Properties.Settings.Default.frmFileViewColoumns;
+                foreach (string key in Program.customColumns.Keys)
+                    if (!m_customColumns.ContainsKey(key))
+                        m_customColumns[key] = Program.customColumns[key];
+            }
+            m_lastFolderVisited = global::bjArkiv.Properties.Settings.Default.lastFolderVisited;
+
             arkivpath = string.Empty;
             m_lastFolder = string.Empty;
             m_lastFolderIsArkiv = false;
@@ -61,13 +85,23 @@ namespace bjArkiv
             // Get GUID and pid for current column being added  
             // First two parameters are empty string and -1, which denotes 'current column' 
             flView.GetColumndIDFromColumn(string.Empty, -1, ref guidColumn, ref pidColumn);
- 
-            // If current column being added is NOT the 'Name' column, do not add it 
-            if (!(guidColumn == guidNameColumn && pidColumn == pidNameColumn))
-            {
-                e.Cancel = true;
-            }
 
+            // If current column being added is NOT the 'Name' column, do not add it 
+            string navn = e.ColumnName;
+            if (!IsArkivFolder)
+            {
+                if (!Program.explorerColumns.Exists(guidColumn, pidColumn))
+                {
+                    e.Cancel = true;
+                }
+            }
+            else
+            {
+                if (!(guidColumn == guidNameColumn && pidColumn == pidNameColumn))
+                {
+                    e.Cancel = true;
+                }
+            }
         }
 
         private int testCash(string path)
@@ -149,64 +183,32 @@ namespace bjArkiv
             }
         }
 
-        private void GetColoumnWidths() 
-        {
-            if (global::bjArkiv.Properties.Settings.Default.frmFileViewColoumns == null)
-                global::bjArkiv.Properties.Settings.Default.frmFileViewColoumns = new Columns();
-            global::bjArkiv.Properties.Settings.Default.frmFileViewColoumns.GetColoumnWidths(flView);
-        }
 
-        private void SetColoumnWidths()
-        {
-            if (global::bjArkiv.Properties.Settings.Default.frmFileViewColoumns == null)
-                global::bjArkiv.Properties.Settings.Default.frmFileViewColoumns = new Columns();
-            global::bjArkiv.Properties.Settings.Default.frmFileViewColoumns.SetColoumnWidths(flView);
-        }
-
-        private void AddCustomColumnx()
-        {
-            if (global::bjArkiv.Properties.Settings.Default.frmFileViewColoumns == null)
-                global::bjArkiv.Properties.Settings.Default.frmFileViewColoumns = new Columns();
-            global::bjArkiv.Properties.Settings.Default.frmFileViewColoumns.AddCustomColumn(flView);
-        }
-        
         private void flView_ItemDblClick(object sender, FileViewCancelEventArgs e)
         {
-            if (e.Item.IsFolder()) { }
-            arkivpath = GetbjArkiv(e.Item.Path);
-            if (arkivpath == string.Empty)
+            if (e.Item.IsFolder())
             {
-                GetColoumnWidths();
-                flView.DeleteCustomColumn("Virksomhed");
-                flView.DeleteCustomColumn("Emne");
-                flView.DeleteCustomColumn("Doktype");
-                flView.DeleteCustomColumn("År");
-                flView.DeleteCustomColumn("Ekstern kilde");
-                flView.DeleteCustomColumn("Beskrivelse");
-            }
-            else
-            {
-                AddCustomColumnx();
+                labelPath.Text = e.Item.Path;
+                m_lastFolderVisited = e.Item.Path;
+                arkivpath = GetbjArkiv(e.Item.Path);
+                if (!IsArkivFolder)
+                    m_customColumns.DeleteCustomColumn(flView);
+                else
+                    m_customColumns.AddCustomColumn(flView);
             }
         }
 
         private void fldrView_NodeClick(object sender, LogicNP.FolderViewControl.FolderViewEventArgs e)
         {
-            if (e.Node.IsFolder()) { }
-            arkivpath = GetbjArkiv(e.Node.Path);
-            if (arkivpath == string.Empty)
+            if (e.Node.IsFolder())
             {
-                GetColoumnWidths();
-                flView.DeleteCustomColumn("Virksomhed");
-                flView.DeleteCustomColumn("Emne");
-                flView.DeleteCustomColumn("Doktype");
-                flView.DeleteCustomColumn("År");
-                flView.DeleteCustomColumn("Ekstern kilde");
-                flView.DeleteCustomColumn("Beskrivelse");
-            }
-            else
-            {
-                AddCustomColumnx();
+                labelPath.Text = e.Node.Path;
+                m_lastFolderVisited = e.Node.Path;
+                arkivpath = GetbjArkiv(e.Node.Path);
+                if (!IsArkivFolder)
+                    m_customColumns.DeleteCustomColumn(flView);
+                else
+                    m_customColumns.AddCustomColumn(flView);
             }
         }
 
@@ -250,6 +252,8 @@ namespace bjArkiv
 
         private void frmFileView_FormClosing(object sender, FormClosingEventArgs e)
         {
+            global::bjArkiv.Properties.Settings.Default.frmFileViewColoumns = m_customColumns;
+            global::bjArkiv.Properties.Settings.Default.lastFolderVisited = m_lastFolderVisited;
             Properties.Settings.Default.Save();
         }
 
@@ -271,6 +275,24 @@ namespace bjArkiv
         private void afslutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void flView_AfterFill(object sender, EventArgs e)
+        {
+            if (IsArkivFolder)
+                m_customColumns.SetColoumnWidthAndDisplayindex(flView);
+            else
+                Program.explorerColumns.SetColoumnWidthAndDisplayindex(flView);
+        }
+
+        private void flView_BeforeFill(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmFileView_Load(object sender, EventArgs e)
+        {
+            //flView.CurrentFolder = m_lastFolderVisited;
         }
 
      }
