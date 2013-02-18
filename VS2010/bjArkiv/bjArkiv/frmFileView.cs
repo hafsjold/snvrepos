@@ -19,6 +19,7 @@ namespace bjArkiv
 
         public frmFileView()
         {
+
             InitializeComponent();
             arkivpath = string.Empty;
             m_lastFolder = string.Empty;
@@ -161,6 +162,13 @@ namespace bjArkiv
                 global::bjArkiv.Properties.Settings.Default.frmFileViewColoumns = new Columns();
             global::bjArkiv.Properties.Settings.Default.frmFileViewColoumns.SetColoumnWidths(flView);
         }
+
+        private void AddCustomColumnx()
+        {
+            if (global::bjArkiv.Properties.Settings.Default.frmFileViewColoumns == null)
+                global::bjArkiv.Properties.Settings.Default.frmFileViewColoumns = new Columns();
+            global::bjArkiv.Properties.Settings.Default.frmFileViewColoumns.AddCustomColumn(flView);
+        }
         
         private void flView_ItemDblClick(object sender, FileViewCancelEventArgs e)
         {
@@ -178,13 +186,7 @@ namespace bjArkiv
             }
             else
             {
-                flView.AddCustomColumn("Virksomhed", ColumnTextJustificationStyles.Left, 100);
-                flView.AddCustomColumn("Emne", ColumnTextJustificationStyles.Left, 100);
-                flView.AddCustomColumn("Doktype", ColumnTextJustificationStyles.Left, 100);
-                flView.AddCustomColumn("År", ColumnTextJustificationStyles.Left, 100);
-                flView.AddCustomColumn("Ekstern kilde", ColumnTextJustificationStyles.Left, 100);
-                flView.AddCustomColumn("Beskrivelse", ColumnTextJustificationStyles.Left, 100);
-                SetColoumnWidths();
+                AddCustomColumnx();
             }
         }
 
@@ -204,13 +206,7 @@ namespace bjArkiv
             }
             else
             {
-                flView.AddCustomColumn("Virksomhed", ColumnTextJustificationStyles.Left, 100);
-                flView.AddCustomColumn("Emne", ColumnTextJustificationStyles.Left, 100);
-                flView.AddCustomColumn("Doktype", ColumnTextJustificationStyles.Left, 100);
-                flView.AddCustomColumn("År", ColumnTextJustificationStyles.Left, 100);
-                flView.AddCustomColumn("Ekstern kilde", ColumnTextJustificationStyles.Left, 100);
-                flView.AddCustomColumn("Beskrivelse", ColumnTextJustificationStyles.Left, 100);
-                SetColoumnWidths();
+                AddCustomColumnx();
             }
         }
 
