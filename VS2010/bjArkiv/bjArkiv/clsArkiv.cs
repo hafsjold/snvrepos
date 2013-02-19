@@ -202,6 +202,9 @@ namespace bjArkiv
             FileInfo DatabasefileInfo = new FileInfo(DatabaseFile);
             CreateMissingFolders(DatabasefileInfo.Directory);
 
+            DirectoryInfo di = DatabasefileInfo.Directory;
+            di.Attributes |= FileAttributes.Hidden;
+
             if (!DatabasefileInfo.Exists)
             {
                 SQLiteConnection.CreateFile(DatabaseFile);

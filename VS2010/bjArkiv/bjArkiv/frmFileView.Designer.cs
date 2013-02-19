@@ -59,7 +59,7 @@
             this.flView.Name = "flView";
             this.flView.ShowHiddenItems = false;
             this.flView.ShowSpecialFolders = false;
-            this.flView.Size = new System.Drawing.Size(532, 413);
+            this.flView.Size = new System.Drawing.Size(532, 433);
             this.flView.TabIndex = 0;
             this.flView.Text = "fileView1";
             this.flView.ViewStyle = LogicNP.FileViewControl.ViewStyles.Report;
@@ -90,7 +90,7 @@
             // splitHorisontal.Panel2
             // 
             this.splitHorisontal.Panel2.Controls.Add(this.splitVertical);
-            this.splitHorisontal.Size = new System.Drawing.Size(686, 442);
+            this.splitHorisontal.Size = new System.Drawing.Size(686, 462);
             this.splitHorisontal.SplitterDistance = 25;
             this.splitHorisontal.TabIndex = 4;
             // 
@@ -149,7 +149,7 @@
             // splitVertical.Panel2
             // 
             this.splitVertical.Panel2.Controls.Add(this.flView);
-            this.splitVertical.Size = new System.Drawing.Size(686, 413);
+            this.splitVertical.Size = new System.Drawing.Size(686, 433);
             this.splitVertical.SplitterDistance = 150;
             this.splitVertical.TabIndex = 0;
             this.splitVertical.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitVertical_SplitterMoved);
@@ -163,7 +163,7 @@
             this.fldrView.Name = "fldrView";
             this.fldrView.ShowHiddenObjects = false;
             this.fldrView.ShowSpecialFolders = false;
-            this.fldrView.Size = new System.Drawing.Size(150, 413);
+            this.fldrView.Size = new System.Drawing.Size(150, 433);
             this.fldrView.TabIndex = 0;
             this.fldrView.Text = "folderView1";
             this.fldrView.AfterSelect += new LogicNP.FolderViewControl.AfterSelectHandler(this.fldrView_AfterSelect);
@@ -178,6 +178,7 @@
             this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::bjArkiv.Properties.Settings.Default, "frmFileVirwSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.Location = global::bjArkiv.Properties.Settings.Default.frmFileViewLocation;
             this.MainMenuStrip = this.menuStrip1;
+            this.MinimumSize = new System.Drawing.Size(700, 500);
             this.Name = "frmFileView";
             this.Text = "bjArkiv";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmFileView_FormClosing);
