@@ -188,13 +188,20 @@ namespace bjArkiv
         {
             if (e.Item.IsFolder())
             {
-                setlabelPath(e.Item.Path);
+
                 m_lastFolderVisited = e.Item.Path;
                 arkivpath = GetbjArkiv(e.Item.Path);
+ 
                 if (!IsArkivFolder)
+                {
+                    setlabelPath(e.Item.Path, System.Drawing.SystemColors.Control);
                     m_customColumns.DeleteCustomColumn(flView);
+                }
                 else
+                {
+                    setlabelPath(e.Item.Path, System.Drawing.Color.Lime); 
                     m_customColumns.AddCustomColumn(flView);
+                }
             }
         }
 
@@ -202,13 +209,20 @@ namespace bjArkiv
         {
             if (e.Node.IsFolder())
             {
-                setlabelPath(e.Node.Path);
+
                 m_lastFolderVisited = e.Node.Path;
                 arkivpath = GetbjArkiv(e.Node.Path);
+ 
                 if (!IsArkivFolder)
+                {
+                    setlabelPath(e.Node.Path, System.Drawing.SystemColors.Control);
                     m_customColumns.DeleteCustomColumn(flView);
+                }
                 else
+                {
+                    setlabelPath(e.Node.Path, System.Drawing.Color.Lime); 
                     m_customColumns.AddCustomColumn(flView);
+                }
             }
         }
 
@@ -300,12 +314,14 @@ namespace bjArkiv
             labelPath.Location = new Point(splitVertical.SplitterDistance + 5, labelPath.Location.Y);
         }
 
-        private void setlabelPath(string path)
+        private void setlabelPath(string path, System.Drawing.Color color)
         {
             if (path.StartsWith("::"))
                 labelPath.Text = "";
             else
                 labelPath.Text = path;
+
+            labelPath.BackColor = color; // System.Drawing.Color.Red;
         }
 
      }
