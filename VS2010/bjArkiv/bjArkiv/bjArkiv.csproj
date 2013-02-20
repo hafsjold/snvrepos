@@ -56,16 +56,6 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq" />
-    <Reference Include="System.Data.SQLite, Version=1.0.84.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>dll\System.Data.SQLite.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Data.SQLite.Linq, Version=1.0.84.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>dll\System.Data.SQLite.Linq.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -78,16 +68,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsArkiv.cs" />
+    <Compile Include="clsXmlDocs.cs" />
     <Compile Include="frmAddDoc.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmAddDoc.Designer.cs">
       <DependentUpon>frmAddDoc.cs</DependentUpon>
-    </Compile>
-    <Compile Include="dblite.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dblite.edmx</DependentUpon>
     </Compile>
     <Compile Include="frmFileView.cs">
       <SubType>Form</SubType>
@@ -116,10 +102,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EntityDeploy Include="dblite.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>dblite.Designer.cs</LastGenOutput>
-    </EntityDeploy>
     <None Include="Properties\DataSources\docdbliteEntities.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

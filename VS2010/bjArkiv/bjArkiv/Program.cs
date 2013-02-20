@@ -8,7 +8,7 @@ namespace bjArkiv
 {
     static class Program
     {
-        public const string BJARKIV = @"\.bja\bjArkiv.db3";
+        public const string BJARKIV = @"\.bja\bjArkiv.xml";
         public static System.IO.FileSystemWatcher bjArkivWatcher;
         private static Columns m_customColumns;
         private static Columns m_explorerColumns;
