@@ -56,6 +56,8 @@ namespace bjArkiv
             Program.bjArkivWatcher.NotifyFilter = System.IO.NotifyFilters.FileName;
             Program.bjArkivWatcher.SynchronizingObject = this;
             Program.bjArkivWatcher.Created += new System.IO.FileSystemEventHandler(this.bjArkivWatcher_Created);
+
+            m_arkiv = new clsArkiv();
         }
 
         private void flView_CurrentFolderChanged(object sender, EventArgs e)
@@ -126,7 +128,7 @@ namespace bjArkiv
             if (e.Item.IsFolder()) return;
             if (e.Item.IsSpecialFolder(LogicNP.FileViewControl.SpecialFolders.DESKTOPDIRECTORY)) return;
             if (e.Item.IsCustom()) return;
-            
+
             string file = e.Item.Path;
             int test = testCash(file);
             if (test == 2) return;
@@ -136,20 +138,23 @@ namespace bjArkiv
                 m_lastFolderIsArkiv = false;
             }
             if (test == 4) return;
-            
-            m_arkiv = new clsArkiv();
-            xmldoc rec = m_arkiv.GetMetadata(file);
-            try
+
+            if (m_arkiv.OpenArkiv(file))
             {
-                e.Item.SetColumnText("Virksomhed", -1, rec.virksomhed);
-                e.Item.SetColumnText("Emne", -1, rec.emne);
-                e.Item.SetColumnText("Doktype", -1, rec.dokument_type);
-                e.Item.SetColumnText("År", -1, rec.år.ToString());
-                e.Item.SetColumnText("Ekstern kilde", -1, rec.ekstern_kilde);
-                e.Item.SetColumnText("Beskrivelse", -1, rec.beskrivelse);
                 if (test == 3) m_lastFolderIsArkiv = true;
+                xmldoc rec = m_arkiv.GetMetadata(file);
+                try
+                {
+                    e.Item.SetColumnText("Virksomhed", -1, rec.virksomhed);
+                    e.Item.SetColumnText("Emne", -1, rec.emne);
+                    e.Item.SetColumnText("Doktype", -1, rec.dokument_type);
+                    e.Item.SetColumnText("År", -1, rec.år.ToString());
+                    e.Item.SetColumnText("Ekstern kilde", -1, rec.ekstern_kilde);
+                    e.Item.SetColumnText("Beskrivelse", -1, rec.beskrivelse);
+                   
+                }
+                catch { }
             }
-            catch { }
         }
 
         private string GetbjArkiv(string path)
@@ -231,7 +236,6 @@ namespace bjArkiv
         {
             if (file.StartsWith(Program.bjArkivWatcher.Path + @"\.bja", StringComparison.CurrentCultureIgnoreCase))
                 return;
-            m_arkiv = new clsArkiv();
             m_arkiv.EditMetadata(file);
         }
 
@@ -254,8 +258,7 @@ namespace bjArkiv
                     string file = item.Path;
                     if (file.StartsWith(Program.bjArkivWatcher.Path + @"\.bja", StringComparison.CurrentCultureIgnoreCase))
                         return;
-                    m_arkiv = new clsArkiv();
-                    m_arkiv.EditMetadata(file);
+                     m_arkiv.EditMetadata(file);
                 }
             }
         }

@@ -9,38 +9,24 @@ namespace bjArkiv
 {
     public class clsArkiv
     {
-        public xmldoc docrec { get; set; }
         private xmldocs docdb { get; set; }
-        private string XmlFilepath { get { return arkivpath + Program.BJARKIV; } }
-        private string file { get; set; }
-        private string file_local { get { return ArkivLocalPath(file); } }
-        private string arkivpath { get; set; }
-
-        public clsArkiv()
+ 
+        public bool OpenArkiv(string pfile)
         {
-
-        }
-
-         private bool OpenArkiv()
-        {
-            FileInfo fi;
+            string stDbFolderpath = getDbFolderpath(pfile);
+            if (stDbFolderpath == string.Empty) return false;
+             
+            //Arkiv allready open ? 
+            if (docdb != null)
+                if (docdb.path == (stDbFolderpath + Program.BJARKIV))
+                {
+                    return true;
+                }
             try
             {
-                fi = new FileInfo(file);
-            }
-            catch
-            {
-                return false;
-            }
+                docdb = xmldocs.Load(stDbFolderpath + Program.BJARKIV);
 
-            if (!fi.Exists) return false;
-            DirectoryInfo di = fi.Directory;
-            if (!dbPathExist(di)) return false;
-
-            try
-            {
-                docdb = new xmldocs(XmlFilepath);
-                Program.bjArkivWatcher.Path = arkivpath;
+                Program.bjArkivWatcher.Path = stDbFolderpath;
                 Program.bjArkivWatcher.EnableRaisingEvents = true;
                 return true;
             }
@@ -51,15 +37,85 @@ namespace bjArkiv
             }
         }
 
+        private bool? isFolder(string pfile)
+        {
+            DirectoryInfo di = null;
+            try
+            {
+                di = new DirectoryInfo(pfile);
+            }
+            catch { }
+            if (di != null && di.Exists) return true; 
+            FileInfo fi = null;
+            try
+            {
+                fi = new FileInfo(pfile);
+            }
+            catch { }
+            if (fi != null && fi.Exists) return false;
+            return null;
+        }
+     
+
+        private string getDbFolderpath(string pfile)
+        {
+            string dir = null;
+            switch (isFolder(pfile))
+            {
+                case null:
+                    return null;
+ 
+                case false:
+                    try
+                    {
+                        dir = new FileInfo(pfile).DirectoryName;
+                    }
+                    catch
+                    {
+                        return null;
+                    }
+                    break;
+
+                case true:
+                    dir = pfile;
+                    break;
+            }
+            DirectoryInfo di = new DirectoryInfo(dir);
+            if (!di.Exists) return string.Empty;
+
+            FileInfo fi = new FileInfo(di.FullName + Program.BJARKIV);
+            if (!fi.Exists)
+            {
+                DirectoryInfo pdi = di.Parent;
+                if (pdi == null) return string.Empty;
+                if (!pdi.Exists) return string.Empty;
+                return getDbFolderpath(pdi.FullName);
+            }
+            else
+            {
+                 return di.FullName;
+            }
+        }
+
+
+        private string getArkivLocalPath(string path)
+        {
+            string stDbFolderpath = getDbFolderpath(path);
+            if (stDbFolderpath == string.Empty) return "";
+            if (path.StartsWith(stDbFolderpath, StringComparison.CurrentCultureIgnoreCase))
+                return path.Substring(stDbFolderpath.Length + 1);
+            else
+                return "";
+        }
+        
         public xmldoc GetMetadata(string pfile)
         {
-            file = pfile;
-            if (OpenArkiv())
+
+            if (OpenArkiv(pfile))
             {
-                docrec = null;
                 try
                 {
-                    return (from doc in docdb where doc.kilde_sti.ToLower() == file_local.ToLower() select doc).First();
+                    return (from doc in docdb where doc.kilde_sti.ToLower() == getArkivLocalPath(pfile).ToLower() select doc).First();
                 }
                 catch
                 {
@@ -71,13 +127,13 @@ namespace bjArkiv
 
         public bool EditMetadata(string pfile)
         {
-            file = pfile;
-            if (OpenArkiv())
+
+            if (OpenArkiv(pfile))
             {
-                docrec = null;
+                xmldoc docrec = null;
                 try
                 {
-                    docrec = (from doc in docdb where doc.kilde_sti.ToLower() == file_local.ToLower() select doc).First();
+                    docrec = (from doc in docdb where doc.kilde_sti.ToLower() == getArkivLocalPath(pfile).ToLower() select doc).First();
                     frmAddDoc m_frmAddDoc = new frmAddDoc();
                     m_frmAddDoc.Ref_nr = (int)docrec.ref_nr;
                     m_frmAddDoc.Dokument = docrec.kilde_sti;
@@ -99,13 +155,13 @@ namespace bjArkiv
                         docrec.år = m_frmAddDoc.År;
                         docrec.ekstern_kilde = m_frmAddDoc.Ekstern_kilde;
                         docrec.beskrivelse = m_frmAddDoc.Beskrivelse;
-                        docdb.SaveChanges();
+                        docdb.Save();
                     }
                 }
                 catch
                 {
                     frmAddDoc m_frmAddDoc = new frmAddDoc();
-                    m_frmAddDoc.Dokument = file_local;
+                    m_frmAddDoc.Dokument = getArkivLocalPath(pfile);
                     m_frmAddDoc.Opret = true;
                     DialogResult Result = m_frmAddDoc.ShowDialog();
                     if (Result == System.Windows.Forms.DialogResult.OK)
@@ -131,16 +187,16 @@ namespace bjArkiv
                             beskrivelse = m_frmAddDoc.Beskrivelse,
                             oprettes_af = m_frmAddDoc.Oprettet_af,
                             oprettet_dato = m_frmAddDoc.Oprettet_dato,
-                            kilde_sti = file_local
+                            kilde_sti = getArkivLocalPath(pfile)
                         };
                         docdb.Add(docrec);
-                        docdb.SaveChanges();
+                        docdb.Save();
                     }
                 }
             }
             else
             {
-                string messageBoxText = "Der findes ikke noget Arkiv til: " + file;
+                string messageBoxText = "Der findes ikke noget Arkiv til: " + pfile;
                 string caption = "bjArkiv";
                 MessageBoxButtons button = MessageBoxButtons.OK;
                 MessageBoxIcon icon = MessageBoxIcon.Warning;
@@ -150,32 +206,6 @@ namespace bjArkiv
             return false;
         }
 
-
-        private bool dbPathExist(DirectoryInfo di)
-        {
-            if (!di.Exists) return false;
-            FileInfo fi = new FileInfo(di.FullName + Program.BJARKIV);
-            if (!fi.Exists)
-            {
-                DirectoryInfo pdi = di.Parent;
-                if (pdi == null) return false;
-                if (!pdi.Exists) return false;
-                return dbPathExist(pdi);
-            }
-            else
-            {
-                arkivpath = di.FullName;
-                return true;
-            }
-        }
-
-        private string ArkivLocalPath(string path)
-        {
-            if (file.StartsWith(arkivpath, StringComparison.CurrentCultureIgnoreCase))
-                return file.Substring(arkivpath.Length + 1);
-            else
-                return "";
-        }
  
         public static bool createNewbjArkiv(string DatabaseFile)
         {

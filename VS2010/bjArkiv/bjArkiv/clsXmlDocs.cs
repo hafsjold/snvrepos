@@ -13,12 +13,15 @@ namespace bjArkiv
     public class xmldocs : List<xmldoc>, IXmlSerializable
     {
         public string path { get; set; }
-
-        public xmldocs() { }
-        public xmldocs(string path)
+ 
+        ~xmldocs() 
         {
-            this.path = path;
-            XmlSerializer xs = new XmlSerializer(this.GetType());
+            Save();
+        }
+
+        public static xmldocs Load(string path)
+        {
+            XmlSerializer xs = new XmlSerializer(typeof(xmldocs));
             try
             {
                 using (FileStream fs = new FileStream(path, FileMode.Open))
@@ -26,19 +29,18 @@ namespace bjArkiv
                     try
                     {
                         fs.Position = 0;
-                        xs.Deserialize(fs);
+                        xmldocs Db =  (xmldocs)xs.Deserialize(fs);
+                        Db.path = path;
+                        return Db;
                     }
                     catch { }
                 }
-            }
+              }
             catch { }
-        }
-        ~xmldocs() 
-        {
-            SaveChanges();
+            return null;
         }
         
-        internal void SaveChanges()
+        internal void Save()
         {
             XmlSerializer xs = new XmlSerializer(this.GetType());
             try
@@ -58,14 +60,12 @@ namespace bjArkiv
         public XmlSchema GetSchema() { return null; }
         public void WriteXml(System.Xml.XmlWriter writer)
         {
-            //writer.WriteStartElement("xmldocs"); 
             foreach (xmldoc doc in this)
             {
                 writer.WriteStartElement("xmldoc");
                 doc.WriteXml(writer);
                 writer.WriteEndElement();
             }
-            //writer.WriteEndElement();
         }
         public void ReadXml(System.Xml.XmlReader reader)
         {
