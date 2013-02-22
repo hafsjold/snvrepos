@@ -214,6 +214,18 @@ namespace bjArkiv
 
             DirectoryInfo di = DatabasefileInfo.Directory;
             di.Attributes |= FileAttributes.Hidden;
+            try
+            {
+                using (FileStream fs = new FileStream(DatabaseFile, FileMode.CreateNew))
+                {
+                    using (StreamWriter wt = new StreamWriter(fs, UTF8Encoding.UTF8))   
+                    {
+                        string txt = "<?xml version=\"1.0\"?><xmldocs/>"; 
+                        wt.Write(txt);
+                    }
+                }
+            }
+            catch { }
             return true;
         }
    
