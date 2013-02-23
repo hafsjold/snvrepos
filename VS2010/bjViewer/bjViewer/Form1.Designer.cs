@@ -70,7 +70,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(802, 382);
+            this.dataGridView1.Size = new System.Drawing.Size(1227, 332);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseDoubleClick);
             // 
@@ -88,6 +88,7 @@
             this.refnrDataGridViewTextBoxColumn.HeaderText = "Nr";
             this.refnrDataGridViewTextBoxColumn.Name = "refnrDataGridViewTextBoxColumn";
             this.refnrDataGridViewTextBoxColumn.ReadOnly = true;
+            this.refnrDataGridViewTextBoxColumn.Width = 50;
             // 
             // virksomhedDataGridViewTextBoxColumn
             // 
@@ -95,6 +96,7 @@
             this.virksomhedDataGridViewTextBoxColumn.HeaderText = "Virksomhed";
             this.virksomhedDataGridViewTextBoxColumn.Name = "virksomhedDataGridViewTextBoxColumn";
             this.virksomhedDataGridViewTextBoxColumn.ReadOnly = true;
+            this.virksomhedDataGridViewTextBoxColumn.Width = 200;
             // 
             // emneDataGridViewTextBoxColumn
             // 
@@ -102,6 +104,7 @@
             this.emneDataGridViewTextBoxColumn.HeaderText = "Emne";
             this.emneDataGridViewTextBoxColumn.Name = "emneDataGridViewTextBoxColumn";
             this.emneDataGridViewTextBoxColumn.ReadOnly = true;
+            this.emneDataGridViewTextBoxColumn.Width = 200;
             // 
             // dokumenttypeDataGridViewTextBoxColumn
             // 
@@ -109,6 +112,7 @@
             this.dokumenttypeDataGridViewTextBoxColumn.HeaderText = "Dokument type";
             this.dokumenttypeDataGridViewTextBoxColumn.Name = "dokumenttypeDataGridViewTextBoxColumn";
             this.dokumenttypeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dokumenttypeDataGridViewTextBoxColumn.Width = 125;
             // 
             // årDataGridViewTextBoxColumn
             // 
@@ -116,6 +120,7 @@
             this.årDataGridViewTextBoxColumn.HeaderText = "År";
             this.årDataGridViewTextBoxColumn.Name = "årDataGridViewTextBoxColumn";
             this.årDataGridViewTextBoxColumn.ReadOnly = true;
+            this.årDataGridViewTextBoxColumn.Width = 60;
             // 
             // eksternkildeDataGridViewTextBoxColumn
             // 
@@ -123,6 +128,7 @@
             this.eksternkildeDataGridViewTextBoxColumn.HeaderText = "Ekstern kilde";
             this.eksternkildeDataGridViewTextBoxColumn.Name = "eksternkildeDataGridViewTextBoxColumn";
             this.eksternkildeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.eksternkildeDataGridViewTextBoxColumn.Width = 200;
             // 
             // beskrivelseDataGridViewTextBoxColumn
             // 
@@ -130,6 +136,7 @@
             this.beskrivelseDataGridViewTextBoxColumn.HeaderText = "Beskrivelse";
             this.beskrivelseDataGridViewTextBoxColumn.Name = "beskrivelseDataGridViewTextBoxColumn";
             this.beskrivelseDataGridViewTextBoxColumn.ReadOnly = true;
+            this.beskrivelseDataGridViewTextBoxColumn.Width = 200;
             // 
             // oprettesafDataGridViewTextBoxColumn
             // 
@@ -137,6 +144,7 @@
             this.oprettesafDataGridViewTextBoxColumn.HeaderText = "Oprettet af";
             this.oprettesafDataGridViewTextBoxColumn.Name = "oprettesafDataGridViewTextBoxColumn";
             this.oprettesafDataGridViewTextBoxColumn.ReadOnly = true;
+            this.oprettesafDataGridViewTextBoxColumn.Visible = false;
             // 
             // oprettetdatoDataGridViewTextBoxColumn
             // 
@@ -144,6 +152,7 @@
             this.oprettetdatoDataGridViewTextBoxColumn.HeaderText = "Oprettet dato";
             this.oprettetdatoDataGridViewTextBoxColumn.Name = "oprettetdatoDataGridViewTextBoxColumn";
             this.oprettetdatoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.oprettetdatoDataGridViewTextBoxColumn.Visible = false;
             // 
             // kildestiDataGridViewTextBoxColumn
             // 
@@ -151,6 +160,7 @@
             this.kildestiDataGridViewTextBoxColumn.HeaderText = "Kilde sti";
             this.kildestiDataGridViewTextBoxColumn.Name = "kildestiDataGridViewTextBoxColumn";
             this.kildestiDataGridViewTextBoxColumn.ReadOnly = true;
+            this.kildestiDataGridViewTextBoxColumn.Width = 200;
             // 
             // xmldocsBindingSource
             // 
@@ -160,7 +170,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(802, 382);
+            this.ClientSize = new System.Drawing.Size(1227, 332);
             this.Controls.Add(this.dataGridView1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -174,6 +184,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.BindingSource xmldocsBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn refnrDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn virksomhedDataGridViewTextBoxColumn;
@@ -185,7 +196,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn oprettesafDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn oprettetdatoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn kildestiDataGridViewTextBoxColumn;
-        private System.Windows.Forms.BindingSource xmldocsBindingSource;
 
     }
 }

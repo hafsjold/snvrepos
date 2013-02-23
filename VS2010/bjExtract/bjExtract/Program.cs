@@ -9,7 +9,6 @@ namespace bjExtract
     static class Program
     {
         public const string BJARKIV = @"\.bja\bjArkiv.xml";
-        public static string temp = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
         public static void CreateMissingFolders(DirectoryInfo di)
         {
             if (!di.Exists)

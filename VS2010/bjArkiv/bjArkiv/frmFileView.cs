@@ -322,5 +322,16 @@ namespace bjArkiv
             labelPath.BackColor = color; // System.Drawing.Color.Red;
         }
 
+        private void eksportArkivToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (IsArkivFolder)
+            {
+                string ArkivNavn = Path.GetFileNameWithoutExtension(arkivpath + @".xxx");
+                string OutputPath = @"C:\Users\mha\Documents\Visual Studio 2010\Projects\bjOutput\" + ArkivNavn + @".exe";
+                clsExportArkiv obj = new clsExportArkiv();
+                obj.ExsportArkiv(arkivpath, OutputPath);
+            }
+        }
+
     }
 }

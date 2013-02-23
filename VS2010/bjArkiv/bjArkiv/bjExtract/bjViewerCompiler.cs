@@ -8,7 +8,7 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Windows.Forms;
 
-namespace bjExtract
+namespace bjArkiv
 {
 	class SelfExtractor : IDisposable
 	{

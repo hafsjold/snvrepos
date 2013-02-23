@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 using LogicNP.ShellObjects;
+using System.IO;
 
 namespace bjArkiv
 {
@@ -12,6 +13,15 @@ namespace bjArkiv
         public static System.IO.FileSystemWatcher bjArkivWatcher;
         private static Columns m_customColumns;
         private static Columns m_explorerColumns;
+
+        public static void CreateMissingFolders(DirectoryInfo di)
+        {
+            if (!di.Exists)
+            {
+                CreateMissingFolders(di.Parent);
+                di.Create();
+            }
+        }
 
         public static Columns customColumns
         {

@@ -38,6 +38,7 @@
             this.afslutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitVertical = new System.Windows.Forms.SplitContainer();
             this.fldrView = new LogicNP.FolderViewControl.FolderView();
+            this.eksportArkivToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitHorisontal)).BeginInit();
             this.splitHorisontal.Panel1.SuspendLayout();
             this.splitHorisontal.Panel2.SuspendLayout();
@@ -118,6 +119,7 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.opretNytArkivToolStripMenuItem,
+            this.eksportArkivToolStripMenuItem,
             this.afslutToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
@@ -169,6 +171,13 @@
             this.fldrView.Text = "folderView1";
             this.fldrView.AfterSelect += new LogicNP.FolderViewControl.AfterSelectHandler(this.fldrView_AfterSelect);
             // 
+            // eksportArkivToolStripMenuItem
+            // 
+            this.eksportArkivToolStripMenuItem.Name = "eksportArkivToolStripMenuItem";
+            this.eksportArkivToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.eksportArkivToolStripMenuItem.Text = "Eksporter Arkiv";
+            this.eksportArkivToolStripMenuItem.Click += new System.EventHandler(this.eksportArkivToolStripMenuItem_Click);
+            // 
             // frmFileView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -210,5 +219,6 @@
         private System.Windows.Forms.ToolStripMenuItem opretNytArkivToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem afslutToolStripMenuItem;
         private System.Windows.Forms.Label labelPath;
+        private System.Windows.Forms.ToolStripMenuItem eksportArkivToolStripMenuItem;
     }
 }

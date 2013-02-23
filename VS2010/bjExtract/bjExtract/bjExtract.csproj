@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="bjViewerCompiler.cs" />
+    <Compile Include="clsExportArkiv.cs" />
     <Compile Include="clsXmlDocs.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
