@@ -2,11 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.IO;
 
 namespace bjExtract
 {
     static class Program
     {
+        public const string BJARKIV = @"\.bja\bjArkiv.xml";
+        public static string temp = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
+        public static void CreateMissingFolders(DirectoryInfo di)
+        {
+            if (!di.Exists)
+            {
+                CreateMissingFolders(di.Parent);
+                di.Create();
+            }
+        }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -17,5 +29,6 @@ namespace bjExtract
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
         }
+
     }
 }

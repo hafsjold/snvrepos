@@ -61,11 +61,14 @@ namespace bjViewer
                 xmldoc doc = selectedRow.DataBoundItem as xmldoc;
                 //MessageBox.Show("Debug1:  " + doc.kilde_sti);
                 
-                string name = doc.kilde_sti + @".gz";
+                string name = doc.id.ToString() + @".gz";
 
                 DirectoryInfo di = new DirectoryInfo(SelectedPath);
                 try { di.Create(); } catch { }
-                string path = Path.Combine(SelectedPath, Path.GetFileNameWithoutExtension(name)); // remove ".gz";
+                string path = Path.Combine(SelectedPath, doc.kilde_sti); // remove ".gz";
+                
+                // ?????? Create output folder 
+
                 try
                 {
                     FileInfo fi = new FileInfo(path);

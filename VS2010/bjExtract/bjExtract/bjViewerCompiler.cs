@@ -12,7 +12,15 @@ namespace bjExtract
 {
 	class SelfExtractor : IDisposable
 	{
-		// Source file of standalone exe 
+		
+        // Source file of standalone exe 
+        protected List<string> sourceNames = new List<string>();
+
+        public void AddSourceName(string sourcefilename)
+        {
+            sourceNames.Add(sourcefilename);
+        }
+        /*
         protected readonly string[] sourceName = {@"C:\Users\mha\Documents\Visual Studio 2010\Projects\bjViewer\bjViewer\Program.cs"
                                                  ,@"C:\Users\mha\Documents\Visual Studio 2010\Projects\bjViewer\bjViewer\Form1.cs"
                                                  ,@"C:\Users\mha\Documents\Visual Studio 2010\Projects\bjViewer\bjViewer\Form1.Designer.cs"
@@ -21,21 +29,23 @@ namespace bjExtract
                                                  ,@"C:\Users\mha\Documents\Visual Studio 2010\Projects\bjViewer\bjViewer\Properties\Resources.Designer.cs"
                                                  ,@"C:\Users\mha\Documents\Visual Studio 2010\Projects\bjViewer\bjViewer\Properties\Settings.Designer.cs"
                                                   };
-
+        */
 		// Compressed files ready to embed as resource
 		protected List<string> filenames = new List<string>();
         
-        protected string temp = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
-
-        public SelfExtractor()
+        public void AddFile(string filename)
         {
-            DirectoryInfo di = new DirectoryInfo(temp);
-            try { di.Create(); } catch { }
+            AddFile(filename, string.Empty);
         }
 
-		public void AddFile(string filename)
+		public void AddFile(string filename, string guid)
 		{
-            string tempfilename = Path.Combine(temp, Path.GetFileName(filename)) + ".gz";
+            string tempfilename = string.Empty;
+            if (guid == string.Empty)
+                tempfilename = Path.Combine(Program.temp, Path.GetFileName(filename)) + ".gz";
+             else
+                tempfilename = Path.Combine(Program.temp, guid) + ".gz";
+            
             // Compress input file using System.IO.Compression
 			using (Stream file = File.OpenRead(filename))
 			{
@@ -94,7 +104,7 @@ namespace bjExtract
 			cp.EmbeddedResources.AddRange(filenames.ToArray());	
 
 			// Compile standalone executable with input files embedded as resource
-			CompilerResults cr = csc.CompileAssemblyFromFile(cp, sourceName);
+            CompilerResults cr = csc.CompileAssemblyFromFile(cp, sourceNames.ToArray());
 
 			// yell if compilation error
 			if (cr.Errors.Count > 0)
