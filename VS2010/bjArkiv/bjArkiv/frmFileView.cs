@@ -351,7 +351,7 @@ namespace bjArkiv
         private void opdaterArkivToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmUpdDoc objUpdDoc = new frmUpdDoc();
-            objUpdDoc.arkivpath = arkivpath;
+            objUpdDoc.arkiv = m_arkiv;
             objUpdDoc.Show();
         }
 

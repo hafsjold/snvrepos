@@ -9,7 +9,7 @@ namespace bjArkiv
 {
     public class clsArkiv
     {
-        private xmldocs docdb { get; set; }
+        public xmldocs docdb { get; set; }
  
         public bool OpenArkiv(string pfile)
         {

@@ -34,29 +34,29 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.bindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
+            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
+            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorPositionItem = new System.Windows.Forms.ToolStripTextBox();
-            this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.refnrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.virksomhedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dokumenttypeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.årDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.eksternkildeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.beskrivelseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.oprettesafDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.oprettetdatoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kildestiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.xmldocsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colKildesti = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colRefnr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colVirksomhed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEmne = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDokumenttype = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colÅr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEksternkilde = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBeskrivelse = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colOprettetaf = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colOprettetdato = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -80,7 +80,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(1067, 262);
+            this.splitContainer1.Size = new System.Drawing.Size(821, 262);
             this.splitContainer1.SplitterDistance = 25;
             this.splitContainer1.TabIndex = 0;
             // 
@@ -98,32 +98,36 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.bindingNavigator);
-            this.splitContainer2.Size = new System.Drawing.Size(1067, 233);
+            this.splitContainer2.Size = new System.Drawing.Size(821, 233);
             this.splitContainer2.SplitterDistance = 200;
             this.splitContainer2.TabIndex = 0;
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.idDataGridViewTextBoxColumn,
-            this.refnrDataGridViewTextBoxColumn,
-            this.virksomhedDataGridViewTextBoxColumn,
-            this.emneDataGridViewTextBoxColumn,
-            this.dokumenttypeDataGridViewTextBoxColumn,
-            this.årDataGridViewTextBoxColumn,
-            this.eksternkildeDataGridViewTextBoxColumn,
-            this.beskrivelseDataGridViewTextBoxColumn,
-            this.oprettesafDataGridViewTextBoxColumn,
-            this.oprettetdatoDataGridViewTextBoxColumn,
-            this.kildestiDataGridViewTextBoxColumn});
+            this.colId,
+            this.colKildesti,
+            this.colRefnr,
+            this.colVirksomhed,
+            this.colEmne,
+            this.colDokumenttype,
+            this.colÅr,
+            this.colEksternkilde,
+            this.colBeskrivelse,
+            this.colOprettetaf,
+            this.colOprettetdato});
             this.dataGridView1.DataSource = this.xmldocsBindingSource;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1067, 200);
+            this.dataGridView1.Size = new System.Drawing.Size(821, 200);
             this.dataGridView1.TabIndex = 0;
+            this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
+            this.dataGridView1.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView1_EditingControlShowing);
             // 
             // bindingNavigator
             // 
@@ -151,9 +155,34 @@
             this.bindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator.Name = "bindingNavigator";
             this.bindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator.Size = new System.Drawing.Size(1067, 25);
+            this.bindingNavigator.Size = new System.Drawing.Size(821, 25);
             this.bindingNavigator.TabIndex = 0;
             this.bindingNavigator.Text = "bindingNavigator";
+            // 
+            // bindingNavigatorAddNewItem
+            // 
+            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
+            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
+            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorAddNewItem.Text = "Add new";
+            // 
+            // bindingNavigatorCountItem
+            // 
+            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
+            this.bindingNavigatorCountItem.Text = "of {0}";
+            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
+            // 
+            // bindingNavigatorDeleteItem
+            // 
+            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
+            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
+            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
+            this.bindingNavigatorDeleteItem.Text = "Delete";
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -187,16 +216,9 @@
             this.bindingNavigatorPositionItem.Text = "0";
             this.bindingNavigatorPositionItem.ToolTipText = "Current position";
             // 
-            // bindingNavigatorCountItem
-            // 
-            this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
-            this.bindingNavigatorCountItem.Text = "of {0}";
-            this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
             // bindingNavigatorSeparator1
             // 
-            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
             this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // bindingNavigatorMoveNextItem
@@ -219,103 +241,90 @@
             // 
             // bindingNavigatorSeparator2
             // 
-            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator";
+            this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // refnrDataGridViewTextBoxColumn
-            // 
-            this.refnrDataGridViewTextBoxColumn.DataPropertyName = "ref_nr";
-            this.refnrDataGridViewTextBoxColumn.HeaderText = "Ref nr";
-            this.refnrDataGridViewTextBoxColumn.Name = "refnrDataGridViewTextBoxColumn";
-            // 
-            // virksomhedDataGridViewTextBoxColumn
-            // 
-            this.virksomhedDataGridViewTextBoxColumn.DataPropertyName = "virksomhed";
-            this.virksomhedDataGridViewTextBoxColumn.HeaderText = "Virksomhed";
-            this.virksomhedDataGridViewTextBoxColumn.Name = "virksomhedDataGridViewTextBoxColumn";
-            // 
-            // emneDataGridViewTextBoxColumn
-            // 
-            this.emneDataGridViewTextBoxColumn.DataPropertyName = "emne";
-            this.emneDataGridViewTextBoxColumn.HeaderText = "Emne";
-            this.emneDataGridViewTextBoxColumn.Name = "emneDataGridViewTextBoxColumn";
-            // 
-            // dokumenttypeDataGridViewTextBoxColumn
-            // 
-            this.dokumenttypeDataGridViewTextBoxColumn.DataPropertyName = "dokument_type";
-            this.dokumenttypeDataGridViewTextBoxColumn.HeaderText = "Dokument  type";
-            this.dokumenttypeDataGridViewTextBoxColumn.Name = "dokumenttypeDataGridViewTextBoxColumn";
-            // 
-            // årDataGridViewTextBoxColumn
-            // 
-            this.årDataGridViewTextBoxColumn.DataPropertyName = "år";
-            this.årDataGridViewTextBoxColumn.HeaderText = "År";
-            this.årDataGridViewTextBoxColumn.Name = "årDataGridViewTextBoxColumn";
-            // 
-            // eksternkildeDataGridViewTextBoxColumn
-            // 
-            this.eksternkildeDataGridViewTextBoxColumn.DataPropertyName = "ekstern_kilde";
-            this.eksternkildeDataGridViewTextBoxColumn.HeaderText = "Ekstern kilde";
-            this.eksternkildeDataGridViewTextBoxColumn.Name = "eksternkildeDataGridViewTextBoxColumn";
-            // 
-            // beskrivelseDataGridViewTextBoxColumn
-            // 
-            this.beskrivelseDataGridViewTextBoxColumn.DataPropertyName = "beskrivelse";
-            this.beskrivelseDataGridViewTextBoxColumn.HeaderText = "Beskrivelse";
-            this.beskrivelseDataGridViewTextBoxColumn.Name = "beskrivelseDataGridViewTextBoxColumn";
-            // 
-            // oprettesafDataGridViewTextBoxColumn
-            // 
-            this.oprettesafDataGridViewTextBoxColumn.DataPropertyName = "oprettes_af";
-            this.oprettesafDataGridViewTextBoxColumn.HeaderText = "Oprettet af";
-            this.oprettesafDataGridViewTextBoxColumn.Name = "oprettesafDataGridViewTextBoxColumn";
-            // 
-            // oprettetdatoDataGridViewTextBoxColumn
-            // 
-            this.oprettetdatoDataGridViewTextBoxColumn.DataPropertyName = "oprettet_dato";
-            this.oprettetdatoDataGridViewTextBoxColumn.HeaderText = "Oprettet dato";
-            this.oprettetdatoDataGridViewTextBoxColumn.Name = "oprettetdatoDataGridViewTextBoxColumn";
-            // 
-            // kildestiDataGridViewTextBoxColumn
-            // 
-            this.kildestiDataGridViewTextBoxColumn.DataPropertyName = "kilde_sti";
-            this.kildestiDataGridViewTextBoxColumn.HeaderText = "Kilde sti";
-            this.kildestiDataGridViewTextBoxColumn.Name = "kildestiDataGridViewTextBoxColumn";
             // 
             // xmldocsBindingSource
             // 
             this.xmldocsBindingSource.DataSource = typeof(bjArkiv.xmldocs);
             // 
+            // colId
+            // 
+            this.colId.DataPropertyName = "id";
+            this.colId.HeaderText = "id";
+            this.colId.Name = "colId";
+            this.colId.Visible = false;
+            // 
+            // colKildesti
+            // 
+            this.colKildesti.DataPropertyName = "kilde_sti";
+            this.colKildesti.HeaderText = "Kilde sti";
+            this.colKildesti.Name = "colKildesti";
+            this.colKildesti.ReadOnly = true;
+            // 
+            // colRefnr
+            // 
+            this.colRefnr.DataPropertyName = "ref_nr";
+            this.colRefnr.HeaderText = "Ref nr";
+            this.colRefnr.Name = "colRefnr";
+            this.colRefnr.ReadOnly = true;
+            this.colRefnr.Visible = false;
+            // 
+            // colVirksomhed
+            // 
+            this.colVirksomhed.DataPropertyName = "virksomhed";
+            this.colVirksomhed.HeaderText = "Virksomhed";
+            this.colVirksomhed.Name = "colVirksomhed";
+            // 
+            // colEmne
+            // 
+            this.colEmne.DataPropertyName = "emne";
+            this.colEmne.HeaderText = "Emne";
+            this.colEmne.Name = "colEmne";
+            // 
+            // colDokumenttype
+            // 
+            this.colDokumenttype.DataPropertyName = "dokument_type";
+            this.colDokumenttype.HeaderText = "Dokument  type";
+            this.colDokumenttype.Name = "colDokumenttype";
+            // 
+            // colÅr
+            // 
+            this.colÅr.DataPropertyName = "år";
+            this.colÅr.HeaderText = "År";
+            this.colÅr.Name = "colÅr";
+            // 
+            // colEksternkilde
+            // 
+            this.colEksternkilde.DataPropertyName = "ekstern_kilde";
+            this.colEksternkilde.HeaderText = "Ekstern kilde";
+            this.colEksternkilde.Name = "colEksternkilde";
+            // 
+            // colBeskrivelse
+            // 
+            this.colBeskrivelse.DataPropertyName = "beskrivelse";
+            this.colBeskrivelse.HeaderText = "Beskrivelse";
+            this.colBeskrivelse.Name = "colBeskrivelse";
+            // 
+            // colOprettetaf
+            // 
+            this.colOprettetaf.DataPropertyName = "oprettes_af";
+            this.colOprettetaf.HeaderText = "Oprettet af";
+            this.colOprettetaf.Name = "colOprettetaf";
+            this.colOprettetaf.ReadOnly = true;
+            // 
+            // colOprettetdato
+            // 
+            this.colOprettetdato.DataPropertyName = "oprettet_dato";
+            this.colOprettetdato.HeaderText = "Oprettet dato";
+            this.colOprettetdato.Name = "colOprettetdato";
+            this.colOprettetdato.ReadOnly = true;
+            // 
             // frmUpdDoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 262);
+            this.ClientSize = new System.Drawing.Size(821, 262);
             this.Controls.Add(this.splitContainer1);
             this.Name = "frmUpdDoc";
             this.Text = "frmUpdDoc";
@@ -343,17 +352,6 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn refnrDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn virksomhedDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn emneDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dokumenttypeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn årDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn eksternkildeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn beskrivelseDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn oprettesafDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn oprettetdatoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn kildestiDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource xmldocsBindingSource;
         private System.Windows.Forms.BindingNavigator bindingNavigator;
         private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
@@ -367,5 +365,16 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colKildesti;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colRefnr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colVirksomhed;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEmne;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDokumenttype;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colÅr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEksternkilde;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBeskrivelse;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colOprettetaf;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colOprettetdato;
     }
 }
