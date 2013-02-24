@@ -90,6 +90,12 @@
     <Compile Include="frmFileView.Designer.cs">
       <DependentUpon>frmFileView.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmUpdDoc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUpdDoc.Designer.cs">
+      <DependentUpon>frmUpdDoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils.cs" />
@@ -104,6 +110,9 @@
     <EmbeddedResource Include="frmFileView.resx">
       <DependentUpon>frmFileView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmUpdDoc.resx">
+      <DependentUpon>frmUpdDoc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -115,7 +124,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="Properties\DataSources\docdbliteEntities.datasource" />
+    <None Include="Properties\DataSources\xmldocs.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

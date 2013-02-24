@@ -345,6 +345,14 @@ namespace bjArkiv
         private void fileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             eksportArkivToolStripMenuItem.Enabled = IsArkivFolder;
+            opdaterArkivToolStripMenuItem.Enabled = IsArkivFolder;
+        }
+
+        private void opdaterArkivToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmUpdDoc objUpdDoc = new frmUpdDoc();
+            objUpdDoc.arkivpath = arkivpath;
+            objUpdDoc.Show();
         }
 
     }

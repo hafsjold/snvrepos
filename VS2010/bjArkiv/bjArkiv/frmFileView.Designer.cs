@@ -39,6 +39,7 @@
             this.afslutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitVertical = new System.Windows.Forms.SplitContainer();
             this.fldrView = new LogicNP.FolderViewControl.FolderView();
+            this.opdaterArkivToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitHorisontal)).BeginInit();
             this.splitHorisontal.Panel1.SuspendLayout();
             this.splitHorisontal.Panel2.SuspendLayout();
@@ -119,6 +120,7 @@
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.opretNytArkivToolStripMenuItem,
+            this.opdaterArkivToolStripMenuItem,
             this.eksportArkivToolStripMenuItem,
             this.afslutToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
@@ -179,6 +181,13 @@
             this.fldrView.Text = "folderView1";
             this.fldrView.AfterSelect += new LogicNP.FolderViewControl.AfterSelectHandler(this.fldrView_AfterSelect);
             // 
+            // opdaterArkivToolStripMenuItem
+            // 
+            this.opdaterArkivToolStripMenuItem.Name = "opdaterArkivToolStripMenuItem";
+            this.opdaterArkivToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.opdaterArkivToolStripMenuItem.Text = "Opdater Arkiv";
+            this.opdaterArkivToolStripMenuItem.Click += new System.EventHandler(this.opdaterArkivToolStripMenuItem_Click);
+            // 
             // frmFileView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -221,5 +230,6 @@
         private System.Windows.Forms.ToolStripMenuItem afslutToolStripMenuItem;
         private System.Windows.Forms.Label labelPath;
         private System.Windows.Forms.ToolStripMenuItem eksportArkivToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem opdaterArkivToolStripMenuItem;
     }
 }
