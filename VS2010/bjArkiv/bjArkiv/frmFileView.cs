@@ -327,10 +327,24 @@ namespace bjArkiv
             if (IsArkivFolder)
             {
                 string ArkivNavn = Path.GetFileNameWithoutExtension(arkivpath + @".xxx");
-                string OutputPath = @"C:\Users\mha\Documents\Visual Studio 2010\Projects\bjOutput\" + ArkivNavn + @".exe";
-                clsExportArkiv obj = new clsExportArkiv();
-                obj.ExsportArkiv(arkivpath, OutputPath);
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.Filter = @"|*.zip";
+                saveFileDialog1.Title = "Vælg Eksport Arkiv File";
+                saveFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                saveFileDialog1.FileName = ArkivNavn;
+                DialogResult result = saveFileDialog1.ShowDialog();
+                if (result == System.Windows.Forms.DialogResult.OK)
+                {
+                    string OutputPath = saveFileDialog1.FileName;
+                    clsExportArkiv obj = new clsExportArkiv();
+                    obj.ExsportArkiv(arkivpath, OutputPath);
+                }
             }
+        }
+
+        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            eksportArkivToolStripMenuItem.Enabled = IsArkivFolder;
         }
 
     }

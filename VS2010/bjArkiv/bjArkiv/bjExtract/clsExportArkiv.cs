@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Windows.Forms;
 
 namespace bjArkiv
 {
@@ -95,6 +96,12 @@ namespace bjArkiv
                 di.Delete(true);
             }
             catch { }
+
+            string messageBoxText = "Arkiv: " + ParamArkivFolder + "\n\n Er nu eksporteret til\n\n" + newZip;
+            string caption = "bjArkiv";
+            MessageBoxButtons button = MessageBoxButtons.OK;
+            MessageBoxIcon icon = MessageBoxIcon.Information;
+            MessageBox.Show(messageBoxText, caption, button, icon);
         }
     }
 }

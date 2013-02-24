@@ -35,10 +35,10 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.opretNytArkivToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eksportArkivToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.afslutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitVertical = new System.Windows.Forms.SplitContainer();
             this.fldrView = new LogicNP.FolderViewControl.FolderView();
-            this.eksportArkivToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitHorisontal)).BeginInit();
             this.splitHorisontal.Panel1.SuspendLayout();
             this.splitHorisontal.Panel2.SuspendLayout();
@@ -124,6 +124,7 @@
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
+            this.fileToolStripMenuItem.Click += new System.EventHandler(this.fileToolStripMenuItem_Click);
             // 
             // opretNytArkivToolStripMenuItem
             // 
@@ -131,6 +132,13 @@
             this.opretNytArkivToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.opretNytArkivToolStripMenuItem.Text = "Opret Nyt Arkiv";
             this.opretNytArkivToolStripMenuItem.Click += new System.EventHandler(this.opretNytArkivToolStripMenuItem_Click);
+            // 
+            // eksportArkivToolStripMenuItem
+            // 
+            this.eksportArkivToolStripMenuItem.Name = "eksportArkivToolStripMenuItem";
+            this.eksportArkivToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.eksportArkivToolStripMenuItem.Text = "Eksporter Arkiv";
+            this.eksportArkivToolStripMenuItem.Click += new System.EventHandler(this.eksportArkivToolStripMenuItem_Click);
             // 
             // afslutToolStripMenuItem
             // 
@@ -170,13 +178,6 @@
             this.fldrView.TabIndex = 0;
             this.fldrView.Text = "folderView1";
             this.fldrView.AfterSelect += new LogicNP.FolderViewControl.AfterSelectHandler(this.fldrView_AfterSelect);
-            // 
-            // eksportArkivToolStripMenuItem
-            // 
-            this.eksportArkivToolStripMenuItem.Name = "eksportArkivToolStripMenuItem";
-            this.eksportArkivToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.eksportArkivToolStripMenuItem.Text = "Eksporter Arkiv";
-            this.eksportArkivToolStripMenuItem.Click += new System.EventHandler(this.eksportArkivToolStripMenuItem_Click);
             // 
             // frmFileView
             // 
