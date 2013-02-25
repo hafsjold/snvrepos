@@ -11,6 +11,8 @@ namespace bjArkiv
     {
         public const string BJARKIV = @"\.bja\bjArkiv.xml";
         public static System.IO.FileSystemWatcher bjArkivWatcher;
+        public static frmFileView objFileView = null;
+        public static frmUpdDoc objUpdDoc = null;
         private static Columns m_customColumns;
         private static Columns m_explorerColumns;
 
@@ -67,6 +69,7 @@ namespace bjArkiv
             Application.SetCompatibleTextRenderingDefault(false);
             if (SingleInstanceComponent.NotifyExistingInstance(null))
             {
+                objFileView = new frmFileView();
                 Application.Run(new frmFileView());
             }
         }

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO;
 
 namespace bjArkiv
 {
@@ -22,6 +23,7 @@ namespace bjArkiv
         private void frmUpdDoc_Load(object sender, EventArgs e)
         {
             xmldocsBindingSource.DataSource = arkiv.docdb;
+            labelPath.Text = Path.GetDirectoryName(Path.GetDirectoryName(arkiv.docdb.path));
             try
             {
                 int start = ((xmldocs)xmldocsBindingSource.DataSource).IndexOf(startrec);
@@ -34,6 +36,7 @@ namespace bjArkiv
         private void frmUpdDoc_FormClosing(object sender, FormClosingEventArgs e)
         {
             arkiv.docdb.Save();
+            Program.objUpdDoc = null;
         }
 
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)

@@ -163,19 +163,17 @@ namespace bjArkiv
                     };
                     docdb.Add(docrec);
                 }
-                if (true)
+
+                if (Program.objUpdDoc == null)
                 {
-                    frmUpdDoc m_frmUpdDoc = new frmUpdDoc();
-                    m_frmUpdDoc.arkiv = this;
-                    m_frmUpdDoc.startrec = docrec;
-                    DialogResult Result = m_frmUpdDoc.ShowDialog(); 
+                    Program.objUpdDoc = new frmUpdDoc();
+                    Program.objUpdDoc.arkiv = this;
+                    Program.objUpdDoc.startrec = docrec;
+                    Program.objUpdDoc.Show();
                 }
                 else
                 {
-                    frmAddDoc m_frmAddDoc = new frmAddDoc();
-                    m_frmAddDoc.arkiv = this;
-                    m_frmAddDoc.startrec = docrec;
-                    DialogResult Result = m_frmAddDoc.ShowDialog();
+                    Program.objUpdDoc.Focus();
                 }
                 docdb.Save();
             }

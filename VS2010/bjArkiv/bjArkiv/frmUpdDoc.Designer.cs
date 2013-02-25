@@ -45,7 +45,7 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.xmldocsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.labelPath = new System.Windows.Forms.Label();
             this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colKildesti = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRefnr = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,7 +57,9 @@
             this.colBeskrivelse = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colOprettetaf = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colOprettetdato = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.xmldocsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
@@ -76,6 +78,10 @@
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.labelPath);
             // 
             // splitContainer1.Panel2
             // 
@@ -167,6 +173,7 @@
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorAddNewItem.Text = "Add new";
+            this.bindingNavigatorAddNewItem.Visible = false;
             // 
             // bindingNavigatorCountItem
             // 
@@ -183,6 +190,7 @@
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorDeleteItem.Text = "Delete";
+            this.bindingNavigatorDeleteItem.Visible = false;
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -243,10 +251,17 @@
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
+            this.bindingNavigatorSeparator2.Visible = false;
             // 
-            // xmldocsBindingSource
+            // labelPath
             // 
-            this.xmldocsBindingSource.DataSource = typeof(bjArkiv.xmldocs);
+            this.labelPath.AutoSize = true;
+            this.labelPath.BackColor = System.Drawing.SystemColors.Control;
+            this.labelPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPath.Location = new System.Drawing.Point(46, 3);
+            this.labelPath.Name = "labelPath";
+            this.labelPath.Size = new System.Drawing.Size(0, 18);
+            this.labelPath.TabIndex = 2;
             // 
             // colId
             // 
@@ -320,6 +335,10 @@
             this.colOprettetdato.Name = "colOprettetdato";
             this.colOprettetdato.ReadOnly = true;
             // 
+            // xmldocsBindingSource
+            // 
+            this.xmldocsBindingSource.DataSource = typeof(bjArkiv.xmldocs);
+            // 
             // frmUpdDoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -330,6 +349,8 @@
             this.Text = "frmUpdDoc";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmUpdDoc_FormClosing);
             this.Load += new System.EventHandler(this.frmUpdDoc_Load);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -376,5 +397,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colBeskrivelse;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOprettetaf;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOprettetdato;
+        private System.Windows.Forms.Label labelPath;
     }
 }
