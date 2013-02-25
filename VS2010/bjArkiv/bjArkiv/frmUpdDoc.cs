@@ -12,6 +12,7 @@ namespace bjArkiv
     public partial class frmUpdDoc : Form
     {
         public clsArkiv arkiv { get; set; }
+        public xmldoc startrec { get; set; }
 
         public frmUpdDoc()
         {
@@ -21,6 +22,12 @@ namespace bjArkiv
         private void frmUpdDoc_Load(object sender, EventArgs e)
         {
             xmldocsBindingSource.DataSource = arkiv.docdb;
+            try
+            {
+                int start = ((xmldocs)xmldocsBindingSource.DataSource).IndexOf(startrec);
+                xmldocsBindingSource.CurrencyManager.Position = start;
+            }
+            catch {  }
             dataGridView1.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.DisplayedCells);
         }
 
