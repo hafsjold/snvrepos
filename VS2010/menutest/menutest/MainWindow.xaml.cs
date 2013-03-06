@@ -54,6 +54,8 @@ namespace menutest
 
         private void but_Click(object sender, RoutedEventArgs e)
         {
+
+
             string content = (sender as Button).Content.ToString();
             string rdpname = content + @".rdp";
             string rdpfile = System.IO.Path.Combine(menuFolder, rdpname);
@@ -80,41 +82,19 @@ namespace menutest
             FileInfo fi = new FileInfo(rdpfile);
             if (!fi.Exists) getFile(rdpfile, content); 
  
-            var proc = Process.Start(rdpfile);
-            proclist.Add(rdpfile, proc);
-
-
-        }
-
-        private void but_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            string content = (sender as Button).Content.ToString();
-            string rdpname = content + @".rdp";
-            string rdpfile = System.IO.Path.Combine(menuFolder, rdpname);
-            if (proclist.ContainsKey(rdpfile))
+            if ((Keyboard.Modifiers & ModifierKeys.Control) > 0)
             {
-                try
-                {
-                    if (proclist[rdpfile].HasExited)
-                    {
-                        proclist.Remove(rdpfile);
-                    }
-                    else
-                    {
-                        SwitchToThisWindow(proclist[rdpfile].MainWindowHandle, true);
-                        return;
-                    }
-                }
-                catch
-                {
-                    proclist.Remove(rdpfile);
-                }
+                var proc = Process.Start(@"c:\windows\system32\mstsc.exe", "/edit " + rdpfile);
+                proclist.Add(rdpfile, proc);
+            }
+            else
+            {
+                Process proc = Process.Start(rdpfile);
+                proclist.Add(rdpfile, proc);
             }
 
-            FileInfo fi = new FileInfo(rdpfile);
-            if (!fi.Exists) getFile(rdpfile, content); 
-            var proc = Process.Start(@"c:\windows\system32\mstsc.exe", "/edit " + rdpfile);
-            proclist.Add(rdpfile, proc);
+
+
         }
 
         private void Group_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -143,41 +123,18 @@ namespace menutest
             }
 
             FileInfo fi = new FileInfo(rdpfile);
-            if (!fi.Exists) getFile(rdpfile, content); 
-            var proc = Process.Start(rdpfile);
-            proclist.Add(rdpfile, proc);
-
-        }
-
-        private void Group_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            string content = (sender as GroupBox).Name.ToString();
-            string rdpname = content + @".rdp";
-            string rdpfile = System.IO.Path.Combine(menuFolder, rdpname);
-            if (proclist.ContainsKey(rdpfile))
+            if (!fi.Exists) getFile(rdpfile, content);
+            if ((Keyboard.Modifiers & ModifierKeys.Control) > 0)
             {
-                try
-                {
-                    if (proclist[rdpfile].HasExited)
-                    {
-                        proclist.Remove(rdpfile);
-                    }
-                    else
-                    {
-                        SwitchToThisWindow(proclist[rdpfile].MainWindowHandle, true);
-                        return;
-                    }
-                }
-                catch
-                {
-                    proclist.Remove(rdpfile);
-                }
+                var proc = Process.Start(@"c:\windows\system32\mstsc.exe", "/edit " + rdpfile);
+                proclist.Add(rdpfile, proc);
+            }
+            else
+            {
+                Process proc = Process.Start(rdpfile);
+                proclist.Add(rdpfile, proc);
             }
 
-            FileInfo fi = new FileInfo(rdpfile);
-            if (!fi.Exists) getFile(rdpfile, content); 
-            var proc = Process.Start(@"c:\windows\system32\mstsc.exe", "/edit " + rdpfile);
-            proclist.Add(rdpfile, proc);
         }
 
         private void getFile(string rdpfile, string content) 
@@ -208,6 +165,11 @@ namespace menutest
                     }
                 }
             }
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+
         }
 
     }
