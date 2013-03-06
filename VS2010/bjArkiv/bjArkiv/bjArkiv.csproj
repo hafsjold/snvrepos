@@ -78,12 +78,6 @@
     <Compile Include="bjExtract\ZipArchive.cs" />
     <Compile Include="clsArkiv.cs" />
     <Compile Include="clsXmlDocs.cs" />
-    <Compile Include="frmAddDoc.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAddDoc.Designer.cs">
-      <DependentUpon>frmAddDoc.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmFileView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,9 +97,6 @@
     <EmbeddedResource Include="bjExtract\Resource1.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmAddDoc.resx">
-      <DependentUpon>frmAddDoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmFileView.resx">
       <DependentUpon>frmFileView.cs</DependentUpon>

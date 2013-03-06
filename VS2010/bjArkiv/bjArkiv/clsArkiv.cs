@@ -157,6 +157,12 @@ namespace bjArkiv
                     {
                         id = id,
                         ref_nr = ref_nr,
+                        virksomhed = "",
+                        emne = "",
+                        dokument_type = "",
+                        år = 0,
+                        beskrivelse = "",
+                        ekstern_kilde = "",
                         oprettes_af = Oprettet_af,
                         oprettet_dato = Oprettet_dato,
                         kilde_sti = getArkivLocalPath(pfile)

@@ -52,22 +52,22 @@ namespace bjArkiv
             switch (dataGridView1.CurrentCell.OwningColumn.Name)
             {
                 case "colVirksomhed":
-                    stringArray = (from x in arkiv.docdb select x.virksomhed).ToArray();
+                    stringArray = (from x in arkiv.docdb where x.virksomhed != null && x.virksomhed != "" select x.virksomhed).ToArray();
                     break;
                 case "colEmne":
-                    stringArray = (from x in arkiv.docdb select x.emne).ToArray();
+                    stringArray = (from x in arkiv.docdb where x.emne != null && x.emne != "" select x.emne).ToArray();
                     break;
                 case "colDokumenttype":
-                    stringArray = (from x in arkiv.docdb select x.dokument_type).ToArray();
+                    stringArray = (from x in arkiv.docdb where x.dokument_type != null && x.dokument_type != "" select x.dokument_type).ToArray();
                     break;
                 case "colÅr":
-                    stringArray = (from x in arkiv.docdb select x.år.ToString()).ToArray();
+                    stringArray = (from x in arkiv.docdb where x.år != null && x.år != 0 select x.år.ToString()).ToArray();
                     break;
                 case "colEksternkilde":
-                    stringArray = (from x in arkiv.docdb select x.ekstern_kilde).ToArray();
+                    stringArray = (from x in arkiv.docdb where x.ekstern_kilde != null && x.ekstern_kilde != "" select x.ekstern_kilde).ToArray();
                     break;
                 case "colBeskrivelse":
-                    stringArray = (from x in arkiv.docdb select x.beskrivelse).ToArray();
+                    stringArray = (from x in arkiv.docdb where x.beskrivelse != null && x.beskrivelse != "" select x.beskrivelse).ToArray();
                     break;
                 default:
                     break;
@@ -82,6 +82,16 @@ namespace bjArkiv
                 prodCode.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
             }
+        }
+
+        private void splitContainer1_SizeChanged(object sender, EventArgs e)
+        {
+            splitContainer1.SplitterDistance = 25;
+        }
+
+        private void splitContainer2_SizeChanged(object sender, EventArgs e)
+        {
+            splitContainer2.SplitterDistance= splitContainer2.Size.Height - 25;
         }
     }
 }

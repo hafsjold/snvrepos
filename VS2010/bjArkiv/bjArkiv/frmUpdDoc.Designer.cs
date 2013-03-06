@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUpdDoc));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.labelPath = new System.Windows.Forms.Label();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.bindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
@@ -45,7 +46,6 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.labelPath = new System.Windows.Forms.Label();
             this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colKildesti = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colRefnr = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -86,9 +86,20 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(821, 262);
+            this.splitContainer1.Size = new System.Drawing.Size(964, 218);
             this.splitContainer1.SplitterDistance = 25;
             this.splitContainer1.TabIndex = 0;
+            this.splitContainer1.SizeChanged += new System.EventHandler(this.splitContainer1_SizeChanged);
+            // 
+            // labelPath
+            // 
+            this.labelPath.AutoSize = true;
+            this.labelPath.BackColor = System.Drawing.SystemColors.Control;
+            this.labelPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPath.Location = new System.Drawing.Point(46, 3);
+            this.labelPath.Name = "labelPath";
+            this.labelPath.Size = new System.Drawing.Size(0, 18);
+            this.labelPath.TabIndex = 2;
             // 
             // splitContainer2
             // 
@@ -104,9 +115,10 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.bindingNavigator);
-            this.splitContainer2.Size = new System.Drawing.Size(821, 233);
-            this.splitContainer2.SplitterDistance = 200;
+            this.splitContainer2.Size = new System.Drawing.Size(964, 189);
+            this.splitContainer2.SplitterDistance = 160;
             this.splitContainer2.TabIndex = 0;
+            this.splitContainer2.SizeChanged += new System.EventHandler(this.splitContainer2_SizeChanged);
             // 
             // dataGridView1
             // 
@@ -130,7 +142,7 @@
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(821, 200);
+            this.dataGridView1.Size = new System.Drawing.Size(964, 160);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
             this.dataGridView1.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dataGridView1_EditingControlShowing);
@@ -154,14 +166,14 @@
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem});
-            this.bindingNavigator.Location = new System.Drawing.Point(0, 4);
+            this.bindingNavigator.Location = new System.Drawing.Point(0, 0);
             this.bindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
             this.bindingNavigator.MoveNextItem = this.bindingNavigatorMoveNextItem;
             this.bindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator.Name = "bindingNavigator";
             this.bindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator.Size = new System.Drawing.Size(821, 25);
+            this.bindingNavigator.Size = new System.Drawing.Size(964, 25);
             this.bindingNavigator.TabIndex = 0;
             this.bindingNavigator.Text = "bindingNavigator";
             // 
@@ -253,16 +265,6 @@
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             this.bindingNavigatorSeparator2.Visible = false;
             // 
-            // labelPath
-            // 
-            this.labelPath.AutoSize = true;
-            this.labelPath.BackColor = System.Drawing.SystemColors.Control;
-            this.labelPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPath.Location = new System.Drawing.Point(46, 3);
-            this.labelPath.Name = "labelPath";
-            this.labelPath.Size = new System.Drawing.Size(0, 18);
-            this.labelPath.TabIndex = 2;
-            // 
             // colId
             // 
             this.colId.DataPropertyName = "id";
@@ -343,10 +345,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(821, 262);
+            this.ClientSize = global::bjArkiv.Properties.Settings.Default.frmAddDocSize;
             this.Controls.Add(this.splitContainer1);
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::bjArkiv.Properties.Settings.Default, "frmAddDocLocation", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::bjArkiv.Properties.Settings.Default, "frmAddDocSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.Location = global::bjArkiv.Properties.Settings.Default.frmAddDocLocation;
             this.Name = "frmUpdDoc";
-            this.Text = "frmUpdDoc";
+            this.Text = "Edit Metadata";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmUpdDoc_FormClosing);
             this.Load += new System.EventHandler(this.frmUpdDoc_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);

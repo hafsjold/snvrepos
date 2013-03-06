@@ -5,15 +5,6 @@
     <Setting Name="frmAddDocLocation" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">0, 0</Value>
     </Setting>
-    <Setting Name="frmDocDbliteLocation" Type="System.Drawing.Point" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
-    </Setting>
-    <Setting Name="frmDocDbliteSize" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">893, 399</Value>
-    </Setting>
-    <Setting Name="frmDocDbliteSplitterDistance" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">54</Value>
-    </Setting>
     <Setting Name="strLastbjArkiv" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
@@ -28,6 +19,9 @@
     </Setting>
     <Setting Name="lastFolderVisited" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="frmAddDocSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">964, 218</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -37,42 +37,6 @@ namespace bjArkiv.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point frmDocDbliteLocation {
-            get {
-                return ((global::System.Drawing.Point)(this["frmDocDbliteLocation"]));
-            }
-            set {
-                this["frmDocDbliteLocation"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("893, 399")]
-        public global::System.Drawing.Size frmDocDbliteSize {
-            get {
-                return ((global::System.Drawing.Size)(this["frmDocDbliteSize"]));
-            }
-            set {
-                this["frmDocDbliteSize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("54")]
-        public int frmDocDbliteSplitterDistance {
-            get {
-                return ((int)(this["frmDocDbliteSplitterDistance"]));
-            }
-            set {
-                this["frmDocDbliteSplitterDistance"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string strLastbjArkiv {
             get {
@@ -127,6 +91,18 @@ namespace bjArkiv.Properties {
             }
             set {
                 this["lastFolderVisited"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("964, 218")]
+        public global::System.Drawing.Size frmAddDocSize {
+            get {
+                return ((global::System.Drawing.Size)(this["frmAddDocSize"]));
+            }
+            set {
+                this["frmAddDocSize"] = value;
             }
         }
     }
