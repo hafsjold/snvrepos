@@ -25,10 +25,6 @@ namespace menuhd
         [DllImport("user32.dll", SetLastError = true)]
         static extern void SwitchToThisWindow(IntPtr hWnd, bool turnOn);
 
-        [DllImport("kernel32.dll", SetLastError = true, CallingConvention = CallingConvention.Winapi)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        public static extern bool IsWow64Process([In] IntPtr hProcess, [Out] out bool lpSystemInfo);
-
         private string menuFolder;
         private Dictionary<string, Process> proclist = new Dictionary<string, Process>();
 
@@ -93,14 +89,14 @@ namespace menuhd
             }
             else if ((Keyboard.Modifiers & ModifierKeys.Shift) > 0)
             {
-                if (Is64Bit())
-                {
-                    var proc = Process.Start(@"C:\Program Files (x86)\Notepad++\notepad++.exe", rdpfile);
-                }
-                else
+                try
                 {
                     var proc = Process.Start(@"C:\Program Files\Notepad++\notepad++.exe", rdpfile);
                 }
+                catch
+                {
+                    var proc = Process.Start(@"C:\Program Files (x86)\Notepad++\notepad++.exe", rdpfile);
+               }
             }
             else
             {
@@ -146,13 +142,13 @@ namespace menuhd
             }
             else if ((Keyboard.Modifiers & ModifierKeys.Shift) > 0)
             {
-                if (Is64Bit())
-                {
-                    var proc = Process.Start(@"C:\Program Files (x86)\Notepad++\notepad++.exe", rdpfile);
-                }
-                else
+                try
                 {
                     var proc = Process.Start(@"C:\Program Files\Notepad++\notepad++.exe", rdpfile);
+                }
+                catch
+                {
+                    var proc = Process.Start(@"C:\Program Files (x86)\Notepad++\notepad++.exe", rdpfile);
                 }
             }
             else
@@ -191,13 +187,6 @@ namespace menuhd
                     }
                 }
             }
-        }
-
-        private static bool Is64Bit()
-        {
-            bool retVal;
-            IsWow64Process(Process.GetCurrentProcess().Handle, out retVal);
-            return retVal;
         }
 
     }
