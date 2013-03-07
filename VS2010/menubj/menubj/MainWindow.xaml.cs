@@ -25,6 +25,10 @@ namespace menubj
         [DllImport("user32.dll", SetLastError = true)]
         static extern void SwitchToThisWindow(IntPtr hWnd, bool turnOn);
 
+        [DllImport("kernel32.dll", SetLastError = true, CallingConvention = CallingConvention.Winapi)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        public static extern bool IsWow64Process([In] IntPtr hProcess, [Out] out bool lpSystemInfo);
+
         private string menuFolder;
         private Dictionary<string, Process> proclist = new Dictionary<string, Process>();
 
@@ -87,6 +91,17 @@ namespace menubj
                 var proc = Process.Start(@"c:\windows\system32\mstsc.exe", "/edit " + rdpfile);
                 proclist.Add(rdpfile, proc);
             }
+            else if ((Keyboard.Modifiers & ModifierKeys.Shift) > 0)
+            {
+                if (Is64Bit())
+                {
+                    var proc = Process.Start(@"C:\Program Files (x86)\Notepad++\notepad++.exe", rdpfile);
+                }
+                else
+                {
+                    var proc = Process.Start(@"C:\Program Files\Notepad++\notepad++.exe", rdpfile);
+                }
+            }
             else
             {
                 Process proc = Process.Start(rdpfile);
@@ -129,6 +144,17 @@ namespace menubj
                 var proc = Process.Start(@"c:\windows\system32\mstsc.exe", "/edit " + rdpfile);
                 proclist.Add(rdpfile, proc);
             }
+            else if ((Keyboard.Modifiers & ModifierKeys.Shift) > 0)
+            {
+                if (Is64Bit())
+                {
+                    var proc = Process.Start(@"C:\Program Files (x86)\Notepad++\notepad++.exe", rdpfile);
+                }
+                else
+                {
+                    var proc = Process.Start(@"C:\Program Files\Notepad++\notepad++.exe", rdpfile);
+                }
+            }
             else
             {
                 Process proc = Process.Start(rdpfile);
@@ -167,10 +193,11 @@ namespace menubj
             }
         }
 
-        private void Window_KeyDown(object sender, KeyEventArgs e)
+        private static bool Is64Bit()
         {
-
+            bool retVal;
+            IsWow64Process(Process.GetCurrentProcess().Handle, out retVal);
+            return retVal;
         }
-
     }
 }
