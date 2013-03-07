@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{55B866F6-43B8-492D-B72C-C753C4E2EBC0}</ProjectGuid>
+    <ProjectGuid>{A120EC6E-FD98-4ADE-9013-A791B5817982}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>menutest</RootNamespace>
-    <AssemblyName>menutest</AssemblyName>
+    <RootNamespace>menubj</RootNamespace>
+    <AssemblyName>menubj</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
