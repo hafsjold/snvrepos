@@ -14,6 +14,9 @@ using System.Windows.Shapes;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
+using System.Windows.Controls.Primitives;
+using System.Timers;
+using System.Windows.Threading;
 
 namespace menubj
 {
@@ -24,6 +27,8 @@ namespace menubj
     {
         [DllImport("user32.dll", SetLastError = true)]
         static extern void SwitchToThisWindow(IntPtr hWnd, bool turnOn);
+
+        public DispatcherTimer dispatcherTimer = new DispatcherTimer();
 
         private string menuFolder;
         private Dictionary<string, Process> proclist = new Dictionary<string, Process>();
@@ -41,6 +46,28 @@ namespace menubj
             DirectoryInfo di = new DirectoryInfo(menuFolder);
             try { CreateMissingFolders(di); }
             catch { }
+
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 5);
+            dispatcherTimer.Start();
+
+            char[] s = { ' ' };
+            Process[] mstsc = Process.GetProcessesByName("mstsc");
+            foreach (Process p in mstsc)
+            {
+                string server = p.MainWindowTitle.Split(s)[0];
+                string rdpname = server + @".rdp";
+                string rdpfile = System.IO.Path.Combine(menuFolder, rdpname);
+                lock (proclist)
+                {
+                    if (!proclist.ContainsKey(rdpfile))
+                        proclist.Add(rdpfile, p);
+                }
+            }
+            foreach (object o in LogicalTreeHelper.GetChildren(win1))
+            {
+                RecurseChildren((DependencyObject)o);
+            }
         }
 
         public static void CreateMissingFolders(DirectoryInfo di)
@@ -52,111 +79,114 @@ namespace menubj
             }
         }
 
-        private void but_Click(object sender, RoutedEventArgs e)
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-
-
-            string content = (sender as Button).Content.ToString();
-            string rdpname = content + @".rdp";
-            string rdpfile = System.IO.Path.Combine(menuFolder, rdpname);
-            if (proclist.ContainsKey(rdpfile))
+            foreach (object o in LogicalTreeHelper.GetChildren(win1))
             {
-                try
-                {
-                    if (proclist[rdpfile].HasExited)
-                    {
-                        proclist.Remove(rdpfile);
-                    }
-                    else
-                    {
-                        SwitchToThisWindow(proclist[rdpfile].MainWindowHandle, true);
-                        return;
-                    }
-                }
-                catch
-                {
-                    proclist.Remove(rdpfile);
-                }
+                RecurseChildren((DependencyObject)o);
             }
-
-            FileInfo fi = new FileInfo(rdpfile);
-            if (!fi.Exists) getFile(rdpfile, content);
-
-            if ((Keyboard.Modifiers & ModifierKeys.Control) > 0)
-            {
-                var proc = Process.Start(@"c:\windows\system32\mstsc.exe", "/edit " + rdpfile);
-                proclist.Add(rdpfile, proc);
-            }
-            else if ((Keyboard.Modifiers & ModifierKeys.Shift) > 0)
-            {
-                try
-                {
-                    var proc = Process.Start(@"C:\Program Files\Notepad++\notepad++.exe", rdpfile);
-                }
-                catch
-                {
-                    var proc = Process.Start(@"C:\Program Files (x86)\Notepad++\notepad++.exe", rdpfile);
-                }
-            }
-            else
-            {
-                Process proc = Process.Start(rdpfile);
-                proclist.Add(rdpfile, proc);
-            }
-
-
-
         }
 
-        private void Group_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void RecurseChildren(DependencyObject current)
         {
-            string content = (sender as GroupBox).Name.ToString();
-            string rdpname = content + @".rdp";
-            string rdpfile = System.IO.Path.Combine(menuFolder, rdpname);
-            if (proclist.ContainsKey(rdpfile))
+            foreach (object o in LogicalTreeHelper.GetChildren(current))
             {
-                try
+                menuButton uc = o as menuButton;
+                if (uc == null)
                 {
-                    if (proclist[rdpfile].HasExited)
+                    if (o is DependencyObject)
+                        RecurseChildren((DependencyObject)o);
+                    continue;
+                }
+
+                string server = uc.ServerName;
+                string rdpname = server + @".rdp";
+                string rdpfile = System.IO.Path.Combine(menuFolder, rdpname);
+                lock (proclist)
+                {
+                    if (proclist.ContainsKey(rdpfile))
                     {
-                        proclist.Remove(rdpfile);
+                        try
+                        {
+                            if (proclist[rdpfile].HasExited)
+                            {
+                                proclist.Remove(rdpfile);
+                                uc.ledbutton.Visibility = System.Windows.Visibility.Hidden;
+                            }
+                            else
+                            {
+                                uc.ledbutton.Visibility = System.Windows.Visibility.Visible;
+                            }
+                        }
+                        catch
+                        {
+                            proclist.Remove(rdpfile);
+                            uc.ledbutton.Visibility = System.Windows.Visibility.Hidden;
+                        }
                     }
                     else
+                        uc.ledbutton.Visibility = System.Windows.Visibility.Hidden;
+                }
+            }
+        }
+
+        private void server_mnuClick(object sender, RoutedEventArgs e)
+        {
+            menuButton mnuButton = sender as menuButton;
+            string server = mnuButton.ServerName;
+            string rdpname = server + @".rdp";
+            string rdpfile = System.IO.Path.Combine(menuFolder, rdpname);
+            lock (proclist)
+            {
+                if (proclist.ContainsKey(rdpfile))
+                {
+                    try
                     {
-                        SwitchToThisWindow(proclist[rdpfile].MainWindowHandle, true);
-                        return;
+                        if (proclist[rdpfile].HasExited)
+                        {
+                            proclist.Remove(rdpfile);
+                            mnuButton.ledbutton.Visibility = System.Windows.Visibility.Hidden;
+                        }
+                        else
+                        {
+                            SwitchToThisWindow(proclist[rdpfile].MainWindowHandle, true);
+                            return;
+                        }
+                    }
+                    catch
+                    {
+                        proclist.Remove(rdpfile);
+                        mnuButton.ledbutton.Visibility = System.Windows.Visibility.Hidden;
                     }
                 }
-                catch
-                {
-                    proclist.Remove(rdpfile);
-                }
-            }
 
-            FileInfo fi = new FileInfo(rdpfile);
-            if (!fi.Exists) getFile(rdpfile, content);
-            if ((Keyboard.Modifiers & ModifierKeys.Control) > 0)
-            {
-                var proc = Process.Start(@"c:\windows\system32\mstsc.exe", "/edit " + rdpfile);
-                proclist.Add(rdpfile, proc);
-            }
-            else if ((Keyboard.Modifiers & ModifierKeys.Shift) > 0)
-            {
-                try
-                {
-                    var proc = Process.Start(@"C:\Program Files\Notepad++\notepad++.exe", rdpfile);
-                }
-                catch
-                {
-                    var proc = Process.Start(@"C:\Program Files (x86)\Notepad++\notepad++.exe", rdpfile);
-                }
-            }
-            else
-            {
-                Process proc = Process.Start(rdpfile);
-                proclist.Add(rdpfile, proc);
-            }
+                FileInfo fi = new FileInfo(rdpfile);
+                if (!fi.Exists) getFile(rdpfile, server);
 
+                if ((Keyboard.Modifiers & ModifierKeys.Control) > 0)
+                {
+                    var proc = Process.Start(@"c:\windows\system32\mstsc.exe", "/edit " + rdpfile);
+                    proclist.Add(rdpfile, proc);
+                    mnuButton.ledbutton.Visibility = System.Windows.Visibility.Visible;
+                }
+                else if ((Keyboard.Modifiers & ModifierKeys.Shift) > 0)
+                {
+                    try
+                    {
+                        var proc = Process.Start(@"C:\Program Files\Notepad++\notepad++.exe", rdpfile);
+                    }
+                    catch
+                    {
+                        var proc = Process.Start(@"C:\Program Files (x86)\Notepad++\notepad++.exe", rdpfile);
+                    }
+                }
+                else
+                {
+                    Process proc = Process.Start(rdpfile);
+                    proclist.Add(rdpfile, proc);
+                    mnuButton.ledbutton.Visibility = System.Windows.Visibility.Visible;
+                }
+            }
         }
 
         private void getFile(string rdpfile, string content)
@@ -191,3 +221,4 @@ namespace menubj
 
     }
 }
+

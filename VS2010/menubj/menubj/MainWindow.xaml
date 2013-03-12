@@ -1,75 +1,125 @@
 ﻿<Window x:Class="menubj.MainWindow"
+        xmlns:local="clr-namespace:menubj"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Buus Jensen Servers" Height="451" Width="400" DataContext="{Binding}" Icon="/menubj;component/bj.ico">
+        Title="Buus Jensen Servers" Height="451" Width="400" DataContext="{Binding}" Icon="/menubj;component/bj.ico" x:Name="win1" >
     <Grid Height="416" Width="379">
-        <GroupBox Header="pRevi36" Height="162" HorizontalAlignment="Left" Margin="0,-1,0,0" Name="pRevi36" VerticalAlignment="Top" Width="183" BorderBrush="Black" Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}"  MouseDoubleClick="Group_MouseDoubleClick" >
-            <Grid Height="140" Width="170" >
-                <Button Content="Post05" Height="37" HorizontalAlignment="Left" Margin="6,6,0,0" Name="Post05" VerticalAlignment="Top" Width="74" Click="but_Click" Background="#FF1CD3EF" />
-                <Button Content="vRevi11" Height="37" HorizontalAlignment="Left" Margin="90,6,0,0" Name="vRevi11" VerticalAlignment="Top" Width="74" Background="#FF00BB00" Click="but_Click"  />
-                <Button Content="vRevi05" Height="37" HorizontalAlignment="Left" Margin="6,50,0,0" Name="vRevi05" VerticalAlignment="Top" Width="74" Click="but_Click" Background="#FF1CD3EF" />
-                <Button Content="vRevi21" Height="37" HorizontalAlignment="Left" Margin="90,49,0,0" Name="vRevi21" VerticalAlignment="Top" Width="74" Click="but_Click" Background="#FF1CD3EF" />
-                <Button Content="vRevi04" Height="37" HorizontalAlignment="Left" Margin="91,93,0,0" Name="vRevi04" VerticalAlignment="Top" Width="74" Click="but_Click" Background="#FF1CD3EF" />
-                <Button Content="vRevi06tv" Height="37" HorizontalAlignment="Left" Margin="6,94,0,0" Name="vRevi06tv" VerticalAlignment="Top" Width="74" Click="but_Click" Background="#FF1CD3EF" />
-            </Grid>
-            
-        </GroupBox>
-        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Header="pRevi37" Height="162" HorizontalAlignment="Left" Margin="193,-2,0,0" Name="pRevi37" VerticalAlignment="Top" Width="183" MouseDoubleClick="Group_MouseDoubleClick" >
-            <Grid Height="140" Width="170">
+        <GroupBox  Height="158" HorizontalAlignment="Left" Name="pRevi36" VerticalAlignment="Top" Width="183" BorderBrush="Black" Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" Margin="0,3,0,0">
+            <Grid Height="152" Width="170" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="12*" />
-                    <ColumnDefinition Width="158*" />
+                    <ColumnDefinition Width="85" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Button Content="Revi35" Height="37" HorizontalAlignment="Left" Margin="6,6,0,0" Name="Revi35" VerticalAlignment="Top" Width="74" Click="but_Click"  Grid.ColumnSpan="2" Background="#FF1CD3EF" />
-                <Button Background="#FF00BB00" Content="vRevi12" Height="37" HorizontalAlignment="Left" Margin="75,6,0,0" Name="vRevi12" VerticalAlignment="Top" Width="74" Click="but_Click"  Grid.Column="1" />
-                <Button Content="vRevi22" Height="37" HorizontalAlignment="Left" Margin="76,49,0,0" Name="vRevi22" VerticalAlignment="Top" Width="74"  Click="but_Click"  Grid.Column="1" Background="#FF1CD3EF" />
-                <Button Content="vRevi26" Height="37" HorizontalAlignment="Left" Margin="77,93,0,0" Name="vRevi26" VerticalAlignment="Top" Width="74"  Click="but_Click"  Grid.Column="1" Background="#FF1CD3EF" />
-                <Button Background="#FF00BB00" Content="Revi24" Height="37" HorizontalAlignment="Left" Margin="7,51,0,0" Name="Revi24" VerticalAlignment="Top" Width="74"  Click="but_Click"  Grid.ColumnSpan="2" />
+                <Grid.RowDefinitions >
+                    <RowDefinition  Height="3"/>
+                    <RowDefinition  Height="30"/>
+                    <RowDefinition  Height="40"/>
+                    <RowDefinition  Height="40"/>
+                    <RowDefinition  Height="40"/>
+                </Grid.RowDefinitions>
+                <local:menuButton ServerName="pRevi36" ServerOS="Win2012" Margin="3" Grid.Row="1" Grid.ColumnSpan="2" mnuClick="server_mnuClick" />
+                <local:menuButton ServerName="Post05" ServerOS="Win2008" Margin="3" Grid.Row="2" mnuClick="server_mnuClick" />
+                <local:menuButton ServerName="vRevi11" ServerOS="Win2012" Margin="3" Grid.Row="2" Grid.Column="1" mnuClick="server_mnuClick" />
+                <local:menuButton ServerName="vRevi05" ServerOS="Win2008" Margin="3" Grid.Row="3" mnuClick="server_mnuClick" />
+                <local:menuButton ServerName="vRevi21" ServerOS="Win2008" Margin="3" Grid.Row="3" Grid.Column="1" mnuClick="server_mnuClick" />
+                <local:menuButton ServerName="vRevi06tv" ServerOS="Win2008" Margin="3" Grid.Row="4" mnuClick="server_mnuClick" />
+                <local:menuButton ServerName="vRevi04" ServerOS="Win2008" Margin="3" Grid.Row="4" Grid.Column="1" mnuClick="server_mnuClick" />
             </Grid>
         </GroupBox>
-        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Header="pRevi38" Height="73" HorizontalAlignment="Left" Margin="0,168,0,0" Name="pRevi38" VerticalAlignment="Top" Width="184"  MouseDoubleClick="Group_MouseDoubleClick" >
-            <Grid Height="47" Width="169">
+        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="158" HorizontalAlignment="Left" Margin="193,3,0,0" Name="groupBox1" VerticalAlignment="Top" Width="183">
+            <Grid Height="152" Width="170">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="13*" />
-                    <ColumnDefinition Width="166*" />
+                    <ColumnDefinition Width="85" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Button Content="vRevi10scc" Height="37" HorizontalAlignment="Left" Margin="6,6,0,0" Name="vRevi10scc" VerticalAlignment="Top" Width="74" Grid.ColumnSpan="2" Click="but_Click" Background="#FF1CD3EF" />
-                <Button Content="vRevi10mdt" Height="37" HorizontalAlignment="Left" Margin="76,6,0,0" Name="vRevi10mdt" VerticalAlignment="Top" Width="74" Grid.Column="1" Click="but_Click" Background="#FF1CD3EF" />
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <local:menuButton x:Name="pRevi37" ServerOS="Win2012" Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="pRevi37" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Row="2" Margin="3" ServerName="Revi35" ServerOS="Win2008"  mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="vRevi12" ServerOS="Win2012" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Row="3" Margin="3" ServerName="Revi24" ServerOS="Win2012" mnuClick="server_mnuClick"/>
+                <local:menuButton Grid.Column="1" Grid.Row="3" Margin="3" ServerName="vRevi22" ServerOS="Win2008" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Column="1" Grid.Row="4" Margin="3" ServerName="vRevi26" ServerOS="Win2008" mnuClick="server_mnuClick" />
             </Grid>
         </GroupBox>
-        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Header="pRevi39" Height="73" HorizontalAlignment="Left" Margin="192,169,0,0" Name="pRevi39" VerticalAlignment="Top" Width="181"  MouseDoubleClick="Group_MouseDoubleClick" >
-            <Grid Height="54" Width="169">
+        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="76" HorizontalAlignment="Left" Margin="0,167,0,0" Name="groupBox2" VerticalAlignment="Top" Width="183">
+            <Grid Height="76" Width="170">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="13*" />
-                    <ColumnDefinition Width="166*" />
+                    <ColumnDefinition Width="85" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Button Content="vRevi23" Grid.ColumnSpan="2" Height="37" HorizontalAlignment="Left" Margin="6,9,0,0" Name="vRevi23" VerticalAlignment="Top" Width="74" Click="but_Click" Background="#FF1CD3EF" />
-                <Button Content="Revi14" Grid.Column="1" Height="37" HorizontalAlignment="Left" Margin="75,9,0,0" Name="Revi14" VerticalAlignment="Top" Width="74" Background="#E5EBD618" Click="but_Click"  />
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <local:menuButton Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="pRevi38" ServerOS="Win2012" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Row="2" Margin="3" ServerName="vRevi01scc" ServerOS="Win2008" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="vRevi10mdt" ServerOS="Win2008" mnuClick="server_mnuClick" />
             </Grid>
         </GroupBox>
-        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Header="pRevi06" Height="164" HorizontalAlignment="Left" Margin="0,248,0,0" Name="pRevi06" VerticalAlignment="Top" Width="182"  MouseDoubleClick="Group_MouseDoubleClick" >
-            <Grid Height="134" Width="170">
-                <Button Content="Post04" Height="37" HorizontalAlignment="Left" Margin="6,6,0,0" Name="Post04" VerticalAlignment="Top" Width="74" Background="#FFF21C1C" Click="but_Click"  />
-                <Button Content="vVIR03A2" Height="36" HorizontalAlignment="Left" Margin="6,50,0,0" Name="vVIR03A2" VerticalAlignment="Top" Width="74" ClipToBounds="True" Background="#FFF8F810" Click="but_Click"  />
-                <Button Background="#E5EBD618" Content="vRevi09" Height="37" HorizontalAlignment="Left" Margin="86,6,0,0" Name="vRevi09" VerticalAlignment="Top" Width="74" Click="but_Click"  />
-                <Button Background="#FFF8F810" ClipToBounds="True" Content="BuusTools" Height="36" HorizontalAlignment="Left" Margin="85,50,0,0" Name="BuusTools" VerticalAlignment="Top" Width="74" Click="but_Click"  />
-                <Button Background="#FFF8F810" ClipToBounds="True" Content="vVIR04A2" Height="36" HorizontalAlignment="Left" Margin="6,92,0,0" Name="vVIR04A2" VerticalAlignment="Top" Width="74" Click="but_Click"  />
-                <Button Background="#FFF8F810" ClipToBounds="True" Content="VIR01" Height="36" HorizontalAlignment="Left" Margin="85,92,0,0" Name="VIR01" VerticalAlignment="Top" Width="74" Click="but_Click"  />
-            </Grid>
-        </GroupBox>
-        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Header="HD04 i Espergærde" Height="73" HorizontalAlignment="Left" Margin="190,337,0,0" Name="HD04" VerticalAlignment="Top" Width="182"  MouseDoubleClick="Group_MouseDoubleClick" >
-            <Grid Height="54" Width="170">
-				<Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="13*" />
-                    <ColumnDefinition Width="166*" />
+        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="76" HorizontalAlignment="Left" Margin="193,168,0,0" Name="groupBox3" VerticalAlignment="Top" Width="183">
+            <Grid Height="76" Width="170">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="85" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Button Content="Revi27" Grid.ColumnSpan="2" Height="37" HorizontalAlignment="Left" Margin="6,9,0,0" Name="Revi27" VerticalAlignment="Top" Width="74" Click="but_Click" Background="#FF1CD3EF" />
-                <Button Background="#FF00BB00" Content="vRevi13" Height="37" HorizontalAlignment="Left" Margin="77,9,0,0" Name="vRevi13" VerticalAlignment="Top" Width="74" Grid.Column="1" Click="but_Click"  />
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <local:menuButton Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="pRevi39" ServerOS="Win2012" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Row="2" Margin="3" ServerName="vRevi23" ServerOS="Win2008" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="Revi14" ServerOS="freeBSD" mnuClick="server_mnuClick" />
             </Grid>
         </GroupBox>
-        <Button Background="#FFF8F810" ClipToBounds="True" Content="WS05" Height="36" HorizontalAlignment="Left" Margin="288,295,0,0" Name="WS05" VerticalAlignment="Top" Width="74" Click="but_Click" />
-        <Button Background="#FFF8F810" ClipToBounds="True" Content="WS03" Height="36" HorizontalAlignment="Left" Margin="288,251,0,0" Name="WS03" VerticalAlignment="Top" Width="74" Click="but_Click" />
-        <Button Background="#FFF8F810" ClipToBounds="True" Content="WS01" Height="36" HorizontalAlignment="Left" Margin="200,251,0,0" Name="WS01" VerticalAlignment="Top" Width="74" Click="but_Click" />
-        <Button Background="#FFF8F810" ClipToBounds="True" Content="WS04A2" Height="36" HorizontalAlignment="Left" Margin="200,0,0,87" Name="WS04A2" VerticalAlignment="Bottom" Width="74" Click="but_Click" />
+        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="158" HorizontalAlignment="Left" Margin="0,250,0,0" Name="groupBox4" VerticalAlignment="Top" Width="183">
+            <Grid Height="152" Width="170">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="85" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <local:menuButton Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="pRevi06" ServerOS="Win2012" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Row="2" Margin="3" ServerName="Post04" ServerOS="Win2003" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="vRevi09" ServerOS="freeBSD" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Row="3" Margin="3" ServerName="vVir03A2" ServerOS="Win7" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Column="1" Grid.Row="3" Margin="3" ServerName="BuusTools" ServerOS="Win7" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Row="4" Margin="3" ServerName="vVir04A2" ServerOS="Win7" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Column="1" Grid.Row="4" Margin="3" ServerName="Vir01" ServerOS="Win7" mnuClick="server_mnuClick" />
+            </Grid>
+        </GroupBox>
+        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="76" HorizontalAlignment="Left" Margin="192,332,0,0" Name="groupBox5" VerticalAlignment="Top" Width="183">
+            <Grid Height="76" Width="170">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="85" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <local:menuButton Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="HD04" ServerOS="Win2012" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Row="2" Margin="3" ServerName="Revi27" ServerOS="Win2008" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="vRevi13" ServerOS="Win2012" mnuClick="server_mnuClick" />
+            </Grid>
+        </GroupBox>
+        <local:menuButton Margin="202,250,98,132" ServerName="WS01" ServerOS="Win7" mnuClick="server_mnuClick" />
+        <local:menuButton Margin="288,250,12,132" ServerName="WS03" ServerOS="Win7" mnuClick="server_mnuClick" />
+        <local:menuButton Margin="202,292,98,90" ServerName="WS04A2" ServerOS="Win7" mnuClick="server_mnuClick" />
+        <local:menuButton Margin="288,291,12,91" ServerName="WS05" ServerOS="Win7" mnuClick="server_mnuClick" />
     </Grid>
 </Window>
