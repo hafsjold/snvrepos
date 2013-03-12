@@ -52,7 +52,7 @@
                 <local:menuButton Margin="3" ServerName="vHD34" ServerOS="freeBSD" Grid.Row="6" Grid.Column="1" />
             </Grid>
         </GroupBox>
-        <local:menuButton Margin="10,167,290,48" ServerName="hd01local" ServerOS="Win2012" />
+        <local:menuButton Margin="10,167,290,48" ServerName="hd01local" ServerOS="Win2012" mnuClick="server_mnuClick" />
     </Grid>
 </Window>
 
