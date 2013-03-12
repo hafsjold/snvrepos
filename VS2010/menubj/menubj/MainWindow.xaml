@@ -5,12 +5,12 @@
     <Grid Height="416" Width="379">
         <GroupBox Header="pRevi36" Height="162" HorizontalAlignment="Left" Margin="0,-1,0,0" Name="pRevi36" VerticalAlignment="Top" Width="183" BorderBrush="Black" Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}"  MouseDoubleClick="Group_MouseDoubleClick" >
             <Grid Height="140" Width="170" >
-                <Button Content="Post05" Height="37" HorizontalAlignment="Left" Margin="6,6,0,0" Name="Post05" VerticalAlignment="Top" Width="74" Background="{StaticResource {x:Static SystemColors.MenuHighlightBrushKey}}" Click="but_Click"  />
+                <Button Content="Post05" Height="37" HorizontalAlignment="Left" Margin="6,6,0,0" Name="Post05" VerticalAlignment="Top" Width="74" Click="but_Click" Background="#FF1CD3EF" />
                 <Button Content="vRevi11" Height="37" HorizontalAlignment="Left" Margin="90,6,0,0" Name="vRevi11" VerticalAlignment="Top" Width="74" Background="#FF00BB00" Click="but_Click"  />
-                <Button Content="vRevi05" Background="{StaticResource {x:Static SystemColors.MenuHighlightBrushKey}}"  Height="37" HorizontalAlignment="Left" Margin="6,50,0,0" Name="vRevi05" VerticalAlignment="Top" Width="74" Click="but_Click"  />
-                <Button Background="{StaticResource {x:Static SystemColors.MenuHighlightBrushKey}}" Content="vRevi21" Height="37" HorizontalAlignment="Left" Margin="90,49,0,0" Name="vRevi21" VerticalAlignment="Top" Width="74" Click="but_Click"  />
-                <Button Background="{StaticResource {x:Static SystemColors.MenuHighlightBrushKey}}" Content="vRevi04" Height="37" HorizontalAlignment="Left" Margin="91,93,0,0" Name="vRevi04" VerticalAlignment="Top" Width="74" Click="but_Click"  />
-                <Button Background="{StaticResource {x:Static SystemColors.MenuHighlightBrushKey}}" Content="vRevi06tv" Height="37" HorizontalAlignment="Left" Margin="6,94,0,0" Name="vRevi06tv" VerticalAlignment="Top" Width="74" Click="but_Click"  />
+                <Button Content="vRevi05" Height="37" HorizontalAlignment="Left" Margin="6,50,0,0" Name="vRevi05" VerticalAlignment="Top" Width="74" Click="but_Click" Background="#FF1CD3EF" />
+                <Button Content="vRevi21" Height="37" HorizontalAlignment="Left" Margin="90,49,0,0" Name="vRevi21" VerticalAlignment="Top" Width="74" Click="but_Click" Background="#FF1CD3EF" />
+                <Button Content="vRevi04" Height="37" HorizontalAlignment="Left" Margin="91,93,0,0" Name="vRevi04" VerticalAlignment="Top" Width="74" Click="but_Click" Background="#FF1CD3EF" />
+                <Button Content="vRevi06tv" Height="37" HorizontalAlignment="Left" Margin="6,94,0,0" Name="vRevi06tv" VerticalAlignment="Top" Width="74" Click="but_Click" Background="#FF1CD3EF" />
             </Grid>
             
         </GroupBox>
@@ -20,30 +20,30 @@
                     <ColumnDefinition Width="12*" />
                     <ColumnDefinition Width="158*" />
                 </Grid.ColumnDefinitions>
-                <Button Background="{StaticResource {x:Static SystemColors.MenuHighlightBrushKey}}" Content="Revi35" Height="37" HorizontalAlignment="Left" Margin="6,6,0,0" Name="Revi35" VerticalAlignment="Top" Width="74" Click="but_Click"  Grid.ColumnSpan="2" />
+                <Button Content="Revi35" Height="37" HorizontalAlignment="Left" Margin="6,6,0,0" Name="Revi35" VerticalAlignment="Top" Width="74" Click="but_Click"  Grid.ColumnSpan="2" Background="#FF1CD3EF" />
                 <Button Background="#FF00BB00" Content="vRevi12" Height="37" HorizontalAlignment="Left" Margin="75,6,0,0" Name="vRevi12" VerticalAlignment="Top" Width="74" Click="but_Click"  Grid.Column="1" />
-                <Button Background="{StaticResource {x:Static SystemColors.MenuHighlightBrushKey}}" Content="vRevi22" Height="37" HorizontalAlignment="Left" Margin="76,49,0,0" Name="vRevi22" VerticalAlignment="Top" Width="74"  Click="but_Click"  Grid.Column="1" />
-                <Button Background="{StaticResource {x:Static SystemColors.MenuHighlightBrushKey}}" Content="vRevi26" Height="37" HorizontalAlignment="Left" Margin="77,93,0,0" Name="vRevi26" VerticalAlignment="Top" Width="74"  Click="but_Click"  Grid.Column="1" />
+                <Button Content="vRevi22" Height="37" HorizontalAlignment="Left" Margin="76,49,0,0" Name="vRevi22" VerticalAlignment="Top" Width="74"  Click="but_Click"  Grid.Column="1" Background="#FF1CD3EF" />
+                <Button Content="vRevi26" Height="37" HorizontalAlignment="Left" Margin="77,93,0,0" Name="vRevi26" VerticalAlignment="Top" Width="74"  Click="but_Click"  Grid.Column="1" Background="#FF1CD3EF" />
                 <Button Background="#FF00BB00" Content="Revi24" Height="37" HorizontalAlignment="Left" Margin="7,51,0,0" Name="Revi24" VerticalAlignment="Top" Width="74"  Click="but_Click"  Grid.ColumnSpan="2" />
             </Grid>
         </GroupBox>
-        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Header="pRevi38" Height="73" HorizontalAlignment="Left" Margin="-1,168,0,0" Name="pRevi38" VerticalAlignment="Top" Width="184"  MouseDoubleClick="Group_MouseDoubleClick" >
+        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Header="pRevi38" Height="73" HorizontalAlignment="Left" Margin="0,168,0,0" Name="pRevi38" VerticalAlignment="Top" Width="184"  MouseDoubleClick="Group_MouseDoubleClick" >
             <Grid Height="47" Width="169">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="13*" />
                     <ColumnDefinition Width="166*" />
                 </Grid.ColumnDefinitions>
-                <Button Background="{StaticResource {x:Static SystemColors.MenuHighlightBrushKey}}" Content="vRevi10scc" Height="37" HorizontalAlignment="Left" Margin="6,6,0,0" Name="vRevi10scc" VerticalAlignment="Top" Width="74" Grid.ColumnSpan="2" Click="but_Click"  />
-                <Button Background="{StaticResource {x:Static SystemColors.MenuHighlightBrushKey}}" Content="vRevi10mdt" Height="37" HorizontalAlignment="Left" Margin="76,6,0,0" Name="vRevi10mdt" VerticalAlignment="Top" Width="74" Grid.Column="1" Click="but_Click"  />
+                <Button Content="vRevi10scc" Height="37" HorizontalAlignment="Left" Margin="6,6,0,0" Name="vRevi10scc" VerticalAlignment="Top" Width="74" Grid.ColumnSpan="2" Click="but_Click" Background="#FF1CD3EF" />
+                <Button Content="vRevi10mdt" Height="37" HorizontalAlignment="Left" Margin="76,6,0,0" Name="vRevi10mdt" VerticalAlignment="Top" Width="74" Grid.Column="1" Click="but_Click" Background="#FF1CD3EF" />
             </Grid>
         </GroupBox>
-        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Header="pRevi39" Height="73" HorizontalAlignment="Left" Margin="191,169,0,0" Name="pRevi39" VerticalAlignment="Top" Width="181"  MouseDoubleClick="Group_MouseDoubleClick" >
+        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Header="pRevi39" Height="73" HorizontalAlignment="Left" Margin="192,169,0,0" Name="pRevi39" VerticalAlignment="Top" Width="181"  MouseDoubleClick="Group_MouseDoubleClick" >
             <Grid Height="54" Width="169">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="13*" />
                     <ColumnDefinition Width="166*" />
                 </Grid.ColumnDefinitions>
-                <Button Background="{StaticResource {x:Static SystemColors.MenuHighlightBrushKey}}" Content="vRevi23" Grid.ColumnSpan="2" Height="37" HorizontalAlignment="Left" Margin="6,9,0,0" Name="vRevi23" VerticalAlignment="Top" Width="74" Click="but_Click"  />
+                <Button Content="vRevi23" Grid.ColumnSpan="2" Height="37" HorizontalAlignment="Left" Margin="6,9,0,0" Name="vRevi23" VerticalAlignment="Top" Width="74" Click="but_Click" Background="#FF1CD3EF" />
                 <Button Content="Revi14" Grid.Column="1" Height="37" HorizontalAlignment="Left" Margin="75,9,0,0" Name="Revi14" VerticalAlignment="Top" Width="74" Background="#E5EBD618" Click="but_Click"  />
             </Grid>
         </GroupBox>
@@ -63,7 +63,7 @@
                     <ColumnDefinition Width="13*" />
                     <ColumnDefinition Width="166*" />
                 </Grid.ColumnDefinitions>
-                <Button Background="{StaticResource {x:Static SystemColors.MenuHighlightBrushKey}}" Content="Revi27" Grid.ColumnSpan="2" Height="37" HorizontalAlignment="Left" Margin="6,9,0,0" Name="Revi27" VerticalAlignment="Top" Width="74" Click="but_Click" />
+                <Button Content="Revi27" Grid.ColumnSpan="2" Height="37" HorizontalAlignment="Left" Margin="6,9,0,0" Name="Revi27" VerticalAlignment="Top" Width="74" Click="but_Click" Background="#FF1CD3EF" />
                 <Button Background="#FF00BB00" Content="vRevi13" Height="37" HorizontalAlignment="Left" Margin="77,9,0,0" Name="vRevi13" VerticalAlignment="Top" Width="74" Grid.Column="1" Click="but_Click"  />
             </Grid>
         </GroupBox>
