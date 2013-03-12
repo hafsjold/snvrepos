@@ -1,33 +1,58 @@
 ﻿<Window x:Class="menuhd.MainWindow"
+        xmlns:local="clr-namespace:menuhd"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Hafsjold Data" Height="283" Width="400" DataContext="{Binding}" Icon="/menuhd;component/hd.ico">
-    <Grid Height="247" Width="379">
-        <GroupBox Header="HD03" Height="162" HorizontalAlignment="Left" Margin="0,-1,0,0" Name="HD03" VerticalAlignment="Top" Width="183" BorderBrush="Black" Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}"  MouseDoubleClick="Group_MouseDoubleClick" >
-            <Grid Height="140" Width="170" >
-                <Button Content="HD24" Height="37" HorizontalAlignment="Left" Margin="6,6,0,0" Name="HD24" VerticalAlignment="Top" Width="74" Background="{StaticResource {x:Static SystemColors.MenuHighlightBrushKey}}" Click="but_Click"  />
-                <Button Content="vHD11" Height="37" HorizontalAlignment="Left" Margin="90,6,0,0" Name="vHD11" VerticalAlignment="Top" Width="74" Background="#FF00BB00" Click="but_Click"  />
-                <Button Content="Win3060" Height="36" HorizontalAlignment="Left" Margin="6,51,0,0" Name="Win3060" VerticalAlignment="Top" Width="74" ClipToBounds="True" Background="#FFF8F810" Click="but_Click" />
-                <Button Background="#FFF8F810" ClipToBounds="True" Content="WinHD40" Height="36" HorizontalAlignment="Left" Margin="88,51,0,0" Name="WinHD40" VerticalAlignment="Top" Width="74" Click="but_Click" />
-            </Grid>
-            
-        </GroupBox>
-        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Header="HD04" Height="244" HorizontalAlignment="Left" Margin="193,-2,0,0" Name="HD04" VerticalAlignment="Top" Width="183" MouseDoubleClick="Group_MouseDoubleClick" >
-            <Grid Height="221" Width="170">
+        Title="Hafsjold Data" Height="284" Width="400" DataContext="{Binding}" Icon="/menuhd;component/hd.ico" x:Name="win1" >
+    <Grid Height="249" Width="379">
+        <GroupBox  Height="158" HorizontalAlignment="Left" Name="pRevi36" VerticalAlignment="Top" Width="183" BorderBrush="Black" Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" Margin="0,3,0,0">
+            <Grid Height="152" Width="170" >
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="12*" />
-                    <ColumnDefinition Width="158*" />
+                    <ColumnDefinition Width="85" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                <Button Background="{StaticResource {x:Static SystemColors.MenuHighlightBrushKey}}" Content="Revi27" Grid.ColumnSpan="2" Height="37" HorizontalAlignment="Left" Margin="6,7,0,0" Name="Revi27" VerticalAlignment="Top" Width="74" Click="but_Click" />
-                <Button Background="#FF00BB00" Content="vRevi13" Height="37" HorizontalAlignment="Left" Margin="76,6,0,0" Name="vRevi13" VerticalAlignment="Top" Width="74" Grid.Column="1" Click="but_Click" />
-                <Button Background="#FFF8F810" ClipToBounds="True" Content="HD40" Height="36" HorizontalAlignment="Left" Margin="76,92,0,0" Name="HD40" VerticalAlignment="Top" Width="74" Click="but_Click" Grid.Column="1" />
-                <Button Background="#FFF8F810" ClipToBounds="True" Content="WIN7" Height="36" HorizontalAlignment="Left" Margin="6,50,0,0" Name="WIN7" VerticalAlignment="Top" Width="74" Click="but_Click" Grid.ColumnSpan="2" />
-                <Button Background="#FFFFB700" Content="HD36" Height="37" HorizontalAlignment="Left" Margin="6,133,0,0" Name="HD36" VerticalAlignment="Top" Width="74" Grid.ColumnSpan="2" />
-                <Button Background="#FFFFB700" Content="vHD33" Height="37" HorizontalAlignment="Left" Margin="6,177,0,0" Name="vHD33" VerticalAlignment="Top" Width="74" Grid.ColumnSpan="2" />
-                <Button Background="#FFFFB700" Content="vHD34" Height="37" HorizontalAlignment="Left" Margin="76,176,0,0" Name="vHD34" VerticalAlignment="Top" Width="74" Grid.Column="1" />
-                <Button Background="#FFF8F810" ClipToBounds="True" Content="WIN7-2" Height="36" HorizontalAlignment="Left" Margin="76,50,0,0" Name="WIN7_2" VerticalAlignment="Top" Width="74" Click="but_Click" Grid.Column="1" />
+                <Grid.RowDefinitions >
+                    <RowDefinition  Height="3"/>
+                    <RowDefinition  Height="30"/>
+                    <RowDefinition  Height="40"/>
+                    <RowDefinition  Height="40"/>
+                    <RowDefinition  Height="40"/>
+                </Grid.RowDefinitions>
+                <local:menuButton ServerName="HD03" ServerOS="Win2012" Margin="3" Grid.Row="1" Grid.ColumnSpan="2" mnuClick="server_mnuClick" />
+                <local:menuButton ServerName="HD24" ServerOS="Win2008" Margin="3" Grid.Row="2" mnuClick="server_mnuClick" />
+                <local:menuButton ServerName="vHD11" ServerOS="Win2012" Margin="3" Grid.Row="2" Grid.Column="1" mnuClick="server_mnuClick" />
+                <local:menuButton ServerName="Win3060" ServerOS="Win7" Margin="3" Grid.Row="3" mnuClick="server_mnuClick" />
+                <local:menuButton ServerName="WinHD40" ServerOS="Win7" Margin="3" Grid.Row="3" Grid.Column="1" mnuClick="server_mnuClick" />
+
             </Grid>
         </GroupBox>
-        <Button Background="#FF00BB00" Content="hd01_local" Height="37" HorizontalAlignment="Left" Margin="9,169,0,0" Name="hd01_local" VerticalAlignment="Top" Width="74" Click="but_Click" />
+        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="241" HorizontalAlignment="Left" Margin="193,3,0,0" Name="groupBox1" VerticalAlignment="Top" Width="183">
+            <Grid Height="238" Width="170">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="85" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="5*" />
+                </Grid.RowDefinitions>
+                <local:menuButton ServerOS="Win2012" Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="HD04" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Row="2" Margin="3" ServerName="Revi27" ServerOS="Win2008"  mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="vRevi13" ServerOS="Win2012" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Row="3" Margin="3" ServerName="Win7" ServerOS="Win7" mnuClick="server_mnuClick"/>
+                <local:menuButton Grid.Column="1" Grid.Row="3" Margin="3" ServerName="Win7-2" ServerOS="Win7" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Column="1" Grid.Row="4" Margin="3" ServerName="HD40" ServerOS="Win7" mnuClick="server_mnuClick" />
+                <local:menuButton  Margin="3"  ServerName="HD36" ServerOS="freeBSD" Grid.Row="5" />
+                <local:menuButton Margin="3"  ServerName="vHD33" ServerOS="freeBSD" Grid.Row="6" />
+                <local:menuButton Margin="3" ServerName="vHD34" ServerOS="freeBSD" Grid.Row="6" Grid.Column="1" />
+            </Grid>
+        </GroupBox>
+        <local:menuButton Margin="10,167,290,48" ServerName="hd01local" ServerOS="Win2012" />
     </Grid>
 </Window>
+
