@@ -24,6 +24,9 @@ namespace nsMenu
     public partial class menuButton : UserControl
     {
         public static RoutedEvent mnuClickEvent;
+        public static RoutedEvent editClickEvent;
+        public static RoutedEvent edit2ClickEvent;
+        public static RoutedEvent fullscreenClickEvent;
 
         public menuButton()
         {
@@ -33,6 +36,9 @@ namespace nsMenu
         static menuButton()
         {
             mnuClickEvent = EventManager.RegisterRoutedEvent("mnuClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(menuButton));
+            editClickEvent = EventManager.RegisterRoutedEvent("editClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(menuButton));
+            edit2ClickEvent = EventManager.RegisterRoutedEvent("edit2Click", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(menuButton));
+            fullscreenClickEvent = EventManager.RegisterRoutedEvent("fullscreenClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(menuButton));
         }
 
         public event RoutedEventHandler mnuClick
@@ -41,9 +47,45 @@ namespace nsMenu
             remove { RemoveHandler(mnuClickEvent, value); }
         }
 
+        public event RoutedEventHandler editClick
+        {
+            add { AddHandler(editClickEvent, value); }
+            remove { RemoveHandler(editClickEvent, value); }
+        }
+        
+        public event RoutedEventHandler edit2Click
+        {
+            add { AddHandler(edit2ClickEvent, value); }
+            remove { RemoveHandler(edit2ClickEvent, value); }
+        }
+
+        public event RoutedEventHandler fullscreenClick
+        {
+            add { AddHandler(fullscreenClickEvent, value); }
+            remove { RemoveHandler(fullscreenClickEvent, value); }
+        }
+
         protected virtual void OnmnuClick()
         {
             RoutedEventArgs args = new RoutedEventArgs(mnuClickEvent);
+            RaiseEvent(args);
+        }
+
+        protected virtual void OneditClick()
+        {
+            RoutedEventArgs args = new RoutedEventArgs(editClickEvent);
+            RaiseEvent(args);
+        }
+
+        protected virtual void Onedit2Click()
+        {
+            RoutedEventArgs args = new RoutedEventArgs(edit2ClickEvent);
+            RaiseEvent(args);
+        }
+
+        protected virtual void OnfullscreenClick()
+        {
+            RoutedEventArgs args = new RoutedEventArgs(fullscreenClickEvent);
             RaiseEvent(args);
         }
 
@@ -75,6 +117,20 @@ namespace nsMenu
             OnmnuClick();
         }
 
+        private void Rediger_Click(object sender, RoutedEventArgs e)
+        {
+            OneditClick();
+        }
+
+        private void RedigerNotepadpp_Click(object sender, RoutedEventArgs e)
+        {
+            Onedit2Click();
+        }
+
+        private void FullScreen_Click(object sender, RoutedEventArgs e)
+        {
+            OnfullscreenClick();
+        }
 
         public string ServerOS
         {
@@ -117,5 +173,5 @@ namespace nsMenu
             }
         }
 
-    }
+     }
 }

@@ -26,6 +26,14 @@ namespace menuhd
     /// </summary>
     public partial class MainWindow : Window
     {
+        enum evt
+        {
+            server_mnuClick,
+            server_editClick,
+            server_edit2Click,
+            server_fullscreenClick
+        }
+        
         [DllImport("user32.dll", SetLastError = true)]
         static extern void SwitchToThisWindow(IntPtr hWnd, bool turnOn);
 
@@ -141,6 +149,26 @@ namespace menuhd
 
         private void server_mnuClick(object sender, RoutedEventArgs e)
         {
+            server_Click(sender, e, evt.server_mnuClick);
+        }
+
+        private void server_editClick(object sender, RoutedEventArgs e)
+        {
+            server_Click(sender, e, evt.server_editClick);
+        }
+
+        private void server_edit2Click(object sender, RoutedEventArgs e)
+        {
+            server_Click(sender, e, evt.server_edit2Click);
+        }
+
+        private void server_fullscreenClick(object sender, RoutedEventArgs e)
+        {
+            server_Click(sender, e, evt.server_fullscreenClick);
+        }
+
+        private void server_Click(object sender, RoutedEventArgs e, evt Evt)
+        {
             menuButton mnuButton = sender as menuButton;
             string server = mnuButton.ServerName;
             string rdpname = server + @".rdp";
@@ -172,28 +200,39 @@ namespace menuhd
                 FileInfo fi = new FileInfo(rdpfile);
                 if (!fi.Exists) getFile(rdpfile, server);
 
-                if ((Keyboard.Modifiers & ModifierKeys.Control) > 0)
+                switch (Evt)
                 {
-                    var proc = Process.Start(@"c:\windows\system32\mstsc.exe", "/edit " + rdpfile);
-                    proclist.Add(rdpfile, proc);
-                    mnuButton.ledbutton.Visibility = System.Windows.Visibility.Visible;
-                }
-                else if ((Keyboard.Modifiers & ModifierKeys.Shift) > 0)
-                {
-                    try
-                    {
-                        var proc = Process.Start(@"C:\Program Files\Notepad++\notepad++.exe", rdpfile);
-                    }
-                    catch
-                    {
-                        var proc = Process.Start(@"C:\Program Files (x86)\Notepad++\notepad++.exe", rdpfile);
-                    }
-                }
-                else
-                {
-                    Process proc = Process.Start(rdpfile);
-                    proclist.Add(rdpfile, proc);
-                    mnuButton.ledbutton.Visibility = System.Windows.Visibility.Visible;
+                    case evt.server_editClick:
+                        var proc = Process.Start(@"c:\windows\system32\mstsc.exe", "/edit " + rdpfile);
+                        proclist.Add(rdpfile, proc);
+                        mnuButton.ledbutton.Visibility = System.Windows.Visibility.Visible;
+                        break;
+
+                    case evt.server_edit2Click:
+                        try
+                        {
+                            Process.Start(@"C:\Program Files\Notepad++\notepad++.exe", rdpfile);
+                        }
+                        catch
+                        {
+                            Process.Start(@"C:\Program Files (x86)\Notepad++\notepad++.exe", rdpfile);
+                        }
+                        break;
+
+                    case evt.server_fullscreenClick:
+                        proc = Process.Start(@"c:\windows\system32\mstsc.exe", "/f " + rdpfile);
+                        proclist.Add(rdpfile, proc);
+                        mnuButton.ledbutton.Visibility = System.Windows.Visibility.Visible;
+                        break;
+
+                    case evt.server_mnuClick:
+                        proc = Process.Start(rdpfile);
+                        proclist.Add(rdpfile, proc);
+                        mnuButton.ledbutton.Visibility = System.Windows.Visibility.Visible;
+                        break;
+                    
+                    default:
+                        break;
                 }
             }
         }

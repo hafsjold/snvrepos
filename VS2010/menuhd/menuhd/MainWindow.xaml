@@ -17,11 +17,11 @@
                     <RowDefinition  Height="40"/>
                     <RowDefinition  Height="40"/>
                 </Grid.RowDefinitions>
-                <local:menuButton ServerName="HD03" ServerOS="Win2012" ToolTip="HyperV Server" Margin="3" Grid.Row="1" Grid.ColumnSpan="2" mnuClick="server_mnuClick" />
-                <local:menuButton ServerName="HD24" ServerOS="Win2008" ToolTip="DPM Backup Server" Margin="3" Grid.Row="2" mnuClick="server_mnuClick" />
-                <local:menuButton ServerName="vHD11" ServerOS="Win2012" ToolTip="Domain Server" Margin="3" Grid.Row="2" Grid.Column="1" mnuClick="server_mnuClick" />
-                <local:menuButton ServerName="Win3060" ServerOS="Win7" ToolTip="Puls 3060 Regnskab" Margin="3" Grid.Row="3" mnuClick="server_mnuClick" />
-                <local:menuButton ServerName="WinHD40" ServerOS="Win7" ToolTip="Hafsjold Data Regnskab"  Margin="3" Grid.Row="3" Grid.Column="1" mnuClick="server_mnuClick" />
+                <local:menuButton ServerName="HD03" ServerOS="Win2012" ToolTip="HyperV Server" Margin="3" Grid.Row="1" Grid.ColumnSpan="2" mnuClick="server_mnuClick" editClick="server_editClick" edit2Click="server_edit2Click" fullscreenClick="server_fullscreenClick" />
+                <local:menuButton ServerName="HD24" ServerOS="Win2008" ToolTip="DPM Backup Server" Margin="3" Grid.Row="2" mnuClick="server_mnuClick" editClick="server_editClick" edit2Click="server_edit2Click" fullscreenClick="server_fullscreenClick" />
+                <local:menuButton ServerName="vHD11" ServerOS="Win2012" ToolTip="Domain Server" Margin="3" Grid.Row="2" Grid.Column="1" mnuClick="server_mnuClick" editClick="server_editClick" edit2Click="server_edit2Click" fullscreenClick="server_fullscreenClick" />
+                <local:menuButton ServerName="Win3060" ServerOS="Win7" ToolTip="Puls 3060 Regnskab" Margin="3" Grid.Row="3" mnuClick="server_mnuClick" editClick="server_editClick" edit2Click="server_edit2Click" fullscreenClick="server_fullscreenClick" />
+                <local:menuButton ServerName="WinHD40" ServerOS="Win7" ToolTip="Hafsjold Data Regnskab"  Margin="3" Grid.Row="3" Grid.Column="1" mnuClick="server_mnuClick" editClick="server_editClick" edit2Click="server_edit2Click" fullscreenClick="server_fullscreenClick" />
 
             </Grid>
         </GroupBox>
@@ -41,18 +41,18 @@
                     <RowDefinition Height="40" />
                     <RowDefinition Height="5*" />
                 </Grid.RowDefinitions>
-                <local:menuButton ServerOS="Win2012" Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="HD04" ToolTip="HyperV Server" mnuClick="server_mnuClick" />
-                <local:menuButton Grid.Row="2" Margin="3" ServerName="Revi27" ToolTip="Buus Jensen DPM Backup Server" ServerOS="Win2008"  mnuClick="server_mnuClick" />
-                <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="vRevi13" ToolTip="Buus Jensen Domain server" ServerOS="Win2012" mnuClick="server_mnuClick" />
-                <local:menuButton Grid.Row="3" Margin="3" ServerName="Win7" ServerOS="Win7" ToolTip="Program udviklings" mnuClick="server_mnuClick"/>
-                <local:menuButton Grid.Column="1" Grid.Row="3" Margin="3" ServerName="Win7-2" ToolTip="Program udvikling" ServerOS="Win7" mnuClick="server_mnuClick" />
-                <local:menuButton Grid.Column="1" Grid.Row="4" Margin="3" ServerName="HD40" ToolTip="Tidligere Arbejsdplads" ServerOS="Win7" mnuClick="server_mnuClick" />
+                <local:menuButton ServerOS="Win2012" Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="HD04" ToolTip="HyperV Server" mnuClick="server_mnuClick" editClick="server_editClick" edit2Click="server_edit2Click" fullscreenClick="server_fullscreenClick" />
+                <local:menuButton Grid.Row="2" Margin="3" ServerName="Revi27" ToolTip="Buus Jensen DPM Backup Server" ServerOS="Win2008"  mnuClick="server_mnuClick" editClick="server_editClick" edit2Click="server_edit2Click" fullscreenClick="server_fullscreenClick" />
+                <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="vRevi13" ToolTip="Buus Jensen Domain server" ServerOS="Win2012" mnuClick="server_mnuClick" editClick="server_editClick" edit2Click="server_edit2Click" fullscreenClick="server_fullscreenClick" />
+                <local:menuButton Grid.Row="3" Margin="3" ServerName="Win7" ServerOS="Win7" ToolTip="Program udviklings" mnuClick="server_mnuClick" editClick="server_editClick" edit2Click="server_edit2Click" fullscreenClick="server_fullscreenClick"/>
+                <local:menuButton Grid.Column="1" Grid.Row="3" Margin="3" ServerName="Win7-2" ToolTip="Program udvikling" ServerOS="Win7" mnuClick="server_mnuClick" editClick="server_editClick" edit2Click="server_edit2Click" fullscreenClick="server_fullscreenClick" />
+                <local:menuButton Grid.Column="1" Grid.Row="4" Margin="3" ServerName="HD40" ToolTip="Tidligere Arbejsdplads" ServerOS="Win7" mnuClick="server_mnuClick" editClick="server_editClick" edit2Click="server_edit2Click" fullscreenClick="server_fullscreenClick" />
                 <local:menuButton  Margin="3"  ServerName="HD36" ServerOS="freeBSD" ToolTip="Tidligere SVN freeBSD Server" Grid.Row="5" />
                 <local:menuButton Margin="3"  ServerName="vHD33" ServerOS="freeBSD" ToolTip="Zabbix og Mail Server" Grid.Row="6" />
                 <local:menuButton Margin="3" ServerName="vHD34" ServerOS="freeBSD" ToolTip="Udvikling freeBSD Server" Grid.Row="6" Grid.Column="1" />
             </Grid>
         </GroupBox>
-        <local:menuButton Margin="10,167,290,48" ServerName="hd01local" ToolTip="Microsoft Cloud Windows 2012 Server" ServerOS="Win2012" mnuClick="server_mnuClick" />
+        <local:menuButton Margin="10,167,290,48" ServerName="hd01local" ToolTip="Microsoft Cloud Windows 2012 Server" ServerOS="Win2012" mnuClick="server_mnuClick" editClick="server_editClick" edit2Click="server_edit2Click" fullscreenClick="server_fullscreenClick" />
     </Grid>
 </Window>
 
