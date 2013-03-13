@@ -2,8 +2,8 @@
         xmlns:local="clr-namespace:menubj"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Buus Jensen Servers" Height="451" Width="400" DataContext="{Binding}" Icon="/menubj;component/bj.ico" x:Name="win1" >
-    <Grid Height="416" Width="379">
+        Title="Buus Jensen Servers" Height="504" Width="400" DataContext="{Binding}" Icon="/menubj;component/bj.ico" x:Name="win1" Closing="win1_Closing">
+    <Grid Height="472" Width="379" Background="#FFEFE3E3">
         <GroupBox  Height="158" HorizontalAlignment="Left" Name="pRevi36" VerticalAlignment="Top" Width="183" BorderBrush="Black" Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" Margin="0,3,0,0">
             <Grid Height="152" Width="170" >
                 <Grid.ColumnDefinitions>
@@ -17,13 +17,13 @@
                     <RowDefinition  Height="40"/>
                     <RowDefinition  Height="40"/>
                 </Grid.RowDefinitions>
-                <local:menuButton ServerName="pRevi36" ServerOS="Win2012" Margin="3" Grid.Row="1" Grid.ColumnSpan="2" mnuClick="server_mnuClick" />
-                <local:menuButton ServerName="Post05" ServerOS="Win2008" Margin="3" Grid.Row="2" mnuClick="server_mnuClick" />
-                <local:menuButton ServerName="vRevi11" ServerOS="Win2012" Margin="3" Grid.Row="2" Grid.Column="1" mnuClick="server_mnuClick" />
-                <local:menuButton ServerName="vRevi05" ServerOS="Win2008" Margin="3" Grid.Row="3" mnuClick="server_mnuClick" />
-                <local:menuButton ServerName="vRevi21" ServerOS="Win2008" Margin="3" Grid.Row="3" Grid.Column="1" mnuClick="server_mnuClick" />
-                <local:menuButton ServerName="vRevi06tv" ServerOS="Win2008" Margin="3" Grid.Row="4" mnuClick="server_mnuClick" />
-                <local:menuButton ServerName="vRevi04" ServerOS="Win2008" Margin="3" Grid.Row="4" Grid.Column="1" mnuClick="server_mnuClick" />
+                <local:menuButton ServerName="pRevi36" ServerOS="Win2012" ToolTip="HyperV + File Server" Margin="3" Grid.Row="1" Grid.ColumnSpan="2" mnuClick="server_mnuClick" />
+                <local:menuButton ServerName="Post05" ServerOS="Win2008" ToolTip="Exchange Server" Margin="3" Grid.Row="2" mnuClick="server_mnuClick" />
+                <local:menuButton ServerName="vRevi11" ServerOS="Win2012" ToolTip="Domain Server" Margin="3" Grid.Row="2" Grid.Column="1" mnuClick="server_mnuClick" />
+                <local:menuButton ServerName="vRevi05" ServerOS="Win2008" ToolTip="Firewall Server" Margin="3" Grid.Row="3" mnuClick="server_mnuClick" />
+                <local:menuButton ServerName="vRevi21" ServerOS="Win2008" ToolTip="RD Gateway Server" Margin="3" Grid.Row="3" Grid.Column="1" mnuClick="server_mnuClick" />
+                <local:menuButton ServerName="vRevi06tv" ServerOS="Win2008" ToolTip="TimeView Server" Margin="3" Grid.Row="4" mnuClick="server_mnuClick" />
+                <local:menuButton ServerName="vRevi04" ServerOS="Win2008" ToolTip="Navision + File Server" Margin="3" Grid.Row="4" Grid.Column="1" mnuClick="server_mnuClick" />
             </Grid>
         </GroupBox>
         <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="158" HorizontalAlignment="Left" Margin="193,3,0,0" Name="groupBox1" VerticalAlignment="Top" Width="183">
@@ -39,15 +39,15 @@
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
-                <local:menuButton x:Name="pRevi37" ServerOS="Win2012" Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="pRevi37" mnuClick="server_mnuClick" />
-                <local:menuButton Grid.Row="2" Margin="3" ServerName="Revi35" ServerOS="Win2008"  mnuClick="server_mnuClick" />
-                <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="vRevi12" ServerOS="Win2012" mnuClick="server_mnuClick" />
-                <local:menuButton Grid.Row="3" Margin="3" ServerName="Revi24" ServerOS="Win2012" mnuClick="server_mnuClick"/>
-                <local:menuButton Grid.Column="1" Grid.Row="3" Margin="3" ServerName="vRevi22" ServerOS="Win2008" mnuClick="server_mnuClick" />
-                <local:menuButton Grid.Column="1" Grid.Row="4" Margin="3" ServerName="vRevi26" ServerOS="Win2008" mnuClick="server_mnuClick" />
+                <local:menuButton x:Name="pRevi37" ServerOS="Win2012" ToolTip="HyperV + File Server" Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="pRevi37" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Row="2" Margin="3" ServerName="Revi35" ToolTip="Terminal Server"  ServerOS="Win2008"  mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="vRevi12" ServerOS="Win2012" ToolTip="Domain Server" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Row="3" Margin="3" ServerName="Revi24" ServerOS="Win2012" ToolTip="Certificate Server" mnuClick="server_mnuClick"/>
+                <local:menuButton Grid.Column="1" Grid.Row="3" Margin="3" ServerName="vRevi22" ServerOS="Win2008" ToolTip="Print Server" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Column="1" Grid.Row="4" Margin="3" ServerName="vRevi26" ServerOS="Win2008" ToolTip="Caseware SmartSync server" mnuClick="server_mnuClick" />
             </Grid>
         </GroupBox>
-        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="76" HorizontalAlignment="Left" Margin="0,167,0,0" Name="groupBox2" VerticalAlignment="Top" Width="183">
+        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="83" HorizontalAlignment="Left" Margin="0,167,0,0" Name="groupBox2" VerticalAlignment="Top" Width="183">
             <Grid Height="76" Width="170">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="85" />
@@ -58,12 +58,12 @@
                     <RowDefinition Height="30" />
                     <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
-                <local:menuButton Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="pRevi38" ServerOS="Win2012" mnuClick="server_mnuClick" />
-                <local:menuButton Grid.Row="2" Margin="3" ServerName="vRevi01scc" ServerOS="Win2008" mnuClick="server_mnuClick" />
-                <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="vRevi10mdt" ServerOS="Win2008" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="pRevi38" ServerOS="Win2012" ToolTip="HyperV Server" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Row="2" Margin="3" ServerName="vRevi10scc" ServerOS="Win2008" ToolTip="Configuration Manager Server" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="vRevi10mdt" ToolTip="Deployment Workbench Server" ServerOS="Win2008" mnuClick="server_mnuClick" />
             </Grid>
         </GroupBox>
-        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="76" HorizontalAlignment="Left" Margin="193,168,0,0" Name="groupBox3" VerticalAlignment="Top" Width="183">
+        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="82" HorizontalAlignment="Left" Margin="193,168,0,0" Name="groupBox3" VerticalAlignment="Top" Width="183">
             <Grid Height="76" Width="170">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="85" />
@@ -74,12 +74,12 @@
                     <RowDefinition Height="30" />
                     <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
-                <local:menuButton Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="pRevi39" ServerOS="Win2012" mnuClick="server_mnuClick" />
-                <local:menuButton Grid.Row="2" Margin="3" ServerName="vRevi23" ServerOS="Win2008" mnuClick="server_mnuClick" />
-                <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="Revi14" ServerOS="freeBSD" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="pRevi39" ServerOS="Win2012" ToolTip="HyperV Server" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Row="2" Margin="3" ServerName="vRevi23" ServerOS="Win2008" ToolTip="DPM Backup Server" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="Revi14" ServerOS="freeBSD" ToolTip="Wiki + SVN freeBSD Server" />
             </Grid>
         </GroupBox>
-        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="158" HorizontalAlignment="Left" Margin="0,250,0,0" Name="groupBox4" VerticalAlignment="Top" Width="183">
+        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="158" HorizontalAlignment="Left" Margin="0,255,0,0" Name="groupBox4" VerticalAlignment="Top" Width="183">
             <Grid Height="152" Width="170">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="85" />
@@ -92,17 +92,17 @@
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
-                <local:menuButton Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="pRevi06" ServerOS="Win2012" mnuClick="server_mnuClick" />
-                <local:menuButton Grid.Row="2" Margin="3" ServerName="Post04" ServerOS="Win2003" mnuClick="server_mnuClick" />
-                <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="vRevi09" ServerOS="freeBSD" mnuClick="server_mnuClick" />
-                <local:menuButton Grid.Row="3" Margin="3" ServerName="vVir03A2" ServerOS="Win7" mnuClick="server_mnuClick" />
-                <local:menuButton Grid.Column="1" Grid.Row="3" Margin="3" ServerName="BuusTools" ServerOS="Win7" mnuClick="server_mnuClick" />
-                <local:menuButton Grid.Row="4" Margin="3" ServerName="vVir04A2" ServerOS="Win7" mnuClick="server_mnuClick" />
-                <local:menuButton Grid.Column="1" Grid.Row="4" Margin="3" ServerName="Vir01" ServerOS="Win7" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="pRevi06" ServerOS="Win2012" ToolTip="HyperV Server" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Row="2" Margin="3" ServerName="Post04" ServerOS="Win2003" ToolTip="Tidligere Mail Arkiv" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="vRevi09" ServerOS="freeBSD" ToolTip="Zabbix Server" />
+                <local:menuButton Grid.Row="3" Margin="3" ServerName="vVir03A2" ServerOS="Win7" ToolTip="Win 7 Test Arbejdsplads" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Column="1" Grid.Row="3" Margin="3" ServerName="BuusTools" ServerOS="Win7" ToolTip="Programudvikling" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Row="4" Margin="3" ServerName="vVir04A2" ServerOS="Win7" ToolTip="TimeView Test Arbejdsplads"  mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Column="1" Grid.Row="4" Margin="3" ServerName="Vir01" ServerOS="Win7" ToolTip="Win 7 Test Arbejdsplads" mnuClick="server_mnuClick" />
             </Grid>
         </GroupBox>
-        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="76" HorizontalAlignment="Left" Margin="192,332,0,0" Name="groupBox5" VerticalAlignment="Top" Width="183">
-            <Grid Height="76" Width="170">
+        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="79" HorizontalAlignment="Left" Margin="192,255,0,0" Name="groupBox5" VerticalAlignment="Top" Width="183">
+            <Grid Height="75" Width="170">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="85" />
                     <ColumnDefinition />
@@ -112,14 +112,14 @@
                     <RowDefinition Height="30" />
                     <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
-                <local:menuButton Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="HD04" ServerOS="Win2012" mnuClick="server_mnuClick" />
-                <local:menuButton Grid.Row="2" Margin="3" ServerName="Revi27" ServerOS="Win2008" mnuClick="server_mnuClick" />
-                <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="vRevi13" ServerOS="Win2012" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="HD04" ServerOS="Win2012" ToolTip="HyperV Server i Espergærde" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Row="2" Margin="3" ServerName="Revi27" ServerOS="Win2008" ToolTip="Remote DPM Backup Server" mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="vRevi13" ServerOS="Win2012" ToolTip="Domain Server" mnuClick="server_mnuClick" />
             </Grid>
         </GroupBox>
-        <local:menuButton Margin="202,250,98,132" ServerName="WS01" ServerOS="Win7" mnuClick="server_mnuClick" />
-        <local:menuButton Margin="288,250,12,132" ServerName="WS03" ServerOS="Win7" mnuClick="server_mnuClick" />
-        <local:menuButton Margin="202,292,98,90" ServerName="WS04A2" ServerOS="Win7" mnuClick="server_mnuClick" />
-        <local:menuButton Margin="288,291,12,91" ServerName="WS05" ServerOS="Win7" mnuClick="server_mnuClick" />
+        <local:menuButton Margin="8,0,0,14" ServerName="WS01" ServerOS="Win7" ToolTip="JN's Arbejdsplads" mnuClick="server_mnuClick" Height="37" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="79" />
+        <local:menuButton Margin="94,0,0,14" ServerName="WS03" ServerOS="Win7" ToolTip="ST's Arbejdsplads" mnuClick="server_mnuClick" Height="37" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="79" />
+        <local:menuButton Margin="0,0,101,14" ServerName="WS04A2" ServerOS="Win7" ToolTip="UN's Arbejdsplads"  mnuClick="server_mnuClick" Height="37" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="79" />
+        <local:menuButton Margin="0,0,11,14" ServerName="WS05" ServerOS="Win7" ToolTip="MHA's Arbejdsplads i EDB-kælder"  mnuClick="server_mnuClick" HorizontalAlignment="Right" Width="79" Height="37" VerticalAlignment="Bottom" />
     </Grid>
 </Window>

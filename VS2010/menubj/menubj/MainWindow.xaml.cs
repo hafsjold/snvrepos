@@ -36,6 +36,8 @@ namespace menubj
         public MainWindow()
         {
             InitializeComponent();
+            this.Left = Properties.Settings.Default.WinStartupLocation.X;
+            this.Top = Properties.Settings.Default.WinStartupLocation.Y;
 
             if (Properties.Settings.Default.guidMenuFolder == new Guid("{00000000-0000-0000-0000-000000000000}"))
             {
@@ -68,6 +70,12 @@ namespace menubj
             {
                 RecurseChildren((DependencyObject)o);
             }
+        }
+
+        private void win1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Properties.Settings.Default.WinStartupLocation = new System.Drawing.Point((int)this.Left, (int)this.Top);
+            Properties.Settings.Default.Save();
         }
 
         public static void CreateMissingFolders(DirectoryInfo di)
@@ -218,7 +226,6 @@ namespace menubj
                 }
             }
         }
-
     }
 }
 
