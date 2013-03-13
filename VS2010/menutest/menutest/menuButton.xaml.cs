@@ -15,6 +15,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.IO;
 using System.Timers;
+using System.Windows.Threading;
 
 namespace nsMenu
 {
@@ -23,72 +24,60 @@ namespace nsMenu
     /// </summary>
     public partial class menuButton : UserControl
     {
-        public static RoutedEvent mnuClickEvent;
-        public static RoutedEvent editClickEvent;
-        public static RoutedEvent edit2ClickEvent;
-        public static RoutedEvent fullscreenClickEvent;
+        enum evt
+        {
+            mnuClick,
+            editClick,
+            edit2Click,
+            fullscreenClick,
+            smallScreen
+        }
+
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern void SwitchToThisWindow(IntPtr hWnd, bool turnOn);
+
+        private DispatcherTimer dispatcherTimer = new DispatcherTimer();
+        private Process proc = null;
 
         public menuButton()
         {
             InitializeComponent();
+            dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 5);
+            dispatcherTimer.Start();
         }
 
-        static menuButton()
+        private void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
-            mnuClickEvent = EventManager.RegisterRoutedEvent("mnuClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(menuButton));
-            editClickEvent = EventManager.RegisterRoutedEvent("editClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(menuButton));
-            edit2ClickEvent = EventManager.RegisterRoutedEvent("edit2Click", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(menuButton));
-            fullscreenClickEvent = EventManager.RegisterRoutedEvent("fullscreenClick", RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(menuButton));
+            char[] s = { ' ' };
+            Process[] mstsc = Process.GetProcessesByName("mstsc");
+            foreach (Process p in mstsc)
+            {
+                if (ServerName == p.MainWindowTitle.Split(s)[0])
+                {
+                    proc = p;
+                    ledbutton.Visibility = System.Windows.Visibility.Visible;
+                }
+            }
         }
 
-        public event RoutedEventHandler mnuClick
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
         {
-            add { AddHandler(mnuClickEvent, value); }
-            remove { RemoveHandler(mnuClickEvent, value); }
+            if (proc == null)
+            {
+                ledbutton.Visibility = System.Windows.Visibility.Hidden;
+            }
+            else
+            {
+                if (proc.HasExited)
+                {
+                    ledbutton.Visibility = System.Windows.Visibility.Hidden;
+                    proc = null;
+                }
+            }
         }
 
-        public event RoutedEventHandler editClick
-        {
-            add { AddHandler(editClickEvent, value); }
-            remove { RemoveHandler(editClickEvent, value); }
-        }
-        
-        public event RoutedEventHandler edit2Click
-        {
-            add { AddHandler(edit2ClickEvent, value); }
-            remove { RemoveHandler(edit2ClickEvent, value); }
-        }
-
-        public event RoutedEventHandler fullscreenClick
-        {
-            add { AddHandler(fullscreenClickEvent, value); }
-            remove { RemoveHandler(fullscreenClickEvent, value); }
-        }
-
-        protected virtual void OnmnuClick()
-        {
-            RoutedEventArgs args = new RoutedEventArgs(mnuClickEvent);
-            RaiseEvent(args);
-        }
-
-        protected virtual void OneditClick()
-        {
-            RoutedEventArgs args = new RoutedEventArgs(editClickEvent);
-            RaiseEvent(args);
-        }
-
-        protected virtual void Onedit2Click()
-        {
-            RoutedEventArgs args = new RoutedEventArgs(edit2ClickEvent);
-            RaiseEvent(args);
-        }
-
-        protected virtual void OnfullscreenClick()
-        {
-            RoutedEventArgs args = new RoutedEventArgs(fullscreenClickEvent);
-            RaiseEvent(args);
-        }
-
+ 
         public string ServerName
         {
             get { return (string)GetValue(ServerNameProperty); }
@@ -101,7 +90,6 @@ namespace nsMenu
                 new UIPropertyMetadata(null, new PropertyChangedCallback(menuButton.ServerNamePropertyChanced)));
 
 
-
         private static void ServerNamePropertyChanced(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             menuButton but = (menuButton)d;
@@ -110,26 +98,6 @@ namespace nsMenu
                 but.buttonMenu.Content = but.ServerName;
                 but.ledbutton.Visibility = System.Windows.Visibility.Hidden;
             }
-        }
-
-        private void buttonMenu_Click(object sender, RoutedEventArgs e)
-        {
-            OnmnuClick();
-        }
-
-        private void Rediger_Click(object sender, RoutedEventArgs e)
-        {
-            OneditClick();
-        }
-
-        private void RedigerNotepadpp_Click(object sender, RoutedEventArgs e)
-        {
-            Onedit2Click();
-        }
-
-        private void FullScreen_Click(object sender, RoutedEventArgs e)
-        {
-            OnfullscreenClick();
         }
 
         public string ServerOS
@@ -173,5 +141,128 @@ namespace nsMenu
             }
         }
 
-     }
+        private void buttonMenu_Click(object sender, RoutedEventArgs e)
+        {
+            server_Click(sender, e, evt.mnuClick);
+        }
+
+        private void Rediger_Click(object sender, RoutedEventArgs e)
+        {
+            server_Click(sender, e, evt.editClick);
+        }
+
+        private void RedigerNotepadpp_Click(object sender, RoutedEventArgs e)
+        {
+            server_Click(sender, e, evt.edit2Click);
+        }
+
+        private void FullScreen_Click(object sender, RoutedEventArgs e)
+        {
+            server_Click(sender, e, evt.fullscreenClick);
+        }
+
+        private void SmallScreen_Click(object sender, RoutedEventArgs e)
+        {
+            server_Click(sender, e, evt.smallScreen);
+        }
+
+        private void server_Click(object sender, RoutedEventArgs e, evt Evt)
+        {
+            string rdpname = ServerName + @".rdp";
+            string rdpfile = System.IO.Path.Combine(menutest.MainWindow.menuFolder, rdpname);
+            
+            if (proc != null)
+            {
+                try
+                {
+                    if (proc.HasExited)
+                    {
+                        proc = null;
+                        ledbutton.Visibility = System.Windows.Visibility.Hidden;
+                    }
+                    else
+                    {
+                        SwitchToThisWindow(proc.MainWindowHandle, true);
+                        return;
+                    }
+                }
+                catch
+                {
+                    proc = null;
+                    ledbutton.Visibility = System.Windows.Visibility.Hidden;
+                }
+            }
+
+            FileInfo fi = new FileInfo(rdpfile);
+            if (!fi.Exists) getFile(rdpfile, ServerName);
+
+            switch (Evt)
+            {
+                case evt.editClick:
+                    proc = Process.Start(@"c:\windows\system32\mstsc.exe", "/edit " + rdpfile);
+                    ledbutton.Visibility = System.Windows.Visibility.Visible;
+                    break;
+
+                case evt.edit2Click:
+                    try
+                    {
+                        Process.Start(@"C:\Program Files\Notepad++\notepad++.exe", rdpfile);
+                    }
+                    catch
+                    {
+                        Process.Start(@"C:\Program Files (x86)\Notepad++\notepad++.exe", rdpfile);
+                    }
+                    break;
+
+                case evt.fullscreenClick:
+                    proc = Process.Start(@"c:\windows\system32\mstsc.exe", "/f " + rdpfile);
+                    ledbutton.Visibility = System.Windows.Visibility.Visible;
+                    break;
+
+                case evt.smallScreen:
+                    proc = Process.Start(@"c:\windows\system32\mstsc.exe", "/w:1024 /h:768 " + rdpfile);
+                    ledbutton.Visibility = System.Windows.Visibility.Visible;
+                    break;
+
+                case evt.mnuClick:
+                    proc = Process.Start(rdpfile);
+                    ledbutton.Visibility = System.Windows.Visibility.Visible;
+                    break;
+                
+                default:
+                    break;
+
+            }
+        }
+
+        private void getFile(string rdpfile, string content)
+        {
+            using (Stream file = File.Create(rdpfile))
+            {
+                using (StreamWriter sw = new StreamWriter(file))
+                {
+                    using (MemoryStream ms = new MemoryStream(menutest.rdp.Default))
+                    {
+                        ms.Position = 0;
+                        using (StreamReader sr = new StreamReader(ms))
+                        {
+                            while (!sr.EndOfStream)
+                            {
+                                string line = sr.ReadLine();
+                                char[] kolon = { ':' };
+                                string[] part = line.Split(kolon);
+                                if (part[0].ToLower() == "full address")
+                                {
+                                    char[] dot = { '.' };
+                                    string[] doamin = part[2].Split(dot, 2);
+                                    line = part[0] + ":" + part[1] + ":" + content + @"." + doamin[1];
+                                }
+                                sw.WriteLine(line);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
