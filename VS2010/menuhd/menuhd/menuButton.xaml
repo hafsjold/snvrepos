@@ -7,10 +7,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="37" d:DesignWidth="74">
     
-    <Grid x:Name="LayoutRoot" >
+    <Grid x:Name="LayoutRoot" Loaded="LayoutRoot_Loaded">
         <Grid.ContextMenu>
             <ContextMenu>
                 <MenuItem Header="Full Screen" Name="FullScreen" Click="FullScreen_Click" />
+                <MenuItem Header="Small Screen" Name="SmallScreen" Click="SmallScreen_Click" />
                 <MenuItem Header="Rediger" Name="Rediger" Click="Rediger_Click" />
                 <MenuItem Header="Rediger med Notepad++" Name="RedigerNotepadpp" Click="RedigerNotepadpp_Click" />
             </ContextMenu>
