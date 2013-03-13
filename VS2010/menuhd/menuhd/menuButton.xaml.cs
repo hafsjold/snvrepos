@@ -16,7 +16,7 @@ using System.Runtime.InteropServices;
 using System.IO;
 using System.Timers;
 
-namespace menuhd
+namespace nsMenu
 {
     /// <summary>
     /// Interaction logic for menuButton.xaml

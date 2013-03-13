@@ -17,6 +17,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Controls.Primitives;
 using System.Timers;
 using System.Windows.Threading;
+using nsMenu;
 
 namespace menubj
 {

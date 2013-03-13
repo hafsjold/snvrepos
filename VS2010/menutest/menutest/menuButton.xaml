@@ -1,5 +1,5 @@
-﻿<UserControl x:Class="menutest.menuButton"
-             xmlns:local="clr-namespace:menutest"
+﻿<UserControl x:Class="nsMenu.menuButton"
+             xmlns:local="clr-namespace:nsMenu"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,6 +8,13 @@
              d:DesignHeight="37" d:DesignWidth="74">
     
     <Grid x:Name="LayoutRoot" >
+        <Grid.ContextMenu>
+            <ContextMenu>
+                <MenuItem Header="Full Screen" Name="FullScreen" Click="FullScreen_Click" />
+                <MenuItem Header="Rediger" Name="Rediger" Click="Rediger_Click" />
+                <MenuItem Header="Rediger med Notepad++" Name="RedigerNotepadpp" Click="RedigerNotepadpp_Click" />
+            </ContextMenu>
+        </Grid.ContextMenu>
         <Button  Name="buttonMenu" Background="#FF1CD3EF" Content="Server" Click="buttonMenu_Click"/>
         <Ellipse x:Name="ledbutton" Margin="0,0,5,5" Fill="green" Visibility="Visible" Height="9" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="9" />
     </Grid>
