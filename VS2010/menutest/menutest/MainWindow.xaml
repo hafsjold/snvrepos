@@ -18,7 +18,7 @@
                     <RowDefinition  Height="40"/>
                 </Grid.RowDefinitions>
                 <local:menuButton ServerName="pRevi36" ServerOS="Win2012" Margin="3" Grid.Row="1" Grid.ColumnSpan="2" mnuClick="server_mnuClick" />
-                <local:menuButton ServerName="Post05" ServerOS="Win2008" Margin="3" Grid.Row="2" mnuClick="server_mnuClick" />
+                <local:menuButton ServerName="Post05" ServerOS="Win2008" ToolTip="Exchange 2010 Server" Margin="3" Grid.Row="2" mnuClick="server_mnuClick" />
                 <local:menuButton ServerName="vRevi11" ServerOS="Win2012" Margin="3" Grid.Row="2" Grid.Column="1" mnuClick="server_mnuClick" />
                 <local:menuButton ServerName="vRevi05" ServerOS="Win2008" Margin="3" Grid.Row="3" mnuClick="server_mnuClick" />
                 <local:menuButton ServerName="vRevi21" ServerOS="Win2008" Margin="3" Grid.Row="3" Grid.Column="1" mnuClick="server_mnuClick" />
@@ -40,7 +40,7 @@
                     <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
                 <local:menuButton x:Name="pRevi37" ServerOS="Win2012" Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="pRevi37" mnuClick="server_mnuClick" />
-                <local:menuButton Grid.Row="2" Margin="3" ServerName="Revi35" ServerOS="Win2008"  mnuClick="server_mnuClick" />
+                <local:menuButton Grid.Row="2" Margin="3" ServerName="Revi35" ToolTip="Terminal Server" ServerOS="Win2008"  mnuClick="server_mnuClick" />
                 <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="vRevi12" ServerOS="Win2012" mnuClick="server_mnuClick" />
                 <local:menuButton Grid.Row="3" Margin="3" ServerName="Revi24" ServerOS="Win2012" mnuClick="server_mnuClick"/>
                 <local:menuButton Grid.Column="1" Grid.Row="3" Margin="3" ServerName="vRevi22" ServerOS="Win2008" mnuClick="server_mnuClick" />
