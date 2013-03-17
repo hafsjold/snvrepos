@@ -52,7 +52,8 @@
                 <local:menuButton Margin="3" ServerName="vHD34" ServerOS="freeBSD" ToolTip="Udvikling freeBSD Server" Grid.Row="6" Grid.Column="1" />
             </Grid>
         </GroupBox>
-        <local:menuButton Margin="10,167,290,48" ServerName="hd01local" ToolTip="Microsoft Cloud Windows 2012 Server" ServerOS="Win2012" />
+        <local:menuButton Margin="94,167,206,48" ServerName="hd01local" ToolTip="Microsoft Cloud Windows 2012 Server" ServerOS="Win2012" />
+        <local:menuButton Margin="9,167,291,48" ServerName="HD12" ServerOS="Win2012" ToolTip="Level 2 DPM Backup Server" />
     </Grid>
 </Window>
 
