@@ -43,7 +43,6 @@
                 </Grid.RowDefinitions>
                 <local:menuButton ServerOS="Win2012" Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="HD04" ToolTip="HyperV Server" />
                 <local:menuButton Grid.Row="2" Margin="3" ServerName="Revi27" ToolTip="Buus Jensen DPM Backup Server" ServerOS="Win2008"  />
-                <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="vRevi13" ToolTip="Buus Jensen Domain server" ServerOS="Win2012" />
                 <local:menuButton Grid.Row="3" Margin="3" ServerName="Win7" ServerOS="Win7" ToolTip="Program udviklings"/>
                 <local:menuButton Grid.Column="1" Grid.Row="3" Margin="3" ServerName="Win7-2" ToolTip="Program udvikling" ServerOS="Win7" />
                 <local:menuButton Grid.Column="1" Grid.Row="4" Margin="3" ServerName="HD40" ToolTip="Tidligere Arbejsdplads" ServerOS="Win7" />
