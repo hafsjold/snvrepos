@@ -49,6 +49,7 @@
                 <local:menuButton Grid.Column="1" Grid.Row="3" Margin="3" ServerName="vRevi22" ServerOS="Win2008" ToolTip="Print Server" />
                 <local:menuButton Grid.Column="1" Grid.Row="4" Margin="3" ServerName="vRevi26" ServerOS="Win2008" ToolTip="Caseware SmartSync server" />
                 <local:menuButton Grid.Row="4" Margin="3"  ServerName="vRevi12sco" ServerOS="Win2012" ToolTip="System Center Operation Manager Server" />
+                <local:menuButton Grid.Column="1" Grid.Row="5" Margin="3"  ServerName="vRevi32" ServerOS="Win2012" ToolTip="Print Server" />
             </Grid>
         </GroupBox>
         <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="83" HorizontalAlignment="Left" Margin="0,210,0,0" Name="groupBox2" VerticalAlignment="Top" Width="183">
@@ -64,6 +65,7 @@
                 </Grid.RowDefinitions>
                 <local:menuButton Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="pRevi38" ServerOS="Win2012" ToolTip="HyperV Server" />
                 <local:menuButton Grid.Column="0" Grid.Row="2" Margin="3" ServerName="vRevi12scc" ServerOS="Win2012" ToolTip="Configuration Manager Server" />
+                <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="vRevi12nps" ServerOS="Win2012" ToolTip="Network Protection Server" />
             </Grid>
         </GroupBox>
         <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="82" HorizontalAlignment="Left" Margin="193,210,0,0" Name="groupBox3" VerticalAlignment="Top" Width="183">
