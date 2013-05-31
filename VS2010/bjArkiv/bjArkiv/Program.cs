@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using LogicNP.ShellObjects;
 using System.IO;
 
 namespace bjArkiv
@@ -67,7 +66,7 @@ namespace bjArkiv
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            if (SingleInstanceComponent.NotifyExistingInstance(null))
+            if (LogicNP.ShellObjects.SingleInstanceComponent.NotifyExistingInstance(null))
             {
                 objFileView = new frmFileView();
                 Application.Run(new frmFileView());

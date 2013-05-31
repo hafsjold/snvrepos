@@ -1,3 +1,4 @@
-LogicNP.FileViewControl.FileView, LogicNP.FileView, Version=13.0.0.0, Culture=neutral, PublicKeyToken=ff6f27194af4af75
+LogicNP.ShellObjects.ShellPopupNotification, LogicNP.ShellObjects, Version=13.0.0.0, Culture=neutral, PublicKeyToken=ff6f27194af4af75
 LogicNP.FolderViewControl.FolderView, LogicNP.FolderView, Version=13.0.0.0, Culture=neutral, PublicKeyToken=ff6f27194af4af75
+LogicNP.FileViewControl.FileView, LogicNP.FileView, Version=13.0.0.0, Culture=neutral, PublicKeyToken=ff6f27194af4af75
 LogicNP.ShellObjects.SingleInstanceComponent, LogicNP.ShellObjects, Version=13.0.0.0, Culture=neutral, PublicKeyToken=ff6f27194af4af75

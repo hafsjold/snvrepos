@@ -51,7 +51,10 @@
   <ItemGroup>
     <Reference Include="LogicNP.FileView, Version=13.0.0.0, Culture=neutral, PublicKeyToken=ff6f27194af4af75" />
     <Reference Include="LogicNP.FolderView, Version=13.0.0.0, Culture=neutral, PublicKeyToken=ff6f27194af4af75" />
-    <Reference Include="LogicNP.ShellObjects, Version=13.0.0.0, Culture=neutral, PublicKeyToken=ff6f27194af4af75" />
+    <Reference Include="LogicNP.ShellObjects, Version=13.0.0.0, Culture=neutral, PublicKeyToken=ff6f27194af4af75">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files\LogicNP Software\Shell MegaPack.Net 2012\ShellObjects.Net 2012\LogicNP.ShellObjects.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
@@ -93,7 +96,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils.cs" />
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <EmbeddedResource Include="bjExtract\Resource1.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource1.Designer.cs</LastGenOutput>

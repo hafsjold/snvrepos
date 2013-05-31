@@ -60,7 +60,7 @@
             this.flView.Name = "flView";
             this.flView.ShowHiddenItems = false;
             this.flView.ShowSpecialFolders = false;
-            this.flView.Size = new System.Drawing.Size(532, 433);
+            this.flView.Size = new System.Drawing.Size(537, 444);
             this.flView.TabIndex = 0;
             this.flView.Text = "fileView1";
             this.flView.ViewStyle = LogicNP.FileViewControl.ViewStyles.Report;
@@ -91,7 +91,7 @@
             // splitHorisontal.Panel2
             // 
             this.splitHorisontal.Panel2.Controls.Add(this.splitVertical);
-            this.splitHorisontal.Size = new System.Drawing.Size(686, 462);
+            this.splitHorisontal.Size = new System.Drawing.Size(692, 473);
             this.splitHorisontal.SplitterDistance = 25;
             this.splitHorisontal.TabIndex = 4;
             // 
@@ -111,7 +111,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(686, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(692, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -122,28 +122,28 @@
             this.eksportArkivToolStripMenuItem,
             this.afslutToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(35, 20);
             this.fileToolStripMenuItem.Text = "File";
             this.fileToolStripMenuItem.Click += new System.EventHandler(this.fileToolStripMenuItem_Click);
             // 
             // opretNytArkivToolStripMenuItem
             // 
             this.opretNytArkivToolStripMenuItem.Name = "opretNytArkivToolStripMenuItem";
-            this.opretNytArkivToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.opretNytArkivToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.opretNytArkivToolStripMenuItem.Text = "Opret Nyt Arkiv";
             this.opretNytArkivToolStripMenuItem.Click += new System.EventHandler(this.opretNytArkivToolStripMenuItem_Click);
             // 
             // eksportArkivToolStripMenuItem
             // 
             this.eksportArkivToolStripMenuItem.Name = "eksportArkivToolStripMenuItem";
-            this.eksportArkivToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.eksportArkivToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.eksportArkivToolStripMenuItem.Text = "Eksporter Arkiv";
             this.eksportArkivToolStripMenuItem.Click += new System.EventHandler(this.eksportArkivToolStripMenuItem_Click);
             // 
             // afslutToolStripMenuItem
             // 
             this.afslutToolStripMenuItem.Name = "afslutToolStripMenuItem";
-            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.afslutToolStripMenuItem.Text = "Afslut";
             this.afslutToolStripMenuItem.Click += new System.EventHandler(this.afslutToolStripMenuItem_Click);
             // 
@@ -160,8 +160,8 @@
             // splitVertical.Panel2
             // 
             this.splitVertical.Panel2.Controls.Add(this.flView);
-            this.splitVertical.Size = new System.Drawing.Size(686, 433);
-            this.splitVertical.SplitterDistance = 150;
+            this.splitVertical.Size = new System.Drawing.Size(692, 444);
+            this.splitVertical.SplitterDistance = 151;
             this.splitVertical.TabIndex = 0;
             this.splitVertical.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitVertical_SplitterMoved);
             // 
@@ -174,7 +174,7 @@
             this.fldrView.Name = "fldrView";
             this.fldrView.ShowHiddenObjects = false;
             this.fldrView.ShowSpecialFolders = false;
-            this.fldrView.Size = new System.Drawing.Size(150, 433);
+            this.fldrView.Size = new System.Drawing.Size(151, 444);
             this.fldrView.TabIndex = 0;
             this.fldrView.Text = "folderView1";
             this.fldrView.AfterSelect += new LogicNP.FolderViewControl.AfterSelectHandler(this.fldrView_AfterSelect);
