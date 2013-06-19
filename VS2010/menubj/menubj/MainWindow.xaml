@@ -26,6 +26,7 @@
                 <local:menuButton ServerName="vRevi06tv" ServerOS="Win2008" ToolTip="TimeView Server" Margin="3" Grid.Row="4" />
                 <local:menuButton ServerName="vRevi04" ServerOS="Win2008" ToolTip="Navision + File Server" Margin="3" Grid.Row="4" Grid.Column="1" />
                 <local:menuButton ServerName="vCodan01" ServerOS="Win2008" ToolTip="Codan Retminal Server" Margin="3" Grid.Row="5" />
+                <local:menuButton ServerName="vRevi31" ServerOS="Win2012" ToolTip="Reverse Proxy Test Server" Margin="3" Grid.Row="5"  Grid.Column="1" />
             </Grid>
         </GroupBox>
         <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="198" HorizontalAlignment="Left" Margin="193,3,0,0" Name="groupBox1" VerticalAlignment="Top" Width="183">
@@ -81,7 +82,7 @@
                     <RowDefinition Height="3*" />
                 </Grid.RowDefinitions>
                 <local:menuButton Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="pRevi39" ServerOS="Win2012" ToolTip="HyperV Server" />
-                <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="vRevi23" ServerOS="Win2008" ToolTip="DPM Backup Server" />
+                <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="vRevi23" ServerOS="Win2012" ToolTip="DPM Backup Server" />
                 <local:menuButton Grid.Row="2" Margin="3" ServerName="vRevi13" ServerOS="Win2012" ToolTip="Domain Server" />
             </Grid>
         </GroupBox>
@@ -108,7 +109,7 @@
                 <local:menuButton Grid.Column="1" Grid.Row="4" Margin="3" ServerName="Vir01" ServerOS="Win7" ToolTip="Win 7 Test Arbejdsplads" />
                 <local:menuButton Grid.Row="52" Margin="3" ServerName="Post04" ServerOS="Win2003" ToolTip="Tidligere Mail Arkiv" />            </Grid>
         </GroupBox>
-        <local:menuButton Margin="289,0,0,175" ServerName="Revi27" ServerOS="Win2008" ToolTip="Remote DPM Backup Server" Height="34" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="81" />
+        <local:menuButton Margin="289,0,0,175" ServerName="Revi27" ServerOS="Win2012" ToolTip="Remote DPM Backup Server" Height="34" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="81" />
         <local:menuButton Margin="199,0,0,59" ServerName="WS01" ServerOS="Win7" ToolTip="JN's Arbejdsplads" Height="37" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="79" />
         <local:menuButton Margin="289,0,0,59" ServerName="WS03" ServerOS="Win7" ToolTip="ST's Arbejdsplads" Height="37" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="79" />
         <local:menuButton Margin="199,0,0,14" ServerName="WS04A2" ServerOS="Win7" ToolTip="UN's Arbejdsplads"  Height="37" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="79" />
