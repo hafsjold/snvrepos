@@ -49,7 +49,7 @@
                 <local:menuButton Grid.Row="3" Margin="3" ServerName="Revi24" ServerOS="Win2012" ToolTip="Certificate Server"/>
                 <local:menuButton Grid.Column="1" Grid.Row="3" Margin="3" ServerName="vRevi22" ServerOS="Win2008" ToolTip="Print Server" />
                 <local:menuButton Grid.Column="1" Grid.Row="4" Margin="3" ServerName="vRevi26" ServerOS="Win2008" ToolTip="Caseware SmartSync server" />
-                <local:menuButton Grid.Row="4" Margin="3"  ServerName="vRevi12sco" ServerOS="Win2012" ToolTip="System Center Operation Manager Server" />
+                <local:menuButton Grid.Row="4" Margin="3"  ServerName="vRevi36" ServerOS="Win2012" ToolTip="Caseware SmartSync server" />
                 <local:menuButton Grid.Column="1" Grid.Row="5" Margin="3"  ServerName="vRevi32" ServerOS="Win2012" ToolTip="Print Server" />
             </Grid>
         </GroupBox>
