@@ -29,6 +29,7 @@
                 <local:menuButton ServerName="vCodan01" ServerOS="Win2008" ToolTip="Codan Retminal Server" Margin="3" Grid.Row="5" />
                 <local:menuButton ServerName="vCodan02" ServerOS="Win2012" ToolTip="Codan Sharepoint Serverr" Margin="3" Grid.Row="5"  Grid.Column="1" />
                 <local:menuButton ServerName="BuusTools" ServerOS="Win7" ToolTip="Programudvikling" Margin="3" Grid.Row="6" />
+                <local:menuButton ServerName="vMsRev" ServerOS="Win7" ToolTip="MsRev Konvertering" Margin="3" Grid.Row="6" Grid.Column="1" />
             </Grid>
         </GroupBox>
         <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="237" HorizontalAlignment="Left" Margin="193,3,0,0" Name="groupBox1" VerticalAlignment="Top" Width="183">
