@@ -109,9 +109,10 @@
             </Grid>
         </GroupBox>
         <local:menuButton Margin="289,341,0,0" ServerName="Revi27" ServerOS="Win2012" ToolTip="Remote DPM Backup Server" Height="34" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" />
-        <local:menuButton Margin="199,459,0,0" ServerName="WS01" ServerOS="Win7" ToolTip="JN's Arbejdsplads" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" />
-        <local:menuButton Margin="289,459,0,0" ServerName="WS03" ServerOS="Win7" ToolTip="ST's Arbejdsplads" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" />
-        <local:menuButton Margin="199,503,0,0" ServerName="WS04A2" ServerOS="Win7" ToolTip="UN's Arbejdsplads"  Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" />
-        <local:menuButton Margin="289,503,0,0" ServerName="WS05" ServerOS="Win7" ToolTip="MHA's Arbejdsplads i EDB-kælder"  HorizontalAlignment="Left" Width="79" Height="37" VerticalAlignment="Top" />
+        <local:menuButton Margin="199,411,0,0" ServerName="WS01" ServerOS="Win7" ToolTip="JN's Arbejdsplads" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" />
+        <local:menuButton Margin="289,411,0,0" ServerName="WS03" ServerOS="Win7" ToolTip="ST's Arbejdsplads" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" />
+        <local:menuButton Margin="199,455,0,0" ServerName="WS04A2" ServerOS="Win7" ToolTip="UN's Arbejdsplads"  Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" />
+        <local:menuButton Margin="289,455,0,0" ServerName="WS05" ServerOS="Win7" ToolTip="MHA's virtuelle Arbejdsplads"  HorizontalAlignment="Left" Width="79" Height="37" VerticalAlignment="Top" />
+        <local:menuButton Margin="199,499,0,0" ServerName="WS06A5" ServerOS="Win7" ToolTip="MHA's Arbejdsplads i EDB-kælder"  Height="37" HorizontalAlignment="Left" VerticalAlignment="Top" Width="79" />
     </Grid>
 </Window>
