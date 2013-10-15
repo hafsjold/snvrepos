@@ -20,14 +20,14 @@
                     <RowDefinition  Height="40"/>
                 </Grid.RowDefinitions>
                 <local:menuButton ServerName="pRevi36" ServerOS="Win2012" ToolTip="HyperV + File Server" Margin="3" Grid.Row="1" Grid.ColumnSpan="2" />
-                <local:menuButton ServerName="Post05" ServerOS="Win2008" ToolTip="Exchange Server" Margin="3" Grid.Row="2" />
                 <local:menuButton ServerName="vRevi11" ServerOS="Win2012" ToolTip="Domain Server" Margin="3" Grid.Row="2" Grid.Column="1" />
-                <local:menuButton ServerName="vRevi05" ServerOS="Win2008" ToolTip="Firewall Server" Margin="3" Grid.Row="3" />
+                <local:menuButton ServerName="vRevi05" ServerOS="Win2008" ToolTip="Firewall Server" Margin="3" Grid.Row="2" />
                 <local:menuButton ServerName="vRevi21" ServerOS="Win2008" ToolTip="RD Gateway Server" Margin="3" Grid.Row="3" Grid.Column="1" />
-                <local:menuButton ServerName="vRevi06tv" ServerOS="Win2008" ToolTip="TimeView Server" Margin="3" Grid.Row="4" />
+                <local:menuButton ServerName="vRevi06tv" ServerOS="Win2008" ToolTip="TimeView Server" Margin="3" Grid.Row="3" />
                 <local:menuButton ServerName="vRevi04" ServerOS="Win2008" ToolTip="Navision + File Server" Margin="3" Grid.Row="4" Grid.Column="1" />
-                <local:menuButton ServerName="vCodan01" ServerOS="Win2008" ToolTip="Codan Retminal Server" Margin="3" Grid.Row="5" />
-                <local:menuButton ServerName="vCodan02" ServerOS="Win2012" ToolTip="Codan Sharepoint Serverr" Margin="3" Grid.Row="5"  Grid.Column="1" />
+                <local:menuButton ServerName="vCodan01" ServerOS="Win2008" ToolTip="Codan Retminal Server" Margin="3" Grid.Row="4" />
+                <local:menuButton Grid.Row="5" Margin="3" ServerName="vVir03A2" ServerOS="Win7" ToolTip="Win 7 Test Arbejdsplads" />
+                <local:menuButton Grid.Row="5" Margin="3" ServerName="vVir04A2" ServerOS="Win7" ToolTip="TimeView Test Arbejdsplads" Grid.Column="1"  />
                 <local:menuButton ServerName="BuusTools" ServerOS="Win7" ToolTip="Programudvikling" Margin="3" Grid.Row="6" />
                 <local:menuButton ServerName="vMsRev" ServerOS="Win7" ToolTip="MsRev Konvertering" Margin="3" Grid.Row="6" Grid.Column="1" />
             </Grid>
@@ -104,8 +104,6 @@
                     <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
                 <local:menuButton Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="pRevi06" ServerOS="Win2012" ToolTip="HyperV Server" />
-                <local:menuButton Grid.Row="2" Margin="3" ServerName="vVir03A2" ServerOS="Win7" ToolTip="Win 7 Test Arbejdsplads" />
-                <local:menuButton Grid.Row="3" Margin="3" ServerName="vVir04A2" ServerOS="Win7" ToolTip="TimeView Test Arbejdsplads"  />
                 <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="Vir01" ServerOS="Win7" ToolTip="Win 7 Test Arbejdsplads" />
             </Grid>
         </GroupBox>
