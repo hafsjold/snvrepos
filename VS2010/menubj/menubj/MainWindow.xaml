@@ -83,7 +83,7 @@
                 </Grid.RowDefinitions>
                 <local:menuButton Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="pRevi40" ServerOS="Win2012" ToolTip="HyperV Server" />
                 <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="Post06" ServerOS="Win2012" ToolTip="Exchange Server" />
-                <local:menuButton Grid.Row="2" Margin="3" ServerName="vRevi12" ServerOS="Win2012" ToolTip="Domain Server" />
+                <local:menuButton Grid.Row="2" Margin="3" ServerName="vRevi11" ServerOS="Win2012" ToolTip="Domain Server" />
                 <local:menuButton Grid.Row="3" Margin="3" ServerName="vRevi04" ServerOS="Win2008" ToolTip="NAV Server" />
                 <local:menuButton Grid.Column="1" Grid.Row="3" Margin="3" ServerName="vRevi06tv" ServerOS="Win2008" ToolTip="TimeView Server" />
                 <local:menuButton Grid.Row="4" Margin="3" ServerName="vRevi12scc" ServerOS="Win2012" ToolTip="SCC Server" />
