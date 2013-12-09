@@ -47,7 +47,6 @@
                 <local:menuButton x:Name="pRevi37" ServerOS="Win2012" ToolTip="HyperV + File Server" Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="pRevi37" />
                 <local:menuButton Grid.Row="2" Margin="3" ServerName="vCC02" ToolTip="Domain Server"  ServerOS="Win2012"  />
                 <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="vCC03" ServerOS="Win2012" ToolTip="Terminal Server" />
-                <local:menuButton Grid.Row="3" Margin="3" ServerName="Codan01" ServerOS="Win2008" ToolTip="Tesminal Server"/>
                 <local:menuButton Grid.Column="1" Grid.Row="3" Margin="3" ServerName="vRevi21" ServerOS="Win2008" ToolTip="RD Gateway Server" />
             </Grid>
         </GroupBox>
