@@ -28,7 +28,6 @@
                 <local:menuButton ServerName="vRevi36" ServerOS="Win2012" ToolTip="Caseware" Margin="3" Grid.Row="4" />
                 <local:menuButton Grid.Row="5" Margin="3" ServerName="vRevi23" ServerOS="Win2012" ToolTip="DPM Server" />
                 <local:menuButton Grid.Row="5" Margin="3" ServerName="vRevi09" ServerOS="FreeBSD" ToolTip="Zabbix Server" Grid.Column="1"  />
-                <local:menuButton ServerName="vTestA6" ServerOS="Win7" ToolTip="Test Arbejdsplads" Margin="3" Grid.Row="6" Grid.Column="1" />
             </Grid>
         </GroupBox>
         <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="170" HorizontalAlignment="Left" Margin="193,3,0,0" Name="groupBox1" VerticalAlignment="Top" Width="183">
