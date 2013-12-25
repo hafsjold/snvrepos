@@ -67,11 +67,12 @@
                     <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
                 <local:menuButton Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="pRevi38" ServerOS="Win2012" ToolTip="HyperV Server" />
-                <local:menuButton Grid.Column="0" Grid.Row="2" Margin="3" ServerName="vVir04A7" ServerOS="Win7" ToolTip="Windows 7 Arbejdsplads" />
-                <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="xPost06" ServerOS="Win2012" ToolTip="Test Server" />
+                <local:menuButton Grid.Column="0" Grid.Row="2" Margin="3" ServerName="vVir03A7" ServerOS="Win7" ToolTip="Windows 7 Arbejdsplads" />
+                <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="vVir04A7" ServerOS="Win7" ToolTip="Windows 7 Arbejdsplads" />
                 <local:menuButton Grid.Column="0" Grid.Row="3" Margin="3" ServerName="xRevi12" ServerOS="Win2012" ToolTip="Test Server" />
                 <local:menuButton Grid.Column="1" Grid.Row="3" Margin="3" ServerName="xRevi31" ServerOS="Win2012" ToolTip="Test Server" />
-                <local:menuButton Grid.Column="0" Grid.Row="4" Margin="3" ServerName="xVir01A7" ServerOS="Win7" ToolTip="Test Arbejdsplads" />
+                <local:menuButton Grid.Column="1" Grid.Row="4" Margin="3" ServerName="xVir01A7" ServerOS="Win7" ToolTip="Test Arbejdsplads" />
+                <local:menuButton Grid.Column="0" Grid.Row="4" Margin="3" ServerName="xPost06" ServerOS="Win2012" ToolTip="Test Server" />
             </Grid>
         </GroupBox>
         <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="244" HorizontalAlignment="Left" Margin="193,179,0,0" Name="groupBox3" VerticalAlignment="Top" Width="183">
@@ -96,9 +97,9 @@
                 <local:menuButton Grid.Row="3" Margin="3" ServerName="vRevi04" ServerOS="Win2008" ToolTip="NAV Server" />
                 <local:menuButton Grid.Column="1" Grid.Row="3" Margin="3" ServerName="vRevi06tv" ServerOS="Win2008" ToolTip="TimeView Server" />
                 <local:menuButton Grid.Row="4" Margin="3" ServerName="vRevi12scc" ServerOS="Win2012" ToolTip="SCC Server" />
-                <local:menuButton Grid.Column="1" Grid.Row="4" Margin="3" ServerName="BuusTools" ServerOS="Win7" ToolTip="" />
+                <local:menuButton Grid.Column="1" Grid.Row="4" Margin="3" ServerName="vRevi12mdt" ServerOS="Win2012" ToolTip="" />
                 <local:menuButton Grid.Row="5" Margin="3" ServerName="Post04" ServerOS="Win2003" ToolTip="Post Arkiv Server" />
-                <local:menuButton Grid.Column="1" Grid.Row="5" Margin="3" ServerName="vTest04A7" ServerOS="Win7" ToolTip="" />
+                <local:menuButton Grid.Column="1" Grid.Row="5" Margin="3" ServerName="BuusTools" ServerOS="Win7" ToolTip="" />
                 <local:menuButton Grid.Column="1" Grid.Row="6" Margin="3" ServerName="Diverse01" ServerOS="Win7" ToolTip="" />
             </Grid>
         </GroupBox>
