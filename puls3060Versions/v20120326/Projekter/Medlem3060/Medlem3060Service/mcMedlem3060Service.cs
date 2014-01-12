@@ -36,7 +36,7 @@ namespace nsMedlem3060Service
             InitializeComponent();
             /*
             //#if (DEBUG)            
-                        Trace.WriteLine("Medlem3060Service Starter #2");
+                        Program.Log("Medlem3060Service Starter #2");
                         _SchedulerThread = new Thread(Scheduler);
                         _SchedulerThread.Name = "Scheduler";
                         _SchedulerThread.Start();
@@ -52,7 +52,7 @@ namespace nsMedlem3060Service
 
         protected override void OnStart(string[] args)
         {
-            Trace.WriteLine("Medlem3060Service OnStart()");
+            Program.Log("Medlem3060Service OnStart()");
             _SchedulerThread = new Thread(Scheduler);
             _SchedulerThread.Name = "Scheduler";
             _SchedulerThread.Start();
@@ -72,7 +72,7 @@ namespace nsMedlem3060Service
             {
                 try
                 {
-                    Trace.WriteLine("Medlem3060Service Scheduler() loop start");
+                    Program.Log("Medlem3060Service Scheduler() loop start");
                     dbJobQDataContext dbJobQ = Program.dbJobQDataContextFactory();
                     int? id = null;
                     string jobname = null;
@@ -97,7 +97,7 @@ namespace nsMedlem3060Service
                 }
                 catch (Exception e)
                 {
-                    Trace.WriteLine(string.Format("Medlem3060Service Scheduler() loop failed with message: {0}", e.Message));
+                    Program.Log(string.Format("Medlem3060Service Scheduler() loop failed with message: {0}", e.Message));
                     if (_waitStopHandle.WaitOne(5 * 60000))
                         break;
                 }
@@ -196,14 +196,14 @@ namespace nsMedlem3060Service
             }
             catch (Exception e)
             {
-                Trace.WriteLine(string.Format("Medlem3060Service JobWorker() failed with message: {0}", e.Message));
+                Program.Log(string.Format("Medlem3060Service JobWorker() failed with message: {0}", e.Message));
                 return -1;
             }
         }
 
         private void LoadSchedule(int days = 2)
         {
-            Trace.WriteLine("Medlem3060Service LoadSchedule()");
+            Program.Log("Medlem3060Service LoadSchedule()");
             try
             {
                 dbJobQDataContext dbJobQ = Program.dbJobQDataContextFactory();
@@ -220,7 +220,7 @@ namespace nsMedlem3060Service
             }
             catch (Exception e)
             {
-                Trace.WriteLine(string.Format("Medlem3060Service LoadSchedule() failed with message: {0}", e.Message));
+                Program.Log(string.Format("Medlem3060Service LoadSchedule() failed with message: {0}", e.Message));
             }
         }
 
