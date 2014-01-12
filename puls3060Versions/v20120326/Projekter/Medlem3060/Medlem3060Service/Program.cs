@@ -25,7 +25,7 @@ namespace nsMedlem3060Service
             con = global::nsMedlem3060Service.Properties.Settings.Default.puls3061_dk_dbConnectionString_Prod + ";Password=fnyakb6c";
 #endif
             var cb = new SqlConnectionStringBuilder(con);
-            Trace.WriteLine(string.Format("Medlem3060Service ConnectString to SQL Database {0} on {1}", cb.InitialCatalog, cb.DataSource)); 
+            Program.Log(string.Format("Medlem3060Service ConnectString to SQL Database {0} on {1}", cb.InitialCatalog, cb.DataSource)); 
             }
             return con;
         }
@@ -51,6 +51,18 @@ namespace nsMedlem3060Service
             }
         }
 
+        public static void Log(string message)
+        {
+            string msg = DateTime.Now.ToString() + "||" + message;
+            Trace.WriteLine(msg);
+        }
+
+        public static void Log(string message, string category)
+        {
+            string msg = DateTime.Now.ToString() + "|" + category + "|" + message;
+            Trace.WriteLine(msg);
+        }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -59,13 +71,15 @@ namespace nsMedlem3060Service
             Trace.Listeners.RemoveAt(0);
             DefaultTraceListener defaultListener;
             defaultListener = new DefaultTraceListener();
+            defaultListener.LogFileName = "Application.log";
             Trace.Listeners.Add(defaultListener);
             
             if (!EventLog.SourceExists("Medlem3060"))
                 EventLog.CreateEventSource("Medlem3060", "Application");
             
-            Trace.Listeners.Add(new EventLogTraceListener("Medlem3060"));
-            Trace.WriteLine("Medlem3060Service Starter");
+            //Trace.Listeners.Add(new EventLogTraceListener("Medlem3060"));
+
+            Program.Log("Medlem3060Service Starter");
             EventLog.WriteEntry("Medlem3060", "Medlem3060Service Starter", EventLogEntryType.Information, 101);
 
 

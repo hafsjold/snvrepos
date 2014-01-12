@@ -32,13 +32,13 @@ namespace nsPbs3060
             //m_rec_sftp = (from s in p_dbData3060.tblsftps where s.navn == "Test" select s).First();
             m_rec_sftp = (from s in p_dbData3060.tblsftps where s.navn == "Produktion" select s).First();
 #endif
-            Trace.WriteLine(string.Format("host={0}, port={1}, user={2}", m_rec_sftp.host, int.Parse(m_rec_sftp.port), m_rec_sftp.user), "SFTP ConnectionString"); 
+            Program.Log(string.Format("host={0}, port={1}, user={2}", m_rec_sftp.host, int.Parse(m_rec_sftp.port), m_rec_sftp.user), "SFTP ConnectionString"); 
             byte[] bPK = Encoding.UTF8.GetBytes(m_rec_sftp.certificate);
             MemoryStream mPK = new MemoryStream(bPK);
             PrivateKeyFile PK = new PrivateKeyFile(mPK, m_rec_sftp.pincode);
             m_sftp = new SftpClient(m_rec_sftp.host, int.Parse(m_rec_sftp.port), m_rec_sftp.user, PK);
             m_sftp.Connect();
-            Trace.WriteLine("SFTP Connected"); 
+            Program.Log("SFTP Connected"); 
         }
 
         public void DisconnectSFtp()
@@ -106,9 +106,9 @@ namespace nsPbs3060
                     string fullpath = m_rec_sftp.inbound + "/" + TilPBSFilename;
                     MemoryStream ms_TilPBSFile = new MemoryStream(b_TilPBSFile);
                     
-                    Trace.WriteLine(string.Format("Start Upload of {0}", fullpath)); 
+                    Program.Log(string.Format("Start Upload of {0}", fullpath)); 
                     m_sftp.UploadFile(ms_TilPBSFile, fullpath);
-                    Trace.WriteLine(string.Format("{0} Upload Completed", fullpath)); 
+                    Program.Log(string.Format("{0} Upload Completed", fullpath)); 
                     
                     m_rec_pbsfiles.type = 8;
                     m_rec_pbsfiles.path = m_rec_sftp.inbound;
@@ -185,9 +185,9 @@ namespace nsPbs3060
                     string fullpath = m_rec_sftp.inbound + "/" + TilPBSFilename;
                     MemoryStream ms_TilPBSFile = new MemoryStream(b_TilPBSFile);
                     
-                    Trace.WriteLine(string.Format("Start Upload of {0}", fullpath)); 
+                    Program.Log(string.Format("Start Upload of {0}", fullpath)); 
                     m_sftp.UploadFile(ms_TilPBSFile, fullpath);
-                    Trace.WriteLine(string.Format("{0} Upload Completed", fullpath)); 
+                    Program.Log(string.Format("{0} Upload Completed", fullpath)); 
                    
                     m_rec_pbsfiles.type = 8;
                     m_rec_pbsfiles.path = m_rec_sftp.inbound;
@@ -261,9 +261,9 @@ namespace nsPbs3060
                     byte[] b_data = new byte[numBytes];
                     MemoryStream stream = new MemoryStream(b_data, true);
 
-                    Trace.WriteLine(string.Format("Start Download of {0}", fullpath)); 
+                    Program.Log(string.Format("Start Download of {0}", fullpath)); 
                     m_sftp.DownloadFile(fullpath, stream);
-                    Trace.WriteLine(string.Format("{0} Download Completed", fullpath)); 
+                    Program.Log(string.Format("{0} Download Completed", fullpath)); 
 
                     sendAttachedFile(p_dbData3060,rec_pbsnetdir.Filename, b_data, false);
                     char[] c_data = System.Text.Encoding.GetEncoding("windows-1252").GetString(b_data).ToCharArray();
@@ -296,9 +296,9 @@ namespace nsPbs3060
 
                     m_rec_pbsfiles.transmittime = DateTime.Now;
                     var cb = new SqlConnectionStringBuilder(p_dbData3060.Connection.ConnectionString);
-                    Trace.WriteLine(string.Format("Start Write {0} to SQL Database {1} on {2}", rec_pbsnetdir.Filename, cb.InitialCatalog, cb.DataSource)); 
+                    Program.Log(string.Format("Start Write {0} to SQL Database {1} on {2}", rec_pbsnetdir.Filename, cb.InitialCatalog, cb.DataSource)); 
                     p_dbData3060.SubmitChanges();
-                    Trace.WriteLine(string.Format("{0} Write to SQL Database Completed", rec_pbsnetdir.Filename)); 
+                    Program.Log(string.Format("{0} Write to SQL Database Completed", rec_pbsnetdir.Filename)); 
                 }
             }
             p_dbData3060.SubmitChanges();
@@ -358,12 +358,12 @@ namespace nsPbs3060
             int numBytes = (int)file.Length;
             byte[] b_data = new byte[numBytes];
 
-            Trace.WriteLine(string.Format("Start Reading of {0}", fullpath));
+            Program.Log(string.Format("Start Reading of {0}", fullpath));
             using (FileStream ts = file.Open(FileMode.Open, FileAccess.Read, FileShare.None))
             {
                 ts.Read(b_data, 0, numBytes);
             }
-            Trace.WriteLine(string.Format("{0} Reading Completed", fullpath));
+            Program.Log(string.Format("{0} Reading Completed", fullpath));
 
             sendAttachedFile(p_dbData3060, file.Name, b_data, false);
             char[] c_data = System.Text.Encoding.GetEncoding("windows-1252").GetString(b_data).ToCharArray();
@@ -407,9 +407,9 @@ namespace nsPbs3060
 
             m_rec_pbsfiles.transmittime = DateTime.Now;
             var cb = new SqlConnectionStringBuilder(p_dbData3060.Connection.ConnectionString);
-            Trace.WriteLine(string.Format("Start Write {0} to SQL Database {1} on {2}", file.Name, cb.InitialCatalog, cb.DataSource));
+            Program.Log(string.Format("Start Write {0} to SQL Database {1} on {2}", file.Name, cb.InitialCatalog, cb.DataSource));
             p_dbData3060.SubmitChanges();
-            Trace.WriteLine(string.Format("{0} Write to SQL Database Completed", file.Name));
+            Program.Log(string.Format("{0} Write to SQL Database Completed", file.Name));
             return 1;
         }        
 

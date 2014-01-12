@@ -42,7 +42,7 @@ namespace nsPuls3060
             if (Unprotect(m_Password) == null)
                 res = (new FrmPassword()).ShowDialog();
             if (res != DialogResult.OK) return null;
-            Trace.WriteLine(ConnectStringWithoutPassword, "ConnectString");
+            Program.Log(ConnectStringWithoutPassword, "ConnectString");
             return ConnectStringWithoutPassword + ";Password=" + Unprotect(m_Password);
         }
         public static dbData3060DataContext dbData3060DataContextFactory()
@@ -457,6 +457,18 @@ namespace nsPuls3060
             }
         }
 
+        public static void Log(string message) 
+        {
+            string msg = DateTime.Now.ToString() + "||" + message;
+            Trace.WriteLine(msg);
+        }
+
+        public static void Log(string message, string category)
+        {
+            string msg = DateTime.Now.ToString() + "|" + category + "|" + message;
+            Trace.WriteLine(msg);
+        }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -466,12 +478,14 @@ namespace nsPuls3060
             Trace.Listeners.RemoveAt(0);
             DefaultTraceListener defaultListener;
             defaultListener = new DefaultTraceListener();
+            defaultListener.LogFileName = "Application.log";
+            
             Trace.Listeners.Add(defaultListener);
             if (!EventLog.SourceExists("Medlem3060"))
                 EventLog.CreateEventSource("Medlem3060", "Application");
-            Trace.Listeners.Add(new EventLogTraceListener("Medlem3060"));
+            //Trace.Listeners.Add(new EventLogTraceListener("Medlem3060"));
 
-            Trace.WriteLine("Starter Medlem3060");
+            Program.Log("Starter Medlem3060");
             System.Diagnostics.Process[] p = System.Diagnostics.Process.GetProcessesByName("Medlem3060");
             if (p.Length > 1)
             {
