@@ -1,0 +1,105 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="nsPuls3060.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="BetalingsFristiDageGamleMedlemmer" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">31</Value>
+    </Setting>
+    <Setting Name="BetalingsFristiDageNyeMedlemmer" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">61</Value>
+    </Setting>
+    <Setting Name="frmMainPoint" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">100, 100</Value>
+    </Setting>
+    <Setting Name="frmMainSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">1024, 800</Value>
+    </Setting>
+    <Setting Name="frmMedlemmerPoint" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">100, 100</Value>
+    </Setting>
+    <Setting Name="frmMedlemmerSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">800, 600</Value>
+    </Setting>
+    <Setting Name="frmKreditorPoint" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">10, 10</Value>
+    </Setting>
+    <Setting Name="frmKreditorSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">304, 300</Value>
+    </Setting>
+    <Setting Name="frmKreditorState" Type="System.Windows.Forms.FormWindowState" Scope="User">
+      <Value Profile="(Default)">Normal</Value>
+    </Setting>
+    <Setting Name="frmRegnskabState" Type="System.Windows.Forms.FormWindowState" Scope="User">
+      <Value Profile="(Default)">Normal</Value>
+    </Setting>
+    <Setting Name="frmRegnskabSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">531, 398</Value>
+    </Setting>
+    <Setting Name="frmRegnskabPoint" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="frmKontingentForslagSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">829, 513</Value>
+    </Setting>
+    <Setting Name="frmKontingentForslagPoint" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="frmMedlemmerSplitteDist" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">280</Value>
+    </Setting>
+    <Setting Name="frmPbsfilesPoint" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="frmPbsfilesSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">707, 511</Value>
+    </Setting>
+    <Setting Name="FrmBetalingsForslagSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">800, 600</Value>
+    </Setting>
+    <Setting Name="FrmBetalingsForslagPoint" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="frmRykkerForslagClientSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">829, 513</Value>
+    </Setting>
+    <Setting Name="frmRykkerForslagPoint" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="frmPbsnetdirSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">416, 211</Value>
+    </Setting>
+    <Setting Name="frmPbsnetdirPoint" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">100, 100</Value>
+    </Setting>
+    <Setting Name="frmKontingentPoint" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="frmKontingentSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">380, 290</Value>
+    </Setting>
+    <Setting Name="tblKontingentDateGridViewSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">380, 265</Value>
+    </Setting>
+    <Setting Name="tblKontingentDataGridViewRowHeadersWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">41</Value>
+    </Setting>
+    <Setting Name="puls3061_dk_dbConnectionString_Test" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=mssql1.unoeuro.com;Initial Catalog=puls3061_dk_db;Integrated Security=False;Persist Security Info=True;User ID=puls3061_dk&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=mssql1.unoeuro.com;Initial Catalog=puls3061_dk_db;Integrated Security=False;Persist Security Info=True;User ID=puls3061_dk</Value>
+    </Setting>
+    <Setting Name="puls3061_dk_dbConnectionString_Prod" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=mssql2.unoeuro.com;Initial Catalog=puls3060_dk_db;Integrated Security=False;Persist Security Info=True;User ID=puls3060_dk&lt;/ConnectionString&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=mssql2.unoeuro.com;Initial Catalog=puls3060_dk_db;Integrated Security=False;Persist Security Info=True;User ID=puls3060_dk</Value>
+    </Setting>
+    <Setting Name="UserPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>
