@@ -17,7 +17,7 @@
                     <RowDefinition  Height="40"/>
                     <RowDefinition  Height="40"/>
                 </Grid.RowDefinitions>
-                <local:menuButton ServerName="HD03" ServerOS="Win2012" ToolTip="HyperV Server" Margin="3" Grid.Row="1" Grid.ColumnSpan="2" />
+                <local:menuButton ServerName="pHD04" ServerOS="Win2012" ToolTip="HyperV Server" Margin="3" Grid.Row="1" Grid.ColumnSpan="2" />
                 <local:menuButton ServerName="HD24" ServerOS="Win2012" ToolTip="DPM Backup Server" Margin="3" Grid.Row="2" />
                 <local:menuButton ServerName="vHD11" ServerOS="Win2012" ToolTip="Domain Server" Margin="3" Grid.Row="2" Grid.Column="1" />
                 <local:menuButton ServerName="Win3060" ServerOS="Win7" ToolTip="Puls 3060 Regnskab" Margin="3" Grid.Row="3" />
@@ -41,7 +41,7 @@
                     <RowDefinition Height="40" />
                     <RowDefinition Height="5*" />
                 </Grid.RowDefinitions>
-                <local:menuButton ServerOS="Win2012" Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="HD04" ToolTip="HyperV Server" />
+                <local:menuButton ServerOS="Win2012" Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="pHD05" ToolTip="HyperV Server" />
                 <local:menuButton Grid.Row="2" Margin="3" ServerName="Revi27" ToolTip="Buus Jensen DPM Backup Server" ServerOS="Win2012"  />
                 <local:menuButton Grid.Row="3" Margin="3" ServerName="Win7" ServerOS="Win7" ToolTip="Program udviklings"/>
                 <local:menuButton Grid.Column="1" Grid.Row="3" Margin="3" ServerName="Win7-2" ToolTip="Program udvikling" ServerOS="Win7" />
