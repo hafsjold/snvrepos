@@ -54,8 +54,9 @@
             this.Database = new System.Windows.Forms.TextBox();
             this.label_Database = new System.Windows.Forms.Label();
             this.BackupDatabase = new System.Windows.Forms.CheckBox();
-            this.DBMessage = new System.Windows.Forms.Label();
-            this.DBMessage2 = new System.Windows.Forms.Label();
+            this.MessageLine1 = new System.Windows.Forms.Label();
+            this.MessageLine2 = new System.Windows.Forms.Label();
+            this.MessageLine3 = new System.Windows.Forms.Label();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -265,31 +266,41 @@
             this.BackupDatabase.Text = "Backup Database";
             this.BackupDatabase.UseVisualStyleBackColor = true;
             // 
-            // DBMessage
+            // MessageLine1
             // 
-            this.DBMessage.AutoSize = true;
-            this.DBMessage.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.DBMessage.Location = new System.Drawing.Point(102, 353);
-            this.DBMessage.Name = "DBMessage";
-            this.DBMessage.Size = new System.Drawing.Size(0, 13);
-            this.DBMessage.TabIndex = 6;
+            this.MessageLine1.AutoSize = true;
+            this.MessageLine1.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.MessageLine1.Location = new System.Drawing.Point(102, 353);
+            this.MessageLine1.Name = "MessageLine1";
+            this.MessageLine1.Size = new System.Drawing.Size(0, 13);
+            this.MessageLine1.TabIndex = 6;
             // 
-            // DBMessage2
+            // MessageLine2
             // 
-            this.DBMessage2.AutoSize = true;
-            this.DBMessage2.ForeColor = System.Drawing.Color.DodgerBlue;
-            this.DBMessage2.Location = new System.Drawing.Point(102, 381);
-            this.DBMessage2.Name = "DBMessage2";
-            this.DBMessage2.Size = new System.Drawing.Size(0, 13);
-            this.DBMessage2.TabIndex = 6;
+            this.MessageLine2.AutoSize = true;
+            this.MessageLine2.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.MessageLine2.Location = new System.Drawing.Point(102, 377);
+            this.MessageLine2.Name = "MessageLine2";
+            this.MessageLine2.Size = new System.Drawing.Size(0, 13);
+            this.MessageLine2.TabIndex = 6;
+            // 
+            // MessageLine3
+            // 
+            this.MessageLine3.AutoSize = true;
+            this.MessageLine3.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.MessageLine3.Location = new System.Drawing.Point(101, 402);
+            this.MessageLine3.Name = "MessageLine3";
+            this.MessageLine3.Size = new System.Drawing.Size(0, 13);
+            this.MessageLine3.TabIndex = 6;
             // 
             // frmBackup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(603, 424);
-            this.Controls.Add(this.DBMessage2);
-            this.Controls.Add(this.DBMessage);
+            this.Controls.Add(this.MessageLine3);
+            this.Controls.Add(this.MessageLine2);
+            this.Controls.Add(this.MessageLine1);
             this.Controls.Add(this.BackupDatabase);
             this.Controls.Add(this.lvwFolders);
             this.Controls.Add(this.SelectBackupDir);
@@ -346,8 +357,9 @@
         private System.Windows.Forms.TextBox Database;
         private System.Windows.Forms.Label label_Database;
         private System.Windows.Forms.CheckBox BackupDatabase;
-        private System.Windows.Forms.Label DBMessage;
-        private System.Windows.Forms.Label DBMessage2;
+        private System.Windows.Forms.Label MessageLine1;
+        private System.Windows.Forms.Label MessageLine2;
+        private System.Windows.Forms.Label MessageLine3;
     }
 }
 

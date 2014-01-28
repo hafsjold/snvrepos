@@ -61,19 +61,28 @@ namespace Backup3060
             CloudBlobClient blobClient = _storageAccount.CreateCloudBlobClient();
             CloudBlobContainer container = blobClient.GetContainerReference("backup");
             container.CreateIfNotExists();
-
+            DateTime Nu = DateTime.Now;
+            string fdt = Nu.ToString("dd-MM-yyyy HH:mm"); 
+            string strBlobName = Path.GetFileName(fileName);
+            this.MessageLine3.Text = strBlobName + " Start Backup to Azure";
+            this.MessageLine3.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.Refresh();
             try
             {
-                string strBlobName = Path.GetFileName(fileName);
                 CloudBlockBlob blockBlob = container.GetBlockBlobReference(strBlobName);
                 using (var fileStream = System.IO.File.OpenRead(fileName))
                 {
                     blockBlob.UploadFromStream(fileStream);
                 }
+                this.MessageLine3.Text = strBlobName + " Backup to Azure OK " + fdt;
+                this.MessageLine3.ForeColor = System.Drawing.Color.DodgerBlue;
+                this.Refresh();
             }
             catch
             {
-                throw;
+                this.MessageLine3.Text = strBlobName + " Not Backed up to Azure " + fdt;
+                this.MessageLine3.ForeColor = System.Drawing.Color.Red;
+                this.Refresh();
             }
         }
 
@@ -83,18 +92,23 @@ namespace Backup3060
             string strDatabaseBackupfile = this.DBBackupFolder.Text + @"\" + strDatabase + @".bacpac";
             string ConnectionString = @"Server=qynhbd9h4f.database.windows.net;Database=dbPuls3060Medlem;User ID=sqlUser;Password=Puls3060;Trusted_Connection=False;Encrypt=True;Connection Timeout=30;";
             DateTime Nu = DateTime.Now; 
-            string fdt = Nu.ToString("dd-MM-yyyy HH:mm"); 
+            string fdt = Nu.ToString("dd-MM-yyyy HH:mm");
+            this.MessageLine1.Text = strDatabase + " Start Backup";
+            this.MessageLine1.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.Refresh();
             try
             {
                 Microsoft.SqlServer.Dac.DacServices Services = new Microsoft.SqlServer.Dac.DacServices(ConnectionString);
                 Services.ExportBacpac(strDatabaseBackupfile, @"dbPuls3060Medlem");
-                this.DBMessage2.Text = strDatabase + " Backup OK " + fdt;
-                this.DBMessage2.ForeColor = System.Drawing.Color.DodgerBlue;
+                this.MessageLine1.Text = strDatabase + " Backup OK " + fdt;
+                this.MessageLine1.ForeColor = System.Drawing.Color.DodgerBlue;
+                this.Refresh();
             }
             catch 
             {
-                this.DBMessage2.Text = strDatabase + " Not Backed up " + fdt;
-                this.DBMessage2.ForeColor = System.Drawing.Color.Red;
+                this.MessageLine1.Text = strDatabase + " Not Backed up " + fdt;
+                this.MessageLine1.ForeColor = System.Drawing.Color.Red;
+                this.Refresh();
             }
         }
 
@@ -106,17 +120,23 @@ namespace Backup3060
             string ConnectionString = @"Server=" + strSQLServer + @";Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=False;";
             DateTime Nu = DateTime.Now;
             string fdt = Nu.ToString("dd-MM-yyyy HH:mm");
+            this.MessageLine2.Text = strDatabase + " Start Backup";
+            this.MessageLine2.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.Refresh();
+
             try
             {
                 Microsoft.SqlServer.Dac.DacServices Services = new Microsoft.SqlServer.Dac.DacServices(ConnectionString);
                 Services.ExportBacpac(strDatabaseBackupfile, strDatabase);
-                this.DBMessage.Text = strDatabase + " Backup OK " + fdt;
-                this.DBMessage.ForeColor = System.Drawing.Color.DodgerBlue;
+                this.MessageLine2.Text = strDatabase + " Backup OK " + fdt;
+                this.MessageLine2.ForeColor = System.Drawing.Color.DodgerBlue; 
+                this.Refresh();
             }
             catch
             {
-                this.DBMessage.Text = strDatabase + " Not Backed up " + fdt;
-                this.DBMessage.ForeColor = System.Drawing.Color.Red;
+                this.MessageLine2.Text = strDatabase + " Not Backed up " + fdt;
+                this.MessageLine2.ForeColor = System.Drawing.Color.Red;
+                this.Refresh();
             }
         }
 
@@ -187,13 +207,13 @@ namespace Backup3060
                 SqlCommand cmd = new SqlCommand(script, conn);
                 cmd.ExecuteNonQuery();
                 conn.Close();
-                this.DBMessage.Text = strDatabase + " Backup OK " + fdt;
-                this.DBMessage.ForeColor = System.Drawing.Color.DodgerBlue;
+                this.MessageLine1.Text = strDatabase + " Backup OK " + fdt;
+                this.MessageLine1.ForeColor = System.Drawing.Color.DodgerBlue;
             }
             catch
             {
-                this.DBMessage.Text = strDatabase + " Not Backed up " + fdt;
-                this.DBMessage.ForeColor = System.Drawing.Color.Red;
+                this.MessageLine1.Text = strDatabase + " Not Backed up " + fdt;
+                this.MessageLine1.ForeColor = System.Drawing.Color.Red;
             }
         }
 
