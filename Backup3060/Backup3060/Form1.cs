@@ -13,8 +13,9 @@ using System.IO;
 using System.Data.SqlClient;
 using Microsoft.SqlServer.Management.Common;
 using Microsoft.SqlServer.Management.Smo;
-
-
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Auth;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 
 namespace Backup3060
@@ -23,6 +24,8 @@ namespace Backup3060
     {
         private int selectedIndes = -1;
         private string regKey = @"Software\Hafsjold\Puls3060\Start";
+        private static CloudStorageAccount _storageAccount = null;
+        private static string _partitionKey = string.Empty;
 
         public frmBackup()
         {
@@ -50,6 +53,28 @@ namespace Backup3060
             this.SQLServer.Text = (string)masterKey.GetValue("SQLServer", "");
             this.Database.Text = (string)masterKey.GetValue("Database", "");
             masterKey.Close();
+        }
+
+        private void SaveAzure(string fileName) 
+        {
+            _storageAccount = CloudStorageAccount.Parse(@"DefaultEndpointsProtocol=https;AccountName=puls3060;AccountKey=7BjY95xrYstORQGBwtMan60GSLeI2SsSitkxfpUw4YnBgN8zbdXQpE2TQm04Mq9JiLSR1oc5coGy7J+CAyJaOw==;");
+            CloudBlobClient blobClient = _storageAccount.CreateCloudBlobClient();
+            CloudBlobContainer container = blobClient.GetContainerReference("backup");
+            container.CreateIfNotExists();
+
+            try
+            {
+                string strBlobName = Path.GetFileName(fileName);
+                CloudBlockBlob blockBlob = container.GetBlockBlobReference(strBlobName);
+                using (var fileStream = System.IO.File.OpenRead(fileName))
+                {
+                    blockBlob.UploadFromStream(fileStream);
+                }
+            }
+            catch
+            {
+                throw;
+            }
         }
 
         private void ExportDB1()
@@ -248,7 +273,8 @@ namespace Backup3060
             SaveReg();
             if (this.BackupDatabase.Checked) ExportDB1();
             if (this.BackupDatabase.Checked) ExportDB2();
-            execZip();
+            string targetFile = execZip();
+            SaveAzure(targetFile);
         }
 
         private void cmdCancel_Click(object sender, EventArgs e)
@@ -273,7 +299,7 @@ namespace Backup3060
             //this.contextMenuStrip1.Show(X,Y);
         }
 
-        private void execZip()
+        private string execZip()
         {
             System.Diagnostics.Process objProcess;
 
@@ -322,6 +348,7 @@ namespace Backup3060
             {
                 WriteToEventLog("Backup3060 Error-2", EventLogEntryType.Error, 49103);
             }
+            return Target;
 
         }
 
