@@ -350,8 +350,8 @@ namespace nsPuls3060.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=qynhbd9h4f.database.windows.net;Initial Catalog=dbPuls3060Medlem;Inte" +
-            "grated Security=False;Persist Security Info=True;User ID=sqlUser;Encrypt=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=WIN7;Initial Catalog=dbPuls3060MedlemTest2;Integrated Security=True;E" +
+            "ncrypt=True;TrustServerCertificate=True")]
         public string puls3061_dk_dbConnectionString_Test {
             get {
                 return ((string)(this["puls3061_dk_dbConnectionString_Test"]));
