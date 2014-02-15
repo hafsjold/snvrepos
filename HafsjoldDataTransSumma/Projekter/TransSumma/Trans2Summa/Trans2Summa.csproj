@@ -13,8 +13,9 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <ManifestCertificateThumbprint>9C6E91E08F005549F55927834743B903CE09C713</ManifestCertificateThumbprint>
-    <ManifestKeyFile>HafsjoldDataApSSignature.pfx</ManifestKeyFile>
+    <ManifestCertificateThumbprint>6462A19D815366E403924C81BD017AF6EB5C4E3B</ManifestCertificateThumbprint>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
     <SignManifests>true</SignManifests>
     <ManifestTimestampUrl>http://timestamp.verisign.com/scripts/timstamp.dll</ManifestTimestampUrl>
@@ -23,7 +24,7 @@
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation />
     <TargetFrameworkProfile />
-    <PublishUrl>C:\Users\mha\Documents\HafsjoldDataTransSumma\3060Install\Trans2Summa\</PublishUrl>
+    <PublishUrl>C:\Users\mha\SkyDrive\Install\HafsjoldDataTrans2Summa\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -37,7 +38,7 @@
     <ProductName>Trans2Summa</ProductName>
     <PublisherName>Hafsjold</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>5</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>4.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
