@@ -80,6 +80,16 @@ namespace nsMenu
                 y = (int)(SystemParameters.PrimaryScreenHeight * .95) - desktopheight;
                 bUpdate = true;
             }
+            if (dx != (int)(SystemParameters.PrimaryScreenWidth))
+            {
+                dx = (int)(SystemParameters.PrimaryScreenWidth);
+                bUpdate = true;
+            }
+            if (dy != (int)(SystemParameters.PrimaryScreenHeight))
+            {
+                dy = (int)(SystemParameters.PrimaryScreenHeight);
+                bUpdate = true;
+            }
 
             if (bUpdate == true)
             {
