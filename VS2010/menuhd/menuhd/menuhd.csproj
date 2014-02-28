@@ -78,6 +78,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="clsRDP.cs" />
     <Compile Include="menuButton.xaml.cs">
       <DependentUpon>menuButton.xaml</DependentUpon>
     </Compile>
