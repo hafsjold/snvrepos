@@ -32,6 +32,8 @@ namespace menubj
         {
             InitializeComponent();
 
+            string newTitle = this.Title + " - " + SystemParameters.PrimaryScreenWidth + "x" + SystemParameters.PrimaryScreenHeight;
+            this.Title = newTitle;
             this.Left = Properties.Settings.Default.WinStartupLocation.X;
             this.Top = Properties.Settings.Default.WinStartupLocation.Y;
 
