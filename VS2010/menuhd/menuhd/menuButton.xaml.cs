@@ -195,8 +195,8 @@ namespace nsMenu
 
             FileInfo fi = new FileInfo(rdpfile);
             if (!fi.Exists) getFile(rdpfile, ServerName);
-            clsRDP rdp = RDPscreeSize(rdpfile);
-
+            clsRDP rdp = new clsRDP(rdpfile);
+ 
             switch (Evt)
             {
                 case evt.editClick:
@@ -226,7 +226,8 @@ namespace nsMenu
                     break;
 
                 case evt.mnuClick:
-                    if (rdp.useFuulScreen()) proc = Process.Start(@"c:\windows\system32\mstsc.exe", "/f " + rdpfile);
+                    rdp.checkPosition();
+                    if (rdp.useFuulScreen) proc = Process.Start(@"c:\windows\system32\mstsc.exe", "/f " + rdpfile);
                     else proc = Process.Start(rdpfile);
                     ledbutton.Visibility = System.Windows.Visibility.Visible;
                     break;
@@ -237,7 +238,7 @@ namespace nsMenu
             }
         }
 
-        private void getFile(string rdpfile, string content)
+        private void getFile(string rdpfile, string ServerName)
         {
             using (Stream file = File.Create(rdpfile))
             {
@@ -257,7 +258,7 @@ namespace nsMenu
                                 {
                                     char[] dot = { '.' };
                                     string[] doamin = part[2].Split(dot, 2);
-                                    line = part[0] + ":" + part[1] + ":" + content + @"." + doamin[1];
+                                    line = part[0] + ":" + part[1] + ":" + ServerName + @"." + doamin[1];
                                 }
                                 sw.WriteLine(line);
                             }
@@ -265,37 +266,6 @@ namespace nsMenu
                     }
                 }
             }
-        }
-
-        private clsRDP RDPscreeSize(string rdpfile)
-        {
-            char[] kolon = { ':' };
-            clsRDP rdp = new clsRDP();
-            using (Stream file = File.OpenRead(rdpfile))
-            {
-                using (StreamReader sr = new StreamReader(file))
-                {
-                    while (!sr.EndOfStream)
-                    {
-                        string line = sr.ReadLine();
-                        string[] part = line.Split(kolon);
-                        switch (part[0].ToLower())
-                        {
-                            case "desktopwidth":
-                                rdp.desktopwidth = int.Parse(part[2]); 
-                                break;
-                            case "desktopheight":
-                                rdp.desktopheight = int.Parse(part[2]);
-                                break;
-                            case "full address":
-                                rdp.full_address = part[2].ToLower();
-                                break;
-
-                        }
-                    }
-                }
-            }
-            return rdp;
         }
     }
 }
