@@ -77,7 +77,7 @@ namespace nsMenu
             }
         }
 
- 
+
         public string ServerName
         {
             get { return (string)GetValue(ServerNameProperty); }
@@ -170,7 +170,7 @@ namespace nsMenu
         {
             string rdpname = ServerName + @".rdp";
             string rdpfile = System.IO.Path.Combine(menuhd.MainWindow.menuFolder, rdpname);
-            
+
             if (proc != null)
             {
                 try
@@ -195,6 +195,7 @@ namespace nsMenu
 
             FileInfo fi = new FileInfo(rdpfile);
             if (!fi.Exists) getFile(rdpfile, ServerName);
+            clsRDP rdp = RDPscreeSize(rdpfile);
 
             switch (Evt)
             {
@@ -225,10 +226,11 @@ namespace nsMenu
                     break;
 
                 case evt.mnuClick:
-                    proc = Process.Start(rdpfile);
+                    if (rdp.useFuulScreen()) proc = Process.Start(@"c:\windows\system32\mstsc.exe", "/f " + rdpfile);
+                    else proc = Process.Start(rdpfile);
                     ledbutton.Visibility = System.Windows.Visibility.Visible;
                     break;
-                
+
                 default:
                     break;
 
@@ -263,6 +265,37 @@ namespace nsMenu
                     }
                 }
             }
+        }
+
+        private clsRDP RDPscreeSize(string rdpfile)
+        {
+            char[] kolon = { ':' };
+            clsRDP rdp = new clsRDP();
+            using (Stream file = File.OpenRead(rdpfile))
+            {
+                using (StreamReader sr = new StreamReader(file))
+                {
+                    while (!sr.EndOfStream)
+                    {
+                        string line = sr.ReadLine();
+                        string[] part = line.Split(kolon);
+                        switch (part[0].ToLower())
+                        {
+                            case "desktopwidth":
+                                rdp.desktopwidth = int.Parse(part[2]); 
+                                break;
+                            case "desktopheight":
+                                rdp.desktopheight = int.Parse(part[2]);
+                                break;
+                            case "full address":
+                                rdp.full_address = part[2].ToLower();
+                                break;
+
+                        }
+                    }
+                }
+            }
+            return rdp;
         }
     }
 }
