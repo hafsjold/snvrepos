@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="puls3061_dk_db" Class="dbData3060DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=mssql1.unoeuro.com;Initial Catalog=puls3061_dk_db;Persist Security Info=True;User ID=puls3061_dk;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;Application Name=EntityFramework" SettingsObjectName="nsPbs3060.Properties.Settings" SettingsPropertyName="puls3061_dk_dbConnectionString3" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dbPuls3060Medlem" Class="dbData3060DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=vhd50;Initial Catalog=dbPuls3060Medlem;User ID=sa" SettingsObjectName="nsPbs3060.Properties.Settings" SettingsPropertyName="dbPuls3060MedlemConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tblsftp" Member="tblsftps">
     <Type Name="tblsftp">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -377,6 +377,12 @@
       <Column Name="Bank" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
       <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="tblMedlem_tblMedlemLog" Member="tblMedlemLogs" ThisKey="Nr" OtherKey="Nr" Type="tblMedlemLog" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblMedlemExtra" Member="tblMedlemExtras">
+    <Type Name="tblMedlemExtra">
+      <Column Name="Nr" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Pusterummet" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.GetSysinfo" Method="GetSysinfo" IsComposable="true">
