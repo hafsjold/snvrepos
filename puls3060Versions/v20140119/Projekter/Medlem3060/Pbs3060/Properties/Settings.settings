@@ -29,10 +29,18 @@
     <Setting Name="puls3061_dk_dbConnectionString3" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=mssql1.unoeuro.com;Initial Catalog=puls3061_dk_db;Persist Security Info=True;User ID=puls3061_dk;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;Application Name=EntityFramework&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Data Source=qynhbd9h4f.database.windows.net;Initial Catalog=dbPuls3060Medlem;Persist Security Info=True;User ID=sqlUser;Password=Puls3060;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;Application Name=EntityFramework&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=mssql1.unoeuro.com;Initial Catalog=puls3061_dk_db;Persist Security Info=True;User ID=puls3061_dk;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;Application Name=EntityFramework</Value>
+      <Value Profile="(Default)">Data Source=qynhbd9h4f.database.windows.net;Initial Catalog=dbPuls3060Medlem;Persist Security Info=True;User ID=sqlUser;Password=Puls3060;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;Application Name=EntityFramework</Value>
+    </Setting>
+    <Setting Name="dbPuls3060MedlemConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=vhd50;Initial Catalog=dbPuls3060Medlem;User ID=sa;Password=Puls3060&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=vhd50;Initial Catalog=dbPuls3060Medlem;User ID=sa;Password=Puls3060</Value>
     </Setting>
   </Settings>
 </SettingsFile>
