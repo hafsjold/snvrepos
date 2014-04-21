@@ -116,6 +116,9 @@
     <Compile Include="clsPbs603.cs" />
     <Compile Include="clsSFTP.cs" />
     <Compile Include="clsPbs686.cs" />
+    <Compile Include="dbData3060.cs">
+      <DependentUpon>dbData3060.dbml</DependentUpon>
+    </Compile>
     <Compile Include="dbData3060.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -375,6 +375,14 @@ namespace nsPbs3060
 			}
 		}
 		
+		public System.Data.Linq.Table<vPusterummet> vPusterummets
+		{
+			get
+			{
+				return this.GetTable<vPusterummet>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetSysinfo", IsComposable=true)]
 		public string GetSysinfo([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Pvkey", DbType="NVarChar(10)")] string pvkey)
 		{
@@ -8195,6 +8203,87 @@ namespace nsPbs3060
 			if ((this.PropertyChanged != null))
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.vPusterummet")]
+	public partial class vPusterummet
+	{
+		
+		private System.Nullable<int> _Nr;
+		
+		private string _Navn;
+		
+		private string _Adresse;
+		
+		private string _Postnr;
+		
+		public vPusterummet()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nr", DbType="Int")]
+		public System.Nullable<int> Nr
+		{
+			get
+			{
+				return this._Nr;
+			}
+			set
+			{
+				if ((this._Nr != value))
+				{
+					this._Nr = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Navn", DbType="NVarChar(35)")]
+		public string Navn
+		{
+			get
+			{
+				return this._Navn;
+			}
+			set
+			{
+				if ((this._Navn != value))
+				{
+					this._Navn = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Adresse", DbType="NVarChar(70)")]
+		public string Adresse
+		{
+			get
+			{
+				return this._Adresse;
+			}
+			set
+			{
+				if ((this._Adresse != value))
+				{
+					this._Adresse = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Postnr", DbType="NVarChar(4)")]
+		public string Postnr
+		{
+			get
+			{
+				return this._Postnr;
+			}
+			set
+			{
+				if ((this._Postnr != value))
+				{
+					this._Postnr = value;
+				}
 			}
 		}
 	}
