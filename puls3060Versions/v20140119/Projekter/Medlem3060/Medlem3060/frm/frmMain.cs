@@ -131,6 +131,20 @@ namespace nsPuls3060
         {
 #if (DEBUG)
             // START TEST TEST TEST TEST TEST TEST
+
+            var rstPusteruns = from p in Program.dbData3060.vPusterummets select p;
+            int count = rstPusteruns.Count();
+            if (count > 0)
+            {
+                foreach (var rstPusterun in rstPusteruns)
+                {
+                    int Nr = (int)rstPusterun.Nr;
+                    string Navn = rstPusterun.Navn;
+                    string Adresse = rstPusterun.Adresse;
+                    string Postnr = rstPusterun.Postnr;
+                }
+            }
+            /*
             string bigString = "BIGSTRING";
             string smallString = "smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString";
             DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
@@ -140,7 +154,7 @@ namespace nsPuls3060
                 null, //leftButton
                 "OK", //rightButton
                 global::nsPuls3060.Properties.Resources.Message_info); //iconSet
-            
+            */
             /*
             clsPbs686 objPbs686 = new clsPbs686();
             int Antal686Filer = objPbs686.aftaleoplysninger_fra_pbs(Program.dbData3060);
