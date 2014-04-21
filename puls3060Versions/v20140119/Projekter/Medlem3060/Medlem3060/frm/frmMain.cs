@@ -131,7 +131,7 @@ namespace nsPuls3060
         {
 #if (DEBUG)
             // START TEST TEST TEST TEST TEST TEST
-
+            /*
             var rstPusteruns = from p in Program.dbData3060.vPusterummets select p;
             int count = rstPusteruns.Count();
             if (count > 0)
@@ -144,6 +144,7 @@ namespace nsPuls3060
                     string Postnr = rstPusterun.Postnr;
                 }
             }
+            */
             /*
             string bigString = "BIGSTRING";
             string smallString = "smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString smallString";
@@ -374,6 +375,16 @@ namespace nsPuls3060
                 FrmImportPBSFile m_frmImportPBSFile = new FrmImportPBSFile();
                 m_frmImportPBSFile.MdiParent = this;
                 m_frmImportPBSFile.Show();
+            }
+        }
+
+        private void pusterummetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("Pusterummet"))
+            {
+                FrmPusterummet frmPusterummet = new FrmPusterummet();
+                frmPusterummet.MdiParent = this;
+                frmPusterummet.Show();
             }
         }
 
