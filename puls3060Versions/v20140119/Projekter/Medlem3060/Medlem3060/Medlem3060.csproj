@@ -161,6 +161,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsMedlem.xsd</DependentUpon>
     </Compile>
+    <Compile Include="frm\frmPusterummet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmPusterummet.Designer.cs">
+      <DependentUpon>frmPusterummet.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm\frmImportPBSFile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -319,6 +325,9 @@
     <EmbeddedResource Include="frm\frmPbsnetdir.resx">
       <DependentUpon>frmPbsnetdir.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmPusterummet.resx">
+      <DependentUpon>frmPusterummet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm\frmRegnskab.resx">
       <DependentUpon>frmRegnskab.cs</DependentUpon>
     </EmbeddedResource>
@@ -353,6 +362,7 @@
       <DependentUpon>dsMedlem.xsd</DependentUpon>
     </None>
     <None Include="Medlem3060_TemporaryKey.pfx" />
+    <None Include="Properties\DataSources\nsPbs3060.vPusterummet.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
