@@ -385,6 +385,14 @@
       <Column Name="Pusterummet" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.vPusterummet" Member="vPusterummets">
+    <Type Name="vPusterummet">
+      <Column Name="Nr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Navn" Type="System.String" DbType="NVarChar(35)" CanBeNull="true" />
+      <Column Name="Adresse" Type="System.String" DbType="NVarChar(70)" CanBeNull="true" />
+      <Column Name="Postnr" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.GetSysinfo" Method="GetSysinfo" IsComposable="true">
     <Parameter Name="Pvkey" Parameter="pvkey" Type="System.String" DbType="NVarChar(10)" />
     <Return Type="System.String" />
