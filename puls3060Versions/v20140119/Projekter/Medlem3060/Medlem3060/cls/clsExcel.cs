@@ -177,7 +177,8 @@ namespace nsPuls3060
             Medlem = 0x1,
             NytMedlem = 0x2,
             Restance = 0x4,
-            Rykket = 0x8
+            Rykket = 0x8,
+            Pusterummet = 0x10
         }        
         private string GetStatusText(int? Status) 
         {
@@ -189,6 +190,8 @@ namespace nsPuls3060
                 s = "Medlem";
             else if ((e & statusMedlem.NytMedlem) == statusMedlem.NytMedlem)
                 s = "NytMedlem";
+            else if ((e & statusMedlem.Pusterummet) == statusMedlem.Pusterummet)
+                s = "Medlem gennem Pusterummet";
             else
                 s = "IkkeMedlem";
 
