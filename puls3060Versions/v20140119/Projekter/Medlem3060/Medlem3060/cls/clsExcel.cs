@@ -190,10 +190,11 @@ namespace nsPuls3060
                 s = "Medlem";
             else if ((e & statusMedlem.NytMedlem) == statusMedlem.NytMedlem)
                 s = "NytMedlem";
-            else if ((e & statusMedlem.Pusterummet) == statusMedlem.Pusterummet)
-                s = "Medlem gennem Pusterummet";
             else
                 s = "IkkeMedlem";
+
+            if ((e & statusMedlem.Pusterummet) == statusMedlem.Pusterummet)
+                s += " gennem Pusterummet";	
 
             if ((e & statusMedlem.Restance) == statusMedlem.Restance)
                 s += " i Restance";
