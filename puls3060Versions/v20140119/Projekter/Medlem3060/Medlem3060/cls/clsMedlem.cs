@@ -840,6 +840,8 @@ namespace nsPuls3060
         public DateTime? opkrævningsDato { get; set; }
         [Fieldattr(Heading = "Tilbageført")]
         public DateTime? kontingentTilbageførtDato { get; set; }
+        [Fieldattr(Heading = "erMedlemPusterummet")]
+        public int? erMedlemPusterummet { get; set; }
     }
 
     public class clsMedlemNotPBSAll

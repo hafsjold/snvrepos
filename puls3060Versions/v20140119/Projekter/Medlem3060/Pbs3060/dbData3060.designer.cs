@@ -468,6 +468,12 @@ namespace nsPbs3060
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pnrserienavn);
 			return ((ISingleResult<nextvalResult>)(result.ReturnValue));
 		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.MedlemPusterummet", IsComposable=true)]
+		public System.Nullable<bool> MedlemPusterummet([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="Int")] System.Nullable<int> pNr)
+		{
+			return ((System.Nullable<bool>)(this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), pNr).ReturnValue));
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblsftp")]

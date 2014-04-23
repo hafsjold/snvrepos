@@ -388,5 +388,10 @@ namespace nsPuls3060
             }
         }
 
+        private void opdaterMedlemsstausToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.dbData3060.UpdateMedlemStatus();
+        }
+
     }
 }

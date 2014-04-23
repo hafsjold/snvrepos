@@ -450,4 +450,8 @@
       <Column Name="id" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.MedlemPusterummet" Method="MedlemPusterummet" IsComposable="true">
+    <Parameter Name="pNr" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Boolean" />
+  </Function>
 </Database>

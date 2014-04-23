@@ -111,6 +111,7 @@ namespace nsPuls3060
                                    kontingentBetaltTilDato = Program.dbData3060.kontingentdato(h.Nr),
                                    opkrævningsDato = Program.dbData3060.forfaldsdato(h.Nr),
                                    kontingentTilbageførtDato = Program.dbData3060.tilbageførtkontingentdato(h.Nr),
+                                   erMedlemPusterummet = ((bool)Program.dbData3060.MedlemPusterummet(h.Nr)) ? 1 : 0,          
                                };
 
 
@@ -141,9 +142,13 @@ namespace nsPuls3060
                 {
                     bSelected = false;
                 }
+                else if (m.erMedlemPusterummet == 1)
+                {
+                    bSelected = false;
+                }
                 else //Er medlem
                 {
-                    if ((m.kontingentBetaltTilDato != null)&& (m.kontingentBetaltTilDato > m.indmeldelsesDato))  //'Der findes en kontingent-betaling
+                    if ((m.kontingentBetaltTilDato != null) && (m.kontingentBetaltTilDato > m.indmeldelsesDato))  //'Der findes en kontingent-betaling
                     {
                         if (m.kontingentBetaltTilDato.Value.Date > this.DatoBetaltKontingentTil.Value)   //der er betalt kontingent efter DatoBetaltKontingentTil
                         {
