@@ -36,7 +36,7 @@
     <ProductName>Medlem3060</ProductName>
     <PublisherName>Hafsjold</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>7</ApplicationRevision>
+    <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>5.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -160,6 +160,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dsMedlem.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="frm\frmMedlemExtra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmMedlemExtra.Designer.cs">
+      <DependentUpon>frmMedlemExtra.cs</DependentUpon>
     </Compile>
     <Compile Include="frm\frmPusterummet.cs">
       <SubType>Form</SubType>
@@ -313,6 +319,9 @@
     <EmbeddedResource Include="frm\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmMedlemExtra.resx">
+      <DependentUpon>frmMedlemExtra.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm\frmMedlemmer.resx">
       <DependentUpon>frmMedlemmer.cs</DependentUpon>
     </EmbeddedResource>
@@ -362,6 +371,7 @@
       <DependentUpon>dsMedlem.xsd</DependentUpon>
     </None>
     <None Include="Medlem3060_TemporaryKey.pfx" />
+    <None Include="Properties\DataSources\nsPbs3060.tblMedlemExtra.datasource" />
     <None Include="Properties\DataSources\nsPbs3060.vPusterummet.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

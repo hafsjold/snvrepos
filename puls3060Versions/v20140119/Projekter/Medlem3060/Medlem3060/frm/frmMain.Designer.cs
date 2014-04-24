@@ -59,12 +59,13 @@
             this.pbsfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoTekstToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pusterummetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.opdaterMedlemsstausToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reSendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.databasePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importerFileFraPBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.opdaterMedlemsstausToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.medlemExtraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -277,6 +278,7 @@
             this.pbsfilesToolStripMenuItem,
             this.infoTekstToolStripMenuItem,
             this.pusterummetToolStripMenuItem,
+            this.medlemExtraToolStripMenuItem,
             this.opdaterMedlemsstausToolStripMenuItem,
             this.reSendToolStripMenuItem,
             this.databasePasswordToolStripMenuItem,
@@ -327,6 +329,13 @@
             this.pusterummetToolStripMenuItem.Text = "Pusterummet";
             this.pusterummetToolStripMenuItem.Click += new System.EventHandler(this.pusterummetToolStripMenuItem_Click);
             // 
+            // opdaterMedlemsstausToolStripMenuItem
+            // 
+            this.opdaterMedlemsstausToolStripMenuItem.Name = "opdaterMedlemsstausToolStripMenuItem";
+            this.opdaterMedlemsstausToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.opdaterMedlemsstausToolStripMenuItem.Text = "Opdater Medlemsstaus";
+            this.opdaterMedlemsstausToolStripMenuItem.Click += new System.EventHandler(this.opdaterMedlemsstausToolStripMenuItem_Click);
+            // 
             // reSendToolStripMenuItem
             // 
             this.reSendToolStripMenuItem.Name = "reSendToolStripMenuItem";
@@ -363,12 +372,12 @@
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
-            // opdaterMedlemsstausToolStripMenuItem
+            // medlemExtraToolStripMenuItem
             // 
-            this.opdaterMedlemsstausToolStripMenuItem.Name = "opdaterMedlemsstausToolStripMenuItem";
-            this.opdaterMedlemsstausToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.opdaterMedlemsstausToolStripMenuItem.Text = "Opdater Medlemsstaus";
-            this.opdaterMedlemsstausToolStripMenuItem.Click += new System.EventHandler(this.opdaterMedlemsstausToolStripMenuItem_Click);
+            this.medlemExtraToolStripMenuItem.Name = "medlemExtraToolStripMenuItem";
+            this.medlemExtraToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.medlemExtraToolStripMenuItem.Text = "MedlemExtra";
+            this.medlemExtraToolStripMenuItem.Click += new System.EventHandler(this.medlemExtraToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -436,6 +445,7 @@
         private System.Windows.Forms.ToolStripMenuItem importerFileFraPBSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pusterummetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem opdaterMedlemsstausToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem medlemExtraToolStripMenuItem;
    }
 }
 

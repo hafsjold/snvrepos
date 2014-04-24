@@ -24,6 +24,7 @@ namespace nsPuls3060
                 {
 #if (DEBUG)
                     m_ConnectStringWithoutPassword = global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString_Test;
+                    //m_ConnectStringWithoutPassword = global::nsPuls3060.Properties.Settings.Default.test_dbConnectionString_Test;
 #else
                     m_ConnectStringWithoutPassword = global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString_Prod;
 #endif
