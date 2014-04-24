@@ -392,5 +392,28 @@ namespace nsPuls3060.Properties {
                 this["frmPusterummetPoint"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=vHD50;Initial Catalog=dbPuls3060Medlem;User ID=sa;Encrypt=True;TrustS" +
+            "erverCertificate=True")]
+        public string test_dbConnectionString_Test {
+            get {
+                return ((string)(this["test_dbConnectionString_Test"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point frmMedlemExtraPoint {
+            get {
+                return ((global::System.Drawing.Point)(this["frmMedlemExtraPoint"]));
+            }
+            set {
+                this["frmMedlemExtraPoint"] = value;
+            }
+        }
     }
 }

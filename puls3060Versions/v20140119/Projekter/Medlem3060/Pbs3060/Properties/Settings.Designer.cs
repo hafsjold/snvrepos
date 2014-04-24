@@ -26,38 +26,6 @@ namespace nsPbs3060.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=hd58;Initial Catalog=puls3061_dk_db;Persist Security Info=True;User I" +
-            "D=sa")]
-        public string puls3061_dk_dbConnectionString {
-            get {
-                return ((string)(this["puls3061_dk_dbConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=HD58;Initial Catalog=puls3061_dk_db;User ID=sa")]
-        public string puls3061_dk_dbConnectionString1 {
-            get {
-                return ((string)(this["puls3061_dk_dbConnectionString1"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=mssql1.unoeuro.com;Initial Catalog=puls3061_dk_db;Persist Security In" +
-            "fo=True;User ID=puls3061_dk;Encrypt=True;TrustServerCertificate=True")]
-        public string puls3061_dk_dbConnectionString2 {
-            get {
-                return ((string)(this["puls3061_dk_dbConnectionString2"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=qynhbd9h4f.database.windows.net;Initial Catalog=dbPuls3060Medlem;Pers" +
             "ist Security Info=True;User ID=sqlUser;Password=Puls3060;MultipleActiveResultSet" +
             "s=True;Encrypt=True;TrustServerCertificate=True;Application Name=EntityFramework" +

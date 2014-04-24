@@ -393,5 +393,15 @@ namespace nsPuls3060
             Program.dbData3060.UpdateMedlemStatus();
         }
 
+        private void medlemExtraToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("MedlemExtra"))
+            {
+                FrmMedlemExtra frmMedlemExtra = new FrmMedlemExtra();
+                frmMedlemExtra.MdiParent = this;
+                frmMedlemExtra.Show();
+            }
+        }
+
     }
 }
