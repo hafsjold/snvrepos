@@ -403,5 +403,10 @@ namespace nsPuls3060
             }
         }
 
+        private void regnearkManagementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            excelManagement();
+        }
+
     }
 }

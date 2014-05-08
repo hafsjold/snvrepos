@@ -59,13 +59,14 @@
             this.pbsfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoTekstToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pusterummetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.medlemExtraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.opdaterMedlemsstausToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reSendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.databasePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importerFileFraPBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.medlemExtraToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.regnearkManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -166,9 +167,10 @@
             // 
             this.medlemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.vedligeholdToolStripMenuItem,
-            this.medlemmerTilRegnearkToolStripMenuItem,
+            this.regnearkManagementToolStripMenuItem,
             this.medlemmerTilRegnearkEksternToolStripMenuItem,
             this.regnearkNotPBSToolStripMenuItem,
+            this.medlemmerTilRegnearkToolStripMenuItem,
             this.emailRykkerToolStripMenuItem});
             this.medlemToolStripMenuItem.Name = "medlemToolStripMenuItem";
             this.medlemToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
@@ -329,6 +331,13 @@
             this.pusterummetToolStripMenuItem.Text = "Pusterummet";
             this.pusterummetToolStripMenuItem.Click += new System.EventHandler(this.pusterummetToolStripMenuItem_Click);
             // 
+            // medlemExtraToolStripMenuItem
+            // 
+            this.medlemExtraToolStripMenuItem.Name = "medlemExtraToolStripMenuItem";
+            this.medlemExtraToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
+            this.medlemExtraToolStripMenuItem.Text = "MedlemExtra";
+            this.medlemExtraToolStripMenuItem.Click += new System.EventHandler(this.medlemExtraToolStripMenuItem_Click);
+            // 
             // opdaterMedlemsstausToolStripMenuItem
             // 
             this.opdaterMedlemsstausToolStripMenuItem.Name = "opdaterMedlemsstausToolStripMenuItem";
@@ -372,12 +381,12 @@
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
-            // medlemExtraToolStripMenuItem
+            // regnearkManagementToolStripMenuItem
             // 
-            this.medlemExtraToolStripMenuItem.Name = "medlemExtraToolStripMenuItem";
-            this.medlemExtraToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
-            this.medlemExtraToolStripMenuItem.Text = "MedlemExtra";
-            this.medlemExtraToolStripMenuItem.Click += new System.EventHandler(this.medlemExtraToolStripMenuItem_Click);
+            this.regnearkManagementToolStripMenuItem.Name = "regnearkManagementToolStripMenuItem";
+            this.regnearkManagementToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.regnearkManagementToolStripMenuItem.Text = "Regneark management";
+            this.regnearkManagementToolStripMenuItem.Click += new System.EventHandler(this.regnearkManagementToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -446,6 +455,7 @@
         private System.Windows.Forms.ToolStripMenuItem pusterummetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem opdaterMedlemsstausToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem medlemExtraToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem regnearkManagementToolStripMenuItem;
    }
 }
 
