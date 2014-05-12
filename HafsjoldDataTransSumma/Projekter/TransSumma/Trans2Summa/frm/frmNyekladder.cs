@@ -576,7 +576,7 @@ namespace Trans2Summa
             int AntalLinier = recBilag.tblkladders.Count;
 
 
-            if ((!IsFound_BankKontoudtog) || (IsFound_BankKontoudtog && recBankkonto.bankkontoid == 1)) //BANK
+            if ((!IsFound_BankKontoudtog) || (IsFound_BankKontoudtog && ((recBankkonto.bankkontoid == 1) || (recBankkonto.bankkontoid == 3)))) //BANK
             {
                 if (AntalLinier <= 3)
                 {
@@ -852,6 +852,8 @@ namespace Trans2Summa
                     }
                 }
             }
+            //*******************************************************************************************
+            //*******************************************************************************************
 
             return false;
         }
