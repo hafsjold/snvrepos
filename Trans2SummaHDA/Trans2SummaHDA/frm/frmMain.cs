@@ -137,11 +137,14 @@ namespace Trans2SummaHDA
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
-            decimal? tal = -decimal.Parse("0,12342");
-            string talformated = "";
-            if (tal != null)
-                talformated = ((decimal)tal).ToString("#,0.00;-#,0.00");
-            var x = talformated;
+            clsBilagsudskriftPDF objBilagsudskriftPDF = new clsBilagsudskriftPDF();
+            clsBilagsudskriftPDF.BilagsudskriftPDF();
+
+            //decimal? tal = -decimal.Parse("0,12342");
+            //string talformated = "";
+            //if (tal != null)
+            //    talformated = ((decimal)tal).ToString("#,0.00;-#,0.00");
+            //var x = talformated;
             //KarVarer objVarer = new KarVarer();
             //object xx = Program.karFakturaer_k;
             //KarKartotek recKartotek = new KarKartotek();

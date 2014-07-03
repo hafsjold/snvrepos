@@ -129,6 +129,7 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="cls\clsBilagsudskriftPDF.cs" />
     <Compile Include="cls\clsFaktura.cs" />
     <Compile Include="cls\clsExcel.cs" />
     <Compile Include="cls\clsBilagsudskrift.cs" />
