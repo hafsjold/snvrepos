@@ -47,6 +47,7 @@ namespace Trans2SummaHDA
            int Regnskabid = (int)Bilag.regnskabid;
             recMemRegnskab rec_regnskab = (from r in Program.memRegnskab where r.Rid == Regnskabid select r).First();
             string firma = rec_regnskab.Firmanavn;
+            string regnskabsnavn = rec_regnskab.Navn;
             DateTime startdato = (DateTime)rec_regnskab.Start;
             DateTime slutdato = (DateTime)rec_regnskab.Slut;
             DateTime bilagsdato = (DateTime)Bilag.dato;
@@ -64,11 +65,17 @@ namespace Trans2SummaHDA
                 pnr = bilagMonth - startMonth + 1;
             }
             DateTime PeriodeMonthYear = new DateTime(slutdato.Year, pnr, 1);
-            string Periode = PeriodeMonthYear.ToString("MM-yyyy");
+            string Periode = PeriodeMonthYear.ToString("MM");
 
             
             //Create a pdf document.
             PdfDocument doc = new PdfDocument();
+
+            doc.DocumentInformation.Author = "Hafsjold Data ApS";
+            doc.DocumentInformation.Title = String.Format("Bogføringsbilag {0}", regnskabsnavn);
+            doc.DocumentInformation.Creator = "Trans2SummaHDA";
+            doc.DocumentInformation.Subject = String.Format("Bilag {0}", ((int)Bilag.bilag).ToString());
+            doc.DocumentInformation.CreationDate = DateTime.Now;
 
             //margin
             PdfUnitConvertor unitCvtr = new PdfUnitConvertor();
@@ -88,7 +95,7 @@ namespace Trans2SummaHDA
             PdfBrush brush1 = PdfBrushes.Black;
             PdfTrueTypeFont font1 = new PdfTrueTypeFont(new Font("Arial", 16f, FontStyle.Bold));
             PdfStringFormat format1 = new PdfStringFormat(PdfTextAlignment.Left);
-            string s = String.Format("Bogføringsbilag {0}", firma); 
+            string s = String.Format("Bogføringsbilag {0}", regnskabsnavn); 
             page.Canvas.DrawString(s, font1, brush1, 1, y, format1);
             y = y + font1.MeasureString(s, format1).Height;
             y = y + 25;
@@ -162,7 +169,8 @@ namespace Trans2SummaHDA
             y = y + result.Bounds.Height + 5;
 
             //Save pdf file.
-            string filename = String.Format("Bilag {0}.pdf", ((int)Bilag.bilag).ToString());
+            string filepath = @"C:\Users\Mogens\Documents\SummaSummarum\";
+            string filename = String.Format(@"C:\Users\Mogens\Documents\SummaSummarum\{0}\Bilag {1}.pdf", regnskabsaar, ((int)Bilag.bilag).ToString());
             doc.SaveToFile(filename);
             doc.Close();
         }
