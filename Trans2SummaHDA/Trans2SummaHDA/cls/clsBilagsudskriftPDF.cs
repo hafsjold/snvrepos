@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using Spire.Pdf;
 using Spire.Pdf.Graphics;
 using Spire.Pdf.Tables;
+using System.IO;
 
 namespace Trans2SummaHDA
 {
@@ -169,8 +170,10 @@ namespace Trans2SummaHDA
             y = y + result.Bounds.Height + 5;
 
             //Save pdf file.
-            string filepath = @"C:\Users\Mogens\Documents\SummaSummarum\";
-            string filename = String.Format(@"C:\Users\Mogens\Documents\SummaSummarum\{0}\Bilag {1}.pdf", regnskabsaar, ((int)Bilag.bilag).ToString());
+            string BilagPath = (from r in Program.karTrans2Summa where r.key == "BilagPath" select r.value).First();
+            string BilagNavn = String.Format(@"Bilag {0}.pdf", ((int)Bilag.bilag).ToString());
+            string filename = Path.Combine(BilagPath, BilagNavn);
+
             doc.SaveToFile(filename);
             doc.Close();
         }

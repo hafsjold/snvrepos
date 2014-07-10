@@ -74,6 +74,7 @@ namespace Trans2SummaHDA
         private static KarMoms m_KarMoms;
         private static KarKartotek m_KarKartotek;
         private static KarVarer m_KarVarer;
+        private static KarTrans2Summa m_KarTrans2Summa;
 
         public static string path_to_lock_summasummarum_kontoplan
         {
@@ -288,6 +289,18 @@ namespace Trans2SummaHDA
             set
             {
                 m_KarVarer = value;
+            }
+        }
+        public static KarTrans2Summa karTrans2Summa
+        {
+            get
+            {
+                if (m_KarTrans2Summa == null) m_KarTrans2Summa = new KarTrans2Summa();
+                return m_KarTrans2Summa;
+            }
+            set
+            {
+                m_KarTrans2Summa = value;
             }
         }
         public static KarFakturaer_k karFakturaer_k
