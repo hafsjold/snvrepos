@@ -40,7 +40,7 @@ namespace Trans2SummaHDA
                 if (i >= iMax) break;
             }
 
-            //Program.dbDataTransSumma.SubmitChanges();
+            Program.dbDataTransSumma.SubmitChanges();
         }
 
         public static void UdskrivBilag(tblbilag Bilag)
