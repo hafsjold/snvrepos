@@ -384,7 +384,8 @@ namespace Trans2SummaHDA
 
         private void printBilagToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            clsBilagsudskrift.Bilagsudskrift(false);
+            //clsBilagsudskrift.Bilagsudskrift(false);
+            clsBilagsudskriftPDF.BilagsudskriftPDF();
         }
 
         private void bilagToolStripMenuItem_Click(object sender, EventArgs e)
