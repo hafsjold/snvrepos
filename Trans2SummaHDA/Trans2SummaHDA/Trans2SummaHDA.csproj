@@ -13,7 +13,7 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <ManifestCertificateThumbprint>6462A19D815366E403924C81BD017AF6EB5C4E3B</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>AD4EC290A052A0F523B7728C126F0DFCDD03821C</ManifestCertificateThumbprint>
     <ManifestKeyFile>
     </ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
@@ -24,7 +24,7 @@
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation />
     <TargetFrameworkProfile />
-    <PublishUrl>C:\Users\mha\OneDrive\Install\HafsjoldDataTrans2Summa\</PublishUrl>
+    <PublishUrl>C:\Users\Mogens\SkyDrive\Install\HafsjoldDataTrans2SummaHDA\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -38,7 +38,7 @@
     <ProductName>Trans2Summa</ProductName>
     <PublisherName>Hafsjold</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>7</ApplicationRevision>
+    <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>4.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -388,10 +388,18 @@
     <None Include="Properties\DataSources\KarMoms.datasource" />
     <None Include="Properties\DataSources\MemRegnskab.datasource" />
     <None Include="Resources\Add.bmp" />
-    <Content Include="Libraries\Excel.dll" />
-    <Content Include="Libraries\Interop.Excel.dll" />
-    <Content Include="Libraries\Interop.Microsoft.Office.Core.dll" />
-    <Content Include="Libraries\Interop.VBIDE.dll" />
+    <Content Include="Libraries\Excel.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Libraries\Interop.Excel.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Libraries\Interop.Microsoft.Office.Core.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Libraries\Interop.VBIDE.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\info.png" />
     <Content Include="Resources\logopart.jpg" />
     <None Include="Resources\Summa.ico" />
@@ -429,9 +437,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
       <Visible>False</Visible>
-      <ProductName>Windows Installer 3.1</ProductName>
+      <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
