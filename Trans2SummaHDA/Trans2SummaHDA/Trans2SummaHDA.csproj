@@ -38,7 +38,7 @@
     <ProductName>Trans2Summa</ProductName>
     <PublisherName>Hafsjold</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>8</ApplicationRevision>
+    <ApplicationRevision>9</ApplicationRevision>
     <ApplicationVersion>4.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -63,6 +63,18 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>StrongNameKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Excel">
@@ -337,6 +349,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\DataSources\tblactebisfaktura.datasource" />
     <None Include="Properties\DataSources\tblactebisordre.datasource" />
     <None Include="Properties\DataSources\tblafstem.datasource" />
@@ -372,6 +385,7 @@
     <Compile Include="frm\frmBankafstemning.Designer.cs">
       <DependentUpon>frmBankafstemning.cs</DependentUpon>
     </Compile>
+    <None Include="StrongNameKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
@@ -388,18 +402,10 @@
     <None Include="Properties\DataSources\KarMoms.datasource" />
     <None Include="Properties\DataSources\MemRegnskab.datasource" />
     <None Include="Resources\Add.bmp" />
-    <Content Include="Libraries\Excel.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Libraries\Interop.Excel.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Libraries\Interop.Microsoft.Office.Core.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Libraries\Interop.VBIDE.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Libraries\Excel.dll" />
+    <Content Include="Libraries\Interop.Excel.dll" />
+    <Content Include="Libraries\Interop.Microsoft.Office.Core.dll" />
+    <Content Include="Libraries\Interop.VBIDE.dll" />
     <Content Include="Resources\info.png" />
     <Content Include="Resources\logopart.jpg" />
     <None Include="Resources\Summa.ico" />
@@ -447,15 +453,45 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <PublishFile Include="stdole">
+    <PublishFile Include="Libraries\Excel.dll">
       <Visible>False</Visible>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
+      <PublishState>Exclude</PublishState>
       <IncludeHash>True</IncludeHash>
-      <FileType>Assembly</FileType>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Libraries\Interop.Excel.dll">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Libraries\Interop.Microsoft.Office.Core.dll">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Libraries\Interop.VBIDE.dll">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
   <ItemGroup />
