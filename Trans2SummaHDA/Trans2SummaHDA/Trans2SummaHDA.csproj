@@ -35,7 +35,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <TargetCulture>en</TargetCulture>
-    <ProductName>Trans2Summa</ProductName>
+    <ProductName>Trans2SummaHDA</ProductName>
     <PublisherName>Hafsjold</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
     <ApplicationRevision>9</ApplicationRevision>
