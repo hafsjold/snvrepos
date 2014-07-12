@@ -13,8 +13,8 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>
-    <ManifestCertificateThumbprint>AD4EC290A052A0F523B7728C126F0DFCDD03821C</ManifestCertificateThumbprint>
-    <ManifestKeyFile>Backup3060_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestCertificateThumbprint>D48DBC7B0065E01C4B249D63024C2C452587A794</ManifestCertificateThumbprint>
+    <ManifestKeyFile>Backup3060_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
     <SignManifests>true</SignManifests>
     <FileUpgradeFlags>
@@ -23,7 +23,7 @@
     <UpgradeBackupLocation />
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
-    <PublishUrl>C:\Users\Mogens\SkyDrive\Install\Puls3060Backup3060\</PublishUrl>
+    <PublishUrl>C:\Users\Puls3060\SkyDrive\Install\Puls3060Backup3060\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -35,7 +35,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ProductName>Backup3060</ProductName>
     <PublisherName>Hafsjold</PublisherName>
-    <ApplicationRevision>6</ApplicationRevision>
+    <ApplicationRevision>7</ApplicationRevision>
     <ApplicationVersion>4.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -139,6 +139,7 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
+    <None Include="Backup3060_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
