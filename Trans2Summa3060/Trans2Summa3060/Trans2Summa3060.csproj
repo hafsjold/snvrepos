@@ -1,0 +1,501 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{08C9C8A5-BAB5-4B6E-BD07-A46394140046}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Trans2Summa3060</RootNamespace>
+    <AssemblyName>Trans2Summa3060</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ManifestCertificateThumbprint>E7BF168AD6C04E1B722ABAD2ADBB632B62858EA8</ManifestCertificateThumbprint>
+    <ManifestKeyFile>Trans2SummaHDA_TemporaryKey.pfx</ManifestKeyFile>
+    <GenerateManifests>true</GenerateManifests>
+    <SignManifests>true</SignManifests>
+    <ManifestTimestampUrl>http://timestamp.verisign.com/scripts/timstamp.dll</ManifestTimestampUrl>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <TargetFrameworkProfile />
+    <PublishUrl>C:\Users\Puls3060\OneDrive\Install\HafsjoldDataTrans2SummaHDA\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <TargetCulture>en</TargetCulture>
+    <ProductName>Trans2SummaHDA</ProductName>
+    <PublisherName>Hafsjold</PublisherName>
+    <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
+    <ApplicationRevision>10</ApplicationRevision>
+    <ApplicationVersion>4.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>StrongNameKey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Excel">
+      <HintPath>Libraries\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.Excel, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.Microsoft.Office.Core">
+      <HintPath>Libraries\Interop.Microsoft.Office.Core.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Interop.VBIDE, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Interop.VBIDE.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Spire.License">
+      <HintPath>..\packages\FreeSpire.PDF.3.0\lib\net40\Spire.License.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Pdf">
+      <HintPath>..\packages\FreeSpire.PDF.3.0\lib\net40\Spire.Pdf.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cls\clsBilagsudskriftPDF.cs" />
+    <Compile Include="cls\clsFaktura.cs" />
+    <Compile Include="cls\clsExcel.cs" />
+    <Compile Include="cls\clsBilagsudskrift.cs" />
+    <Compile Include="frm\frmKontoudtog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmKontoudtog.Designer.cs">
+      <DependentUpon>frmKontoudtog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm\frmTemplate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmTemplate.Designer.cs">
+      <DependentUpon>frmTemplate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm\frmVareList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmVareList.Designer.cs">
+      <DependentUpon>frmVareList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm\frmActebisfaktura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmActebisfaktura.Designer.cs">
+      <DependentUpon>frmActebisfaktura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm\frmVarekontoType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmVarekontoType.Designer.cs">
+      <DependentUpon>frmVarekontoType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm\frmFaktura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmFaktura.Designer.cs">
+      <DependentUpon>frmFaktura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm\frmKontoplanList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmKontoplanList.Designer.cs">
+      <DependentUpon>frmKontoplanList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm\frmBilag.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmBilag.Designer.cs">
+      <DependentUpon>frmBilag.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm\frmBankkontoudtog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmBankkontoudtog.Designer.cs">
+      <DependentUpon>frmBankkontoudtog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm\frmKladder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmKladder.Designer.cs">
+      <DependentUpon>frmKladder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm\frmNyekladder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmNyekladder.Designer.cs">
+      <DependentUpon>frmNyekladder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm\frmRegnskab.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmRegnskab.Designer.cs">
+      <DependentUpon>frmRegnskab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm\BetterDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\BetterDialog.designer.cs">
+      <DependentUpon>BetterDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="kar\karTrans2Summa.cs" />
+    <Compile Include="kar\karVarer.cs" />
+    <Compile Include="kar\karActebisordre.cs" />
+    <Compile Include="kar\karKartotek.cs" />
+    <Compile Include="kar\karBankkontoudtogDanskebank.cs" />
+    <Compile Include="kar\karMoms.cs" />
+    <Compile Include="kar\karAfstemningskonti.cs" />
+    <Compile Include="kar\karBankkontoudtogNordea.cs" />
+    <Compile Include="kar\karBankafstemning.cs" />
+    <Compile Include="kar\karKladder.cs" />
+    <Compile Include="kar\karFakturastr_k.cs" />
+    <Compile Include="kar\karFakturavarer_k.cs" />
+    <Compile Include="kar\karFakturaer_k.cs" />
+    <Compile Include="kar\karPosteringer.cs" />
+    <Compile Include="kar\karKontoplan.cs" />
+    <Compile Include="kar\karKladde.cs" />
+    <Compile Include="mem\memRegnskab.cs" />
+    <Compile Include="mem\memAktivRegnskab.cs" />
+    <Compile Include="frm\frmSelectRegnskab.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmSelectRegnskab.Designer.cs">
+      <DependentUpon>frmSelectRegnskab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="cls\clsUtil.cs" />
+    <Compile Include="frm\frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="kar\karDkkonti.cs" />
+    <Compile Include="kar\karFakturaer_s.cs" />
+    <Compile Include="kar\karFakturastr_s.cs" />
+    <Compile Include="kar\karFakturavarer_s.cs" />
+    <Compile Include="kar\karKortnr.cs" />
+    <Compile Include="kar\karRegnskab.cs" />
+    <Compile Include="kar\karStatus.cs" />
+    <Compile Include="NullableDateTimePicker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="frm\frmNyfaktura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmNyfaktura.Designer.cs">
+      <DependentUpon>frmNyfaktura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="app.config" />
+    <None Include="mem\app.config" />
+    <EmbeddedResource Include="AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="dbDataTransSumma.dbml.layout">
+      <DependentUpon>dbDataTransSumma.dbml</DependentUpon>
+    </None>
+    <EmbeddedResource Include="frm\frmKontoudtog.resx">
+      <DependentUpon>frmKontoudtog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmTemplate.resx">
+      <DependentUpon>frmTemplate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmVareList.resx">
+      <DependentUpon>frmVareList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmActebisfaktura.resx">
+      <DependentUpon>frmActebisfaktura.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmBankkontoudtog.resx">
+      <DependentUpon>frmBankkontoudtog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmBilag.resx">
+      <DependentUpon>frmBilag.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmFaktura.resx">
+      <DependentUpon>frmFaktura.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmKladder.resx">
+      <DependentUpon>frmKladder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmKontoplanList.resx">
+      <DependentUpon>frmKontoplanList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmNyekladder.resx">
+      <DependentUpon>frmNyekladder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\BetterDialog.resx">
+      <DependentUpon>BetterDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmNyfaktura.resx">
+      <DependentUpon>frmNyfaktura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmRegnskab.resx">
+      <DependentUpon>frmRegnskab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmSelectRegnskab.resx">
+      <DependentUpon>frmSelectRegnskab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmVarekontoType.resx">
+      <DependentUpon>frmVarekontoType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmBankafstemning.resx">
+      <DependentUpon>frmBankafstemning.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\DataSources\tblactebisfaktura.datasource" />
+    <None Include="Properties\DataSources\tblactebisordre.datasource" />
+    <None Include="Properties\DataSources\tblafstem.datasource" />
+    <None Include="Properties\DataSources\tblbankafsteminit.datasource" />
+    <None Include="Properties\DataSources\tblbankkonto.datasource" />
+    <None Include="Properties\DataSources\tblbilag.datasource" />
+    <None Include="Properties\DataSources\tblfak.datasource" />
+    <None Include="Properties\DataSources\tblfaklin.datasource" />
+    <None Include="Properties\DataSources\tblkladder.datasource" />
+    <None Include="Properties\DataSources\tblkonto.datasource" />
+    <None Include="Properties\DataSources\tblkontoudtog.datasource" />
+    <None Include="Properties\DataSources\tblnrserie.datasource" />
+    <None Include="Properties\DataSources\tblregnskab.datasource" />
+    <None Include="Properties\DataSources\tbltemplate.datasource" />
+    <None Include="Properties\DataSources\tbltran.datasource" />
+    <None Include="Properties\DataSources\tblvareomkostninger.datasource" />
+    <None Include="Properties\DataSources\tblwbilag.datasource" />
+    <None Include="Properties\DataSources\tblwfak.datasource" />
+    <None Include="Properties\DataSources\tblwfaklin.datasource" />
+    <None Include="Properties\DataSources\tblwkladder.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="frm\frmBankafstemning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmBankafstemning.Designer.cs">
+      <DependentUpon>frmBankafstemning.cs</DependentUpon>
+    </Compile>
+    <None Include="StrongNameKey.pfx" />
+    <None Include="Trans2SummaHDA_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="dbDataTransSumma.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>dbDataTransSumma.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="HafsjoldDataApSSignature.pfx" />
+    <None Include="Properties\DataSources\KarAfstemningskonti.datasource" />
+    <None Include="Properties\DataSources\KarKontoplan.datasource" />
+    <None Include="Properties\DataSources\KarMoms.datasource" />
+    <None Include="Properties\DataSources\MemRegnskab.datasource" />
+    <None Include="Resources\Add.bmp" />
+    <Content Include="Libraries\Excel.dll" />
+    <Content Include="Libraries\Interop.Excel.dll" />
+    <Content Include="Libraries\Interop.Microsoft.Office.Core.dll" />
+    <Content Include="Libraries\Interop.VBIDE.dll" />
+    <Content Include="Resources\info.png" />
+    <Content Include="Resources\logopart.jpg" />
+    <None Include="Resources\Summa.ico" />
+    <None Include="Resources\Summakartotek.png" />
+    <None Include="Resources\Upd.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PublishFile Include="Libraries\Excel.dll">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Libraries\Interop.Excel.dll">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Libraries\Interop.Microsoft.Office.Core.dll">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+    <PublishFile Include="Libraries\Interop.VBIDE.dll">
+      <Visible>False</Visible>
+      <Group>
+      </Group>
+      <TargetPath>
+      </TargetPath>
+      <PublishState>Exclude</PublishState>
+      <IncludeHash>True</IncludeHash>
+      <FileType>File</FileType>
+    </PublishFile>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
