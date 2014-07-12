@@ -50,8 +50,8 @@
                <local:menuButton ServerName="vPuls3060" ServerOS="Win2012" ToolTip="Puls 3060 Test Server" Margin="3" Grid.Row="2" />
                 <local:menuButton ServerName="Win3060" ServerOS="Win7" ToolTip="Puls 3060 Regnskab" Margin="3" Grid.Row="3" />
                 <local:menuButton ServerName="WinHD40" ServerOS="Win7" ToolTip="Hafsjold Data Regnskab"  Margin="3" Grid.Row="3" Grid.Column="1" />
-                <local:menuButton ServerName="3060Regnskab" ServerOS="Win7" ToolTip="Puls3060 Regnskab"  Margin="3" Grid.Row="4" Grid.Column="0" />
-                <local:menuButton ServerName="HDA Regnskab" ServerOS="Win7" ToolTip=" Hafsjold Data ApS Regnskab"  Margin="3" Grid.Row="4" Grid.Column="1" />
+                <local:menuButton ServerName="3060-Regn" ServerOS="Win7" ToolTip="Puls3060 Regnskab"  Margin="3" Grid.Row="4" Grid.Column="0" />
+                <local:menuButton ServerName="HDA-Regn" ServerOS="Win7" ToolTip=" Hafsjold Data ApS Regnskab"  Margin="3" Grid.Row="4" Grid.Column="1" />
             </Grid>
         </GroupBox>
 
