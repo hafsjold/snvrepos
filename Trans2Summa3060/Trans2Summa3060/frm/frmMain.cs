@@ -100,6 +100,9 @@ namespace Trans2Summa3060
             if (Program.Puls3060)
 #endif
             {
+                toolStripButtonPrintBilag.Visible = true;
+                toolStripSeparator3.Visible = true;
+                printBilagToolStripMenuItem.Visible = true;
                 importNordeaToolStripMenuItem.Visible = true;
             }
         }
