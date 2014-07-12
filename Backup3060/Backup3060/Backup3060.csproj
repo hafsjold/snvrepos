@@ -23,7 +23,7 @@
     <UpgradeBackupLocation />
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
-    <PublishUrl>C:\Users\Puls3060\SkyDrive\Install\Puls3060Backup3060\</PublishUrl>
+    <PublishUrl>C:\Users\Puls3060\OneDrive\Install\Puls3060Backup3060\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -35,7 +35,7 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ProductName>Backup3060</ProductName>
     <PublisherName>Hafsjold</PublisherName>
-    <ApplicationRevision>7</ApplicationRevision>
+    <ApplicationRevision>8</ApplicationRevision>
     <ApplicationVersion>4.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
