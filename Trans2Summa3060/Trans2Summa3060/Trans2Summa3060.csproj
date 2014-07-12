@@ -23,7 +23,7 @@
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation />
     <TargetFrameworkProfile />
-    <PublishUrl>C:\Users\Puls3060\OneDrive\Install\HafsjoldDataTrans2SummaHDA\</PublishUrl>
+    <PublishUrl>C:\Users\Puls3060\OneDrive\Install\Puls3060Trans2Summa3060\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>false</UpdateEnabled>
@@ -34,10 +34,10 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <TargetCulture>en</TargetCulture>
-    <ProductName>Trans2SummaHDA</ProductName>
+    <ProductName>Trans2Summa3060</ProductName>
     <PublisherName>Hafsjold</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>10</ApplicationRevision>
+    <ApplicationRevision>11</ApplicationRevision>
     <ApplicationVersion>4.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -144,6 +144,11 @@
     <Compile Include="cls\clsFaktura.cs" />
     <Compile Include="cls\clsExcel.cs" />
     <Compile Include="cls\clsBilagsudskrift.cs" />
+    <Compile Include="dbDataTransSumma.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbDataTransSumma.dbml</DependentUpon>
+    </Compile>
     <Compile Include="frm\frmKontoudtog.cs">
       <SubType>Form</SubType>
     </Compile>
