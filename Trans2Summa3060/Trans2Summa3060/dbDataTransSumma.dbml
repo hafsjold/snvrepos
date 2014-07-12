@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dbDataTransSumma" Class="DbDataTransSumma" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=(localdb)\v11.0;Initial Catalog=dbDataTransSumma;Integrated Security=True" SettingsObjectName="Trans2SummaHDA.Properties.Settings" SettingsPropertyName="dbDataTransSummaConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tblactebisfaktura" Member="tblactebisfakturas">
+    <Type Name="tblactebisfaktura">
+      <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="import" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ordredato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="fakturanr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ordrenr" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="ordreref" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ordrebelob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="ordrestatus" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="leveringsadresse" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Association Name="tblactebisfaktura_tblactebisordre" Member="tblactebisordres" ThisKey="pid" OtherKey="fakpid" Type="tblactebisordre" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblwkladder" Member="tblwkladders">
+    <Type Name="tblwkladder">
+      <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="bilagpid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="tekst" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="afstemningskonto" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="konto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="momskode" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="faktura" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblwbilag_tblwkladder" Member="tblwbilag" ThisKey="bilagpid" OtherKey="pid" Type="tblwbilag" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblactebisordre" Member="tblactebisordres">
+    <Type Name="tblactebisordre">
+      <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fakpid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ordrenr" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="pos" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="antal" Type="System.Decimal" DbType="Decimal(8,2)" CanBeNull="true" />
+      <Column Name="varenr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sku" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="beskrivelse" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ordrerefpos" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="stkpris" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="leveringsnr" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="serienr" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="ordrestatuspos" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="producent" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="tblactebisfaktura_tblactebisordre" Member="tblactebisfaktura" ThisKey="fakpid" OtherKey="pid" Type="tblactebisfaktura" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblafstem" Member="tblafstems">
+    <Type Name="tblafstem">
+      <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="udskriv" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="tblafstem_tblbankkonto" Member="tblbankkontos" ThisKey="pid" OtherKey="afstem" Type="tblbankkonto" />
+      <Association Name="tblafstem_tbltran" Member="tbltrans" ThisKey="pid" OtherKey="afstem" Type="tbltran" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblbankafsteminit" Member="tblbankafsteminits">
+    <Type Name="tblbankafsteminit">
+      <Column Name="bid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="rid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tnr" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblbankkonto" Member="tblbankkontos">
+    <Type Name="tblbankkonto">
+      <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="saldo" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="skjul" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="dato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="tekst" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="afstem" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="bankkontoid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblafstem_tblbankkonto" Member="tblafstem" ThisKey="afstem" OtherKey="pid" Type="tblafstem" IsForeignKey="true" DeleteRule="SET NULL" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblbilag" Member="tblbilags">
+    <Type Name="tblbilag">
+      <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="regnskabid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="bilag" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="udskriv" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="tblbilag_tblkladder" Member="tblkladders" ThisKey="pid" OtherKey="bilagpid" Type="tblkladder" />
+      <Association Name="tblbilag_tbltran" Member="tbltrans" ThisKey="pid" OtherKey="bilagpid" Type="tbltran" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblfak" Member="tblfaks">
+    <Type Name="tblfak">
+      <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="udskriv" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="regnskabid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sk" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="fakid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="faknr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="konto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblfak_tblfaklin" Member="tblfaklins" ThisKey="pid" OtherKey="fakpid" Type="tblfaklin" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblfaklin" Member="tblfaklins">
+    <Type Name="tblfaklin">
+      <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fakpid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="regnskabid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sk" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="fakid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="faklinnr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="varenr" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="tekst" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
+      <Column Name="konto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="momskode" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="antal" Type="System.Decimal" DbType="Decimal(8,2)" CanBeNull="true" />
+      <Column Name="enhed" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="pris" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="rabat" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="moms" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="nettobelob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="bruttobelob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="omkostbelob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Association Name="tblfak_tblfaklin" Member="tblfak" ThisKey="fakpid" OtherKey="pid" Type="tblfak" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblkladder" Member="tblkladders">
+    <Type Name="tblkladder">
+      <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="regnskabid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="bilagpid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tekst" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="afstemningskonto" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="konto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="momskode" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="faktura" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblbilag_tblkladder" Member="tblbilag" ThisKey="bilagpid" OtherKey="pid" Type="tblbilag" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblkonto" Member="tblkontos">
+    <Type Name="tblkonto">
+      <Column Name="kontonr" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="kontonavn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="type" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="momskode" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="saldo" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblkontoudtog" Member="tblkontoudtogs">
+    <Type Name="tblkontoudtog">
+      <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="savefile" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="bogfkonto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="afstemningskonto" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblnrserie" Member="tblnrseries">
+    <Type Name="tblnrserie">
+      <Column Name="nrserienavn" Type="System.String" DbType="NVarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="sidstbrugtenr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblregnskab" Member="tblregnskabs">
+    <Type Name="tblregnskab">
+      <Column Name="rid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="navn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="oprettet" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="start" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="slut" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="datoLaas" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="firmanavn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="placering" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="eksportmappe" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="afsluttet" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbltemplate" Member="tbltemplates">
+    <Type Name="tbltemplate">
+      <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="navn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="tekst" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="konto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="momskode" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="afstemningskonto" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbltrans" Member="tbltrans">
+    <Type Name="tbltran">
+      <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="regnskabid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="skjul" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bilagpid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tekst" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="kontonr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="kontonavn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="moms" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="debet" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="kredit" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="nr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="afstem" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblafstem_tbltran" Member="tblafstem" ThisKey="afstem" OtherKey="pid" Type="tblafstem" IsForeignKey="true" DeleteRule="SET NULL" />
+      <Association Name="tblbilag_tbltran" Member="tblbilag" ThisKey="bilagpid" OtherKey="pid" Type="tblbilag" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblvareomkostninger" Member="tblvareomkostningers">
+    <Type Name="tblvareomkostninger">
+      <Column Name="kontonr" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="omktype" Type="System.String" DbType="NVarChar(10) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblwbilag" Member="tblwbilags">
+    <Type Name="tblwbilag">
+      <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="bilag" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="dato" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="tblwbilag_tblwkladder" Member="tblwkladders" ThisKey="pid" OtherKey="bilagpid" Type="tblwkladder" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblwfak" Member="tblwfaks">
+    <Type Name="tblwfak">
+      <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="sk" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="dato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="konto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="kreditorbilagsnr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblwfak_tblwfaklin" Member="tblwfaklins" ThisKey="pid" OtherKey="fakpid" Type="tblwfaklin" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblwfaklin" Member="tblwfaklins">
+    <Type Name="tblwfaklin">
+      <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="fakpid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="varenr" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="tekst" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
+      <Column Name="konto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="momskode" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="antal" Type="System.Decimal" DbType="Decimal(8,2)" CanBeNull="true" />
+      <Column Name="enhed" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="pris" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="rabat" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="moms" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="nettobelob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="bruttobelob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Association Name="tblwfak_tblwfaklin" Member="tblwfak" ThisKey="fakpid" OtherKey="pid" Type="tblwfak" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+</Database>
