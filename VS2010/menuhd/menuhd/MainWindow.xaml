@@ -22,7 +22,6 @@
                 </Grid.RowDefinitions>
                 <local:menuButton ServerOS="Win2012" Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="pHD05" ToolTip="HyperV Server" />
                 <local:menuButton ServerName="vHD11" ServerOS="Win2012" ToolTip="Domain Server" Margin="3" Grid.Row="2" />
-                <local:menuButton Grid.Column="1"  Grid.Row="2" Margin="3" ServerName="Revi27" ToolTip="Buus Jensen DPM Backup Server" ServerOS="Win2012"  />
                 <local:menuButton Grid.Row="3" Margin="3" ServerName="Win7" ServerOS="Win7" ToolTip="Program udviklings"/>
                 <local:menuButton Grid.Column="1" Grid.Row="3" Margin="3" ServerName="Win7-2" ToolTip="Program udvikling" ServerOS="Win7" />
                 <local:menuButton Grid.Row="4" Margin="3" ServerName="vHD50" ToolTip="Program udvikling" ServerOS="Win7" />
@@ -48,10 +47,8 @@
                 <local:menuButton ServerName="pHD06" ServerOS="Win2012" ToolTip="HyperV Server" Margin="3" Grid.Row="1" Grid.ColumnSpan="2" />
                 <local:menuButton Margin="3" ServerName="HD46" ServerOS="Win7" ToolTip="Virtuel Gammel HD46" Grid.Row="2"  Grid.Column="1"/>
                <local:menuButton ServerName="vPuls3060" ServerOS="Win2012" ToolTip="Puls 3060 Test Server" Margin="3" Grid.Row="2" />
-                <local:menuButton ServerName="Win3060" ServerOS="Win7" ToolTip="Puls 3060 Regnskab" Margin="3" Grid.Row="3" />
-                <local:menuButton ServerName="WinHD40" ServerOS="Win7" ToolTip="Hafsjold Data Regnskab"  Margin="3" Grid.Row="3" Grid.Column="1" />
-                <local:menuButton ServerName="3060-Regn" ServerOS="Win7" ToolTip="Puls3060 Regnskab"  Margin="3" Grid.Row="4" Grid.Column="0" />
-                <local:menuButton ServerName="HDA-Regn" ServerOS="Win7" ToolTip=" Hafsjold Data ApS Regnskab"  Margin="3" Grid.Row="4" Grid.Column="1" />
+                <local:menuButton ServerName="3060-Regn" ServerOS="Win7" ToolTip="Puls3060 Regnskab"  Margin="3" Grid.Row="3" Grid.Column="0" />
+                <local:menuButton ServerName="HDA-Regn" ServerOS="Win7" ToolTip=" Hafsjold Data ApS Regnskab"  Margin="3" Grid.Row="3" Grid.Column="1" />
             </Grid>
         </GroupBox>
 
