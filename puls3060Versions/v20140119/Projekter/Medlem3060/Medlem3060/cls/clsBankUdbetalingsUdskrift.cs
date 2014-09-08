@@ -60,10 +60,10 @@ namespace nsPuls3060
                 margin.Right = margin.Left;
 
                 // Create one page
-                PdfPageBase page = doc.Pages.Add(PdfPageSize.A4, margin);
+                PdfPageBase page = doc.Pages.Add(PdfPageSize.A5, margin);
                 float width = page.Canvas.ClientSize.Width;
 
-                float y = 10;
+                float y = 5;
 
                 //title
                 PdfBrush brush1 = PdfBrushes.Black;
@@ -71,46 +71,65 @@ namespace nsPuls3060
                 PdfStringFormat format1 = new PdfStringFormat(PdfTextAlignment.Left);
                 string s = String.Format("Bankudbetaling {0}", ((int)krd.SFaknr).ToString());
                 page.Canvas.DrawString(s, font1, brush1, 1, y, format1);
+
+                y = y + 35; 
+
+                String[][] dataSource = new String[7][];
+                int i = 0;
+                String[] datarow = new String[2];
+                datarow[0] = "Tekst på eget kontoudtog";
+                datarow[1] = krd.advistekst;
+                dataSource[i++] = datarow;
+
+                datarow = new String[2];
+                datarow[0] = "Navn/kendenavn";
+                datarow[1] = krd.Navn;
+                dataSource[i++] = datarow;
+
+                datarow = new String[2];
+                datarow[0] = "Regnr";
+                datarow[1] = krd.bankregnr;
+                dataSource[i++] = datarow;
+
+                datarow = new String[2];
+                datarow[0] = "Konto";
+                datarow[1] = krd.bankkontonr;
+                dataSource[i++] = datarow;
+
+                datarow = new String[2];
+                datarow[0] = "Tekst til beløbsmodtager";
+                datarow[1] = krd.advistekst;
+                dataSource[i++] = datarow;
+
+                datarow = new String[2];
+                datarow[0] = "Beløb";
+                datarow[1] = ((decimal)(krd.advisbelob)).ToString("#,0.00;-#,0.00");
+                dataSource[i++] = datarow;
+
+                datarow = new String[2];
+                datarow[0] = "Betalingsdato";
+                datarow[1] = ((DateTime)krd.betalingsdato).ToShortDateString();
+                dataSource[i++] = datarow;
+
+                PdfTable table = new PdfTable();
+
+                table.Style.CellPadding = 5; //2;
+                table.Style.HeaderSource = PdfHeaderSource.Rows;
+                table.Style.HeaderRowCount = 0;
+                table.Style.HeaderStyle.StringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+                table.Style.HeaderStyle.Font = new PdfTrueTypeFont(new Font("Arial", 9f, FontStyle.Bold));
+                table.Style.ShowHeader = true;
+                table.Style.RepeatHeader = true;
+                table.DataSource = dataSource;
+
+                table.Columns[0].Width = 100;// width * 0.30f * width;
+                table.Columns[0].StringFormat = new PdfStringFormat(PdfTextAlignment.Left, PdfVerticalAlignment.Middle);
+                table.Columns[1].Width = 100;// width * 0.10f * width;
+                table.Columns[1].StringFormat = new PdfStringFormat(PdfTextAlignment.Left, PdfVerticalAlignment.Middle);
+ 
+                PdfLayoutResult result = table.Draw(page, new PointF(0, y));
+                y = y + result.Bounds.Height + 5;
                 
-                y = y + font1.MeasureString(s, format1).Height;
-                y = y + 25;
-                PdfBrush brush2 = PdfBrushes.Black;
-                PdfTrueTypeFont font2 = new PdfTrueTypeFont(new Font("Arial", 10f, FontStyle.Bold));
-
-                PdfStringFormat format2 = new PdfStringFormat(PdfTextAlignment.Left);
-                s = String.Format("Tekst på eget kontoudtog: {0}", krd.advistekst);
-                page.Canvas.DrawString(s, font2, brush2, 1, y, format2);
-
-                y = y + font2.MeasureString(s, format2).Height;
-                y = y + 5;
-                s = String.Format("Navn/kendenavn: {0}", krd.Navn);
-                page.Canvas.DrawString(s, font2, brush2, 1, y, format2);
-                
-                y = y + font2.MeasureString(s, format2).Height;
-                y = y + 5;
-                s = String.Format("Regnr: {0}", krd.bankregnr);
-                page.Canvas.DrawString(s, font2, brush2, 1, y, format2);
-                
-                y = y + font2.MeasureString(s, format2).Height;
-                y = y + 5;
-                s = String.Format("Konto: {0}", krd.bankkontonr);
-                page.Canvas.DrawString(s, font2, brush2, 1, y, format2);
-
-                y = y + font2.MeasureString(s, format2).Height;
-                y = y + 5;
-                s = String.Format("Tekst til beløbsmodtager: {0}", krd.advistekst);
-                page.Canvas.DrawString(s, font2, brush2, 1, y, format2);
-
-                y = y + font2.MeasureString(s, format2).Height;
-                y = y + 5;
-                s = String.Format("Beløb: {0}", ((decimal)(krd.advisbelob)).ToString("#,0.00;-#,0.00"));
-                page.Canvas.DrawString(s, font2, brush2, 1, y, format2);
-
-                y = y + font2.MeasureString(s, format2).Height;
-                y = y + 5; 
-                s = String.Format("Betalingsdato: {0}", ((DateTime)krd.betalingsdato).ToShortDateString());
-                page.Canvas.DrawString(s, font2, brush2, 1, y, format2);
-               
                 //Save pdf file.
                 string BilagPath = (from r in Program.karMedlemPrivat where r.key == "BankudbetalingPath" select r.value).First();
                 string BilagNavn = String.Format(@"Faktura {0}.pdf", ((int)krd.SFaknr).ToString());
