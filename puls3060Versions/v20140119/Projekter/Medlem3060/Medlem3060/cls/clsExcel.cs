@@ -61,7 +61,7 @@ namespace nsPuls3060
                 {
                     //Start Excel and get Application object.
                     oXL = new Excel.Application();
-                    oXL.Visible = false;
+                    oXL.Visible = true;
                     //Get a new workbook.
 
                     oWB = oXL.Workbooks.Add((Missing.Value));
@@ -714,7 +714,7 @@ namespace nsPuls3060
                 {
                     //Start Excel and get Application object.
                     oXL = new Excel.Application();
-                    oXL.Visible = false;
+                    oXL.Visible = true;
                     //oXL.Visible = true; //For debug
 
                     //Get a new workbook.

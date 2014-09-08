@@ -12,7 +12,8 @@ using System.IO;
 using Excel;
 using nsPbs3060;
 using System.Diagnostics;
-
+using Spire.Pdf;
+using Spire.Pdf.Graphics;
 
 
 namespace nsPuls3060
@@ -131,6 +132,9 @@ namespace nsPuls3060
         {
 #if (DEBUG)
             // START TEST TEST TEST TEST TEST TEST
+            clsBankUdbetalingsUdskrift objBankUdbetalingsUdskrift = new clsBankUdbetalingsUdskrift();
+            objBankUdbetalingsUdskrift.BankUdbetalingsUdskrifter(Program.dbData3060, 894);
+            
             /*
             var rstPusteruns = from p in Program.dbData3060.vPusterummets select p;
             int count = rstPusteruns.Count();
