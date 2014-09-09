@@ -288,10 +288,13 @@ namespace nsPuls3060
                 {
                     objOverfoersel.krdfaktura_overfoersel_action(Program.dbData3060, lobnr);
                     this.pgmBetal.Value = (imax * 3);
-                    clsSFTP objSFTP = new clsSFTP(Program.dbData3060);
-                    TilPBSFilename = objSFTP.WriteTilSFtp(Program.dbData3060, lobnr);
-                    objSFTP.DisconnectSFtp();
-                    objSFTP = null;
+                    //clsSFTP objSFTP = new clsSFTP(Program.dbData3060);
+                    //TilPBSFilename = objSFTP.WriteTilSFtp(Program.dbData3060, lobnr);
+                    //objSFTP.DisconnectSFtp();
+                    //objSFTP = null;
+                    clsBankUdbetalingsUdskrift objBankUdbetalingsUdskrift = new clsBankUdbetalingsUdskrift();
+                    objBankUdbetalingsUdskrift.BankUdbetalingsUdskrifter(Program.dbData3060, lobnr);
+                    objBankUdbetalingsUdskrift = null;
                     objOverfoersel.overfoersel_mail(Program.dbData3060, lobnr);
                     clsSumma objSumma = new clsSumma();
                     objSumma.BogforUdBetalinger(lobnr);
