@@ -103,7 +103,7 @@ namespace nsPuls3060
 
                 datarow = new String[2];
                 datarow[0] = "Beløb";
-                datarow[1] = ((decimal)(krd.advisbelob)).ToString("#,0.00;-#,0.00");
+                datarow[1] = ((decimal)(krd.advisbelob)).ToString("#0.00;-#0.00");
                 dataSource[i++] = datarow;
 
                 datarow = new String[2];
