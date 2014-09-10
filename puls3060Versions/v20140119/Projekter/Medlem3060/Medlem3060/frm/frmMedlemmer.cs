@@ -200,6 +200,7 @@ namespace nsPuls3060
             this.I_Email.Text = null;
             this.I_Kon.Text = null;
             this.I_DT_FodtDato.Value = null;
+            this.I_Indmeldelse.Checked = true;
             this.I_DT_Indmeldelsesdato.Value = DateTime.Now;
             this.I_Navn.Focus();
         }
@@ -229,25 +230,28 @@ namespace nsPuls3060
             val[10] = (I_Bank.Text.Length == 0) ? null : I_Bank.Text;
             this.dsMedlem.Kartotek.Rows.Add(val);
             this.dsMedlem.savedsMedlem();
-            if (I_DT_Indmeldelsesdato.Value != null)
+            if (I_Indmeldelse.Checked)
             {
-                try
+                if (I_DT_Indmeldelsesdato.Value != null)
                 {
-                    DateTime nu = DateTime.Now;
-                    int next_id = (int)(from r in Program.dbData3060.nextval("tblMedlemlog") select r.id).First();
-                    nsPbs3060.tblMedlemLog recLog = new nsPbs3060.tblMedlemLog
+                    try
                     {
-                        id = next_id,
-                        Nr = tblMedlem_nr,
-                        logdato = new DateTime(nu.Year, nu.Month, nu.Day),
-                        akt_id = 10,
-                        akt_dato = (DateTime)I_DT_Indmeldelsesdato.Value
-                    };
-                    Program.dbData3060.tblMedlemLogs.InsertOnSubmit(recLog);
-                    Program.dbData3060.SubmitChanges();
-                }
-                catch (Exception)
-                {
+                        DateTime nu = DateTime.Now;
+                        int next_id = (int)(from r in Program.dbData3060.nextval("tblMedlemlog") select r.id).First();
+                        nsPbs3060.tblMedlemLog recLog = new nsPbs3060.tblMedlemLog
+                        {
+                            id = next_id,
+                            Nr = tblMedlem_nr,
+                            logdato = new DateTime(nu.Year, nu.Month, nu.Day),
+                            akt_id = 10,
+                            akt_dato = (DateTime)I_DT_Indmeldelsesdato.Value
+                        };
+                        Program.dbData3060.tblMedlemLogs.InsertOnSubmit(recLog);
+                        Program.dbData3060.SubmitChanges();
+                    }
+                    catch (Exception)
+                    {
+                    }
                 }
             }
             this.dataGridView1.Update();
