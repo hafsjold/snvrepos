@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="nsMedlem3060Service.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="puls3061_dk_dbConnectionString_Test" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=qynhbd9h4f.database.windows.net;Initial Catalog=dbPuls3060Medlem;Integrated Security=False;Persist Security Info=True;User ID=sqlUser;Encrypt=True&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=qynhbd9h4f.database.windows.net;Initial Catalog=dbPuls3060Medlem;Integrated Security=False;Persist Security Info=True;User ID=sqlUser;Encrypt=True</Value>
+    </Setting>
+    <Setting Name="puls3061_dk_dbConnectionString_Prod" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=qynhbd9h4f.database.windows.net;Initial Catalog=dbPuls3060Medlem;Integrated Security=False;Persist Security Info=True;User ID=sqlUser;Encrypt=True&lt;/ConnectionString&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=qynhbd9h4f.database.windows.net;Initial Catalog=dbPuls3060Medlem;Integrated Security=False;Persist Security Info=True;User ID=sqlUser;Encrypt=True</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
