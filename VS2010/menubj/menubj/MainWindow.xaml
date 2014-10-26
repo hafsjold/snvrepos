@@ -125,8 +125,8 @@
         </GroupBox>        
         
         <local:menuButton Margin="286,510,0,0" ServerName="Revi27" ServerOS="Win2012" ToolTip="Remote DPM Backup Server" Height="34" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" />
-        <local:menuButton Margin="199,431,0,0" ServerName="WS01A7" ServerOS="Win7" ToolTip="JN's Arbejdsplads" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" />
-        <local:menuButton Margin="287,431,0,0" ServerName="WS02A7" ServerOS="Win7" ToolTip="GBP's Arbejdsplads" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" />
+        <local:menuButton Margin="199,431,0,0" ServerName="WS01" ServerOS="Win8" ToolTip="JN's Arbejdsplads" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" />
+        <local:menuButton Margin="287,431,0,0" ServerName="WS02" ServerOS="Win8" ToolTip="GBP's Arbejdsplads" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" />
 
         <local:menuButton Margin="286,470,0,0" ServerName="WS04" ServerOS="Win8" ToolTip="UN's Arbejdsplads"  HorizontalAlignment="Left" Width="79" Height="37" VerticalAlignment="Top" />
         <local:menuButton Margin="197,509,0,0" ServerName="CZC3193Y46" ServerOS="Win8" ToolTip="MHA's Arbejdsplads i EDB-kælder"  Height="37" HorizontalAlignment="Left" VerticalAlignment="Top" Width="79" />
