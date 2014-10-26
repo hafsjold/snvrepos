@@ -97,8 +97,7 @@
                 <local:menuButton Grid.Column="1" Grid.Row="4" Margin="3" ServerName="vRevi44" ServerOS="Win2012" ToolTip="SQL Server" />
                 <local:menuButton Grid.Row="5" Margin="3" ServerName="Post04" ServerOS="Win2003" ToolTip="Post Arkiv Server" />
                 <local:menuButton Grid.Column="1" Grid.Row="5" Margin="3" ServerName="BuusTools" ServerOS="Win7" ToolTip="" />
-                <local:menuButton Grid.Column="0" Grid.Row="6" Margin="3" ServerName="Post06" ServerOS="Win2012" ToolTip="Exchange Server" />
-                <local:menuButton Grid.Column="1" Grid.Row="6" Margin="3" ServerName="vDiverse" ServerOS="Win7" ToolTip="" />
+                 <local:menuButton Grid.Column="1" Grid.Row="6" Margin="3" ServerName="vDiverse" ServerOS="Win7" ToolTip="" />
             </Grid>
         </GroupBox>
         <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="162" HorizontalAlignment="Left" Margin="0,420,0,0" Name="groupBox4" VerticalAlignment="Top" Width="183">
