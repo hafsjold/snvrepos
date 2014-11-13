@@ -49,7 +49,7 @@ namespace nsPuls3060
                        };
             */
             var bogf = from bl in Program.dbData3060.tblbetlins
-                       where bl.pbstranskode == "0236" || bl.pbstranskode == "0297"
+                       where (bl.pbstranskode == "0236" || bl.pbstranskode == "0297") && (Startdato <= bl.betalingsdato && bl.betalingsdato <= Slutdato)
                        join b in Program.dbData3060.tblbets on bl.betid equals b.id
                        where b.summabogfort == null || b.summabogfort == false
                        join p in Program.dbData3060.tblfrapbs on b.frapbsid equals p.id
