@@ -304,7 +304,7 @@ namespace nsPbs3060
             // --  debitorkonto
             if ((sektion == "0211"))
             {
-                m_rec_betlin.Nr = int.Parse(rec.Substring(33, 7));
+                m_rec_betlin.Nr = int.Parse(rec.Substring(33, 7)); //***MHA***
                 m_rec_betlin.debitorkonto = rec.Substring(25, 15);
             }
             else if ((sektion == "0215"))
@@ -443,7 +443,7 @@ namespace nsPbs3060
             // --  faknr
             if ((sektion == "0211"))
             {
-                m_rec_betlin.faknr = int.Parse("0" + rec.Substring(69, 9).Trim());
+                m_rec_betlin.faknr = int.Parse("0" + rec.Substring(69, 9).Trim()); //***MHA***
             }
             else if ((sektion == "0215"))
             {

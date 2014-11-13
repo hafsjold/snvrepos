@@ -21,6 +21,7 @@ namespace nsPuls3060
                 if (rec_regnskab.DatoLaas > Startdato) Startdato = rec_regnskab.DatoLaas;
             }
             int saveBetid = 0;
+            /*
             var bogf = from f in Program.dbData3060.tblfaks
                        where Startdato <= f.betalingsdato && f.betalingsdato <= Slutdato
                        join m in Program.dbData3060.tblMedlems on f.Nr equals m.Nr
@@ -45,6 +46,26 @@ namespace nsPuls3060
                            f.Nr,
                            f.bogfkonto,
                            f.faknr
+                       };
+            */
+            var bogf = from bl in Program.dbData3060.tblbetlins
+                       where bl.pbstranskode == "0236" || bl.pbstranskode == "0297"
+                       join b in Program.dbData3060.tblbets on bl.betid equals b.id
+                       where b.summabogfort == null || b.summabogfort == false
+                       join p in Program.dbData3060.tblfrapbs on b.frapbsid equals p.id
+                       orderby p.id, b.id, bl.id
+                       select new
+                       {
+                           Frapbsid = p.id,
+                           p.leverancespecifikation,
+                           Betid = b.id,
+                           GruppeIndbetalingsbelob = b.indbetalingsbelob,
+                           Betlinid = bl.id,
+                           bl.betalingsdato,
+                           bl.indbetalingsdato,
+                           bl.indbetalingsbelob,
+                           bl.faknr,
+                           bl.debitorkonto
                        };
             int AntalBetalinger = bogf.Count();
             if (bogf.Count() > 0)
@@ -87,17 +108,60 @@ namespace nsPuls3060
 
                     }
 
-                    recKladde kl = new recKladde
+                    var fak = from f in Program.dbData3060.tblfaks
+                              where f.faknr == b.faknr
+                              join m in Program.dbData3060.tblMedlems on f.Nr equals m.Nr
+                              select new { f.faknr, f.Nr, m.Navn, f.bogfkonto };
+                    
+                    var bet = from bi in Program.dbData3060.tblbetalingsidentifikations
+                              where bi.betalingsidentifikation == b.debitorkonto
+                              join m in Program.dbData3060.tblMedlems on bi.Nr equals m.Nr
+                              select new {bi.Nr, m.Navn, bi.bogfkonto };
+
+                    if (fak.Count() == 1) //Kontingent betaling
                     {
-                        Dato = ToDay,
-                        Bilag = BS1_SidsteNr,
-                        Tekst = ("F" + b.faknr + " " + b.Nr + " " + b.Navn).PadRight(40, ' ').Substring(0, 40),
-                        Afstemningskonto = null,
-                        Belob = b.indbetalingsbelob,
-                        Kontonr = b.bogfkonto,
-                        Faknr = null
-                    };
-                    Program.karKladde.Add(kl);
+                        var f = fak.First();
+                        recKladde kl = new recKladde
+                        {
+                            Dato = ToDay,
+                            Bilag = BS1_SidsteNr,
+                            Tekst = ("F" + f.faknr + " " + f.Nr + " " + f.Navn).PadRight(40, ' ').Substring(0, 40),
+                            Afstemningskonto = null,
+                            Belob = b.indbetalingsbelob,
+                            Kontonr = f.bogfkonto,
+                            Faknr = null
+                        };
+                        Program.karKladde.Add(kl);
+                    }
+                    else if (bet.Count() == 1) //Betaling med betalingsidentifikation
+                    {
+                        var f = bet.First();
+                        recKladde kl = new recKladde
+                        {
+                            Dato = ToDay,
+                            Bilag = BS1_SidsteNr,
+                            Tekst = (f.Nr + " " + f.Navn).PadRight(40, ' ').Substring(0, 40),
+                            Afstemningskonto = null,
+                            Belob = b.indbetalingsbelob,
+                            Kontonr = f.bogfkonto,
+                            Faknr = null
+                        };
+                        Program.karKladde.Add(kl);
+                    }
+                    else //Anden betaling
+                    {
+                        recKladde kl = new recKladde
+                        {
+                            Dato = ToDay,
+                            Bilag = BS1_SidsteNr,
+                            Tekst = ("Ukendt betaling").PadRight(40, ' ').Substring(0, 40),
+                            Afstemningskonto = null,
+                            Belob = b.indbetalingsbelob,
+                            Kontonr = 65050,
+                            Faknr = null
+                        };
+                        Program.karKladde.Add(kl);
+                    }
                 }
                 Program.karStatus.save();
                 Program.karKladde.save();
