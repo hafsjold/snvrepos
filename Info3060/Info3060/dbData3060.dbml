@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dbPuls3060Medlem" Class="dbData3060DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=VHD50;Initial Catalog=dbPuls3060Medlem;User ID=sa" SettingsObjectName="nsInfo3060.Properties.Settings" SettingsPropertyName="dbPuls3060MedlemConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tblbetalingsidentifikation" Member="tblbetalingsidentifikations">
+    <Type Name="tblbetalingsidentifikation">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="betalingsidentifikation" Type="System.String" DbType="NVarChar(15) NOT NULL" CanBeNull="false" />
+      <Column Name="betalingsdato" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Nr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="bogfkonto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblMedlem" Member="tblMedlems">
+    <Type Name="tblMedlem">
+      <Column Name="Nr" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Kon" Type="System.String" DbType="NVarChar(1)" CanBeNull="true" />
+      <Column Name="FodtDato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Navn" Type="System.String" DbType="NVarChar(35)" CanBeNull="true" />
+      <Column Name="Kaldenavn" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="Adresse" Type="System.String" DbType="NVarChar(70)" CanBeNull="true" />
+      <Column Name="Postnr" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="Bynavn" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="Telefon" Type="System.String" DbType="NVarChar(8)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Bank" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
