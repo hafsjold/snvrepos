@@ -142,6 +142,10 @@ namespace nsPuls3060
                 {
                     bSelected = false;
                 }
+                else if ((m.udmeldelsesDato != null) && (m.udmeldelsesDato < DatoBetaltKontingentTil.Value))
+                {
+                    bSelected = false;
+                }
                 else if (m.erMedlemPusterummet == 1)
                 {
                     bSelected = false;
