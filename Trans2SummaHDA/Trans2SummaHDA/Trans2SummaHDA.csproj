@@ -228,6 +228,7 @@
     <Compile Include="frm\BetterDialog.designer.cs">
       <DependentUpon>BetterDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="kar\karPaypal.cs" />
     <Compile Include="kar\karTrans2Summa.cs" />
     <Compile Include="kar\karVarer.cs" />
     <Compile Include="kar\karActebisordre.cs" />
