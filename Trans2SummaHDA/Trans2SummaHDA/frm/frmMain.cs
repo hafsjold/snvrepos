@@ -137,8 +137,12 @@ namespace Trans2SummaHDA
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
-            clsBilagsudskriftPDF objBilagsudskriftPDF = new clsBilagsudskriftPDF();
-            clsBilagsudskriftPDF.BilagsudskriftPDF();
+            KarPaypal objPaypal = new KarPaypal();
+            objPaypal.load(); ;
+
+            
+            //clsBilagsudskriftPDF objBilagsudskriftPDF = new clsBilagsudskriftPDF();
+            //clsBilagsudskriftPDF.BilagsudskriftPDF();
 
             //decimal? tal = -decimal.Parse("0,12342");
             //string talformated = "";
