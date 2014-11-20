@@ -1560,6 +1560,8 @@ namespace Trans2SummaHDA
 		
 		private System.Nullable<int> _bankkontoid;
 		
+		private EntitySet<tblpaypal> _tblpaypals;
+		
 		private EntityRef<tblafstem> _tblafstem;
 		
     #region Extensibility Method Definitions
@@ -1586,6 +1588,7 @@ namespace Trans2SummaHDA
 		
 		public tblbankkonto()
 		{
+			this._tblpaypals = new EntitySet<tblpaypal>(new Action<tblpaypal>(this.attach_tblpaypals), new Action<tblpaypal>(this.detach_tblpaypals));
 			this._tblafstem = default(EntityRef<tblafstem>);
 			OnCreated();
 		}
@@ -1754,6 +1757,19 @@ namespace Trans2SummaHDA
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblbankkonto_tblpaypal", Storage="_tblpaypals", ThisKey="pid", OtherKey="bankkonto_pid")]
+		public EntitySet<tblpaypal> tblpaypals
+		{
+			get
+			{
+				return this._tblpaypals;
+			}
+			set
+			{
+				this._tblpaypals.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblafstem_tblbankkonto", Storage="_tblafstem", ThisKey="afstem", OtherKey="pid", IsForeignKey=true, DeleteRule="SET NULL")]
 		public tblafstem tblafstem
 		{
@@ -1806,6 +1822,18 @@ namespace Trans2SummaHDA
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_tblpaypals(tblpaypal entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblbankkonto = this;
+		}
+		
+		private void detach_tblpaypals(tblpaypal entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblbankkonto = null;
 		}
 	}
 	
@@ -5238,6 +5266,8 @@ namespace Trans2SummaHDA
 		
 		private int _pid;
 		
+		private System.Nullable<int> _bankkonto_pid;
+		
 		private System.Nullable<System.DateTime> _Date;
 		
 		private string _Time_Zone;
@@ -5322,12 +5352,16 @@ namespace Trans2SummaHDA
 		
 		private string _Contact_Phone_Number;
 		
+		private EntityRef<tblbankkonto> _tblbankkonto;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
     partial void OnpidChanging(int value);
     partial void OnpidChanged();
+    partial void Onbankkonto_pidChanging(System.Nullable<int> value);
+    partial void Onbankkonto_pidChanged();
     partial void OnDateChanging(System.Nullable<System.DateTime> value);
     partial void OnDateChanged();
     partial void OnTime_ZoneChanging(string value);
@@ -5416,6 +5450,7 @@ namespace Trans2SummaHDA
 		
 		public tblpaypal()
 		{
+			this._tblbankkonto = default(EntityRef<tblbankkonto>);
 			OnCreated();
 		}
 		
@@ -5435,6 +5470,30 @@ namespace Trans2SummaHDA
 					this._pid = value;
 					this.SendPropertyChanged("pid");
 					this.OnpidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bankkonto_pid", DbType="Int")]
+		public System.Nullable<int> bankkonto_pid
+		{
+			get
+			{
+				return this._bankkonto_pid;
+			}
+			set
+			{
+				if ((this._bankkonto_pid != value))
+				{
+					if (this._tblbankkonto.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onbankkonto_pidChanging(value);
+					this.SendPropertyChanging();
+					this._bankkonto_pid = value;
+					this.SendPropertyChanged("bankkonto_pid");
+					this.Onbankkonto_pidChanged();
 				}
 			}
 		}
@@ -6275,6 +6334,40 @@ namespace Trans2SummaHDA
 					this._Contact_Phone_Number = value;
 					this.SendPropertyChanged("Contact_Phone_Number");
 					this.OnContact_Phone_NumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblbankkonto_tblpaypal", Storage="_tblbankkonto", ThisKey="bankkonto_pid", OtherKey="pid", IsForeignKey=true, DeleteRule="SET NULL")]
+		public tblbankkonto tblbankkonto
+		{
+			get
+			{
+				return this._tblbankkonto.Entity;
+			}
+			set
+			{
+				tblbankkonto previousValue = this._tblbankkonto.Entity;
+				if (((previousValue != value) 
+							|| (this._tblbankkonto.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblbankkonto.Entity = null;
+						previousValue.tblpaypals.Remove(this);
+					}
+					this._tblbankkonto.Entity = value;
+					if ((value != null))
+					{
+						value.tblpaypals.Add(this);
+						this._bankkonto_pid = value.pid;
+					}
+					else
+					{
+						this._bankkonto_pid = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tblbankkonto");
 				}
 			}
 		}

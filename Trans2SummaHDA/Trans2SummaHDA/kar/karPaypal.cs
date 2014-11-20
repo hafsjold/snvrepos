@@ -58,10 +58,20 @@ namespace Trans2SummaHDA
     class KarPaypal : List<recPaypal>
     {
         private string m_path { get; set; }
+        private int m_bankkontoid { get; set; }
 
-        public KarPaypal()
+        public KarPaypal(int bankkontoid)
         {
-            string csvfile = @"Paypal.txt";
+            m_bankkontoid = bankkontoid;
+            string csvfile;
+            try
+            {
+                csvfile = (from w in Program.dbDataTransSumma.tblkontoudtogs where w.pid == m_bankkontoid select w).First().savefile;
+            }
+            catch
+            {
+                csvfile = "NoFile";
+            }
             var rec_regnskab = Program.qryAktivRegnskab();
             m_path = rec_regnskab.Eksportmappe + csvfile;
             open();
@@ -175,12 +185,12 @@ namespace Trans2SummaHDA
             return val;
         }
 
-        public void load()
+        public void load_paypal()
         {
             var qry = from w in this
                       join b in Program.dbDataTransSumma.tblpaypals 
-                        on new { dato = w.Date, belob = w.Gross , saldo = w.Balance, transid = w.Transaction_ID}
-                        equals new { dato = b.Date, belob = b.Gross, saldo = b.Balance, transid = b.Transaction_ID } into paypalkonto
+                        on new { date = w.Date, name = w.Name, type = w.Type, gross = w.Gross , balance = w.Balance, transaction_id = w.Transaction_ID}
+                        equals new { date = b.Date, name = b.Name, type = b.Type, gross = b.Gross, balance = b.Balance, transaction_id = b.Transaction_ID } into paypalkonto
                       from b in paypalkonto.DefaultIfEmpty(new tblpaypal { pid = 0, Gross = null })
                       where b.Gross  == null
                       orderby w.Date 
@@ -194,6 +204,7 @@ namespace Trans2SummaHDA
                 tblpaypal recPaypal = new tblpaypal
                 {
                     pid = clsPbs.nextval("Tblpaypals"),
+                    bankkonto_pid = null,
                     Date = b.Date,
                     Time_Zone = b.Time_Zone,
                     Name = b.Name,
@@ -239,6 +250,76 @@ namespace Trans2SummaHDA
                 };
                 Program.dbDataTransSumma.tblpaypals.InsertOnSubmit(recPaypal);
                 Program.dbDataTransSumma.SubmitChanges(System.Data.Linq.ConflictMode.ContinueOnConflict);
+            }
+        }
+
+        public void load_bankkonto1()
+        {
+            var qry = from w in Program.dbDataTransSumma.tblpaypals
+                      where w.bankkonto_pid == null && w.Type == "Charge From Credit Card" && w.Currency == "DKK"
+                      orderby w.Date
+                      select w;
+
+            int antal = qry.Count();
+            foreach (var b in qry)
+            {
+                tblbankkonto recBankkonto = new tblbankkonto
+                {
+                    pid = clsPbs.nextval("Tblbankkonto"),
+                    bankkontoid = m_bankkontoid,
+                    saldo = b.Balance,
+                    dato = b.Date,
+                    tekst ="Overført til PayPal",
+                    belob = b.Gross,
+                };
+                recBankkonto.tblpaypals.Add(b);
+                Program.dbDataTransSumma.tblbankkontos.InsertOnSubmit(recBankkonto);
+                Program.dbDataTransSumma.SubmitChanges();
+            }
+        }
+
+        public void load_bankkonto2()
+        {
+            var qry = from w in Program.dbDataTransSumma.tblpaypals
+                      where w.bankkonto_pid == null
+                      && (w.Type == "Express Checkout Payment Sent" || w.Type == "Preapproved Payment Sent" || w.Type == "Recurring Payment Sent" || w.Type == "Web Accept Payment Sent" || w.Type == "Shopping Cart Payment Sent" )
+                      orderby w.Date
+                      select w;
+
+            int antal = qry.Count();
+            foreach (var b in qry)
+            {
+                decimal? GrossDKK = null;
+                string kontoudtogstekst = "";
+                if (b.Currency != "DKK")
+                {
+                    var qry2 = from w in Program.dbDataTransSumma.tblpaypals
+                               where w.Type == "Currency Conversion" && w.Reference_Txn_ID == b.Transaction_ID && w.Reference_Txn_ID == b.Transaction_ID && w.Currency == "DKK"
+                               select w;
+                    if (qry2.Count() == 1)
+                    {
+                        kontoudtogstekst = b.Name + " " + b.Gross + " " + b.Currency.ToLower();
+                        GrossDKK = qry2.First().Gross;
+                    }
+                }
+                else 
+                {
+                    kontoudtogstekst = b.Name;
+                    GrossDKK = b.Gross;
+                }
+                
+                tblbankkonto recBankkonto = new tblbankkonto
+                {
+                    pid = clsPbs.nextval("Tblbankkonto"),
+                    bankkontoid = m_bankkontoid,
+                    saldo = b.Balance,
+                    dato = b.Date,
+                    tekst = kontoudtogstekst,
+                    belob = GrossDKK,
+                };
+                recBankkonto.tblpaypals.Add(b);
+                Program.dbDataTransSumma.tblbankkontos.InsertOnSubmit(recBankkonto);
+                Program.dbDataTransSumma.SubmitChanges();
             }
         }
     }
