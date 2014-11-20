@@ -76,6 +76,7 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonIndtastBilag = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.importPayPalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -275,6 +276,7 @@
             this.importFakturaToolStripMenuItem,
             this.importDanskebankToolStripMenuItem,
             this.importerMasterCardToolStripMenuItem,
+            this.importPayPalToolStripMenuItem,
             this.importNordeaToolStripMenuItem,
             this.importActebisToolStripMenuItem,
             this.excelRegnskabToolStripMenuItem});
@@ -478,6 +480,13 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
+            // importPayPalToolStripMenuItem
+            // 
+            this.importPayPalToolStripMenuItem.Name = "importPayPalToolStripMenuItem";
+            this.importPayPalToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.importPayPalToolStripMenuItem.Text = "Import PayPal";
+            this.importPayPalToolStripMenuItem.Click += new System.EventHandler(this.importPayPalToolStripMenuItem_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -557,6 +566,7 @@
         private System.Windows.Forms.ToolStripMenuItem importNordeaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem templatesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kontoudtogToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importPayPalToolStripMenuItem;
     }
 }
 
