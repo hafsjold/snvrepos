@@ -489,6 +489,13 @@ namespace Trans2SummaHDA
             }
         }
 
+        private void importPayPalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KarPaypal objPaypal = new KarPaypal(5);
+            objPaypal.load_paypal();
+            objPaypal.load_bankkonto1();
+            objPaypal.load_bankkonto2();
+        }
 
 
     }
