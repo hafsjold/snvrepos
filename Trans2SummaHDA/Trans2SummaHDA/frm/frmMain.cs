@@ -137,9 +137,10 @@ namespace Trans2SummaHDA
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
-            KarPaypal objPaypal = new KarPaypal();
-            objPaypal.load(); ;
-
+            KarPaypal objPaypal = new KarPaypal(5);
+            objPaypal.load_paypal();
+            objPaypal.load_bankkonto1();
+            objPaypal.load_bankkonto2();
             
             //clsBilagsudskriftPDF objBilagsudskriftPDF = new clsBilagsudskriftPDF();
             //clsBilagsudskriftPDF.BilagsudskriftPDF();
