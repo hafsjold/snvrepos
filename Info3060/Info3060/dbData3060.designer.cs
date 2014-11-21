@@ -30,12 +30,12 @@ namespace nsInfo3060
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void Inserttblbetalingsidentifikation(tblbetalingsidentifikation instance);
-    partial void Updatetblbetalingsidentifikation(tblbetalingsidentifikation instance);
-    partial void Deletetblbetalingsidentifikation(tblbetalingsidentifikation instance);
     partial void InserttblMedlem(tblMedlem instance);
     partial void UpdatetblMedlem(tblMedlem instance);
     partial void DeletetblMedlem(tblMedlem instance);
+    partial void Inserttblbetalingsidentifikation(tblbetalingsidentifikation instance);
+    partial void Updatetblbetalingsidentifikation(tblbetalingsidentifikation instance);
+    partial void Deletetblbetalingsidentifikation(tblbetalingsidentifikation instance);
     #endregion
 		
 		public dbData3060DataContext() : 
@@ -68,14 +68,6 @@ namespace nsInfo3060
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<tblbetalingsidentifikation> tblbetalingsidentifikations
-		{
-			get
-			{
-				return this.GetTable<tblbetalingsidentifikation>();
-			}
-		}
-		
 		public System.Data.Linq.Table<tblMedlem> tblMedlems
 		{
 			get
@@ -83,186 +75,12 @@ namespace nsInfo3060
 				return this.GetTable<tblMedlem>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblbetalingsidentifikation")]
-	public partial class tblbetalingsidentifikation : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _betalingsidentifikation;
-		
-		private System.Nullable<System.DateTime> _betalingsdato;
-		
-		private System.Nullable<decimal> _belob;
-		
-		private System.Nullable<int> _Nr;
-		
-		private System.Nullable<int> _bogfkonto;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnbetalingsidentifikationChanging(string value);
-    partial void OnbetalingsidentifikationChanged();
-    partial void OnbetalingsdatoChanging(System.Nullable<System.DateTime> value);
-    partial void OnbetalingsdatoChanged();
-    partial void OnbelobChanging(System.Nullable<decimal> value);
-    partial void OnbelobChanged();
-    partial void OnNrChanging(System.Nullable<int> value);
-    partial void OnNrChanged();
-    partial void OnbogfkontoChanging(System.Nullable<int> value);
-    partial void OnbogfkontoChanged();
-    #endregion
-		
-		public tblbetalingsidentifikation()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
+		public System.Data.Linq.Table<tblbetalingsidentifikation> tblbetalingsidentifikations
 		{
 			get
 			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_betalingsidentifikation", DbType="NVarChar(15) NOT NULL", CanBeNull=false)]
-		public string betalingsidentifikation
-		{
-			get
-			{
-				return this._betalingsidentifikation;
-			}
-			set
-			{
-				if ((this._betalingsidentifikation != value))
-				{
-					this.OnbetalingsidentifikationChanging(value);
-					this.SendPropertyChanging();
-					this._betalingsidentifikation = value;
-					this.SendPropertyChanged("betalingsidentifikation");
-					this.OnbetalingsidentifikationChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_betalingsdato", DbType="Date")]
-		public System.Nullable<System.DateTime> betalingsdato
-		{
-			get
-			{
-				return this._betalingsdato;
-			}
-			set
-			{
-				if ((this._betalingsdato != value))
-				{
-					this.OnbetalingsdatoChanging(value);
-					this.SendPropertyChanging();
-					this._betalingsdato = value;
-					this.SendPropertyChanged("betalingsdato");
-					this.OnbetalingsdatoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_belob", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> belob
-		{
-			get
-			{
-				return this._belob;
-			}
-			set
-			{
-				if ((this._belob != value))
-				{
-					this.OnbelobChanging(value);
-					this.SendPropertyChanging();
-					this._belob = value;
-					this.SendPropertyChanged("belob");
-					this.OnbelobChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nr", DbType="Int")]
-		public System.Nullable<int> Nr
-		{
-			get
-			{
-				return this._Nr;
-			}
-			set
-			{
-				if ((this._Nr != value))
-				{
-					this.OnNrChanging(value);
-					this.SendPropertyChanging();
-					this._Nr = value;
-					this.SendPropertyChanged("Nr");
-					this.OnNrChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bogfkonto", DbType="Int")]
-		public System.Nullable<int> bogfkonto
-		{
-			get
-			{
-				return this._bogfkonto;
-			}
-			set
-			{
-				if ((this._bogfkonto != value))
-				{
-					this.OnbogfkontoChanging(value);
-					this.SendPropertyChanging();
-					this._bogfkonto = value;
-					this.SendPropertyChanged("bogfkonto");
-					this.OnbogfkontoChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+				return this.GetTable<tblbetalingsidentifikation>();
 			}
 		}
 	}
@@ -568,6 +386,212 @@ namespace nsInfo3060
 					this._Status = value;
 					this.SendPropertyChanged("Status");
 					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblbetalingsidentifikation")]
+	public partial class tblbetalingsidentifikation : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private System.Nullable<int> _Nr;
+		
+		private string _Navn;
+		
+		private System.Nullable<System.DateTime> _betalingsdato;
+		
+		private System.Nullable<decimal> _belob;
+		
+		private System.Nullable<int> _sagsnr;
+		
+		private string _betalingsidentifikation;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnNrChanging(System.Nullable<int> value);
+    partial void OnNrChanged();
+    partial void OnNavnChanging(string value);
+    partial void OnNavnChanged();
+    partial void OnbetalingsdatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnbetalingsdatoChanged();
+    partial void OnbelobChanging(System.Nullable<decimal> value);
+    partial void OnbelobChanged();
+    partial void OnsagsnrChanging(System.Nullable<int> value);
+    partial void OnsagsnrChanged();
+    partial void OnbetalingsidentifikationChanging(string value);
+    partial void OnbetalingsidentifikationChanged();
+    #endregion
+		
+		public tblbetalingsidentifikation()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nr", DbType="Int")]
+		public System.Nullable<int> Nr
+		{
+			get
+			{
+				return this._Nr;
+			}
+			set
+			{
+				if ((this._Nr != value))
+				{
+					this.OnNrChanging(value);
+					this.SendPropertyChanging();
+					this._Nr = value;
+					this.SendPropertyChanged("Nr");
+					this.OnNrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Navn", DbType="NVarChar(35)")]
+		public string Navn
+		{
+			get
+			{
+				return this._Navn;
+			}
+			set
+			{
+				if ((this._Navn != value))
+				{
+					this.OnNavnChanging(value);
+					this.SendPropertyChanging();
+					this._Navn = value;
+					this.SendPropertyChanged("Navn");
+					this.OnNavnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_betalingsdato", DbType="Date")]
+		public System.Nullable<System.DateTime> betalingsdato
+		{
+			get
+			{
+				return this._betalingsdato;
+			}
+			set
+			{
+				if ((this._betalingsdato != value))
+				{
+					this.OnbetalingsdatoChanging(value);
+					this.SendPropertyChanging();
+					this._betalingsdato = value;
+					this.SendPropertyChanged("betalingsdato");
+					this.OnbetalingsdatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_belob", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> belob
+		{
+			get
+			{
+				return this._belob;
+			}
+			set
+			{
+				if ((this._belob != value))
+				{
+					this.OnbelobChanging(value);
+					this.SendPropertyChanging();
+					this._belob = value;
+					this.SendPropertyChanged("belob");
+					this.OnbelobChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sagsnr", DbType="Int")]
+		public System.Nullable<int> sagsnr
+		{
+			get
+			{
+				return this._sagsnr;
+			}
+			set
+			{
+				if ((this._sagsnr != value))
+				{
+					this.OnsagsnrChanging(value);
+					this.SendPropertyChanging();
+					this._sagsnr = value;
+					this.SendPropertyChanged("sagsnr");
+					this.OnsagsnrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_betalingsidentifikation", DbType="NVarChar(15) NOT NULL", CanBeNull=false)]
+		public string betalingsidentifikation
+		{
+			get
+			{
+				return this._betalingsidentifikation;
+			}
+			set
+			{
+				if ((this._betalingsidentifikation != value))
+				{
+					this.OnbetalingsidentifikationChanging(value);
+					this.SendPropertyChanging();
+					this._betalingsidentifikation = value;
+					this.SendPropertyChanged("betalingsidentifikation");
+					this.OnbetalingsidentifikationChanged();
 				}
 			}
 		}

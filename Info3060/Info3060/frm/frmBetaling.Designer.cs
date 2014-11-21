@@ -33,7 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tblbetalingsidentifikationBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
-            this.tblbetalingsidentifikationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
@@ -46,16 +45,20 @@
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.tblbetalingsidentifikationBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
             this.tblbetalingsidentifikationDataGridView = new System.Windows.Forms.DataGridView();
+            this.tblbetalingsidentifikationBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.tblMedlemBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Navn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sagsnr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.tblbetalingsidentifikationBindingNavigator)).BeginInit();
             this.tblbetalingsidentifikationBindingNavigator.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tblbetalingsidentifikationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblbetalingsidentifikationDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblbetalingsidentifikationBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblMedlemBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tblbetalingsidentifikationBindingNavigator
@@ -85,7 +88,7 @@
             this.tblbetalingsidentifikationBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.tblbetalingsidentifikationBindingNavigator.Name = "tblbetalingsidentifikationBindingNavigator";
             this.tblbetalingsidentifikationBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.tblbetalingsidentifikationBindingNavigator.Size = new System.Drawing.Size(563, 25);
+            this.tblbetalingsidentifikationBindingNavigator.Size = new System.Drawing.Size(734, 25);
             this.tblbetalingsidentifikationBindingNavigator.TabIndex = 0;
             this.tblbetalingsidentifikationBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -97,10 +100,6 @@
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
             this.bindingNavigatorAddNewItem.Text = "Add new";
-            // 
-            // tblbetalingsidentifikationBindingSource
-            // 
-            this.tblbetalingsidentifikationBindingSource.DataSource = typeof(nsInfo3060.tblbetalingsidentifikation);
             // 
             // bindingNavigatorCountItem
             // 
@@ -193,17 +192,27 @@
             this.tblbetalingsidentifikationDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblbetalingsidentifikationDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn5,
+            this.Navn,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6});
+            this.sagsnr,
+            this.dataGridViewTextBoxColumn2});
             this.tblbetalingsidentifikationDataGridView.DataSource = this.tblbetalingsidentifikationBindingSource;
             this.tblbetalingsidentifikationDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblbetalingsidentifikationDataGridView.Location = new System.Drawing.Point(0, 0);
             this.tblbetalingsidentifikationDataGridView.Name = "tblbetalingsidentifikationDataGridView";
-            this.tblbetalingsidentifikationDataGridView.Size = new System.Drawing.Size(563, 584);
+            this.tblbetalingsidentifikationDataGridView.Size = new System.Drawing.Size(734, 584);
             this.tblbetalingsidentifikationDataGridView.TabIndex = 1;
+            this.tblbetalingsidentifikationDataGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tblbetalingsidentifikationDataGridView_MouseDown);
+            // 
+            // tblbetalingsidentifikationBindingSource
+            // 
+            this.tblbetalingsidentifikationBindingSource.DataSource = typeof(nsInfo3060.tblbetalingsidentifikation);
+            // 
+            // tblMedlemBindingSource
+            // 
+            this.tblMedlemBindingSource.DataSource = typeof(nsInfo3060.tblMedlem);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -212,16 +221,20 @@
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.Visible = false;
             // 
-            // dataGridViewTextBoxColumn2
+            // dataGridViewTextBoxColumn5
             // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "betalingsidentifikation";
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = null;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Betalings ID";
-            this.dataGridViewTextBoxColumn2.MaxInputLength = 15;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 150;
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Nr";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Nr";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn5.Width = 50;
+            // 
+            // Navn
+            // 
+            this.Navn.DataPropertyName = "Navn";
+            this.Navn.HeaderText = "Navn";
+            this.Navn.Name = "Navn";
+            this.Navn.Width = 200;
             // 
             // dataGridViewTextBoxColumn3
             // 
@@ -236,24 +249,29 @@
             this.dataGridViewTextBoxColumn4.HeaderText = "Beløb";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             // 
-            // dataGridViewTextBoxColumn5
+            // sagsnr
             // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Nr";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Nr";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 50;
+            this.sagsnr.DataPropertyName = "sagsnr";
+            this.sagsnr.HeaderText = "Sagsnr";
+            this.sagsnr.Name = "sagsnr";
+            this.sagsnr.Width = 50;
             // 
-            // dataGridViewTextBoxColumn6
+            // dataGridViewTextBoxColumn2
             // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "bogfkonto";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Konto";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "betalingsidentifikation";
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = null;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Betalings ID";
+            this.dataGridViewTextBoxColumn2.MaxInputLength = 15;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 150;
             // 
             // FrmBetaling
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(563, 609);
+            this.ClientSize = new System.Drawing.Size(734, 609);
             this.Controls.Add(this.tblbetalingsidentifikationDataGridView);
             this.Controls.Add(this.tblbetalingsidentifikationBindingNavigator);
             this.Name = "FrmBetaling";
@@ -263,8 +281,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.tblbetalingsidentifikationBindingNavigator)).EndInit();
             this.tblbetalingsidentifikationBindingNavigator.ResumeLayout(false);
             this.tblbetalingsidentifikationBindingNavigator.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tblbetalingsidentifikationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblbetalingsidentifikationDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblbetalingsidentifikationBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tblMedlemBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -287,11 +306,13 @@
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
         private System.Windows.Forms.ToolStripButton tblbetalingsidentifikationBindingNavigatorSaveItem;
         private System.Windows.Forms.DataGridView tblbetalingsidentifikationDataGridView;
+        private System.Windows.Forms.BindingSource tblMedlemBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Navn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sagsnr;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     }
 }

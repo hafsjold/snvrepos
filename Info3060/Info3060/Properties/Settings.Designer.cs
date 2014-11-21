@@ -77,5 +77,17 @@ namespace nsInfo3060.Properties {
                 return ((string)(this["dbPuls3060MedlemConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point frmMedlemListLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["frmMedlemListLocation"]));
+            }
+            set {
+                this["frmMedlemListLocation"] = value;
+            }
+        }
     }
 }
