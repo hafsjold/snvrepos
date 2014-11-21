@@ -59,6 +59,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbData3060.dbml</DependentUpon>
     </Compile>
+    <Compile Include="frmMedlemList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMedlemList.Designer.cs">
+      <DependentUpon>frmMedlemList.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm\frmPassword.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +88,9 @@
     <None Include="dbData3060.dbml.layout">
       <DependentUpon>dbData3060.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="frmMedlemList.resx">
+      <DependentUpon>frmMedlemList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm\frmBetaling.resx">
       <DependentUpon>frmBetaling.cs</DependentUpon>
     </EmbeddedResource>
@@ -107,6 +116,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\tblMedlem.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -124,9 +134,7 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\DataSources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
