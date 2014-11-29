@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" Namespace="LightSwitchApplication" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityType Name="tblFikBetaling">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tblFikBetaling_tblProjekt" Type="Edm.Int32" Nullable="false" />
+    <Property Name="Belob" Type="Edm.Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="BetalingsDato" Type="Edm.DateTime" Nullable="false" />
+    <Property Name="FIKnr" Type="Edm.String" MaxLength="255" />
+    <Property Name="tblMedlem_Nr" Type="Edm.Int32" Nullable="false" />
+    <Property Name="CreatedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Created" Type="Edm.DateTimeOffset" />
+    <Property Name="ModifiedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Modified" Type="Edm.DateTimeOffset" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="tblProjekt" Relationship="LightSwitchApplication.tblFikBetaling_tblProjekt" ToRole="tblProjekt" FromRole="tblFikBetaling" />
+  </EntityType>
+  <EntityType Name="tblProjekt">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Navn" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="Projektnr" Type="Edm.Int32" Nullable="false" />
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Created" Type="Edm.DateTimeOffset" />
+    <Property Name="ModifiedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Modified" Type="Edm.DateTimeOffset" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="tblFikBetalings" Relationship="LightSwitchApplication.tblFikBetaling_tblProjekt" ToRole="tblFikBetaling" FromRole="tblProjekt" />
+  </EntityType>
+  <Association Name="tblFikBetaling_tblProjekt">
+    <End Role="tblProjekt" Type="LightSwitchApplication.tblProjekt" Multiplicity="1" />
+    <End Role="tblFikBetaling" Type="LightSwitchApplication.tblFikBetaling" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProjekt">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblFikBetaling">
+        <PropertyRef Name="tblFikBetaling_tblProjekt" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ApplicationData" m:IsDefaultEntityContainer="true">
+    <EntitySet Name="tblFikBetalings" EntityType="LightSwitchApplication.tblFikBetaling" />
+    <EntitySet Name="tblProjekts" EntityType="LightSwitchApplication.tblProjekt" />
+    <AssociationSet Name="tblFikBetaling_tblProjekt" Association="LightSwitchApplication.tblFikBetaling_tblProjekt">
+      <End Role="tblProjekt" EntitySet="tblProjekts" />
+      <End Role="tblFikBetaling" EntitySet="tblFikBetalings" />
+    </AssociationSet>
+    <FunctionImport Name="Microsoft_LightSwitch_GetCanInformation" ReturnType="Edm.String" m:HttpMethod="GET">
+      <Parameter Name="dataServiceMembers" Type="Edm.String" Mode="In" />
+    </FunctionImport>
+  </EntityContainer>
+</Schema>

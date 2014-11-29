@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" Namespace="LightSwitchApplication" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityType Name="tblMedlem">
+    <Key>
+      <PropertyRef Name="Nr" />
+    </Key>
+    <Property Name="Navn" Type="Edm.String" MaxLength="35" ConcurrencyMode="Fixed" />
+    <Property Name="Kaldenavn" Type="Edm.String" MaxLength="25" ConcurrencyMode="Fixed" />
+    <Property Name="Adresse" Type="Edm.String" MaxLength="70" ConcurrencyMode="Fixed" />
+    <Property Name="Postnr" Type="Edm.String" MaxLength="4" ConcurrencyMode="Fixed" />
+    <Property Name="Bynavn" Type="Edm.String" MaxLength="25" ConcurrencyMode="Fixed" />
+    <Property Name="Telefon" Type="Edm.String" MaxLength="8" ConcurrencyMode="Fixed" />
+    <Property Name="Email" Type="Edm.String" MaxLength="50" ConcurrencyMode="Fixed" />
+    <Property Name="Status" Type="Edm.Int32" ConcurrencyMode="Fixed" />
+    <Property Name="Nr" Type="Edm.Int32" Nullable="false" />
+    <Property Name="Kon" Type="Edm.String" MaxLength="1" ConcurrencyMode="Fixed" />
+    <Property Name="FodtDato" Type="Edm.DateTime" Precision="3" ConcurrencyMode="Fixed" />
+    <Property Name="Bank" Type="Edm.String" MaxLength="15" ConcurrencyMode="Fixed" />
+  </EntityType>
+  <EntityContainer Name="dbPuls3060MedlemData" m:IsDefaultEntityContainer="true">
+    <EntitySet Name="tblMedlems" EntityType="LightSwitchApplication.tblMedlem" />
+  </EntityContainer>
+</Schema>

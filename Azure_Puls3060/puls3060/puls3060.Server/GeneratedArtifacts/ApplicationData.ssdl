@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ApplicationDataStore" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="ApplicationDataStore">
+    <EntitySet Name="tblFikBetalings" EntityType="ApplicationDataStore.tblFikBetaling" store:Type="Tables" Schema="dbo" Table="tblFikBetalings" />
+    <EntitySet Name="tblProjekts" EntityType="ApplicationDataStore.tblProjekt" store:Type="Tables" Schema="dbo" Table="tblProjekts" />
+    <AssociationSet Name="tblFikBetaling_tblProjekt" Association="ApplicationDataStore.tblFikBetaling_tblProjekt">
+      <End Role="tblProjekt" EntitySet="tblProjekts" />
+      <End Role="tblFikBetaling" EntitySet="tblFikBetalings" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="tblFikBetaling">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Belob" Type="decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="BetalingsDato" Type="datetime" Nullable="false" />
+    <Property Name="FIKnr" Type="nvarchar" MaxLength="255" />
+    <Property Name="tblMedlem_Nr" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+    <Property Name="Created" Type="datetimeoffset" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+    <Property Name="Modified" Type="datetimeoffset" />
+    <Property Name="RowVersion" Type="rowversion" Nullable="false" StoreGeneratedPattern="Computed" />
+    <Property Name="tblFikBetaling_tblProjekt" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblProjekt">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Navn" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="Projektnr" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+    <Property Name="Created" Type="datetimeoffset" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+    <Property Name="Modified" Type="datetimeoffset" />
+    <Property Name="RowVersion" Type="rowversion" Nullable="false" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <Association Name="tblFikBetaling_tblProjekt">
+    <End Role="tblProjekt" Type="ApplicationDataStore.tblProjekt" Multiplicity="1">
+      <OnDeleteAnnotation Action="Restrict" xmlns="http://schemas.microsoft.com/LightSwitch/2013/edm/annotations" />
+    </End>
+    <End Role="tblFikBetaling" Type="ApplicationDataStore.tblFikBetaling" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblProjekt">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblFikBetaling">
+        <PropertyRef Name="tblFikBetaling_tblProjekt" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

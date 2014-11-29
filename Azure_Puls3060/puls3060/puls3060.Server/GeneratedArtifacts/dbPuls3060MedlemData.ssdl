@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="dbPuls3060MedlemDataStore" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="dbPuls3060MedlemDataStore">
+    <EntitySet Name="tblMedlems" EntityType="dbPuls3060MedlemDataStore.tblMedlem" store:Type="Tables" Schema="dbo" Table="tblMedlem" />
+  </EntityContainer>
+  <EntityType Name="tblMedlem">
+    <Key>
+      <PropertyRef Name="Nr" />
+    </Key>
+    <Property Name="Navn" Type="nvarchar" MaxLength="35" />
+    <Property Name="Kaldenavn" Type="nvarchar" MaxLength="25" />
+    <Property Name="Adresse" Type="nvarchar" MaxLength="70" />
+    <Property Name="Postnr" Type="nvarchar" MaxLength="4" />
+    <Property Name="Bynavn" Type="nvarchar" MaxLength="25" />
+    <Property Name="Telefon" Type="nvarchar" MaxLength="8" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Status" Type="int" />
+    <Property Name="Nr" Type="int" Nullable="false" />
+    <Property Name="Kon" Type="nvarchar" MaxLength="1" />
+    <Property Name="FodtDato" Type="datetime" />
+    <Property Name="Bank" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+</Schema>
