@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping CdmEntityContainer="ApplicationData" StorageEntityContainer="ApplicationDataStore">
+    <EntitySetMapping Name="tblFikBetalings">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.tblFikBetaling)">
+        <MappingFragment StoreEntitySet="tblFikBetalings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="tblFikBetaling_tblProjekt" ColumnName="tblFikBetaling_tblProjekt" />
+          <ScalarProperty Name="Belob" ColumnName="Belob" />
+          <ScalarProperty Name="BetalingsDato" ColumnName="BetalingsDato" />
+          <ScalarProperty Name="FIKnr" ColumnName="FIKnr" />
+          <ScalarProperty Name="tblMedlem_Nr" ColumnName="tblMedlem_Nr" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblProjekts">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.tblProjekt)">
+        <MappingFragment StoreEntitySet="tblProjekts">
+          <ScalarProperty Name="Navn" ColumnName="Navn" />
+          <ScalarProperty Name="Projektnr" ColumnName="Projektnr" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

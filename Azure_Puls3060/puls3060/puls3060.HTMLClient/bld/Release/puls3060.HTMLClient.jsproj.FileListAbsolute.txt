@@ -1,0 +1,2 @@
+c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\puls3060.HTMLClient\bin\Release\LSResourceGeneratorsTask.mcs
+c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\puls3060.HTMLClient\bin\Release\LSClientCodeGeneratorsTask.mcs

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping CdmEntityContainer="dbPuls3060MedlemData" StorageEntityContainer="dbPuls3060MedlemDataStore">
+    <EntitySetMapping Name="tblMedlems">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.tblMedlem)">
+        <MappingFragment StoreEntitySet="tblMedlems">
+          <ScalarProperty Name="Navn" ColumnName="Navn" />
+          <ScalarProperty Name="Kaldenavn" ColumnName="Kaldenavn" />
+          <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+          <ScalarProperty Name="Postnr" ColumnName="Postnr" />
+          <ScalarProperty Name="Bynavn" ColumnName="Bynavn" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Nr" ColumnName="Nr" />
+          <ScalarProperty Name="Kon" ColumnName="Kon" />
+          <ScalarProperty Name="FodtDato" ColumnName="FodtDato" />
+          <ScalarProperty Name="Bank" ColumnName="Bank" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

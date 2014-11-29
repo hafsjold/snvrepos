@@ -1,0 +1,326 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="tblMedlem">
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <EntityProperty
+        Name="Navn"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="35" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Kaldenavn"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="25" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Adresse"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="70" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Postnr"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="4" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Bynavn"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="25" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Telefon"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="8" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Email"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="50" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Status"
+        PropertyType=":Int32?">
+        <EntityProperty.Attributes>
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <KeyProperty
+        Name="Nr"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="Kon"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="1" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="FodtDato"
+        PropertyType=":DateTime?">
+        <EntityProperty.Attributes>
+          <DateTimeConstraint
+            Precision="3"
+            PreserveSeconds="True" />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Bank"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="15" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <VirtualNavigationProperty
+        Name="tblFikBetalings"
+        FromEnd="tblMedlem"
+        ToEnd="tblFikBetaling"
+        VirtualAssociation="tblFikBetaling_tblMedlem" />
+    </EntityType.Properties>
+  </EntityType>
+  <EntityContainer
+    Name="dbPuls3060MedlemData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="tblMedlems"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="tblMedlem" />
+    <QueryOperation
+      Name="tblMedlems_Single"
+      ReturnType="tblMedlem">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Nr" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Nr" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="tblMedlems" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Nr"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Nr' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="tblMedlems_SingleOrDefault"
+      ReturnType="tblMedlem">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Nr" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Nr" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="tblMedlems" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Nr"
+        ParameterType="Microsoft.LightSwitch:Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Nr' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+  </EntityContainer>
+  <DataService
+    Name="dbPuls3060MedlemDataDataService">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <EntitySetMapping
+      EntitySet="tblMedlems">
+      <EntitySetMapping.Attributes>
+        <SsdlEntitySet
+          Schema="dbo"
+          Table="tblMedlem" />
+        <SsdlProperty
+          Name="Nr"
+          Nullable="False"
+          Type="int"
+          Property="tblMedlem/Properties[Nr]" />
+        <SsdlProperty
+          MaxLength="1"
+          Name="Kon"
+          Nullable="True"
+          Type="nvarchar"
+          Property="tblMedlem/Properties[Kon]" />
+        <SsdlProperty
+          Name="FodtDato"
+          Nullable="True"
+          Type="datetime"
+          Property="tblMedlem/Properties[FodtDato]" />
+        <SsdlProperty
+          MaxLength="35"
+          Name="Navn"
+          Nullable="True"
+          Type="nvarchar"
+          Property="tblMedlem/Properties[Navn]" />
+        <SsdlProperty
+          MaxLength="25"
+          Name="Kaldenavn"
+          Nullable="True"
+          Type="nvarchar"
+          Property="tblMedlem/Properties[Kaldenavn]" />
+        <SsdlProperty
+          MaxLength="70"
+          Name="Adresse"
+          Nullable="True"
+          Type="nvarchar"
+          Property="tblMedlem/Properties[Adresse]" />
+        <SsdlProperty
+          MaxLength="4"
+          Name="Postnr"
+          Nullable="True"
+          Type="nvarchar"
+          Property="tblMedlem/Properties[Postnr]" />
+        <SsdlProperty
+          MaxLength="25"
+          Name="Bynavn"
+          Nullable="True"
+          Type="nvarchar"
+          Property="tblMedlem/Properties[Bynavn]" />
+        <SsdlProperty
+          MaxLength="8"
+          Name="Telefon"
+          Nullable="True"
+          Type="nvarchar"
+          Property="tblMedlem/Properties[Telefon]" />
+        <SsdlProperty
+          MaxLength="50"
+          Name="Email"
+          Nullable="True"
+          Type="nvarchar"
+          Property="tblMedlem/Properties[Email]" />
+        <SsdlProperty
+          MaxLength="15"
+          Name="Bank"
+          Nullable="True"
+          Type="nvarchar"
+          Property="tblMedlem/Properties[Bank]" />
+        <SsdlProperty
+          Name="Status"
+          Nullable="True"
+          Type="int"
+          Property="tblMedlem/Properties[Status]" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+  </DataService>
+  <VirtualAssociation
+    Name="tblFikBetaling_tblMedlem">
+    <VirtualAssociationEnd
+      Name="tblFikBetaling"
+      Multiplicity="Many"
+      EntityType="tblFikBetaling" />
+    <VirtualAssociationEnd
+      Name="tblMedlem"
+      Multiplicity="One"
+      EntityType="tblMedlem" />
+  </VirtualAssociation>
+  <VirtualAssociationSet
+    Name="tblFikBetaling_tblMedlem_Set"
+    VirtualAssociation="tblFikBetaling_tblMedlem">
+    <VirtualAssociationSetEnd
+      Name="tblFikBetaling"
+      EntityContainer="ApplicationData"
+      EntitySet="tblFikBetalings">
+      <VirtualAssociationSetEndProperty
+        EntityProperty="tblMedlem_Nr" />
+    </VirtualAssociationSetEnd>
+    <VirtualAssociationSetEnd
+      Name="tblMedlem"
+      EntityContainer="dbPuls3060MedlemData"
+      EntitySet="tblMedlems">
+      <VirtualAssociationSetEndProperty
+        EntityProperty="Nr" />
+    </VirtualAssociationSetEnd>
+  </VirtualAssociationSet>
+</ServiceApplication>

@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application
+  Name="LightSwitchApplication.puls3060.DesktopClient" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <Application.Attributes>
+    <Partial />
+  </Application.Attributes>
+  <EntityType>
+    <EntityType.Attributes>
+      <Proxy
+        Target="ServiceInterface:tblMedlem" />
+    </EntityType.Attributes>
+  </EntityType>
+  <EntityType>
+    <EntityType.Attributes>
+      <Proxy
+        Target="ServiceInterface:tblFikBetaling" />
+    </EntityType.Attributes>
+  </EntityType>
+  <EntityType>
+    <EntityType.Attributes>
+      <Proxy
+        Target="ServiceInterface:tblProjekt" />
+    </EntityType.Attributes>
+  </EntityType>
+  <EntityContainer
+    Name="dbPuls3060MedlemData">
+    <EntityContainer.Attributes>
+      <Proxy
+        Target="ServiceInterface:dbPuls3060MedlemData" />
+    </EntityContainer.Attributes>
+  </EntityContainer>
+  <EntityContainer
+    Name="ApplicationData">
+    <EntityContainer.Attributes>
+      <Proxy
+        Target="ServiceInterface:ApplicationData" />
+    </EntityContainer.Attributes>
+  </EntityContainer>
+  <Association
+    Name="tblFikBetaling_tblProjekt">
+    <Association.Attributes>
+      <Proxy
+        Target="ServiceInterface:tblFikBetaling_tblProjekt" />
+    </Association.Attributes>
+  </Association>
+  <VirtualAssociation
+    Name="tblFikBetaling_tblMedlem">
+    <VirtualAssociation.Attributes>
+      <Proxy
+        Target="ServiceInterface:tblFikBetaling_tblMedlem" />
+    </VirtualAssociation.Attributes>
+  </VirtualAssociation>
+  <VirtualAssociationSet
+    Name="tblFikBetaling_tblMedlem_Set">
+    <VirtualAssociationSet.Attributes>
+      <Proxy
+        Target="ServiceInterface:tblFikBetaling_tblMedlem_Set" />
+    </VirtualAssociationSet.Attributes>
+  </VirtualAssociationSet>
+</Application>
