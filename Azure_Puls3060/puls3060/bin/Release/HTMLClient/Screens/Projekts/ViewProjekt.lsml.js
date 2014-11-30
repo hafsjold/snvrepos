@@ -8,3 +8,15 @@ myapp.ViewProjekt.Details_postRender = function (element, contentItem) {
     });
 }
 
+
+myapp.ViewProjekt.created = function (screen) {
+    // Write code here.
+
+    if (myapp.permissions["LightSwitchApplication:CanUpdateProjekt"]) {
+        screen.findContentItem("EditProjekt").isEnabled = true;
+    }
+    else {
+        screen.findContentItem("EditProjekt").isEnabled = false;
+    }
+
+};

@@ -45,4 +45,18 @@
         Value="Can Update tblProjekt" />
     </Permission.Attributes>
   </Permission>
+  <Permission
+    Name="CanInsertProjekt">
+    <Permission.Attributes>
+      <DisplayName
+        Value="Can Insert tblProjekt" />
+    </Permission.Attributes>
+  </Permission>
+  <Permission
+    Name="CanDeleteProekt">
+    <Permission.Attributes>
+      <DisplayName
+        Value="Can Delete tblProekt" />
+    </Permission.Attributes>
+  </Permission>
 </ServiceApplication>

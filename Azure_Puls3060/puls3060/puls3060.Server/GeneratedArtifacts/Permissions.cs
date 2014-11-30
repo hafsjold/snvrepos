@@ -24,6 +24,14 @@ namespace LightSwitchApplication
         /// Can Update tblProjekt
         /// </summary>
         public const string CanUpdateProjekt = "LightSwitchApplication:CanUpdateProjekt";
+        /// <summary>
+        /// CanInsertProjekt
+        /// </summary>
+        public const string CanInsertProjekt = "LightSwitchApplication:CanInsertProjekt";
+        /// <summary>
+        /// CanDeleteProekt
+        /// </summary>
+        public const string CanDeleteProekt = "LightSwitchApplication:CanDeleteProekt";
 
         /// <summary>
         /// Gets all permissions defined for the application.  This includes system and user-defined permissions.

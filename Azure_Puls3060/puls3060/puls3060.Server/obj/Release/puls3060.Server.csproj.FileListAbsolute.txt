@@ -34,3 +34,11 @@ c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\puls30
 c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\puls3060.Server\bin\Release\System.ServiceModel.DomainServices.Server.xml
 c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\puls3060.Server\obj\Release\Application.Server.dll
 c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\puls3060.Server\obj\Release\Application.Server.pdb
+C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\puls3060.Server\bin\Release\Newtonsoft.Json.dll
+C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\puls3060.Server\bin\Release\System.Net.Http.Formatting.dll
+C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\puls3060.Server\bin\Release\System.Web.Http.dll
+C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\puls3060.Server\bin\Release\System.Web.Http.WebHost.dll
+C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\puls3060.Server\bin\Release\Newtonsoft.Json.xml
+C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\puls3060.Server\bin\Release\System.Net.Http.Formatting.xml
+C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\puls3060.Server\bin\Release\System.Web.Http.xml
+C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\puls3060.Server\bin\Release\System.Web.Http.WebHost.xml

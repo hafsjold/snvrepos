@@ -49,6 +49,20 @@
         Replacement="$1 $2" />
     </GlobalAttributeGroup.Attributes>
   </GlobalAttributeGroup>
+  <Permission
+    Name="CanInsertProjekt">
+    <Permission.Attributes>
+      <DisplayName
+        Value="Can Insert tblProjekt" />
+    </Permission.Attributes>
+  </Permission>
+  <Permission
+    Name="CanDeleteProekt">
+    <Permission.Attributes>
+      <DisplayName
+        Value="Can Delete tblProekt" />
+    </Permission.Attributes>
+  </Permission>
   <EntityType
     Name="tblMedlem">
     <EntityType.Methods>

@@ -6,22 +6,30 @@ C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v4.5\\Server\Microsoft.LightSw
 C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v4.5\\Client\Microsoft.LightSwitch.CodeMarker.dll
 C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v4.5\\Client\Microsoft.LightSwitch.dll
 C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v4.5\\Client\Microsoft.LightSwitch.ExportProvider.dll
-c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\_Pvt_Extensions\Microsoft.LightSwitch.Extensions\Server\Reference\Microsoft.LightSwitch.Extensions.Server.dll
+C:\Users\Puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\_Pvt_Extensions\Microsoft.LightSwitch.Extensions\Server\Reference\Microsoft.LightSwitch.Extensions.Server.dll
 C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v4.5\\Server\Microsoft.LightSwitch.ManifestService.dll
 C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v4.5\\Server\Microsoft.LightSwitch.Model.Xaml.dll
 C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v4.5\\Server\Microsoft.LightSwitch.Server.dll
 C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v4.5\\Server\Microsoft.LightSwitch.Server.Host.dll
-c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\Packages\System.IdentityModel.Tokens.Jwt.1.0.0\lib\net45\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Puls3060\documents\visual studio 2013\Projects\puls3060\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll
+C:\Users\Puls3060\documents\visual studio 2013\Projects\puls3060\Packages\System.IdentityModel.Tokens.Jwt.1.0.0\lib\net45\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Puls3060\documents\visual studio 2013\Projects\puls3060\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll
 C:\Program Files (x86)\Microsoft SDKs\RIA Services\\v1.0\Libraries\Server\System.ServiceModel.DomainServices.EntityFramework.dll
 C:\Program Files (x86)\Microsoft SDKs\RIA Services\\v1.0\Libraries\Server\System.ServiceModel.DomainServices.Hosting.dll
 C:\Program Files (x86)\Microsoft SDKs\RIA Services\\v1.0\Libraries\Server\System.ServiceModel.DomainServices.Hosting.OData.dll
 C:\Program Files (x86)\Microsoft SDKs\RIA Services\\v1.0\Libraries\Server\System.ServiceModel.DomainServices.Server.dll
 C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v4.5\\Server\System.ServiceModel.PollingDuplex.dll
 C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v4.5\\Server\System.Spatial.dll
+C:\Users\Puls3060\documents\visual studio 2013\Projects\puls3060\packages\Microsoft.AspNet.WebApi.Core.5.2.2\lib\net45\System.Web.Http.dll
+C:\Users\Puls3060\documents\visual studio 2013\Projects\puls3060\packages\Microsoft.AspNet.WebApi.WebHost.5.2.2\lib\net45\System.Web.Http.WebHost.dll
 C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v4.5\Server\Microsoft.WindowsAzure.ServiceRuntime.dll
+C:\Users\Puls3060\documents\visual studio 2013\Projects\puls3060\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.xml
+C:\Users\Puls3060\documents\visual studio 2013\Projects\puls3060\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.xml
+C:\Users\Puls3060\documents\visual studio 2013\Projects\puls3060\packages\Microsoft.AspNet.WebApi.Core.5.2.2\lib\net45\System.Web.Http.xml
+C:\Users\Puls3060\documents\visual studio 2013\Projects\puls3060\packages\Microsoft.AspNet.WebApi.WebHost.5.2.2\lib\net45\System.Web.Http.WebHost.xml
 C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v4.5\Client\Microsoft.LightSwitch.xml
 C:\Program Files (x86)\Microsoft SDKs\LightSwitch\v4.5\Server\Microsoft.LightSwitch.Server.xml
-c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\Packages\System.IdentityModel.Tokens.Jwt.1.0.0\lib\net45\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\Puls3060\documents\visual studio 2013\Projects\puls3060\Packages\System.IdentityModel.Tokens.Jwt.1.0.0\lib\net45\System.IdentityModel.Tokens.Jwt.xml
 C:\Program Files (x86)\Microsoft SDKs\RIA Services\v1.0\Libraries\Server\System.ServiceModel.DomainServices.EntityFramework.xml
 C:\Program Files (x86)\Microsoft SDKs\RIA Services\v1.0\Libraries\Server\System.ServiceModel.DomainServices.Hosting.xml
 C:\Program Files (x86)\Microsoft SDKs\RIA Services\v1.0\Libraries\Server\System.ServiceModel.DomainServices.Hosting.OData.xml

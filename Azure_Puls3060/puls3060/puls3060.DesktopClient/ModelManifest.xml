@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <ModelDocumentManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Documents>
-    <Document FullPath="c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\puls3060.DesktopClient\Properties\Client.lsml" Checksum="35AFDE43E5732BFBB16A2E73E00DE0E11F959B704DDB522DD75A06180A05D4E6" />
-    <Document FullPath="c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\puls3060.DesktopClient\Properties\Proxies.lsml" Checksum="E13A4FFC4CA8C9CDFEB46852DE96149EDE9E8BB1C7A003713D8933835843F0AC" />
+    <Document FullPath="C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\puls3060.DesktopClient\Properties\Client.lsml" Checksum="7C50D5847FE221E2DAB3334CD92715F661A3160C6B42115BD51718E807ADEB68" />
+    <Document FullPath="C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\puls3060.DesktopClient\Properties\Proxies.lsml" Checksum="E13A4FFC4CA8C9CDFEB46852DE96149EDE9E8BB1C7A003713D8933835843F0AC" />
   </Documents>
 </ModelDocumentManifest>

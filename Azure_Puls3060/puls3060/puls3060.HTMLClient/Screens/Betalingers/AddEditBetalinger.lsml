@@ -10,7 +10,7 @@
       <SaveChangesTo
         EntityContainer="ApplicationData" />
       <DisplayName
-        Value="Betalinger" />
+        Value="Betaling" />
     </Screen.Attributes>
     <Screen.RootContentItem>
       <ContentItem
@@ -125,6 +125,19 @@
                       <ChainExpression>
                         <MemberExpression
                           Member="tblFikBetaling/Properties[BetalingsDato]" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
+                <ContentItem
+                  Name="FIKnr"
+                  Kind="Value"
+                  DataType=":String?">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="tblFikBetaling/Properties[FIKnr]" />
                       </ChainExpression>
                     </ScreenExpressionTree>
                   </ContentItem.DataSource>
