@@ -19,10 +19,10 @@
     <SubsystemPackage>DiagnosticsLoader</SubsystemPackage>
     <SubsystemPackage>RuntimeUserCodeLoader</SubsystemPackage>
   </SubsystemPackages>
-  <UserCodeAssemblies><UserCodeAssembly>puls3060.DesktopClient, Version=1.0.2.0, Culture=neutral, PublicKeyToken=null</UserCodeAssembly></UserCodeAssemblies>
+  <UserCodeAssemblies><UserCodeAssembly>puls3060.DesktopClient, Version=1.0.4.0, Culture=neutral, PublicKeyToken=null</UserCodeAssembly></UserCodeAssemblies>
   <ExtensionAssemblies>
     <ExtensionAssembly>Microsoft.LightSwitch.SdkProxy, Version=10.0.12.1, Culture=neutral, PublicKeyToken=31BF3856AD364E35</ExtensionAssembly>
     <ExtensionAssembly>Microsoft.LightSwitch.Extensions.Client, Version=12.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35</ExtensionAssembly>
     <ExtensionAssembly>Microsoft.LightSwitch.Cosmopolitan.Client, Version=12.0.0.0, Culture=neutral, PublicKeyToken=31BF3856AD364E35</ExtensionAssembly>
   </ExtensionAssemblies>
-<ApplicationCulture>en-US</ApplicationCulture><SupportedCultures>en-US</SupportedCultures><ManifestTimeStamp>130617586813241192</ManifestTimeStamp><ApplicationName>puls3060</ApplicationName><Version>1.0.2.0</Version><RootProjectGuid>{a16f1fcb-66c1-44af-a645-4020e6a28441}</RootProjectGuid></Configuration>
+<ApplicationCulture>en-US</ApplicationCulture><SupportedCultures>en-US</SupportedCultures><ManifestTimeStamp>130618470353304161</ManifestTimeStamp><ApplicationName>puls3060</ApplicationName><Version>1.0.4.0</Version><RootProjectGuid>{a16f1fcb-66c1-44af-a645-4020e6a28441}</RootProjectGuid></Configuration>

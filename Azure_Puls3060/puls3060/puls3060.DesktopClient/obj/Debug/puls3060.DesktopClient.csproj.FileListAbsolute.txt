@@ -58,6 +58,5 @@ c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\puls30
 c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\puls3060.DesktopClient\Bin\Debug\Microsoft.CSharp.xml
 c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\puls3060.DesktopClient\Bin\Debug\System.ServiceModel.DomainServices.Client.xml
 c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\puls3060.DesktopClient\Bin\Debug\System.Xml.Serialization.xml
-c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\puls3060.DesktopClient\obj\Debug\puls3060.DesktopClient.csprojResolveAssemblyReference.cache
 c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\puls3060.DesktopClient\obj\Debug\puls3060.DesktopClient.dll
 c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\puls3060.DesktopClient\obj\Debug\puls3060.DesktopClient.pdb

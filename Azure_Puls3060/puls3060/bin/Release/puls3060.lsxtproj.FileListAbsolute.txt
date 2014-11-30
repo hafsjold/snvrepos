@@ -67,7 +67,6 @@ c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\bin\Re
 c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\bin\Release\HTMLClient\Content\Images\user-splash-screen.png
 c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\bin\Release\HTMLClient\default.htm
 c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\bin\Release\HTMLClient\packages.config
-c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\bin\Release\HTMLClient\Screens\Betalingers\ViewBetalinger.lsml.js
 c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\bin\Release\HTMLClient\Screens\Projekts\ViewProjekt.lsml.js
 c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\bin\Release\HTMLClient\Scripts\datajs-1.1.1.js
 c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\bin\Release\HTMLClient\Scripts\datajs-1.1.1.min.js
@@ -93,3 +92,11 @@ c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\bin\Re
 c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\bin\Release\DesktopClient\default.htm
 c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\bin\Release\DesktopClient\Silverlight.js
 c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\bin\Release\DesktopClient\web\puls3060.DesktopClient.xap
+C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\bin\Release\bin\Newtonsoft.Json.dll
+C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\bin\Release\bin\System.Net.Http.Formatting.dll
+C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\bin\Release\bin\System.Web.Http.dll
+C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\bin\Release\bin\System.Web.Http.WebHost.dll
+C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\bin\Release\Global.asax
+C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\bin\Release\HTMLClient\Screens\Medlemmer.lsml.js
+C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\bin\Release\HTMLClient\Screens\Projekts\BrowseProjekts.lsml.js
+C:\Users\Puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\bin\Release\HTMLClient\Screens\Betalingers\AddEditBetalinger.lsml.js

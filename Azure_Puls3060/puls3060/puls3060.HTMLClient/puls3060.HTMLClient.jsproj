@@ -66,8 +66,14 @@
     <Content Include="Content\Images\user-splash-screen.png" />
     <Content Include="Content\Web.config" />
     <Content Include="packages.config" />
-    <Content Include="Screens\Betalingers\ViewBetalinger.lsml.js">
-      <DependentUpon>ViewBetalinger.lsml</DependentUpon>
+    <Content Include="Screens\Betalingers\AddEditBetalinger.lsml.js">
+      <DependentUpon>AddEditBetalinger.lsml</DependentUpon>
+    </Content>
+    <Content Include="Screens\Medlemmer.lsml.js">
+      <DependentUpon>Medlemmer.lsml</DependentUpon>
+    </Content>
+    <Content Include="Screens\Projekts\BrowseProjekts.lsml.js">
+      <DependentUpon>BrowseProjekts.lsml</DependentUpon>
     </Content>
     <Content Include="Screens\Projekts\ViewProjekt.lsml.js">
       <DependentUpon>ViewProjekt.lsml</DependentUpon>

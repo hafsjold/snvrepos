@@ -22,7 +22,7 @@
     <ApplicationServerType>Azure</ApplicationServerType>
     <AuthenticationType>Forms</AuthenticationType>
     <ApplicationName>puls3060</ApplicationName>
-    <AssemblyVersion>1.0.2.0</AssemblyVersion>
+    <AssemblyVersion>1.0.5.0</AssemblyVersion>
     <ServiceDefinitionFile>ServiceDefinition.csdef</ServiceDefinitionFile>
     <ServiceConfigurationFile>ServiceConfiguration.cscfg</ServiceConfigurationFile>
     <SqlExpressInstanceName>(LocalDB)\v11.0</SqlExpressInstanceName>

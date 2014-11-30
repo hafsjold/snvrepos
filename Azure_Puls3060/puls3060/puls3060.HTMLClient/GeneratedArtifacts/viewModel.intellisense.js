@@ -83,6 +83,14 @@
             data: lightSwitchApplication.tblFikBetaling,
             value: Date
         },
+        FIKnr: {
+            _$class: msls.ContentItem,
+            _$name: "FIKnr",
+            _$parentName: "left",
+            screen: lightSwitchApplication.AddEditBetalinger,
+            data: lightSwitchApplication.tblFikBetaling,
+            value: String
+        },
         right: {
             _$class: msls.ContentItem,
             _$name: "right",
@@ -155,6 +163,11 @@
         /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
         /// </field>
         BetalingsDato_postRender: [$element, function () { return new lightSwitchApplication.AddEditBetalinger().findContentItem("BetalingsDato"); }],
+        /// <field>
+        /// Called after the FIKnr content item has been rendered.
+        /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
+        /// </field>
+        FIKnr_postRender: [$element, function () { return new lightSwitchApplication.AddEditBetalinger().findContentItem("FIKnr"); }],
         /// <field>
         /// Called after the right content item has been rendered.
         /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
@@ -231,6 +244,14 @@
             data: lightSwitchApplication.tblFikBetaling,
             value: Date
         },
+        FIKnr: {
+            _$class: msls.ContentItem,
+            _$name: "FIKnr",
+            _$parentName: "rows",
+            screen: lightSwitchApplication.BrowseBetalingers,
+            data: lightSwitchApplication.tblFikBetaling,
+            value: String
+        },
         Popups: {
             _$class: msls.ContentItem,
             _$name: "Popups",
@@ -284,7 +305,12 @@
         /// Called after the BetalingsDato content item has been rendered.
         /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
         /// </field>
-        BetalingsDato_postRender: [$element, function () { return new lightSwitchApplication.BrowseBetalingers().findContentItem("BetalingsDato"); }]
+        BetalingsDato_postRender: [$element, function () { return new lightSwitchApplication.BrowseBetalingers().findContentItem("BetalingsDato"); }],
+        /// <field>
+        /// Called after the FIKnr content item has been rendered.
+        /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
+        /// </field>
+        FIKnr_postRender: [$element, function () { return new lightSwitchApplication.BrowseBetalingers().findContentItem("FIKnr"); }]
     });
 
     lightSwitchApplication.ViewBetalinger.prototype._$contentItems = {
@@ -317,6 +343,14 @@
             screen: lightSwitchApplication.ViewBetalinger,
             data: lightSwitchApplication.tblFikBetaling,
             value: lightSwitchApplication.tblFikBetaling
+        },
+        Id: {
+            _$class: msls.ContentItem,
+            _$name: "Id",
+            _$parentName: "left",
+            screen: lightSwitchApplication.ViewBetalinger,
+            data: lightSwitchApplication.tblFikBetaling,
+            value: Number
         },
         tblProjekt: {
             _$class: msls.ContentItem,
@@ -409,6 +443,11 @@
         /// </field>
         left_postRender: [$element, function () { return new lightSwitchApplication.ViewBetalinger().findContentItem("left"); }],
         /// <field>
+        /// Called after the Id content item has been rendered.
+        /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
+        /// </field>
+        Id_postRender: [$element, function () { return new lightSwitchApplication.ViewBetalinger().findContentItem("Id"); }],
+        /// <field>
         /// Called after the tblProjekt content item has been rendered.
         /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
         /// </field>
@@ -443,157 +482,6 @@
         /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
         /// </field>
         right_postRender: [$element, function () { return new lightSwitchApplication.ViewBetalinger().findContentItem("right"); }]
-    });
-
-    lightSwitchApplication.Medlemmer.prototype._$contentItems = {
-        Tabs: {
-            _$class: msls.ContentItem,
-            _$name: "Tabs",
-            _$parentName: "RootContentItem",
-            screen: lightSwitchApplication.Medlemmer
-        },
-        tblMedlemList: {
-            _$class: msls.ContentItem,
-            _$name: "tblMedlemList",
-            _$parentName: "Tabs",
-            screen: lightSwitchApplication.Medlemmer,
-            data: lightSwitchApplication.Medlemmer,
-            value: lightSwitchApplication.Medlemmer
-        },
-        tblMedlems: {
-            _$class: msls.ContentItem,
-            _$name: "tblMedlems",
-            _$parentName: "tblMedlemList",
-            screen: lightSwitchApplication.Medlemmer,
-            data: lightSwitchApplication.Medlemmer,
-            value: {
-                _$class: msls.VisualCollection,
-                screen: lightSwitchApplication.Medlemmer,
-                _$entry: {
-                    elementType: lightSwitchApplication.tblMedlem
-                }
-            }
-        },
-        rows: {
-            _$class: msls.ContentItem,
-            _$name: "rows",
-            _$parentName: "tblMedlems",
-            screen: lightSwitchApplication.Medlemmer,
-            data: lightSwitchApplication.tblMedlem,
-            value: lightSwitchApplication.tblMedlem
-        },
-        Navn: {
-            _$class: msls.ContentItem,
-            _$name: "Navn",
-            _$parentName: "rows",
-            screen: lightSwitchApplication.Medlemmer,
-            data: lightSwitchApplication.tblMedlem,
-            value: String
-        },
-        Nr: {
-            _$class: msls.ContentItem,
-            _$name: "Nr",
-            _$parentName: "rows",
-            screen: lightSwitchApplication.Medlemmer,
-            data: lightSwitchApplication.tblMedlem,
-            value: Number
-        },
-        Adresse: {
-            _$class: msls.ContentItem,
-            _$name: "Adresse",
-            _$parentName: "rows",
-            screen: lightSwitchApplication.Medlemmer,
-            data: lightSwitchApplication.tblMedlem,
-            value: String
-        },
-        Bynavn: {
-            _$class: msls.ContentItem,
-            _$name: "Bynavn",
-            _$parentName: "rows",
-            screen: lightSwitchApplication.Medlemmer,
-            data: lightSwitchApplication.tblMedlem,
-            value: String
-        },
-        Telefon: {
-            _$class: msls.ContentItem,
-            _$name: "Telefon",
-            _$parentName: "rows",
-            screen: lightSwitchApplication.Medlemmer,
-            data: lightSwitchApplication.tblMedlem,
-            value: String
-        },
-        Email: {
-            _$class: msls.ContentItem,
-            _$name: "Email",
-            _$parentName: "rows",
-            screen: lightSwitchApplication.Medlemmer,
-            data: lightSwitchApplication.tblMedlem,
-            value: String
-        },
-        Popups: {
-            _$class: msls.ContentItem,
-            _$name: "Popups",
-            _$parentName: "RootContentItem",
-            screen: lightSwitchApplication.Medlemmer
-        }
-    };
-
-    msls._addEntryPoints(lightSwitchApplication.Medlemmer, {
-        /// <field>
-        /// Called when a new Medlemmer screen is created.
-        /// <br/>created(msls.application.Medlemmer screen)
-        /// </field>
-        created: [lightSwitchApplication.Medlemmer],
-        /// <field>
-        /// Called before changes on an active Medlemmer screen are applied.
-        /// <br/>beforeApplyChanges(msls.application.Medlemmer screen)
-        /// </field>
-        beforeApplyChanges: [lightSwitchApplication.Medlemmer],
-        /// <field>
-        /// Called after the tblMedlemList content item has been rendered.
-        /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
-        /// </field>
-        tblMedlemList_postRender: [$element, function () { return new lightSwitchApplication.Medlemmer().findContentItem("tblMedlemList"); }],
-        /// <field>
-        /// Called after the tblMedlems content item has been rendered.
-        /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
-        /// </field>
-        tblMedlems_postRender: [$element, function () { return new lightSwitchApplication.Medlemmer().findContentItem("tblMedlems"); }],
-        /// <field>
-        /// Called after the rows content item has been rendered.
-        /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
-        /// </field>
-        rows_postRender: [$element, function () { return new lightSwitchApplication.Medlemmer().findContentItem("rows"); }],
-        /// <field>
-        /// Called after the Navn content item has been rendered.
-        /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
-        /// </field>
-        Navn_postRender: [$element, function () { return new lightSwitchApplication.Medlemmer().findContentItem("Navn"); }],
-        /// <field>
-        /// Called after the Nr content item has been rendered.
-        /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
-        /// </field>
-        Nr_postRender: [$element, function () { return new lightSwitchApplication.Medlemmer().findContentItem("Nr"); }],
-        /// <field>
-        /// Called after the Adresse content item has been rendered.
-        /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
-        /// </field>
-        Adresse_postRender: [$element, function () { return new lightSwitchApplication.Medlemmer().findContentItem("Adresse"); }],
-        /// <field>
-        /// Called after the Bynavn content item has been rendered.
-        /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
-        /// </field>
-        Bynavn_postRender: [$element, function () { return new lightSwitchApplication.Medlemmer().findContentItem("Bynavn"); }],
-        /// <field>
-        /// Called after the Telefon content item has been rendered.
-        /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
-        /// </field>
-        Telefon_postRender: [$element, function () { return new lightSwitchApplication.Medlemmer().findContentItem("Telefon"); }],
-        /// <field>
-        /// Called after the Email content item has been rendered.
-        /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
-        /// </field>
-        Email_postRender: [$element, function () { return new lightSwitchApplication.Medlemmer().findContentItem("Email"); }]
     });
 
     lightSwitchApplication.AddEditProjekt.prototype._$contentItems = {
@@ -905,6 +793,157 @@
         /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
         /// </field>
         right_postRender: [$element, function () { return new lightSwitchApplication.ViewProjekt().findContentItem("right"); }]
+    });
+
+    lightSwitchApplication.Medlemmer.prototype._$contentItems = {
+        Tabs: {
+            _$class: msls.ContentItem,
+            _$name: "Tabs",
+            _$parentName: "RootContentItem",
+            screen: lightSwitchApplication.Medlemmer
+        },
+        tblMedlemList: {
+            _$class: msls.ContentItem,
+            _$name: "tblMedlemList",
+            _$parentName: "Tabs",
+            screen: lightSwitchApplication.Medlemmer,
+            data: lightSwitchApplication.Medlemmer,
+            value: lightSwitchApplication.Medlemmer
+        },
+        tblMedlems: {
+            _$class: msls.ContentItem,
+            _$name: "tblMedlems",
+            _$parentName: "tblMedlemList",
+            screen: lightSwitchApplication.Medlemmer,
+            data: lightSwitchApplication.Medlemmer,
+            value: {
+                _$class: msls.VisualCollection,
+                screen: lightSwitchApplication.Medlemmer,
+                _$entry: {
+                    elementType: lightSwitchApplication.tblMedlem
+                }
+            }
+        },
+        rows: {
+            _$class: msls.ContentItem,
+            _$name: "rows",
+            _$parentName: "tblMedlems",
+            screen: lightSwitchApplication.Medlemmer,
+            data: lightSwitchApplication.tblMedlem,
+            value: lightSwitchApplication.tblMedlem
+        },
+        Navn: {
+            _$class: msls.ContentItem,
+            _$name: "Navn",
+            _$parentName: "rows",
+            screen: lightSwitchApplication.Medlemmer,
+            data: lightSwitchApplication.tblMedlem,
+            value: String
+        },
+        Nr: {
+            _$class: msls.ContentItem,
+            _$name: "Nr",
+            _$parentName: "rows",
+            screen: lightSwitchApplication.Medlemmer,
+            data: lightSwitchApplication.tblMedlem,
+            value: Number
+        },
+        Adresse: {
+            _$class: msls.ContentItem,
+            _$name: "Adresse",
+            _$parentName: "rows",
+            screen: lightSwitchApplication.Medlemmer,
+            data: lightSwitchApplication.tblMedlem,
+            value: String
+        },
+        Bynavn: {
+            _$class: msls.ContentItem,
+            _$name: "Bynavn",
+            _$parentName: "rows",
+            screen: lightSwitchApplication.Medlemmer,
+            data: lightSwitchApplication.tblMedlem,
+            value: String
+        },
+        Telefon: {
+            _$class: msls.ContentItem,
+            _$name: "Telefon",
+            _$parentName: "rows",
+            screen: lightSwitchApplication.Medlemmer,
+            data: lightSwitchApplication.tblMedlem,
+            value: String
+        },
+        Email: {
+            _$class: msls.ContentItem,
+            _$name: "Email",
+            _$parentName: "rows",
+            screen: lightSwitchApplication.Medlemmer,
+            data: lightSwitchApplication.tblMedlem,
+            value: String
+        },
+        Popups: {
+            _$class: msls.ContentItem,
+            _$name: "Popups",
+            _$parentName: "RootContentItem",
+            screen: lightSwitchApplication.Medlemmer
+        }
+    };
+
+    msls._addEntryPoints(lightSwitchApplication.Medlemmer, {
+        /// <field>
+        /// Called when a new Medlemmer screen is created.
+        /// <br/>created(msls.application.Medlemmer screen)
+        /// </field>
+        created: [lightSwitchApplication.Medlemmer],
+        /// <field>
+        /// Called before changes on an active Medlemmer screen are applied.
+        /// <br/>beforeApplyChanges(msls.application.Medlemmer screen)
+        /// </field>
+        beforeApplyChanges: [lightSwitchApplication.Medlemmer],
+        /// <field>
+        /// Called after the tblMedlemList content item has been rendered.
+        /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
+        /// </field>
+        tblMedlemList_postRender: [$element, function () { return new lightSwitchApplication.Medlemmer().findContentItem("tblMedlemList"); }],
+        /// <field>
+        /// Called after the tblMedlems content item has been rendered.
+        /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
+        /// </field>
+        tblMedlems_postRender: [$element, function () { return new lightSwitchApplication.Medlemmer().findContentItem("tblMedlems"); }],
+        /// <field>
+        /// Called after the rows content item has been rendered.
+        /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
+        /// </field>
+        rows_postRender: [$element, function () { return new lightSwitchApplication.Medlemmer().findContentItem("rows"); }],
+        /// <field>
+        /// Called after the Navn content item has been rendered.
+        /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
+        /// </field>
+        Navn_postRender: [$element, function () { return new lightSwitchApplication.Medlemmer().findContentItem("Navn"); }],
+        /// <field>
+        /// Called after the Nr content item has been rendered.
+        /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
+        /// </field>
+        Nr_postRender: [$element, function () { return new lightSwitchApplication.Medlemmer().findContentItem("Nr"); }],
+        /// <field>
+        /// Called after the Adresse content item has been rendered.
+        /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
+        /// </field>
+        Adresse_postRender: [$element, function () { return new lightSwitchApplication.Medlemmer().findContentItem("Adresse"); }],
+        /// <field>
+        /// Called after the Bynavn content item has been rendered.
+        /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
+        /// </field>
+        Bynavn_postRender: [$element, function () { return new lightSwitchApplication.Medlemmer().findContentItem("Bynavn"); }],
+        /// <field>
+        /// Called after the Telefon content item has been rendered.
+        /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
+        /// </field>
+        Telefon_postRender: [$element, function () { return new lightSwitchApplication.Medlemmer().findContentItem("Telefon"); }],
+        /// <field>
+        /// Called after the Email content item has been rendered.
+        /// <br/>postRender(HTMLElement element, msls.ContentItem contentItem)
+        /// </field>
+        Email_postRender: [$element, function () { return new lightSwitchApplication.Medlemmer().findContentItem("Email"); }]
     });
 
 }(msls.application));

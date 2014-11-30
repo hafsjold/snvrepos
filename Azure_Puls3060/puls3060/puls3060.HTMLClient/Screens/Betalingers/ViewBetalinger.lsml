@@ -10,7 +10,7 @@
       <SaveChangesTo
         EntityContainer="ApplicationData" />
       <DisplayName
-        Value="Betalinger" />
+        Value="Betaling" />
     </Screen.Attributes>
     <Screen.RootContentItem>
       <ContentItem
@@ -49,6 +49,20 @@
               <ContentItem
                 Name="left"
                 Kind="Group">
+                <ContentItem
+                  Name="Id"
+                  IsHidden="True"
+                  Kind="Value"
+                  DataType=":Int32">
+                  <ContentItem.DataSource>
+                    <ScreenExpressionTree>
+                      <ChainExpression>
+                        <MemberExpression
+                          Member="tblFikBetaling/Properties[Id]" />
+                      </ChainExpression>
+                    </ScreenExpressionTree>
+                  </ContentItem.DataSource>
+                </ContentItem>
                 <ContentItem
                   Name="tblProjekt"
                   Kind="Details"

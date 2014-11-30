@@ -89,7 +89,14 @@ c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\bin\De
 c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\bin\Debug\HTMLClient\Scripts\Generated\resources.js
 c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\bin\Debug\HTMLClient\Content\Resources\Generated\model.json
 c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\bin\Debug\HTMLClient\Content\Resources\msls.lang-en-us.resjson
-c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\bin\Debug\HTMLClient\Screens\Betalingers\ViewBetalinger.lsml.js
 c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\bin\Debug\DesktopClient\default.htm
 c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\bin\Debug\DesktopClient\Silverlight.js
 c:\users\puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\bin\Debug\DesktopClient\web\puls3060.DesktopClient.xap
+C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\bin\Debug\bin\Newtonsoft.Json.dll
+C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\bin\Debug\bin\System.Net.Http.Formatting.dll
+C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\bin\Debug\bin\System.Web.Http.dll
+C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\bin\Debug\bin\System.Web.Http.WebHost.dll
+C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\bin\Debug\Global.asax
+C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\bin\Debug\HTMLClient\Screens\Medlemmer.lsml.js
+C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\bin\Debug\HTMLClient\Screens\Projekts\BrowseProjekts.lsml.js
+C:\Users\Puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\bin\Debug\HTMLClient\Screens\Betalingers\AddEditBetalinger.lsml.js

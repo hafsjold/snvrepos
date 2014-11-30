@@ -2124,8 +2124,7 @@
           "__isSemanticType": 1,
           "id": "Microsoft.LightSwitch.Extensions:EmailAddress",
           "name": "EmailAddress",
-          "underlyingType": { "__id": ":String" },
-          "Microsoft.LightSwitch.Extensions:@EmailAddressValidation": { "domainRequired": true }
+          "underlyingType": { "__id": ":String" }
         },
         {
           "__isSemanticType": 1,
@@ -2143,15 +2142,13 @@
           "__isSemanticType": 1,
           "id": "Microsoft.LightSwitch.Extensions:PhoneNumber",
           "name": "PhoneNumber",
-          "underlyingType": { "__id": ":String" },
-          "Microsoft.LightSwitch.Extensions:@PhoneNumberValidation": { "formats": "C (AAA) NNN-NNNN;C (AAA) NNNNNNN;CAAANNNNNNN;(AAA) NNN-NNNN;(AAA) NNNNNNN;AAANNNNNNN;NNN-NNNN;NNNNNNN" }
+          "underlyingType": { "__id": ":String" }
         },
         {
           "__isSemanticType": 1,
           "id": "Microsoft.LightSwitch.Extensions:Percent",
           "name": "Percent",
           "underlyingType": { "__id": ":Decimal" },
-          "Microsoft.LightSwitch.Extensions:@FormatParameter": { "decimalDigits": 2 },
           ":@DecimalConstraint":
           {
             "scale": 9
@@ -2161,8 +2158,7 @@
           "__isSemanticType": 1,
           "id": "Microsoft.LightSwitch.Extensions:WebAddress",
           "name": "WebAddress",
-          "underlyingType": { "__id": ":String" },
-          "Microsoft.LightSwitch.Extensions:@WebAddressValidation": { }
+          "underlyingType": { "__id": ":String" }
         }
       ]
     },
@@ -2204,6 +2200,14 @@
         {
           "id": "CanUpdateProjekt",
           "name": "CanUpdateProjekt"
+        },
+        {
+          "id": "CanInsertProjekt",
+          "name": "CanInsertProjekt"
+        },
+        {
+          "id": "CanDeleteProekt",
+          "name": "CanDeleteProekt"
         },
         {
           "id": "tblMedlem*",
@@ -3038,7 +3042,7 @@
           ]
         },
         {
-          "displayName": "Betalinger",
+          "displayName": "Betaling",
           "id": "AddEditBetalinger",
           "name": "AddEditBetalinger",
           "launchMode": "Single",
@@ -3048,7 +3052,7 @@
           },
           "rootContentItem":
           {
-            "displayName": "Betalinger",
+            "displayName": "Betaling",
             "name": "RootContentItem",
             "kind": "Screen",
             "view": { "__id": ":Screen" },
@@ -3150,6 +3154,16 @@
                                 "dataSource":
                                 {
                                   "member": { "__id": "tblFikBetaling/Properties[BetalingsDato]" }
+                                }
+                              },
+                              {
+                                "displayName": "FIKnr",
+                                "name": "FIKnr",
+                                "kind": "Value",
+                                "view": { "__id": ":TextBox" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "tblFikBetaling/Properties[FIKnr]" }
                                 }
                               }
                             ],
@@ -3369,6 +3383,16 @@
                                 {
                                   "member": { "__id": "tblFikBetaling/Properties[BetalingsDato]" }
                                 }
+                              },
+                              {
+                                "displayName": "FIKnr",
+                                "name": "FIKnr",
+                                "kind": "Value",
+                                "view": { "__id": ":Text" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "tblFikBetaling/Properties[FIKnr]" }
+                                }
                               }
                             ],
                             "propertySources":
@@ -3539,7 +3563,7 @@
           ]
         },
         {
-          "displayName": "Betalinger",
+          "displayName": "Betaling",
           "id": "ViewBetalinger",
           "name": "ViewBetalinger",
           "launchMode": "Single",
@@ -3549,7 +3573,7 @@
           },
           "rootContentItem":
           {
-            "displayName": "Betalinger",
+            "displayName": "Betaling",
             "name": "RootContentItem",
             "kind": "Screen",
             "view": { "__id": ":Screen" },
@@ -3587,6 +3611,17 @@
                             "view": { "__id": ":RowsLayout" },
                             "childContentItems":
                             [
+                              {
+                                "displayName": "Id",
+                                "name": "Id",
+                                "isHidden": true,
+                                "kind": "Value",
+                                "view": { "__id": ":Text" },
+                                "dataSource":
+                                {
+                                  "member": { "__id": "tblFikBetaling/Properties[Id]" }
+                                }
+                              },
                               {
                                 "displayName": "Projekt",
                                 "name": "tblProjekt",
