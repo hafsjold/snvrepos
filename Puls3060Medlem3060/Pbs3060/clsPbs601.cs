@@ -1448,7 +1448,6 @@ namespace nsPbs3060
                 email.To.Add(new MailAddress(p_dbData3060.GetSysinfo("MAILTOADDR"), p_dbData3060.GetSysinfo("MAILTONAME"))); 
                 email.Subject = subject + " skal sendes til: " + ToName;
             }
-            email.CC.Add(new MailAddress("claus@puls3060.dk","Claus Knudsen"));
             email.Bcc.Add(new MailAddress(p_dbData3060.GetSysinfo("MAILTOADDR"), p_dbData3060.GetSysinfo("MAILTONAME"))); 
 
 #endif

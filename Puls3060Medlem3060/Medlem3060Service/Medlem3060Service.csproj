@@ -55,10 +55,11 @@
     <StartupObject>nsMedlem3060Service.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>6FAD14069C9AE14F2737F8D0489252272B16233B</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>D049B38058CB1B5768271C4CD379762252233322</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Medlem3060Service_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
