@@ -26,10 +26,9 @@
                 <local:menuButton ServerName="Revi35" ServerOS="Win2008" ToolTip="Terminal Server" Margin="4,3,2,3" Grid.Row="3" />
                 <local:menuButton ServerName="vRevi05" ServerOS="Win2008" ToolTip="FireWall Server" Margin="3" Grid.Row="4" Grid.Column="1" />
                 <local:menuButton ServerName="vRevi36" ServerOS="Win2012" ToolTip="Caseware" Margin="3" Grid.Row="4" />
-                <local:menuButton Grid.Row="5" Margin="3" ServerName="vRevi23" ServerOS="Win2012" ToolTip="DPM Server" />
-                <local:menuButton Grid.Row="5" Margin="3" ServerName="vRevi09" ServerOS="FreeBSD" ToolTip="Zabbix Server" Grid.Column="1"  />
-                <local:menuButton Grid.Column="0" Grid.Row="6" Margin="3" ServerName="Revi43" ServerOS="Win2012" ToolTip="DPM Server" />
-                <local:menuButton Grid.Column="1" Grid.Row="6" Margin="3" ServerName="Revi45" ServerOS="Win2012" ToolTip="Terminal Server" />
+                <local:menuButton Grid.Row="5" Margin="3" ServerName="vRevi43" ServerOS="Win2012" ToolTip="DPM Server" />
+                <local:menuButton Grid.Row="6" Margin="3" ServerName="vRevi09" ServerOS="FreeBSD" ToolTip="Zabbix Server" Grid.Column="1"  />
+                <local:menuButton Grid.Column="1" Grid.Row="5" Margin="3" ServerName="Revi45" ServerOS="Win2012" ToolTip="Terminal Server" />
             </Grid>
         </GroupBox>
         <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="170" HorizontalAlignment="Left" Margin="193,3,0,0" Name="groupBox1" VerticalAlignment="Top" Width="183">
@@ -55,8 +54,8 @@
                 <local:menuButton Grid.Row="4" Margin="3" ServerName="vRevi42" ToolTip="Web Remote Proxy Server" ServerOS="Win2012" Grid.Column="1" />
             </Grid>
         </GroupBox>
-        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="171" HorizontalAlignment="Left" Margin="0,246,0,0" Name="groupBox2" VerticalAlignment="Top" Width="183">
-            <Grid Height="162" Width="170">
+        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="123" HorizontalAlignment="Left" Margin="0,246,0,0" Name="groupBox2" VerticalAlignment="Top" Width="183">
+            <Grid Height="117" Width="170">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="85" />
                     <ColumnDefinition />
@@ -64,7 +63,6 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="3" />
                     <RowDefinition Height="30" />
-                    <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
@@ -95,13 +93,14 @@
                 <local:menuButton Grid.Column="1" Grid.Row="3" Margin="3" ServerName="vRevi06tv" ServerOS="Win2008" ToolTip="TimeView Server" />
                 <local:menuButton Grid.Row="4" Margin="3" ServerName="vRevi12scc" ServerOS="Win2012" ToolTip="SCC Server" />
                 <local:menuButton Grid.Column="1" Grid.Row="4" Margin="3" ServerName="vRevi44" ServerOS="Win2012" ToolTip="SQL Server" />
-                <local:menuButton Grid.Row="5" Margin="3" ServerName="Post04" ServerOS="Win2003" ToolTip="Post Arkiv Server" />
+                <local:menuButton Grid.Row="5" Margin="3" ServerName="vRevi46" ServerOS="Win2012" ToolTip="SQL Server" />
+                <local:menuButton Grid.Row="6" Margin="3" ServerName="Post04" ServerOS="Win2003" ToolTip="Post Arkiv Server" />
                 <local:menuButton Grid.Column="1" Grid.Row="5" Margin="3" ServerName="BuusTools" ServerOS="Win7" ToolTip="" />
                  <local:menuButton Grid.Column="1" Grid.Row="6" Margin="3" ServerName="vDiverse" ServerOS="Win7" ToolTip="" />
             </Grid>
         </GroupBox>
-        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="162" HorizontalAlignment="Left" Margin="0,420,0,0" Name="groupBox4" VerticalAlignment="Top" Width="183">
-            <Grid Height="158" Width="170">
+        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="195" HorizontalAlignment="Left" Margin="0,0,0,19" Name="groupBox4" VerticalAlignment="Bottom" Width="183">
+            <Grid Height="187" Width="170">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="85" />
                     <ColumnDefinition />
@@ -109,6 +108,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="3" />
                     <RowDefinition Height="30" />
+                    <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
@@ -120,6 +120,7 @@
                 <local:menuButton Grid.Column="1" Grid.Row="3" Margin="3" ServerName="xRevi31" ServerOS="Win2012" ToolTip="Test Server" />
                 <local:menuButton Grid.Column="0" Grid.Row="4" Margin="3" ServerName="xRevi12scc" ServerOS="Win2012" ToolTip="Test Server" />
                 <local:menuButton Grid.Column="1" Grid.Row="4" Margin="3" ServerName="xPost06" ServerOS="Win2012" ToolTip="Test Server" />
+                <local:menuButton Grid.Column="0" Grid.Row="5" Margin="3" ServerName="xVir01A7" ServerOS="Win7" ToolTip="Test Server" />
             </Grid>
         </GroupBox>        
         
