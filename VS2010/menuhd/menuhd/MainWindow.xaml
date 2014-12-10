@@ -53,7 +53,7 @@
         </GroupBox>
 
         <local:menuButton Margin="197,167,103,48" ServerName="pHD11" ServerOS="Win2012" ToolTip="DPM Backup Server" />
-        <local:menuButton Margin="289,167,11,48" ServerName="pHD12" ServerOS="Win2012" ToolTip="DPM Backup Server" />
+        <local:menuButton Margin="289,167,11,48" ServerName="Revi27" ServerOS="Win2012" ToolTip="DPM Backup Server for BuusJensen" />
         <local:menuButton Margin="197,208,103,7" ServerName="pHD46" ServerOS="Win7" ToolTip="PC på Gang 1. sal" />
         <local:menuButton Margin="289,208,12,7" ServerName="pc-stue" ServerOS="Win7" ToolTip="PC i fjrensynsstue" />
     </Grid>
