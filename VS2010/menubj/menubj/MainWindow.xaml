@@ -120,7 +120,7 @@
                 <local:menuButton Grid.Column="1" Grid.Row="3" Margin="3" ServerName="xRevi31" ServerOS="Win2012" ToolTip="Test Server" />
                 <local:menuButton Grid.Column="0" Grid.Row="4" Margin="3" ServerName="xRevi12scc" ServerOS="Win2012" ToolTip="Test Server" />
                 <local:menuButton Grid.Column="1" Grid.Row="4" Margin="3" ServerName="xPost06" ServerOS="Win2012" ToolTip="Test Server" />
-                <local:menuButton Grid.Column="0" Grid.Row="5" Margin="3" ServerName="xVir01A7" ServerOS="Win7" ToolTip="Test Server" />
+                <local:menuButton Grid.Column="0" Grid.Row="5" Margin="3" ServerName="xVir02" ServerOS="Win8" ToolTip="Test Arbejdsplads" />
             </Grid>
         </GroupBox>        
         
