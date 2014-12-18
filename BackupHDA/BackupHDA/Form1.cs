@@ -57,7 +57,7 @@ namespace BackupHDA
 
         private void SaveAzure(string fileName)
         {
-            _storageAccount = CloudStorageAccount.Parse(@"DefaultEndpointsProtocol=https;AccountName=puls3060;AccountKey=7BjY95xrYstORQGBwtMan60GSLeI2SsSitkxfpUw4YnBgN8zbdXQpE2TQm04Mq9JiLSR1oc5coGy7J+CAyJaOw==;");
+            _storageAccount = CloudStorageAccount.Parse(@"DefaultEndpointsProtocol=https;AccountName=hafsjolddata;AccountKey=aqXIgDLzLv0j4f2uGOnj97aMAVMlmUqnt2nBcVgC9khEDfVIIcvMU7ajCakoTihUrHDQ1Ns0WYTndWy1N0Vp+g==;");
             CloudBlobClient blobClient = _storageAccount.CreateCloudBlobClient();
             CloudBlobContainer container = blobClient.GetContainerReference("backup");
             container.CreateIfNotExists();
@@ -294,7 +294,7 @@ namespace BackupHDA
             //if (this.BackupDatabase.Checked) ExportDB1(); 
             if (this.BackupDatabase.Checked) ExportDB2();
             string targetFile = execZip();
-            //SaveAzure(targetFile);
+            SaveAzure(targetFile);
         }
 
         private void cmdCancel_Click(object sender, EventArgs e)
