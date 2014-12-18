@@ -27,7 +27,7 @@
                 <local:menuButton ServerName="vRevi05" ServerOS="Win2008" ToolTip="FireWall Server" Margin="3" Grid.Row="4" Grid.Column="1" />
                 <local:menuButton ServerName="vRevi36" ServerOS="Win2012" ToolTip="Caseware" Margin="3" Grid.Row="4" />
                 <local:menuButton Grid.Row="5" Margin="3" ServerName="vRevi43" ServerOS="Win2012" ToolTip="DPM Server" />
-                <local:menuButton Grid.Row="6" Margin="3" ServerName="vRevi09" ServerOS="FreeBSD" ToolTip="Zabbix Server" Grid.Column="1"  />
+                <local:menuButton Grid.Row="6" Margin="3" ServerName="vRevi09" ServerOS="freeBSD" ToolTip="Zabbix Server" Grid.Column="1"  />
                 <local:menuButton Grid.Column="1" Grid.Row="5" Margin="3" ServerName="Revi45" ServerOS="Win2012" ToolTip="Terminal Server" />
             </Grid>
         </GroupBox>

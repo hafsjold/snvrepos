@@ -132,11 +132,17 @@ namespace nsMenu
                     but.ledbutton.Fill = Brushes.Green;
                     but.buttonMenu.Background = Brushes.Yellow;
                     break;
+                case "Win8":
+                    but.ledbutton.Fill = Brushes.Green;
+                    but.buttonMenu.Background = Brushes.DodgerBlue;
+                    break;
                 case "freeBSD":
                     but.ledbutton.Fill = Brushes.Green;
                     but.buttonMenu.Background = Brushes.PaleGoldenrod;
                     break;
                 default:
+                    but.ledbutton.Fill = Brushes.Green;
+                    but.buttonMenu.Background = Brushes.Brown;
                     break;
             }
         }
