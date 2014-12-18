@@ -24,7 +24,7 @@
                 <local:menuButton ServerName="vHD11" ServerOS="Win2012" ToolTip="Domain Server" Margin="3" Grid.Row="2" />
                 <local:menuButton Grid.Row="3" Margin="3" ServerName="Win7" ServerOS="Win7" ToolTip="Program udviklings"/>
                 <local:menuButton Grid.Column="1" Grid.Row="3" Margin="3" ServerName="Win7-2" ToolTip="Program udvikling" ServerOS="Win7" />
-                <local:menuButton Grid.Row="4" Margin="3" ServerName="vHD50" ToolTip="Program udvikling" ServerOS="Win7" />
+                <local:menuButton Grid.Row="4" Margin="3" ServerName="vHD50" ToolTip="Program udvikling" ServerOS="Win8" />
                 <local:menuButton Grid.Column="1" Grid.Row="4" Margin="3,0,3,6" ServerName="HD40" ToolTip="Tidligere Arbejsdplads" ServerOS="Win7" />
                 <local:menuButton Margin="3"  ServerName="vHD33" ServerOS="freeBSD" ToolTip="Zabbix og Mail Server" Grid.Row="6" />
                 <local:menuButton Margin="3" ServerName="vHD34" ServerOS="freeBSD" ToolTip="Udvikling freeBSD Server" Grid.Row="6" Grid.Column="1" />
@@ -47,15 +47,15 @@
                 <local:menuButton ServerName="pHD06" ServerOS="Win2012" ToolTip="HyperV Server" Margin="3" Grid.Row="1" Grid.ColumnSpan="2" />
                 <local:menuButton Margin="3" ServerName="HD46" ServerOS="Win7" ToolTip="Virtuel Gammel HD46" Grid.Row="2"  Grid.Column="1"/>
                <local:menuButton ServerName="vPuls3060" ServerOS="Win2012" ToolTip="Puls 3060 Test Server" Margin="3" Grid.Row="2" />
-                <local:menuButton ServerName="3060-Regn" ServerOS="Win7" ToolTip="Puls3060 Regnskab"  Margin="3" Grid.Row="3" Grid.Column="0" />
-                <local:menuButton ServerName="HDA-Regn" ServerOS="Win7" ToolTip=" Hafsjold Data ApS Regnskab"  Margin="3" Grid.Row="3" Grid.Column="1" />
+                <local:menuButton ServerName="3060-Regn" ServerOS="Win8" ToolTip="Puls3060 Regnskab"  Margin="3" Grid.Row="3" Grid.Column="0" />
+                <local:menuButton ServerName="HDA-Regn" ServerOS="Win8" ToolTip=" Hafsjold Data ApS Regnskab"  Margin="3" Grid.Row="3" Grid.Column="1" />
             </Grid>
         </GroupBox>
 
         <local:menuButton Margin="197,167,103,48" ServerName="pHD11" ServerOS="Win2012" ToolTip="DPM Backup Server" />
         <local:menuButton Margin="289,167,11,48" ServerName="Revi27" ServerOS="Win2012" ToolTip="DPM Backup Server for BuusJensen" />
-        <local:menuButton Margin="197,208,103,7" ServerName="pHD46" ServerOS="Win7" ToolTip="PC på Gang 1. sal" />
-        <local:menuButton Margin="289,208,12,7" ServerName="pc-stue" ServerOS="Win7" ToolTip="PC i fjrensynsstue" />
+        <local:menuButton Margin="197,208,103,7" ServerName="pHD46" ServerOS="Win8" ToolTip="PC på Gang 1. sal" />
+        <local:menuButton Margin="289,208,12,7" ServerName="pc-stue" ServerOS="Win8" ToolTip="PC i fjrensynsstue" />
     </Grid>
 </Window>
 
