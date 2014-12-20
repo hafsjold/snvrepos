@@ -179,7 +179,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 20;
-            this.dataGridView1.Size = new System.Drawing.Size(516, 576);
+            this.dataGridView1.Size = new System.Drawing.Size(546, 584);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.TabStop = false;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
@@ -290,7 +290,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 576);
+            this.splitContainer1.Size = new System.Drawing.Size(845, 584);
             this.splitContainer1.SplitterDistance = global::nsPuls3060.Properties.Settings.Default.frmMedlemmerSplitteDist;
             this.splitContainer1.TabIndex = 0;
             this.splitContainer1.TabStop = false;
@@ -619,7 +619,7 @@
             this.U_DT_NyAktivitetDato.Name = "U_DT_NyAktivitetDato";
             this.U_DT_NyAktivitetDato.Size = new System.Drawing.Size(78, 20);
             this.U_DT_NyAktivitetDato.TabIndex = 18;
-            this.U_DT_NyAktivitetDato.Value = new System.DateTime(2011, 1, 1, 0, 0, 0, 0);
+            this.U_DT_NyAktivitetDato.Value = System.DateTime.Today;  //new System.DateTime(2011, 1, 1, 0, 0, 0, 0);
             // 
             // U_DT_FodtDato
             // 
@@ -1131,7 +1131,7 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(343, 25);
+            this.bindingNavigator1.Size = new System.Drawing.Size(312, 25);
             this.bindingNavigator1.TabIndex = 1;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
@@ -1238,7 +1238,7 @@
             // 
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(845, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
