@@ -189,21 +189,6 @@ namespace nsPuls3060
             }
         }
 
-        public void save()
-        {
-            FileStream bs = new FileStream(m_path, FileMode.Truncate, FileAccess.Write, FileShare.None);
-            using (BinaryWriter bw = new BinaryWriter(bs))
-            {
-                var qry_this = from d in this
-                               orderby d.rec_no
-                               select d;
-                foreach (var rec in qry_this)
-                {
-                    ToBinaryWriterBlock(bw, rec.rec_data);
-                }
-            }
-        }
-
         public static ordtype_k FromBinaryReaderBlock(BinaryReader br)
         {
             byte[] buff = br.ReadBytes(Marshal.SizeOf(typeof(ordtype_k)));                              //Read byte array
@@ -211,15 +196,6 @@ namespace nsPuls3060
             ordtype_k s = (ordtype_k)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(ordtype_k));  //Marshal the bytes
             handle.Free();                                                                              //Give control of the buffer back to the GC 
             return s;
-        }
-
-        public static void ToBinaryWriterBlock(BinaryWriter bw, ordtype_k s)
-        {
-            byte[] buff = new byte[Marshal.SizeOf(typeof(ordtype_k))];       //Create Buffer
-            GCHandle handle = GCHandle.Alloc(buff, GCHandleType.Pinned);     //Hands off GC
-            Marshal.StructureToPtr(s, handle.AddrOfPinnedObject(), false);   //Marshal the structure
-            handle.Free();                                                   //Give control of the buffer back to the GC
-            bw.Write(buff);                                                  //Write byte array
         }
     }
 }
