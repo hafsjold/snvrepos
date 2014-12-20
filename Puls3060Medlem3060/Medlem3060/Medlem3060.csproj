@@ -295,11 +295,9 @@
     <Compile Include="frm\frmMedlemmer.Designer.cs">
       <DependentUpon>frmMedlemmer.cs</DependentUpon>
     </Compile>
-    <Compile Include="kar\karDkkonti.cs" />
     <Compile Include="kar\karFakturaer_s.cs" />
     <Compile Include="kar\karFakturastr_s.cs" />
     <Compile Include="kar\karFakturavarer_s.cs" />
-    <Compile Include="kar\karKortnr.cs" />
     <Compile Include="kar\karRegnskab.cs" />
     <Compile Include="kar\karStatus.cs" />
     <Compile Include="NullableDateTimePicker.cs">

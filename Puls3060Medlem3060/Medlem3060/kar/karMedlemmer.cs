@@ -32,43 +32,5 @@ namespace nsPuls3060
                 }
             }
         }
-
-        public void AddMedlem(clsMedlem pMedlem) 
-        {
-            string NewCvsString = pMedlem.getNewCvsString();
-            this.Add(pMedlem);
-        }
-
-        public void Update(int p_Nr)
-        {
-            clsMedlem medlem;
-            string wCsv;
-            try
-            {
-                medlem = (from d in this
-                          where d.Nr == p_Nr
-                          select d).First();
-
-                wCsv = medlem.getUpdatedCvsString();
-            }
-            catch (KeyNotFoundException) { }
-        }
-
-        public void Save()
-        {
-            FileStream fs = new FileStream(m_kartotek_dat, FileMode.Truncate, FileAccess.Write, FileShare.None);
-
-            using (StreamWriter sr = new StreamWriter(fs, Encoding.Default))
-            {
-                var rec = from d in this
-                          orderby d.Nr
-                          select d;
-
-                foreach (clsMedlem m in rec)
-                {
-                    sr.WriteLine(m.CsvString);
-                }
-            }
-        }
     }
 }

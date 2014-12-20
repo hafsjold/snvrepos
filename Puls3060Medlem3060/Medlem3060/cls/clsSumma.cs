@@ -21,33 +21,6 @@ namespace nsPuls3060
                 if (rec_regnskab.DatoLaas > Startdato) Startdato = rec_regnskab.DatoLaas;
             }
             int saveBetid = 0;
-            /*
-            var bogf = from f in Program.dbData3060.tblfaks
-                       where Startdato <= f.betalingsdato && f.betalingsdato <= Slutdato
-                       join m in Program.dbData3060.tblMedlems on f.Nr equals m.Nr
-                       join bl in Program.dbData3060.tblbetlins on f.faknr equals bl.faknr
-                       where bl.pbstranskode == "0236" || bl.pbstranskode == "0297"
-                       join b in Program.dbData3060.tblbets on bl.betid equals b.id
-                       where b.summabogfort == null ||  b.summabogfort == false
-                       join p in Program.dbData3060.tblfrapbs on b.frapbsid equals p.id
-                       orderby p.id, b.id, bl.id
-                       select new
-                       {
-                           Frapbsid = p.id,
-                           p.leverancespecifikation,
-                           Betid = b.id,
-                           GruppeIndbetalingsbelob = b.indbetalingsbelob,
-                           Betlinid = bl.id,
-                           Fakid = f.id,
-                           bl.betalingsdato,
-                           bl.indbetalingsdato,
-                           m.Navn,
-                           bl.indbetalingsbelob,
-                           f.Nr,
-                           f.bogfkonto,
-                           f.faknr
-                       };
-            */
             var bogf = from bl in Program.dbData3060.tblbetlins
                        where (bl.pbstranskode == "0236" || bl.pbstranskode == "0297") && (Startdato <= bl.betalingsdato && bl.betalingsdato <= Slutdato)
                        join b in Program.dbData3060.tblbets on bl.betid equals b.id
@@ -235,18 +208,5 @@ namespace nsPuls3060
             return AntalBetalinger;
         }
 
-        public int? Nr2Krdktonr(int? Nr)
-        {
-            if (Nr == null) return null;
-            try
-            {
-                return int.Parse((from k in Program.karMedlemmer where k.Nr == Nr select k).First().Krdktonr);
-
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
     }
 }

@@ -46,6 +46,7 @@
             this.dsMedlem = new nsPuls3060.dsMedlem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panelAdd = new System.Windows.Forms.Panel();
+            this.I_Indmeldelse = new System.Windows.Forms.CheckBox();
             this.I_DT_FodtDato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
             this.I_DT_Indmeldelsesdato = new ProjectMentor.Windows.Controls.NullableDateTimePicker();
             this.cmdSave_I_Record = new System.Windows.Forms.Button();
@@ -139,10 +140,7 @@
             this.bindingNavigatorAddUpdateItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.toolStripImportMedlem = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.I_Indmeldelse = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.kartotekBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dsMedlem)).BeginInit();
@@ -181,7 +179,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 20;
-            this.dataGridView1.Size = new System.Drawing.Size(516, 966);
+            this.dataGridView1.Size = new System.Drawing.Size(516, 576);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.TabStop = false;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
@@ -292,7 +290,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
-            this.splitContainer1.Size = new System.Drawing.Size(800, 966);
+            this.splitContainer1.Size = new System.Drawing.Size(800, 576);
             this.splitContainer1.SplitterDistance = global::nsPuls3060.Properties.Settings.Default.frmMedlemmerSplitteDist;
             this.splitContainer1.TabIndex = 0;
             this.splitContainer1.TabStop = false;
@@ -331,6 +329,15 @@
             this.panelAdd.Size = new System.Drawing.Size(258, 360);
             this.panelAdd.TabIndex = 1;
             this.panelAdd.Visible = false;
+            // 
+            // I_Indmeldelse
+            // 
+            this.I_Indmeldelse.AutoSize = true;
+            this.I_Indmeldelse.Location = new System.Drawing.Point(187, 293);
+            this.I_Indmeldelse.Name = "I_Indmeldelse";
+            this.I_Indmeldelse.Size = new System.Drawing.Size(15, 14);
+            this.I_Indmeldelse.TabIndex = 18;
+            this.I_Indmeldelse.UseVisualStyleBackColor = true;
             // 
             // I_DT_FodtDato
             // 
@@ -1116,9 +1123,7 @@
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddUpdateItem,
             this.bindingNavigatorAddNewItem,
-            this.toolStripImportMedlem,
-            this.toolStripButton2,
-            this.toolStripButton1});
+            this.toolStripImportMedlem});
             this.bindingNavigator1.Location = new System.Drawing.Point(1, -1);
             this.bindingNavigator1.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bindingNavigator1.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -1126,14 +1131,14 @@
             this.bindingNavigator1.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.PositionItem = this.bindingNavigatorPositionItem;
-            this.bindingNavigator1.Size = new System.Drawing.Size(590, 25);
+            this.bindingNavigator1.Size = new System.Drawing.Size(343, 25);
             this.bindingNavigator1.TabIndex = 1;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(36, 22);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
             // 
@@ -1224,30 +1229,10 @@
             this.toolStripImportMedlem.Image = ((System.Drawing.Image)(resources.GetObject("toolStripImportMedlem.Image")));
             this.toolStripImportMedlem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripImportMedlem.Name = "toolStripImportMedlem";
-            this.toolStripImportMedlem.Size = new System.Drawing.Size(53, 22);
+            this.toolStripImportMedlem.Size = new System.Drawing.Size(57, 22);
             this.toolStripImportMedlem.Text = "Importer";
             this.toolStripImportMedlem.ToolTipText = "Importer medlemmer";
             this.toolStripImportMedlem.Click += new System.EventHandler(this.toolStripImportMedlem_Click);
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(143, 22);
-            this.toolStripButton2.Text = "Opdater Alle karMedlemmer";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(140, 22);
-            this.toolStripButton1.Text = "Opdater Alle tblMedlemmer";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // menuStrip1
             // 
@@ -1256,15 +1241,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
-            // 
-            // I_Indmeldelse
-            // 
-            this.I_Indmeldelse.AutoSize = true;
-            this.I_Indmeldelse.Location = new System.Drawing.Point(187, 293);
-            this.I_Indmeldelse.Name = "I_Indmeldelse";
-            this.I_Indmeldelse.Size = new System.Drawing.Size(15, 14);
-            this.I_Indmeldelse.TabIndex = 18;
-            this.I_Indmeldelse.UseVisualStyleBackColor = true;
             // 
             // FrmMedlemmer
             // 
@@ -1416,8 +1392,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn konDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fodtDatoDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn bankDataGridViewTextBoxColumn;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.CheckBox I_Indmeldelse;
 
 
