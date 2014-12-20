@@ -76,18 +76,12 @@ namespace nsPuls3060
         private static MemAktivRegnskab m_memAktivRegnskab;
         private static MemRegnskaber m_memRegnskaber;
         private static MemPbsnetdir m_memPbsnetdir;
-        private static KarFakturaer_s m_KarFakturaer_s;
-        private static KarFakturastr_s m_KarFakturastr_s;
-        private static KarFakturavarer_s m_KarFakturavarer_s;
         private static KarRegnskab m_KarRegnskab;
         private static KarStatus m_KarStatus;
         private static KarKladde m_KarKladde;
-        private static KarPosteringsjournal m_KarPosteringsjournal;
         private static KarKontoplan m_KarKontoplan;
         private static KarPosteringer m_KarPosteringer;
         private static KarFakturaer_k m_KarFakturaer_k;
-        private static KarFakturastr_k m_KarFakturastr_k;
-        private static KarFakturavarer_k m_KarFakturavarer_k;
         private static KarMedlemPrivat m_KarMedlemPrivat;
 
         public static string Password
@@ -183,42 +177,6 @@ namespace nsPuls3060
                 m_memPbsnetdir = value;
             }
         }
-        public static KarFakturaer_s karFakturaer_s
-        {
-            get
-            {
-                if (m_KarFakturaer_s == null) m_KarFakturaer_s = new KarFakturaer_s();
-                return m_KarFakturaer_s;
-            }
-            set
-            {
-                m_KarFakturaer_s = value;
-            }
-        }
-        public static KarFakturastr_s karFakturastr_s
-        {
-            get
-            {
-                if (m_KarFakturastr_s == null) m_KarFakturastr_s = new KarFakturastr_s();
-                return m_KarFakturastr_s;
-            }
-            set
-            {
-                m_KarFakturastr_s = value;
-            }
-        }
-        public static KarFakturavarer_s karFakturavarer_s
-        {
-            get
-            {
-                if (m_KarFakturavarer_s == null) m_KarFakturavarer_s = new KarFakturavarer_s();
-                return m_KarFakturavarer_s;
-            }
-            set
-            {
-                m_KarFakturavarer_s = value;
-            }
-        }
         public static KarRegnskab karRegnskab
         {
             get
@@ -255,18 +213,6 @@ namespace nsPuls3060
                 m_KarKladde = value;
             }
         }
-        public static KarPosteringsjournal karPosteringsjournal
-        {
-            get
-            {
-                if (m_KarPosteringsjournal == null) m_KarPosteringsjournal = new KarPosteringsjournal();
-                return m_KarPosteringsjournal;
-            }
-            set
-            {
-                m_KarPosteringsjournal = value;
-            }
-        }
         public static KarKontoplan karKontoplan
         {
             get
@@ -301,30 +247,6 @@ namespace nsPuls3060
             set
             {
                 m_KarFakturaer_k = value;
-            }
-        }
-        public static KarFakturastr_k karFakturastr_k
-        {
-            get
-            {
-                if (m_KarFakturastr_k == null) m_KarFakturastr_k = new KarFakturastr_k();
-                return m_KarFakturastr_k;
-            }
-            set
-            {
-                m_KarFakturastr_k = value;
-            }
-        }
-        public static KarFakturavarer_k karFakturavarer_k
-        {
-            get
-            {
-                if (m_KarFakturavarer_k == null) m_KarFakturavarer_k = new KarFakturavarer_k();
-                return m_KarFakturavarer_k;
-            }
-            set
-            {
-                m_KarFakturavarer_k = value;
             }
         }
         public static KarMedlemPrivat karMedlemPrivat

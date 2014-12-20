@@ -37,8 +37,8 @@
     <ProductName>Medlem3060</ProductName>
     <PublisherName>Hafsjold</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>17</ApplicationRevision>
-    <ApplicationVersion>5.0.0.%2a</ApplicationVersion>
+    <ApplicationRevision>18</ApplicationRevision>
+    <ApplicationVersion>6.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -257,12 +257,9 @@
     <Compile Include="cls\clsCsv.cs" />
     <Compile Include="cls\clsMedlem.cs" />
     <Compile Include="kar\karMedlemPrivat.cs" />
-    <Compile Include="kar\karFakturastr_k.cs" />
-    <Compile Include="kar\karFakturavarer_k.cs" />
     <Compile Include="kar\karFakturaer_k.cs" />
     <Compile Include="kar\karPosteringer.cs" />
     <Compile Include="kar\karKontoplan.cs" />
-    <Compile Include="kar\karPosteringsjournal.cs" />
     <Compile Include="kar\karKladde.cs" />
     <Compile Include="mem\memRegnskaber.cs" />
     <Compile Include="mem\memAktivRegnskab.cs" />
@@ -295,9 +292,6 @@
     <Compile Include="frm\frmMedlemmer.Designer.cs">
       <DependentUpon>frmMedlemmer.cs</DependentUpon>
     </Compile>
-    <Compile Include="kar\karFakturaer_s.cs" />
-    <Compile Include="kar\karFakturastr_s.cs" />
-    <Compile Include="kar\karFakturavarer_s.cs" />
     <Compile Include="kar\karRegnskab.cs" />
     <Compile Include="kar\karStatus.cs" />
     <Compile Include="NullableDateTimePicker.cs">
