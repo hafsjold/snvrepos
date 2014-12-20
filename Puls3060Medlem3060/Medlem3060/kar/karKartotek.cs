@@ -7,11 +7,11 @@ using System.Threading;
 
 namespace nsPuls3060
 {
-    public class KarMedlemmer : List<clsMedlem>
+    public class KarKartotek : List<clsKartotek>
     {
         private string m_kartotek_dat;
 
-        public KarMedlemmer()
+        public KarKartotek()
         {
             var rec_regnskab = Program.qryAktivRegnskab();
             m_kartotek_dat = rec_regnskab.Placering + "kartotek.dat";
@@ -27,7 +27,7 @@ namespace nsPuls3060
                 string read = null;
                 while ((read = sr.ReadLine()) != null)
                 {
-                    clsMedlem m = new clsMedlem(read);
+                    clsKartotek m = new clsKartotek(read);
                     this.Add(m);
                 }
             }

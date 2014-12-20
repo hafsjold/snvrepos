@@ -54,11 +54,11 @@ namespace nsPuls3060
         }
     }
 
-    public class MemMedlemDictionary : List<clsField>
+    public class MemKartotekDictionary : List<clsField>
     {
         private Dictionary<string, int> m_nr_subnr;
 
-        public MemMedlemDictionary()
+        public MemKartotekDictionary()
         {
             //  1,   2,     3,       4,         5,            6,        7,       8          9
             // id, Name, accName, accNumber, sumNumber, sumSubNumber, NewValue, NewType, multifld
