@@ -8,9 +8,9 @@ namespace nsPuls3060
     
     public class clsCsv
     {
-        public delegate void MedlemFieldUpdateHandler();
-        public static event MedlemFieldUpdateHandler MedlemFieldUpdate;
-        public static event MedlemFieldUpdateHandler MedlemCsvStringUpdate;
+        public delegate void KartotekFieldUpdateHandler();
+        public static event KartotekFieldUpdateHandler KartotekFieldUpdate;
+        public static event KartotekFieldUpdateHandler KartotekCsvStringUpdate;
 
         private String m_value;
         private int m_n;
@@ -151,7 +151,7 @@ namespace nsPuls3060
             {
                 if (m_niveau == 0)
                 {
-                    return Program.memMedlemDictionary.multifld(m_nr);
+                    return Program.memKartotekDictionary.multifld(m_nr);
                 }
                 else
                 {
@@ -224,13 +224,13 @@ namespace nsPuls3060
         public clsCsv()
         {
             m_stack = new clsCsv[1];
-            todo = CsvToDoType.fdUpdateClsMedlem;
+            todo = CsvToDoType.fdUpdateClsKartotek;
         }
 
         public void todoAction()
         {
-            if ((m_todo & CsvToDoType.fdUpdateCsvString) == CsvToDoType.fdUpdateCsvString) MedlemCsvStringUpdate();
-            if ((m_todo & CsvToDoType.fdUpdateClsMedlem) == CsvToDoType.fdUpdateClsMedlem) MedlemFieldUpdate();
+            if ((m_todo & CsvToDoType.fdUpdateCsvString) == CsvToDoType.fdUpdateCsvString) KartotekCsvStringUpdate();
+            if ((m_todo & CsvToDoType.fdUpdateClsKartotek) == CsvToDoType.fdUpdateClsKartotek) KartotekFieldUpdate();
         }
 
         public void Push()
@@ -294,6 +294,6 @@ namespace nsPuls3060
     {
         fdDoNothing = 0,
         fdUpdateCsvString = 1,
-        fdUpdateClsMedlem = 2
+        fdUpdateClsKartotek = 2
     }
 }

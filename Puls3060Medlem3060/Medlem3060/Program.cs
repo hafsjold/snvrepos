@@ -71,8 +71,8 @@ namespace nsPuls3060
         private static string m_Password;
         private static string m_path_to_lock_summasummarum_kontoplan;
         private static FileStream m_filestream_to_lock_summasummarum_kontoplan;
-        private static KarMedlemmer m_KarMedlemmer;
-        private static MemMedlemDictionary m_dicMedlem;
+        private static KarKartotek m_KarMedlemmer;
+        private static MemKartotekDictionary m_dicKartotek;
         private static MemAktivRegnskab m_memAktivRegnskab;
         private static MemRegnskaber m_memRegnskaber;
         private static MemPbsnetdir m_memPbsnetdir;
@@ -117,11 +117,11 @@ namespace nsPuls3060
                 m_filestream_to_lock_summasummarum_kontoplan = value;
             }
         }
-        public static KarMedlemmer karMedlemmer
+        public static KarKartotek karMedlemmer
         {
             get
             {
-                if (m_KarMedlemmer == null) m_KarMedlemmer = new KarMedlemmer();
+                if (m_KarMedlemmer == null) m_KarMedlemmer = new KarKartotek();
                 return m_KarMedlemmer;
             }
             set
@@ -129,16 +129,16 @@ namespace nsPuls3060
                 m_KarMedlemmer = value;
             }
         }
-        public static MemMedlemDictionary memMedlemDictionary
+        public static MemKartotekDictionary memKartotekDictionary
         {
             get
             {
-                if (m_dicMedlem == null) m_dicMedlem = new MemMedlemDictionary();
-                return m_dicMedlem;
+                if (m_dicKartotek == null) m_dicKartotek = new MemKartotekDictionary();
+                return m_dicKartotek;
             }
             set
             {
-                m_dicMedlem = value;
+                m_dicKartotek = value;
             }
         }
         public static MemAktivRegnskab memAktivRegnskab

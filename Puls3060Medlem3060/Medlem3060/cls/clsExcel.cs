@@ -933,4 +933,148 @@ namespace nsPuls3060
             smtp.Send(email);
         }
     }
+
+    public class clsMedlemInternAll
+    {
+        [Fieldattr(Heading = "Nr")]
+        public int? Nr { get; set; }
+        [Fieldattr(Heading = "Navn")]
+        public string Navn { get; set; }
+        [Fieldattr(Heading = "Kaldenavn")]
+        public string Kaldenavn { get; set; }
+        [Fieldattr(Heading = "Adresse")]
+        public string Adresse { get; set; }
+        [Fieldattr(Heading = "Postnr")]
+        public string Postnr { get; set; }
+        [Fieldattr(Heading = "By")]
+        public string Bynavn { get; set; }
+        [Fieldattr(Heading = "Email")]
+        public string Email { get; set; }
+        [Fieldattr(Heading = "Telefon")]
+        public string Telefon { get; set; }
+        [Fieldattr(Heading = "Køn")]
+        public string Kon { get; set; }
+        [Fieldattr(Heading = "Født")]
+        public DateTime? FodtDato { get; set; }
+        [Fieldattr(Heading = "Bank")]
+        public string Bank { get; set; }
+        [Fieldattr(Heading = "erMedlem")]
+        public int? erMedlem { get; set; }
+        [Fieldattr(Heading = "Kontingent")]
+        public DateTime? kontingentBetaltTilDato { get; set; }
+        [Fieldattr(Heading = "Indmeldt")]
+        public DateTime? indmeldelsesDato { get; set; }
+        [Fieldattr(Heading = "Udmeldt")]
+        public DateTime? udmeldelsesDato { get; set; }
+        [Fieldattr(Heading = "Opkrævning")]
+        public DateTime? opkrævningsDato { get; set; }
+        [Fieldattr(Heading = "Tilbageført")]
+        public DateTime? kontingentTilbageførtDato { get; set; }
+        [Fieldattr(Heading = "erMedlemPusterummet")]
+        public int? erMedlemPusterummet { get; set; }
+    }
+
+    public class clsMedlemNotPBSAll
+    {
+        [Fieldattr(Heading = "Nr")]
+        public int? Nr { get; set; }
+        [Fieldattr(Heading = "Navn")]
+        public string Navn { get; set; }
+        [Fieldattr(Heading = "Kaldenavn")]
+        public string Kaldenavn { get; set; }
+        [Fieldattr(Heading = "Adresse")]
+        public string Adresse { get; set; }
+        [Fieldattr(Heading = "Postnr")]
+        public string Postnr { get; set; }
+        [Fieldattr(Heading = "By")]
+        public string Bynavn { get; set; }
+        [Fieldattr(Heading = "Email")]
+        public string Email { get; set; }
+        [Fieldattr(Heading = "Telefon")]
+        public string Telefon { get; set; }
+        [Fieldattr(Heading = "Køn")]
+        public string Kon { get; set; }
+        [Fieldattr(Heading = "Født")]
+        public DateTime? FodtDato { get; set; }
+        [Fieldattr(Heading = "erMedlem")]
+        public int? erMedlem { get; set; }
+        [Fieldattr(Heading = "tilmeldtPBS")]
+        public int? erPBS { get; set; }
+    }
+
+    public class clsMedlemExternAll
+    {
+        [Fieldattr(Heading = "Nr")]
+        public int? Nr { get; set; }
+        [Fieldattr(Heading = "Navn")]
+        public string Navn { get; set; }
+        [Fieldattr(Heading = "Kaldenavn")]
+        public string Kaldenavn { get; set; }
+        [Fieldattr(Heading = "Adresse")]
+        public string Adresse { get; set; }
+        [Fieldattr(Heading = "Postnr")]
+        public string Postnr { get; set; }
+        [Fieldattr(Heading = "By")]
+        public string Bynavn { get; set; }
+        [Fieldattr(Heading = "Email")]
+        public string Email { get; set; }
+        [Fieldattr(Heading = "Telefon")]
+        public string Telefon { get; set; }
+        [Fieldattr(Heading = "Køn")]
+        public string Kon { get; set; }
+        [Fieldattr(Heading = "Født")]
+        public DateTime? FodtDato { get; set; }
+        [Fieldattr(Heading = "Status")]
+        public string stStatus { get; set; }
+    }
+
+    public class clsMedlemNotPBS
+    {
+        [Fieldattr(Heading = "Nr")]
+        public int? Nr { get; set; }
+        [Fieldattr(Heading = "Navn")]
+        public string Navn { get; set; }
+        [Fieldattr(Heading = "Kaldenavn")]
+        public string Kaldenavn { get; set; }
+        [Fieldattr(Heading = "Adresse")]
+        public string Adresse { get; set; }
+        [Fieldattr(Heading = "Postnr")]
+        public string Postnr { get; set; }
+        [Fieldattr(Heading = "By")]
+        public string Bynavn { get; set; }
+        [Fieldattr(Heading = "Email")]
+        public string Email { get; set; }
+        [Fieldattr(Heading = "Telefon")]
+        public string Telefon { get; set; }
+        [Fieldattr(Heading = "Køn")]
+        public string Kon { get; set; }
+        [Fieldattr(Heading = "PBSnr")]
+        public string PBSnr { get; set; }
+        [Fieldattr(Heading = "Deb.gr.nr")]
+        public string Debgrnr { get; set; }
+        [Fieldattr(Heading = "Kundenr")]
+        public Int64 Kundenr { get; set; }
+    }
+
+    public class clsJournalposter
+    {
+        [Fieldattr(Heading = "ds")]
+        public string ds { get; set; }
+        [Fieldattr(Heading = "k")]
+        public string k { get; set; }
+        [Fieldattr(Heading = "Konto")]
+        public string Konto { get; set; }
+        [Fieldattr(Heading = "Dato")]
+        public DateTime? Dato { get; set; }
+        [Fieldattr(Heading = "Bilag")]
+        public int? Bilag { get; set; }
+        [Fieldattr(Heading = "Nr")]
+        public int? Nr { get; set; }
+        [Fieldattr(Heading = "Id")]
+        public int? Id { get; set; }
+        [Fieldattr(Heading = "Tekst")]
+        public string Tekst { get; set; }
+        [Fieldattr(Heading = "Beløb")]
+        public decimal? Beløb { get; set; }
+    }
 }
