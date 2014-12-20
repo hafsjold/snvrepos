@@ -215,7 +215,7 @@ namespace nsPuls3060
 
         private void cmdSave_I_Record_Click(object sender, EventArgs e)
         {
-            int tblMedlem_nr = KarKortnr.nextval();
+            int tblMedlem_nr = tblMedlemsNextval();
             object[] val = new object[11];
             val[0] = tblMedlem_nr;
             val[1] = (I_Navn.Text.Length == 0) ? "" : I_Navn.Text;
@@ -475,7 +475,7 @@ namespace nsPuls3060
             {
                 foreach (recImportMedlem impMedlem in objImportMedlem)
                 {
-                    tblMedlem_nr = KarKortnr.nextval();
+                    tblMedlem_nr = tblMedlemsNextval();
 
                     object[] val = new object[10];
                     val[0] = tblMedlem_nr;
@@ -528,16 +528,20 @@ namespace nsPuls3060
 
         }
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
+        private int tblMedlemsNextval()
         {
-            this.dsMedlem.savedstblMedlemmerAll();
+            try
+            {
+                int maxNr2 = (from k in Program.dbData3060.tblMedlems orderby k.Nr descending select k.Nr).First();
+                int maxNr = ++maxNr2;
+                return maxNr;
+            }
+            catch (Exception)
+            {
+                int maxNr = 1;
+                return maxNr;
+            }
         }
-
-        private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-            this.dsMedlem.savedskarMedlemmerAll();
-        }
-
     }
 
 }

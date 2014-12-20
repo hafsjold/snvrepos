@@ -71,17 +71,14 @@ namespace nsPuls3060
         private static string m_Password;
         private static string m_path_to_lock_summasummarum_kontoplan;
         private static FileStream m_filestream_to_lock_summasummarum_kontoplan;
-        private static dsMedlem m_dsMedlemImport;
         private static KarMedlemmer m_KarMedlemmer;
         private static MemMedlemDictionary m_dicMedlem;
         private static MemAktivRegnskab m_memAktivRegnskab;
         private static MemRegnskaber m_memRegnskaber;
         private static MemPbsnetdir m_memPbsnetdir;
-        private static KarDkkonti m_KarDkkonti;
         private static KarFakturaer_s m_KarFakturaer_s;
         private static KarFakturastr_s m_KarFakturastr_s;
         private static KarFakturavarer_s m_KarFakturavarer_s;
-        private static KarKortnr m_KarKortnr;
         private static KarRegnskab m_KarRegnskab;
         private static KarStatus m_KarStatus;
         private static KarKladde m_KarKladde;
@@ -124,22 +121,6 @@ namespace nsPuls3060
             set
             {
                 m_filestream_to_lock_summasummarum_kontoplan = value;
-            }
-        }
-        public static dsMedlem dsMedlemImport
-        {
-            get
-            {
-                if (m_dsMedlemImport == null)
-                {
-                    m_dsMedlemImport = new dsMedlem();
-                    m_dsMedlemImport.filldskarMedlemmer();
-                }
-                return m_dsMedlemImport;
-            }
-            set
-            {
-                m_dsMedlemImport = value;
             }
         }
         public static KarMedlemmer karMedlemmer
@@ -202,18 +183,6 @@ namespace nsPuls3060
                 m_memPbsnetdir = value;
             }
         }
-        public static KarDkkonti karDkkonti
-        {
-            get
-            {
-                if (m_KarDkkonti == null) m_KarDkkonti = new KarDkkonti();
-                return m_KarDkkonti;
-            }
-            set
-            {
-                m_KarDkkonti = value;
-            }
-        }
         public static KarFakturaer_s karFakturaer_s
         {
             get
@@ -248,18 +217,6 @@ namespace nsPuls3060
             set
             {
                 m_KarFakturavarer_s = value;
-            }
-        }
-        public static KarKortnr karKortnr
-        {
-            get
-            {
-                if (m_KarKortnr == null) m_KarKortnr = new KarKortnr();
-                return m_KarKortnr;
-            }
-            set
-            {
-                m_KarKortnr = value;
             }
         }
         public static KarRegnskab karRegnskab

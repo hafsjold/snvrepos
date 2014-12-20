@@ -108,40 +108,6 @@ namespace nsPuls3060
             }
         }
 
-        public string NewMedlemCsvString(int? pNr)
-        {
-            string s = "";
-            var fields = from d in this
-                         where d.sumNumber > 0 && d.sumSubNumber == 0
-                         orderby d.sumNumber
-                         select d;
-            foreach (var f in fields)
-            {
-                if (s.Length > 0) s += ",";
-                switch (f.NewType)
-                {
-                    case "SumNr":
-                        var val = int.Parse(f.NewValue) + pNr;
-                        s += val.ToString();
-                        break;
-
-                    case "NewDKnr":
-                        var dknr = KarDkkonti.nextval();
-                        s += dknr.ToString();
-                        break;
-
-                    case "Const":
-                        s += f.NewValue;
-                        break;
-
-                    default:
-                        break;
-                }
-            }
-
-            return s;
-        }
-
         public Boolean multifld(string p_key)
         {
             try
