@@ -32,7 +32,6 @@ namespace nsPbs3060v2
         public virtual DbSet<tblAktivitet> tblAktivitet { get; set; }
         public virtual DbSet<tblbanker> tblbanker { get; set; }
         public virtual DbSet<tblbet> tblbet { get; set; }
-        public virtual DbSet<tblbetalingsidentifikation> tblbetalingsidentifikation { get; set; }
         public virtual DbSet<tblbetlin> tblbetlin { get; set; }
         public virtual DbSet<tblfak> tblfak { get; set; }
         public virtual DbSet<tblfrapbs> tblfrapbs { get; set; }
@@ -65,6 +64,9 @@ namespace nsPbs3060v2
         public virtual DbSet<tempRykkerforslag> tempRykkerforslag { get; set; }
         public virtual DbSet<tempRykkerforslaglinie> tempRykkerforslaglinie { get; set; }
         public virtual DbSet<vAdvis_indbetalingskort> vAdvis_indbetalingskort { get; set; }
+        public virtual DbSet<vMedlemLog> vMedlemLog { get; set; }
+        public virtual DbSet<tblbetalingsidentifikation> tblbetalingsidentifikation { get; set; }
+        public virtual DbSet<vPusterummet> vPusterummet { get; set; }
     
         public virtual int jobqueueadd(Nullable<System.DateTime> starttime, string jobname, Nullable<int> scheduleid, Nullable<bool> onhold)
         {
@@ -203,6 +205,24 @@ namespace nsPbs3060v2
                 new ObjectParameter("pNr", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("erPBS_v2", pNrParameter, result);
+        }
+    
+        public virtual int tilbageførtkontingentdato_v2(Nullable<int> pNr, ObjectParameter result)
+        {
+            var pNrParameter = pNr.HasValue ?
+                new ObjectParameter("pNr", pNr) :
+                new ObjectParameter("pNr", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("tilbageførtkontingentdato_v2", pNrParameter, result);
+        }
+    
+        public virtual int MedlemPusterummet_v2(Nullable<int> pNr, ObjectParameter result)
+        {
+            var pNrParameter = pNr.HasValue ?
+                new ObjectParameter("pNr", pNr) :
+                new ObjectParameter("pNr", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("MedlemPusterummet_v2", pNrParameter, result);
         }
     }
 }

@@ -193,6 +193,12 @@
     <Compile Include="vAdvis_indbetalingskort.cs">
       <DependentUpon>dbData3060.tt</DependentUpon>
     </Compile>
+    <Compile Include="vMedlemLog.cs">
+      <DependentUpon>dbData3060.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vPusterummet.cs">
+      <DependentUpon>dbData3060.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="dbData3060.edmx">

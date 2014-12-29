@@ -81,7 +81,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="dbPuls3060Medlem.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>dbPuls3060Medlem.Designer.cs</LastGenOutput>

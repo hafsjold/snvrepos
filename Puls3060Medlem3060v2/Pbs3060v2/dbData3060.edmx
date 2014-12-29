@@ -65,12 +65,11 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nr" Type="int" />
-          <Property Name="Navn" Type="nvarchar" MaxLength="35" />
-          <Property Name="betalingsdato" Type="date" />
-          <Property Name="belob" Type="numeric" Precision="18" Scale="2" />
-          <Property Name="sagsnr" Type="int" />
           <Property Name="betalingsidentifikation" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="belob" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="betalingsdato" Type="date" />
+          <Property Name="Nr" Type="int" />
+          <Property Name="bogfkonto" Type="int" />
         </EntityType>
         <EntityType Name="tblbetlin">
           <Key>
@@ -225,6 +224,7 @@
           </Key>
           <Property Name="Nr" Type="int" Nullable="false" />
           <Property Name="Pusterummet" Type="int" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="tblMedlemHistorie">
           <Key>
@@ -490,6 +490,32 @@ warning 6002: The table/view 'dbPuls3060Medlem.dbo.vAdvis_indbetalingskort' does
           <Property Name="belob" Type="numeric" Precision="18" Scale="2" />
           <Property Name="pbssektionnr" Type="nvarchar" MaxLength="5" Nullable="false" />
           <Property Name="regnr" Type="varchar" MaxLength="4" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'dbPuls3060Medlem.dbo.vMedlemLog' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vMedlemLog">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="parent" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Nr" Type="int" />
+          <Property Name="logdato" Type="datetime" />
+          <Property Name="akt_id" Type="int" />
+          <Property Name="akt_dato" Type="datetime" />
+          <Property Name="parent" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'dbPuls3060Medlem.dbo.vPusterummet' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vPusterummet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Nr" Type="int" />
+          <Property Name="Navn" Type="nvarchar" MaxLength="35" />
+          <Property Name="Adresse" Type="nvarchar" MaxLength="70" />
+          <Property Name="Postnr" Type="nvarchar" MaxLength="4" />
+          <Property Name="id" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Log_Medlem">
           <End Role="tblMedlem" Type="Self.tblMedlem" Multiplicity="0..1" />
@@ -779,6 +805,10 @@ warning 6002: The table/view 'dbPuls3060Medlem.dbo.vAdvis_indbetalingskort' does
           <Parameter Name="pNr" Type="int" Mode="In" />
           <Parameter Name="Result" Type="date" Mode="InOut" />
         </Function>
+        <Function Name="MedlemPusterummet_v2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pNr" Type="int" Mode="In" />
+          <Parameter Name="Result" Type="bit" Mode="InOut" />
+        </Function>
         <Function Name="nextval_v2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Pnrserienavn" Type="nvarchar" Mode="In" />
           <Parameter Name="Psidstbrugtenr" Type="int" Mode="InOut" />
@@ -790,6 +820,10 @@ warning 6002: The table/view 'dbPuls3060Medlem.dbo.vAdvis_indbetalingskort' does
         <Function Name="SendtSomString_v2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pFaknr" Type="int" Mode="In" />
           <Parameter Name="Result" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="tilbageførtkontingentdato_v2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pNr" Type="int" Mode="In" />
+          <Parameter Name="Result" Type="date" Mode="InOut" />
         </Function>
         <Function Name="udmeldtdato_v2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="pNr" Type="int" Mode="In" />
@@ -851,6 +885,25 @@ warning 6002: The table/view 'dbPuls3060Medlem.dbo.vAdvis_indbetalingskort' does
     [vAdvis_indbetalingskort].[pbssektionnr] AS [pbssektionnr], 
     [vAdvis_indbetalingskort].[regnr] AS [regnr]
     FROM [dbo].[vAdvis_indbetalingskort] AS [vAdvis_indbetalingskort]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vMedlemLog" EntityType="Self.vMedlemLog" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vMedlemLog].[id] AS [id], 
+    [vMedlemLog].[Nr] AS [Nr], 
+    [vMedlemLog].[logdato] AS [logdato], 
+    [vMedlemLog].[akt_id] AS [akt_id], 
+    [vMedlemLog].[akt_dato] AS [akt_dato], 
+    [vMedlemLog].[parent] AS [parent]
+    FROM [dbo].[vMedlemLog] AS [vMedlemLog]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vPusterummet" EntityType="Self.vPusterummet" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vPusterummet].[Nr] AS [Nr], 
+    [vPusterummet].[Navn] AS [Navn], 
+    [vPusterummet].[Adresse] AS [Adresse], 
+    [vPusterummet].[Postnr] AS [Postnr], 
+    [vPusterummet].[id] AS [id]
+    FROM [dbo].[vPusterummet] AS [vPusterummet]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Log_Medlem" Association="Self.FK_Log_Medlem">
             <End Role="tblMedlem" EntitySet="tblMedlem" />
@@ -988,18 +1041,6 @@ warning 6002: The table/view 'dbPuls3060Medlem.dbo.vAdvis_indbetalingskort' does
           <Property Name="summabogfort" Type="Boolean" />
           <NavigationProperty Name="tblbetlin" Relationship="Self.FK_tblbet_tblbetlin" FromRole="tblbet" ToRole="tblbetlin" />
           <NavigationProperty Name="tblfrapbs" Relationship="Self.FK_tblfrapbs_tblbet" FromRole="tblbet" ToRole="tblfrapbs" />
-        </EntityType>
-        <EntityType Name="tblbetalingsidentifikation">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nr" Type="Int32" />
-          <Property Name="Navn" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
-          <Property Name="betalingsdato" Type="DateTime" Precision="0" />
-          <Property Name="belob" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="sagsnr" Type="Int32" />
-          <Property Name="betalingsidentifikation" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="tblbetlin">
           <Key>
@@ -1163,6 +1204,7 @@ warning 6002: The table/view 'dbPuls3060Medlem.dbo.vAdvis_indbetalingskort' does
           </Key>
           <Property Name="Nr" Type="Int32" Nullable="false" />
           <Property Name="Pusterummet" Type="Int32" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="tblMedlemHistorie">
           <Key>
@@ -1673,7 +1715,6 @@ warning 6002: The table/view 'dbPuls3060Medlem.dbo.vAdvis_indbetalingskort' does
           <EntitySet Name="tblAktivitet" EntityType="Self.tblAktivitet" />
           <EntitySet Name="tblbanker" EntityType="Self.tblbanker" />
           <EntitySet Name="tblbet" EntityType="Self.tblbet" />
-          <EntitySet Name="tblbetalingsidentifikation" EntityType="Self.tblbetalingsidentifikation" />
           <EntitySet Name="tblbetlin" EntityType="Self.tblbetlin" />
           <EntitySet Name="tblfak" EntityType="Self.tblfak" />
           <EntitySet Name="tblfrapbs" EntityType="Self.tblfrapbs" />
@@ -1837,6 +1878,17 @@ warning 6002: The table/view 'dbPuls3060Medlem.dbo.vAdvis_indbetalingskort' does
             <Parameter Name="Result" Mode="InOut" Type="Boolean" />
           </FunctionImport>
           <EntitySet Name="vAdvis_indbetalingskort" EntityType="nsdbData3060.vAdvis_indbetalingskort" />
+          <EntitySet Name="vMedlemLog" EntityType="nsdbData3060.vMedlemLog" />
+          <EntitySet Name="tblbetalingsidentifikation" EntityType="nsdbData3060.tblbetalingsidentifikation" />
+          <FunctionImport Name="tilbageførtkontingentdato_v2">
+            <Parameter Name="pNr" Mode="In" Type="Int32" />
+            <Parameter Name="Result" Mode="InOut" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="MedlemPusterummet_v2">
+            <Parameter Name="pNr" Mode="In" Type="Int32" />
+            <Parameter Name="Result" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <EntitySet Name="vPusterummet" EntityType="nsdbData3060.vPusterummet" />
         </EntityContainer>
         <EntityType Name="vAdvis_indbetalingskort">
           <Key>
@@ -1865,6 +1917,39 @@ warning 6002: The table/view 'dbPuls3060Medlem.dbo.vAdvis_indbetalingskort' does
           <Property Name="belob" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="pbssektionnr" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
           <Property Name="regnr" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="vMedlemLog">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="parent" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Nr" Type="Int32" />
+          <Property Name="logdato" Type="DateTime" Precision="3" />
+          <Property Name="akt_id" Type="Int32" />
+          <Property Name="akt_dato" Type="DateTime" Precision="3" />
+          <Property Name="parent" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblbetalingsidentifikation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="betalingsidentifikation" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="belob" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="betalingsdato" Type="DateTime" Precision="0" />
+          <Property Name="Nr" Type="Int32" />
+          <Property Name="bogfkonto" Type="Int32" />
+        </EntityType>
+        <EntityType Name="vPusterummet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="Nr" Type="Int32" />
+          <Property Name="Navn" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="Adresse" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="Postnr" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="id" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1929,19 +2014,6 @@ warning 6002: The table/view 'dbPuls3060Medlem.dbo.vAdvis_indbetalingskort' does
                 <ScalarProperty Name="bogforingsdato" ColumnName="bogforingsdato" />
                 <ScalarProperty Name="indbetalingsbelob" ColumnName="indbetalingsbelob" />
                 <ScalarProperty Name="summabogfort" ColumnName="summabogfort" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblbetalingsidentifikation">
-            <EntityTypeMapping TypeName="nsdbData3060.tblbetalingsidentifikation">
-              <MappingFragment StoreEntitySet="tblbetalingsidentifikation">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="Nr" ColumnName="Nr" />
-                <ScalarProperty Name="Navn" ColumnName="Navn" />
-                <ScalarProperty Name="betalingsdato" ColumnName="betalingsdato" />
-                <ScalarProperty Name="belob" ColumnName="belob" />
-                <ScalarProperty Name="sagsnr" ColumnName="sagsnr" />
-                <ScalarProperty Name="betalingsidentifikation" ColumnName="betalingsidentifikation" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2105,6 +2177,7 @@ warning 6002: The table/view 'dbPuls3060Medlem.dbo.vAdvis_indbetalingskort' does
           <EntitySetMapping Name="tblMedlemExtra">
             <EntityTypeMapping TypeName="nsdbData3060.tblMedlemExtra">
               <MappingFragment StoreEntitySet="tblMedlemExtra">
+                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="Nr" ColumnName="Nr" />
                 <ScalarProperty Name="Pusterummet" ColumnName="Pusterummet" />
               </MappingFragment>
@@ -2397,6 +2470,43 @@ warning 6002: The table/view 'dbPuls3060Medlem.dbo.vAdvis_indbetalingskort' does
                 <ScalarProperty Name="pbstranskode" ColumnName="pbstranskode" />
                 <ScalarProperty Name="frapbsid" ColumnName="frapbsid" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vMedlemLog">
+            <EntityTypeMapping TypeName="nsdbData3060.vMedlemLog">
+              <MappingFragment StoreEntitySet="vMedlemLog">
+                <ScalarProperty Name="parent" ColumnName="parent" />
+                <ScalarProperty Name="akt_dato" ColumnName="akt_dato" />
+                <ScalarProperty Name="akt_id" ColumnName="akt_id" />
+                <ScalarProperty Name="logdato" ColumnName="logdato" />
+                <ScalarProperty Name="Nr" ColumnName="Nr" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblbetalingsidentifikation">
+            <EntityTypeMapping TypeName="nsdbData3060.tblbetalingsidentifikation">
+              <MappingFragment StoreEntitySet="tblbetalingsidentifikation">
+                <ScalarProperty Name="bogfkonto" ColumnName="bogfkonto" />
+                <ScalarProperty Name="Nr" ColumnName="Nr" />
+                <ScalarProperty Name="betalingsdato" ColumnName="betalingsdato" />
+                <ScalarProperty Name="belob" ColumnName="belob" />
+                <ScalarProperty Name="betalingsidentifikation" ColumnName="betalingsidentifikation" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="tilbageførtkontingentdato_v2" FunctionName="nsdbData3060.Store.tilbageførtkontingentdato_v2" />
+          <FunctionImportMapping FunctionImportName="MedlemPusterummet_v2" FunctionName="nsdbData3060.Store.MedlemPusterummet_v2" />
+          <EntitySetMapping Name="vPusterummet">
+            <EntityTypeMapping TypeName="nsdbData3060.vPusterummet">
+              <MappingFragment StoreEntitySet="vPusterummet">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Postnr" ColumnName="Postnr" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Navn" ColumnName="Navn" />
+                <ScalarProperty Name="Nr" ColumnName="Nr" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
