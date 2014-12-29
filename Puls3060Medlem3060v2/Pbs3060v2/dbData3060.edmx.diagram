@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="723592d19ca5413a8b5c85165a1135bb" Name="Diagram1">
+        <EntityTypeShape EntityType="nsdbData3060.tbladvis" Width="1.5" PointX="5.25" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblaftalelin" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblAktivitet" Width="1.5" PointX="7.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblbanker" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblbet" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblbetalingsidentifikation" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblbetlin" Width="1.5" PointX="7.5" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblfak" Width="1.5" PointX="5.25" PointY="24.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblfrapbs" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblHelsingorKommunePostnr" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblindbetalingskort" Width="1.5" PointX="5.25" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblinfotekst" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblJobqueue" Width="1.5" PointX="12" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblKontingent" Width="1.5" PointX="14.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblkreditor" Width="1.5" PointX="14.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblMedlem" Width="1.5" PointX="7.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblMedlemExtra" Width="1.5" PointX="14.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblMedlemHistorie" Width="1.5" PointX="14.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblMedlemLog" Width="1.5" PointX="10" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblnrserie" Width="1.5" PointX="16.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tbloverforsel" Width="1.5" PointX="5.25" PointY="30.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblpbsfile" Width="1.5" PointX="5.25" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblpbsfilename" Width="1.5" PointX="3" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblpbsforsendelse" Width="1.5" PointX="0.75" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblpbsnetdir" Width="1.5" PointX="16.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblRegnskab" Width="1.5" PointX="7.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblrykker" Width="1.5" PointX="5.25" PointY="34.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblSchedule" Width="1.5" PointX="9.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblsftp" Width="1.5" PointX="9.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tblSysinfo" Width="1.5" PointX="16.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tbltilpbs" Width="1.5" PointX="3" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tempBetalforslag" Width="1.5" PointX="12.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tempBetalforslaglinie" Width="1.5" PointX="15" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tempKontforslag" Width="1.5" PointX="9.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tempKontforslaglinie" Width="1.5" PointX="12" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tempRykkerforslag" Width="1.5" PointX="9.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="nsdbData3060.tempRykkerforslaglinie" Width="1.5" PointX="12" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="nsdbData3060.FK_tbltilpbs_tbladvis" ManuallyRouted="false" />
+        <AssociationConnector Association="nsdbData3060.FK_tblfrapbs_tblaftalelin" ManuallyRouted="false" />
+        <AssociationConnector Association="nsdbData3060.FK_tblAktivitet_Log" ManuallyRouted="false" />
+        <AssociationConnector Association="nsdbData3060.FK_tblbet_tblbetlin" ManuallyRouted="false" />
+        <AssociationConnector Association="nsdbData3060.FK_tblfrapbs_tblbet" ManuallyRouted="false" />
+        <AssociationConnector Association="nsdbData3060.FK_tbltilpbs_tblfak" ManuallyRouted="false" />
+        <AssociationConnector Association="nsdbData3060.FK_tblfrapbs_tblindbetalingskort" ManuallyRouted="false" />
+        <AssociationConnector Association="nsdbData3060.FK_tblPBSForsendelse_tblfrapbs" ManuallyRouted="false" />
+        <AssociationConnector Association="nsdbData3060.tblJobqueue_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="nsdbData3060.FK_Log_Medlem" ManuallyRouted="false" />
+        <AssociationConnector Association="nsdbData3060.FK_tbltilpbs_tbloverfoersel" ManuallyRouted="false" />
+        <AssociationConnector Association="nsdbData3060.FK_tblpbsfiles_tblpbsfile" ManuallyRouted="false" />
+        <AssociationConnector Association="nsdbData3060.pbsforsendelse_tblpbsfiles" ManuallyRouted="false" />
+        <AssociationConnector Association="nsdbData3060.FK_tblPBSForsendelse_tbltilpbs" ManuallyRouted="false" />
+        <AssociationConnector Association="nsdbData3060.FK_tbltilpbs_tblrykker" ManuallyRouted="false" />
+        <AssociationConnector Association="nsdbData3060.FK_tempBetalforslag_tempBetalforslaglinie" ManuallyRouted="false" />
+        <AssociationConnector Association="nsdbData3060.FK_tempKontforslag_tempKontforslaglinie" ManuallyRouted="false" />
+        <AssociationConnector Association="nsdbData3060.FK_tempRykkerforslag_tempRykkerforslaglinie" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="nsdbData3060.vAdvis_indbetalingskort" Width="1.5" PointX="17.375" PointY="14.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

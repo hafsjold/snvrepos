@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dbPuls3060MedlemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblJobqueue">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="scheduleid" Type="int" />
+          <Property Name="starttime" Type="datetime" Nullable="false" />
+          <Property Name="jobname" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="onhold" Type="bit" />
+          <Property Name="selected" Type="bit" />
+          <Property Name="completed" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblSchedule">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="schedule" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="jobname" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="start" Type="date" />
+          <Property Name="end" Type="date" />
+        </EntityType>
+        <Association Name="tblJobqueue_fk">
+          <End Role="tblSchedule" Type="Self.tblSchedule" Multiplicity="0..1" />
+          <End Role="tblJobqueue" Type="Self.tblJobqueue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSchedule">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblJobqueue">
+              <PropertyRef Name="scheduleid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="jobqueueadd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="starttime" Type="datetime" Mode="In" />
+          <Parameter Name="jobname" Type="nvarchar" Mode="In" />
+          <Parameter Name="scheduleid" Type="int" Mode="In" />
+          <Parameter Name="onhold" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="jobqueuecomplete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="jobqueuenext_v2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="InOut" />
+          <Parameter Name="jobname" Type="nvarchar" Mode="InOut" />
+          <Parameter Name="retur" Type="int" Mode="InOut" />
+        </Function>
+        <EntityContainer Name="dbPuls3060MedlemModelStoreContainer">
+          <EntitySet Name="tblJobqueue" EntityType="Self.tblJobqueue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSchedule" EntityType="Self.tblSchedule" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="tblJobqueue_fk" Association="Self.tblJobqueue_fk">
+            <End Role="tblSchedule" EntitySet="tblSchedule" />
+            <End Role="tblJobqueue" EntitySet="tblJobqueue" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbPuls3060MedlemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblJobqueue">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="scheduleid" Type="Int32" />
+          <Property Name="starttime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="jobname" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="onhold" Type="Boolean" />
+          <Property Name="selected" Type="Boolean" />
+          <Property Name="completed" Type="Boolean" />
+          <NavigationProperty Name="tblSchedule" Relationship="Self.tblJobqueue_fk" FromRole="tblJobqueue" ToRole="tblSchedule" />
+        </EntityType>
+        <EntityType Name="tblSchedule">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="schedule" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="jobname" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="start" Type="DateTime" Precision="0" />
+          <Property Name="end" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblJobqueue" Relationship="Self.tblJobqueue_fk" FromRole="tblSchedule" ToRole="tblJobqueue" />
+        </EntityType>
+        <Association Name="tblJobqueue_fk">
+          <End Role="tblSchedule" Type="Self.tblSchedule" Multiplicity="0..1" />
+          <End Role="tblJobqueue" Type="Self.tblJobqueue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSchedule">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblJobqueue">
+              <PropertyRef Name="scheduleid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbPuls3060Medlem" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblJobqueue" EntityType="Self.tblJobqueue" />
+          <EntitySet Name="tblSchedule" EntityType="Self.tblSchedule" />
+          <AssociationSet Name="tblJobqueue_fk" Association="Self.tblJobqueue_fk">
+            <End Role="tblSchedule" EntitySet="tblSchedule" />
+            <End Role="tblJobqueue" EntitySet="tblJobqueue" />
+          </AssociationSet>
+          <FunctionImport Name="jobqueueadd">
+            <Parameter Name="starttime" Mode="In" Type="DateTime" />
+            <Parameter Name="jobname" Mode="In" Type="String" />
+            <Parameter Name="scheduleid" Mode="In" Type="Int32" />
+            <Parameter Name="onhold" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="jobqueuecomplete">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="jobqueuenext_v2">
+            <Parameter Name="id" Mode="InOut" Type="Int32" />
+            <Parameter Name="jobname" Mode="InOut" Type="String" />
+            <Parameter Name="retur" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbPuls3060MedlemModelStoreContainer" CdmEntityContainer="dbPuls3060Medlem">
+          <EntitySetMapping Name="tblJobqueue">
+            <EntityTypeMapping TypeName="dbPuls3060MedlemModel.tblJobqueue">
+              <MappingFragment StoreEntitySet="tblJobqueue">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="scheduleid" ColumnName="scheduleid" />
+                <ScalarProperty Name="starttime" ColumnName="starttime" />
+                <ScalarProperty Name="jobname" ColumnName="jobname" />
+                <ScalarProperty Name="onhold" ColumnName="onhold" />
+                <ScalarProperty Name="selected" ColumnName="selected" />
+                <ScalarProperty Name="completed" ColumnName="completed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSchedule">
+            <EntityTypeMapping TypeName="dbPuls3060MedlemModel.tblSchedule">
+              <MappingFragment StoreEntitySet="tblSchedule">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="schedule" ColumnName="schedule" />
+                <ScalarProperty Name="jobname" ColumnName="jobname" />
+                <ScalarProperty Name="start" ColumnName="start" />
+                <ScalarProperty Name="end" ColumnName="end" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="jobqueueadd" FunctionName="dbPuls3060MedlemModel.Store.jobqueueadd" />
+          <FunctionImportMapping FunctionImportName="jobqueuecomplete" FunctionName="dbPuls3060MedlemModel.Store.jobqueuecomplete" />
+          <FunctionImportMapping FunctionImportName="jobqueuenext_v2" FunctionName="dbPuls3060MedlemModel.Store.jobqueuenext_v2" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,2426 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="nsdbData3060.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbladvis">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tilpbsid" Type="int" />
+          <Property Name="betalingsdato" Type="datetime" />
+          <Property Name="Nr" Type="int" />
+          <Property Name="faknr" Type="int" />
+          <Property Name="advistekst" Type="nvarchar" MaxLength="4000" />
+          <Property Name="advisbelob" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="infotekst" Type="int" />
+          <Property Name="maildato" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblaftalelin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="frapbsid" Type="int" Nullable="false" />
+          <Property Name="pbstranskode" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="Nr" Type="int" Nullable="false" />
+          <Property Name="debitorkonto" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="debgrpnr" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="aftalenr" Type="int" />
+          <Property Name="aftalestartdato" Type="datetime" />
+          <Property Name="aftaleslutdato" Type="datetime" />
+          <Property Name="pbssektionnr" Type="nvarchar" MaxLength="5" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblAktivitet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="akt_tekst" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblbanker">
+          <Key>
+            <PropertyRef Name="regnr" />
+          </Key>
+          <Property Name="regnr" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="banknavn" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblbet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="frapbsid" Type="int" />
+          <Property Name="pbssektionnr" Type="nvarchar" MaxLength="4" />
+          <Property Name="transkode" Type="nvarchar" MaxLength="4" />
+          <Property Name="bogforingsdato" Type="datetime" />
+          <Property Name="indbetalingsbelob" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="summabogfort" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblbetalingsidentifikation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nr" Type="int" />
+          <Property Name="Navn" Type="nvarchar" MaxLength="35" />
+          <Property Name="betalingsdato" Type="date" />
+          <Property Name="belob" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="sagsnr" Type="int" />
+          <Property Name="betalingsidentifikation" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblbetlin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="betid" Type="int" />
+          <Property Name="pbssektionnr" Type="nvarchar" MaxLength="4" />
+          <Property Name="pbstranskode" Type="nvarchar" MaxLength="4" />
+          <Property Name="Nr" Type="int" />
+          <Property Name="faknr" Type="int" />
+          <Property Name="debitorkonto" Type="nvarchar" MaxLength="15" />
+          <Property Name="aftalenr" Type="int" />
+          <Property Name="betalingsdato" Type="datetime" />
+          <Property Name="belob" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="indbetalingsdato" Type="datetime" />
+          <Property Name="bogforingsdato" Type="datetime" />
+          <Property Name="indbetalingsbelob" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="pbskortart" Type="nvarchar" MaxLength="2" />
+          <Property Name="pbsgebyrbelob" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="pbsarkivnr" Type="nvarchar" MaxLength="22" />
+        </EntityType>
+        <EntityType Name="tblfak">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tilpbsid" Type="int" />
+          <Property Name="betalingsdato" Type="datetime" />
+          <Property Name="Nr" Type="int" />
+          <Property Name="faknr" Type="int" />
+          <Property Name="advistekst" Type="nvarchar" MaxLength="4000" />
+          <Property Name="advisbelob" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="infotekst" Type="int" />
+          <Property Name="bogfkonto" Type="int" />
+          <Property Name="vnr" Type="int" />
+          <Property Name="fradato" Type="datetime" />
+          <Property Name="tildato" Type="datetime" />
+          <Property Name="SFakID" Type="int" />
+          <Property Name="SFaknr" Type="int" />
+          <Property Name="rykkerdato" Type="datetime" />
+          <Property Name="maildato" Type="datetime" />
+          <Property Name="rykkerstop" Type="bit" Nullable="false" />
+          <Property Name="betalt" Type="bit" Nullable="false" />
+          <Property Name="tilmeldtpbs" Type="bit" Nullable="false" />
+          <Property Name="indmeldelse" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblfrapbs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="delsystem" Type="nvarchar" MaxLength="3" />
+          <Property Name="leverancetype" Type="nvarchar" MaxLength="4" />
+          <Property Name="udtrukket" Type="datetime" />
+          <Property Name="bilagdato" Type="datetime" />
+          <Property Name="pbsforsendelseid" Type="int" />
+          <Property Name="leverancespecifikation" Type="nvarchar" MaxLength="50" />
+          <Property Name="leverancedannelsesdato" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblHelsingorKommunePostnr">
+          <Key>
+            <PropertyRef Name="postnr" />
+          </Key>
+          <Property Name="postnr" Type="varchar" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblindbetalingskort">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="frapbsid" Type="int" Nullable="false" />
+          <Property Name="pbstranskode" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="Nr" Type="int" Nullable="false" />
+          <Property Name="faknr" Type="int" />
+          <Property Name="debitorkonto" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="debgrpnr" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="kortartkode" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="fikreditornr" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="indbetalerident" Type="nvarchar" MaxLength="19" Nullable="false" />
+          <Property Name="dato" Type="datetime" />
+          <Property Name="belob" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="pbssektionnr" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="regnr" Type="varchar" MaxLength="4" />
+        </EntityType>
+        <EntityType Name="tblinfotekst">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="navn" Type="nvarchar" MaxLength="50" />
+          <Property Name="msgtext" Type="nvarchar" MaxLength="4000" />
+        </EntityType>
+        <EntityType Name="tblJobqueue">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="scheduleid" Type="int" />
+          <Property Name="starttime" Type="datetime" Nullable="false" />
+          <Property Name="jobname" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="onhold" Type="bit" />
+          <Property Name="selected" Type="bit" />
+          <Property Name="completed" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblKontingent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="startdato" Type="datetime" Nullable="false" />
+          <Property Name="slutdato" Type="datetime" Nullable="false" />
+          <Property Name="startalder" Type="int" Nullable="false" />
+          <Property Name="slutalder" Type="int" Nullable="false" />
+          <Property Name="aarskontingent" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblkreditor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="datalevnr" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="datalevnavn" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="pbsnr" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="delsystem" Type="nvarchar" MaxLength="3" />
+          <Property Name="regnr" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="kontonr" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="debgrpnr" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="sektionnr" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="transkodebetaling" Type="nvarchar" MaxLength="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMedlem">
+          <Key>
+            <PropertyRef Name="Nr" />
+          </Key>
+          <Property Name="Nr" Type="int" Nullable="false" />
+          <Property Name="Kon" Type="nvarchar" MaxLength="1" />
+          <Property Name="FodtDato" Type="datetime" />
+          <Property Name="Navn" Type="nvarchar" MaxLength="35" />
+          <Property Name="Kaldenavn" Type="nvarchar" MaxLength="25" />
+          <Property Name="Adresse" Type="nvarchar" MaxLength="70" />
+          <Property Name="Postnr" Type="nvarchar" MaxLength="4" />
+          <Property Name="Bynavn" Type="nvarchar" MaxLength="25" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="8" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Bank" Type="nvarchar" MaxLength="15" />
+          <Property Name="Status" Type="int" />
+        </EntityType>
+        <EntityType Name="tblMedlemExtra">
+          <Key>
+            <PropertyRef Name="Nr" />
+          </Key>
+          <Property Name="Nr" Type="int" Nullable="false" />
+          <Property Name="Pusterummet" Type="int" />
+        </EntityType>
+        <EntityType Name="tblMedlemHistorie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nr" Type="int" Nullable="false" />
+          <Property Name="logdato" Type="date" Nullable="false" />
+          <Property Name="akt_id" Type="int" Nullable="false" />
+          <Property Name="akt_dato" Type="date" Nullable="false" />
+          <Property Name="parent" Type="int" Nullable="false" />
+          <Property Name="parentid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMedlemLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Nr" Type="int" />
+          <Property Name="logdato" Type="datetime" />
+          <Property Name="akt_id" Type="int" />
+          <Property Name="akt_dato" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblnrserie">
+          <Key>
+            <PropertyRef Name="nrserienavn" />
+          </Key>
+          <Property Name="nrserienavn" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="sidstbrugtenr" Type="int" />
+        </EntityType>
+        <EntityType Name="tbloverforsel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tilpbsid" Type="int" />
+          <Property Name="Nr" Type="int" />
+          <Property Name="SFaknr" Type="int" />
+          <Property Name="SFakID" Type="int" />
+          <Property Name="advistekst" Type="nvarchar" MaxLength="20" />
+          <Property Name="advisbelob" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="emailtekst" Type="nvarchar" MaxLength="4000" />
+          <Property Name="emailsent" Type="bit" />
+          <Property Name="bankregnr" Type="nvarchar" MaxLength="4" />
+          <Property Name="bankkontonr" Type="nvarchar" MaxLength="10" />
+          <Property Name="betalingsdato" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblpbsfile">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pbsfilesid" Type="int" Nullable="false" />
+          <Property Name="seqnr" Type="int" Nullable="false" />
+          <Property Name="data" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="tblpbsfilename">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="int" />
+          <Property Name="path" Type="nvarchar" MaxLength="255" />
+          <Property Name="filename" Type="nvarchar" MaxLength="50" />
+          <Property Name="size" Type="int" />
+          <Property Name="atime" Type="datetime" />
+          <Property Name="mtime" Type="datetime" />
+          <Property Name="perm" Type="nvarchar" MaxLength="50" />
+          <Property Name="uid" Type="int" />
+          <Property Name="gid" Type="int" />
+          <Property Name="transmittime" Type="datetime" />
+          <Property Name="pbsforsendelseid" Type="int" />
+        </EntityType>
+        <EntityType Name="tblpbsforsendelse">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="delsystem" Type="nvarchar" MaxLength="3" Nullable="false" />
+          <Property Name="leverancetype" Type="nvarchar" MaxLength="4" />
+          <Property Name="oprettetaf" Type="nvarchar" MaxLength="3" />
+          <Property Name="oprettet" Type="datetime" />
+          <Property Name="leveranceid" Type="int" />
+        </EntityType>
+        <EntityType Name="tblpbsnetdir">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="int" />
+          <Property Name="path" Type="nvarchar" MaxLength="255" />
+          <Property Name="filename" Type="nvarchar" MaxLength="50" />
+          <Property Name="size" Type="int" />
+          <Property Name="atime" Type="datetime" />
+          <Property Name="mtime" Type="datetime" />
+          <Property Name="perm" Type="nvarchar" MaxLength="50" />
+          <Property Name="uid" Type="int" />
+          <Property Name="gid" Type="int" />
+        </EntityType>
+        <EntityType Name="tblRegnskab">
+          <Key>
+            <PropertyRef Name="rid" />
+          </Key>
+          <Property Name="rid" Type="int" Nullable="false" />
+          <Property Name="Navn" Type="nvarchar" MaxLength="50" />
+          <Property Name="Oprettet" Type="datetime" />
+          <Property Name="Start" Type="datetime" />
+          <Property Name="Slut" Type="datetime" />
+          <Property Name="DatoLaas" Type="datetime" />
+          <Property Name="Firmanavn" Type="nvarchar" MaxLength="50" />
+          <Property Name="Placering" Type="nvarchar" MaxLength="255" />
+          <Property Name="Eksportmappe" Type="nvarchar" MaxLength="255" />
+          <Property Name="TilPBS" Type="nvarchar" MaxLength="255" />
+          <Property Name="FraPBS" Type="nvarchar" MaxLength="255" />
+          <Property Name="Afsluttet" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblrykker">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tilpbsid" Type="int" />
+          <Property Name="betalingsdato" Type="datetime" />
+          <Property Name="Nr" Type="int" />
+          <Property Name="faknr" Type="int" />
+          <Property Name="advistekst" Type="nvarchar" MaxLength="4000" />
+          <Property Name="advisbelob" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="infotekst" Type="int" />
+          <Property Name="rykkerdato" Type="datetime" />
+          <Property Name="maildato" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblSchedule">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="schedule" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="jobname" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="start" Type="date" />
+          <Property Name="end" Type="date" />
+        </EntityType>
+        <EntityType Name="tblsftp">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="navn" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="host" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="port" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="user" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="outbound" Type="nvarchar" MaxLength="64" />
+          <Property Name="inbound" Type="nvarchar" MaxLength="64" />
+          <Property Name="pincode" Type="nvarchar" MaxLength="64" />
+          <Property Name="certificate" Type="nvarchar" MaxLength="4000" />
+        </EntityType>
+        <EntityType Name="tblSysinfo">
+          <Key>
+            <PropertyRef Name="vkey" />
+          </Key>
+          <Property Name="vkey" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="val" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbltilpbs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="delsystem" Type="nvarchar" MaxLength="3" />
+          <Property Name="leverancetype" Type="nvarchar" MaxLength="4" />
+          <Property Name="bilagdato" Type="datetime" />
+          <Property Name="pbsforsendelseid" Type="int" />
+          <Property Name="udtrukket" Type="datetime" />
+          <Property Name="leverancespecifikation" Type="nvarchar" MaxLength="10" />
+          <Property Name="leverancedannelsesdato" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tempBetalforslag">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="betalingsdato" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tempBetalforslaglinie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nr" Type="int" Nullable="false" />
+          <Property Name="Betalforslagid" Type="int" Nullable="false" />
+          <Property Name="advisbelob" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="fakid" Type="int" />
+          <Property Name="bankregnr" Type="nvarchar" MaxLength="4" />
+          <Property Name="bankkontonr" Type="nvarchar" MaxLength="10" />
+          <Property Name="faknr" Type="int" />
+        </EntityType>
+        <EntityType Name="tempKontforslag">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="betalingsdato" Type="datetime" Nullable="false" />
+          <Property Name="bsh" Type="bit" />
+        </EntityType>
+        <EntityType Name="tempKontforslaglinie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nr" Type="int" Nullable="false" />
+          <Property Name="Kontforslagid" Type="int" Nullable="false" />
+          <Property Name="fradato" Type="datetime" Nullable="false" />
+          <Property Name="advisbelob" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="tildato" Type="datetime" />
+          <Property Name="tilmeldtpbs" Type="bit" Nullable="false" />
+          <Property Name="indmeldelse" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tempRykkerforslag">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="betalingsdato" Type="datetime" Nullable="false" />
+          <Property Name="bsh" Type="bit" />
+        </EntityType>
+        <EntityType Name="tempRykkerforslaglinie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Rykkerforslagid" Type="int" Nullable="false" />
+          <Property Name="Nr" Type="int" Nullable="false" />
+          <Property Name="faknr" Type="int" Nullable="false" />
+          <Property Name="advistekst" Type="nvarchar" MaxLength="4000" />
+          <Property Name="advisbelob" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'dbPuls3060Medlem.dbo.vAdvis_indbetalingskort' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vAdvis_indbetalingskort">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="frapbsid" />
+            <PropertyRef Name="pbstranskode" />
+            <PropertyRef Name="Nr" />
+            <PropertyRef Name="debitorkonto" />
+            <PropertyRef Name="debgrpnr" />
+            <PropertyRef Name="kortartkode" />
+            <PropertyRef Name="fikreditornr" />
+            <PropertyRef Name="indbetalerident" />
+            <PropertyRef Name="pbssektionnr" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="frapbsid" Type="int" Nullable="false" />
+          <Property Name="pbstranskode" Type="nvarchar" MaxLength="4" Nullable="false" />
+          <Property Name="Nr" Type="int" Nullable="false" />
+          <Property Name="faknr" Type="int" />
+          <Property Name="debitorkonto" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="debgrpnr" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="kortartkode" Type="nvarchar" MaxLength="2" Nullable="false" />
+          <Property Name="fikreditornr" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="indbetalerident" Type="nvarchar" MaxLength="19" Nullable="false" />
+          <Property Name="dato" Type="datetime" />
+          <Property Name="belob" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="pbssektionnr" Type="nvarchar" MaxLength="5" Nullable="false" />
+          <Property Name="regnr" Type="varchar" MaxLength="4" />
+        </EntityType>
+        <Association Name="FK_Log_Medlem">
+          <End Role="tblMedlem" Type="Self.tblMedlem" Multiplicity="0..1" />
+          <End Role="tblMedlemLog" Type="Self.tblMedlemLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMedlem">
+              <PropertyRef Name="Nr" />
+            </Principal>
+            <Dependent Role="tblMedlemLog">
+              <PropertyRef Name="Nr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblAktivitet_Log">
+          <End Role="tblAktivitet" Type="Self.tblAktivitet" Multiplicity="0..1" />
+          <End Role="tblMedlemLog" Type="Self.tblMedlemLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAktivitet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblMedlemLog">
+              <PropertyRef Name="akt_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblbet_tblbetlin">
+          <End Role="tblbet" Type="Self.tblbet" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblbetlin" Type="Self.tblbetlin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblbet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblbetlin">
+              <PropertyRef Name="betid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblfrapbs_tblaftalelin">
+          <End Role="tblfrapbs" Type="Self.tblfrapbs" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblaftalelin" Type="Self.tblaftalelin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblfrapbs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblaftalelin">
+              <PropertyRef Name="frapbsid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblfrapbs_tblbet">
+          <End Role="tblfrapbs" Type="Self.tblfrapbs" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblbet" Type="Self.tblbet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblfrapbs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblbet">
+              <PropertyRef Name="frapbsid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblfrapbs_tblindbetalingskort">
+          <End Role="tblfrapbs" Type="Self.tblfrapbs" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblindbetalingskort" Type="Self.tblindbetalingskort" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblfrapbs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblindbetalingskort">
+              <PropertyRef Name="frapbsid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblpbsfiles_tblpbsfile">
+          <End Role="tblpbsfilename" Type="Self.tblpbsfilename" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblpbsfile" Type="Self.tblpbsfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblpbsfilename">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblpbsfile">
+              <PropertyRef Name="pbsfilesid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPBSForsendelse_tblfrapbs">
+          <End Role="tblpbsforsendelse" Type="Self.tblpbsforsendelse" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblfrapbs" Type="Self.tblfrapbs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblpbsforsendelse">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblfrapbs">
+              <PropertyRef Name="pbsforsendelseid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPBSForsendelse_tbltilpbs">
+          <End Role="tblpbsforsendelse" Type="Self.tblpbsforsendelse" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbltilpbs" Type="Self.tbltilpbs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblpbsforsendelse">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tbltilpbs">
+              <PropertyRef Name="pbsforsendelseid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbltilpbs_tbladvis">
+          <End Role="tbltilpbs" Type="Self.tbltilpbs" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbladvis" Type="Self.tbladvis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbltilpbs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tbladvis">
+              <PropertyRef Name="tilpbsid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbltilpbs_tblfak">
+          <End Role="tbltilpbs" Type="Self.tbltilpbs" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblfak" Type="Self.tblfak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbltilpbs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblfak">
+              <PropertyRef Name="tilpbsid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbltilpbs_tbloverfoersel">
+          <End Role="tbltilpbs" Type="Self.tbltilpbs" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbloverforsel" Type="Self.tbloverforsel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbltilpbs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tbloverforsel">
+              <PropertyRef Name="tilpbsid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbltilpbs_tblrykker">
+          <End Role="tbltilpbs" Type="Self.tbltilpbs" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblrykker" Type="Self.tblrykker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbltilpbs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblrykker">
+              <PropertyRef Name="tilpbsid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tempBetalforslag_tempBetalforslaglinie">
+          <End Role="tempBetalforslag" Type="Self.tempBetalforslag" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tempBetalforslaglinie" Type="Self.tempBetalforslaglinie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tempBetalforslag">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tempBetalforslaglinie">
+              <PropertyRef Name="Betalforslagid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tempKontforslag_tempKontforslaglinie">
+          <End Role="tempKontforslag" Type="Self.tempKontforslag" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tempKontforslaglinie" Type="Self.tempKontforslaglinie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tempKontforslag">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tempKontforslaglinie">
+              <PropertyRef Name="Kontforslagid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tempRykkerforslag_tempRykkerforslaglinie">
+          <End Role="tempRykkerforslag" Type="Self.tempRykkerforslag" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tempRykkerforslaglinie" Type="Self.tempRykkerforslaglinie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tempRykkerforslag">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tempRykkerforslaglinie">
+              <PropertyRef Name="Rykkerforslagid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pbsforsendelse_tblpbsfiles">
+          <End Role="tblpbsforsendelse" Type="Self.tblpbsforsendelse" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblpbsfilename" Type="Self.tblpbsfilename" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblpbsforsendelse">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblpbsfilename">
+              <PropertyRef Name="pbsforsendelseid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblJobqueue_fk">
+          <End Role="tblSchedule" Type="Self.tblSchedule" Multiplicity="0..1" />
+          <End Role="tblJobqueue" Type="Self.tblJobqueue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSchedule">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblJobqueue">
+              <PropertyRef Name="scheduleid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="erMedlem_v2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pNr" Type="int" Mode="In" />
+          <Parameter Name="Result" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="erPBS_v2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pNr" Type="int" Mode="In" />
+          <Parameter Name="Result" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="forfaldsdato_v2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pNr" Type="int" Mode="In" />
+          <Parameter Name="Result" Type="date" Mode="InOut" />
+        </Function>
+        <Function Name="GetSysinfo_v2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Pvkey" Type="nvarchar" Mode="In" />
+          <Parameter Name="Pval" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="indmeldtdato_2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pNr" Type="int" Mode="In" />
+          <Parameter Name="Result" Type="date" Mode="InOut" />
+        </Function>
+        <Function Name="jobqueueadd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="starttime" Type="datetime" Mode="In" />
+          <Parameter Name="jobname" Type="nvarchar" Mode="In" />
+          <Parameter Name="scheduleid" Type="int" Mode="In" />
+          <Parameter Name="onhold" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="jobqueuecomplete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="jobqueuenext_v2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="InOut" />
+          <Parameter Name="jobname" Type="nvarchar" Mode="InOut" />
+          <Parameter Name="retur" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="kanRykkes_v2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pNr" Type="int" Mode="In" />
+          <Parameter Name="Result" Type="bit" Mode="InOut" />
+        </Function>
+        <Function Name="kontingentdato_v2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pNr" Type="int" Mode="In" />
+          <Parameter Name="Result" Type="date" Mode="InOut" />
+        </Function>
+        <Function Name="nextval_v2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Pnrserienavn" Type="nvarchar" Mode="In" />
+          <Parameter Name="Psidstbrugtenr" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="OcrString_v2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pFaknr" Type="int" Mode="In" />
+          <Parameter Name="Result" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="SendtSomString_v2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pFaknr" Type="int" Mode="In" />
+          <Parameter Name="Result" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="udmeldtdato_v2" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="pNr" Type="int" Mode="In" />
+          <Parameter Name="Udmedlt" Type="date" Mode="InOut" />
+        </Function>
+        <Function Name="UpdateMedlemStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="nsdbData3060StoreContainer">
+          <EntitySet Name="tbladvis" EntityType="Self.tbladvis" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblaftalelin" EntityType="Self.tblaftalelin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblAktivitet" EntityType="Self.tblAktivitet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblbanker" EntityType="Self.tblbanker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblbet" EntityType="Self.tblbet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblbetalingsidentifikation" EntityType="Self.tblbetalingsidentifikation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblbetlin" EntityType="Self.tblbetlin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblfak" EntityType="Self.tblfak" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblfrapbs" EntityType="Self.tblfrapbs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblHelsingorKommunePostnr" EntityType="Self.tblHelsingorKommunePostnr" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblindbetalingskort" EntityType="Self.tblindbetalingskort" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblinfotekst" EntityType="Self.tblinfotekst" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblJobqueue" EntityType="Self.tblJobqueue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblKontingent" EntityType="Self.tblKontingent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblkreditor" EntityType="Self.tblkreditor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMedlem" EntityType="Self.tblMedlem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMedlemExtra" EntityType="Self.tblMedlemExtra" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMedlemHistorie" EntityType="Self.tblMedlemHistorie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMedlemLog" EntityType="Self.tblMedlemLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblnrserie" EntityType="Self.tblnrserie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbloverforsel" EntityType="Self.tbloverforsel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblpbsfile" EntityType="Self.tblpbsfile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblpbsfilename" EntityType="Self.tblpbsfilename" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblpbsforsendelse" EntityType="Self.tblpbsforsendelse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblpbsnetdir" EntityType="Self.tblpbsnetdir" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblRegnskab" EntityType="Self.tblRegnskab" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblrykker" EntityType="Self.tblrykker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSchedule" EntityType="Self.tblSchedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblsftp" EntityType="Self.tblsftp" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSysinfo" EntityType="Self.tblSysinfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbltilpbs" EntityType="Self.tbltilpbs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tempBetalforslag" EntityType="Self.tempBetalforslag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tempBetalforslaglinie" EntityType="Self.tempBetalforslaglinie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tempKontforslag" EntityType="Self.tempKontforslag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tempKontforslaglinie" EntityType="Self.tempKontforslaglinie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tempRykkerforslag" EntityType="Self.tempRykkerforslag" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tempRykkerforslaglinie" EntityType="Self.tempRykkerforslaglinie" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vAdvis_indbetalingskort" EntityType="Self.vAdvis_indbetalingskort" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vAdvis_indbetalingskort].[id] AS [id], 
+    [vAdvis_indbetalingskort].[frapbsid] AS [frapbsid], 
+    [vAdvis_indbetalingskort].[pbstranskode] AS [pbstranskode], 
+    [vAdvis_indbetalingskort].[Nr] AS [Nr], 
+    [vAdvis_indbetalingskort].[faknr] AS [faknr], 
+    [vAdvis_indbetalingskort].[debitorkonto] AS [debitorkonto], 
+    [vAdvis_indbetalingskort].[debgrpnr] AS [debgrpnr], 
+    [vAdvis_indbetalingskort].[kortartkode] AS [kortartkode], 
+    [vAdvis_indbetalingskort].[fikreditornr] AS [fikreditornr], 
+    [vAdvis_indbetalingskort].[indbetalerident] AS [indbetalerident], 
+    [vAdvis_indbetalingskort].[dato] AS [dato], 
+    [vAdvis_indbetalingskort].[belob] AS [belob], 
+    [vAdvis_indbetalingskort].[pbssektionnr] AS [pbssektionnr], 
+    [vAdvis_indbetalingskort].[regnr] AS [regnr]
+    FROM [dbo].[vAdvis_indbetalingskort] AS [vAdvis_indbetalingskort]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Log_Medlem" Association="Self.FK_Log_Medlem">
+            <End Role="tblMedlem" EntitySet="tblMedlem" />
+            <End Role="tblMedlemLog" EntitySet="tblMedlemLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblAktivitet_Log" Association="Self.FK_tblAktivitet_Log">
+            <End Role="tblAktivitet" EntitySet="tblAktivitet" />
+            <End Role="tblMedlemLog" EntitySet="tblMedlemLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblbet_tblbetlin" Association="Self.FK_tblbet_tblbetlin">
+            <End Role="tblbet" EntitySet="tblbet" />
+            <End Role="tblbetlin" EntitySet="tblbetlin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblfrapbs_tblaftalelin" Association="Self.FK_tblfrapbs_tblaftalelin">
+            <End Role="tblfrapbs" EntitySet="tblfrapbs" />
+            <End Role="tblaftalelin" EntitySet="tblaftalelin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblfrapbs_tblbet" Association="Self.FK_tblfrapbs_tblbet">
+            <End Role="tblfrapbs" EntitySet="tblfrapbs" />
+            <End Role="tblbet" EntitySet="tblbet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblfrapbs_tblindbetalingskort" Association="Self.FK_tblfrapbs_tblindbetalingskort">
+            <End Role="tblfrapbs" EntitySet="tblfrapbs" />
+            <End Role="tblindbetalingskort" EntitySet="tblindbetalingskort" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblpbsfiles_tblpbsfile" Association="Self.FK_tblpbsfiles_tblpbsfile">
+            <End Role="tblpbsfilename" EntitySet="tblpbsfilename" />
+            <End Role="tblpbsfile" EntitySet="tblpbsfile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPBSForsendelse_tblfrapbs" Association="Self.FK_tblPBSForsendelse_tblfrapbs">
+            <End Role="tblpbsforsendelse" EntitySet="tblpbsforsendelse" />
+            <End Role="tblfrapbs" EntitySet="tblfrapbs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPBSForsendelse_tbltilpbs" Association="Self.FK_tblPBSForsendelse_tbltilpbs">
+            <End Role="tblpbsforsendelse" EntitySet="tblpbsforsendelse" />
+            <End Role="tbltilpbs" EntitySet="tbltilpbs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbltilpbs_tbladvis" Association="Self.FK_tbltilpbs_tbladvis">
+            <End Role="tbltilpbs" EntitySet="tbltilpbs" />
+            <End Role="tbladvis" EntitySet="tbladvis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbltilpbs_tblfak" Association="Self.FK_tbltilpbs_tblfak">
+            <End Role="tbltilpbs" EntitySet="tbltilpbs" />
+            <End Role="tblfak" EntitySet="tblfak" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbltilpbs_tbloverfoersel" Association="Self.FK_tbltilpbs_tbloverfoersel">
+            <End Role="tbltilpbs" EntitySet="tbltilpbs" />
+            <End Role="tbloverforsel" EntitySet="tbloverforsel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbltilpbs_tblrykker" Association="Self.FK_tbltilpbs_tblrykker">
+            <End Role="tbltilpbs" EntitySet="tbltilpbs" />
+            <End Role="tblrykker" EntitySet="tblrykker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tempBetalforslag_tempBetalforslaglinie" Association="Self.FK_tempBetalforslag_tempBetalforslaglinie">
+            <End Role="tempBetalforslag" EntitySet="tempBetalforslag" />
+            <End Role="tempBetalforslaglinie" EntitySet="tempBetalforslaglinie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tempKontforslag_tempKontforslaglinie" Association="Self.FK_tempKontforslag_tempKontforslaglinie">
+            <End Role="tempKontforslag" EntitySet="tempKontforslag" />
+            <End Role="tempKontforslaglinie" EntitySet="tempKontforslaglinie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tempRykkerforslag_tempRykkerforslaglinie" Association="Self.FK_tempRykkerforslag_tempRykkerforslaglinie">
+            <End Role="tempRykkerforslag" EntitySet="tempRykkerforslag" />
+            <End Role="tempRykkerforslaglinie" EntitySet="tempRykkerforslaglinie" />
+          </AssociationSet>
+          <AssociationSet Name="pbsforsendelse_tblpbsfiles" Association="Self.pbsforsendelse_tblpbsfiles">
+            <End Role="tblpbsforsendelse" EntitySet="tblpbsforsendelse" />
+            <End Role="tblpbsfilename" EntitySet="tblpbsfilename" />
+          </AssociationSet>
+          <AssociationSet Name="tblJobqueue_fk" Association="Self.tblJobqueue_fk">
+            <End Role="tblSchedule" EntitySet="tblSchedule" />
+            <End Role="tblJobqueue" EntitySet="tblJobqueue" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="nsdbData3060" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbladvis">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tilpbsid" Type="Int32" />
+          <Property Name="betalingsdato" Type="DateTime" Precision="3" />
+          <Property Name="Nr" Type="Int32" />
+          <Property Name="faknr" Type="Int32" />
+          <Property Name="advistekst" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="advisbelob" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="infotekst" Type="Int32" />
+          <Property Name="maildato" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbltilpbs" Relationship="Self.FK_tbltilpbs_tbladvis" FromRole="tbladvis" ToRole="tbltilpbs" />
+        </EntityType>
+        <EntityType Name="tblaftalelin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="frapbsid" Type="Int32" Nullable="false" />
+          <Property Name="pbstranskode" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nr" Type="Int32" Nullable="false" />
+          <Property Name="debitorkonto" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="debgrpnr" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="aftalenr" Type="Int32" />
+          <Property Name="aftalestartdato" Type="DateTime" Precision="3" />
+          <Property Name="aftaleslutdato" Type="DateTime" Precision="3" />
+          <Property Name="pbssektionnr" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblfrapbs" Relationship="Self.FK_tblfrapbs_tblaftalelin" FromRole="tblaftalelin" ToRole="tblfrapbs" />
+        </EntityType>
+        <EntityType Name="tblAktivitet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="akt_tekst" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblMedlemLog" Relationship="Self.FK_tblAktivitet_Log" FromRole="tblAktivitet" ToRole="tblMedlemLog" />
+        </EntityType>
+        <EntityType Name="tblbanker">
+          <Key>
+            <PropertyRef Name="regnr" />
+          </Key>
+          <Property Name="regnr" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="banknavn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblbet">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="frapbsid" Type="Int32" />
+          <Property Name="pbssektionnr" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="transkode" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="bogforingsdato" Type="DateTime" Precision="3" />
+          <Property Name="indbetalingsbelob" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="summabogfort" Type="Boolean" />
+          <NavigationProperty Name="tblbetlin" Relationship="Self.FK_tblbet_tblbetlin" FromRole="tblbet" ToRole="tblbetlin" />
+          <NavigationProperty Name="tblfrapbs" Relationship="Self.FK_tblfrapbs_tblbet" FromRole="tblbet" ToRole="tblfrapbs" />
+        </EntityType>
+        <EntityType Name="tblbetalingsidentifikation">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nr" Type="Int32" />
+          <Property Name="Navn" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="betalingsdato" Type="DateTime" Precision="0" />
+          <Property Name="belob" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="sagsnr" Type="Int32" />
+          <Property Name="betalingsidentifikation" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblbetlin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="betid" Type="Int32" />
+          <Property Name="pbssektionnr" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="pbstranskode" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="Nr" Type="Int32" />
+          <Property Name="faknr" Type="Int32" />
+          <Property Name="debitorkonto" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="aftalenr" Type="Int32" />
+          <Property Name="betalingsdato" Type="DateTime" Precision="3" />
+          <Property Name="belob" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="indbetalingsdato" Type="DateTime" Precision="3" />
+          <Property Name="bogforingsdato" Type="DateTime" Precision="3" />
+          <Property Name="indbetalingsbelob" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="pbskortart" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="pbsgebyrbelob" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="pbsarkivnr" Type="String" MaxLength="22" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblbet" Relationship="Self.FK_tblbet_tblbetlin" FromRole="tblbetlin" ToRole="tblbet" />
+        </EntityType>
+        <EntityType Name="tblfak">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tilpbsid" Type="Int32" />
+          <Property Name="betalingsdato" Type="DateTime" Precision="3" />
+          <Property Name="Nr" Type="Int32" />
+          <Property Name="faknr" Type="Int32" />
+          <Property Name="advistekst" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="advisbelob" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="infotekst" Type="Int32" />
+          <Property Name="bogfkonto" Type="Int32" />
+          <Property Name="vnr" Type="Int32" />
+          <Property Name="fradato" Type="DateTime" Precision="3" />
+          <Property Name="tildato" Type="DateTime" Precision="3" />
+          <Property Name="SFakID" Type="Int32" />
+          <Property Name="SFaknr" Type="Int32" />
+          <Property Name="rykkerdato" Type="DateTime" Precision="3" />
+          <Property Name="maildato" Type="DateTime" Precision="3" />
+          <Property Name="rykkerstop" Type="Boolean" Nullable="false" />
+          <Property Name="betalt" Type="Boolean" Nullable="false" />
+          <Property Name="tilmeldtpbs" Type="Boolean" Nullable="false" />
+          <Property Name="indmeldelse" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tbltilpbs" Relationship="Self.FK_tbltilpbs_tblfak" FromRole="tblfak" ToRole="tbltilpbs" />
+        </EntityType>
+        <EntityType Name="tblfrapbs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="delsystem" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="leverancetype" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="udtrukket" Type="DateTime" Precision="3" />
+          <Property Name="bilagdato" Type="DateTime" Precision="3" />
+          <Property Name="pbsforsendelseid" Type="Int32" />
+          <Property Name="leverancespecifikation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="leverancedannelsesdato" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblaftalelin" Relationship="Self.FK_tblfrapbs_tblaftalelin" FromRole="tblfrapbs" ToRole="tblaftalelin" />
+          <NavigationProperty Name="tblbet" Relationship="Self.FK_tblfrapbs_tblbet" FromRole="tblfrapbs" ToRole="tblbet" />
+          <NavigationProperty Name="tblindbetalingskort" Relationship="Self.FK_tblfrapbs_tblindbetalingskort" FromRole="tblfrapbs" ToRole="tblindbetalingskort" />
+          <NavigationProperty Name="tblpbsforsendelse" Relationship="Self.FK_tblPBSForsendelse_tblfrapbs" FromRole="tblfrapbs" ToRole="tblpbsforsendelse" />
+        </EntityType>
+        <EntityType Name="tblHelsingorKommunePostnr">
+          <Key>
+            <PropertyRef Name="postnr" />
+          </Key>
+          <Property Name="postnr" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblindbetalingskort">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="frapbsid" Type="Int32" Nullable="false" />
+          <Property Name="pbstranskode" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Nr" Type="Int32" Nullable="false" />
+          <Property Name="faknr" Type="Int32" />
+          <Property Name="debitorkonto" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="debgrpnr" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="kortartkode" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fikreditornr" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="indbetalerident" Type="String" MaxLength="19" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="dato" Type="DateTime" Precision="3" />
+          <Property Name="belob" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="pbssektionnr" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="regnr" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblfrapbs" Relationship="Self.FK_tblfrapbs_tblindbetalingskort" FromRole="tblindbetalingskort" ToRole="tblfrapbs" />
+        </EntityType>
+        <EntityType Name="tblinfotekst">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="navn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="msgtext" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblJobqueue">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="scheduleid" Type="Int32" />
+          <Property Name="starttime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="jobname" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="onhold" Type="Boolean" />
+          <Property Name="selected" Type="Boolean" />
+          <Property Name="completed" Type="Boolean" />
+          <NavigationProperty Name="tblSchedule" Relationship="Self.tblJobqueue_fk" FromRole="tblJobqueue" ToRole="tblSchedule" />
+        </EntityType>
+        <EntityType Name="tblKontingent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="startdato" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="slutdato" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="startalder" Type="Int32" Nullable="false" />
+          <Property Name="slutalder" Type="Int32" Nullable="false" />
+          <Property Name="aarskontingent" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblkreditor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="datalevnr" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="datalevnavn" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pbsnr" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="delsystem" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="regnr" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="kontonr" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="debgrpnr" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sektionnr" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="transkodebetaling" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMedlem">
+          <Key>
+            <PropertyRef Name="Nr" />
+          </Key>
+          <Property Name="Nr" Type="Int32" Nullable="false" />
+          <Property Name="Kon" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="FodtDato" Type="DateTime" Precision="3" />
+          <Property Name="Navn" Type="String" MaxLength="35" FixedLength="false" Unicode="true" />
+          <Property Name="Kaldenavn" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Adresse" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="Postnr" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="Bynavn" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Bank" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Int32" />
+          <NavigationProperty Name="tblMedlemLog" Relationship="Self.FK_Log_Medlem" FromRole="tblMedlem" ToRole="tblMedlemLog" />
+        </EntityType>
+        <EntityType Name="tblMedlemExtra">
+          <Key>
+            <PropertyRef Name="Nr" />
+          </Key>
+          <Property Name="Nr" Type="Int32" Nullable="false" />
+          <Property Name="Pusterummet" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblMedlemHistorie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nr" Type="Int32" Nullable="false" />
+          <Property Name="logdato" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="akt_id" Type="Int32" Nullable="false" />
+          <Property Name="akt_dato" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="parent" Type="Int32" Nullable="false" />
+          <Property Name="parentid" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblMedlemLog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Nr" Type="Int32" />
+          <Property Name="logdato" Type="DateTime" Precision="3" />
+          <Property Name="akt_id" Type="Int32" />
+          <Property Name="akt_dato" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblAktivitet" Relationship="Self.FK_tblAktivitet_Log" FromRole="tblMedlemLog" ToRole="tblAktivitet" />
+          <NavigationProperty Name="tblMedlem" Relationship="Self.FK_Log_Medlem" FromRole="tblMedlemLog" ToRole="tblMedlem" />
+        </EntityType>
+        <EntityType Name="tblnrserie">
+          <Key>
+            <PropertyRef Name="nrserienavn" />
+          </Key>
+          <Property Name="nrserienavn" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="sidstbrugtenr" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbloverforsel">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tilpbsid" Type="Int32" />
+          <Property Name="Nr" Type="Int32" />
+          <Property Name="SFaknr" Type="Int32" />
+          <Property Name="SFakID" Type="Int32" />
+          <Property Name="advistekst" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="advisbelob" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="emailtekst" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="emailsent" Type="Boolean" />
+          <Property Name="bankregnr" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="bankkontonr" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="betalingsdato" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbltilpbs" Relationship="Self.FK_tbltilpbs_tbloverfoersel" FromRole="tbloverforsel" ToRole="tbltilpbs" />
+        </EntityType>
+        <EntityType Name="tblpbsfile">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pbsfilesid" Type="Int32" Nullable="false" />
+          <Property Name="seqnr" Type="Int32" Nullable="false" />
+          <Property Name="data" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblpbsfilename" Relationship="Self.FK_tblpbsfiles_tblpbsfile" FromRole="tblpbsfile" ToRole="tblpbsfilename" />
+        </EntityType>
+        <EntityType Name="tblpbsfilename">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="Int32" />
+          <Property Name="path" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="filename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="size" Type="Int32" />
+          <Property Name="atime" Type="DateTime" Precision="3" />
+          <Property Name="mtime" Type="DateTime" Precision="3" />
+          <Property Name="perm" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="uid" Type="Int32" />
+          <Property Name="gid" Type="Int32" />
+          <Property Name="transmittime" Type="DateTime" Precision="3" />
+          <Property Name="pbsforsendelseid" Type="Int32" />
+          <NavigationProperty Name="tblpbsfile" Relationship="Self.FK_tblpbsfiles_tblpbsfile" FromRole="tblpbsfilename" ToRole="tblpbsfile" />
+          <NavigationProperty Name="tblpbsforsendelse" Relationship="Self.pbsforsendelse_tblpbsfiles" FromRole="tblpbsfilename" ToRole="tblpbsforsendelse" />
+        </EntityType>
+        <EntityType Name="tblpbsforsendelse">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="delsystem" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="leverancetype" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="oprettetaf" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="oprettet" Type="DateTime" Precision="3" />
+          <Property Name="leveranceid" Type="Int32" />
+          <NavigationProperty Name="tblfrapbs" Relationship="Self.FK_tblPBSForsendelse_tblfrapbs" FromRole="tblpbsforsendelse" ToRole="tblfrapbs" />
+          <NavigationProperty Name="tblpbsfilename" Relationship="Self.pbsforsendelse_tblpbsfiles" FromRole="tblpbsforsendelse" ToRole="tblpbsfilename" />
+          <NavigationProperty Name="tbltilpbs" Relationship="Self.FK_tblPBSForsendelse_tbltilpbs" FromRole="tblpbsforsendelse" ToRole="tbltilpbs" />
+        </EntityType>
+        <EntityType Name="tblpbsnetdir">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="Int32" />
+          <Property Name="path" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="filename" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="size" Type="Int32" />
+          <Property Name="atime" Type="DateTime" Precision="3" />
+          <Property Name="mtime" Type="DateTime" Precision="3" />
+          <Property Name="perm" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="uid" Type="Int32" />
+          <Property Name="gid" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tblRegnskab">
+          <Key>
+            <PropertyRef Name="rid" />
+          </Key>
+          <Property Name="rid" Type="Int32" Nullable="false" />
+          <Property Name="Navn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Oprettet" Type="DateTime" Precision="3" />
+          <Property Name="Start" Type="DateTime" Precision="3" />
+          <Property Name="Slut" Type="DateTime" Precision="3" />
+          <Property Name="DatoLaas" Type="DateTime" Precision="3" />
+          <Property Name="Firmanavn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Placering" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Eksportmappe" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="TilPBS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="FraPBS" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Afsluttet" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tblrykker">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tilpbsid" Type="Int32" />
+          <Property Name="betalingsdato" Type="DateTime" Precision="3" />
+          <Property Name="Nr" Type="Int32" />
+          <Property Name="faknr" Type="Int32" />
+          <Property Name="advistekst" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="advisbelob" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="infotekst" Type="Int32" />
+          <Property Name="rykkerdato" Type="DateTime" Precision="3" />
+          <Property Name="maildato" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbltilpbs" Relationship="Self.FK_tbltilpbs_tblrykker" FromRole="tblrykker" ToRole="tbltilpbs" />
+        </EntityType>
+        <EntityType Name="tblSchedule">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="schedule" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="jobname" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="start" Type="DateTime" Precision="0" />
+          <Property Name="end" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tblJobqueue" Relationship="Self.tblJobqueue_fk" FromRole="tblSchedule" ToRole="tblJobqueue" />
+        </EntityType>
+        <EntityType Name="tblsftp">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="navn" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="host" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="port" Type="String" MaxLength="5" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="user" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="outbound" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="inbound" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="pincode" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="certificate" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblSysinfo">
+          <Key>
+            <PropertyRef Name="vkey" />
+          </Key>
+          <Property Name="vkey" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="val" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="tbltilpbs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="delsystem" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="leverancetype" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="bilagdato" Type="DateTime" Precision="3" />
+          <Property Name="pbsforsendelseid" Type="Int32" />
+          <Property Name="udtrukket" Type="DateTime" Precision="3" />
+          <Property Name="leverancespecifikation" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="leverancedannelsesdato" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tbladvis" Relationship="Self.FK_tbltilpbs_tbladvis" FromRole="tbltilpbs" ToRole="tbladvis" />
+          <NavigationProperty Name="tblfak" Relationship="Self.FK_tbltilpbs_tblfak" FromRole="tbltilpbs" ToRole="tblfak" />
+          <NavigationProperty Name="tbloverforsel" Relationship="Self.FK_tbltilpbs_tbloverfoersel" FromRole="tbltilpbs" ToRole="tbloverforsel" />
+          <NavigationProperty Name="tblpbsforsendelse" Relationship="Self.FK_tblPBSForsendelse_tbltilpbs" FromRole="tbltilpbs" ToRole="tblpbsforsendelse" />
+          <NavigationProperty Name="tblrykker" Relationship="Self.FK_tbltilpbs_tblrykker" FromRole="tbltilpbs" ToRole="tblrykker" />
+        </EntityType>
+        <EntityType Name="tempBetalforslag">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="betalingsdato" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tempBetalforslaglinie" Relationship="Self.FK_tempBetalforslag_tempBetalforslaglinie" FromRole="tempBetalforslag" ToRole="tempBetalforslaglinie" />
+        </EntityType>
+        <EntityType Name="tempBetalforslaglinie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nr" Type="Int32" Nullable="false" />
+          <Property Name="Betalforslagid" Type="Int32" Nullable="false" />
+          <Property Name="advisbelob" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="fakid" Type="Int32" />
+          <Property Name="bankregnr" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="bankkontonr" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="faknr" Type="Int32" />
+          <NavigationProperty Name="tempBetalforslag" Relationship="Self.FK_tempBetalforslag_tempBetalforslaglinie" FromRole="tempBetalforslaglinie" ToRole="tempBetalforslag" />
+        </EntityType>
+        <EntityType Name="tempKontforslag">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="betalingsdato" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="bsh" Type="Boolean" />
+          <NavigationProperty Name="tempKontforslaglinie" Relationship="Self.FK_tempKontforslag_tempKontforslaglinie" FromRole="tempKontforslag" ToRole="tempKontforslaglinie" />
+        </EntityType>
+        <EntityType Name="tempKontforslaglinie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nr" Type="Int32" Nullable="false" />
+          <Property Name="Kontforslagid" Type="Int32" Nullable="false" />
+          <Property Name="fradato" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="advisbelob" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="tildato" Type="DateTime" Precision="3" />
+          <Property Name="tilmeldtpbs" Type="Boolean" Nullable="false" />
+          <Property Name="indmeldelse" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="tempKontforslag" Relationship="Self.FK_tempKontforslag_tempKontforslaglinie" FromRole="tempKontforslaglinie" ToRole="tempKontforslag" />
+        </EntityType>
+        <EntityType Name="tempRykkerforslag">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="betalingsdato" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="bsh" Type="Boolean" />
+          <NavigationProperty Name="tempRykkerforslaglinie" Relationship="Self.FK_tempRykkerforslag_tempRykkerforslaglinie" FromRole="tempRykkerforslag" ToRole="tempRykkerforslaglinie" />
+        </EntityType>
+        <EntityType Name="tempRykkerforslaglinie">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rykkerforslagid" Type="Int32" Nullable="false" />
+          <Property Name="Nr" Type="Int32" Nullable="false" />
+          <Property Name="faknr" Type="Int32" Nullable="false" />
+          <Property Name="advistekst" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="advisbelob" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="tempRykkerforslag" Relationship="Self.FK_tempRykkerforslag_tempRykkerforslaglinie" FromRole="tempRykkerforslaglinie" ToRole="tempRykkerforslag" />
+        </EntityType>
+        <Association Name="FK_tbltilpbs_tbladvis">
+          <End Role="tbltilpbs" Type="Self.tbltilpbs" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbladvis" Type="Self.tbladvis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbltilpbs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tbladvis">
+              <PropertyRef Name="tilpbsid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblfrapbs_tblaftalelin">
+          <End Role="tblfrapbs" Type="Self.tblfrapbs" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblaftalelin" Type="Self.tblaftalelin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblfrapbs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblaftalelin">
+              <PropertyRef Name="frapbsid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblAktivitet_Log">
+          <End Role="tblAktivitet" Type="Self.tblAktivitet" Multiplicity="0..1" />
+          <End Role="tblMedlemLog" Type="Self.tblMedlemLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAktivitet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblMedlemLog">
+              <PropertyRef Name="akt_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblbet_tblbetlin">
+          <End Role="tblbet" Type="Self.tblbet" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblbetlin" Type="Self.tblbetlin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblbet">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblbetlin">
+              <PropertyRef Name="betid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblfrapbs_tblbet">
+          <End Role="tblfrapbs" Type="Self.tblfrapbs" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblbet" Type="Self.tblbet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblfrapbs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblbet">
+              <PropertyRef Name="frapbsid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbltilpbs_tblfak">
+          <End Role="tbltilpbs" Type="Self.tbltilpbs" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblfak" Type="Self.tblfak" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbltilpbs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblfak">
+              <PropertyRef Name="tilpbsid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblfrapbs_tblindbetalingskort">
+          <End Role="tblfrapbs" Type="Self.tblfrapbs" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblindbetalingskort" Type="Self.tblindbetalingskort" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblfrapbs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblindbetalingskort">
+              <PropertyRef Name="frapbsid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPBSForsendelse_tblfrapbs">
+          <End Role="tblpbsforsendelse" Type="Self.tblpbsforsendelse" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblfrapbs" Type="Self.tblfrapbs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblpbsforsendelse">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblfrapbs">
+              <PropertyRef Name="pbsforsendelseid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblJobqueue_fk">
+          <End Role="tblSchedule" Type="Self.tblSchedule" Multiplicity="0..1" />
+          <End Role="tblJobqueue" Type="Self.tblJobqueue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSchedule">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblJobqueue">
+              <PropertyRef Name="scheduleid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Log_Medlem">
+          <End Role="tblMedlem" Type="Self.tblMedlem" Multiplicity="0..1" />
+          <End Role="tblMedlemLog" Type="Self.tblMedlemLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMedlem">
+              <PropertyRef Name="Nr" />
+            </Principal>
+            <Dependent Role="tblMedlemLog">
+              <PropertyRef Name="Nr" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbltilpbs_tbloverfoersel">
+          <End Role="tbltilpbs" Type="Self.tbltilpbs" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbloverforsel" Type="Self.tbloverforsel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbltilpbs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tbloverforsel">
+              <PropertyRef Name="tilpbsid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblpbsfiles_tblpbsfile">
+          <End Role="tblpbsfilename" Type="Self.tblpbsfilename" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblpbsfile" Type="Self.tblpbsfile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblpbsfilename">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblpbsfile">
+              <PropertyRef Name="pbsfilesid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="pbsforsendelse_tblpbsfiles">
+          <End Role="tblpbsforsendelse" Type="Self.tblpbsforsendelse" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblpbsfilename" Type="Self.tblpbsfilename" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblpbsforsendelse">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblpbsfilename">
+              <PropertyRef Name="pbsforsendelseid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPBSForsendelse_tbltilpbs">
+          <End Role="tblpbsforsendelse" Type="Self.tblpbsforsendelse" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tbltilpbs" Type="Self.tbltilpbs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblpbsforsendelse">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tbltilpbs">
+              <PropertyRef Name="pbsforsendelseid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbltilpbs_tblrykker">
+          <End Role="tbltilpbs" Type="Self.tbltilpbs" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblrykker" Type="Self.tblrykker" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbltilpbs">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblrykker">
+              <PropertyRef Name="tilpbsid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tempBetalforslag_tempBetalforslaglinie">
+          <End Role="tempBetalforslag" Type="Self.tempBetalforslag" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tempBetalforslaglinie" Type="Self.tempBetalforslaglinie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tempBetalforslag">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tempBetalforslaglinie">
+              <PropertyRef Name="Betalforslagid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tempKontforslag_tempKontforslaglinie">
+          <End Role="tempKontforslag" Type="Self.tempKontforslag" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tempKontforslaglinie" Type="Self.tempKontforslaglinie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tempKontforslag">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tempKontforslaglinie">
+              <PropertyRef Name="Kontforslagid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tempRykkerforslag_tempRykkerforslaglinie">
+          <End Role="tempRykkerforslag" Type="Self.tempRykkerforslag" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tempRykkerforslaglinie" Type="Self.tempRykkerforslaglinie" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tempRykkerforslag">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tempRykkerforslaglinie">
+              <PropertyRef Name="Rykkerforslagid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbData3060" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbladvis" EntityType="Self.tbladvis" />
+          <EntitySet Name="tblaftalelin" EntityType="Self.tblaftalelin" />
+          <EntitySet Name="tblAktivitet" EntityType="Self.tblAktivitet" />
+          <EntitySet Name="tblbanker" EntityType="Self.tblbanker" />
+          <EntitySet Name="tblbet" EntityType="Self.tblbet" />
+          <EntitySet Name="tblbetalingsidentifikation" EntityType="Self.tblbetalingsidentifikation" />
+          <EntitySet Name="tblbetlin" EntityType="Self.tblbetlin" />
+          <EntitySet Name="tblfak" EntityType="Self.tblfak" />
+          <EntitySet Name="tblfrapbs" EntityType="Self.tblfrapbs" />
+          <EntitySet Name="tblHelsingorKommunePostnr" EntityType="Self.tblHelsingorKommunePostnr" />
+          <EntitySet Name="tblindbetalingskort" EntityType="Self.tblindbetalingskort" />
+          <EntitySet Name="tblinfotekst" EntityType="Self.tblinfotekst" />
+          <EntitySet Name="tblJobqueue" EntityType="Self.tblJobqueue" />
+          <EntitySet Name="tblKontingent" EntityType="Self.tblKontingent" />
+          <EntitySet Name="tblkreditor" EntityType="Self.tblkreditor" />
+          <EntitySet Name="tblMedlem" EntityType="Self.tblMedlem" />
+          <EntitySet Name="tblMedlemExtra" EntityType="Self.tblMedlemExtra" />
+          <EntitySet Name="tblMedlemHistorie" EntityType="Self.tblMedlemHistorie" />
+          <EntitySet Name="tblMedlemLog" EntityType="Self.tblMedlemLog" />
+          <EntitySet Name="tblnrserie" EntityType="Self.tblnrserie" />
+          <EntitySet Name="tbloverforsel" EntityType="Self.tbloverforsel" />
+          <EntitySet Name="tblpbsfile" EntityType="Self.tblpbsfile" />
+          <EntitySet Name="tblpbsfilename" EntityType="Self.tblpbsfilename" />
+          <EntitySet Name="tblpbsforsendelse" EntityType="Self.tblpbsforsendelse" />
+          <EntitySet Name="tblpbsnetdir" EntityType="Self.tblpbsnetdir" />
+          <EntitySet Name="tblRegnskab" EntityType="Self.tblRegnskab" />
+          <EntitySet Name="tblrykker" EntityType="Self.tblrykker" />
+          <EntitySet Name="tblSchedule" EntityType="Self.tblSchedule" />
+          <EntitySet Name="tblsftp" EntityType="Self.tblsftp" />
+          <EntitySet Name="tblSysinfo" EntityType="Self.tblSysinfo" />
+          <EntitySet Name="tbltilpbs" EntityType="Self.tbltilpbs" />
+          <EntitySet Name="tempBetalforslag" EntityType="Self.tempBetalforslag" />
+          <EntitySet Name="tempBetalforslaglinie" EntityType="Self.tempBetalforslaglinie" />
+          <EntitySet Name="tempKontforslag" EntityType="Self.tempKontforslag" />
+          <EntitySet Name="tempKontforslaglinie" EntityType="Self.tempKontforslaglinie" />
+          <EntitySet Name="tempRykkerforslag" EntityType="Self.tempRykkerforslag" />
+          <EntitySet Name="tempRykkerforslaglinie" EntityType="Self.tempRykkerforslaglinie" />
+          <AssociationSet Name="FK_tbltilpbs_tbladvis" Association="Self.FK_tbltilpbs_tbladvis">
+            <End Role="tbltilpbs" EntitySet="tbltilpbs" />
+            <End Role="tbladvis" EntitySet="tbladvis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblfrapbs_tblaftalelin" Association="Self.FK_tblfrapbs_tblaftalelin">
+            <End Role="tblfrapbs" EntitySet="tblfrapbs" />
+            <End Role="tblaftalelin" EntitySet="tblaftalelin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblAktivitet_Log" Association="Self.FK_tblAktivitet_Log">
+            <End Role="tblAktivitet" EntitySet="tblAktivitet" />
+            <End Role="tblMedlemLog" EntitySet="tblMedlemLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblbet_tblbetlin" Association="Self.FK_tblbet_tblbetlin">
+            <End Role="tblbet" EntitySet="tblbet" />
+            <End Role="tblbetlin" EntitySet="tblbetlin" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblfrapbs_tblbet" Association="Self.FK_tblfrapbs_tblbet">
+            <End Role="tblfrapbs" EntitySet="tblfrapbs" />
+            <End Role="tblbet" EntitySet="tblbet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbltilpbs_tblfak" Association="Self.FK_tbltilpbs_tblfak">
+            <End Role="tbltilpbs" EntitySet="tbltilpbs" />
+            <End Role="tblfak" EntitySet="tblfak" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblfrapbs_tblindbetalingskort" Association="Self.FK_tblfrapbs_tblindbetalingskort">
+            <End Role="tblfrapbs" EntitySet="tblfrapbs" />
+            <End Role="tblindbetalingskort" EntitySet="tblindbetalingskort" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPBSForsendelse_tblfrapbs" Association="Self.FK_tblPBSForsendelse_tblfrapbs">
+            <End Role="tblpbsforsendelse" EntitySet="tblpbsforsendelse" />
+            <End Role="tblfrapbs" EntitySet="tblfrapbs" />
+          </AssociationSet>
+          <AssociationSet Name="tblJobqueue_fk" Association="Self.tblJobqueue_fk">
+            <End Role="tblSchedule" EntitySet="tblSchedule" />
+            <End Role="tblJobqueue" EntitySet="tblJobqueue" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Log_Medlem" Association="Self.FK_Log_Medlem">
+            <End Role="tblMedlem" EntitySet="tblMedlem" />
+            <End Role="tblMedlemLog" EntitySet="tblMedlemLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbltilpbs_tbloverfoersel" Association="Self.FK_tbltilpbs_tbloverfoersel">
+            <End Role="tbltilpbs" EntitySet="tbltilpbs" />
+            <End Role="tbloverforsel" EntitySet="tbloverforsel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblpbsfiles_tblpbsfile" Association="Self.FK_tblpbsfiles_tblpbsfile">
+            <End Role="tblpbsfilename" EntitySet="tblpbsfilename" />
+            <End Role="tblpbsfile" EntitySet="tblpbsfile" />
+          </AssociationSet>
+          <AssociationSet Name="pbsforsendelse_tblpbsfiles" Association="Self.pbsforsendelse_tblpbsfiles">
+            <End Role="tblpbsforsendelse" EntitySet="tblpbsforsendelse" />
+            <End Role="tblpbsfilename" EntitySet="tblpbsfilename" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPBSForsendelse_tbltilpbs" Association="Self.FK_tblPBSForsendelse_tbltilpbs">
+            <End Role="tblpbsforsendelse" EntitySet="tblpbsforsendelse" />
+            <End Role="tbltilpbs" EntitySet="tbltilpbs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbltilpbs_tblrykker" Association="Self.FK_tbltilpbs_tblrykker">
+            <End Role="tbltilpbs" EntitySet="tbltilpbs" />
+            <End Role="tblrykker" EntitySet="tblrykker" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tempBetalforslag_tempBetalforslaglinie" Association="Self.FK_tempBetalforslag_tempBetalforslaglinie">
+            <End Role="tempBetalforslag" EntitySet="tempBetalforslag" />
+            <End Role="tempBetalforslaglinie" EntitySet="tempBetalforslaglinie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tempKontforslag_tempKontforslaglinie" Association="Self.FK_tempKontforslag_tempKontforslaglinie">
+            <End Role="tempKontforslag" EntitySet="tempKontforslag" />
+            <End Role="tempKontforslaglinie" EntitySet="tempKontforslaglinie" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tempRykkerforslag_tempRykkerforslaglinie" Association="Self.FK_tempRykkerforslag_tempRykkerforslaglinie">
+            <End Role="tempRykkerforslag" EntitySet="tempRykkerforslag" />
+            <End Role="tempRykkerforslaglinie" EntitySet="tempRykkerforslaglinie" />
+          </AssociationSet>
+          <FunctionImport Name="jobqueueadd">
+            <Parameter Name="starttime" Mode="In" Type="DateTime" />
+            <Parameter Name="jobname" Mode="In" Type="String" />
+            <Parameter Name="scheduleid" Mode="In" Type="Int32" />
+            <Parameter Name="onhold" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="jobqueuecomplete">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateMedlemStatus" />
+          <FunctionImport Name="jobqueuenext_v2">
+            <Parameter Name="id" Mode="InOut" Type="Int32" />
+            <Parameter Name="jobname" Mode="InOut" Type="String" />
+            <Parameter Name="retur" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetSysinfo_v2">
+            <Parameter Name="Pvkey" Mode="In" Type="String" />
+            <Parameter Name="Pval" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="nextval_v2">
+            <Parameter Name="Pnrserienavn" Mode="In" Type="String" />
+            <Parameter Name="Psidstbrugtenr" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="OcrString_v2">
+            <Parameter Name="pFaknr" Mode="In" Type="Int32" />
+            <Parameter Name="Result" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SendtSomString_v2">
+            <Parameter Name="pFaknr" Mode="In" Type="Int32" />
+            <Parameter Name="Result" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="kanRykkes_v2">
+            <Parameter Name="pNr" Mode="In" Type="Int32" />
+            <Parameter Name="Result" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="erMedlem_v2">
+            <Parameter Name="pNr" Mode="In" Type="Int32" />
+            <Parameter Name="Result" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="indmeldtdato_2">
+            <Parameter Name="pNr" Mode="In" Type="Int32" />
+            <Parameter Name="Result" Mode="InOut" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="udmeldtdato_v2">
+            <Parameter Name="pNr" Mode="In" Type="Int32" />
+            <Parameter Name="Udmedlt" Mode="InOut" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="kontingentdato_v2">
+            <Parameter Name="pNr" Mode="In" Type="Int32" />
+            <Parameter Name="Result" Mode="InOut" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="forfaldsdato_v2">
+            <Parameter Name="pNr" Mode="In" Type="Int32" />
+            <Parameter Name="Result" Mode="InOut" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="erPBS_v2">
+            <Parameter Name="pNr" Mode="In" Type="Int32" />
+            <Parameter Name="Result" Mode="InOut" Type="Boolean" />
+          </FunctionImport>
+          <EntitySet Name="vAdvis_indbetalingskort" EntityType="nsdbData3060.vAdvis_indbetalingskort" />
+        </EntityContainer>
+        <EntityType Name="vAdvis_indbetalingskort">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="frapbsid" />
+            <PropertyRef Name="pbstranskode" />
+            <PropertyRef Name="Nr" />
+            <PropertyRef Name="debitorkonto" />
+            <PropertyRef Name="debgrpnr" />
+            <PropertyRef Name="kortartkode" />
+            <PropertyRef Name="fikreditornr" />
+            <PropertyRef Name="indbetalerident" />
+            <PropertyRef Name="pbssektionnr" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="frapbsid" Type="Int32" Nullable="false" />
+          <Property Name="pbstranskode" Type="String" Nullable="false" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="Nr" Type="Int32" Nullable="false" />
+          <Property Name="faknr" Type="Int32" />
+          <Property Name="debitorkonto" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="debgrpnr" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="kortartkode" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="fikreditornr" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="indbetalerident" Type="String" Nullable="false" MaxLength="19" FixedLength="false" Unicode="true" />
+          <Property Name="dato" Type="DateTime" Precision="3" />
+          <Property Name="belob" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="pbssektionnr" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="regnr" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="nsdbData3060StoreContainer" CdmEntityContainer="dbData3060">
+          <EntitySetMapping Name="tbladvis">
+            <EntityTypeMapping TypeName="nsdbData3060.tbladvis">
+              <MappingFragment StoreEntitySet="tbladvis">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tilpbsid" ColumnName="tilpbsid" />
+                <ScalarProperty Name="betalingsdato" ColumnName="betalingsdato" />
+                <ScalarProperty Name="Nr" ColumnName="Nr" />
+                <ScalarProperty Name="faknr" ColumnName="faknr" />
+                <ScalarProperty Name="advistekst" ColumnName="advistekst" />
+                <ScalarProperty Name="advisbelob" ColumnName="advisbelob" />
+                <ScalarProperty Name="infotekst" ColumnName="infotekst" />
+                <ScalarProperty Name="maildato" ColumnName="maildato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblaftalelin">
+            <EntityTypeMapping TypeName="nsdbData3060.tblaftalelin">
+              <MappingFragment StoreEntitySet="tblaftalelin">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="frapbsid" ColumnName="frapbsid" />
+                <ScalarProperty Name="pbstranskode" ColumnName="pbstranskode" />
+                <ScalarProperty Name="Nr" ColumnName="Nr" />
+                <ScalarProperty Name="debitorkonto" ColumnName="debitorkonto" />
+                <ScalarProperty Name="debgrpnr" ColumnName="debgrpnr" />
+                <ScalarProperty Name="aftalenr" ColumnName="aftalenr" />
+                <ScalarProperty Name="aftalestartdato" ColumnName="aftalestartdato" />
+                <ScalarProperty Name="aftaleslutdato" ColumnName="aftaleslutdato" />
+                <ScalarProperty Name="pbssektionnr" ColumnName="pbssektionnr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblAktivitet">
+            <EntityTypeMapping TypeName="nsdbData3060.tblAktivitet">
+              <MappingFragment StoreEntitySet="tblAktivitet">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="akt_tekst" ColumnName="akt_tekst" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblbanker">
+            <EntityTypeMapping TypeName="nsdbData3060.tblbanker">
+              <MappingFragment StoreEntitySet="tblbanker">
+                <ScalarProperty Name="regnr" ColumnName="regnr" />
+                <ScalarProperty Name="banknavn" ColumnName="banknavn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblbet">
+            <EntityTypeMapping TypeName="nsdbData3060.tblbet">
+              <MappingFragment StoreEntitySet="tblbet">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="frapbsid" ColumnName="frapbsid" />
+                <ScalarProperty Name="pbssektionnr" ColumnName="pbssektionnr" />
+                <ScalarProperty Name="transkode" ColumnName="transkode" />
+                <ScalarProperty Name="bogforingsdato" ColumnName="bogforingsdato" />
+                <ScalarProperty Name="indbetalingsbelob" ColumnName="indbetalingsbelob" />
+                <ScalarProperty Name="summabogfort" ColumnName="summabogfort" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblbetalingsidentifikation">
+            <EntityTypeMapping TypeName="nsdbData3060.tblbetalingsidentifikation">
+              <MappingFragment StoreEntitySet="tblbetalingsidentifikation">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nr" ColumnName="Nr" />
+                <ScalarProperty Name="Navn" ColumnName="Navn" />
+                <ScalarProperty Name="betalingsdato" ColumnName="betalingsdato" />
+                <ScalarProperty Name="belob" ColumnName="belob" />
+                <ScalarProperty Name="sagsnr" ColumnName="sagsnr" />
+                <ScalarProperty Name="betalingsidentifikation" ColumnName="betalingsidentifikation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblbetlin">
+            <EntityTypeMapping TypeName="nsdbData3060.tblbetlin">
+              <MappingFragment StoreEntitySet="tblbetlin">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="betid" ColumnName="betid" />
+                <ScalarProperty Name="pbssektionnr" ColumnName="pbssektionnr" />
+                <ScalarProperty Name="pbstranskode" ColumnName="pbstranskode" />
+                <ScalarProperty Name="Nr" ColumnName="Nr" />
+                <ScalarProperty Name="faknr" ColumnName="faknr" />
+                <ScalarProperty Name="debitorkonto" ColumnName="debitorkonto" />
+                <ScalarProperty Name="aftalenr" ColumnName="aftalenr" />
+                <ScalarProperty Name="betalingsdato" ColumnName="betalingsdato" />
+                <ScalarProperty Name="belob" ColumnName="belob" />
+                <ScalarProperty Name="indbetalingsdato" ColumnName="indbetalingsdato" />
+                <ScalarProperty Name="bogforingsdato" ColumnName="bogforingsdato" />
+                <ScalarProperty Name="indbetalingsbelob" ColumnName="indbetalingsbelob" />
+                <ScalarProperty Name="pbskortart" ColumnName="pbskortart" />
+                <ScalarProperty Name="pbsgebyrbelob" ColumnName="pbsgebyrbelob" />
+                <ScalarProperty Name="pbsarkivnr" ColumnName="pbsarkivnr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblfak">
+            <EntityTypeMapping TypeName="nsdbData3060.tblfak">
+              <MappingFragment StoreEntitySet="tblfak">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tilpbsid" ColumnName="tilpbsid" />
+                <ScalarProperty Name="betalingsdato" ColumnName="betalingsdato" />
+                <ScalarProperty Name="Nr" ColumnName="Nr" />
+                <ScalarProperty Name="faknr" ColumnName="faknr" />
+                <ScalarProperty Name="advistekst" ColumnName="advistekst" />
+                <ScalarProperty Name="advisbelob" ColumnName="advisbelob" />
+                <ScalarProperty Name="infotekst" ColumnName="infotekst" />
+                <ScalarProperty Name="bogfkonto" ColumnName="bogfkonto" />
+                <ScalarProperty Name="vnr" ColumnName="vnr" />
+                <ScalarProperty Name="fradato" ColumnName="fradato" />
+                <ScalarProperty Name="tildato" ColumnName="tildato" />
+                <ScalarProperty Name="SFakID" ColumnName="SFakID" />
+                <ScalarProperty Name="SFaknr" ColumnName="SFaknr" />
+                <ScalarProperty Name="rykkerdato" ColumnName="rykkerdato" />
+                <ScalarProperty Name="maildato" ColumnName="maildato" />
+                <ScalarProperty Name="rykkerstop" ColumnName="rykkerstop" />
+                <ScalarProperty Name="betalt" ColumnName="betalt" />
+                <ScalarProperty Name="tilmeldtpbs" ColumnName="tilmeldtpbs" />
+                <ScalarProperty Name="indmeldelse" ColumnName="indmeldelse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblfrapbs">
+            <EntityTypeMapping TypeName="nsdbData3060.tblfrapbs">
+              <MappingFragment StoreEntitySet="tblfrapbs">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="delsystem" ColumnName="delsystem" />
+                <ScalarProperty Name="leverancetype" ColumnName="leverancetype" />
+                <ScalarProperty Name="udtrukket" ColumnName="udtrukket" />
+                <ScalarProperty Name="bilagdato" ColumnName="bilagdato" />
+                <ScalarProperty Name="pbsforsendelseid" ColumnName="pbsforsendelseid" />
+                <ScalarProperty Name="leverancespecifikation" ColumnName="leverancespecifikation" />
+                <ScalarProperty Name="leverancedannelsesdato" ColumnName="leverancedannelsesdato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblHelsingorKommunePostnr">
+            <EntityTypeMapping TypeName="nsdbData3060.tblHelsingorKommunePostnr">
+              <MappingFragment StoreEntitySet="tblHelsingorKommunePostnr">
+                <ScalarProperty Name="postnr" ColumnName="postnr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblindbetalingskort">
+            <EntityTypeMapping TypeName="nsdbData3060.tblindbetalingskort">
+              <MappingFragment StoreEntitySet="tblindbetalingskort">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="frapbsid" ColumnName="frapbsid" />
+                <ScalarProperty Name="pbstranskode" ColumnName="pbstranskode" />
+                <ScalarProperty Name="Nr" ColumnName="Nr" />
+                <ScalarProperty Name="faknr" ColumnName="faknr" />
+                <ScalarProperty Name="debitorkonto" ColumnName="debitorkonto" />
+                <ScalarProperty Name="debgrpnr" ColumnName="debgrpnr" />
+                <ScalarProperty Name="kortartkode" ColumnName="kortartkode" />
+                <ScalarProperty Name="fikreditornr" ColumnName="fikreditornr" />
+                <ScalarProperty Name="indbetalerident" ColumnName="indbetalerident" />
+                <ScalarProperty Name="dato" ColumnName="dato" />
+                <ScalarProperty Name="belob" ColumnName="belob" />
+                <ScalarProperty Name="pbssektionnr" ColumnName="pbssektionnr" />
+                <ScalarProperty Name="regnr" ColumnName="regnr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblinfotekst">
+            <EntityTypeMapping TypeName="nsdbData3060.tblinfotekst">
+              <MappingFragment StoreEntitySet="tblinfotekst">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="navn" ColumnName="navn" />
+                <ScalarProperty Name="msgtext" ColumnName="msgtext" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblJobqueue">
+            <EntityTypeMapping TypeName="nsdbData3060.tblJobqueue">
+              <MappingFragment StoreEntitySet="tblJobqueue">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="scheduleid" ColumnName="scheduleid" />
+                <ScalarProperty Name="starttime" ColumnName="starttime" />
+                <ScalarProperty Name="jobname" ColumnName="jobname" />
+                <ScalarProperty Name="onhold" ColumnName="onhold" />
+                <ScalarProperty Name="selected" ColumnName="selected" />
+                <ScalarProperty Name="completed" ColumnName="completed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblKontingent">
+            <EntityTypeMapping TypeName="nsdbData3060.tblKontingent">
+              <MappingFragment StoreEntitySet="tblKontingent">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="startdato" ColumnName="startdato" />
+                <ScalarProperty Name="slutdato" ColumnName="slutdato" />
+                <ScalarProperty Name="startalder" ColumnName="startalder" />
+                <ScalarProperty Name="slutalder" ColumnName="slutalder" />
+                <ScalarProperty Name="aarskontingent" ColumnName="aarskontingent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblkreditor">
+            <EntityTypeMapping TypeName="nsdbData3060.tblkreditor">
+              <MappingFragment StoreEntitySet="tblkreditor">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="datalevnr" ColumnName="datalevnr" />
+                <ScalarProperty Name="datalevnavn" ColumnName="datalevnavn" />
+                <ScalarProperty Name="pbsnr" ColumnName="pbsnr" />
+                <ScalarProperty Name="delsystem" ColumnName="delsystem" />
+                <ScalarProperty Name="regnr" ColumnName="regnr" />
+                <ScalarProperty Name="kontonr" ColumnName="kontonr" />
+                <ScalarProperty Name="debgrpnr" ColumnName="debgrpnr" />
+                <ScalarProperty Name="sektionnr" ColumnName="sektionnr" />
+                <ScalarProperty Name="transkodebetaling" ColumnName="transkodebetaling" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMedlem">
+            <EntityTypeMapping TypeName="nsdbData3060.tblMedlem">
+              <MappingFragment StoreEntitySet="tblMedlem">
+                <ScalarProperty Name="Nr" ColumnName="Nr" />
+                <ScalarProperty Name="Kon" ColumnName="Kon" />
+                <ScalarProperty Name="FodtDato" ColumnName="FodtDato" />
+                <ScalarProperty Name="Navn" ColumnName="Navn" />
+                <ScalarProperty Name="Kaldenavn" ColumnName="Kaldenavn" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Postnr" ColumnName="Postnr" />
+                <ScalarProperty Name="Bynavn" ColumnName="Bynavn" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMedlemExtra">
+            <EntityTypeMapping TypeName="nsdbData3060.tblMedlemExtra">
+              <MappingFragment StoreEntitySet="tblMedlemExtra">
+                <ScalarProperty Name="Nr" ColumnName="Nr" />
+                <ScalarProperty Name="Pusterummet" ColumnName="Pusterummet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMedlemHistorie">
+            <EntityTypeMapping TypeName="nsdbData3060.tblMedlemHistorie">
+              <MappingFragment StoreEntitySet="tblMedlemHistorie">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nr" ColumnName="Nr" />
+                <ScalarProperty Name="logdato" ColumnName="logdato" />
+                <ScalarProperty Name="akt_id" ColumnName="akt_id" />
+                <ScalarProperty Name="akt_dato" ColumnName="akt_dato" />
+                <ScalarProperty Name="parent" ColumnName="parent" />
+                <ScalarProperty Name="parentid" ColumnName="parentid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMedlemLog">
+            <EntityTypeMapping TypeName="nsdbData3060.tblMedlemLog">
+              <MappingFragment StoreEntitySet="tblMedlemLog">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nr" ColumnName="Nr" />
+                <ScalarProperty Name="logdato" ColumnName="logdato" />
+                <ScalarProperty Name="akt_id" ColumnName="akt_id" />
+                <ScalarProperty Name="akt_dato" ColumnName="akt_dato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblnrserie">
+            <EntityTypeMapping TypeName="nsdbData3060.tblnrserie">
+              <MappingFragment StoreEntitySet="tblnrserie">
+                <ScalarProperty Name="nrserienavn" ColumnName="nrserienavn" />
+                <ScalarProperty Name="sidstbrugtenr" ColumnName="sidstbrugtenr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbloverforsel">
+            <EntityTypeMapping TypeName="nsdbData3060.tbloverforsel">
+              <MappingFragment StoreEntitySet="tbloverforsel">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tilpbsid" ColumnName="tilpbsid" />
+                <ScalarProperty Name="Nr" ColumnName="Nr" />
+                <ScalarProperty Name="SFaknr" ColumnName="SFaknr" />
+                <ScalarProperty Name="SFakID" ColumnName="SFakID" />
+                <ScalarProperty Name="advistekst" ColumnName="advistekst" />
+                <ScalarProperty Name="advisbelob" ColumnName="advisbelob" />
+                <ScalarProperty Name="emailtekst" ColumnName="emailtekst" />
+                <ScalarProperty Name="emailsent" ColumnName="emailsent" />
+                <ScalarProperty Name="bankregnr" ColumnName="bankregnr" />
+                <ScalarProperty Name="bankkontonr" ColumnName="bankkontonr" />
+                <ScalarProperty Name="betalingsdato" ColumnName="betalingsdato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblpbsfile">
+            <EntityTypeMapping TypeName="nsdbData3060.tblpbsfile">
+              <MappingFragment StoreEntitySet="tblpbsfile">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="pbsfilesid" ColumnName="pbsfilesid" />
+                <ScalarProperty Name="seqnr" ColumnName="seqnr" />
+                <ScalarProperty Name="data" ColumnName="data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblpbsfilename">
+            <EntityTypeMapping TypeName="nsdbData3060.tblpbsfilename">
+              <MappingFragment StoreEntitySet="tblpbsfilename">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="filename" ColumnName="filename" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="atime" ColumnName="atime" />
+                <ScalarProperty Name="mtime" ColumnName="mtime" />
+                <ScalarProperty Name="perm" ColumnName="perm" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
+                <ScalarProperty Name="gid" ColumnName="gid" />
+                <ScalarProperty Name="transmittime" ColumnName="transmittime" />
+                <ScalarProperty Name="pbsforsendelseid" ColumnName="pbsforsendelseid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblpbsforsendelse">
+            <EntityTypeMapping TypeName="nsdbData3060.tblpbsforsendelse">
+              <MappingFragment StoreEntitySet="tblpbsforsendelse">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="delsystem" ColumnName="delsystem" />
+                <ScalarProperty Name="leverancetype" ColumnName="leverancetype" />
+                <ScalarProperty Name="oprettetaf" ColumnName="oprettetaf" />
+                <ScalarProperty Name="oprettet" ColumnName="oprettet" />
+                <ScalarProperty Name="leveranceid" ColumnName="leveranceid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblpbsnetdir">
+            <EntityTypeMapping TypeName="nsdbData3060.tblpbsnetdir">
+              <MappingFragment StoreEntitySet="tblpbsnetdir">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="filename" ColumnName="filename" />
+                <ScalarProperty Name="size" ColumnName="size" />
+                <ScalarProperty Name="atime" ColumnName="atime" />
+                <ScalarProperty Name="mtime" ColumnName="mtime" />
+                <ScalarProperty Name="perm" ColumnName="perm" />
+                <ScalarProperty Name="uid" ColumnName="uid" />
+                <ScalarProperty Name="gid" ColumnName="gid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblRegnskab">
+            <EntityTypeMapping TypeName="nsdbData3060.tblRegnskab">
+              <MappingFragment StoreEntitySet="tblRegnskab">
+                <ScalarProperty Name="rid" ColumnName="rid" />
+                <ScalarProperty Name="Navn" ColumnName="Navn" />
+                <ScalarProperty Name="Oprettet" ColumnName="Oprettet" />
+                <ScalarProperty Name="Start" ColumnName="Start" />
+                <ScalarProperty Name="Slut" ColumnName="Slut" />
+                <ScalarProperty Name="DatoLaas" ColumnName="DatoLaas" />
+                <ScalarProperty Name="Firmanavn" ColumnName="Firmanavn" />
+                <ScalarProperty Name="Placering" ColumnName="Placering" />
+                <ScalarProperty Name="Eksportmappe" ColumnName="Eksportmappe" />
+                <ScalarProperty Name="TilPBS" ColumnName="TilPBS" />
+                <ScalarProperty Name="FraPBS" ColumnName="FraPBS" />
+                <ScalarProperty Name="Afsluttet" ColumnName="Afsluttet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblrykker">
+            <EntityTypeMapping TypeName="nsdbData3060.tblrykker">
+              <MappingFragment StoreEntitySet="tblrykker">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tilpbsid" ColumnName="tilpbsid" />
+                <ScalarProperty Name="betalingsdato" ColumnName="betalingsdato" />
+                <ScalarProperty Name="Nr" ColumnName="Nr" />
+                <ScalarProperty Name="faknr" ColumnName="faknr" />
+                <ScalarProperty Name="advistekst" ColumnName="advistekst" />
+                <ScalarProperty Name="advisbelob" ColumnName="advisbelob" />
+                <ScalarProperty Name="infotekst" ColumnName="infotekst" />
+                <ScalarProperty Name="rykkerdato" ColumnName="rykkerdato" />
+                <ScalarProperty Name="maildato" ColumnName="maildato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSchedule">
+            <EntityTypeMapping TypeName="nsdbData3060.tblSchedule">
+              <MappingFragment StoreEntitySet="tblSchedule">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="schedule" ColumnName="schedule" />
+                <ScalarProperty Name="jobname" ColumnName="jobname" />
+                <ScalarProperty Name="start" ColumnName="start" />
+                <ScalarProperty Name="end" ColumnName="end" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblsftp">
+            <EntityTypeMapping TypeName="nsdbData3060.tblsftp">
+              <MappingFragment StoreEntitySet="tblsftp">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="navn" ColumnName="navn" />
+                <ScalarProperty Name="host" ColumnName="host" />
+                <ScalarProperty Name="port" ColumnName="port" />
+                <ScalarProperty Name="user" ColumnName="user" />
+                <ScalarProperty Name="outbound" ColumnName="outbound" />
+                <ScalarProperty Name="inbound" ColumnName="inbound" />
+                <ScalarProperty Name="pincode" ColumnName="pincode" />
+                <ScalarProperty Name="certificate" ColumnName="certificate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSysinfo">
+            <EntityTypeMapping TypeName="nsdbData3060.tblSysinfo">
+              <MappingFragment StoreEntitySet="tblSysinfo">
+                <ScalarProperty Name="vkey" ColumnName="vkey" />
+                <ScalarProperty Name="val" ColumnName="val" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbltilpbs">
+            <EntityTypeMapping TypeName="nsdbData3060.tbltilpbs">
+              <MappingFragment StoreEntitySet="tbltilpbs">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="delsystem" ColumnName="delsystem" />
+                <ScalarProperty Name="leverancetype" ColumnName="leverancetype" />
+                <ScalarProperty Name="bilagdato" ColumnName="bilagdato" />
+                <ScalarProperty Name="pbsforsendelseid" ColumnName="pbsforsendelseid" />
+                <ScalarProperty Name="udtrukket" ColumnName="udtrukket" />
+                <ScalarProperty Name="leverancespecifikation" ColumnName="leverancespecifikation" />
+                <ScalarProperty Name="leverancedannelsesdato" ColumnName="leverancedannelsesdato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tempBetalforslag">
+            <EntityTypeMapping TypeName="nsdbData3060.tempBetalforslag">
+              <MappingFragment StoreEntitySet="tempBetalforslag">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="betalingsdato" ColumnName="betalingsdato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tempBetalforslaglinie">
+            <EntityTypeMapping TypeName="nsdbData3060.tempBetalforslaglinie">
+              <MappingFragment StoreEntitySet="tempBetalforslaglinie">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nr" ColumnName="Nr" />
+                <ScalarProperty Name="Betalforslagid" ColumnName="Betalforslagid" />
+                <ScalarProperty Name="advisbelob" ColumnName="advisbelob" />
+                <ScalarProperty Name="fakid" ColumnName="fakid" />
+                <ScalarProperty Name="bankregnr" ColumnName="bankregnr" />
+                <ScalarProperty Name="bankkontonr" ColumnName="bankkontonr" />
+                <ScalarProperty Name="faknr" ColumnName="faknr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tempKontforslag">
+            <EntityTypeMapping TypeName="nsdbData3060.tempKontforslag">
+              <MappingFragment StoreEntitySet="tempKontforslag">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="betalingsdato" ColumnName="betalingsdato" />
+                <ScalarProperty Name="bsh" ColumnName="bsh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tempKontforslaglinie">
+            <EntityTypeMapping TypeName="nsdbData3060.tempKontforslaglinie">
+              <MappingFragment StoreEntitySet="tempKontforslaglinie">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Nr" ColumnName="Nr" />
+                <ScalarProperty Name="Kontforslagid" ColumnName="Kontforslagid" />
+                <ScalarProperty Name="fradato" ColumnName="fradato" />
+                <ScalarProperty Name="advisbelob" ColumnName="advisbelob" />
+                <ScalarProperty Name="tildato" ColumnName="tildato" />
+                <ScalarProperty Name="tilmeldtpbs" ColumnName="tilmeldtpbs" />
+                <ScalarProperty Name="indmeldelse" ColumnName="indmeldelse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tempRykkerforslag">
+            <EntityTypeMapping TypeName="nsdbData3060.tempRykkerforslag">
+              <MappingFragment StoreEntitySet="tempRykkerforslag">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="betalingsdato" ColumnName="betalingsdato" />
+                <ScalarProperty Name="bsh" ColumnName="bsh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tempRykkerforslaglinie">
+            <EntityTypeMapping TypeName="nsdbData3060.tempRykkerforslaglinie">
+              <MappingFragment StoreEntitySet="tempRykkerforslaglinie">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Rykkerforslagid" ColumnName="Rykkerforslagid" />
+                <ScalarProperty Name="Nr" ColumnName="Nr" />
+                <ScalarProperty Name="faknr" ColumnName="faknr" />
+                <ScalarProperty Name="advistekst" ColumnName="advistekst" />
+                <ScalarProperty Name="advisbelob" ColumnName="advisbelob" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="jobqueueadd" FunctionName="nsdbData3060.Store.jobqueueadd" />
+          <FunctionImportMapping FunctionImportName="jobqueuecomplete" FunctionName="nsdbData3060.Store.jobqueuecomplete" />
+          <FunctionImportMapping FunctionImportName="UpdateMedlemStatus" FunctionName="nsdbData3060.Store.UpdateMedlemStatus" />
+          <FunctionImportMapping FunctionImportName="jobqueuenext_v2" FunctionName="nsdbData3060.Store.jobqueuenext_v2" />
+          <FunctionImportMapping FunctionImportName="GetSysinfo_v2" FunctionName="nsdbData3060.Store.GetSysinfo_v2" />
+          <FunctionImportMapping FunctionImportName="nextval_v2" FunctionName="nsdbData3060.Store.nextval_v2" />
+          <FunctionImportMapping FunctionImportName="OcrString_v2" FunctionName="nsdbData3060.Store.OcrString_v2" />
+          <FunctionImportMapping FunctionImportName="SendtSomString_v2" FunctionName="nsdbData3060.Store.SendtSomString_v2" />
+          <FunctionImportMapping FunctionImportName="kanRykkes_v2" FunctionName="nsdbData3060.Store.kanRykkes_v2" />
+          <FunctionImportMapping FunctionImportName="erMedlem_v2" FunctionName="nsdbData3060.Store.erMedlem_v2" />
+          <FunctionImportMapping FunctionImportName="indmeldtdato_2" FunctionName="nsdbData3060.Store.indmeldtdato_2" />
+          <FunctionImportMapping FunctionImportName="udmeldtdato_v2" FunctionName="nsdbData3060.Store.udmeldtdato_v2" />
+          <FunctionImportMapping FunctionImportName="kontingentdato_v2" FunctionName="nsdbData3060.Store.kontingentdato_v2" />
+          <FunctionImportMapping FunctionImportName="forfaldsdato_v2" FunctionName="nsdbData3060.Store.forfaldsdato_v2" />
+          <FunctionImportMapping FunctionImportName="erPBS_v2" FunctionName="nsdbData3060.Store.erPBS_v2" />
+          <EntitySetMapping Name="vAdvis_indbetalingskort">
+            <EntityTypeMapping TypeName="nsdbData3060.vAdvis_indbetalingskort">
+              <MappingFragment StoreEntitySet="vAdvis_indbetalingskort">
+                <ScalarProperty Name="regnr" ColumnName="regnr" />
+                <ScalarProperty Name="pbssektionnr" ColumnName="pbssektionnr" />
+                <ScalarProperty Name="belob" ColumnName="belob" />
+                <ScalarProperty Name="dato" ColumnName="dato" />
+                <ScalarProperty Name="indbetalerident" ColumnName="indbetalerident" />
+                <ScalarProperty Name="fikreditornr" ColumnName="fikreditornr" />
+                <ScalarProperty Name="kortartkode" ColumnName="kortartkode" />
+                <ScalarProperty Name="debgrpnr" ColumnName="debgrpnr" />
+                <ScalarProperty Name="debitorkonto" ColumnName="debitorkonto" />
+                <ScalarProperty Name="faknr" ColumnName="faknr" />
+                <ScalarProperty Name="Nr" ColumnName="Nr" />
+                <ScalarProperty Name="pbstranskode" ColumnName="pbstranskode" />
+                <ScalarProperty Name="frapbsid" ColumnName="frapbsid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
