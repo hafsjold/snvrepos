@@ -16,5 +16,6 @@ namespace nsPbs3060v2
     {
         public int Nr { get; set; }
         public Nullable<int> Pusterummet { get; set; }
+        public int id { get; set; }
     }
 }

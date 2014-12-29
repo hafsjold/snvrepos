@@ -36,6 +36,8 @@ namespace nsPbs3060v2
 
     public partial class dbData3060 : DbContext
     {
+
+
         public string GetSysinfo(string pvkey)
         {
             var pvalParameter = new ObjectParameter("pval", typeof(string));
@@ -110,6 +112,20 @@ namespace nsPbs3060v2
         {
             var ResultParameter = new ObjectParameter("Result", typeof(bool));
             var ret = this.erPBS_v2(pNr, ResultParameter);
+            return (bool)ResultParameter.Value;
+        }
+
+        public DateTime? tilbageførtkontingentdato(int? pNr)
+        {
+            var ResultParameter = new ObjectParameter("Result", typeof(DateTime?));
+            var ret = this.tilbageførtkontingentdato_v2(pNr, ResultParameter);
+            return (DateTime?)ResultParameter.Value;
+        }
+
+        public bool MedlemPusterummet(int? pNr)
+        {
+            var ResultParameter = new ObjectParameter("Result", typeof(bool));
+            var ret = this.MedlemPusterummet_v2(pNr, ResultParameter);
             return (bool)ResultParameter.Value;
         }
     }

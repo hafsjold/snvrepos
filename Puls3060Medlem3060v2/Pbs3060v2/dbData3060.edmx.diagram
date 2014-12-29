@@ -10,7 +10,6 @@
         <EntityTypeShape EntityType="nsdbData3060.tblAktivitet" Width="1.5" PointX="7.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="nsdbData3060.tblbanker" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="nsdbData3060.tblbet" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="nsdbData3060.tblbetalingsidentifikation" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="nsdbData3060.tblbetlin" Width="1.5" PointX="7.5" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="nsdbData3060.tblfak" Width="1.5" PointX="5.25" PointY="24.25" IsExpanded="true" />
         <EntityTypeShape EntityType="nsdbData3060.tblfrapbs" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
@@ -61,6 +60,9 @@
         <AssociationConnector Association="nsdbData3060.FK_tempKontforslag_tempKontforslaglinie" ManuallyRouted="false" />
         <AssociationConnector Association="nsdbData3060.FK_tempRykkerforslag_tempRykkerforslaglinie" ManuallyRouted="false" />
         <EntityTypeShape EntityType="nsdbData3060.vAdvis_indbetalingskort" Width="1.5" PointX="17.375" PointY="14.75" />
+        <EntityTypeShape EntityType="nsdbData3060.vMedlemLog" Width="1.5" PointX="17.375" PointY="0.75" />
+        <EntityTypeShape EntityType="nsdbData3060.tblbetalingsidentifikation" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="nsdbData3060.vPusterummet" Width="1.5" PointX="12.375" PointY="18.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

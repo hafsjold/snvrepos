@@ -15,11 +15,10 @@ namespace nsPbs3060v2
     public partial class tblbetalingsidentifikation
     {
         public int id { get; set; }
-        public Nullable<int> Nr { get; set; }
-        public string Navn { get; set; }
-        public Nullable<System.DateTime> betalingsdato { get; set; }
-        public Nullable<decimal> belob { get; set; }
-        public Nullable<int> sagsnr { get; set; }
         public string betalingsidentifikation { get; set; }
+        public Nullable<decimal> belob { get; set; }
+        public Nullable<System.DateTime> betalingsdato { get; set; }
+        public Nullable<int> Nr { get; set; }
+        public Nullable<int> bogfkonto { get; set; }
     }
 }
