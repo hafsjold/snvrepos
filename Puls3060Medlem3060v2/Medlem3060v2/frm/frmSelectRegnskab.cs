@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Microsoft.Win32;
 
-namespace nsPuls3060
+namespace nsPuls3060v2
 {
     public partial class frmSelectRegnskab : Form
     {

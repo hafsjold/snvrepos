@@ -1,4 +1,4 @@
-﻿namespace nsPuls3060
+﻿namespace nsPuls3060v2
 {
     partial class FrmPbsfiles
     {

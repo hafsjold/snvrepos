@@ -6,7 +6,7 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 
-namespace nsPuls3060
+namespace nsPuls3060v2
 {
     public class recKontoplan
     {

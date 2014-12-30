@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medlem3060v2BatchJob", "Med
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pbs3060v2", "Pbs3060v2\Pbs3060v2.csproj", "{A3D74814-2975-48BA-BE60-579126D91EB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medlem3060", "Medlem3060v2\Medlem3060.csproj", "{8CCA55A9-515D-4149-A500-78F3923C92D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medlem3060v2", "Medlem3060v2\Medlem3060v2.csproj", "{8CCA55A9-515D-4149-A500-78F3923C92D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

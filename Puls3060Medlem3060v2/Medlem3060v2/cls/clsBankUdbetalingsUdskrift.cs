@@ -10,7 +10,7 @@ using nsPbs3060v2;
 using System.IO;
 
 
-namespace nsPuls3060
+namespace nsPuls3060v2
 {
     class clsBankUdbetalingsUdskrift
     {

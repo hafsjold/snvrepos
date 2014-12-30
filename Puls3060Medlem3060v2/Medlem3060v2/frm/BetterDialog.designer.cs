@@ -60,7 +60,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.pictureBox1.Image = global::nsPuls3060.Properties.Resources.Message_info;
+            this.pictureBox1.Image = global::nsPuls3060v2.Properties.Resources.Message_info;
             this.pictureBox1.Location = new System.Drawing.Point(30, 19);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 11, 3, 3);
             this.pictureBox1.Name = "pictureBox1";

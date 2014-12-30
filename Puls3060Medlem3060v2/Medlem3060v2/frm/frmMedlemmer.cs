@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using nsPbs3060v2;
 
-namespace nsPuls3060
+namespace nsPuls3060v2
 {
     public partial class FrmMedlemmer : Form
     {
@@ -469,7 +469,7 @@ namespace nsPuls3060
                     null, //smallString
                     null, //leftButton
                     "OK", //rightButton
-                    global::nsPuls3060.Properties.Resources.Message_info); //iconSet
+                    global::nsPuls3060v2.Properties.Resources.Message_info); //iconSet
             }
             else
             {

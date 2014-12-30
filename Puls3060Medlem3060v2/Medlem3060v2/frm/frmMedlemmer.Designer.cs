@@ -1,4 +1,4 @@
-﻿namespace nsPuls3060
+﻿namespace nsPuls3060v2
 {
     partial class FrmMedlemmer
     {
@@ -43,7 +43,7 @@
             this.fodtDatoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bankDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kartotekBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dsMedlem = new nsPuls3060.dsMedlem();
+            this.dsMedlem = new nsPuls3060v2.dsMedlem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.panelAdd = new System.Windows.Forms.Panel();
             this.I_Indmeldelse = new System.Windows.Forms.CheckBox();
@@ -275,7 +275,7 @@
             // 
             // splitContainer1
             // 
-            this.splitContainer1.DataBindings.Add(new System.Windows.Forms.Binding("SplitterDistance", global::nsPuls3060.Properties.Settings.Default, "frmMedlemmerSplitteDist", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.splitContainer1.DataBindings.Add(new System.Windows.Forms.Binding("SplitterDistance", global::nsPuls3060v2.Properties.Settings.Default, "frmMedlemmerSplitteDist", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 24);
             this.splitContainer1.Name = "splitContainer1";
@@ -291,7 +291,7 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dataGridView1);
             this.splitContainer1.Size = new System.Drawing.Size(845, 584);
-            this.splitContainer1.SplitterDistance = global::nsPuls3060.Properties.Settings.Default.frmMedlemmerSplitteDist;
+            this.splitContainer1.SplitterDistance = global::nsPuls3060v2.Properties.Settings.Default.frmMedlemmerSplitteDist;
             this.splitContainer1.TabIndex = 0;
             this.splitContainer1.TabStop = false;
             // 
@@ -1205,7 +1205,7 @@
             // bindingNavigatorAddUpdateItem
             // 
             this.bindingNavigatorAddUpdateItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddUpdateItem.Image = global::nsPuls3060.Properties.Resources.Upd;
+            this.bindingNavigatorAddUpdateItem.Image = global::nsPuls3060v2.Properties.Resources.Upd;
             this.bindingNavigatorAddUpdateItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.bindingNavigatorAddUpdateItem.Name = "bindingNavigatorAddUpdateItem";
             this.bindingNavigatorAddUpdateItem.Size = new System.Drawing.Size(23, 22);
@@ -1215,7 +1215,7 @@
             // bindingNavigatorAddNewItem
             // 
             this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = global::nsPuls3060.Properties.Resources.Add;
+            this.bindingNavigatorAddNewItem.Image = global::nsPuls3060v2.Properties.Resources.Add;
             this.bindingNavigatorAddNewItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
@@ -1246,13 +1246,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = global::nsPuls3060.Properties.Settings.Default.frmMedlemmerSize;
+            this.ClientSize = global::nsPuls3060v2.Properties.Settings.Default.frmMedlemmerSize;
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsPuls3060.Properties.Settings.Default, "frmMedlemmerPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::nsPuls3060.Properties.Settings.Default, "frmMedlemmerSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.Location = global::nsPuls3060.Properties.Settings.Default.frmMedlemmerPoint;
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsPuls3060v2.Properties.Settings.Default, "frmMedlemmerPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::nsPuls3060v2.Properties.Settings.Default, "frmMedlemmerSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.Location = global::nsPuls3060v2.Properties.Settings.Default.frmMedlemmerPoint;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmMedlemmer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;

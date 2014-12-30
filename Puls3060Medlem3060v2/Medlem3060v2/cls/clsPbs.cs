@@ -12,7 +12,7 @@ using Microsoft.VisualBasic;
 using System.Transactions;
 using System.Text.RegularExpressions;
 
-namespace nsPuls3060
+namespace nsPuls3060v2
 {
     public class clsLog
     {

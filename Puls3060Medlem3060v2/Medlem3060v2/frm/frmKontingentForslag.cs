@@ -9,7 +9,7 @@ using System.Windows.Forms;
 using System.Collections;
 using nsPbs3060v2;
 
-namespace nsPuls3060
+namespace nsPuls3060v2
 {
     public partial class FrmKontingentForslag : Form
     {

@@ -1,4 +1,4 @@
-﻿namespace nsPuls3060
+﻿namespace nsPuls3060v2
 {
     partial class FrmMedlemExtra
     {
@@ -218,8 +218,8 @@
             this.ClientSize = new System.Drawing.Size(352, 304);
             this.Controls.Add(this.tblMedlemExtraDataGridView);
             this.Controls.Add(this.bntblMedlemExtra);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsPuls3060.Properties.Settings.Default, "frmMedlemExtraPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.Location = global::nsPuls3060.Properties.Settings.Default.frmMedlemExtraPoint;
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsPuls3060v2.Properties.Settings.Default, "frmMedlemExtraPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.Location = global::nsPuls3060v2.Properties.Settings.Default.frmMedlemExtraPoint;
             this.Name = "FrmMedlemExtra";
             this.Text = "MedlemExtra";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMedlemExtra_FormClosing);

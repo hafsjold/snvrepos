@@ -11,7 +11,7 @@ using System.Diagnostics;
 
 
 
-namespace nsPuls3060
+namespace nsPuls3060v2
 {
     static class Program
     {
@@ -23,7 +23,7 @@ namespace nsPuls3060
                 if (m_ConnectStringWithoutPassword == null)
                 {
 #if (DEBUG)
-                    m_ConnectStringWithoutPassword = global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString_Test;
+                    m_ConnectStringWithoutPassword = global::nsPuls3060v2.Properties.Settings.Default.puls3061_dk_dbConnectionString_Test;
                     //m_ConnectStringWithoutPassword = global::nsPuls3060.Properties.Settings.Default.test_dbConnectionString_Test;
 #else
                     m_ConnectStringWithoutPassword = global::nsPuls3060.Properties.Settings.Default.puls3061_dk_dbConnectionString_Prod;
@@ -39,7 +39,7 @@ namespace nsPuls3060
         public static string dbConnectionString()
         {
             DialogResult res = DialogResult.OK;
-            m_Password = global::nsPuls3060.Properties.Settings.Default.UserPassword;
+            m_Password = global::nsPuls3060v2.Properties.Settings.Default.UserPassword;
             if (Unprotect(m_Password) == null)
                 res = (new FrmPassword()).ShowDialog();
             if (res != DialogResult.OK) return null;

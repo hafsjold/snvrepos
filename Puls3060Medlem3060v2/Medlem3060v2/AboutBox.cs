@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using System.Deployment.Application;
 
-namespace nsPuls3060
+namespace nsPuls3060v2
 {
     partial class AboutBox : Form
     {

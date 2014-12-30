@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using nsPbs3060v2;
 
-namespace nsPuls3060
+namespace nsPuls3060v2
 {
     class clsSumma
     {

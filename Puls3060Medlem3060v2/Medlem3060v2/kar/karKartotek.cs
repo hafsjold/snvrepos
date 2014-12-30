@@ -5,7 +5,7 @@ using System.Text;
 using System.IO;
 using System.Threading;
 
-namespace nsPuls3060
+namespace nsPuls3060v2
 {
     public class KarKartotek : List<clsKartotek>
     {

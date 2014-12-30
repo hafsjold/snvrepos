@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Data.Linq.Mapping;
 
-namespace nsPuls3060
+namespace nsPuls3060v2
 {
     public partial class clsKartotek
     {
@@ -217,9 +217,9 @@ namespace nsPuls3060
             m_Csv.ln = CsvString;
             m_Csv.todo = CsvToDoType.fdUpdateClsKartotek;
 
-            clsCsv.KartotekFieldUpdate += new nsPuls3060.clsCsv.KartotekFieldUpdateHandler(On_KartotekFieldUpdate);
+            clsCsv.KartotekFieldUpdate += new nsPuls3060v2.clsCsv.KartotekFieldUpdateHandler(On_KartotekFieldUpdate);
             ParseCsvString(ref m_Csv);
-            clsCsv.KartotekFieldUpdate -= new nsPuls3060.clsCsv.KartotekFieldUpdateHandler(On_KartotekFieldUpdate);
+            clsCsv.KartotekFieldUpdate -= new nsPuls3060v2.clsCsv.KartotekFieldUpdateHandler(On_KartotekFieldUpdate);
         }
 
         private void On_KartotekFieldUpdate()

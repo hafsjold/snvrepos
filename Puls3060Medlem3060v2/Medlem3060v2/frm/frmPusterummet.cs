@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.Entity;
 
-namespace nsPuls3060
+namespace nsPuls3060v2
 {
     public partial class FrmPusterummet : Form
     {
