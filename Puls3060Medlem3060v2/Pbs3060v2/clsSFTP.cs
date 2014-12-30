@@ -25,9 +25,9 @@ namespace nsPbs3060v2
         public clsSFTP(dbData3060 p_dbData3060)
         {
 #if (DEBUG)
-            m_rec_sftp = (from s in p_dbData3060.tblsftp where s.navn == "TestHD36" select s).First();
+            //m_rec_sftp = (from s in p_dbData3060.tblsftp where s.navn == "TestHD36" select s).First();
             //m_rec_sftp = (from s in p_dbData3060.tblsftp where s.navn == "Test" select s).First();
-            //m_rec_sftp = (from s in p_dbData3060.tblsftp where s.navn == "Produktion" select s).First();
+            m_rec_sftp = (from s in p_dbData3060.tblsftp where s.navn == "Produktion" select s).First();
 #else
             //m_rec_sftp = (from s in p_dbData3060.tblsftp where s.navn == "Test" select s).First();
             m_rec_sftp = (from s in p_dbData3060.tblsftp where s.navn == "Produktion" select s).First();

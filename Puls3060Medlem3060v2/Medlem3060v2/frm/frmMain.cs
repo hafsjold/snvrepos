@@ -12,9 +12,6 @@ using System.IO;
 using Excel;
 using nsPbs3060v2;
 using System.Diagnostics;
-using Spire.Pdf;
-using Spire.Pdf.Graphics;
-
 
 namespace nsPuls3060v2
 {
@@ -410,6 +407,11 @@ namespace nsPuls3060v2
         private void regnearkManagementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             excelManagement();
+        }
+
+        private void pBSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
 
     }

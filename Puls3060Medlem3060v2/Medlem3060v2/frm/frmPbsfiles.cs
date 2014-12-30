@@ -42,7 +42,7 @@ namespace nsPuls3060v2
                           Leveranceid = (int?)f.leveranceid,
                           Transmittime = (DateTime?)p.transmittime
                       };
-            bindingSource1.DataSource = qry;
+            bindingSource1.DataSource = qry.ToArray();
             dataGridView1.DataSource = bindingSource1;
 
             // Grid attributes 
@@ -66,7 +66,7 @@ namespace nsPuls3060v2
                           Akt_dato = i.Akt_dato
                       };
 
-            bindingSource1.DataSource = qry;
+            bindingSource1.DataSource = qry.ToArray();
             dataGridView1.DataSource = bindingSource1;
 
             // Grid attributes 
@@ -93,7 +93,7 @@ namespace nsPuls3060v2
                           file = f.filename,
                           data = p.data
                       };
-            bindingSource1.DataSource = qry;
+            bindingSource1.DataSource = qry.ToArray();
             dataGridView1.DataSource = bindingSource1;
 
             // Grid attributes 
@@ -105,7 +105,7 @@ namespace nsPuls3060v2
         {
             m_listfile = false;
             this.Text = "Pbsforsendelse";
-            bindingSource1.DataSource = Program.dbData3060.tblpbsforsendelse;
+            bindingSource1.DataSource = Program.dbData3060.tblpbsforsendelse.ToArray();
             dataGridView1.DataSource = bindingSource1;
 
             // Grid attributes 
