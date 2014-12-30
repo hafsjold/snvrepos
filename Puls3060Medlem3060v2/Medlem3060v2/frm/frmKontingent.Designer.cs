@@ -1,4 +1,4 @@
-﻿namespace nsPuls3060
+﻿namespace nsPuls3060v2
 {
     partial class FrmKontingent
     {
@@ -202,14 +202,14 @@
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6});
-            this.tblKontingentDataGridView.DataBindings.Add(new System.Windows.Forms.Binding("Size", global::nsPuls3060.Properties.Settings.Default, "tblKontingentDateGridViewSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.tblKontingentDataGridView.DataBindings.Add(new System.Windows.Forms.Binding("RowHeadersWidth", global::nsPuls3060.Properties.Settings.Default, "tblKontingentDataGridViewRowHeadersWidth", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tblKontingentDataGridView.DataBindings.Add(new System.Windows.Forms.Binding("Size", global::nsPuls3060v2.Properties.Settings.Default, "tblKontingentDateGridViewSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.tblKontingentDataGridView.DataBindings.Add(new System.Windows.Forms.Binding("RowHeadersWidth", global::nsPuls3060v2.Properties.Settings.Default, "tblKontingentDataGridViewRowHeadersWidth", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.tblKontingentDataGridView.DataSource = this.bsKontingent;
             this.tblKontingentDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblKontingentDataGridView.Location = new System.Drawing.Point(0, 0);
             this.tblKontingentDataGridView.Name = "tblKontingentDataGridView";
-            this.tblKontingentDataGridView.RowHeadersWidth = global::nsPuls3060.Properties.Settings.Default.tblKontingentDataGridViewRowHeadersWidth;
-            this.tblKontingentDataGridView.Size = global::nsPuls3060.Properties.Settings.Default.tblKontingentDateGridViewSize;
+            this.tblKontingentDataGridView.RowHeadersWidth = global::nsPuls3060v2.Properties.Settings.Default.tblKontingentDataGridViewRowHeadersWidth;
+            this.tblKontingentDataGridView.Size = global::nsPuls3060v2.Properties.Settings.Default.tblKontingentDateGridViewSize;
             this.tblKontingentDataGridView.TabIndex = 1;
             // 
             // dataGridViewTextBoxColumn1
@@ -278,12 +278,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = global::nsPuls3060.Properties.Settings.Default.frmKontingentSize;
+            this.ClientSize = global::nsPuls3060v2.Properties.Settings.Default.frmKontingentSize;
             this.Controls.Add(this.tblKontingentDataGridView);
             this.Controls.Add(this.bnKontingent);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsPuls3060.Properties.Settings.Default, "frmKontingentPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::nsPuls3060.Properties.Settings.Default, "frmKontingentSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.Location = global::nsPuls3060.Properties.Settings.Default.frmKontingentPoint;
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsPuls3060v2.Properties.Settings.Default, "frmKontingentPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::nsPuls3060v2.Properties.Settings.Default, "frmKontingentSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.Location = global::nsPuls3060v2.Properties.Settings.Default.frmKontingentPoint;
             this.Name = "FrmKontingent";
             this.Text = "Kontingent";
             this.Load += new System.EventHandler(this.FrmKontingent_Load);

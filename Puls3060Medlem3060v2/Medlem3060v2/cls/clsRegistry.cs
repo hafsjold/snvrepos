@@ -2,7 +2,7 @@ using System;
 using Microsoft.Win32;      
 using System.Windows.Forms;
 
-namespace nsPuls3060
+namespace nsPuls3060v2
 {
 	public class clsRegistry
 	{

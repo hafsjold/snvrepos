@@ -1,4 +1,4 @@
-﻿namespace nsPuls3060
+﻿namespace nsPuls3060v2
 {
     partial class FrmPbsnetdir
     {
@@ -254,12 +254,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = global::nsPuls3060.Properties.Settings.Default.frmPbsnetdirSize;
+            this.ClientSize = global::nsPuls3060v2.Properties.Settings.Default.frmPbsnetdirSize;
             this.Controls.Add(this.memPbsnetdirDataGridView);
             this.Controls.Add(this.bNavMemPbsnetdir);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::nsPuls3060.Properties.Settings.Default, "frmPbsnetdirSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsPuls3060.Properties.Settings.Default, "frmPbsnetdirPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.Location = global::nsPuls3060.Properties.Settings.Default.frmPbsnetdirPoint;
+            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::nsPuls3060v2.Properties.Settings.Default, "frmPbsnetdirSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsPuls3060v2.Properties.Settings.Default, "frmPbsnetdirPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.Location = global::nsPuls3060v2.Properties.Settings.Default.frmPbsnetdirPoint;
             this.Name = "FrmPbsnetdir";
             this.Text = "PBS Filer";
             this.Load += new System.EventHandler(this.FrmPbsnetdir_Load);

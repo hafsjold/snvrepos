@@ -16,7 +16,7 @@ using Spire.Pdf;
 using Spire.Pdf.Graphics;
 
 
-namespace nsPuls3060
+namespace nsPuls3060v2
 {
     public partial class FrmMain : Form
     {
@@ -40,7 +40,7 @@ namespace nsPuls3060
                     null, //smallString
                     null, //leftButton
                     "OK", //rightButton
-                    global::nsPuls3060.Properties.Resources.Message_info); //iconSet
+                    global::nsPuls3060v2.Properties.Resources.Message_info); //iconSet
                 this.Close();
             }
 
@@ -53,7 +53,7 @@ namespace nsPuls3060
                     null, //smallString
                     null, //leftButton
                     "OK", //rightButton
-                    global::nsPuls3060.Properties.Resources.Message_info); //iconSet
+                    global::nsPuls3060v2.Properties.Resources.Message_info); //iconSet
                 this.Close();
             }
             else
@@ -272,7 +272,7 @@ namespace nsPuls3060
                 smallString, //smallString
                 null, //leftButton
                 "OK", //rightButton
-                global::nsPuls3060.Properties.Resources.Message_info); //iconSet
+                global::nsPuls3060v2.Properties.Resources.Message_info); //iconSet
 
         }
 

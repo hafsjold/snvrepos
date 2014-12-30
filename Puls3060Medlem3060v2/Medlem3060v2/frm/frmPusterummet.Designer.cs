@@ -1,4 +1,4 @@
-﻿namespace nsPuls3060
+﻿namespace nsPuls3060v2
 {
     partial class FrmPusterummet
     {
@@ -244,8 +244,8 @@
             this.ClientSize = new System.Drawing.Size(556, 279);
             this.Controls.Add(this.vPusterummetDataGridView);
             this.Controls.Add(this.bNavvPusterummet);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsPuls3060.Properties.Settings.Default, "frmPusterummetPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.Location = global::nsPuls3060.Properties.Settings.Default.frmPusterummetPoint;
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsPuls3060v2.Properties.Settings.Default, "frmPusterummetPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.Location = global::nsPuls3060v2.Properties.Settings.Default.frmPusterummetPoint;
             this.Name = "FrmPusterummet";
             this.Text = "Pusterummet";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmPusterummet_FormClosing);

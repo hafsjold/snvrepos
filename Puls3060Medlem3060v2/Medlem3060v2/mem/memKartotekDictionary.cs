@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace nsPuls3060
+namespace nsPuls3060v2
 {
     public class clsField
     {

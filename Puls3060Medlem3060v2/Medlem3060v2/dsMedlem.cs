@@ -4,7 +4,7 @@ using System.Data;
 using nsPbs3060v2;
 using System.Data.Entity;
 
-namespace nsPuls3060
+namespace nsPuls3060v2
 {
     public partial class dsMedlem
     {

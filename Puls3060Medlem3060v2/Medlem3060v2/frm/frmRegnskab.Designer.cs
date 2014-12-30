@@ -1,4 +1,4 @@
-﻿namespace nsPuls3060
+﻿namespace nsPuls3060v2
 {
     partial class FrmRegnskab
     {
@@ -179,7 +179,7 @@
             // 
             // bsRegnskab
             // 
-            this.bsRegnskab.DataSource = typeof(nsPuls3060.recRegnskaber);
+            this.bsRegnskab.DataSource = typeof(nsPuls3060v2.recRegnskaber);
             // 
             // Navn
             // 
@@ -370,7 +370,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = global::nsPuls3060.Properties.Settings.Default.frmRegnskabSize;
+            this.ClientSize = global::nsPuls3060v2.Properties.Settings.Default.frmRegnskabSize;
             this.Controls.Add(this.bnRegnskab);
             this.Controls.Add(this.Afsluttet);
             this.Controls.Add(this.FraPBS);
@@ -394,16 +394,16 @@
             this.Controls.Add(this.label_Oprettet);
             this.Controls.Add(this.label_Navn);
             this.Controls.Add(this.label_Rid);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("WindowState", global::nsPuls3060.Properties.Settings.Default, "frmRegnskabState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::nsPuls3060.Properties.Settings.Default, "frmRegnskabSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsPuls3060.Properties.Settings.Default, "frmRegnskabPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.Location = global::nsPuls3060.Properties.Settings.Default.frmRegnskabPoint;
+            this.DataBindings.Add(new System.Windows.Forms.Binding("WindowState", global::nsPuls3060v2.Properties.Settings.Default, "frmRegnskabState", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::nsPuls3060v2.Properties.Settings.Default, "frmRegnskabSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::nsPuls3060v2.Properties.Settings.Default, "frmRegnskabPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.Location = global::nsPuls3060v2.Properties.Settings.Default.frmRegnskabPoint;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmRegnskab";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Regnskab";
-            this.WindowState = global::nsPuls3060.Properties.Settings.Default.frmRegnskabState;
+            this.WindowState = global::nsPuls3060v2.Properties.Settings.Default.frmRegnskabState;
             this.Load += new System.EventHandler(this.FrmRegnskab_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmRegnskab_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.bsRegnskab)).EndInit();

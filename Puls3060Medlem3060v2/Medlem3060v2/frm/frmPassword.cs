@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace nsPuls3060
+namespace nsPuls3060v2
 {
     public partial class FrmPassword : Form
     {
@@ -20,9 +20,9 @@ namespace nsPuls3060
         {
             Program.Password = Program.Protect( this.password.Text);
             if (this.checkSavePassword.Checked) 
-                global::nsPuls3060.Properties.Settings.Default.UserPassword = Program.Password;
+                global::nsPuls3060v2.Properties.Settings.Default.UserPassword = Program.Password;
             else
-                global::nsPuls3060.Properties.Settings.Default.UserPassword = "";
+                global::nsPuls3060v2.Properties.Settings.Default.UserPassword = "";
         }
 
         private void cmdOK_Click(object sender, EventArgs e)

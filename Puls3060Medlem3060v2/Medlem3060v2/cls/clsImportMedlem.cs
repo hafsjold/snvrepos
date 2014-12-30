@@ -7,7 +7,7 @@ using System.Threading;
 using System.Data;
 using Excel;
 
-namespace nsPuls3060
+namespace nsPuls3060v2
 {
     public class recImportMedlem
     {

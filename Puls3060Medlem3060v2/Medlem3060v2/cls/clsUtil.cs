@@ -12,7 +12,7 @@ using System.Collections;
 using System.Text.RegularExpressions;
 using System.Data.Entity.Core.Objects;
 
-namespace nsPuls3060
+namespace nsPuls3060v2
 {
     public class ColumnSorter : IComparer
     {

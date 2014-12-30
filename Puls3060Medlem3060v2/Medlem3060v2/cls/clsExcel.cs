@@ -12,7 +12,7 @@ using System.Net;
 using System.Net.Mail;
 using Excel;
 
-namespace nsPuls3060
+namespace nsPuls3060v2
 {
     public partial class FrmMain : Form
     {
