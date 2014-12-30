@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Data.Entity;
 
 namespace nsPuls3060v2
 {
@@ -18,7 +19,8 @@ namespace nsPuls3060v2
 
         private void FrmMedlemExtra_Load(object sender, EventArgs e)
         {
-            this.bstblMedlemExtra.DataSource = Program.dbData3060.tblMedlemExtra;
+            Program.dbData3060.tblMedlemExtra.Load() ;
+            this.bstblMedlemExtra.DataSource = Program.dbData3060.tblMedlemExtra.Local;
         }
 
         private void FrmMedlemExtra_FormClosing(object sender, FormClosingEventArgs e)

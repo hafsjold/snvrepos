@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Data.Entity;
 
 namespace nsPuls3060v2
 {
@@ -18,7 +19,8 @@ namespace nsPuls3060v2
 
         private void FrmInfotekst_Load(object sender, EventArgs e)
         {
-            this.bsInfotekst.DataSource = Program.dbData3060.tblinfotekst;
+            Program.dbData3060.tblinfotekst.Load();
+            this.bsInfotekst.DataSource = Program.dbData3060.tblinfotekst.Local;
         }
     }
 }

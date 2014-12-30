@@ -137,24 +137,6 @@ namespace nsPuls3060v2
             this.FodtDato.ReadOnly = val;
         }
 
-        //private void cmdUpdate_Click(object sender, EventArgs e)
-        //{
-        //    int tblMedlem_nr = int.Parse(this.Nr.Text);
-        //    //this.dsMedlem.savedsMedlem();
-        //
-        //    this.dataGridView1.Update();
-        //    SortOrder cc = this.dataGridView1.SortOrder;
-        //    this.dataGridView1.Sort(this.dataGridView1.SortedColumn, ListSortDirection.Ascending);
-        //    foreach (DataGridViewRow r in this.dataGridView1.Rows)
-        //    {
-        //        if (r.Cells[0].Value.ToString() == tblMedlem_nr.ToString())
-        //{
-        //            int ci = dataGridView1.CurrentCell.ColumnIndex;
-        //            dataGridView1.CurrentCell = r.Cells[ci];
-        //        }
-        //    }
-        //}
-
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if ((e.RowIndex == -1) && (e.ColumnIndex != -1))//if both -1, it is the "select all" corner 
