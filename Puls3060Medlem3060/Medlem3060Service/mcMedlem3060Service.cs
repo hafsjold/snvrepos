@@ -23,7 +23,8 @@ namespace nsMedlem3060Service
         LoadSchedule,
         KontingentNyeMedlemmer,
         SendEmailRykker,
-        UpdateMedlemStatus
+        UpdateMedlemStatus,
+        SendEmailAdvis
     }
 
     public partial class mcMedlem3060Service : ServiceBase
@@ -132,9 +133,10 @@ namespace nsMedlem3060Service
                             clsPbs686 objPbs686 = new clsPbs686();
                             int Antal686Filer = objPbs686.aftaleoplysninger_fra_pbs(m_dbData3060);
                             objPbs686 = null;
+                            
+                            break;
 
-                            if (Antal686Filer > 0)
-                            {
+                        case enumTask.SendEmailAdvis:
                                 clsPbs601 objPbs601a = new clsPbs601();
                                 Tuple<int, int> tresult = objPbs601a.advis_auto(m_dbData3060);
                                 int AntalAdvis = tresult.Item1;
@@ -142,8 +144,6 @@ namespace nsMedlem3060Service
                                 if ((AntalAdvis > 0))
                                     objPbs601a.advis_email(m_dbData3060, lobnra);
                                 objPbs601a = null;
-                            }
-
                             break;
 
                         case enumTask.ProcessType602Files:
