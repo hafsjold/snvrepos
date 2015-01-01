@@ -75,6 +75,7 @@ namespace nsPbs3060
                     };
                     rec_tilpbs.tbladvis.Add(rec_advis);
                     wantaladvis++;
+                    if (wantaladvis >= 30) break; //max 30 advis på gang
                 }
                 p_dbData3060.SubmitChanges();
             }
@@ -227,6 +228,7 @@ namespace nsPbs3060
                     };
                     memRyk.Add(rec);
                     wantalrykkere++;
+                    if (wantalrykkere >= 30) break; //max 30 rykkere på gang
                 }
             }
 
@@ -322,6 +324,7 @@ namespace nsPbs3060
                 };
                 rec_tilpbs.tblrykkers.Add(rec_rykker);
                 wantalrykkere++;
+                if (wantalrykkere >= 30) break; //max 30 rykkere på gang
             }
             p_dbData3060.SubmitChanges();
             return new Tuple<int, int>(wantalrykkere, lobnr);
