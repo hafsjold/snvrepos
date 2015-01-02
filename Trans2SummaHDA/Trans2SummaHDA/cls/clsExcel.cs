@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
 using System.IO;
-using Excel;
+using _Excel = Microsoft.Office.Interop.Excel;
 using System.Globalization;
 using System.Threading;
 
@@ -21,15 +21,15 @@ namespace Trans2SummaHDA
             DateTime pReadDate = DateTime.Now;
             string pSheetName = "Poster";
 
-            Excel.Application oXL = null; ;
-            Excel._Workbook oWB;
-            Excel._Worksheet oSheetPoster;
-            Excel._Worksheet oSheetRegnskab;
-            Excel.Window oWindow;
-            Excel.Range oRng;
+            _Excel.Application oXL = null; ;
+            _Excel._Workbook oWB;
+            _Excel._Worksheet oSheetPoster;
+            _Excel._Worksheet oSheetRegnskab;
+            _Excel.Window oWindow;
+            _Excel.Range oRng;
 
             var rec_regnskab = Program.qryAktivRegnskab();
-            string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xls";
+            string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xlsx";
 
 
             var JournalPoster = from h in Program.karPosteringer
@@ -56,13 +56,13 @@ namespace Trans2SummaHDA
                 try
                 {
                     //Start Excel and get Application object.
-                    oXL = new Excel.Application();
+                    oXL = new _Excel.Application();
                     //oXL.Visible = false;
                     oXL.Visible = true; //For debug
 
                     //Get a new workbook.
                     oWB = oXL.Workbooks.Add((Missing.Value));
-                    oSheetPoster = (Excel._Worksheet)oWB.ActiveSheet;
+                    oSheetPoster = (_Excel._Worksheet)oWB.ActiveSheet;
                     oWindow = oXL.ActiveWindow;
 
                     if (pSheetName.Length > 0) oSheetPoster.Name = pSheetName.Substring(0, pSheetName.Length > 34 ? 34 : pSheetName.Length);
@@ -103,7 +103,7 @@ namespace Trans2SummaHDA
                         }
                     }
 
-                    oRng = (Excel.Range)oSheetPoster.Rows[1, Missing.Value];
+                    oRng = (_Excel.Range)oSheetPoster.Rows[1, Missing.Value];
                     oRng.Font.Name = "Arial";
                     oRng.Font.Size = 12;
                     oRng.Font.Strikethrough = false;
@@ -112,8 +112,8 @@ namespace Trans2SummaHDA
                     oRng.Font.OutlineFont = false;
                     oRng.Font.Shadow = false;
                     oRng.Font.Bold = true;
-                    oRng.HorizontalAlignment = Excel.Constants.xlCenter;
-                    oRng.VerticalAlignment = Excel.Constants.xlBottom;
+                    oRng.HorizontalAlignment = _Excel.Constants.xlCenter;
+                    oRng.VerticalAlignment = _Excel.Constants.xlBottom;
                     oRng.WrapText = false;
                     oRng.Orientation = 0;
                     oRng.AddIndent = false;
@@ -133,14 +133,17 @@ namespace Trans2SummaHDA
                     oSheetPoster.get_Range("A1", Missing.Value).Select();
 
 
-                    oSheetRegnskab = (Excel._Worksheet)oWB.Worksheets.Add(System.Type.Missing, System.Type.Missing, System.Type.Missing, System.Type.Missing);
+                    oSheetRegnskab = (_Excel._Worksheet)oWB.Worksheets.Add(System.Type.Missing, System.Type.Missing, System.Type.Missing, System.Type.Missing);
 
                     //oXL.Visible = true; //For debug
 
-                    PivotField _pvtField = null;
-                    PivotTable _pivot = oSheetPoster.PivotTableWizard(
-                        XlPivotTableSourceType.xlDatabase,  //SourceType
-                        oSheetPoster.get_Range(oSheetPoster.Cells[1, 1], oSheetPoster.Cells[row, 9]), //SourceData
+                    _Excel.Range x1 = oSheetPoster.Cells[1, 1];
+                    _Excel.Range x2 = oSheetPoster.Cells[row, 9];
+                    _Excel.Range xx = oSheetPoster.get_Range(x1, x2);
+                    _Excel.PivotField _pvtField = null;
+                    _Excel.PivotTable _pivot = oSheetPoster.PivotTableWizard(
+                        _Excel.XlPivotTableSourceType.xlDatabase,  //SourceType
+                        xx, //SourceData
                         oSheetRegnskab.get_Range("A3", Missing.Value),  //TableDestination
                         "PivotTable1", //TableName
                         System.Type.Missing, //RowGrand
@@ -156,21 +159,21 @@ namespace Trans2SummaHDA
                         System.Type.Missing, //ReadData 
                         System.Type.Missing);//Connection 
 
-                    _pvtField = (PivotField)_pivot.PivotFields("ds");
-                    _pvtField.Orientation = XlPivotFieldOrientation.xlRowField;
+                    _pvtField = (_Excel.PivotField)_pivot.PivotFields("ds");
+                    _pvtField.Orientation = _Excel.XlPivotFieldOrientation.xlRowField;
 
-                    _pvtField = (PivotField)_pivot.PivotFields("k");
-                    _pvtField.Orientation = XlPivotFieldOrientation.xlRowField;
+                    _pvtField = (_Excel.PivotField)_pivot.PivotFields("k");
+                    _pvtField.Orientation = _Excel.XlPivotFieldOrientation.xlRowField;
 
-                    _pvtField = (PivotField)_pivot.PivotFields("Konto");
-                    _pvtField.Orientation = XlPivotFieldOrientation.xlRowField;
+                    _pvtField = (_Excel.PivotField)_pivot.PivotFields("Konto");
+                    _pvtField.Orientation = _Excel.XlPivotFieldOrientation.xlRowField;
 
-                    _pvtField = (PivotField)_pivot.PivotFields("Dato");
-                    _pvtField.Orientation = XlPivotFieldOrientation.xlColumnField;
+                    _pvtField = (_Excel.PivotField)_pivot.PivotFields("Dato");
+                    _pvtField.Orientation = _Excel.XlPivotFieldOrientation.xlColumnField;
 
-                    _pvtField = (PivotField)_pivot.PivotFields("Beløb");
-                    _pvtField.Orientation = XlPivotFieldOrientation.xlDataField;
-                    _pvtField.Function = XlConsolidationFunction.xlSum;
+                    _pvtField = (_Excel.PivotField)_pivot.PivotFields("Beløb");
+                    _pvtField.Orientation = _Excel.XlPivotFieldOrientation.xlDataField;
+                    _pvtField.Function = _Excel.XlConsolidationFunction.xlSum;
                     _pvtField.NumberFormat = "#,##0";
 
                     oSheetRegnskab.Name = "Regnskab";
@@ -180,7 +183,7 @@ namespace Trans2SummaHDA
                     oRng.Group(true, true, Missing.Value, Periods);
 
                     oRng = oSheetRegnskab.get_Range("D4", "P4");
-                    oRng.HorizontalAlignment = Excel.XlHAlign.xlHAlignRight;
+                    oRng.HorizontalAlignment = _Excel.XlHAlign.xlHAlignRight;
 
                     oSheetRegnskab.PageSetup.LeftHeader = "&14" + rec_regnskab.Navn;
                     oSheetRegnskab.PageSetup.CenterHeader = "";
@@ -198,20 +201,20 @@ namespace Trans2SummaHDA
                     oSheetRegnskab.PageSetup.PrintGridlines = true;
                     oSheetRegnskab.PageSetup.CenterHorizontally = false;
                     oSheetRegnskab.PageSetup.CenterVertically = false;
-                    oSheetRegnskab.PageSetup.Orientation = XlPageOrientation.xlLandscape;
+                    oSheetRegnskab.PageSetup.Orientation = _Excel.XlPageOrientation.xlLandscape;
                     oSheetRegnskab.PageSetup.Draft = false;
-                    oSheetRegnskab.PageSetup.PaperSize = XlPaperSize.xlPaperA4;
+                    oSheetRegnskab.PageSetup.PaperSize = _Excel.XlPaperSize.xlPaperA4;
                     oSheetRegnskab.PageSetup.FirstPageNumber = 1;
-                    oSheetRegnskab.PageSetup.Order = XlOrder.xlDownThenOver;
+                    oSheetRegnskab.PageSetup.Order = _Excel.XlOrder.xlDownThenOver;
                     oSheetRegnskab.PageSetup.BlackAndWhite = false;
                     oSheetRegnskab.PageSetup.Zoom = 100;
-                    oSheetRegnskab.PageSetup.PrintErrors = XlPrintErrors.xlPrintErrorsDisplayed;
+                    oSheetRegnskab.PageSetup.PrintErrors = _Excel.XlPrintErrors.xlPrintErrorsDisplayed;
 
                     oWB.ShowPivotTableFieldList = false;
 
                     for (var i = oWB.Worksheets.Count; i > 0; i--)
                     {
-                        Excel._Worksheet oSheetWrk = (Excel._Worksheet)oWB.Worksheets.get_Item(i);
+                        _Excel._Worksheet oSheetWrk = (_Excel._Worksheet)oWB.Worksheets.get_Item(i);
                         if ((oSheetWrk.Name != "Regnskab") && (oSheetWrk.Name != "Poster"))
                         {
                             oSheetWrk.Delete();
@@ -220,7 +223,7 @@ namespace Trans2SummaHDA
 
                     oSheetRegnskab.get_Range("A1", Missing.Value).Select();
 
-                    oWB.SaveAs(SaveAs, Excel.XlFileFormat.xlWorkbookNormal, "", "", false, false, Excel.XlSaveAsAccessMode.xlExclusive, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
+                    oWB.SaveAs(SaveAs, _Excel.XlFileFormat.xlWorkbookDefault, "", "", false, false, _Excel.XlSaveAsAccessMode.xlExclusive, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
                     oWB.Saved = true;
                     oXL.Visible = true;
                     Program.frmMain.MainformProgressBar.Visible = false;
