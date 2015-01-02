@@ -9,7 +9,6 @@ using System.Text;
 using System.Windows.Forms;
 using System.Reflection;
 using System.IO;
-using Excel;
 using nsPbs3060;
 using System.Diagnostics;
 using Spire.Pdf;
