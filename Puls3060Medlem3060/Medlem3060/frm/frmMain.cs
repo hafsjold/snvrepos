@@ -130,11 +130,19 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
+            /*
+            string TilPBSFile = "Mogens Hafsjold";
+            char[] c_TilPBSFile = TilPBSFile.ToCharArray();
+            byte[] b_TilPBSFile = System.Text.Encoding.GetEncoding("windows-1252").GetBytes(c_TilPBSFile);
+            clsAzure objAzure = new clsAzure();
+            objAzure.uploadBlob("test_med_metadata2.txt", "Puls3060", b_TilPBSFile);
+
+
             // START TEST TEST TEST TEST TEST TEST
             clsBankUdbetalingsUdskrift objBankUdbetalingsUdskrift = new clsBankUdbetalingsUdskrift();
             objBankUdbetalingsUdskrift.BankUdbetalingsUdskrifter(Program.dbData3060, 894);
             
-            /*
+
             var rstPusteruns = from p in Program.dbData3060.vPusterummets select p;
             int count = rstPusteruns.Count();
             if (count > 0)
