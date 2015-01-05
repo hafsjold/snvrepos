@@ -101,6 +101,8 @@ namespace nsPbs3060
                     byte[] b_TilPBSFile = System.Text.Encoding.GetEncoding("windows-1252").GetBytes(c_TilPBSFile);
                     FilesSize = b_TilPBSFile.Length;
 
+                    clsAzure objAzure = new clsAzure();
+                    objAzure.uploadBlob(TilPBSFilename, b_TilPBSFile, true);
                     sendAttachedFile(p_dbData3060, TilPBSFilename, b_TilPBSFile, true);
 
                     string fullpath = m_rec_sftp.inbound + "/" + TilPBSFilename;
@@ -180,6 +182,8 @@ namespace nsPbs3060
                     byte[] b_TilPBSFile = System.Text.Encoding.GetEncoding("windows-1252").GetBytes(c_TilPBSFile);
                     FilesSize = b_TilPBSFile.Length;
 
+                    clsAzure objAzure = new clsAzure();
+                    objAzure.uploadBlob(TilPBSFilename, b_TilPBSFile, true);
                     sendAttachedFile(p_dbData3060, TilPBSFilename, b_TilPBSFile, true);
 
                     string fullpath = m_rec_sftp.inbound + "/" + TilPBSFilename;
@@ -263,8 +267,10 @@ namespace nsPbs3060
 
                     Program.Log(string.Format("Start Download of {0}", fullpath)); 
                     m_sftp.DownloadFile(fullpath, stream);
-                    Program.Log(string.Format("{0} Download Completed", fullpath)); 
+                    Program.Log(string.Format("{0} Download Completed", fullpath));
 
+                    clsAzure objAzure = new clsAzure();
+                    objAzure.uploadBlob(rec_pbsnetdir.Filename, b_data, false);
                     sendAttachedFile(p_dbData3060,rec_pbsnetdir.Filename, b_data, false);
                     char[] c_data = System.Text.Encoding.GetEncoding("windows-1252").GetString(b_data).ToCharArray();
                     string filecontens = new string(c_data);
@@ -365,6 +371,8 @@ namespace nsPbs3060
             }
             Program.Log(string.Format("{0} Reading Completed", fullpath));
 
+            clsAzure objAzure = new clsAzure();
+            objAzure.uploadBlob(file.Name, b_data, false);
             sendAttachedFile(p_dbData3060, file.Name, b_data, false);
             char[] c_data = System.Text.Encoding.GetEncoding("windows-1252").GetString(b_data).ToCharArray();
             string filecontens = new string(c_data);
