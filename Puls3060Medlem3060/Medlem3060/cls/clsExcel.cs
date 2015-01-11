@@ -12,6 +12,10 @@ using System.Net;
 using System.Net.Mail;
 using _Excel = Microsoft.Office.Interop.Excel;
 using Microsoft.Office.Core;
+using MailKit;
+using MailKit.Net.Smtp;
+using MimeKit;
+using MailKit.Net.Imap;
 
 namespace nsPuls3060
 {
@@ -332,7 +336,7 @@ namespace nsPuls3060
                     oXL.Visible = true;
                     this.MainformProgressBar.Visible = false;
 
-                    this.emailExcelFile(SaveAs, "Puls3060 Medlems-oplysninger");
+                    this.imapSaveExcelFile(SaveAs, "Puls3060 Medlems-oplysninger");
 
                     //oXL.Quit();
                     //oXL = null;
@@ -479,7 +483,7 @@ namespace nsPuls3060
                     oXL.Visible = true;
                     this.MainformProgressBar.Visible = false;
 
-                    this.emailExcelFile(SaveAs, "Puls3060 Medlems-oplysninger");
+                    this.imapSaveExcelFile(SaveAs, "Puls3060 Medlems-oplysninger");
 
                     //oXL.Quit();
                     //oXL = null;
@@ -641,7 +645,7 @@ namespace nsPuls3060
                     oXL.Visible = true;
                     this.MainformProgressBar.Visible = false;
 
-                    this.emailExcelFile(SaveAs, "Puls3060 Medlemmer ikke tilmeldt PBS");
+                    this.imapSaveExcelFile(SaveAs, "Puls3060 Medlemmer ikke tilmeldt PBS");
 
                     //oXL.Quit();
                     //oXL = null;
@@ -881,7 +885,7 @@ namespace nsPuls3060
                     oXL.Visible = true;
                     this.MainformProgressBar.Visible = false;
 
-                    this.emailExcelFile(SaveAs, "Puls3060 Regnskab");
+                    this.imapSaveExcelFile(SaveAs, "Puls3060 Regnskab");
 
 
                     //oXL.Quit();
@@ -908,7 +912,7 @@ namespace nsPuls3060
 
             string SmtpUsername = Program.dbData3060.GetSysinfo("SMTPUSER");
             string SmtpPassword = Program.dbData3060.GetSysinfo("SMTPPASSWD");
-            var smtp = new SmtpClient
+            var smtp = new System.Net.Mail.SmtpClient
             {
                 Host = Program.dbData3060.GetSysinfo("SMTPHOST"),
                 Port = int.Parse(Program.dbData3060.GetSysinfo("SMTPPORT")),
@@ -927,6 +931,51 @@ namespace nsPuls3060
             email.Bcc.Add(new MailAddress(Program.dbData3060.GetSysinfo("MAILTOADDR"), Program.dbData3060.GetSysinfo("MAILTONAME")));
             email.Attachments.Add(new Attachment(fs, local_filename, "application/vnd.ms-excel"));
             smtp.Send(email);
+        }
+
+        public void imapSaveExcelFile(string filename, string PSubjectBody)
+        {
+            FileInfo f = new FileInfo(filename);
+            string local_filename = f.Name;
+            FileStream fs = f.Open(FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+
+            MimeMessage message = new MimeMessage();
+            TextPart body;
+
+            message.To.Add(new MailboxAddress(@"regnskab@puls3060.dk", @"Regnskab Puls3060"));
+            message.From.Add(new MailboxAddress(@"regnskab@puls3060.dk", @"Regnskab Puls3060"));
+            message.Subject = PSubjectBody + ": " + local_filename;
+            body = new TextPart("plain") { Text = PSubjectBody + ": " + local_filename };
+
+
+            var attachment = new MimePart("application", "vnd.ms-excel")
+            {
+                ContentObject = new ContentObject(fs, ContentEncoding.Default),
+                ContentDisposition = new ContentDisposition(ContentDisposition.Attachment),
+                ContentTransferEncoding = ContentEncoding.Base64,
+                FileName = local_filename
+            };
+
+            var multipart = new Multipart("mixed");
+            multipart.Add(body);
+            multipart.Add(attachment);
+
+            message.Body = multipart;
+
+            using (var client = new ImapClient())
+            {
+                client.Connect("imap.one.com", 993, true);
+                client.AuthenticationMechanisms.Remove("XOAUTH");
+                client.Authenticate(@"regnskab@puls3060.dk", "1234West");
+
+                var PBS = client.GetFolder("INBOX.PBS");
+                PBS.Open(FolderAccess.ReadWrite);
+                PBS.Append(message);
+                PBS.Close();
+
+                client.Disconnect(true);
+            }
+
         }
     }
 

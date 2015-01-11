@@ -7,6 +7,10 @@ using System.Text;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
+using MailKit;
+using MailKit.Net.Smtp;
+using MimeKit;
+using MailKit.Net.Imap;
 
 namespace nsPbs3060
 {
@@ -41,7 +45,7 @@ namespace nsPbs3060
                                  l.fakid,
                                  l.bankregnr,
                                  l.bankkontonr,
-                                 l.faknr 
+                                 l.faknr
                              };
 
             foreach (var rstmedlem in rstmedlems)
@@ -129,7 +133,7 @@ namespace nsPbs3060
             p_dbData3060.SubmitChanges();
 
 
-            wleveranceid = (int)(from r in p_dbData3060.nextval("leveranceid") select r.id).First(); 
+            wleveranceid = (int)(from r in p_dbData3060.nextval("leveranceid") select r.id).First();
             tblpbsforsendelse rec_pbsforsendelse = new tblpbsforsendelse
             {
                 delsystem = rsttil.delsystem,
@@ -242,7 +246,7 @@ namespace nsPbs3060
 
         }
 
-        public void overfoersel_mail(dbData3060DataContext p_dbData3060, int lobnr)
+        public void overfoersel_mail_old(dbData3060DataContext p_dbData3060, int lobnr)
         {
             var antal = (from c in p_dbData3060.tbltilpbs
                          where c.id == lobnr
@@ -251,7 +255,7 @@ namespace nsPbs3060
 
             string SmtpUsername = p_dbData3060.GetSysinfo("SMTPUSER");
             string SmtpPassword = p_dbData3060.GetSysinfo("SMTPPASSWD");
-            var smtp = new SmtpClient
+            var smtp = new System.Net.Mail.SmtpClient
             {
                 Host = p_dbData3060.GetSysinfo("SMTPHOST"),
                 Port = int.Parse(p_dbData3060.GetSysinfo("SMTPPORT")),
@@ -261,21 +265,21 @@ namespace nsPbs3060
                 Credentials = new NetworkCredential(SmtpUsername, SmtpPassword)
             };
 
-            
+
             var qrykrd = from k in p_dbData3060.tblMedlems
                          join h in p_dbData3060.tbloverforsels on k.Nr equals h.Nr
                          where h.tilpbsid == lobnr
-                         select new 
+                         select new
                          {
-                           k.Nr,
-                           k.Email,
-                           k.Kaldenavn,
-                           k.Navn,
-                           h.betalingsdato,
-                           h.advistekst,
-                           h.advisbelob,
-                           h.bankregnr,
-                           h.bankkontonr,
+                             k.Nr,
+                             k.Email,
+                             k.Kaldenavn,
+                             k.Navn,
+                             h.betalingsdato,
+                             h.advistekst,
+                             h.advisbelob,
+                             h.bankregnr,
+                             h.bankkontonr,
                          };
 
 
@@ -288,7 +292,7 @@ namespace nsPbs3060
 
 #if (DEBUG)
                 email.Subject = "TEST Bankoverførsel fra Puls 3060: skal sendes til " + p_dbData3060.GetSysinfo("MAILTONAME") + " - " + p_dbData3060.GetSysinfo("MAILTOADDR");
-                email.To.Add(new MailAddress(p_dbData3060.GetSysinfo("MAILTOADDR"), p_dbData3060.GetSysinfo("MAILTONAME"))); 
+                email.To.Add(new MailAddress(p_dbData3060.GetSysinfo("MAILTOADDR"), p_dbData3060.GetSysinfo("MAILTONAME")));
 #else
                 email.Subject = "Bankoverførsel fra Puls 3060";
                 if (krd.Email.Length > 0)
@@ -315,9 +319,96 @@ namespace nsPbs3060
                 }.getinfotekst(p_dbData3060);
 
                 email.From = new MailAddress(p_dbData3060.GetSysinfo("MAILFROM"));
-                email.ReplyToList.Add( new MailAddress(p_dbData3060.GetSysinfo("MAILREPLY")));
+                email.ReplyToList.Add(new MailAddress(p_dbData3060.GetSysinfo("MAILREPLY")));
 
                 smtp.Send(email);
+            }
+        }
+
+        public void overfoersel_mail(dbData3060DataContext p_dbData3060, int lobnr)
+        {
+            var antal = (from c in p_dbData3060.tbltilpbs
+                         where c.id == lobnr
+                         select c).Count();
+            if (antal == 0) { throw new Exception("101 - Der er ingen PBS forsendelse for id: " + lobnr); }
+
+            var qrykrd = from k in p_dbData3060.tblMedlems
+                         join h in p_dbData3060.tbloverforsels on k.Nr equals h.Nr
+                         where h.tilpbsid == lobnr
+                         select new
+                         {
+                             k.Nr,
+                             k.Email,
+                             k.Kaldenavn,
+                             k.Navn,
+                             h.betalingsdato,
+                             h.advistekst,
+                             h.advisbelob,
+                             h.bankregnr,
+                             h.bankkontonr,
+                         };
+
+
+            // Start loop over betalinger i tbloverforsel
+            int testantal = qrykrd.Count();
+
+            using (var smtp_client = new MailKit.Net.Smtp.SmtpClient())
+            {
+                smtp_client.Connect("send.one.com", 465, true);
+                smtp_client.AuthenticationMechanisms.Remove("XOAUTH2");
+                smtp_client.Authenticate("regnskab@puls3060.dk", "1234West");
+
+                using (var imap_client = new ImapClient())
+                {
+                    imap_client.Connect("imap.one.com", 993, true);
+                    imap_client.AuthenticationMechanisms.Remove("XOAUTH");
+                    imap_client.Authenticate("regnskab@puls3060.dk", "1234West");
+
+                    var SendtPost = imap_client.GetFolder("INBOX.Sendt post");
+                    SendtPost.Open(FolderAccess.ReadWrite);
+
+
+                    foreach (var krd in qrykrd)
+                    {
+                        //  Create a new email object
+                        var message = new MimeMessage();
+#if (DEBUG)
+                        message.Subject = "TEST Bankoverførsel fra Puls 3060: skal sendes til " + "Regnskab Puls3060" + " - " + "regnskab@puls3060.dk";
+                        message.To.Add(new MailboxAddress("Regnskab Puls3060", "regnskab@puls3060.dk"));
+#else
+                    message.Subject = "Bankoverførsel fra Puls 3060";
+                    if (krd.Email.Length > 0)
+                    {
+                        message.To.Add(new MailboxAddress(krd.Email, krd.Navn));
+                    }
+                    else
+                    {
+                        message.Subject += ": skal sendes til " + krd.Navn;
+                        message.To.Add(new MailboxAddress("Regnskab Puls3060", "regnskab@puls3060.dk"));
+                    }
+#endif
+                        message.From.Add(new MailboxAddress("Regnskab Puls3060", "regnskab@puls3060.dk"));
+                        message.Body = new TextPart("plain")
+                        {
+                            Text = new clsInfotekst
+                                {
+                                    infotekst_id = 40,
+                                    numofcol = null,
+                                    kaldenavn = krd.Kaldenavn,
+                                    betalingsdato = krd.betalingsdato,
+                                    advisbelob = krd.advisbelob,
+                                    bankkonto = krd.bankregnr + "-" + krd.bankkontonr,
+                                    advistekst = krd.advistekst,
+                                    underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører"
+                                }.getinfotekst(p_dbData3060)
+                        };
+                        SendtPost.Append(message);
+                        smtp_client.Send(message);
+                    }
+                    SendtPost.Close();
+                    imap_client.Disconnect(true);
+                }
+                smtp_client.Disconnect(true);
             }
         }
 

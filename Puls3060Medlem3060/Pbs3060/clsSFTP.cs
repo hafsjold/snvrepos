@@ -9,6 +9,10 @@ using Renci.SshNet;
 using Renci.SshNet.Sftp;
 using System.Diagnostics;
 using System.Data.SqlClient;
+using MailKit;
+using MailKit.Net.Smtp;
+using MimeKit;
+using MailKit.Net.Imap;
 
 
 namespace nsPbs3060
@@ -103,7 +107,7 @@ namespace nsPbs3060
 
                     clsAzure objAzure = new clsAzure();
                     objAzure.uploadBlob(TilPBSFilename, b_TilPBSFile, true);
-                    sendAttachedFile(p_dbData3060, TilPBSFilename, b_TilPBSFile, true);
+                    imapSaveAttachedFile(p_dbData3060, TilPBSFilename, b_TilPBSFile, true);
 
                     string fullpath = m_rec_sftp.inbound + "/" + TilPBSFilename;
                     MemoryStream ms_TilPBSFile = new MemoryStream(b_TilPBSFile);
@@ -184,7 +188,7 @@ namespace nsPbs3060
 
                     clsAzure objAzure = new clsAzure();
                     objAzure.uploadBlob(TilPBSFilename, b_TilPBSFile, true);
-                    sendAttachedFile(p_dbData3060, TilPBSFilename, b_TilPBSFile, true);
+                    imapSaveAttachedFile(p_dbData3060, TilPBSFilename, b_TilPBSFile, true);
 
                     string fullpath = m_rec_sftp.inbound + "/" + TilPBSFilename;
                     MemoryStream ms_TilPBSFile = new MemoryStream(b_TilPBSFile);
@@ -271,7 +275,7 @@ namespace nsPbs3060
 
                     clsAzure objAzure = new clsAzure();
                     objAzure.uploadBlob(rec_pbsnetdir.Filename, b_data, false);
-                    sendAttachedFile(p_dbData3060,rec_pbsnetdir.Filename, b_data, false);
+                    imapSaveAttachedFile(p_dbData3060,rec_pbsnetdir.Filename, b_data, false);
                     char[] c_data = System.Text.Encoding.GetEncoding("windows-1252").GetString(b_data).ToCharArray();
                     string filecontens = new string(c_data);
 
@@ -373,7 +377,7 @@ namespace nsPbs3060
 
             clsAzure objAzure = new clsAzure();
             objAzure.uploadBlob(file.Name, b_data, false);
-            sendAttachedFile(p_dbData3060, file.Name, b_data, false);
+            imapSaveAttachedFile(p_dbData3060, file.Name, b_data, false);
             char[] c_data = System.Text.Encoding.GetEncoding("windows-1252").GetString(b_data).ToCharArray();
             string filecontens = new string(c_data);
 
@@ -426,8 +430,8 @@ namespace nsPbs3060
             string local_filename = filename.Replace('.', '_') + ".txt";
 
             string SmtpUsername = p_dbData3060.GetSysinfo("SMTPUSER");
-            string SmtpPassword = p_dbData3060.GetSysinfo("SMTPPASSWD"); 
-            var smtp = new SmtpClient
+            string SmtpPassword = p_dbData3060.GetSysinfo("SMTPPASSWD");
+            var smtp = new System.Net.Mail.SmtpClient
             {
                 Host = p_dbData3060.GetSysinfo("SMTPHOST"),
                 Port = int.Parse(p_dbData3060.GetSysinfo("SMTPPORT")),
@@ -465,8 +469,67 @@ namespace nsPbs3060
             email.Attachments.Add(new Attachment(new MemoryStream(data),local_filename,"text/plain"));
             smtp.Send(email);
         }
-        
 
+        public void imapSaveAttachedFile(dbData3060DataContext p_dbData3060, string filename, byte[] data, bool bTilPBS)
+        {
+            string local_filename = filename.Replace('.', '_') + ".txt";
+           
+            MimeMessage message = new MimeMessage();
+            TextPart body;
+            
+            message.To.Add(new MailboxAddress(@"regnskab@puls3060.dk", @"Regnskab Puls3060"));
+            message.From.Add(new MailboxAddress(@"regnskab@puls3060.dk", @"Regnskab Puls3060"));
+             
+            if (bTilPBS)
+            {
+#if (DEBUG)
+                message.Subject = "Test Til PBS: " + local_filename;
+                body = new TextPart("plain") { Text = @"Test Til PBS: " + local_filename };
+#else
+                message.Subject = "Til PBS: " + local_filename;
+                body = new TextPart("plain") { Text = @"Til PBS: " + local_filename};
+#endif
+            }
+            else
+            {
+#if (DEBUG)
+                message.Subject = "Test Fra PBS: " + local_filename;
+                body = new TextPart("plain") { Text = @"Test Fra PBS: " + local_filename };
+#else
+                message.Subject = "Fra PBS: " + local_filename;
+                body = new TextPart("plain") { Text = @"Fra PBS: " + local_filename };
+#endif
+            }
+
+            var attachment = new MimePart("text", "plain")
+            {
+                ContentObject = new ContentObject(new MemoryStream(data), ContentEncoding.Default),
+                ContentDisposition = new ContentDisposition(ContentDisposition.Attachment),
+                ContentTransferEncoding = ContentEncoding.Base64,
+                FileName = local_filename
+            };
+            
+            var multipart = new Multipart("mixed");
+            multipart.Add(body);
+            multipart.Add(attachment);
+
+            message.Body = multipart;
+
+            using (var client = new ImapClient())
+            {
+                client.Connect("imap.one.com", 993, true);
+                client.AuthenticationMechanisms.Remove("XOAUTH");
+                client.Authenticate(@"regnskab@puls3060.dk", "1234West");
+
+                var PBS = client.GetFolder("INBOX.PBS");
+                PBS.Open(FolderAccess.ReadWrite);
+                PBS.Append(message);
+                PBS.Close();
+
+                client.Disconnect(true);
+            }
+ 
+        }
 
         public string AddPbcnetRecords(dbData3060DataContext p_dbData3060, string delsystem, int leveranceid, int pbsfilesid)
         {

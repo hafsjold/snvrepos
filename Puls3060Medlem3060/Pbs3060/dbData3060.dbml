@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dbPuls3060Medlem" Class="dbData3060DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=vhd50;Initial Catalog=dbPuls3060Medlem;User ID=sa" SettingsObjectName="nsPbs3060.Properties.Settings" SettingsPropertyName="dbPuls3060MedlemConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=qynhbd9h4f.database.windows.net;Initial Catalog=dbPuls3060Medlem;Persist Security Info=True;User ID=sqlUser" SettingsObjectName="nsPbs3060.Properties.Settings" SettingsPropertyName="dbPuls3060MedlemConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tblsftp" Member="tblsftps">
     <Type Name="tblsftp">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -401,6 +401,26 @@
       <Column Name="belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
       <Column Name="Nr" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="bogfkonto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblNytMedlem" Member="tblNytMedlems">
+    <Type Name="tblNytMedlem">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MessageDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="MessageFrom" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="MessageID" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Fornavn" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Efternavn" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Adresse" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Postnr" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Bynavn" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Telefon" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Mobil" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FodtDato" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Besked" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Kon" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Nr" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.GetSysinfo" Method="GetSysinfo" IsComposable="true">
