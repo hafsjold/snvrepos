@@ -31,9 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNyeMedlemmer));
             this.bmtblNytMedlem = new System.Windows.Forms.BindingNavigator(this.components);
-            this.bindingNavigatorAddNewItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
-            this.bindingNavigatorDeleteItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator = new System.Windows.Forms.ToolStripSeparator();
@@ -42,8 +40,10 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.tblNytMedlemBindingNavigatorSaveItem = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.tblNytMedlemDataGridView = new System.Windows.Forms.DataGridView();
+            this.import = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.delete = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dataGridViewTextBoxColumn16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,19 +60,18 @@
             this.dataGridViewTextBoxColumn14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bstblNytMedlem = new System.Windows.Forms.BindingSource(this.components);
+            this.bsNytMedlem = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bmtblNytMedlem)).BeginInit();
             this.bmtblNytMedlem.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblNytMedlemDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bstblNytMedlem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsNytMedlem)).BeginInit();
             this.SuspendLayout();
             // 
             // bmtblNytMedlem
             // 
-            this.bmtblNytMedlem.AddNewItem = this.bindingNavigatorAddNewItem;
-            this.bmtblNytMedlem.BindingSource = this.bstblNytMedlem;
+            this.bmtblNytMedlem.AddNewItem = null;
             this.bmtblNytMedlem.CountItem = this.bindingNavigatorCountItem;
-            this.bmtblNytMedlem.DeleteItem = this.bindingNavigatorDeleteItem;
+            this.bmtblNytMedlem.DeleteItem = null;
             this.bmtblNytMedlem.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.bindingNavigatorMoveFirstItem,
             this.bindingNavigatorMovePreviousItem,
@@ -83,9 +82,7 @@
             this.bindingNavigatorMoveNextItem,
             this.bindingNavigatorMoveLastItem,
             this.bindingNavigatorSeparator2,
-            this.bindingNavigatorAddNewItem,
-            this.bindingNavigatorDeleteItem,
-            this.tblNytMedlemBindingNavigatorSaveItem});
+            this.toolStripButton1});
             this.bmtblNytMedlem.Location = new System.Drawing.Point(0, 0);
             this.bmtblNytMedlem.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.bmtblNytMedlem.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -93,18 +90,9 @@
             this.bmtblNytMedlem.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.bmtblNytMedlem.Name = "bmtblNytMedlem";
             this.bmtblNytMedlem.PositionItem = this.bindingNavigatorPositionItem;
-            this.bmtblNytMedlem.Size = new System.Drawing.Size(1299, 25);
+            this.bmtblNytMedlem.Size = new System.Drawing.Size(936, 25);
             this.bmtblNytMedlem.TabIndex = 0;
             this.bmtblNytMedlem.Text = "bindingNavigator1";
-            // 
-            // bindingNavigatorAddNewItem
-            // 
-            this.bindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
-            this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
-            this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorAddNewItem.Text = "Add new";
             // 
             // bindingNavigatorCountItem
             // 
@@ -112,15 +100,6 @@
             this.bindingNavigatorCountItem.Size = new System.Drawing.Size(35, 22);
             this.bindingNavigatorCountItem.Text = "of {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Total number of items";
-            // 
-            // bindingNavigatorDeleteItem
-            // 
-            this.bindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
-            this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
-            this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(23, 22);
-            this.bindingNavigatorDeleteItem.Text = "Delete";
             // 
             // bindingNavigatorMoveFirstItem
             // 
@@ -182,21 +161,26 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
-            // tblNytMedlemBindingNavigatorSaveItem
+            // toolStripButton1
             // 
-            this.tblNytMedlemBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tblNytMedlemBindingNavigatorSaveItem.Enabled = false;
-            this.tblNytMedlemBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("tblNytMedlemBindingNavigatorSaveItem.Image")));
-            this.tblNytMedlemBindingNavigatorSaveItem.Name = "tblNytMedlemBindingNavigatorSaveItem";
-            this.tblNytMedlemBindingNavigatorSaveItem.Size = new System.Drawing.Size(23, 22);
-            this.tblNytMedlemBindingNavigatorSaveItem.Text = "Save Data";
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(149, 22);
+            this.toolStripButton1.Text = "Importer Nye Medlemmer";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // tblNytMedlemDataGridView
             // 
+            this.tblNytMedlemDataGridView.AllowUserToAddRows = false;
+            this.tblNytMedlemDataGridView.AllowUserToDeleteRows = false;
             this.tblNytMedlemDataGridView.AllowUserToOrderColumns = true;
             this.tblNytMedlemDataGridView.AutoGenerateColumns = false;
             this.tblNytMedlemDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.tblNytMedlemDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.import,
+            this.delete,
             this.dataGridViewTextBoxColumn16,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn5,
@@ -213,18 +197,39 @@
             this.dataGridViewTextBoxColumn14,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn3});
-            this.tblNytMedlemDataGridView.DataSource = this.bstblNytMedlem;
+            this.tblNytMedlemDataGridView.DataSource = this.bsNytMedlem;
             this.tblNytMedlemDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblNytMedlemDataGridView.Location = new System.Drawing.Point(0, 25);
             this.tblNytMedlemDataGridView.Name = "tblNytMedlemDataGridView";
-            this.tblNytMedlemDataGridView.Size = new System.Drawing.Size(1299, 462);
+            this.tblNytMedlemDataGridView.Size = new System.Drawing.Size(936, 462);
             this.tblNytMedlemDataGridView.TabIndex = 1;
+            // 
+            // import
+            // 
+            this.import.DataPropertyName = "import";
+            this.import.FalseValue = "0";
+            this.import.HeaderText = "import";
+            this.import.IndeterminateValue = "";
+            this.import.Name = "import";
+            this.import.TrueValue = "1";
+            this.import.Width = 50;
+            // 
+            // delete
+            // 
+            this.delete.DataPropertyName = "delete";
+            this.delete.FalseValue = "0";
+            this.delete.HeaderText = "delete";
+            this.delete.IndeterminateValue = "";
+            this.delete.Name = "delete";
+            this.delete.TrueValue = "1";
+            this.delete.Width = 50;
             // 
             // dataGridViewTextBoxColumn16
             // 
             this.dataGridViewTextBoxColumn16.DataPropertyName = "Nr";
             this.dataGridViewTextBoxColumn16.HeaderText = "Nr";
             this.dataGridViewTextBoxColumn16.Name = "dataGridViewTextBoxColumn16";
+            this.dataGridViewTextBoxColumn16.Visible = false;
             this.dataGridViewTextBoxColumn16.Width = 50;
             // 
             // dataGridViewTextBoxColumn2
@@ -332,15 +337,15 @@
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.Width = 200;
             // 
-            // bstblNytMedlem
+            // bsNytMedlem
             // 
-            this.bstblNytMedlem.DataSource = typeof(nsPbs3060.tblNytMedlem);
+            this.bsNytMedlem.DataSource = typeof(nsPuls3060.recNytMedlem);
             // 
             // FrmNyeMedlemmer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1299, 487);
+            this.ClientSize = new System.Drawing.Size(936, 487);
             this.Controls.Add(this.tblNytMedlemDataGridView);
             this.Controls.Add(this.bmtblNytMedlem);
             this.Name = "FrmNyeMedlemmer";
@@ -351,7 +356,7 @@
             this.bmtblNytMedlem.ResumeLayout(false);
             this.bmtblNytMedlem.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tblNytMedlemDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bstblNytMedlem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsNytMedlem)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -359,11 +364,8 @@
 
         #endregion
 
-        private System.Windows.Forms.BindingSource bstblNytMedlem;
         private System.Windows.Forms.BindingNavigator bmtblNytMedlem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorAddNewItem;
         private System.Windows.Forms.ToolStripLabel bindingNavigatorCountItem;
-        private System.Windows.Forms.ToolStripButton bindingNavigatorDeleteItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveFirstItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMovePreviousItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator;
@@ -372,8 +374,11 @@
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveNextItem;
         private System.Windows.Forms.ToolStripButton bindingNavigatorMoveLastItem;
         private System.Windows.Forms.ToolStripSeparator bindingNavigatorSeparator2;
-        private System.Windows.Forms.ToolStripButton tblNytMedlemBindingNavigatorSaveItem;
         private System.Windows.Forms.DataGridView tblNytMedlemDataGridView;
+        private System.Windows.Forms.BindingSource bsNytMedlem;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn import;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn delete;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
