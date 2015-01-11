@@ -7,6 +7,10 @@ using System.Text;
 using System.IO;
 using System.Net;
 using System.Net.Mail;
+using MailKit.Net.Smtp;
+using MailKit;
+using MimeKit;
+using MailKit.Net.Imap;
 
 namespace nsPbs3060
 {
@@ -1420,12 +1424,12 @@ namespace nsPbs3060
             return Val.PadRight(Length, PadChar);
         }
 
-        public void sendAdvisRykkerEmail(dbData3060DataContext p_dbData3060, string ToName, string ToAddr, string subject, string body)
+        public void sendAdvisRykkerEmail_old(dbData3060DataContext p_dbData3060, string ToName, string ToAddr, string subject, string body)
         {
 
             string SmtpUsername = p_dbData3060.GetSysinfo("SMTPUSER");
             string SmtpPassword = p_dbData3060.GetSysinfo("SMTPPASSWD");
-            var smtp = new SmtpClient
+            var smtp = new System.Net.Mail.SmtpClient
             {
                 Host = p_dbData3060.GetSysinfo("SMTPHOST"),
                 Port = int.Parse(p_dbData3060.GetSysinfo("SMTPPORT")),
@@ -1459,6 +1463,52 @@ namespace nsPbs3060
             email.ReplyToList.Add(new MailAddress(p_dbData3060.GetSysinfo("MAILREPLY")));
 
             smtp.Send(email);
+        }
+
+        public void sendAdvisRykkerEmail(dbData3060DataContext p_dbData3060, string ToName, string ToAddr, string subject, string body)
+        {
+            var message = new MimeMessage();
+#if (DEBUG)
+            message.To.Add(new MailboxAddress("Regnskab Puls3060", "regnskab@puls3060.dk"));
+            message.Subject = "TEST " + subject + " skal sendes til: " + ToName + " - " + ToAddr;
+#else
+            if (ToAddr.Length > 0)
+            {
+                message.To.Add(new MailboxAddress(ToName, ToAddr));
+                message.Subject = subject;
+            }
+            else
+            {
+                message.To.Add(new MailboxAddress("Regnskab Puls3060", "regnskab@puls3060.dk"));
+                message.Subject = subject + " skal sendes til: " + ToName;
+            }
+#endif
+            message.Body = new TextPart("plain") { Text = body };
+            message.From.Add(new MailboxAddress("Regnskab Puls3060", "regnskab@puls3060.dk"));
+
+            using (var smtp_client = new MailKit.Net.Smtp.SmtpClient())
+            {
+                smtp_client.Connect("send.one.com", 465, true);
+                smtp_client.AuthenticationMechanisms.Remove("XOAUTH2");
+                smtp_client.Authenticate("regnskab@puls3060.dk", "1234West");
+
+                using (var imap_client = new ImapClient())
+                {
+                    imap_client.Connect("imap.one.com", 993, true);
+                    imap_client.AuthenticationMechanisms.Remove("XOAUTH");
+                    imap_client.Authenticate("regnskab@puls3060.dk", "1234West");
+
+                    var SendtPost = imap_client.GetFolder("INBOX.Sendt post");
+                    SendtPost.Open(FolderAccess.ReadWrite);
+                    
+                    SendtPost.Append(message);
+                    smtp_client.Send(message);
+
+                    SendtPost.Close();
+                    imap_client.Disconnect(true);
+                }
+                smtp_client.Disconnect(true);
+            }
         }
     }
 

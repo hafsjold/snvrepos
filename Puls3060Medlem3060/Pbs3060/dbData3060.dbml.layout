@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 18.75, 16.75" name="dbData3060">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 18.75, 20.625" name="dbData3060">
   <DataContextMoniker Name="/dbData3060DataContext" />
   <nestedChildShapes>
     <classShape Id="4c0225d2-e49c-40d2-92c5-e9189c0232d9" absoluteBounds="16.25, 0.625, 2, 2.5401025390625">
@@ -59,7 +59,7 @@
         <elementListCompartment Id="99d81b48-7b39-4a28-b5bb-102df21bb800" absoluteBounds="8.14, 4.585, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(10.5 : 3.077628797785); (9.125 : 3.077628797785); (9.125 : 4.125)]" manuallyRouted="true" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(10.5 : 3.077628797785); (9.125 : 3.077628797785); (9.125 : 4.125)]" manuallyRouted="true" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/dbData3060DataContext/tblfrapb/tblfrapb_tblbet" />
       <nodes>
         <classShapeMoniker Id="82396a33-609c-452c-9594-77454f868e20" />
@@ -98,7 +98,7 @@
         <elementListCompartment Id="8b19d8bc-6785-428e-b848-07e54aa93d34" absoluteBounds="0.51500000000000012, 3.96, 1.9700000000000002, 4.095418294270833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 3.33223714192708); (2.5 : 3.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 2.3749995); (1.5 : 2.3749995); (1.5 : 3.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/dbData3060DataContext/tbltilpb/tbltilpb_tblfak" />
       <nodes>
         <classShapeMoniker Id="512c98fb-4ca7-431e-9308-35363ce288d8" />
@@ -263,7 +263,7 @@
         <elementListCompartment Id="59c8268a-3709-4af8-9492-8ad9da39dbcd" absoluteBounds="1.3900000000000001, 9.085, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.90625 : 3.33223714192708); (2.90625 : 8.625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.90625 : 3.59780110677083); (2.90625 : 8.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/dbData3060DataContext/tbltilpb/tbltilpb_tbladvi" />
       <nodes>
         <classShapeMoniker Id="512c98fb-4ca7-431e-9308-35363ce288d8" />
@@ -305,6 +305,12 @@
       <DataClassMoniker Name="/dbData3060DataContext/tblbetalingsidentifikation" />
       <nestedChildShapes>
         <elementListCompartment Id="bf70b67a-054a-4cbf-aa30-4bd8c42eb0b2" absoluteBounds="13.265, 1.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c793e8bd-a4d1-461a-a634-7b5070879375" absoluteBounds="5.625, 16.5, 2, 3.8862125651041666">
+      <DataClassMoniker Name="/dbData3060DataContext/tblNytMedlem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d6997cf7-dbaa-42b3-b404-8ea4b464fd48" absoluteBounds="5.64, 16.96, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
