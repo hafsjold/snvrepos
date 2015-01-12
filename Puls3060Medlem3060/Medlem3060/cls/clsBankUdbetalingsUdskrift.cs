@@ -22,13 +22,14 @@ namespace nsPuls3060
                          select c).Count();
             if (antal == 0) { throw new Exception("101 - Der er ingen PBS forsendelse for id: " + lobnr); }
 
-                       var qrykrd = from k in p_dbData3060.tblMedlems
-                         join h in p_dbData3060.tbloverforsels on k.Nr equals h.Nr
+                       var qrykrd = from h in p_dbData3060.tbloverforsels
                          where h.tilpbsid == lobnr
                          select new 
                          {
-                           k.Nr,
-                           k.Navn,
+                           h.Nr,
+                           h.Navn,
+                           h.Kaldenavn,
+                           h.emailsent,
                            h.betalingsdato,
                            h.advistekst,
                            h.advisbelob,

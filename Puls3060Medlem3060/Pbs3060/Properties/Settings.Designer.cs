@@ -56,5 +56,15 @@ namespace nsPbs3060.Properties {
                 return ((string)(this["dbPuls3060MedlemConnectionString1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=VHD50;Initial Catalog=dbPuls3060Medlem;Integrated Security=True")]
+        public string dbPuls3060MedlemConnectionString2 {
+            get {
+                return ((string)(this["dbPuls3060MedlemConnectionString2"]));
+            }
+        }
     }
 }

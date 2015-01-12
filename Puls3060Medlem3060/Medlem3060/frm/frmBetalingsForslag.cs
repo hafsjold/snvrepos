@@ -71,6 +71,8 @@ namespace nsPuls3060
                                    m.Bank,
                                    h.faknr,
                                    h.saldo,
+                                   m.Kaldenavn,
+                                   m.Email
                                };
 
             this.lvwKreditor.Items.Clear();
@@ -102,6 +104,8 @@ namespace nsPuls3060
                 it.SubItems.Add(m.faknr.ToString());
                 it.SubItems.Add((((decimal)m.saldo)/100).ToString());
                 it.SubItems.Add(m.Bank);
+                it.SubItems.Add(m.Kaldenavn);
+                it.SubItems.Add(m.Email);
                 pgmForslag.PerformStep();
             }
             this.lvwKreditor.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
@@ -221,7 +225,10 @@ namespace nsPuls3060
             int lobnr;
             int imax;
             string keyval;
+            string Navn;
             int Nr;
+            string Kaldenavn;
+            string Email;
             int faknr;
             decimal advisbelob;
             string Bank;
@@ -255,14 +262,19 @@ namespace nsPuls3060
                 {
                     this.pgmBetal.Value = ++i;
                     keyval = lvi.Name;
+                    Navn = lvi.Text;
                     Nr = int.Parse(lvi.SubItems[1].Text);
                     faknr = int.Parse(lvi.SubItems[4].Text);
                     advisbelob = decimal.Parse(lvi.SubItems[5].Text);
                     Bank = lvi.SubItems[6].Text;
-
+                    Kaldenavn = lvi.SubItems[7].Text;
+                    Email = lvi.SubItems[8].Text;
                     nsPbs3060.tempBetalforslaglinie rec_tempBetalforslaglinie = new nsPbs3060.tempBetalforslaglinie
                     {
                         Nr = Nr,
+                        Navn = Navn,
+                        Kaldenavn = Kaldenavn,
+                        Email = Email,
                         fakid = int.Parse(keyval),
                         advisbelob = (decimal)advisbelob,
                         bankregnr = Bank.Substring(0,4),
@@ -274,7 +286,6 @@ namespace nsPuls3060
                 Program.dbData3060.SubmitChanges();
 
                 clsOverfoersel objOverfoersel = new clsOverfoersel();
-
                 Tuple<int,int> t = objOverfoersel.kreditor_fakturer_os1(Program.dbData3060); 
                 AntalBetalinger = t.Item1;
                 lobnr = t.Item2;
