@@ -70,6 +70,7 @@
             // bmtblNytMedlem
             // 
             this.bmtblNytMedlem.AddNewItem = null;
+            this.bmtblNytMedlem.BindingSource = this.bsNytMedlem;
             this.bmtblNytMedlem.CountItem = this.bindingNavigatorCountItem;
             this.bmtblNytMedlem.DeleteItem = null;
             this.bmtblNytMedlem.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {

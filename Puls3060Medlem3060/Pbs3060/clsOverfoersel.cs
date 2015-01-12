@@ -33,19 +33,20 @@ namespace nsPbs3060
             p_dbData3060.SubmitChanges();
             lobnr = rec_tilpbs.id;
 
-            var rstmedlems = from k in p_dbData3060.tblMedlems
-                             join l in p_dbData3060.tempBetalforslaglinies on k.Nr equals l.Nr
+            var rstmedlems = from l in p_dbData3060.tempBetalforslaglinies
                              join h in p_dbData3060.tempBetalforslags on l.Betalforslagid equals h.id
                              select new
                              {
-                                 k.Nr,
-                                 k.Navn,
+                                 l.Nr,
+                                 l.Navn,
+                                 l.Kaldenavn,
+                                 l.Email,
                                  h.betalingsdato,
                                  l.advisbelob,
                                  l.fakid,
                                  l.bankregnr,
                                  l.bankkontonr,
-                                 l.faknr
+                                 l.faknr,
                              };
 
             foreach (var rstmedlem in rstmedlems)
@@ -55,6 +56,9 @@ namespace nsPbs3060
                 tbloverforsel rec_krdfak = new tbloverforsel
                 {
                     Nr = rstmedlem.Nr,
+                    Navn = rstmedlem.Navn,
+                    Kaldenavn = rstmedlem.Kaldenavn,
+                    Email = rstmedlem.Email,
                     advistekst = wadvistekst,
                     advisbelob = rstmedlem.advisbelob,
                     SFakID = rstmedlem.fakid,
@@ -332,15 +336,14 @@ namespace nsPbs3060
                          select c).Count();
             if (antal == 0) { throw new Exception("101 - Der er ingen PBS forsendelse for id: " + lobnr); }
 
-            var qrykrd = from k in p_dbData3060.tblMedlems
-                         join h in p_dbData3060.tbloverforsels on k.Nr equals h.Nr
+            var qrykrd = from h in p_dbData3060.tbloverforsels
                          where h.tilpbsid == lobnr
                          select new
                          {
-                             k.Nr,
-                             k.Email,
-                             k.Kaldenavn,
-                             k.Navn,
+                             h.Nr,
+                             h.Email,
+                             h.Kaldenavn,
+                             h.Navn,
                              h.betalingsdato,
                              h.advistekst,
                              h.advisbelob,
@@ -379,7 +382,7 @@ namespace nsPbs3060
                     message.Subject = "Bankoverførsel fra Puls 3060";
                     if (krd.Email.Length > 0)
                     {
-                        message.To.Add(new MailboxAddress(krd.Email, krd.Navn));
+                        message.To.Add(new MailboxAddress(krd.Navn, krd.Email));
                     }
                     else
                     {

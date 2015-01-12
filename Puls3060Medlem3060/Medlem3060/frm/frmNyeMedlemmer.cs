@@ -28,49 +28,55 @@ namespace nsPuls3060
         {
             foreach (recNytMedlem m in this.bsNytMedlem.DataSource as MemNytMedlem)
             {
-                if (m.import == 1) 
+                try
                 {
-                    tblNytMedlem recNytMedlem = (from t in Program.dbData3060.tblNytMedlems where t.id == m.id select t).First();
-                    int tblMedlem_nr = tblMedlemsNextval();
-                    tblMedlem recMedlem = new tblMedlem 
+                    if (m.import == 1)
                     {
-                        Nr = tblMedlem_nr,
-                        Navn = recNytMedlem.Fornavn + " " + recNytMedlem.Efternavn,
-                        Kaldenavn = recNytMedlem.Fornavn,
-                        Adresse = recNytMedlem.Adresse,
-                        Postnr = recNytMedlem.Postnr,
-                        Bynavn = recNytMedlem.Bynavn,
-                        Telefon = (recNytMedlem.Mobil == null) ? recNytMedlem.Telefon : recNytMedlem.Mobil,
-                        Email = recNytMedlem.Email,
-                        FodtDato = recNytMedlem.FodtDato,
-                        Kon = (recNytMedlem.Kon.ToUpper() == "MAND") ? "M" : "K",
-                        Status = 1
-                    };
-                    Program.dbData3060.tblMedlems.InsertOnSubmit(recMedlem);
+                        tblNytMedlem recNytMedlem = (from t in Program.dbData3060.tblNytMedlems where t.id == m.id select t).First();
+                        int tblMedlem_nr = tblMedlemsNextval();
+                        tblMedlem recMedlem = new tblMedlem
+                        {
+                            Nr = tblMedlem_nr,
+                            Navn = recNytMedlem.Fornavn + " " + recNytMedlem.Efternavn,
+                            Kaldenavn = recNytMedlem.Fornavn,
+                            Adresse = recNytMedlem.Adresse,
+                            Postnr = recNytMedlem.Postnr,
+                            Bynavn = recNytMedlem.Bynavn,
+                            Telefon = (recNytMedlem.Mobil == null) ? recNytMedlem.Telefon : recNytMedlem.Mobil,
+                            Email = recNytMedlem.Email,
+                            FodtDato = recNytMedlem.FodtDato,
+                            Kon = (recNytMedlem.Kon.ToUpper() == "MAND") ? "M" : "K",
+                            Status = 1
+                        };
+                        Program.dbData3060.tblMedlems.InsertOnSubmit(recMedlem);
 
-                    DateTime nu = DateTime.Now;
-                    int next_id = (int)(from r in Program.dbData3060.nextval("tblMedlemlog") select r.id).First();
-                    nsPbs3060.tblMedlemLog recLog = new nsPbs3060.tblMedlemLog
+                        DateTime nu = DateTime.Now;
+                        int next_id = (int)(from r in Program.dbData3060.nextval("tblMedlemlog") select r.id).First();
+                        nsPbs3060.tblMedlemLog recLog = new nsPbs3060.tblMedlemLog
+                        {
+                            id = next_id,
+                            Nr = tblMedlem_nr,
+                            logdato = new DateTime(nu.Year, nu.Month, nu.Day),
+                            akt_id = 10,
+                            akt_dato = recNytMedlem.MessageDate
+                        };
+                        Program.dbData3060.tblMedlemLogs.InsertOnSubmit(recLog);
+
+                        recNytMedlem.Nr = tblMedlem_nr;
+
+                        Program.dbData3060.SubmitChanges();
+                    }
+                    else if (m.delete == 1)
                     {
-                        id = next_id,
-                        Nr = tblMedlem_nr,
-                        logdato = new DateTime(nu.Year, nu.Month, nu.Day),
-                        akt_id = 10,
-                        akt_dato = recNytMedlem.MessageDate
-                    };
-                    Program.dbData3060.tblMedlemLogs.InsertOnSubmit(recLog);
-
-                    recNytMedlem.Nr = tblMedlem_nr;
-
-                    Program.dbData3060.SubmitChanges();
+                        tblNytMedlem recNytMedlem = (from t in Program.dbData3060.tblNytMedlems where t.id == m.id select t).First();
+                        recNytMedlem.Nr = -1;
+                        Program.dbData3060.SubmitChanges();
+                    }
                 }
-                else if (m.delete == 1)
+                catch
                 {
-                    tblNytMedlem recNytMedlem = (from t in Program.dbData3060.tblNytMedlems where t.id == m.id select t).First();
-                    recNytMedlem.Nr = -1;
-                    Program.dbData3060.SubmitChanges();
-                }  
-              
+                    break;
+                }
             }
             this.fillDatasource();
         }
@@ -84,6 +90,7 @@ namespace nsPuls3060
         {
             IQueryable<recNytMedlem> qryNytMedlem = from m in Program.dbData3060.tblNytMedlems
                       where m.Nr == null
+                      orderby m.MessageDate descending
                       select new recNytMedlem
                       {
                           import = 0,
@@ -125,6 +132,7 @@ namespace nsPuls3060
                 return maxNr;
             }
         }
+
 
     }
 

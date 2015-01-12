@@ -77,6 +77,7 @@ namespace nsPuls3060
                                 join f in Program.dbData3060.tblfaks on h.Nr equals f.Nr
                                 where f.SFaknr == null &&
                                       f.rykkerstop == false &&
+                                      f.betalingsdato.Value.AddDays(90) > DateTime.Today && //må ikke være ælder end 90 dage <<<============mha 2015-01-12=====
                                       f.betalingsdato.Value.AddDays(7) <= DateTime.Today &&
                                       (int)(from q in Program.dbData3060.tblrykkers where q.faknr == f.faknr select q).Count() == 0
                                 orderby f.fradato, f.id
