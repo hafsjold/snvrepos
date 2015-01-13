@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dbPuls3060MedlemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblNytMedlem">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MessageDate" Type="datetime" Nullable="false" />
+          <Property Name="MessageFrom" Type="varchar(max)" Nullable="false" />
+          <Property Name="MessageID" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Fornavn" Type="nvarchar(max)" />
+          <Property Name="Efternavn" Type="nvarchar(max)" />
+          <Property Name="Adresse" Type="nvarchar(max)" />
+          <Property Name="Postnr" Type="nvarchar(max)" />
+          <Property Name="Bynavn" Type="nvarchar(max)" />
+          <Property Name="Telefon" Type="nvarchar(max)" />
+          <Property Name="Mobil" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar(max)" />
+          <Property Name="FodtDato" Type="date" />
+          <Property Name="Besked" Type="nvarchar(max)" />
+          <Property Name="Kon" Type="nvarchar(max)" />
+          <Property Name="Nr" Type="int" />
+        </EntityType>
+        <EntityContainer Name="dbPuls3060MedlemModelStoreContainer">
+          <EntitySet Name="tblNytMedlem" EntityType="Self.tblNytMedlem" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbPuls3060MedlemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblNytMedlem">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MessageDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MessageFrom" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MessageID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Fornavn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Efternavn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Adresse" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Postnr" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Bynavn" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Mobil" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FodtDato" Type="DateTime" Precision="0" />
+          <Property Name="Besked" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Kon" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Nr" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="dbPuls3060MedlemEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblNytMedlem" EntityType="Self.tblNytMedlem" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbPuls3060MedlemModelStoreContainer" CdmEntityContainer="dbPuls3060MedlemEntities">
+          <EntitySetMapping Name="tblNytMedlem">
+            <EntityTypeMapping TypeName="dbPuls3060MedlemModel.tblNytMedlem">
+              <MappingFragment StoreEntitySet="tblNytMedlem">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="MessageDate" ColumnName="MessageDate" />
+                <ScalarProperty Name="MessageFrom" ColumnName="MessageFrom" />
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+                <ScalarProperty Name="Fornavn" ColumnName="Fornavn" />
+                <ScalarProperty Name="Efternavn" ColumnName="Efternavn" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Postnr" ColumnName="Postnr" />
+                <ScalarProperty Name="Bynavn" ColumnName="Bynavn" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Mobil" ColumnName="Mobil" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FodtDato" ColumnName="FodtDato" />
+                <ScalarProperty Name="Besked" ColumnName="Besked" />
+                <ScalarProperty Name="Kon" ColumnName="Kon" />
+                <ScalarProperty Name="Nr" ColumnName="Nr" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
