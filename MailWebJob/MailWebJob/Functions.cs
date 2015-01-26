@@ -14,6 +14,7 @@ using HtmlAgilityPack;
 using System.Globalization;
 using System.Reflection;
 using System.Diagnostics;
+using Microsoft.WindowsAzure;
 
 
 namespace MailWebJob
@@ -23,6 +24,7 @@ namespace MailWebJob
         [NoAutomaticTrigger]
         public static void ProcessEmails(TextWriter log, string MailFolder) 
         {
+            //object cc = CloudConfigurationManager.GetSetting("aaa");
             Assembly assembly = Assembly.GetExecutingAssembly();
             FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
             string version = fvi.ProductVersion;
@@ -92,7 +94,7 @@ namespace MailWebJob
                     {
                         var lin = pre.InnerText;
                         char[] sp = { ':' };
-                        string[] arr = lin.Split(sp);
+                        string[] arr = lin.Split(sp,2);
                         if (arr.Length == 2)
                         {
                             string name = arr[0].Trim().ToUpper();
@@ -162,6 +164,7 @@ namespace MailWebJob
                     db.tblNytMedlem.Add(medlem);
                     db.SaveChanges();
                     Inbox.MoveTo(uid, Indmeldelser);
+                    SendSMS(log);
                     SendEmail(log, client, medlem);
                     log.WriteLine("Slut ProcessEmails: " + medlem.MessageID);
                 }
@@ -196,7 +199,30 @@ namespace MailWebJob
             SendtPost.Append(message);
             SendtPost.Close();
 
-            log.WriteLine("Slut SendEmail: " + medlem.Email);
+            log.WriteLine("SendEmail: " + medlem.Email);
+        }
+
+        [NoAutomaticTrigger]
+        public static void SendSMS(TextWriter log)
+        {
+            var sms = new MimeMessage();
+            sms.To.Add(new MailboxAddress("Puls3060 SMS", "40133540.Puls3060.Puls3060@mail.suresms.com"));
+            sms.From.Add(new MailboxAddress("Regnskab Puls3060", "regnskab@puls3060.dk"));
+            sms.Subject = "sms";
+
+            var builder = new BodyBuilder();
+            builder.TextBody = "Ny indmeldelse i Puls3060";
+            sms.Body = builder.ToMessageBody();
+            using (var smtp_client = new SmtpClient())
+            {
+                smtp_client.Connect("send.one.com", 465, true);
+                smtp_client.AuthenticationMechanisms.Remove("XOAUTH2");
+                smtp_client.Authenticate("regnskab@puls3060.dk", "1234West");
+                smtp_client.Send(sms);
+                smtp_client.Disconnect(true);
+            }
+
+            log.WriteLine("SendSMS: Ny indmeldelse i Puls3060");
         }
     }
 }
