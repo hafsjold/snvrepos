@@ -140,7 +140,6 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>dbPuls3060Medlem.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Web.config" />
     <None Include="dbPuls3060Medlem.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>dbPuls3060Medlem.edmx</DependentUpon>
