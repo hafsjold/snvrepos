@@ -49,6 +49,7 @@
                <local:menuButton ServerName="vPuls3060" ServerOS="Win2012" ToolTip="Puls 3060 Test Server" Margin="3" Grid.Row="2" />
                 <local:menuButton ServerName="3060-Regn" ServerOS="Win8" ToolTip="Puls3060 Regnskab"  Margin="3" Grid.Row="3" Grid.Column="0" />
                 <local:menuButton ServerName="HDA-Regn" ServerOS="Win8" ToolTip=" Hafsjold Data ApS Regnskab"  Margin="3" Grid.Row="3" Grid.Column="1" />
+                <local:menuButton ServerName="vHD61" ServerOS="freeBSD" ToolTip="Udvikling freeBSD Server"  Margin="3" Grid.Row="4" Grid.Column="0" />
             </Grid>
         </GroupBox>
 
