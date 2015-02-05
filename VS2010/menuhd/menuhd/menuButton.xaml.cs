@@ -174,6 +174,73 @@ namespace nsMenu
 
         private void server_Click(object sender, RoutedEventArgs e, evt Evt)
         {
+            switch (ServerOS)
+            {
+ 
+                case "freeBSD":
+                    server_Click_1(sender, e, Evt);
+                    break;
+                default:
+                    server_Click_2(sender, e, Evt);
+                    break;
+            }
+        }
+
+        private void server_Click_1(object sender, RoutedEventArgs e, evt Evt)
+        {
+            if (proc != null)
+            {
+                try
+                {
+                    if (proc.HasExited)
+                    {
+                        proc = null;
+                        ledbutton.Visibility = System.Windows.Visibility.Hidden;
+                    }
+                    else
+                    {
+                        SwitchToThisWindow(proc.MainWindowHandle, true);
+                        return;
+                    }
+                }
+                catch
+                {
+                    proc = null;
+                    ledbutton.Visibility = System.Windows.Visibility.Hidden;
+                }
+            }
+
+            try
+            {
+                switch (Evt)
+                {
+                    case evt.editClick:
+                        break;
+
+                    case evt.edit2Click:
+                        break;
+
+                    case evt.fullscreenClick:
+                        break;
+
+                    case evt.smallScreen:
+                        break;
+
+                    case evt.mnuClick:
+                        proc = Process.Start(@"C:\Program Files (x86)\Private Shell\pshell.exe", "--profile " + ServerName + ".hafsjold.local");
+                        ledbutton.Visibility = System.Windows.Visibility.Visible;
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+            catch { }
+
+        }
+
+        private void server_Click_2(object sender, RoutedEventArgs e, evt Evt)
+        {
             string rdpname = ServerName + @".rdp";
             string rdpfile = System.IO.Path.Combine(menuhd.MainWindow.menuFolder, rdpname);
 
