@@ -161,7 +161,7 @@ namespace MailWebJob
                     db.SaveChanges();
                     Inbox.MoveTo(uid, Indmeldelser);
                     SendSMS(log);
-                    SendEmail(log, client, medlem);
+                    //SendEmail(log, client, medlem);
                     log.WriteLine("Slut ProcessEmails: " + medlem.MessageID);
                 }
 
