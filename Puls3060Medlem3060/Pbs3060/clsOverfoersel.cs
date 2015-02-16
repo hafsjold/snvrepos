@@ -357,17 +357,17 @@ namespace nsPbs3060
 
             using (var smtp_client = new MailKit.Net.Smtp.SmtpClient())
             {
-                smtp_client.Connect("send.one.com", 465, true);
+                smtp_client.Connect("smtp.gigahost.dk", 587, false);
                 smtp_client.AuthenticationMechanisms.Remove("XOAUTH2");
-                smtp_client.Authenticate("regnskab@puls3060.dk", "1234West");
+                smtp_client.Authenticate("regnskab@puls3060.dk", "1234West+");
 
                 using (var imap_client = new ImapClient())
                 {
-                    imap_client.Connect("imap.one.com", 993, true);
+                    imap_client.Connect("imap.gigahost.dk", 993, true);
                     imap_client.AuthenticationMechanisms.Remove("XOAUTH");
-                    imap_client.Authenticate("regnskab@puls3060.dk", "1234West");
+                    imap_client.Authenticate("regnskab@puls3060.dk", "1234West+");
 
-                    var SendtPost = imap_client.GetFolder("INBOX.Sendt post");
+                    var SendtPost = imap_client.GetFolder("Sendt post");
                     SendtPost.Open(FolderAccess.ReadWrite);
 
 
