@@ -39,13 +39,9 @@ namespace MailWebJob
 
             using (var client = new ImapClient())
             {
-                client.Connect("imap.one.com", 993, true);
-
-                // Note: since we don't have an OAuth2 token, disable
-                // the XOAUTH2 authentication mechanism.
+                client.Connect("imap.gigahost.dk", 993, true);
                 client.AuthenticationMechanisms.Remove("XOAUTH");
-
-                client.Authenticate("regnskab@puls3060.dk", "1234West");
+                client.Authenticate("regnskab@puls3060.dk", "1234West+");
 
                 // The Inbox folder is always available on all IMAP servers...
                 var Inbox = client.Inbox;
@@ -187,14 +183,14 @@ namespace MailWebJob
             message.Body = builder.ToMessageBody();
             using (var smtp_client = new SmtpClient())
             {
-                smtp_client.Connect("send.one.com", 465, true);
+                smtp_client.Connect("smtp.gigahost.dk", 587, false);
                 smtp_client.AuthenticationMechanisms.Remove("XOAUTH2");
-                smtp_client.Authenticate("regnskab@puls3060.dk", "1234West");
+                smtp_client.Authenticate("regnskab@puls3060.dk", "1234West+");
                 smtp_client.Send(message);
                 smtp_client.Disconnect(true);
             }
 
-            var SendtPost = imap_client.GetFolder("INBOX.Sendt post");
+            var SendtPost = imap_client.GetFolder("Sendt post");
             SendtPost.Open(FolderAccess.ReadWrite);
             SendtPost.Append(message);
             SendtPost.Close();
@@ -215,9 +211,9 @@ namespace MailWebJob
             sms.Body = builder.ToMessageBody();
             using (var smtp_client = new SmtpClient())
             {
-                smtp_client.Connect("send.one.com", 465, true);
+                smtp_client.Connect("smtp.gigahost.dk", 587, false);
                 smtp_client.AuthenticationMechanisms.Remove("XOAUTH2");
-                smtp_client.Authenticate("regnskab@puls3060.dk", "1234West");
+                smtp_client.Authenticate("regnskab@puls3060.dk", "1234West+");
                 smtp_client.Send(sms);
                 smtp_client.Disconnect(true);
             }
