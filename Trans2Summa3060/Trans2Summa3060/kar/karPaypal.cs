@@ -337,7 +337,6 @@ namespace Trans2Summa3060
                     tekst = "PayPal Fee",
                     belob = b.Fee,
                 };
-                recBankkonto.tblpaypals.Add(b);
                 Program.dbDataTransSumma.tblbankkontos.InsertOnSubmit(recBankkonto);
                 
                 Program.dbDataTransSumma.SubmitChanges();
@@ -376,7 +375,6 @@ namespace Trans2Summa3060
                     tekst = "PayPal Fee",
                     belob = b.Fee,
                 };
-                recBankkonto.tblpaypals.Add(b);
                 Program.dbDataTransSumma.tblbankkontos.InsertOnSubmit(recBankkonto);
 
                 Program.dbDataTransSumma.SubmitChanges();
