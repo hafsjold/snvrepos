@@ -487,7 +487,17 @@ namespace Trans2Summa3060
             }
         }
 
-
+        private void importPayPalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KarPaypal objPaypal = new KarPaypal(5);
+            objPaypal.load_paypal();
+            objPaypal.load_bankkonto1();
+            objPaypal.load_bankkonto2();
+            objPaypal.load_bankkonto3();
+            objPaypal.load_bankkonto4();
+            objPaypal.load_bankkonto5();
+            objPaypal.load_bankkonto6();
+        }
 
     }
 

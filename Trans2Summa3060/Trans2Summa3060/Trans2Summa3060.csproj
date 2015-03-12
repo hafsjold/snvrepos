@@ -37,7 +37,7 @@
     <ProductName>Trans2Summa3060</ProductName>
     <PublisherName>Hafsjold</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>13</ApplicationRevision>
+    <ApplicationRevision>14</ApplicationRevision>
     <ApplicationVersion>4.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -220,6 +220,7 @@
     <Compile Include="frm\BetterDialog.designer.cs">
       <DependentUpon>BetterDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="kar\karPaypal.cs" />
     <Compile Include="kar\karTrans2Summa.cs" />
     <Compile Include="kar\karVarer.cs" />
     <Compile Include="kar\karActebisordre.cs" />
