@@ -853,7 +853,167 @@ namespace Trans2Summa3060
                 }
             }
             //*******************************************************************************************
+            else if (IsFound_BankKontoudtog && recBankkonto.bankkontoid == 5)  //PAYPAL
+            {
+                if (AntalLinier <= 3)
+                {
+                    foreach (tblkladder recKladder in recBilag.tblkladders)
+                    {
+                        if ((recKladder.afstemningskonto != null) && (recKladder.afstemningskonto != ""))
+                            bAfstem = true;
+
+                        if (recKladder.konto != null)
+                        {
+                            switch (recKladder.konto)
+                            {
+                                case 58300:
+                                    if (!bAfstem)
+                                    {
+                                        bBankKonto = true;
+                                        BankBelob = (decimal)recKladder.belob;
+                                    }
+                                    else
+                                    {
+                                        bAndenKonto = true;
+                                        AndenKontoBelob = (decimal)recKladder.belob;
+                                        AndenKontoTekst = recKladder.tekst;
+                                        AndenKontoKonto = (int)recKladder.konto;
+                                        if ((recKladder.afstemningskonto != null) && (recKladder.afstemningskonto != ""))
+                                            AndenKontoAfstemningskonto = recKladder.afstemningskonto;
+                                        if ((recKladder.momskode != null) && (recKladder.momskode != ""))
+                                            AndenKontoMomskode = recKladder.momskode;
+                                    }
+                                    break;
+
+                                case 66100:
+                                    bMomsKonto = true;
+                                    MomsBelob = (decimal)recKladder.belob;
+                                    MK = "S25";
+                                    break;
+
+                                case 66200:
+                                    bMomsKonto = true;
+                                    MomsBelob = (decimal)recKladder.belob;
+                                    MK = "K25";
+                                    break;
+
+                                default:
+                                    bAndenKonto = true;
+                                    AndenKontoBelob = (decimal)recKladder.belob;
+                                    AndenKontoTekst = recKladder.tekst;
+                                    AndenKontoKonto = (int)recKladder.konto;
+                                    if ((recKladder.afstemningskonto != null) && (recKladder.afstemningskonto != ""))
+                                        AndenKontoAfstemningskonto = recKladder.afstemningskonto;
+                                    if ((recKladder.momskode != null) && (recKladder.momskode != ""))
+                                        AndenKontoMomskode = recKladder.momskode;
+                                    break;
+                            }
+                        }
+
+                        if ((recKladder.momskode != null) && (recKladder.momskode != ""))
+                            bMomskode = true;
+                    }
+
+                    if ((AntalLinier == 3)
+                    && (bBankKonto)
+                    && (bMomsKonto)
+                    && (bAndenKonto)
+                    && (!bAfstem)
+                    && (!bMomskode))
+                    {
+                        //decimal MomsBelobDif = -MomsBelob + (AndenKontoBelob * decimal.Parse(" 0,25"));
+                        decimal momspct = KarMoms.getMomspct(MK) / 100;
+                        decimal MomsBelobDif = -MomsBelob + (AndenKontoBelob * momspct);
+                        if ((MomsBelobDif > -decimal.Parse(" 0,01"))
+                        && (MomsBelobDif < decimal.Parse(" 0,01")))
+                        {
+                            tblwkladder recWkladder = new tblwkladder
+                            {
+                                tekst = AndenKontoTekst,
+                                afstemningskonto = "PayPal",
+                                belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.belob : BankBelob,
+                                konto = AndenKontoKonto,
+                                momskode = MK
+                            };
+                            recwBilag.tblwkladders.Add(recWkladder);
+                            this.tblwbilagBindingSource.Add(recwBilag);
+                            return true;
+                        }
+                    }
+
+                    if ((AntalLinier == 2)
+                    && (bBankKonto)
+                    && (!bMomsKonto)
+                    && (bAndenKonto)
+                    && (!bAfstem)
+                    && (!bMomskode))
+                    {
+                        tblwkladder recWkladder = new tblwkladder
+                        {
+                            tekst = AndenKontoTekst,
+                            afstemningskonto = "PayPal",
+                            belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.belob : AndenKontoBelob,
+                            konto = AndenKontoKonto
+                        };
+                        recwBilag.tblwkladders.Add(recWkladder);
+                        this.tblwbilagBindingSource.Add(recwBilag);
+                        return true;
+                    }
+
+                    if ((AntalLinier == 2)
+                    && (bBankKonto)
+                    && (bAndenKonto)
+                    && (!bAfstem))
+                    {
+                        foreach (tblwkladder k in qry)
+                        {
+                            if (IsFound_BankKontoudtog)
+                            {
+                                if (k.konto == 58300)
+                                    k.belob = -(decimal)recBankkonto.belob;
+                                else
+                                    k.belob = (decimal)recBankkonto.belob;
+                            }
+                            recwBilag.tblwkladders.Add(k);
+                        }
+                        this.tblwbilagBindingSource.Add(recwBilag);
+                        return true;
+                    }
+                    if ((AntalLinier == 1)
+                    && (!bBankKonto)
+                    && (bAndenKonto)
+                    && (bAfstem))
+                    {
+                        string WrkAfstemningskonto;
+                        int? WrkAndenKontoKonto = AndenKontoKonto;
+
+                        if ((AndenKontoAfstemningskonto == "Bank") && (AndenKontoKonto == 58300))
+                        {
+                            WrkAfstemningskonto = "PayPal";
+                            WrkAndenKontoKonto = 58000;
+                        }
+                        else if (AndenKontoAfstemningskonto == "Bank")
+                            WrkAfstemningskonto = "PayPal";
+                        else
+                            WrkAfstemningskonto = AndenKontoAfstemningskonto;
+
+                        tblwkladder recWkladder = new tblwkladder
+                        {
+                            tekst = AndenKontoTekst,
+                            afstemningskonto = WrkAfstemningskonto,
+                            belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.belob : AndenKontoBelob,
+                            konto = WrkAndenKontoKonto,
+                            momskode = AndenKontoMomskode
+                        };
+                        recwBilag.tblwkladders.Add(recWkladder);
+                        this.tblwbilagBindingSource.Add(recwBilag);
+                        return true;
+                    }
+
+                }
+            }
             //*******************************************************************************************
+
 
             return false;
         }
