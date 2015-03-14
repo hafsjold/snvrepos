@@ -130,7 +130,7 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
-            
+
             /*
             string TilPBSFile = "Mogens Hafsjold";
             char[] c_TilPBSFile = TilPBSFile.ToCharArray();
@@ -428,6 +428,11 @@ namespace nsPuls3060
                 frmNyeMedlemmer.MdiParent = this;
                 frmNyeMedlemmer.Show();
             }
+        }
+
+        private void regnearkMailSyncToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            mailSync();
         }
 
     }

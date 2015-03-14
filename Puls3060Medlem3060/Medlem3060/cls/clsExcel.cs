@@ -22,7 +22,7 @@ namespace nsPuls3060
     public partial class FrmMain : Form
     {
 
-        
+
         private void excelInternt()
         {
             DateTime pReadDate = DateTime.Now;
@@ -159,7 +159,7 @@ namespace nsPuls3060
                     oXL.Visible = true;
                     this.MainformProgressBar.Visible = false;
 
-                    
+
                     //oXL.Quit();
                     //oXL = null;
                 }
@@ -184,8 +184,8 @@ namespace nsPuls3060
             Restance = 0x4,
             Rykket = 0x8,
             Pusterummet = 0x10
-        }        
-        private string GetStatusText(int? Status) 
+        }
+        private string GetStatusText(int? Status)
         {
             if (Status == null) return "";
             statusMedlem e = (statusMedlem)Status;
@@ -199,14 +199,14 @@ namespace nsPuls3060
                 s = "IkkeMedlem";
 
             if ((e & statusMedlem.Pusterummet) == statusMedlem.Pusterummet)
-                s += " gennem Pusterummet";	
+                s += " gennem Pusterummet";
 
             if ((e & statusMedlem.Restance) == statusMedlem.Restance)
                 s += " i Restance";
 
             if ((e & statusMedlem.Rykket) == statusMedlem.Rykket)
                 s += " er Rykket";
-           
+
             return s;
         }
 
@@ -531,24 +531,24 @@ namespace nsPuls3060
                                    erMedlem = ((bool)Program.dbData3060.erMedlem(h.Nr)) ? 1 : 0,
                                    erPBS = ((bool)Program.dbData3060.erPBS(h.Nr)) ? 1 : 0,
                                };
-            
+
             var MedlemmerNotPBS = from h in MedlemmerAll
-                               where h.erMedlem == 1 && h.erPBS == 0
-                               select new clsMedlemNotPBS
-                                {
-                                    Nr = h.Nr,
-                                    Navn = h.Navn,
-                                    Kaldenavn = h.Kaldenavn,
-                                    Adresse = h.Adresse,
-                                    Postnr = h.Postnr,
-                                    Bynavn = h.Bynavn,
-                                    Telefon = h.Telefon,
-                                    Email = h.Email,
-                                    Kon = h.Kon,
-                                    PBSnr = "03985644",
-                                    Debgrnr = "00001",
-                                    Kundenr = 032001610000000 + (int)h.Nr
-                                };
+                                  where h.erMedlem == 1 && h.erPBS == 0
+                                  select new clsMedlemNotPBS
+                                   {
+                                       Nr = h.Nr,
+                                       Navn = h.Navn,
+                                       Kaldenavn = h.Kaldenavn,
+                                       Adresse = h.Adresse,
+                                       Postnr = h.Postnr,
+                                       Bynavn = h.Bynavn,
+                                       Telefon = h.Telefon,
+                                       Email = h.Email,
+                                       Kon = h.Kon,
+                                       PBSnr = "03985644",
+                                       Debgrnr = "00001",
+                                       Kundenr = 032001610000000 + (int)h.Nr
+                                   };
 
             using (new ExcelUILanguageHelper())
             {
@@ -692,21 +692,21 @@ namespace nsPuls3060
 
 
             var JournalPoster = from h in Program.karPosteringer
-                               join d1 in Program.karKontoplan on h.Konto equals d1.Kontonr into details1
-                               from x in details1.DefaultIfEmpty()
-                               orderby h.Nr
-                               select new clsJournalposter
-                               {
-                                   ds = (x.Type == "Drift") ? "D" : "S",
-                                   k = IUAP(x.Type, x.DK),
-                                   Konto = h.Konto.ToString() + "-" + x.Kontonavn,
-                                   Dato = h.Dato,
-                                   Bilag = h.Bilag,
-                                   Nr = h.Nr,
-                                   Id = h.Id,
-                                   Tekst = h.Tekst,
-                                   Beløb = h.Bruttobeløb,
-                               };
+                                join d1 in Program.karKontoplan on h.Konto equals d1.Kontonr into details1
+                                from x in details1.DefaultIfEmpty()
+                                orderby h.Nr
+                                select new clsJournalposter
+                                {
+                                    ds = (x.Type == "Drift") ? "D" : "S",
+                                    k = IUAP(x.Type, x.DK),
+                                    Konto = h.Konto.ToString() + "-" + x.Kontonavn,
+                                    Dato = h.Dato,
+                                    Bilag = h.Bilag,
+                                    Nr = h.Nr,
+                                    Id = h.Id,
+                                    Tekst = h.Tekst,
+                                    Beløb = h.Bruttobeløb,
+                                };
 
             using (new ExcelUILanguageHelper())
             {
@@ -792,7 +792,7 @@ namespace nsPuls3060
 
 
                     oSheetRegnskab = (_Excel._Worksheet)oWB.Worksheets.Add(System.Type.Missing, System.Type.Missing, System.Type.Missing, System.Type.Missing);
-                     //oXL.Visible = true; //For debug
+                    //oXL.Visible = true; //For debug
 
                     _Excel.Range x1 = oSheetPoster.Cells[1, 1];
                     _Excel.Range x2 = oSheetPoster.Cells[row, 9];
@@ -836,7 +836,7 @@ namespace nsPuls3060
                     oSheetRegnskab.Name = "Regnskab";
                     oRng = oSheetRegnskab.get_Range("D3", Missing.Value);
                     oRng.Select();
-                    bool[] Periods = { false, false, false, false, true, false, false};
+                    bool[] Periods = { false, false, false, false, true, false, false };
                     oRng.Group(true, true, Missing.Value, Periods);
 
                     oRng = oSheetRegnskab.get_Range("D4", "P4");
@@ -866,20 +866,20 @@ namespace nsPuls3060
                     oSheetRegnskab.PageSetup.BlackAndWhite = false;
                     oSheetRegnskab.PageSetup.Zoom = 100;
                     oSheetRegnskab.PageSetup.PrintErrors = _Excel.XlPrintErrors.xlPrintErrorsDisplayed;
-                    
+
                     oWB.ShowPivotTableFieldList = false;
 
                     for (var i = oWB.Worksheets.Count; i > 0; i--)
                     {
                         _Excel._Worksheet oSheetWrk = (_Excel._Worksheet)oWB.Worksheets.get_Item(i);
-                        if ((oSheetWrk.Name != "Regnskab") && (oSheetWrk.Name != "Poster")) 
+                        if ((oSheetWrk.Name != "Regnskab") && (oSheetWrk.Name != "Poster"))
                         {
                             oSheetWrk.Delete();
                         }
                     }
 
                     oSheetRegnskab.get_Range("A1", Missing.Value).Select();
-                    
+
                     oWB.SaveAs(SaveAs, _Excel.XlFileFormat.xlWorkbookDefault, "", "", false, false, _Excel.XlSaveAsAccessMode.xlExclusive, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
                     oWB.Saved = true;
                     oXL.Visible = true;
@@ -904,6 +904,85 @@ namespace nsPuls3060
             }
         }
 
+        private void mailSync()
+        {
+            DateTime pReadDate = DateTime.Now;
+            string pSheetName = "MedlemMailSync";
+            var rec_regnskab = Program.qryAktivRegnskab();
+            string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".csv";
+
+            var MedlemmerAll = from h in Program.dbData3060.tblMedlems
+                               where ((((statusMedlem)(h.Status)) & statusMedlem.Medlem) == statusMedlem.Medlem)
+                               || ((((statusMedlem)(h.Status)) & statusMedlem.NytMedlem) == statusMedlem.NytMedlem)
+                               orderby h.Nr
+                               select new clsMedlemMailSync
+                               {
+                                   Email = h.Email,
+                                   Navn = h.Navn,
+                                   stKey = String.Format("Medlem-{0:#0000}", h.Nr),
+                                   stSource = "sync_" + pReadDate.ToString("yyyyMMdd_hhmmss")
+                               };
+
+            try
+            {
+                List<string> list = new List<string>();
+                string heading = "";
+                char[] simikolon = {';'};
+
+                int row = 0;
+                foreach (clsMedlemMailSync m in MedlemmerAll)
+                {
+                    string line = "";
+                    row++;
+                    Type objectType = m.GetType();
+                    PropertyInfo[] properties = objectType.GetProperties();
+                    int col = 0;
+                    foreach (PropertyInfo property in properties)
+                    {
+                        col++;
+                        if (row == 1)
+                        {
+                            object[] CustomAttributes = property.GetCustomAttributes(false);
+                            foreach (var att in CustomAttributes)
+                            {
+                                Type tp = att.GetType();
+                                if (tp.ToString() == "nsPuls3060.Fieldattr")
+                                {
+                                    Fieldattr attr = (Fieldattr)att;
+                                    heading += @"""" + attr.Heading.ToString().TrimEnd() + @""";";
+                                }
+                            }
+                        }
+                        string Name = property.Name;
+                        line += @"""" + property.GetValue(m, null).ToString().TrimEnd() + @""";";
+                    }
+                    if (row == 1) list.Add(heading.TrimEnd(simikolon));
+                    list.Add(line.TrimEnd(simikolon));
+                }
+
+                FileStream ts = new FileStream(SaveAs, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
+                using (StreamWriter sr = new StreamWriter(ts, Encoding.Default))
+                {
+                    foreach (var ln in list)
+                    {
+                         sr.WriteLine(ln);
+                    }
+                }
+
+                this.imapSaveExcelFile(SaveAs, "Puls3060 Medlem MailSync");
+            }
+            catch (Exception theException)
+            {
+                String errorMessage;
+                errorMessage = "Error: ";
+                errorMessage = String.Concat(errorMessage, theException.Message);
+                errorMessage = String.Concat(errorMessage, " Line: ");
+                errorMessage = String.Concat(errorMessage, theException.Source);
+
+                MessageBox.Show(errorMessage, "Error");
+            }
+
+        }
         public void emailExcelFile(string filename, string PSubjectBody)
         {
             FileInfo f = new FileInfo(filename);
@@ -927,7 +1006,7 @@ namespace nsPuls3060
             email.Body = PSubjectBody + ": " + local_filename;
 
             email.From = new MailAddress(Program.dbData3060.GetSysinfo("MAILFROM"));
-            email.ReplyToList.Add( new MailAddress(Program.dbData3060.GetSysinfo("MAILREPLY")));
+            email.ReplyToList.Add(new MailAddress(Program.dbData3060.GetSysinfo("MAILREPLY")));
             email.Bcc.Add(new MailAddress(Program.dbData3060.GetSysinfo("MAILTOADDR"), Program.dbData3060.GetSysinfo("MAILTONAME")));
             email.Attachments.Add(new Attachment(fs, local_filename, "application/vnd.ms-excel"));
             smtp.Send(email);
@@ -1099,6 +1178,18 @@ namespace nsPuls3060
         public string Debgrnr { get; set; }
         [Fieldattr(Heading = "Kundenr")]
         public Int64 Kundenr { get; set; }
+    }
+
+    public class clsMedlemMailSync
+    {
+        [Fieldattr(Heading = "email")]
+        public string Email { get; set; }
+        [Fieldattr(Heading = "name")]
+        public string Navn { get; set; }
+        [Fieldattr(Heading = "key")]
+        public string stKey { get; set; }
+        [Fieldattr(Heading = "source")]
+        public string stSource { get; set; }
     }
 
     public class clsJournalposter
