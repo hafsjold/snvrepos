@@ -40,7 +40,9 @@
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medlemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vedligeholdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vedligeholdNyeMedlemmerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.regnearkManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.regnearkMailSyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medlemmerTilRegnearkEksternToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.regnearkNotPBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medlemmerTilRegnearkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -67,7 +69,6 @@
             this.importerFileFraPBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.vedligeholdNyeMedlemmerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -170,6 +171,7 @@
             this.vedligeholdToolStripMenuItem,
             this.vedligeholdNyeMedlemmerToolStripMenuItem,
             this.regnearkManagementToolStripMenuItem,
+            this.regnearkMailSyncToolStripMenuItem,
             this.medlemmerTilRegnearkEksternToolStripMenuItem,
             this.regnearkNotPBSToolStripMenuItem,
             this.medlemmerTilRegnearkToolStripMenuItem,
@@ -185,12 +187,26 @@
             this.vedligeholdToolStripMenuItem.Text = "Vedligehold Medlemmer";
             this.vedligeholdToolStripMenuItem.Click += new System.EventHandler(this.medlemmerToolStripMenuItem_Click);
             // 
+            // vedligeholdNyeMedlemmerToolStripMenuItem
+            // 
+            this.vedligeholdNyeMedlemmerToolStripMenuItem.Name = "vedligeholdNyeMedlemmerToolStripMenuItem";
+            this.vedligeholdNyeMedlemmerToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.vedligeholdNyeMedlemmerToolStripMenuItem.Text = "Vedligehold Nye Medlemmer";
+            this.vedligeholdNyeMedlemmerToolStripMenuItem.Click += new System.EventHandler(this.vedligeholdNyeMedlemmerToolStripMenuItem_Click);
+            // 
             // regnearkManagementToolStripMenuItem
             // 
             this.regnearkManagementToolStripMenuItem.Name = "regnearkManagementToolStripMenuItem";
             this.regnearkManagementToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
             this.regnearkManagementToolStripMenuItem.Text = "Regneark management";
             this.regnearkManagementToolStripMenuItem.Click += new System.EventHandler(this.regnearkManagementToolStripMenuItem_Click);
+            // 
+            // regnearkMailSyncToolStripMenuItem
+            // 
+            this.regnearkMailSyncToolStripMenuItem.Name = "regnearkMailSyncToolStripMenuItem";
+            this.regnearkMailSyncToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.regnearkMailSyncToolStripMenuItem.Text = "Regneark mailSync";
+            this.regnearkMailSyncToolStripMenuItem.Click += new System.EventHandler(this.regnearkMailSyncToolStripMenuItem_Click);
             // 
             // medlemmerTilRegnearkEksternToolStripMenuItem
             // 
@@ -390,13 +406,6 @@
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
-            // vedligeholdNyeMedlemmerToolStripMenuItem
-            // 
-            this.vedligeholdNyeMedlemmerToolStripMenuItem.Name = "vedligeholdNyeMedlemmerToolStripMenuItem";
-            this.vedligeholdNyeMedlemmerToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
-            this.vedligeholdNyeMedlemmerToolStripMenuItem.Text = "Vedligehold Nye Medlemmer";
-            this.vedligeholdNyeMedlemmerToolStripMenuItem.Click += new System.EventHandler(this.vedligeholdNyeMedlemmerToolStripMenuItem_Click);
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -466,6 +475,7 @@
         private System.Windows.Forms.ToolStripMenuItem medlemExtraToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem regnearkManagementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vedligeholdNyeMedlemmerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem regnearkMailSyncToolStripMenuItem;
    }
 }
 
