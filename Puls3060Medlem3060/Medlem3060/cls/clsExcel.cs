@@ -35,7 +35,7 @@ namespace nsPuls3060
             _Excel.Range oRng;
 
             var rec_regnskab = Program.qryAktivRegnskab();
-            string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xlsx";
+            string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_HHmmss") + ".xlsx";
 
             var MedlemmerAll = from h in Program.dbData3060.tblMedlems
                                select new clsMedlemInternAll
@@ -222,7 +222,7 @@ namespace nsPuls3060
             _Excel.Range oRng;
 
             var rec_regnskab = Program.qryAktivRegnskab();
-            string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xlsx";
+            string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_HHmmss") + ".xlsx";
 
             var MedlemmerAll = from h in Program.dbData3060.tblMedlems
                                select new clsMedlemExternAll
@@ -366,7 +366,7 @@ namespace nsPuls3060
             _Excel.Range oRng;
 
             var rec_regnskab = Program.qryAktivRegnskab();
-            string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xlsx";
+            string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_HHmmss") + ".xlsx";
 
             var MedlemmerAll = from h in Program.dbData3060.tblMedlems
                                where ((((statusMedlem)(h.Status)) & statusMedlem.Medlem) == statusMedlem.Medlem)
@@ -513,7 +513,7 @@ namespace nsPuls3060
             _Excel.Range oRng;
 
             var rec_regnskab = Program.qryAktivRegnskab();
-            string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xlsx";
+            string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_HHmmss") + ".xlsx";
 
             var MedlemmerAll = from h in Program.dbData3060.tblMedlems
                                select new clsMedlemNotPBSAll
@@ -688,7 +688,7 @@ namespace nsPuls3060
             _Excel.Range oRng;
 
             var rec_regnskab = Program.qryAktivRegnskab();
-            string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xlsx";
+            string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_HHmmss") + ".xlsx";
 
 
             var JournalPoster = from h in Program.karPosteringer
@@ -909,7 +909,7 @@ namespace nsPuls3060
             DateTime pReadDate = DateTime.Now;
             string pSheetName = "MedlemMailSync";
             var rec_regnskab = Program.qryAktivRegnskab();
-            string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".csv";
+            string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_HHmmss") + ".csv";
 
             var MedlemmerAll = from h in Program.dbData3060.tblMedlems
                                where ((((statusMedlem)(h.Status)) & statusMedlem.Medlem) == statusMedlem.Medlem)
@@ -920,7 +920,7 @@ namespace nsPuls3060
                                    Email = h.Email,
                                    Navn = h.Navn,
                                    stKey = String.Format("Medlem-{0:#0000}", h.Nr),
-                                   stSource = "sync_" + pReadDate.ToString("yyyyMMdd_hhmmss")
+                                   stSource = "sync_" + pReadDate.ToString("yyyyMMdd_HHmmss")
                                };
 
             try
