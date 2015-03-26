@@ -8,800 +8,653 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Trans2Summa3060.Properties
-{
-
-
+namespace Trans2Summa3060.Properties {
+    
+    
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
-    {
-
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-
-        public static Settings Default
-        {
-            get
-            {
+        
+        public static Settings Default {
+            get {
                 return defaultInstance;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("31")]
-        public int BetalingsFristiDageGamleMedlemmer
-        {
-            get
-            {
+        public int BetalingsFristiDageGamleMedlemmer {
+            get {
                 return ((int)(this["BetalingsFristiDageGamleMedlemmer"]));
             }
-            set
-            {
+            set {
                 this["BetalingsFristiDageGamleMedlemmer"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("61")]
-        public int BetalingsFristiDageNyeMedlemmer
-        {
-            get
-            {
+        public int BetalingsFristiDageNyeMedlemmer {
+            get {
                 return ((int)(this["BetalingsFristiDageNyeMedlemmer"]));
             }
-            set
-            {
+            set {
                 this["BetalingsFristiDageNyeMedlemmer"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
-        public global::System.Drawing.Point frmMainPoint
-        {
-            get
-            {
+        public global::System.Drawing.Point frmMainPoint {
+            get {
                 return ((global::System.Drawing.Point)(this["frmMainPoint"]));
             }
-            set
-            {
+            set {
                 this["frmMainPoint"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1024, 800")]
-        public global::System.Drawing.Size frmMainSize
-        {
-            get
-            {
+        public global::System.Drawing.Size frmMainSize {
+            get {
                 return ((global::System.Drawing.Size)(this["frmMainSize"]));
             }
-            set
-            {
+            set {
                 this["frmMainSize"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
-        public global::System.Drawing.Point frmMedlemmerPoint
-        {
-            get
-            {
+        public global::System.Drawing.Point frmMedlemmerPoint {
+            get {
                 return ((global::System.Drawing.Point)(this["frmMedlemmerPoint"]));
             }
-            set
-            {
+            set {
                 this["frmMedlemmerPoint"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("800, 600")]
-        public global::System.Drawing.Size frmMedlemmerSize
-        {
-            get
-            {
+        public global::System.Drawing.Size frmMedlemmerSize {
+            get {
                 return ((global::System.Drawing.Size)(this["frmMedlemmerSize"]));
             }
-            set
-            {
+            set {
                 this["frmMedlemmerSize"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("10, 10")]
-        public global::System.Drawing.Point frmKreditorPoint
-        {
-            get
-            {
+        public global::System.Drawing.Point frmKreditorPoint {
+            get {
                 return ((global::System.Drawing.Point)(this["frmKreditorPoint"]));
             }
-            set
-            {
+            set {
                 this["frmKreditorPoint"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("304, 300")]
-        public global::System.Drawing.Size frmKreditorSize
-        {
-            get
-            {
+        public global::System.Drawing.Size frmKreditorSize {
+            get {
                 return ((global::System.Drawing.Size)(this["frmKreditorSize"]));
             }
-            set
-            {
+            set {
                 this["frmKreditorSize"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
-        public global::System.Windows.Forms.FormWindowState frmKreditorState
-        {
-            get
-            {
+        public global::System.Windows.Forms.FormWindowState frmKreditorState {
+            get {
                 return ((global::System.Windows.Forms.FormWindowState)(this["frmKreditorState"]));
             }
-            set
-            {
+            set {
                 this["frmKreditorState"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
-        public global::System.Windows.Forms.FormWindowState frmRegnskabState
-        {
-            get
-            {
+        public global::System.Windows.Forms.FormWindowState frmRegnskabState {
+            get {
                 return ((global::System.Windows.Forms.FormWindowState)(this["frmRegnskabState"]));
             }
-            set
-            {
+            set {
                 this["frmRegnskabState"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("531, 398")]
-        public global::System.Drawing.Size frmRegnskabSize
-        {
-            get
-            {
+        public global::System.Drawing.Size frmRegnskabSize {
+            get {
                 return ((global::System.Drawing.Size)(this["frmRegnskabSize"]));
             }
-            set
-            {
+            set {
                 this["frmRegnskabSize"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point frmRegnskabPoint
-        {
-            get
-            {
+        public global::System.Drawing.Point frmRegnskabPoint {
+            get {
                 return ((global::System.Drawing.Point)(this["frmRegnskabPoint"]));
             }
-            set
-            {
+            set {
                 this["frmRegnskabPoint"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("829, 513")]
-        public global::System.Drawing.Size frmKontingentForslagSize
-        {
-            get
-            {
+        public global::System.Drawing.Size frmKontingentForslagSize {
+            get {
                 return ((global::System.Drawing.Size)(this["frmKontingentForslagSize"]));
             }
-            set
-            {
+            set {
                 this["frmKontingentForslagSize"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point frmKontingentForslagPoint
-        {
-            get
-            {
+        public global::System.Drawing.Point frmKontingentForslagPoint {
+            get {
                 return ((global::System.Drawing.Point)(this["frmKontingentForslagPoint"]));
             }
-            set
-            {
+            set {
                 this["frmKontingentForslagPoint"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("280")]
-        public int frmMedlemmerSplitteDist
-        {
-            get
-            {
+        public int frmMedlemmerSplitteDist {
+            get {
                 return ((int)(this["frmMedlemmerSplitteDist"]));
             }
-            set
-            {
+            set {
                 this["frmMedlemmerSplitteDist"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point frmPbsfilesPoint
-        {
-            get
-            {
+        public global::System.Drawing.Point frmPbsfilesPoint {
+            get {
                 return ((global::System.Drawing.Point)(this["frmPbsfilesPoint"]));
             }
-            set
-            {
+            set {
                 this["frmPbsfilesPoint"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("707, 511")]
-        public global::System.Drawing.Size frmPbsfilesSize
-        {
-            get
-            {
+        public global::System.Drawing.Size frmPbsfilesSize {
+            get {
                 return ((global::System.Drawing.Size)(this["frmPbsfilesSize"]));
             }
-            set
-            {
+            set {
                 this["frmPbsfilesSize"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("800, 600")]
-        public global::System.Drawing.Size FrmBetalingsForslagSize
-        {
-            get
-            {
+        public global::System.Drawing.Size FrmBetalingsForslagSize {
+            get {
                 return ((global::System.Drawing.Size)(this["FrmBetalingsForslagSize"]));
             }
-            set
-            {
+            set {
                 this["FrmBetalingsForslagSize"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point FrmBetalingsForslagPoint
-        {
-            get
-            {
+        public global::System.Drawing.Point FrmBetalingsForslagPoint {
+            get {
                 return ((global::System.Drawing.Point)(this["FrmBetalingsForslagPoint"]));
             }
-            set
-            {
+            set {
                 this["FrmBetalingsForslagPoint"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("829, 513")]
-        public global::System.Drawing.Size frmRykkerForslagClientSize
-        {
-            get
-            {
+        public global::System.Drawing.Size frmRykkerForslagClientSize {
+            get {
                 return ((global::System.Drawing.Size)(this["frmRykkerForslagClientSize"]));
             }
-            set
-            {
+            set {
                 this["frmRykkerForslagClientSize"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point frmRykkerForslagPoint
-        {
-            get
-            {
+        public global::System.Drawing.Point frmRykkerForslagPoint {
+            get {
                 return ((global::System.Drawing.Point)(this["frmRykkerForslagPoint"]));
             }
-            set
-            {
+            set {
                 this["frmRykkerForslagPoint"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("416, 211")]
-        public global::System.Drawing.Size frmPbsnetdirSize
-        {
-            get
-            {
+        public global::System.Drawing.Size frmPbsnetdirSize {
+            get {
                 return ((global::System.Drawing.Size)(this["frmPbsnetdirSize"]));
             }
-            set
-            {
+            set {
                 this["frmPbsnetdirSize"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("100, 100")]
-        public global::System.Drawing.Point frmPbsnetdirPoint
-        {
-            get
-            {
+        public global::System.Drawing.Point frmPbsnetdirPoint {
+            get {
                 return ((global::System.Drawing.Point)(this["frmPbsnetdirPoint"]));
             }
-            set
-            {
+            set {
                 this["frmPbsnetdirPoint"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("383")]
-        public int BankafstemningSplitterDistancr
-        {
-            get
-            {
+        public int BankafstemningSplitterDistancr {
+            get {
                 return ((int)(this["BankafstemningSplitterDistancr"]));
             }
-            set
-            {
+            set {
                 this["BankafstemningSplitterDistancr"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("829, 513")]
-        public global::System.Drawing.Size BankafstemningSize
-        {
-            get
-            {
+        public global::System.Drawing.Size BankafstemningSize {
+            get {
                 return ((global::System.Drawing.Size)(this["BankafstemningSize"]));
             }
-            set
-            {
+            set {
                 this["BankafstemningSize"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point FrmBankkontoudtogLocation
-        {
-            get
-            {
+        public global::System.Drawing.Point FrmBankkontoudtogLocation {
+            get {
                 return ((global::System.Drawing.Point)(this["FrmBankkontoudtogLocation"]));
             }
-            set
-            {
+            set {
                 this["FrmBankkontoudtogLocation"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("393, 416")]
-        public global::System.Drawing.Size frmBankkontoudtogSize
-        {
-            get
-            {
+        public global::System.Drawing.Size frmBankkontoudtogSize {
+            get {
                 return ((global::System.Drawing.Size)(this["frmBankkontoudtogSize"]));
             }
-            set
-            {
+            set {
                 this["frmBankkontoudtogSize"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point frmKladderLocation
-        {
-            get
-            {
+        public global::System.Drawing.Point frmKladderLocation {
+            get {
                 return ((global::System.Drawing.Point)(this["frmKladderLocation"]));
             }
-            set
-            {
+            set {
                 this["frmKladderLocation"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("530, 259")]
-        public global::System.Drawing.Size frmKladderSize
-        {
-            get
-            {
+        public global::System.Drawing.Size frmKladderSize {
+            get {
                 return ((global::System.Drawing.Size)(this["frmKladderSize"]));
             }
-            set
-            {
+            set {
                 this["frmKladderSize"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point frmNyeKladderLocation
-        {
-            get
-            {
+        public global::System.Drawing.Point frmNyeKladderLocation {
+            get {
                 return ((global::System.Drawing.Point)(this["frmNyeKladderLocation"]));
             }
-            set
-            {
+            set {
                 this["frmNyeKladderLocation"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("521, 259")]
-        public global::System.Drawing.Size frmNyeKladderSize
-        {
-            get
-            {
+        public global::System.Drawing.Size frmNyeKladderSize {
+            get {
                 return ((global::System.Drawing.Size)(this["frmNyeKladderSize"]));
             }
-            set
-            {
+            set {
                 this["frmNyeKladderSize"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point frmBilagLoacation
-        {
-            get
-            {
+        public global::System.Drawing.Point frmBilagLoacation {
+            get {
                 return ((global::System.Drawing.Point)(this["frmBilagLoacation"]));
             }
-            set
-            {
+            set {
                 this["frmBilagLoacation"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("870, 346")]
-        public global::System.Drawing.Size frmBilagSize
-        {
-            get
-            {
+        public global::System.Drawing.Size frmBilagSize {
+            get {
                 return ((global::System.Drawing.Size)(this["frmBilagSize"]));
             }
-            set
-            {
+            set {
                 this["frmBilagSize"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("246")]
-        public int frmBilagSplitDistance
-        {
-            get
-            {
+        public int frmBilagSplitDistance {
+            get {
                 return ((int)(this["frmBilagSplitDistance"]));
             }
-            set
-            {
+            set {
                 this["frmBilagSplitDistance"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point frmKontoplanListLocation
-        {
-            get
-            {
+        public global::System.Drawing.Point frmKontoplanListLocation {
+            get {
                 return ((global::System.Drawing.Point)(this["frmKontoplanListLocation"]));
             }
-            set
-            {
+            set {
                 this["frmKontoplanListLocation"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool checkBoxMedsaldo
-        {
-            get
-            {
+        public bool checkBoxMedsaldo {
+            get {
                 return ((bool)(this["checkBoxMedsaldo"]));
             }
-            set
-            {
+            set {
                 this["checkBoxMedsaldo"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool frmKontoplanListCheckboxmedsaldo
-        {
-            get
-            {
+        public bool frmKontoplanListCheckboxmedsaldo {
+            get {
                 return ((bool)(this["frmKontoplanListCheckboxmedsaldo"]));
             }
-            set
-            {
+            set {
                 this["frmKontoplanListCheckboxmedsaldo"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point frmNyeFakturaerLocation
-        {
-            get
-            {
+        public global::System.Drawing.Point frmNyeFakturaerLocation {
+            get {
                 return ((global::System.Drawing.Point)(this["frmNyeFakturaerLocation"]));
             }
-            set
-            {
+            set {
                 this["frmNyeFakturaerLocation"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("803, 354")]
-        public global::System.Drawing.Size frmNyeFakturaerSize
-        {
-            get
-            {
+        public global::System.Drawing.Size frmNyeFakturaerSize {
+            get {
                 return ((global::System.Drawing.Size)(this["frmNyeFakturaerSize"]));
             }
-            set
-            {
+            set {
                 this["frmNyeFakturaerSize"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("825, 260")]
-        public global::System.Drawing.Size frmFakturaerSize
-        {
-            get
-            {
+        public global::System.Drawing.Size frmFakturaerSize {
+            get {
                 return ((global::System.Drawing.Size)(this["frmFakturaerSize"]));
             }
-            set
-            {
+            set {
                 this["frmFakturaerSize"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point frmFakturaerLocation
-        {
-            get
-            {
+        public global::System.Drawing.Point frmFakturaerLocation {
+            get {
                 return ((global::System.Drawing.Point)(this["frmFakturaerLocation"]));
             }
-            set
-            {
+            set {
                 this["frmFakturaerLocation"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point FrmVarekontoTypeLocation
-        {
-            get
-            {
+        public global::System.Drawing.Point FrmVarekontoTypeLocation {
+            get {
                 return ((global::System.Drawing.Point)(this["FrmVarekontoTypeLocation"]));
             }
-            set
-            {
+            set {
                 this["FrmVarekontoTypeLocation"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("302, 106")]
-        public global::System.Drawing.Size FrmVarekontoTypeSize
-        {
-            get
-            {
+        public global::System.Drawing.Size FrmVarekontoTypeSize {
+            get {
                 return ((global::System.Drawing.Size)(this["FrmVarekontoTypeSize"]));
             }
-            set
-            {
+            set {
                 this["FrmVarekontoTypeSize"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point FrmActebisfakturaLocation
-        {
-            get
-            {
+        public global::System.Drawing.Point FrmActebisfakturaLocation {
+            get {
                 return ((global::System.Drawing.Point)(this["FrmActebisfakturaLocation"]));
             }
-            set
-            {
+            set {
                 this["FrmActebisfakturaLocation"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1081, 495")]
-        public global::System.Drawing.Size FrmActebisfakturaSize
-        {
-            get
-            {
+        public global::System.Drawing.Size FrmActebisfakturaSize {
+            get {
                 return ((global::System.Drawing.Size)(this["FrmActebisfakturaSize"]));
             }
-            set
-            {
+            set {
                 this["FrmActebisfakturaSize"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point frmVareListLocation
-        {
-            get
-            {
+        public global::System.Drawing.Point frmVareListLocation {
+            get {
                 return ((global::System.Drawing.Point)(this["frmVareListLocation"]));
             }
-            set
-            {
+            set {
                 this["frmVareListLocation"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point frmTemplateLocation
-        {
-            get
-            {
+        public global::System.Drawing.Point frmTemplateLocation {
+            get {
                 return ((global::System.Drawing.Point)(this["frmTemplateLocation"]));
             }
-            set
-            {
+            set {
                 this["frmTemplateLocation"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("730, 297")]
-        public global::System.Drawing.Size frmTemplateSize
-        {
-            get
-            {
+        public global::System.Drawing.Size frmTemplateSize {
+            get {
                 return ((global::System.Drawing.Size)(this["frmTemplateSize"]));
             }
-            set
-            {
+            set {
                 this["frmTemplateSize"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Normal")]
-        public global::System.Windows.Forms.FormWindowState frmTemplateWinState
-        {
-            get
-            {
+        public global::System.Windows.Forms.FormWindowState frmTemplateWinState {
+            get {
                 return ((global::System.Windows.Forms.FormWindowState)(this["frmTemplateWinState"]));
             }
-            set
-            {
+            set {
                 this["frmTemplateWinState"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("324, 250")]
-        public global::System.Drawing.Size frmKontoudtogSize
-        {
-            get
-            {
+        public global::System.Drawing.Size frmKontoudtogSize {
+            get {
                 return ((global::System.Drawing.Size)(this["frmKontoudtogSize"]));
             }
-            set
-            {
+            set {
                 this["frmKontoudtogSize"] = value;
             }
         }
-
+        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point frmKontoudtogLocation
-        {
-            get
-            {
+        public global::System.Drawing.Point frmKontoudtogLocation {
+            get {
                 return ((global::System.Drawing.Point)(this["frmKontoudtogLocation"]));
             }
-            set
-            {
+            set {
                 this["frmKontoudtogLocation"] = value;
             }
         }
-
+        
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(localdb)\\v11.0;Initial Catalog=dbDataTransSumma;Integrated Security=" +
             "True")]
-        public string dbDataTransSummaConnectionString
-        {
-            get
-            {
+        public string dbDataTransSummaConnectionString {
+            get {
                 return ((string)(this["dbDataTransSummaConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point frmSagListLocation {
+            get {
+                return ((global::System.Drawing.Point)(this["frmSagListLocation"]));
+            }
+            set {
+                this["frmSagListLocation"] = value;
             }
         }
     }

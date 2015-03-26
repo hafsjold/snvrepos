@@ -37,7 +37,7 @@
     <ProductName>Trans2Summa3060</ProductName>
     <PublisherName>Hafsjold</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>17</ApplicationRevision>
+    <ApplicationRevision>18</ApplicationRevision>
     <ApplicationVersion>4.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -141,6 +141,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>dbDataTransSumma.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="frm\frmSagList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmSagList.Designer.cs">
+      <DependentUpon>frmSagList.cs</DependentUpon>
     </Compile>
     <Compile Include="frm\frmKontoudtog.cs">
       <SubType>Form</SubType>
@@ -281,6 +287,9 @@
     </None>
     <EmbeddedResource Include="frm\frmKontoudtog.resx">
       <DependentUpon>frmKontoudtog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmSagList.resx">
+      <DependentUpon>frmSagList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm\frmTemplate.resx">
       <DependentUpon>frmTemplate.cs</DependentUpon>

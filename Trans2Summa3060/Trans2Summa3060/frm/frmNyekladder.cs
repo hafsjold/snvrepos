@@ -470,6 +470,25 @@ namespace Trans2Summa3060
                         }
                     }
                 }
+                else if (hit.Type == DataGridViewHitTestType.Cell && hit.ColumnIndex == 8)
+                {
+                    tblwkladderDataGridView.ClearSelection();
+                    tblwkladderDataGridView.Rows[hit.RowIndex].Cells[hit.ColumnIndex].Selected = true;
+                    Point startPoint = tblwkladderDataGridView.PointToScreen(new Point(e.X, e.Y));
+                    FrmSagList m_frmSagList = new FrmSagList(startPoint);
+                    m_frmSagList.ShowDialog();
+                    int? selectedSagnr = m_frmSagList.SelectedSagnr;
+                    m_frmSagList.Close();
+                    if (selectedSagnr != null)
+                    {
+                        tblwkladder recWkladder = ((DataGridView)sender).Rows[hit.RowIndex].DataBoundItem as tblwkladder;
+                        if (recWkladder != null)
+                        {
+                            recWkladder.sag  = selectedSagnr;
+                         }
+                    }
+                }
+
                 else if (hit.Type == DataGridViewHitTestType.RowHeader)
                 {
                     this.contextMenuLineCopyPaste.Show(this.tblwkladderDataGridView, new Point(e.X, e.Y));
@@ -511,6 +530,28 @@ namespace Trans2Summa3060
                     }
                 }
             }
+            else if (e.ColumnIndex == 8)
+            {
+                if (e.RowIndex >= 0)
+                {
+                    tblwkladder recWkladder = ((DataGridView)sender).Rows[e.RowIndex].DataBoundItem as tblwkladder;
+                    if (recWkladder != null)
+                    {
+                        string sagnavn;
+                        try
+                        {
+                            IEnumerable<recSag> qry_Sag = from k in Program.karSag select k;
+                            sagnavn = (from k in qry_Sag where k.Sagnr == recWkladder.sag  select k.Sagnavn ).First();
+                        }
+                        catch
+                        {
+                            sagnavn = "Not found";
+                        }
+                        e.ToolTipText = sagnavn;
+                    }
+                }
+            }
+
         }
 
         private void tillægMomsToolStripMenuItem_Click(object sender, EventArgs e)
