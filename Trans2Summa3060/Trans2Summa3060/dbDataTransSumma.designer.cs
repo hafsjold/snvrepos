@@ -33,9 +33,6 @@ namespace Trans2Summa3060
     partial void Inserttblactebisfaktura(tblactebisfaktura instance);
     partial void Updatetblactebisfaktura(tblactebisfaktura instance);
     partial void Deletetblactebisfaktura(tblactebisfaktura instance);
-    partial void Inserttblwkladder(tblwkladder instance);
-    partial void Updatetblwkladder(tblwkladder instance);
-    partial void Deletetblwkladder(tblwkladder instance);
     partial void Inserttblactebisordre(tblactebisordre instance);
     partial void Updatetblactebisordre(tblactebisordre instance);
     partial void Deletetblactebisordre(tblactebisordre instance);
@@ -57,9 +54,6 @@ namespace Trans2Summa3060
     partial void Inserttblfaklin(tblfaklin instance);
     partial void Updatetblfaklin(tblfaklin instance);
     partial void Deletetblfaklin(tblfaklin instance);
-    partial void Inserttblkladder(tblkladder instance);
-    partial void Updatetblkladder(tblkladder instance);
-    partial void Deletetblkladder(tblkladder instance);
     partial void Inserttblkonto(tblkonto instance);
     partial void Updatetblkonto(tblkonto instance);
     partial void Deletetblkonto(tblkonto instance);
@@ -93,6 +87,12 @@ namespace Trans2Summa3060
     partial void Inserttblpaypal(tblpaypal instance);
     partial void Updatetblpaypal(tblpaypal instance);
     partial void Deletetblpaypal(tblpaypal instance);
+    partial void Inserttblwkladder(tblwkladder instance);
+    partial void Updatetblwkladder(tblwkladder instance);
+    partial void Deletetblwkladder(tblwkladder instance);
+    partial void Inserttblkladder(tblkladder instance);
+    partial void Updatetblkladder(tblkladder instance);
+    partial void Deletetblkladder(tblkladder instance);
     #endregion
 		
 		public DbDataTransSumma() : 
@@ -130,14 +130,6 @@ namespace Trans2Summa3060
 			get
 			{
 				return this.GetTable<tblactebisfaktura>();
-			}
-		}
-		
-		public System.Data.Linq.Table<tblwkladder> tblwkladders
-		{
-			get
-			{
-				return this.GetTable<tblwkladder>();
 			}
 		}
 		
@@ -194,14 +186,6 @@ namespace Trans2Summa3060
 			get
 			{
 				return this.GetTable<tblfaklin>();
-			}
-		}
-		
-		public System.Data.Linq.Table<tblkladder> tblkladders
-		{
-			get
-			{
-				return this.GetTable<tblkladder>();
 			}
 		}
 		
@@ -290,6 +274,22 @@ namespace Trans2Summa3060
 			get
 			{
 				return this.GetTable<tblpaypal>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblwkladder> tblwkladders
+		{
+			get
+			{
+				return this.GetTable<tblwkladder>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblkladder> tblkladders
+		{
+			get
+			{
+				return this.GetTable<tblkladder>();
 			}
 		}
 	}
@@ -573,277 +573,6 @@ namespace Trans2Summa3060
 		{
 			this.SendPropertyChanging();
 			entity.tblactebisfaktura = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblwkladder")]
-	public partial class tblwkladder : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _pid;
-		
-		private int _bilagpid;
-		
-		private string _tekst;
-		
-		private string _afstemningskonto;
-		
-		private System.Nullable<decimal> _belob;
-		
-		private System.Nullable<int> _konto;
-		
-		private string _momskode;
-		
-		private System.Nullable<int> _faktura;
-		
-		private EntityRef<tblwbilag> _tblwbilag;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnpidChanging(int value);
-    partial void OnpidChanged();
-    partial void OnbilagpidChanging(int value);
-    partial void OnbilagpidChanged();
-    partial void OntekstChanging(string value);
-    partial void OntekstChanged();
-    partial void OnafstemningskontoChanging(string value);
-    partial void OnafstemningskontoChanged();
-    partial void OnbelobChanging(System.Nullable<decimal> value);
-    partial void OnbelobChanged();
-    partial void OnkontoChanging(System.Nullable<int> value);
-    partial void OnkontoChanged();
-    partial void OnmomskodeChanging(string value);
-    partial void OnmomskodeChanged();
-    partial void OnfakturaChanging(System.Nullable<int> value);
-    partial void OnfakturaChanged();
-    #endregion
-		
-		public tblwkladder()
-		{
-			this._tblwbilag = default(EntityRef<tblwbilag>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pid", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int pid
-		{
-			get
-			{
-				return this._pid;
-			}
-			set
-			{
-				if ((this._pid != value))
-				{
-					this.OnpidChanging(value);
-					this.SendPropertyChanging();
-					this._pid = value;
-					this.SendPropertyChanged("pid");
-					this.OnpidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bilagpid", DbType="Int NOT NULL")]
-		public int bilagpid
-		{
-			get
-			{
-				return this._bilagpid;
-			}
-			set
-			{
-				if ((this._bilagpid != value))
-				{
-					if (this._tblwbilag.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnbilagpidChanging(value);
-					this.SendPropertyChanging();
-					this._bilagpid = value;
-					this.SendPropertyChanged("bilagpid");
-					this.OnbilagpidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tekst", DbType="NVarChar(50)")]
-		public string tekst
-		{
-			get
-			{
-				return this._tekst;
-			}
-			set
-			{
-				if ((this._tekst != value))
-				{
-					this.OntekstChanging(value);
-					this.SendPropertyChanging();
-					this._tekst = value;
-					this.SendPropertyChanged("tekst");
-					this.OntekstChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_afstemningskonto", DbType="NVarChar(50)")]
-		public string afstemningskonto
-		{
-			get
-			{
-				return this._afstemningskonto;
-			}
-			set
-			{
-				if ((this._afstemningskonto != value))
-				{
-					this.OnafstemningskontoChanging(value);
-					this.SendPropertyChanging();
-					this._afstemningskonto = value;
-					this.SendPropertyChanged("afstemningskonto");
-					this.OnafstemningskontoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_belob", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> belob
-		{
-			get
-			{
-				return this._belob;
-			}
-			set
-			{
-				if ((this._belob != value))
-				{
-					this.OnbelobChanging(value);
-					this.SendPropertyChanging();
-					this._belob = value;
-					this.SendPropertyChanged("belob");
-					this.OnbelobChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_konto", DbType="Int")]
-		public System.Nullable<int> konto
-		{
-			get
-			{
-				return this._konto;
-			}
-			set
-			{
-				if ((this._konto != value))
-				{
-					this.OnkontoChanging(value);
-					this.SendPropertyChanging();
-					this._konto = value;
-					this.SendPropertyChanged("konto");
-					this.OnkontoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_momskode", DbType="NVarChar(3)")]
-		public string momskode
-		{
-			get
-			{
-				return this._momskode;
-			}
-			set
-			{
-				if ((this._momskode != value))
-				{
-					this.OnmomskodeChanging(value);
-					this.SendPropertyChanging();
-					this._momskode = value;
-					this.SendPropertyChanged("momskode");
-					this.OnmomskodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_faktura", DbType="Int")]
-		public System.Nullable<int> faktura
-		{
-			get
-			{
-				return this._faktura;
-			}
-			set
-			{
-				if ((this._faktura != value))
-				{
-					this.OnfakturaChanging(value);
-					this.SendPropertyChanging();
-					this._faktura = value;
-					this.SendPropertyChanged("faktura");
-					this.OnfakturaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblwbilag_tblwkladder", Storage="_tblwbilag", ThisKey="bilagpid", OtherKey="pid", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public tblwbilag tblwbilag
-		{
-			get
-			{
-				return this._tblwbilag.Entity;
-			}
-			set
-			{
-				tblwbilag previousValue = this._tblwbilag.Entity;
-				if (((previousValue != value) 
-							|| (this._tblwbilag.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tblwbilag.Entity = null;
-						previousValue.tblwkladders.Remove(this);
-					}
-					this._tblwbilag.Entity = value;
-					if ((value != null))
-					{
-						value.tblwkladders.Add(this);
-						this._bilagpid = value.pid;
-					}
-					else
-					{
-						this._bilagpid = default(int);
-					}
-					this.SendPropertyChanged("tblwbilag");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 	
@@ -1853,9 +1582,9 @@ namespace Trans2Summa3060
 		
 		private System.Nullable<bool> _udskriv;
 		
-		private EntitySet<tblkladder> _tblkladders;
-		
 		private EntitySet<tbltran> _tbltrans;
+		
+		private EntitySet<tblkladder> _tblkladders;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -1875,8 +1604,8 @@ namespace Trans2Summa3060
 		
 		public tblbilag()
 		{
-			this._tblkladders = new EntitySet<tblkladder>(new Action<tblkladder>(this.attach_tblkladders), new Action<tblkladder>(this.detach_tblkladders));
 			this._tbltrans = new EntitySet<tbltran>(new Action<tbltran>(this.attach_tbltrans), new Action<tbltran>(this.detach_tbltrans));
+			this._tblkladders = new EntitySet<tblkladder>(new Action<tblkladder>(this.attach_tblkladders), new Action<tblkladder>(this.detach_tblkladders));
 			OnCreated();
 		}
 		
@@ -1980,19 +1709,6 @@ namespace Trans2Summa3060
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblbilag_tblkladder", Storage="_tblkladders", ThisKey="pid", OtherKey="bilagpid")]
-		public EntitySet<tblkladder> tblkladders
-		{
-			get
-			{
-				return this._tblkladders;
-			}
-			set
-			{
-				this._tblkladders.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblbilag_tbltran", Storage="_tbltrans", ThisKey="pid", OtherKey="bilagpid")]
 		public EntitySet<tbltran> tbltrans
 		{
@@ -2003,6 +1719,19 @@ namespace Trans2Summa3060
 			set
 			{
 				this._tbltrans.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblbilag_tblkladder", Storage="_tblkladders", ThisKey="pid", OtherKey="bilagpid")]
+		public EntitySet<tblkladder> tblkladders
+		{
+			get
+			{
+				return this._tblkladders;
+			}
+			set
+			{
+				this._tblkladders.Assign(value);
 			}
 		}
 		
@@ -2026,18 +1755,6 @@ namespace Trans2Summa3060
 			}
 		}
 		
-		private void attach_tblkladders(tblkladder entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblbilag = this;
-		}
-		
-		private void detach_tblkladders(tblkladder entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblbilag = null;
-		}
-		
 		private void attach_tbltrans(tbltran entity)
 		{
 			this.SendPropertyChanging();
@@ -2045,6 +1762,18 @@ namespace Trans2Summa3060
 		}
 		
 		private void detach_tbltrans(tbltran entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblbilag = null;
+		}
+		
+		private void attach_tblkladders(tblkladder entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblbilag = this;
+		}
+		
+		private void detach_tblkladders(tblkladder entity)
 		{
 			this.SendPropertyChanging();
 			entity.tblbilag = null;
@@ -2795,325 +2524,6 @@ namespace Trans2Summa3060
 						this._fakpid = default(int);
 					}
 					this.SendPropertyChanged("tblfak");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblkladder")]
-	public partial class tblkladder : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _pid;
-		
-		private System.Nullable<int> _regnskabid;
-		
-		private System.Nullable<int> _bilagpid;
-		
-		private string _tekst;
-		
-		private string _afstemningskonto;
-		
-		private System.Nullable<decimal> _belob;
-		
-		private System.Nullable<int> _konto;
-		
-		private string _momskode;
-		
-		private System.Nullable<int> _faktura;
-		
-		private System.Nullable<int> _id;
-		
-		private EntityRef<tblbilag> _tblbilag;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnpidChanging(int value);
-    partial void OnpidChanged();
-    partial void OnregnskabidChanging(System.Nullable<int> value);
-    partial void OnregnskabidChanged();
-    partial void OnbilagpidChanging(System.Nullable<int> value);
-    partial void OnbilagpidChanged();
-    partial void OntekstChanging(string value);
-    partial void OntekstChanged();
-    partial void OnafstemningskontoChanging(string value);
-    partial void OnafstemningskontoChanged();
-    partial void OnbelobChanging(System.Nullable<decimal> value);
-    partial void OnbelobChanged();
-    partial void OnkontoChanging(System.Nullable<int> value);
-    partial void OnkontoChanged();
-    partial void OnmomskodeChanging(string value);
-    partial void OnmomskodeChanged();
-    partial void OnfakturaChanging(System.Nullable<int> value);
-    partial void OnfakturaChanged();
-    partial void OnidChanging(System.Nullable<int> value);
-    partial void OnidChanged();
-    #endregion
-		
-		public tblkladder()
-		{
-			this._tblbilag = default(EntityRef<tblbilag>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pid", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int pid
-		{
-			get
-			{
-				return this._pid;
-			}
-			set
-			{
-				if ((this._pid != value))
-				{
-					this.OnpidChanging(value);
-					this.SendPropertyChanging();
-					this._pid = value;
-					this.SendPropertyChanged("pid");
-					this.OnpidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_regnskabid", DbType="Int")]
-		public System.Nullable<int> regnskabid
-		{
-			get
-			{
-				return this._regnskabid;
-			}
-			set
-			{
-				if ((this._regnskabid != value))
-				{
-					this.OnregnskabidChanging(value);
-					this.SendPropertyChanging();
-					this._regnskabid = value;
-					this.SendPropertyChanged("regnskabid");
-					this.OnregnskabidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bilagpid", DbType="Int")]
-		public System.Nullable<int> bilagpid
-		{
-			get
-			{
-				return this._bilagpid;
-			}
-			set
-			{
-				if ((this._bilagpid != value))
-				{
-					if (this._tblbilag.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnbilagpidChanging(value);
-					this.SendPropertyChanging();
-					this._bilagpid = value;
-					this.SendPropertyChanged("bilagpid");
-					this.OnbilagpidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tekst", DbType="NVarChar(50)")]
-		public string tekst
-		{
-			get
-			{
-				return this._tekst;
-			}
-			set
-			{
-				if ((this._tekst != value))
-				{
-					this.OntekstChanging(value);
-					this.SendPropertyChanging();
-					this._tekst = value;
-					this.SendPropertyChanged("tekst");
-					this.OntekstChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_afstemningskonto", DbType="NVarChar(50)")]
-		public string afstemningskonto
-		{
-			get
-			{
-				return this._afstemningskonto;
-			}
-			set
-			{
-				if ((this._afstemningskonto != value))
-				{
-					this.OnafstemningskontoChanging(value);
-					this.SendPropertyChanging();
-					this._afstemningskonto = value;
-					this.SendPropertyChanged("afstemningskonto");
-					this.OnafstemningskontoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_belob", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> belob
-		{
-			get
-			{
-				return this._belob;
-			}
-			set
-			{
-				if ((this._belob != value))
-				{
-					this.OnbelobChanging(value);
-					this.SendPropertyChanging();
-					this._belob = value;
-					this.SendPropertyChanged("belob");
-					this.OnbelobChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_konto", DbType="Int")]
-		public System.Nullable<int> konto
-		{
-			get
-			{
-				return this._konto;
-			}
-			set
-			{
-				if ((this._konto != value))
-				{
-					this.OnkontoChanging(value);
-					this.SendPropertyChanging();
-					this._konto = value;
-					this.SendPropertyChanged("konto");
-					this.OnkontoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_momskode", DbType="NVarChar(3)")]
-		public string momskode
-		{
-			get
-			{
-				return this._momskode;
-			}
-			set
-			{
-				if ((this._momskode != value))
-				{
-					this.OnmomskodeChanging(value);
-					this.SendPropertyChanging();
-					this._momskode = value;
-					this.SendPropertyChanged("momskode");
-					this.OnmomskodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_faktura", DbType="Int")]
-		public System.Nullable<int> faktura
-		{
-			get
-			{
-				return this._faktura;
-			}
-			set
-			{
-				if ((this._faktura != value))
-				{
-					this.OnfakturaChanging(value);
-					this.SendPropertyChanging();
-					this._faktura = value;
-					this.SendPropertyChanged("faktura");
-					this.OnfakturaChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int")]
-		public System.Nullable<int> id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblbilag_tblkladder", Storage="_tblbilag", ThisKey="bilagpid", OtherKey="pid", IsForeignKey=true, DeleteRule="CASCADE")]
-		public tblbilag tblbilag
-		{
-			get
-			{
-				return this._tblbilag.Entity;
-			}
-			set
-			{
-				tblbilag previousValue = this._tblbilag.Entity;
-				if (((previousValue != value) 
-							|| (this._tblbilag.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tblbilag.Entity = null;
-						previousValue.tblkladders.Remove(this);
-					}
-					this._tblbilag.Entity = value;
-					if ((value != null))
-					{
-						value.tblkladders.Add(this);
-						this._bilagpid = value.pid;
-					}
-					else
-					{
-						this._bilagpid = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("tblbilag");
 				}
 			}
 		}
@@ -6368,6 +5778,644 @@ namespace Trans2Summa3060
 						this._bankkonto_pid = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("tblbankkonto");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblwkladder")]
+	public partial class tblwkladder : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _pid;
+		
+		private int _bilagpid;
+		
+		private string _tekst;
+		
+		private string _afstemningskonto;
+		
+		private System.Nullable<decimal> _belob;
+		
+		private System.Nullable<int> _konto;
+		
+		private string _momskode;
+		
+		private System.Nullable<int> _faktura;
+		
+		private System.Nullable<int> _sag;
+		
+		private EntityRef<tblwbilag> _tblwbilag;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnpidChanging(int value);
+    partial void OnpidChanged();
+    partial void OnbilagpidChanging(int value);
+    partial void OnbilagpidChanged();
+    partial void OntekstChanging(string value);
+    partial void OntekstChanged();
+    partial void OnafstemningskontoChanging(string value);
+    partial void OnafstemningskontoChanged();
+    partial void OnbelobChanging(System.Nullable<decimal> value);
+    partial void OnbelobChanged();
+    partial void OnkontoChanging(System.Nullable<int> value);
+    partial void OnkontoChanged();
+    partial void OnmomskodeChanging(string value);
+    partial void OnmomskodeChanged();
+    partial void OnfakturaChanging(System.Nullable<int> value);
+    partial void OnfakturaChanged();
+    partial void OnsagChanging(System.Nullable<int> value);
+    partial void OnsagChanged();
+    #endregion
+		
+		public tblwkladder()
+		{
+			this._tblwbilag = default(EntityRef<tblwbilag>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pid", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int pid
+		{
+			get
+			{
+				return this._pid;
+			}
+			set
+			{
+				if ((this._pid != value))
+				{
+					this.OnpidChanging(value);
+					this.SendPropertyChanging();
+					this._pid = value;
+					this.SendPropertyChanged("pid");
+					this.OnpidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bilagpid", DbType="Int NOT NULL")]
+		public int bilagpid
+		{
+			get
+			{
+				return this._bilagpid;
+			}
+			set
+			{
+				if ((this._bilagpid != value))
+				{
+					if (this._tblwbilag.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnbilagpidChanging(value);
+					this.SendPropertyChanging();
+					this._bilagpid = value;
+					this.SendPropertyChanged("bilagpid");
+					this.OnbilagpidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tekst", DbType="NVarChar(50)")]
+		public string tekst
+		{
+			get
+			{
+				return this._tekst;
+			}
+			set
+			{
+				if ((this._tekst != value))
+				{
+					this.OntekstChanging(value);
+					this.SendPropertyChanging();
+					this._tekst = value;
+					this.SendPropertyChanged("tekst");
+					this.OntekstChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_afstemningskonto", DbType="NVarChar(50)")]
+		public string afstemningskonto
+		{
+			get
+			{
+				return this._afstemningskonto;
+			}
+			set
+			{
+				if ((this._afstemningskonto != value))
+				{
+					this.OnafstemningskontoChanging(value);
+					this.SendPropertyChanging();
+					this._afstemningskonto = value;
+					this.SendPropertyChanged("afstemningskonto");
+					this.OnafstemningskontoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_belob", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> belob
+		{
+			get
+			{
+				return this._belob;
+			}
+			set
+			{
+				if ((this._belob != value))
+				{
+					this.OnbelobChanging(value);
+					this.SendPropertyChanging();
+					this._belob = value;
+					this.SendPropertyChanged("belob");
+					this.OnbelobChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_konto", DbType="Int")]
+		public System.Nullable<int> konto
+		{
+			get
+			{
+				return this._konto;
+			}
+			set
+			{
+				if ((this._konto != value))
+				{
+					this.OnkontoChanging(value);
+					this.SendPropertyChanging();
+					this._konto = value;
+					this.SendPropertyChanged("konto");
+					this.OnkontoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_momskode", DbType="NVarChar(3)")]
+		public string momskode
+		{
+			get
+			{
+				return this._momskode;
+			}
+			set
+			{
+				if ((this._momskode != value))
+				{
+					this.OnmomskodeChanging(value);
+					this.SendPropertyChanging();
+					this._momskode = value;
+					this.SendPropertyChanged("momskode");
+					this.OnmomskodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_faktura", DbType="Int")]
+		public System.Nullable<int> faktura
+		{
+			get
+			{
+				return this._faktura;
+			}
+			set
+			{
+				if ((this._faktura != value))
+				{
+					this.OnfakturaChanging(value);
+					this.SendPropertyChanging();
+					this._faktura = value;
+					this.SendPropertyChanged("faktura");
+					this.OnfakturaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sag", DbType="Int")]
+		public System.Nullable<int> sag
+		{
+			get
+			{
+				return this._sag;
+			}
+			set
+			{
+				if ((this._sag != value))
+				{
+					this.OnsagChanging(value);
+					this.SendPropertyChanging();
+					this._sag = value;
+					this.SendPropertyChanged("sag");
+					this.OnsagChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblwbilag_tblwkladder", Storage="_tblwbilag", ThisKey="bilagpid", OtherKey="pid", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public tblwbilag tblwbilag
+		{
+			get
+			{
+				return this._tblwbilag.Entity;
+			}
+			set
+			{
+				tblwbilag previousValue = this._tblwbilag.Entity;
+				if (((previousValue != value) 
+							|| (this._tblwbilag.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblwbilag.Entity = null;
+						previousValue.tblwkladders.Remove(this);
+					}
+					this._tblwbilag.Entity = value;
+					if ((value != null))
+					{
+						value.tblwkladders.Add(this);
+						this._bilagpid = value.pid;
+					}
+					else
+					{
+						this._bilagpid = default(int);
+					}
+					this.SendPropertyChanged("tblwbilag");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblkladder")]
+	public partial class tblkladder : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _pid;
+		
+		private System.Nullable<int> _regnskabid;
+		
+		private System.Nullable<int> _bilagpid;
+		
+		private string _tekst;
+		
+		private string _afstemningskonto;
+		
+		private System.Nullable<decimal> _belob;
+		
+		private System.Nullable<int> _konto;
+		
+		private string _momskode;
+		
+		private System.Nullable<int> _faktura;
+		
+		private System.Nullable<int> _sag;
+		
+		private System.Nullable<int> _id;
+		
+		private EntityRef<tblbilag> _tblbilag;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnpidChanging(int value);
+    partial void OnpidChanged();
+    partial void OnregnskabidChanging(System.Nullable<int> value);
+    partial void OnregnskabidChanged();
+    partial void OnbilagpidChanging(System.Nullable<int> value);
+    partial void OnbilagpidChanged();
+    partial void OntekstChanging(string value);
+    partial void OntekstChanged();
+    partial void OnafstemningskontoChanging(string value);
+    partial void OnafstemningskontoChanged();
+    partial void OnbelobChanging(System.Nullable<decimal> value);
+    partial void OnbelobChanged();
+    partial void OnkontoChanging(System.Nullable<int> value);
+    partial void OnkontoChanged();
+    partial void OnmomskodeChanging(string value);
+    partial void OnmomskodeChanged();
+    partial void OnfakturaChanging(System.Nullable<int> value);
+    partial void OnfakturaChanged();
+    partial void OnsagChanging(System.Nullable<int> value);
+    partial void OnsagChanged();
+    partial void OnidChanging(System.Nullable<int> value);
+    partial void OnidChanged();
+    #endregion
+		
+		public tblkladder()
+		{
+			this._tblbilag = default(EntityRef<tblbilag>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pid", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int pid
+		{
+			get
+			{
+				return this._pid;
+			}
+			set
+			{
+				if ((this._pid != value))
+				{
+					this.OnpidChanging(value);
+					this.SendPropertyChanging();
+					this._pid = value;
+					this.SendPropertyChanged("pid");
+					this.OnpidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_regnskabid", DbType="Int")]
+		public System.Nullable<int> regnskabid
+		{
+			get
+			{
+				return this._regnskabid;
+			}
+			set
+			{
+				if ((this._regnskabid != value))
+				{
+					this.OnregnskabidChanging(value);
+					this.SendPropertyChanging();
+					this._regnskabid = value;
+					this.SendPropertyChanged("regnskabid");
+					this.OnregnskabidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bilagpid", DbType="Int")]
+		public System.Nullable<int> bilagpid
+		{
+			get
+			{
+				return this._bilagpid;
+			}
+			set
+			{
+				if ((this._bilagpid != value))
+				{
+					if (this._tblbilag.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnbilagpidChanging(value);
+					this.SendPropertyChanging();
+					this._bilagpid = value;
+					this.SendPropertyChanged("bilagpid");
+					this.OnbilagpidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tekst", DbType="NVarChar(50)")]
+		public string tekst
+		{
+			get
+			{
+				return this._tekst;
+			}
+			set
+			{
+				if ((this._tekst != value))
+				{
+					this.OntekstChanging(value);
+					this.SendPropertyChanging();
+					this._tekst = value;
+					this.SendPropertyChanged("tekst");
+					this.OntekstChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_afstemningskonto", DbType="NVarChar(50)")]
+		public string afstemningskonto
+		{
+			get
+			{
+				return this._afstemningskonto;
+			}
+			set
+			{
+				if ((this._afstemningskonto != value))
+				{
+					this.OnafstemningskontoChanging(value);
+					this.SendPropertyChanging();
+					this._afstemningskonto = value;
+					this.SendPropertyChanged("afstemningskonto");
+					this.OnafstemningskontoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_belob", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> belob
+		{
+			get
+			{
+				return this._belob;
+			}
+			set
+			{
+				if ((this._belob != value))
+				{
+					this.OnbelobChanging(value);
+					this.SendPropertyChanging();
+					this._belob = value;
+					this.SendPropertyChanged("belob");
+					this.OnbelobChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_konto", DbType="Int")]
+		public System.Nullable<int> konto
+		{
+			get
+			{
+				return this._konto;
+			}
+			set
+			{
+				if ((this._konto != value))
+				{
+					this.OnkontoChanging(value);
+					this.SendPropertyChanging();
+					this._konto = value;
+					this.SendPropertyChanged("konto");
+					this.OnkontoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_momskode", DbType="NVarChar(3)")]
+		public string momskode
+		{
+			get
+			{
+				return this._momskode;
+			}
+			set
+			{
+				if ((this._momskode != value))
+				{
+					this.OnmomskodeChanging(value);
+					this.SendPropertyChanging();
+					this._momskode = value;
+					this.SendPropertyChanged("momskode");
+					this.OnmomskodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_faktura", DbType="Int")]
+		public System.Nullable<int> faktura
+		{
+			get
+			{
+				return this._faktura;
+			}
+			set
+			{
+				if ((this._faktura != value))
+				{
+					this.OnfakturaChanging(value);
+					this.SendPropertyChanging();
+					this._faktura = value;
+					this.SendPropertyChanged("faktura");
+					this.OnfakturaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sag", DbType="Int")]
+		public System.Nullable<int> sag
+		{
+			get
+			{
+				return this._sag;
+			}
+			set
+			{
+				if ((this._sag != value))
+				{
+					this.OnsagChanging(value);
+					this.SendPropertyChanging();
+					this._sag = value;
+					this.SendPropertyChanged("sag");
+					this.OnsagChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", DbType="Int")]
+		public System.Nullable<int> id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblbilag_tblkladder", Storage="_tblbilag", ThisKey="bilagpid", OtherKey="pid", IsForeignKey=true, DeleteRule="CASCADE")]
+		public tblbilag tblbilag
+		{
+			get
+			{
+				return this._tblbilag.Entity;
+			}
+			set
+			{
+				tblbilag previousValue = this._tblbilag.Entity;
+				if (((previousValue != value) 
+							|| (this._tblbilag.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblbilag.Entity = null;
+						previousValue.tblkladders.Remove(this);
+					}
+					this._tblbilag.Entity = value;
+					if ((value != null))
+					{
+						value.tblkladders.Add(this);
+						this._bilagpid = value.pid;
+					}
+					else
+					{
+						this._bilagpid = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tblbilag");
 				}
 			}
 		}

@@ -20,6 +20,7 @@ namespace Trans2Summa3060
         public int? Konto { get; set; }
         public string Momskode { get; set; }
         public int? Faktura { get; set; }
+        public int? Sag { get; set; }
         public int? Id { get; set; }
         public int? Regnskabid { get; set; }
 
@@ -81,6 +82,7 @@ namespace Trans2Summa3060
                         Momskode = value[6],
                         Faktura = Microsoft.VisualBasic.Information.IsNumeric(value[7]) ? int.Parse(value[7]) : (int?)null,
                         Id = Microsoft.VisualBasic.Information.IsNumeric(value[8]) ? int.Parse(value[8]) : (int?)null,
+                        Sag = Microsoft.VisualBasic.Information.IsNumeric(value[9]) ? int.Parse(value[9]) : (int?)null,
                         Regnskabid = m_regnskabid,
                     };
                     this.Add(rec);

@@ -321,6 +321,7 @@ namespace Trans2Summa3060
                     konto = k.Konto,
                     momskode = k.Momskode,
                     faktura = k.Faktura,
+                    sag = k.Sag,
                     id = k.Id,
                 };
                 Program.dbDataTransSumma.tblkladders.InsertOnSubmit(recKladder);

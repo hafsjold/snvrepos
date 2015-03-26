@@ -38,7 +38,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxSogeord = new System.Windows.Forms.TextBox();
             this.datoTextBox = new System.Windows.Forms.TextBox();
-            this.tblbilagBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bilagTextBox = new System.Windows.Forms.TextBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.tblkladderDataGridView = new System.Windows.Forms.DataGridView();
@@ -55,6 +54,7 @@
             this.bindingNavigatorMoveNextItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMoveLastItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tblbilagBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.regnskabidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bilagpidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,13 +66,13 @@
             this.fakturaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblbilagDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sag = new System.Windows.Forms.DataGridViewTextBoxColumn();
             datoLabel = new System.Windows.Forms.Label();
             bilagLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tblbilagBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -82,6 +82,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tblkladderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblbilagBindingNavigator)).BeginInit();
             this.tblbilagBindingNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tblbilagBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // datoLabel
@@ -124,7 +125,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(530, 259);
+            this.splitContainer1.Size = new System.Drawing.Size(638, 259);
             this.splitContainer1.SplitterDistance = 52;
             this.splitContainer1.TabIndex = 7;
             // 
@@ -174,10 +175,6 @@
             this.datoTextBox.Size = new System.Drawing.Size(75, 20);
             this.datoTextBox.TabIndex = 8;
             // 
-            // tblbilagBindingSource
-            // 
-            this.tblbilagBindingSource.DataSource = typeof(Trans2Summa3060.tblbilag);
-            // 
             // bilagTextBox
             // 
             this.bilagTextBox.BackColor = System.Drawing.SystemColors.Window;
@@ -204,7 +201,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tblbilagBindingNavigator);
-            this.splitContainer2.Size = new System.Drawing.Size(530, 203);
+            this.splitContainer2.Size = new System.Drawing.Size(638, 203);
             this.splitContainer2.SplitterDistance = 174;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -226,14 +223,15 @@
             this.momskodeDataGridViewTextBoxColumn,
             this.fakturaDataGridViewTextBoxColumn,
             this.idDataGridViewTextBoxColumn,
-            this.tblbilagDataGridViewTextBoxColumn});
+            this.tblbilagDataGridViewTextBoxColumn,
+            this.sag});
             this.tblkladderDataGridView.ContextMenuStrip = this.contextMenuLineCopyPaste;
             this.tblkladderDataGridView.DataSource = this.tblkladderBindingSource;
             this.tblkladderDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblkladderDataGridView.Location = new System.Drawing.Point(0, 0);
             this.tblkladderDataGridView.Name = "tblkladderDataGridView";
             this.tblkladderDataGridView.ReadOnly = true;
-            this.tblkladderDataGridView.Size = new System.Drawing.Size(530, 174);
+            this.tblkladderDataGridView.Size = new System.Drawing.Size(638, 174);
             this.tblkladderDataGridView.TabIndex = 0;
             // 
             // contextMenuLineCopyPaste
@@ -279,7 +277,7 @@
             this.tblbilagBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.tblbilagBindingNavigator.Name = "tblbilagBindingNavigator";
             this.tblbilagBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.tblbilagBindingNavigator.Size = new System.Drawing.Size(530, 25);
+            this.tblbilagBindingNavigator.Size = new System.Drawing.Size(638, 25);
             this.tblbilagBindingNavigator.TabIndex = 8;
             this.tblbilagBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -350,6 +348,10 @@
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
             this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
+            // tblbilagBindingSource
+            // 
+            this.tblbilagBindingSource.DataSource = typeof(Trans2Summa3060.tblbilag);
+            // 
             // pidDataGridViewTextBoxColumn
             // 
             this.pidDataGridViewTextBoxColumn.DataPropertyName = "pid";
@@ -417,7 +419,7 @@
             // fakturaDataGridViewTextBoxColumn
             // 
             this.fakturaDataGridViewTextBoxColumn.DataPropertyName = "faktura";
-            this.fakturaDataGridViewTextBoxColumn.HeaderText = "Faktura";
+            this.fakturaDataGridViewTextBoxColumn.HeaderText = "Faknr";
             this.fakturaDataGridViewTextBoxColumn.Name = "fakturaDataGridViewTextBoxColumn";
             this.fakturaDataGridViewTextBoxColumn.ReadOnly = true;
             this.fakturaDataGridViewTextBoxColumn.Width = 40;
@@ -438,6 +440,14 @@
             this.tblbilagDataGridViewTextBoxColumn.ReadOnly = true;
             this.tblbilagDataGridViewTextBoxColumn.Visible = false;
             // 
+            // sag
+            // 
+            this.sag.DataPropertyName = "sag";
+            this.sag.HeaderText = "Sag";
+            this.sag.Name = "sag";
+            this.sag.ReadOnly = true;
+            this.sag.Width = 40;
+            // 
             // FrmKladder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -455,7 +465,6 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.tblbilagBindingSource)).EndInit();
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.Panel2.PerformLayout();
@@ -467,6 +476,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tblbilagBindingNavigator)).EndInit();
             this.tblbilagBindingNavigator.ResumeLayout(false);
             this.tblbilagBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tblbilagBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -508,5 +518,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fakturaDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tblbilagDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sag;
     }
 }

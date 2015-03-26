@@ -37,7 +37,8 @@ namespace Trans2Summa3060
                           belob = k.belob,
                           konto = k.konto,
                           momskode = k.momskode,
-                          faktura = k.faktura
+                          faktura = k.faktura,
+                          sag = k.sag 
                       };
             int antal = qry.Count();
 
@@ -390,7 +391,8 @@ namespace Trans2Summa3060
                                  Belob = wk.belob,
                                  Kontonr = wk.konto,
                                  Momskode = wk.momskode,
-                                 Faknr = wk.faktura
+                                 Faknr = wk.faktura,
+                                 Sagnr = wk.sag
                              };
                     karKladde.Add(k);
                 }
@@ -1069,6 +1071,7 @@ namespace Trans2Summa3060
                 //throw;
             }
         }
-    }
+
+     }
 
 }

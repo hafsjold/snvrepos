@@ -18,6 +18,7 @@ namespace Trans2Summa3060
         public int? Kontonr { get; set; }
         public string Momskode { get; set; }
         public int? Faknr { get; set; }
+        public int? Sagnr { get; set; }
     }
 
     public class KarKladde : List<recKladde>
@@ -47,6 +48,7 @@ namespace Trans2Summa3060
                     ln += (b.Kontonr == null) ? "," : b.Kontonr.ToString() + ",";
                     ln += (b.Momskode == null) ? "," : b.Momskode.ToString() + ",";
                     ln += (b.Faknr == null) ? ",0," : b.Faknr.ToString() + ",0,";
+                    ln += (b.Sagnr == null) ? "" : b.Sagnr.ToString();
                     sr.WriteLine(ln);
                 }
             }
