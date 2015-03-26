@@ -140,8 +140,10 @@ namespace Trans2Summa3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
-            clsBilagsudskriftPDF objBilagsudskriftPDF = new clsBilagsudskriftPDF();
-            clsBilagsudskriftPDF.BilagsudskriftPDF();
+            //KarSag sag = Program.karSag;
+
+            //clsBilagsudskriftPDF objBilagsudskriftPDF = new clsBilagsudskriftPDF();
+            //clsBilagsudskriftPDF.BilagsudskriftPDF();
 
             //decimal? tal = -decimal.Parse("0,12342");
             //string talformated = "";
