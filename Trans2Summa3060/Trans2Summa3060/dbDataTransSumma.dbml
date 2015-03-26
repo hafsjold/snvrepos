@@ -70,8 +70,8 @@
       <Column Name="bilag" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="dato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="udskriv" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="tblbilag_tbltran" Member="tbltrans" ThisKey="pid" OtherKey="bilagpid" Type="tbltran" />
       <Association Name="tblbilag_tblkladder" Member="tblkladders" ThisKey="pid" OtherKey="bilagpid" Type="tblkladder" />
+      <Association Name="tblbilag_tbltran" Member="tbltrans" ThisKey="pid" OtherKey="bilagpid" Type="tbltran" />
     </Type>
   </Table>
   <Table Name="dbo.tblfak" Member="tblfaks">
@@ -156,26 +156,6 @@
       <Column Name="konto" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="momskode" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
       <Column Name="afstemningskonto" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tbltrans" Member="tbltrans">
-    <Type Name="tbltran">
-      <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="regnskabid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="skjul" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="bilagpid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="tekst" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="kontonr" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="kontonavn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="moms" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="debet" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="kredit" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="id" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="nr" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="afstem" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="tblafstem_tbltran" Member="tblafstem" ThisKey="afstem" OtherKey="pid" Type="tblafstem" IsForeignKey="true" DeleteRule="SET NULL" />
-      <Association Name="tblbilag_tbltran" Member="tblbilag" ThisKey="bilagpid" OtherKey="pid" Type="tblbilag" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.tblvareomkostninger" Member="tblvareomkostningers">
@@ -297,6 +277,27 @@
       <Column Name="sag" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="tblbilag_tblkladder" Member="tblbilag" ThisKey="bilagpid" OtherKey="pid" Type="tblbilag" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbltrans" Member="tbltrans">
+    <Type Name="tbltran">
+      <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="regnskabid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="skjul" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="bilagpid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="tekst" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="kontonr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="kontonavn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="sag" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="moms" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="debet" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="kredit" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="nr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="afstem" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblafstem_tbltran" Member="tblafstem" ThisKey="afstem" OtherKey="pid" Type="tblafstem" IsForeignKey="true" DeleteRule="SET NULL" />
+      <Association Name="tblbilag_tbltran" Member="tblbilag" ThisKey="bilagpid" OtherKey="pid" Type="tblbilag" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
 </Database>

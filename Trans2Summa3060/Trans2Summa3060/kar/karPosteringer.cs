@@ -33,7 +33,7 @@ namespace Trans2Summa3060
         public int int76;
         public int Nr;
         public int Id;
-        public int int88;
+        public int sag;
         public int int92;
     }
 
@@ -174,6 +174,18 @@ namespace Trans2Summa3060
             set
             {
                 m_regnskabid = (int)value;
+            }
+        }
+
+        public int Sag
+        {
+            get
+            {
+                return m_rec_data.sag;
+            }
+            set
+            {
+                m_rec_data.sag = value;
             }
         }
 

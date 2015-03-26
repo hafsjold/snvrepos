@@ -269,6 +269,7 @@ namespace Trans2Summa3060
                     tekst = p.Tekst,
                     kontonr = p.Konto,
                     kontonavn = Kontonavn,
+                    sag = (p.Sag > 0) ? p.Sag : (int?)null,
                     id = p.Id,
                     nr = p.Nr,
                     belob = p.Nettobeløb + p.Momsbeløb,
@@ -323,7 +324,7 @@ namespace Trans2Summa3060
                     konto = k.Konto,
                     momskode = k.Momskode,
                     faktura = k.Faktura,
-                    sag = k.Sag,
+                    sag = (k.Sag > 0) ? k.Sag : (int?)null,
                     id = k.Id,
                 };
                 Program.dbDataTransSumma.tblkladders.InsertOnSubmit(recKladder);
