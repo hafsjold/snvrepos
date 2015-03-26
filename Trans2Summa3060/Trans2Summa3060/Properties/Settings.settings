@@ -163,5 +163,8 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=(localdb)\v11.0;Initial Catalog=dbDataTransSumma;Integrated Security=True</Value>
     </Setting>
+    <Setting Name="frmSagListLocation" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
