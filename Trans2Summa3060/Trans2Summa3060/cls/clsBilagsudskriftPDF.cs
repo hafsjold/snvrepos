@@ -125,21 +125,23 @@ namespace Trans2Summa3060
             {
                 if (i == 0)
                 {
-                    String[] headings = new String[5];
+                    String[] headings = new String[6];
                     headings[0] = "Tekst";
                     headings[1] = "Kontonr";
                     headings[2] = "Kontonavn";
-                    headings[3] = "Debet";
-                    headings[4] = "Kredit";
+                    headings[3] = "Sag";
+                    headings[4] = "Debet";
+                    headings[5] = "Kredit";
                     dataSource[i++] = headings;
                 }
 
-                String[] datarow = new String[5];
+                String[] datarow = new String[6];
                 datarow[0] = t.tekst;
                 datarow[1] = t.kontonr.ToString();
                 datarow[2] = t.kontonavn;
-                datarow[3] = t.debet != null ? ((decimal)(t.debet)).ToString("#,0.00;-#,0.00") : "";
-                datarow[4] = t.kredit != null ? ((decimal)(t.kredit)).ToString("#,0.00;-#,0.00") : "";
+                datarow[3] = t.sag != null ? t.sag.ToString() : "";
+                datarow[4] = t.debet != null ? ((decimal)(t.debet)).ToString("#,0.00;-#,0.00") : "";
+                datarow[5] = t.kredit != null ? ((decimal)(t.kredit)).ToString("#,0.00;-#,0.00") : "";
                 dataSource[i++] = datarow;
             }
 
@@ -157,14 +159,16 @@ namespace Trans2Summa3060
 
             table.Columns[0].Width = width * 0.30f * width;
             table.Columns[0].StringFormat = new PdfStringFormat(PdfTextAlignment.Left, PdfVerticalAlignment.Middle);
-            table.Columns[1].Width = width * 0.10f * width;
+            table.Columns[1].Width = width * 0.11f * width;
             table.Columns[1].StringFormat = new PdfStringFormat(PdfTextAlignment.Right, PdfVerticalAlignment.Middle);
             table.Columns[2].Width = width * 0.30f * width;
             table.Columns[2].StringFormat = new PdfStringFormat(PdfTextAlignment.Left, PdfVerticalAlignment.Middle);
-            table.Columns[3].Width = width * 0.15f * width;
+            table.Columns[3].Width = width * 0.07f * width;
             table.Columns[3].StringFormat = new PdfStringFormat(PdfTextAlignment.Right, PdfVerticalAlignment.Middle);
             table.Columns[4].Width = width * 0.15f * width;
             table.Columns[4].StringFormat = new PdfStringFormat(PdfTextAlignment.Right, PdfVerticalAlignment.Middle);
+            table.Columns[5].Width = width * 0.15f * width;
+            table.Columns[5].StringFormat = new PdfStringFormat(PdfTextAlignment.Right, PdfVerticalAlignment.Middle);
 
             PdfLayoutResult result = table.Draw(page, new PointF(0, y));
             y = y + result.Bounds.Height + 5;
