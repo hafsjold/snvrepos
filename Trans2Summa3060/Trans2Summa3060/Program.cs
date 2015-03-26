@@ -75,6 +75,7 @@ namespace Trans2Summa3060
         private static KarKartotek m_KarKartotek;
         private static KarVarer m_KarVarer;
         private static KarTrans2Summa m_KarTrans2Summa;
+        private static KarSag m_KarSag;
 
         public static string path_to_lock_summasummarum_kontoplan
         {
@@ -349,6 +350,18 @@ namespace Trans2Summa3060
             set
             {
                 m_KarAfstemningskonti = value;
+            }
+        }
+        public static KarSag karSag
+        {
+            get
+            {
+                if (m_KarSag == null) m_KarSag = new KarSag();
+                return m_KarSag;
+            }
+            set
+            {
+                m_KarSag = value;
             }
         }
         public static recMemRegnskab qryAktivRegnskab()
