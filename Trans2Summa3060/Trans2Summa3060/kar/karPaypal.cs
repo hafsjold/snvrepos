@@ -253,7 +253,18 @@ namespace Trans2Summa3060
             }
         }
 
-        public void load_bankkonto1()
+        public void load_bankkonto()
+        {
+            load_bankkonto1();
+            load_bankkonto2();
+            load_bankkonto3();
+            load_bankkonto4();
+            load_bankkonto5();
+            load_bankkonto6();
+            load_bankkonto7();      
+        }
+
+        private void load_bankkonto1()
         {
             var qry = from w in Program.dbDataTransSumma.tblpaypals
                       where w.bankkonto_pid == null && w.Currency == "DKK"
@@ -279,7 +290,7 @@ namespace Trans2Summa3060
             }
         }
 
-        public void load_bankkonto2()
+        private void load_bankkonto2()
         {
             var qry = from w in Program.dbDataTransSumma.tblpaypals
                       where w.bankkonto_pid == null && w.Currency == "DKK"
@@ -305,7 +316,7 @@ namespace Trans2Summa3060
             }
         }
 
-        public void load_bankkonto3()
+        private void load_bankkonto3()
         {
             var qry = from w in Program.dbDataTransSumma.tblpaypals
                       where w.bankkonto_pid == null && w.Currency == "DKK"
@@ -343,7 +354,7 @@ namespace Trans2Summa3060
             }
         }
 
-        public void load_bankkonto4()
+        private void load_bankkonto4()
         {
             var qry = from w in Program.dbDataTransSumma.tblpaypals
                       where w.bankkonto_pid == null && w.Currency == "DKK"
@@ -381,7 +392,7 @@ namespace Trans2Summa3060
             }
         }
 
-        public void load_bankkonto5()
+        private void load_bankkonto5()
         {
             var qry = from w in Program.dbDataTransSumma.tblpaypals
                       where w.bankkonto_pid == null && w.Currency == "DKK"
@@ -407,7 +418,7 @@ namespace Trans2Summa3060
             }
         }
 
-        public void load_bankkonto6()
+        private void load_bankkonto6()
         {
             var qry = from w in Program.dbDataTransSumma.tblpaypals
                       where w.bankkonto_pid == null && w.Currency == "DKK"
@@ -448,6 +459,44 @@ namespace Trans2Summa3060
                 };
                 recBankkonto.tblpaypals.Add(b);
                 Program.dbDataTransSumma.tblbankkontos.InsertOnSubmit(recBankkonto);
+                Program.dbDataTransSumma.SubmitChanges();
+            }
+        }
+
+        private void load_bankkonto7()
+        {
+            var qry = from w in Program.dbDataTransSumma.tblpaypals
+                      where w.bankkonto_pid == null && w.Currency == "DKK"
+                      && (w.Type == "Web Accept Payment Received")
+                      orderby w.Date
+                      select w;
+
+            int antal = qry.Count();
+            foreach (var b in qry)
+            {
+                tblbankkonto recBankkonto = new tblbankkonto
+                {
+                    pid = clsPbs.nextval("Tblbankkonto"),
+                    bankkontoid = m_bankkontoid,
+                    saldo = b.Balance,
+                    dato = b.Date,
+                    tekst = b.Item_Title.Length > 50 ? b.Item_Title.Substring(0, 50) : b.Item_Title,
+                    belob = b.Gross,
+                };
+                recBankkonto.tblpaypals.Add(b);
+                Program.dbDataTransSumma.tblbankkontos.InsertOnSubmit(recBankkonto);
+
+                recBankkonto = new tblbankkonto
+                {
+                    pid = clsPbs.nextval("Tblbankkonto"),
+                    bankkontoid = m_bankkontoid,
+                    saldo = b.Balance + b.Fee,
+                    dato = b.Date,
+                    tekst = "PayPal Fee",
+                    belob = b.Fee,
+                };
+                Program.dbDataTransSumma.tblbankkontos.InsertOnSubmit(recBankkonto);
+
                 Program.dbDataTransSumma.SubmitChanges();
             }
         }
