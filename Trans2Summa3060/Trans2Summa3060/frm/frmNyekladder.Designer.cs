@@ -37,6 +37,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tblwbilagBindingNavigator = new System.Windows.Forms.BindingNavigator(this.components);
+            this.tblwbilagBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bindingNavigatorCountItem = new System.Windows.Forms.ToolStripLabel();
             this.bindingNavigatorMoveFirstItem = new System.Windows.Forms.ToolStripButton();
             this.bindingNavigatorMovePreviousItem = new System.Windows.Forms.ToolStripButton();
@@ -53,6 +54,18 @@
             this.KladderTilSummaSummarumToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.tblwkladderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tblwkladderDataGridView = new System.Windows.Forms.DataGridView();
+            this.pidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bilagpidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tekstDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.afstemningskontoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.karAfstemningskontiBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.belobDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kontoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.momskodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.karMomsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.fakturaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sag = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tblwbilagDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuLineCopyPaste = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,26 +78,16 @@
             this.contextMenuMoms = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.tillægMomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fratrækMomsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tblwbilagBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.pidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bilagpidDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tekstDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.afstemningskontoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.belobDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kontoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.momskodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.fakturaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sag = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tblwbilagDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.karAfstemningskontiBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.karMomsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.karKontoplanBindingSource = new System.Windows.Forms.BindingSource(this.components);
             bilagLabel = new System.Windows.Forms.Label();
             datoLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tblwbilagBindingNavigator)).BeginInit();
             this.tblwbilagBindingNavigator.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tblwbilagBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblwkladderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblwkladderDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.karAfstemningskontiBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.karMomsBindingSource)).BeginInit();
             this.contextMenuLineCopyPaste.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -95,9 +98,6 @@
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             this.contextMenuMoms.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tblwbilagBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.karAfstemningskontiBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.karMomsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.karKontoplanBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -148,9 +148,13 @@
             this.tblwbilagBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.tblwbilagBindingNavigator.Name = "tblwbilagBindingNavigator";
             this.tblwbilagBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.tblwbilagBindingNavigator.Size = new System.Drawing.Size(564, 25);
+            this.tblwbilagBindingNavigator.Size = new System.Drawing.Size(583, 25);
             this.tblwbilagBindingNavigator.TabIndex = 0;
             this.tblwbilagBindingNavigator.Text = "bindingNavigator1";
+            // 
+            // tblwbilagBindingSource
+            // 
+            this.tblwbilagBindingSource.DataSource = typeof(Trans2Summa3060.tblwbilag);
             // 
             // bindingNavigatorCountItem
             // 
@@ -293,7 +297,7 @@
             this.tblwkladderDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tblwkladderDataGridView.Location = new System.Drawing.Point(0, 0);
             this.tblwkladderDataGridView.Name = "tblwkladderDataGridView";
-            this.tblwkladderDataGridView.Size = new System.Drawing.Size(564, 174);
+            this.tblwkladderDataGridView.Size = new System.Drawing.Size(583, 174);
             this.tblwkladderDataGridView.TabIndex = 2;
             this.tblwkladderDataGridView.CellErrorTextNeeded += new System.Windows.Forms.DataGridViewCellErrorTextNeededEventHandler(this.tblwkladderDataGridView_CellErrorTextNeeded);
             this.tblwkladderDataGridView.CellToolTipTextNeeded += new System.Windows.Forms.DataGridViewCellToolTipTextNeededEventHandler(this.myDGV_CellToolTipTextNeeded);
@@ -301,6 +305,108 @@
             this.tblwkladderDataGridView.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.tblwkladderDataGridView_EditingControlShowing);
             this.tblwkladderDataGridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tblwkladderDataGridView_KeyDown);
             this.tblwkladderDataGridView.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tblwkladderDataGridView_MouseDown);
+            // 
+            // pidDataGridViewTextBoxColumn
+            // 
+            this.pidDataGridViewTextBoxColumn.DataPropertyName = "pid";
+            this.pidDataGridViewTextBoxColumn.HeaderText = "pid";
+            this.pidDataGridViewTextBoxColumn.Name = "pidDataGridViewTextBoxColumn";
+            this.pidDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // bilagpidDataGridViewTextBoxColumn
+            // 
+            this.bilagpidDataGridViewTextBoxColumn.DataPropertyName = "bilagpid";
+            this.bilagpidDataGridViewTextBoxColumn.HeaderText = "bilagpid";
+            this.bilagpidDataGridViewTextBoxColumn.Name = "bilagpidDataGridViewTextBoxColumn";
+            this.bilagpidDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // tekstDataGridViewTextBoxColumn
+            // 
+            this.tekstDataGridViewTextBoxColumn.DataPropertyName = "tekst";
+            this.tekstDataGridViewTextBoxColumn.HeaderText = "Tekst";
+            this.tekstDataGridViewTextBoxColumn.Name = "tekstDataGridViewTextBoxColumn";
+            this.tekstDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // afstemningskontoDataGridViewTextBoxColumn
+            // 
+            this.afstemningskontoDataGridViewTextBoxColumn.DataPropertyName = "afstemningskonto";
+            this.afstemningskontoDataGridViewTextBoxColumn.DataSource = this.karAfstemningskontiBindingSource;
+            this.afstemningskontoDataGridViewTextBoxColumn.DisplayMember = "Kontonavn";
+            this.afstemningskontoDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.afstemningskontoDataGridViewTextBoxColumn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.afstemningskontoDataGridViewTextBoxColumn.HeaderText = "Afstem";
+            this.afstemningskontoDataGridViewTextBoxColumn.Name = "afstemningskontoDataGridViewTextBoxColumn";
+            this.afstemningskontoDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.afstemningskontoDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.afstemningskontoDataGridViewTextBoxColumn.ValueMember = "Kontonavn";
+            this.afstemningskontoDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // karAfstemningskontiBindingSource
+            // 
+            this.karAfstemningskontiBindingSource.DataSource = typeof(Trans2Summa3060.KarAfstemningskonti);
+            // 
+            // belobDataGridViewTextBoxColumn
+            // 
+            this.belobDataGridViewTextBoxColumn.DataPropertyName = "belob";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "N2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.belobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
+            this.belobDataGridViewTextBoxColumn.HeaderText = "Beløb";
+            this.belobDataGridViewTextBoxColumn.Name = "belobDataGridViewTextBoxColumn";
+            this.belobDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // kontoDataGridViewTextBoxColumn
+            // 
+            this.kontoDataGridViewTextBoxColumn.DataPropertyName = "konto";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.kontoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.kontoDataGridViewTextBoxColumn.HeaderText = "Konto";
+            this.kontoDataGridViewTextBoxColumn.Name = "kontoDataGridViewTextBoxColumn";
+            this.kontoDataGridViewTextBoxColumn.Width = 60;
+            // 
+            // momskodeDataGridViewTextBoxColumn
+            // 
+            this.momskodeDataGridViewTextBoxColumn.DataPropertyName = "momskode";
+            this.momskodeDataGridViewTextBoxColumn.DataSource = this.karMomsBindingSource;
+            this.momskodeDataGridViewTextBoxColumn.DisplayMember = "Momskode";
+            this.momskodeDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
+            this.momskodeDataGridViewTextBoxColumn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.momskodeDataGridViewTextBoxColumn.HeaderText = "MK";
+            this.momskodeDataGridViewTextBoxColumn.Name = "momskodeDataGridViewTextBoxColumn";
+            this.momskodeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.momskodeDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.momskodeDataGridViewTextBoxColumn.ValueMember = "Momskode";
+            this.momskodeDataGridViewTextBoxColumn.Width = 40;
+            // 
+            // karMomsBindingSource
+            // 
+            this.karMomsBindingSource.DataSource = typeof(Trans2Summa3060.KarMoms);
+            // 
+            // fakturaDataGridViewTextBoxColumn
+            // 
+            this.fakturaDataGridViewTextBoxColumn.DataPropertyName = "faktura";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.fakturaDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.fakturaDataGridViewTextBoxColumn.HeaderText = "Faknr";
+            this.fakturaDataGridViewTextBoxColumn.Name = "fakturaDataGridViewTextBoxColumn";
+            this.fakturaDataGridViewTextBoxColumn.Width = 40;
+            // 
+            // sag
+            // 
+            this.sag.DataPropertyName = "sag";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.sag.DefaultCellStyle = dataGridViewCellStyle4;
+            this.sag.HeaderText = "Sag";
+            this.sag.Name = "sag";
+            this.sag.Width = 40;
+            // 
+            // tblwbilagDataGridViewTextBoxColumn
+            // 
+            this.tblwbilagDataGridViewTextBoxColumn.DataPropertyName = "tblwbilag";
+            this.tblwbilagDataGridViewTextBoxColumn.HeaderText = "tblwbilag";
+            this.tblwbilagDataGridViewTextBoxColumn.Name = "tblwbilagDataGridViewTextBoxColumn";
+            this.tblwbilagDataGridViewTextBoxColumn.Visible = false;
             // 
             // contextMenuLineCopyPaste
             // 
@@ -360,7 +466,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(564, 259);
+            this.splitContainer1.Size = new System.Drawing.Size(583, 259);
             this.splitContainer1.SplitterDistance = 52;
             this.splitContainer1.TabIndex = 7;
             // 
@@ -399,7 +505,7 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.tblwbilagBindingNavigator);
-            this.splitContainer2.Size = new System.Drawing.Size(564, 203);
+            this.splitContainer2.Size = new System.Drawing.Size(583, 203);
             this.splitContainer2.SplitterDistance = 174;
             this.splitContainer2.TabIndex = 0;
             // 
@@ -425,112 +531,6 @@
             this.fratrækMomsToolStripMenuItem.Text = "Fratræk moms";
             this.fratrækMomsToolStripMenuItem.Click += new System.EventHandler(this.fratrækMomsToolStripMenuItem_Click);
             // 
-            // tblwbilagBindingSource
-            // 
-            this.tblwbilagBindingSource.DataSource = typeof(Trans2Summa3060.tblwbilag);
-            // 
-            // pidDataGridViewTextBoxColumn
-            // 
-            this.pidDataGridViewTextBoxColumn.DataPropertyName = "pid";
-            this.pidDataGridViewTextBoxColumn.HeaderText = "pid";
-            this.pidDataGridViewTextBoxColumn.Name = "pidDataGridViewTextBoxColumn";
-            this.pidDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // bilagpidDataGridViewTextBoxColumn
-            // 
-            this.bilagpidDataGridViewTextBoxColumn.DataPropertyName = "bilagpid";
-            this.bilagpidDataGridViewTextBoxColumn.HeaderText = "bilagpid";
-            this.bilagpidDataGridViewTextBoxColumn.Name = "bilagpidDataGridViewTextBoxColumn";
-            this.bilagpidDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // tekstDataGridViewTextBoxColumn
-            // 
-            this.tekstDataGridViewTextBoxColumn.DataPropertyName = "tekst";
-            this.tekstDataGridViewTextBoxColumn.HeaderText = "Tekst";
-            this.tekstDataGridViewTextBoxColumn.Name = "tekstDataGridViewTextBoxColumn";
-            this.tekstDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // afstemningskontoDataGridViewTextBoxColumn
-            // 
-            this.afstemningskontoDataGridViewTextBoxColumn.DataPropertyName = "afstemningskonto";
-            this.afstemningskontoDataGridViewTextBoxColumn.DataSource = this.karAfstemningskontiBindingSource;
-            this.afstemningskontoDataGridViewTextBoxColumn.DisplayMember = "Kontonavn";
-            this.afstemningskontoDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.afstemningskontoDataGridViewTextBoxColumn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.afstemningskontoDataGridViewTextBoxColumn.HeaderText = "Afstem";
-            this.afstemningskontoDataGridViewTextBoxColumn.Name = "afstemningskontoDataGridViewTextBoxColumn";
-            this.afstemningskontoDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.afstemningskontoDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.afstemningskontoDataGridViewTextBoxColumn.ValueMember = "Kontonavn";
-            this.afstemningskontoDataGridViewTextBoxColumn.Width = 60;
-            // 
-            // belobDataGridViewTextBoxColumn
-            // 
-            this.belobDataGridViewTextBoxColumn.DataPropertyName = "belob";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.Format = "N2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.belobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            this.belobDataGridViewTextBoxColumn.HeaderText = "Beløb";
-            this.belobDataGridViewTextBoxColumn.Name = "belobDataGridViewTextBoxColumn";
-            this.belobDataGridViewTextBoxColumn.Width = 60;
-            // 
-            // kontoDataGridViewTextBoxColumn
-            // 
-            this.kontoDataGridViewTextBoxColumn.DataPropertyName = "konto";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.kontoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.kontoDataGridViewTextBoxColumn.HeaderText = "Konto";
-            this.kontoDataGridViewTextBoxColumn.Name = "kontoDataGridViewTextBoxColumn";
-            this.kontoDataGridViewTextBoxColumn.Width = 60;
-            // 
-            // momskodeDataGridViewTextBoxColumn
-            // 
-            this.momskodeDataGridViewTextBoxColumn.DataPropertyName = "momskode";
-            this.momskodeDataGridViewTextBoxColumn.DataSource = this.karMomsBindingSource;
-            this.momskodeDataGridViewTextBoxColumn.DisplayMember = "Momskode";
-            this.momskodeDataGridViewTextBoxColumn.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.Nothing;
-            this.momskodeDataGridViewTextBoxColumn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.momskodeDataGridViewTextBoxColumn.HeaderText = "MK";
-            this.momskodeDataGridViewTextBoxColumn.Name = "momskodeDataGridViewTextBoxColumn";
-            this.momskodeDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.momskodeDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.momskodeDataGridViewTextBoxColumn.ValueMember = "Momskode";
-            this.momskodeDataGridViewTextBoxColumn.Width = 40;
-            // 
-            // fakturaDataGridViewTextBoxColumn
-            // 
-            this.fakturaDataGridViewTextBoxColumn.DataPropertyName = "faktura";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.fakturaDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.fakturaDataGridViewTextBoxColumn.HeaderText = "Faknr";
-            this.fakturaDataGridViewTextBoxColumn.Name = "fakturaDataGridViewTextBoxColumn";
-            this.fakturaDataGridViewTextBoxColumn.Width = 40;
-            // 
-            // sag
-            // 
-            this.sag.DataPropertyName = "sag";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.sag.DefaultCellStyle = dataGridViewCellStyle4;
-            this.sag.HeaderText = "Sag";
-            this.sag.Name = "sag";
-            this.sag.Width = 40;
-            // 
-            // tblwbilagDataGridViewTextBoxColumn
-            // 
-            this.tblwbilagDataGridViewTextBoxColumn.DataPropertyName = "tblwbilag";
-            this.tblwbilagDataGridViewTextBoxColumn.HeaderText = "tblwbilag";
-            this.tblwbilagDataGridViewTextBoxColumn.Name = "tblwbilagDataGridViewTextBoxColumn";
-            this.tblwbilagDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // karAfstemningskontiBindingSource
-            // 
-            this.karAfstemningskontiBindingSource.DataSource = typeof(Trans2Summa3060.KarAfstemningskonti);
-            // 
-            // karMomsBindingSource
-            // 
-            this.karMomsBindingSource.DataSource = typeof(Trans2Summa3060.KarMoms);
-            // 
             // karKontoplanBindingSource
             // 
             this.karKontoplanBindingSource.DataSource = typeof(Trans2Summa3060.KarKontoplan);
@@ -551,8 +551,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.tblwbilagBindingNavigator)).EndInit();
             this.tblwbilagBindingNavigator.ResumeLayout(false);
             this.tblwbilagBindingNavigator.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tblwbilagBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblwkladderBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tblwkladderDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.karAfstemningskontiBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.karMomsBindingSource)).EndInit();
             this.contextMenuLineCopyPaste.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
@@ -565,9 +568,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             this.contextMenuMoms.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.tblwbilagBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.karAfstemningskontiBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.karMomsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.karKontoplanBindingSource)).EndInit();
             this.ResumeLayout(false);
 

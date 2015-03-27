@@ -595,6 +595,7 @@ namespace Trans2Summa3060
             decimal MomsBelob = 0;
             decimal AndenKontoBelob = 0;
             int? AndenKontoKonto = null;
+            int? AndenKontoSag = null;
             string AndenKontoTekst = "";
             string AndenKontoMomskode = "";
             string AndenKontoAfstemningskonto = "";
@@ -605,13 +606,14 @@ namespace Trans2Summa3060
             bool bAfstem = false;
             bool bMomskode = false;
 
-            var qry = from k in recBilag.tblkladders
+            var qry_cpy_kladdes = from k in recBilag.tblkladders
                       select new tblwkladder
                       {
                           tekst = k.tekst,
                           afstemningskonto = k.afstemningskonto,
                           belob = k.belob,
                           konto = k.konto,
+                          sag = k.sag,
                           momskode = k.momskode,
                           faktura = k.faktura
                       };
@@ -654,6 +656,7 @@ namespace Trans2Summa3060
                                     AndenKontoBelob = (decimal)recKladder.belob;
                                     AndenKontoTekst = recKladder.tekst;
                                     AndenKontoKonto = (int)recKladder.konto;
+                                    AndenKontoSag = recKladder.sag;
                                     if ((recKladder.afstemningskonto != null) && (recKladder.afstemningskonto != ""))
                                         AndenKontoAfstemningskonto = recKladder.afstemningskonto;
                                     if ((recKladder.momskode != null) && (recKladder.momskode != ""))
@@ -685,6 +688,7 @@ namespace Trans2Summa3060
                                 afstemningskonto = "Bank",
                                 belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.belob : BankBelob,
                                 konto = AndenKontoKonto,
+                                sag = AndenKontoSag,
                                 momskode = MK
                             };
                             recwBilag.tblwkladders.Add(recWkladder);
@@ -705,7 +709,8 @@ namespace Trans2Summa3060
                             tekst = AndenKontoTekst,
                             afstemningskonto = "Bank",
                             belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.belob : AndenKontoBelob,
-                            konto = AndenKontoKonto
+                            konto = AndenKontoKonto,
+                            sag = AndenKontoSag
                         };
                         recwBilag.tblwkladders.Add(recWkladder);
                         this.tblwbilagBindingSource.Add(recwBilag);
@@ -718,7 +723,7 @@ namespace Trans2Summa3060
                     && (bAndenKonto)
                     && (!bAfstem))
                     {
-                        foreach (tblwkladder k in qry)
+                        foreach (tblwkladder k in qry_cpy_kladdes)
                         {
                             if (IsFound_BankKontoudtog)
                             {
@@ -749,6 +754,7 @@ namespace Trans2Summa3060
                             afstemningskonto = WrkAfstemningskonto,
                             belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.belob : AndenKontoBelob,
                             konto = AndenKontoKonto,
+                            sag = AndenKontoSag,
                             momskode = AndenKontoMomskode
                         };
                         recwBilag.tblwkladders.Add(recWkladder);
@@ -793,6 +799,7 @@ namespace Trans2Summa3060
                                     AndenKontoBelob = (decimal)recKladder.belob;
                                     AndenKontoTekst = recKladder.tekst;
                                     AndenKontoKonto = (int)recKladder.konto;
+                                    AndenKontoSag = recKladder.sag;
                                     if ((recKladder.afstemningskonto != null) && (recKladder.afstemningskonto != ""))
                                         AndenKontoAfstemningskonto = recKladder.afstemningskonto;
                                     if ((recKladder.momskode != null) && (recKladder.momskode != ""))
@@ -824,6 +831,7 @@ namespace Trans2Summa3060
                                 afstemningskonto = "MasterCard",
                                 belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.belob : BankBelob,
                                 konto = AndenKontoKonto,
+                                sag = AndenKontoSag,
                                 momskode = MK
                             };
                             recwBilag.tblwkladders.Add(recWkladder);
@@ -844,7 +852,8 @@ namespace Trans2Summa3060
                             tekst = AndenKontoTekst,
                             afstemningskonto = "MasterCard",
                             belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.belob : AndenKontoBelob,
-                            konto = AndenKontoKonto
+                            konto = AndenKontoKonto,
+                            sag = AndenKontoSag
                         };
                         recwBilag.tblwkladders.Add(recWkladder);
                         this.tblwbilagBindingSource.Add(recwBilag);
@@ -856,7 +865,7 @@ namespace Trans2Summa3060
                     && (bAndenKonto)
                     && (!bAfstem))
                     {
-                        foreach (tblwkladder k in qry)
+                        foreach (tblwkladder k in qry_cpy_kladdes)
                         {
                             if (IsFound_BankKontoudtog)
                             {
@@ -887,6 +896,7 @@ namespace Trans2Summa3060
                             afstemningskonto = WrkAfstemningskonto,
                             belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.belob : AndenKontoBelob,
                             konto = AndenKontoKonto,
+                            sag = AndenKontoSag,
                             momskode = AndenKontoMomskode
                         };
                         recwBilag.tblwkladders.Add(recWkladder);
@@ -945,6 +955,7 @@ namespace Trans2Summa3060
                                     AndenKontoBelob = (decimal)recKladder.belob;
                                     AndenKontoTekst = recKladder.tekst;
                                     AndenKontoKonto = (int)recKladder.konto;
+                                    AndenKontoSag = recKladder.sag;
                                     if ((recKladder.afstemningskonto != null) && (recKladder.afstemningskonto != ""))
                                         AndenKontoAfstemningskonto = recKladder.afstemningskonto;
                                     if ((recKladder.momskode != null) && (recKladder.momskode != ""))
@@ -976,6 +987,7 @@ namespace Trans2Summa3060
                                 afstemningskonto = "PayPal",
                                 belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.belob : BankBelob,
                                 konto = AndenKontoKonto,
+                                sag = AndenKontoSag,
                                 momskode = MK
                             };
                             recwBilag.tblwkladders.Add(recWkladder);
@@ -996,7 +1008,8 @@ namespace Trans2Summa3060
                             tekst = AndenKontoTekst,
                             afstemningskonto = "PayPal",
                             belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.belob : AndenKontoBelob,
-                            konto = AndenKontoKonto
+                            konto = AndenKontoKonto,
+                            sag = AndenKontoSag
                         };
                         recwBilag.tblwkladders.Add(recWkladder);
                         this.tblwbilagBindingSource.Add(recwBilag);
@@ -1008,7 +1021,7 @@ namespace Trans2Summa3060
                     && (bAndenKonto)
                     && (!bAfstem))
                     {
-                        foreach (tblwkladder k in qry)
+                        foreach (tblwkladder k in qry_cpy_kladdes)
                         {
                             if (IsFound_BankKontoudtog)
                             {
@@ -1046,6 +1059,7 @@ namespace Trans2Summa3060
                             afstemningskonto = WrkAfstemningskonto,
                             belob = (IsFound_BankKontoudtog) ? (decimal)recBankkonto.belob : AndenKontoBelob,
                             konto = WrkAndenKontoKonto,
+                            sag = AndenKontoSag,
                             momskode = AndenKontoMomskode
                         };
                         recwBilag.tblwkladders.Add(recWkladder);
