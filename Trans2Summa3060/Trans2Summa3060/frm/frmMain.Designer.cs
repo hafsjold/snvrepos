@@ -57,6 +57,7 @@
             this.importDanskebankToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importerMasterCardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importNordeaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importPayPalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importActebisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.excelRegnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,7 +77,7 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonIndtastBilag = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.importPayPalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.opdaterBilagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -322,6 +323,13 @@
             this.importNordeaToolStripMenuItem.Visible = false;
             this.importNordeaToolStripMenuItem.Click += new System.EventHandler(this.importNordeaToolStripMenuItem_Click);
             // 
+            // importPayPalToolStripMenuItem
+            // 
+            this.importPayPalToolStripMenuItem.Name = "importPayPalToolStripMenuItem";
+            this.importPayPalToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.importPayPalToolStripMenuItem.Text = "Import PayPal";
+            this.importPayPalToolStripMenuItem.Click += new System.EventHandler(this.importPayPalToolStripMenuItem_Click);
+            // 
             // importActebisToolStripMenuItem
             // 
             this.importActebisToolStripMenuItem.Name = "importActebisToolStripMenuItem";
@@ -344,7 +352,8 @@
             this.varekontoTypeToolStripMenuItem,
             this.actebisFakturaToolStripMenuItem,
             this.templatesToolStripMenuItem,
-            this.kontoudtogToolStripMenuItem});
+            this.kontoudtogToolStripMenuItem,
+            this.opdaterBilagToolStripMenuItem});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
             this.systemToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.systemToolStripMenuItem.Text = "System";
@@ -480,12 +489,12 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
-            // importPayPalToolStripMenuItem
+            // opdaterBilagToolStripMenuItem
             // 
-            this.importPayPalToolStripMenuItem.Name = "importPayPalToolStripMenuItem";
-            this.importPayPalToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.importPayPalToolStripMenuItem.Text = "Import PayPal";
-            this.importPayPalToolStripMenuItem.Click += new System.EventHandler(this.importPayPalToolStripMenuItem_Click);
+            this.opdaterBilagToolStripMenuItem.Name = "opdaterBilagToolStripMenuItem";
+            this.opdaterBilagToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.opdaterBilagToolStripMenuItem.Text = "Opdater Bilag";
+            this.opdaterBilagToolStripMenuItem.Click += new System.EventHandler(this.opdaterBilagToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -567,6 +576,7 @@
         private System.Windows.Forms.ToolStripMenuItem templatesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kontoudtogToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importPayPalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem opdaterBilagToolStripMenuItem;
     }
 }
 

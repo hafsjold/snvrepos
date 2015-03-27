@@ -498,6 +498,62 @@ namespace Trans2Summa3060
             objPaypal.load_bankkonto();
          }
 
+        private void opdaterBilagToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var qryPosteringer = from p in Program.karPosteringer
+                                 join b in Program.dbDataTransSumma.tbltrans on new { p.Regnskabid, p.Id, p.Nr } equals new { Regnskabid = b.regnskabid, Id = b.id, Nr = b.nr } into tbltrans
+                                 from b in tbltrans.DefaultIfEmpty(new tbltran { pid = 0, regnskabid = null, id = null, nr = null })
+                                 where b.pid > 0
+                                 orderby p.Regnskabid, p.Bilag, p.Id, p.Nr
+                                 select p;
+            int antal = qryPosteringer.Count();
+            foreach (var p in qryPosteringer)
+            {
+                if (p.Sag > 0) 
+                {
+                    try
+                    {
+                        tbltran recTrans = (from b in Program.dbDataTransSumma.tbltrans
+                                           where b.regnskabid == p.Regnskabid && b.id == p.Id && b.nr == p.Nr
+                                           select b).First();
+                        recTrans.sag = p.Sag;
+                    }
+                    catch
+                    {
+                        var x = 1;
+                    }
+                }
+            }
+            Program.dbDataTransSumma.SubmitChanges();
+
+
+            var qryKladder = from k in Program.karKladder
+                             join b in Program.dbDataTransSumma.tblkladders on new { k.Regnskabid, k.Id } equals new { Regnskabid = b.regnskabid, Id = b.id } into tblkladder
+                             from b in tblkladder.DefaultIfEmpty(new tblkladder { pid = 0, regnskabid = null, id = null })
+                             where b.pid > 0
+                             orderby k.Regnskabid, k.Bilag, k.Id
+                             select k;
+            antal = qryKladder.Count();
+            foreach (var k in qryKladder)
+            {
+                if ((!(k.Sag == null)) && (k.Sag > 0))
+                {
+                    try
+                    {
+                        tblkladder recKladder = (from b in Program.dbDataTransSumma.tblkladders
+                                                 where b.regnskabid == k.Regnskabid && b.id == k.Id
+                                                 select b).First();
+                        recKladder.sag = k.Sag;
+                    }
+                    catch
+                    {
+                        var y = 1;                      
+                    }
+                }
+            }
+            Program.dbDataTransSumma.SubmitChanges();
+        }
+
     }
 
     public class Xrec
