@@ -204,7 +204,6 @@ namespace Trans2Summa3060
                 tblpaypal recPaypal = new tblpaypal
                 {
                     pid = clsPbs.nextval("Tblpaypals"),
-                    bankkonto_pid = null,
                     Date = b.Date,
                     Time_Zone = b.Time_Zone,
                     Name = b.Name,
@@ -267,7 +266,7 @@ namespace Trans2Summa3060
         private void load_bankkonto1()
         {
             var qry = from w in Program.dbDataTransSumma.tblpaypals
-                      where w.bankkonto_pid == null && w.Currency == "DKK"
+                      where w.Imported == null && w.Currency == "DKK"
                       && (w.Type == "Charge From Credit Card" || w.Type == "PayPal card confirmation refund")
                       orderby w.Date
                       select w;
@@ -284,8 +283,8 @@ namespace Trans2Summa3060
                     tekst ="Overført til PayPal",
                     belob = b.Gross,
                 };
-                recBankkonto.tblpaypals.Add(b);
-                Program.dbDataTransSumma.tblbankkontos.InsertOnSubmit(recBankkonto);
+                b.Imported = true;
+                b.tblbankkontos.Add(recBankkonto); 
                 Program.dbDataTransSumma.SubmitChanges();
             }
         }
@@ -293,7 +292,7 @@ namespace Trans2Summa3060
         private void load_bankkonto2()
         {
             var qry = from w in Program.dbDataTransSumma.tblpaypals
-                      where w.bankkonto_pid == null && w.Currency == "DKK"
+                      where w.Imported == null && w.Currency == "DKK"
                       && w.Type == "Payment Received" && w.From_Email_Address == @"paypal@trustly.com"
                       orderby w.Date
                       select w;
@@ -310,8 +309,8 @@ namespace Trans2Summa3060
                     tekst = "Overført fra Nordea",
                     belob = b.Gross,
                 };
-                recBankkonto.tblpaypals.Add(b);
-                Program.dbDataTransSumma.tblbankkontos.InsertOnSubmit(recBankkonto);
+                b.Imported = true;
+                b.tblbankkontos.Add(recBankkonto);
                 Program.dbDataTransSumma.SubmitChanges();
             }
         }
@@ -319,7 +318,7 @@ namespace Trans2Summa3060
         private void load_bankkonto3()
         {
             var qry = from w in Program.dbDataTransSumma.tblpaypals
-                      where w.bankkonto_pid == null && w.Currency == "DKK"
+                      where w.Imported == null && w.Currency == "DKK"
                       && (w.Type == "Shopping Cart Payment Received")
                       orderby w.Date
                       select w;
@@ -336,8 +335,8 @@ namespace Trans2Summa3060
                     tekst = "Shopping Cart Payment Received",
                     belob = b.Gross,
                 };
-                recBankkonto.tblpaypals.Add(b);
-                Program.dbDataTransSumma.tblbankkontos.InsertOnSubmit(recBankkonto);
+                b.Imported = true;
+                b.tblbankkontos.Add(recBankkonto);
 
                 recBankkonto = new tblbankkonto
                 {
@@ -348,8 +347,9 @@ namespace Trans2Summa3060
                     tekst = "PayPal Fee",
                     belob = b.Fee,
                 };
-                Program.dbDataTransSumma.tblbankkontos.InsertOnSubmit(recBankkonto);
-                
+                b.Imported = true;
+                b.tblbankkontos.Add(recBankkonto);
+
                 Program.dbDataTransSumma.SubmitChanges();
             }
         }
@@ -357,7 +357,7 @@ namespace Trans2Summa3060
         private void load_bankkonto4()
         {
             var qry = from w in Program.dbDataTransSumma.tblpaypals
-                      where w.bankkonto_pid == null && w.Currency == "DKK"
+                      where w.Imported == null && w.Currency == "DKK"
                       && (w.Type == "Refund")
                       orderby w.Date
                       select w;
@@ -374,8 +374,8 @@ namespace Trans2Summa3060
                     tekst = "Refund",
                     belob = b.Gross,
                 };
-                recBankkonto.tblpaypals.Add(b);
-                Program.dbDataTransSumma.tblbankkontos.InsertOnSubmit(recBankkonto);
+                b.Imported = true;
+                b.tblbankkontos.Add(recBankkonto);
 
                 recBankkonto = new tblbankkonto
                 {
@@ -385,8 +385,9 @@ namespace Trans2Summa3060
                     dato = b.Date,
                     tekst = "PayPal Fee",
                     belob = b.Fee,
-                };
-                Program.dbDataTransSumma.tblbankkontos.InsertOnSubmit(recBankkonto);
+                }; 
+                b.Imported = true;
+                b.tblbankkontos.Add(recBankkonto); Program.dbDataTransSumma.tblbankkontos.InsertOnSubmit(recBankkonto);
 
                 Program.dbDataTransSumma.SubmitChanges();
             }
@@ -395,7 +396,7 @@ namespace Trans2Summa3060
         private void load_bankkonto5()
         {
             var qry = from w in Program.dbDataTransSumma.tblpaypals
-                      where w.bankkonto_pid == null && w.Currency == "DKK"
+                      where w.Imported == null && w.Currency == "DKK"
                       && (w.Type == "Withdraw Funds to Bank Account")
                       orderby w.Date
                       select w;
@@ -412,8 +413,8 @@ namespace Trans2Summa3060
                     tekst = "Overført til Nordea",
                     belob = b.Gross,
                 };
-                recBankkonto.tblpaypals.Add(b);
-                Program.dbDataTransSumma.tblbankkontos.InsertOnSubmit(recBankkonto);
+                b.Imported = true;
+                b.tblbankkontos.Add(recBankkonto);
                 Program.dbDataTransSumma.SubmitChanges();
             }
         }
@@ -421,7 +422,7 @@ namespace Trans2Summa3060
         private void load_bankkonto6()
         {
             var qry = from w in Program.dbDataTransSumma.tblpaypals
-                      where w.bankkonto_pid == null && w.Currency == "DKK"
+                      where w.Imported == null && w.Currency == "DKK"
                       && (w.Type == "Express Checkout Payment Sent" || w.Type == "Preapproved Payment Sent" || w.Type == "Recurring Payment Sent" || w.Type == "Web Accept Payment Sent" || w.Type == "Shopping Cart Payment Sent" )
                       orderby w.Date
                       select w;
@@ -457,8 +458,8 @@ namespace Trans2Summa3060
                     tekst = kontoudtogstekst,
                     belob = GrossDKK,
                 };
-                recBankkonto.tblpaypals.Add(b);
-                Program.dbDataTransSumma.tblbankkontos.InsertOnSubmit(recBankkonto);
+                b.Imported = true;
+                b.tblbankkontos.Add(recBankkonto);
                 Program.dbDataTransSumma.SubmitChanges();
             }
         }
@@ -466,7 +467,7 @@ namespace Trans2Summa3060
         private void load_bankkonto7()
         {
             var qry = from w in Program.dbDataTransSumma.tblpaypals
-                      where w.bankkonto_pid == null && w.Currency == "DKK"
+                      where w.Imported == null && w.Currency == "DKK"
                       && (w.Type == "Web Accept Payment Received")
                       orderby w.Date
                       select w;
@@ -483,8 +484,8 @@ namespace Trans2Summa3060
                     tekst = b.Item_Title.Length > 50 ? b.Item_Title.Substring(0, 50) : b.Item_Title,
                     belob = b.Gross,
                 };
-                recBankkonto.tblpaypals.Add(b);
-                Program.dbDataTransSumma.tblbankkontos.InsertOnSubmit(recBankkonto);
+                b.Imported = true;
+                b.tblbankkontos.Add(recBankkonto);
 
                 recBankkonto = new tblbankkonto
                 {
@@ -495,7 +496,8 @@ namespace Trans2Summa3060
                     tekst = "PayPal Fee",
                     belob = b.Fee,
                 };
-                Program.dbDataTransSumma.tblbankkontos.InsertOnSubmit(recBankkonto);
+                b.Imported = true;
+                b.tblbankkontos.Add(recBankkonto);
 
                 Program.dbDataTransSumma.SubmitChanges();
             }
