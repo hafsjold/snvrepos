@@ -37,8 +37,8 @@
     <Type Name="tblafstem">
       <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="udskriv" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="tblafstem_tblbankkonto" Member="tblbankkontos" ThisKey="pid" OtherKey="afstem" Type="tblbankkonto" />
       <Association Name="tblafstem_tbltran" Member="tbltrans" ThisKey="pid" OtherKey="afstem" Type="tbltran" />
+      <Association Name="tblafstem_tblbankkonto" Member="tblbankkontos" ThisKey="pid" OtherKey="afstem" Type="tblbankkonto" />
     </Type>
   </Table>
   <Table Name="dbo.tblbankafsteminit" Member="tblbankafsteminits">
@@ -47,20 +47,6 @@
       <Column Name="rid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="tid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="tnr" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tblbankkonto" Member="tblbankkontos">
-    <Type Name="tblbankkonto">
-      <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="saldo" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="skjul" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="dato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="tekst" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="afstem" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="bankkontoid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="tblbankkonto_tblpaypal" Member="tblpaypals" ThisKey="pid" OtherKey="bankkonto_pid" Type="tblpaypal" />
-      <Association Name="tblafstem_tblbankkonto" Member="tblafstem" ThisKey="afstem" OtherKey="pid" Type="tblafstem" IsForeignKey="true" DeleteRule="SET NULL" />
     </Type>
   </Table>
   <Table Name="dbo.tblbilag" Member="tblbilags">
@@ -200,55 +186,6 @@
       <Association Name="tblwfak_tblwfaklin" Member="tblwfak" ThisKey="fakpid" OtherKey="pid" Type="tblwfak" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tblpaypal" Member="tblpaypals">
-    <Type Name="tblpaypal">
-      <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="bankkonto_pid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Time_Zone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Type" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
-      <Column Name="Status" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
-      <Column Name="Currency" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Gross" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Fee" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Net" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="From_Email_Address" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
-      <Column Name="To_Email_Address" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
-      <Column Name="Transaction_ID" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
-      <Column Name="Counterparty_Status" Type="System.String" DbType="NVarChar(27)" CanBeNull="true" />
-      <Column Name="Address_Status" Type="System.String" DbType="NVarChar(14)" CanBeNull="true" />
-      <Column Name="Item_Title" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
-      <Column Name="Item_ID" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
-      <Column Name="Shipping_and_Handling_Amount" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Insurance_Amount" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Sales_Tax" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Option_1_Name" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
-      <Column Name="Option_1_Value" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="Option_2_Name" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
-      <Column Name="Option_2_Value" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="Auction_Site" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="Buyer_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Item_URL" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
-      <Column Name="Closing_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Escrow_Id" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Invoice_Id" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Reference_Txn_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Invoice_Number" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Custom_Number" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Quantity" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Receipt_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="Address_Line_1" Type="System.String" DbType="NVarChar(395)" CanBeNull="true" />
-      <Column Name="Address_Line_2" Type="System.String" DbType="NVarChar(395)" CanBeNull="true" />
-      <Column Name="City" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="State" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Zip_Code" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Country" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Contact_Phone_Number" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Association Name="tblbankkonto_tblpaypal" Member="tblbankkonto" ThisKey="bankkonto_pid" OtherKey="pid" Type="tblbankkonto" IsForeignKey="true" DeleteRule="SET NULL" />
-    </Type>
-  </Table>
   <Table Name="dbo.tblwkladder" Member="tblwkladders">
     <Type Name="tblwkladder">
       <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -298,6 +235,70 @@
       <Column Name="afstem" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="tblafstem_tbltran" Member="tblafstem" ThisKey="afstem" OtherKey="pid" Type="tblafstem" IsForeignKey="true" DeleteRule="SET NULL" />
       <Association Name="tblbilag_tbltran" Member="tblbilag" ThisKey="bilagpid" OtherKey="pid" Type="tblbilag" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblbankkonto" Member="tblbankkontos">
+    <Type Name="tblbankkonto">
+      <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="saldo" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="skjul" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="dato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="tekst" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="afstem" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="bankkontoid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="paypal_pid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblafstem_tblbankkonto" Member="tblafstem" ThisKey="afstem" OtherKey="pid" Type="tblafstem" IsForeignKey="true" DeleteRule="SET NULL" />
+      <Association Name="tblpaypal_tblbankkonto" Member="tblpaypal" ThisKey="paypal_pid" OtherKey="pid" Type="tblpaypal" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblpaypal" Member="tblpaypals">
+    <Type Name="tblpaypal">
+      <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Imported" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Time_Zone" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Type" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
+      <Column Name="Status" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="Currency" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Gross" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Fee" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Net" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="From_Email_Address" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="To_Email_Address" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="Transaction_ID" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="Counterparty_Status" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
+      <Column Name="Address_Status" Type="System.String" DbType="NVarChar(64)" CanBeNull="true" />
+      <Column Name="Item_Title" Type="System.String" DbType="NVarChar(128)" CanBeNull="true" />
+      <Column Name="Item_ID" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="Shipping_and_Handling_Amount" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Insurance_Amount" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Sales_Tax" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Option_1_Name" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="Option_1_Value" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Option_2_Name" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="Option_2_Value" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Auction_Site" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="Buyer_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Item_URL" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="Closing_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Escrow_Id" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Invoice_Id" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Reference_Txn_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Invoice_Number" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Custom_Number" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Receipt_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Balance" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Address_Line_1" Type="System.String" DbType="NVarChar(395)" CanBeNull="true" />
+      <Column Name="Address_Line_2" Type="System.String" DbType="NVarChar(395)" CanBeNull="true" />
+      <Column Name="City" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="State" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Zip_Code" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Country" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Contact_Phone_Number" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="tblpaypal_tblbankkonto" Member="tblbankkontos" ThisKey="pid" OtherKey="paypal_pid" Type="tblbankkonto" />
     </Type>
   </Table>
 </Database>
