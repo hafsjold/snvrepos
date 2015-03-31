@@ -33,7 +33,7 @@ namespace Trans2Summa3060
 
         public void save()
         {
-            FileStream ts = new FileStream(m_path, FileMode.Create, FileAccess.Write, FileShare.None);
+            FileStream ts = new FileStream(m_path, FileMode.Append, FileAccess.Write, FileShare.None);
             using (StreamWriter sr = new StreamWriter(ts, Encoding.Default))
             {
                 var qry_this = from d in this select d;
