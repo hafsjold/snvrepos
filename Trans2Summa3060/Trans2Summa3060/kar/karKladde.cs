@@ -33,12 +33,17 @@ namespace Trans2Summa3060
 
         public void save()
         {
+            int MaxBilagnr = 0;
             FileStream ts = new FileStream(m_path, FileMode.Append, FileAccess.Write, FileShare.None);
             using (StreamWriter sr = new StreamWriter(ts, Encoding.Default))
             {
                 var qry_this = from d in this select d;
                 foreach (var b in qry_this)
                 {
+                    if ((b.Bilag != null) && (b.Bilag > MaxBilagnr))
+                    {
+                        MaxBilagnr = (int)b.Bilag;
+                    }   
                     string ln = "";
                     ln += (b.Dato == null) ? "," : (int)clsUtil.MSDateTime2Serial((DateTime)b.Dato) + ",";
                     ln += (b.Bilag == null) ? "," : b.Bilag.ToString() + ",";
@@ -52,7 +57,8 @@ namespace Trans2Summa3060
                     sr.WriteLine(ln);
                 }
             }
-
+            Program.karStatus.BS1_NæsteNr(MaxBilagnr);
+            Program.karStatus.save();
         }
 
     }
