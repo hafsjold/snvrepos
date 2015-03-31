@@ -51,7 +51,7 @@ namespace Trans2Summa3060
             }
             catch
             {
-                bilagnr = Program.karStatus.BS1_NæsteNr();
+                bilagnr = Program.karStatus.BS1_NæsteNr(null);
             }
 
             DateTime BankDato;
@@ -93,7 +93,7 @@ namespace Trans2Summa3060
             }
             catch
             {
-                bilagnr = Program.karStatus.BS1_NæsteNr();
+                bilagnr = Program.karStatus.BS1_NæsteNr(null);
             }
 
             DateTime BankDato;
@@ -1098,7 +1098,7 @@ namespace Trans2Summa3060
             }
             catch
             {
-                bilagnr = Program.karStatus.BS1_NæsteNr();
+                bilagnr = Program.karStatus.BS1_NæsteNr(null);
             }
 
             DateTime SidsteDato;
