@@ -57,11 +57,24 @@ namespace nsPuls3060
                             id = next_id,
                             Nr = tblMedlem_nr,
                             logdato = new DateTime(nu.Year, nu.Month, nu.Day),
-                            akt_id = 10,
+                            akt_id = 10, //indmeldelses dato
                             akt_dato = recNytMedlem.MessageDate
                         };
                         Program.dbData3060.tblMedlemLogs.InsertOnSubmit(recLog);
-
+                        
+                        /*
+                        next_id = (int)(from r in Program.dbData3060.nextval("tblMedlemlog") select r.id).First();
+                        recLog = new nsPbs3060.tblMedlemLog
+                        {
+                            id = next_id,
+                            Nr = tblMedlem_nr,
+                            logdato = new DateTime(nu.Year, nu.Month, nu.Day),
+                            akt_id = 30, //kontingent betalt til dato
+                            akt_dato = new DateTime(nu.Year, 12, 31)
+                        };
+                        Program.dbData3060.tblMedlemLogs.InsertOnSubmit(recLog);
+                        */
+                        
                         recNytMedlem.Nr = tblMedlem_nr;
 
                         Program.dbData3060.SubmitChanges();
