@@ -256,7 +256,12 @@ namespace Trans2SummaHDA
         public void load_bankkonto1()
         {
             var qry = from w in Program.dbDataTransSumma.tblpaypals
-                      where w.bankkonto_pid == null && w.Type == "Charge From Credit Card" && w.Currency == "DKK"
+                      where w.bankkonto_pid == null
+                      && (w.Type == "Charge From Credit Card"
+                       || w.Type == "Credit to Credit Card"
+                       || w.Type == "XXX"
+                      ) 
+                      && w.Currency == "DKK"
                       orderby w.Date
                       select w;
 
@@ -282,7 +287,15 @@ namespace Trans2SummaHDA
         {
             var qry = from w in Program.dbDataTransSumma.tblpaypals
                       where w.bankkonto_pid == null
-                      && (w.Type == "Express Checkout Payment Sent" || w.Type == "Preapproved Payment Sent" || w.Type == "Recurring Payment Sent" || w.Type == "Web Accept Payment Sent" || w.Type == "Shopping Cart Payment Sent" )
+                      && (w.Type == "Express Checkout Payment Sent" 
+                       || w.Type == "Preapproved Payment Sent" 
+                       || w.Type == "Recurring Payment Sent" 
+                       || w.Type == "Web Accept Payment Sent"
+                       || w.Type == "Payment Received"
+                       || w.Type == "XXX"
+                       || w.Type == "XXX"
+                       || w.Type == "XXX" 
+                       || w.Type == "Shopping Cart Payment Sent" )
                       orderby w.Date
                       select w;
 
