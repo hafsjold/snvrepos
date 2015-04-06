@@ -292,10 +292,12 @@ namespace Trans2SummaHDA
                        || w.Type == "Recurring Payment Sent" 
                        || w.Type == "Web Accept Payment Sent"
                        || w.Type == "Payment Received"
-                       || w.Type == "XXX"
+                       || w.Type == "Refund"
                        || w.Type == "XXX"
                        || w.Type == "XXX" 
-                       || w.Type == "Shopping Cart Payment Sent" )
+                       || w.Type == "Shopping Cart Payment Sent" 
+                       )
+                       && w.Currency == "DKK"
                       orderby w.Date
                       select w;
 
