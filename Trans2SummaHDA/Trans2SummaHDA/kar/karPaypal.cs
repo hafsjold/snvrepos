@@ -297,7 +297,6 @@ namespace Trans2SummaHDA
                        || w.Type == "XXX" 
                        || w.Type == "Shopping Cart Payment Sent" 
                        )
-                       && w.Currency == "DKK"
                       orderby w.Date
                       select w;
 
