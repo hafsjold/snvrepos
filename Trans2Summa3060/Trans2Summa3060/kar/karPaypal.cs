@@ -422,8 +422,13 @@ namespace Trans2Summa3060
         private void load_bankkonto6()
         {
             var qry = from w in Program.dbDataTransSumma.tblpaypals
-                      where w.Imported == null && w.Currency == "DKK"
-                      && (w.Type == "Express Checkout Payment Sent" || w.Type == "Preapproved Payment Sent" || w.Type == "Recurring Payment Sent" || w.Type == "Web Accept Payment Sent" || w.Type == "Shopping Cart Payment Sent" )
+                      where w.Imported == null //&& w.Currency == "DKK"
+                      && (w.Type == "Express Checkout Payment Sent" 
+                      || w.Type == "Preapproved Payment Sent" 
+                      || w.Type == "Recurring Payment Sent" 
+                      || w.Type == "Web Accept Payment Sent" 
+                      || w.Type == "Shopping Cart Payment Sent" 
+                      )
                       orderby w.Date
                       select w;
 
