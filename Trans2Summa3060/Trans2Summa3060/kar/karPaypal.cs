@@ -473,7 +473,9 @@ namespace Trans2Summa3060
         {
             var qry = from w in Program.dbDataTransSumma.tblpaypals
                       where w.Imported == null && w.Currency == "DKK"
-                      && (w.Type == "Web Accept Payment Received")
+                      && (w.Type == "Web Accept Payment Received" 
+                      || w.Type == "Recurring Payment Received"
+                      )
                       orderby w.Date
                       select w;
 
