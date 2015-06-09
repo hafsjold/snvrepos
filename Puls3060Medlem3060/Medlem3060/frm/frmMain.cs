@@ -13,6 +13,8 @@ using nsPbs3060;
 using System.Diagnostics;
 using Spire.Pdf;
 using Spire.Pdf.Graphics;
+using System.Collections;
+using PHPSerializationLibrary;
 
 
 namespace nsPuls3060
@@ -131,6 +133,35 @@ namespace nsPuls3060
         {
 #if (DEBUG)
 
+            MemRSMembershipTransactions cls = new MemRSMembershipTransactions();
+
+            /*
+            var qryusers = from u in jdb.ecpwt_users
+                           join m in jdb.ecpwt_rsmembership_membership_subscribers on u.id equals m.user_id
+                           where m.membership_id == 6
+                           join a in jdb.ecpwt_rsmembership_subscribers on u.id equals a.user_id
+                           join t in jdb.ecpwt_rsmembership_transactions on m.last_transaction_id equals t.id 
+                           select new {
+                                id = u.id,
+                                name = u.name,
+                                adresse = a.f1,
+                                postnr = a.f4,
+                                Bynavn = a.f2,
+                                Telefon = a.f6,
+                                email = u.email,
+                                Nr = a.f14,
+                                membership_start = m.membership_start,
+                                membership_end = m.membership_end,
+                                user_data = t.user_data
+                           };
+
+            int antal = qryusers.Count();
+            int x = 0;
+            foreach (var transactions in qryusers)
+            {
+                x++;
+            }
+            */
             /*
             string TilPBSFile = "Mogens Hafsjold";
             char[] c_TilPBSFile = TilPBSFile.ToCharArray();

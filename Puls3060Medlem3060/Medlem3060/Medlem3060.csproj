@@ -113,6 +113,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MimeKit.1.0.3.0\lib\net40\BouncyCastle.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Excel">
       <HintPath>..\..\Medlem3060v2\Medlem3060v2\Libraries\Excel.dll</HintPath>
     </Reference>
@@ -271,6 +275,7 @@
     <Compile Include="kar\karPosteringer.cs" />
     <Compile Include="kar\karKontoplan.cs" />
     <Compile Include="kar\karKladde.cs" />
+    <Compile Include="mem\memRSMembershipTransactions.cs" />
     <Compile Include="mem\memRegnskaber.cs" />
     <Compile Include="mem\memAktivRegnskab.cs" />
     <Compile Include="frm\frmKreditor.cs">
@@ -471,6 +476,10 @@
     <ProjectReference Include="..\Pbs3060\Pbs3060.csproj">
       <Project>{B65FF3FB-C71D-448A-9ECC-D2E96707F9E5}</Project>
       <Name>Pbs3060</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PHPSerializationLibrary\PHPSerializationLibrary.csproj">
+      <Project>{4e7cfc61-4444-4ec8-a8f2-57d8ef21d84f}</Project>
+      <Name>PHPSerializationLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
