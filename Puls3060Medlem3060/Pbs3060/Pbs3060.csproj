@@ -93,6 +93,9 @@
     <Reference Include="BouncyCastle">
       <HintPath>..\packages\MimeKit.1.0.3.0\lib\net40\BouncyCastle.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="MailKit">
       <HintPath>..\packages\MailKit.1.0.4.0\lib\net40\MailKit.dll</HintPath>
     </Reference>
@@ -121,13 +124,16 @@
       <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Spatial, Version=5.6.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -161,12 +167,48 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbData3060.dbml</DependentUpon>
     </Compile>
+    <Compile Include="ecpwt_rsmembership_memberships.cs">
+      <DependentUpon>puls3060_dk.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ecpwt_rsmembership_membership_subscribers.cs">
+      <DependentUpon>puls3060_dk.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ecpwt_rsmembership_subscribers.cs">
+      <DependentUpon>puls3060_dk.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ecpwt_rsmembership_transactions.cs">
+      <DependentUpon>puls3060_dk.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ecpwt_usergroups.cs">
+      <DependentUpon>puls3060_dk.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ecpwt_users.cs">
+      <DependentUpon>puls3060_dk.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ecpwt_user_usergroup_map.cs">
+      <DependentUpon>puls3060_dk.tt</DependentUpon>
+    </Compile>
     <Compile Include="memPbsnetdir.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="puls3060_dk.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>puls3060_dk.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="puls3060_dk.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>puls3060_dk.tt</DependentUpon>
+    </Compile>
+    <Compile Include="puls3060_dk.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>puls3060_dk.edmx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -175,9 +217,27 @@
       <LastGenOutput>dbData3060.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
+    <EntityDeploy Include="puls3060_dk.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>puls3060_dk.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="puls3060_dk.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>puls3060_dk.edmx</DependentUpon>
+      <LastGenOutput>puls3060_dk.Context.cs</LastGenOutput>
+    </None>
+    <None Include="puls3060_dk.edmx.diagram">
+      <DependentUpon>puls3060_dk.edmx</DependentUpon>
+    </None>
+    <None Include="puls3060_dk.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>puls3060_dk.edmx</DependentUpon>
+      <LastGenOutput>puls3060_dk.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
