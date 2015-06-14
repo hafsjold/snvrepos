@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="plugin" version="2.5.0" group="system" method="upgrade">
+	<name>System - RSMembership! - Wire Transfer PBS</name>
+	<author>RSJoomla!</author>
+	<creationDate>March 2014</creationDate>
+	<copyright>(C) 2009-2014 www.rsjoomla.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license> 
+	<authorEmail>support@rsjoomla.com</authorEmail>
+	<authorUrl>www.rsjoomla.com</authorUrl>
+	<version>1.0.0</version>
+	<description>RSMembership! - Wire Transfer PBS</description>
+	<files>
+		<filename>index.html</filename>
+		<filename plugin="rsmembershipwirepbs">rsmembershipwirepbs.php</filename>
+	</files>
+</extension>
