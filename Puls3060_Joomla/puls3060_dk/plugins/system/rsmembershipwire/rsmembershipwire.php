@@ -109,6 +109,16 @@ class plgSystemRSMembershipWire extends JPlugin
 						$replacements['{'.$field.'}'] = $value;
 					}
 				}
+				//mha
+				if (isset($data->membership_fields) && is_array($data->membership_fields)) {
+					foreach ($data->membership_fields as $membership_fields => $value1) {
+						if (is_array($value1)) {
+							$value1 = implode("\n", $value1);
+						}
+						$replacements['{'.$membership_fields.'}'] = $value1;
+					}
+				}
+				//mha
 			}
 			
 			$replace = array_keys($replacements);
