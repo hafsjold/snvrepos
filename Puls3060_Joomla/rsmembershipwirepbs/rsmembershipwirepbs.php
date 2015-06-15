@@ -60,25 +60,28 @@ class plgSystemRSMembershipWirePbs extends JPlugin
 
 			// Store the transaction so we can get an ID
 			$transaction->store();
-
-			$new_fiknr =  $this->newFiknr($transaction->id, $membership->id);
-			
-			$newData = unserialize($transaction->user_data);
-			$newData->membership_fields['fiknr'] = $new_fiknr;
-			$transaction->user_data = serialize($newData);
 		
-			$mha_membership_fields = $data->membership_fields;
-			$data->membership_fields['fiknr'] = $new_fiknr;
+			$newData = unserialize($transaction->user_data);			
+			if (array_key_exists('fiknr', $newData->membership_fields)) {
+				$new_fiknr =  $this->newFiknr($transaction->id, $membership->id);
+				$newData->membership_fields['fiknr'] = $new_fiknr;					
+				$data->membership_fields['fiknr'] = $new_fiknr;					
+			}
+			$transaction->user_data = serialize($newData);		
 		}
 	}
 	
 	protected function newFiknr($transaction_id, $membership_id) {
-		$fiknr1 = $membership_id* 1000000 +$transaction_id;
-		$fiknr2 = $this->luhn_checkdigit($fiknr1);
-		$fiknr3 = '000000000000000' . $fiknr1 . $fiknr2;
-		$fiknr4 = substr($fiknr3, -15);
-		//$fiknr5 = '+71< ' . $fiknr4 . '+81131945<';
-		return $fiknr4;
+		try{
+			$fiknr1 = $membership_id* 1000000 +$transaction_id;
+			$fiknr2 = $this->luhn_checkdigit($fiknr1);
+			$fiknr3 = '000000000000000' . $fiknr1 . $fiknr2;
+			$fiknr4 = substr($fiknr3, -15);
+			//$fiknr5 = '+71< ' . $fiknr4 . '+81131945<';
+			return $fiknr4;
+		} catch(Exception $e){
+			return '000000000000000';
+		}
 	}
 	
 	protected function luhn_check($number) {
