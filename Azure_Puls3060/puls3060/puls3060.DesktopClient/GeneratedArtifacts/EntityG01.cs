@@ -389,6 +389,29 @@ namespace LightSwitchApplication
             }
         }
 
+        /// <summary>
+        /// No Modeled Description Available
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::Microsoft.LightSwitch.Framework.EntityCollection<global::LightSwitchApplication.vMedmemLogText> vMedmemLogTexts
+        {
+            get
+            {
+                return global::LightSwitchApplication.tblMedlem.DetailsClass.GetValue(this, global::LightSwitchApplication.tblMedlem.DetailsClass.PropertySetProperties.vMedmemLogTexts);
+            }
+        }
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public Microsoft.LightSwitch.IDataServiceQueryable<global::LightSwitchApplication.vMedmemLogText> vMedmemLogTextsQuery
+        {
+            get
+            {
+                return global::LightSwitchApplication.tblMedlem.DetailsClass.GetQuery(this, global::LightSwitchApplication.tblMedlem.DetailsClass.PropertySetProperties.vMedmemLogTexts);
+            }
+        }
+
         #endregion
     
         #region Details Class
@@ -575,6 +598,14 @@ namespace LightSwitchApplication
                     }
                 }
                 
+                public global::Microsoft.LightSwitch.Details.Framework.EntityCollectionProperty<global::LightSwitchApplication.tblMedlem, global::LightSwitchApplication.tblMedlem.DetailsClass, global::LightSwitchApplication.vMedmemLogText> vMedmemLogTexts
+                {
+                    get
+                    {
+                        return base.GetItem(global::LightSwitchApplication.tblMedlem.DetailsClass.PropertySetProperties.vMedmemLogTexts) as global::Microsoft.LightSwitch.Details.Framework.EntityCollectionProperty<global::LightSwitchApplication.tblMedlem, global::LightSwitchApplication.tblMedlem.DetailsClass, global::LightSwitchApplication.vMedmemLogText>;
+                    }
+                }
+                
             }
     
             #pragma warning disable 109
@@ -593,6 +624,7 @@ namespace LightSwitchApplication
                 new string Kon { get; set; }
                 new global::System.Nullable<global::System.DateTime> FodtDato { get; set; }
                 new string Bank { get; set; }
+                new global::System.Collections.IEnumerable vMedmemLogTexts { get; }
             }
             #pragma warning restore 109
     
@@ -1056,6 +1088,26 @@ namespace LightSwitchApplication
                     c(d, ref d._tblFikBetalings, sf);
                 }
      
+                [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+                public static readonly global::Microsoft.LightSwitch.Details.Framework.EntityCollectionProperty<global::LightSwitchApplication.tblMedlem, global::LightSwitchApplication.tblMedlem.DetailsClass, global::LightSwitchApplication.vMedmemLogText>.Entry
+                    vMedmemLogTexts = new global::Microsoft.LightSwitch.Details.Framework.EntityCollectionProperty<global::LightSwitchApplication.tblMedlem, global::LightSwitchApplication.tblMedlem.DetailsClass, global::LightSwitchApplication.vMedmemLogText>.Entry(
+                        "vMedmemLogTexts",
+                        global::LightSwitchApplication.tblMedlem.DetailsClass.PropertySetProperties._vMedmemLogTexts_Stub,
+                        global::LightSwitchApplication.tblMedlem.DetailsClass.PropertySetProperties._vMedmemLogTexts_GetReferencedEntities,
+                        global::LightSwitchApplication.tblMedlem.DetailsClass.PropertySetProperties._vMedmemLogTexts_GetEntityCollection);
+                private static void _vMedmemLogTexts_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.tblMedlem.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.EntityCollectionProperty<global::LightSwitchApplication.tblMedlem, global::LightSwitchApplication.tblMedlem.DetailsClass, global::LightSwitchApplication.vMedmemLogText>.Data> c, global::LightSwitchApplication.tblMedlem.DetailsClass d, object sf)
+                {
+                    c(d, ref d._vMedmemLogTexts, sf);
+                }
+                private static global::System.Collections.Generic.IEnumerable<global::LightSwitchApplication.vMedmemLogText> _vMedmemLogTexts_GetReferencedEntities(global::LightSwitchApplication.tblMedlem.DetailsClass d)
+                {
+                    return d.GetReferencedEntities<global::LightSwitchApplication.vMedmemLogText, global::LightSwitchApplication.vMedmemLogText.DetailsClass>(global::LightSwitchApplication.tblMedlem.DetailsClass.PropertySetProperties.vMedmemLogTexts, ref d._vMedmemLogTexts);
+                }
+                private static global::System.Collections.IEnumerable _vMedmemLogTexts_GetEntityCollection(global::LightSwitchApplication.tblMedlem.DetailsClass d)
+                {
+                    return d.ImplementationEntity.vMedmemLogTexts;
+                }
+    
             }
     
             [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
@@ -1096,6 +1148,9 @@ namespace LightSwitchApplication
             
             [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
             private global::Microsoft.LightSwitch.Details.Framework.EntityVirtualCollectionProperty<global::LightSwitchApplication.tblMedlem, global::LightSwitchApplication.tblMedlem.DetailsClass, global::LightSwitchApplication.tblFikBetaling>.Data _tblFikBetalings;
+            
+            [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+            private global::Microsoft.LightSwitch.Details.Framework.EntityCollectionProperty<global::LightSwitchApplication.tblMedlem, global::LightSwitchApplication.tblMedlem.DetailsClass, global::LightSwitchApplication.vMedmemLogText>.Data _vMedmemLogTexts;
             
         }
     

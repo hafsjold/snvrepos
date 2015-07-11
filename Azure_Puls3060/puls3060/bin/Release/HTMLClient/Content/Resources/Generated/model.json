@@ -2124,7 +2124,8 @@
           "__isSemanticType": 1,
           "id": "Microsoft.LightSwitch.Extensions:EmailAddress",
           "name": "EmailAddress",
-          "underlyingType": { "__id": ":String" }
+          "underlyingType": { "__id": ":String" },
+          "Microsoft.LightSwitch.Extensions:@EmailAddressValidation": { "domainRequired": true }
         },
         {
           "__isSemanticType": 1,
@@ -2142,13 +2143,15 @@
           "__isSemanticType": 1,
           "id": "Microsoft.LightSwitch.Extensions:PhoneNumber",
           "name": "PhoneNumber",
-          "underlyingType": { "__id": ":String" }
+          "underlyingType": { "__id": ":String" },
+          "Microsoft.LightSwitch.Extensions:@PhoneNumberValidation": { "formats": "C (AAA) NNN-NNNN;C (AAA) NNNNNNN;CAAANNNNNNN;(AAA) NNN-NNNN;(AAA) NNNNNNN;AAANNNNNNN;NNN-NNNN;NNNNNNN" }
         },
         {
           "__isSemanticType": 1,
           "id": "Microsoft.LightSwitch.Extensions:Percent",
           "name": "Percent",
           "underlyingType": { "__id": ":Decimal" },
+          "Microsoft.LightSwitch.Extensions:@FormatParameter": { "decimalDigits": 2 },
           ":@DecimalConstraint":
           {
             "scale": 9
@@ -2158,7 +2161,8 @@
           "__isSemanticType": 1,
           "id": "Microsoft.LightSwitch.Extensions:WebAddress",
           "name": "WebAddress",
-          "underlyingType": { "__id": ":String" }
+          "underlyingType": { "__id": ":String" },
+          "Microsoft.LightSwitch.Extensions:@WebAddressValidation": { }
         }
       ]
     },
@@ -2208,6 +2212,64 @@
         {
           "id": "CanDeleteProekt",
           "name": "CanDeleteProekt"
+        },
+        {
+          "id": "CollectionView$vMedmemLogText",
+          "name": "CollectionView$vMedmemLogText",
+          "kind": "CollectionView",
+          "elementType": { "__id": "vMedmemLogText" },
+          "methods":
+          [
+            {
+              "id": "CollectionView$vMedmemLogText/Methods[addNew]",
+              "name": "addNew",
+              "returnType": { "__id": "vMedmemLogText" }
+            },
+            {
+              "id": "CollectionView$vMedmemLogText/Methods[addAndEditNew]",
+              "name": "addAndEditNew",
+              "returnType": { "__id": "vMedmemLogText" }
+            },
+            {
+              "id": "CollectionView$vMedmemLogText/Methods[showSearch]",
+              "name": "showSearch",
+              "returnType": { "__id": "vMedmemLogText" }
+            },
+            {
+              "id": "CollectionView$vMedmemLogText/Methods[editSelected]",
+              "name": "editSelected"
+            },
+            {
+              "id": "CollectionView$vMedmemLogText/Methods[deleteSelected]",
+              "name": "deleteSelected"
+            },
+            {
+              "id": "CollectionView$vMedmemLogText/Methods[removeSelected]",
+              "name": "removeSelected"
+            },
+            {
+              "id": "CollectionView$vMedmemLogText/Methods[refresh]",
+              "name": "refresh"
+            },
+            {
+              "id": "CollectionView$vMedmemLogText/Methods[viewSelected]",
+              "name": "viewSelected"
+            }
+          ],
+          "properties":
+          [
+            {
+              "id": "CollectionView$vMedmemLogText/Properties[selectedItem]",
+              "name": "selectedItem",
+              "propertyType": { "__id": "vMedmemLogText" }
+            }
+          ]
+        },
+        {
+          "id": "vMedmemLogText*",
+          "name": "vMedmemLogText*",
+          "kind": "Enumerable",
+          "elementType": { "__id": "vMedmemLogText" }
         },
         {
           "id": "tblMedlem*",
@@ -2778,6 +2840,15 @@
               "propertyType": { "__id": "tblFikBetaling*" },
               "toEnd": { "__id": "tblFikBetaling_tblMedlem/Ends[tblFikBetaling]" },
               "virtualAssociation": { "__id": "tblFikBetaling_tblMedlem" }
+            },
+            {
+              "id": "tblMedlem/Properties[vMedmemLogTexts]",
+              "name": "vMedmemLogTexts",
+              "association": { "__id": "tblMedlem_vMedmemLogText" },
+              "elementType": { "__id": "vMedmemLogText" },
+              "fromEnd": { "__id": "tblMedlem_vMedmemLogText/Ends[tblMedlem]" },
+              "propertyType": { "__id": "vMedmemLogText*" },
+              "toEnd": { "__id": "tblMedlem_vMedmemLogText/Ends[vMedmemLogText]" }
             }
           ]
         },
@@ -2786,6 +2857,29 @@
           "name": "dbPuls3060MedlemData",
           "dataProvider": "EntityFrameworkDataProvider",
           ":@Partial": { "isPrimary": true },
+          "associationSets":
+          [
+            {
+              "id": "dbPuls3060MedlemData/Members[tblMedlem_vMedmemLogTexts]",
+              "name": "tblMedlem_vMedmemLogTexts",
+              "association": { "__id": "tblMedlem_vMedmemLogText" },
+              "ends":
+              [
+                {
+                  "properties": [ "Nr" ],
+                  "id": "dbPuls3060MedlemData/Members[tblMedlem_vMedmemLogTexts]/Members[tblMedlem]",
+                  "name": "tblMedlem",
+                  "entitySet": { "__id": "dbPuls3060MedlemData/Members[tblMedlems]" }
+                },
+                {
+                  "properties": [ "Nr" ],
+                  "id": "dbPuls3060MedlemData/Members[tblMedlem_vMedmemLogTexts]/Members[vMedmemLogText]",
+                  "name": "vMedmemLogText",
+                  "entitySet": { "__id": "dbPuls3060MedlemData/Members[vMedmemLogTexts]" }
+                }
+              ]
+            }
+          ],
           "entitySets":
           [
             {
@@ -2796,6 +2890,12 @@
               "canUpdate": true,
               "elementType": { "__id": "tblMedlem" },
               "entityType": { "__id": "tblMedlem" }
+            },
+            {
+              "id": "dbPuls3060MedlemData/Members[vMedmemLogTexts]",
+              "name": "vMedmemLogTexts",
+              "elementType": { "__id": "vMedmemLogText" },
+              "entityType": { "__id": "vMedmemLogText" }
             }
           ],
           "queryOperations":
@@ -2834,6 +2934,44 @@
                 {
                   "id": "dbPuls3060MedlemData/Members[tblMedlems_SingleOrDefault]/Parameters[Nr]",
                   "name": "Nr",
+                  "parameterType": { "__id": ":Int32?" }
+                }
+              ]
+            },
+            {
+              "id": "dbPuls3060MedlemData/Members[vMedmemLogTexts_Single]",
+              "name": "vMedmemLogTexts_Single",
+              "elementType": { "__id": "vMedmemLogText" },
+              "query": { "__id": "dbPuls3060MedlemData/Members[vMedmemLogTexts_Single]" },
+              "returnType": { "__id": "vMedmemLogText" },
+              "source":
+              {
+                "member": { "__id": "dbPuls3060MedlemData/Members[vMedmemLogTexts]" }
+              },
+              "parameters":
+              [
+                {
+                  "id": "dbPuls3060MedlemData/Members[vMedmemLogTexts_Single]/Parameters[id]",
+                  "name": "id",
+                  "parameterType": { "__id": ":Int32?" }
+                }
+              ]
+            },
+            {
+              "id": "dbPuls3060MedlemData/Members[vMedmemLogTexts_SingleOrDefault]",
+              "name": "vMedmemLogTexts_SingleOrDefault",
+              "elementType": { "__id": "vMedmemLogText" },
+              "query": { "__id": "dbPuls3060MedlemData/Members[vMedmemLogTexts_SingleOrDefault]" },
+              "returnType": { "__id": "vMedmemLogText" },
+              "source":
+              {
+                "member": { "__id": "dbPuls3060MedlemData/Members[vMedmemLogTexts]" }
+              },
+              "parameters":
+              [
+                {
+                  "id": "dbPuls3060MedlemData/Members[vMedmemLogTexts_SingleOrDefault]/Parameters[id]",
+                  "name": "id",
                   "parameterType": { "__id": ":Int32?" }
                 }
               ]
@@ -4721,6 +4859,107 @@
               {
                 "target": { "__id": "Medlemmer/Properties[tblMedlems]/Query" }
               }
+            }
+          ]
+        },
+        {
+          "__isEntityType": 1,
+          ":@SummaryProperty": { "property": { "__id": "vMedmemLogText/Properties[Aktivitet]" } },
+          "id": "vMedmemLogText",
+          "name": "vMedmemLogText",
+          "methods":
+          [
+            {
+              "id": "vMedmemLogText/Methods[deleteEntity]",
+              "name": "deleteEntity"
+            },
+            {
+              "id": "vMedmemLogText/Methods[view]",
+              "name": "view"
+            },
+            {
+              "id": "vMedmemLogText/Methods[edit]",
+              "name": "edit"
+            }
+          ],
+          "properties":
+          [
+            {
+              "__isKeyProperty": 1,
+              "id": "vMedmemLogText/Properties[id]",
+              "name": "id",
+              "propertyType": { "__id": ":Int32" },
+              ":@Required": { },
+              ":@NotSearchable": { }
+            },
+            {
+              "id": "vMedmemLogText/Properties[Nr]",
+              "name": "Nr",
+              "propertyType": { "__id": ":Int32?" },
+              ":@NotSearchable": { }
+            },
+            {
+              "id": "vMedmemLogText/Properties[logdato]",
+              "name": "logdato",
+              "propertyType": { "__id": ":DateTime?" },
+              ":@DateTimeConstraint":
+              {
+                "kind": "Unspecified",
+                "precision": 3,
+                "preserveSeconds": true
+              },
+              ":@NotSearchable": { }
+            },
+            {
+              "id": "vMedmemLogText/Properties[Aktivitet]",
+              "name": "Aktivitet",
+              "propertyType": { "__id": ":String?" },
+              ":@MaxLength":
+              {
+                "value": 30
+              }
+            },
+            {
+              "id": "vMedmemLogText/Properties[Dato]",
+              "name": "Dato",
+              "propertyType": { "__id": ":Date?" },
+              ":@DateTimeConstraint":
+              {
+                "kind": "Unspecified",
+                "precision": 0,
+                "preserveSeconds": true
+              },
+              ":@NotSearchable": { }
+            },
+            {
+              "id": "vMedmemLogText/Properties[tblMedlem]",
+              "name": "tblMedlem",
+              "association": { "__id": "tblMedlem_vMedmemLogText" },
+              "elementType": { "__id": "tblMedlem" },
+              "fromEnd": { "__id": "tblMedlem_vMedmemLogText/Ends[vMedmemLogText]" },
+              "propertyType": { "__id": "tblMedlem" },
+              "toEnd": { "__id": "tblMedlem_vMedmemLogText/Ends[tblMedlem]" }
+            }
+          ]
+        },
+        {
+          "id": "tblMedlem_vMedmemLogText",
+          "name": "tblMedlem_vMedmemLogText",
+          ":@UserDefined": { },
+          "ends":
+          [
+            {
+              "id": "tblMedlem_vMedmemLogText/Ends[tblMedlem]",
+              "name": "tblMedlem",
+              "multiplicity": "ZeroOrOne",
+              "entityType": { "__id": "tblMedlem" },
+              ":@DeleteRule": { "action": "Unset" }
+            },
+            {
+              "id": "tblMedlem_vMedmemLogText/Ends[vMedmemLogText]",
+              "name": "vMedmemLogText",
+              "multiplicity": "Many",
+              "entityType": { "__id": "vMedmemLogText" }
             }
           ]
         }

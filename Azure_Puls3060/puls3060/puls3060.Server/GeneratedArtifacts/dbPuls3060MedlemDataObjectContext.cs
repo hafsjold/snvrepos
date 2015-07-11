@@ -17,6 +17,12 @@ using System.Runtime.Serialization;
 using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
+#region EDM Relationship Metadata
+
+[assembly: EdmRelationshipAttribute("LightSwitchApplication", "tblMedlem_vMedmemLogText", "tblMedlem", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(LightSwitchApplication.Implementation.tblMedlem), "vMedmemLogText", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(LightSwitchApplication.Implementation.vMedmemLogText), true)]
+
+#endregion
+
 namespace LightSwitchApplication.Implementation
 {
     #region Contexts
@@ -77,6 +83,22 @@ namespace LightSwitchApplication.Implementation
             }
         }
         private ObjectSet<tblMedlem> _tblMedlems;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<vMedmemLogText> vMedmemLogTexts
+        {
+            get
+            {
+                if ((_vMedmemLogTexts == null))
+                {
+                    _vMedmemLogTexts = base.CreateObjectSet<vMedmemLogText>("vMedmemLogTexts");
+                }
+                return _vMedmemLogTexts;
+            }
+        }
+        private ObjectSet<vMedmemLogText> _vMedmemLogTexts;
 
         #endregion
 
@@ -88,6 +110,14 @@ namespace LightSwitchApplication.Implementation
         public void AddTotblMedlems(tblMedlem tblMedlem)
         {
             base.AddObject("tblMedlems", tblMedlem);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the vMedmemLogTexts EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTovMedmemLogTexts(vMedmemLogText vMedmemLogText)
+        {
+            base.AddObject("vMedmemLogTexts", vMedmemLogText);
         }
 
         #endregion
@@ -417,6 +447,227 @@ namespace LightSwitchApplication.Implementation
         #endregion
 
     
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("LightSwitchApplication", "tblMedlem_vMedmemLogText", "vMedmemLogText")]
+        public EntityCollection<vMedmemLogText> vMedmemLogTexts
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<vMedmemLogText>("LightSwitchApplication.tblMedlem_vMedmemLogText", "vMedmemLogText");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<vMedmemLogText>("LightSwitchApplication.tblMedlem_vMedmemLogText", "vMedmemLogText", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="LightSwitchApplication", Name="vMedmemLogText")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class vMedmemLogText : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new vMedmemLogText object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        public static vMedmemLogText CreatevMedmemLogText(global::System.Int32 id)
+        {
+            vMedmemLogText vMedmemLogText = new vMedmemLogText();
+            vMedmemLogText.id = id;
+            return vMedmemLogText;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = value;
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> Nr
+        {
+            get
+            {
+                return _Nr;
+            }
+            set
+            {
+                OnNrChanging(value);
+                ReportPropertyChanging("Nr");
+                _Nr = value;
+                ReportPropertyChanged("Nr");
+                OnNrChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _Nr;
+        partial void OnNrChanging(Nullable<global::System.Int32> value);
+        partial void OnNrChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> logdato
+        {
+            get
+            {
+                return _logdato;
+            }
+            set
+            {
+                OnlogdatoChanging(value);
+                ReportPropertyChanging("logdato");
+                _logdato = value;
+                ReportPropertyChanged("logdato");
+                OnlogdatoChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _logdato;
+        partial void OnlogdatoChanging(Nullable<global::System.DateTime> value);
+        partial void OnlogdatoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Aktivitet
+        {
+            get
+            {
+                return _Aktivitet;
+            }
+            set
+            {
+                OnAktivitetChanging(value);
+                ReportPropertyChanging("Aktivitet");
+                _Aktivitet = value;
+                ReportPropertyChanged("Aktivitet");
+                OnAktivitetChanged();
+            }
+        }
+        private global::System.String _Aktivitet;
+        partial void OnAktivitetChanging(global::System.String value);
+        partial void OnAktivitetChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> Dato
+        {
+            get
+            {
+                return _Dato;
+            }
+            set
+            {
+                OnDatoChanging(value);
+                ReportPropertyChanging("Dato");
+                _Dato = value;
+                ReportPropertyChanged("Dato");
+                OnDatoChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _Dato;
+        partial void OnDatoChanging(Nullable<global::System.DateTime> value);
+        partial void OnDatoChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("LightSwitchApplication", "tblMedlem_vMedmemLogText", "tblMedlem")]
+        public tblMedlem tblMedlem
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblMedlem>("LightSwitchApplication.tblMedlem_vMedmemLogText", "tblMedlem").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblMedlem>("LightSwitchApplication.tblMedlem_vMedmemLogText", "tblMedlem").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<tblMedlem> tblMedlemReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblMedlem>("LightSwitchApplication.tblMedlem_vMedmemLogText", "tblMedlem");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tblMedlem>("LightSwitchApplication.tblMedlem_vMedmemLogText", "tblMedlem", value);
+                }
+            }
+        }
+
+        #endregion
+
     }
 
     #endregion

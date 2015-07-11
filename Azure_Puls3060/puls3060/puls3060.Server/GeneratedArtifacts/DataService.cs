@@ -468,6 +468,15 @@ namespace LightSwitchApplication
         partial void tblMedlems_Filter(ref global::System.Linq.Expressions.Expression<global::System.Func<global::LightSwitchApplication.tblMedlem, bool>> filter);
     
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void vMedmemLogTexts_CanRead(ref bool result);
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void vMedmemLogTexts_Validate(global::LightSwitchApplication.vMedmemLogText entity, global::Microsoft.LightSwitch.EntitySetValidationResultsBuilder results);
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void vMedmemLogTexts_Filter(ref global::System.Linq.Expressions.Expression<global::System.Func<global::LightSwitchApplication.vMedmemLogText, bool>> filter);
+    
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
         partial void SaveChanges_CanExecute(ref bool result);
     
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -579,6 +588,40 @@ namespace LightSwitchApplication
             {
                 global::System.Linq.Expressions.Expression<global::System.Func<global::LightSwitchApplication.tblMedlem, bool>> filter = null;
                 d.tblMedlems_Filter(ref filter);
+                return filter;
+            }
+            
+            [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+            [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+            private static readonly global::Microsoft.LightSwitch.Details.Framework.Server.EntitySetEntry<global::LightSwitchApplication.dbPuls3060MedlemDataService, global::LightSwitchApplication.vMedmemLogText>
+                __vMedmemLogTextsEntry = new global::Microsoft.LightSwitch.Details.Framework.Server.EntitySetEntry<global::LightSwitchApplication.dbPuls3060MedlemDataService, global::LightSwitchApplication.vMedmemLogText>(
+                    "vMedmemLogTexts",
+                    null,
+                    null,
+                    null,
+                    global::LightSwitchApplication.dbPuls3060MedlemDataService.DetailsClass.__vMedmemLogTexts_CanRead,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    global::LightSwitchApplication.dbPuls3060MedlemDataService.DetailsClass.__vMedmemLogTexts_Validate,
+                    global::LightSwitchApplication.dbPuls3060MedlemDataService.DetailsClass.__vMedmemLogTexts_Filter);
+            private static bool __vMedmemLogTexts_CanRead(global::LightSwitchApplication.dbPuls3060MedlemDataService d)
+            {
+                bool result = true;
+                d.vMedmemLogTexts_CanRead(ref result);
+                return result;
+            }
+            private static void __vMedmemLogTexts_Validate(global::LightSwitchApplication.dbPuls3060MedlemDataService d, global::LightSwitchApplication.vMedmemLogText e, global::Microsoft.LightSwitch.EntitySetValidationResultsBuilder r)
+            {
+                d.vMedmemLogTexts_Validate(e, r);
+            }
+            private static global::System.Linq.Expressions.Expression<global::System.Func<global::LightSwitchApplication.vMedmemLogText, bool>> __vMedmemLogTexts_Filter(global::LightSwitchApplication.dbPuls3060MedlemDataService d)
+            {
+                global::System.Linq.Expressions.Expression<global::System.Func<global::LightSwitchApplication.vMedmemLogText, bool>> filter = null;
+                d.vMedmemLogTexts_Filter(ref filter);
                 return filter;
             }
             

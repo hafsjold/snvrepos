@@ -42,3 +42,4 @@ C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\puls30
 C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\puls3060.Server\bin\Release\System.Net.Http.Formatting.xml
 C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\puls3060.Server\bin\Release\System.Web.Http.xml
 C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\puls3060.Server\bin\Release\System.Web.Http.WebHost.xml
+C:\Users\Puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\puls3060.Server\obj\Release\puls3060.Server.csprojResolveAssemblyReference.cache

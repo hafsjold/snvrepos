@@ -2,6 +2,7 @@
 <Schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="dbPuls3060MedlemDataStore" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
   <EntityContainer Name="dbPuls3060MedlemDataStore">
     <EntitySet Name="tblMedlems" EntityType="dbPuls3060MedlemDataStore.tblMedlem" store:Type="Tables" Schema="dbo" Table="tblMedlem" />
+    <EntitySet Name="vMedmemLogTexts" EntityType="dbPuls3060MedlemDataStore.vMedmemLogText" store:Type="Tables" Schema="dbo" Table="vMedmemLogText" />
   </EntityContainer>
   <EntityType Name="tblMedlem">
     <Key>
@@ -19,5 +20,15 @@
     <Property Name="Kon" Type="nvarchar" MaxLength="1" />
     <Property Name="FodtDato" Type="datetime" />
     <Property Name="Bank" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="vMedmemLogText">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="Nr" Type="int" />
+    <Property Name="logdato" Type="datetime" />
+    <Property Name="Aktivitet" Type="nvarchar" MaxLength="30" />
+    <Property Name="Dato" Type="date" />
   </EntityType>
 </Schema>

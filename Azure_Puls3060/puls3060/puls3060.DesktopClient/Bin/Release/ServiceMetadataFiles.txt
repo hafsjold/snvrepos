@@ -4,3 +4,4 @@ puls3060.Server.Properties.DataSources.dbPuls3060MedlemData.lsml
 puls3060.Server.Properties.DataSources.ApplicationData.lsml
 puls3060.Server.DataSources.ApplicationData.tblFikBetalings.lsml
 puls3060.Server.DataSources.ApplicationData.tblProjekts.lsml
+puls3060.Server.DataSources.dbPuls3060MedlemData.vMedmemLogTexts.lsml

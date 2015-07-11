@@ -117,6 +117,11 @@
         FromEnd="tblMedlem"
         ToEnd="tblFikBetaling"
         VirtualAssociation="tblFikBetaling_tblMedlem" />
+      <NavigationProperty
+        Name="vMedmemLogTexts"
+        Association="tblMedlem_vMedmemLogText"
+        FromEnd="tblMedlem"
+        ToEnd="vMedmemLogText" />
     </EntityType.Properties>
   </EntityType>
   <EntityContainer
@@ -210,7 +215,46 @@
         </QueryOperationParameter.Attributes>
       </QueryOperationParameter>
     </QueryOperation>
+    <AssociationSet
+      Name="tblMedlem_vMedmemLogTexts"
+      Association="tblMedlem_vMedmemLogText">
+      <AssociationSetEnd
+        Name="tblMedlem"
+        EntitySet="tblMedlems" />
+      <AssociationSetEnd
+        Name="vMedmemLogText"
+        EntitySet="vMedmemLogTexts" />
+    </AssociationSet>
   </EntityContainer>
+  <VirtualAssociation
+    Name="tblFikBetaling_tblMedlem">
+    <VirtualAssociationEnd
+      Name="tblFikBetaling"
+      Multiplicity="Many"
+      EntityType="tblFikBetaling" />
+    <VirtualAssociationEnd
+      Name="tblMedlem"
+      Multiplicity="One"
+      EntityType="tblMedlem" />
+  </VirtualAssociation>
+  <VirtualAssociationSet
+    Name="tblFikBetaling_tblMedlem_Set"
+    VirtualAssociation="tblFikBetaling_tblMedlem">
+    <VirtualAssociationSetEnd
+      Name="tblFikBetaling"
+      EntityContainer="ApplicationData"
+      EntitySet="tblFikBetalings">
+      <VirtualAssociationSetEndProperty
+        EntityProperty="tblMedlem_Nr" />
+    </VirtualAssociationSetEnd>
+    <VirtualAssociationSetEnd
+      Name="tblMedlem"
+      EntityContainer="dbPuls3060MedlemData"
+      EntitySet="tblMedlems">
+      <VirtualAssociationSetEndProperty
+        EntityProperty="Nr" />
+    </VirtualAssociationSetEnd>
+  </VirtualAssociationSet>
   <DataService
     Name="dbPuls3060MedlemDataDataService">
     <DataService.Attributes>
@@ -293,34 +337,43 @@
           Property="tblMedlem/Properties[Status]" />
       </EntitySetMapping.Attributes>
     </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="tblMedlem_vMedmemLogTexts">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="tblMedlem_vMedmemLogTexts" />
+        <SsdlAssociationSetEnd
+          End="dbPuls3060MedlemData/Members[tblMedlem_vMedmemLogTexts]/Members[tblMedlem]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Nr" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="dbPuls3060MedlemData/Members[tblMedlem_vMedmemLogTexts]/Members[vMedmemLogText]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Nr" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
   </DataService>
-  <VirtualAssociation
-    Name="tblFikBetaling_tblMedlem">
-    <VirtualAssociationEnd
-      Name="tblFikBetaling"
+  <Association
+    Name="tblMedlem_vMedmemLogText">
+    <Association.Attributes>
+      <UserDefined />
+    </Association.Attributes>
+    <AssociationEnd
+      Name="tblMedlem"
+      EntityType="tblMedlem">
+      <AssociationEnd.Attributes>
+        <DeleteRule />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+    <AssociationEnd
+      Name="vMedmemLogText"
       Multiplicity="Many"
-      EntityType="tblFikBetaling" />
-    <VirtualAssociationEnd
-      Name="tblMedlem"
-      Multiplicity="One"
-      EntityType="tblMedlem" />
-  </VirtualAssociation>
-  <VirtualAssociationSet
-    Name="tblFikBetaling_tblMedlem_Set"
-    VirtualAssociation="tblFikBetaling_tblMedlem">
-    <VirtualAssociationSetEnd
-      Name="tblFikBetaling"
-      EntityContainer="ApplicationData"
-      EntitySet="tblFikBetalings">
-      <VirtualAssociationSetEndProperty
-        EntityProperty="tblMedlem_Nr" />
-    </VirtualAssociationSetEnd>
-    <VirtualAssociationSetEnd
-      Name="tblMedlem"
-      EntityContainer="dbPuls3060MedlemData"
-      EntitySet="tblMedlems">
-      <VirtualAssociationSetEndProperty
-        EntityProperty="Nr" />
-    </VirtualAssociationSetEnd>
-  </VirtualAssociationSet>
+      EntityType="vMedmemLogText" />
+  </Association>
 </ServiceApplication>
