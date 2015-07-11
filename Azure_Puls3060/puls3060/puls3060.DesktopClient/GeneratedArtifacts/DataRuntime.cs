@@ -189,6 +189,19 @@ namespace LightSwitchApplication
             }
         }
         
+        /// <summary>
+        /// Gets the vMedmemLogTexts entity set.  The entity set provides members to access entities of a specific type.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::Microsoft.LightSwitch.Framework.EntitySet<global::LightSwitchApplication.vMedmemLogText> vMedmemLogTexts
+        {
+            get
+            {
+                return global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass.GetValue(this, global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass.PropertySetProperties.vMedmemLogTexts);
+            }
+        }
+        
         #endregion
     
         #region Queries
@@ -213,6 +226,28 @@ namespace LightSwitchApplication
         public global::LightSwitchApplication.tblMedlem tblMedlems_SingleOrDefault(global::System.Nullable<int> Nr)
         {
             return this.Details.Methods.tblMedlems_SingleOrDefault.CreateInvocation(Nr).Execute();
+        }
+        
+        /// <summary>
+        /// Returns the entity whose identity is specified by the parameter(s).
+        /// </summary>
+        /// <param name="id">
+        /// The value of the 'id' key property of the entity to retrieve.
+        /// </param>
+        public global::LightSwitchApplication.vMedmemLogText vMedmemLogTexts_Single(global::System.Nullable<int> id)
+        {
+            return this.Details.Methods.vMedmemLogTexts_Single.CreateInvocation(id).Execute();
+        }
+        
+        /// <summary>
+        /// Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists.
+        /// </summary>
+        /// <param name="id">
+        /// The value of the 'id' key property of the entity to retrieve.
+        /// </param>
+        public global::LightSwitchApplication.vMedmemLogText vMedmemLogTexts_SingleOrDefault(global::System.Nullable<int> id)
+        {
+            return this.Details.Methods.vMedmemLogTexts_SingleOrDefault.CreateInvocation(id).Execute();
         }
         
         #endregion
@@ -279,6 +314,22 @@ namespace LightSwitchApplication
                     }
                 }
                 
+                public global::Microsoft.LightSwitch.Details.Framework.CreateScalarQueryMethod<global::LightSwitchApplication.dbPuls3060MedlemData, global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass, global::LightSwitchApplication.vMedmemLogText> vMedmemLogTexts_Single
+                {
+                    get
+                    {
+                        return base.GetItem(global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass.MethodSetProperties.vMedmemLogTexts_Single) as global::Microsoft.LightSwitch.Details.Framework.CreateScalarQueryMethod<global::LightSwitchApplication.dbPuls3060MedlemData, global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass, global::LightSwitchApplication.vMedmemLogText>;
+                    }
+                }
+                
+                public global::Microsoft.LightSwitch.Details.Framework.CreateScalarQueryMethod<global::LightSwitchApplication.dbPuls3060MedlemData, global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass, global::LightSwitchApplication.vMedmemLogText> vMedmemLogTexts_SingleOrDefault
+                {
+                    get
+                    {
+                        return base.GetItem(global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass.MethodSetProperties.vMedmemLogTexts_SingleOrDefault) as global::Microsoft.LightSwitch.Details.Framework.CreateScalarQueryMethod<global::LightSwitchApplication.dbPuls3060MedlemData, global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass, global::LightSwitchApplication.vMedmemLogText>;
+                    }
+                }
+                
             }
     
             [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -297,6 +348,14 @@ namespace LightSwitchApplication
                     get
                     {
                         return base.GetItem(global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass.PropertySetProperties.tblMedlems) as global::Microsoft.LightSwitch.Details.Framework.DataServiceEntitySetProperty<global::LightSwitchApplication.dbPuls3060MedlemData, global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass, global::LightSwitchApplication.tblMedlem>;
+                    }
+                }
+                
+                public global::Microsoft.LightSwitch.Details.Framework.DataServiceEntitySetProperty<global::LightSwitchApplication.dbPuls3060MedlemData, global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass, global::LightSwitchApplication.vMedmemLogText> vMedmemLogTexts
+                {
+                    get
+                    {
+                        return base.GetItem(global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass.PropertySetProperties.vMedmemLogTexts) as global::Microsoft.LightSwitch.Details.Framework.DataServiceEntitySetProperty<global::LightSwitchApplication.dbPuls3060MedlemData, global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass, global::LightSwitchApplication.vMedmemLogText>;
                     }
                 }
                 
@@ -328,6 +387,26 @@ namespace LightSwitchApplication
                     c(d, ref d._tblMedlems_SingleOrDefault, sf);
                 }
     
+                [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+                public static readonly global::Microsoft.LightSwitch.Details.Framework.CreateScalarQueryMethod<global::LightSwitchApplication.dbPuls3060MedlemData, global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass, global::LightSwitchApplication.vMedmemLogText>.Entry
+                    vMedmemLogTexts_Single = new global::Microsoft.LightSwitch.Details.Framework.CreateScalarQueryMethod<global::LightSwitchApplication.dbPuls3060MedlemData, global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass, global::LightSwitchApplication.vMedmemLogText>.Entry(
+                        "vMedmemLogTexts_Single",
+                        global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass.MethodSetProperties._vMedmemLogTexts_Single_Stub);
+                private static void _vMedmemLogTexts_Single_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.CreateScalarQueryMethod<global::LightSwitchApplication.dbPuls3060MedlemData, global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass, global::LightSwitchApplication.vMedmemLogText>.Data> c, global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass d, object sf)
+                {
+                    c(d, ref d._vMedmemLogTexts_Single, sf);
+                }
+    
+                [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+                public static readonly global::Microsoft.LightSwitch.Details.Framework.CreateScalarQueryMethod<global::LightSwitchApplication.dbPuls3060MedlemData, global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass, global::LightSwitchApplication.vMedmemLogText>.Entry
+                    vMedmemLogTexts_SingleOrDefault = new global::Microsoft.LightSwitch.Details.Framework.CreateScalarQueryMethod<global::LightSwitchApplication.dbPuls3060MedlemData, global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass, global::LightSwitchApplication.vMedmemLogText>.Entry(
+                        "vMedmemLogTexts_SingleOrDefault",
+                        global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass.MethodSetProperties._vMedmemLogTexts_SingleOrDefault_Stub);
+                private static void _vMedmemLogTexts_SingleOrDefault_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.CreateScalarQueryMethod<global::LightSwitchApplication.dbPuls3060MedlemData, global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass, global::LightSwitchApplication.vMedmemLogText>.Data> c, global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass d, object sf)
+                {
+                    c(d, ref d._vMedmemLogTexts_SingleOrDefault, sf);
+                }
+    
             }
     
             [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
@@ -346,16 +425,35 @@ namespace LightSwitchApplication
                     c(d, ref d._tblMedlems, sf);
                 }
      
+                [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+                public static readonly global::Microsoft.LightSwitch.Details.Framework.DataServiceEntitySetProperty<global::LightSwitchApplication.dbPuls3060MedlemData, global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass, global::LightSwitchApplication.vMedmemLogText>.Entry
+                    vMedmemLogTexts = new global::Microsoft.LightSwitch.Details.Framework.DataServiceEntitySetProperty<global::LightSwitchApplication.dbPuls3060MedlemData, global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass, global::LightSwitchApplication.vMedmemLogText>.Entry(
+                        "vMedmemLogTexts",
+                        global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass.PropertySetProperties._vMedmemLogTexts_Stub);
+                private static void _vMedmemLogTexts_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.DataServiceEntitySetProperty<global::LightSwitchApplication.dbPuls3060MedlemData, global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass, global::LightSwitchApplication.vMedmemLogText>.Data> c, global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass d, object sf)
+                {
+                    c(d, ref d._vMedmemLogTexts, sf);
+                }
+     
             }
     
             [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
             private global::Microsoft.LightSwitch.Details.Framework.DataServiceEntitySetProperty<global::LightSwitchApplication.dbPuls3060MedlemData, global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass, global::LightSwitchApplication.tblMedlem>.Data _tblMedlems;
             
             [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+            private global::Microsoft.LightSwitch.Details.Framework.DataServiceEntitySetProperty<global::LightSwitchApplication.dbPuls3060MedlemData, global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass, global::LightSwitchApplication.vMedmemLogText>.Data _vMedmemLogTexts;
+            
+            [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
             private global::Microsoft.LightSwitch.Details.Framework.CreateScalarQueryMethod<global::LightSwitchApplication.dbPuls3060MedlemData, global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass, global::LightSwitchApplication.tblMedlem>.Data _tblMedlems_Single;
             
             [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
             private global::Microsoft.LightSwitch.Details.Framework.CreateScalarQueryMethod<global::LightSwitchApplication.dbPuls3060MedlemData, global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass, global::LightSwitchApplication.tblMedlem>.Data _tblMedlems_SingleOrDefault;
+            
+            [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+            private global::Microsoft.LightSwitch.Details.Framework.CreateScalarQueryMethod<global::LightSwitchApplication.dbPuls3060MedlemData, global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass, global::LightSwitchApplication.vMedmemLogText>.Data _vMedmemLogTexts_Single;
+            
+            [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+            private global::Microsoft.LightSwitch.Details.Framework.CreateScalarQueryMethod<global::LightSwitchApplication.dbPuls3060MedlemData, global::LightSwitchApplication.dbPuls3060MedlemData.DetailsClass, global::LightSwitchApplication.vMedmemLogText>.Data _vMedmemLogTexts_SingleOrDefault;
             
         }
     

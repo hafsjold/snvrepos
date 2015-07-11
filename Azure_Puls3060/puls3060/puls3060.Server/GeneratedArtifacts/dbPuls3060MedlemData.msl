@@ -19,5 +19,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="vMedmemLogTexts">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.vMedmemLogText)">
+        <MappingFragment StoreEntitySet="vMedmemLogTexts">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Nr" ColumnName="Nr" />
+          <ScalarProperty Name="logdato" ColumnName="logdato" />
+          <ScalarProperty Name="Aktivitet" ColumnName="Aktivitet" />
+          <ScalarProperty Name="Dato" ColumnName="Dato" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

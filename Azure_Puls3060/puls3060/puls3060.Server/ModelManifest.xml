@@ -1,11 +1,12 @@
 <?xml version="1.0"?>
 <ModelDocumentManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Documents>
-    <Document FullPath="C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\puls3060.Server\DataSources\ApplicationData\tblFikBetalings.lsml" Checksum="5B0DDC36C039A4000CAAC4D0316A8F0C229C2DB884E0D5A4427F9BEF52FDAF56" />
-    <Document FullPath="C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\puls3060.Server\DataSources\ApplicationData\tblProjekts.lsml" Checksum="33357F2A194535192B2CA47E43D6B054D2D37536A430E870641BC85387A5095F" />
-    <Document FullPath="C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\puls3060.Server\DataSources\dbPuls3060MedlemData\tblMedlems.lsml" Checksum="87A4FA98BE95E30C02A710880FF55386B3B4F844CFEAAA16D9C9C9CC14F599FD" />
-    <Document FullPath="C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\puls3060.Server\Properties\DataSources\ApplicationData.lsml" Checksum="E6FEEAC3B4A850AAC5F0029259A0B9F8C1BD45F2950D17BD8D6664B9422E6AD6" />
-    <Document FullPath="C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\puls3060.Server\Properties\DataSources\dbPuls3060MedlemData.lsml" Checksum="632D2BCE9EBBFFD05C7D63ACF41DAAC4F64EB9D6AFDFE96156028207F33A9C2A" />
-    <Document FullPath="C:\Users\Puls3060\Documents\Visual Studio 2013\Projects\puls3060\puls3060\puls3060.Server\Properties\Service.lsml" Checksum="4432F197F7E340F82C9501646AA50D05F726B3C600A17807294518ACA9BF20AF" />
+    <Document FullPath="C:\Users\Puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\puls3060.Server\DataSources\ApplicationData\tblFikBetalings.lsml" Checksum="5B0DDC36C039A4000CAAC4D0316A8F0C229C2DB884E0D5A4427F9BEF52FDAF56" />
+    <Document FullPath="C:\Users\Puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\puls3060.Server\DataSources\ApplicationData\tblProjekts.lsml" Checksum="33357F2A194535192B2CA47E43D6B054D2D37536A430E870641BC85387A5095F" />
+    <Document FullPath="C:\Users\Puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\puls3060.Server\DataSources\dbPuls3060MedlemData\tblMedlems.lsml" Checksum="50184A8432AD5922E4266622B244DB0016E902E26721DB3DD6ED58C38DCEC3E5" />
+    <Document FullPath="C:\Users\Puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\puls3060.Server\Properties\DataSources\ApplicationData.lsml" Checksum="E6FEEAC3B4A850AAC5F0029259A0B9F8C1BD45F2950D17BD8D6664B9422E6AD6" />
+    <Document FullPath="C:\Users\Puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\puls3060.Server\Properties\DataSources\dbPuls3060MedlemData.lsml" Checksum="ABE31384D3DE682C45F994FDD3EF22E0DB07D08EEABD60FD7AEA9E1E8AE133AF" />
+    <Document FullPath="C:\Users\Puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\puls3060.Server\Properties\Service.lsml" Checksum="4432F197F7E340F82C9501646AA50D05F726B3C600A17807294518ACA9BF20AF" />
+    <Document FullPath="C:\Users\Puls3060\documents\visual studio 2013\Projects\puls3060\puls3060\puls3060.Server\DataSources\dbPuls3060MedlemData\vMedmemLogTexts.lsml" Checksum="2A793FD69EB0241F960104CB1E69A57B1B6A8F3650AD13FC8E77449DC5314794" />
   </Documents>
 </ModelDocumentManifest>

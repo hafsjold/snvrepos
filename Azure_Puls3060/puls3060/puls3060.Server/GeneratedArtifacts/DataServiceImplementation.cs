@@ -115,6 +115,10 @@ namespace LightSwitchApplication.Implementation
             {
                 return new global::LightSwitchApplication.Implementation.tblMedlem();
             }
+            if (type == typeof(global::LightSwitchApplication.Implementation.vMedmemLogText))
+            {
+                return new global::LightSwitchApplication.Implementation.vMedmemLogText();
+            }
     
             return base.CreateObject(type);
         }
@@ -134,6 +138,10 @@ namespace LightSwitchApplication.Implementation
             if (typeof(T) == typeof(global::LightSwitchApplication.tblMedlem))
             {
                 return new global::LightSwitchApplication.Implementation.tblMedlem();
+            }
+            if (typeof(T) == typeof(global::LightSwitchApplication.vMedmemLogText))
+            {
+                return new global::LightSwitchApplication.Implementation.vMedmemLogText();
             }
             return null;
         }
@@ -199,6 +207,10 @@ namespace LightSwitchApplication.Implementation
             if (typeof(global::LightSwitchApplication.tblMedlem) == definitionType)
             {
                 return typeof(global::LightSwitchApplication.Implementation.tblMedlem);
+            }
+            if (typeof(global::LightSwitchApplication.vMedmemLogText) == definitionType)
+            {
+                return typeof(global::LightSwitchApplication.Implementation.vMedmemLogText);
             }
             return null;
         }
@@ -311,6 +323,71 @@ namespace LightSwitchApplication.Implementation
         global::LightSwitchApplication.tblMedlem.DetailsClass.IImplementation
     {
     
+        global::System.Collections.IEnumerable global::LightSwitchApplication.tblMedlem.DetailsClass.IImplementation.vMedmemLogTexts
+        {
+            get
+            {
+                return this.vMedmemLogTexts;
+            }
+        }
+        
+        #region IEntityImplementation Members
+        private global::Microsoft.LightSwitch.Internal.IEntityImplementationHost __host;
+        
+        global::Microsoft.LightSwitch.Internal.IEntityImplementationHost global::Microsoft.LightSwitch.Internal.IEntityImplementation.Host
+        {
+            get
+            {
+                return this.__host;
+            }
+        }
+        
+        void global::Microsoft.LightSwitch.Internal.IEntityImplementation.Initialize(global::Microsoft.LightSwitch.Internal.IEntityImplementationHost host)
+        {
+            this.__host = host;
+        }
+        
+        protected override void OnPropertyChanged(string propertyName)
+        {
+            base.OnPropertyChanged(propertyName);
+            if (this.__host != null)
+            {
+                this.__host.RaisePropertyChanged(propertyName);
+            }
+        }
+        #endregion
+    }
+    
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    public partial class vMedmemLogText :
+        global::LightSwitchApplication.vMedmemLogText.DetailsClass.IImplementation
+    {
+    
+        global::Microsoft.LightSwitch.Internal.IEntityImplementation global::LightSwitchApplication.vMedmemLogText.DetailsClass.IImplementation.tblMedlem
+        {
+            get
+            {
+                return this.tblMedlem;
+            }
+            set
+            {
+                this.tblMedlem = (global::LightSwitchApplication.Implementation.tblMedlem)value;
+                if (this.__host != null)
+                {
+                    this.__host.RaisePropertyChanged("tblMedlem");
+                }
+            }
+        }
+        
+        partial void OnNrChanged()
+        {
+            if (this.__host != null)
+            {
+                this.__host.RaisePropertyChanged("tblMedlem");
+            }
+        }
+        
         #region IEntityImplementation Members
         private global::Microsoft.LightSwitch.Internal.IEntityImplementationHost __host;
         

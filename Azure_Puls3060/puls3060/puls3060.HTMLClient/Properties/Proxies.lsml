@@ -40,4 +40,16 @@
         Target="ServiceInterface:tblFikBetaling_tblMedlem_Set" />
     </VirtualAssociationSet.Attributes>
   </VirtualAssociationSet>
+  <EntityType>
+    <EntityType.Attributes>
+      <Proxy
+        Target="ServiceInterface:vMedmemLogText" />
+    </EntityType.Attributes>
+  </EntityType>
+  <Association>
+    <Association.Attributes>
+      <Proxy
+        Target="ServiceInterface:tblMedlem_vMedmemLogText" />
+    </Association.Attributes>
+  </Association>
 </Application>

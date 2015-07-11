@@ -16,8 +16,37 @@
     <Property Name="Kon" Type="Edm.String" MaxLength="1" ConcurrencyMode="Fixed" />
     <Property Name="FodtDato" Type="Edm.DateTime" Precision="3" ConcurrencyMode="Fixed" />
     <Property Name="Bank" Type="Edm.String" MaxLength="15" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="vMedmemLogTexts" Relationship="LightSwitchApplication.tblMedlem_vMedmemLogText" ToRole="vMedmemLogText" FromRole="tblMedlem" />
   </EntityType>
+  <EntityType Name="vMedmemLogText">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Edm.Int32" Nullable="false" />
+    <Property Name="Nr" Type="Edm.Int32" ConcurrencyMode="Fixed" />
+    <Property Name="logdato" Type="Edm.DateTime" Precision="3" ConcurrencyMode="Fixed" />
+    <Property Name="Aktivitet" Type="Edm.String" MaxLength="30" ConcurrencyMode="Fixed" />
+    <Property Name="Dato" Type="Edm.DateTime" Precision="0" ConcurrencyMode="Fixed" />
+    <NavigationProperty Name="tblMedlem" Relationship="LightSwitchApplication.tblMedlem_vMedmemLogText" ToRole="tblMedlem" FromRole="vMedmemLogText" />
+  </EntityType>
+  <Association Name="tblMedlem_vMedmemLogText">
+    <End Role="tblMedlem" Type="LightSwitchApplication.tblMedlem" Multiplicity="0..1" />
+    <End Role="vMedmemLogText" Type="LightSwitchApplication.vMedmemLogText" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblMedlem">
+        <PropertyRef Name="Nr" />
+      </Principal>
+      <Dependent Role="vMedmemLogText">
+        <PropertyRef Name="Nr" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="dbPuls3060MedlemData" m:IsDefaultEntityContainer="true">
     <EntitySet Name="tblMedlems" EntityType="LightSwitchApplication.tblMedlem" />
+    <EntitySet Name="vMedmemLogTexts" EntityType="LightSwitchApplication.vMedmemLogText" />
+    <AssociationSet Name="tblMedlem_vMedmemLogText" Association="LightSwitchApplication.tblMedlem_vMedmemLogText">
+      <End Role="tblMedlem" EntitySet="tblMedlems" />
+      <End Role="vMedmemLogText" EntitySet="vMedmemLogTexts" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

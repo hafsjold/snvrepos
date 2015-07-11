@@ -56,13 +56,22 @@
         Target="ServiceInterface:CanDeleteProekt" />
     </Permission.Attributes>
   </Permission>
+  <Application.Commands>
+    <ApplicationCommand
+      Name="ScreenCommandShowedlemsListDetail"
+      Target="!module/Methods[ShowedlemsListDetail]" />
+  </Application.Commands>
   <Application.NavigationItems>
     <ApplicationNavigationGroup
-      Name="Tasks">
+      Name="Tasks"
+      DefaultItem="!module/NavigationItems[Tasks]/Children[edlemsListDetail]">
       <ApplicationNavigationGroup.Attributes>
         <DisplayName
           Value="Tasks" />
       </ApplicationNavigationGroup.Attributes>
+      <ApplicationNavigationLink
+        Name="edlemsListDetail"
+        Command="!module/Commands[ScreenCommandShowedlemsListDetail]" />
     </ApplicationNavigationGroup>
     <ApplicationNavigationGroup
       Name="Administration">

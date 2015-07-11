@@ -77,6 +77,100 @@ namespace LightSwitchApplication.Implementation
             this.___OnPropertyChanged("Bank");
         }
         
+        global::System.Collections.IEnumerable global::LightSwitchApplication.tblMedlem.DetailsClass.IImplementation.vMedmemLogTexts
+        {
+            get
+            {
+                return this.vMedmemLogTexts;
+            }
+        }
+        
+        internal global::Microsoft.LightSwitch.ClientGenerated.Implementation.EntityRefCollection<global::LightSwitchApplication.Implementation.vMedmemLogText> __vMedmemLogTexts
+        {
+            get
+            {
+                if (this.___vMedmemLogTexts == null)
+                {
+                    this.___vMedmemLogTexts = new global::Microsoft.LightSwitch.ClientGenerated.Implementation.EntityRefCollection<global::LightSwitchApplication.Implementation.vMedmemLogText>(
+                        this,
+                        "vMedmemLogTexts",
+                        () => this._vMedmemLogTexts,
+                        e => global::System.Object.Equals(e.Nr, this.Nr));
+                }
+                return this.___vMedmemLogTexts;
+            }
+        }
+        
+        private global::Microsoft.LightSwitch.ClientGenerated.Implementation.EntityRefCollection<global::LightSwitchApplication.Implementation.vMedmemLogText> ___vMedmemLogTexts;
+        
+    }
+    #endregion
+    
+    #region vMedmemLogText
+    [global::System.Runtime.Serialization.DataContract(Namespace = "http://schemas.datacontract.org/2004/07/dbPuls3060MedlemData.Implementation")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    public partial class vMedmemLogText :
+        global::LightSwitchApplication.vMedmemLogText.DetailsClass.IImplementation
+    {
+        partial void OnNrChanged()
+        {
+            this.___OnPropertyChanged("Nr");
+            this.___OnPropertyChanged("tblMedlem");
+        }
+        
+        partial void OnidChanged()
+        {
+            this.___OnPropertyChanged("id");
+        }
+        
+        partial void OnlogdatoChanged()
+        {
+            this.___OnPropertyChanged("logdato");
+        }
+        
+        partial void OnAktivitetChanged()
+        {
+            this.___OnPropertyChanged("Aktivitet");
+        }
+        
+        partial void OnDatoChanged()
+        {
+            this.___OnPropertyChanged("Dato");
+        }
+        
+        global::Microsoft.LightSwitch.Internal.IEntityImplementation global::LightSwitchApplication.vMedmemLogText.DetailsClass.IImplementation.tblMedlem
+        {
+            get
+            {
+                return this.tblMedlem;
+            }
+            set
+            {
+                this.tblMedlem = (global::LightSwitchApplication.Implementation.tblMedlem)value;
+            }
+        }
+        
+        private global::Microsoft.LightSwitch.ClientGenerated.Implementation.EntityRef<global::LightSwitchApplication.Implementation.tblMedlem> __tblMedlem
+        {
+            get
+            {
+                if (this.___tblMedlem == null)
+                {
+                    this.___tblMedlem = new global::Microsoft.LightSwitch.ClientGenerated.Implementation.EntityRef<global::LightSwitchApplication.Implementation.tblMedlem>(
+                        this,
+                        "tblMedlem",
+                        new string[] { "Nr" },
+                        e => global::System.Object.Equals(e.Nr, this.Nr),
+                        () => this._tblMedlem,
+                        e => this._tblMedlem = e);
+                }
+                return this.___tblMedlem;
+            }
+        }
+        
+        private global::Microsoft.LightSwitch.ClientGenerated.Implementation.EntityRef<global::LightSwitchApplication.Implementation.tblMedlem> ___tblMedlem;
+        
     }
     #endregion
     
@@ -265,6 +359,10 @@ namespace LightSwitchApplication.Implementation
             {
                 return new global::LightSwitchApplication.Implementation.tblMedlem();
             }
+            if (typeof(T) == typeof(global::LightSwitchApplication.vMedmemLogText))
+            {
+                return new global::LightSwitchApplication.Implementation.vMedmemLogText();
+            }
             return null;
         }
         
@@ -351,6 +449,10 @@ namespace LightSwitchApplication.Implementation
             if (typeof(global::LightSwitchApplication.tblMedlem) == definitionType)
             {
                 return typeof(global::LightSwitchApplication.Implementation.tblMedlem);
+            }
+            if (typeof(global::LightSwitchApplication.vMedmemLogText) == definitionType)
+            {
+                return typeof(global::LightSwitchApplication.Implementation.vMedmemLogText);
             }
             if (typeof(global::LightSwitchApplication.tblFikBetaling) == definitionType)
             {

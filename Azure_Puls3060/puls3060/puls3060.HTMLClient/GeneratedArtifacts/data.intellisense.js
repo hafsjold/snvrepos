@@ -10,6 +10,14 @@
         created: [lightSwitchApplication.tblMedlem]
     });
 
+    msls._addEntryPoints(lightSwitchApplication.vMedmemLogText, {
+        /// <field>
+        /// Called when a new vMedmemLogText is created.
+        /// <br/>created(msls.application.vMedmemLogText entity)
+        /// </field>
+        created: [lightSwitchApplication.vMedmemLogText]
+    });
+
     msls._addEntryPoints(lightSwitchApplication.tblFikBetaling, {
         /// <field>
         /// Called when a new tblFikBetaling is created.

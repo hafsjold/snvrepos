@@ -17,32 +17,32 @@ namespace LightSwitchApplication
     /// No Modeled Description Available
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
-    public sealed partial class tblProjekt : global::Microsoft.LightSwitch.Framework.Base.EntityObject<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass>
+    public sealed partial class tblFikBetaling : global::Microsoft.LightSwitch.Framework.Base.EntityObject<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass>
     {
         #region Constructors
     
         /// <summary>
-        /// Initializes a new instance of the tblProjekt entity.
+        /// Initializes a new instance of the tblFikBetaling entity.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public tblProjekt()
+        public tblFikBetaling()
             : this(null)
         {
         }
     
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public tblProjekt(global::Microsoft.LightSwitch.Framework.EntitySet<global::LightSwitchApplication.tblProjekt> entitySet)
+        public tblFikBetaling(global::Microsoft.LightSwitch.Framework.EntitySet<global::LightSwitchApplication.tblFikBetaling> entitySet)
             : base(entitySet)
         {
-            global::LightSwitchApplication.tblProjekt.DetailsClass.Initialize(this);
+            global::LightSwitchApplication.tblFikBetaling.DetailsClass.Initialize(this);
         }
     
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        partial void tblProjekt_Created();
+        partial void tblFikBetaling_Created();
         [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        partial void tblProjekt_AllowSaveWithErrors(ref bool result);
+        partial void tblFikBetaling_AllowSaveWithErrors(ref bool result);
     
         #endregion
     
@@ -83,63 +83,15 @@ namespace LightSwitchApplication
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public string Navn
-        {
-            get
-            {
-                return global::LightSwitchApplication.tblProjekt.DetailsClass.GetValue(this, global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties.Navn);
-            }
-            set
-            {
-                global::LightSwitchApplication.tblProjekt.DetailsClass.SetValue(this, global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties.Navn, value);
-            }
-        }
-        
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        partial void Navn_IsReadOnly(ref bool result);
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        partial void Navn_Validate(global::Microsoft.LightSwitch.EntityValidationResultsBuilder results);
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        partial void Navn_Changed();
-
-        /// <summary>
-        /// No Modeled Description Available
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public int Projektnr
-        {
-            get
-            {
-                return global::LightSwitchApplication.tblProjekt.DetailsClass.GetValue(this, global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties.Projektnr);
-            }
-            set
-            {
-                global::LightSwitchApplication.tblProjekt.DetailsClass.SetValue(this, global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties.Projektnr, value);
-            }
-        }
-        
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        partial void Projektnr_IsReadOnly(ref bool result);
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        partial void Projektnr_Validate(global::Microsoft.LightSwitch.EntityValidationResultsBuilder results);
-        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        partial void Projektnr_Changed();
-
-        /// <summary>
-        /// No Modeled Description Available
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         public int Id
         {
             get
             {
-                return global::LightSwitchApplication.tblProjekt.DetailsClass.GetValue(this, global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties.Id);
+                return global::LightSwitchApplication.tblFikBetaling.DetailsClass.GetValue(this, global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.Id);
             }
             set
             {
-                global::LightSwitchApplication.tblProjekt.DetailsClass.SetValue(this, global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties.Id, value);
+                global::LightSwitchApplication.tblFikBetaling.DetailsClass.SetValue(this, global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.Id, value);
             }
         }
         
@@ -155,11 +107,107 @@ namespace LightSwitchApplication
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public decimal Belob
+        {
+            get
+            {
+                return global::LightSwitchApplication.tblFikBetaling.DetailsClass.GetValue(this, global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.Belob);
+            }
+            set
+            {
+                global::LightSwitchApplication.tblFikBetaling.DetailsClass.SetValue(this, global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.Belob, value);
+            }
+        }
+        
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void Belob_IsReadOnly(ref bool result);
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void Belob_Validate(global::Microsoft.LightSwitch.EntityValidationResultsBuilder results);
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void Belob_Changed();
+
+        /// <summary>
+        /// No Modeled Description Available
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime BetalingsDato
+        {
+            get
+            {
+                return global::LightSwitchApplication.tblFikBetaling.DetailsClass.GetValue(this, global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.BetalingsDato);
+            }
+            set
+            {
+                global::LightSwitchApplication.tblFikBetaling.DetailsClass.SetValue(this, global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.BetalingsDato, value);
+            }
+        }
+        
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void BetalingsDato_IsReadOnly(ref bool result);
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void BetalingsDato_Validate(global::Microsoft.LightSwitch.EntityValidationResultsBuilder results);
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void BetalingsDato_Changed();
+
+        /// <summary>
+        /// No Modeled Description Available
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public string FIKnr
+        {
+            get
+            {
+                return global::LightSwitchApplication.tblFikBetaling.DetailsClass.GetValue(this, global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.FIKnr);
+            }
+            set
+            {
+                global::LightSwitchApplication.tblFikBetaling.DetailsClass.SetValue(this, global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.FIKnr, value);
+            }
+        }
+        
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void FIKnr_IsReadOnly(ref bool result);
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void FIKnr_Validate(global::Microsoft.LightSwitch.EntityValidationResultsBuilder results);
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void FIKnr_Changed();
+
+        /// <summary>
+        /// No Modeled Description Available
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public int tblMedlem_Nr
+        {
+            get
+            {
+                return global::LightSwitchApplication.tblFikBetaling.DetailsClass.GetValue(this, global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.tblMedlem_Nr);
+            }
+            set
+            {
+                global::LightSwitchApplication.tblFikBetaling.DetailsClass.SetValue(this, global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.tblMedlem_Nr, value);
+            }
+        }
+        
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void tblMedlem_Nr_IsReadOnly(ref bool result);
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void tblMedlem_Nr_Validate(global::Microsoft.LightSwitch.EntityValidationResultsBuilder results);
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void tblMedlem_Nr_Changed();
+
+        /// <summary>
+        /// No Modeled Description Available
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         public string CreatedBy
         {
             get
             {
-                return global::LightSwitchApplication.tblProjekt.DetailsClass.GetValue(this, global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties.CreatedBy);
+                return global::LightSwitchApplication.tblFikBetaling.DetailsClass.GetValue(this, global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.CreatedBy);
             }
         }
         
@@ -179,7 +227,7 @@ namespace LightSwitchApplication
         {
             get
             {
-                return global::LightSwitchApplication.tblProjekt.DetailsClass.GetValue(this, global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties.Created);
+                return global::LightSwitchApplication.tblFikBetaling.DetailsClass.GetValue(this, global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.Created);
             }
         }
         
@@ -199,7 +247,7 @@ namespace LightSwitchApplication
         {
             get
             {
-                return global::LightSwitchApplication.tblProjekt.DetailsClass.GetValue(this, global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties.ModifiedBy);
+                return global::LightSwitchApplication.tblFikBetaling.DetailsClass.GetValue(this, global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.ModifiedBy);
             }
         }
         
@@ -219,7 +267,7 @@ namespace LightSwitchApplication
         {
             get
             {
-                return global::LightSwitchApplication.tblProjekt.DetailsClass.GetValue(this, global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties.Modified);
+                return global::LightSwitchApplication.tblFikBetaling.DetailsClass.GetValue(this, global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.Modified);
             }
         }
         
@@ -240,11 +288,11 @@ namespace LightSwitchApplication
         {
             get
             {
-                return global::LightSwitchApplication.tblProjekt.DetailsClass.GetValue(this, global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties.RowVersion);
+                return global::LightSwitchApplication.tblFikBetaling.DetailsClass.GetValue(this, global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.RowVersion);
             }
             set
             {
-                global::LightSwitchApplication.tblProjekt.DetailsClass.SetValue(this, global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties.RowVersion, value);
+                global::LightSwitchApplication.tblFikBetaling.DetailsClass.SetValue(this, global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.RowVersion, value);
             }
         }
         
@@ -260,23 +308,48 @@ namespace LightSwitchApplication
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::Microsoft.LightSwitch.Framework.EntityCollection<global::LightSwitchApplication.tblFikBetaling> tblFikBetalings
+        public global::LightSwitchApplication.tblProjekt tblProjekt
         {
             get
             {
-                return global::LightSwitchApplication.tblProjekt.DetailsClass.GetValue(this, global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties.tblFikBetalings);
+                return global::LightSwitchApplication.tblFikBetaling.DetailsClass.GetValue(this, global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.tblProjekt);
+            }
+            set
+            {
+                global::LightSwitchApplication.tblFikBetaling.DetailsClass.SetValue(this, global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.tblProjekt, value);
             }
         }
         
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void tblProjekt_IsReadOnly(ref bool result);
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void tblProjekt_Validate(global::Microsoft.LightSwitch.EntityValidationResultsBuilder results);
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void tblProjekt_Changed();
+
+        /// <summary>
+        /// No Modeled Description Available
+        /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public Microsoft.LightSwitch.IDataServiceQueryable<global::LightSwitchApplication.tblFikBetaling> tblFikBetalingsQuery
+        public global::LightSwitchApplication.tblMedlem tblMedlem
         {
             get
             {
-                return global::LightSwitchApplication.tblProjekt.DetailsClass.GetQuery(this, global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties.tblFikBetalings);
+                return global::LightSwitchApplication.tblFikBetaling.DetailsClass.GetValue(this, global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.tblMedlem);
+            }
+            set
+            {
+                global::LightSwitchApplication.tblFikBetaling.DetailsClass.SetValue(this, global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.tblMedlem, value);
             }
         }
+        
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void tblMedlem_IsReadOnly(ref bool result);
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void tblMedlem_Validate(global::Microsoft.LightSwitch.EntityValidationResultsBuilder results);
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void tblMedlem_Changed();
 
         #endregion
     
@@ -287,37 +360,37 @@ namespace LightSwitchApplication
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         public sealed class DetailsClass : global::Microsoft.LightSwitch.Details.Framework.Base.EntityDetails<
-                global::LightSwitchApplication.tblProjekt,
-                global::LightSwitchApplication.tblProjekt.DetailsClass,
-                global::LightSwitchApplication.tblProjekt.DetailsClass.IImplementation,
-                global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySet,
-                global::Microsoft.LightSwitch.Details.Framework.EntityCommandSet<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass>,
-                global::Microsoft.LightSwitch.Details.Framework.EntityMethodSet<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass>>
+                global::LightSwitchApplication.tblFikBetaling,
+                global::LightSwitchApplication.tblFikBetaling.DetailsClass,
+                global::LightSwitchApplication.tblFikBetaling.DetailsClass.IImplementation,
+                global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySet,
+                global::Microsoft.LightSwitch.Details.Framework.EntityCommandSet<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass>,
+                global::Microsoft.LightSwitch.Details.Framework.EntityMethodSet<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass>>
         {
     
             static DetailsClass()
             {
-                var initializeEntry = global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties.Navn;
+                var initializeEntry = global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.Id;
             }
     
             [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-            private static readonly global::Microsoft.LightSwitch.Details.Framework.Base.EntityDetails<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass>.Entry
-                __tblProjektEntry = new global::Microsoft.LightSwitch.Details.Framework.Base.EntityDetails<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass>.Entry(
-                    global::LightSwitchApplication.tblProjekt.DetailsClass.__tblProjekt_CreateNew,
-                    global::LightSwitchApplication.tblProjekt.DetailsClass.__tblProjekt_Created,
-                    global::LightSwitchApplication.tblProjekt.DetailsClass.__tblProjekt_AllowSaveWithErrors);
-            private static global::LightSwitchApplication.tblProjekt __tblProjekt_CreateNew(global::Microsoft.LightSwitch.Framework.EntitySet<global::LightSwitchApplication.tblProjekt> es)
+            private static readonly global::Microsoft.LightSwitch.Details.Framework.Base.EntityDetails<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass>.Entry
+                __tblFikBetalingEntry = new global::Microsoft.LightSwitch.Details.Framework.Base.EntityDetails<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass>.Entry(
+                    global::LightSwitchApplication.tblFikBetaling.DetailsClass.__tblFikBetaling_CreateNew,
+                    global::LightSwitchApplication.tblFikBetaling.DetailsClass.__tblFikBetaling_Created,
+                    global::LightSwitchApplication.tblFikBetaling.DetailsClass.__tblFikBetaling_AllowSaveWithErrors);
+            private static global::LightSwitchApplication.tblFikBetaling __tblFikBetaling_CreateNew(global::Microsoft.LightSwitch.Framework.EntitySet<global::LightSwitchApplication.tblFikBetaling> es)
             {
-                return new global::LightSwitchApplication.tblProjekt(es);
+                return new global::LightSwitchApplication.tblFikBetaling(es);
             }
-            private static void __tblProjekt_Created(global::LightSwitchApplication.tblProjekt e)
+            private static void __tblFikBetaling_Created(global::LightSwitchApplication.tblFikBetaling e)
             {
-                e.tblProjekt_Created();
+                e.tblFikBetaling_Created();
             }
-            private static bool __tblProjekt_AllowSaveWithErrors(global::LightSwitchApplication.tblProjekt e)
+            private static bool __tblFikBetaling_AllowSaveWithErrors(global::LightSwitchApplication.tblFikBetaling e)
             {
                 bool result = false;
-                e.tblProjekt_AllowSaveWithErrors(ref result);
+                e.tblFikBetaling_AllowSaveWithErrors(ref result);
                 return result;
             }
     
@@ -325,7 +398,7 @@ namespace LightSwitchApplication
             {
             }
     
-            public new global::Microsoft.LightSwitch.Details.Framework.EntityCommandSet<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass> Commands
+            public new global::Microsoft.LightSwitch.Details.Framework.EntityCommandSet<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass> Commands
             {
                 get
                 {
@@ -333,7 +406,7 @@ namespace LightSwitchApplication
                 }
             }
     
-            public new global::Microsoft.LightSwitch.Details.Framework.EntityMethodSet<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass> Methods
+            public new global::Microsoft.LightSwitch.Details.Framework.EntityMethodSet<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass> Methods
             {
                 get
                 {
@@ -341,7 +414,7 @@ namespace LightSwitchApplication
                 }
             }
     
-            public new global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySet Properties
+            public new global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySet Properties
             {
                 get
                 {
@@ -353,82 +426,106 @@ namespace LightSwitchApplication
             [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public sealed class PropertySet : global::Microsoft.LightSwitch.Details.Framework.Base.EntityPropertySet<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass>
+            public sealed class PropertySet : global::Microsoft.LightSwitch.Details.Framework.Base.EntityPropertySet<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass>
             {
     
                 public PropertySet() : base()
                 {
                 }
     
-                public global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, string> Navn
+                public global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, int> Id
                 {
                     get
                     {
-                        return base.GetItem(global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties.Navn) as global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, string>;
+                        return base.GetItem(global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.Id) as global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, int>;
                     }
                 }
                 
-                public global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, int> Projektnr
+                public global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, decimal> Belob
                 {
                     get
                     {
-                        return base.GetItem(global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties.Projektnr) as global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, int>;
+                        return base.GetItem(global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.Belob) as global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, decimal>;
                     }
                 }
                 
-                public global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, int> Id
+                public global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::System.DateTime> BetalingsDato
                 {
                     get
                     {
-                        return base.GetItem(global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties.Id) as global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, int>;
+                        return base.GetItem(global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.BetalingsDato) as global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::System.DateTime>;
                     }
                 }
                 
-                public global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, string> CreatedBy
+                public global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, string> FIKnr
                 {
                     get
                     {
-                        return base.GetItem(global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties.CreatedBy) as global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, string>;
+                        return base.GetItem(global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.FIKnr) as global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, string>;
                     }
                 }
                 
-                public global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, global::System.Nullable<global::System.DateTimeOffset>> Created
+                public global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, int> tblMedlem_Nr
                 {
                     get
                     {
-                        return base.GetItem(global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties.Created) as global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, global::System.Nullable<global::System.DateTimeOffset>>;
+                        return base.GetItem(global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.tblMedlem_Nr) as global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, int>;
                     }
                 }
                 
-                public global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, string> ModifiedBy
+                public global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, string> CreatedBy
                 {
                     get
                     {
-                        return base.GetItem(global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties.ModifiedBy) as global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, string>;
+                        return base.GetItem(global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.CreatedBy) as global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, string>;
                     }
                 }
                 
-                public global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, global::System.Nullable<global::System.DateTimeOffset>> Modified
+                public global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::System.Nullable<global::System.DateTimeOffset>> Created
                 {
                     get
                     {
-                        return base.GetItem(global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties.Modified) as global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, global::System.Nullable<global::System.DateTimeOffset>>;
+                        return base.GetItem(global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.Created) as global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::System.Nullable<global::System.DateTimeOffset>>;
                     }
                 }
                 
-                public global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, byte[]> RowVersion
+                public global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, string> ModifiedBy
                 {
                     get
                     {
-                        return base.GetItem(global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties.RowVersion) as global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, byte[]>;
+                        return base.GetItem(global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.ModifiedBy) as global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, string>;
                     }
                 }
                 
-                public global::Microsoft.LightSwitch.Details.Framework.EntityCollectionProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, global::LightSwitchApplication.tblFikBetaling> tblFikBetalings
+                public global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::System.Nullable<global::System.DateTimeOffset>> Modified
                 {
                     get
                     {
-                        return base.GetItem(global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties.tblFikBetalings) as global::Microsoft.LightSwitch.Details.Framework.EntityCollectionProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, global::LightSwitchApplication.tblFikBetaling>;
+                        return base.GetItem(global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.Modified) as global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::System.Nullable<global::System.DateTimeOffset>>;
+                    }
+                }
+                
+                public global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, byte[]> RowVersion
+                {
+                    get
+                    {
+                        return base.GetItem(global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.RowVersion) as global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, byte[]>;
+                    }
+                }
+                
+                public global::Microsoft.LightSwitch.Details.Framework.EntityReferenceProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::LightSwitchApplication.tblProjekt> tblProjekt
+                {
+                    get
+                    {
+                        return base.GetItem(global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.tblProjekt) as global::Microsoft.LightSwitch.Details.Framework.EntityReferenceProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::LightSwitchApplication.tblProjekt>;
+                    }
+                }
+                
+                public global::Microsoft.LightSwitch.Details.Framework.EntityVirtualReferenceProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::LightSwitchApplication.tblMedlem> tblMedlem
+                {
+                    get
+                    {
+                        return base.GetItem(global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.tblMedlem) as global::Microsoft.LightSwitch.Details.Framework.EntityVirtualReferenceProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::LightSwitchApplication.tblMedlem>;
                     }
                 }
                 
@@ -438,15 +535,17 @@ namespace LightSwitchApplication
             [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
             public interface IImplementation : global::Microsoft.LightSwitch.Internal.IEntityImplementation
             {
-                new string Navn { get; set; }
-                new int Projektnr { get; set; }
                 new int Id { get; set; }
+                new decimal Belob { get; set; }
+                new global::System.DateTime BetalingsDato { get; set; }
+                new string FIKnr { get; set; }
+                new int tblMedlem_Nr { get; set; }
                 new string CreatedBy { get; }
                 new global::System.Nullable<global::System.DateTimeOffset> Created { get; }
                 new string ModifiedBy { get; }
                 new global::System.Nullable<global::System.DateTimeOffset> Modified { get; }
                 new byte[] RowVersion { get; set; }
-                new global::System.Collections.IEnumerable tblFikBetalings { get; }
+                new global::Microsoft.LightSwitch.Internal.IEntityImplementation tblProjekt { get; set; }
             }
             #pragma warning restore 109
     
@@ -457,333 +556,470 @@ namespace LightSwitchApplication
             {
     
                 [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-                public static readonly global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, string>.Entry
-                    Navn = new global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, string>.Entry(
-                        "Navn",
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Navn_Stub,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Navn_ComputeIsReadOnly,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Navn_Validate,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Navn_GetImplementationValue,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Navn_SetImplementationValue,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Navn_OnValueChanged);
-                private static void _Navn_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.tblProjekt.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, string>.Data> c, global::LightSwitchApplication.tblProjekt.DetailsClass d, object sf)
-                {
-                    c(d, ref d._Navn, sf);
-                }
-                private static bool _Navn_ComputeIsReadOnly(global::LightSwitchApplication.tblProjekt e)
-                {
-                    bool result = false;
-                    e.Navn_IsReadOnly(ref result);
-                    return result;
-                }
-                private static void _Navn_Validate(global::LightSwitchApplication.tblProjekt e, global::Microsoft.LightSwitch.EntityValidationResultsBuilder r)
-                {
-                    e.Navn_Validate(r);
-                }
-                private static string _Navn_GetImplementationValue(global::LightSwitchApplication.tblProjekt.DetailsClass d)
-                {
-                    return d.ImplementationEntity.Navn;
-                }
-                private static void _Navn_SetImplementationValue(global::LightSwitchApplication.tblProjekt.DetailsClass d, string v)
-                {
-                    d.ImplementationEntity.Navn = v;
-                }
-                private static void _Navn_OnValueChanged(global::LightSwitchApplication.tblProjekt e)
-                {
-                    e.Navn_Changed();
-                }
-    
-                [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-                public static readonly global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, int>.Entry
-                    Projektnr = new global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, int>.Entry(
-                        "Projektnr",
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Projektnr_Stub,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Projektnr_ComputeIsReadOnly,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Projektnr_Validate,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Projektnr_GetImplementationValue,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Projektnr_SetImplementationValue,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Projektnr_OnValueChanged);
-                private static void _Projektnr_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.tblProjekt.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, int>.Data> c, global::LightSwitchApplication.tblProjekt.DetailsClass d, object sf)
-                {
-                    c(d, ref d._Projektnr, sf);
-                }
-                private static bool _Projektnr_ComputeIsReadOnly(global::LightSwitchApplication.tblProjekt e)
-                {
-                    bool result = false;
-                    e.Projektnr_IsReadOnly(ref result);
-                    return result;
-                }
-                private static void _Projektnr_Validate(global::LightSwitchApplication.tblProjekt e, global::Microsoft.LightSwitch.EntityValidationResultsBuilder r)
-                {
-                    e.Projektnr_Validate(r);
-                }
-                private static int _Projektnr_GetImplementationValue(global::LightSwitchApplication.tblProjekt.DetailsClass d)
-                {
-                    return d.ImplementationEntity.Projektnr;
-                }
-                private static void _Projektnr_SetImplementationValue(global::LightSwitchApplication.tblProjekt.DetailsClass d, int v)
-                {
-                    d.ImplementationEntity.Projektnr = v;
-                }
-                private static void _Projektnr_OnValueChanged(global::LightSwitchApplication.tblProjekt e)
-                {
-                    e.Projektnr_Changed();
-                }
-    
-                [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-                public static readonly global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, int>.Entry
-                    Id = new global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, int>.Entry(
+                public static readonly global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, int>.Entry
+                    Id = new global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, int>.Entry(
                         "Id",
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Id_Stub,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Id_ComputeIsReadOnly,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Id_Validate,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Id_GetImplementationValue,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Id_SetImplementationValue,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Id_OnValueChanged);
-                private static void _Id_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.tblProjekt.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, int>.Data> c, global::LightSwitchApplication.tblProjekt.DetailsClass d, object sf)
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._Id_Stub,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._Id_ComputeIsReadOnly,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._Id_Validate,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._Id_GetImplementationValue,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._Id_SetImplementationValue,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._Id_OnValueChanged);
+                private static void _Id_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, int>.Data> c, global::LightSwitchApplication.tblFikBetaling.DetailsClass d, object sf)
                 {
                     c(d, ref d._Id, sf);
                 }
-                private static bool _Id_ComputeIsReadOnly(global::LightSwitchApplication.tblProjekt e)
+                private static bool _Id_ComputeIsReadOnly(global::LightSwitchApplication.tblFikBetaling e)
                 {
                     bool result = false;
                     e.Id_IsReadOnly(ref result);
                     return result;
                 }
-                private static void _Id_Validate(global::LightSwitchApplication.tblProjekt e, global::Microsoft.LightSwitch.EntityValidationResultsBuilder r)
+                private static void _Id_Validate(global::LightSwitchApplication.tblFikBetaling e, global::Microsoft.LightSwitch.EntityValidationResultsBuilder r)
                 {
                     e.Id_Validate(r);
                 }
-                private static int _Id_GetImplementationValue(global::LightSwitchApplication.tblProjekt.DetailsClass d)
+                private static int _Id_GetImplementationValue(global::LightSwitchApplication.tblFikBetaling.DetailsClass d)
                 {
                     return d.ImplementationEntity.Id;
                 }
-                private static void _Id_SetImplementationValue(global::LightSwitchApplication.tblProjekt.DetailsClass d, int v)
+                private static void _Id_SetImplementationValue(global::LightSwitchApplication.tblFikBetaling.DetailsClass d, int v)
                 {
                     d.ImplementationEntity.Id = v;
                 }
-                private static void _Id_OnValueChanged(global::LightSwitchApplication.tblProjekt e)
+                private static void _Id_OnValueChanged(global::LightSwitchApplication.tblFikBetaling e)
                 {
                     e.Id_Changed();
                 }
     
                 [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-                public static readonly global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, string>.Entry
-                    CreatedBy = new global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, string>.Entry(
+                public static readonly global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, decimal>.Entry
+                    Belob = new global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, decimal>.Entry(
+                        "Belob",
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._Belob_Stub,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._Belob_ComputeIsReadOnly,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._Belob_Validate,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._Belob_GetImplementationValue,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._Belob_SetImplementationValue,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._Belob_OnValueChanged);
+                private static void _Belob_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, decimal>.Data> c, global::LightSwitchApplication.tblFikBetaling.DetailsClass d, object sf)
+                {
+                    c(d, ref d._Belob, sf);
+                }
+                private static bool _Belob_ComputeIsReadOnly(global::LightSwitchApplication.tblFikBetaling e)
+                {
+                    bool result = false;
+                    e.Belob_IsReadOnly(ref result);
+                    return result;
+                }
+                private static void _Belob_Validate(global::LightSwitchApplication.tblFikBetaling e, global::Microsoft.LightSwitch.EntityValidationResultsBuilder r)
+                {
+                    e.Belob_Validate(r);
+                }
+                private static decimal _Belob_GetImplementationValue(global::LightSwitchApplication.tblFikBetaling.DetailsClass d)
+                {
+                    return d.ImplementationEntity.Belob;
+                }
+                private static void _Belob_SetImplementationValue(global::LightSwitchApplication.tblFikBetaling.DetailsClass d, decimal v)
+                {
+                    d.ImplementationEntity.Belob = v;
+                }
+                private static void _Belob_OnValueChanged(global::LightSwitchApplication.tblFikBetaling e)
+                {
+                    e.Belob_Changed();
+                }
+    
+                [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+                public static readonly global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::System.DateTime>.Entry
+                    BetalingsDato = new global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::System.DateTime>.Entry(
+                        "BetalingsDato",
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._BetalingsDato_Stub,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._BetalingsDato_ComputeIsReadOnly,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._BetalingsDato_Validate,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._BetalingsDato_GetImplementationValue,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._BetalingsDato_SetImplementationValue,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._BetalingsDato_OnValueChanged);
+                private static void _BetalingsDato_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::System.DateTime>.Data> c, global::LightSwitchApplication.tblFikBetaling.DetailsClass d, object sf)
+                {
+                    c(d, ref d._BetalingsDato, sf);
+                }
+                private static bool _BetalingsDato_ComputeIsReadOnly(global::LightSwitchApplication.tblFikBetaling e)
+                {
+                    bool result = false;
+                    e.BetalingsDato_IsReadOnly(ref result);
+                    return result;
+                }
+                private static void _BetalingsDato_Validate(global::LightSwitchApplication.tblFikBetaling e, global::Microsoft.LightSwitch.EntityValidationResultsBuilder r)
+                {
+                    e.BetalingsDato_Validate(r);
+                }
+                private static global::System.DateTime _BetalingsDato_GetImplementationValue(global::LightSwitchApplication.tblFikBetaling.DetailsClass d)
+                {
+                    return d.ImplementationEntity.BetalingsDato;
+                }
+                private static void _BetalingsDato_SetImplementationValue(global::LightSwitchApplication.tblFikBetaling.DetailsClass d, global::System.DateTime v)
+                {
+                    d.ImplementationEntity.BetalingsDato = global::LightSwitchApplication.tblFikBetaling.DetailsClass.TruncateDate(v);
+                }
+                private static void _BetalingsDato_OnValueChanged(global::LightSwitchApplication.tblFikBetaling e)
+                {
+                    e.BetalingsDato_Changed();
+                }
+    
+                [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+                public static readonly global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, string>.Entry
+                    FIKnr = new global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, string>.Entry(
+                        "FIKnr",
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._FIKnr_Stub,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._FIKnr_ComputeIsReadOnly,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._FIKnr_Validate,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._FIKnr_GetImplementationValue,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._FIKnr_SetImplementationValue,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._FIKnr_OnValueChanged);
+                private static void _FIKnr_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, string>.Data> c, global::LightSwitchApplication.tblFikBetaling.DetailsClass d, object sf)
+                {
+                    c(d, ref d._FIKnr, sf);
+                }
+                private static bool _FIKnr_ComputeIsReadOnly(global::LightSwitchApplication.tblFikBetaling e)
+                {
+                    bool result = false;
+                    e.FIKnr_IsReadOnly(ref result);
+                    return result;
+                }
+                private static void _FIKnr_Validate(global::LightSwitchApplication.tblFikBetaling e, global::Microsoft.LightSwitch.EntityValidationResultsBuilder r)
+                {
+                    e.FIKnr_Validate(r);
+                }
+                private static string _FIKnr_GetImplementationValue(global::LightSwitchApplication.tblFikBetaling.DetailsClass d)
+                {
+                    return d.ImplementationEntity.FIKnr;
+                }
+                private static void _FIKnr_SetImplementationValue(global::LightSwitchApplication.tblFikBetaling.DetailsClass d, string v)
+                {
+                    d.ImplementationEntity.FIKnr = v;
+                }
+                private static void _FIKnr_OnValueChanged(global::LightSwitchApplication.tblFikBetaling e)
+                {
+                    e.FIKnr_Changed();
+                }
+    
+                [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+                public static readonly global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, int>.Entry
+                    tblMedlem_Nr = new global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, int>.Entry(
+                        "tblMedlem_Nr",
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._tblMedlem_Nr_Stub,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._tblMedlem_Nr_ComputeIsReadOnly,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._tblMedlem_Nr_Validate,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._tblMedlem_Nr_GetImplementationValue,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._tblMedlem_Nr_SetImplementationValue,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._tblMedlem_Nr_OnValueChanged);
+                private static void _tblMedlem_Nr_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, int>.Data> c, global::LightSwitchApplication.tblFikBetaling.DetailsClass d, object sf)
+                {
+                    c(d, ref d._tblMedlem_Nr, sf);
+                }
+                private static bool _tblMedlem_Nr_ComputeIsReadOnly(global::LightSwitchApplication.tblFikBetaling e)
+                {
+                    bool result = false;
+                    e.tblMedlem_Nr_IsReadOnly(ref result);
+                    return result;
+                }
+                private static void _tblMedlem_Nr_Validate(global::LightSwitchApplication.tblFikBetaling e, global::Microsoft.LightSwitch.EntityValidationResultsBuilder r)
+                {
+                    e.tblMedlem_Nr_Validate(r);
+                }
+                private static int _tblMedlem_Nr_GetImplementationValue(global::LightSwitchApplication.tblFikBetaling.DetailsClass d)
+                {
+                    return d.ImplementationEntity.tblMedlem_Nr;
+                }
+                private static void _tblMedlem_Nr_SetImplementationValue(global::LightSwitchApplication.tblFikBetaling.DetailsClass d, int v)
+                {
+                    d.ImplementationEntity.tblMedlem_Nr = v;
+                }
+                private static void _tblMedlem_Nr_OnValueChanged(global::LightSwitchApplication.tblFikBetaling e)
+                {
+                    e.tblMedlem_Nr_Changed();
+                }
+    
+                [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+                public static readonly global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, string>.Entry
+                    CreatedBy = new global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, string>.Entry(
                         "CreatedBy",
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._CreatedBy_Stub,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._CreatedBy_ComputeIsReadOnly,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._CreatedBy_Validate,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._CreatedBy_GetImplementationValue,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._CreatedBy_Stub,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._CreatedBy_ComputeIsReadOnly,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._CreatedBy_Validate,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._CreatedBy_GetImplementationValue,
                         null,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._CreatedBy_OnValueChanged);
-                private static void _CreatedBy_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.tblProjekt.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, string>.Data> c, global::LightSwitchApplication.tblProjekt.DetailsClass d, object sf)
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._CreatedBy_OnValueChanged);
+                private static void _CreatedBy_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, string>.Data> c, global::LightSwitchApplication.tblFikBetaling.DetailsClass d, object sf)
                 {
                     c(d, ref d._CreatedBy, sf);
                 }
-                private static bool _CreatedBy_ComputeIsReadOnly(global::LightSwitchApplication.tblProjekt e)
+                private static bool _CreatedBy_ComputeIsReadOnly(global::LightSwitchApplication.tblFikBetaling e)
                 {
                     bool result = false;
                     e.CreatedBy_IsReadOnly(ref result);
                     return result;
                 }
-                private static void _CreatedBy_Validate(global::LightSwitchApplication.tblProjekt e, global::Microsoft.LightSwitch.EntityValidationResultsBuilder r)
+                private static void _CreatedBy_Validate(global::LightSwitchApplication.tblFikBetaling e, global::Microsoft.LightSwitch.EntityValidationResultsBuilder r)
                 {
                     e.CreatedBy_Validate(r);
                 }
-                private static string _CreatedBy_GetImplementationValue(global::LightSwitchApplication.tblProjekt.DetailsClass d)
+                private static string _CreatedBy_GetImplementationValue(global::LightSwitchApplication.tblFikBetaling.DetailsClass d)
                 {
                     return d.ImplementationEntity.CreatedBy;
                 }
-                private static void _CreatedBy_OnValueChanged(global::LightSwitchApplication.tblProjekt e)
+                private static void _CreatedBy_OnValueChanged(global::LightSwitchApplication.tblFikBetaling e)
                 {
                     e.CreatedBy_Changed();
                 }
     
                 [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-                public static readonly global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, global::System.Nullable<global::System.DateTimeOffset>>.Entry
-                    Created = new global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, global::System.Nullable<global::System.DateTimeOffset>>.Entry(
+                public static readonly global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::System.Nullable<global::System.DateTimeOffset>>.Entry
+                    Created = new global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::System.Nullable<global::System.DateTimeOffset>>.Entry(
                         "Created",
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Created_Stub,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Created_ComputeIsReadOnly,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Created_Validate,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Created_GetImplementationValue,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._Created_Stub,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._Created_ComputeIsReadOnly,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._Created_Validate,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._Created_GetImplementationValue,
                         null,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Created_OnValueChanged);
-                private static void _Created_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.tblProjekt.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, global::System.Nullable<global::System.DateTimeOffset>>.Data> c, global::LightSwitchApplication.tblProjekt.DetailsClass d, object sf)
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._Created_OnValueChanged);
+                private static void _Created_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::System.Nullable<global::System.DateTimeOffset>>.Data> c, global::LightSwitchApplication.tblFikBetaling.DetailsClass d, object sf)
                 {
                     c(d, ref d._Created, sf);
                 }
-                private static bool _Created_ComputeIsReadOnly(global::LightSwitchApplication.tblProjekt e)
+                private static bool _Created_ComputeIsReadOnly(global::LightSwitchApplication.tblFikBetaling e)
                 {
                     bool result = false;
                     e.Created_IsReadOnly(ref result);
                     return result;
                 }
-                private static void _Created_Validate(global::LightSwitchApplication.tblProjekt e, global::Microsoft.LightSwitch.EntityValidationResultsBuilder r)
+                private static void _Created_Validate(global::LightSwitchApplication.tblFikBetaling e, global::Microsoft.LightSwitch.EntityValidationResultsBuilder r)
                 {
                     e.Created_Validate(r);
                 }
-                private static global::System.Nullable<global::System.DateTimeOffset> _Created_GetImplementationValue(global::LightSwitchApplication.tblProjekt.DetailsClass d)
+                private static global::System.Nullable<global::System.DateTimeOffset> _Created_GetImplementationValue(global::LightSwitchApplication.tblFikBetaling.DetailsClass d)
                 {
                     return d.ImplementationEntity.Created;
                 }
-                private static void _Created_OnValueChanged(global::LightSwitchApplication.tblProjekt e)
+                private static void _Created_OnValueChanged(global::LightSwitchApplication.tblFikBetaling e)
                 {
                     e.Created_Changed();
                 }
     
                 [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-                public static readonly global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, string>.Entry
-                    ModifiedBy = new global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, string>.Entry(
+                public static readonly global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, string>.Entry
+                    ModifiedBy = new global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, string>.Entry(
                         "ModifiedBy",
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._ModifiedBy_Stub,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._ModifiedBy_ComputeIsReadOnly,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._ModifiedBy_Validate,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._ModifiedBy_GetImplementationValue,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._ModifiedBy_Stub,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._ModifiedBy_ComputeIsReadOnly,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._ModifiedBy_Validate,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._ModifiedBy_GetImplementationValue,
                         null,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._ModifiedBy_OnValueChanged);
-                private static void _ModifiedBy_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.tblProjekt.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, string>.Data> c, global::LightSwitchApplication.tblProjekt.DetailsClass d, object sf)
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._ModifiedBy_OnValueChanged);
+                private static void _ModifiedBy_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, string>.Data> c, global::LightSwitchApplication.tblFikBetaling.DetailsClass d, object sf)
                 {
                     c(d, ref d._ModifiedBy, sf);
                 }
-                private static bool _ModifiedBy_ComputeIsReadOnly(global::LightSwitchApplication.tblProjekt e)
+                private static bool _ModifiedBy_ComputeIsReadOnly(global::LightSwitchApplication.tblFikBetaling e)
                 {
                     bool result = false;
                     e.ModifiedBy_IsReadOnly(ref result);
                     return result;
                 }
-                private static void _ModifiedBy_Validate(global::LightSwitchApplication.tblProjekt e, global::Microsoft.LightSwitch.EntityValidationResultsBuilder r)
+                private static void _ModifiedBy_Validate(global::LightSwitchApplication.tblFikBetaling e, global::Microsoft.LightSwitch.EntityValidationResultsBuilder r)
                 {
                     e.ModifiedBy_Validate(r);
                 }
-                private static string _ModifiedBy_GetImplementationValue(global::LightSwitchApplication.tblProjekt.DetailsClass d)
+                private static string _ModifiedBy_GetImplementationValue(global::LightSwitchApplication.tblFikBetaling.DetailsClass d)
                 {
                     return d.ImplementationEntity.ModifiedBy;
                 }
-                private static void _ModifiedBy_OnValueChanged(global::LightSwitchApplication.tblProjekt e)
+                private static void _ModifiedBy_OnValueChanged(global::LightSwitchApplication.tblFikBetaling e)
                 {
                     e.ModifiedBy_Changed();
                 }
     
                 [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-                public static readonly global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, global::System.Nullable<global::System.DateTimeOffset>>.Entry
-                    Modified = new global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, global::System.Nullable<global::System.DateTimeOffset>>.Entry(
+                public static readonly global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::System.Nullable<global::System.DateTimeOffset>>.Entry
+                    Modified = new global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::System.Nullable<global::System.DateTimeOffset>>.Entry(
                         "Modified",
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Modified_Stub,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Modified_ComputeIsReadOnly,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Modified_Validate,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Modified_GetImplementationValue,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._Modified_Stub,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._Modified_ComputeIsReadOnly,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._Modified_Validate,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._Modified_GetImplementationValue,
                         null,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._Modified_OnValueChanged);
-                private static void _Modified_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.tblProjekt.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, global::System.Nullable<global::System.DateTimeOffset>>.Data> c, global::LightSwitchApplication.tblProjekt.DetailsClass d, object sf)
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._Modified_OnValueChanged);
+                private static void _Modified_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::System.Nullable<global::System.DateTimeOffset>>.Data> c, global::LightSwitchApplication.tblFikBetaling.DetailsClass d, object sf)
                 {
                     c(d, ref d._Modified, sf);
                 }
-                private static bool _Modified_ComputeIsReadOnly(global::LightSwitchApplication.tblProjekt e)
+                private static bool _Modified_ComputeIsReadOnly(global::LightSwitchApplication.tblFikBetaling e)
                 {
                     bool result = false;
                     e.Modified_IsReadOnly(ref result);
                     return result;
                 }
-                private static void _Modified_Validate(global::LightSwitchApplication.tblProjekt e, global::Microsoft.LightSwitch.EntityValidationResultsBuilder r)
+                private static void _Modified_Validate(global::LightSwitchApplication.tblFikBetaling e, global::Microsoft.LightSwitch.EntityValidationResultsBuilder r)
                 {
                     e.Modified_Validate(r);
                 }
-                private static global::System.Nullable<global::System.DateTimeOffset> _Modified_GetImplementationValue(global::LightSwitchApplication.tblProjekt.DetailsClass d)
+                private static global::System.Nullable<global::System.DateTimeOffset> _Modified_GetImplementationValue(global::LightSwitchApplication.tblFikBetaling.DetailsClass d)
                 {
                     return d.ImplementationEntity.Modified;
                 }
-                private static void _Modified_OnValueChanged(global::LightSwitchApplication.tblProjekt e)
+                private static void _Modified_OnValueChanged(global::LightSwitchApplication.tblFikBetaling e)
                 {
                     e.Modified_Changed();
                 }
     
                 [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-                public static readonly global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, byte[]>.Entry
-                    RowVersion = new global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, byte[]>.Entry(
+                public static readonly global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, byte[]>.Entry
+                    RowVersion = new global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, byte[]>.Entry(
                         "RowVersion",
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._RowVersion_Stub,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._RowVersion_ComputeIsReadOnly,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._RowVersion_Validate,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._RowVersion_GetImplementationValue,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._RowVersion_SetImplementationValue,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._RowVersion_OnValueChanged);
-                private static void _RowVersion_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.tblProjekt.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, byte[]>.Data> c, global::LightSwitchApplication.tblProjekt.DetailsClass d, object sf)
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._RowVersion_Stub,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._RowVersion_ComputeIsReadOnly,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._RowVersion_Validate,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._RowVersion_GetImplementationValue,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._RowVersion_SetImplementationValue,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._RowVersion_OnValueChanged);
+                private static void _RowVersion_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, byte[]>.Data> c, global::LightSwitchApplication.tblFikBetaling.DetailsClass d, object sf)
                 {
                     c(d, ref d._RowVersion, sf);
                 }
-                private static bool _RowVersion_ComputeIsReadOnly(global::LightSwitchApplication.tblProjekt e)
+                private static bool _RowVersion_ComputeIsReadOnly(global::LightSwitchApplication.tblFikBetaling e)
                 {
                     bool result = false;
                     e.RowVersion_IsReadOnly(ref result);
                     return result;
                 }
-                private static void _RowVersion_Validate(global::LightSwitchApplication.tblProjekt e, global::Microsoft.LightSwitch.EntityValidationResultsBuilder r)
+                private static void _RowVersion_Validate(global::LightSwitchApplication.tblFikBetaling e, global::Microsoft.LightSwitch.EntityValidationResultsBuilder r)
                 {
                     e.RowVersion_Validate(r);
                 }
-                private static byte[] _RowVersion_GetImplementationValue(global::LightSwitchApplication.tblProjekt.DetailsClass d)
+                private static byte[] _RowVersion_GetImplementationValue(global::LightSwitchApplication.tblFikBetaling.DetailsClass d)
                 {
                     return d.ImplementationEntity.RowVersion;
                 }
-                private static void _RowVersion_SetImplementationValue(global::LightSwitchApplication.tblProjekt.DetailsClass d, byte[] v)
+                private static void _RowVersion_SetImplementationValue(global::LightSwitchApplication.tblFikBetaling.DetailsClass d, byte[] v)
                 {
                     d.ImplementationEntity.RowVersion = v;
                 }
-                private static void _RowVersion_OnValueChanged(global::LightSwitchApplication.tblProjekt e)
+                private static void _RowVersion_OnValueChanged(global::LightSwitchApplication.tblFikBetaling e)
                 {
                     e.RowVersion_Changed();
                 }
     
                 [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-                public static readonly global::Microsoft.LightSwitch.Details.Framework.EntityCollectionProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, global::LightSwitchApplication.tblFikBetaling>.Entry
-                    tblFikBetalings = new global::Microsoft.LightSwitch.Details.Framework.EntityCollectionProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, global::LightSwitchApplication.tblFikBetaling>.Entry(
-                        "tblFikBetalings",
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._tblFikBetalings_Stub,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._tblFikBetalings_GetReferencedEntities,
-                        global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties._tblFikBetalings_GetEntityCollection);
-                private static void _tblFikBetalings_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.tblProjekt.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.EntityCollectionProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, global::LightSwitchApplication.tblFikBetaling>.Data> c, global::LightSwitchApplication.tblProjekt.DetailsClass d, object sf)
+                public static readonly global::Microsoft.LightSwitch.Details.Framework.EntityReferenceProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::LightSwitchApplication.tblProjekt>.Entry
+                    tblProjekt = new global::Microsoft.LightSwitch.Details.Framework.EntityReferenceProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::LightSwitchApplication.tblProjekt>.Entry(
+                        "tblProjekt",
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._tblProjekt_Stub,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._tblProjekt_ComputeIsReadOnly,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._tblProjekt_Validate,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._tblProjekt_GetCoreImplementationValue,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._tblProjekt_GetImplementationValue,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._tblProjekt_SetImplementationValue,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._tblProjekt_Refresh,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._tblProjekt_OnValueChanged);
+                private static void _tblProjekt_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.EntityReferenceProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::LightSwitchApplication.tblProjekt>.Data> c, global::LightSwitchApplication.tblFikBetaling.DetailsClass d, object sf)
                 {
-                    c(d, ref d._tblFikBetalings, sf);
+                    c(d, ref d._tblProjekt, sf);
                 }
-                private static global::System.Collections.Generic.IEnumerable<global::LightSwitchApplication.tblFikBetaling> _tblFikBetalings_GetReferencedEntities(global::LightSwitchApplication.tblProjekt.DetailsClass d)
+                private static bool _tblProjekt_ComputeIsReadOnly(global::LightSwitchApplication.tblFikBetaling e)
                 {
-                    return d.GetReferencedEntities<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass>(global::LightSwitchApplication.tblProjekt.DetailsClass.PropertySetProperties.tblFikBetalings, ref d._tblFikBetalings);
+                    bool result = false;
+                    e.tblProjekt_IsReadOnly(ref result);
+                    return result;
                 }
-                private static global::System.Collections.IEnumerable _tblFikBetalings_GetEntityCollection(global::LightSwitchApplication.tblProjekt.DetailsClass d)
+                private static void _tblProjekt_Validate(global::LightSwitchApplication.tblFikBetaling e, global::Microsoft.LightSwitch.EntityValidationResultsBuilder r)
                 {
-                    return d.ImplementationEntity.tblFikBetalings;
+                    e.tblProjekt_Validate(r);
+                }
+                private static global::Microsoft.LightSwitch.Internal.IEntityImplementation _tblProjekt_GetCoreImplementationValue(global::LightSwitchApplication.tblFikBetaling.DetailsClass d)
+                {
+                    return d.ImplementationEntity.tblProjekt;
+                }
+                private static global::LightSwitchApplication.tblProjekt _tblProjekt_GetImplementationValue(global::LightSwitchApplication.tblFikBetaling.DetailsClass d)
+                {
+                    return d.GetImplementationValue<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass>(global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.tblProjekt, ref d._tblProjekt);
+                }
+                private static void _tblProjekt_SetImplementationValue(global::LightSwitchApplication.tblFikBetaling.DetailsClass d, global::LightSwitchApplication.tblProjekt v)
+                {
+                    d.SetImplementationValue(global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.tblProjekt, ref d._tblProjekt, (i, ev) => i.tblProjekt = ev, v);
+                }
+                private static void _tblProjekt_Refresh(global::LightSwitchApplication.tblFikBetaling.DetailsClass d)
+                {
+                    d.RefreshNavigationProperty(global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties.tblProjekt, ref d._tblProjekt);
+                }
+                private static void _tblProjekt_OnValueChanged(global::LightSwitchApplication.tblFikBetaling e)
+                {
+                    e.tblProjekt_Changed();
+                }
+    
+                [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+                public static readonly global::Microsoft.LightSwitch.Details.Framework.EntityVirtualReferenceProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::LightSwitchApplication.tblMedlem>.Entry
+                    tblMedlem = new global::Microsoft.LightSwitch.Details.Framework.EntityVirtualReferenceProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::LightSwitchApplication.tblMedlem>.Entry(
+                        "tblMedlem",
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._tblMedlem_Stub,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._tblMedlem_ComputeIsReadOnly,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._tblMedlem_Validate,
+                        global::LightSwitchApplication.tblFikBetaling.DetailsClass.PropertySetProperties._tblMedlem_OnValueChanged);
+                private static void _tblMedlem_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.EntityVirtualReferenceProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::LightSwitchApplication.tblMedlem>.Data> c, global::LightSwitchApplication.tblFikBetaling.DetailsClass d, object sf)
+                {
+                    c(d, ref d._tblMedlem, sf);
+                }
+                private static bool _tblMedlem_ComputeIsReadOnly(global::LightSwitchApplication.tblFikBetaling e)
+                {
+                    bool result = false;
+                    e.tblMedlem_IsReadOnly(ref result);
+                    return result;
+                }
+                private static void _tblMedlem_Validate(global::LightSwitchApplication.tblFikBetaling e, global::Microsoft.LightSwitch.EntityValidationResultsBuilder r)
+                {
+                    e.tblMedlem_Validate(r);
+                }
+                private static void _tblMedlem_OnValueChanged(global::LightSwitchApplication.tblFikBetaling e)
+                {
+                    e.tblMedlem_Changed();
                 }
     
             }
     
             [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-            private global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, string>.Data _Navn;
+            private global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, int>.Data _Id;
             
             [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-            private global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, int>.Data _Projektnr;
+            private global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, decimal>.Data _Belob;
             
             [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-            private global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, int>.Data _Id;
+            private global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::System.DateTime>.Data _BetalingsDato;
             
             [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-            private global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, string>.Data _CreatedBy;
+            private global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, string>.Data _FIKnr;
             
             [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-            private global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, global::System.Nullable<global::System.DateTimeOffset>>.Data _Created;
+            private global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, int>.Data _tblMedlem_Nr;
             
             [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-            private global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, string>.Data _ModifiedBy;
+            private global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, string>.Data _CreatedBy;
             
             [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-            private global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, global::System.Nullable<global::System.DateTimeOffset>>.Data _Modified;
+            private global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::System.Nullable<global::System.DateTimeOffset>>.Data _Created;
             
             [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-            private global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, byte[]>.Data _RowVersion;
+            private global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, string>.Data _ModifiedBy;
             
             [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
-            private global::Microsoft.LightSwitch.Details.Framework.EntityCollectionProperty<global::LightSwitchApplication.tblProjekt, global::LightSwitchApplication.tblProjekt.DetailsClass, global::LightSwitchApplication.tblFikBetaling>.Data _tblFikBetalings;
+            private global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::System.Nullable<global::System.DateTimeOffset>>.Data _Modified;
+            
+            [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+            private global::Microsoft.LightSwitch.Details.Framework.EntityStorageProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, byte[]>.Data _RowVersion;
+            
+            [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+            private global::Microsoft.LightSwitch.Details.Framework.EntityReferenceProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::LightSwitchApplication.tblProjekt>.Data _tblProjekt;
+            
+            [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+            private global::Microsoft.LightSwitch.Details.Framework.EntityVirtualReferenceProperty<global::LightSwitchApplication.tblFikBetaling, global::LightSwitchApplication.tblFikBetaling.DetailsClass, global::LightSwitchApplication.tblMedlem>.Data _tblMedlem;
             
         }
     

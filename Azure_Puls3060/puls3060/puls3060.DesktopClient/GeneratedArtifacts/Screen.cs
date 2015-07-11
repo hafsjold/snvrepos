@@ -9,4 +9,358 @@
 
 namespace LightSwitchApplication
 {
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
+    public sealed partial class edlemsListDetail
+        : global::Microsoft.LightSwitch.Framework.Client.ScreenObject<global::LightSwitchApplication.edlemsListDetail, global::LightSwitchApplication.edlemsListDetail.DetailsClass>
+    {
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private edlemsListDetail() : base("LightSwitchApplication.puls3060.DesktopClient:edlemsListDetail")
+        {
+            global::LightSwitchApplication.edlemsListDetail.DetailsClass.Initialize(this);
+        }
+
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        public static edlemsListDetail CreateInstance()
+        {
+            return new global::LightSwitchApplication.edlemsListDetail(
+            );
+        }
+
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void edlemsListDetail_InitializeDataWorkspace(global::System.Collections.Generic.List<global::Microsoft.LightSwitch.IDataService> saveChangesTo);
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void edlemsListDetail_Created();
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void edlemsListDetail_Activated();
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void edlemsListDetail_Saving(ref bool handled);
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void edlemsListDetail_Saved();
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void edlemsListDetail_Closing(ref bool cancel);
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void edlemsListDetail_SaveError(global::System.Exception exception, ref bool handled);
+     
+        #region Private Properties
+        
+        /// <summary>
+        /// Gets the Application object for this application.  The Application object provides access to active screens, methods to open screens and access to the current user.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private global::LightSwitchApplication.Application Application
+        {
+            get
+            {
+                return global::LightSwitchApplication.Application.Current;
+            }
+        }
+        
+        /// <summary>
+        /// Gets the containing data workspace.  The data workspace provides access to all data sources in the application.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        private global::LightSwitchApplication.DataWorkspace DataWorkspace
+        {
+            get
+            {
+                return (global::LightSwitchApplication.DataWorkspace)((global::Microsoft.LightSwitch.Details.Client.IScreenDetails)this.Details).DataWorkspace;
+            }
+        }
+        
+        #endregion
+ 
+        partial void tblMedlems_SelectionChanged();
+
+        partial void tblMedlems_Changed(global::System.Collections.Specialized.NotifyCollectionChangedEventArgs e);
+
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void tblMedlems_Loaded(bool succeeded);
+
+        partial void vMedmemLogTexts_SelectionChanged();
+
+        partial void vMedmemLogTexts_Changed(global::System.Collections.Specialized.NotifyCollectionChangedEventArgs e);
+
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void vMedmemLogTexts_Loaded(bool succeeded);
+
+        /// <summary>
+        /// Gets the tblMedlems visual collection. The collection contains all records currently shown on the respective list or grid control.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::Microsoft.LightSwitch.Framework.Client.VisualCollection<global::LightSwitchApplication.tblMedlem> tblMedlems
+        {
+            get
+            {
+                return global::LightSwitchApplication.edlemsListDetail.DetailsClass.GetValue(this, global::LightSwitchApplication.edlemsListDetail.DetailsClass.PropertySetProperties.tblMedlems);
+            }
+        }
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void tblMedlems_Validate(global::Microsoft.LightSwitch.Framework.Client.ScreenValidationResultsBuilder results);
+ 
+        /// <summary>
+        /// Gets the vMedmemLogTexts visual collection. The collection contains all records currently shown on the respective list or grid control.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::Microsoft.LightSwitch.Framework.Client.VisualCollection<global::LightSwitchApplication.vMedmemLogText> vMedmemLogTexts
+        {
+            get
+            {
+                return global::LightSwitchApplication.edlemsListDetail.DetailsClass.GetValue(this, global::LightSwitchApplication.edlemsListDetail.DetailsClass.PropertySetProperties.vMedmemLogTexts);
+            }
+        }
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+        partial void vMedmemLogTexts_Validate(global::Microsoft.LightSwitch.Framework.Client.ScreenValidationResultsBuilder results);
+ 
+        [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public sealed class DetailsClass
+            : global::Microsoft.LightSwitch.Details.Framework.Client.ScreenDetails<global::LightSwitchApplication.edlemsListDetail, global::LightSwitchApplication.edlemsListDetail.DetailsClass, global::LightSwitchApplication.edlemsListDetail.DetailsClass.PropertySet, global::LightSwitchApplication.edlemsListDetail.DetailsClass.CommandSet, global::LightSwitchApplication.edlemsListDetail.DetailsClass.MethodSet>
+        {
+
+            static DetailsClass()
+            {
+                var initializePropertyEntry = global::LightSwitchApplication.edlemsListDetail.DetailsClass.PropertySetProperties.tblMedlems;
+            }
+
+            [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+            private static global::Microsoft.LightSwitch.Details.Framework.Client.ScreenDetails<global::LightSwitchApplication.edlemsListDetail, global::LightSwitchApplication.edlemsListDetail.DetailsClass>.Entry
+                __edlemsListDetailEntry = new global::Microsoft.LightSwitch.Details.Framework.Client.ScreenDetails<global::LightSwitchApplication.edlemsListDetail, global::LightSwitchApplication.edlemsListDetail.DetailsClass>.Entry(
+                    global::LightSwitchApplication.edlemsListDetail.DetailsClass.__edlemsListDetail_InvokeInitializeDataWorkspace,
+                    global::LightSwitchApplication.edlemsListDetail.DetailsClass.__edlemsListDetail_InvokeSavingEvent,
+                    global::LightSwitchApplication.edlemsListDetail.DetailsClass.__edlemsListDetail_InvokeSavedEvent,
+                    global::LightSwitchApplication.edlemsListDetail.DetailsClass.__edlemsListDetail_InvokeClosingEvent,
+                    global::LightSwitchApplication.edlemsListDetail.DetailsClass.__edlemsListDetail_InvokeCreated,
+                    global::LightSwitchApplication.edlemsListDetail.DetailsClass.__edlemsListDetail_InvokeActivated,
+                    global::LightSwitchApplication.edlemsListDetail.DetailsClass.__edlemsListDetail_InvokeSaveErrorEvent);
+            private static void __edlemsListDetail_InvokeInitializeDataWorkspace(global::LightSwitchApplication.edlemsListDetail s, global::System.Collections.Generic.List<global::Microsoft.LightSwitch.IDataService> saveChangesTo)
+            {
+                s.edlemsListDetail_InitializeDataWorkspace(saveChangesTo);
+            }
+            private static bool __edlemsListDetail_InvokeSavingEvent(global::LightSwitchApplication.edlemsListDetail s)
+            {
+                bool handled = false;
+                s.edlemsListDetail_Saving(ref handled);
+                return handled;
+            }
+            private static void __edlemsListDetail_InvokeSavedEvent(global::LightSwitchApplication.edlemsListDetail s)
+            {
+                s.edlemsListDetail_Saved();
+            }
+            private static bool __edlemsListDetail_InvokeClosingEvent(global::LightSwitchApplication.edlemsListDetail s)
+            {
+                bool cancel = false;
+                s.edlemsListDetail_Closing(ref cancel);
+                return cancel;
+            }
+            private static void __edlemsListDetail_InvokeCreated(global::LightSwitchApplication.edlemsListDetail s)
+            {
+                s.edlemsListDetail_Created();
+            }
+            private static void __edlemsListDetail_InvokeActivated(global::LightSwitchApplication.edlemsListDetail s)
+            {
+                s.edlemsListDetail_Activated();
+            }
+            private static bool __edlemsListDetail_InvokeSaveErrorEvent(global::LightSwitchApplication.edlemsListDetail s, global::System.Exception ex)
+            {
+                bool handled = false;
+                s.edlemsListDetail_SaveError(ex, ref handled);
+                return handled;
+            }
+
+            public DetailsClass() : base()
+            {
+            }
+
+            public new global::LightSwitchApplication.edlemsListDetail.DetailsClass.PropertySet Properties
+            {
+                get
+                {
+                    return base.Properties;
+                }
+            }
+
+            public new global::LightSwitchApplication.edlemsListDetail.DetailsClass.CommandSet Commands
+            {
+                get
+                {
+                    return base.Commands;
+                }
+            }
+
+            public new global::LightSwitchApplication.edlemsListDetail.DetailsClass.MethodSet Methods
+            {
+                get
+                {
+                    return base.Methods;
+                }
+            }
+
+            private global::Microsoft.LightSwitch.IDataServiceQueryable tblMedlemsQuery()
+            {
+                return this.Screen.DataWorkspace.dbPuls3060MedlemData.tblMedlems;
+            }
+
+            private global::Microsoft.LightSwitch.IDataServiceQueryable vMedmemLogTextsQuery()
+            {
+                if (this.Screen.tblMedlems.SelectedItem == null)
+                {
+                    return null;
+                }
+
+                global::Microsoft.LightSwitch.IDataServiceQueryable<global::LightSwitchApplication.vMedmemLogText> loader =
+                    (global::Microsoft.LightSwitch.IDataServiceQueryable<global::LightSwitchApplication.vMedmemLogText>)((global::Microsoft.LightSwitch.Details.ILoadableProperty)this.Screen.tblMedlems.SelectedItem.Details.Properties.vMedmemLogTexts).Loader;
+                if (loader == null)
+                {
+                    return null;
+                }
+
+                return loader;
+            }
+
+            [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+            private global::Microsoft.LightSwitch.Details.Framework.Client.ScreenCollectionProperty<global::LightSwitchApplication.edlemsListDetail, global::LightSwitchApplication.edlemsListDetail.DetailsClass, global::LightSwitchApplication.tblMedlem>.Data _tblMedlems;
+
+            [global::System.Diagnostics.DebuggerBrowsable(global::System.Diagnostics.DebuggerBrowsableState.Never)]
+            private global::Microsoft.LightSwitch.Details.Framework.Client.ScreenCollectionProperty<global::LightSwitchApplication.edlemsListDetail, global::LightSwitchApplication.edlemsListDetail.DetailsClass, global::LightSwitchApplication.vMedmemLogText>.Data _vMedmemLogTexts;
+
+            [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public sealed class PropertySet
+                : global::Microsoft.LightSwitch.Details.Framework.Client.ScreenPropertySet<global::LightSwitchApplication.edlemsListDetail, global::LightSwitchApplication.edlemsListDetail.DetailsClass>
+            {
+
+                public global::Microsoft.LightSwitch.Details.Framework.Client.ScreenCollectionProperty<global::LightSwitchApplication.edlemsListDetail, global::LightSwitchApplication.edlemsListDetail.DetailsClass, global::LightSwitchApplication.tblMedlem> tblMedlems
+                {
+                    get
+                    {
+                        return (global::Microsoft.LightSwitch.Details.Framework.Client.ScreenCollectionProperty<global::LightSwitchApplication.edlemsListDetail, global::LightSwitchApplication.edlemsListDetail.DetailsClass, global::LightSwitchApplication.tblMedlem>)base.GetItem(global::LightSwitchApplication.edlemsListDetail.DetailsClass.PropertySetProperties.tblMedlems);
+                    }
+                }
+
+                public global::Microsoft.LightSwitch.Details.Framework.Client.ScreenCollectionProperty<global::LightSwitchApplication.edlemsListDetail, global::LightSwitchApplication.edlemsListDetail.DetailsClass, global::LightSwitchApplication.vMedmemLogText> vMedmemLogTexts
+                {
+                    get
+                    {
+                        return (global::Microsoft.LightSwitch.Details.Framework.Client.ScreenCollectionProperty<global::LightSwitchApplication.edlemsListDetail, global::LightSwitchApplication.edlemsListDetail.DetailsClass, global::LightSwitchApplication.vMedmemLogText>)base.GetItem(global::LightSwitchApplication.edlemsListDetail.DetailsClass.PropertySetProperties.vMedmemLogTexts);
+                    }
+                }
+
+            }
+
+            [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public sealed class CommandSet
+                : global::Microsoft.LightSwitch.Details.Framework.Client.ScreenCommandSet<global::LightSwitchApplication.edlemsListDetail, global::LightSwitchApplication.edlemsListDetail.DetailsClass>
+            {
+            }
+
+            [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            public sealed class MethodSet
+                : global::Microsoft.LightSwitch.Details.Framework.Client.ScreenMethodSet<global::LightSwitchApplication.edlemsListDetail, global::LightSwitchApplication.edlemsListDetail.DetailsClass>
+            {
+            }
+
+            [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal sealed class PropertySetProperties
+            {
+
+                public static readonly global::Microsoft.LightSwitch.Details.Framework.Client.ScreenCollectionProperty<global::LightSwitchApplication.edlemsListDetail, global::LightSwitchApplication.edlemsListDetail.DetailsClass, global::LightSwitchApplication.tblMedlem>.Entry
+                    tblMedlems = new global::Microsoft.LightSwitch.Details.Framework.Client.ScreenCollectionProperty<global::LightSwitchApplication.edlemsListDetail, global::LightSwitchApplication.edlemsListDetail.DetailsClass, global::LightSwitchApplication.tblMedlem>.Entry(
+                        "tblMedlems",
+                        global::LightSwitchApplication.edlemsListDetail.DetailsClass.PropertySetProperties._tblMedlems_Stub,
+                        global::LightSwitchApplication.edlemsListDetail.DetailsClass.PropertySetProperties._tblMedlems_Validate,
+                        global::LightSwitchApplication.edlemsListDetail.DetailsClass.PropertySetProperties._tblMedlems_CreateQuery,
+                        global::LightSwitchApplication.edlemsListDetail.DetailsClass.PropertySetProperties._tblMedlems_SelectionChanged,
+                        global::LightSwitchApplication.edlemsListDetail.DetailsClass.PropertySetProperties._tblMedlems_OnCollectionChanged,
+                        global::LightSwitchApplication.edlemsListDetail.DetailsClass.PropertySetProperties._tblMedlems_OnLoaded);
+                private static void _tblMedlems_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.edlemsListDetail.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.Client.ScreenCollectionProperty<global::LightSwitchApplication.edlemsListDetail, global::LightSwitchApplication.edlemsListDetail.DetailsClass, global::LightSwitchApplication.tblMedlem>.Data> c, global::LightSwitchApplication.edlemsListDetail.DetailsClass d, object sf)
+                {
+                    c(d, ref d._tblMedlems, sf);
+                }
+                private static void _tblMedlems_Validate(global::LightSwitchApplication.edlemsListDetail s, global::Microsoft.LightSwitch.Framework.Client.ScreenValidationResultsBuilder r)
+                {
+                    s.tblMedlems_Validate(r);
+                }
+                private static global::Microsoft.LightSwitch.IDataServiceQueryable _tblMedlems_CreateQuery(global::LightSwitchApplication.edlemsListDetail.DetailsClass d, object[] args)
+                {
+                    return d.tblMedlemsQuery();
+                }
+                private static void _tblMedlems_SelectionChanged(global::LightSwitchApplication.edlemsListDetail s)
+                {
+                    s.tblMedlems_SelectionChanged();
+                }
+                private static void _tblMedlems_OnCollectionChanged(global::LightSwitchApplication.edlemsListDetail s, global::System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+                {
+                    s.tblMedlems_Changed(e);
+                }
+                private static void _tblMedlems_OnLoaded(global::LightSwitchApplication.edlemsListDetail s, bool succeeded)
+                {
+                    s.tblMedlems_Loaded(succeeded);
+                }
+
+                public static readonly global::Microsoft.LightSwitch.Details.Framework.Client.ScreenCollectionProperty<global::LightSwitchApplication.edlemsListDetail, global::LightSwitchApplication.edlemsListDetail.DetailsClass, global::LightSwitchApplication.vMedmemLogText>.Entry
+                    vMedmemLogTexts = new global::Microsoft.LightSwitch.Details.Framework.Client.ScreenCollectionProperty<global::LightSwitchApplication.edlemsListDetail, global::LightSwitchApplication.edlemsListDetail.DetailsClass, global::LightSwitchApplication.vMedmemLogText>.Entry(
+                        "vMedmemLogTexts",
+                        global::LightSwitchApplication.edlemsListDetail.DetailsClass.PropertySetProperties._vMedmemLogTexts_Stub,
+                        global::LightSwitchApplication.edlemsListDetail.DetailsClass.PropertySetProperties._vMedmemLogTexts_Validate,
+                        global::LightSwitchApplication.edlemsListDetail.DetailsClass.PropertySetProperties._vMedmemLogTexts_CreateQuery,
+                        global::LightSwitchApplication.edlemsListDetail.DetailsClass.PropertySetProperties._vMedmemLogTexts_SelectionChanged,
+                        global::LightSwitchApplication.edlemsListDetail.DetailsClass.PropertySetProperties._vMedmemLogTexts_OnCollectionChanged,
+                        global::LightSwitchApplication.edlemsListDetail.DetailsClass.PropertySetProperties._vMedmemLogTexts_OnLoaded);
+                private static void _vMedmemLogTexts_Stub(global::Microsoft.LightSwitch.Details.Framework.Base.DetailsCallback<global::LightSwitchApplication.edlemsListDetail.DetailsClass, global::Microsoft.LightSwitch.Details.Framework.Client.ScreenCollectionProperty<global::LightSwitchApplication.edlemsListDetail, global::LightSwitchApplication.edlemsListDetail.DetailsClass, global::LightSwitchApplication.vMedmemLogText>.Data> c, global::LightSwitchApplication.edlemsListDetail.DetailsClass d, object sf)
+                {
+                    c(d, ref d._vMedmemLogTexts, sf);
+                }
+                private static void _vMedmemLogTexts_Validate(global::LightSwitchApplication.edlemsListDetail s, global::Microsoft.LightSwitch.Framework.Client.ScreenValidationResultsBuilder r)
+                {
+                    s.vMedmemLogTexts_Validate(r);
+                }
+                private static global::Microsoft.LightSwitch.IDataServiceQueryable _vMedmemLogTexts_CreateQuery(global::LightSwitchApplication.edlemsListDetail.DetailsClass d, object[] args)
+                {
+                    return d.vMedmemLogTextsQuery();
+                }
+                private static void _vMedmemLogTexts_SelectionChanged(global::LightSwitchApplication.edlemsListDetail s)
+                {
+                    s.vMedmemLogTexts_SelectionChanged();
+                }
+                private static void _vMedmemLogTexts_OnCollectionChanged(global::LightSwitchApplication.edlemsListDetail s, global::System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+                {
+                    s.vMedmemLogTexts_Changed(e);
+                }
+                private static void _vMedmemLogTexts_OnLoaded(global::LightSwitchApplication.edlemsListDetail s, bool succeeded)
+                {
+                    s.vMedmemLogTexts_Loaded(succeeded);
+                }
+
+            }
+
+            [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal sealed class CommandSetProperties
+            {
+            }
+
+            [global::System.ComponentModel.EditorBrowsable(global::System.ComponentModel.EditorBrowsableState.Never)]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.LightSwitch.BuildTasks.CodeGen", "12.1.0.0")]
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            internal sealed class MethodSetProperties
+            {
+            }
+        }
+    }
 }

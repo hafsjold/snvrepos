@@ -9,7 +9,7 @@
 //------------------------------------------------------------------------------
 
 // Original file name:
-// Generation date: 30-11-2014 19:50:33
+// Generation date: 20-12-2014 21:22:42
 namespace LightSwitchApplication.Implementation
 {
     
@@ -78,12 +78,37 @@ namespace LightSwitchApplication.Implementation
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         private global::System.Data.Services.Client.DataServiceQuery<tblMedlem> _tblMedlems;
         /// <summary>
+        /// There are no comments for vMedmemLogTexts in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Data.Services.Client.DataServiceQuery<vMedmemLogText> vMedmemLogTexts
+        {
+            get
+            {
+                if ((this._vMedmemLogTexts == null))
+                {
+                    this._vMedmemLogTexts = base.CreateQuery<vMedmemLogText>("vMedmemLogTexts");
+                }
+                return this._vMedmemLogTexts;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Data.Services.Client.DataServiceQuery<vMedmemLogText> _vMedmemLogTexts;
+        /// <summary>
         /// There are no comments for tblMedlems in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         public void AddTotblMedlems(tblMedlem tblMedlem)
         {
             base.AddObject("tblMedlems", tblMedlem);
+        }
+        /// <summary>
+        /// There are no comments for vMedmemLogTexts in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public void AddTovMedmemLogTexts(vMedmemLogText vMedmemLogText)
+        {
+            base.AddObject("vMedmemLogTexts", vMedmemLogText);
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         private abstract class GeneratedEdmModel
@@ -107,13 +132,31 @@ namespace LightSwitchApplication.Implementation
                 "ode=\"Fixed\" /><Property Name=\"Nr\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property " +
                 "Name=\"Kon\" Type=\"Edm.String\" MaxLength=\"1\" ConcurrencyMode=\"Fixed\" /><Property N" +
                 "ame=\"FodtDato\" Type=\"Edm.DateTime\" Precision=\"3\" ConcurrencyMode=\"Fixed\" /><Prop" +
-                "erty Name=\"Bank\" Type=\"Edm.String\" MaxLength=\"15\" ConcurrencyMode=\"Fixed\" /></En" +
-                "tityType><EntityContainer Name=\"dbPuls3060MedlemData\" m:IsDefaultEntityContainer" +
-                "=\"true\"><EntitySet Name=\"tblMedlems\" EntityType=\"LightSwitchApplication.tblMedle" +
-                "m\" /><FunctionImport Name=\"Microsoft_LightSwitch_GetCanInformation\" ReturnType=\"" +
-                "Edm.String\" m:HttpMethod=\"GET\"><Parameter Name=\"dataServiceMembers\" Type=\"Edm.St" +
-                "ring\" Mode=\"In\" /></FunctionImport></EntityContainer></Schema></edmx:DataService" +
-                "s></edmx:Edmx>";
+                "erty Name=\"Bank\" Type=\"Edm.String\" MaxLength=\"15\" ConcurrencyMode=\"Fixed\" /><Nav" +
+                "igationProperty Name=\"vMedmemLogTexts\" Relationship=\"LightSwitchApplication.tblM" +
+                "edlem_vMedmemLogText\" ToRole=\"vMedmemLogText\" FromRole=\"tblMedlem\" /></EntityTyp" +
+                "e><EntityType Name=\"vMedmemLogText\"><Key><PropertyRef Name=\"id\" /></Key><Propert" +
+                "y Name=\"id\" Type=\"Edm.Int32\" Nullable=\"false\" /><Property Name=\"Nr\" Type=\"Edm.In" +
+                "t32\" ConcurrencyMode=\"Fixed\" /><Property Name=\"logdato\" Type=\"Edm.DateTime\" Prec" +
+                "ision=\"3\" ConcurrencyMode=\"Fixed\" /><Property Name=\"Aktivitet\" Type=\"Edm.String\"" +
+                " MaxLength=\"30\" ConcurrencyMode=\"Fixed\" /><Property Name=\"Dato\" Type=\"Edm.DateTi" +
+                "me\" Precision=\"0\" ConcurrencyMode=\"Fixed\" /><NavigationProperty Name=\"tblMedlem\"" +
+                " Relationship=\"LightSwitchApplication.tblMedlem_vMedmemLogText\" ToRole=\"tblMedle" +
+                "m\" FromRole=\"vMedmemLogText\" /></EntityType><Association Name=\"tblMedlem_vMedmem" +
+                "LogText\"><End Role=\"tblMedlem\" Type=\"LightSwitchApplication.tblMedlem\" Multiplic" +
+                "ity=\"0..1\" /><End Role=\"vMedmemLogText\" Type=\"LightSwitchApplication.vMedmemLogT" +
+                "ext\" Multiplicity=\"*\" /><ReferentialConstraint><Principal Role=\"tblMedlem\"><Prop" +
+                "ertyRef Name=\"Nr\" /></Principal><Dependent Role=\"vMedmemLogText\"><PropertyRef Na" +
+                "me=\"Nr\" /></Dependent></ReferentialConstraint></Association><EntityContainer Nam" +
+                "e=\"dbPuls3060MedlemData\" m:IsDefaultEntityContainer=\"true\"><EntitySet Name=\"tblM" +
+                "edlems\" EntityType=\"LightSwitchApplication.tblMedlem\" /><EntitySet Name=\"vMedmem" +
+                "LogTexts\" EntityType=\"LightSwitchApplication.vMedmemLogText\" /><AssociationSet N" +
+                "ame=\"tblMedlem_vMedmemLogText\" Association=\"LightSwitchApplication.tblMedlem_vMe" +
+                "dmemLogText\"><End Role=\"tblMedlem\" EntitySet=\"tblMedlems\" /><End Role=\"vMedmemLo" +
+                "gText\" EntitySet=\"vMedmemLogTexts\" /></AssociationSet><FunctionImport Name=\"Micr" +
+                "osoft_LightSwitch_GetCanInformation\" ReturnType=\"Edm.String\" m:HttpMethod=\"GET\">" +
+                "<Parameter Name=\"dataServiceMembers\" Type=\"Edm.String\" Mode=\"In\" /></FunctionImp" +
+                "ort></EntityContainer></Schema></edmx:DataServices></edmx:Edmx>";
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
             private static string GetConcatenatedEdmxString()
             {
@@ -478,6 +521,234 @@ namespace LightSwitchApplication.Implementation
         private string _Bank;
         partial void OnBankChanging(string value);
         partial void OnBankChanged();
+        /// <summary>
+        /// There are no comments for vMedmemLogTexts in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Data.Services.Client.DataServiceCollection<vMedmemLogText> vMedmemLogTexts
+        {
+            get
+            {
+                this.@__vMedmemLogTexts.EnsureValueInitialized();
+                return this._vMedmemLogTexts;
+            }
+            set
+            {
+                this._vMedmemLogTexts = value;
+                this.OnPropertyChanged("vMedmemLogTexts");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Data.Services.Client.DataServiceCollection<vMedmemLogText> _vMedmemLogTexts = new global::System.Data.Services.Client.DataServiceCollection<vMedmemLogText>(null, global::System.Data.Services.Client.TrackingMode.None);
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        protected virtual void OnPropertyChanged(string property)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new global::System.ComponentModel.PropertyChangedEventArgs(property));
+            }
+        }
+    }
+    /// <summary>
+    /// There are no comments for LightSwitchApplication.vMedmemLogText in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// id
+    /// </KeyProperties>
+    [global::System.Data.Services.Common.EntitySetAttribute("vMedmemLogTexts")]
+    [global::System.Data.Services.Common.DataServiceKeyAttribute("id")]
+    public partial class vMedmemLogText : global::Microsoft.LightSwitch.ClientGenerated.Implementation.EntityBase, global::System.ComponentModel.INotifyPropertyChanged
+    {
+        /// <summary>
+        /// Create a new vMedmemLogText object.
+        /// </summary>
+        /// <param name="ID">Initial value of id.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public static vMedmemLogText CreatevMedmemLogText(int ID)
+        {
+            vMedmemLogText vMedmemLogText = new vMedmemLogText();
+            vMedmemLogText.id = ID;
+            return vMedmemLogText;
+        }
+        /// <summary>
+        /// There are no comments for Property id in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public int id
+        {
+            get
+            {
+                return this._id;
+            }
+            set
+            {
+                this.OnidChanging(value);
+                if (object.Equals(this.id, value))
+                {
+                    return;
+                }
+                this._id = value;
+                this.OnidChanged();
+                this.OnPropertyChanged("id");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private int _id;
+        partial void OnidChanging(int value);
+        partial void OnidChanged();
+        /// <summary>
+        /// There are no comments for Property Nr in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<int> Nr
+        {
+            get
+            {
+                return this._Nr;
+            }
+            set
+            {
+                this.OnNrChanging(value);
+                if (object.Equals(this.Nr, value))
+                {
+                    return;
+                }
+                this._Nr = value;
+                this.OnNrChanged();
+                this.OnPropertyChanged("Nr");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<int> _Nr;
+        partial void OnNrChanging(global::System.Nullable<int> value);
+        partial void OnNrChanged();
+        /// <summary>
+        /// There are no comments for Property logdato in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<global::System.DateTime> logdato
+        {
+            get
+            {
+                return this._logdato;
+            }
+            set
+            {
+                this.OnlogdatoChanging(value);
+                if (object.Equals(this.logdato, value))
+                {
+                    return;
+                }
+                this._logdato = value;
+                this.OnlogdatoChanged();
+                this.OnPropertyChanged("logdato");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<global::System.DateTime> _logdato;
+        partial void OnlogdatoChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnlogdatoChanged();
+        /// <summary>
+        /// There are no comments for Property Aktivitet in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public string Aktivitet
+        {
+            get
+            {
+                return this._Aktivitet;
+            }
+            set
+            {
+                this.OnAktivitetChanging(value);
+                if (object.Equals(this.Aktivitet, value))
+                {
+                    return;
+                }
+                this._Aktivitet = value;
+                this.OnAktivitetChanged();
+                this.OnPropertyChanged("Aktivitet");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private string _Aktivitet;
+        partial void OnAktivitetChanging(string value);
+        partial void OnAktivitetChanged();
+        /// <summary>
+        /// There are no comments for Property Dato in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public global::System.Nullable<global::System.DateTime> Dato
+        {
+            get
+            {
+                return this._Dato;
+            }
+            set
+            {
+                this.OnDatoChanging(value);
+                if (object.Equals(this.Dato, value))
+                {
+                    return;
+                }
+                this._Dato = value;
+                this.OnDatoChanged();
+                this.OnPropertyChanged("Dato");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private global::System.Nullable<global::System.DateTime> _Dato;
+        partial void OnDatoChanging(global::System.Nullable<global::System.DateTime> value);
+        partial void OnDatoChanged();
+        /// <summary>
+        /// There are no comments for tblMedlem in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public tblMedlem tblMedlem
+        {
+            get
+            {
+                this.@__tblMedlem.EnsureValueInitialized();
+                return this._tblMedlem;
+            }
+            set
+            {
+                tblMedlem previous = this.tblMedlem;
+                if ((previous == value))
+                {
+                    return;
+                }
+                if ((previous != null))
+                {
+                    this._tblMedlem = null;
+                    this.@__tblMedlem.OnValueSet();
+                    previous.vMedmemLogTexts.Remove(this);
+                }
+                if ((this.___Host != null))
+                {
+                    if ((value != null))
+                    {
+                        this.Nr = value.Nr;
+                    }
+                    else
+                    {
+                        this.Nr = default(global::System.Nullable<int>);
+                    }
+                }
+                this._tblMedlem = value;
+                this.@__tblMedlem.OnValueSet();
+                if ((value != null))
+                {
+                    value.@__vMedmemLogTexts.Add(this);
+                }
+                this.___OnPropertyChanged("tblMedlem");
+                this.OnPropertyChanged("tblMedlem");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private tblMedlem _tblMedlem;
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]

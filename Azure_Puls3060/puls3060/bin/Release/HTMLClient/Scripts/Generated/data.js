@@ -59,8 +59,42 @@ window.myapp = msls.application;
         /// <field name="tblFikBetalings" type="msls.EntityCollection" elementType="msls.application.tblFikBetaling">
         /// Gets the tblFikBetalings for this tblMedlem.
         /// </field>
+        /// <field name="vMedmemLogTexts" type="msls.EntityCollection" elementType="msls.application.vMedmemLogText">
+        /// Gets the vMedmemLogTexts for this tblMedlem.
+        /// </field>
         /// <field name="details" type="msls.application.tblMedlem.Details">
         /// Gets the details for this tblMedlem.
+        /// </field>
+        $Entity.call(this, entitySet);
+    }
+
+    function vMedmemLogText(entitySet) {
+        /// <summary>
+        /// Represents the vMedmemLogText entity type.
+        /// </summary>
+        /// <param name="entitySet" type="msls.EntitySet" optional="true">
+        /// The entity set that should contain this vMedmemLogText.
+        /// </param>
+        /// <field name="id" type="Number">
+        /// Gets or sets the id for this vMedmemLogText.
+        /// </field>
+        /// <field name="Nr" type="Number">
+        /// Gets or sets the nr for this vMedmemLogText.
+        /// </field>
+        /// <field name="logdato" type="Date">
+        /// Gets or sets the logdato for this vMedmemLogText.
+        /// </field>
+        /// <field name="Aktivitet" type="String">
+        /// Gets or sets the aktivitet for this vMedmemLogText.
+        /// </field>
+        /// <field name="Dato" type="Date">
+        /// Gets or sets the dato for this vMedmemLogText.
+        /// </field>
+        /// <field name="tblMedlem" type="msls.application.tblMedlem">
+        /// Gets or sets the tblMedlem for this vMedmemLogText.
+        /// </field>
+        /// <field name="details" type="msls.application.vMedmemLogText.Details">
+        /// Gets the details for this vMedmemLogText.
         /// </field>
         $Entity.call(this, entitySet);
     }
@@ -164,6 +198,9 @@ window.myapp = msls.application;
         /// <field name="tblMedlems" type="msls.EntitySet">
         /// Gets the tblMedlems entity set.
         /// </field>
+        /// <field name="vMedmemLogTexts" type="msls.EntitySet">
+        /// Gets the vMedmemLogTexts entity set.
+        /// </field>
         /// <field name="details" type="msls.application.dbPuls3060MedlemData.Details">
         /// Gets the details for this data service.
         /// </field>
@@ -219,7 +256,17 @@ window.myapp = msls.application;
             { name: "Kon", type: String },
             { name: "FodtDato", type: Date },
             { name: "Bank", type: String },
-            { name: "tblFikBetalings", kind: "virtualCollection", elementType: tblFikBetaling }
+            { name: "tblFikBetalings", kind: "virtualCollection", elementType: tblFikBetaling },
+            { name: "vMedmemLogTexts", kind: "collection", elementType: vMedmemLogText }
+        ]),
+
+        vMedmemLogText: $defineEntity(vMedmemLogText, [
+            { name: "id", type: Number },
+            { name: "Nr", type: Number },
+            { name: "logdato", type: Date },
+            { name: "Aktivitet", type: String },
+            { name: "Dato", type: Date },
+            { name: "tblMedlem", kind: "reference", type: tblMedlem }
         ]),
 
         tblFikBetaling: $defineEntity(tblFikBetaling, [
@@ -250,12 +297,20 @@ window.myapp = msls.application;
         ]),
 
         dbPuls3060MedlemData: $defineDataService(dbPuls3060MedlemData, lightSwitchApplication.rootUri + "/dbPuls3060MedlemData.svc", [
-            { name: "tblMedlems", elementType: tblMedlem }
+            { name: "tblMedlems", elementType: tblMedlem },
+            { name: "vMedmemLogTexts", elementType: vMedmemLogText }
         ], [
             {
                 name: "tblMedlems_SingleOrDefault", value: function (Nr) {
                     return new $DataServiceQuery({ _entitySet: this.tblMedlems },
                         lightSwitchApplication.rootUri + "/dbPuls3060MedlemData.svc" + "/tblMedlems(" + "Nr=" + $toODataString(Nr, "Int32?") + ")"
+                    );
+                }
+            },
+            {
+                name: "vMedmemLogTexts_SingleOrDefault", value: function (id) {
+                    return new $DataServiceQuery({ _entitySet: this.vMedmemLogTexts },
+                        lightSwitchApplication.rootUri + "/dbPuls3060MedlemData.svc" + "/vMedmemLogTexts(" + "id=" + $toODataString(id, "Int32?") + ")"
                     );
                 }
             }
