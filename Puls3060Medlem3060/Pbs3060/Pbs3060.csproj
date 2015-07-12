@@ -268,6 +268,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\PHPSerializationLibrary\PHPSerializationLibrary.csproj">
+      <Project>{4e7cfc61-4444-4ec8-a8f2-57d8ef21d84f}</Project>
+      <Name>PHPSerializationLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Renci.SshNet\Renci.SshNet.csproj">
       <Project>{2F5F8C90-0BD1-424F-997C-7BC6280919D1}</Project>
       <Name>Renci.SshNet</Name>
