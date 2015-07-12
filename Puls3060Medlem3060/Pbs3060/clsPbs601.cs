@@ -470,7 +470,7 @@ namespace nsPbs3060
             int wantalfakturaer = 0;
             string wDelsystem;
             wDelsystem = "BSH";
-            DateTime now_minus30 = DateTime.Now.AddMinutes(-30);
+            DateTime now_minus30 = DateTime.UtcNow.AddMinutes(-30);
             DateTime KontingentFradato = DateTime.MinValue;
             int AntalForslag = 0;
             MemRSMembershipTransactions memRSMembershipTransactions = new MemRSMembershipTransactions();
