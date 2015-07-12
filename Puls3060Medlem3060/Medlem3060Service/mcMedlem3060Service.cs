@@ -35,7 +35,7 @@ namespace nsMedlem3060Service
         public mcMedlem3060Service()
         {
             InitializeComponent();
-            /*
+            ///*
             //#if (DEBUG)            
                         Program.Log("Medlem3060Service Starter #2");
                         _SchedulerThread = new Thread(Scheduler);
@@ -43,7 +43,7 @@ namespace nsMedlem3060Service
                         _SchedulerThread.Start();
                         _SchedulerThread.Join();
             //#endif
-            */
+            //*/
         }
 
         private T StringToEnum<T>(string name)
