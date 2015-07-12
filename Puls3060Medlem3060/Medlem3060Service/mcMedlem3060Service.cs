@@ -35,15 +35,13 @@ namespace nsMedlem3060Service
         public mcMedlem3060Service()
         {
             InitializeComponent();
-            ///*
-            //#if (DEBUG)            
+            /*
                         Program.Log("Medlem3060Service Starter #2");
                         _SchedulerThread = new Thread(Scheduler);
                         _SchedulerThread.Name = "Scheduler";
                         _SchedulerThread.Start();
                         _SchedulerThread.Join();
-            //#endif
-            //*/
+            */
         }
 
         private T StringToEnum<T>(string name)
@@ -215,7 +213,7 @@ namespace nsMedlem3060Service
                 {
                     if (Enum.IsDefined(typeof(enumTask), s.jobname))
                     {
-                        var occurrence = CrontabSchedule.Parse(s.schedule).GetNextOccurrences(DateTime.Now, DateTime.Now.AddDays(days)).GetEnumerator();
+                        var occurrence = CrontabSchedule.Parse(s.schedule).GetNextOccurrences(DateTime.UtcNow, DateTime.UtcNow.AddDays(days)).GetEnumerator();
                         while (occurrence.MoveNext())
                             dbJobQ.jobqueueadd(occurrence.Current, s.jobname, s.id, false);
                     }
