@@ -11,6 +11,7 @@ using MailKit.Net.Smtp;
 using MailKit;
 using MimeKit;
 using MailKit.Net.Imap;
+using System.Collections;
 
 namespace nsPbs3060
 {
@@ -24,6 +25,7 @@ namespace nsPbs3060
     {
         fdfaktura = 0,
         fdrykker = 1,
+        fdrsmembership = 2,
     }
 
     public class clsPbs601
@@ -460,6 +462,140 @@ namespace nsPbs3060
 
         }
 
+        public Tuple<int, int> rsmembeshhip_fakturer_auto(dbData3060DataContext p_dbData3060, puls3060_dkEntities p_dbPuls3060_dk)
+        {
+            int lobnr = 0;
+            string wadvistekst = "";
+            int winfotekst = 0;
+            int wantalfakturaer = 0;
+            string wDelsystem;
+            wDelsystem = "BSH";
+            DateTime now_minus30 = DateTime.Now.AddMinutes(-30);
+            DateTime KontingentFradato = DateTime.MinValue;
+            int AntalForslag = 0;
+            MemRSMembershipTransactions memRSMembershipTransactions = new MemRSMembershipTransactions();
+
+            var qrytrans = from t in p_dbPuls3060_dk.ecpwt_rsmembership_transactions
+                           where (t.status == "pending" && t.type == "new" && t.@params == "membership_id=6" && t.gateway == "PBS")
+                              || (t.status == "pending" && t.type == "new" && t.@params == "membership_id=6" && t.gateway == "PayPal" && t.date < now_minus30)
+                           select t;
+
+            int antal = qrytrans.Count();
+            foreach (var tr in qrytrans)
+            {
+                bool newTrans = ((from q in p_dbData3060.tblrsmembership_transactions where q.trans_id == tr.id select q.id).Count() == 0);
+                if (!newTrans) 
+                    continue;
+                
+
+                recRSMembershipTransactions rec = new recRSMembershipTransactions
+                {
+                    id = tr.id,
+                    user_id = tr.user_id,
+                    user_email = tr.user_email,
+                    user_data = tr.user_data,
+                    type = tr.type,
+                    @params = tr.@params,
+                    date = tr.date,
+                    ip = tr.ip,
+                    price = tr.price,
+                    coupon = tr.coupon,
+                    currency = tr.currency,
+                    hash = tr.hash,
+                    custom = tr.custom,
+                    gateway = tr.gateway,
+                    status = tr.status,
+                    response_log = tr.response_log,
+                    indmeldelse = true,
+                    tilmeldtpbs = false
+                };
+                string st_php = "a" + tr.user_data.Substring(14);
+                PHPSerializationLibrary.Serializer serializer = new PHPSerializationLibrary.Serializer();
+                Hashtable php = (Hashtable)serializer.Deserialize(st_php);
+
+                rec.name = (string)php["name"];
+                rec.username = (string)php["username"];
+                Hashtable fields = (Hashtable)php["fields"];
+                rec.adresse = (string)fields["adresse"];
+                rec.postnr = (string)fields["postnr"];
+                rec.bynavn = (string)fields["bynavn"];
+                rec.mobil = (string)fields["mobil"];
+                rec.memberid = ((string)fields["memberid"] != "") ? (string)fields["memberid"] : (10000 + tr.user_id).ToString();
+                rec.kon = (string)((ArrayList)((Hashtable)php["membership_fields"])["kon"])[0];
+                rec.fodtaar = (string)((ArrayList)((Hashtable)php["membership_fields"])["fodtaar"])[0];
+                rec.message = (string)((Hashtable)php["membership_fields"])["message"];
+                rec.password = (string)php["password"];
+                memRSMembershipTransactions.Add(rec);
+                AntalForslag++;
+            }
+
+
+            if (AntalForslag > 0)
+            {
+                tbltilpb rec_tilpbs = new tbltilpb
+                {
+                    delsystem = wDelsystem,
+                    leverancetype = "0601",
+                    udtrukket = DateTime.Now
+                };
+                p_dbData3060.tbltilpbs.InsertOnSubmit(rec_tilpbs);
+                p_dbData3060.SubmitChanges();
+                lobnr = rec_tilpbs.id;
+
+                foreach (var rec_trans in memRSMembershipTransactions)
+                {
+                    if (rec_trans.indmeldelse) winfotekst = 11;
+                    else winfotekst = (rec_trans.tilmeldtpbs) ? 10 : 12;
+                    int next_faknr = (int)(from r in p_dbData3060.nextval("faknr") select r.id).First();
+                    tblfak rec_fak = new tblfak
+                    {
+                        betalingsdato = clsOverfoersel.bankdageplus(DateTime.Today, 8),
+                        Nr = int.Parse(rec_trans.memberid),
+                        faknr = next_faknr,
+                        advistekst = wadvistekst,
+                        advisbelob = rec_trans.price,
+                        infotekst = winfotekst,
+                        bogfkonto = 1800,
+                        vnr = 1,
+                        fradato = rec_trans.date,
+                        tildato = rec_trans.date.AddYears(1),
+                        indmeldelse = rec_trans.indmeldelse,
+                        tilmeldtpbs = rec_trans.tilmeldtpbs,
+                        tblrsmembership_transaction = new tblrsmembership_transaction()
+                        {
+                            trans_id = rec_trans.id,
+                            user_id = rec_trans.user_id,
+                            user_email = rec_trans.user_email,
+                            user_data = rec_trans.user_data,
+                            type = rec_trans.type,
+                            @params = rec_trans.@params,
+                            ip = rec_trans.ip,
+                            date = rec_trans.date,
+                            price = rec_trans.price,
+                            coupon = rec_trans.coupon,
+                            currency = rec_trans.currency,
+                            hash = rec_trans.hash,
+                            custom = rec_trans.custom,
+                            gateway = rec_trans.gateway,
+                            status = rec_trans.status,
+                            response_log = rec_trans.response_log,
+                            name = rec_trans.name,
+                            adresse = rec_trans.adresse,
+                            postnr = rec_trans.postnr,
+                            bynavn = rec_trans.bynavn,
+                            memberid = rec_trans.memberid,
+                        }
+                    };
+                    rec_tilpbs.tblfaks.Add(rec_fak);
+                    wantalfakturaer++;
+                }
+                p_dbData3060.SubmitChanges();
+            }
+            
+            return new Tuple<int, int>(wantalfakturaer, lobnr);
+
+        }
+
         public Tuple<int, int> kontingent_fakturer_bs1(dbData3060DataContext p_dbData3060)
         {
             int lobnr;
@@ -693,7 +829,7 @@ namespace nsPbs3060
                              select c).Count();
                 if (antal > 0) { throw new Exception("102 - Pbsforsendelse for id: " + lobnr + " er allerede sendt"); }
             }
-            if (fakryk == fakType.fdfaktura) //KONTINGENT FAKTURA
+            if ((fakryk == fakType.fdfaktura) ||  (fakryk == fakType.fdrsmembership)) //KONTINGENT FAKTURA
             {
                 var antal = (from c in p_dbData3060.tblfaks
                              where c.tilpbsid == lobnr
@@ -810,6 +946,30 @@ namespace nsPbs3060
                               Tilpbsid = r.tilpbsid,
                               Advistekst = r.advistekst,
                               Belob = r.advisbelob,
+                          };
+            }
+            else if (fakryk == fakType.fdrsmembership) //KONTINGENT FAKTURA
+            {
+                rstdebs = from k in p_dbData3060.tblrsmembership_transactions
+                          join f in p_dbData3060.tblfaks on k.id equals f.id
+                          where f.tilpbsid == lobnr && f.Nr != null
+                          orderby f.Nr
+                          select new clsRstdeb
+                          {
+                              Nr = f.Nr,
+                              Kundenr = 32001610000000 + f.Nr,
+                              Kaldenavn = k.name,
+                              Navn = k.name,
+                              Adresse = k.adresse,
+                              Postnr = k.postnr,
+                              Faknr = f.faknr,
+                              Betalingsdato = f.betalingsdato,
+                              Fradato = f.fradato,
+                              Tildato = f.tildato,
+                              Infotekst = f.infotekst,
+                              Tilpbsid = f.tilpbsid,
+                              Advistekst = f.advistekst,
+                              Belob = f.advisbelob,
                           };
             }
             else
@@ -1559,6 +1719,45 @@ namespace nsPbs3060
         public bool indmeldelse { get; set; }
     }
     public class MemRyk : List<recRyk>
+    {
+
+    }
+
+    public class recRSMembershipTransactions
+    {
+        public int id { get; set; }
+        public int user_id { get; set; }
+        public string user_data { get; set; }
+        public string user_email { get; set; }
+        public string type { get; set; }
+        public string @params { get; set; }
+        public string ip { get; set; }
+        public DateTime date { get; set; }
+        public Decimal price { get; set; }
+        public string coupon { get; set; }
+        public string currency { get; set; }
+        public string hash { get; set; }
+        public string custom { get; set; }
+        public string gateway { get; set; }
+        public string status { get; set; }
+        public string response_log { get; set; }
+
+        public string name { get; set; }
+        public string username { get; set; }
+        public string adresse { get; set; }
+        public string postnr { get; set; }
+        public string bynavn { get; set; }
+        public string mobil { get; set; }
+        public string memberid { get; set; }
+        public string kon { get; set; }
+        public string fodtaar { get; set; }
+        public string message { get; set; }
+        public string password { get; set; }
+        public bool indmeldelse { get; set; }
+        public bool tilmeldtpbs { get; set; }
+    }
+
+    public class MemRSMembershipTransactions : List<recRSMembershipTransactions>
     {
 
     }

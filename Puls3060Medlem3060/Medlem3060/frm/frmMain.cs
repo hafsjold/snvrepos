@@ -132,10 +132,25 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
-
-            MemRSMembershipTransactions cls = new MemRSMembershipTransactions();
+            puls3060_dkEntities jdb = new puls3060_dkEntities();
+            clsPbs601 objPbs601 = new clsPbs601();
+            Tuple<int, int> tresultc = objPbs601.rsmembeshhip_fakturer_auto(Program.dbData3060, jdb);
+            int AntalKontingent = tresultc.Item1;
+            int lobnrc = tresultc.Item2;
+            //AntalKontingent = 1;
+            //lobnrc = 5039; 
+            if ((AntalKontingent > 0))
+            {
+                objPbs601.faktura_og_rykker_601_action(Program.dbData3060, lobnrc, fakType.fdrsmembership);
+                clsSFTP objSFTPc = new clsSFTP(Program.dbData3060);
+                objSFTPc.WriteTilSFtp(Program.dbData3060, lobnrc);
+                objSFTPc.DisconnectSFtp();
+                objSFTPc = null;
+            }
 
             /*
+            WMemRSMembershipTransactions cls = new WMemRSMembershipTransactions();
+            
             var qryusers = from u in jdb.ecpwt_users
                            join m in jdb.ecpwt_rsmembership_membership_subscribers on u.id equals m.user_id
                            where m.membership_id == 6
@@ -464,6 +479,23 @@ namespace nsPuls3060
         private void regnearkMailSyncToolStripMenuItem_Click(object sender, EventArgs e)
         {
             mailSync();
+        }
+
+        private void payPalTilPBSNyeMedlemmerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            puls3060_dkEntities jdb = new puls3060_dkEntities();
+            clsPbs601 objPbs601 = new clsPbs601();
+            Tuple<int, int> tresultc = objPbs601.rsmembeshhip_fakturer_auto(Program.dbData3060, jdb);
+            int AntalKontingent = tresultc.Item1;
+            int lobnrc = tresultc.Item2;
+            if ((AntalKontingent > 0))
+            {
+                objPbs601.faktura_og_rykker_601_action(Program.dbData3060, lobnrc, fakType.fdrsmembership);
+                clsSFTP objSFTPc = new clsSFTP(Program.dbData3060);
+                objSFTPc.WriteTilSFtp(Program.dbData3060, lobnrc);
+                objSFTPc.DisconnectSFtp();
+                objSFTPc = null;
+            }
         }
 
     }

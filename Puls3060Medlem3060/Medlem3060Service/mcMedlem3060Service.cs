@@ -160,18 +160,21 @@ namespace nsMedlem3060Service
                             break;
 
                         case enumTask.KontingentNyeMedlemmer:
+                            Program.Log("Medlem3060Service KontingentNyeMedlemmer begin");
+                            puls3060_dkEntities jdb = new puls3060_dkEntities();
                             clsPbs601 objPbs601c = new clsPbs601();
-                            Tuple<int, int> tresultc = objPbs601c.kontingent_fakturer_auto(m_dbData3060);
+                            Tuple<int, int> tresultc = objPbs601c.rsmembeshhip_fakturer_auto(m_dbData3060, jdb);
                             int AntalKontingent = tresultc.Item1;
                             int lobnrc = tresultc.Item2;
-                            if ((AntalKontingent > 0)){
-                                objPbs601c.faktura_og_rykker_601_action(m_dbData3060, lobnrc, fakType.fdfaktura);
+                            if ((AntalKontingent > 0))
+                            {
+                                objPbs601c.faktura_og_rykker_601_action(m_dbData3060, lobnrc, fakType.fdrsmembership);
                                 clsSFTP objSFTPc = new clsSFTP(m_dbData3060);
                                 objSFTPc.WriteTilSFtp(m_dbData3060, lobnrc);
                                 objSFTPc.DisconnectSFtp();
                                 objSFTPc = null;
                             }
-                            objPbs601c = null;
+                            Program.Log("Medlem3060Service KontingentNyeMedlemmer end");
                             break;
 
                         case enumTask.SendEmailRykker:
