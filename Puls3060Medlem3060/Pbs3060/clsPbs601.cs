@@ -121,7 +121,7 @@ namespace nsPbs3060
             if (rsttil.leverancetype == null) { rsttil.leverancetype = ""; }
             p_dbData3060.SubmitChanges();
 
-            wleveranceid = (int)(from r in p_dbData3060.nextval("leveranceid") select r.id).First(); 
+            wleveranceid = (int)(from r in p_dbData3060.nextval("leveranceid") select r.id).First();
             tblpbsforsendelse rec_pbsforsendelse = new tblpbsforsendelse
             {
                 delsystem = rsttil.delsystem,
@@ -133,7 +133,36 @@ namespace nsPbs3060
             p_dbData3060.tblpbsforsendelses.InsertOnSubmit(rec_pbsforsendelse);
             rec_pbsforsendelse.tbltilpbs.Add(rsttil);
 
-            var rstdebs = from k in p_dbData3060.tblMedlems
+            IEnumerable<clsRstdeb> rstdebs;
+            if (true)
+            {
+                rstdebs = from k in p_dbData3060.tblrsmembership_transactions
+                          join f in p_dbData3060.tblfaks on k.id equals f.id
+                          join r in p_dbData3060.tbladvis on f.Nr equals r.Nr
+                          where r.tilpbsid == lobnr && r.Nr != null
+                          orderby r.faknr
+                          select new clsRstdeb
+                          {
+                              Nr = f.Nr,
+                              Kundenr = 32001610000000 + f.Nr,
+                              Kaldenavn = k.name,
+                              Navn = k.name,
+                              Adresse = k.adresse,
+                              Postnr = k.postnr,
+                              Faknr = r.faknr,
+                              Betalingsdato = f.betalingsdato,
+                              Fradato = f.fradato,
+                              Tildato = f.tildato,
+                              Infotekst = r.infotekst,
+                              Tilpbsid = r.tilpbsid,
+                              Advistekst = r.advistekst,
+                              Belob = r.advisbelob,
+                              Email = k.user_email
+                          }; 
+            }
+            else
+            {
+                rstdebs = from k in p_dbData3060.tblMedlems
                           join r in p_dbData3060.tbladvis on k.Nr equals r.Nr
                           where r.tilpbsid == lobnr && r.Nr != null
                           join f in p_dbData3060.tblfaks on r.faknr equals f.faknr
@@ -156,6 +185,7 @@ namespace nsPbs3060
                               Belob = r.advisbelob,
                               Email = k.Email
                           };
+            }
 
             wSaveFaknr = 0;
             foreach (var rstdeb in rstdebs)
@@ -252,19 +282,19 @@ namespace nsPbs3060
 
                 foreach (var rstmedlem in memRyk)
                 {
-                        winfotekst = (rstmedlem.indmeldelse) ? 31 : 30;
+                    winfotekst = (rstmedlem.indmeldelse) ? 31 : 30;
 
-                        tblrykker rec_rykker = new tblrykker
-                        {
-                            betalingsdato = rstmedlem.betalingsdato,
-                            Nr = rstmedlem.Nr,
-                            faknr = rstmedlem.faknr,
-                            advistekst = wadvistekst,
-                            advisbelob = rstmedlem.advisbelob,
-                            infotekst = winfotekst,
-                            rykkerdato = DateTime.Today,
-                        };
-                        rec_tilpbs.tblrykkers.Add(rec_rykker);
+                    tblrykker rec_rykker = new tblrykker
+                    {
+                        betalingsdato = rstmedlem.betalingsdato,
+                        Nr = rstmedlem.Nr,
+                        faknr = rstmedlem.faknr,
+                        advistekst = wadvistekst,
+                        advisbelob = rstmedlem.advisbelob,
+                        infotekst = winfotekst,
+                        rykkerdato = DateTime.Today,
+                    };
+                    rec_tilpbs.tblrykkers.Add(rec_rykker);
                 }
                 p_dbData3060.SubmitChanges();
             }
@@ -484,9 +514,9 @@ namespace nsPbs3060
             foreach (var tr in qrytrans)
             {
                 bool newTrans = ((from q in p_dbData3060.tblrsmembership_transactions where q.trans_id == tr.id select q.id).Count() == 0);
-                if (!newTrans) 
+                if (!newTrans)
                     continue;
-                
+
 
                 recRSMembershipTransactions rec = new recRSMembershipTransactions
                 {
@@ -591,7 +621,7 @@ namespace nsPbs3060
                 }
                 p_dbData3060.SubmitChanges();
             }
-            
+
             return new Tuple<int, int>(wantalfakturaer, lobnr);
 
         }
@@ -696,7 +726,7 @@ namespace nsPbs3060
             if (rsttil.leverancetype == null) { rsttil.leverancetype = ""; }
             p_dbData3060.SubmitChanges();
 
-            wleveranceid = (int)(from r in p_dbData3060.nextval("leveranceid") select r.id).First();  
+            wleveranceid = (int)(from r in p_dbData3060.nextval("leveranceid") select r.id).First();
             tblpbsforsendelse rec_pbsforsendelse = new tblpbsforsendelse
             {
                 delsystem = rsttil.delsystem,
@@ -829,7 +859,7 @@ namespace nsPbs3060
                              select c).Count();
                 if (antal > 0) { throw new Exception("102 - Pbsforsendelse for id: " + lobnr + " er allerede sendt"); }
             }
-            if ((fakryk == fakType.fdfaktura) ||  (fakryk == fakType.fdrsmembership)) //KONTINGENT FAKTURA
+            if ((fakryk == fakType.fdfaktura) || (fakryk == fakType.fdrsmembership)) //KONTINGENT FAKTURA
             {
                 var antal = (from c in p_dbData3060.tblfaks
                              where c.tilpbsid == lobnr
@@ -853,7 +883,7 @@ namespace nsPbs3060
             if (rsttil.leverancetype == null) { rsttil.leverancetype = ""; }
             p_dbData3060.SubmitChanges();
 
-            wleveranceid = (int)(from r in p_dbData3060.nextval("leveranceid") select r.id).First(); 
+            wleveranceid = (int)(from r in p_dbData3060.nextval("leveranceid") select r.id).First();
             tblpbsforsendelse rec_pbsforsendelse = new tblpbsforsendelse
             {
                 delsystem = rsttil.delsystem,
@@ -1612,10 +1642,10 @@ namespace nsPbs3060
             }
             else
             {
-                email.To.Add(new MailAddress(p_dbData3060.GetSysinfo("MAILTOADDR"), p_dbData3060.GetSysinfo("MAILTONAME"))); 
+                email.To.Add(new MailAddress(p_dbData3060.GetSysinfo("MAILTOADDR"), p_dbData3060.GetSysinfo("MAILTONAME")));
                 email.Subject = subject + " skal sendes til: " + ToName;
             }
-            email.Bcc.Add(new MailAddress(p_dbData3060.GetSysinfo("MAILTOADDR"), p_dbData3060.GetSysinfo("MAILTONAME"))); 
+            email.Bcc.Add(new MailAddress(p_dbData3060.GetSysinfo("MAILTOADDR"), p_dbData3060.GetSysinfo("MAILTONAME")));
 
 #endif
             email.Body = body;
@@ -1660,7 +1690,7 @@ namespace nsPbs3060
 
                     var SendtPost = imap_client.GetFolder("Sendt post");
                     SendtPost.Open(FolderAccess.ReadWrite);
-                    
+
                     SendtPost.Append(message);
                     smtp_client.Send(message);
 
