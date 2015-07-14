@@ -500,23 +500,27 @@ namespace nsPbs3060
             int wantalfakturaer = 0;
             string wDelsystem;
             wDelsystem = "BSH";
-            DateTime now_minus30 = DateTime.UtcNow.AddMinutes(-30);
+            DateTime now_minus60 = DateTime.UtcNow.AddMinutes(-60);
             DateTime KontingentFradato = DateTime.MinValue;
             int AntalForslag = 0;
             MemRSMembershipTransactions memRSMembershipTransactions = new MemRSMembershipTransactions();
 
             var qrytrans = from t in p_dbPuls3060_dk.ecpwt_rsmembership_transactions
                            where (t.status == "pending" && t.type == "new" && t.@params == "membership_id=6" && t.gateway == "PBS")
-                              || (t.status == "pending" && t.type == "new" && t.@params == "membership_id=6" && t.gateway == "PayPal" && t.date < now_minus30)
+                              || (t.status == "pending" && t.type == "new" && t.@params == "membership_id=6" && t.gateway == "PayPal" && t.date < now_minus60)
                            select t;
+            List<ecpwt_rsmembership_transactions> trans = qrytrans.ToList();
 
-            int antal = qrytrans.Count();
-            foreach (var tr in qrytrans)
+            int antal = trans.Count();
+            foreach (var tr in trans)
             {
+                bool AllreadyPayed = ((from q in p_dbPuls3060_dk.ecpwt_rsmembership_membership_subscribers where q.user_id == tr.user_id && q.membership_id == 6 && q.membership_end > now_minus60 select q.id).Count() > 0);
+                if (AllreadyPayed)
+                    continue;
+               
                 bool newTrans = ((from q in p_dbData3060.tblrsmembership_transactions where q.trans_id == tr.id select q.id).Count() == 0);
                 if (!newTrans)
                     continue;
-
 
                 recRSMembershipTransactions rec = new recRSMembershipTransactions
                 {

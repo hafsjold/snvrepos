@@ -380,7 +380,7 @@ namespace nsPbs3060
             if (sektion == "0196")
                 m_rec_indbetalingskort.regnr = rec.Substring(138, 4);
 
-            if ((from h in p_dbData3060.tblMedlems where h.Nr == m_rec_indbetalingskort.Nr select h).Count() == 1)
+            if ((from h in p_dbData3060.tblfaks where h.faknr == m_rec_indbetalingskort.faknr select h).Count() == 1)
             {
                 if ((from k in p_dbData3060.tblindbetalingskorts where k.Nr == m_rec_indbetalingskort.Nr && k.indbetalerident == m_rec_indbetalingskort.indbetalerident select k).Count() == 0)
                 {
