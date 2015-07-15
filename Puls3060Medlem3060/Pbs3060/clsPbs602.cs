@@ -18,7 +18,7 @@ namespace nsPbs3060
         private tblbetlin m_rec_betlin;
 
         public clsPbs602() { }
-        
+
         public void TestRead042()
         {
             string sektion;
@@ -98,7 +98,7 @@ namespace nsPbs3060
                                              select c).Count();
                                 if (antal > 0) { throw new Exception("242 - Leverance med pbsfilesid: " + wpbsfilesid + " og leverancespecifikation: " + leverancespecifikation + " er indlæst tidligere"); }
 
-                                wleveranceid = (int)(from r in p_dbData3060.nextval("leveranceid") select r.id).First(); 
+                                wleveranceid = (int)(from r in p_dbData3060.nextval("leveranceid") select r.id).First();
                                 m_rec_pbsforsendelse = new tblpbsforsendelse
                                 {
                                     delsystem = "BS1",
@@ -558,6 +558,48 @@ namespace nsPbs3060
 
             // Add tblbetlin
             m_rec_bet.tblbetlins.Add(m_rec_betlin);
+        }
+
+        public int betalinger_til_rsmembership(dbData3060DataContext p_dbData3060, puls3060_dkEntities p_dbPuls3060_dk)
+        {
+            int saveBetid = 0;
+            var rsmbrshp = from bl in p_dbData3060.tblbetlins
+                       where (bl.pbstranskode == "0236" || bl.pbstranskode == "0297")
+                       join b in p_dbData3060.tblbets on bl.betid equals b.id
+                       where b.rsmembership == null || b.rsmembership == false
+                       join p in p_dbData3060.tblfrapbs on b.frapbsid equals p.id
+                       orderby p.id, b.id, bl.id
+                       select new
+                       {
+                           Frapbsid = p.id,
+                           p.leverancespecifikation,
+                           Betid = b.id,
+                           Betlinid = bl.id,
+                           bl.betalingsdato,
+                           bl.indbetalingsdato,
+                           bl.indbetalingsbelob,
+                           bl.faknr,
+                           bl.debitorkonto
+                       };
+
+            int AntalBetalinger = rsmbrshp.Count();
+            if (rsmbrshp.Count() > 0)
+            {
+                foreach (var b in rsmbrshp)
+                {
+                    if (saveBetid != b.Betid) // ny gruppe
+                    {
+                        saveBetid = b.Betid;
+                        var rec_bet = (from ub in p_dbData3060.tblbets where ub.id == b.Betid select ub).First();
+                        rec_bet.rsmembership = true;
+                    }
+
+                    // Do somthing here
+
+                }
+                p_dbData3060.SubmitChanges();
+            }
+            return AntalBetalinger;
         }
     }
 }
