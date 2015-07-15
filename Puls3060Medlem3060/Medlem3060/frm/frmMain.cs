@@ -498,5 +498,12 @@ namespace nsPuls3060
             }
         }
 
+        private void opdaterRSMembershipToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            puls3060_dkEntities jdb = new puls3060_dkEntities();
+            clsPbs602 objPbs602 = new clsPbs602();
+            objPbs602.betalinger_til_rsmembership(Program.dbData3060, jdb);
+        }
+
     }
 }

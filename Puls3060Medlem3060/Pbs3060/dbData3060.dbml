@@ -71,23 +71,10 @@
       <Column Name="pbsforsendelseid" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="leverancespecifikation" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="leverancedannelsesdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="tblfrapb_tblbet" Member="tblbets" ThisKey="id" OtherKey="frapbsid" Type="tblbet" />
       <Association Name="tblfrapb_tblaftalelin" Member="tblaftalelins" ThisKey="id" OtherKey="frapbsid" Type="tblaftalelin" />
       <Association Name="tblfrapb_tblindbetalingskort" Member="tblindbetalingskorts" ThisKey="id" OtherKey="frapbsid" Type="tblindbetalingskort" />
+      <Association Name="tblfrapb_tblbet" Member="tblbets" ThisKey="id" OtherKey="frapbsid" Type="tblbet" />
       <Association Name="tblpbsforsendelse_tblfrapb" Member="tblpbsforsendelse" ThisKey="pbsforsendelseid" OtherKey="id" Type="tblpbsforsendelse" IsForeignKey="true" DeleteRule="CASCADE" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tblbet" Member="tblbets">
-    <Type Name="tblbet">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="frapbsid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="pbssektionnr" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
-      <Column Name="transkode" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
-      <Column Name="bogforingsdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="indbetalingsbelob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="summabogfort" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="tblbet_tblbetlin" Member="tblbetlins" ThisKey="id" OtherKey="betid" Type="tblbetlin" />
-      <Association Name="tblfrapb_tblbet" Member="tblfrapb" ThisKey="frapbsid" OtherKey="id" Type="tblfrapb" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.tblbetlin" Member="tblbetlins">
@@ -455,6 +442,20 @@
       <Column Name="bynavn" Type="System.String" DbType="VarChar(25) NOT NULL" CanBeNull="false" />
       <Column Name="memberid" Type="System.String" DbType="VarChar(15) NOT NULL" CanBeNull="false" />
       <Association Name="tblfak_tblrsmembership_transaction" Member="tblfak" ThisKey="id" OtherKey="id" Type="tblfak" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblbet" Member="tblbets">
+    <Type Name="tblbet">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="frapbsid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="pbssektionnr" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="transkode" Type="System.String" DbType="NVarChar(4)" CanBeNull="true" />
+      <Column Name="bogforingsdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="indbetalingsbelob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="summabogfort" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="rsmembership" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="tblbet_tblbetlin" Member="tblbetlins" ThisKey="id" OtherKey="betid" Type="tblbetlin" />
+      <Association Name="tblfrapb_tblbet" Member="tblfrapb" ThisKey="frapbsid" OtherKey="id" Type="tblfrapb" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Function Name="dbo.GetSysinfo" Method="GetSysinfo" IsComposable="true">

@@ -91,6 +91,11 @@ namespace nsPuls3060
                               join m in Program.dbData3060.tblMedlems on bi.Nr equals m.Nr
                               select new {bi.Nr, m.Navn, bi.bogfkonto };
 
+                    var msm = from f in Program.dbData3060.tblfaks
+                              where f.faknr == b.faknr
+                              join m in Program.dbData3060.tblrsmembership_transactions on f.Nr.ToString() equals m.memberid
+                              select new { f.faknr, f.Nr, m.name, f.bogfkonto };
+
                     if (fak.Count() == 1) //Kontingent betaling
                     {
                         var f = fak.First();
@@ -114,6 +119,21 @@ namespace nsPuls3060
                             Dato = ToDay,
                             Bilag = BS1_SidsteNr,
                             Tekst = (f.Nr + " " + f.Navn).PadRight(40, ' ').Substring(0, 40),
+                            Afstemningskonto = null,
+                            Belob = b.indbetalingsbelob,
+                            Kontonr = f.bogfkonto,
+                            Faknr = null
+                        };
+                        Program.karKladde.Add(kl);
+                    }
+                    else if (msm.Count() == 1) //Kontingent betaling for RSMembership
+                    {
+                        var f = msm.First();
+                        recKladde kl = new recKladde
+                        {
+                            Dato = ToDay,
+                            Bilag = BS1_SidsteNr,
+                            Tekst = ("F" + f.faknr + " " + f.Nr + " " + f.name).PadRight(40, ' ').Substring(0, 40),
                             Afstemningskonto = null,
                             Belob = b.indbetalingsbelob,
                             Kontonr = f.bogfkonto,
