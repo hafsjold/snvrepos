@@ -68,9 +68,10 @@
             this.databasePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importerFileFraPBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.payPalTilPBSNyeMedlemmerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.opdaterRSMembershipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.opdaterRSMembershipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testEmailRykkerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -313,7 +314,8 @@
             this.databasePasswordToolStripMenuItem,
             this.importerFileFraPBSToolStripMenuItem,
             this.payPalTilPBSNyeMedlemmerToolStripMenuItem,
-            this.opdaterRSMembershipToolStripMenuItem});
+            this.opdaterRSMembershipToolStripMenuItem,
+            this.testEmailRykkerToolStripMenuItem});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
             this.systemToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.systemToolStripMenuItem.Text = "System";
@@ -402,6 +404,13 @@
             this.payPalTilPBSNyeMedlemmerToolStripMenuItem.Text = "PayPal til PBS Nyt Medlem";
             this.payPalTilPBSNyeMedlemmerToolStripMenuItem.Click += new System.EventHandler(this.payPalTilPBSNyeMedlemmerToolStripMenuItem_Click);
             // 
+            // opdaterRSMembershipToolStripMenuItem
+            // 
+            this.opdaterRSMembershipToolStripMenuItem.Name = "opdaterRSMembershipToolStripMenuItem";
+            this.opdaterRSMembershipToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.opdaterRSMembershipToolStripMenuItem.Text = "Opdater RSMembership";
+            this.opdaterRSMembershipToolStripMenuItem.Click += new System.EventHandler(this.opdaterRSMembershipToolStripMenuItem_Click);
+            // 
             // hjælpToolStripMenuItem
             // 
             this.hjælpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -417,12 +426,12 @@
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
-            // opdaterRSMembershipToolStripMenuItem
+            // testEmailRykkerToolStripMenuItem
             // 
-            this.opdaterRSMembershipToolStripMenuItem.Name = "opdaterRSMembershipToolStripMenuItem";
-            this.opdaterRSMembershipToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.opdaterRSMembershipToolStripMenuItem.Text = "Opdater RSMembership";
-            this.opdaterRSMembershipToolStripMenuItem.Click += new System.EventHandler(this.opdaterRSMembershipToolStripMenuItem_Click);
+            this.testEmailRykkerToolStripMenuItem.Name = "testEmailRykkerToolStripMenuItem";
+            this.testEmailRykkerToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.testEmailRykkerToolStripMenuItem.Text = "Test Email Rykker";
+            this.testEmailRykkerToolStripMenuItem.Click += new System.EventHandler(this.testEmailRykkerToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -496,6 +505,7 @@
         private System.Windows.Forms.ToolStripMenuItem regnearkMailSyncToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem payPalTilPBSNyeMedlemmerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem opdaterRSMembershipToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem testEmailRykkerToolStripMenuItem;
    }
 }
 

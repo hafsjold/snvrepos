@@ -131,17 +131,17 @@ namespace nsMedlem3060Service
                             clsPbs686 objPbs686 = new clsPbs686();
                             int Antal686Filer = objPbs686.aftaleoplysninger_fra_pbs(m_dbData3060);
                             objPbs686 = null;
-                            
+
                             break;
 
                         case enumTask.SendEmailAdvis:
-                                clsPbs601 objPbs601a = new clsPbs601();
-                                Tuple<int, int> tresult = objPbs601a.advis_auto(m_dbData3060);
-                                int AntalAdvis = tresult.Item1;
-                                int lobnra = tresult.Item2;
-                                if ((AntalAdvis > 0))
-                                    objPbs601a.advis_email(m_dbData3060, lobnra);
-                                objPbs601a = null;
+                            clsPbs601 objPbs601a = new clsPbs601();
+                            Tuple<int, int> tresult = objPbs601a.advis_auto(m_dbData3060);
+                            int AntalAdvis = tresult.Item1;
+                            int lobnra = tresult.Item2;
+                            if ((AntalAdvis > 0))
+                                objPbs601a.advis_email(m_dbData3060, lobnra);
+                            objPbs601a = null;
                             break;
 
                         case enumTask.ProcessType602Files:
@@ -159,9 +159,9 @@ namespace nsMedlem3060Service
 
                         case enumTask.KontingentNyeMedlemmer:
                             Program.Log("Medlem3060Service KontingentNyeMedlemmer begin");
-                            puls3060_dkEntities jdb = new puls3060_dkEntities();
+                            puls3060_dkEntities cjdb = new puls3060_dkEntities();
                             clsPbs601 objPbs601c = new clsPbs601();
-                            Tuple<int, int> tresultc = objPbs601c.rsmembeshhip_fakturer_auto(m_dbData3060, jdb);
+                            Tuple<int, int> tresultc = objPbs601c.rsmembeshhip_fakturer_auto(m_dbData3060, cjdb);
                             int AntalKontingent = tresultc.Item1;
                             int lobnrc = tresultc.Item2;
                             if ((AntalKontingent > 0))
@@ -176,8 +176,9 @@ namespace nsMedlem3060Service
                             break;
 
                         case enumTask.SendEmailRykker:
+                            puls3060_dkEntities bjdb = new puls3060_dkEntities();
                             clsPbs601 objPbs601b = new clsPbs601();
-                            Tuple<int, int> tresultb = objPbs601b.rykker_auto(m_dbData3060);
+                            Tuple<int, int> tresultb = objPbs601b.rykker_auto(m_dbData3060, bjdb);
                             int AntalRykker = tresultb.Item1;
                             int lobnrb = tresultb.Item2;
                             if ((AntalRykker > 0))

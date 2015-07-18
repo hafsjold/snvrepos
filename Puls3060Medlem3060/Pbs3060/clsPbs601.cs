@@ -224,17 +224,19 @@ namespace nsPbs3060
             p_dbData3060.SubmitChanges();
         }
 
-        public Tuple<int, int> rykker_auto(dbData3060DataContext p_dbData3060)
+        public Tuple<int, int> rykker_auto(dbData3060DataContext p_dbData3060, puls3060_dkEntities p_dbPuls3060_dk)
         {
             int lobnr = 0;
             string wadvistekst = "";
             int winfotekst = 0;
             int wantalrykkere = 0;
+            int wantal1 = 0;
             string wDelsystem = "EML";
             MemRyk memRyk = new MemRyk();
+            DateTime now = DateTime.UtcNow;
 
-            var rstmedlems = from h in p_dbData3060.tblMedlems
-                             join f in p_dbData3060.tblfaks on h.Nr equals f.Nr
+            var rstmedlems = from h in p_dbData3060.tblrsmembership_transactions
+                             join f in p_dbData3060.tblfaks on h.id equals f.id
                              where f.SFaknr == null &&
                                    f.rykkerstop == false &&
                                    f.betalingsdato.Value.AddDays(90) > DateTime.Today && //må ikke være ælder end 90 dage <<<============mha 2014-01-11=====
@@ -243,62 +245,67 @@ namespace nsPbs3060
                              orderby f.fradato, f.id
                              select new
                              {
-                                 h.Nr,
+                                 Nr = int.Parse(h.memberid),
                                  f.betalingsdato,
                                  f.advisbelob,
                                  f.faknr,
-                                 f.indmeldelse
+                                 f.indmeldelse,
+                                 h.user_id
                              };
-
-            foreach (var m in rstmedlems)
+            wantal1 = rstmedlems.Count();
+            if (wantal1 > 0)
             {
-                if ((bool)p_dbData3060.kanRykkes(m.Nr))
+                foreach (var m in rstmedlems)
                 {
-                    recRyk rec = new recRyk
+                    bool AllreadyPayed = ((from q in p_dbPuls3060_dk.ecpwt_rsmembership_membership_subscribers where q.user_id == m.user_id && q.membership_id == 6 && q.membership_end > now select q.id).Count() > 0);
+                    if (!AllreadyPayed)
                     {
-                        Nr = m.Nr,
-                        betalingsdato = m.betalingsdato,
-                        advisbelob = m.advisbelob,
-                        faknr = m.faknr,
-                        indmeldelse = m.indmeldelse
-                    };
-                    memRyk.Add(rec);
-                    wantalrykkere++;
-                    if (wantalrykkere >= 30) break; //max 30 rykkere på gang
+                        recRyk rec = new recRyk
+                        {
+                            Nr = m.Nr,
+                            betalingsdato = m.betalingsdato,
+                            advisbelob = m.advisbelob,
+                            faknr = m.faknr,
+                            indmeldelse = m.indmeldelse
+                        };
+                        memRyk.Add(rec);
+                        wantalrykkere++;
+                        if (wantalrykkere >= 30) break; //max 30 rykkere på gang
+                    }
                 }
-            }
 
-            if (wantalrykkere > 0)
-            {
-                tbltilpb rec_tilpbs = new tbltilpb
+                if (wantalrykkere > 0)
                 {
-                    delsystem = wDelsystem,
-                    leverancetype = "0601",
-                    udtrukket = DateTime.Now
-                };
-                p_dbData3060.tbltilpbs.InsertOnSubmit(rec_tilpbs);
-                p_dbData3060.SubmitChanges();
-                lobnr = rec_tilpbs.id;
-
-                foreach (var rstmedlem in memRyk)
-                {
-                    winfotekst = (rstmedlem.indmeldelse) ? 31 : 30;
-
-                    tblrykker rec_rykker = new tblrykker
+                    tbltilpb rec_tilpbs = new tbltilpb
                     {
-                        betalingsdato = rstmedlem.betalingsdato,
-                        Nr = rstmedlem.Nr,
-                        faknr = rstmedlem.faknr,
-                        advistekst = wadvistekst,
-                        advisbelob = rstmedlem.advisbelob,
-                        infotekst = winfotekst,
-                        rykkerdato = DateTime.Today,
+                        delsystem = wDelsystem,
+                        leverancetype = "0601",
+                        udtrukket = DateTime.Now
                     };
-                    rec_tilpbs.tblrykkers.Add(rec_rykker);
+                    p_dbData3060.tbltilpbs.InsertOnSubmit(rec_tilpbs);
+                    p_dbData3060.SubmitChanges();
+                    lobnr = rec_tilpbs.id;
+
+                    foreach (var rstmedlem in memRyk)
+                    {
+                        winfotekst = (rstmedlem.indmeldelse) ? 31 : 30;
+
+                        tblrykker rec_rykker = new tblrykker
+                        {
+                            betalingsdato = rstmedlem.betalingsdato,
+                            Nr = rstmedlem.Nr,
+                            faknr = rstmedlem.faknr,
+                            advistekst = wadvistekst,
+                            advisbelob = rstmedlem.advisbelob,
+                            infotekst = winfotekst,
+                            rykkerdato = DateTime.Today,
+                        };
+                        rec_tilpbs.tblrykkers.Add(rec_rykker);
+                    }
+                    p_dbData3060.SubmitChanges();
                 }
-                p_dbData3060.SubmitChanges();
-            }
-            return new Tuple<int, int>(wantalrykkere, lobnr);
+                
+            } return new Tuple<int, int>(wantalrykkere, lobnr);
         }
 
         public Tuple<int, int> rykkere_bsh(dbData3060DataContext p_dbData3060)
@@ -742,19 +749,17 @@ namespace nsPbs3060
             p_dbData3060.tblpbsforsendelses.InsertOnSubmit(rec_pbsforsendelse);
             rec_pbsforsendelse.tbltilpbs.Add(rsttil);
 
-            var rstdebs = from k in p_dbData3060.tblMedlems
-                          join r in p_dbData3060.tblrykkers on k.Nr equals r.Nr
+            var rstdebs = from r in p_dbData3060.tblrykkers
                           where r.tilpbsid == lobnr && r.Nr != null
                           join f in p_dbData3060.tblfaks on r.faknr equals f.faknr
+                          join k in p_dbData3060.tblrsmembership_transactions on f.id equals k.id
                           orderby r.faknr
                           select new clsRstdeb
                           {
-                              Nr = k.Nr,
-                              Kundenr = 32001610000000 + k.Nr,
-                              Kaldenavn = k.Kaldenavn,
-                              Navn = k.Navn,
-                              Adresse = k.Adresse,
-                              Postnr = k.Postnr,
+                              Kaldenavn = k.name,
+                              Navn = k.name,
+                              Adresse = k.adresse,
+                              Postnr = k.postnr,
                               Faknr = r.faknr,
                               Betalingsdato = f.betalingsdato,
                               Fradato = f.fradato,
@@ -763,7 +768,7 @@ namespace nsPbs3060
                               Tilpbsid = r.tilpbsid,
                               Advistekst = r.advistekst,
                               Belob = r.advisbelob,
-                              Email = k.Email
+                              Email = k.user_email
                           };
 
             wSaveFaknr = 0;

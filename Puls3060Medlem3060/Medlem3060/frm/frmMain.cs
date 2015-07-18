@@ -505,5 +505,17 @@ namespace nsPuls3060
             objPbs602.betalinger_til_rsmembership(Program.dbData3060, jdb);
         }
 
+        private void testEmailRykkerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            puls3060_dkEntities jdb = new puls3060_dkEntities();
+            clsPbs601 objPbs601 = new clsPbs601();
+            Tuple<int, int> tresult = objPbs601.rykker_auto(Program.dbData3060, jdb);
+            int AntalRykker = tresult.Item1;
+            int lobnr = tresult.Item2;
+            if ((AntalRykker > 0))
+                objPbs601.rykker_email(Program.dbData3060, lobnr);
+            objPbs601 = null;
+        }
+
     }
 }
