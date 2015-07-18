@@ -210,6 +210,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>puls3060_dk.edmx</DependentUpon>
     </Compile>
+    <Compile Include="tblmembershippayment.cs">
+      <DependentUpon>puls3060_dk.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="dbData3060.dbml">

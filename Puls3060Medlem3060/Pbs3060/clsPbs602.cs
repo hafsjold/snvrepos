@@ -595,7 +595,20 @@ namespace nsPbs3060
                     }
 
                     // Do somthing here
-
+                    var qry = from f in p_dbData3060.tblfaks
+                              where f.faknr == b.faknr
+                              join m in p_dbData3060.tblrsmembership_transactions on f.id equals m.id
+                              select new tblmembershippayment
+                              {
+                                  rsmembership_transactions_id = m.trans_id,
+                                  membership_id = 6
+                              };
+                    if (qry.Count() == 1 )
+                    {
+                        tblmembershippayment rec_membershippayment = qry.First();
+                        p_dbPuls3060_dk.tblmembershippayments.Add(rec_membershippayment);
+                        p_dbPuls3060_dk.SaveChanges();
+                    }
                 }
                 p_dbData3060.SubmitChanges();
             }
