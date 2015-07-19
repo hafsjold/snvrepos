@@ -93,7 +93,7 @@ namespace nsPuls3060
 
                     var msm = from f in Program.dbData3060.tblfaks
                               where f.faknr == b.faknr
-                              join m in Program.dbData3060.tblrsmembership_transactions on f.Nr.ToString() equals m.memberid
+                              join m in Program.dbData3060.tblrsmembership_transactions on f.Nr equals m.memberid
                               select new { f.faknr, f.Nr, m.name, f.bogfkonto };
 
                     if (fak.Count() == 1) //Kontingent betaling

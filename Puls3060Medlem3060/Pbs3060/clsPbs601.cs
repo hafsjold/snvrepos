@@ -245,7 +245,7 @@ namespace nsPbs3060
                              orderby f.fradato, f.id
                              select new
                              {
-                                 Nr = int.Parse(h.memberid),
+                                 Nr = h.memberid,
                                  f.betalingsdato,
                                  f.advisbelob,
                                  f.faknr,
@@ -529,7 +529,8 @@ namespace nsPbs3060
                 if (!newTrans)
                     continue;
 
-                recRSMembershipTransactions rec = new recRSMembershipTransactions
+               User_data recud = clsHelper.unpack_UserData(tr.user_data);
+               recRSMembershipTransactions rec = new recRSMembershipTransactions
                 {
                     id = tr.id,
                     user_id = tr.user_id,
@@ -548,24 +549,23 @@ namespace nsPbs3060
                     status = tr.status,
                     response_log = tr.response_log,
                     indmeldelse = true,
-                    tilmeldtpbs = false
+                    tilmeldtpbs = false,
+                    name = recud.name,
+                    username = recud.username,
+                    adresse = recud.adresse,
+                    postnr = recud.postnr,
+                    bynavn = recud.bynavn,
+                    mobil = recud.mobil,
+                    memberid = (recud.memberid != "") ? int.Parse(recud.memberid) : 10000 + tr.user_id,
+                    kon = recud.kon,
+                    fodtaar = recud.fodtaar,
+                    message = recud.message,
+                    password = recud.password
                 };
-                string st_php = "a" + tr.user_data.Substring(14);
-                PHPSerializationLibrary.Serializer serializer = new PHPSerializationLibrary.Serializer();
-                Hashtable php = (Hashtable)serializer.Deserialize(st_php);
 
-                rec.name = (string)php["name"];
-                rec.username = (string)php["username"];
-                Hashtable fields = (Hashtable)php["fields"];
-                rec.adresse = (string)fields["adresse"];
-                rec.postnr = (string)fields["postnr"];
-                rec.bynavn = (string)fields["bynavn"];
-                rec.mobil = (string)fields["mobil"];
-                rec.memberid = ((string)fields["memberid"] != "") ? (string)fields["memberid"] : (10000 + tr.user_id).ToString();
-                rec.kon = (string)((ArrayList)((Hashtable)php["membership_fields"])["kon"])[0];
-                rec.fodtaar = (string)((ArrayList)((Hashtable)php["membership_fields"])["fodtaar"])[0];
-                rec.message = (string)((Hashtable)php["membership_fields"])["message"];
-                rec.password = (string)php["password"];
+                int? parm_membership_id = clsHelper.getParam(tr.@params, "membership_id");
+                rec.membership_id = (parm_membership_id != null) ? (int)parm_membership_id : 0;
+                rec.subscriber_id = clsHelper.getParam(tr.@params, "id");
                 memRSMembershipTransactions.Add(rec);
                 AntalForslag++;
             }
@@ -591,7 +591,7 @@ namespace nsPbs3060
                     tblfak rec_fak = new tblfak
                     {
                         betalingsdato = clsOverfoersel.bankdageplus(DateTime.Today, 8),
-                        Nr = int.Parse(rec_trans.memberid),
+                        Nr = rec_trans.memberid,
                         faknr = next_faknr,
                         advistekst = wadvistekst,
                         advisbelob = rec_trans.price,
@@ -625,6 +625,8 @@ namespace nsPbs3060
                             postnr = rec_trans.postnr,
                             bynavn = rec_trans.bynavn,
                             memberid = rec_trans.memberid,
+                            membership_id = rec_trans.membership_id,
+                            subscriber_id = rec_trans.subscriber_id 
                         }
                     };
                     rec_tilpbs.tblfaks.Add(rec_fak);
@@ -756,6 +758,8 @@ namespace nsPbs3060
                           orderby r.faknr
                           select new clsRstdeb
                           {
+                              Nr = k.memberid,
+                              Kundenr = 32001610000000 + k.memberid,
                               Kaldenavn = k.name,
                               Navn = k.name,
                               Adresse = k.adresse,
@@ -1709,6 +1713,7 @@ namespace nsPbs3060
                 smtp_client.Disconnect(true);
             }
         }
+ 
     }
 
     public class clsRstdeb
@@ -1787,11 +1792,13 @@ namespace nsPbs3060
         public string postnr { get; set; }
         public string bynavn { get; set; }
         public string mobil { get; set; }
-        public string memberid { get; set; }
+        public int memberid { get; set; }
         public string kon { get; set; }
         public string fodtaar { get; set; }
         public string message { get; set; }
         public string password { get; set; }
+        public int membership_id { get; set; }
+        public int? subscriber_id { get; set; }
         public bool indmeldelse { get; set; }
         public bool tilmeldtpbs { get; set; }
     }
@@ -1799,5 +1806,21 @@ namespace nsPbs3060
     public class MemRSMembershipTransactions : List<recRSMembershipTransactions>
     {
 
+    }
+
+    public class User_data
+    {
+        public string name { get; set; }
+        public string username { get; set; }
+        public string email { get; set; }
+        public string adresse { get; set; }
+        public string postnr { get; set; }
+        public string bynavn { get; set; }
+        public string mobil { get; set; }
+        public string memberid { get; set; }
+        public string kon { get; set; }
+        public string fodtaar { get; set; }
+        public string message { get; set; }
+        public string password { get; set; }
     }
 }
