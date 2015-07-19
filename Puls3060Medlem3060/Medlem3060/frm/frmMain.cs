@@ -133,6 +133,13 @@ namespace nsPuls3060
         {
 #if (DEBUG)
             puls3060_dkEntities jdb = new puls3060_dkEntities();
+            string user_data = (from t in jdb.ecpwt_rsmembership_transactions where t.id == 568 orderby t.id descending select t).First().user_data;
+            User_data mydata = clsHelper.unpack_UserData(user_data);
+            string mystring = clsHelper.pack_UserData(mydata);
+            /*
+            int? test = clsHelper.getParam("membership_id=6", "id");
+
+            puls3060_dkEntities jdb = new puls3060_dkEntities();
             clsPbs601 objPbs601 = new clsPbs601();
             Tuple<int, int> tresultc = objPbs601.rsmembeshhip_fakturer_auto(Program.dbData3060, jdb);
             int AntalKontingent = tresultc.Item1;
@@ -148,7 +155,6 @@ namespace nsPuls3060
                 objSFTPc = null;
             }
 
-            /*
             WMemRSMembershipTransactions cls = new WMemRSMembershipTransactions();
             
             var qryusers = from u in jdb.ecpwt_users

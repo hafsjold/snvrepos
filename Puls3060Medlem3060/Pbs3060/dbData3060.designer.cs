@@ -114,12 +114,12 @@ namespace nsPbs3060
     partial void InserttempBetalforslaglinie(tempBetalforslaglinie instance);
     partial void UpdatetempBetalforslaglinie(tempBetalforslaglinie instance);
     partial void DeletetempBetalforslaglinie(tempBetalforslaglinie instance);
-    partial void Inserttblrsmembership_transaction(tblrsmembership_transaction instance);
-    partial void Updatetblrsmembership_transaction(tblrsmembership_transaction instance);
-    partial void Deletetblrsmembership_transaction(tblrsmembership_transaction instance);
     partial void Inserttblbet(tblbet instance);
     partial void Updatetblbet(tblbet instance);
     partial void Deletetblbet(tblbet instance);
+    partial void Inserttblrsmembership_transaction(tblrsmembership_transaction instance);
+    partial void Updatetblrsmembership_transaction(tblrsmembership_transaction instance);
+    partial void Deletetblrsmembership_transaction(tblrsmembership_transaction instance);
     #endregion
 		
 		public dbData3060DataContext() : 
@@ -400,19 +400,19 @@ namespace nsPbs3060
 			}
 		}
 		
-		public System.Data.Linq.Table<tblrsmembership_transaction> tblrsmembership_transactions
-		{
-			get
-			{
-				return this.GetTable<tblrsmembership_transaction>();
-			}
-		}
-		
 		public System.Data.Linq.Table<tblbet> tblbets
 		{
 			get
 			{
 				return this.GetTable<tblbet>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblrsmembership_transaction> tblrsmembership_transactions
+		{
+			get
+			{
+				return this.GetTable<tblrsmembership_transaction>();
 			}
 		}
 		
@@ -8832,6 +8832,305 @@ namespace nsPbs3060
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblbet")]
+	public partial class tblbet : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private System.Nullable<int> _frapbsid;
+		
+		private string _pbssektionnr;
+		
+		private string _transkode;
+		
+		private System.Nullable<System.DateTime> _bogforingsdato;
+		
+		private System.Nullable<decimal> _indbetalingsbelob;
+		
+		private System.Nullable<bool> _summabogfort;
+		
+		private System.Nullable<bool> _rsmembership;
+		
+		private EntitySet<tblbetlin> _tblbetlins;
+		
+		private EntityRef<tblfrapb> _tblfrapb;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OnfrapbsidChanging(System.Nullable<int> value);
+    partial void OnfrapbsidChanged();
+    partial void OnpbssektionnrChanging(string value);
+    partial void OnpbssektionnrChanged();
+    partial void OntranskodeChanging(string value);
+    partial void OntranskodeChanged();
+    partial void OnbogforingsdatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnbogforingsdatoChanged();
+    partial void OnindbetalingsbelobChanging(System.Nullable<decimal> value);
+    partial void OnindbetalingsbelobChanged();
+    partial void OnsummabogfortChanging(System.Nullable<bool> value);
+    partial void OnsummabogfortChanged();
+    partial void OnrsmembershipChanging(System.Nullable<bool> value);
+    partial void OnrsmembershipChanged();
+    #endregion
+		
+		public tblbet()
+		{
+			this._tblbetlins = new EntitySet<tblbetlin>(new Action<tblbetlin>(this.attach_tblbetlins), new Action<tblbetlin>(this.detach_tblbetlins));
+			this._tblfrapb = default(EntityRef<tblfrapb>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_frapbsid", DbType="Int")]
+		public System.Nullable<int> frapbsid
+		{
+			get
+			{
+				return this._frapbsid;
+			}
+			set
+			{
+				if ((this._frapbsid != value))
+				{
+					if (this._tblfrapb.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnfrapbsidChanging(value);
+					this.SendPropertyChanging();
+					this._frapbsid = value;
+					this.SendPropertyChanged("frapbsid");
+					this.OnfrapbsidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pbssektionnr", DbType="NVarChar(4)")]
+		public string pbssektionnr
+		{
+			get
+			{
+				return this._pbssektionnr;
+			}
+			set
+			{
+				if ((this._pbssektionnr != value))
+				{
+					this.OnpbssektionnrChanging(value);
+					this.SendPropertyChanging();
+					this._pbssektionnr = value;
+					this.SendPropertyChanged("pbssektionnr");
+					this.OnpbssektionnrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_transkode", DbType="NVarChar(4)")]
+		public string transkode
+		{
+			get
+			{
+				return this._transkode;
+			}
+			set
+			{
+				if ((this._transkode != value))
+				{
+					this.OntranskodeChanging(value);
+					this.SendPropertyChanging();
+					this._transkode = value;
+					this.SendPropertyChanged("transkode");
+					this.OntranskodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bogforingsdato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> bogforingsdato
+		{
+			get
+			{
+				return this._bogforingsdato;
+			}
+			set
+			{
+				if ((this._bogforingsdato != value))
+				{
+					this.OnbogforingsdatoChanging(value);
+					this.SendPropertyChanging();
+					this._bogforingsdato = value;
+					this.SendPropertyChanged("bogforingsdato");
+					this.OnbogforingsdatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_indbetalingsbelob", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> indbetalingsbelob
+		{
+			get
+			{
+				return this._indbetalingsbelob;
+			}
+			set
+			{
+				if ((this._indbetalingsbelob != value))
+				{
+					this.OnindbetalingsbelobChanging(value);
+					this.SendPropertyChanging();
+					this._indbetalingsbelob = value;
+					this.SendPropertyChanged("indbetalingsbelob");
+					this.OnindbetalingsbelobChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_summabogfort", DbType="Bit")]
+		public System.Nullable<bool> summabogfort
+		{
+			get
+			{
+				return this._summabogfort;
+			}
+			set
+			{
+				if ((this._summabogfort != value))
+				{
+					this.OnsummabogfortChanging(value);
+					this.SendPropertyChanging();
+					this._summabogfort = value;
+					this.SendPropertyChanged("summabogfort");
+					this.OnsummabogfortChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rsmembership", DbType="Bit")]
+		public System.Nullable<bool> rsmembership
+		{
+			get
+			{
+				return this._rsmembership;
+			}
+			set
+			{
+				if ((this._rsmembership != value))
+				{
+					this.OnrsmembershipChanging(value);
+					this.SendPropertyChanging();
+					this._rsmembership = value;
+					this.SendPropertyChanged("rsmembership");
+					this.OnrsmembershipChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblbet_tblbetlin", Storage="_tblbetlins", ThisKey="id", OtherKey="betid")]
+		public EntitySet<tblbetlin> tblbetlins
+		{
+			get
+			{
+				return this._tblbetlins;
+			}
+			set
+			{
+				this._tblbetlins.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblfrapb_tblbet", Storage="_tblfrapb", ThisKey="frapbsid", OtherKey="id", IsForeignKey=true, DeleteRule="CASCADE")]
+		public tblfrapb tblfrapb
+		{
+			get
+			{
+				return this._tblfrapb.Entity;
+			}
+			set
+			{
+				tblfrapb previousValue = this._tblfrapb.Entity;
+				if (((previousValue != value) 
+							|| (this._tblfrapb.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblfrapb.Entity = null;
+						previousValue.tblbets.Remove(this);
+					}
+					this._tblfrapb.Entity = value;
+					if ((value != null))
+					{
+						value.tblbets.Add(this);
+						this._frapbsid = value.id;
+					}
+					else
+					{
+						this._frapbsid = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tblfrapb");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tblbetlins(tblbetlin entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblbet = this;
+		}
+		
+		private void detach_tblbetlins(tblbetlin entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblbet = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblrsmembership_transactions")]
 	public partial class tblrsmembership_transaction : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -8880,7 +9179,11 @@ namespace nsPbs3060
 		
 		private string _bynavn;
 		
-		private string _memberid;
+		private int _memberid;
+		
+		private int _membership_id;
+		
+		private System.Nullable<int> _subscriber_id;
 		
 		private EntityRef<tblfak> _tblfak;
 		
@@ -8930,8 +9233,12 @@ namespace nsPbs3060
     partial void OnpostnrChanged();
     partial void OnbynavnChanging(string value);
     partial void OnbynavnChanged();
-    partial void OnmemberidChanging(string value);
+    partial void OnmemberidChanging(int value);
     partial void OnmemberidChanged();
+    partial void Onmembership_idChanging(int value);
+    partial void Onmembership_idChanged();
+    partial void Onsubscriber_idChanging(System.Nullable<int> value);
+    partial void Onsubscriber_idChanged();
     #endregion
 		
 		public tblrsmembership_transaction()
@@ -9364,8 +9671,8 @@ namespace nsPbs3060
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_memberid", DbType="VarChar(15) NOT NULL", CanBeNull=false)]
-		public string memberid
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_memberid", DbType="Int NOT NULL")]
+		public int memberid
 		{
 			get
 			{
@@ -9380,6 +9687,46 @@ namespace nsPbs3060
 					this._memberid = value;
 					this.SendPropertyChanged("memberid");
 					this.OnmemberidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_membership_id", DbType="Int NOT NULL")]
+		public int membership_id
+		{
+			get
+			{
+				return this._membership_id;
+			}
+			set
+			{
+				if ((this._membership_id != value))
+				{
+					this.Onmembership_idChanging(value);
+					this.SendPropertyChanging();
+					this._membership_id = value;
+					this.SendPropertyChanged("membership_id");
+					this.Onmembership_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_subscriber_id", DbType="Int")]
+		public System.Nullable<int> subscriber_id
+		{
+			get
+			{
+				return this._subscriber_id;
+			}
+			set
+			{
+				if ((this._subscriber_id != value))
+				{
+					this.Onsubscriber_idChanging(value);
+					this.SendPropertyChanging();
+					this._subscriber_id = value;
+					this.SendPropertyChanged("subscriber_id");
+					this.Onsubscriber_idChanged();
 				}
 			}
 		}
@@ -9436,305 +9783,6 @@ namespace nsPbs3060
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblbet")]
-	public partial class tblbet : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private System.Nullable<int> _frapbsid;
-		
-		private string _pbssektionnr;
-		
-		private string _transkode;
-		
-		private System.Nullable<System.DateTime> _bogforingsdato;
-		
-		private System.Nullable<decimal> _indbetalingsbelob;
-		
-		private System.Nullable<bool> _summabogfort;
-		
-		private System.Nullable<bool> _rsmembership;
-		
-		private EntitySet<tblbetlin> _tblbetlins;
-		
-		private EntityRef<tblfrapb> _tblfrapb;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OnfrapbsidChanging(System.Nullable<int> value);
-    partial void OnfrapbsidChanged();
-    partial void OnpbssektionnrChanging(string value);
-    partial void OnpbssektionnrChanged();
-    partial void OntranskodeChanging(string value);
-    partial void OntranskodeChanged();
-    partial void OnbogforingsdatoChanging(System.Nullable<System.DateTime> value);
-    partial void OnbogforingsdatoChanged();
-    partial void OnindbetalingsbelobChanging(System.Nullable<decimal> value);
-    partial void OnindbetalingsbelobChanged();
-    partial void OnsummabogfortChanging(System.Nullable<bool> value);
-    partial void OnsummabogfortChanged();
-    partial void OnrsmembershipChanging(System.Nullable<bool> value);
-    partial void OnrsmembershipChanged();
-    #endregion
-		
-		public tblbet()
-		{
-			this._tblbetlins = new EntitySet<tblbetlin>(new Action<tblbetlin>(this.attach_tblbetlins), new Action<tblbetlin>(this.detach_tblbetlins));
-			this._tblfrapb = default(EntityRef<tblfrapb>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_frapbsid", DbType="Int")]
-		public System.Nullable<int> frapbsid
-		{
-			get
-			{
-				return this._frapbsid;
-			}
-			set
-			{
-				if ((this._frapbsid != value))
-				{
-					if (this._tblfrapb.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnfrapbsidChanging(value);
-					this.SendPropertyChanging();
-					this._frapbsid = value;
-					this.SendPropertyChanged("frapbsid");
-					this.OnfrapbsidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pbssektionnr", DbType="NVarChar(4)")]
-		public string pbssektionnr
-		{
-			get
-			{
-				return this._pbssektionnr;
-			}
-			set
-			{
-				if ((this._pbssektionnr != value))
-				{
-					this.OnpbssektionnrChanging(value);
-					this.SendPropertyChanging();
-					this._pbssektionnr = value;
-					this.SendPropertyChanged("pbssektionnr");
-					this.OnpbssektionnrChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_transkode", DbType="NVarChar(4)")]
-		public string transkode
-		{
-			get
-			{
-				return this._transkode;
-			}
-			set
-			{
-				if ((this._transkode != value))
-				{
-					this.OntranskodeChanging(value);
-					this.SendPropertyChanging();
-					this._transkode = value;
-					this.SendPropertyChanged("transkode");
-					this.OntranskodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bogforingsdato", DbType="DateTime")]
-		public System.Nullable<System.DateTime> bogforingsdato
-		{
-			get
-			{
-				return this._bogforingsdato;
-			}
-			set
-			{
-				if ((this._bogforingsdato != value))
-				{
-					this.OnbogforingsdatoChanging(value);
-					this.SendPropertyChanging();
-					this._bogforingsdato = value;
-					this.SendPropertyChanged("bogforingsdato");
-					this.OnbogforingsdatoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_indbetalingsbelob", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> indbetalingsbelob
-		{
-			get
-			{
-				return this._indbetalingsbelob;
-			}
-			set
-			{
-				if ((this._indbetalingsbelob != value))
-				{
-					this.OnindbetalingsbelobChanging(value);
-					this.SendPropertyChanging();
-					this._indbetalingsbelob = value;
-					this.SendPropertyChanged("indbetalingsbelob");
-					this.OnindbetalingsbelobChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_summabogfort", DbType="Bit")]
-		public System.Nullable<bool> summabogfort
-		{
-			get
-			{
-				return this._summabogfort;
-			}
-			set
-			{
-				if ((this._summabogfort != value))
-				{
-					this.OnsummabogfortChanging(value);
-					this.SendPropertyChanging();
-					this._summabogfort = value;
-					this.SendPropertyChanged("summabogfort");
-					this.OnsummabogfortChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rsmembership", DbType="Bit")]
-		public System.Nullable<bool> rsmembership
-		{
-			get
-			{
-				return this._rsmembership;
-			}
-			set
-			{
-				if ((this._rsmembership != value))
-				{
-					this.OnrsmembershipChanging(value);
-					this.SendPropertyChanging();
-					this._rsmembership = value;
-					this.SendPropertyChanged("rsmembership");
-					this.OnrsmembershipChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblbet_tblbetlin", Storage="_tblbetlins", ThisKey="id", OtherKey="betid")]
-		public EntitySet<tblbetlin> tblbetlins
-		{
-			get
-			{
-				return this._tblbetlins;
-			}
-			set
-			{
-				this._tblbetlins.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblfrapb_tblbet", Storage="_tblfrapb", ThisKey="frapbsid", OtherKey="id", IsForeignKey=true, DeleteRule="CASCADE")]
-		public tblfrapb tblfrapb
-		{
-			get
-			{
-				return this._tblfrapb.Entity;
-			}
-			set
-			{
-				tblfrapb previousValue = this._tblfrapb.Entity;
-				if (((previousValue != value) 
-							|| (this._tblfrapb.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tblfrapb.Entity = null;
-						previousValue.tblbets.Remove(this);
-					}
-					this._tblfrapb.Entity = value;
-					if ((value != null))
-					{
-						value.tblbets.Add(this);
-						this._frapbsid = value.id;
-					}
-					else
-					{
-						this._frapbsid = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("tblfrapb");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_tblbetlins(tblbetlin entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblbet = this;
-		}
-		
-		private void detach_tblbetlins(tblbetlin entity)
-		{
-			this.SendPropertyChanging();
-			entity.tblbet = null;
 		}
 	}
 	

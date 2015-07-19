@@ -37,7 +37,7 @@
     <ProductName>Medlem3060</ProductName>
     <PublisherName>Hafsjold</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>37</ApplicationRevision>
+    <ApplicationRevision>38</ApplicationRevision>
     <ApplicationVersion>6.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -275,7 +275,6 @@
     <Compile Include="kar\karPosteringer.cs" />
     <Compile Include="kar\karKontoplan.cs" />
     <Compile Include="kar\karKladde.cs" />
-    <Compile Include="mem\memRSMembershipTransactions.cs" />
     <Compile Include="mem\memRegnskaber.cs" />
     <Compile Include="mem\memAktivRegnskab.cs" />
     <Compile Include="frm\frmKreditor.cs">
