@@ -1808,19 +1808,4 @@ namespace nsPbs3060
 
     }
 
-    public class User_data
-    {
-        public string name { get; set; }
-        public string username { get; set; }
-        public string email { get; set; }
-        public string adresse { get; set; }
-        public string postnr { get; set; }
-        public string bynavn { get; set; }
-        public string mobil { get; set; }
-        public string memberid { get; set; }
-        public string kon { get; set; }
-        public string fodtaar { get; set; }
-        public string message { get; set; }
-        public string password { get; set; }
-    }
 }

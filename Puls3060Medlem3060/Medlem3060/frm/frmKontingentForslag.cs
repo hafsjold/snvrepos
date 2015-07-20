@@ -78,7 +78,8 @@ namespace nsPuls3060
 
         private void cmdForslag_Click(object sender, EventArgs e)
         {
-            getKontingentForslag();
+            //getKontingentForslag();
+            getRSMembership_KontingentForslag();
         }
 
         private void getKontingentForslag()
@@ -92,27 +93,27 @@ namespace nsPuls3060
             int ikontingent;
 
             var qry_medlemmer = from h in Program.dbData3060.tblMedlems
-                               select new clsMedlemInternAll
-                               {
-                                   Nr = h.Nr,
-                                   Navn = h.Navn,
-                                   Kaldenavn = h.Kaldenavn,
-                                   Adresse = h.Adresse,
-                                   Postnr = h.Postnr,
-                                   Bynavn = h.Bynavn,
-                                   Telefon = h.Telefon,
-                                   Email = h.Email,
-                                   Kon = h.Kon.ToString(),
-                                   FodtDato = h.FodtDato,
-                                   Bank = h.Bank,
-                                   erMedlem = ((bool)Program.dbData3060.erMedlem(h.Nr)) ? 1 : 0,
-                                   indmeldelsesDato = Program.dbData3060.indmeldtdato(h.Nr),
-                                   udmeldelsesDato = Program.dbData3060.udmeldtdato(h.Nr),
-                                   kontingentBetaltTilDato = Program.dbData3060.kontingentdato(h.Nr),
-                                   opkrævningsDato = Program.dbData3060.forfaldsdato(h.Nr),
-                                   kontingentTilbageførtDato = Program.dbData3060.tilbageførtkontingentdato(h.Nr),
-                                   erMedlemPusterummet = ((bool)Program.dbData3060.MedlemPusterummet(h.Nr)) ? 1 : 0,          
-                               };
+                                select new clsMedlemInternAll
+                                {
+                                    Nr = h.Nr,
+                                    Navn = h.Navn,
+                                    Kaldenavn = h.Kaldenavn,
+                                    Adresse = h.Adresse,
+                                    Postnr = h.Postnr,
+                                    Bynavn = h.Bynavn,
+                                    Telefon = h.Telefon,
+                                    Email = h.Email,
+                                    Kon = h.Kon.ToString(),
+                                    FodtDato = h.FodtDato,
+                                    Bank = h.Bank,
+                                    erMedlem = ((bool)Program.dbData3060.erMedlem(h.Nr)) ? 1 : 0,
+                                    indmeldelsesDato = Program.dbData3060.indmeldtdato(h.Nr),
+                                    udmeldelsesDato = Program.dbData3060.udmeldtdato(h.Nr),
+                                    kontingentBetaltTilDato = Program.dbData3060.kontingentdato(h.Nr),
+                                    opkrævningsDato = Program.dbData3060.forfaldsdato(h.Nr),
+                                    kontingentTilbageførtDato = Program.dbData3060.tilbageførtkontingentdato(h.Nr),
+                                    erMedlemPusterummet = ((bool)Program.dbData3060.MedlemPusterummet(h.Nr)) ? 1 : 0,
+                                };
 
 
             this.lvwMedlem.Items.Clear();
@@ -223,6 +224,151 @@ namespace nsPuls3060
             this.pgmForslag.Visible = false;
 
         }
+        private void getRSMembership_KontingentForslag()
+        {
+            puls3060_dkEntities jdb = new puls3060_dkEntities();
+            DateTime KontingentFradato = DateTime.MinValue;
+            DateTime KontingentTildato = DateTime.MinValue;
+            bool tilmeldtpbs = false;
+            bool indmeldelse = false;
+            int AntalMedlemmer = 0;
+            int AntalForslag = 0;
+            int ikontingent;
+            int iNr = 0;
+
+            var qry_rsmembership = from s in jdb.ecpwt_rsmembership_membership_subscribers
+                                   where s.membership_id == 6
+                                   join tf in jdb.ecpwt_rsmembership_transactions on s.from_transaction_id equals tf.id
+                                   join tl in jdb.ecpwt_rsmembership_transactions on s.last_transaction_id equals tl.id
+                                   join m in jdb.ecpwt_rsmembership_subscribers on s.user_id equals m.user_id
+                                   join u in jdb.ecpwt_users on s.user_id equals u.id
+                                   select new 
+                                   {
+                                        Nr = m.f14,
+                                        Navn = u.name,
+                                        Adresse = m.f1,
+                                        Postnr = m.f4,
+                                        indmeldelsesDato = tf.date,
+                                        kontingentBetaltTilDato = s.membership_end,
+                                        Kontingent = tl.price,
+                                        s.user_id,
+                                        tl.user_data
+                                   };
+
+
+            this.lvwMedlem.Items.Clear();
+            this.lvwKontingent.Items.Clear();
+
+            var antal = qry_rsmembership.Count();
+            this.pgmForslag.Show();
+            this.pgmForslag.Maximum = antal;
+            this.pgmForslag.Minimum = 0;
+            this.pgmForslag.Value = 0;
+            this.pgmForslag.Step = 1;
+            this.pgmForslag.Visible = true;
+            this.Label_Forslagstekst.Visible = false;
+            this.cmdFakturer.Visible = false;
+            this.DelsystemBSH.Visible = false;
+
+            pgmForslag.PerformStep();
+
+            var rsm = qry_rsmembership.ToArray();
+            foreach (var m in rsm)
+            {
+                bool bSelected = true;
+                AntalMedlemmer++;
+                tilmeldtpbs = false;
+                indmeldelse = false;
+
+                if (m.Nr == "")
+                    iNr = 10000 + m.user_id;
+                else
+                    iNr = int.Parse(m.Nr);
+            
+                bool erMedlemPusterummet = ((from um in jdb.ecpwt_user_usergroup_map
+                                         join g in jdb.ecpwt_usergroups on um.group_id equals g.id
+                                         where g.title == "Pusterummet" && um.user_id == m.user_id
+                                         select um.user_id).Count() > 0);
+
+                if (erMedlemPusterummet)
+                {
+                    bSelected = false;
+                }
+                else //Er medlem
+                {
+                    if ((m.kontingentBetaltTilDato != null) && (m.kontingentBetaltTilDato > m.indmeldelsesDato))  //'Der findes en kontingent-betaling
+                    {
+                        if (m.kontingentBetaltTilDato > this.DatoBetaltKontingentTil.Value)   //der er betalt kontingent efter DatoBetaltKontingentTil
+                        {
+                            bSelected = false;
+                        }
+                        else
+                        {
+                            if (m.kontingentBetaltTilDato >= m.indmeldelsesDato)
+                            {
+                                KontingentFradato = ((DateTime)m.kontingentBetaltTilDato);
+                            }
+                        }
+                    }
+                    else  //Der findes ingen kontingent-betaling
+                    {
+                        KontingentFradato = (DateTime)m.indmeldelsesDato;
+                        indmeldelse = true;
+                    }
+                }
+
+                /*
+                if (bSelected)
+                {
+                    if (m.opkrævningsDato != null) //Der findes en opkrævning
+                    {
+                        if (((DateTime)m.opkrævningsDato) > KontingentFradato)
+                        {
+                            bSelected = false;
+                        }
+                    }
+                }
+                */
+
+                if (bSelected)
+                {
+                    AntalForslag++;
+                    tilmeldtpbs = (bool)Program.dbData3060.erPBS(iNr);
+                    KontingentTildato = KontingentFradato.AddMonths(12);
+                    ikontingent = (int)m.Kontingent;
+
+                    ListViewItem it = lvwKontingent.Items.Add(m.user_id.ToString(), m.Navn, 0);
+                    //it.Tag = m;
+                    it.SubItems.Add(m.user_id.ToString());
+                    it.SubItems.Add(m.Adresse);
+                    it.SubItems.Add(m.Postnr);
+                    it.SubItems.Add(string.Format("{0:dd-MM-yyy}", KontingentFradato));
+                    it.SubItems.Add(ikontingent.ToString());
+                    it.SubItems.Add(string.Format("{0:dd-MM-yyy}", KontingentTildato));
+                    it.SubItems.Add((indmeldelse) ? "J" : "N");
+                    it.SubItems.Add((tilmeldtpbs) ? "J" : "N");
+                }
+                pgmForslag.PerformStep();
+            }
+            this.lvwKontingent.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+
+            if (AntalForslag == 0)
+            {
+                this.Label_Forslagstekst.Text = "Der er ingen forslag";
+                this.Label_Forslagstekst.Visible = true;
+                this.cmdFakturer.Visible = false;
+                this.DelsystemBSH.Visible = false;
+            }
+            else
+            {
+                this.Label_Forslagstekst.Visible = false;
+                this.cmdFakturer.Visible = true;
+                this.DelsystemBSH.Visible = true;
+            }
+            this.pgmForslag.Visible = false;
+
+        }
+
         private void lvwMedlem_ItemDrag(object sender, ItemDragEventArgs e)
         {
             Random random = new Random();
@@ -354,7 +500,7 @@ namespace nsPuls3060
             {
                 nsPbs3060.tempKontforslag rec_tempKontforslag = new nsPbs3060.tempKontforslag
                 {
-                    betalingsdato = clsOverfoersel.bankdageplus(this.DatoKontingentForfald.Value,0),
+                    betalingsdato = clsOverfoersel.bankdageplus(this.DatoKontingentForfald.Value, 0),
                     bsh = this.DelsystemBSH.Checked
                 };
                 Program.dbData3060.tempKontforslags.InsertOnSubmit(rec_tempKontforslag);
@@ -383,8 +529,8 @@ namespace nsPuls3060
                 Program.dbData3060.SubmitChanges();
 
                 clsPbs601 objPbs601 = new clsPbs601();
- 
-                Tuple<int,int> tresult = objPbs601.kontingent_fakturer_bs1(Program.dbData3060);
+
+                Tuple<int, int> tresult = objPbs601.kontingent_fakturer_bs1(Program.dbData3060);
                 AntalFakturaer = tresult.Item1;
                 lobnr = tresult.Item2;
                 this.pgmFaktura.Value = imax * 2;

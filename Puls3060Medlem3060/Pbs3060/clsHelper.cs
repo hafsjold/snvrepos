@@ -22,6 +22,23 @@ namespace nsPbs3060
             Trace.WriteLine(msg);
         }
     }
+    
+    public class User_data
+    {
+        public string name { get; set; }
+        public string username { get; set; }
+        public string email { get; set; }
+        public string adresse { get; set; }
+        public string postnr { get; set; }
+        public string bynavn { get; set; }
+        public string mobil { get; set; }
+        public string memberid { get; set; }
+        public string kon { get; set; }
+        public string fodtaar { get; set; }
+        public string message { get; set; }
+        public string fiknr { get; set; }
+        public string password { get; set; }
+    }
 
     public class clsHelper
     {
@@ -67,6 +84,7 @@ namespace nsPbs3060
             rec.kon = (string)((ArrayList)((Hashtable)php["membership_fields"])["kon"])[0];
             rec.fodtaar = (string)((ArrayList)((Hashtable)php["membership_fields"])["fodtaar"])[0];
             rec.message = (string)((Hashtable)php["membership_fields"])["message"];
+            rec.fiknr = (string)((Hashtable)php["membership_fields"])["fiknr"];
             rec.password = (string)php["password"];
 
             return rec;
@@ -91,6 +109,7 @@ namespace nsPbs3060
             fodtaar.Add(rec_user_data.fodtaar);
             membership_fields.Add("fodtaar",fodtaar);
             membership_fields.Add("message",rec_user_data.message);
+            if (rec_user_data.fiknr != null) membership_fields.Add("fiknr", rec_user_data.fiknr);
             
             php.Add("name",rec_user_data.name);
             php.Add("username",rec_user_data.username);
