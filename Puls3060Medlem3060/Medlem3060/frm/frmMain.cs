@@ -132,6 +132,8 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
+            string myHash = clsHelper.GenerateStringHash("Mogens Hafsjold Nørremarken 31 3060 Espergærde");
+            /*
             puls3060_dkEntities jdb = new puls3060_dkEntities();
 
             var qry_rsmembership = from s in jdb.ecpwt_rsmembership_membership_subscribers
@@ -154,7 +156,7 @@ namespace nsPuls3060
 
             var rsm = qry_rsmembership.ToArray();
             int test = 1;
-            /*
+
             puls3060_dkEntities jdb = new puls3060_dkEntities();
             string user_data = (from t in jdb.ecpwt_rsmembership_transactions where t.id == 568 orderby t.id descending select t).First().user_data;
             User_data mydata = clsHelper.unpack_UserData(user_data);

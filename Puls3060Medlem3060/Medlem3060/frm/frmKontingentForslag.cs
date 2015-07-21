@@ -317,18 +317,20 @@ namespace nsPuls3060
                     }
                 }
 
-                /*
+ 
                 if (bSelected)
                 {
-                    if (m.opkrævningsDato != null) //Der findes en opkrævning
+                    DateTime TodayMinus90 = DateTime.Now.AddDays(-90);
+                    var qry_fak = from f in Program.dbData3060.tblfaks where f.Nr == iNr && f.betalingsdato > TodayMinus90
+                                  join t in Program.dbData3060.tblrsmembership_transactions on f.id equals t.id
+                                  select f;
+
+                    if (qry_fak.Count() > 0) //Der findes en opkrævning
                     {
-                        if (((DateTime)m.opkrævningsDato) > KontingentFradato)
-                        {
-                            bSelected = false;
-                        }
+                             bSelected = false;
                     }
                 }
-                */
+
 
                 if (bSelected)
                 {
@@ -542,6 +544,89 @@ namespace nsPuls3060
                     TilPBSFilename = objSFTP.WriteTilSFtp(Program.dbData3060, lobnr);
                     objSFTP.DisconnectSFtp();
                     objSFTP = null;
+                }
+                this.pgmFaktura.Value = (imax * 4);
+                cmdFakturer.Text = "Afslut";
+                this.DelsystemBSH.Visible = false;
+                this.Label_Fakturatekst.Text = ("Leverance til PBS i filen " + TilPBSFilename);
+                this.Label_Fakturatekst.Visible = true;
+                this.pgmFaktura.Visible = false;
+            }
+        }
+
+        private void cmdRSMembership_Fakturer_Click(object sender, EventArgs e)
+        {
+            string TilPBSFilename = "Unknown";
+            int AntalFakturaer;
+            int lobnr;
+            int imax;
+            string keyval;
+            DateTime fradato;
+            DateTime tildato;
+            bool tilmeldtpbs;
+            bool indmeldelse;
+
+            double advisbelob;
+            if ((this.cmdFakturer.Text == "Afslut"))
+            {
+                this.Close();
+            }
+            this.cmdForslag.Visible = false;
+            this.cmdCancel.Visible = false;
+            imax = lvwKontingent.Items.Count;
+            this.pgmFaktura.Maximum = (imax * 4);
+            this.pgmFaktura.Minimum = 0;
+            this.pgmFaktura.Value = 0;
+            this.pgmFaktura.Visible = true;
+            if ((imax == 0))
+            {
+                this.Label_Fakturatekst.Text = "Der ikke noget at fakturere";
+                this.Label_Fakturatekst.Visible = true;
+            }
+            else
+            {
+                puls3060_dkEntities jdb = new puls3060_dkEntities();
+                Memkontingentforslag memKontingentforslag = new Memkontingentforslag();
+                var i = 0;
+                foreach (ListViewItem lvi in lvwKontingent.Items)
+                {
+                    this.pgmFaktura.Value = ++i;
+                    keyval = lvi.Name;
+                    fradato = DateTime.Parse(lvi.SubItems[4].Text);
+                    advisbelob = double.Parse(lvi.SubItems[5].Text);
+                    tildato = DateTime.Parse(lvi.SubItems[6].Text);
+                    indmeldelse = (lvi.SubItems[7].Text == "J") ? true : false;
+                    tilmeldtpbs = (lvi.SubItems[8].Text == "J") ? true : false;
+
+                    recKontingentforslag rec_Kontingentforslag = new recKontingentforslag
+                    {
+                        betalingsdato = clsOverfoersel.bankdageplus(this.DatoKontingentForfald.Value, 0),
+                        bsh = this.DelsystemBSH.Checked,
+                        user_id = int.Parse(keyval),
+                        membership_id = 6,
+                        advisbelob = (decimal)advisbelob,
+                        fradato = fradato,
+                        tildato = tildato,
+                        indmeldelse = indmeldelse,
+                        tilmeldtpbs = tilmeldtpbs,
+                    };
+                    memKontingentforslag.Add(rec_Kontingentforslag);
+                }
+
+                clsPbs601 objPbs601 = new clsPbs601();
+
+                Tuple<int, int> tresult = objPbs601.rsmembeshhip_kontingent_fakturer_bs1(Program.dbData3060, jdb,memKontingentforslag);
+                AntalFakturaer = tresult.Item1;
+                lobnr = tresult.Item2;
+                this.pgmFaktura.Value = imax * 2;
+                if ((AntalFakturaer > 0))
+                {
+                    //objPbs601.faktura_og_rykker_601_action(Program.dbData3060, lobnr, fakType.fdfaktura);
+                    //this.pgmFaktura.Value = (imax * 3);
+                    //clsSFTP objSFTP = new clsSFTP(Program.dbData3060);
+                    //TilPBSFilename = objSFTP.WriteTilSFtp(Program.dbData3060, lobnr);
+                    //objSFTP.DisconnectSFtp();
+                    //objSFTP = null;
                 }
                 this.pgmFaktura.Value = (imax * 4);
                 cmdFakturer.Text = "Afslut";
