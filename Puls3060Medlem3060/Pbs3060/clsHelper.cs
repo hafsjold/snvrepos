@@ -5,6 +5,7 @@ using System.Text;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Collections;
+using System.Security.Cryptography;
 
 namespace nsPbs3060
 {
@@ -22,7 +23,7 @@ namespace nsPbs3060
             Trace.WriteLine(msg);
         }
     }
-    
+
     public class User_data
     {
         public string name { get; set; }
@@ -40,9 +41,26 @@ namespace nsPbs3060
         public string password { get; set; }
     }
 
+    public class recKontingentforslag
+    {
+        public DateTime betalingsdato { get; set; }
+        public bool? bsh { get; set; }
+        public int user_id { get; set; }
+        public int membership_id { get; set; }
+        public DateTime fradato { get; set; }
+        public decimal advisbelob { get; set; }
+        public DateTime? tildato { get; set; }
+        public bool tilmeldtpbs { get; set; }
+        public bool indmeldelse { get; set; }
+    }
+    public class Memkontingentforslag : List<recKontingentforslag>
+    {
+    }
+
+
     public class clsHelper
     {
-        public static string FormatConnectionString(string connectstring) 
+        public static string FormatConnectionString(string connectstring)
         {
             var cb = new SqlConnectionStringBuilder(connectstring);
             return string.Format("Database={0} on {1}", cb.InitialCatalog, cb.DataSource);
@@ -65,7 +83,7 @@ namespace nsPbs3060
             return null;
         }
 
-        public static User_data unpack_UserData(string user_data) 
+        public static User_data unpack_UserData(string user_data)
         {
             User_data rec = new User_data();
             string st_php = "a" + user_data.Substring(14);
@@ -96,32 +114,49 @@ namespace nsPbs3060
             Hashtable fields = new Hashtable(6);
             Hashtable membership_fields = new Hashtable(4);
 
-            fields.Add("adresse",rec_user_data.adresse);
-            fields.Add("postnr",rec_user_data.postnr);
-            fields.Add("bynavn",rec_user_data.bynavn);
-            fields.Add("mobil",rec_user_data.mobil);
-            fields.Add("memberid",rec_user_data.memberid);
-            
+            fields.Add("adresse", rec_user_data.adresse);
+            fields.Add("postnr", rec_user_data.postnr);
+            fields.Add("bynavn", rec_user_data.bynavn);
+            fields.Add("mobil", rec_user_data.mobil);
+            fields.Add("memberid", rec_user_data.memberid);
+
             ArrayList kon = new ArrayList(1);
             kon.Add(rec_user_data.kon);
-            membership_fields.Add("kon",kon);
+            membership_fields.Add("kon", kon);
             ArrayList fodtaar = new ArrayList(1);
             fodtaar.Add(rec_user_data.fodtaar);
-            membership_fields.Add("fodtaar",fodtaar);
-            membership_fields.Add("message",rec_user_data.message);
+            membership_fields.Add("fodtaar", fodtaar);
+            membership_fields.Add("message", rec_user_data.message);
             if (rec_user_data.fiknr != null) membership_fields.Add("fiknr", rec_user_data.fiknr);
-            
-            php.Add("name",rec_user_data.name);
-            php.Add("username",rec_user_data.username);
+
+            php.Add("name", rec_user_data.name);
+            php.Add("username", rec_user_data.username);
             if (rec_user_data.email != null) php.Add("email", rec_user_data.email);
             php.Add("fields", fields);
-            php.Add("membership_fields",membership_fields);
+            php.Add("membership_fields", membership_fields);
             if (rec_user_data.password != null) php.Add("password", rec_user_data.password);
 
             PHPSerializationLibrary.Serializer serializer = new PHPSerializationLibrary.Serializer();
             string user_data = @"O:8:""stdClass""" + serializer.Serialize(php).Substring(1); ;
 
             return user_data;
+        }
+
+        public static string GenerateStringHash(string thisString)
+        {
+            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+            byte[] tmpSource;
+            byte[] tmpHash;
+
+            tmpSource = ASCIIEncoding.ASCII.GetBytes(thisString); // Turn password into byte array
+            tmpHash = md5.ComputeHash(tmpSource);
+
+            StringBuilder sOutput = new StringBuilder(tmpHash.Length);
+            for (int i = 0; i < tmpHash.Length; i++)
+            {
+                sOutput.Append(tmpHash[i].ToString("X2").ToLower());  // X2 formats to hexadecimal
+            }
+            return sOutput.ToString();
         }
 
     }

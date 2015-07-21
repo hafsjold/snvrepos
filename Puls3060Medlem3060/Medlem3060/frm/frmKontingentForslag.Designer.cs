@@ -139,7 +139,7 @@
             this.cmdFakturer.Text = "Fakturer";
             this.cmdFakturer.UseVisualStyleBackColor = true;
             this.cmdFakturer.Visible = false;
-            this.cmdFakturer.Click += new System.EventHandler(this.cmdFakturer_Click);
+            this.cmdFakturer.Click += new System.EventHandler(this.cmdRSMembership_Fakturer_Click);
             // 
             // splitContainer1
             // 

@@ -158,7 +158,7 @@ namespace nsPbs3060
                               Advistekst = r.advistekst,
                               Belob = r.advisbelob,
                               Email = k.user_email
-                          }; 
+                          };
             }
             else
             {
@@ -304,7 +304,7 @@ namespace nsPbs3060
                     }
                     p_dbData3060.SubmitChanges();
                 }
-                
+
             } return new Tuple<int, int>(wantalrykkere, lobnr);
         }
 
@@ -524,44 +524,44 @@ namespace nsPbs3060
                 bool AllreadyPayed = ((from q in p_dbPuls3060_dk.ecpwt_rsmembership_membership_subscribers where q.user_id == tr.user_id && q.membership_id == 6 && q.membership_end > now_minus60 select q.id).Count() > 0);
                 if (AllreadyPayed)
                     continue;
-               
+
                 bool newTrans = ((from q in p_dbData3060.tblrsmembership_transactions where q.trans_id == tr.id select q.id).Count() == 0);
                 if (!newTrans)
                     continue;
 
-               User_data recud = clsHelper.unpack_UserData(tr.user_data);
-               recRSMembershipTransactions rec = new recRSMembershipTransactions
-                {
-                    id = tr.id,
-                    user_id = tr.user_id,
-                    user_email = tr.user_email,
-                    user_data = tr.user_data,
-                    type = tr.type,
-                    @params = tr.@params,
-                    date = tr.date,
-                    ip = tr.ip,
-                    price = tr.price,
-                    coupon = tr.coupon,
-                    currency = tr.currency,
-                    hash = tr.hash,
-                    custom = tr.custom,
-                    gateway = tr.gateway,
-                    status = tr.status,
-                    response_log = tr.response_log,
-                    indmeldelse = true,
-                    tilmeldtpbs = false,
-                    name = recud.name,
-                    username = recud.username,
-                    adresse = recud.adresse,
-                    postnr = recud.postnr,
-                    bynavn = recud.bynavn,
-                    mobil = recud.mobil,
-                    memberid = (recud.memberid != "") ? int.Parse(recud.memberid) : 10000 + tr.user_id,
-                    kon = recud.kon,
-                    fodtaar = recud.fodtaar,
-                    message = recud.message,
-                    password = recud.password
-                };
+                User_data recud = clsHelper.unpack_UserData(tr.user_data);
+                recRSMembershipTransactions rec = new recRSMembershipTransactions
+                 {
+                     id = tr.id,
+                     user_id = tr.user_id,
+                     user_email = tr.user_email,
+                     user_data = tr.user_data,
+                     type = tr.type,
+                     @params = tr.@params,
+                     date = tr.date,
+                     ip = tr.ip,
+                     price = tr.price,
+                     coupon = tr.coupon,
+                     currency = tr.currency,
+                     hash = tr.hash,
+                     custom = tr.custom,
+                     gateway = tr.gateway,
+                     status = tr.status,
+                     response_log = tr.response_log,
+                     indmeldelse = true,
+                     tilmeldtpbs = false,
+                     name = recud.name,
+                     username = recud.username,
+                     adresse = recud.adresse,
+                     postnr = recud.postnr,
+                     bynavn = recud.bynavn,
+                     mobil = recud.mobil,
+                     memberid = (recud.memberid != "") ? int.Parse(recud.memberid) : 10000 + tr.user_id,
+                     kon = recud.kon,
+                     fodtaar = recud.fodtaar,
+                     message = recud.message,
+                     password = recud.password
+                 };
 
                 int? parm_membership_id = clsHelper.getParam(tr.@params, "membership_id");
                 rec.membership_id = (parm_membership_id != null) ? (int)parm_membership_id : 0;
@@ -626,7 +626,7 @@ namespace nsPbs3060
                             bynavn = rec_trans.bynavn,
                             memberid = rec_trans.memberid,
                             membership_id = rec_trans.membership_id,
-                            subscriber_id = rec_trans.subscriber_id 
+                            subscriber_id = rec_trans.subscriber_id
                         }
                     };
                     rec_tilpbs.tblfaks.Add(rec_fak);
@@ -700,6 +700,149 @@ namespace nsPbs3060
                 };
                 rec_tilpbs.tblfaks.Add(rec_fak);
                 wantalfakturaer++;
+            }
+            p_dbData3060.SubmitChanges();
+            return new Tuple<int, int>(wantalfakturaer, lobnr);
+
+        }
+
+        public Tuple<int, int> rsmembeshhip_kontingent_fakturer_bs1(dbData3060DataContext p_dbData3060, puls3060_dkEntities p_dbPuls3060_dk, Memkontingentforslag memKontingentforslag)
+        {
+            int lobnr;
+            string wadvistekst = "";
+            int winfotekst;
+            int wantalfakturaer;
+            wantalfakturaer = 0;
+
+            bool? wbsh = (from h in p_dbData3060.tempKontforslags select h.bsh).First();
+            bool bsh = (wbsh == null) ? false : (bool)wbsh;
+            string wDelsystem;
+            if (bsh) wDelsystem = "BSH";
+            else wDelsystem = "BS1";
+
+            tbltilpb rec_tilpbs = new tbltilpb
+            {
+                delsystem = wDelsystem,
+                leverancetype = "0601",
+                udtrukket = DateTime.Now
+            };
+            p_dbData3060.tbltilpbs.InsertOnSubmit(rec_tilpbs);
+            p_dbData3060.SubmitChanges();
+            lobnr = rec_tilpbs.id;
+
+            foreach (recKontingentforslag rec in memKontingentforslag)
+            {
+                var qry_rsmembership = from s in p_dbPuls3060_dk.ecpwt_rsmembership_membership_subscribers
+                                       where s.user_id == rec.user_id && s.membership_id == rec.membership_id
+                                       join tf in p_dbPuls3060_dk.ecpwt_rsmembership_transactions on s.from_transaction_id equals tf.id
+                                       join tl in p_dbPuls3060_dk.ecpwt_rsmembership_transactions on s.last_transaction_id equals tl.id
+                                       join m in p_dbPuls3060_dk.ecpwt_rsmembership_subscribers on s.user_id equals m.user_id
+                                       join u in p_dbPuls3060_dk.ecpwt_users on s.user_id equals u.id
+                                       select new
+                                       {
+                                           Nr = m.f14,
+                                           Navn = u.name,
+                                           Adresse = m.f1,
+                                           Postnr = m.f4,
+                                           Bynavn = m.f2,
+                                           Mobil = m.f6,
+                                           indmeldelsesDato = tf.date,
+                                           kontingentBetaltTilDato = s.membership_end,
+                                           Kontingent = tl.price,
+                                           user_id = s.user_id,
+                                           rsmembership_membership_subscribers_id = s.id,
+                                           last_transaction_id = s.last_transaction_id,
+                                           user_email = u.email,
+                                           user_data = tl.user_data,
+                                           currency = tl.currency
+                                       };
+                int antal = qry_rsmembership.Count();
+                if (antal != 1) continue;
+                var rsm = qry_rsmembership.First();
+
+                string hashkey = clsHelper.GenerateStringHash(rsm.user_id.ToString() + rsm.Navn + DateTime.Now.ToString());
+                User_data mydata = clsHelper.unpack_UserData(rsm.user_data);
+                mydata.password = null;
+                mydata.adresse = rsm.Adresse;
+                mydata.postnr = rsm.Postnr;
+                mydata.bynavn = rsm.Bynavn;
+                mydata.email = rsm.user_email;
+                mydata.mobil = rsm.Mobil;
+                if ((mydata.memberid == null) || (mydata.memberid == "")) mydata.memberid = (10000 + rsm.user_id).ToString();
+                string new_user_data = clsHelper.pack_UserData(mydata);
+                string newparm = string.Format(@"id={0};membership_id={1}", rsm.rsmembership_membership_subscribers_id, rec.membership_id);
+                ecpwt_rsmembership_transactions new_trans = new ecpwt_rsmembership_transactions 
+                {
+                    user_id = rsm.user_id,
+                    user_email = rsm.user_email,
+                    user_data = new_user_data,
+                    type = "renew",
+                    @params = newparm,
+                    date = DateTime.UtcNow,
+                    ip = "::1",
+                    price = rec.advisbelob,
+                    coupon = "",
+                    currency = rsm.currency,
+                    hash = "",
+                    custom = hashkey,
+                    gateway = "PBS",
+                    status = "pending",
+                    response_log = "",
+                };
+                p_dbPuls3060_dk.ecpwt_rsmembership_transactions.Add(new_trans);
+                p_dbPuls3060_dk.SaveChanges();
+
+                ecpwt_rsmembership_transactions rec_trans = (from t in p_dbPuls3060_dk.ecpwt_rsmembership_transactions where t.custom == hashkey select t).First();
+
+                //foreach (var rstmedlem in rsm)
+                {
+                    if (rec.indmeldelse) winfotekst = 11;
+                    else winfotekst = (rec.tilmeldtpbs) ? 10 : 12;
+                    int next_faknr = (int)(from r in p_dbData3060.nextval("faknr") select r.id).First();
+                    tblfak rec_fak = new tblfak
+                    {
+                        betalingsdato = rec.betalingsdato,
+                        Nr = int.Parse(rsm.Nr),
+                        faknr = next_faknr,
+                        advistekst = wadvistekst,
+                        advisbelob = rec.advisbelob,
+                        infotekst = winfotekst,
+                        bogfkonto = 1800,
+                        vnr = 1,
+                        fradato = rec.fradato,
+                        tildato = rec.tildato,
+                        indmeldelse = rec.indmeldelse,
+                        tilmeldtpbs = rec.tilmeldtpbs,
+                        tblrsmembership_transaction = new tblrsmembership_transaction()
+                        {
+                            trans_id = rec_trans.id,
+                            user_id = rec_trans.user_id,
+                            user_email = rec_trans.user_email,
+                            user_data = rec_trans.user_data,
+                            type = rec_trans.type,
+                            @params = rec_trans.@params,
+                            ip = rec_trans.ip,
+                            date = rec_trans.date,
+                            price = rec_trans.price,
+                            coupon = rec_trans.coupon,
+                            currency = rec_trans.currency,
+                            hash = rec_trans.hash,
+                            custom = rec_trans.custom,
+                            gateway = rec_trans.gateway,
+                            status = rec_trans.status,
+                            response_log = rec_trans.response_log,
+                            name = mydata.name,
+                            adresse = mydata.adresse,
+                            postnr = mydata.postnr,
+                            bynavn = mydata.bynavn,
+                            memberid = int.Parse(rsm.Nr),
+                            membership_id = rec.membership_id,
+                            subscriber_id = rsm.rsmembership_membership_subscribers_id
+                        }
+                    };
+                    rec_tilpbs.tblfaks.Add(rec_fak);
+                    wantalfakturaer++;
+                }
             }
             p_dbData3060.SubmitChanges();
             return new Tuple<int, int>(wantalfakturaer, lobnr);
@@ -1713,7 +1856,7 @@ namespace nsPbs3060
                 smtp_client.Disconnect(true);
             }
         }
- 
+
     }
 
     public class clsRstdeb
