@@ -601,7 +601,6 @@ namespace nsPbs3060
                               select new tblmembershippayment
                               {
                                   rsmembership_transactions_id = m.trans_id,
-                                  membership_id = 6
                               };
                     if (qry.Count() == 1 )
                     {
