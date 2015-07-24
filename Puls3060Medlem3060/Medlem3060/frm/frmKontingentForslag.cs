@@ -621,12 +621,12 @@ namespace nsPuls3060
                 this.pgmFaktura.Value = imax * 2;
                 if ((AntalFakturaer > 0))
                 {
-                    //objPbs601.faktura_og_rykker_601_action(Program.dbData3060, lobnr, fakType.fdfaktura);
-                    //this.pgmFaktura.Value = (imax * 3);
-                    //clsSFTP objSFTP = new clsSFTP(Program.dbData3060);
-                    //TilPBSFilename = objSFTP.WriteTilSFtp(Program.dbData3060, lobnr);
-                    //objSFTP.DisconnectSFtp();
-                    //objSFTP = null;
+                    objPbs601.faktura_og_rykker_601_action(Program.dbData3060, lobnr, fakType.fdrsmembership);
+                    this.pgmFaktura.Value = (imax * 3);
+                    clsSFTP objSFTP = new clsSFTP(Program.dbData3060);
+                    TilPBSFilename = objSFTP.WriteTilSFtp(Program.dbData3060, lobnr);
+                    objSFTP.DisconnectSFtp();
+                    objSFTP = null;
                 }
                 this.pgmFaktura.Value = (imax * 4);
                 cmdFakturer.Text = "Afslut";

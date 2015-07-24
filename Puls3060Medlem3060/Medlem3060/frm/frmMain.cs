@@ -132,8 +132,9 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
-            string myHash = clsHelper.GenerateStringHash("Mogens Hafsjold Nørremarken 31 3060 Espergærde");
+
             /*
+            string myHash = clsHelper.GenerateStringHash("Mogens Hafsjold Nørremarken 31 3060 Espergærde");
             puls3060_dkEntities jdb = new puls3060_dkEntities();
 
             var qry_rsmembership = from s in jdb.ecpwt_rsmembership_membership_subscribers
