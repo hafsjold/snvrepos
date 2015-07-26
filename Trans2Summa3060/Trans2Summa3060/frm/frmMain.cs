@@ -36,11 +36,6 @@ namespace Trans2Summa3060
 {
     public partial class FrmMain : Form
     {
-
-        private const string str_debug_clientConn = @"Data Source=vHD50;Initial Catalog=dbPuls3060Medlem;User ID=sa;password=Puls3060;Encrypt=True;TrustServerCertificate=True";
-        private const string str_release_clientConn = @"Data Source=qynhbd9h4f.database.windows.net;Initial Catalog=dbPuls3060Medlem;Integrated Security=False;Persist Security Info=True;User ID=sqlUser;password=Puls3060;Encrypt=True";
-        private const string str_serverConn = @"Data Source=(localdb)\v11.0;Initial Catalog=dbDataTransSumma;Integrated Security=True";
-
         public FrmMain()
         {
             InitializeComponent();
@@ -565,11 +560,11 @@ namespace Trans2Summa3060
         private void runSyncToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
-            SqlConnection clientConn = new SqlConnection(str_debug_clientConn);
+            SqlConnection clientConn = new SqlConnection(Program.str_debug_clientConn);
 #else
-            SqlConnection clientConn = new SqlConnection(str_release_clientConn);
+            SqlConnection clientConn = new SqlConnection(Program.str_release_clientConn);
 #endif
-            SqlConnection serverConn = new SqlConnection(str_serverConn);
+            SqlConnection serverConn = new SqlConnection(Program.str_serverConn);
             // create the sync orhcestrator
             SyncOrchestrator syncOrchestrator = new SyncOrchestrator();
 
@@ -611,11 +606,11 @@ namespace Trans2Summa3060
         private void setupScopeToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
-            SqlConnection clientConn = new SqlConnection(str_debug_clientConn);
+            SqlConnection clientConn = new SqlConnection(Program.str_debug_clientConn);
 #else
-            SqlConnection clientConn = new SqlConnection(str_release_clientConn);
+            SqlConnection clientConn = new SqlConnection(Program.str_release_clientConn);
 #endif
-            SqlConnection serverConn = new SqlConnection(str_serverConn);
+            SqlConnection serverConn = new SqlConnection(Program.str_serverConn);
             // define a new scope named PayPalSyncScope
             DbSyncScopeDescription scopeDesc = new DbSyncScopeDescription("PayPalSyncScope");
 
@@ -657,11 +652,11 @@ namespace Trans2Summa3060
         private void removeScopeToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
-            SqlConnection clientConn = new SqlConnection(str_debug_clientConn);
+            SqlConnection clientConn = new SqlConnection(Program.str_debug_clientConn);
 #else
-            SqlConnection clientConn = new SqlConnection(str_release_clientConn);
+            SqlConnection clientConn = new SqlConnection(Program.str_release_clientConn);
 #endif
-            SqlConnection serverConn = new SqlConnection(str_serverConn);
+            SqlConnection serverConn = new SqlConnection(Program.str_serverConn);
             SqlSyncScopeDeprovisioning objDeprovisioning1 = new SqlSyncScopeDeprovisioning(serverConn);
             objDeprovisioning1.DeprovisionStore();
 

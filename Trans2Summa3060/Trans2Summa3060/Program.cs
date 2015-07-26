@@ -50,6 +50,30 @@ namespace Trans2Summa3060
                 m_dbDataTransSumma = value;
             }
         }
+        private const string m_str_debug_clientConn = @"Data Source=vHD50;Initial Catalog=dbPuls3060Medlem;User ID=sa;password=Puls3060;Encrypt=True;TrustServerCertificate=True";
+        private const string m_str_release_clientConn = @"Data Source=qynhbd9h4f.database.windows.net;Initial Catalog=dbPuls3060Medlem;Integrated Security=False;Persist Security Info=True;User ID=sqlUser;password=Puls3060;Encrypt=True";
+        private const string m_str_serverConn = @"Data Source=(localdb)\v11.0;Initial Catalog=dbDataTransSumma;Integrated Security=True";
+        public static string str_debug_clientConn
+        {
+            get
+            {
+                return m_str_debug_clientConn;
+            }
+        }
+        public static string str_release_clientConn
+        {
+            get
+            {
+                return m_str_release_clientConn;
+            }
+        }
+        public static string str_serverConn
+        {
+            get
+            {
+                return m_str_serverConn;
+            }
+        }
         private static string m_ConnectStringWithoutPassword;
         private static string m_path_to_lock_summasummarum_kontoplan;
         private static FileStream m_filestream_to_lock_summasummarum_kontoplan;
