@@ -27,11 +27,19 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using System.Data.SqlClient;
+using Microsoft.Synchronization;
+using Microsoft.Synchronization.Data;
+using Microsoft.Synchronization.Data.SqlServer;
 
 namespace Trans2Summa3060
 {
     public partial class FrmMain : Form
     {
+
+        private const string str_debug_clientConn = @"Data Source=vHD50;Initial Catalog=dbPuls3060Medlem;User ID=sa;password=Puls3060;Encrypt=True;TrustServerCertificate=True";
+        private const string str_release_clientConn = @"Data Source=qynhbd9h4f.database.windows.net;Initial Catalog=dbPuls3060Medlem;Integrated Security=False;Persist Security Info=True;User ID=sqlUser;password=Puls3060;Encrypt=True";
+        private const string str_serverConn = @"Data Source=(localdb)\v11.0;Initial Catalog=dbDataTransSumma;Integrated Security=True";
 
         public FrmMain()
         {
@@ -552,6 +560,121 @@ namespace Trans2Summa3060
                 }
             }
             Program.dbDataTransSumma.SubmitChanges();
+        }
+
+        private void runSyncToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+#if (DEBUG)
+            SqlConnection clientConn = new SqlConnection(str_debug_clientConn);
+#else
+            SqlConnection clientConn = new SqlConnection(str_release_clientConn);
+#endif
+            SqlConnection serverConn = new SqlConnection(str_serverConn);
+            // create the sync orhcestrator
+            SyncOrchestrator syncOrchestrator = new SyncOrchestrator();
+
+            // set local provider of orchestrator to a sync provider associated with the 
+            // PayPalSyncScope in the client database
+            syncOrchestrator.LocalProvider = new SqlSyncProvider("PayPalSyncScope", clientConn);
+
+            // set the remote provider of orchestrator to a server sync provider associated with
+            // the PayPalSyncScope in the server database
+            syncOrchestrator.RemoteProvider = new SqlSyncProvider("PayPalSyncScope", serverConn);
+
+            // set the direction of sync session to Upload and Download
+            syncOrchestrator.Direction = SyncDirectionOrder.DownloadAndUpload;
+
+            // subscribe for errors that occur when applying changes to the client
+            ((SqlSyncProvider)syncOrchestrator.LocalProvider).ApplyChangeFailed += new EventHandler<DbApplyChangeFailedEventArgs>(Program_ApplyChangeFailed);
+
+            // execute the synchronization process
+            SyncOperationStatistics syncStats = syncOrchestrator.Synchronize();
+
+             DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
+                "Trans2Summa3060", //titleString 
+                "Total Changes Uploaded: " + syncStats.UploadChangesTotal + " Total Changes Downloaded: " + syncStats.DownloadChangesTotal, //bigString 
+                null, //smallString
+                null, //leftButton
+                "OK", //rightButton
+                global::Trans2Summa3060.Properties.Resources.Message_info); //iconSet
+        }
+
+        private void Program_ApplyChangeFailed(object sender, DbApplyChangeFailedEventArgs e)
+        {
+            // display conflict type
+            Console.WriteLine(e.Conflict.Type);
+
+            // display error message 
+            Console.WriteLine(e.Error);
+        }
+
+        private void setupScopeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+#if (DEBUG)
+            SqlConnection clientConn = new SqlConnection(str_debug_clientConn);
+#else
+            SqlConnection clientConn = new SqlConnection(str_release_clientConn);
+#endif
+            SqlConnection serverConn = new SqlConnection(str_serverConn);
+            // define a new scope named PayPalSyncScope
+            DbSyncScopeDescription scopeDesc = new DbSyncScopeDescription("PayPalSyncScope");
+
+            // get the description of the tblpaypal table from SERVER database
+            DbSyncTableDescription tblpaypalDesc = SqlSyncDescriptionBuilder.GetDescriptionForTable("tblpaypal", serverConn);
+
+            // add the table description to the sync scope definition
+            scopeDesc.Tables.Add(tblpaypalDesc);
+
+            // create a server scope provisioning object based on the PayPalSyncScope
+            SqlSyncScopeProvisioning serverProvision = new SqlSyncScopeProvisioning(serverConn, scopeDesc);
+
+            // skipping the creation of table since table already exists on server
+            serverProvision.SetCreateTableDefault(DbSyncCreationOption.Skip);
+
+            // start the provisioning process
+            serverProvision.Apply();
+
+            Console.WriteLine("Server Successfully Provisioned.");
+
+            // get the description of SyncScope from the server database
+            DbSyncScopeDescription scopeDesc2 = SqlSyncDescriptionBuilder.GetDescriptionForScope("PayPalSyncScope", serverConn);
+
+            // create server provisioning object based on the SyncScope
+            SqlSyncScopeProvisioning clientProvision = new SqlSyncScopeProvisioning(clientConn, scopeDesc2);
+
+            // starts the provisioning process
+            clientProvision.Apply();
+
+            DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
+                "Trans2Summa3060", //titleString 
+                "Client and Server Successfully Provisioned.", //bigString 
+                null, //smallString
+                null, //leftButton
+                "OK", //rightButton
+                global::Trans2Summa3060.Properties.Resources.Message_info); //iconSet
+        }
+
+        private void removeScopeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+#if (DEBUG)
+            SqlConnection clientConn = new SqlConnection(str_debug_clientConn);
+#else
+            SqlConnection clientConn = new SqlConnection(str_release_clientConn);
+#endif
+            SqlConnection serverConn = new SqlConnection(str_serverConn);
+            SqlSyncScopeDeprovisioning objDeprovisioning1 = new SqlSyncScopeDeprovisioning(serverConn);
+            objDeprovisioning1.DeprovisionStore();
+
+            SqlSyncScopeDeprovisioning objDeprovisioning2 = new SqlSyncScopeDeprovisioning(clientConn);
+            objDeprovisioning2.DeprovisionStore();
+
+            DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
+                "Trans2Summa3060", //titleString 
+                "Client and Server Successfully DeProvisioned.", //bigString 
+                null, //smallString
+                null, //leftButton
+                "OK", //rightButton
+                global::Trans2Summa3060.Properties.Resources.Message_info); //iconSet
         }
 
     }
