@@ -1,9 +1,14 @@
-﻿using System;
+﻿using Microsoft.Synchronization;
+using Microsoft.Synchronization.Data;
+using Microsoft.Synchronization.Data.SqlServer;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows.Forms;
 
 namespace Trans2Summa3060
 {
@@ -260,7 +265,8 @@ namespace Trans2Summa3060
             load_bankkonto4();
             load_bankkonto5();
             load_bankkonto6();
-            load_bankkonto7();      
+            load_bankkonto7();
+            runSync();
         }
 
         private void load_bankkonto1()
@@ -508,6 +514,52 @@ namespace Trans2Summa3060
 
                 Program.dbDataTransSumma.SubmitChanges();
             }
+        }
+
+        private void runSync()
+        {
+#if (DEBUG)
+            SqlConnection clientConn = new SqlConnection(Program.str_debug_clientConn);
+#else
+            SqlConnection clientConn = new SqlConnection(Program.str_release_clientConn);
+#endif
+            SqlConnection serverConn = new SqlConnection(Program.str_serverConn);
+            // create the sync orhcestrator
+            SyncOrchestrator syncOrchestrator = new SyncOrchestrator();
+
+            // set local provider of orchestrator to a sync provider associated with the 
+            // PayPalSyncScope in the client database
+            syncOrchestrator.LocalProvider = new SqlSyncProvider("PayPalSyncScope", clientConn);
+
+            // set the remote provider of orchestrator to a server sync provider associated with
+            // the PayPalSyncScope in the server database
+            syncOrchestrator.RemoteProvider = new SqlSyncProvider("PayPalSyncScope", serverConn);
+
+            // set the direction of sync session to Upload and Download
+            syncOrchestrator.Direction = SyncDirectionOrder.DownloadAndUpload;
+
+            // subscribe for errors that occur when applying changes to the client
+            ((SqlSyncProvider)syncOrchestrator.LocalProvider).ApplyChangeFailed += new EventHandler<DbApplyChangeFailedEventArgs>(karPaypal_ApplyChangeFailed);
+
+            // execute the synchronization process
+            SyncOperationStatistics syncStats = syncOrchestrator.Synchronize();
+
+            DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
+               "Trans2Summa3060", //titleString 
+               "Total Changes Uploaded: " + syncStats.UploadChangesTotal + " Total Changes Downloaded: " + syncStats.DownloadChangesTotal, //bigString 
+               null, //smallString
+               null, //leftButton
+               "OK", //rightButton
+               global::Trans2Summa3060.Properties.Resources.Message_info); //iconSet
+        }
+
+        private void karPaypal_ApplyChangeFailed(object sender, DbApplyChangeFailedEventArgs e)
+        {
+            // display conflict type
+            Console.WriteLine(e.Conflict.Type);
+
+            // display error message 
+            Console.WriteLine(e.Error);
         }
     }
 }
