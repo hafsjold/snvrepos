@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 18.75, 20.625" name="dbData3060">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 21.75, 20.625" name="dbData3060">
   <DataContextMoniker Name="/dbData3060DataContext" />
   <nestedChildShapes>
-    <classShape Id="4c0225d2-e49c-40d2-92c5-e9189c0232d9" absoluteBounds="16.25, 0.625, 2, 2.5401025390625">
+    <classShape Id="4c0225d2-e49c-40d2-92c5-e9189c0232d9" absoluteBounds="19.25, 0.75, 2, 2.5401025390625">
       <DataClassMoniker Name="/dbData3060DataContext/tblsftp" />
       <nestedChildShapes>
-        <elementListCompartment Id="f3e4e44e-a84c-48fb-a037-ebc3d955ee33" absoluteBounds="16.265, 1.0850000000000009, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="f3e4e44e-a84c-48fb-a037-ebc3d955ee33" absoluteBounds="19.265, 1.2100000000000009, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="14f91b98-e3d4-4e1a-a980-fb54f8e0381f" absoluteBounds="5.625, 3.125, 2, 3.1170068359374996">
@@ -117,35 +117,35 @@
         <classShapeMoniker Id="cad20e65-e295-42e0-841d-9950db6f773e" />
       </nodes>
     </associationConnector>
-    <classShape Id="453389fb-e1bd-4609-a3ab-6625b77356c8" absoluteBounds="16.5, 10.125, 2, 1.3862939453125005">
+    <classShape Id="453389fb-e1bd-4609-a3ab-6625b77356c8" absoluteBounds="19.375, 9.75, 2, 1.3862939453125005">
       <DataClassMoniker Name="/dbData3060DataContext/tempRykkerforslag" />
       <nestedChildShapes>
-        <elementListCompartment Id="79e969a1-e5f9-4fbc-8b30-a6072bdb9653" absoluteBounds="16.515, 10.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="79e969a1-e5f9-4fbc-8b30-a6072bdb9653" absoluteBounds="19.39, 10.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="c0b6b240-85d4-4169-b1c5-5c7377fee24e" absoluteBounds="16.5, 12.625, 2, 1.9631982421875005">
+    <classShape Id="c0b6b240-85d4-4169-b1c5-5c7377fee24e" absoluteBounds="19.5, 12.75, 2, 1.9631982421875005">
       <DataClassMoniker Name="/dbData3060DataContext/tempRykkerforslaglinie" />
       <nestedChildShapes>
-        <elementListCompartment Id="86f7e1ff-bd17-4486-bcb3-5b70d3eed32f" absoluteBounds="16.515, 13.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="86f7e1ff-bd17-4486-bcb3-5b70d3eed32f" absoluteBounds="19.515, 13.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(17.1553676891472 : 11.5112939453125); (17.1553676891472 : 12.625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(20.4375 : 11.1362939453125); (20.4375 : 12.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/dbData3060DataContext/tempRykkerforslag/tempRykkerforslag_tempRykkerforslaglinie" />
       <nodes>
         <classShapeMoniker Id="453389fb-e1bd-4609-a3ab-6625b77356c8" />
         <classShapeMoniker Id="c0b6b240-85d4-4169-b1c5-5c7377fee24e" />
       </nodes>
     </associationConnector>
-    <classShape Id="c3f80f29-199f-4f7a-8b0a-0441399f54ea" absoluteBounds="16.375, 3.625, 2, 2.7324039713541666">
+    <classShape Id="c3f80f29-199f-4f7a-8b0a-0441399f54ea" absoluteBounds="19.125, 3.625, 2, 2.7324039713541666">
       <DataClassMoniker Name="/dbData3060DataContext/tblkreditor" />
       <nestedChildShapes>
-        <elementListCompartment Id="7650263e-c7b9-4371-aff5-06ba5fec1b7e" absoluteBounds="16.39, 4.085, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="7650263e-c7b9-4371-aff5-06ba5fec1b7e" absoluteBounds="19.14, 4.085, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="4b4172c2-2f18-4af0-9621-b472b2205d73" absoluteBounds="16.25, 7, 2, 1.3862939453125005">
+    <classShape Id="4b4172c2-2f18-4af0-9621-b472b2205d73" absoluteBounds="19.125, 7, 2, 1.3862939453125005">
       <DataClassMoniker Name="/dbData3060DataContext/tblinfotekst" />
       <nestedChildShapes>
-        <elementListCompartment Id="03da370a-de0e-4632-a06e-78904d34f81e" absoluteBounds="16.265, 7.4600000000000009, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="03da370a-de0e-4632-a06e-78904d34f81e" absoluteBounds="19.14, 7.4600000000000009, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="2aeb80ec-5368-403c-9168-97895c9b9b6b" absoluteBounds="10.875, 10.125, 2, 1.1939925130208344">
@@ -326,5 +326,11 @@
         <classShapeMoniker Id="5b1db27e-dd62-43a9-a712-a3cc9b411a52" />
       </nodes>
     </associationConnector>
+    <classShape Id="5ea003db-002f-4972-b056-65b73a4762f7" absoluteBounds="15.75, 4.125, 2.75, 9.2706526692708326">
+      <DataClassMoniker Name="/dbData3060DataContext/tblpaypal" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4d9c5dfd-e909-4f37-a585-1279d1269b36" absoluteBounds="15.765, 4.585, 2.7199999999999998, 8.7106526692708321" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
