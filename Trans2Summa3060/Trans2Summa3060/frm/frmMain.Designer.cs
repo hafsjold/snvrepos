@@ -66,6 +66,7 @@
             this.actebisFakturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.templatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kontoudtogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.opdaterBilagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -77,7 +78,10 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonIndtastBilag = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.opdaterBilagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sQLSyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setupScopeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeScopeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.runSyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -353,7 +357,8 @@
             this.actebisFakturaToolStripMenuItem,
             this.templatesToolStripMenuItem,
             this.kontoudtogToolStripMenuItem,
-            this.opdaterBilagToolStripMenuItem});
+            this.opdaterBilagToolStripMenuItem,
+            this.sQLSyncToolStripMenuItem});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
             this.systemToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.systemToolStripMenuItem.Text = "System";
@@ -393,6 +398,13 @@
             this.kontoudtogToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.kontoudtogToolStripMenuItem.Text = "Kontoudtog";
             this.kontoudtogToolStripMenuItem.Click += new System.EventHandler(this.kontoudtogToolStripMenuItem_Click);
+            // 
+            // opdaterBilagToolStripMenuItem
+            // 
+            this.opdaterBilagToolStripMenuItem.Name = "opdaterBilagToolStripMenuItem";
+            this.opdaterBilagToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.opdaterBilagToolStripMenuItem.Text = "Opdater Bilag";
+            this.opdaterBilagToolStripMenuItem.Click += new System.EventHandler(this.opdaterBilagToolStripMenuItem_Click);
             // 
             // hjælpToolStripMenuItem
             // 
@@ -489,12 +501,36 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
-            // opdaterBilagToolStripMenuItem
+            // sQLSyncToolStripMenuItem
             // 
-            this.opdaterBilagToolStripMenuItem.Name = "opdaterBilagToolStripMenuItem";
-            this.opdaterBilagToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.opdaterBilagToolStripMenuItem.Text = "Opdater Bilag";
-            this.opdaterBilagToolStripMenuItem.Click += new System.EventHandler(this.opdaterBilagToolStripMenuItem_Click);
+            this.sQLSyncToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.runSyncToolStripMenuItem,
+            this.setupScopeToolStripMenuItem,
+            this.removeScopeToolStripMenuItem});
+            this.sQLSyncToolStripMenuItem.Name = "sQLSyncToolStripMenuItem";
+            this.sQLSyncToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.sQLSyncToolStripMenuItem.Text = "SQLSync";
+            // 
+            // setupScopeToolStripMenuItem
+            // 
+            this.setupScopeToolStripMenuItem.Name = "setupScopeToolStripMenuItem";
+            this.setupScopeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.setupScopeToolStripMenuItem.Text = "SetupScope";
+            this.setupScopeToolStripMenuItem.Click += new System.EventHandler(this.setupScopeToolStripMenuItem_Click);
+            // 
+            // removeScopeToolStripMenuItem
+            // 
+            this.removeScopeToolStripMenuItem.Name = "removeScopeToolStripMenuItem";
+            this.removeScopeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.removeScopeToolStripMenuItem.Text = "RemoveScope";
+            this.removeScopeToolStripMenuItem.Click += new System.EventHandler(this.removeScopeToolStripMenuItem_Click);
+            // 
+            // runSyncToolStripMenuItem
+            // 
+            this.runSyncToolStripMenuItem.Name = "runSyncToolStripMenuItem";
+            this.runSyncToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.runSyncToolStripMenuItem.Text = "RunSync";
+            this.runSyncToolStripMenuItem.Click += new System.EventHandler(this.runSyncToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -577,6 +613,10 @@
         private System.Windows.Forms.ToolStripMenuItem kontoudtogToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importPayPalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem opdaterBilagToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sQLSyncToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem runSyncToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem setupScopeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem removeScopeToolStripMenuItem;
     }
 }
 
