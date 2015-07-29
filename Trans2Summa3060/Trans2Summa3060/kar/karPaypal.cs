@@ -266,7 +266,6 @@ namespace Trans2Summa3060
             load_bankkonto5();
             load_bankkonto6();
             load_bankkonto7();
-            runSync();
         }
 
         private void load_bankkonto1()

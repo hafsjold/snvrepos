@@ -138,7 +138,7 @@
         <elementListCompartment Id="230b677c-675e-4504-9952-690fd2adeaba" absoluteBounds="3.5149999999999997, 3.9600000000000009, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.4375 : 2.39589680989583); (4.4375 : 3.5)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.4375 : 2.39589680989583); (4.4375 : 3.5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DbDataTransSumma/tblbilag/tblbilag_tblkladder" />
       <nodes>
         <classShapeMoniker Id="ae7ad7e8-f3e7-427b-bb70-fe19f0317d51" />
@@ -158,7 +158,7 @@
         <classShapeMoniker Id="58ad2bcf-09bf-4ae8-8427-84d51caee626" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(5.375 : 1.82294840494792); (7.375 : 1.82294840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(5.375 : 1.82294840494792); (7.375 : 1.82294840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DbDataTransSumma/tblbilag/tblbilag_tbltran" />
       <nodes>
         <classShapeMoniker Id="ae7ad7e8-f3e7-427b-bb70-fe19f0317d51" />
@@ -171,23 +171,23 @@
         <elementListCompartment Id="99736bc2-a2f0-44d2-8e5c-c47227c72a72" absoluteBounds="7.39, 8.585, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(8.375 : 7.06899251302083); (8.375 : 8.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.375 : 7.06899251302083); (8.375 : 8.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DbDataTransSumma/tblafstem/tblafstem_tblbankkonto" />
       <nodes>
         <classShapeMoniker Id="e533742e-3c89-4ec8-8313-0695ab26d1bf" />
         <classShapeMoniker Id="66d0f01e-2b1e-4524-abcc-77a614088f98" />
       </nodes>
     </associationConnector>
-    <classShape Id="1e8e758b-1a63-4733-a65a-997cbb8c9952" absoluteBounds="7.375, 11.75, 2, 9.2706526692708326">
+    <classShape Id="0da0fe20-1322-43bd-95e6-1c5b6b87c905" absoluteBounds="7.375, 11.5, 2, 9.4629541015625">
       <DataClassMoniker Name="/DbDataTransSumma/tblpaypal" />
       <nestedChildShapes>
-        <elementListCompartment Id="64337801-8512-4a03-8464-b5aafd4a2908" absoluteBounds="7.39, 12.21, 1.9700000000000002, 8.7106526692708321" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="09f24db8-21d3-4a66-9321-2beece417314" absoluteBounds="7.39, 11.96, 1.9700000000000002, 8.9029541015625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(8.375 : 11.75); (8.375 : 10.6651025390625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.375 : 11.5); (8.375 : 10.6651025390625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DbDataTransSumma/tblpaypal/tblpaypal_tblbankkonto" />
       <nodes>
-        <classShapeMoniker Id="1e8e758b-1a63-4733-a65a-997cbb8c9952" />
+        <classShapeMoniker Id="0da0fe20-1322-43bd-95e6-1c5b6b87c905" />
         <classShapeMoniker Id="66d0f01e-2b1e-4524-abcc-77a614088f98" />
       </nodes>
     </associationConnector>
