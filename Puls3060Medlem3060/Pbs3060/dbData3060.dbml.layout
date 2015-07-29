@@ -129,7 +129,7 @@
         <elementListCompartment Id="86f7e1ff-bd17-4486-bcb3-5b70d3eed32f" absoluteBounds="19.515, 13.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(20.4375 : 11.1362939453125); (20.4375 : 12.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(20.4375 : 11.1362939453125); (20.4375 : 12.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/dbData3060DataContext/tempRykkerforslag/tempRykkerforslag_tempRykkerforslaglinie" />
       <nodes>
         <classShapeMoniker Id="453389fb-e1bd-4609-a3ab-6625b77356c8" />
@@ -326,10 +326,10 @@
         <classShapeMoniker Id="5b1db27e-dd62-43a9-a712-a3cc9b411a52" />
       </nodes>
     </associationConnector>
-    <classShape Id="5ea003db-002f-4972-b056-65b73a4762f7" absoluteBounds="15.75, 4.125, 2.75, 9.2706526692708326">
+    <classShape Id="24163a1a-8418-4734-99f5-a0888ca6a13b" absoluteBounds="15.875, 4.25, 2.5, 9.4629541015625">
       <DataClassMoniker Name="/dbData3060DataContext/tblpaypal" />
       <nestedChildShapes>
-        <elementListCompartment Id="4d9c5dfd-e909-4f37-a585-1279d1269b36" absoluteBounds="15.765, 4.585, 2.7199999999999998, 8.7106526692708321" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="36e47b70-319a-4ddf-89f2-2a3ffd1340b5" absoluteBounds="15.89, 4.71, 2.4699999999999998, 8.9029541015625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

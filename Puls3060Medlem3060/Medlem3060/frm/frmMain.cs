@@ -132,7 +132,8 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
-
+            clsPayPal objPayPal = new clsPayPal();
+            objPayPal.testPayPal();
             /*
             string myHash = clsHelper.GenerateStringHash("Mogens Hafsjold Nørremarken 31 3060 Espergærde");
             puls3060_dkEntities jdb = new puls3060_dkEntities();
@@ -547,6 +548,29 @@ namespace nsPuls3060
             if ((AntalRykker > 0))
                 objPbs601.rykker_email(Program.dbData3060, lobnr);
             objPbs601 = null;
+        }
+
+        private void payPalBetalingerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string bigString = null;
+            string smallString = null;
+            clsSumma objSumma = new clsSumma();
+            int AntalBetalinger = objSumma.BogforPaypalBetalinger();
+            if (AntalBetalinger > 0)
+            {
+                bigString = String.Format("Der er {0} bogførte betalinger.", AntalBetalinger);
+            }
+            else
+            {
+                bigString = "Der er ingen nye betalinger";
+            } 
+            DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
+                "PayPal Betalinger", //titleString 
+                bigString, //bigString 
+                smallString, //smallString
+                null, //leftButton
+                "OK", //rightButton
+                global::nsPuls3060.Properties.Resources.Message_info); //iconSet
         }
 
     }
