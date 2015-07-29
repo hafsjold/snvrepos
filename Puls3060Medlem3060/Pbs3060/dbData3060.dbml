@@ -506,6 +506,7 @@
       <Column Name="Zip_Code" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Country" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Contact_Phone_Number" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Bogfoert" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.GetSysinfo" Method="GetSysinfo" IsComposable="true">

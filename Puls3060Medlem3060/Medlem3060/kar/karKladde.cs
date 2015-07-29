@@ -17,6 +17,8 @@ namespace nsPuls3060
         public decimal? Belob { get; set; }
         public int? Kontonr { get; set; }
         public int? Faknr { get; set; }
+        public int? Sagnr { get; set; }
+
     }
 
     public class KarKladde : List<recKladde>
@@ -38,7 +40,6 @@ namespace nsPuls3060
                 foreach (var b in qry_this)
                 {
                     string ln = "";
-                    //ln += (b.Dato == null) ? "," : String.Format("{0:yyyy-MM-dd}",b.Dato) + ",";
                     ln += (b.Dato == null) ? "," : (int)clsUtil.MSDateTime2Serial((DateTime)b.Dato) + ",";
                     ln += (b.Bilag == null) ? "," : b.Bilag.ToString() + ",";
                     ln += (b.Tekst == null) ? "," : @"""" + b.Tekst + @""",";
@@ -46,10 +47,10 @@ namespace nsPuls3060
                     ln += (b.Belob == null) ? "," : @"""" + ((decimal)(b.Belob)).ToString("0.00") + @""",";
                     ln += (b.Kontonr == null) ? ",," : b.Kontonr.ToString() + ",,";
                     ln += (b.Faknr == null) ? ",0," : b.Faknr.ToString() + ",0,";
+                    ln += (b.Sagnr == null) ? "" : b.Sagnr.ToString();
                     sr.WriteLine(ln);
                 }
             }
-
         }
 
     }

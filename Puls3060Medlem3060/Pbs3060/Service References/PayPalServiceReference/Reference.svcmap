@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="808ae5f0-ec4f-4b9b-8e87-48a207378fc6" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="https://www.paypal.com/wsdl/PayPalSvc.wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="PayPalSvc.wsdl" MetadataType="Wsdl" ID="caed8e7d-2878-4dd0-8795-8b3928d12385" SourceId="1" SourceUrl="https://www.paypalobjects.com/wsdl/PayPalSvc.wsdl" />
+    <MetadataFile FileName="eBLBaseComponents.xsd" MetadataType="Schema" ID="e25b6191-fc7e-402e-a2c4-2c29fef968c0" SourceId="1" SourceUrl="https://www.paypalobjects.com/wsdl/eBLBaseComponents.xsd" />
+    <MetadataFile FileName="EnhancedDataTypes.xsd" MetadataType="Schema" ID="92ae1ae0-502a-4733-a2fa-c8c02dcc050e" SourceId="1" SourceUrl="https://www.paypalobjects.com/wsdl/EnhancedDataTypes.xsd" />
+    <MetadataFile FileName="CoreComponentTypes.xsd" MetadataType="Schema" ID="7f00bce0-5121-4085-9378-f5a34093ee0d" SourceId="1" SourceUrl="https://www.paypalobjects.com/wsdl/CoreComponentTypes.xsd" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

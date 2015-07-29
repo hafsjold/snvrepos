@@ -9891,6 +9891,8 @@ namespace nsPbs3060
 		
 		private string _Contact_Phone_Number;
 		
+		private System.Nullable<bool> _Bogfoert;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -9983,6 +9985,8 @@ namespace nsPbs3060
     partial void OnCountryChanged();
     partial void OnContact_Phone_NumberChanging(string value);
     partial void OnContact_Phone_NumberChanged();
+    partial void OnBogfoertChanging(System.Nullable<bool> value);
+    partial void OnBogfoertChanged();
     #endregion
 		
 		public tblpaypal()
@@ -10866,6 +10870,26 @@ namespace nsPbs3060
 					this._Contact_Phone_Number = value;
 					this.SendPropertyChanged("Contact_Phone_Number");
 					this.OnContact_Phone_NumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Bogfoert", DbType="Bit")]
+		public System.Nullable<bool> Bogfoert
+		{
+			get
+			{
+				return this._Bogfoert;
+			}
+			set
+			{
+				if ((this._Bogfoert != value))
+				{
+					this.OnBogfoertChanging(value);
+					this.SendPropertyChanging();
+					this._Bogfoert = value;
+					this.SendPropertyChanged("Bogfoert");
+					this.OnBogfoertChanged();
 				}
 			}
 		}

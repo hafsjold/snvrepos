@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cdde062fe4dd47578f043a9fd7b07c36" Name="Diagram1">
+        <EntityTypeShape EntityType="puls3060_dkModel.ecpwt_rsmembership_membership_subscribers" Width="3.125" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="puls3060_dkModel.ecpwt_rsmembership_memberships" Width="2.625" PointX="5.125" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="puls3060_dkModel.ecpwt_rsmembership_subscribers" Width="2.5" PointX="0.875" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="puls3060_dkModel.ecpwt_rsmembership_transactions" Width="2.5" PointX="8.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="puls3060_dkModel.ecpwt_user_usergroup_map" Width="2.125" PointX="11.125" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="puls3060_dkModel.ecpwt_usergroups" Width="1.625" PointX="8.625" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="puls3060_dkModel.ecpwt_users" Width="1.5" PointX="11.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="puls3060_dkModel.tblmembershippayment" Width="3.25" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="puls3060_dkModel.tblpaypalpayment" Width="2" PointX="8.375" PointY="8.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.IO;
+using nsPbs3060.PayPalServiceReference;
 
 namespace nsPbs3060
 {
@@ -564,23 +565,23 @@ namespace nsPbs3060
         {
             int saveBetid = 0;
             var rsmbrshp = from bl in p_dbData3060.tblbetlins
-                       where (bl.pbstranskode == "0236" || bl.pbstranskode == "0297")
-                       join b in p_dbData3060.tblbets on bl.betid equals b.id
-                       where b.rsmembership == null || b.rsmembership == false
-                       join p in p_dbData3060.tblfrapbs on b.frapbsid equals p.id
-                       orderby p.id, b.id, bl.id
-                       select new
-                       {
-                           Frapbsid = p.id,
-                           p.leverancespecifikation,
-                           Betid = b.id,
-                           Betlinid = bl.id,
-                           bl.betalingsdato,
-                           bl.indbetalingsdato,
-                           bl.indbetalingsbelob,
-                           bl.faknr,
-                           bl.debitorkonto
-                       };
+                           where (bl.pbstranskode == "0236" || bl.pbstranskode == "0297")
+                           join b in p_dbData3060.tblbets on bl.betid equals b.id
+                           where b.rsmembership == null || b.rsmembership == false
+                           join p in p_dbData3060.tblfrapbs on b.frapbsid equals p.id
+                           orderby p.id, b.id, bl.id
+                           select new
+                           {
+                               Frapbsid = p.id,
+                               p.leverancespecifikation,
+                               Betid = b.id,
+                               Betlinid = bl.id,
+                               bl.betalingsdato,
+                               bl.indbetalingsdato,
+                               bl.indbetalingsbelob,
+                               bl.faknr,
+                               bl.debitorkonto
+                           };
 
             int AntalBetalinger = rsmbrshp.Count();
             if (rsmbrshp.Count() > 0)
@@ -602,7 +603,7 @@ namespace nsPbs3060
                               {
                                   rsmembership_transactions_id = m.trans_id,
                               };
-                    if (qry.Count() == 1 )
+                    if (qry.Count() == 1)
                     {
                         tblmembershippayment rec_membershippayment = qry.First();
                         p_dbPuls3060_dk.tblmembershippayments.Add(rec_membershippayment);
@@ -612,6 +613,152 @@ namespace nsPbs3060
                 p_dbData3060.SubmitChanges();
             }
             return AntalBetalinger;
+        }
+
+        public MemBogfoeringsKlader konter_paypal_betalinger_fra_rsmembership(puls3060_dkEntities p_dbPuls3060_dk)
+        {
+            DateTime Regnskabsaar_Startdato = new DateTime(DateTime.Now.Year, 1, 1);
+            DateTime Regnskabsaar_Slutdato = new DateTime(DateTime.Now.Year, 12, 31);
+            return konter_paypal_betalinger_fra_rsmembership(p_dbPuls3060_dk, Regnskabsaar_Startdato, Regnskabsaar_Slutdato);
+        }
+
+        public MemBogfoeringsKlader konter_paypal_betalinger_fra_rsmembership(puls3060_dkEntities p_dbPuls3060_dk, DateTime Regnskabsaar_Startdato, DateTime Regnskabsaar_Slutdato)
+        {
+            clsPayPal objPayPal = new clsPayPal();
+            MemBogfoeringsKlader klader = new MemBogfoeringsKlader();
+            int BS1_SidsteNr = 0;
+            var qry_rsmembership = from s in p_dbPuls3060_dk.ecpwt_rsmembership_membership_subscribers
+                                   where s.membership_id == 6
+                                   join tl in p_dbPuls3060_dk.ecpwt_rsmembership_transactions on s.last_transaction_id equals tl.id
+                                   where tl.gateway == "PayPal"
+                                   join p in p_dbPuls3060_dk.tblpaypalpayments on tl.hash equals p.paypal_transactions_id into p1
+                                   from p in p1.DefaultIfEmpty()
+                                   where p.bogfoert == null || p.bogfoert == false
+                                   join u in p_dbPuls3060_dk.ecpwt_users on s.user_id equals u.id
+                                   select new
+                                   {
+                                       paypal_transaction_id = tl.hash,
+                                       Navn = u.name,
+                                       s.membership_id,
+                                       s.membership_start,
+                                       s.membership_end,
+                                   };
+            var arr_rsmembership = qry_rsmembership.ToArray();
+
+            if (arr_rsmembership.Count() > 0)
+            {
+                foreach (var rsmembership in arr_rsmembership)
+                {
+                    PaymentTransactionSearchResultType paypal_trans = objPayPal.getPayPalTransaction(rsmembership.paypal_transaction_id);
+
+                    decimal Belob = decimal.Parse(paypal_trans.GrossAmount.Value.Replace(".", ","));
+                    decimal[] arrBeløb = clsPbs602.fordeling(Belob, rsmembership.membership_start, rsmembership.membership_end, Regnskabsaar_Startdato, Regnskabsaar_Slutdato);
+                    string stdate = string.Format(" {0}-{1}", rsmembership.membership_start.ToString("d.M.yyyy"), rsmembership.membership_end.ToString("d.M.yyyy"));
+
+                    int wBilag = ++BS1_SidsteNr;
+                    recBogfoeringsKlader recklade = new recBogfoeringsKlader
+                    {
+                        Dato = paypal_trans.Timestamp,
+                        Bilag = wBilag,
+                        Tekst = ("Paypal: " + rsmembership.paypal_transaction_id).PadRight(40, ' ').Substring(0, 40),
+                        Afstemningskonto = "PayPal",
+                        Belob = Belob,
+                        Kontonr = null,
+                        Faknr = null,
+                        Sagnr = null
+                    };
+                    klader.Add(recklade);
+
+                    if (arrBeløb[0] > 0)
+                    {
+                        recklade = new recBogfoeringsKlader
+                        {
+                            Dato = paypal_trans.Timestamp,
+                            Bilag = wBilag,
+                            Tekst = (rsmembership.Navn + stdate).PadRight(40, ' ').Substring(0, 40),
+                            Afstemningskonto = "",
+                            Belob = arrBeløb[0],
+                            Kontonr = 1800,
+                            Faknr = null,
+                            Sagnr = null
+                        };
+                        klader.Add(recklade);
+                    }
+
+                    if (arrBeløb[1] > 0)
+                    {
+                        recklade = new recBogfoeringsKlader
+                        {
+                            Dato = paypal_trans.Timestamp,
+                            Bilag = wBilag,
+                            Tekst = (rsmembership.Navn + stdate).PadRight(40, ' ').Substring(0, 40),
+                            Afstemningskonto = "",
+                            Belob = arrBeløb[1],
+                            Kontonr = 64200,
+                            Faknr = null,
+                            Sagnr = null
+                        };
+                        klader.Add(recklade);
+                    }
+
+                    recklade = new recBogfoeringsKlader
+                    {
+                        Dato = paypal_trans.Timestamp,
+                        Bilag = wBilag,
+                        Tekst = ("PayPal Gebyr").PadRight(40, ' ').Substring(0, 40),
+                        Afstemningskonto = "PayPal",
+                        Belob = decimal.Parse(paypal_trans.FeeAmount.Value.Replace(".", ",")),
+                        Kontonr = 9950,
+                        Faknr = null,
+                        Sagnr = null
+                    };
+                    klader.Add(recklade);
+
+                    tblpaypalpayment rec_paypalpayments = (from p in p_dbPuls3060_dk.tblpaypalpayments where p.paypal_transactions_id == rsmembership.paypal_transaction_id select p).FirstOrDefault();
+                    if (rec_paypalpayments == null)
+                    {
+                        rec_paypalpayments = new tblpaypalpayment 
+                        { 
+                            paypal_transactions_id = rsmembership.paypal_transaction_id,
+                            bogfoert = true
+                        };
+                        p_dbPuls3060_dk.tblpaypalpayments.Add(rec_paypalpayments);
+                    }
+                    else 
+                    {
+                        rec_paypalpayments.bogfoert = true;
+                    }
+                    p_dbPuls3060_dk.SaveChanges();
+                }
+            }
+
+
+
+            return klader;
+        }
+
+        public static decimal[] fordeling(decimal Belob, DateTime Bilag_Startdato, DateTime Bilag_Slutdato, DateTime Regnskabsaar_Startdato, DateTime Regnskabsaar_Slutdato)
+        {
+            DateTime yearend = Regnskabsaar_Slutdato;
+            double DaysThisYear = (yearend - Bilag_Startdato).TotalDays;
+            if (DaysThisYear <= 0)
+                DaysThisYear = 0;
+            var membership_days = (int)(Bilag_Slutdato - Bilag_Startdato).Days;
+
+            decimal BelobThisYear = (decimal)((int)((decimal)(DaysThisYear / membership_days) * Belob));
+            decimal BelobNextYear = Belob - BelobThisYear;
+            if (BelobNextYear < 2)
+            {
+                BelobThisYear = Belob;
+                BelobNextYear = 0;
+            }
+            if (BelobThisYear < 2)
+            {
+                BelobThisYear = 0;
+                BelobNextYear = Belob;
+            }
+            decimal[] arrBelob = { BelobThisYear, BelobNextYear };
+            return arrBelob;
         }
     }
 }
