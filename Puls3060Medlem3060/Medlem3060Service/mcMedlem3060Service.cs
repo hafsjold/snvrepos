@@ -110,6 +110,7 @@ namespace nsMedlem3060Service
             {
                 if (Enum.IsDefined(typeof(enumTask), jobname))
                 {
+                    Program.Log(string.Format("Medlem3060Service {0} begin", jobname));
                     dbData3060DataContext m_dbData3060 = new dbData3060DataContext(Program.dbConnectionString());
                     enumTask job = StringToEnum<enumTask>(jobname);
                     switch (job)
@@ -158,7 +159,6 @@ namespace nsMedlem3060Service
                             break;
 
                         case enumTask.KontingentNyeMedlemmer:
-                            Program.Log("Medlem3060Service KontingentNyeMedlemmer begin");
                             puls3060_dkEntities cjdb = new puls3060_dkEntities();
                             clsPbs601 objPbs601c = new clsPbs601();
                             Tuple<int, int> tresultc = objPbs601c.rsmembeshhip_fakturer_auto(m_dbData3060, cjdb);
@@ -172,7 +172,6 @@ namespace nsMedlem3060Service
                                 objSFTPc.DisconnectSFtp();
                                 objSFTPc = null;
                             }
-                            Program.Log("Medlem3060Service KontingentNyeMedlemmer end");
                             break;
 
                         case enumTask.SendEmailRykker:
@@ -194,18 +193,18 @@ namespace nsMedlem3060Service
                             break;
                     }
                 }
+                Program.Log(string.Format("Medlem3060Service {0} end", jobname));
                 return 0;
             }
             catch (Exception e)
             {
-                Program.Log(string.Format("Medlem3060Service JobWorker() failed with message: {0}", e.Message));
+                Program.Log(string.Format("Medlem3060Service JobWorker() for {0} failed with message: {1}", jobname, e.Message));
                 return -1;
             }
         }
 
         private void LoadSchedule(int days = 2)
         {
-            Program.Log("Medlem3060Service LoadSchedule()");
             try
             {
                 dbJobQDataContext dbJobQ = Program.dbJobQDataContextFactory();
