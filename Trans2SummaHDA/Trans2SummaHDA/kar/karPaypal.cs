@@ -293,7 +293,7 @@ namespace Trans2SummaHDA
                        || w.Type == "Web Accept Payment Sent"
                        || w.Type == "Payment Received"
                        || w.Type == "Refund"
-                       || w.Type == "XXX"
+                       || w.Type == "PayPal card confirmation refund"
                        || w.Type == "XXX" 
                        || w.Type == "Shopping Cart Payment Sent" 
                        )
