@@ -54,10 +54,10 @@
       <Column Name="udtrukket" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="leverancespecifikation" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Column Name="leverancedannelsesdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Association Name="tbltilpb_tblfak" Member="tblfaks" ThisKey="id" OtherKey="tilpbsid" Type="tblfak" />
       <Association Name="tbltilpb_tblrykker" Member="tblrykkers" ThisKey="id" OtherKey="tilpbsid" Type="tblrykker" />
       <Association Name="tbltilpb_tbladvi" Member="tbladvis" ThisKey="id" OtherKey="tilpbsid" Type="tbladvi" />
       <Association Name="tbltilpb_tbloverforsel" Member="tbloverforsels" ThisKey="id" OtherKey="tilpbsid" Type="tbloverforsel" />
+      <Association Name="tbltilpb_tblfak" Member="tblfaks" ThisKey="id" OtherKey="tilpbsid" Type="tblfak" />
       <Association Name="tblpbsforsendelse_tbltilpb" Member="tblpbsforsendelse" ThisKey="pbsforsendelseid" OtherKey="id" Type="tblpbsforsendelse" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
@@ -111,32 +111,6 @@
       <Column Name="aftaleslutdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="pbssektionnr" Type="System.String" DbType="NVarChar(5) NOT NULL" CanBeNull="false" />
       <Association Name="tblfrapb_tblaftalelin" Member="tblfrapb" ThisKey="frapbsid" OtherKey="id" Type="tblfrapb" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.tblfak" Member="tblfaks">
-    <Type Name="tblfak">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="tilpbsid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="betalingsdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="Nr" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="faknr" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="advistekst" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
-      <Column Name="advisbelob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="infotekst" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="bogfkonto" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="vnr" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="fradato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="tildato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="SFakID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SFaknr" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="rykkerdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="maildato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="rykkerstop" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="betalt" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="tilmeldtpbs" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="indmeldelse" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="tblfak_tblrsmembership_transaction" Member="tblrsmembership_transaction" ThisKey="id" OtherKey="id" Type="tblrsmembership_transaction" Cardinality="One" />
-      <Association Name="tbltilpb_tblfak" Member="tbltilpb" ThisKey="tilpbsid" OtherKey="id" Type="tbltilpb" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Table Name="dbo.tblrykker" Member="tblrykkers">
@@ -458,6 +432,33 @@
       <Column Name="membership_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="subscriber_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="tblfak_tblrsmembership_transaction" Member="tblfak" ThisKey="id" OtherKey="id" Type="tblfak" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblfak" Member="tblfaks">
+    <Type Name="tblfak">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="tilpbsid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="betalingsdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Nr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="faknr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="advistekst" Type="System.String" DbType="NVarChar(4000)" CanBeNull="true" />
+      <Column Name="advisbelob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="infotekst" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="bogfkonto" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="vnr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="fradato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="tildato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="SFakID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SFaknr" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="rykkerdato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="maildato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="rykkerstop" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="betalt" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="tilmeldtpbs" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="indmeldelse" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="indbetalerident" Type="System.String" DbType="NVarChar(19)" CanBeNull="true" />
+      <Association Name="tblfak_tblrsmembership_transaction" Member="tblrsmembership_transaction" ThisKey="id" OtherKey="id" Type="tblrsmembership_transaction" Cardinality="One" />
+      <Association Name="tbltilpb_tblfak" Member="tbltilpb" ThisKey="tilpbsid" OtherKey="id" Type="tbltilpb" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Function Name="dbo.GetSysinfo" Method="GetSysinfo" IsComposable="true">

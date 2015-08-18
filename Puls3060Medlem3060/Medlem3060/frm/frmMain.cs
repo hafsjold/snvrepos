@@ -132,9 +132,14 @@ namespace nsPuls3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
+            clsPbs601 objPbs601 = new clsPbs601();
+            objPbs601.advis_autoxxx(Program.dbData3060, 5046);
+            /*
+            string card = clsHelper.generateIndbetalerident(Program.dbData3060);
+            bool test = clsHelper.Mod10Check(card);
+            
             clsPayPal objPayPal = new clsPayPal();
             objPayPal.testPayPal();
-            /*
             string myHash = clsHelper.GenerateStringHash("Mogens Hafsjold Nørremarken 31 3060 Espergærde");
             puls3060_dkEntities jdb = new puls3060_dkEntities();
 
@@ -571,6 +576,13 @@ namespace nsPuls3060
                 null, //leftButton
                 "OK", //rightButton
                 global::nsPuls3060.Properties.Resources.Message_info); //iconSet
+        }
+
+        private void testToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            int faknr = 12345;
+            string card = clsHelper.generateIndbetalerident(faknr);
+            bool test = clsHelper.Mod10Check(card);
         }
 
     }

@@ -32,6 +32,70 @@ namespace nsPbs3060
     {
         public clsPbs601() { }
 
+        public Tuple<int, int> advis_autoxxx(dbData3060DataContext p_dbData3060, int ref_lobnr)
+        {
+            int lobnr = 0;
+            string wadvistekst = "";
+            int winfotekst;
+            int wantaladvis = 0;
+            string wDelsystem = "EML";
+
+            var rstmedlems = from f in p_dbData3060.tblfaks
+                             where f.tilpbsid == ref_lobnr && f.betalingsdato > DateTime.Today 
+                             join a in p_dbData3060.tbladvis on f.faknr equals a.faknr into jadvis
+                             from a in jadvis.DefaultIfEmpty()
+                             where a.id == null
+                             join b in p_dbData3060.tblbetlins on f.faknr equals b.faknr into jbetlins
+                             from b in jbetlins.DefaultIfEmpty()
+                             where b.id == null
+                             join r in p_dbData3060.tblrykkers on f.faknr equals r.faknr into jrykkers
+                             from r in jrykkers.DefaultIfEmpty()
+                             where r.id == null
+                             select new
+                             {
+                                 f.Nr,
+                                 f.betalingsdato,
+                                 f.advisbelob,
+                                 f.faknr,
+                                 f.indmeldelse
+                             };
+
+            int adviscount = rstmedlems.Count();
+            if (adviscount > 0)
+            {
+                tbltilpb rec_tilpbs = new tbltilpb
+                {
+                    delsystem = wDelsystem,
+                    leverancetype = "0601",
+                    udtrukket = DateTime.Now
+                };
+                p_dbData3060.tbltilpbs.InsertOnSubmit(rec_tilpbs);
+                p_dbData3060.SubmitChanges();
+                lobnr = rec_tilpbs.id;
+
+                foreach (var rstmedlem in rstmedlems)
+                {
+                    winfotekst = (rstmedlem.indmeldelse) ? 52 : 50;
+
+                    tbladvi rec_advis = new tbladvi
+                    {
+                        betalingsdato = rstmedlem.betalingsdato,
+                        Nr = rstmedlem.Nr,
+                        faknr = rstmedlem.faknr,
+                        advistekst = wadvistekst,
+                        advisbelob = rstmedlem.advisbelob,
+                        infotekst = winfotekst,
+                        maildato = DateTime.Today,
+                    };
+                    rec_tilpbs.tbladvis.Add(rec_advis);
+                    wantaladvis++;
+                    if (wantaladvis >= 30) break; //max 30 advis på gang
+                }
+                p_dbData3060.SubmitChanges();
+            }
+            return new Tuple<int, int>(wantaladvis, lobnr);
+        }
+
         public Tuple<int, int> advis_auto(dbData3060DataContext p_dbData3060)
         {
             int lobnr = 0;
@@ -157,7 +221,8 @@ namespace nsPbs3060
                               Tilpbsid = r.tilpbsid,
                               Advistekst = r.advistekst,
                               Belob = r.advisbelob,
-                              Email = k.user_email
+                              Email = k.user_email,
+                              indbetalerident = f.indbetalerident,
                           };
             }
             else
@@ -183,7 +248,8 @@ namespace nsPbs3060
                               Tilpbsid = r.tilpbsid,
                               Advistekst = r.advistekst,
                               Belob = r.advisbelob,
-                              Email = k.Email
+                              Email = k.Email,
+                              indbetalerident = f.indbetalerident,
                           };
             }
 
@@ -192,6 +258,14 @@ namespace nsPbs3060
             {
                 if (rstdeb.Faknr != wSaveFaknr) //Løser problem med mere flere PBS Tblindbetalingskort records pr Faknr
                 {
+                    string OcrString = p_dbData3060.OcrString(rstdeb.Faknr);
+                    if (string.IsNullOrEmpty(OcrString)) 
+                    {
+                        if (clsHelper.Mod10Check(rstdeb.indbetalerident))
+                        {
+                            OcrString = string.Format(@"+71< {0}+81131945<", rstdeb.indbetalerident);
+                        }
+                    }
 
                     string infotekst = new clsInfotekst
                     {
@@ -203,7 +277,7 @@ namespace nsPbs3060
                         tildato = rstdeb.Tildato,
                         betalingsdato = rstdeb.Betalingsdato,
                         advisbelob = rstdeb.Belob,
-                        ocrstring = p_dbData3060.OcrString(rstdeb.Faknr),
+                        ocrstring = OcrString,
                         underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører",
                         sendtsom = p_dbData3060.SendtSomString(rstdeb.Faknr)
                     }.getinfotekst(p_dbData3060);
@@ -588,6 +662,7 @@ namespace nsPbs3060
                     if (rec_trans.indmeldelse) winfotekst = 11;
                     else winfotekst = (rec_trans.tilmeldtpbs) ? 10 : 12;
                     int next_faknr = (int)(from r in p_dbData3060.nextval("faknr") select r.id).First();
+                    string windbetalerident = clsHelper.generateIndbetalerident(next_faknr);
                     tblfak rec_fak = new tblfak
                     {
                         betalingsdato = clsOverfoersel.bankdageplus(DateTime.Today, 8),
@@ -602,6 +677,7 @@ namespace nsPbs3060
                         tildato = rec_trans.date.AddYears(1),
                         indmeldelse = rec_trans.indmeldelse,
                         tilmeldtpbs = rec_trans.tilmeldtpbs,
+                        indbetalerident = windbetalerident, // ToDo generer indbetalerident
                         tblrsmembership_transaction = new tblrsmembership_transaction()
                         {
                             trans_id = rec_trans.id,
@@ -915,7 +991,8 @@ namespace nsPbs3060
                               Tilpbsid = r.tilpbsid,
                               Advistekst = r.advistekst,
                               Belob = r.advisbelob,
-                              Email = k.user_email
+                              Email = k.user_email,
+                              indbetalerident = f.indbetalerident,
                           };
 
             wSaveFaknr = 0;
@@ -1107,6 +1184,7 @@ namespace nsPbs3060
                               Tilpbsid = f.tilpbsid,
                               Advistekst = f.advistekst,
                               Belob = f.advisbelob,
+                              indbetalerident = f.indbetalerident,
                           };
             }
             else if (fakryk == fakType.fdrykker) //RYKKER
@@ -1132,6 +1210,8 @@ namespace nsPbs3060
                               Tilpbsid = r.tilpbsid,
                               Advistekst = r.advistekst,
                               Belob = r.advisbelob,
+                              indbetalerident = f.indbetalerident,
+
                           };
             }
             else if (fakryk == fakType.fdrsmembership) //KONTINGENT FAKTURA
@@ -1156,6 +1236,7 @@ namespace nsPbs3060
                               Tilpbsid = f.tilpbsid,
                               Advistekst = f.advistekst,
                               Belob = f.advisbelob,
+                              indbetalerident = f.indbetalerident,
                           };
             }
             else
@@ -1302,7 +1383,8 @@ namespace nsPbs3060
                 // - fortegn                  -
                 // - belobint                 - Beløb: Beløb i øre uden fortegn
                 // - rstdeb.Faknr             - faknr: Information vedrørende betalingen.
-                rec = write042(rstkrd.sektionnr, rstkrd.pbsnr, rstkrd.transkodebetaling, rstkrd.debgrpnr, rstdeb.Kundenr.ToString(), 0, (DateTime)rstdeb.Betalingsdato, fortegn, belobint, (int)rstdeb.Faknr);
+                // - rstdeb.indbetalerident   - indbetalerident: Information vedrørende OCR linie.
+                rec = write042(rstkrd.sektionnr, rstkrd.pbsnr, rstkrd.transkodebetaling, rstkrd.debgrpnr, rstdeb.Kundenr.ToString(), 0, (DateTime)rstdeb.Betalingsdato, fortegn, belobint, (int)rstdeb.Faknr, rstdeb.indbetalerident);
                 antal042++;
                 antal042tot++;
                 rec_pbsfile = new tblpbsfile { seqnr = ++seq, data = rec };
@@ -1543,7 +1625,7 @@ namespace nsPbs3060
             return rec;
         }
 
-        private string write042(string sektionnr, string pbsnr, string transkode, string debgrpnr, string medlemsnr, int aftalenr, System.DateTime betaldato, int fortegn, int belob, int faknr)
+        private string write042(string sektionnr, string pbsnr, string transkode, string debgrpnr, string medlemsnr, int aftalenr, System.DateTime betaldato, int fortegn, int belob, int faknr, string indbetalerident)
         {
             string rec = null;
 
@@ -1601,6 +1683,15 @@ namespace nsPbs3060
             else
             {
                 rec += rpad("", 6, '0');
+            }
+            
+            if (sektionnr == "0117")
+            {
+                if (clsHelper.Mod10Check(indbetalerident)) {
+                    if (indbetalerident.Length == 15) {
+                        rec += indbetalerident;
+                    }
+                }
             }
 
             return rec;
@@ -1877,6 +1968,7 @@ namespace nsPbs3060
         public decimal? Belob { get; set; }
         //public string OcrString { get; set; }
         public string Email { get; set; }
+        public string indbetalerident { get; set; }
 
     }
 
