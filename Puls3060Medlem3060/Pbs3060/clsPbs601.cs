@@ -202,7 +202,7 @@ namespace nsPbs3060
             {
                 rstdebs = from k in p_dbData3060.tblrsmembership_transactions
                           join f in p_dbData3060.tblfaks on k.id equals f.id
-                          join r in p_dbData3060.tbladvis on f.Nr equals r.Nr
+                          join r in p_dbData3060.tbladvis on f.faknr equals r.faknr
                           where r.tilpbsid == lobnr && r.Nr != null
                           orderby r.faknr
                           select new clsRstdeb
@@ -256,14 +256,16 @@ namespace nsPbs3060
             wSaveFaknr = 0;
             foreach (var rstdeb in rstdebs)
             {
+                string OcrString = null;
+                string windbetalerident = rstdeb.indbetalerident;
                 if (rstdeb.Faknr != wSaveFaknr) //Løser problem med mere flere PBS Tblindbetalingskort records pr Faknr
                 {
-                    string OcrString = p_dbData3060.OcrString(rstdeb.Faknr);
+                    OcrString = p_dbData3060.OcrString(rstdeb.Faknr);
                     if (string.IsNullOrEmpty(OcrString)) 
                     {
-                        if (clsHelper.Mod10Check(rstdeb.indbetalerident))
+                        if (clsHelper.Mod10Check(windbetalerident))
                         {
-                            OcrString = string.Format(@"+71< {0}+81131945<", rstdeb.indbetalerident);
+                            OcrString = string.Format(@"+71< {0}+81131945<", windbetalerident);
                         }
                     }
 

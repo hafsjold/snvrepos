@@ -171,6 +171,13 @@ namespace nsMedlem3060Service
                                 objSFTPc.WriteTilSFtp(m_dbData3060, lobnrc);
                                 objSFTPc.DisconnectSFtp();
                                 objSFTPc = null;
+
+                                Tuple<int, int> tresultd = objPbs601c.advis_autoxxx(m_dbData3060, lobnrc);
+                                int AntalAdvisd = tresultd.Item1;
+                                int lobnrd = tresultd.Item2;
+                                if ((AntalAdvisd > 0))
+                                    objPbs601c.advis_email(m_dbData3060, lobnrd);
+                                objPbs601c = null;
                             }
                             break;
 
