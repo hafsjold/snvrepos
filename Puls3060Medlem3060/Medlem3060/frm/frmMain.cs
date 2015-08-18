@@ -568,7 +568,7 @@ namespace nsPuls3060
             else
             {
                 bigString = "Der er ingen nye betalinger";
-            } 
+            }
             DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
                 "PayPal Betalinger", //titleString 
                 bigString, //bigString 
@@ -580,9 +580,17 @@ namespace nsPuls3060
 
         private void testToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            int faknr = 12345;
-            string card = clsHelper.generateIndbetalerident(faknr);
-            bool test = clsHelper.Mod10Check(card);
+            return;
+            
+            int lobnrc = 5100;
+            clsPbs601 objPbs601c = new clsPbs601();
+            Tuple<int, int> tresultd = objPbs601c.advis_autoxxx(Program.dbData3060, lobnrc);
+            int AntalAdvisd = tresultd.Item1;
+            int lobnrd = tresultd.Item2;
+            if ((AntalAdvisd > 0))
+                objPbs601c.advis_email(Program.dbData3060, lobnrd);
+            objPbs601c = null;
+
         }
 
     }
