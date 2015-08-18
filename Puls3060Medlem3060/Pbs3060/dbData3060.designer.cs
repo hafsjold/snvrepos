@@ -51,9 +51,6 @@ namespace nsPbs3060
     partial void Inserttblaftalelin(tblaftalelin instance);
     partial void Updatetblaftalelin(tblaftalelin instance);
     partial void Deletetblaftalelin(tblaftalelin instance);
-    partial void Inserttblfak(tblfak instance);
-    partial void Updatetblfak(tblfak instance);
-    partial void Deletetblfak(tblfak instance);
     partial void Inserttblrykker(tblrykker instance);
     partial void Updatetblrykker(tblrykker instance);
     partial void Deletetblrykker(tblrykker instance);
@@ -120,6 +117,9 @@ namespace nsPbs3060
     partial void Inserttblrsmembership_transaction(tblrsmembership_transaction instance);
     partial void Updatetblrsmembership_transaction(tblrsmembership_transaction instance);
     partial void Deletetblrsmembership_transaction(tblrsmembership_transaction instance);
+    partial void Inserttblfak(tblfak instance);
+    partial void Updatetblfak(tblfak instance);
+    partial void Deletetblfak(tblfak instance);
     #endregion
 		
 		public dbData3060DataContext() : 
@@ -205,14 +205,6 @@ namespace nsPbs3060
 			get
 			{
 				return this.GetTable<tblaftalelin>();
-			}
-		}
-		
-		public System.Data.Linq.Table<tblfak> tblfaks
-		{
-			get
-			{
-				return this.GetTable<tblfak>();
 			}
 		}
 		
@@ -413,6 +405,14 @@ namespace nsPbs3060
 			get
 			{
 				return this.GetTable<tblrsmembership_transaction>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblfak> tblfaks
+		{
+			get
+			{
+				return this.GetTable<tblfak>();
 			}
 		}
 		
@@ -1446,13 +1446,13 @@ namespace nsPbs3060
 		
 		private System.Nullable<System.DateTime> _leverancedannelsesdato;
 		
-		private EntitySet<tblfak> _tblfaks;
-		
 		private EntitySet<tblrykker> _tblrykkers;
 		
 		private EntitySet<tbladvi> _tbladvis;
 		
 		private EntitySet<tbloverforsel> _tbloverforsels;
+		
+		private EntitySet<tblfak> _tblfaks;
 		
 		private EntityRef<tblpbsforsendelse> _tblpbsforsendelse;
 		
@@ -1480,10 +1480,10 @@ namespace nsPbs3060
 		
 		public tbltilpb()
 		{
-			this._tblfaks = new EntitySet<tblfak>(new Action<tblfak>(this.attach_tblfaks), new Action<tblfak>(this.detach_tblfaks));
 			this._tblrykkers = new EntitySet<tblrykker>(new Action<tblrykker>(this.attach_tblrykkers), new Action<tblrykker>(this.detach_tblrykkers));
 			this._tbladvis = new EntitySet<tbladvi>(new Action<tbladvi>(this.attach_tbladvis), new Action<tbladvi>(this.detach_tbladvis));
 			this._tbloverforsels = new EntitySet<tbloverforsel>(new Action<tbloverforsel>(this.attach_tbloverforsels), new Action<tbloverforsel>(this.detach_tbloverforsels));
+			this._tblfaks = new EntitySet<tblfak>(new Action<tblfak>(this.attach_tblfaks), new Action<tblfak>(this.detach_tblfaks));
 			this._tblpbsforsendelse = default(EntityRef<tblpbsforsendelse>);
 			OnCreated();
 		}
@@ -1652,19 +1652,6 @@ namespace nsPbs3060
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbltilpb_tblfak", Storage="_tblfaks", ThisKey="id", OtherKey="tilpbsid")]
-		public EntitySet<tblfak> tblfaks
-		{
-			get
-			{
-				return this._tblfaks;
-			}
-			set
-			{
-				this._tblfaks.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbltilpb_tblrykker", Storage="_tblrykkers", ThisKey="id", OtherKey="tilpbsid")]
 		public EntitySet<tblrykker> tblrykkers
 		{
@@ -1701,6 +1688,19 @@ namespace nsPbs3060
 			set
 			{
 				this._tbloverforsels.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbltilpb_tblfak", Storage="_tblfaks", ThisKey="id", OtherKey="tilpbsid")]
+		public EntitySet<tblfak> tblfaks
+		{
+			get
+			{
+				return this._tblfaks;
+			}
+			set
+			{
+				this._tblfaks.Assign(value);
 			}
 		}
 		
@@ -1758,18 +1758,6 @@ namespace nsPbs3060
 			}
 		}
 		
-		private void attach_tblfaks(tblfak entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbltilpb = this;
-		}
-		
-		private void detach_tblfaks(tblfak entity)
-		{
-			this.SendPropertyChanging();
-			entity.tbltilpb = null;
-		}
-		
 		private void attach_tblrykkers(tblrykker entity)
 		{
 			this.SendPropertyChanging();
@@ -1801,6 +1789,18 @@ namespace nsPbs3060
 		}
 		
 		private void detach_tbloverforsels(tbloverforsel entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbltilpb = null;
+		}
+		
+		private void attach_tblfaks(tblfak entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbltilpb = this;
+		}
+		
+		private void detach_tblfaks(tblfak entity)
 		{
 			this.SendPropertyChanging();
 			entity.tbltilpb = null;
@@ -2919,597 +2919,6 @@ namespace nsPbs3060
 						this._frapbsid = default(int);
 					}
 					this.SendPropertyChanged("tblfrapb");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblfak")]
-	public partial class tblfak : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private System.Nullable<int> _tilpbsid;
-		
-		private System.Nullable<System.DateTime> _betalingsdato;
-		
-		private System.Nullable<int> _Nr;
-		
-		private System.Nullable<int> _faknr;
-		
-		private string _advistekst;
-		
-		private System.Nullable<decimal> _advisbelob;
-		
-		private System.Nullable<int> _infotekst;
-		
-		private System.Nullable<int> _bogfkonto;
-		
-		private System.Nullable<int> _vnr;
-		
-		private System.Nullable<System.DateTime> _fradato;
-		
-		private System.Nullable<System.DateTime> _tildato;
-		
-		private System.Nullable<int> _SFakID;
-		
-		private System.Nullable<int> _SFaknr;
-		
-		private System.Nullable<System.DateTime> _rykkerdato;
-		
-		private System.Nullable<System.DateTime> _maildato;
-		
-		private bool _rykkerstop;
-		
-		private bool _betalt;
-		
-		private bool _tilmeldtpbs;
-		
-		private bool _indmeldelse;
-		
-		private EntityRef<tblrsmembership_transaction> _tblrsmembership_transaction;
-		
-		private EntityRef<tbltilpb> _tbltilpb;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OntilpbsidChanging(System.Nullable<int> value);
-    partial void OntilpbsidChanged();
-    partial void OnbetalingsdatoChanging(System.Nullable<System.DateTime> value);
-    partial void OnbetalingsdatoChanged();
-    partial void OnNrChanging(System.Nullable<int> value);
-    partial void OnNrChanged();
-    partial void OnfaknrChanging(System.Nullable<int> value);
-    partial void OnfaknrChanged();
-    partial void OnadvistekstChanging(string value);
-    partial void OnadvistekstChanged();
-    partial void OnadvisbelobChanging(System.Nullable<decimal> value);
-    partial void OnadvisbelobChanged();
-    partial void OninfotekstChanging(System.Nullable<int> value);
-    partial void OninfotekstChanged();
-    partial void OnbogfkontoChanging(System.Nullable<int> value);
-    partial void OnbogfkontoChanged();
-    partial void OnvnrChanging(System.Nullable<int> value);
-    partial void OnvnrChanged();
-    partial void OnfradatoChanging(System.Nullable<System.DateTime> value);
-    partial void OnfradatoChanged();
-    partial void OntildatoChanging(System.Nullable<System.DateTime> value);
-    partial void OntildatoChanged();
-    partial void OnSFakIDChanging(System.Nullable<int> value);
-    partial void OnSFakIDChanged();
-    partial void OnSFaknrChanging(System.Nullable<int> value);
-    partial void OnSFaknrChanged();
-    partial void OnrykkerdatoChanging(System.Nullable<System.DateTime> value);
-    partial void OnrykkerdatoChanged();
-    partial void OnmaildatoChanging(System.Nullable<System.DateTime> value);
-    partial void OnmaildatoChanged();
-    partial void OnrykkerstopChanging(bool value);
-    partial void OnrykkerstopChanged();
-    partial void OnbetaltChanging(bool value);
-    partial void OnbetaltChanged();
-    partial void OntilmeldtpbsChanging(bool value);
-    partial void OntilmeldtpbsChanged();
-    partial void OnindmeldelseChanging(bool value);
-    partial void OnindmeldelseChanged();
-    #endregion
-		
-		public tblfak()
-		{
-			this._tblrsmembership_transaction = default(EntityRef<tblrsmembership_transaction>);
-			this._tbltilpb = default(EntityRef<tbltilpb>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tilpbsid", DbType="Int")]
-		public System.Nullable<int> tilpbsid
-		{
-			get
-			{
-				return this._tilpbsid;
-			}
-			set
-			{
-				if ((this._tilpbsid != value))
-				{
-					if (this._tbltilpb.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OntilpbsidChanging(value);
-					this.SendPropertyChanging();
-					this._tilpbsid = value;
-					this.SendPropertyChanged("tilpbsid");
-					this.OntilpbsidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_betalingsdato", DbType="DateTime")]
-		public System.Nullable<System.DateTime> betalingsdato
-		{
-			get
-			{
-				return this._betalingsdato;
-			}
-			set
-			{
-				if ((this._betalingsdato != value))
-				{
-					this.OnbetalingsdatoChanging(value);
-					this.SendPropertyChanging();
-					this._betalingsdato = value;
-					this.SendPropertyChanged("betalingsdato");
-					this.OnbetalingsdatoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nr", DbType="Int")]
-		public System.Nullable<int> Nr
-		{
-			get
-			{
-				return this._Nr;
-			}
-			set
-			{
-				if ((this._Nr != value))
-				{
-					this.OnNrChanging(value);
-					this.SendPropertyChanging();
-					this._Nr = value;
-					this.SendPropertyChanged("Nr");
-					this.OnNrChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_faknr", DbType="Int")]
-		public System.Nullable<int> faknr
-		{
-			get
-			{
-				return this._faknr;
-			}
-			set
-			{
-				if ((this._faknr != value))
-				{
-					this.OnfaknrChanging(value);
-					this.SendPropertyChanging();
-					this._faknr = value;
-					this.SendPropertyChanged("faknr");
-					this.OnfaknrChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_advistekst", DbType="NVarChar(4000)")]
-		public string advistekst
-		{
-			get
-			{
-				return this._advistekst;
-			}
-			set
-			{
-				if ((this._advistekst != value))
-				{
-					this.OnadvistekstChanging(value);
-					this.SendPropertyChanging();
-					this._advistekst = value;
-					this.SendPropertyChanged("advistekst");
-					this.OnadvistekstChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_advisbelob", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> advisbelob
-		{
-			get
-			{
-				return this._advisbelob;
-			}
-			set
-			{
-				if ((this._advisbelob != value))
-				{
-					this.OnadvisbelobChanging(value);
-					this.SendPropertyChanging();
-					this._advisbelob = value;
-					this.SendPropertyChanged("advisbelob");
-					this.OnadvisbelobChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_infotekst", DbType="Int")]
-		public System.Nullable<int> infotekst
-		{
-			get
-			{
-				return this._infotekst;
-			}
-			set
-			{
-				if ((this._infotekst != value))
-				{
-					this.OninfotekstChanging(value);
-					this.SendPropertyChanging();
-					this._infotekst = value;
-					this.SendPropertyChanged("infotekst");
-					this.OninfotekstChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bogfkonto", DbType="Int")]
-		public System.Nullable<int> bogfkonto
-		{
-			get
-			{
-				return this._bogfkonto;
-			}
-			set
-			{
-				if ((this._bogfkonto != value))
-				{
-					this.OnbogfkontoChanging(value);
-					this.SendPropertyChanging();
-					this._bogfkonto = value;
-					this.SendPropertyChanged("bogfkonto");
-					this.OnbogfkontoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_vnr", DbType="Int")]
-		public System.Nullable<int> vnr
-		{
-			get
-			{
-				return this._vnr;
-			}
-			set
-			{
-				if ((this._vnr != value))
-				{
-					this.OnvnrChanging(value);
-					this.SendPropertyChanging();
-					this._vnr = value;
-					this.SendPropertyChanged("vnr");
-					this.OnvnrChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fradato", DbType="DateTime")]
-		public System.Nullable<System.DateTime> fradato
-		{
-			get
-			{
-				return this._fradato;
-			}
-			set
-			{
-				if ((this._fradato != value))
-				{
-					this.OnfradatoChanging(value);
-					this.SendPropertyChanging();
-					this._fradato = value;
-					this.SendPropertyChanged("fradato");
-					this.OnfradatoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tildato", DbType="DateTime")]
-		public System.Nullable<System.DateTime> tildato
-		{
-			get
-			{
-				return this._tildato;
-			}
-			set
-			{
-				if ((this._tildato != value))
-				{
-					this.OntildatoChanging(value);
-					this.SendPropertyChanging();
-					this._tildato = value;
-					this.SendPropertyChanged("tildato");
-					this.OntildatoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SFakID", DbType="Int")]
-		public System.Nullable<int> SFakID
-		{
-			get
-			{
-				return this._SFakID;
-			}
-			set
-			{
-				if ((this._SFakID != value))
-				{
-					this.OnSFakIDChanging(value);
-					this.SendPropertyChanging();
-					this._SFakID = value;
-					this.SendPropertyChanged("SFakID");
-					this.OnSFakIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SFaknr", DbType="Int")]
-		public System.Nullable<int> SFaknr
-		{
-			get
-			{
-				return this._SFaknr;
-			}
-			set
-			{
-				if ((this._SFaknr != value))
-				{
-					this.OnSFaknrChanging(value);
-					this.SendPropertyChanging();
-					this._SFaknr = value;
-					this.SendPropertyChanged("SFaknr");
-					this.OnSFaknrChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rykkerdato", DbType="DateTime")]
-		public System.Nullable<System.DateTime> rykkerdato
-		{
-			get
-			{
-				return this._rykkerdato;
-			}
-			set
-			{
-				if ((this._rykkerdato != value))
-				{
-					this.OnrykkerdatoChanging(value);
-					this.SendPropertyChanging();
-					this._rykkerdato = value;
-					this.SendPropertyChanged("rykkerdato");
-					this.OnrykkerdatoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_maildato", DbType="DateTime")]
-		public System.Nullable<System.DateTime> maildato
-		{
-			get
-			{
-				return this._maildato;
-			}
-			set
-			{
-				if ((this._maildato != value))
-				{
-					this.OnmaildatoChanging(value);
-					this.SendPropertyChanging();
-					this._maildato = value;
-					this.SendPropertyChanged("maildato");
-					this.OnmaildatoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rykkerstop", DbType="Bit NOT NULL")]
-		public bool rykkerstop
-		{
-			get
-			{
-				return this._rykkerstop;
-			}
-			set
-			{
-				if ((this._rykkerstop != value))
-				{
-					this.OnrykkerstopChanging(value);
-					this.SendPropertyChanging();
-					this._rykkerstop = value;
-					this.SendPropertyChanged("rykkerstop");
-					this.OnrykkerstopChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_betalt", DbType="Bit NOT NULL")]
-		public bool betalt
-		{
-			get
-			{
-				return this._betalt;
-			}
-			set
-			{
-				if ((this._betalt != value))
-				{
-					this.OnbetaltChanging(value);
-					this.SendPropertyChanging();
-					this._betalt = value;
-					this.SendPropertyChanged("betalt");
-					this.OnbetaltChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tilmeldtpbs", DbType="Bit NOT NULL")]
-		public bool tilmeldtpbs
-		{
-			get
-			{
-				return this._tilmeldtpbs;
-			}
-			set
-			{
-				if ((this._tilmeldtpbs != value))
-				{
-					this.OntilmeldtpbsChanging(value);
-					this.SendPropertyChanging();
-					this._tilmeldtpbs = value;
-					this.SendPropertyChanged("tilmeldtpbs");
-					this.OntilmeldtpbsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_indmeldelse", DbType="Bit NOT NULL")]
-		public bool indmeldelse
-		{
-			get
-			{
-				return this._indmeldelse;
-			}
-			set
-			{
-				if ((this._indmeldelse != value))
-				{
-					this.OnindmeldelseChanging(value);
-					this.SendPropertyChanging();
-					this._indmeldelse = value;
-					this.SendPropertyChanged("indmeldelse");
-					this.OnindmeldelseChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblfak_tblrsmembership_transaction", Storage="_tblrsmembership_transaction", ThisKey="id", OtherKey="id", IsUnique=true, IsForeignKey=false)]
-		public tblrsmembership_transaction tblrsmembership_transaction
-		{
-			get
-			{
-				return this._tblrsmembership_transaction.Entity;
-			}
-			set
-			{
-				tblrsmembership_transaction previousValue = this._tblrsmembership_transaction.Entity;
-				if (((previousValue != value) 
-							|| (this._tblrsmembership_transaction.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tblrsmembership_transaction.Entity = null;
-						previousValue.tblfak = null;
-					}
-					this._tblrsmembership_transaction.Entity = value;
-					if ((value != null))
-					{
-						value.tblfak = this;
-					}
-					this.SendPropertyChanged("tblrsmembership_transaction");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbltilpb_tblfak", Storage="_tbltilpb", ThisKey="tilpbsid", OtherKey="id", IsForeignKey=true, DeleteRule="CASCADE")]
-		public tbltilpb tbltilpb
-		{
-			get
-			{
-				return this._tbltilpb.Entity;
-			}
-			set
-			{
-				tbltilpb previousValue = this._tbltilpb.Entity;
-				if (((previousValue != value) 
-							|| (this._tbltilpb.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tbltilpb.Entity = null;
-						previousValue.tblfaks.Remove(this);
-					}
-					this._tbltilpb.Entity = value;
-					if ((value != null))
-					{
-						value.tblfaks.Add(this);
-						this._tilpbsid = value.id;
-					}
-					else
-					{
-						this._tilpbsid = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("tbltilpb");
 				}
 			}
 		}
@@ -9761,6 +9170,621 @@ namespace nsPbs3060
 						this._id = default(int);
 					}
 					this.SendPropertyChanged("tblfak");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblfak")]
+	public partial class tblfak : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private System.Nullable<int> _tilpbsid;
+		
+		private System.Nullable<System.DateTime> _betalingsdato;
+		
+		private System.Nullable<int> _Nr;
+		
+		private System.Nullable<int> _faknr;
+		
+		private string _advistekst;
+		
+		private System.Nullable<decimal> _advisbelob;
+		
+		private System.Nullable<int> _infotekst;
+		
+		private System.Nullable<int> _bogfkonto;
+		
+		private System.Nullable<int> _vnr;
+		
+		private System.Nullable<System.DateTime> _fradato;
+		
+		private System.Nullable<System.DateTime> _tildato;
+		
+		private System.Nullable<int> _SFakID;
+		
+		private System.Nullable<int> _SFaknr;
+		
+		private System.Nullable<System.DateTime> _rykkerdato;
+		
+		private System.Nullable<System.DateTime> _maildato;
+		
+		private bool _rykkerstop;
+		
+		private bool _betalt;
+		
+		private bool _tilmeldtpbs;
+		
+		private bool _indmeldelse;
+		
+		private string _indbetalerident;
+		
+		private EntityRef<tblrsmembership_transaction> _tblrsmembership_transaction;
+		
+		private EntityRef<tbltilpb> _tbltilpb;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OntilpbsidChanging(System.Nullable<int> value);
+    partial void OntilpbsidChanged();
+    partial void OnbetalingsdatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnbetalingsdatoChanged();
+    partial void OnNrChanging(System.Nullable<int> value);
+    partial void OnNrChanged();
+    partial void OnfaknrChanging(System.Nullable<int> value);
+    partial void OnfaknrChanged();
+    partial void OnadvistekstChanging(string value);
+    partial void OnadvistekstChanged();
+    partial void OnadvisbelobChanging(System.Nullable<decimal> value);
+    partial void OnadvisbelobChanged();
+    partial void OninfotekstChanging(System.Nullable<int> value);
+    partial void OninfotekstChanged();
+    partial void OnbogfkontoChanging(System.Nullable<int> value);
+    partial void OnbogfkontoChanged();
+    partial void OnvnrChanging(System.Nullable<int> value);
+    partial void OnvnrChanged();
+    partial void OnfradatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnfradatoChanged();
+    partial void OntildatoChanging(System.Nullable<System.DateTime> value);
+    partial void OntildatoChanged();
+    partial void OnSFakIDChanging(System.Nullable<int> value);
+    partial void OnSFakIDChanged();
+    partial void OnSFaknrChanging(System.Nullable<int> value);
+    partial void OnSFaknrChanged();
+    partial void OnrykkerdatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnrykkerdatoChanged();
+    partial void OnmaildatoChanging(System.Nullable<System.DateTime> value);
+    partial void OnmaildatoChanged();
+    partial void OnrykkerstopChanging(bool value);
+    partial void OnrykkerstopChanged();
+    partial void OnbetaltChanging(bool value);
+    partial void OnbetaltChanged();
+    partial void OntilmeldtpbsChanging(bool value);
+    partial void OntilmeldtpbsChanged();
+    partial void OnindmeldelseChanging(bool value);
+    partial void OnindmeldelseChanged();
+    partial void OnindbetaleridentChanging(string value);
+    partial void OnindbetaleridentChanged();
+    #endregion
+		
+		public tblfak()
+		{
+			this._tblrsmembership_transaction = default(EntityRef<tblrsmembership_transaction>);
+			this._tbltilpb = default(EntityRef<tbltilpb>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tilpbsid", DbType="Int")]
+		public System.Nullable<int> tilpbsid
+		{
+			get
+			{
+				return this._tilpbsid;
+			}
+			set
+			{
+				if ((this._tilpbsid != value))
+				{
+					if (this._tbltilpb.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OntilpbsidChanging(value);
+					this.SendPropertyChanging();
+					this._tilpbsid = value;
+					this.SendPropertyChanged("tilpbsid");
+					this.OntilpbsidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_betalingsdato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> betalingsdato
+		{
+			get
+			{
+				return this._betalingsdato;
+			}
+			set
+			{
+				if ((this._betalingsdato != value))
+				{
+					this.OnbetalingsdatoChanging(value);
+					this.SendPropertyChanging();
+					this._betalingsdato = value;
+					this.SendPropertyChanged("betalingsdato");
+					this.OnbetalingsdatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nr", DbType="Int")]
+		public System.Nullable<int> Nr
+		{
+			get
+			{
+				return this._Nr;
+			}
+			set
+			{
+				if ((this._Nr != value))
+				{
+					this.OnNrChanging(value);
+					this.SendPropertyChanging();
+					this._Nr = value;
+					this.SendPropertyChanged("Nr");
+					this.OnNrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_faknr", DbType="Int")]
+		public System.Nullable<int> faknr
+		{
+			get
+			{
+				return this._faknr;
+			}
+			set
+			{
+				if ((this._faknr != value))
+				{
+					this.OnfaknrChanging(value);
+					this.SendPropertyChanging();
+					this._faknr = value;
+					this.SendPropertyChanged("faknr");
+					this.OnfaknrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_advistekst", DbType="NVarChar(4000)")]
+		public string advistekst
+		{
+			get
+			{
+				return this._advistekst;
+			}
+			set
+			{
+				if ((this._advistekst != value))
+				{
+					this.OnadvistekstChanging(value);
+					this.SendPropertyChanging();
+					this._advistekst = value;
+					this.SendPropertyChanged("advistekst");
+					this.OnadvistekstChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_advisbelob", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> advisbelob
+		{
+			get
+			{
+				return this._advisbelob;
+			}
+			set
+			{
+				if ((this._advisbelob != value))
+				{
+					this.OnadvisbelobChanging(value);
+					this.SendPropertyChanging();
+					this._advisbelob = value;
+					this.SendPropertyChanged("advisbelob");
+					this.OnadvisbelobChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_infotekst", DbType="Int")]
+		public System.Nullable<int> infotekst
+		{
+			get
+			{
+				return this._infotekst;
+			}
+			set
+			{
+				if ((this._infotekst != value))
+				{
+					this.OninfotekstChanging(value);
+					this.SendPropertyChanging();
+					this._infotekst = value;
+					this.SendPropertyChanged("infotekst");
+					this.OninfotekstChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bogfkonto", DbType="Int")]
+		public System.Nullable<int> bogfkonto
+		{
+			get
+			{
+				return this._bogfkonto;
+			}
+			set
+			{
+				if ((this._bogfkonto != value))
+				{
+					this.OnbogfkontoChanging(value);
+					this.SendPropertyChanging();
+					this._bogfkonto = value;
+					this.SendPropertyChanged("bogfkonto");
+					this.OnbogfkontoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_vnr", DbType="Int")]
+		public System.Nullable<int> vnr
+		{
+			get
+			{
+				return this._vnr;
+			}
+			set
+			{
+				if ((this._vnr != value))
+				{
+					this.OnvnrChanging(value);
+					this.SendPropertyChanging();
+					this._vnr = value;
+					this.SendPropertyChanged("vnr");
+					this.OnvnrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_fradato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> fradato
+		{
+			get
+			{
+				return this._fradato;
+			}
+			set
+			{
+				if ((this._fradato != value))
+				{
+					this.OnfradatoChanging(value);
+					this.SendPropertyChanging();
+					this._fradato = value;
+					this.SendPropertyChanged("fradato");
+					this.OnfradatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tildato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> tildato
+		{
+			get
+			{
+				return this._tildato;
+			}
+			set
+			{
+				if ((this._tildato != value))
+				{
+					this.OntildatoChanging(value);
+					this.SendPropertyChanging();
+					this._tildato = value;
+					this.SendPropertyChanged("tildato");
+					this.OntildatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SFakID", DbType="Int")]
+		public System.Nullable<int> SFakID
+		{
+			get
+			{
+				return this._SFakID;
+			}
+			set
+			{
+				if ((this._SFakID != value))
+				{
+					this.OnSFakIDChanging(value);
+					this.SendPropertyChanging();
+					this._SFakID = value;
+					this.SendPropertyChanged("SFakID");
+					this.OnSFakIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SFaknr", DbType="Int")]
+		public System.Nullable<int> SFaknr
+		{
+			get
+			{
+				return this._SFaknr;
+			}
+			set
+			{
+				if ((this._SFaknr != value))
+				{
+					this.OnSFaknrChanging(value);
+					this.SendPropertyChanging();
+					this._SFaknr = value;
+					this.SendPropertyChanged("SFaknr");
+					this.OnSFaknrChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rykkerdato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> rykkerdato
+		{
+			get
+			{
+				return this._rykkerdato;
+			}
+			set
+			{
+				if ((this._rykkerdato != value))
+				{
+					this.OnrykkerdatoChanging(value);
+					this.SendPropertyChanging();
+					this._rykkerdato = value;
+					this.SendPropertyChanged("rykkerdato");
+					this.OnrykkerdatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_maildato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> maildato
+		{
+			get
+			{
+				return this._maildato;
+			}
+			set
+			{
+				if ((this._maildato != value))
+				{
+					this.OnmaildatoChanging(value);
+					this.SendPropertyChanging();
+					this._maildato = value;
+					this.SendPropertyChanged("maildato");
+					this.OnmaildatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rykkerstop", DbType="Bit NOT NULL")]
+		public bool rykkerstop
+		{
+			get
+			{
+				return this._rykkerstop;
+			}
+			set
+			{
+				if ((this._rykkerstop != value))
+				{
+					this.OnrykkerstopChanging(value);
+					this.SendPropertyChanging();
+					this._rykkerstop = value;
+					this.SendPropertyChanged("rykkerstop");
+					this.OnrykkerstopChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_betalt", DbType="Bit NOT NULL")]
+		public bool betalt
+		{
+			get
+			{
+				return this._betalt;
+			}
+			set
+			{
+				if ((this._betalt != value))
+				{
+					this.OnbetaltChanging(value);
+					this.SendPropertyChanging();
+					this._betalt = value;
+					this.SendPropertyChanged("betalt");
+					this.OnbetaltChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tilmeldtpbs", DbType="Bit NOT NULL")]
+		public bool tilmeldtpbs
+		{
+			get
+			{
+				return this._tilmeldtpbs;
+			}
+			set
+			{
+				if ((this._tilmeldtpbs != value))
+				{
+					this.OntilmeldtpbsChanging(value);
+					this.SendPropertyChanging();
+					this._tilmeldtpbs = value;
+					this.SendPropertyChanged("tilmeldtpbs");
+					this.OntilmeldtpbsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_indmeldelse", DbType="Bit NOT NULL")]
+		public bool indmeldelse
+		{
+			get
+			{
+				return this._indmeldelse;
+			}
+			set
+			{
+				if ((this._indmeldelse != value))
+				{
+					this.OnindmeldelseChanging(value);
+					this.SendPropertyChanging();
+					this._indmeldelse = value;
+					this.SendPropertyChanged("indmeldelse");
+					this.OnindmeldelseChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_indbetalerident", DbType="NVarChar(19)")]
+		public string indbetalerident
+		{
+			get
+			{
+				return this._indbetalerident;
+			}
+			set
+			{
+				if ((this._indbetalerident != value))
+				{
+					this.OnindbetaleridentChanging(value);
+					this.SendPropertyChanging();
+					this._indbetalerident = value;
+					this.SendPropertyChanged("indbetalerident");
+					this.OnindbetaleridentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblfak_tblrsmembership_transaction", Storage="_tblrsmembership_transaction", ThisKey="id", OtherKey="id", IsUnique=true, IsForeignKey=false)]
+		public tblrsmembership_transaction tblrsmembership_transaction
+		{
+			get
+			{
+				return this._tblrsmembership_transaction.Entity;
+			}
+			set
+			{
+				tblrsmembership_transaction previousValue = this._tblrsmembership_transaction.Entity;
+				if (((previousValue != value) 
+							|| (this._tblrsmembership_transaction.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblrsmembership_transaction.Entity = null;
+						previousValue.tblfak = null;
+					}
+					this._tblrsmembership_transaction.Entity = value;
+					if ((value != null))
+					{
+						value.tblfak = this;
+					}
+					this.SendPropertyChanged("tblrsmembership_transaction");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbltilpb_tblfak", Storage="_tbltilpb", ThisKey="tilpbsid", OtherKey="id", IsForeignKey=true, DeleteRule="CASCADE")]
+		public tbltilpb tbltilpb
+		{
+			get
+			{
+				return this._tbltilpb.Entity;
+			}
+			set
+			{
+				tbltilpb previousValue = this._tbltilpb.Entity;
+				if (((previousValue != value) 
+							|| (this._tbltilpb.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tbltilpb.Entity = null;
+						previousValue.tblfaks.Remove(this);
+					}
+					this._tbltilpb.Entity = value;
+					if ((value != null))
+					{
+						value.tblfaks.Add(this);
+						this._tilpbsid = value.id;
+					}
+					else
+					{
+						this._tilpbsid = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tbltilpb");
 				}
 			}
 		}

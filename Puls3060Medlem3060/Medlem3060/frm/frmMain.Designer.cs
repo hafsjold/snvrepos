@@ -50,6 +50,7 @@
             this.pBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
             this.betalingerFraPBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.payPalBetalingerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.kontingentForslagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.betalingsForslagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,7 +73,7 @@
             this.testEmailRykkerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.payPalBetalingerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -267,6 +268,13 @@
             this.betalingerFraPBSToolStripMenuItem.Text = "Hent PBS Filer";
             this.betalingerFraPBSToolStripMenuItem.Click += new System.EventHandler(this.betalingerFraPBSToolStripMenuItem_Click);
             // 
+            // payPalBetalingerToolStripMenuItem
+            // 
+            this.payPalBetalingerToolStripMenuItem.Name = "payPalBetalingerToolStripMenuItem";
+            this.payPalBetalingerToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
+            this.payPalBetalingerToolStripMenuItem.Text = "PayPal Betalinger";
+            this.payPalBetalingerToolStripMenuItem.Click += new System.EventHandler(this.payPalBetalingerToolStripMenuItem_Click);
+            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
@@ -317,7 +325,8 @@
             this.importerFileFraPBSToolStripMenuItem,
             this.payPalTilPBSNyeMedlemmerToolStripMenuItem,
             this.opdaterRSMembershipToolStripMenuItem,
-            this.testEmailRykkerToolStripMenuItem});
+            this.testEmailRykkerToolStripMenuItem,
+            this.testToolStripMenuItem1});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
             this.systemToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.systemToolStripMenuItem.Text = "System";
@@ -325,98 +334,98 @@
             // kontingentToolStripMenuItem
             // 
             this.kontingentToolStripMenuItem.Name = "kontingentToolStripMenuItem";
-            this.kontingentToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.kontingentToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.kontingentToolStripMenuItem.Text = "Kontingent";
             this.kontingentToolStripMenuItem.Click += new System.EventHandler(this.kontingentToolStripMenuItem_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(227, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(214, 22);
             this.toolStripMenuItem2.Text = "Regnskab";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.regnskabToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(227, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(214, 22);
             this.toolStripMenuItem1.Text = "Kreditor";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.kerditorToolStripMenuItem_Click);
             // 
             // pbsfilesToolStripMenuItem
             // 
             this.pbsfilesToolStripMenuItem.Name = "pbsfilesToolStripMenuItem";
-            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.pbsfilesToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.pbsfilesToolStripMenuItem.Text = "Pbsfiles";
             this.pbsfilesToolStripMenuItem.Click += new System.EventHandler(this.pbsfilesToolStripMenuItem_Click);
             // 
             // infoTekstToolStripMenuItem
             // 
             this.infoTekstToolStripMenuItem.Name = "infoTekstToolStripMenuItem";
-            this.infoTekstToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.infoTekstToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.infoTekstToolStripMenuItem.Text = "Info tekst";
             this.infoTekstToolStripMenuItem.Click += new System.EventHandler(this.infoTekstToolStripMenuItem_Click);
             // 
             // pusterummetToolStripMenuItem
             // 
             this.pusterummetToolStripMenuItem.Name = "pusterummetToolStripMenuItem";
-            this.pusterummetToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.pusterummetToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.pusterummetToolStripMenuItem.Text = "Pusterummet";
             this.pusterummetToolStripMenuItem.Click += new System.EventHandler(this.pusterummetToolStripMenuItem_Click);
             // 
             // medlemExtraToolStripMenuItem
             // 
             this.medlemExtraToolStripMenuItem.Name = "medlemExtraToolStripMenuItem";
-            this.medlemExtraToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.medlemExtraToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.medlemExtraToolStripMenuItem.Text = "MedlemExtra";
             this.medlemExtraToolStripMenuItem.Click += new System.EventHandler(this.medlemExtraToolStripMenuItem_Click);
             // 
             // opdaterMedlemsstausToolStripMenuItem
             // 
             this.opdaterMedlemsstausToolStripMenuItem.Name = "opdaterMedlemsstausToolStripMenuItem";
-            this.opdaterMedlemsstausToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.opdaterMedlemsstausToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.opdaterMedlemsstausToolStripMenuItem.Text = "Opdater Medlemsstaus";
             this.opdaterMedlemsstausToolStripMenuItem.Click += new System.EventHandler(this.opdaterMedlemsstausToolStripMenuItem_Click);
             // 
             // reSendToolStripMenuItem
             // 
             this.reSendToolStripMenuItem.Name = "reSendToolStripMenuItem";
-            this.reSendToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.reSendToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.reSendToolStripMenuItem.Text = "ReSend";
             this.reSendToolStripMenuItem.Click += new System.EventHandler(this.reSendToolStripMenuItem_Click);
             // 
             // databasePasswordToolStripMenuItem
             // 
             this.databasePasswordToolStripMenuItem.Name = "databasePasswordToolStripMenuItem";
-            this.databasePasswordToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.databasePasswordToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.databasePasswordToolStripMenuItem.Text = "Database Password";
             this.databasePasswordToolStripMenuItem.Click += new System.EventHandler(this.databasePasswordToolStripMenuItem_Click);
             // 
             // importerFileFraPBSToolStripMenuItem
             // 
             this.importerFileFraPBSToolStripMenuItem.Name = "importerFileFraPBSToolStripMenuItem";
-            this.importerFileFraPBSToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.importerFileFraPBSToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.importerFileFraPBSToolStripMenuItem.Text = "Importer file fra PBS";
             this.importerFileFraPBSToolStripMenuItem.Click += new System.EventHandler(this.importerFileFraPBSToolStripMenuItem_Click);
             // 
             // payPalTilPBSNyeMedlemmerToolStripMenuItem
             // 
             this.payPalTilPBSNyeMedlemmerToolStripMenuItem.Name = "payPalTilPBSNyeMedlemmerToolStripMenuItem";
-            this.payPalTilPBSNyeMedlemmerToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.payPalTilPBSNyeMedlemmerToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.payPalTilPBSNyeMedlemmerToolStripMenuItem.Text = "PayPal til PBS Nyt Medlem";
             this.payPalTilPBSNyeMedlemmerToolStripMenuItem.Click += new System.EventHandler(this.payPalTilPBSNyeMedlemmerToolStripMenuItem_Click);
             // 
             // opdaterRSMembershipToolStripMenuItem
             // 
             this.opdaterRSMembershipToolStripMenuItem.Name = "opdaterRSMembershipToolStripMenuItem";
-            this.opdaterRSMembershipToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.opdaterRSMembershipToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.opdaterRSMembershipToolStripMenuItem.Text = "Opdater RSMembership";
             this.opdaterRSMembershipToolStripMenuItem.Click += new System.EventHandler(this.opdaterRSMembershipToolStripMenuItem_Click);
             // 
             // testEmailRykkerToolStripMenuItem
             // 
             this.testEmailRykkerToolStripMenuItem.Name = "testEmailRykkerToolStripMenuItem";
-            this.testEmailRykkerToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.testEmailRykkerToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.testEmailRykkerToolStripMenuItem.Text = "Test Email Rykker";
             this.testEmailRykkerToolStripMenuItem.Click += new System.EventHandler(this.testEmailRykkerToolStripMenuItem_Click);
             // 
@@ -435,12 +444,12 @@
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
-            // payPalBetalingerToolStripMenuItem
+            // testToolStripMenuItem1
             // 
-            this.payPalBetalingerToolStripMenuItem.Name = "payPalBetalingerToolStripMenuItem";
-            this.payPalBetalingerToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.payPalBetalingerToolStripMenuItem.Text = "PayPal Betalinger";
-            this.payPalBetalingerToolStripMenuItem.Click += new System.EventHandler(this.payPalBetalingerToolStripMenuItem_Click);
+            this.testToolStripMenuItem1.Name = "testToolStripMenuItem1";
+            this.testToolStripMenuItem1.Size = new System.Drawing.Size(214, 22);
+            this.testToolStripMenuItem1.Text = "Test";
+            this.testToolStripMenuItem1.Click += new System.EventHandler(this.testToolStripMenuItem1_Click);
             // 
             // FrmMain
             // 
@@ -516,6 +525,7 @@
         private System.Windows.Forms.ToolStripMenuItem opdaterRSMembershipToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testEmailRykkerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem payPalBetalingerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem1;
    }
 }
 
