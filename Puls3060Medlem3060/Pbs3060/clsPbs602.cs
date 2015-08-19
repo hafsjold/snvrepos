@@ -584,6 +584,7 @@ namespace nsPbs3060
                            };
 
             int AntalBetalinger = rsmbrshp.Count();
+            Program.Log(string.Format("betalinger_til_rsmembership - AntalBetalinger {0}", AntalBetalinger));
             if (rsmbrshp.Count() > 0)
             {
                 foreach (var b in rsmbrshp)
@@ -608,6 +609,7 @@ namespace nsPbs3060
                         tblmembershippayment rec_membershippayment = qry.First();
                         p_dbPuls3060_dk.tblmembershippayments.Add(rec_membershippayment);
                         p_dbPuls3060_dk.SaveChanges();
+                        Program.Log(string.Format("betalinger_til_rsmembership - faknr {0} betalt", b.faknr));
                     }
                 }
                 p_dbData3060.SubmitChanges();
