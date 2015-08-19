@@ -123,6 +123,13 @@ namespace nsMedlem3060Service
 
                             clsPbs602 objPbs602 = new clsPbs602();
                             int Antal602Filer = objPbs602.betalinger_fra_pbs(m_dbData3060);
+                            if (Antal602Filer > 0)
+                            {
+                                Program.Log(string.Format("Medlem3060Service {0} begin", "Betalinger til RSMembership"));
+                                puls3060_dkEntities jdb = new puls3060_dkEntities();
+                                objPbs602.betalinger_til_rsmembership(m_dbData3060, jdb);
+                                Program.Log(string.Format("Medlem3060Service {0} end", "Betalinger til RSMembership"));
+                            }
                             objPbs602 = null;
 
                             clsPbs603 objPbs603 = new clsPbs603();
