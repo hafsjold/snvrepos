@@ -138,11 +138,12 @@ namespace nsPuls3060
 
                     }
 
+                    /*
                     var fak = from f in Program.dbData3060.tblfaks
                               where f.faknr == b.faknr
                               join m in Program.dbData3060.tblMedlems on f.Nr equals m.Nr
                               select new { f.faknr, f.Nr, m.Navn, f.bogfkonto };
-
+                    */
                     var bet = from bi in Program.dbData3060.tblbetalingsidentifikations
                               where bi.betalingsidentifikation == b.debitorkonto
                               join m in Program.dbData3060.tblMedlems on bi.Nr equals m.Nr
@@ -153,6 +154,7 @@ namespace nsPuls3060
                               join m in Program.dbData3060.tblrsmembership_transactions on f.Nr equals m.memberid
                               select new { f.faknr, f.Nr, m.name, f.bogfkonto, f.fradato, f.tildato };
 
+                    /*
                     if (fak.Count() == 1) //Kontingent betaling
                     {
                         var f = fak.First();
@@ -169,7 +171,9 @@ namespace nsPuls3060
                         };
                         Program.karKladde.Add(kl);
                     }
-                    else if (bet.Count() == 1) //Betaling med betalingsidentifikation
+                    else
+                    */
+                    if (bet.Count() == 1) //Betaling med betalingsidentifikation
                     {
                         var f = bet.First();
                         recKladde kl = new recKladde
