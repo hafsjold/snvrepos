@@ -322,7 +322,7 @@
             this.Controls.Add(this.Database);
             this.Controls.Add(this.cmdAddFolderToList);
             this.Name = "frmBackup";
-            this.Text = "Hafsjold Data ApS Backup";
+            this.Text = "Hafsjold Data Consult Backup";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmBackup_FormClosing);
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
