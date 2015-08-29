@@ -486,6 +486,11 @@ namespace Trans2SummaHDC
             objPaypal.load_bankkonto2();
         }
 
+        private void toolStripStatusLabel2_Click(object sender, EventArgs e)
+        {
+
+        }
+
 
     }
 

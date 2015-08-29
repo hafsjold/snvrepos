@@ -56,6 +56,7 @@
             this.importFakturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importDanskebankToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importerMasterCardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importPayPalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importNordeaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importActebisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.excelRegnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -76,7 +77,6 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonIndtastBilag = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.importPayPalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -96,7 +96,7 @@
             // 
             // toolStripStatusLabel1
             // 
-            this.toolStripStatusLabel1.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+            this.toolStripStatusLabel1.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.toolStripStatusLabel1.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
@@ -105,13 +105,14 @@
             // 
             // toolStripStatusLabel2
             // 
-            this.toolStripStatusLabel2.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+            this.toolStripStatusLabel2.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.toolStripStatusLabel2.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(547, 19);
             this.toolStripStatusLabel2.Text = "C:\\Documents and Settings\\mha\\Dokumenter\\Medlem3060\\Databaser\\SQLCompact\\dbData30" +
     "60.sdf";
+            this.toolStripStatusLabel2.Click += new System.EventHandler(this.toolStripStatusLabel2_Click);
             // 
             // MainformProgressBar
             // 
@@ -121,7 +122,7 @@
             // 
             // MainformProgressText
             // 
-            this.MainformProgressText.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+            this.MainformProgressText.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)(((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.MainformProgressText.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.MainformProgressText.Name = "MainformProgressText";
@@ -314,6 +315,13 @@
             this.importerMasterCardToolStripMenuItem.Visible = false;
             this.importerMasterCardToolStripMenuItem.Click += new System.EventHandler(this.importMasterCardToolStripMenuItem_Click);
             // 
+            // importPayPalToolStripMenuItem
+            // 
+            this.importPayPalToolStripMenuItem.Name = "importPayPalToolStripMenuItem";
+            this.importPayPalToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.importPayPalToolStripMenuItem.Text = "Import PayPal";
+            this.importPayPalToolStripMenuItem.Click += new System.EventHandler(this.importPayPalToolStripMenuItem_Click);
+            // 
             // importNordeaToolStripMenuItem
             // 
             this.importNordeaToolStripMenuItem.Name = "importNordeaToolStripMenuItem";
@@ -480,13 +488,6 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
-            // importPayPalToolStripMenuItem
-            // 
-            this.importPayPalToolStripMenuItem.Name = "importPayPalToolStripMenuItem";
-            this.importPayPalToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.importPayPalToolStripMenuItem.Text = "Import PayPal";
-            this.importPayPalToolStripMenuItem.Click += new System.EventHandler(this.importPayPalToolStripMenuItem_Click);
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -503,7 +504,7 @@
             this.Name = "FrmMain";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Trans Summa HDA";
+            this.Text = "Trans Summa HDC";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.statusStrip1.ResumeLayout(false);

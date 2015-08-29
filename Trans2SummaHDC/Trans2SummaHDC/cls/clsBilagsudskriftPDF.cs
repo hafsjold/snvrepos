@@ -72,7 +72,7 @@ namespace Trans2SummaHDC
             //Create a pdf document.
             PdfDocument doc = new PdfDocument();
 
-            doc.DocumentInformation.Author = "Hafsjold Data ApS";
+            doc.DocumentInformation.Author = "Hafsjold Data Consult";
             doc.DocumentInformation.Title = String.Format("Bogføringsbilag {0}", regnskabsnavn);
             doc.DocumentInformation.Creator = "Trans2SummaHDC";
             doc.DocumentInformation.Subject = String.Format("Bilag {0}", ((int)Bilag.bilag).ToString());
