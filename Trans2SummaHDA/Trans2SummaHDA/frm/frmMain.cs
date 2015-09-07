@@ -13,10 +13,6 @@ using System.Data.Common;
 using System.Xml.Linq;
 using System.Data.Linq.SqlClient;
 
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -27,6 +23,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Excel;
 
 namespace Trans2SummaHDA
 {
@@ -137,10 +134,12 @@ namespace Trans2SummaHDA
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
-            KarPaypal objPaypal = new KarPaypal(5);
-            objPaypal.load_paypal();
-            objPaypal.load_bankkonto1();
-            objPaypal.load_bankkonto2();
+            clsImportFaktura objImportFaktura = new clsImportFaktura();
+
+            //KarPaypal objPaypal = new KarPaypal(5);
+            //objPaypal.load_paypal();
+            //objPaypal.load_bankkonto1();
+            //objPaypal.load_bankkonto2();
             
             //clsBilagsudskriftPDF objBilagsudskriftPDF = new clsBilagsudskriftPDF();
             //clsBilagsudskriftPDF.BilagsudskriftPDF();
