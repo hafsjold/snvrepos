@@ -77,6 +77,13 @@
     <AssemblyOriginatorKeyFile>StrongNameKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Excel, Version=2.1.2.3, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ExcelDataReader.2.1.2.3\lib\net20\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="Interop.VBIDE, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\Interop.VBIDE.dll</HintPath>
@@ -138,6 +145,7 @@
     <Compile Include="cls\clsFaktura.cs" />
     <Compile Include="cls\clsExcel.cs" />
     <Compile Include="cls\clsBilagsudskrift.cs" />
+    <Compile Include="cls\clsImportFaktura.cs" />
     <Compile Include="dbDataTransSumma.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
