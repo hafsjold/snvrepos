@@ -491,6 +491,11 @@ namespace Trans2SummaHDC
 
         }
 
+        private void importAfEcxelKøbsordreToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clsImportFaktura objImportFaktura = new clsImportFaktura();
+        }
+
 
     }
 

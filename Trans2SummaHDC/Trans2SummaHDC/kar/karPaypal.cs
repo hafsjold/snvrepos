@@ -262,6 +262,7 @@ namespace Trans2SummaHDC
                        || w.Type == "XXX"
                       )
                       && w.Currency == "DKK"
+                      && w.Status == "Completed"
                       orderby w.Date
                       select w;
 

@@ -37,7 +37,7 @@
     <ProductName>Trans2SummaHDC</ProductName>
     <PublisherName>Hafsjold</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>4</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -76,6 +76,10 @@
     <AssemblyOriginatorKeyFile>Trans2SummaHDC_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Excel, Version=2.0.1.0, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraries\Excel.dll</HintPath>
+    </Reference>
     <Reference Include="Interop.VBIDE, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libraries\Interop.VBIDE.dll</HintPath>
@@ -137,6 +141,7 @@
     <Compile Include="cls\clsFaktura.cs" />
     <Compile Include="cls\clsExcel.cs" />
     <Compile Include="cls\clsBilagsudskrift.cs" />
+    <Compile Include="cls\clsImportFaktura.cs" />
     <Compile Include="dbDataTransSumma.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

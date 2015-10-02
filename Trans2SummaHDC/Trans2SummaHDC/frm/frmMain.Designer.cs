@@ -77,6 +77,7 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonIndtastBilag = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.importAfEcxelKøbsordreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -352,7 +353,8 @@
             this.varekontoTypeToolStripMenuItem,
             this.actebisFakturaToolStripMenuItem,
             this.templatesToolStripMenuItem,
-            this.kontoudtogToolStripMenuItem});
+            this.kontoudtogToolStripMenuItem,
+            this.importAfEcxelKøbsordreToolStripMenuItem});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
             this.systemToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.systemToolStripMenuItem.Text = "System";
@@ -360,21 +362,21 @@
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(155, 22);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(209, 22);
             this.toolStripMenuItem2.Text = "Regnskab";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.regnskabToolStripMenuItem_Click);
             // 
             // varekontoTypeToolStripMenuItem
             // 
             this.varekontoTypeToolStripMenuItem.Name = "varekontoTypeToolStripMenuItem";
-            this.varekontoTypeToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.varekontoTypeToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.varekontoTypeToolStripMenuItem.Text = "VarekontoType";
             this.varekontoTypeToolStripMenuItem.Click += new System.EventHandler(this.varekontoTypeToolStripMenuItem_Click);
             // 
             // actebisFakturaToolStripMenuItem
             // 
             this.actebisFakturaToolStripMenuItem.Name = "actebisFakturaToolStripMenuItem";
-            this.actebisFakturaToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.actebisFakturaToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.actebisFakturaToolStripMenuItem.Text = "Actebis Faktura";
             this.actebisFakturaToolStripMenuItem.Visible = false;
             this.actebisFakturaToolStripMenuItem.Click += new System.EventHandler(this.actebisFakturaToolStripMenuItem_Click);
@@ -382,14 +384,14 @@
             // templatesToolStripMenuItem
             // 
             this.templatesToolStripMenuItem.Name = "templatesToolStripMenuItem";
-            this.templatesToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.templatesToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.templatesToolStripMenuItem.Text = "Templates";
             this.templatesToolStripMenuItem.Click += new System.EventHandler(this.templatesToolStripMenuItem_Click);
             // 
             // kontoudtogToolStripMenuItem
             // 
             this.kontoudtogToolStripMenuItem.Name = "kontoudtogToolStripMenuItem";
-            this.kontoudtogToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.kontoudtogToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.kontoudtogToolStripMenuItem.Text = "Kontoudtog";
             this.kontoudtogToolStripMenuItem.Click += new System.EventHandler(this.kontoudtogToolStripMenuItem_Click);
             // 
@@ -488,6 +490,13 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
+            // importAfEcxelKøbsordreToolStripMenuItem
+            // 
+            this.importAfEcxelKøbsordreToolStripMenuItem.Name = "importAfEcxelKøbsordreToolStripMenuItem";
+            this.importAfEcxelKøbsordreToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.importAfEcxelKøbsordreToolStripMenuItem.Text = "Import af Ecxel Købsordre";
+            this.importAfEcxelKøbsordreToolStripMenuItem.Click += new System.EventHandler(this.importAfEcxelKøbsordreToolStripMenuItem_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -568,6 +577,7 @@
         private System.Windows.Forms.ToolStripMenuItem templatesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kontoudtogToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importPayPalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importAfEcxelKøbsordreToolStripMenuItem;
     }
 }
 
