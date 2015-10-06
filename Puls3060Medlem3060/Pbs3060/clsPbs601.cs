@@ -792,7 +792,7 @@ namespace nsPbs3060
             int wantalfakturaer;
             wantalfakturaer = 0;
 
-            bool? wbsh = (from h in p_dbData3060.tempKontforslags select h.bsh).First();
+            bool? wbsh = (from h in memKontingentforslag select h.bsh).First();
             bool bsh = (wbsh == null) ? false : (bool)wbsh;
             string wDelsystem;
             if (bsh) wDelsystem = "BSH";

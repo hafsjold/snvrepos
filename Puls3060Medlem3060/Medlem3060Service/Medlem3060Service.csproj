@@ -55,7 +55,7 @@
     <StartupObject>nsMedlem3060Service.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>D049B38058CB1B5768271C4CD379762252233322</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>E208ECAD063BB640532B2B69A50BE203E07B7447</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>
