@@ -651,6 +651,9 @@ namespace nsPbs3060
             {
                 foreach (var rsmembership in arr_rsmembership)
                 {
+                    if (rsmembership.paypal_transaction_id.Length == 0)
+                        continue;
+                    
                     PaymentTransactionSearchResultType paypal_trans = objPayPal.getPayPalTransaction(rsmembership.paypal_transaction_id);
 
                     if (paypal_trans != null)
