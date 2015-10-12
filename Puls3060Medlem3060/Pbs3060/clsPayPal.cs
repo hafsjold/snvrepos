@@ -52,14 +52,19 @@ namespace nsPbs3060
             request.TransactionSearchRequest.TransactionID = pTransactionID;
             var pw = credentials;
             var client = new PayPalAPIInterfaceClient();
-            TransactionSearchResponseType trans = client.TransactionSearch(ref pw, request);
-            if (trans.Ack == AckCodeType.Success)
+            try
             {
-                if (trans.PaymentTransactions.Count() == 1)
+                TransactionSearchResponseType trans = client.TransactionSearch(ref pw, request);
+                if (trans.Ack == AckCodeType.Success)
                 {
-                    return trans.PaymentTransactions[0];
+                    if (trans.PaymentTransactions.Count() == 1)
+                    {
+                        return trans.PaymentTransactions[0];
+                    }
                 }
             }
+            catch {}
+
             return null;
         }
     }
