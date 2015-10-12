@@ -653,84 +653,88 @@ namespace nsPbs3060
                 {
                     PaymentTransactionSearchResultType paypal_trans = objPayPal.getPayPalTransaction(rsmembership.paypal_transaction_id);
 
-                    decimal Belob = decimal.Parse(paypal_trans.GrossAmount.Value.Replace(".", ","));
-                    decimal[] arrBeløb = clsPbs602.fordeling(Belob, rsmembership.membership_start, rsmembership.membership_end, Regnskabsaar_Startdato, Regnskabsaar_Slutdato);
-                    string stdate = string.Format(" {0}-{1}", rsmembership.membership_start.ToString("d.M.yyyy"), rsmembership.membership_end.ToString("d.M.yyyy"));
-
-                    int wBilag = ++BS1_SidsteNr;
-                    recBogfoeringsKlader recklade = new recBogfoeringsKlader
+                    if (paypal_trans != null)
                     {
-                        Dato = paypal_trans.Timestamp,
-                        Bilag = wBilag,
-                        Tekst = ("Paypal: " + rsmembership.paypal_transaction_id).PadRight(40, ' ').Substring(0, 40),
-                        Afstemningskonto = "PayPal",
-                        Belob = Belob,
-                        Kontonr = null,
-                        Faknr = null,
-                        Sagnr = null
-                    };
-                    klader.Add(recklade);
+                        decimal Belob = decimal.Parse(paypal_trans.GrossAmount.Value.Replace(".", ","));
+                        decimal[] arrBeløb = clsPbs602.fordeling(Belob, rsmembership.membership_start, rsmembership.membership_end, Regnskabsaar_Startdato, Regnskabsaar_Slutdato);
+                        string stdate = string.Format(" {0}-{1}", rsmembership.membership_start.ToString("d.M.yyyy"), rsmembership.membership_end.ToString("d.M.yyyy"));
 
-                    if (arrBeløb[0] > 0)
-                    {
-                        recklade = new recBogfoeringsKlader
+                        int wBilag = ++BS1_SidsteNr;
+                        recBogfoeringsKlader recklade = new recBogfoeringsKlader
                         {
                             Dato = paypal_trans.Timestamp,
                             Bilag = wBilag,
-                            Tekst = (rsmembership.Navn + stdate).PadRight(40, ' ').Substring(0, 40),
-                            Afstemningskonto = "",
-                            Belob = arrBeløb[0],
-                            Kontonr = 1800,
+                            Tekst = ("Paypal: " + rsmembership.paypal_transaction_id).PadRight(40, ' ').Substring(0, 40),
+                            Afstemningskonto = "PayPal",
+                            Belob = Belob,
+                            Kontonr = null,
                             Faknr = null,
                             Sagnr = null
                         };
                         klader.Add(recklade);
-                    }
 
-                    if (arrBeløb[1] > 0)
-                    {
+                        if (arrBeløb[0] > 0)
+                        {
+                            recklade = new recBogfoeringsKlader
+                            {
+                                Dato = paypal_trans.Timestamp,
+                                Bilag = wBilag,
+                                Tekst = (rsmembership.Navn + stdate).PadRight(40, ' ').Substring(0, 40),
+                                Afstemningskonto = "",
+                                Belob = arrBeløb[0],
+                                Kontonr = 1800,
+                                Faknr = null,
+                                Sagnr = null
+                            };
+                            klader.Add(recklade);
+                        }
+
+                        if (arrBeløb[1] > 0)
+                        {
+                            recklade = new recBogfoeringsKlader
+                            {
+                                Dato = paypal_trans.Timestamp,
+                                Bilag = wBilag,
+                                Tekst = (rsmembership.Navn + stdate).PadRight(40, ' ').Substring(0, 40),
+                                Afstemningskonto = "",
+                                Belob = arrBeløb[1],
+                                Kontonr = 64200,
+                                Faknr = null,
+                                Sagnr = null
+                            };
+                            klader.Add(recklade);
+                        }
+
                         recklade = new recBogfoeringsKlader
                         {
                             Dato = paypal_trans.Timestamp,
                             Bilag = wBilag,
-                            Tekst = (rsmembership.Navn + stdate).PadRight(40, ' ').Substring(0, 40),
-                            Afstemningskonto = "",
-                            Belob = arrBeløb[1],
-                            Kontonr = 64200,
+                            Tekst = ("PayPal Gebyr").PadRight(40, ' ').Substring(0, 40),
+                            Afstemningskonto = "PayPal",
+                            Belob = decimal.Parse(paypal_trans.FeeAmount.Value.Replace(".", ",")),
+                            Kontonr = 9950,
                             Faknr = null,
                             Sagnr = null
                         };
                         klader.Add(recklade);
-                    }
 
-                    recklade = new recBogfoeringsKlader
-                    {
-                        Dato = paypal_trans.Timestamp,
-                        Bilag = wBilag,
-                        Tekst = ("PayPal Gebyr").PadRight(40, ' ').Substring(0, 40),
-                        Afstemningskonto = "PayPal",
-                        Belob = decimal.Parse(paypal_trans.FeeAmount.Value.Replace(".", ",")),
-                        Kontonr = 9950,
-                        Faknr = null,
-                        Sagnr = null
-                    };
-                    klader.Add(recklade);
-
-                    tblpaypalpayment rec_paypalpayments = (from p in p_dbPuls3060_dk.tblpaypalpayments where p.paypal_transactions_id == rsmembership.paypal_transaction_id select p).FirstOrDefault();
-                    if (rec_paypalpayments == null)
-                    {
-                        rec_paypalpayments = new tblpaypalpayment 
-                        { 
-                            paypal_transactions_id = rsmembership.paypal_transaction_id,
-                            bogfoert = true
-                        };
-                        p_dbPuls3060_dk.tblpaypalpayments.Add(rec_paypalpayments);
+                        tblpaypalpayment rec_paypalpayments = (from p in p_dbPuls3060_dk.tblpaypalpayments where p.paypal_transactions_id == rsmembership.paypal_transaction_id select p).FirstOrDefault();
+                        if (rec_paypalpayments == null)
+                        {
+                            rec_paypalpayments = new tblpaypalpayment
+                            {
+                                paypal_transactions_id = rsmembership.paypal_transaction_id,
+                                bogfoert = true
+                            };
+                            p_dbPuls3060_dk.tblpaypalpayments.Add(rec_paypalpayments);
+                        }
+                        else
+                        {
+                            rec_paypalpayments.bogfoert = true;
+                        }
+                        p_dbPuls3060_dk.SaveChanges();
+                        
                     }
-                    else 
-                    {
-                        rec_paypalpayments.bogfoert = true;
-                    }
-                    p_dbPuls3060_dk.SaveChanges();
                 }
             }
 
