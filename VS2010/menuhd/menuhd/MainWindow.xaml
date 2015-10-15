@@ -2,10 +2,10 @@
         xmlns:local="clr-namespace:nsMenu"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Hafsjold Data" Height="284" Width="400" DataContext="{Binding}" Icon="/menuhd;component/hd.ico" x:Name="win1" Closing="win1_Closing">
-    <Grid Height="249" Width="379">
-         <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="241" HorizontalAlignment="Left" Margin="0,3,0,0" Name="groupBox1" VerticalAlignment="Top" Width="183">
-            <Grid Height="238" Width="170">
+        Title="Hafsjold Data" Height="330" Width="400" DataContext="{Binding}" Icon="/menuhd;component/hd.ico" x:Name="win1" Closing="win1_Closing">
+    <Grid Height="295" Width="379">
+        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="198" HorizontalAlignment="Left" Margin="0,3,0,0" Name="pHD05" VerticalAlignment="Top" Width="183">
+            <Grid Height="195" Width="170">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="85" />
                     <ColumnDefinition />
@@ -17,21 +17,19 @@
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="5*" />
                 </Grid.RowDefinitions>
                 <local:menuButton ServerOS="Win2012" Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="pHD05" ToolTip="HyperV Server" />
                 <local:menuButton Grid.Row="2" Margin="3" ServerName="Win7" ServerOS="Win7" ToolTip="Program udviklings"/>
                 <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="Win7-2" ToolTip="Program udvikling" ServerOS="Win7" />
                 <local:menuButton Grid.Row="3" Margin="3" ServerName="vHD50" ToolTip="Program udvikling" ServerOS="Win8" />
                 <local:menuButton Grid.Column="1" Grid.Row="3" Margin="3" ServerName="HD40" ToolTip="Tidligere Arbejsdplads" ServerOS="Win7" />
-                <local:menuButton Margin="3"  ServerName="vHD33" ServerOS="freeBSD" ToolTip="Zabbix og Mail Server" Grid.Row="6" />
-                <local:menuButton Margin="3" ServerName="vHD34" ServerOS="freeBSD" ToolTip="Udvikling freeBSD Server" Grid.Row="6" Grid.Column="1" />
+                <local:menuButton Margin="3"  ServerName="vHD33" ServerOS="freeBSD" ToolTip="Zabbix og Mail Server" Grid.Row="5" />
+                <local:menuButton Margin="3" ServerName="vHD34" ServerOS="freeBSD" ToolTip="Udvikling freeBSD Server" Grid.Row="5" Grid.Column="1" />
 
             </Grid>
         </GroupBox>
-        <GroupBox  Height="158" HorizontalAlignment="Left" Name="groupBox2" VerticalAlignment="Top" Width="183" BorderBrush="Black" Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" Margin="193,3,0,0">
-            <Grid Height="152" Width="170" >
+        <GroupBox  Height="198" HorizontalAlignment="Left" Name="pHD06" VerticalAlignment="Top" Width="183" BorderBrush="Black" Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" Margin="193,3,0,0">
+            <Grid Height="195" Width="170" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="85" />
                     <ColumnDefinition />
@@ -42,21 +40,24 @@
                     <RowDefinition  Height="40"/>
                     <RowDefinition  Height="40"/>
                     <RowDefinition  Height="40"/>
+                    <RowDefinition  Height="40"/>
                 </Grid.RowDefinitions>
                 <local:menuButton ServerName="pHD06" ServerOS="Win2012" ToolTip="HyperV Server" Margin="3" Grid.Row="1" Grid.ColumnSpan="2" />
-                <local:menuButton Margin="3" ServerName="HD46" ServerOS="Win7" ToolTip="Virtuel Gammel HD46" Grid.Row="2"  Grid.Column="1"/>
-               <local:menuButton ServerName="vPuls3060" ServerOS="Win2012" ToolTip="Puls 3060 Azure Server" Margin="3" Grid.Row="2" />
-                <local:menuButton ServerName="3060-Regn" ServerOS="Win8" ToolTip="Puls3060 Regnskab"  Margin="3" Grid.Row="3" Grid.Column="0" />
-                <local:menuButton ServerName="HDA-Regn" ServerOS="Win8" ToolTip=" Hafsjold Data ApS Regnskab"  Margin="3" Grid.Row="3" Grid.Column="1" />
-                <local:menuButton ServerName="HDC-Regn" ServerOS="Win8" ToolTip=" Hafsjold Data Consult"  Margin="3" Grid.Row="4" Grid.Column="1" />
-                <local:menuButton ServerName="vHD61" ServerOS="freeBSD" ToolTip="Udvikling freeBSD Server"  Margin="3" Grid.Row="4" Grid.Column="0" />
+                <local:menuButton Margin="3" ServerName="HD46" ServerOS="Win7" ToolTip="Virtuel Gammel HD46" Grid.Row="4"  Grid.Column="1"/>
+                <local:menuButton ServerName="3060-Regn" ServerOS="Win8" ToolTip="Puls3060 Regnskab"  Margin="3" Grid.Row="2" Grid.Column="0" />
+                <local:menuButton ServerName="HDA-Regn" ServerOS="Win8" ToolTip=" Hafsjold Data ApS Regnskab"  Margin="3" Grid.Row="2" Grid.Column="1" />
+                <local:menuButton ServerName="HDC-Regn" ServerOS="Win8" ToolTip=" Hafsjold Data Consult"  Margin="3" Grid.Row="3" Grid.Column="1" />
+                <local:menuButton ServerName="vHD61" ServerOS="freeBSD" ToolTip="Udvikling freeBSD Server"  Margin="3" Grid.Row="5" Grid.Column="0" />
+                <local:menuButton ServerName="vHD62" ServerOS="Win8" ToolTip="Udvikling med freeBSD"  Margin="3" Grid.Row="4" Grid.Column="0" />
+                <local:menuButton ServerName="vfreeBSD" ServerOS="freeBSD" ToolTip="Udvikling freeBSD Server"  Margin="3" Grid.Row="5" Grid.Column="1" />
             </Grid>
         </GroupBox>
 
-        <local:menuButton Margin="197,167,103,48" ServerName="pHD11" ServerOS="Win2012" ToolTip="DPM Backup Server" />
-        <local:menuButton Margin="289,167,11,48" ServerName="pHD12" ServerOS="Win2012" ToolTip="Domain Conrtoller" />
-        <local:menuButton Margin="197,208,103,7" ServerName="Revi27" ServerOS="Win2012" ToolTip="DPM Backup Server for BuusJensen" />
-        <local:menuButton Margin="289,208,12,7" ServerName="pHD46" ServerOS="Win8" ToolTip="PC på Gang 1. sal" />
+        <local:menuButton Height="34" Width="79" Margin="7,209,0,0" ServerName="pHD11" ServerOS="Win2012" ToolTip="DPM Backup Server" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <local:menuButton Height="34" Width="79" Margin="99,209,0,0" ServerName="pHD12" ServerOS="Win2012" ToolTip="Domain Conrtoller" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <local:menuButton Height="34" Width="79" Margin="197,209,0,0" ServerName="Revi27" ServerOS="Win2012" ToolTip="DPM Backup Server for BuusJensen" HorizontalAlignment="Left" VerticalAlignment="Top" />
+        <local:menuButton Height="34" Width="79" Margin="290,209,0,0" ServerName="pHD46" ServerOS="Win8" ToolTip="PC på Gang 1. sal" VerticalAlignment="Top" HorizontalAlignment="Left" />
+        <local:menuButton ServerName="vPuls3060" ServerOS="Win2012" ToolTip="Puls 3060 Azure Server" Margin="6,251,0,0" HorizontalAlignment="Left" Width="79" Height="34" VerticalAlignment="Top" />
     </Grid>
 </Window>
 
