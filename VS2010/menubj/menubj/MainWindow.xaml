@@ -2,9 +2,9 @@
         xmlns:local="clr-namespace:nsMenu"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Buus Jensen Servers" Height="622" Width="400" DataContext="{Binding}" Icon="/menubj;component/bj.ico" x:Name="win1" Closing="win1_Closing">
-    <Grid Height="584" Width="379" Background="#FFEFE3E3">
-        <GroupBox  Height="237" HorizontalAlignment="Left" Name="pRevi36" VerticalAlignment="Top" Width="183" BorderBrush="Black" Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" Margin="0,3,0,0">
+        Title="Buus Jensen Servers" Height="800" Width="400" DataContext="{Binding}" Icon="/menubj;component/bj.ico" x:Name="win1" Closing="win1_Closing">
+    <Grid Height="760" Width="379" Background="#FFEFE3E3">
+        <GroupBox  Height="237" HorizontalAlignment="Left" Name="pRevi36" VerticalAlignment="Top" Width="183" BorderBrush="Black" Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" Margin="0,253,0,0">
             <Grid Height="232" Width="170" >
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="85" />
@@ -32,8 +32,8 @@
                 <local:menuButton Grid.Row="6" Margin="3" ServerName="vRevi52" ServerOS="Win2012" ToolTip="Sharepoint Server" Grid.Column="1"  />
             </Grid>
         </GroupBox>
-        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="170" HorizontalAlignment="Left" Margin="193,3,0,0" Name="groupBox1" VerticalAlignment="Top" Width="183">
-            <Grid Height="163" Width="170">
+        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="157" HorizontalAlignment="Left"  Margin="194,332,0,0" Name="pRevi37" VerticalAlignment="Top" Width="183">
+            <Grid Height="156" Width="170">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="85" />
                     <ColumnDefinition />
@@ -46,7 +46,7 @@
                     <RowDefinition Height="40" />
                     <RowDefinition Height="10*" />
                 </Grid.RowDefinitions>
-                <local:menuButton x:Name="pRevi37" ServerOS="Win2012" ToolTip="HyperV + File Server" Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="pRevi37" />
+                <local:menuButton ServerOS="Win2012" ToolTip="HyperV + File Server" Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="pRevi37" />
                 <local:menuButton Grid.Row="2" Margin="3" ServerName="vCC02" ToolTip="Domain Server"  ServerOS="Win2012"  />
                 <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="vCC03" ServerOS="Win2012" ToolTip="Terminal Server" />
                 <local:menuButton Grid.Column="0" Grid.Row="3" Margin="3" ServerName="vCC04" ServerOS="Win2012" ToolTip="SharePoint Server" />
@@ -55,7 +55,7 @@
                 <local:menuButton Grid.Row="4" Margin="3" ServerName="vRevi42" ToolTip="Web Remote Proxy Server" ServerOS="Win2012" Grid.Column="1" />
             </Grid>
         </GroupBox>
-        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="123" HorizontalAlignment="Left" Margin="0,246,0,0" Name="groupBox2" VerticalAlignment="Top" Width="183">
+        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="123" HorizontalAlignment="Left" Margin="0,495,0,0" Name="pRevi38" VerticalAlignment="Top" Width="183">
             <Grid Height="117" Width="170">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="85" />
@@ -72,7 +72,7 @@
                 <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="vCWtest01" ServerOS="Win8" ToolTip="Caseware Test Arbejdsplads" />
             </Grid>
         </GroupBox>
-        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="244" HorizontalAlignment="Left" Margin="193,179,0,0" Name="groupBox3" VerticalAlignment="Top" Width="183">
+        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="244" HorizontalAlignment="Left" Margin="1,3,0,0" Name="pRevi40" VerticalAlignment="Top" Width="183">
             <Grid Height="238" Width="170">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="85" />
@@ -100,7 +100,7 @@
                 <local:menuButton Grid.Column="1" Grid.Row="5" Margin="3" ServerName="BuusTools" ServerOS="Win7" ToolTip="" />
             </Grid>
         </GroupBox>
-        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="202" HorizontalAlignment="Left" Margin="0,377,0,0" Name="groupBox4" VerticalAlignment="Top" Width="183">
+        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="202" HorizontalAlignment="Left" Margin="193,494,0,0" Name="pRevi39" VerticalAlignment="Top" Width="183">
             <Grid Height="196" Width="170">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="85" />
@@ -124,12 +124,32 @@
                 <local:menuButton Grid.Column="0" Grid.Row="5" Margin="3" ServerName="xVir02" ServerOS="Win8" ToolTip="Test Arbejdsplads" />
             </Grid>
         </GroupBox>        
+        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="324" HorizontalAlignment="Left" Margin="193,3,0,0" Name="pRevi41" VerticalAlignment="Top" Width="183">
+            <Grid Height="318" Width="170">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="85" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="3" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <local:menuButton Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="pRevi41" ServerOS="Win2012" ToolTip="HyperV Server" />
+            </Grid>
+        </GroupBox>
         
-        <local:menuButton Margin="286,510,0,0" ServerName="Revi27" ServerOS="Win2012" ToolTip="Remote DPM Backup Server" Height="34" VerticalAlignment="Top" HorizontalAlignment="Left" Width="81" />
-        <local:menuButton Margin="199,431,0,0" ServerName="WS01" ServerOS="Win8" ToolTip="JN's Arbejdsplads" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" />
-        <local:menuButton Margin="287,431,0,0" ServerName="WS02" ServerOS="Win8" ToolTip="GBP's Arbejdsplads" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" />
+        <local:menuButton Margin="8,709,0,0" ServerName="Revi27" ServerOS="Win2012" ToolTip="Remote DPM Backup Server" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" />
+        <local:menuButton Margin="8,623,0,0" ServerName="WS01" ServerOS="Win8" ToolTip="JN's Arbejdsplads" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" />
+        <local:menuButton Margin="96,623,0,0" ServerName="WS02" ServerOS="Win8" ToolTip="GBP's Arbejdsplads" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" />
+        <local:menuButton Margin="8,666,0,0" ServerName="WS04" ServerOS="Win8" ToolTip="UN's Arbejdsplads"  HorizontalAlignment="Left" Width="79" Height="37" VerticalAlignment="Top" />
+        <local:menuButton Margin="96,666,0,0" ServerName="CZC3193Y46" ServerOS="Win8" ToolTip="MHA's Arbejdsplads i EDB-kælder"  Height="37" HorizontalAlignment="Left" VerticalAlignment="Top" Width="79" />
 
-        <local:menuButton Margin="286,470,0,0" ServerName="WS04" ServerOS="Win8" ToolTip="UN's Arbejdsplads"  HorizontalAlignment="Left" Width="79" Height="37" VerticalAlignment="Top" />
-        <local:menuButton Margin="197,509,0,0" ServerName="CZC3193Y46" ServerOS="Win8" ToolTip="MHA's Arbejdsplads i EDB-kælder"  Height="37" HorizontalAlignment="Left" VerticalAlignment="Top" Width="79" />
     </Grid>
 </Window>
