@@ -49,7 +49,7 @@
                 <local:menuButton ServerName="HDC-Regn" ServerOS="Win8" ToolTip=" Hafsjold Data Consult"  Margin="3" Grid.Row="3" Grid.Column="1" />
                 <local:menuButton ServerName="vHD61" ServerOS="freeBSD" ToolTip="Udvikling freeBSD Server"  Margin="3" Grid.Row="5" Grid.Column="0" />
                 <local:menuButton ServerName="vHD62" ServerOS="Win8" ToolTip="Udvikling med freeBSD"  Margin="3" Grid.Row="4" Grid.Column="0" />
-                <local:menuButton ServerName="vfreeBSD" ServerOS="freeBSD" ToolTip="Udvikling freeBSD Server"  Margin="3" Grid.Row="5" Grid.Column="1" />
+                <local:menuButton ServerName="vfreeBSD10" ServerOS="freeBSD" ToolTip="Udvikling freeBSD Server"  Margin="3" Grid.Row="5" Grid.Column="1" />
             </Grid>
         </GroupBox>
 

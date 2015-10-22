@@ -227,7 +227,7 @@ namespace nsMenu
                         break;
 
                     case evt.mnuClick:
-                        proc = Process.Start(@"C:\Program Files (x86)\Private Shell\pshell.exe", "--profile " + ServerName + ".hafsjold.local");
+                        proc = Process.Start(@"C:\Program Files (x86)\Private Shell\pshell.exe", "--profile " + ServerName.ToLower() + ".hafsjold.local");
                         ledbutton.Visibility = System.Windows.Visibility.Visible;
                         break;
 
