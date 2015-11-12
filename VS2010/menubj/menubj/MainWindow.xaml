@@ -124,6 +124,6 @@
         <local:menuButton Margin="288,413,0,0" ServerName="WS02" ServerOS="Win8" ToolTip="GBP's Arbejdsplads" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" />
         <local:menuButton Margin="200,456,0,0" ServerName="WS04" ServerOS="Win8" ToolTip="UN's Arbejdsplads"  HorizontalAlignment="Left" Width="79" Height="37" VerticalAlignment="Top" />
         <local:menuButton Margin="288,456,0,0" ServerName="CZC3193Y46" ServerOS="Win8" ToolTip="MHA's Arbejdsplads i EDB-kælder"  Height="37" HorizontalAlignment="Left" VerticalAlignment="Top" Width="79" />
-
+        <local:menuButton Margin="288,499,0,0" ServerName="WAN2" ServerOS="Win8" ToolTip="MHA's Arbejdsplads i EDB-kælder"  Height="37" HorizontalAlignment="Left" VerticalAlignment="Top" Width="79" />
     </Grid>
 </Window>
