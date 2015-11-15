@@ -310,6 +310,7 @@ namespace nsPbs3060
             string wDelsystem = "EML";
             MemRyk memRyk = new MemRyk();
             DateTime now = DateTime.UtcNow;
+            DateTime now_plus60 = DateTime.UtcNow.AddDays(60);
 
             var rstmedlems = from h in p_dbData3060.tblrsmembership_transactions
                              join f in p_dbData3060.tblfaks on h.id equals f.id
@@ -333,8 +334,8 @@ namespace nsPbs3060
             {
                 foreach (var m in rstmedlems)
                 {
-                    bool AllreadyPayed = ((from q in p_dbPuls3060_dk.ecpwt_rsmembership_membership_subscribers where q.user_id == m.user_id && q.membership_id == 6 && q.membership_end > now select q.id).Count() > 0);
-                    if (!AllreadyPayed)
+                    bool AllreadyPayedOrCancelled = ((from q in p_dbPuls3060_dk.ecpwt_rsmembership_membership_subscribers where q.user_id == m.user_id && q.membership_id == 6 && q.membership_end > now_plus60 && q.status != 3 select q.id).Count() > 0);
+                    if (!AllreadyPayedOrCancelled)
                     {
                         recRyk rec = new recRyk
                         {
@@ -449,6 +450,124 @@ namespace nsPbs3060
             return new Tuple<int, int>(wantalrykkere, lobnr);
         }
 
+        //******************************************************************************************************
+        public List<string[]> RSMembership_KontingentForslag(DateTime DatoBetaltKontingentTil, dbData3060DataContext p_dbData3060)
+        {
+            List <string[]> items = new List<string[]>();
+            puls3060_dkEntities jdb = new puls3060_dkEntities();
+            DateTime KontingentFradato = DateTime.MinValue;
+            DateTime KontingentTildato = DateTime.MinValue;
+            bool tilmeldtpbs = false;
+            bool indmeldelse = false;
+            int AntalMedlemmer = 0;
+            int AntalForslag = 0;
+            int ikontingent;
+            int iNr = 0;
+
+            var qry_rsmembership = from s in jdb.ecpwt_rsmembership_membership_subscribers
+                                   where s.membership_id == 6 && s.status != 3
+                                   join tf in jdb.ecpwt_rsmembership_transactions on s.from_transaction_id equals tf.id
+                                   join tl in jdb.ecpwt_rsmembership_transactions on s.last_transaction_id equals tl.id
+                                   join m in jdb.ecpwt_rsmembership_subscribers on s.user_id equals m.user_id
+                                   join u in jdb.ecpwt_users on s.user_id equals u.id
+                                   select new
+                                   {
+                                       Nr = m.f14,
+                                       Navn = u.name,
+                                       Adresse = m.f1,
+                                       Postnr = m.f4,
+                                       indmeldelsesDato = tf.date,
+                                       kontingentBetaltTilDato = s.membership_end,
+                                       Kontingent = tl.price,
+                                       s.user_id,
+                                       tl.user_data
+                                   };
+            var antal = qry_rsmembership.Count();
+            var rsm = qry_rsmembership.ToArray();
+            foreach (var m in rsm)
+            {
+                bool bSelected = true;
+                AntalMedlemmer++;
+                tilmeldtpbs = false;
+                indmeldelse = false;
+
+                if (m.Nr == "")
+                    iNr = 10000 + m.user_id;
+                else
+                    iNr = int.Parse(m.Nr);
+
+                bool erMedlemPusterummet = ((from um in jdb.ecpwt_user_usergroup_map
+                                             join g in jdb.ecpwt_usergroups on um.group_id equals g.id
+                                             where g.title == "Pusterummet" && um.user_id == m.user_id
+                                             select um.user_id).Count() > 0);
+
+                if (erMedlemPusterummet)
+                {
+                    bSelected = false;
+                }
+                else //Er medlem
+                {
+                    if ((m.kontingentBetaltTilDato != null) && (m.kontingentBetaltTilDato > m.indmeldelsesDato))  //'Der findes en kontingent-betaling
+                    {
+                        if (m.kontingentBetaltTilDato > DatoBetaltKontingentTil)   //der er betalt kontingent efter DatoBetaltKontingentTil
+                        {
+                            bSelected = false;
+                        }
+                        else
+                        {
+                            if (m.kontingentBetaltTilDato >= m.indmeldelsesDato)
+                            {
+                                KontingentFradato = ((DateTime)m.kontingentBetaltTilDato);
+                            }
+                        }
+                    }
+                    else  //Der findes ingen kontingent-betaling
+                    {
+                        KontingentFradato = (DateTime)m.indmeldelsesDato;
+                        indmeldelse = true;
+                    }
+                }
+
+
+                if (bSelected)
+                {
+                    DateTime TodayMinus90 = DateTime.Now.AddDays(-90);
+                    var qry_fak = from f in p_dbData3060.tblfaks
+                                  where f.Nr == iNr && f.betalingsdato > TodayMinus90
+                                  join t in p_dbData3060.tblrsmembership_transactions on f.id equals t.id
+                                  select f;
+
+                    if (qry_fak.Count() > 0) //Der findes en opkrævning
+                    {
+                        bSelected = false;
+                    }
+                }
+
+
+                if (bSelected)
+                {
+                    AntalForslag++;
+                    tilmeldtpbs = (bool)p_dbData3060.erPBS(iNr);
+                    KontingentTildato = KontingentFradato.AddMonths(12);
+                    ikontingent = (int)m.Kontingent;
+
+                    string[] item = new string[9];
+                    item[0] = m.user_id.ToString();
+                    item[1] = m.Navn;
+                    item[2] = m.Adresse;
+                    item[3] = m.Postnr;
+                    item[4] = string.Format("{0:dd-MM-yyy}", KontingentFradato);
+                    item[5] = ikontingent.ToString();
+                    item[6] = string.Format("{0:dd-MM-yyy}", KontingentTildato);
+                    item[7] = (indmeldelse) ? "J" : "N";
+                    item[8] = (tilmeldtpbs) ? "J" : "N";
+                    items.Add(item);
+                }
+             }
+            return items;
+        }        
+        //******************************************************************************************************
+        
         public Tuple<int, int> kontingent_fakturer_auto(dbData3060DataContext p_dbData3060)
         {
             int lobnr = 0;
