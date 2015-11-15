@@ -224,7 +224,7 @@ namespace nsPuls3060
             this.pgmForslag.Visible = false;
 
         }
-        private void getRSMembership_KontingentForslag()
+        private void getRSMembership_KontingentForslag_old()
         {
             puls3060_dkEntities jdb = new puls3060_dkEntities();
             DateTime KontingentFradato = DateTime.MinValue;
@@ -237,7 +237,7 @@ namespace nsPuls3060
             int iNr = 0;
 
             var qry_rsmembership = from s in jdb.ecpwt_rsmembership_membership_subscribers
-                                   where s.membership_id == 6
+                                   where s.membership_id == 6 && s.status != 3
                                    join tf in jdb.ecpwt_rsmembership_transactions on s.from_transaction_id equals tf.id
                                    join tl in jdb.ecpwt_rsmembership_transactions on s.last_transaction_id equals tl.id
                                    join m in jdb.ecpwt_rsmembership_subscribers on s.user_id equals m.user_id
@@ -369,6 +369,39 @@ namespace nsPuls3060
             }
             this.pgmForslag.Visible = false;
 
+        }
+        private void getRSMembership_KontingentForslag()
+        {
+            clsPbs601 objPbs601 = new clsPbs601();
+            List<string[]> items = objPbs601.RSMembership_KontingentForslag(this.DatoBetaltKontingentTil.Value, Program.dbData3060);
+            int AntalForslag = items.Count();
+            foreach (var item in items) 
+            {
+                ListViewItem it = lvwKontingent.Items.Add(item[0], item[1], 0);
+                it.SubItems.Add(item[0]);
+                it.SubItems.Add(item[2]);
+                it.SubItems.Add(item[3]);
+                it.SubItems.Add(item[4]);
+                it.SubItems.Add(item[5]);
+                it.SubItems.Add(item[6]);
+                it.SubItems.Add(item[7]);
+                it.SubItems.Add(item[8]);
+            }
+            
+            if (AntalForslag == 0)
+            {
+                this.Label_Forslagstekst.Text = "Der er ingen forslag";
+                this.Label_Forslagstekst.Visible = true;
+                this.cmdFakturer.Visible = false;
+                this.DelsystemBSH.Visible = false;
+            }
+            else
+            {
+                this.Label_Forslagstekst.Visible = false;
+                this.cmdFakturer.Visible = true;
+                this.DelsystemBSH.Visible = true;
+            }
+            this.pgmForslag.Visible = false;
         }
 
         private void lvwMedlem_ItemDrag(object sender, ItemDragEventArgs e)
