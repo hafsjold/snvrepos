@@ -42,7 +42,7 @@ namespace menuhd
                 Properties.Settings.Default.guidMenuFolder = Guid.NewGuid();
                 Properties.Settings.Default.Save();
             };
-            menuFolder = System.IO.Path.Combine(System.IO.Path.GetTempPath(), Properties.Settings.Default.guidMenuFolder.ToString());
+            menuFolder = System.IO.Path.Combine(Environment.ExpandEnvironmentVariables("%userprofile%"), Properties.Settings.Default.guidMenuFolder.ToString()); //**MHA**
             DirectoryInfo di = new DirectoryInfo(menuFolder);
             try { CreateMissingFolders(di); }
             catch { }
