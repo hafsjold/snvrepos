@@ -16,6 +16,7 @@ using MailKit;
 using MailKit.Net.Smtp;
 using MimeKit;
 using MailKit.Net.Imap;
+using nsPbs3060;
 
 namespace nsPuls3060
 {
@@ -229,15 +230,13 @@ namespace nsPuls3060
                                {
                                    Nr = h.Nr,
                                    Navn = h.Navn,
-                                   Kaldenavn = h.Kaldenavn,
                                    Adresse = h.Adresse,
                                    Postnr = h.Postnr,
                                    Bynavn = h.Bynavn,
                                    Telefon = h.Telefon,
                                    Email = h.Email,
                                    Kon = h.Kon.ToString(),
-                                   FodtDato = h.FodtDato,
-                                   stStatus = GetStatusText(h.Status)
+                                   FodtAar = h.FodtDato.ToString(),
                                };
 
 
@@ -367,26 +366,50 @@ namespace nsPuls3060
 
             var rec_regnskab = Program.qryAktivRegnskab();
             string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_HHmmss") + ".xlsx";
+            
+            puls3060_dkEntities jdb = new puls3060_dkEntities();
 
-            var MedlemmerAll = from h in Program.dbData3060.tblMedlems
-                               where ((((statusMedlem)(h.Status)) & statusMedlem.Medlem) == statusMedlem.Medlem)
-                               || ((((statusMedlem)(h.Status)) & statusMedlem.NytMedlem) == statusMedlem.NytMedlem)
-                               orderby h.Status, h.Kaldenavn
-                               select new clsMedlemExternAll
-                               {
-                                   Nr = h.Nr,
-                                   Navn = h.Navn,
-                                   Kaldenavn = h.Kaldenavn,
-                                   Adresse = h.Adresse,
-                                   Postnr = h.Postnr,
-                                   Bynavn = h.Bynavn,
-                                   Telefon = h.Telefon,
-                                   Email = h.Email,
-                                   Kon = h.Kon.ToString(),
-                                   FodtDato = h.FodtDato,
-                                   stStatus = GetStatusText(h.Status)
-                               };
+            var qry = from u in jdb.ecpwt_users
+                      join m in jdb.ecpwt_rsmembership_membership_subscribers on u.id equals m.user_id
+                      where m.membership_id == 6 && m.status == 0
+                      join t in jdb.ecpwt_rsmembership_transactions on m.last_transaction_id equals t.id
+                      join a in jdb.ecpwt_rsmembership_subscribers on m.user_id equals a.user_id
+                      orderby u.name
+                      select new
+                      {
+                          u.id,
+                          u.name,
+                          a.f1,
+                          a.f4,
+                          a.f2,
+                          a.f6,
+                          u.email,
+                          a.f14,
+                          m.membership_start,
+                          m.membership_end,
+                          t.user_data
+                      };
 
+            List<clsMedlemExternAll> MedlemmerAll = new List<clsMedlemExternAll>();
+            foreach (var m in qry)
+            {
+
+                User_data recud = clsHelper.unpack_UserData(m.user_data);
+                clsMedlemExternAll recMedlem = new clsMedlemExternAll
+                {
+                    Nr = m.id,
+                    Navn = m.name,
+                    Adresse = m.f1,
+                    Postnr = m.f4,
+                    Bynavn = m.f2,
+                    Telefon = m.f6,
+                    Email = m.email,
+                    Kon = recud.kon,
+                    FodtAar = recud.fodtaar,
+                    MedlemTil = m.membership_end
+                };
+                MedlemmerAll.Add(recMedlem);
+            }            
 
             using (new ExcelUILanguageHelper())
             {
@@ -1132,8 +1155,6 @@ namespace nsPuls3060
         public int? Nr { get; set; }
         [Fieldattr(Heading = "Navn")]
         public string Navn { get; set; }
-        [Fieldattr(Heading = "Kaldenavn")]
-        public string Kaldenavn { get; set; }
         [Fieldattr(Heading = "Adresse")]
         public string Adresse { get; set; }
         [Fieldattr(Heading = "Postnr")]
@@ -1147,9 +1168,10 @@ namespace nsPuls3060
         [Fieldattr(Heading = "Køn")]
         public string Kon { get; set; }
         [Fieldattr(Heading = "Født")]
-        public DateTime? FodtDato { get; set; }
-        [Fieldattr(Heading = "Status")]
-        public string stStatus { get; set; }
+        public string FodtAar { get; set; }
+        [Fieldattr(Heading = "Medlem Til")]
+        public DateTime? MedlemTil { get; set; }
+
     }
 
     public class clsMedlemNotPBS
