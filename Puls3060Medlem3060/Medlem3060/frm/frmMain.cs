@@ -580,6 +580,47 @@ namespace nsPuls3060
 
         private void testToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            puls3060_dkEntities jdb = new puls3060_dkEntities();
+
+            var qry = from u in jdb.ecpwt_users
+                      join m in jdb.ecpwt_rsmembership_membership_subscribers on u.id equals m.user_id
+                      where m.membership_id == 6 && m.status == 0
+                      join t in jdb.ecpwt_rsmembership_transactions on m.last_transaction_id equals t.id
+                      join a in jdb.ecpwt_rsmembership_subscribers on m.user_id equals a.user_id
+                      select new 
+                      {
+                          u.id,
+                          u.name,
+                          a.f1,
+                          a.f4,
+                          a.f2,
+                          a.f6,
+                          u.email,
+                          a.f14,
+                          m.membership_start,
+                          m.membership_end,
+                          t.user_data
+                      };
+
+            List<clsMedlemExternAll> xList = new List<clsMedlemExternAll>();
+            foreach (var x in qry) 
+            {
+
+                User_data recud = clsHelper.unpack_UserData(x.user_data);
+                clsMedlemExternAll xl = new clsMedlemExternAll
+                {
+                    Nr = x.id,
+                    Navn = x.name,
+                    Adresse = x.f1,
+                    Postnr = x.f4,
+                    Bynavn = x.f2,
+                    Telefon = x.f6,
+                    Email = x.email,
+                    Kon = recud.kon,
+                    FodtAar = recud.fodtaar,                     
+                };
+                xList.Add(xl); 
+            }                  
             return;
             
             int lobnrc = 5100;
