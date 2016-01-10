@@ -74,6 +74,7 @@
             this.testToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.opdaterKanSlettesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -180,7 +181,8 @@
             this.medlemmerTilRegnearkEksternToolStripMenuItem,
             this.regnearkNotPBSToolStripMenuItem,
             this.medlemmerTilRegnearkToolStripMenuItem,
-            this.emailRykkerToolStripMenuItem});
+            this.emailRykkerToolStripMenuItem,
+            this.opdaterKanSlettesToolStripMenuItem});
             this.medlemToolStripMenuItem.Name = "medlemToolStripMenuItem";
             this.medlemToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
             this.medlemToolStripMenuItem.Text = "Medlem";
@@ -451,6 +453,13 @@
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
+            // opdaterKanSlettesToolStripMenuItem
+            // 
+            this.opdaterKanSlettesToolStripMenuItem.Name = "opdaterKanSlettesToolStripMenuItem";
+            this.opdaterKanSlettesToolStripMenuItem.Size = new System.Drawing.Size(229, 22);
+            this.opdaterKanSlettesToolStripMenuItem.Text = "Opdater KanSlettes";
+            this.opdaterKanSlettesToolStripMenuItem.Click += new System.EventHandler(this.opdaterKanSlettesToolStripMenuItem_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -526,6 +535,7 @@
         private System.Windows.Forms.ToolStripMenuItem testEmailRykkerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem payPalBetalingerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem opdaterKanSlettesToolStripMenuItem;
    }
 }
 

@@ -580,9 +580,9 @@ namespace nsPuls3060
 
         private void testToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            clsPbsHelper objPbsHelperd = new clsPbsHelper();
-            objPbsHelperd.PbsAutoKontingent(Program.dbData3060);
-            objPbsHelperd = null; 
+            //clsPbsHelper objPbsHelperd = new clsPbsHelper();
+            //objPbsHelperd.PbsAutoKontingent(Program.dbData3060);
+            //objPbsHelperd = null; 
             
             /*
             puls3060_dkEntities jdb = new puls3060_dkEntities();
@@ -637,6 +637,23 @@ namespace nsPuls3060
                 objPbs601c.advis_email(Program.dbData3060, lobnrd);
             objPbs601c = null;
             */
+        }
+
+        private void opdaterKanSlettesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            puls3060_dkEntities jdb = new puls3060_dkEntities();
+            jdb.Database.ExecuteSqlCommand(@"
+INSERT INTO ecpwt_user_usergroup_map  (user_id, group_id) 
+SELECT u.id, 17   
+FROM ecpwt_users u 
+JOIN ecpwt_rsmembership_membership_subscribers m ON u.id = m.user_id 
+JOIN ecpwt_rsmembership_transactions t ON m.last_transaction_id = t.id 
+JOIN ecpwt_rsmembership_subscribers a ON m.user_id = a.user_id 
+WHERE 17 NOT IN (SELECT ugm.group_id FROM ecpwt_user_usergroup_map ugm WHERE ugm.user_id = u.id) 
+  AND (m.membership_id = 6 
+  AND (m.status = 2 AND m.membership_end < DATE_ADD(  NOW(), INTERVAL -30 DAY ))
+  OR  (m.status = 3 AND m.membership_end < NOW() ) );
+            ");
         }
 
     }
