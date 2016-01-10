@@ -19,7 +19,7 @@ namespace nsMedlem3060Service
         ReceiveFilesFromPBS = 1,
         ProcessType602Files,
         ProcessType603Files,
-        SendFilesToPBS,
+        SendKontingentFileToPBS,
         LoadSchedule,
         KontingentNyeMedlemmer,
         SendEmailRykker,
@@ -158,7 +158,10 @@ namespace nsMedlem3060Service
                         case enumTask.ProcessType603Files:
                             break;
 
-                        case enumTask.SendFilesToPBS:
+                        case enumTask.SendKontingentFileToPBS:
+                            clsPbsHelper objPbsHelperd = new clsPbsHelper();
+                            objPbsHelperd.PbsAutoKontingent(m_dbData3060);
+                            objPbsHelperd = null;
                             break;
 
                         case enumTask.LoadSchedule:

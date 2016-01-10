@@ -580,6 +580,11 @@ namespace nsPuls3060
 
         private void testToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            clsPbsHelper objPbsHelperd = new clsPbsHelper();
+            objPbsHelperd.PbsAutoKontingent(Program.dbData3060);
+            objPbsHelperd = null; 
+            
+            /*
             puls3060_dkEntities jdb = new puls3060_dkEntities();
 
             var qry = from u in jdb.ecpwt_users
@@ -631,7 +636,7 @@ namespace nsPuls3060
             if ((AntalAdvisd > 0))
                 objPbs601c.advis_email(Program.dbData3060, lobnrd);
             objPbs601c = null;
-
+            */
         }
 
     }
