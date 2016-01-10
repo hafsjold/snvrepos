@@ -159,6 +159,7 @@
     <Compile Include="clsPbs601.cs" />
     <Compile Include="clsPbs602.cs" />
     <Compile Include="clsPbs603.cs" />
+    <Compile Include="clsPbsHelper.cs" />
     <Compile Include="clsSFTP.cs" />
     <Compile Include="clsPbs686.cs" />
     <Compile Include="dbData3060.cs">

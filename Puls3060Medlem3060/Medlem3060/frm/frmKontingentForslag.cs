@@ -648,7 +648,7 @@ namespace nsPuls3060
 
                 clsPbs601 objPbs601 = new clsPbs601();
 
-                Tuple<int, int> tresult = objPbs601.rsmembeshhip_kontingent_fakturer_bs1(Program.dbData3060, jdb,memKontingentforslag);
+                Tuple<int, int> tresult = objPbs601.rsmembeshhip_kontingent_fakturer_bs1(Program.dbData3060, jdb, memKontingentforslag);
                 AntalFakturaer = tresult.Item1;
                 lobnr = tresult.Item2;
                 this.pgmFaktura.Value = imax * 2;
