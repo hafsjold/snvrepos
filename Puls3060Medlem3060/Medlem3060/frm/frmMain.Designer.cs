@@ -71,9 +71,9 @@
             this.payPalTilPBSNyeMedlemmerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.opdaterRSMembershipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testEmailRykkerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.testToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -265,7 +265,7 @@
             // 
             this.betalingerFraPBSToolStripMenuItem.Name = "betalingerFraPBSToolStripMenuItem";
             this.betalingerFraPBSToolStripMenuItem.Size = new System.Drawing.Size(174, 22);
-            this.betalingerFraPBSToolStripMenuItem.Text = "Hent PBS Filer";
+            this.betalingerFraPBSToolStripMenuItem.Text = "Bogfør PBS Filer";
             this.betalingerFraPBSToolStripMenuItem.Click += new System.EventHandler(this.betalingerFraPBSToolStripMenuItem_Click);
             // 
             // payPalBetalingerToolStripMenuItem
@@ -429,6 +429,13 @@
             this.testEmailRykkerToolStripMenuItem.Text = "Test Email Rykker";
             this.testEmailRykkerToolStripMenuItem.Click += new System.EventHandler(this.testEmailRykkerToolStripMenuItem_Click);
             // 
+            // testToolStripMenuItem1
+            // 
+            this.testToolStripMenuItem1.Name = "testToolStripMenuItem1";
+            this.testToolStripMenuItem1.Size = new System.Drawing.Size(214, 22);
+            this.testToolStripMenuItem1.Text = "Test";
+            this.testToolStripMenuItem1.Click += new System.EventHandler(this.testToolStripMenuItem1_Click);
+            // 
             // hjælpToolStripMenuItem
             // 
             this.hjælpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -443,13 +450,6 @@
             this.omToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
-            // 
-            // testToolStripMenuItem1
-            // 
-            this.testToolStripMenuItem1.Name = "testToolStripMenuItem1";
-            this.testToolStripMenuItem1.Size = new System.Drawing.Size(214, 22);
-            this.testToolStripMenuItem1.Text = "Test";
-            this.testToolStripMenuItem1.Click += new System.EventHandler(this.testToolStripMenuItem1_Click);
             // 
             // FrmMain
             // 

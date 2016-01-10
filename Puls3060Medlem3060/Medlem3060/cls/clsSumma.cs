@@ -173,6 +173,7 @@ namespace nsPuls3060
                     }
                     else
                     */
+                    /*
                     if (bet.Count() == 1) //Betaling med betalingsidentifikation
                     {
                         var f = bet.First();
@@ -190,18 +191,30 @@ namespace nsPuls3060
                         };
                         Program.karKladde.Add(kl);
                     }
-                    else if (msm.Count() == 1) //Kontingent betaling for RSMembership
+                    else 
+                    */ 
+                    if (msm.Count() == 1) //Kontingent betaling for RSMembership
                     {
                         var f = msm.First();
                         decimal[] arrBelob = clsPbs602.fordeling((decimal)b.indbetalingsbelob, (DateTime)f.fradato, (DateTime)f.tildato, (DateTime)Startdato, (DateTime)Slutdato);
                         recKladde kl;
+                        string wTekst = ("F" + f.faknr + " " + f.Nr + " " + f.name).PadRight(40, ' ').Substring(0, 40);
+                        try
+                        {
+                            if (((DateTime)b.indbetalingsdato - (DateTime)b.betalingsdato).Days > 300) // faktura mere end 300 dage gammel
+                            {
+                                wTekst = ("???" + wTekst).PadRight(40, ' ').Substring(0, 40);
+                            }
+                        }
+                        catch { }
+
                         if (arrBelob[0] > 0)
                         {
                             kl = new recKladde
                             {
                                 Dato = ToDay,
                                 Bilag = BS1_SidsteNr,
-                                Tekst = ("F" + f.faknr + " " + f.Nr + " " + f.name).PadRight(40, ' ').Substring(0, 40),
+                                Tekst = wTekst,
                                 Afstemningskonto = null,
                                 Belob = arrBelob[0],
                                 Kontonr = f.bogfkonto,
@@ -217,7 +230,7 @@ namespace nsPuls3060
                             {
                                 Dato = ToDay,
                                 Bilag = BS1_SidsteNr,
-                                Tekst = ("F" + f.faknr + " " + f.Nr + " " + f.name).PadRight(40, ' ').Substring(0, 40),
+                                Tekst = wTekst,
                                 Afstemningskonto = null,
                                 Belob = arrBelob[1],
                                 Kontonr = 64200,
