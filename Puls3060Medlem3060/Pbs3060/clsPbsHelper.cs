@@ -9,7 +9,8 @@ namespace nsPbs3060
     {
         public void PbsAutoKontingent(dbData3060DataContext m_dbData3060) 
         {
-            DateTime Nu = new DateTime(2016, 7, 10);//DateTime.Now;
+            //DateTime Nu = new DateTime(2016, 7, 10);
+            DateTime Nu = DateTime.Now;
             int Dag = Nu.Day;
             if (Dag > 12)
                 return;
