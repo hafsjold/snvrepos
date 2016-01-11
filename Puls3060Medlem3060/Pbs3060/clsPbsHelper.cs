@@ -7,7 +7,7 @@ namespace nsPbs3060
 {
     public class clsPbsHelper
     {
-        public void PbsAutoKontingent(dbData3060DataContext m_dbData3060) 
+        public void PbsAutoKontingent(dbData3060DataContext m_dbData3060)
         {
             //DateTime Nu = new DateTime(2016, 7, 10);
             DateTime Nu = DateTime.Now;
@@ -65,6 +65,51 @@ namespace nsPbs3060
                 Program.Log(string.Format("Medlem3060Service {0} end", "Send Kontingent File til PBS"));
             }
 
+        }
+
+        public int TestOpdateringAf_rsmembership_transaction(int p_trans_id, dbData3060DataContext p_dbData3060)
+        {
+            int out_trans_id = p_trans_id;
+            puls3060_dkEntities dbPuls3060_dk = new puls3060_dkEntities();
+
+            var qry1 = from s1 in dbPuls3060_dk.ecpwt_rsmembership_transactions where s1.id == p_trans_id select s1;
+            int c1 = qry1.Count();
+            if (c1 == 0)
+            {
+                var qry2 = from s2 in p_dbData3060.tblrsmembership_transactions where s2.trans_id == p_trans_id select s2;
+                try
+                {
+                    tblrsmembership_transaction t2 = qry2.First();
+                    ecpwt_rsmembership_transactions t1 = new ecpwt_rsmembership_transactions
+                    {
+                        user_id = t2.user_id,
+                        user_email = t2.user_email,
+                        user_data = t2.user_data,
+                        type = t2.type,
+                        @params = t2.@params,
+                        date = t2.date,
+                        ip = t2.ip,
+                        price = t2.price,
+                        coupon = t2.coupon,
+                        currency = t2.currency,
+                        hash = t2.hash,
+                        custom = t2.custom,
+                        gateway = t2.gateway,
+                        status = t2.status,
+                        response_log = t2.response_log
+                    };
+                    dbPuls3060_dk.ecpwt_rsmembership_transactions.Add(t1);
+                    dbPuls3060_dk.SaveChanges();
+
+                    ecpwt_rsmembership_transactions rec_trans = (from t in dbPuls3060_dk.ecpwt_rsmembership_transactions where t.custom == t2.custom select t).First();
+                    out_trans_id = rec_trans.id;
+                }
+                catch
+                {
+                    out_trans_id = 0;
+                }
+            }
+            return out_trans_id;
         }
     }
 }
