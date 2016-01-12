@@ -587,6 +587,7 @@ namespace nsPbs3060
             Program.Log(string.Format("betalinger_til_rsmembership - AntalBetalinger {0}", AntalBetalinger));
             if (rsmbrshp.Count() > 0)
             {
+                clsPbsHelper objPbsHelperd = new clsPbsHelper();
                 foreach (var b in rsmbrshp)
                 {
                     if (saveBetid != b.Betid) // ny gruppe
@@ -607,6 +608,11 @@ namespace nsPbs3060
                     if (qry.Count() == 1)
                     {
                         tblmembershippayment rec_membershippayment = qry.First();
+                        //*********************************************************
+                        int new_rsmembership_transactions_id = objPbsHelperd.TestOpdateringAf_rsmembership_transaction(rec_membershippayment.rsmembership_transactions_id, p_dbData3060);
+                        Program.Log(string.Format("betalinger_til_rsmembership - transactions_id {0} --> {1}", rec_membershippayment.rsmembership_transactions_id, p_dbData3060, new_rsmembership_transactions_id));
+                        rec_membershippayment.rsmembership_transactions_id = new_rsmembership_transactions_id;
+                         //*********************************************************
                         p_dbPuls3060_dk.tblmembershippayments.Add(rec_membershippayment);
                         p_dbPuls3060_dk.SaveChanges();
                         Program.Log(string.Format("betalinger_til_rsmembership - faknr {0} betalt", b.faknr));
