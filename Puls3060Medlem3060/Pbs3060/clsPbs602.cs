@@ -609,7 +609,7 @@ namespace nsPbs3060
                     {
                         tblmembershippayment rec_membershippayment = qry.First();
                         //*********************************************************
-                        int new_rsmembership_transactions_id = objPbsHelperd.TestOpdateringAf_rsmembership_transaction(rec_membershippayment.rsmembership_transactions_id, p_dbData3060);
+                        int new_rsmembership_transactions_id = objPbsHelperd.OpdateringAfSlettet_rsmembership_transaction(rec_membershippayment.rsmembership_transactions_id, p_dbData3060);
                         Program.Log(string.Format("betalinger_til_rsmembership - transactions_id {0} --> {1}", rec_membershippayment.rsmembership_transactions_id, p_dbData3060, new_rsmembership_transactions_id));
                         rec_membershippayment.rsmembership_transactions_id = new_rsmembership_transactions_id;
                          //*********************************************************
