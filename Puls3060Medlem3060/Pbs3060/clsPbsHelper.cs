@@ -67,7 +67,7 @@ namespace nsPbs3060
 
         }
 
-        public int TestOpdateringAf_rsmembership_transaction(int p_trans_id, dbData3060DataContext p_dbData3060)
+        public int OpdateringAfSlettet_rsmembership_transaction(int p_trans_id, dbData3060DataContext p_dbData3060)
         {
             int out_trans_id = p_trans_id;
             puls3060_dkEntities dbPuls3060_dk = new puls3060_dkEntities();
@@ -80,29 +80,39 @@ namespace nsPbs3060
                 try
                 {
                     tblrsmembership_transaction t2 = qry2.First();
-                    ecpwt_rsmembership_transactions t1 = new ecpwt_rsmembership_transactions
+                    int? subscriber_id = t2.subscriber_id;
+                    var qry3 = from s3 in dbPuls3060_dk.ecpwt_rsmembership_membership_subscribers where s3.id == subscriber_id select s3;
+                    int c3 = qry3.Count();
+                    if (c3 == 1)
                     {
-                        user_id = t2.user_id,
-                        user_email = t2.user_email,
-                        user_data = t2.user_data,
-                        type = t2.type,
-                        @params = t2.@params,
-                        date = t2.date,
-                        ip = t2.ip,
-                        price = t2.price,
-                        coupon = t2.coupon,
-                        currency = t2.currency,
-                        hash = t2.hash,
-                        custom = t2.custom,
-                        gateway = t2.gateway,
-                        status = t2.status,
-                        response_log = t2.response_log
-                    };
-                    dbPuls3060_dk.ecpwt_rsmembership_transactions.Add(t1);
-                    dbPuls3060_dk.SaveChanges();
+                        ecpwt_rsmembership_transactions t1 = new ecpwt_rsmembership_transactions
+                        {
+                            user_id = t2.user_id,
+                            user_email = t2.user_email,
+                            user_data = t2.user_data,
+                            type = t2.type,
+                            @params = t2.@params,
+                            date = t2.date,
+                            ip = t2.ip,
+                            price = t2.price,
+                            coupon = t2.coupon,
+                            currency = t2.currency,
+                            hash = t2.hash,
+                            custom = t2.custom,
+                            gateway = t2.gateway,
+                            status = t2.status,
+                            response_log = t2.response_log
+                        };
+                        dbPuls3060_dk.ecpwt_rsmembership_transactions.Add(t1);
+                        dbPuls3060_dk.SaveChanges();
 
-                    ecpwt_rsmembership_transactions rec_trans = (from t in dbPuls3060_dk.ecpwt_rsmembership_transactions where t.custom == t2.custom select t).First();
-                    out_trans_id = rec_trans.id;
+                        ecpwt_rsmembership_transactions rec_trans = (from t in dbPuls3060_dk.ecpwt_rsmembership_transactions where t.custom == t2.custom select t).First();
+                        out_trans_id = rec_trans.id;
+                    }
+                    else 
+                    {
+                        out_trans_id = 0;                    
+                    }
                 }
                 catch
                 {
