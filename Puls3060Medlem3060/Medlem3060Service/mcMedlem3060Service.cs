@@ -24,7 +24,8 @@ namespace nsMedlem3060Service
         KontingentNyeMedlemmer,
         SendEmailRykker,
         UpdateMedlemStatus,
-        SendEmailAdvis
+        SendEmailAdvis,
+        UpdateKanSlettes
     }
 
     public partial class mcMedlem3060Service : ServiceBase
@@ -204,6 +205,11 @@ namespace nsMedlem3060Service
 
                         case enumTask.UpdateMedlemStatus:
                             m_dbData3060.UpdateMedlemStatus();
+                            break;
+
+                        case enumTask.UpdateKanSlettes:
+                            clsPbsHelper objPbsHelper = new clsPbsHelper();
+                            objPbsHelper.opdaterKanSlettes();
                             break;
 
                         default:
