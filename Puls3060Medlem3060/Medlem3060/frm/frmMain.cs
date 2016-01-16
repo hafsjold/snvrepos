@@ -581,7 +581,10 @@ namespace nsPuls3060
         private void testToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             clsPbsHelper objPbsHelperd = new clsPbsHelper();
-            objPbsHelperd.OpdateringAfSlettet_rsmembership_transaction(930, Program.dbData3060);
+            objPbsHelperd.JobQMaintenance(Program.dbData3060);
+            
+            //clsPbsHelper objPbsHelperd = new clsPbsHelper();
+            //objPbsHelperd.OpdateringAfSlettet_rsmembership_transaction(930, Program.dbData3060);
             
             //clsPbsHelper objPbsHelperd = new clsPbsHelper();
             //objPbsHelperd.PbsAutoKontingent(Program.dbData3060);

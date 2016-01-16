@@ -109,9 +109,9 @@ namespace nsPbs3060
                         ecpwt_rsmembership_transactions rec_trans = (from t in dbPuls3060_dk.ecpwt_rsmembership_transactions where t.custom == t2.custom select t).First();
                         out_trans_id = rec_trans.id;
                     }
-                    else 
+                    else
                     {
-                        out_trans_id = 0;                    
+                        out_trans_id = 0;
                     }
                 }
                 catch
@@ -137,6 +137,11 @@ WHERE 17 NOT IN (SELECT ugm.group_id FROM ecpwt_user_usergroup_map ugm WHERE ugm
   AND (m.status = 2 AND m.membership_end < DATE_ADD(  NOW(), INTERVAL -30 DAY ))
   OR  (m.status = 3 AND m.membership_end < NOW() ) );
             ");
+        }
+
+        public void JobQMaintenance(dbData3060DataContext p_dbData3060)
+        {
+            var result = p_dbData3060.ExecuteQuery<dynamic>(@"DELETE FROM dbo.tblJobqueue WHERE starttime < DATEADD(DAY,-2,GETDATE())");
         }
     }
 }
