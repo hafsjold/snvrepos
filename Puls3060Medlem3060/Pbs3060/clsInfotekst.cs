@@ -29,6 +29,7 @@ namespace nsPbs3060
         public string bankkonto { get; set; }
         public string advistekst { get; set; }
         public string sendtsom { get; set; }
+        public string kundenr { get; set; }
 
         public string getinfotekst(dbData3060DataContext dbData3060)
         {
@@ -92,6 +93,10 @@ namespace nsPbs3060
 
                         case "##sendtsom##":
                             if (sendtsom != null) return sendtsom;
+                            break;
+
+                        case "##kundenr##":
+                            if (sendtsom != null) return kundenr;
                             break;
                     }
                     return v;

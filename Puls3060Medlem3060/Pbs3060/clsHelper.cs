@@ -104,7 +104,8 @@ namespace nsPbs3060
                             .Select((e, i) => ((int)e - 48) * (i % 2 == 0 ? 2 : 1))
                             .Sum((e) => e / 10 + e % 10);
 
-            var diget = 10 - sumOfDigits % 10;
+            int diget = (10 - (sumOfDigits % 10)) % 10;
+
             return indbetalerident + diget;
         }
 
