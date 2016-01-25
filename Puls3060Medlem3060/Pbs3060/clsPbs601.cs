@@ -11,6 +11,7 @@ using MailKit.Net.Smtp;
 using MailKit;
 using MimeKit;
 using MailKit.Net.Imap;
+using MailKit.Search;
 using System.Collections;
 
 namespace nsPbs3060
@@ -2079,9 +2080,9 @@ namespace nsPbs3060
             int winfotekst = 0;
             int wantalbetalinger = 0;
             int AntalBetalinger = 0;
-            DateTime now_minus10days = DateTime.UtcNow.AddDays(-10);
+            DateTime now_minus10days = DateTime.UtcNow.AddDays(-20);
             MemRSMembershipTransactions memRSMembershipTransactions = new MemRSMembershipTransactions();
-            
+
             var qrytrans = from s in p_dbPuls3060_dk.ecpwt_rsmembership_membership_subscribers
                            where s.membership_id == 6 && s.status == 0
                            join t in p_dbPuls3060_dk.ecpwt_rsmembership_transactions on s.last_transaction_id equals t.id
@@ -2183,12 +2184,126 @@ namespace nsPbs3060
                         membership_id = rec_trans.membership_id,
                         subscriber_id = rec_trans.subscriber_id
                     };
+
+                    clsInfotekst objInfotekst = new clsInfotekst
+                    {
+                        infotekst_id = 61, //winfotekst,
+                        numofcol = null,
+                        navn_medlem = rec_payment.name,
+                        kaldenavn = rec_payment.name,
+                        //fradato = rstdeb.Fradato,
+                        //tildato = rstdeb.Tildato,
+                        betalingsdato = rec_payment.date,
+                        advisbelob = rec_payment.price,
+                        //ocrstring = p_dbData3060.OcrString(rstdeb.Faknr),
+                        underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører",
+                        kundenr = rec_payment.memberid.ToString()
+                    };
+                    string ToName = "Mogesn Hafsjold";
+                    string ToAddr = "mha@hafsjold.dk";
+                    string subject = "Test af HTML mail";
+                    sendHtmlEmail(p_dbData3060, ToName, ToAddr, subject, objInfotekst);
+
                     p_dbData3060.tblrsmembership_payments.InsertOnSubmit(rec_payment);
                     wantalbetalinger++;
                 }
                 p_dbData3060.SubmitChanges();
             }
             return wantalbetalinger;
+        }
+
+        public void sendHtmlEmail(dbData3060DataContext p_dbData3060, string ToName, string ToAddr, string subject, clsInfotekst objInfotekst)
+        {
+            MimeMessage message_template = GetEmailTemplate("Template-71");
+            var builder = new BodyBuilder();
+            builder.HtmlBody = objInfotekst.substitute_message(message_template.HtmlBody);
+            builder.TextBody = objInfotekst.substitute_message(message_template.TextBody);           
+            var ts = message_template.BodyParts.Where(a => a.ContentType.MediaType == "image");
+            foreach (MimePart attachment in ts)
+            {
+                System.IO.MemoryStream ms = new System.IO.MemoryStream();  
+                attachment.ContentObject.DecodeTo(ms);
+                ms.Position = 0;
+                MimeEntity img = builder.LinkedResources.Add(attachment.FileName, ms);
+                img.ContentId = attachment.ContentId;
+            }
+            var message = new MimeMessage();
+            message.Body = builder.ToMessageBody();
+
+#if (RELEASE)
+            message.To.Add(new MailboxAddress("Regnskab Puls3060", "regnskab@puls3060.dk"));
+            message.Subject = "TEST " + subject + " skal sendes til: " + ToName + " - " + ToAddr;
+#else
+            if (ToAddr.Length < 0) //???? skal være > 0
+            {
+                message.To.Add(new MailboxAddress(ToName, ToAddr));
+                message.Subject = subject;
+            }
+            else
+            {
+                message.To.Add(new MailboxAddress("Regnskab Puls3060", "regnskab@puls3060.dk"));
+                message.Subject = subject + " skal sendes til: " + ToName;
+            }
+#endif
+            /*
+            var builder = new BodyBuilder();
+            MimeEntity smalllogo = builder.LinkedResources.Add(@"C:\Users\Puls3060\Pictures\smalllogo.png");
+            smalllogo.ContentId = "smalllogo";
+
+            builder.HtmlBody = string.Format(body, smalllogo.ContentId);
+            message.Body = builder.ToMessageBody();
+            */
+
+            message.From.Add(new MailboxAddress("Regnskab Puls3060", "regnskab@puls3060.dk"));
+            using (var smtp_client = new MailKit.Net.Smtp.SmtpClient())
+            {
+                smtp_client.Connect("smtp.gigahost.dk", 587, false);
+                smtp_client.AuthenticationMechanisms.Remove("XOAUTH2");
+                smtp_client.Authenticate("regnskab@puls3060.dk", "1234West+");
+
+                using (var imap_client = new ImapClient())
+                {
+                    imap_client.Connect("imap.gigahost.dk", 993, true);
+                    imap_client.AuthenticationMechanisms.Remove("XOAUTH");
+                    imap_client.Authenticate("regnskab@puls3060.dk", "1234West+");
+
+                    var SendtPost = imap_client.GetFolder("Sendt post");
+                    SendtPost.Open(FolderAccess.ReadWrite);
+
+                    SendtPost.Append(message);
+                    smtp_client.Send(message);
+
+                    SendtPost.Close();
+                    imap_client.Disconnect(true);
+                }
+                smtp_client.Disconnect(true);
+            }
+        }
+
+        public MimeMessage GetEmailTemplate(string SearchText)
+        {
+            MimeMessage message;
+
+            using (var imap_client = new ImapClient())
+            {
+                imap_client.Connect("imap.gigahost.dk", 993, true);
+                imap_client.AuthenticationMechanisms.Remove("XOAUTH");
+                imap_client.Authenticate("regnskab@puls3060.dk", "1234West+");
+                var Puls3060Templates = imap_client.GetFolder("Puls3060Templates");
+                Puls3060Templates.Open(FolderAccess.ReadOnly);
+
+                var result = Puls3060Templates.Search(SearchQuery.SubjectContains(SearchText));
+                if (result.Count == 1)
+                    message = Puls3060Templates.GetMessage(result.First());
+                else
+                    message = null;
+
+                if (message == null) { Console.WriteLine("Not found"); }
+                
+                Puls3060Templates.Close();
+                imap_client.Disconnect(true);
+            }
+            return message;
         }
     }
 

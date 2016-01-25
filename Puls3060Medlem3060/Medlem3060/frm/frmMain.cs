@@ -15,6 +15,7 @@ using Spire.Pdf;
 using Spire.Pdf.Graphics;
 using System.Collections;
 using PHPSerializationLibrary;
+using MimeKit;
 
 
 namespace nsPuls3060
@@ -580,14 +581,15 @@ namespace nsPuls3060
 
         private void testToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            string xx = clsHelper.generateIndbetalerident(13696);
-            if (xx == null) return;
-            bool yy = clsHelper.Mod10Check("0000000001369610");
-            if (yy == false) return;
+            //string xx = clsHelper.generateIndbetalerident(13696);
+            //if (xx == null) return;
+            //bool yy = clsHelper.Mod10Check("0000000001369610");
+            //if (yy == false) return;
 
-            //puls3060_dkEntities jdb = new puls3060_dkEntities();
-            //clsPbs601 objPbs601x = new clsPbs601();
-            //objPbs601x.rsmembeshhip_betalinger_auto(Program.dbData3060, jdb);
+            puls3060_dkEntities jdb = new puls3060_dkEntities();
+            clsPbs601 objPbs601x = new clsPbs601();
+            objPbs601x.rsmembeshhip_betalinger_auto(Program.dbData3060, jdb);
+            //MimeMessage message = objPbs601x.TestEmailTemplate("Template",Program.dbData3060);
             
             //clsPbsHelper objPbsHelperd = new clsPbsHelper();
             //objPbsHelperd.OpdateringAfSlettet_rsmembership_transaction(930, Program.dbData3060);
