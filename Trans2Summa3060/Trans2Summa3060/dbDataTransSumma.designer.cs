@@ -93,6 +93,9 @@ namespace Trans2Summa3060
     partial void Inserttblpaypal(tblpaypal instance);
     partial void Updatetblpaypal(tblpaypal instance);
     partial void Deletetblpaypal(tblpaypal instance);
+    partial void Inserttblmobilepay(tblmobilepay instance);
+    partial void Updatetblmobilepay(tblmobilepay instance);
+    partial void Deletetblmobilepay(tblmobilepay instance);
     #endregion
 		
 		public DbDataTransSumma() : 
@@ -290,6 +293,14 @@ namespace Trans2Summa3060
 			get
 			{
 				return this.GetTable<tblpaypal>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblmobilepay> tblmobilepays
+		{
+			get
+			{
+				return this.GetTable<tblmobilepay>();
 			}
 		}
 	}
@@ -6510,6 +6521,236 @@ namespace Trans2Summa3060
 		{
 			this.SendPropertyChanging();
 			entity.tblpaypal = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblmobilepay")]
+	public partial class tblmobilepay : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _pid;
+		
+		private System.Nullable<bool> _Imported;
+		
+		private string _navn;
+		
+		private string _mobilnummer;
+		
+		private System.Nullable<decimal> _belob;
+		
+		private System.Nullable<System.DateTime> _dato;
+		
+		private string _mobilepay_id;
+		
+		private string _tekst;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnpidChanging(int value);
+    partial void OnpidChanged();
+    partial void OnImportedChanging(System.Nullable<bool> value);
+    partial void OnImportedChanged();
+    partial void OnnavnChanging(string value);
+    partial void OnnavnChanged();
+    partial void OnmobilnummerChanging(string value);
+    partial void OnmobilnummerChanged();
+    partial void OnbelobChanging(System.Nullable<decimal> value);
+    partial void OnbelobChanged();
+    partial void OndatoChanging(System.Nullable<System.DateTime> value);
+    partial void OndatoChanged();
+    partial void Onmobilepay_idChanging(string value);
+    partial void Onmobilepay_idChanged();
+    partial void OntekstChanging(string value);
+    partial void OntekstChanged();
+    #endregion
+		
+		public tblmobilepay()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pid", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int pid
+		{
+			get
+			{
+				return this._pid;
+			}
+			set
+			{
+				if ((this._pid != value))
+				{
+					this.OnpidChanging(value);
+					this.SendPropertyChanging();
+					this._pid = value;
+					this.SendPropertyChanged("pid");
+					this.OnpidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Imported", DbType="Bit")]
+		public System.Nullable<bool> Imported
+		{
+			get
+			{
+				return this._Imported;
+			}
+			set
+			{
+				if ((this._Imported != value))
+				{
+					this.OnImportedChanging(value);
+					this.SendPropertyChanging();
+					this._Imported = value;
+					this.SendPropertyChanged("Imported");
+					this.OnImportedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_navn", DbType="NVarChar(35)")]
+		public string navn
+		{
+			get
+			{
+				return this._navn;
+			}
+			set
+			{
+				if ((this._navn != value))
+				{
+					this.OnnavnChanging(value);
+					this.SendPropertyChanging();
+					this._navn = value;
+					this.SendPropertyChanged("navn");
+					this.OnnavnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mobilnummer", DbType="NVarChar(10)")]
+		public string mobilnummer
+		{
+			get
+			{
+				return this._mobilnummer;
+			}
+			set
+			{
+				if ((this._mobilnummer != value))
+				{
+					this.OnmobilnummerChanging(value);
+					this.SendPropertyChanging();
+					this._mobilnummer = value;
+					this.SendPropertyChanged("mobilnummer");
+					this.OnmobilnummerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_belob", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> belob
+		{
+			get
+			{
+				return this._belob;
+			}
+			set
+			{
+				if ((this._belob != value))
+				{
+					this.OnbelobChanging(value);
+					this.SendPropertyChanging();
+					this._belob = value;
+					this.SendPropertyChanged("belob");
+					this.OnbelobChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> dato
+		{
+			get
+			{
+				return this._dato;
+			}
+			set
+			{
+				if ((this._dato != value))
+				{
+					this.OndatoChanging(value);
+					this.SendPropertyChanging();
+					this._dato = value;
+					this.SendPropertyChanged("dato");
+					this.OndatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mobilepay_id", DbType="NVarChar(15)")]
+		public string mobilepay_id
+		{
+			get
+			{
+				return this._mobilepay_id;
+			}
+			set
+			{
+				if ((this._mobilepay_id != value))
+				{
+					this.Onmobilepay_idChanging(value);
+					this.SendPropertyChanging();
+					this._mobilepay_id = value;
+					this.SendPropertyChanged("mobilepay_id");
+					this.Onmobilepay_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tekst", DbType="NVarChar(50)")]
+		public string tekst
+		{
+			get
+			{
+				return this._tekst;
+			}
+			set
+			{
+				if ((this._tekst != value))
+				{
+					this.OntekstChanging(value);
+					this.SendPropertyChanging();
+					this._tekst = value;
+					this.SendPropertyChanged("tekst");
+					this.OntekstChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

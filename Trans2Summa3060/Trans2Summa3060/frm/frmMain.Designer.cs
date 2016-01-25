@@ -67,6 +67,10 @@
             this.templatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kontoudtogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.opdaterBilagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sQLSyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.runSyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.setupScopeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.removeScopeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -78,10 +82,7 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonIndtastBilag = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.sQLSyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.setupScopeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.removeScopeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.runSyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importMobilePayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -162,19 +163,19 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(102, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // afslutToolStripMenuItem
             // 
             this.afslutToolStripMenuItem.Name = "afslutToolStripMenuItem";
-            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.afslutToolStripMenuItem.Text = "Afslut";
             this.afslutToolStripMenuItem.Click += new System.EventHandler(this.afslutToolStripMenuItem_Click);
             // 
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.testToolStripMenuItem.Text = "Test";
             this.testToolStripMenuItem.Visible = false;
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
@@ -284,6 +285,7 @@
             this.importNordeaToolStripMenuItem,
             this.importPayPalToolStripMenuItem,
             this.importActebisToolStripMenuItem,
+            this.importMobilePayToolStripMenuItem,
             this.excelRegnskabToolStripMenuItem});
             this.regnskabToolStripMenuItem.Name = "regnskabToolStripMenuItem";
             this.regnskabToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
@@ -406,6 +408,37 @@
             this.opdaterBilagToolStripMenuItem.Text = "Opdater Bilag";
             this.opdaterBilagToolStripMenuItem.Click += new System.EventHandler(this.opdaterBilagToolStripMenuItem_Click);
             // 
+            // sQLSyncToolStripMenuItem
+            // 
+            this.sQLSyncToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.runSyncToolStripMenuItem,
+            this.setupScopeToolStripMenuItem,
+            this.removeScopeToolStripMenuItem});
+            this.sQLSyncToolStripMenuItem.Name = "sQLSyncToolStripMenuItem";
+            this.sQLSyncToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.sQLSyncToolStripMenuItem.Text = "SQLSync";
+            // 
+            // runSyncToolStripMenuItem
+            // 
+            this.runSyncToolStripMenuItem.Name = "runSyncToolStripMenuItem";
+            this.runSyncToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.runSyncToolStripMenuItem.Text = "RunSync";
+            this.runSyncToolStripMenuItem.Click += new System.EventHandler(this.runSyncToolStripMenuItem_Click);
+            // 
+            // setupScopeToolStripMenuItem
+            // 
+            this.setupScopeToolStripMenuItem.Name = "setupScopeToolStripMenuItem";
+            this.setupScopeToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.setupScopeToolStripMenuItem.Text = "SetupScope";
+            this.setupScopeToolStripMenuItem.Click += new System.EventHandler(this.setupScopeToolStripMenuItem_Click);
+            // 
+            // removeScopeToolStripMenuItem
+            // 
+            this.removeScopeToolStripMenuItem.Name = "removeScopeToolStripMenuItem";
+            this.removeScopeToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+            this.removeScopeToolStripMenuItem.Text = "RemoveScope";
+            this.removeScopeToolStripMenuItem.Click += new System.EventHandler(this.removeScopeToolStripMenuItem_Click);
+            // 
             // hjælpToolStripMenuItem
             // 
             this.hjælpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -501,36 +534,12 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
-            // sQLSyncToolStripMenuItem
+            // importMobilePayToolStripMenuItem
             // 
-            this.sQLSyncToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.runSyncToolStripMenuItem,
-            this.setupScopeToolStripMenuItem,
-            this.removeScopeToolStripMenuItem});
-            this.sQLSyncToolStripMenuItem.Name = "sQLSyncToolStripMenuItem";
-            this.sQLSyncToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
-            this.sQLSyncToolStripMenuItem.Text = "SQLSync";
-            // 
-            // setupScopeToolStripMenuItem
-            // 
-            this.setupScopeToolStripMenuItem.Name = "setupScopeToolStripMenuItem";
-            this.setupScopeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.setupScopeToolStripMenuItem.Text = "SetupScope";
-            this.setupScopeToolStripMenuItem.Click += new System.EventHandler(this.setupScopeToolStripMenuItem_Click);
-            // 
-            // removeScopeToolStripMenuItem
-            // 
-            this.removeScopeToolStripMenuItem.Name = "removeScopeToolStripMenuItem";
-            this.removeScopeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.removeScopeToolStripMenuItem.Text = "RemoveScope";
-            this.removeScopeToolStripMenuItem.Click += new System.EventHandler(this.removeScopeToolStripMenuItem_Click);
-            // 
-            // runSyncToolStripMenuItem
-            // 
-            this.runSyncToolStripMenuItem.Name = "runSyncToolStripMenuItem";
-            this.runSyncToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.runSyncToolStripMenuItem.Text = "RunSync";
-            this.runSyncToolStripMenuItem.Click += new System.EventHandler(this.runSyncToolStripMenuItem_Click);
+            this.importMobilePayToolStripMenuItem.Name = "importMobilePayToolStripMenuItem";
+            this.importMobilePayToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.importMobilePayToolStripMenuItem.Text = "Import MobilePay";
+            this.importMobilePayToolStripMenuItem.Click += new System.EventHandler(this.importMobilePayToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -617,6 +626,7 @@
         private System.Windows.Forms.ToolStripMenuItem runSyncToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem setupScopeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeScopeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importMobilePayToolStripMenuItem;
     }
 }
 
