@@ -11,6 +11,7 @@ using System.IO;
 using Microsoft.VisualBasic;
 //using System.Transactions;
 using System.Text.RegularExpressions;
+using MimeKit;
 
 namespace nsPbs3060
 {
@@ -217,6 +218,72 @@ namespace nsPbs3060
             return outputline;
         }
 
+        public string substitute_message(string infotext)
+        {
+            RegexOptions options = ((RegexOptions.IgnorePatternWhitespace | RegexOptions.Multiline) | RegexOptions.IgnoreCase);
+            Regex regexParam = new Regex(@"(\#\#[^\#]+\#\#)", options);
 
+            string MsgtextSub = "";
+            if (infotext != null)
+            {
+                MsgtextSub = regexParam.Replace(infotext, delegate(Match match)
+                {
+                    string v = match.ToString();
+                    switch (v.ToLower())
+                    {
+                        case "##navn_medlem##":
+                            if (navn_medlem != null) return navn_medlem;
+                            break;
+
+                        case "##kaldenavn##":
+                            if (kaldenavn != null) return kaldenavn;
+                            if (navn_medlem != null) return navn_medlem;
+                            break;
+
+                        case "##fradato##":
+                            if (fradato != null) return string.Format("{0:d. MMMM yyyy}", fradato);
+                            break;
+
+                        case "##tildato##":
+                            if (tildato != null) return string.Format("{0:d. MMMM yyyy}", tildato);
+                            break;
+
+                        case "##betalingsdato##":
+                            if (betalingsdato != null) return string.Format("{0:dddd}", betalingsdato) + " den " + string.Format("{0:d. MMMM}", betalingsdato);
+                            break;
+
+                        case "##advisbelob##":
+                            if (advisbelob != null) return String.Format("{0:###0.00}", advisbelob).Replace('.', ',');
+                            break;
+
+                        case "##ocrstring##":
+                            if (ocrstring != null) return ocrstring;
+                            break;
+
+                        case "##underskrift_navn##":
+                            if (underskrift_navn != null) return underskrift_navn;
+                            break;
+
+                        case "##bankkonto##":
+                            if (bankkonto != null) return bankkonto;
+                            break;
+
+                        case "##advistekst##":
+                            if (advistekst != null) return advistekst;
+                            break;
+
+                        case "##sendtsom##":
+                            if (sendtsom != null) return sendtsom;
+                            break;
+
+                        case "##kundenr##":
+                            if (sendtsom != null) return kundenr;
+                            break;
+                    }
+                    return v;
+                });
+            }
+            return MsgtextSub;
+        }
     }
 }
