@@ -184,12 +184,18 @@
         <elementListCompartment Id="09f24db8-21d3-4a66-9321-2beece417314" absoluteBounds="7.39, 11.96, 1.9700000000000002, 8.9029541015625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(8.375 : 11.5); (8.375 : 10.6651025390625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(8.375 : 11.5); (8.375 : 10.6651025390625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DbDataTransSumma/tblpaypal/tblpaypal_tblbankkonto" />
       <nodes>
         <classShapeMoniker Id="0da0fe20-1322-43bd-95e6-1c5b6b87c905" />
         <classShapeMoniker Id="66d0f01e-2b1e-4524-abcc-77a614088f98" />
       </nodes>
     </associationConnector>
+    <classShape Id="e6d90ee1-046d-47e1-a51f-7da6ce7d4c0d" absoluteBounds="4.375, 11.625, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/DbDataTransSumma/tblmobilepay" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d7c2017a-386d-4e63-bebc-9aea2a9c99b7" absoluteBounds="4.39, 12.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

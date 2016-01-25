@@ -672,6 +672,12 @@ namespace Trans2Summa3060
                 global::Trans2Summa3060.Properties.Resources.Message_info); //iconSet
         }
 
+        private void importMobilePayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KarBankkontoudtogMobilePay recBankkontoudtogMobilePay = new KarBankkontoudtogMobilePay(6);
+            recBankkontoudtogMobilePay.load();
+        }
+
     }
 
     public class Xrec
