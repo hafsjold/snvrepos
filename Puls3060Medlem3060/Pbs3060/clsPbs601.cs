@@ -757,7 +757,9 @@ namespace nsPbs3060
                      kon = recud.kon,
                      fodtaar = recud.fodtaar,
                      message = recud.message,
-                     password = recud.password
+                     password = recud.password,
+                     fradato = null,
+                     tildato = null
                  };
 
                 int? parm_membership_id = clsHelper.getParam(tr.@params, "membership_id");
@@ -2080,7 +2082,7 @@ namespace nsPbs3060
             int winfotekst = 0;
             int wantalbetalinger = 0;
             int AntalBetalinger = 0;
-            DateTime now_minus10days = DateTime.UtcNow.AddDays(-20);
+            DateTime now_minus10days = DateTime.UtcNow.AddDays(-10);
             MemRSMembershipTransactions memRSMembershipTransactions = new MemRSMembershipTransactions();
 
             var qrytrans = from s in p_dbPuls3060_dk.ecpwt_rsmembership_membership_subscribers
@@ -2088,8 +2090,30 @@ namespace nsPbs3060
                            join t in p_dbPuls3060_dk.ecpwt_rsmembership_transactions on s.last_transaction_id equals t.id
                            where t.status == "completed" && t.date > now_minus10days
                            orderby t.date ascending
-                           select t;
-            List<ecpwt_rsmembership_transactions> trans = qrytrans.ToList();
+                           select new 
+                           {
+                               subscriber_id = s.id, 
+                               s.membership_id,
+                               s.membership_start,
+                               s.membership_end,
+                               t.id,
+                               t.user_id,
+                               t.user_email,
+                               t.user_data,
+                               t.type,
+                               t.@params,
+                               t.date,
+                               t.ip,
+                               t.price,
+                               t.coupon,
+                               t.currency,
+                               t.hash,
+                               t.custom,
+                               t.gateway,
+                               t.status,
+                               t.response_log
+                           };
+            var trans = qrytrans.ToList();
 
             int antal = trans.Count();
             foreach (var tr in trans)
@@ -2129,23 +2153,12 @@ namespace nsPbs3060
                     kon = recud.kon,
                     fodtaar = recud.fodtaar,
                     message = recud.message,
-                    password = recud.password
+                    password = recud.password,
+                    fradato = tr.membership_start,
+                    tildato = tr.membership_end,
+                    membership_id = tr.membership_id,
+                    subscriber_id = tr.subscriber_id
                 };
-
-                int? parm_membership_id = clsHelper.getParam(tr.@params, "membership_id");
-                rec.membership_id = (parm_membership_id != null) ? (int)parm_membership_id : 0;
-                rec.subscriber_id = clsHelper.getParam(tr.@params, "id");
-                if (rec.subscriber_id == null)
-                {
-                    var qrysubscr = from s in p_dbPuls3060_dk.ecpwt_rsmembership_membership_subscribers
-                                    where s.user_id == tr.user_id && s.membership_id == rec.membership_id
-                                    select s;
-                    try
-                    {
-                        rec.subscriber_id = qrysubscr.First().id;
-                    }
-                    catch { }
-                }
                 memRSMembershipTransactions.Add(rec);
                 AntalBetalinger++;
             }
@@ -2182,26 +2195,28 @@ namespace nsPbs3060
                         bynavn = rec_trans.bynavn,
                         memberid = rec_trans.memberid,
                         membership_id = rec_trans.membership_id,
-                        subscriber_id = rec_trans.subscriber_id
+                        subscriber_id = rec_trans.subscriber_id,
+                        membership_start = rec_trans.fradato,
+                        membership_end = rec_trans.tildato
                     };
 
                     clsInfotekst objInfotekst = new clsInfotekst
                     {
-                        infotekst_id = 61, //winfotekst,
+                        infotekst_id = 72, //winfotekst,
                         numofcol = null,
-                        navn_medlem = rec_payment.name,
-                        kaldenavn = rec_payment.name,
-                        //fradato = rstdeb.Fradato,
-                        //tildato = rstdeb.Tildato,
-                        betalingsdato = rec_payment.date,
-                        advisbelob = rec_payment.price,
+                        navn_medlem = rec_trans.name,
+                        kaldenavn = rec_trans.name,
+                        fradato = rec_trans.fradato,
+                        tildato = rec_trans.tildato,
+                        betalingsdato = rec_trans.date,
+                        advisbelob = rec_trans.price,
                         //ocrstring = p_dbData3060.OcrString(rstdeb.Faknr),
                         underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører",
-                        kundenr = rec_payment.memberid.ToString()
+                        kundenr = rec_trans.memberid.ToString()
                     };
-                    string ToName = "Mogesn Hafsjold";
-                    string ToAddr = "mha@hafsjold.dk";
-                    string subject = "Test af HTML mail";
+                    string ToName = rec_trans.name;
+                    string ToAddr = rec_trans.user_email;
+                    string subject = "Kvittering for medlemsskab af Puls 3060";
                     sendHtmlEmail(p_dbData3060, ToName, ToAddr, subject, objInfotekst);
 
                     p_dbData3060.tblrsmembership_payments.InsertOnSubmit(rec_payment);
@@ -2214,7 +2229,8 @@ namespace nsPbs3060
 
         public void sendHtmlEmail(dbData3060DataContext p_dbData3060, string ToName, string ToAddr, string subject, clsInfotekst objInfotekst)
         {
-            MimeMessage message_template = GetEmailTemplate("Template-71");
+            string TemplateName = "Template-" + objInfotekst.infotekst_id.ToString();
+            MimeMessage message_template = GetEmailTemplate(TemplateName);
             var builder = new BodyBuilder();
             builder.HtmlBody = objInfotekst.substitute_message(message_template.HtmlBody);
             builder.TextBody = objInfotekst.substitute_message(message_template.TextBody);           
@@ -2230,29 +2246,15 @@ namespace nsPbs3060
             var message = new MimeMessage();
             message.Body = builder.ToMessageBody();
 
-#if (RELEASE)
+#if (DEBUG)
             message.To.Add(new MailboxAddress("Regnskab Puls3060", "regnskab@puls3060.dk"));
             message.Subject = "TEST " + subject + " skal sendes til: " + ToName + " - " + ToAddr;
 #else
-            if (ToAddr.Length < 0) //???? skal være > 0
-            {
-                message.To.Add(new MailboxAddress(ToName, ToAddr));
-                message.Subject = subject;
-            }
-            else
-            {
-                message.To.Add(new MailboxAddress("Regnskab Puls3060", "regnskab@puls3060.dk"));
-                message.Subject = subject + " skal sendes til: " + ToName;
-            }
+            message.To.Add(new MailboxAddress(ToName, ToAddr));
+            message.Bcc.Add(new MailboxAddress("Henrik Bo Larsen", "formand@puls3060"));
+            message.Bcc.Add(new MailboxAddress("Morten Wiberg", "mw@puls3060.dk"));
+            message.Subject = subject;
 #endif
-            /*
-            var builder = new BodyBuilder();
-            MimeEntity smalllogo = builder.LinkedResources.Add(@"C:\Users\Puls3060\Pictures\smalllogo.png");
-            smalllogo.ContentId = "smalllogo";
-
-            builder.HtmlBody = string.Format(body, smalllogo.ContentId);
-            message.Body = builder.ToMessageBody();
-            */
 
             message.From.Add(new MailboxAddress("Regnskab Puls3060", "regnskab@puls3060.dk"));
             using (var smtp_client = new MailKit.Net.Smtp.SmtpClient())
@@ -2393,6 +2395,8 @@ namespace nsPbs3060
         public int? subscriber_id { get; set; }
         public bool indmeldelse { get; set; }
         public bool tilmeldtpbs { get; set; }
+        public DateTime? fradato { get; set; }
+        public DateTime? tildato { get; set; }
     }
 
     public class MemRSMembershipTransactions : List<recRSMembershipTransactions>
