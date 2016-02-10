@@ -487,6 +487,8 @@
       <Column Name="memberid" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="membership_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="subscriber_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="membership_start" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="membership_end" Type="System.DateTime" DbType="Date" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.GetSysinfo" Method="GetSysinfo" IsComposable="true">

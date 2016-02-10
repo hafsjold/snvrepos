@@ -9875,6 +9875,10 @@ namespace nsPbs3060
 		
 		private System.Nullable<int> _subscriber_id;
 		
+		private System.Nullable<System.DateTime> _membership_start;
+		
+		private System.Nullable<System.DateTime> _membership_end;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -9927,6 +9931,10 @@ namespace nsPbs3060
     partial void Onmembership_idChanged();
     partial void Onsubscriber_idChanging(System.Nullable<int> value);
     partial void Onsubscriber_idChanged();
+    partial void Onmembership_startChanging(System.Nullable<System.DateTime> value);
+    partial void Onmembership_startChanged();
+    partial void Onmembership_endChanging(System.Nullable<System.DateTime> value);
+    partial void Onmembership_endChanged();
     #endregion
 		
 		public tblrsmembership_payment()
@@ -10410,6 +10418,46 @@ namespace nsPbs3060
 					this._subscriber_id = value;
 					this.SendPropertyChanged("subscriber_id");
 					this.Onsubscriber_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_membership_start", DbType="Date")]
+		public System.Nullable<System.DateTime> membership_start
+		{
+			get
+			{
+				return this._membership_start;
+			}
+			set
+			{
+				if ((this._membership_start != value))
+				{
+					this.Onmembership_startChanging(value);
+					this.SendPropertyChanging();
+					this._membership_start = value;
+					this.SendPropertyChanged("membership_start");
+					this.Onmembership_startChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_membership_end", DbType="Date")]
+		public System.Nullable<System.DateTime> membership_end
+		{
+			get
+			{
+				return this._membership_end;
+			}
+			set
+			{
+				if ((this._membership_end != value))
+				{
+					this.Onmembership_endChanging(value);
+					this.SendPropertyChanging();
+					this._membership_end = value;
+					this.SendPropertyChanged("membership_end");
+					this.Onmembership_endChanged();
 				}
 			}
 		}
