@@ -26,7 +26,8 @@ namespace nsMedlem3060Service
         UpdateMedlemStatus,
         SendEmailAdvis,
         UpdateKanSlettes,
-        JobQMaintenance
+        JobQMaintenance,
+        SendEmailKviteringer
     }
 
     public partial class mcMedlem3060Service : ServiceBase
@@ -216,6 +217,12 @@ namespace nsMedlem3060Service
                         case enumTask.JobQMaintenance:
                             clsPbsHelper objPbsHelperb = new clsPbsHelper();
                             objPbsHelperb.JobQMaintenance(m_dbData3060);
+                            break;
+
+                        case enumTask.SendEmailKviteringer:
+                            puls3060_dkEntities djdb = new puls3060_dkEntities();
+                            clsPbs601 objPbs601d = new clsPbs601();
+                            objPbs601d.rsmembeshhip_betalinger_auto(m_dbData3060, djdb);
                             break;
 
                         default:
