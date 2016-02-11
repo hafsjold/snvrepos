@@ -2080,15 +2080,16 @@ namespace nsPbs3060
         public int rsmembeshhip_betalinger_auto(dbData3060DataContext p_dbData3060, puls3060_dkEntities p_dbPuls3060_dk)
         {
             int winfotekst = 0;
+            Boolean bBcc = false;
             int wantalbetalinger = 0;
             int AntalBetalinger = 0;
-            DateTime now_minus10days = DateTime.UtcNow.AddDays(-10);
+            DateTime now_minus5days = DateTime.UtcNow.AddDays(-5);
             MemRSMembershipTransactions memRSMembershipTransactions = new MemRSMembershipTransactions();
 
             var qrytrans = from s in p_dbPuls3060_dk.ecpwt_rsmembership_membership_subscribers
                            where s.membership_id == 6 && s.status == 0
                            join t in p_dbPuls3060_dk.ecpwt_rsmembership_transactions on s.last_transaction_id equals t.id
-                           where t.status == "completed" && t.date > now_minus10days
+                           where t.status == "completed" && t.date > now_minus5days
                            orderby t.date ascending
                            select new 
                            {
@@ -2142,7 +2143,7 @@ namespace nsPbs3060
                     status = tr.status,
                     response_log = tr.response_log,
                     indmeldelse = (tr.type == "new") ? true : false,
-                    tilmeldtpbs = false,
+                    tilmeldtpbs = false, // ?????
                     name = recud.name,
                     username = recud.username,
                     adresse = recud.adresse,
@@ -2168,8 +2169,12 @@ namespace nsPbs3060
             {
                 foreach (var rec_trans in memRSMembershipTransactions)
                 {
-                    if (rec_trans.indmeldelse) winfotekst = 11;
-                    else winfotekst = (rec_trans.tilmeldtpbs) ? 10 : 12;
+                    if (rec_trans.indmeldelse) bBcc = true;
+                    else bBcc = false;
+
+                    //if (rec_trans.indmeldelse) winfotekst = 72;
+                    //else winfotekst = (rec_trans.tilmeldtpbs) ? 10 : 12;
+                    winfotekst = 72;
 
                     tblrsmembership_payment rec_payment = new tblrsmembership_payment()
                     {
@@ -2202,7 +2207,7 @@ namespace nsPbs3060
 
                     clsInfotekst objInfotekst = new clsInfotekst
                     {
-                        infotekst_id = 72, //winfotekst,
+                        infotekst_id = winfotekst,
                         numofcol = null,
                         navn_medlem = rec_trans.name,
                         kaldenavn = rec_trans.name,
@@ -2217,7 +2222,7 @@ namespace nsPbs3060
                     string ToName = rec_trans.name;
                     string ToAddr = rec_trans.user_email;
                     string subject = "Kvittering for medlemsskab af Puls 3060";
-                    sendHtmlEmail(p_dbData3060, ToName, ToAddr, subject, objInfotekst);
+                    sendHtmlEmail(p_dbData3060, ToName, ToAddr, subject, objInfotekst, bBcc);
 
                     p_dbData3060.tblrsmembership_payments.InsertOnSubmit(rec_payment);
                     wantalbetalinger++;
@@ -2227,7 +2232,7 @@ namespace nsPbs3060
             return wantalbetalinger;
         }
 
-        public void sendHtmlEmail(dbData3060DataContext p_dbData3060, string ToName, string ToAddr, string subject, clsInfotekst objInfotekst)
+        public void sendHtmlEmail(dbData3060DataContext p_dbData3060, string ToName, string ToAddr, string subject, clsInfotekst objInfotekst, Boolean bBcc)
         {
             string TemplateName = "Template-" + objInfotekst.infotekst_id.ToString();
             MimeMessage message_template = GetEmailTemplate(TemplateName);
@@ -2251,8 +2256,11 @@ namespace nsPbs3060
             message.Subject = "TEST " + subject + " skal sendes til: " + ToName + " - " + ToAddr;
 #else
             message.To.Add(new MailboxAddress(ToName, ToAddr));
-            message.Bcc.Add(new MailboxAddress("Henrik Bo Larsen", "formand@puls3060"));
-            message.Bcc.Add(new MailboxAddress("Morten Wiberg", "mw@puls3060.dk"));
+            if (bBcc)
+            {
+                message.Bcc.Add(new MailboxAddress("Henrik Bo Larsen", "formand@puls3060"));
+                message.Bcc.Add(new MailboxAddress("Morten Wiberg", "mw@puls3060.dk"));
+            }            
             message.Subject = subject;
 #endif
 
