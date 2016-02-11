@@ -329,15 +329,21 @@ namespace nsPbs3060
                                  f.advisbelob,
                                  f.faknr,
                                  f.indmeldelse,
-                                 h.user_id
+                                 h.user_id,
+                                 h.trans_id
                              };
             wantal1 = rstmedlems.Count();
             if (wantal1 > 0)
             {
                 foreach (var m in rstmedlems)
                 {
-                    bool AllreadyPayedOrCancelled = ((from q in p_dbPuls3060_dk.ecpwt_rsmembership_membership_subscribers where q.user_id == m.user_id && q.membership_id == 6 && (q.membership_end > now_plus60 || q.status == 3) select q.id).Count() > 0);
-                    if (!AllreadyPayedOrCancelled)
+                    bool AllreadyPayedOrCancelledOrDeleted = ((from q in p_dbPuls3060_dk.ecpwt_rsmembership_membership_subscribers where q.user_id == m.user_id && q.membership_id == 6 && (q.membership_end > now_plus60 || q.status == 3) select q.id).Count() > 0);
+                    if (!AllreadyPayedOrCancelledOrDeleted)
+                    {
+                        //Test om ecpwt_rsmembership_transactions findes
+                        AllreadyPayedOrCancelledOrDeleted = ((from q in p_dbPuls3060_dk.ecpwt_rsmembership_transactions where q.id == m.trans_id select q.id).Count() > 0);                   
+                    }                    
+                    if (!AllreadyPayedOrCancelledOrDeleted)
                     {
                         recRyk rec = new recRyk
                         {
