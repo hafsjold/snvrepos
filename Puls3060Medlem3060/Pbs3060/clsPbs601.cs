@@ -2264,7 +2264,7 @@ namespace nsPbs3060
             message.To.Add(new MailboxAddress(ToName, ToAddr));
             if (bBcc)
             {
-                message.Bcc.Add(new MailboxAddress("Henrik Bo Larsen", "formand@puls3060"));
+                message.Bcc.Add(new MailboxAddress("Henrik Bo Larsen", "formand@puls3060.dk"));
                 message.Bcc.Add(new MailboxAddress("Morten Wiberg", "mw@puls3060.dk"));
             }            
             message.Subject = subject;
