@@ -224,6 +224,7 @@ namespace nsPbs3060
                               Belob = r.advisbelob,
                               Email = k.user_email,
                               indbetalerident = f.indbetalerident,
+                              indmeldelse = f.indmeldelse,
                           };
             }
             else
@@ -251,6 +252,7 @@ namespace nsPbs3060
                               Belob = r.advisbelob,
                               Email = k.Email,
                               indbetalerident = f.indbetalerident,
+                              indmeldelse = f.indmeldelse,
                           };
             }
 
@@ -270,6 +272,7 @@ namespace nsPbs3060
                         }
                     }
 
+                    /*
                     string infotekst = new clsInfotekst
                     {
                         infotekst_id = rstdeb.Infotekst,
@@ -293,6 +296,29 @@ namespace nsPbs3060
                         sendAdvisRykkerEmail(p_dbData3060, rstdeb.Navn, rstdeb.Email, "Betaling af Puls 3060 Kontingent", infotekst);
 
                     }
+                    */
+                    clsInfotekst objInfotekst = new clsInfotekst
+                    {
+                        infotekst_id = rstdeb.Infotekst,
+                        numofcol = null,
+                        navn_medlem = rstdeb.Navn,
+                        kaldenavn = rstdeb.Kaldenavn,
+                        fradato = rstdeb.Fradato,
+                        tildato = rstdeb.Tildato,
+                        betalingsdato = rstdeb.Betalingsdato,
+                        advisbelob = rstdeb.Belob,
+                        ocrstring = OcrString,
+                        underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører",
+                        sendtsom = p_dbData3060.SendtSomString(rstdeb.Faknr),
+                        kundenr = rstdeb.Kundenr.ToString()
+                    };
+                    string subject = "Betaling af Puls 3060 Kontingent";
+                    Boolean bBcc = false;
+                    if (rstdeb.indmeldelse != null) {
+                        if ((Boolean)(rstdeb.indmeldelse) == true) bBcc = true;
+                    }
+                    //Send email
+                    sendHtmlEmail(p_dbData3060, rstdeb.Navn, rstdeb.Email, subject, objInfotekst, bBcc);
                 }
                 wSaveFaknr = rstdeb.Faknr;
             } // -- End rstdebs
@@ -1124,6 +1150,7 @@ namespace nsPbs3060
                               Belob = r.advisbelob,
                               Email = k.user_email,
                               indbetalerident = f.indbetalerident,
+                              indmeldelse = f.indmeldelse,
                           };
 
             wSaveFaknr = 0;
@@ -1131,7 +1158,7 @@ namespace nsPbs3060
             {
                 if (rstdeb.Faknr != wSaveFaknr) //Løser problem med mere flere PBS Tblindbetalingskort records pr Faknr
                 {
-
+                    /*
                     string infotekst = new clsInfotekst
                     {
                         infotekst_id = rstdeb.Infotekst,
@@ -1155,6 +1182,30 @@ namespace nsPbs3060
                         sendAdvisRykkerEmail(p_dbData3060, rstdeb.Navn, rstdeb.Email, "Betaling af Puls 3060 Kontingent", infotekst);
 
                     }
+                    */
+                    clsInfotekst objInfotekst = new clsInfotekst
+                    {
+                        infotekst_id = rstdeb.Infotekst,
+                        numofcol = null,
+                        navn_medlem = rstdeb.Navn,
+                        kaldenavn = rstdeb.Kaldenavn,
+                        fradato = rstdeb.Fradato,
+                        tildato = rstdeb.Tildato,
+                        betalingsdato = rstdeb.Betalingsdato,
+                        advisbelob = rstdeb.Belob,
+                        ocrstring = p_dbData3060.OcrString(rstdeb.Faknr),
+                        underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører",
+                        sendtsom = p_dbData3060.SendtSomString(rstdeb.Faknr),
+                        kundenr = rstdeb.Kundenr.ToString()
+                    };
+                    string subject = "Betaling af Puls 3060 Kontingent";
+                    Boolean bBcc = false;
+                    if (rstdeb.indmeldelse != null)
+                    {
+                        if ((Boolean)(rstdeb.indmeldelse) == true) bBcc = true;
+                    }
+                    //Send email
+                    sendHtmlEmail(p_dbData3060, rstdeb.Navn, rstdeb.Email, subject, objInfotekst, bBcc);
                 }
                 wSaveFaknr = rstdeb.Faknr;
             } // -- End rstdebs
@@ -1317,6 +1368,7 @@ namespace nsPbs3060
                               Advistekst = f.advistekst,
                               Belob = f.advisbelob,
                               indbetalerident = f.indbetalerident,
+                              indmeldelse = f.indmeldelse,
                           };
             }
             else if (fakryk == fakType.fdrykker) //RYKKER
@@ -1343,7 +1395,7 @@ namespace nsPbs3060
                               Advistekst = r.advistekst,
                               Belob = r.advisbelob,
                               indbetalerident = f.indbetalerident,
-
+                              indmeldelse = f.indmeldelse,
                           };
             }
             else if (fakryk == fakType.fdrsmembership) //KONTINGENT FAKTURA
@@ -1369,6 +1421,7 @@ namespace nsPbs3060
                               Advistekst = f.advistekst,
                               Belob = f.advisbelob,
                               indbetalerident = f.indbetalerident,
+                              indmeldelse = f.indmeldelse,
                           };
             }
             else
@@ -2342,6 +2395,7 @@ namespace nsPbs3060
         //public string OcrString { get; set; }
         public string Email { get; set; }
         public string indbetalerident { get; set; }
+        public Boolean? indmeldelse { get; set; }
 
     }
 
