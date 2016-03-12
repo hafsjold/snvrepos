@@ -22,6 +22,8 @@
                 <local:menuButton Grid.Row="2" Margin="3" ServerName="Win7" ServerOS="Win7" ToolTip="Program udviklings"/>
                 <local:menuButton Grid.Column="1" Grid.Row="2" Margin="3" ServerName="Win7-2" ToolTip="Program udvikling" ServerOS="Win7" />
                 <local:menuButton Grid.Row="3" Margin="3" ServerName="vHD50" ToolTip="Program udvikling" ServerOS="Win8" />
+                <local:menuButton Grid.Row="4" Margin="3" ServerName="vHD51" ToolTip="Program udvikling" ServerOS="Win8" />
+                <local:menuButton Grid.Column="1" Grid.Row="4" Margin="3" ServerName="vHD52" ToolTip="Program udvikling" ServerOS="Win8" />
                 <local:menuButton Grid.Column="1" Grid.Row="3" Margin="3" ServerName="HD40" ToolTip="Tidligere Arbejsdplads" ServerOS="Win7" />
                 <local:menuButton Margin="3"  ServerName="vHD33" ServerOS="freeBSD" ToolTip="Zabbix og Mail Server" Grid.Row="5" />
                 <local:menuButton Margin="3" ServerName="vHD34" ServerOS="freeBSD" ToolTip="Udvikling freeBSD Server" Grid.Row="5" Grid.Column="1" />
@@ -45,8 +47,8 @@
                 <local:menuButton ServerName="pHD06" ServerOS="Win2012" ToolTip="HyperV Server" Margin="3" Grid.Row="1" Grid.ColumnSpan="2" />
                 <local:menuButton Margin="3" ServerName="HD46" ServerOS="Win7" ToolTip="Virtuel Gammel HD46" Grid.Row="4"  Grid.Column="1"/>
                 <local:menuButton ServerName="3060-Regn" ServerOS="Win8" ToolTip="Puls3060 Regnskab"  Margin="3" Grid.Row="2" Grid.Column="0" />
-                <local:menuButton ServerName="HDA-Regn" ServerOS="Win8" ToolTip=" Hafsjold Data ApS Regnskab"  Margin="3" Grid.Row="2" Grid.Column="1" />
-                <local:menuButton ServerName="HDC-Regn" ServerOS="Win8" ToolTip=" Hafsjold Data Consult"  Margin="3" Grid.Row="3" Grid.Column="1" />
+                <local:menuButton ServerName="HDA-Regn" ServerOS="Win8" ToolTip=" Hafsjold Data ApS Regnskab"  Margin="3" Grid.Row="3" Grid.Column="1" />
+                <local:menuButton ServerName="HDC-Regn" ServerOS="Win8" ToolTip=" Hafsjold Data Consult"  Margin="3" Grid.Row="3" Grid.Column="0" />
                 <local:menuButton ServerName="vHD61" ServerOS="freeBSD" ToolTip="Udvikling freeBSD Server"  Margin="3" Grid.Row="5" Grid.Column="0" />
                 <local:menuButton ServerName="vHD62" ServerOS="Win8" ToolTip="Udvikling med freeBSD"  Margin="3" Grid.Row="4" Grid.Column="0" />
                 <local:menuButton ServerName="vfreeBSD10" ServerOS="freeBSD" ToolTip="Udvikling freeBSD Server"  Margin="3" Grid.Row="5" Grid.Column="1" />
