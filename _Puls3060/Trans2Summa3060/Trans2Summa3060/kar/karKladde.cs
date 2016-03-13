@@ -1,0 +1,65 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.IO;
+
+namespace Trans2Summa3060
+{
+    public class recKladde
+    {
+        public recKladde() { }
+
+        public DateTime? Dato { get; set; }
+        public int? Bilag { get; set; }
+        public string Tekst { get; set; }
+        public string Afstemningskonto { get; set; }
+        public decimal? Belob { get; set; }
+        public int? Kontonr { get; set; }
+        public string Momskode { get; set; }
+        public int? Faknr { get; set; }
+        public int? Sagnr { get; set; }
+    }
+
+    public class KarKladde : List<recKladde>
+    {
+        private string m_path { get; set; }
+
+        public KarKladde()
+        {
+            var rec_regnskab = Program.qryAktivRegnskab();
+            m_path = rec_regnskab.Placering + "kladde.dat";
+        }
+
+        public void save()
+        {
+            int MaxBilagnr = 0;
+            FileStream ts = new FileStream(m_path, FileMode.Append, FileAccess.Write, FileShare.None);
+            using (StreamWriter sr = new StreamWriter(ts, Encoding.Default))
+            {
+                var qry_this = from d in this select d;
+                foreach (var b in qry_this)
+                {
+                    if ((b.Bilag != null) && (b.Bilag > MaxBilagnr))
+                    {
+                        MaxBilagnr = (int)b.Bilag;
+                    }   
+                    string ln = "";
+                    ln += (b.Dato == null) ? "," : (int)clsUtil.MSDateTime2Serial((DateTime)b.Dato) + ",";
+                    ln += (b.Bilag == null) ? "," : b.Bilag.ToString() + ",";
+                    ln += (b.Tekst == null) ? "," : @"""" + b.Tekst + @""",";
+                    ln += (b.Afstemningskonto == null) ? "," : @"""" + b.Afstemningskonto + @""",";
+                    ln += (b.Belob == null) ? "," : @"""" + ((decimal)(b.Belob)).ToString("0.00") + @""",";
+                    ln += (b.Kontonr == null) ? "," : b.Kontonr.ToString() + ",";
+                    ln += (b.Momskode == null) ? "," : b.Momskode.ToString() + ",";
+                    ln += (b.Faknr == null) ? ",0," : b.Faknr.ToString() + ",0,";
+                    ln += (b.Sagnr == null) ? "" : b.Sagnr.ToString();
+                    sr.WriteLine(ln);
+                }
+            }
+            Program.karStatus.BS1_NæsteNr(MaxBilagnr);
+            Program.karStatus.save();
+        }
+
+    }
+}
