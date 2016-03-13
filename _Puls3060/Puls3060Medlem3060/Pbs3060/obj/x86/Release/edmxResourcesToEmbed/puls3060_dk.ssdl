@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="puls3060_dkModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityType Name="ecpwt_rsmembership_membership_subscribers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="membership_id" Type="int" Nullable="false" />
+    <Property Name="membership_start" Type="datetime" Nullable="false" />
+    <Property Name="membership_end" Type="datetime" Nullable="false" />
+    <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="currency" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="status" Type="tinyint" Nullable="false" />
+    <Property Name="extras" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="notes" Type="text" Nullable="false" />
+    <Property Name="from_transaction_id" Type="int" Nullable="false" />
+    <Property Name="last_transaction_id" Type="int" Nullable="false" />
+    <Property Name="custom_1" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="custom_2" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="custom_3" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="notified" Type="datetime" Nullable="false" />
+    <Property Name="published" Type="bool" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ecpwt_rsmembership_memberships">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="category_id" Type="int" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="description" Type="text" Nullable="false" />
+    <Property Name="term_id" Type="int" Nullable="false" />
+    <Property Name="thumb" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="thumb_w" Type="int" Nullable="false" />
+    <Property Name="sku" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="use_renewal_price" Type="bool" Nullable="false" />
+    <Property Name="renewal_price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="recurring" Type="bool" Nullable="false" />
+    <Property Name="recurring_times" Type="int" Nullable="false" />
+    <Property Name="share_redirect" Type="text" Nullable="false" />
+    <Property Name="period" Type="int" Nullable="false" />
+    <Property Name="period_type" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="use_trial_period" Type="bool" Nullable="false" />
+    <Property Name="trial_period" Type="int" Nullable="false" />
+    <Property Name="trial_period_type" Type="varchar" MaxLength="1" Nullable="false" />
+    <Property Name="trial_price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="unique" Type="bool" Nullable="false" />
+    <Property Name="no_renew" Type="bool" Nullable="false" />
+    <Property Name="stock" Type="int" Nullable="false" />
+    <Property Name="activation" Type="bool" Nullable="false" />
+    <Property Name="action" Type="bool" Nullable="false" />
+    <Property Name="thankyou" Type="text" Nullable="false" />
+    <Property Name="redirect" Type="text" Nullable="false" />
+    <Property Name="user_email_use_global" Type="bool" Nullable="false" />
+    <Property Name="user_email_mode" Type="bool" Nullable="false" />
+    <Property Name="user_email_from" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="user_email_from_addr" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="user_email_new_subject" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="user_email_new_text" Type="text" Nullable="false" />
+    <Property Name="user_email_approved_subject" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="user_email_approved_text" Type="text" Nullable="false" />
+    <Property Name="user_email_denied_subject" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="user_email_denied_text" Type="text" Nullable="false" />
+    <Property Name="user_email_renew_subject" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="user_email_renew_text" Type="text" Nullable="false" />
+    <Property Name="user_email_upgrade_subject" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="user_email_upgrade_text" Type="text" Nullable="false" />
+    <Property Name="user_email_addextra_subject" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="user_email_addextra_text" Type="text" Nullable="false" />
+    <Property Name="user_email_expire_subject" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="user_email_expire_text" Type="text" Nullable="false" />
+    <Property Name="expire_notify_interval" Type="int" Nullable="false" />
+    <Property Name="admin_email_mode" Type="bool" Nullable="false" />
+    <Property Name="admin_email_from_addr" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="admin_email_to_addr" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="admin_email_new_subject" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="admin_email_new_text" Type="text" Nullable="false" />
+    <Property Name="admin_email_approved_subject" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="admin_email_approved_text" Type="text" Nullable="false" />
+    <Property Name="admin_email_denied_subject" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="admin_email_denied_text" Type="text" Nullable="false" />
+    <Property Name="admin_email_renew_subject" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="admin_email_renew_text" Type="text" Nullable="false" />
+    <Property Name="admin_email_upgrade_subject" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="admin_email_upgrade_text" Type="text" Nullable="false" />
+    <Property Name="admin_email_addextra_subject" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="admin_email_addextra_text" Type="text" Nullable="false" />
+    <Property Name="admin_email_expire_subject" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="admin_email_expire_text" Type="text" Nullable="false" />
+    <Property Name="custom_code_transaction" Type="text" Nullable="false" />
+    <Property Name="custom_code" Type="text" Nullable="false" />
+    <Property Name="gid_enable" Type="bool" Nullable="false" />
+    <Property Name="gid_subscribe" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="gid_expire" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="disable_expired_account" Type="bool" Nullable="false" />
+    <Property Name="fixed_expiry" Type="bool" Nullable="false" />
+    <Property Name="fixed_day" Type="int" Nullable="false" />
+    <Property Name="fixed_month" Type="tinyint" Nullable="false" />
+    <Property Name="fixed_year" Type="smallint" Nullable="false" />
+    <Property Name="published" Type="bool" Nullable="false" />
+    <Property Name="ordering" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ecpwt_rsmembership_subscribers">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="f1" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="f2" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="f4" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="f6" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="f14" Type="varchar" MaxLength="255" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ecpwt_rsmembership_transactions">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="user_email" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="user_data" Type="text" Nullable="false" />
+    <Property Name="type" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="params" Type="text" Nullable="false" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+    <Property Name="ip" Type="varchar" MaxLength="16" Nullable="false" />
+    <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="coupon" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="currency" Type="varchar" MaxLength="4" Nullable="false" />
+    <Property Name="hash" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="custom" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="gateway" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="status" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="response_log" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ecpwt_user_usergroup_map">
+    <Key>
+      <PropertyRef Name="user_id" />
+      <PropertyRef Name="group_id" />
+    </Key>
+    <Property Name="user_id" Type="uint" Nullable="false" />
+    <Property Name="group_id" Type="uint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ecpwt_usergroups">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="uint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="parent_id" Type="uint" Nullable="false" />
+    <Property Name="lft" Type="int" Nullable="false" />
+    <Property Name="rgt" Type="int" Nullable="false" />
+    <Property Name="title" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ecpwt_users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="block" Type="tinyint" Nullable="false" />
+    <Property Name="sendEmail" Type="tinyint" />
+    <Property Name="registerDate" Type="datetime" Nullable="false" />
+    <Property Name="lastvisitDate" Type="datetime" Nullable="false" />
+    <Property Name="activation" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="params" Type="text" Nullable="false" />
+    <Property Name="lastResetTime" Type="datetime" Nullable="false" />
+    <Property Name="resetCount" Type="int" Nullable="false" />
+    <Property Name="otpKey" Type="varchar" MaxLength="1000" Nullable="false" />
+    <Property Name="otep" Type="varchar" MaxLength="1000" Nullable="false" />
+    <Property Name="requireReset" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblmembershippayment">
+    <Key>
+      <PropertyRef Name="rsmembership_transactions_id" />
+    </Key>
+    <Property Name="rsmembership_transactions_id" Type="int" Nullable="false" />
+    <Property Name="created_date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblpaypalpayment">
+    <Key>
+      <PropertyRef Name="paypal_transactions_id" />
+    </Key>
+    <Property Name="paypal_transactions_id" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="bogfoert" Type="bit" />
+  </EntityType>
+  <EntityContainer Name="puls3060_dkModelStoreContainer">
+    <EntitySet Name="ecpwt_rsmembership_membership_subscribers" EntityType="Self.ecpwt_rsmembership_membership_subscribers" Schema="puls3060_dk" store:Type="Tables" />
+    <EntitySet Name="ecpwt_rsmembership_memberships" EntityType="Self.ecpwt_rsmembership_memberships" Schema="puls3060_dk" store:Type="Tables" />
+    <EntitySet Name="ecpwt_rsmembership_subscribers" EntityType="Self.ecpwt_rsmembership_subscribers" Schema="puls3060_dk" store:Type="Tables" />
+    <EntitySet Name="ecpwt_rsmembership_transactions" EntityType="Self.ecpwt_rsmembership_transactions" Schema="puls3060_dk" store:Type="Tables" />
+    <EntitySet Name="ecpwt_user_usergroup_map" EntityType="Self.ecpwt_user_usergroup_map" Schema="puls3060_dk" store:Type="Tables" />
+    <EntitySet Name="ecpwt_usergroups" EntityType="Self.ecpwt_usergroups" Schema="puls3060_dk" store:Type="Tables" />
+    <EntitySet Name="ecpwt_users" EntityType="Self.ecpwt_users" Schema="puls3060_dk" store:Type="Tables" />
+    <EntitySet Name="tblmembershippayment" EntityType="Self.tblmembershippayment" Schema="puls3060_dk" store:Type="Tables" />
+    <EntitySet Name="tblpaypalpayment" EntityType="Self.tblpaypalpayment" Schema="puls3060_dk" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

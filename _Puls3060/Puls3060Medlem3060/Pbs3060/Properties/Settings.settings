@@ -1,0 +1,46 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="nsPbs3060.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="puls3061_dk_dbConnectionString3" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=qynhbd9h4f.database.windows.net;Initial Catalog=dbPuls3060Medlem;Persist Security Info=True;User ID=sqlUser;Password=Puls3060;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;Application Name=EntityFramework&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=qynhbd9h4f.database.windows.net;Initial Catalog=dbPuls3060Medlem;Persist Security Info=True;User ID=sqlUser;Password=Puls3060;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=True;Application Name=EntityFramework</Value>
+    </Setting>
+    <Setting Name="dbPuls3060MedlemConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=vhd50;Initial Catalog=dbPuls3060Medlem;User ID=sa;Password=Puls3060&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=vhd50;Initial Catalog=dbPuls3060Medlem;User ID=sa;Password=Puls3060</Value>
+    </Setting>
+    <Setting Name="dbPuls3060MedlemConnectionString1" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=qynhbd9h4f.database.windows.net;Initial Catalog=dbPuls3060Medlem;Persist Security Info=True;User ID=sqlUser;Password=Puls3060&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=qynhbd9h4f.database.windows.net;Initial Catalog=dbPuls3060Medlem;Persist Security Info=True;User ID=sqlUser;Password=Puls3060</Value>
+    </Setting>
+    <Setting Name="dbPuls3060MedlemConnectionString2" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=VHD50;Initial Catalog=dbPuls3060Medlem;Integrated Security=True&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=VHD50;Initial Catalog=dbPuls3060Medlem;Integrated Security=True</Value>
+    </Setting>
+    <Setting Name="dbPuls3060MedlemConnectionString3" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=qynhbd9h4f.database.windows.net;Initial Catalog=dbPuls3060Medlem;User ID=sqlUser;Password=Puls3060;Connect Timeout=60&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=qynhbd9h4f.database.windows.net;Initial Catalog=dbPuls3060Medlem;User ID=sqlUser;Password=Puls3060;Connect Timeout=60</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
