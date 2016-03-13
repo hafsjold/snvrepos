@@ -602,6 +602,8 @@ namespace Trans2Summa3060
             }
             catch { }
         }
+
+
     }
 
     public class clsqry_bank

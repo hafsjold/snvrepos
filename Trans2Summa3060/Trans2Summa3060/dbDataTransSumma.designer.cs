@@ -87,15 +87,15 @@ namespace Trans2Summa3060
     partial void Inserttbltran(tbltran instance);
     partial void Updatetbltran(tbltran instance);
     partial void Deletetbltran(tbltran instance);
-    partial void Inserttblbankkonto(tblbankkonto instance);
-    partial void Updatetblbankkonto(tblbankkonto instance);
-    partial void Deletetblbankkonto(tblbankkonto instance);
     partial void Inserttblpaypal(tblpaypal instance);
     partial void Updatetblpaypal(tblpaypal instance);
     partial void Deletetblpaypal(tblpaypal instance);
     partial void Inserttblmobilepay(tblmobilepay instance);
     partial void Updatetblmobilepay(tblmobilepay instance);
     partial void Deletetblmobilepay(tblmobilepay instance);
+    partial void Inserttblbankkonto(tblbankkonto instance);
+    partial void Updatetblbankkonto(tblbankkonto instance);
+    partial void Deletetblbankkonto(tblbankkonto instance);
     #endregion
 		
 		public DbDataTransSumma() : 
@@ -280,14 +280,6 @@ namespace Trans2Summa3060
 			}
 		}
 		
-		public System.Data.Linq.Table<tblbankkonto> tblbankkontos
-		{
-			get
-			{
-				return this.GetTable<tblbankkonto>();
-			}
-		}
-		
 		public System.Data.Linq.Table<tblpaypal> tblpaypals
 		{
 			get
@@ -301,6 +293,14 @@ namespace Trans2Summa3060
 			get
 			{
 				return this.GetTable<tblmobilepay>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tblbankkonto> tblbankkontos
+		{
+			get
+			{
+				return this.GetTable<tblbankkonto>();
 			}
 		}
 	}
@@ -5042,342 +5042,6 @@ namespace Trans2Summa3060
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblbankkonto")]
-	public partial class tblbankkonto : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _pid;
-		
-		private System.Nullable<decimal> _saldo;
-		
-		private System.Nullable<bool> _skjul;
-		
-		private System.Nullable<System.DateTime> _dato;
-		
-		private string _tekst;
-		
-		private System.Nullable<decimal> _belob;
-		
-		private System.Nullable<int> _afstem;
-		
-		private System.Nullable<int> _bankkontoid;
-		
-		private System.Nullable<int> _paypal_pid;
-		
-		private EntityRef<tblafstem> _tblafstem;
-		
-		private EntityRef<tblpaypal> _tblpaypal;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnpidChanging(int value);
-    partial void OnpidChanged();
-    partial void OnsaldoChanging(System.Nullable<decimal> value);
-    partial void OnsaldoChanged();
-    partial void OnskjulChanging(System.Nullable<bool> value);
-    partial void OnskjulChanged();
-    partial void OndatoChanging(System.Nullable<System.DateTime> value);
-    partial void OndatoChanged();
-    partial void OntekstChanging(string value);
-    partial void OntekstChanged();
-    partial void OnbelobChanging(System.Nullable<decimal> value);
-    partial void OnbelobChanged();
-    partial void OnafstemChanging(System.Nullable<int> value);
-    partial void OnafstemChanged();
-    partial void OnbankkontoidChanging(System.Nullable<int> value);
-    partial void OnbankkontoidChanged();
-    partial void Onpaypal_pidChanging(System.Nullable<int> value);
-    partial void Onpaypal_pidChanged();
-    #endregion
-		
-		public tblbankkonto()
-		{
-			this._tblafstem = default(EntityRef<tblafstem>);
-			this._tblpaypal = default(EntityRef<tblpaypal>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pid", DbType="Int NOT NULL", IsPrimaryKey=true)]
-		public int pid
-		{
-			get
-			{
-				return this._pid;
-			}
-			set
-			{
-				if ((this._pid != value))
-				{
-					this.OnpidChanging(value);
-					this.SendPropertyChanging();
-					this._pid = value;
-					this.SendPropertyChanged("pid");
-					this.OnpidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_saldo", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> saldo
-		{
-			get
-			{
-				return this._saldo;
-			}
-			set
-			{
-				if ((this._saldo != value))
-				{
-					this.OnsaldoChanging(value);
-					this.SendPropertyChanging();
-					this._saldo = value;
-					this.SendPropertyChanged("saldo");
-					this.OnsaldoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_skjul", DbType="Bit")]
-		public System.Nullable<bool> skjul
-		{
-			get
-			{
-				return this._skjul;
-			}
-			set
-			{
-				if ((this._skjul != value))
-				{
-					this.OnskjulChanging(value);
-					this.SendPropertyChanging();
-					this._skjul = value;
-					this.SendPropertyChanged("skjul");
-					this.OnskjulChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dato", DbType="DateTime")]
-		public System.Nullable<System.DateTime> dato
-		{
-			get
-			{
-				return this._dato;
-			}
-			set
-			{
-				if ((this._dato != value))
-				{
-					this.OndatoChanging(value);
-					this.SendPropertyChanging();
-					this._dato = value;
-					this.SendPropertyChanged("dato");
-					this.OndatoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tekst", DbType="NVarChar(50)")]
-		public string tekst
-		{
-			get
-			{
-				return this._tekst;
-			}
-			set
-			{
-				if ((this._tekst != value))
-				{
-					this.OntekstChanging(value);
-					this.SendPropertyChanging();
-					this._tekst = value;
-					this.SendPropertyChanged("tekst");
-					this.OntekstChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_belob", DbType="Decimal(18,2)")]
-		public System.Nullable<decimal> belob
-		{
-			get
-			{
-				return this._belob;
-			}
-			set
-			{
-				if ((this._belob != value))
-				{
-					this.OnbelobChanging(value);
-					this.SendPropertyChanging();
-					this._belob = value;
-					this.SendPropertyChanged("belob");
-					this.OnbelobChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_afstem", DbType="Int")]
-		public System.Nullable<int> afstem
-		{
-			get
-			{
-				return this._afstem;
-			}
-			set
-			{
-				if ((this._afstem != value))
-				{
-					if (this._tblafstem.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnafstemChanging(value);
-					this.SendPropertyChanging();
-					this._afstem = value;
-					this.SendPropertyChanged("afstem");
-					this.OnafstemChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bankkontoid", DbType="Int")]
-		public System.Nullable<int> bankkontoid
-		{
-			get
-			{
-				return this._bankkontoid;
-			}
-			set
-			{
-				if ((this._bankkontoid != value))
-				{
-					this.OnbankkontoidChanging(value);
-					this.SendPropertyChanging();
-					this._bankkontoid = value;
-					this.SendPropertyChanged("bankkontoid");
-					this.OnbankkontoidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_paypal_pid", DbType="Int")]
-		public System.Nullable<int> paypal_pid
-		{
-			get
-			{
-				return this._paypal_pid;
-			}
-			set
-			{
-				if ((this._paypal_pid != value))
-				{
-					if (this._tblpaypal.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.Onpaypal_pidChanging(value);
-					this.SendPropertyChanging();
-					this._paypal_pid = value;
-					this.SendPropertyChanged("paypal_pid");
-					this.Onpaypal_pidChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblafstem_tblbankkonto", Storage="_tblafstem", ThisKey="afstem", OtherKey="pid", IsForeignKey=true, DeleteRule="SET NULL")]
-		public tblafstem tblafstem
-		{
-			get
-			{
-				return this._tblafstem.Entity;
-			}
-			set
-			{
-				tblafstem previousValue = this._tblafstem.Entity;
-				if (((previousValue != value) 
-							|| (this._tblafstem.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tblafstem.Entity = null;
-						previousValue.tblbankkontos.Remove(this);
-					}
-					this._tblafstem.Entity = value;
-					if ((value != null))
-					{
-						value.tblbankkontos.Add(this);
-						this._afstem = value.pid;
-					}
-					else
-					{
-						this._afstem = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("tblafstem");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblpaypal_tblbankkonto", Storage="_tblpaypal", ThisKey="paypal_pid", OtherKey="pid", IsForeignKey=true, DeleteRule="CASCADE")]
-		public tblpaypal tblpaypal
-		{
-			get
-			{
-				return this._tblpaypal.Entity;
-			}
-			set
-			{
-				tblpaypal previousValue = this._tblpaypal.Entity;
-				if (((previousValue != value) 
-							|| (this._tblpaypal.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._tblpaypal.Entity = null;
-						previousValue.tblbankkontos.Remove(this);
-					}
-					this._tblpaypal.Entity = value;
-					if ((value != null))
-					{
-						value.tblbankkontos.Add(this);
-						this._paypal_pid = value.pid;
-					}
-					else
-					{
-						this._paypal_pid = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("tblpaypal");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblpaypal")]
 	public partial class tblpaypal : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -6546,6 +6210,8 @@ namespace Trans2Summa3060
 		
 		private string _tekst;
 		
+		private EntitySet<tblbankkonto> _tblbankkontos;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -6570,6 +6236,7 @@ namespace Trans2Summa3060
 		
 		public tblmobilepay()
 		{
+			this._tblbankkontos = new EntitySet<tblbankkonto>(new Action<tblbankkonto>(this.attach_tblbankkontos), new Action<tblbankkonto>(this.detach_tblbankkontos));
 			OnCreated();
 		}
 		
@@ -6729,6 +6396,432 @@ namespace Trans2Summa3060
 					this._tekst = value;
 					this.SendPropertyChanged("tekst");
 					this.OntekstChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblmobilepay_tblbankkonto", Storage="_tblbankkontos", ThisKey="pid", OtherKey="mobilepay_pid")]
+		public EntitySet<tblbankkonto> tblbankkontos
+		{
+			get
+			{
+				return this._tblbankkontos;
+			}
+			set
+			{
+				this._tblbankkontos.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_tblbankkontos(tblbankkonto entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblmobilepay = this;
+		}
+		
+		private void detach_tblbankkontos(tblbankkonto entity)
+		{
+			this.SendPropertyChanging();
+			entity.tblmobilepay = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tblbankkonto")]
+	public partial class tblbankkonto : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _pid;
+		
+		private System.Nullable<decimal> _saldo;
+		
+		private System.Nullable<bool> _skjul;
+		
+		private System.Nullable<System.DateTime> _dato;
+		
+		private string _tekst;
+		
+		private System.Nullable<decimal> _belob;
+		
+		private System.Nullable<int> _afstem;
+		
+		private System.Nullable<int> _bankkontoid;
+		
+		private System.Nullable<int> _paypal_pid;
+		
+		private System.Nullable<int> _mobilepay_pid;
+		
+		private EntityRef<tblafstem> _tblafstem;
+		
+		private EntityRef<tblmobilepay> _tblmobilepay;
+		
+		private EntityRef<tblpaypal> _tblpaypal;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnpidChanging(int value);
+    partial void OnpidChanged();
+    partial void OnsaldoChanging(System.Nullable<decimal> value);
+    partial void OnsaldoChanged();
+    partial void OnskjulChanging(System.Nullable<bool> value);
+    partial void OnskjulChanged();
+    partial void OndatoChanging(System.Nullable<System.DateTime> value);
+    partial void OndatoChanged();
+    partial void OntekstChanging(string value);
+    partial void OntekstChanged();
+    partial void OnbelobChanging(System.Nullable<decimal> value);
+    partial void OnbelobChanged();
+    partial void OnafstemChanging(System.Nullable<int> value);
+    partial void OnafstemChanged();
+    partial void OnbankkontoidChanging(System.Nullable<int> value);
+    partial void OnbankkontoidChanged();
+    partial void Onpaypal_pidChanging(System.Nullable<int> value);
+    partial void Onpaypal_pidChanged();
+    partial void Onmobilepay_pidChanging(System.Nullable<int> value);
+    partial void Onmobilepay_pidChanged();
+    #endregion
+		
+		public tblbankkonto()
+		{
+			this._tblafstem = default(EntityRef<tblafstem>);
+			this._tblmobilepay = default(EntityRef<tblmobilepay>);
+			this._tblpaypal = default(EntityRef<tblpaypal>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_pid", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int pid
+		{
+			get
+			{
+				return this._pid;
+			}
+			set
+			{
+				if ((this._pid != value))
+				{
+					this.OnpidChanging(value);
+					this.SendPropertyChanging();
+					this._pid = value;
+					this.SendPropertyChanged("pid");
+					this.OnpidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_saldo", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> saldo
+		{
+			get
+			{
+				return this._saldo;
+			}
+			set
+			{
+				if ((this._saldo != value))
+				{
+					this.OnsaldoChanging(value);
+					this.SendPropertyChanging();
+					this._saldo = value;
+					this.SendPropertyChanged("saldo");
+					this.OnsaldoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_skjul", DbType="Bit")]
+		public System.Nullable<bool> skjul
+		{
+			get
+			{
+				return this._skjul;
+			}
+			set
+			{
+				if ((this._skjul != value))
+				{
+					this.OnskjulChanging(value);
+					this.SendPropertyChanging();
+					this._skjul = value;
+					this.SendPropertyChanged("skjul");
+					this.OnskjulChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dato", DbType="DateTime")]
+		public System.Nullable<System.DateTime> dato
+		{
+			get
+			{
+				return this._dato;
+			}
+			set
+			{
+				if ((this._dato != value))
+				{
+					this.OndatoChanging(value);
+					this.SendPropertyChanging();
+					this._dato = value;
+					this.SendPropertyChanged("dato");
+					this.OndatoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_tekst", DbType="NVarChar(50)")]
+		public string tekst
+		{
+			get
+			{
+				return this._tekst;
+			}
+			set
+			{
+				if ((this._tekst != value))
+				{
+					this.OntekstChanging(value);
+					this.SendPropertyChanging();
+					this._tekst = value;
+					this.SendPropertyChanged("tekst");
+					this.OntekstChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_belob", DbType="Decimal(18,2)")]
+		public System.Nullable<decimal> belob
+		{
+			get
+			{
+				return this._belob;
+			}
+			set
+			{
+				if ((this._belob != value))
+				{
+					this.OnbelobChanging(value);
+					this.SendPropertyChanging();
+					this._belob = value;
+					this.SendPropertyChanged("belob");
+					this.OnbelobChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_afstem", DbType="Int")]
+		public System.Nullable<int> afstem
+		{
+			get
+			{
+				return this._afstem;
+			}
+			set
+			{
+				if ((this._afstem != value))
+				{
+					if (this._tblafstem.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnafstemChanging(value);
+					this.SendPropertyChanging();
+					this._afstem = value;
+					this.SendPropertyChanged("afstem");
+					this.OnafstemChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bankkontoid", DbType="Int")]
+		public System.Nullable<int> bankkontoid
+		{
+			get
+			{
+				return this._bankkontoid;
+			}
+			set
+			{
+				if ((this._bankkontoid != value))
+				{
+					this.OnbankkontoidChanging(value);
+					this.SendPropertyChanging();
+					this._bankkontoid = value;
+					this.SendPropertyChanged("bankkontoid");
+					this.OnbankkontoidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_paypal_pid", DbType="Int")]
+		public System.Nullable<int> paypal_pid
+		{
+			get
+			{
+				return this._paypal_pid;
+			}
+			set
+			{
+				if ((this._paypal_pid != value))
+				{
+					if (this._tblpaypal.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onpaypal_pidChanging(value);
+					this.SendPropertyChanging();
+					this._paypal_pid = value;
+					this.SendPropertyChanged("paypal_pid");
+					this.Onpaypal_pidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mobilepay_pid", DbType="Int")]
+		public System.Nullable<int> mobilepay_pid
+		{
+			get
+			{
+				return this._mobilepay_pid;
+			}
+			set
+			{
+				if ((this._mobilepay_pid != value))
+				{
+					if (this._tblmobilepay.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onmobilepay_pidChanging(value);
+					this.SendPropertyChanging();
+					this._mobilepay_pid = value;
+					this.SendPropertyChanged("mobilepay_pid");
+					this.Onmobilepay_pidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblafstem_tblbankkonto", Storage="_tblafstem", ThisKey="afstem", OtherKey="pid", IsForeignKey=true, DeleteRule="SET NULL")]
+		public tblafstem tblafstem
+		{
+			get
+			{
+				return this._tblafstem.Entity;
+			}
+			set
+			{
+				tblafstem previousValue = this._tblafstem.Entity;
+				if (((previousValue != value) 
+							|| (this._tblafstem.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblafstem.Entity = null;
+						previousValue.tblbankkontos.Remove(this);
+					}
+					this._tblafstem.Entity = value;
+					if ((value != null))
+					{
+						value.tblbankkontos.Add(this);
+						this._afstem = value.pid;
+					}
+					else
+					{
+						this._afstem = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tblafstem");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblmobilepay_tblbankkonto", Storage="_tblmobilepay", ThisKey="mobilepay_pid", OtherKey="pid", IsForeignKey=true, DeleteRule="CASCADE")]
+		public tblmobilepay tblmobilepay
+		{
+			get
+			{
+				return this._tblmobilepay.Entity;
+			}
+			set
+			{
+				tblmobilepay previousValue = this._tblmobilepay.Entity;
+				if (((previousValue != value) 
+							|| (this._tblmobilepay.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblmobilepay.Entity = null;
+						previousValue.tblbankkontos.Remove(this);
+					}
+					this._tblmobilepay.Entity = value;
+					if ((value != null))
+					{
+						value.tblbankkontos.Add(this);
+						this._mobilepay_pid = value.pid;
+					}
+					else
+					{
+						this._mobilepay_pid = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tblmobilepay");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tblpaypal_tblbankkonto", Storage="_tblpaypal", ThisKey="paypal_pid", OtherKey="pid", IsForeignKey=true, DeleteRule="CASCADE")]
+		public tblpaypal tblpaypal
+		{
+			get
+			{
+				return this._tblpaypal.Entity;
+			}
+			set
+			{
+				tblpaypal previousValue = this._tblpaypal.Entity;
+				if (((previousValue != value) 
+							|| (this._tblpaypal.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tblpaypal.Entity = null;
+						previousValue.tblbankkontos.Remove(this);
+					}
+					this._tblpaypal.Entity = value;
+					if ((value != null))
+					{
+						value.tblbankkontos.Add(this);
+						this._paypal_pid = value.pid;
+					}
+					else
+					{
+						this._paypal_pid = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("tblpaypal");
 				}
 			}
 		}

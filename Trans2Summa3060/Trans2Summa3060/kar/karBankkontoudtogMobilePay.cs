@@ -103,7 +103,7 @@ namespace Trans2Summa3060
 
         public void load()
         {
-            var qry = from w in this
+            var qry1 = from w in this
                       join b in Program.dbDataTransSumma.tblmobilepays on w.bid equals b.mobilepay_id into bankkonto
                       from b in bankkonto.DefaultIfEmpty(new tblmobilepay { pid = 0, belob = null })
                       where b.belob == null
@@ -111,22 +111,49 @@ namespace Trans2Summa3060
                       select w;
 
 
-            int antal = qry.Count();
-            foreach (var b in qry)
+            int antal1 = qry1.Count();
+            foreach (var b in qry1)
             {
                 tblmobilepay recBankkonto = new tblmobilepay
                 {
-                    navn = b.bnavn,
-                    mobilnummer = b.bmobilnummer,
+                    navn =  b.bnavn.Length > 35 ?  b.bnavn.Substring(0,35) : b.bnavn,
+                    mobilnummer = b.bmobilnummer.Length > 10 ? b.bmobilnummer.Substring(0, 10) : b.bmobilnummer,
                     belob = b.bbeløb,
                     dato = b.bdato,
-                    mobilepay_id = b.bid,
-                    tekst = b.btekst,
+                    mobilepay_id = b.bid.Length > 15 ? b.bid.Substring(0, 15) : b.bid,
+                    tekst = b.btekst.Length > 50 ? b.btekst.Substring(0, 50) : b.btekst,
                 };
                 Program.dbDataTransSumma.tblmobilepays.InsertOnSubmit(recBankkonto);
 
             }
             Program.dbDataTransSumma.SubmitChanges();
+
+            var qry2 = from w in Program.dbDataTransSumma.tblmobilepays
+                      where w.Imported == null
+                      orderby w.dato
+                      select w;
+
+            int antal2 = qry2.Count();
+            foreach (var b in qry2)
+            {
+                if (b.tekst.Length < 3) 
+                {
+                    b.tekst += " " + b.navn + " " + b.mobilnummer;
+                    b.tekst.Trim();
+                }
+                tblbankkonto recBankkonto = new tblbankkonto
+                {
+                    pid = clsPbs.nextval("Tblbankkonto"),
+                    bankkontoid = m_bankkontoid,
+                    saldo = 0,
+                    dato = b.dato,
+                    tekst = b.tekst.Length > 50 ? b.tekst.Substring(0, 50) : b.tekst,
+                    belob = b.belob,
+                };
+                b.Imported = true;
+                b.tblbankkontos.Add(recBankkonto);
+                Program.dbDataTransSumma.SubmitChanges();
+            }
         }
     }
 }
