@@ -1,0 +1,6 @@
+BJDoc.Server.Properties.Service.lsml
+BJDoc.Server.Properties.DataSources.ApplicationData.lsml
+BJDoc.Server.DataSources.ApplicationData.tblBrugers.lsml
+BJDoc.Server.DataSources.ApplicationData.tblComputers.lsml
+BJDoc.Server.DataSources.ApplicationData.tblHWtypes.lsml
+BJDoc.Server.DataSources.ApplicationData.tblHWs.lsml

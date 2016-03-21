@@ -1,0 +1,2 @@
+C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.HTMLClient\bin\Release\LSResourceGeneratorsTask.mcs
+C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.HTMLClient\bin\Release\LSClientCodeGeneratorsTask.mcs

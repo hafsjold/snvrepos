@@ -1,0 +1,358 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceApplication
+  Name="LightSwitchServiceApplication" xmlns="http://schemas.microsoft.com/LightSwitch/2010/xaml/model">
+  <ServiceApplication.Attributes>
+    <Partial />
+  </ServiceApplication.Attributes>
+  <EntityType
+    Name="tblBruger">
+    <EntityType.Attributes>
+      <CreatedModifiedPropertiesEnabled />
+    </EntityType.Attributes>
+    <EntityType.Methods>
+      <EntityMethod
+        Name="Delete">
+        <EntityMethod.Attributes>
+          <Generated />
+        </EntityMethod.Attributes>
+      </EntityMethod>
+    </EntityType.Methods>
+    <EntityType.Properties>
+      <KeyProperty
+        Name="Id"
+        PropertyType=":Int32">
+        <KeyProperty.Attributes>
+          <Required />
+          <NotSearchable />
+        </KeyProperty.Attributes>
+      </KeyProperty>
+      <EntityProperty
+        Name="initialer"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="navn"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="telefon"
+        PropertyType=":String">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="mobil"
+        PropertyType=":String?">
+        <EntityProperty.Attributes>
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="email"
+        PropertyType="Microsoft.LightSwitch.Extensions:EmailAddress">
+        <EntityProperty.Attributes>
+          <Required />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="statsaut"
+        PropertyType=":Boolean?">
+        <EntityProperty.Attributes>
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="partner"
+        PropertyType=":Boolean?">
+        <EntityProperty.Attributes>
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <NavigationProperty
+        Name="tblComputers"
+        Association="tblComputer_tblBruger"
+        FromEnd="tblBruger"
+        ToEnd="tblComputer" />
+      <NavigationProperty
+        Name="tblLokale"
+        Association="tblLokale_tblBruger"
+        FromEnd="tblBruger"
+        ToEnd="tblLokale" />
+      <NavigationProperty
+        Name="tblBrugerRelations"
+        Association="tblBrugerRelation_tblBruger"
+        FromEnd="tblBruger"
+        ToEnd="tblBrugerRelation" />
+      <EntityProperty
+        Name="CreatedBy"
+        IsReadOnly="True"
+        PropertyType=":Person?">
+        <EntityProperty.Attributes>
+          <Generated />
+          <NotSearchable />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Created"
+        IsReadOnly="True"
+        PropertyType=":DateTimeOffset?">
+        <EntityProperty.Attributes>
+          <Generated />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="ModifiedBy"
+        IsReadOnly="True"
+        PropertyType=":Person?">
+        <EntityProperty.Attributes>
+          <Generated />
+          <NotSearchable />
+          <MaxLength
+            Value="255" />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="Modified"
+        IsReadOnly="True"
+        PropertyType=":DateTimeOffset?">
+        <EntityProperty.Attributes>
+          <Generated />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+      <EntityProperty
+        Name="RowVersion"
+        PropertyType=":RowVersion">
+        <EntityProperty.Attributes>
+          <Hidden />
+          <UseForConcurrency />
+          <Generated />
+          <NotSearchable />
+        </EntityProperty.Attributes>
+      </EntityProperty>
+    </EntityType.Properties>
+  </EntityType>
+  <EntityContainer
+    Name="ApplicationData">
+    <EntityContainer.Attributes>
+      <Partial />
+    </EntityContainer.Attributes>
+    <EntitySet
+      Name="tblBrugers"
+      CanDelete="True"
+      CanInsert="True"
+      CanUpdate="True"
+      EntityType="tblBruger" />
+    <QueryOperation
+      Name="tblBrugers_Single"
+      ReturnType="tblBruger">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s)." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="tblBrugers" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <QueryOperation
+      Name="tblBrugers_SingleOrDefault"
+      ReturnType="tblBruger">
+      <QueryOperation.Attributes>
+        <Generated />
+        <Description
+          Value="Returns the entity whose identity is specified by the parameter(s) or null if no such entity exists." />
+      </QueryOperation.Attributes>
+      <QueryOperation.FilterExpression>
+        <QueryFilterExpressionTree>
+          <BinaryExpression
+            NodeType="Equal">
+            <BinaryExpression.Left>
+              <ChainExpression>
+                <MemberExpression
+                  Member="Id" />
+              </ChainExpression>
+            </BinaryExpression.Left>
+            <BinaryExpression.Right>
+              <ParameterExpression
+                Parameter="Id" />
+            </BinaryExpression.Right>
+          </BinaryExpression>
+        </QueryFilterExpressionTree>
+      </QueryOperation.FilterExpression>
+      <QueryOperation.Source>
+        <QuerySourceExpressionTree>
+          <MemberExpression
+            Member="tblBrugers" />
+        </QuerySourceExpressionTree>
+      </QueryOperation.Source>
+      <QueryOperationParameter
+        Name="Id"
+        ParameterType=":Int32?">
+        <QueryOperationParameter.Attributes>
+          <Description
+            Value="The value of the 'Id' key property of the entity to retrieve." />
+        </QueryOperationParameter.Attributes>
+      </QueryOperationParameter>
+    </QueryOperation>
+    <AssociationSet
+      Name="tblComputer_tblBrugers"
+      Association="tblComputer_tblBruger">
+      <AssociationSetEnd
+        Name="tblComputer"
+        EntitySet="tblComputers" />
+      <AssociationSetEnd
+        Name="tblBruger"
+        EntitySet="tblBrugers" />
+    </AssociationSet>
+    <AssociationSet
+      Name="tblBrugerRelation_tblBrugers"
+      Association="tblBrugerRelation_tblBruger">
+      <AssociationSetEnd
+        Name="tblBrugerRelation"
+        EntitySet="tblBrugerRelations" />
+      <AssociationSetEnd
+        Name="tblBruger"
+        EntitySet="tblBrugers" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association
+    Name="tblComputer_tblBruger">
+    <AssociationEnd
+      Name="tblComputer"
+      Multiplicity="Many"
+      EntityType="tblComputer" />
+    <AssociationEnd
+      Name="tblBruger"
+      EntityType="tblBruger">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Restrict" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+  <DataService
+    Name="ApplicationDataMapping">
+    <DataService.Attributes>
+      <Partial />
+    </DataService.Attributes>
+    <AssociationSetMapping
+      AssociationSet="tblComputer_tblBrugers">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="tblComputer_tblBrugers" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[tblComputer_tblBrugers]/Members[tblComputer]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="tblComputer_tblBruger" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[tblComputer_tblBrugers]/Members[tblBruger]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+    <EntitySetMapping
+      EntitySet="tblBrugers">
+      <EntitySetMapping.Attributes>
+        <SsdlForeignKeyProperty
+          Name="tblLokale_tblBruger"
+          Nullable="True"
+          Type="int" />
+        <SsdlForeignKeyProperty
+          Name="tblLokale_tblBruger1"
+          Nullable="True"
+          Type="int" />
+      </EntitySetMapping.Attributes>
+    </EntitySetMapping>
+    <AssociationSetMapping
+      AssociationSet="tblBrugerRelation_tblBrugers">
+      <AssociationSetMapping.Attributes>
+        <SsdlAssociationSet
+          Name="tblBrugerRelation_tblBrugers" />
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[tblBrugerRelation_tblBrugers]/Members[tblBrugerRelation]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="tblBrugerRelation_tblBruger" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+        <SsdlAssociationSetEnd
+          End="ApplicationData/Members[tblBrugerRelation_tblBrugers]/Members[tblBruger]">
+          <SsdlAssociationSetEnd.Attributes>
+            <SsdlPropertyRef
+              Name="Id" />
+          </SsdlAssociationSetEnd.Attributes>
+        </SsdlAssociationSetEnd>
+      </AssociationSetMapping.Attributes>
+    </AssociationSetMapping>
+  </DataService>
+  <Association
+    Name="tblBrugerRelation_tblBruger">
+    <AssociationEnd
+      Name="tblBrugerRelation"
+      Multiplicity="Many"
+      EntityType="tblBrugerRelation" />
+    <AssociationEnd
+      Name="tblBruger"
+      Multiplicity="One"
+      EntityType="tblBruger">
+      <AssociationEnd.Attributes>
+        <DeleteRule
+          Action="Cascade" />
+      </AssociationEnd.Attributes>
+    </AssociationEnd>
+  </Association>
+</ServiceApplication>

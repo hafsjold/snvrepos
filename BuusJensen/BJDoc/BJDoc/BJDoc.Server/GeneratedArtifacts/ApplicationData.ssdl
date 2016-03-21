@@ -1,0 +1,353 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="ApplicationDataStore" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="ApplicationDataStore">
+    <EntitySet Name="tblBrugers" EntityType="ApplicationDataStore.tblBruger" store:Type="Tables" Schema="dbo" Table="tblBrugers" />
+    <EntitySet Name="tblComputers" EntityType="ApplicationDataStore.tblComputer" store:Type="Tables" Schema="dbo" Table="tblComputers" />
+    <EntitySet Name="tblFeatureRelations" EntityType="ApplicationDataStore.tblFeatureRelation" store:Type="Tables" Schema="dbo" Table="tblFeatureRelations" />
+    <EntitySet Name="tblFeatures" EntityType="ApplicationDataStore.tblFeature" store:Type="Tables" Schema="dbo" Table="tblFeatures" />
+    <EntitySet Name="tblFeatureTypes" EntityType="ApplicationDataStore.tblFeatureType" store:Type="Tables" Schema="dbo" Table="tblFeatureTypes" />
+    <EntitySet Name="tblHWs" EntityType="ApplicationDataStore.tblHW" store:Type="Tables" Schema="dbo" Table="tblHWs" />
+    <EntitySet Name="tblHWtypes" EntityType="ApplicationDataStore.tblHWtype" store:Type="Tables" Schema="dbo" Table="tblHWtypes" />
+    <EntitySet Name="tblIps" EntityType="ApplicationDataStore.tblIp" store:Type="Tables" Schema="dbo" Table="tblIps" />
+    <EntitySet Name="tblLokales" EntityType="ApplicationDataStore.tblLokale" store:Type="Tables" Schema="dbo" Table="tblLokales" />
+    <EntitySet Name="tblBrugerRelations" EntityType="ApplicationDataStore.tblBrugerRelation" store:Type="Tables" Schema="dbo" Table="tblBrugerRelations" />
+    <AssociationSet Name="tblComputer_tblBruger" Association="ApplicationDataStore.tblComputer_tblBruger">
+      <End Role="tblBruger" EntitySet="tblBrugers" />
+      <End Role="tblComputer" EntitySet="tblComputers" />
+    </AssociationSet>
+    <AssociationSet Name="tblFeatureRelation_tblComputer" Association="ApplicationDataStore.tblFeatureRelation_tblComputer">
+      <End Role="tblComputer" EntitySet="tblComputers" />
+      <End Role="tblFeatureRelation" EntitySet="tblFeatureRelations" />
+    </AssociationSet>
+    <AssociationSet Name="tblIp_tblComputer" Association="ApplicationDataStore.tblIp_tblComputer">
+      <End Role="tblComputer" EntitySet="tblComputers" />
+      <End Role="tblIp" EntitySet="tblIps" />
+    </AssociationSet>
+    <AssociationSet Name="tblFeatureRelation_tblFeature" Association="ApplicationDataStore.tblFeatureRelation_tblFeature">
+      <End Role="tblFeature" EntitySet="tblFeatures" />
+      <End Role="tblFeatureRelation" EntitySet="tblFeatureRelations" />
+    </AssociationSet>
+    <AssociationSet Name="tblFeature_tblFeatureType" Association="ApplicationDataStore.tblFeature_tblFeatureType">
+      <End Role="tblFeatureType" EntitySet="tblFeatureTypes" />
+      <End Role="tblFeature" EntitySet="tblFeatures" />
+    </AssociationSet>
+    <AssociationSet Name="tblComputer_tblHW" Association="ApplicationDataStore.tblComputer_tblHW">
+      <End Role="tblHW" EntitySet="tblHWs" />
+      <End Role="tblComputer" EntitySet="tblComputers" />
+    </AssociationSet>
+    <AssociationSet Name="tblHW_tblHWtype" Association="ApplicationDataStore.tblHW_tblHWtype">
+      <End Role="tblHWtype" EntitySet="tblHWtypes" />
+      <End Role="tblHW" EntitySet="tblHWs" />
+    </AssociationSet>
+    <AssociationSet Name="tblLokale_tblBruger" Association="ApplicationDataStore.tblLokale_tblBruger">
+      <End Role="tblLokale" EntitySet="tblLokales" />
+      <End Role="tblBruger" EntitySet="tblBrugers" />
+    </AssociationSet>
+    <AssociationSet Name="tblBrugerRelation_tblBruger" Association="ApplicationDataStore.tblBrugerRelation_tblBruger">
+      <End Role="tblBruger" EntitySet="tblBrugers" />
+      <End Role="tblBrugerRelation" EntitySet="tblBrugerRelations" />
+    </AssociationSet>
+    <AssociationSet Name="tblBrugerRelation_tblComputer" Association="ApplicationDataStore.tblBrugerRelation_tblComputer">
+      <End Role="tblComputer" EntitySet="tblComputers" />
+      <End Role="tblBrugerRelation" EntitySet="tblBrugerRelations" />
+    </AssociationSet>
+    <AssociationSet Name="tblLokale_tblComputer" Association="ApplicationDataStore.tblLokale_tblComputer">
+      <End Role="tblLokale" EntitySet="tblLokales" />
+      <End Role="tblComputer" EntitySet="tblComputers" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="tblBruger">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="initialer" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="navn" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="telefon" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="mobil" Type="nvarchar" MaxLength="255" />
+    <Property Name="email" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="statsaut" Type="bit" />
+    <Property Name="partner" Type="bit" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+    <Property Name="Created" Type="datetimeoffset" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+    <Property Name="Modified" Type="datetimeoffset" />
+    <Property Name="RowVersion" Type="rowversion" Nullable="false" StoreGeneratedPattern="Computed" />
+    <Property Name="tblLokale_tblBruger1" Type="int" />
+  </EntityType>
+  <EntityType Name="tblComputer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="serienr" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="note" Type="nvarchar" MaxLength="255" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+    <Property Name="Created" Type="datetimeoffset" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+    <Property Name="Modified" Type="datetimeoffset" />
+    <Property Name="RowVersion" Type="rowversion" Nullable="false" StoreGeneratedPattern="Computed" />
+    <Property Name="tblComputer_tblBruger" Type="int" />
+    <Property Name="tblComputer_tblHW" Type="int" Nullable="false" />
+    <Property Name="tblLokale_tblComputer1" Type="int" />
+  </EntityType>
+  <EntityType Name="tblFeatureRelation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+    <Property Name="Created" Type="datetimeoffset" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+    <Property Name="Modified" Type="datetimeoffset" />
+    <Property Name="RowVersion" Type="rowversion" Nullable="false" StoreGeneratedPattern="Computed" />
+    <Property Name="tblFeatureRelation_tblComputer" Type="int" />
+    <Property Name="tblFeatureRelation_tblFeatures" Type="int" />
+  </EntityType>
+  <EntityType Name="tblFeature">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="navn" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+    <Property Name="Created" Type="datetimeoffset" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+    <Property Name="Modified" Type="datetimeoffset" />
+    <Property Name="RowVersion" Type="rowversion" Nullable="false" StoreGeneratedPattern="Computed" />
+    <Property Name="tblFeatures_tblFeatureType" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblFeatureType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="type" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+    <Property Name="Created" Type="datetimeoffset" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+    <Property Name="Modified" Type="datetimeoffset" />
+    <Property Name="RowVersion" Type="rowversion" Nullable="false" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="tblHW">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="hw" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="navn" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="fabrikat" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+    <Property Name="Created" Type="datetimeoffset" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+    <Property Name="Modified" Type="datetimeoffset" />
+    <Property Name="RowVersion" Type="rowversion" Nullable="false" StoreGeneratedPattern="Computed" />
+    <Property Name="tblHW_tblHWtype" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblHWtype">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="type" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+    <Property Name="Created" Type="datetimeoffset" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+    <Property Name="Modified" Type="datetimeoffset" />
+    <Property Name="RowVersion" Type="rowversion" Nullable="false" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="tblIp">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ip" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+    <Property Name="Created" Type="datetimeoffset" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+    <Property Name="Modified" Type="datetimeoffset" />
+    <Property Name="RowVersion" Type="rowversion" Nullable="false" StoreGeneratedPattern="Computed" />
+    <Property Name="tblIp_tblComputer" Type="int" />
+  </EntityType>
+  <EntityType Name="tblLokale">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="lokale" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="etage" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="note" Type="nvarchar" MaxLength="255" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+    <Property Name="Created" Type="datetimeoffset" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+    <Property Name="Modified" Type="datetimeoffset" />
+    <Property Name="RowVersion" Type="rowversion" Nullable="false" StoreGeneratedPattern="Computed" />
+  </EntityType>
+  <EntityType Name="tblBrugerRelation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+    <Property Name="Created" Type="datetimeoffset" />
+    <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+    <Property Name="Modified" Type="datetimeoffset" />
+    <Property Name="RowVersion" Type="rowversion" Nullable="false" StoreGeneratedPattern="Computed" />
+    <Property Name="tblBrugerRelation_tblBruger" Type="int" Nullable="false" />
+    <Property Name="tblBrugerRelation_tblComputer" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="tblComputer_tblBruger">
+    <End Role="tblBruger" Type="ApplicationDataStore.tblBruger" Multiplicity="0..1">
+      <OnDeleteAnnotation Action="Restrict" xmlns="http://schemas.microsoft.com/LightSwitch/2013/edm/annotations" />
+    </End>
+    <End Role="tblComputer" Type="ApplicationDataStore.tblComputer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBruger">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblComputer">
+        <PropertyRef Name="tblComputer_tblBruger" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tblFeatureRelation_tblComputer">
+    <End Role="tblComputer" Type="ApplicationDataStore.tblComputer" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblFeatureRelation" Type="ApplicationDataStore.tblFeatureRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblComputer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblFeatureRelation">
+        <PropertyRef Name="tblFeatureRelation_tblComputer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tblIp_tblComputer">
+    <End Role="tblComputer" Type="ApplicationDataStore.tblComputer" Multiplicity="0..1">
+      <OnDeleteAnnotation Action="Disassociate" xmlns="http://schemas.microsoft.com/LightSwitch/2013/edm/annotations" />
+    </End>
+    <End Role="tblIp" Type="ApplicationDataStore.tblIp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblComputer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblIp">
+        <PropertyRef Name="tblIp_tblComputer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tblFeatureRelation_tblFeature">
+    <End Role="tblFeature" Type="ApplicationDataStore.tblFeature" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblFeatureRelation" Type="ApplicationDataStore.tblFeatureRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFeature">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblFeatureRelation">
+        <PropertyRef Name="tblFeatureRelation_tblFeatures" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tblFeature_tblFeatureType">
+    <End Role="tblFeatureType" Type="ApplicationDataStore.tblFeatureType" Multiplicity="1">
+      <OnDeleteAnnotation Action="Restrict" xmlns="http://schemas.microsoft.com/LightSwitch/2013/edm/annotations" />
+    </End>
+    <End Role="tblFeature" Type="ApplicationDataStore.tblFeature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFeatureType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblFeature">
+        <PropertyRef Name="tblFeatures_tblFeatureType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tblComputer_tblHW">
+    <End Role="tblHW" Type="ApplicationDataStore.tblHW" Multiplicity="1">
+      <OnDeleteAnnotation Action="Restrict" xmlns="http://schemas.microsoft.com/LightSwitch/2013/edm/annotations" />
+    </End>
+    <End Role="tblComputer" Type="ApplicationDataStore.tblComputer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblHW">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblComputer">
+        <PropertyRef Name="tblComputer_tblHW" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tblHW_tblHWtype">
+    <End Role="tblHWtype" Type="ApplicationDataStore.tblHWtype" Multiplicity="1">
+      <OnDeleteAnnotation Action="Restrict" xmlns="http://schemas.microsoft.com/LightSwitch/2013/edm/annotations" />
+    </End>
+    <End Role="tblHW" Type="ApplicationDataStore.tblHW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblHWtype">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblHW">
+        <PropertyRef Name="tblHW_tblHWtype" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tblLokale_tblBruger">
+    <End Role="tblLokale" Type="ApplicationDataStore.tblLokale" Multiplicity="0..1">
+      <OnDeleteAnnotation Action="Restrict" xmlns="http://schemas.microsoft.com/LightSwitch/2013/edm/annotations" />
+    </End>
+    <End Role="tblBruger" Type="ApplicationDataStore.tblBruger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblLokale">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblBruger">
+        <PropertyRef Name="tblLokale_tblBruger1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tblBrugerRelation_tblBruger">
+    <End Role="tblBruger" Type="ApplicationDataStore.tblBruger" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblBrugerRelation" Type="ApplicationDataStore.tblBrugerRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBruger">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblBrugerRelation">
+        <PropertyRef Name="tblBrugerRelation_tblBruger" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tblBrugerRelation_tblComputer">
+    <End Role="tblComputer" Type="ApplicationDataStore.tblComputer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblBrugerRelation" Type="ApplicationDataStore.tblBrugerRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblComputer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblBrugerRelation">
+        <PropertyRef Name="tblBrugerRelation_tblComputer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tblLokale_tblComputer">
+    <End Role="tblLokale" Type="ApplicationDataStore.tblLokale" Multiplicity="0..1">
+      <OnDeleteAnnotation Action="Restrict" xmlns="http://schemas.microsoft.com/LightSwitch/2013/edm/annotations" />
+    </End>
+    <End Role="tblComputer" Type="ApplicationDataStore.tblComputer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblLokale">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblComputer">
+        <PropertyRef Name="tblLokale_tblComputer1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

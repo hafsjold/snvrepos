@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\bin\Release\app.publish\" />
+  <setAcl path="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\bin\Release\app.publish\" setAclResourceType="Directory" />
+  <setAcl path="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\bin\Release\app.publish\" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+  <appPoolNetFx path="" NetFxVersion="v4.0" />
+  <appPoolPipeline path="" PipelineMode="Integrated" />
+</sitemanifest>
