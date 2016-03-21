@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <EnableENC>False</EnableENC>
+    <ProjectView>ProjectFiles</ProjectView>
+    <StartUpClientProject>BJDoc.DesktopClient</StartUpClientProject>
+    <SchemaManagementLastSsdlWriteTime>635539154096770751</SchemaManagementLastSsdlWriteTime>
+    <GrantedPermissions>Microsoft.LightSwitch.Security:SecurityAdministration</GrantedPermissions>
+    <SchemaManagementDatabaseIncludesSecurityObjects>True</SchemaManagementDatabaseIncludesSecurityObjects>
+    <SchemaManagementSchemaBuildState>0</SchemaManagementSchemaBuildState>
+    <EncryptedPublishConnectionString>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA/vrXuOFBaUCc/8gvpYV5agAAAAACAAAAAAADZgAAwAAAABAAAAC2egbUOymPD+RxdDdaxtmKAAAAAASAAACgAAAAEAAAAD0pXGkaSvCZiCBxpZ+YGlcIAQAAIMEctTZzCji54gkYkaerT5hMZ57yrGTbw35EWUXeOpRKupza6RrsQsHl0HXk3wQ5bict29gYMo7VVIp8ygV9VA1DsORm/D5xRk0ZNoGfEq3bKA7iFDntsDG3AkyYSKvSbSj2+TPB+bZlhHhsJiZsJ5hKAYD5L3AdTJSHHhh0Ck0oprG/T5I8Nd3prU4TTIJo/zGSi3AYf/ZwnrAt8AH4JCAOhX3F7pgqtR0c+e68ZmWLt1zfj2niOKApT/TaYEjtQNdZG4LLDj6MBCiu4+QoHfHlSINmDPt498fjwvpbYfcNXHGd3f9/pbNVVHVwYuw+8rQTo/hq7JuiOTPzAXGCd4Q3wmxKJgWjFAAAABPmPRpNo7I+5oZDFQoe0mP8lHzx</EncryptedPublishConnectionString>
+    <EncryptedPublishSchemaConnectionString />
+    <EncryptedClientConnectionString>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA/vrXuOFBaUCc/8gvpYV5agAAAAACAAAAAAADZgAAwAAAABAAAACsK9XdJfJ/4uxOg5luU8FBAAAAAASAAACgAAAAEAAAAKY7BQt+chnNrZJAt+4pQOIIAQAAUed/GT1F3Dzk/frF0iU9rH68smtB+cU3iIe7EhecbaUxy/rxxokg8Mqccsg5lyNumOheZAIc3YC7Us4TOOC/HpiT1YmcNvVB0lhCWtMIRJ9H+V21pOUr5z0FVovMOYDsGZPa8sYh1zarBTKIJxDETe7z9xx5g4uBaiIwYDVSUWUO4cBLzO0oFcTQCLUUSb7tOJ6vSfcXBIqPLg6gX2bMV1VupXXcParp2vFzMW0y1yZtKbotF2AGJdBhS06fM9/oA/K//u1QGQ8c9qBGLngyX0NkyE8zdnZCRNDev1mBl3Fhhx6rJLTtswoUx9hrLEf6bzrGoni1qIsoMKagmS5nbM5xwdiE24D7FAAAAKlS6SBuSDWS/N6Tqczi9ac/tpy6</EncryptedClientConnectionString>
+    <EncryptedAdministratorPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA/vrXuOFBaUCc/8gvpYV5agAAAAACAAAAAAADZgAAwAAAABAAAAC4MmZj1MdxRHOCo89oT9LuAAAAAASAAACgAAAAEAAAAPQe8q5Gc3pglzqFpNvc2RQYAAAArIe9OfCXkMqwqEdeInvUjheb9vDiPeAaFAAAANanBTW0YE3Cgrfbd6ixxdTiLNIz</EncryptedAdministratorPassword>
+    <PublishUserName>$buusjensen</PublishUserName>
+    <EncryptedPublishUserPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA/vrXuOFBaUCc/8gvpYV5agAAAAACAAAAAAADZgAAwAAAABAAAABSasLEeUGx5AAKM10IZreVAAAAAASAAACgAAAAEAAAACFaZv+Aupji3uUvcf86TNaAAAAA5NIS+TsR/yTQfr+/CUVDwz/vI2caMa8KppUdTcN0yKvhURh1NNg/jg9kK4BpDVG+h0N+6TvACAJmYTEIxciqogRsqr54q8QqWWjGlPdAL6hejF5IuFFr90eao/HdhvtfLuB7n7AO9VXSfVRVgfoiVK6utpn2udKJOXNmMRi+NxEUAAAAFrGsuNw5WB7A7/KaodYfCusLGQg=</EncryptedPublishUserPassword>
+    <AzureSubscriptionId>65508911-e2c5-48f1-9c5a-8fd974f00f1f</AzureSubscriptionId>
+    <AzureManagementThumbprint />
+    <SharePointServerToServerCertificatePassword />
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<ModelDocumentManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Documents>
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.Server\DataSources\ApplicationData\tblBrugers.lsml" Checksum="0928C71490639B818D97E3A33AB4B3E36BB22571EDFEC1142D431BA17222018E" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.Server\DataSources\ApplicationData\tblComputers.lsml" Checksum="F8155FF1E9763197B9C61EB946F738F39513A60B662AE97001044FC8B658303A" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.Server\DataSources\ApplicationData\tblFeatureRelations.lsml" Checksum="B7A0632BEE4627249CF39C127D528AEBB6D737446CDB61FE57AD1219BA117D4C" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.Server\DataSources\ApplicationData\tblFeatures.lsml" Checksum="4101084B80051E77403D2E95AD38EB2FA6EC7F85857168CD3D618D6EB44A49E6" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.Server\DataSources\ApplicationData\tblFeatureTypes.lsml" Checksum="B3E98822DB0E9F5EDA95510AAABAFA18505EE3DC89B0618DAFA7AC4CEB0EFDE6" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.Server\DataSources\ApplicationData\tblHWs.lsml" Checksum="80327098A2AF432A3D24B867276A2BC40C8048F0BEB2B05310C24171C202C19C" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.Server\DataSources\ApplicationData\tblHWtypes.lsml" Checksum="5BE8F2779F528D957806565B66AF4791602040968108FDA02A871CF77ED1F26C" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.Server\DataSources\ApplicationData\tblips.lsml" Checksum="6474252D81777CE5FC4C5071CB3AAEADD5A7770755811ED90DDFE8EDCC008B0A" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.Server\Properties\DataSources\ApplicationData.lsml" Checksum="E6FEEAC3B4A850AAC5F0029259A0B9F8C1BD45F2950D17BD8D6664B9422E6AD6" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.Server\Properties\Service.lsml" Checksum="679C78F29C5AF23E9956A773B0E46DF90F7B86CADA0B79571E5896A1C79F5B70" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.Server\DataSources\ApplicationData\tblLokales.lsml" Checksum="9C903F3D68241B82A44F8FC04A5A4466D82DB20E7960C34B6AD574D3DDC2AFA5" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.Server\DataSources\ApplicationData\tblBrugerRelations.lsml" Checksum="A4B69317D227CEA3B702AC92B4F29334AE98F162C321E5708529B2D7549957A5" />
+  </Documents>
+</ModelDocumentManifest>

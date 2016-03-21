@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<ModelDocumentManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Documents>
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.HTMLClient\Properties\ApplicationData\tblBrugers.lsml" Checksum="CD644ADA9B1353F8FBEF272ADC6BC13215E22A8E632E541F7A681FB43CBC9D41" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.HTMLClient\Properties\ApplicationData\tblComputers.lsml" Checksum="786C935CF7051FD18FAC7908FF8ED53BB22389197D97D76F64B372CA826DC330" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.HTMLClient\Properties\ApplicationData\tblHWs.lsml" Checksum="6C4DCD3307BC2307AE5E30CBED91803D8F3404C88BE059A2C1CBBB0A775D13C9" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.HTMLClient\Properties\ApplicationData\tblHWtypes.lsml" Checksum="3AFD7BA5261F51E8DF7AB63234E286A3557DE2465F78EDCAC2C411BD42B6D450" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.HTMLClient\Properties\Client.lsml" Checksum="205EEAB71825E5FC6101EFBA08BBEA40A8D22942441753DB6EA782792CDB2D2F" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.HTMLClient\Properties\Proxies.lsml" Checksum="145952CC201F8EA0A63AE0601F623C2FD7FF661DFA0D6125A0F7E5CD31F34115" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.HTMLClient\Screens\Brugers\AddEditBruger.lsml" Checksum="EFB8667D3C747B93A0D25B037FBEB56DA992048D79031EFCFD138779B89BF473" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.HTMLClient\Screens\Brugers\BrowseBrugers.lsml" Checksum="4E7352B8FE777874147C72971F204B459C67187AF239C12DA84DF92A2BF1E1E4" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.HTMLClient\Screens\Brugers\ViewBruger.lsml" Checksum="1E5DC9E3A33FE737DB4C9CC50B43BCA6625837AFE35952997C9EC86B1AD30567" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.HTMLClient\Screens\Computers\AddEditComputer.lsml" Checksum="30C5F7BCDFF86EC2BC02D0BE4774F4839C2C1C58098A21243280C0EA876384B8" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.HTMLClient\Screens\Computers\BrowseComputers.lsml" Checksum="96B0F818C3BBDCE42A9AAD49E4A75CE61CCD7A60C1BD59037F088B42B9E7BBFF" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.HTMLClient\Screens\Computers\ViewComputer.lsml" Checksum="C472EAE8A951180A54390F9E249EE97868910D729D711FB9615A25ECD13632BE" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.HTMLClient\Screens\HW_Types\AddEditHW_Type.lsml" Checksum="21C758D1210E53706FEC7DB670D86D498E55E499E53EEB9CF4DB4B1ABC56FF61" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.HTMLClient\Screens\HW_Types\BrowseHW_Types.lsml" Checksum="E8CD408683B7FD36C1E10F75D2FBC887934A306A0800E4AEE83F3F875396B5FB" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.HTMLClient\Screens\HW_Types\ViewHW_Type.lsml" Checksum="33889185F0B52A4C3C90CB7E582917059FDAEACE7B946E9BA53AEE212C31925F" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.HTMLClient\Screens\HWs\AddEditHW.lsml" Checksum="6DAAAAA792D9CEAA3ED2BE11AF8F681DA22E8252C4D98EEA69B2810B82BF592D" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.HTMLClient\Screens\HWs\BrowseHWs.lsml" Checksum="8BB6D83262EB632470C58EA1D47FC1272961A30C70EFE1FB913E6FEEBBD0F682" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.HTMLClient\Screens\HWs\ViewHW.lsml" Checksum="C207252E5902D549BA5363D7FC34CFE14BB0A2D3DC264D711D5DB188A59CFBA5" />
+  </Documents>
+</ModelDocumentManifest>

@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping CdmEntityContainer="ApplicationData" StorageEntityContainer="ApplicationDataStore">
+    <EntitySetMapping Name="tblBrugers">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.tblBruger)">
+        <MappingFragment StoreEntitySet="tblBrugers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="initialer" ColumnName="initialer" />
+          <ScalarProperty Name="navn" ColumnName="navn" />
+          <ScalarProperty Name="telefon" ColumnName="telefon" />
+          <ScalarProperty Name="mobil" ColumnName="mobil" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="statsaut" ColumnName="statsaut" />
+          <ScalarProperty Name="partner" ColumnName="partner" />
+          <ScalarProperty Name="tblLokale_tblBruger1" ColumnName="tblLokale_tblBruger1" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblComputers">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.tblComputer)">
+        <MappingFragment StoreEntitySet="tblComputers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="serienr" ColumnName="serienr" />
+          <ScalarProperty Name="note" ColumnName="note" />
+          <ScalarProperty Name="tblComputer_tblHW" ColumnName="tblComputer_tblHW" />
+          <ScalarProperty Name="tblComputer_tblBruger" ColumnName="tblComputer_tblBruger" />
+          <ScalarProperty Name="tblLokale_tblComputer1" ColumnName="tblLokale_tblComputer1" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblFeatureRelations">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.tblFeatureRelation)">
+        <MappingFragment StoreEntitySet="tblFeatureRelations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="tblFeatureRelation_tblFeatures" ColumnName="tblFeatureRelation_tblFeatures" />
+          <ScalarProperty Name="tblFeatureRelation_tblComputer" ColumnName="tblFeatureRelation_tblComputer" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblFeatures">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.tblFeature)">
+        <MappingFragment StoreEntitySet="tblFeatures">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="navn" ColumnName="navn" />
+          <ScalarProperty Name="tblFeatures_tblFeatureType" ColumnName="tblFeatures_tblFeatureType" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblFeatureTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.tblFeatureType)">
+        <MappingFragment StoreEntitySet="tblFeatureTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblHWs">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.tblHW)">
+        <MappingFragment StoreEntitySet="tblHWs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="hw" ColumnName="hw" />
+          <ScalarProperty Name="navn" ColumnName="navn" />
+          <ScalarProperty Name="fabrikat" ColumnName="fabrikat" />
+          <ScalarProperty Name="tblHW_tblHWtype" ColumnName="tblHW_tblHWtype" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblHWtypes">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.tblHWtype)">
+        <MappingFragment StoreEntitySet="tblHWtypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblIps">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.tblIp)">
+        <MappingFragment StoreEntitySet="tblIps">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ip" ColumnName="ip" />
+          <ScalarProperty Name="tblIp_tblComputer" ColumnName="tblIp_tblComputer" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblLokales">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.tblLokale)">
+        <MappingFragment StoreEntitySet="tblLokales">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="lokale" ColumnName="lokale" />
+          <ScalarProperty Name="etage" ColumnName="etage" />
+          <ScalarProperty Name="note" ColumnName="note" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblBrugerRelations">
+      <EntityTypeMapping TypeName="IsTypeOf(LightSwitchApplication.tblBrugerRelation)">
+        <MappingFragment StoreEntitySet="tblBrugerRelations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="tblBrugerRelation_tblBruger" ColumnName="tblBrugerRelation_tblBruger" />
+          <ScalarProperty Name="tblBrugerRelation_tblComputer" ColumnName="tblBrugerRelation_tblComputer" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

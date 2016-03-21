@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" Namespace="LightSwitchApplication" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityType Name="tblBruger">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="initialer" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="navn" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="telefon" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="mobil" Type="Edm.String" MaxLength="255" />
+    <Property Name="email" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="statsaut" Type="Edm.Boolean" />
+    <Property Name="partner" Type="Edm.Boolean" />
+    <Property Name="tblLokale_tblBruger1" Type="Edm.Int32" />
+    <Property Name="CreatedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Created" Type="Edm.DateTimeOffset" />
+    <Property Name="ModifiedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Modified" Type="Edm.DateTimeOffset" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="tblComputers" Relationship="LightSwitchApplication.tblComputer_tblBruger" ToRole="tblComputer" FromRole="tblBruger" />
+    <NavigationProperty Name="tblLokale" Relationship="LightSwitchApplication.tblLokale_tblBruger" ToRole="tblLokale" FromRole="tblBruger" />
+    <NavigationProperty Name="tblBrugerRelations" Relationship="LightSwitchApplication.tblBrugerRelation_tblBruger" ToRole="tblBrugerRelation" FromRole="tblBruger" />
+  </EntityType>
+  <EntityType Name="tblComputer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="serienr" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="note" Type="Edm.String" MaxLength="255" />
+    <Property Name="tblComputer_tblHW" Type="Edm.Int32" Nullable="false" />
+    <Property Name="tblComputer_tblBruger" Type="Edm.Int32" />
+    <Property Name="tblLokale_tblComputer1" Type="Edm.Int32" />
+    <Property Name="CreatedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Created" Type="Edm.DateTimeOffset" />
+    <Property Name="ModifiedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Modified" Type="Edm.DateTimeOffset" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="tblHW" Relationship="LightSwitchApplication.tblComputer_tblHW" ToRole="tblHW" FromRole="tblComputer" />
+    <NavigationProperty Name="tblBruger" Relationship="LightSwitchApplication.tblComputer_tblBruger" ToRole="tblBruger" FromRole="tblComputer" />
+    <NavigationProperty Name="tblFeatureRelations" Relationship="LightSwitchApplication.tblFeatureRelation_tblComputer" ToRole="tblFeatureRelation" FromRole="tblComputer" />
+    <NavigationProperty Name="tblIps" Relationship="LightSwitchApplication.tblIp_tblComputer" ToRole="tblIp" FromRole="tblComputer" />
+    <NavigationProperty Name="tblBrugerRelations" Relationship="LightSwitchApplication.tblBrugerRelation_tblComputer" ToRole="tblBrugerRelation" FromRole="tblComputer" />
+    <NavigationProperty Name="tblLokale" Relationship="LightSwitchApplication.tblLokale_tblComputer" ToRole="tblLokale" FromRole="tblComputer" />
+  </EntityType>
+  <EntityType Name="tblFeatureRelation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tblFeatureRelation_tblFeatures" Type="Edm.Int32" />
+    <Property Name="tblFeatureRelation_tblComputer" Type="Edm.Int32" />
+    <Property Name="CreatedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Created" Type="Edm.DateTimeOffset" />
+    <Property Name="ModifiedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Modified" Type="Edm.DateTimeOffset" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="tblFeature" Relationship="LightSwitchApplication.tblFeatureRelation_tblFeature" ToRole="tblFeature" FromRole="tblFeatureRelation" />
+    <NavigationProperty Name="tblComputer" Relationship="LightSwitchApplication.tblFeatureRelation_tblComputer" ToRole="tblComputer" FromRole="tblFeatureRelation" />
+  </EntityType>
+  <EntityType Name="tblFeature">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="navn" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="tblFeatures_tblFeatureType" Type="Edm.Int32" Nullable="false" />
+    <Property Name="CreatedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Created" Type="Edm.DateTimeOffset" />
+    <Property Name="ModifiedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Modified" Type="Edm.DateTimeOffset" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="tblFeatureType" Relationship="LightSwitchApplication.tblFeature_tblFeatureType" ToRole="tblFeatureType" FromRole="tblFeature" />
+    <NavigationProperty Name="tblFeatureRelations" Relationship="LightSwitchApplication.tblFeatureRelation_tblFeature" ToRole="tblFeatureRelation" FromRole="tblFeature" />
+  </EntityType>
+  <EntityType Name="tblFeatureType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="type" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="CreatedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Created" Type="Edm.DateTimeOffset" />
+    <Property Name="ModifiedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Modified" Type="Edm.DateTimeOffset" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="tblFeaturesCollection" Relationship="LightSwitchApplication.tblFeature_tblFeatureType" ToRole="tblFeature" FromRole="tblFeatureType" />
+  </EntityType>
+  <EntityType Name="tblHW">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="hw" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="navn" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="fabrikat" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="tblHW_tblHWtype" Type="Edm.Int32" Nullable="false" />
+    <Property Name="CreatedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Created" Type="Edm.DateTimeOffset" />
+    <Property Name="ModifiedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Modified" Type="Edm.DateTimeOffset" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="tblHWtype" Relationship="LightSwitchApplication.tblHW_tblHWtype" ToRole="tblHWtype" FromRole="tblHW" />
+    <NavigationProperty Name="tblComputers" Relationship="LightSwitchApplication.tblComputer_tblHW" ToRole="tblComputer" FromRole="tblHW" />
+  </EntityType>
+  <EntityType Name="tblHWtype">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="type" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="CreatedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Created" Type="Edm.DateTimeOffset" />
+    <Property Name="ModifiedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Modified" Type="Edm.DateTimeOffset" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="tblHWs" Relationship="LightSwitchApplication.tblHW_tblHWtype" ToRole="tblHW" FromRole="tblHWtype" />
+  </EntityType>
+  <EntityType Name="tblIp">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ip" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="tblIp_tblComputer" Type="Edm.Int32" />
+    <Property Name="CreatedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Created" Type="Edm.DateTimeOffset" />
+    <Property Name="ModifiedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Modified" Type="Edm.DateTimeOffset" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="tblComputer" Relationship="LightSwitchApplication.tblIp_tblComputer" ToRole="tblComputer" FromRole="tblIp" />
+  </EntityType>
+  <EntityType Name="tblLokale">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="lokale" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="etage" Type="Edm.String" Nullable="false" MaxLength="255" />
+    <Property Name="note" Type="Edm.String" MaxLength="255" />
+    <Property Name="CreatedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Created" Type="Edm.DateTimeOffset" />
+    <Property Name="ModifiedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Modified" Type="Edm.DateTimeOffset" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="tblBrugers" Relationship="LightSwitchApplication.tblLokale_tblBruger" ToRole="tblBruger" FromRole="tblLokale" />
+    <NavigationProperty Name="tblComputers" Relationship="LightSwitchApplication.tblLokale_tblComputer" ToRole="tblComputer" FromRole="tblLokale" />
+  </EntityType>
+  <EntityType Name="tblBrugerRelation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Edm.Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tblBrugerRelation_tblBruger" Type="Edm.Int32" Nullable="false" />
+    <Property Name="tblBrugerRelation_tblComputer" Type="Edm.Int32" Nullable="false" />
+    <Property Name="CreatedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Created" Type="Edm.DateTimeOffset" />
+    <Property Name="ModifiedBy" Type="Edm.String" MaxLength="255" />
+    <Property Name="Modified" Type="Edm.DateTimeOffset" />
+    <Property Name="RowVersion" Type="Edm.Binary" Nullable="false" ConcurrencyMode="Fixed" annotation:StoreGeneratedPattern="Computed" />
+    <NavigationProperty Name="tblBruger" Relationship="LightSwitchApplication.tblBrugerRelation_tblBruger" ToRole="tblBruger" FromRole="tblBrugerRelation" />
+    <NavigationProperty Name="tblComputer" Relationship="LightSwitchApplication.tblBrugerRelation_tblComputer" ToRole="tblComputer" FromRole="tblBrugerRelation" />
+  </EntityType>
+  <Association Name="tblComputer_tblBruger">
+    <End Role="tblBruger" Type="LightSwitchApplication.tblBruger" Multiplicity="0..1" />
+    <End Role="tblComputer" Type="LightSwitchApplication.tblComputer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBruger">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblComputer">
+        <PropertyRef Name="tblComputer_tblBruger" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tblFeatureRelation_tblComputer">
+    <End Role="tblComputer" Type="LightSwitchApplication.tblComputer" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblFeatureRelation" Type="LightSwitchApplication.tblFeatureRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblComputer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblFeatureRelation">
+        <PropertyRef Name="tblFeatureRelation_tblComputer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tblIp_tblComputer">
+    <End Role="tblComputer" Type="LightSwitchApplication.tblComputer" Multiplicity="0..1" />
+    <End Role="tblIp" Type="LightSwitchApplication.tblIp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblComputer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblIp">
+        <PropertyRef Name="tblIp_tblComputer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tblFeatureRelation_tblFeature">
+    <End Role="tblFeature" Type="LightSwitchApplication.tblFeature" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblFeatureRelation" Type="LightSwitchApplication.tblFeatureRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFeature">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblFeatureRelation">
+        <PropertyRef Name="tblFeatureRelation_tblFeatures" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tblFeature_tblFeatureType">
+    <End Role="tblFeatureType" Type="LightSwitchApplication.tblFeatureType" Multiplicity="1" />
+    <End Role="tblFeature" Type="LightSwitchApplication.tblFeature" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblFeatureType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblFeature">
+        <PropertyRef Name="tblFeatures_tblFeatureType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tblComputer_tblHW">
+    <End Role="tblHW" Type="LightSwitchApplication.tblHW" Multiplicity="1" />
+    <End Role="tblComputer" Type="LightSwitchApplication.tblComputer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblHW">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblComputer">
+        <PropertyRef Name="tblComputer_tblHW" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tblHW_tblHWtype">
+    <End Role="tblHWtype" Type="LightSwitchApplication.tblHWtype" Multiplicity="1" />
+    <End Role="tblHW" Type="LightSwitchApplication.tblHW" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblHWtype">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblHW">
+        <PropertyRef Name="tblHW_tblHWtype" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tblLokale_tblBruger">
+    <End Role="tblLokale" Type="LightSwitchApplication.tblLokale" Multiplicity="0..1" />
+    <End Role="tblBruger" Type="LightSwitchApplication.tblBruger" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblLokale">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblBruger">
+        <PropertyRef Name="tblLokale_tblBruger1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tblBrugerRelation_tblBruger">
+    <End Role="tblBruger" Type="LightSwitchApplication.tblBruger" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblBrugerRelation" Type="LightSwitchApplication.tblBrugerRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBruger">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblBrugerRelation">
+        <PropertyRef Name="tblBrugerRelation_tblBruger" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tblBrugerRelation_tblComputer">
+    <End Role="tblComputer" Type="LightSwitchApplication.tblComputer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="tblBrugerRelation" Type="LightSwitchApplication.tblBrugerRelation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblComputer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblBrugerRelation">
+        <PropertyRef Name="tblBrugerRelation_tblComputer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="tblLokale_tblComputer">
+    <End Role="tblLokale" Type="LightSwitchApplication.tblLokale" Multiplicity="0..1" />
+    <End Role="tblComputer" Type="LightSwitchApplication.tblComputer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblLokale">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="tblComputer">
+        <PropertyRef Name="tblLokale_tblComputer1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ApplicationData" m:IsDefaultEntityContainer="true">
+    <EntitySet Name="tblBrugers" EntityType="LightSwitchApplication.tblBruger" />
+    <EntitySet Name="tblComputers" EntityType="LightSwitchApplication.tblComputer" />
+    <EntitySet Name="tblFeatureRelations" EntityType="LightSwitchApplication.tblFeatureRelation" />
+    <EntitySet Name="tblFeatures" EntityType="LightSwitchApplication.tblFeature" />
+    <EntitySet Name="tblFeatureTypes" EntityType="LightSwitchApplication.tblFeatureType" />
+    <EntitySet Name="tblHWs" EntityType="LightSwitchApplication.tblHW" />
+    <EntitySet Name="tblHWtypes" EntityType="LightSwitchApplication.tblHWtype" />
+    <EntitySet Name="tblIps" EntityType="LightSwitchApplication.tblIp" />
+    <EntitySet Name="tblLokales" EntityType="LightSwitchApplication.tblLokale" />
+    <EntitySet Name="tblBrugerRelations" EntityType="LightSwitchApplication.tblBrugerRelation" />
+    <AssociationSet Name="tblComputer_tblBruger" Association="LightSwitchApplication.tblComputer_tblBruger">
+      <End Role="tblBruger" EntitySet="tblBrugers" />
+      <End Role="tblComputer" EntitySet="tblComputers" />
+    </AssociationSet>
+    <AssociationSet Name="tblFeatureRelation_tblComputer" Association="LightSwitchApplication.tblFeatureRelation_tblComputer">
+      <End Role="tblComputer" EntitySet="tblComputers" />
+      <End Role="tblFeatureRelation" EntitySet="tblFeatureRelations" />
+    </AssociationSet>
+    <AssociationSet Name="tblIp_tblComputer" Association="LightSwitchApplication.tblIp_tblComputer">
+      <End Role="tblComputer" EntitySet="tblComputers" />
+      <End Role="tblIp" EntitySet="tblIps" />
+    </AssociationSet>
+    <AssociationSet Name="tblFeatureRelation_tblFeature" Association="LightSwitchApplication.tblFeatureRelation_tblFeature">
+      <End Role="tblFeature" EntitySet="tblFeatures" />
+      <End Role="tblFeatureRelation" EntitySet="tblFeatureRelations" />
+    </AssociationSet>
+    <AssociationSet Name="tblFeature_tblFeatureType" Association="LightSwitchApplication.tblFeature_tblFeatureType">
+      <End Role="tblFeatureType" EntitySet="tblFeatureTypes" />
+      <End Role="tblFeature" EntitySet="tblFeatures" />
+    </AssociationSet>
+    <AssociationSet Name="tblComputer_tblHW" Association="LightSwitchApplication.tblComputer_tblHW">
+      <End Role="tblHW" EntitySet="tblHWs" />
+      <End Role="tblComputer" EntitySet="tblComputers" />
+    </AssociationSet>
+    <AssociationSet Name="tblHW_tblHWtype" Association="LightSwitchApplication.tblHW_tblHWtype">
+      <End Role="tblHWtype" EntitySet="tblHWtypes" />
+      <End Role="tblHW" EntitySet="tblHWs" />
+    </AssociationSet>
+    <AssociationSet Name="tblLokale_tblBruger" Association="LightSwitchApplication.tblLokale_tblBruger">
+      <End Role="tblLokale" EntitySet="tblLokales" />
+      <End Role="tblBruger" EntitySet="tblBrugers" />
+    </AssociationSet>
+    <AssociationSet Name="tblBrugerRelation_tblBruger" Association="LightSwitchApplication.tblBrugerRelation_tblBruger">
+      <End Role="tblBruger" EntitySet="tblBrugers" />
+      <End Role="tblBrugerRelation" EntitySet="tblBrugerRelations" />
+    </AssociationSet>
+    <AssociationSet Name="tblBrugerRelation_tblComputer" Association="LightSwitchApplication.tblBrugerRelation_tblComputer">
+      <End Role="tblComputer" EntitySet="tblComputers" />
+      <End Role="tblBrugerRelation" EntitySet="tblBrugerRelations" />
+    </AssociationSet>
+    <AssociationSet Name="tblLokale_tblComputer" Association="LightSwitchApplication.tblLokale_tblComputer">
+      <End Role="tblLokale" EntitySet="tblLokales" />
+      <End Role="tblComputer" EntitySet="tblComputers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

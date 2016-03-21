@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<ModelDocumentManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Documents>
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.DesktopClient\Properties\ApplicationData\tblBrugers.lsml" Checksum="162DA2D6BCA0FE82D02105510E50E03518845380F8EB169481313C9DFCC73DC9" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.DesktopClient\Properties\Client.lsml" Checksum="C79232E2AA953B2617FBF16959E7F7B93D17DDB2997B7F85792D508F80578AFA" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.DesktopClient\Properties\Proxies.lsml" Checksum="A7C42CEBC6DE3850F1B80C64DB3C792D01FF0AC02A00AD909FF4C1AE98FD71A5" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.DesktopClient\Screens\Brugere.lsml" Checksum="B1EA9DA04BFB767F52CA7960193B5DC7040CCD67BC2134BD4F4B2C7206CE0729" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.DesktopClient\Screens\Computere.lsml" Checksum="187B3DE7F9471BFF1638A6D5AC7C9EDB9C41307E758B1B823C6543883BC79EB4" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.DesktopClient\Screens\Features.lsml" Checksum="58ECF65AB4DFE441E18467134294BAF9EB145E164276580C224232EE5448A7CF" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.DesktopClient\Screens\HW.lsml" Checksum="5BB9F44DEEADAD07258CC337360B44617FD46C0D49428C32C37B2B74885F22EF" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.DesktopClient\Screens\IP.lsml" Checksum="0E4125720AF2B02C49BDF6D2B17DBA5BA4BA2B4A612037AFC9139525ED27FFCC" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.DesktopClient\Screens\tblBrugerDetail.lsml" Checksum="9A9A0FE06A94676371EBC36A95ED81CFE2357D3FD9FDFB2F1A8B7905454417C5" />
+    <Document FullPath="C:\Users\administrator.BUUSJENSEN\Documents\Visual Studio 2013\Projects\BJDoc\BJDoc\BJDoc.DesktopClient\Screens\Lokaler.lsml" Checksum="0CC0B97DE89948C9C83952C42B8231EF7BCB5ADD3E2B568328164CD2845B7A06" />
+  </Documents>
+</ModelDocumentManifest>
