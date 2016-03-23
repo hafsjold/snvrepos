@@ -89,6 +89,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbBJDoc.edmx</DependentUpon>
     </Compile>
+    <Compile Include="frm\frmFeatureType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmFeatureType.Designer.cs">
+      <DependentUpon>frmFeatureType.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm\frmBruger.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -139,6 +145,9 @@
     <EmbeddedResource Include="frm\frmBruger.resx">
       <DependentUpon>frmBruger.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frm\frmFeatureType.resx">
+      <DependentUpon>frmFeatureType.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -169,6 +178,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="tblBrugers.datasource" />
+    <None Include="tblFeatureTypes.datasource" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

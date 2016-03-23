@@ -7,23 +7,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.Entity;
 
 namespace BJDoc2
 {
-    public partial class FrmBruger : Form
+    public partial class FrmFeatureType : Form
     {
-        public FrmBruger()
+        public FrmFeatureType()
         {
             InitializeComponent();
         }
 
-        private void FrmBruger_Load(object sender, EventArgs e)
+        private void FrmFeatureType_Load(object sender, EventArgs e)
         {
-            this.bsBrugers.DataSource = Program.db.tblBrugers.Local;
+            this.bsFeatureTypes.DataSource = Program.db.tblFeatureTypes.Local;
         }
 
-        private void FrmBruger_FormClosing(object sender, FormClosingEventArgs e)
+        private void FrmFeatureType_FormClosing(object sender, FormClosingEventArgs e)
         {
             Program.db.SaveChanges();
         }

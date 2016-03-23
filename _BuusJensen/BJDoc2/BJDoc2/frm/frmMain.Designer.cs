@@ -33,6 +33,7 @@
             this.afslutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.brugerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.featureTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,7 +66,8 @@
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.brugerToolStripMenuItem});
+            this.brugerToolStripMenuItem,
+            this.featureTypeToolStripMenuItem});
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.Size = new System.Drawing.Size(39, 20);
             this.editToolStripMenuItem.Text = "Edit";
@@ -73,9 +75,16 @@
             // brugerToolStripMenuItem
             // 
             this.brugerToolStripMenuItem.Name = "brugerToolStripMenuItem";
-            this.brugerToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.brugerToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
             this.brugerToolStripMenuItem.Text = "Bruger";
             this.brugerToolStripMenuItem.Click += new System.EventHandler(this.brugerToolStripMenuItem_Click);
+            // 
+            // featureTypeToolStripMenuItem
+            // 
+            this.featureTypeToolStripMenuItem.Name = "featureTypeToolStripMenuItem";
+            this.featureTypeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.featureTypeToolStripMenuItem.Text = "FeatureType";
+            this.featureTypeToolStripMenuItem.Click += new System.EventHandler(this.featureTypeToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -90,6 +99,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BJDoc";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMain_FormClosing);
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -105,6 +115,7 @@
         private System.Windows.Forms.ToolStripMenuItem afslutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem brugerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem featureTypeToolStripMenuItem;
     }
 }
 
