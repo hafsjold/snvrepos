@@ -57,10 +57,30 @@ namespace BJDoc2
         {
             if (!FocusChild("Bruger"))
             {
-                FrmBruger m_Bruger_m = new FrmBruger();
-                m_Bruger_m.MdiParent = this;
-                m_Bruger_m.Show();
+                FrmBruger m_Bruger = new FrmBruger();
+                m_Bruger.MdiParent = this;
+                m_Bruger.Show();
             }
         }
+
+        private void featureTypeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("FeatureType"))
+            {
+                FrmFeatureType m_FeatureType = new FrmFeatureType();
+                m_FeatureType.MdiParent = this;
+                m_FeatureType.Show();
+            }
+        }
+
+
+
+
+
+        private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Program.db.SaveChanges();
+        }
+
     }
 }
