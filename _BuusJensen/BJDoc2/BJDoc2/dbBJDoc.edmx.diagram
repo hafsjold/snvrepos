@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="782602d0f2ee47e38be2c96ec712d69d" Name="Diagram1">
+        <EntityTypeShape EntityType="dbBuusjensenModel.tblBrugerRelations" Width="2.25" PointX="9" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBuusjensenModel.tblBrugers" Width="1.625" PointX="6.125" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBuusjensenModel.tblComputers" Width="1.875" PointX="6.125" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBuusjensenModel.tblFeatureRelations" Width="1.5" PointX="8.875" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBuusjensenModel.tblFeatures" Width="1.5" PointX="11.75" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBuusjensenModel.tblFeatureTypes" Width="1.5" PointX="14.5" PointY="16.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBuusjensenModel.tblHWs" Width="1.5" PointX="3.125" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBuusjensenModel.tblHWtypes" Width="1.5" PointX="0.625" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBuusjensenModel.tblIpRelations" Width="1.5" PointX="12.125" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBuusjensenModel.tblIps" Width="1.5" PointX="14.5" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="dbBuusjensenModel.tblLokales" Width="1.5" PointX="3.625" PointY="7.25" IsExpanded="true" />
+        <AssociationConnector Association="dbBuusjensenModel.tblBrugerRelation_tblBruger" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBuusjensenModel.tblBrugerRelation_tblComputer" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBuusjensenModel.tblComputer_tblBruger" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBuusjensenModel.tblLokale_tblBruger" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBuusjensenModel.tblComputer_tblHW" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBuusjensenModel.tblFeatureRelation_tblComputer" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBuusjensenModel.tblIp_tblComputer" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBuusjensenModel.tblIpRelation_tblComputer" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBuusjensenModel.tblLokale_tblComputer" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBuusjensenModel.tblFeatureRelation_tblFeature" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBuusjensenModel.tblFeature_tblFeatureType" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBuusjensenModel.tblHW_tblHWtype" ManuallyRouted="false" />
+        <AssociationConnector Association="dbBuusjensenModel.tblIp_tblIpRelation" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
