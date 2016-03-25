@@ -17,7 +17,7 @@ namespace BJDoc2
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblHWtypes()
         {
-            this.tblHWs = new HashSet<tblHWs>();
+            this.tblHWs = new ObservableListSource<tblHWs>();
         }
     
         public int Id { get; set; }
@@ -29,6 +29,6 @@ namespace BJDoc2
         public byte[] RowVersion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblHWs> tblHWs { get; set; }
+        public virtual ObservableListSource<tblHWs> tblHWs { get; set; }
     }
 }

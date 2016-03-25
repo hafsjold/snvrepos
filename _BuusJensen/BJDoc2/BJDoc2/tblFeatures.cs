@@ -17,7 +17,7 @@ namespace BJDoc2
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblFeatures()
         {
-            this.tblFeatureRelations = new HashSet<tblFeatureRelations>();
+            this.tblFeatureRelations = new ObservableListSource<tblFeatureRelations>();
         }
     
         public int Id { get; set; }
@@ -30,7 +30,7 @@ namespace BJDoc2
         public int tblFeatures_tblFeatureType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblFeatureRelations> tblFeatureRelations { get; set; }
+        public virtual ObservableListSource<tblFeatureRelations> tblFeatureRelations { get; set; }
         public virtual tblFeatureTypes tblFeatureTypes { get; set; }
     }
 }

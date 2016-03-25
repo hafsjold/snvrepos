@@ -13,10 +13,10 @@ namespace BJDoc2
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class dbBuusjensenEntities : DbContext
+    public partial class dbBuusjensenEntities1 : DbContext
     {
-        public dbBuusjensenEntities()
-            : base("name=dbBuusjensenEntities")
+        public dbBuusjensenEntities1()
+            : base("name=dbBuusjensenEntities1")
         {
         }
     

@@ -34,6 +34,7 @@
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.brugerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.featureTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,7 +52,8 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.afslutToolStripMenuItem});
+            this.afslutToolStripMenuItem,
+            this.testToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -59,7 +61,7 @@
             // afslutToolStripMenuItem
             // 
             this.afslutToolStripMenuItem.Name = "afslutToolStripMenuItem";
-            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.afslutToolStripMenuItem.Text = "Afslut";
             this.afslutToolStripMenuItem.Click += new System.EventHandler(this.afslutToolStripMenuItem_Click);
             // 
@@ -75,16 +77,23 @@
             // brugerToolStripMenuItem
             // 
             this.brugerToolStripMenuItem.Name = "brugerToolStripMenuItem";
-            this.brugerToolStripMenuItem.Size = new System.Drawing.Size(109, 22);
+            this.brugerToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.brugerToolStripMenuItem.Text = "Bruger";
             this.brugerToolStripMenuItem.Click += new System.EventHandler(this.brugerToolStripMenuItem_Click);
             // 
             // featureTypeToolStripMenuItem
             // 
             this.featureTypeToolStripMenuItem.Name = "featureTypeToolStripMenuItem";
-            this.featureTypeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.featureTypeToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
             this.featureTypeToolStripMenuItem.Text = "FeatureType";
             this.featureTypeToolStripMenuItem.Click += new System.EventHandler(this.featureTypeToolStripMenuItem_Click);
+            // 
+            // testToolStripMenuItem
+            // 
+            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.testToolStripMenuItem.Text = "Test";
+            this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -116,6 +125,7 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem brugerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem featureTypeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
     }
 }
 

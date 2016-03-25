@@ -60,6 +60,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.Extensions" />
@@ -89,6 +90,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbBJDoc.edmx</DependentUpon>
     </Compile>
+    <Compile Include="frm\frmTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmTest.Designer.cs">
+      <DependentUpon>frmTest.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm\frmFeatureType.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +114,7 @@
     <Compile Include="frm\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="ObservableListSource .cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="tblBrugerRelations.cs">
@@ -142,6 +150,9 @@
     <Compile Include="tblLokales.cs">
       <DependentUpon>dbBJDoc.tt</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frm\frmTest.resx">
+      <DependentUpon>frmTest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm\frmBruger.resx">
       <DependentUpon>frmBruger.cs</DependentUpon>
     </EmbeddedResource>
@@ -177,7 +188,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="tblBrugers.datasource" />
+    <None Include="tblFeatures.datasource" />
     <None Include="tblFeatureTypes.datasource" />
   </ItemGroup>
   <ItemGroup>
@@ -196,6 +207,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="dbBJDoc.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>dbBJDoc.edmx</DependentUpon>
@@ -206,9 +221,6 @@
       <DependentUpon>dbBJDoc.edmx</DependentUpon>
       <LastGenOutput>dbBJDoc.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

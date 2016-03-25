@@ -79,8 +79,17 @@ namespace BJDoc2
 
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Program.db.SaveChanges();
+            //Program.db.SubmitChanges();
         }
 
+        private void testToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("frmTest"))
+            {
+                FrmTest m_Test = new FrmTest();
+                m_Test.MdiParent = this;
+                m_Test.Show();
+            }
+        }
     }
 }

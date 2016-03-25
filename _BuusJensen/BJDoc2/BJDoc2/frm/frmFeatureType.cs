@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.Entity;
 
 namespace BJDoc2
 {
@@ -15,16 +16,17 @@ namespace BJDoc2
         public FrmFeatureType()
         {
             InitializeComponent();
+            //Program.db.tblFeatureTypes.Load();
         }
 
         private void FrmFeatureType_Load(object sender, EventArgs e)
         {
-            this.bsFeatureTypes.DataSource = Program.db.tblFeatureTypes.Local;
+            //tblFeatureTypesBindingSource.DataSource = Program.db.tblFeatureTypes;
         }
 
         private void FrmFeatureType_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Program.db.SaveChanges();
+            //Program.db.SubmitChanges();
         }
     }
 }
