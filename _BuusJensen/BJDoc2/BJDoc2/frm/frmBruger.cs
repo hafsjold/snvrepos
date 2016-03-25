@@ -20,12 +20,12 @@ namespace BJDoc2
 
         private void FrmBruger_Load(object sender, EventArgs e)
         {
-            this.bsBrugers.DataSource = Program.db.tblBrugers.Local;
+            //this.bsBrugers.DataSource = Program.db.tblBrugers;
         }
 
         private void FrmBruger_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Program.db.SaveChanges();
+            //Program.db.SubmitChanges();
         }
     }
 }

@@ -17,8 +17,8 @@ namespace BJDoc2
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblLokales()
         {
-            this.tblBrugers = new HashSet<tblBrugers>();
-            this.tblComputers = new HashSet<tblComputers>();
+            this.tblBrugers = new ObservableListSource<tblBrugers>();
+            this.tblComputers = new ObservableListSource<tblComputers>();
         }
     
         public int Id { get; set; }
@@ -32,8 +32,8 @@ namespace BJDoc2
         public byte[] RowVersion { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblBrugers> tblBrugers { get; set; }
+        public virtual ObservableListSource<tblBrugers> tblBrugers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblComputers> tblComputers { get; set; }
+        public virtual ObservableListSource<tblComputers> tblComputers { get; set; }
     }
 }

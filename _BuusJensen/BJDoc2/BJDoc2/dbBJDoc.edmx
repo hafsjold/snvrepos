@@ -741,7 +741,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="dbBuusjensenEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="dbBuusjensenEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tblBrugerRelations" EntityType="Self.tblBrugerRelations" />
           <EntitySet Name="tblBrugers" EntityType="Self.tblBrugers" />
           <EntitySet Name="tblComputers" EntityType="Self.tblComputers" />
@@ -811,7 +811,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="dbBuusjensenModelStoreContainer" CdmEntityContainer="dbBuusjensenEntities">
+        <EntityContainerMapping StorageEntityContainer="dbBuusjensenModelStoreContainer" CdmEntityContainer="dbBuusjensenEntities1">
           <EntitySetMapping Name="tblBrugerRelations">
             <EntityTypeMapping TypeName="dbBuusjensenModel.tblBrugerRelations">
               <MappingFragment StoreEntitySet="tblBrugerRelations">

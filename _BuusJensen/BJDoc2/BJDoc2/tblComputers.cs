@@ -17,10 +17,10 @@ namespace BJDoc2
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public tblComputers()
         {
-            this.tblBrugerRelations = new HashSet<tblBrugerRelations>();
-            this.tblFeatureRelations = new HashSet<tblFeatureRelations>();
-            this.tblIps = new HashSet<tblIps>();
-            this.tblIpRelations = new HashSet<tblIpRelations>();
+            this.tblBrugerRelations = new ObservableListSource<tblBrugerRelations>();
+            this.tblFeatureRelations = new ObservableListSource<tblFeatureRelations>();
+            this.tblIps = new ObservableListSource<tblIps>();
+            this.tblIpRelations = new ObservableListSource<tblIpRelations>();
         }
     
         public int Id { get; set; }
@@ -36,15 +36,15 @@ namespace BJDoc2
         public Nullable<int> tblLokale_tblComputer1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblBrugerRelations> tblBrugerRelations { get; set; }
+        public virtual ObservableListSource<tblBrugerRelations> tblBrugerRelations { get; set; }
         public virtual tblBrugers tblBrugers { get; set; }
         public virtual tblHWs tblHWs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblFeatureRelations> tblFeatureRelations { get; set; }
+        public virtual ObservableListSource<tblFeatureRelations> tblFeatureRelations { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblIps> tblIps { get; set; }
+        public virtual ObservableListSource<tblIps> tblIps { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblIpRelations> tblIpRelations { get; set; }
+        public virtual ObservableListSource<tblIpRelations> tblIpRelations { get; set; }
         public virtual tblLokales tblLokales { get; set; }
     }
 }
