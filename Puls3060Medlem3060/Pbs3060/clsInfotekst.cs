@@ -226,7 +226,8 @@ namespace nsPbs3060
             string MsgtextSub = "";
             if (infotext != null)
             {
-                MsgtextSub = regexParam.Replace(infotext, delegate(Match match)
+                MsgtextSub = regexParam.Replace(
+                    infotext, delegate(Match match)
                 {
                     string v = match.ToString();
                     switch (v.ToLower())
