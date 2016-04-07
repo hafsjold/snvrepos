@@ -1,0 +1,229 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="puls3060_dkModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityType Name="ecpwt_rsmembership_membership_subscribers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="membership_id" Type="int" Nullable="false" />
+          <Property Name="membership_start" Type="datetime" Nullable="false" />
+          <Property Name="membership_end" Type="datetime" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="currency" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="status" Type="tinyint" Nullable="false" />
+          <Property Name="extras" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="notes" Type="text" Nullable="false" />
+          <Property Name="from_transaction_id" Type="int" Nullable="false" />
+          <Property Name="last_transaction_id" Type="int" Nullable="false" />
+          <Property Name="custom_1" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="custom_2" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="custom_3" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="notified" Type="datetime" Nullable="false" />
+          <Property Name="published" Type="bool" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ecpwt_rsmembership_transactions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="user_email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="user_data" Type="text" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="params" Type="text" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="ip" Type="varchar" MaxLength="16" Nullable="false" />
+          <Property Name="price" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="coupon" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="currency" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="hash" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="custom" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="gateway" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="response_log" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ecpwt_rsmembership_transactions_user_data">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="adresse" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="postnr" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="bynavn" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="mobil" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="kon" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="fodtaar" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="memberid" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="puls3060_dkModelStoreContainer">
+          <EntitySet Name="ecpwt_rsmembership_membership_subscribers" EntityType="Self.ecpwt_rsmembership_membership_subscribers" Schema="puls3060_dk" store:Type="Tables" />
+          <EntitySet Name="ecpwt_rsmembership_transactions" EntityType="Self.ecpwt_rsmembership_transactions" Schema="puls3060_dk" store:Type="Tables" />
+          <EntitySet Name="ecpwt_rsmembership_transactions_user_data" EntityType="Self.ecpwt_rsmembership_transactions_user_data" Schema="puls3060_dk" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="puls3060_dkModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityType Name="ecpwt_rsmembership_membership_subscribers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="membership_id" Type="Int32" Nullable="false" />
+          <Property Name="membership_start" Type="DateTime" Nullable="false" />
+          <Property Name="membership_end" Type="DateTime" Nullable="false" />
+          <Property Name="price" Type="Decimal" Nullable="false" />
+          <Property Name="currency" Type="String" Nullable="false" />
+          <Property Name="status" Type="SByte" Nullable="false" />
+          <Property Name="extras" Type="String" Nullable="false" />
+          <Property Name="notes" Type="String" Nullable="false" />
+          <Property Name="from_transaction_id" Type="Int32" Nullable="false" />
+          <Property Name="last_transaction_id" Type="Int32" Nullable="false" />
+          <Property Name="custom_1" Type="String" Nullable="false" />
+          <Property Name="custom_2" Type="String" Nullable="false" />
+          <Property Name="custom_3" Type="String" Nullable="false" />
+          <Property Name="notified" Type="DateTime" Nullable="false" />
+          <Property Name="published" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ecpwt_rsmembership_transactions">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="user_email" Type="String" Nullable="false" />
+          <Property Name="user_data" Type="String" Nullable="false" />
+          <Property Name="type" Type="String" Nullable="false" />
+          <Property Name="params" Type="String" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" />
+          <Property Name="ip" Type="String" Nullable="false" />
+          <Property Name="price" Type="Decimal" Nullable="false" />
+          <Property Name="coupon" Type="String" Nullable="false" />
+          <Property Name="currency" Type="String" Nullable="false" />
+          <Property Name="hash" Type="String" Nullable="false" />
+          <Property Name="custom" Type="String" Nullable="false" />
+          <Property Name="gateway" Type="String" Nullable="false" />
+          <Property Name="status" Type="String" Nullable="false" />
+          <Property Name="response_log" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ecpwt_rsmembership_transactions_user_data">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" />
+          <Property Name="adresse" Type="String" Nullable="false" />
+          <Property Name="postnr" Type="String" Nullable="false" />
+          <Property Name="bynavn" Type="String" Nullable="false" />
+          <Property Name="mobil" Type="String" Nullable="false" />
+          <Property Name="email" Type="String" Nullable="false" />
+          <Property Name="kon" Type="String" Nullable="false" />
+          <Property Name="fodtaar" Type="String" Nullable="false" />
+          <Property Name="memberid" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="dbPuls3060" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ecpwt_rsmembership_membership_subscribers" EntityType="Self.ecpwt_rsmembership_membership_subscribers" />
+          <EntitySet Name="ecpwt_rsmembership_transactions" EntityType="Self.ecpwt_rsmembership_transactions" />
+          <EntitySet Name="ecpwt_rsmembership_transactions_user_data" EntityType="Self.ecpwt_rsmembership_transactions_user_data" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="puls3060_dkModelStoreContainer" CdmEntityContainer="dbPuls3060">
+          <EntitySetMapping Name="ecpwt_rsmembership_membership_subscribers">
+            <EntityTypeMapping TypeName="puls3060_dkModel.ecpwt_rsmembership_membership_subscribers">
+              <MappingFragment StoreEntitySet="ecpwt_rsmembership_membership_subscribers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="membership_id" ColumnName="membership_id" />
+                <ScalarProperty Name="membership_start" ColumnName="membership_start" />
+                <ScalarProperty Name="membership_end" ColumnName="membership_end" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="currency" ColumnName="currency" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="extras" ColumnName="extras" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="from_transaction_id" ColumnName="from_transaction_id" />
+                <ScalarProperty Name="last_transaction_id" ColumnName="last_transaction_id" />
+                <ScalarProperty Name="custom_1" ColumnName="custom_1" />
+                <ScalarProperty Name="custom_2" ColumnName="custom_2" />
+                <ScalarProperty Name="custom_3" ColumnName="custom_3" />
+                <ScalarProperty Name="notified" ColumnName="notified" />
+                <ScalarProperty Name="published" ColumnName="published" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ecpwt_rsmembership_transactions">
+            <EntityTypeMapping TypeName="puls3060_dkModel.ecpwt_rsmembership_transactions">
+              <MappingFragment StoreEntitySet="ecpwt_rsmembership_transactions">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
+                <ScalarProperty Name="user_data" ColumnName="user_data" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="params" ColumnName="params" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="coupon" ColumnName="coupon" />
+                <ScalarProperty Name="currency" ColumnName="currency" />
+                <ScalarProperty Name="hash" ColumnName="hash" />
+                <ScalarProperty Name="custom" ColumnName="custom" />
+                <ScalarProperty Name="gateway" ColumnName="gateway" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="response_log" ColumnName="response_log" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ecpwt_rsmembership_transactions_user_data">
+            <EntityTypeMapping TypeName="puls3060_dkModel.ecpwt_rsmembership_transactions_user_data">
+              <MappingFragment StoreEntitySet="ecpwt_rsmembership_transactions_user_data">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="adresse" ColumnName="adresse" />
+                <ScalarProperty Name="postnr" ColumnName="postnr" />
+                <ScalarProperty Name="bynavn" ColumnName="bynavn" />
+                <ScalarProperty Name="mobil" ColumnName="mobil" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="kon" ColumnName="kon" />
+                <ScalarProperty Name="fodtaar" ColumnName="fodtaar" />
+                <ScalarProperty Name="memberid" ColumnName="memberid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
