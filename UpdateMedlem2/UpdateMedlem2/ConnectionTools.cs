@@ -56,7 +56,7 @@ namespace UpdateMedlem2
 
                 // now flip the properties that were changed
                 source.Database.Connection.ConnectionString
-                    = sqlCnxStringBuilder.ConnectionString + ";convert zero datetime=True";
+                    = sqlCnxStringBuilder.ConnectionString + ";ConvertZeroDateTime=True";
             }
             catch (Exception ex)
             {
