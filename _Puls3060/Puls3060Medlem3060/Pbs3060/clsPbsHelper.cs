@@ -17,7 +17,8 @@ namespace nsPbs3060
 
             DateTime Nu_plus_1 = Nu.AddMonths(1);
             DateTime p_DatoKontingentForfald = new DateTime(Nu_plus_1.Year, Nu_plus_1.Month, 1);
-            DateTime p_DatoBetaltKontingentTil = Nu.AddMonths(2);
+            DateTime Nu_plus_2 = Nu.AddMonths(2);
+            DateTime p_DatoBetaltKontingentTil = new DateTime(Nu_plus_2.Year, Nu_plus_2.Month, 12);
 
             puls3060_dkEntities jdbd = new puls3060_dkEntities();
             clsPbs601 objPbs601d = new clsPbs601();
@@ -30,11 +31,14 @@ namespace nsPbs3060
                 foreach (string[] item in items)
                 {
                     string user_id = item[0];
+                    string name = item[1];
                     DateTime fradato = DateTime.Parse(item[4]);
                     double advisbelob = double.Parse(item[5]);
                     DateTime tildato = DateTime.Parse(item[6]);
                     bool indmeldelse = (item[7] == "J") ? true : false;
                     bool tilmeldtpbs = (item[8] == "J") ? true : false;
+                    int subscriber_id = int.Parse(item[9]);
+                    int memberid = (!string.IsNullOrEmpty(item[10])) ? int.Parse(item[10]) : (int)(from r in m_dbData3060.nextval("memberid") select r.id).First();
 
                     recKontingentforslag rec_Kontingentforslag = new recKontingentforslag
                     {
@@ -47,6 +51,9 @@ namespace nsPbs3060
                         tildato = tildato,
                         indmeldelse = indmeldelse,
                         tilmeldtpbs = tilmeldtpbs,
+                        subscriber_id = subscriber_id,
+                        memberid = memberid,
+                        name = name
                     };
                     memKontingentforslag.Add(rec_Kontingentforslag);
                 }
@@ -142,6 +149,46 @@ WHERE 17 NOT IN (SELECT ugm.group_id FROM ecpwt_user_usergroup_map ugm WHERE ugm
         public void JobQMaintenance(dbData3060DataContext p_dbData3060)
         {
             var result = p_dbData3060.ExecuteQuery<dynamic>(@"DELETE FROM dbo.tblJobqueue WHERE starttime < DATEADD(DAY,-2,GETDATE())");
+        }
+
+        public static void Update_memberid_in_rsmembership_transaction(recRSMembershipTransactions t1)
+        {
+            puls3060_dkEntities dbPuls3060_dk = new puls3060_dkEntities();
+
+            var qry2 = from s2 in dbPuls3060_dk.ecpwt_rsmembership_transactions where s2.id == t1.id select s2;
+            int c2 = qry2.Count();
+            if (c2 == 1)
+            {
+                ecpwt_rsmembership_transactions t2 = qry2.First();
+                User_data recud = clsHelper.unpack_UserData(t2.user_data);
+                recud.memberid = t1.memberid.ToString();
+                t2.user_data = clsHelper.pack_UserData(recud);
+                dbPuls3060_dk.SaveChanges();
+            }
+            return;
+        }
+
+        public static void Update_rsmembership_transactions(dbData3060DataContext p_dbData3060)
+        {
+            puls3060_dkEntities dbPuls3060_dk = new puls3060_dkEntities();
+            var qry1 = from s1 in p_dbData3060.tblrsmembership_transactions where s1.type == "new" select s1;
+            foreach (var t1 in qry1)
+            {
+                var qry2 = from s2 in dbPuls3060_dk.ecpwt_rsmembership_transactions where s2.id == t1.trans_id select s2;
+                int c2 = qry2.Count();
+                if (c2 == 1)
+                {
+                    ecpwt_rsmembership_transactions t2 = qry2.First();
+                    User_data recud = clsHelper.unpack_UserData(t2.user_data);
+                    if (string.IsNullOrEmpty(recud.memberid))
+                    {
+                        recud.memberid = t1.memberid.ToString();
+                        t2.user_data = clsHelper.pack_UserData(recud);
+                        dbPuls3060_dk.SaveChanges();
+                    }
+                }
+            }
+            return;
         }
     }
 }

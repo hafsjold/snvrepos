@@ -39,15 +39,15 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.pgmForslag = new System.Windows.Forms.ProgressBar();
             this.lvwMedlem = new System.Windows.Forms.ListView();
-            this.columnHeaderMNavn = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderMNr = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderMAdresse = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderMPostnr = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderMFradato = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderMKontingent = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderMTildato = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderMIndmeldelse = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderMTilmeldtpbs = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderMNavn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderMNr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderMAdresse = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderMPostnr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderMFradato = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderMKontingent = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderMTildato = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderMIndmeldelse = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderMTilmeldtpbs = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Label_Forslagstekst = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cmdForslag = new System.Windows.Forms.Button();
@@ -56,15 +56,18 @@
             this.Label_Fakturatekst = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lvwKontingent = new System.Windows.Forms.ListView();
-            this.columnHeaderKNnavn = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderKNR = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderKAdresse = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderKPostnr = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderKFradato = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderKKontingent = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderKTildato = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderKIndmeldelse = new System.Windows.Forms.ColumnHeader();
-            this.columnHeaderKTilmeldtpbs = new System.Windows.Forms.ColumnHeader();
+            this.columnHeaderKNnavn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderKNR = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderKAdresse = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderKPostnr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderKFradato = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderKKontingent = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderKTildato = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderKIndmeldelse = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderKTilmeldtpbs = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderSid = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderNr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -170,8 +173,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.label_DatoBetaltKontingentTil);
             this.splitContainer1.Panel2.Controls.Add(this.cmdFakturer);
             this.splitContainer1.Panel2.Controls.Add(this.DatoBetaltKontingentTil);
-            this.splitContainer1.Size = new System.Drawing.Size(829, 513);
-            this.splitContainer1.SplitterDistance = 409;
+            this.splitContainer1.Size = new System.Drawing.Size(1356, 513);
+            this.splitContainer1.SplitterDistance = 669;
             this.splitContainer1.TabIndex = 4;
             // 
             // pgmForslag
@@ -201,14 +204,14 @@
             this.lvwMedlem.FullRowSelect = true;
             this.lvwMedlem.Location = new System.Drawing.Point(0, 137);
             this.lvwMedlem.Name = "lvwMedlem";
-            this.lvwMedlem.Size = new System.Drawing.Size(409, 376);
+            this.lvwMedlem.Size = new System.Drawing.Size(669, 376);
             this.lvwMedlem.TabIndex = 0;
             this.lvwMedlem.UseCompatibleStateImageBehavior = false;
             this.lvwMedlem.View = System.Windows.Forms.View.Details;
-            this.lvwMedlem.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvwMedlem_DragDrop);
             this.lvwMedlem.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwMedlem_ColumnClick);
-            this.lvwMedlem.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvwMedlem_DragEnter);
             this.lvwMedlem.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvwMedlem_ItemDrag);
+            this.lvwMedlem.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvwMedlem_DragDrop);
+            this.lvwMedlem.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvwMedlem_DragEnter);
             // 
             // columnHeaderMNavn
             // 
@@ -334,19 +337,21 @@
             this.columnHeaderKKontingent,
             this.columnHeaderKTildato,
             this.columnHeaderKIndmeldelse,
-            this.columnHeaderKTilmeldtpbs});
+            this.columnHeaderKTilmeldtpbs,
+            this.columnHeaderSid,
+            this.columnHeaderNr});
             this.lvwKontingent.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lvwKontingent.FullRowSelect = true;
             this.lvwKontingent.Location = new System.Drawing.Point(0, 137);
             this.lvwKontingent.Name = "lvwKontingent";
-            this.lvwKontingent.Size = new System.Drawing.Size(416, 376);
+            this.lvwKontingent.Size = new System.Drawing.Size(683, 376);
             this.lvwKontingent.TabIndex = 0;
             this.lvwKontingent.UseCompatibleStateImageBehavior = false;
             this.lvwKontingent.View = System.Windows.Forms.View.Details;
-            this.lvwKontingent.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvwKontingent_DragDrop);
             this.lvwKontingent.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.lvwKontingent_ColumnClick);
-            this.lvwKontingent.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvwKontingent_DragEnter);
             this.lvwKontingent.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.lvwKontingent_ItemDrag);
+            this.lvwKontingent.DragDrop += new System.Windows.Forms.DragEventHandler(this.lvwKontingent_DragDrop);
+            this.lvwKontingent.DragEnter += new System.Windows.Forms.DragEventHandler(this.lvwKontingent_DragEnter);
             // 
             // columnHeaderKNnavn
             // 
@@ -354,7 +359,7 @@
             // 
             // columnHeaderKNR
             // 
-            this.columnHeaderKNR.Text = "Nr";
+            this.columnHeaderKNR.Text = "Uid";
             // 
             // columnHeaderKAdresse
             // 
@@ -384,6 +389,14 @@
             // 
             this.columnHeaderKTilmeldtpbs.Text = "Pbs";
             // 
+            // columnHeaderSid
+            // 
+            this.columnHeaderSid.Text = "Sid";
+            // 
+            // columnHeaderNr
+            // 
+            this.columnHeaderNr.Text = "Nr";
+            // 
             // FrmKontingentForslag
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -400,6 +413,7 @@
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -444,5 +458,7 @@
         private System.Windows.Forms.ColumnHeader columnHeaderMTilmeldtpbs;
         private System.Windows.Forms.ColumnHeader columnHeaderKIndmeldelse;
         private System.Windows.Forms.ColumnHeader columnHeaderKTilmeldtpbs;
+        private System.Windows.Forms.ColumnHeader columnHeaderSid;
+        private System.Windows.Forms.ColumnHeader columnHeaderNr;
     }
 }
