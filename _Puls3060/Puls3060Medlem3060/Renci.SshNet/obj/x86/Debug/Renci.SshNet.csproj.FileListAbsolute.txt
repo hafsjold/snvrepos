@@ -1,6 +1,5 @@
 C:\Users\regns\Documents\Visual Studio 2015\Projects\Puls3060Medlem3060\Renci.SshNet\bin\x86\Debug\Renci.SshNet.dll
 C:\Users\regns\Documents\Visual Studio 2015\Projects\Puls3060Medlem3060\Renci.SshNet\bin\x86\Debug\Renci.SshNet.pdb
 C:\Users\regns\Documents\Visual Studio 2015\Projects\Puls3060Medlem3060\Renci.SshNet\bin\x86\Debug\Renci.SshNet.xml
-C:\Users\regns\Documents\Visual Studio 2015\Projects\Puls3060Medlem3060\Renci.SshNet\obj\x86\Debug\Renci.SshNet.csprojResolveAssemblyReference.cache
 C:\Users\regns\Documents\Visual Studio 2015\Projects\Puls3060Medlem3060\Renci.SshNet\obj\x86\Debug\Renci.SshNet.dll
 C:\Users\regns\Documents\Visual Studio 2015\Projects\Puls3060Medlem3060\Renci.SshNet\obj\x86\Debug\Renci.SshNet.pdb
