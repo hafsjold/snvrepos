@@ -79,11 +79,7 @@ namespace UpdateMedlem2
             if (rec.mobil == null) rec.mobil = "";
 
             rec.memberid = (string)fields["memberid"];
-            if (String.IsNullOrEmpty(rec.memberid))
-            {
-                int memberid = 10000 + user_id;
-                rec.memberid = memberid.ToString();
-            }
+            if (String.IsNullOrEmpty(rec.memberid)) rec.memberid = "";
 
             rec.kon = (string)((ArrayList)((Hashtable)php["membership_fields"])["kon"])[0];
             if (rec.kon == null) rec.kon = "";
