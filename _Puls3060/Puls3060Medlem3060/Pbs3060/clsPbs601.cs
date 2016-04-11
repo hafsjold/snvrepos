@@ -801,7 +801,7 @@ namespace nsPbs3060
                     postnr = recud.postnr,
                     bynavn = recud.bynavn,
                     mobil = recud.mobil,
-                    memberid = (recud.memberid != "") ? int.Parse(recud.memberid) : (int)(from r in p_dbData3060.nextval("memberid") select r.id).First(),
+                    memberid = (!string.IsNullOrEmpty(recud.memberid)) ? int.Parse(recud.memberid) : (int)(from r in p_dbData3060.nextval("memberid") select r.id).First(),
                     kon = recud.kon,
                     fodtaar = recud.fodtaar,
                     message = recud.message,
