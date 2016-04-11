@@ -129,7 +129,7 @@ namespace nsMedlem3060Service
                             if (Antal602Filer > 0)
                             {
                                 Program.Log(string.Format("Medlem3060Service {0} begin", "Betalinger til RSMembership"));
-                                puls3060_dkEntities jdb = new puls3060_dkEntities();
+                                puls3060_dkEntities jdb = new puls3060_dkEntities(true);
                                 objPbs602.betalinger_til_rsmembership(m_dbData3060, jdb);
                                 Program.Log(string.Format("Medlem3060Service {0} end", "Betalinger til RSMembership"));
                             }
@@ -172,7 +172,7 @@ namespace nsMedlem3060Service
                             break;
 
                         case enumTask.KontingentNyeMedlemmer:
-                            puls3060_dkEntities cjdb = new puls3060_dkEntities();
+                            puls3060_dkEntities cjdb = new puls3060_dkEntities(true);
                             clsPbs601 objPbs601c = new clsPbs601();
                             Tuple<int, int> tresultc = objPbs601c.rsmembeshhip_fakturer_auto(m_dbData3060, cjdb);
                             int AntalKontingent = tresultc.Item1;
@@ -195,7 +195,7 @@ namespace nsMedlem3060Service
                             break;
 
                         case enumTask.SendEmailRykker:
-                            puls3060_dkEntities bjdb = new puls3060_dkEntities();
+                            puls3060_dkEntities bjdb = new puls3060_dkEntities(true);
                             clsPbs601 objPbs601b = new clsPbs601();
                             Tuple<int, int> tresultb = objPbs601b.rykker_auto(m_dbData3060, bjdb);
                             int AntalRykker = tresultb.Item1;
@@ -220,7 +220,7 @@ namespace nsMedlem3060Service
                             break;
 
                         case enumTask.SendEmailKviteringer:
-                            puls3060_dkEntities djdb = new puls3060_dkEntities();
+                            puls3060_dkEntities djdb = new puls3060_dkEntities(true);
                             clsPbs601 objPbs601d = new clsPbs601();
                             objPbs601d.rsmembeshhip_betalinger_auto(m_dbData3060, djdb);
                             break;

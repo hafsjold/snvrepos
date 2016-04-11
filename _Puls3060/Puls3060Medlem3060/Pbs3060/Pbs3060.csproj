@@ -163,6 +163,7 @@
     <Compile Include="clsPbsHelper.cs" />
     <Compile Include="clsSFTP.cs" />
     <Compile Include="clsPbs686.cs" />
+    <Compile Include="ConnectionTools.cs" />
     <Compile Include="dbData3060.cs">
       <DependentUpon>dbData3060.dbml</DependentUpon>
     </Compile>

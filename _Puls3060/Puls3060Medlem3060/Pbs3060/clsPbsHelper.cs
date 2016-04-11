@@ -20,7 +20,7 @@ namespace nsPbs3060
             DateTime Nu_plus_2 = Nu.AddMonths(2);
             DateTime p_DatoBetaltKontingentTil = new DateTime(Nu_plus_2.Year, Nu_plus_2.Month, 12);
 
-            puls3060_dkEntities jdbd = new puls3060_dkEntities();
+            puls3060_dkEntities jdbd = new puls3060_dkEntities(true);
             clsPbs601 objPbs601d = new clsPbs601();
             List<string[]> items = objPbs601d.RSMembership_KontingentForslag(p_DatoBetaltKontingentTil, m_dbData3060);
             int AntalForslag = items.Count();
@@ -77,7 +77,7 @@ namespace nsPbs3060
         public int OpdateringAfSlettet_rsmembership_transaction(int p_trans_id, dbData3060DataContext p_dbData3060)
         {
             int out_trans_id = p_trans_id;
-            puls3060_dkEntities dbPuls3060_dk = new puls3060_dkEntities();
+            puls3060_dkEntities dbPuls3060_dk = new puls3060_dkEntities(true);
 
             var qry1 = from s1 in dbPuls3060_dk.ecpwt_rsmembership_transactions where s1.id == p_trans_id select s1;
             int c1 = qry1.Count();
@@ -139,7 +139,7 @@ namespace nsPbs3060
 
         public void opdaterKanSlettes()
         {
-            puls3060_dkEntities jdb = new puls3060_dkEntities();
+            puls3060_dkEntities jdb = new puls3060_dkEntities(true);
             jdb.Database.ExecuteSqlCommand(@"
 INSERT INTO ecpwt_user_usergroup_map  (user_id, group_id) 
 SELECT u.id, 17   
@@ -161,7 +161,7 @@ WHERE 17 NOT IN (SELECT ugm.group_id FROM ecpwt_user_usergroup_map ugm WHERE ugm
 
         public static void Update_memberid_in_rsmembership_transaction(recRSMembershipTransactions t1)
         {
-            puls3060_dkEntities dbPuls3060_dk = new puls3060_dkEntities();
+            puls3060_dkEntities dbPuls3060_dk = new puls3060_dkEntities(true);
 
             var qry2 = from s2 in dbPuls3060_dk.ecpwt_rsmembership_transactions where s2.id == t1.id select s2;
             int c2 = qry2.Count();
@@ -178,7 +178,7 @@ WHERE 17 NOT IN (SELECT ugm.group_id FROM ecpwt_user_usergroup_map ugm WHERE ugm
 
         public static void Update_rsmembership_transactions(dbData3060DataContext p_dbData3060)
         {
-            puls3060_dkEntities dbPuls3060_dk = new puls3060_dkEntities();
+            puls3060_dkEntities dbPuls3060_dk = new puls3060_dkEntities(true);
             var qry1 = from s1 in p_dbData3060.tblrsmembership_transactions where s1.type == "new" select s1;
             foreach (var t1 in qry1)
             {
