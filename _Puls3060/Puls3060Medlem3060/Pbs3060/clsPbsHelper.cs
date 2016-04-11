@@ -87,6 +87,14 @@ namespace nsPbs3060
                 try
                 {
                     tblrsmembership_transaction t2 = qry2.First();
+                    //*****
+                    User_data recud = clsHelper.unpack_UserData(t2.user_data);
+                    if (string.IsNullOrEmpty(recud.memberid))
+                    {
+                        recud.memberid = t2.memberid.ToString();
+                        t2.user_data = clsHelper.pack_UserData(recud);
+                    }
+                    //*****
                     int? subscriber_id = t2.subscriber_id;
                     var qry3 = from s3 in dbPuls3060_dk.ecpwt_rsmembership_membership_subscribers where s3.id == subscriber_id select s3;
                     int c3 = qry3.Count();
