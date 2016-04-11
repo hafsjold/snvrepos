@@ -173,25 +173,28 @@
       <DependentUpon>dbData3060.dbml</DependentUpon>
     </Compile>
     <Compile Include="ecpwt_rsmembership_memberships.cs">
-      <DependentUpon>puls3060_dk.tt</DependentUpon>
+      <DependentUpon>puls3060_ny.tt</DependentUpon>
     </Compile>
     <Compile Include="ecpwt_rsmembership_membership_subscribers.cs">
-      <DependentUpon>puls3060_dk.tt</DependentUpon>
+      <DependentUpon>puls3060_ny.tt</DependentUpon>
     </Compile>
     <Compile Include="ecpwt_rsmembership_subscribers.cs">
-      <DependentUpon>puls3060_dk.tt</DependentUpon>
+      <DependentUpon>puls3060_ny.tt</DependentUpon>
     </Compile>
     <Compile Include="ecpwt_rsmembership_transactions.cs">
-      <DependentUpon>puls3060_dk.tt</DependentUpon>
+      <DependentUpon>puls3060_ny.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ecpwt_rsmembership_transactions_user_data.cs">
+      <DependentUpon>puls3060_ny.tt</DependentUpon>
     </Compile>
     <Compile Include="ecpwt_usergroups.cs">
-      <DependentUpon>puls3060_dk.tt</DependentUpon>
+      <DependentUpon>puls3060_ny.tt</DependentUpon>
     </Compile>
     <Compile Include="ecpwt_users.cs">
-      <DependentUpon>puls3060_dk.tt</DependentUpon>
+      <DependentUpon>puls3060_ny.tt</DependentUpon>
     </Compile>
     <Compile Include="ecpwt_user_usergroup_map.cs">
-      <DependentUpon>puls3060_dk.tt</DependentUpon>
+      <DependentUpon>puls3060_ny.tt</DependentUpon>
     </Compile>
     <Compile Include="memBogfoeringsKlader.cs" />
     <Compile Include="memPbsnetdir.cs" />
@@ -201,20 +204,20 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="puls3060_dk.Context.cs">
+    <Compile Include="puls3060_ny.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>puls3060_dk.Context.tt</DependentUpon>
+      <DependentUpon>puls3060_ny.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="puls3060_dk.cs">
+    <Compile Include="puls3060_ny.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>puls3060_dk.tt</DependentUpon>
+      <DependentUpon>puls3060_ny.tt</DependentUpon>
     </Compile>
-    <Compile Include="puls3060_dk.Designer.cs">
+    <Compile Include="puls3060_ny.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>puls3060_dk.edmx</DependentUpon>
+      <DependentUpon>puls3060_ny.edmx</DependentUpon>
     </Compile>
     <Compile Include="Resource1.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -227,10 +230,10 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="tblmembershippayment.cs">
-      <DependentUpon>puls3060_dk.tt</DependentUpon>
+      <DependentUpon>puls3060_ny.tt</DependentUpon>
     </Compile>
     <Compile Include="tblpaypalpayment.cs">
-      <DependentUpon>puls3060_dk.tt</DependentUpon>
+      <DependentUpon>puls3060_ny.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -239,22 +242,12 @@
       <LastGenOutput>dbData3060.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <EntityDeploy Include="puls3060_dk.edmx">
+    <EntityDeploy Include="puls3060_ny.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>puls3060_dk.Designer.cs</LastGenOutput>
+      <LastGenOutput>puls3060_ny.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="puls3060_dk.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>puls3060_dk.edmx</DependentUpon>
-      <LastGenOutput>puls3060_dk.Context.cs</LastGenOutput>
-    </None>
-    <None Include="puls3060_dk.edmx.diagram">
-      <DependentUpon>puls3060_dk.edmx</DependentUpon>
-    </None>
-    <None Include="puls3060_dk.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>puls3060_dk.edmx</DependentUpon>
-      <LastGenOutput>puls3060_dk.cs</LastGenOutput>
+    <None Include="puls3060_ny.edmx.diagram">
+      <DependentUpon>puls3060_ny.edmx</DependentUpon>
     </None>
     <None Include="Service References\PayPalServiceReference\CoreComponentTypes.xsd">
       <SubType>Designer</SubType>
@@ -506,6 +499,18 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="puls3060_ny.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>puls3060_ny.edmx</DependentUpon>
+      <LastGenOutput>puls3060_ny.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="puls3060_ny.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>puls3060_ny.edmx</DependentUpon>
+      <LastGenOutput>puls3060_ny.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

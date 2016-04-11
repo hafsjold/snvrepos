@@ -367,7 +367,7 @@ namespace nsPuls3060
             var rec_regnskab = Program.qryAktivRegnskab();
             string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_HHmmss") + ".xlsx";
             
-            puls3060_dkEntities jdb = new puls3060_dkEntities(true);
+            puls3060_nyEntities jdb = new puls3060_nyEntities(true);
 
             var qry = from u in jdb.ecpwt_users
                       join m in jdb.ecpwt_rsmembership_membership_subscribers on u.id equals m.user_id

@@ -13,10 +13,10 @@ namespace nsPbs3060
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class puls3060_dkEntities : DbContext
+    public partial class puls3060_nyEntities : DbContext
     {
-        public puls3060_dkEntities()
-            : base("name=puls3060_dkEntities")
+        public puls3060_nyEntities()
+            : base("name=puls3060_nyEntities")
         {
         }
     
@@ -26,12 +26,13 @@ namespace nsPbs3060
         }
     
         public DbSet<ecpwt_rsmembership_membership_subscribers> ecpwt_rsmembership_membership_subscribers { get; set; }
-        public DbSet<ecpwt_rsmembership_memberships> ecpwt_rsmembership_memberships { get; set; }
         public DbSet<ecpwt_rsmembership_subscribers> ecpwt_rsmembership_subscribers { get; set; }
         public DbSet<ecpwt_rsmembership_transactions> ecpwt_rsmembership_transactions { get; set; }
+        public DbSet<ecpwt_rsmembership_transactions_user_data> ecpwt_rsmembership_transactions_user_data { get; set; }
         public DbSet<ecpwt_user_usergroup_map> ecpwt_user_usergroup_map { get; set; }
         public DbSet<ecpwt_usergroups> ecpwt_usergroups { get; set; }
         public DbSet<ecpwt_users> ecpwt_users { get; set; }
+        public DbSet<ecpwt_rsmembership_memberships> ecpwt_rsmembership_memberships { get; set; }
         public DbSet<tblmembershippayment> tblmembershippayments { get; set; }
         public DbSet<tblpaypalpayment> tblpaypalpayments { get; set; }
     }

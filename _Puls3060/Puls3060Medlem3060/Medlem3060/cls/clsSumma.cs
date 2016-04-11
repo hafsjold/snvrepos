@@ -20,7 +20,7 @@ namespace nsPuls3060
             {
                 if (rec_regnskab.DatoLaas > Startdato) Startdato = rec_regnskab.DatoLaas;
             }
-            puls3060_dkEntities jdb = new puls3060_dkEntities(true);
+            puls3060_nyEntities jdb = new puls3060_nyEntities(true);
             clsPbs602 objPbs602 = new clsPbs602();
             MemBogfoeringsKlader bogf = objPbs602.konter_paypal_betalinger_fra_rsmembership(jdb, (DateTime)Startdato, (DateTime)Slutdato);
 

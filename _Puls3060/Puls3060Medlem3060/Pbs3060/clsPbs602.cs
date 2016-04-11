@@ -561,7 +561,7 @@ namespace nsPbs3060
             m_rec_bet.tblbetlins.Add(m_rec_betlin);
         }
 
-        public int betalinger_til_rsmembership(dbData3060DataContext p_dbData3060, puls3060_dkEntities p_dbPuls3060_dk)
+        public int betalinger_til_rsmembership(dbData3060DataContext p_dbData3060, puls3060_nyEntities p_dbPuls3060_dk)
         {
             int saveBetid = 0;
             var rsmbrshp = from bl in p_dbData3060.tblbetlins
@@ -623,14 +623,14 @@ namespace nsPbs3060
             return AntalBetalinger;
         }
 
-        public MemBogfoeringsKlader konter_paypal_betalinger_fra_rsmembership(puls3060_dkEntities p_dbPuls3060_dk)
+        public MemBogfoeringsKlader konter_paypal_betalinger_fra_rsmembership(puls3060_nyEntities p_dbPuls3060_dk)
         {
             DateTime Regnskabsaar_Startdato = new DateTime(DateTime.Now.Year, 1, 1);
             DateTime Regnskabsaar_Slutdato = new DateTime(DateTime.Now.Year, 12, 31);
             return konter_paypal_betalinger_fra_rsmembership(p_dbPuls3060_dk, Regnskabsaar_Startdato, Regnskabsaar_Slutdato);
         }
 
-        public MemBogfoeringsKlader konter_paypal_betalinger_fra_rsmembership(puls3060_dkEntities p_dbPuls3060_dk, DateTime Regnskabsaar_Startdato, DateTime Regnskabsaar_Slutdato)
+        public MemBogfoeringsKlader konter_paypal_betalinger_fra_rsmembership(puls3060_nyEntities p_dbPuls3060_dk, DateTime Regnskabsaar_Startdato, DateTime Regnskabsaar_Slutdato)
         {
             clsPayPal objPayPal = new clsPayPal();
             MemBogfoeringsKlader klader = new MemBogfoeringsKlader();

@@ -329,7 +329,7 @@ namespace nsPbs3060
             p_dbData3060.SubmitChanges();
         }
 
-        public Tuple<int, int> rykker_auto(dbData3060DataContext p_dbData3060, puls3060_dkEntities p_dbPuls3060_dk)
+        public Tuple<int, int> rykker_auto(dbData3060DataContext p_dbData3060, puls3060_nyEntities p_dbPuls3060_dk)
         {
             int lobnr = 0;
             string wadvistekst = "";
@@ -490,7 +490,7 @@ namespace nsPbs3060
         public List<string[]> RSMembership_KontingentForslag(DateTime p_DatoBetaltKontingentTil, dbData3060DataContext p_dbData3060)
         {
             List<string[]> items = new List<string[]>();
-            puls3060_dkEntities jdb = new puls3060_dkEntities(true);
+            puls3060_nyEntities jdb = new puls3060_nyEntities(true);
             DateTime KontingentFradato = DateTime.MinValue;
             DateTime KontingentTildato = DateTime.MinValue;
             bool tilmeldtpbs = false;
@@ -744,7 +744,7 @@ namespace nsPbs3060
 
         }
 
-        public Tuple<int, int> rsmembeshhip_fakturer_auto(dbData3060DataContext p_dbData3060, puls3060_dkEntities p_dbPuls3060_dk)
+        public Tuple<int, int> rsmembeshhip_fakturer_auto(dbData3060DataContext p_dbData3060, puls3060_nyEntities p_dbPuls3060_dk)
         {
             int lobnr = 0;
             string wadvistekst = "";
@@ -956,7 +956,7 @@ namespace nsPbs3060
 
         }
 
-        public Tuple<int, int> rsmembeshhip_kontingent_fakturer_bs1(dbData3060DataContext p_dbData3060, puls3060_dkEntities p_dbPuls3060_dk, Memkontingentforslag memKontingentforslag)
+        public Tuple<int, int> rsmembeshhip_kontingent_fakturer_bs1(dbData3060DataContext p_dbData3060, puls3060_nyEntities p_dbPuls3060_dk, Memkontingentforslag memKontingentforslag)
         {
             int lobnr;
             string wadvistekst = "";
@@ -2069,7 +2069,7 @@ namespace nsPbs3060
             return Val.PadRight(Length, PadChar);
         }
 
-        public int rsmembeshhip_betalinger_auto(dbData3060DataContext p_dbData3060, puls3060_dkEntities p_dbPuls3060_dk)
+        public int rsmembeshhip_betalinger_auto(dbData3060DataContext p_dbData3060, puls3060_nyEntities p_dbPuls3060_dk)
         {
             int winfotekst = 0;
             Boolean bBcc = false;
