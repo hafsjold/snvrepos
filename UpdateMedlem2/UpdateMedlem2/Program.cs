@@ -43,14 +43,14 @@ namespace UpdateMedlem2
             foreach (var trn in qry)
             {
                 n++;
-                ecpwt_rsmembership_transactions_user_data rec = unpack_UserData(trn.id, trn.user_data, trn.user_email, trn.user_id);
+                ecpwt_rsmembership_transactions_user_data rec = unpack_UserData(trn.id, trn.user_data, trn.user_email);
                 db.ecpwt_rsmembership_transactions_user_data.Local.Add(rec);
                 //if (n > 5) break;
             }
             db.SaveChanges();
         }
 
-        public static ecpwt_rsmembership_transactions_user_data unpack_UserData(int id, string user_data, string user_email, int user_id)
+        public static ecpwt_rsmembership_transactions_user_data unpack_UserData(int id, string user_data, string user_email)
         {
             ecpwt_rsmembership_transactions_user_data rec = new ecpwt_rsmembership_transactions_user_data();
             rec.id = id;
