@@ -1,5 +1,0 @@
-C:\Users\regns\Documents\Visual Studio 2015\Projects\Puls3060Medlem3060\PHPSerializationLibrary\bin\Release\PHPSerializationLibrary.dll
-C:\Users\regns\Documents\Visual Studio 2015\Projects\Puls3060Medlem3060\PHPSerializationLibrary\bin\Release\PHPSerializationLibrary.pdb
-C:\Users\regns\Documents\Visual Studio 2015\Projects\Puls3060Medlem3060\PHPSerializationLibrary\obj\Release\PHPSerializationLibrary.csprojResolveAssemblyReference.cache
-C:\Users\regns\Documents\Visual Studio 2015\Projects\Puls3060Medlem3060\PHPSerializationLibrary\obj\Release\PHPSerializationLibrary.dll
-C:\Users\regns\Documents\Visual Studio 2015\Projects\Puls3060Medlem3060\PHPSerializationLibrary\obj\Release\PHPSerializationLibrary.pdb

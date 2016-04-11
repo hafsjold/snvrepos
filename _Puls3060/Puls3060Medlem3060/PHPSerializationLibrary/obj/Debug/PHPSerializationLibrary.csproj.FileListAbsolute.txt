@@ -1,4 +1,0 @@
-C:\Users\regns\Documents\Visual Studio 2015\Projects\Puls3060Medlem3060\PHPSerializationLibrary\bin\Debug\PHPSerializationLibrary.dll
-C:\Users\regns\Documents\Visual Studio 2015\Projects\Puls3060Medlem3060\PHPSerializationLibrary\bin\Debug\PHPSerializationLibrary.pdb
-C:\Users\regns\Documents\Visual Studio 2015\Projects\Puls3060Medlem3060\PHPSerializationLibrary\obj\Debug\PHPSerializationLibrary.dll
-C:\Users\regns\Documents\Visual Studio 2015\Projects\Puls3060Medlem3060\PHPSerializationLibrary\obj\Debug\PHPSerializationLibrary.pdb
