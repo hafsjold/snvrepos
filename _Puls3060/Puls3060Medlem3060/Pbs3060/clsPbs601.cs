@@ -490,7 +490,7 @@ namespace nsPbs3060
         public List<string[]> RSMembership_KontingentForslag(DateTime p_DatoBetaltKontingentTil, dbData3060DataContext p_dbData3060)
         {
             List<string[]> items = new List<string[]>();
-            puls3060_dkEntities jdb = new puls3060_dkEntities();
+            puls3060_dkEntities jdb = new puls3060_dkEntities(true);
             DateTime KontingentFradato = DateTime.MinValue;
             DateTime KontingentTildato = DateTime.MinValue;
             bool tilmeldtpbs = false;

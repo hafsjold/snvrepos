@@ -247,7 +247,7 @@ namespace nsPuls3060
             }
             else
             {
-                puls3060_dkEntities jdb = new puls3060_dkEntities();
+                puls3060_dkEntities jdb = new puls3060_dkEntities(true);
                 Memkontingentforslag memKontingentforslag = new Memkontingentforslag();
                 var i = 0;
                 foreach (ListViewItem lvi in lvwKontingent.Items)

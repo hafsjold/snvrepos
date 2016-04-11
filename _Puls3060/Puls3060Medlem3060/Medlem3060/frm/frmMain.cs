@@ -522,7 +522,7 @@ namespace nsPuls3060
 
         private void payPalTilPBSNyeMedlemmerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            puls3060_dkEntities jdb = new puls3060_dkEntities();
+            puls3060_dkEntities jdb = new puls3060_dkEntities(true);
             clsPbs601 objPbs601 = new clsPbs601();
             Tuple<int, int> tresultc = objPbs601.rsmembeshhip_fakturer_auto(Program.dbData3060, jdb);
             int AntalKontingent = tresultc.Item1;
@@ -539,14 +539,14 @@ namespace nsPuls3060
 
         private void opdaterRSMembershipToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            puls3060_dkEntities jdb = new puls3060_dkEntities();
+            puls3060_dkEntities jdb = new puls3060_dkEntities(true);
             clsPbs602 objPbs602 = new clsPbs602();
             objPbs602.betalinger_til_rsmembership(Program.dbData3060, jdb);
         }
 
         private void testEmailRykkerToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            puls3060_dkEntities jdb = new puls3060_dkEntities();
+            puls3060_dkEntities jdb = new puls3060_dkEntities(true);
             clsPbs601 objPbs601 = new clsPbs601();
             Tuple<int, int> tresult = objPbs601.rykker_auto(Program.dbData3060, jdb);
             int AntalRykker = tresult.Item1;
@@ -583,9 +583,9 @@ namespace nsPuls3060
         {
             //clsPbsHelper.Update_rsmembership_transactions(Program.dbData3060);
 
-            //puls3060_dkEntities jdb = new puls3060_dkEntities();
-            //clsPbs601 objPbs601x = new clsPbs601();
-            //objPbs601x.rsmembeshhip_betalinger_auto(Program.dbData3060, jdb);
+            puls3060_dkEntities jdb = new puls3060_dkEntities(true);
+            clsPbs601 objPbs601x = new clsPbs601();
+            objPbs601x.rsmembeshhip_betalinger_auto(Program.dbData3060, jdb);
 
             //string xx = clsHelper.generateIndbetalerident(13696);
             //if (xx == null) return;
