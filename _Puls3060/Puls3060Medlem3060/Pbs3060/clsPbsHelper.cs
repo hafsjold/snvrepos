@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
+using System.Collections;
 
 namespace nsPbs3060
 {
@@ -20,7 +23,7 @@ namespace nsPbs3060
             DateTime Nu_plus_2 = Nu.AddMonths(2);
             DateTime p_DatoBetaltKontingentTil = new DateTime(Nu_plus_2.Year, Nu_plus_2.Month, 12);
 
-            puls3060_dkEntities jdbd = new puls3060_dkEntities(true);
+            puls3060_nyEntities jdbd = new puls3060_nyEntities(true);
             clsPbs601 objPbs601d = new clsPbs601();
             List<string[]> items = objPbs601d.RSMembership_KontingentForslag(p_DatoBetaltKontingentTil, m_dbData3060);
             int AntalForslag = items.Count();
@@ -77,7 +80,7 @@ namespace nsPbs3060
         public int OpdateringAfSlettet_rsmembership_transaction(int p_trans_id, dbData3060DataContext p_dbData3060)
         {
             int out_trans_id = p_trans_id;
-            puls3060_dkEntities dbPuls3060_dk = new puls3060_dkEntities(true);
+            puls3060_nyEntities dbPuls3060_dk = new puls3060_nyEntities(true);
 
             var qry1 = from s1 in dbPuls3060_dk.ecpwt_rsmembership_transactions where s1.id == p_trans_id select s1;
             int c1 = qry1.Count();
@@ -139,7 +142,7 @@ namespace nsPbs3060
 
         public void opdaterKanSlettes()
         {
-            puls3060_dkEntities jdb = new puls3060_dkEntities(true);
+            puls3060_nyEntities jdb = new puls3060_nyEntities(true);
             jdb.Database.ExecuteSqlCommand(@"
 INSERT INTO ecpwt_user_usergroup_map  (user_id, group_id) 
 SELECT u.id, 17   
@@ -161,7 +164,7 @@ WHERE 17 NOT IN (SELECT ugm.group_id FROM ecpwt_user_usergroup_map ugm WHERE ugm
 
         public static void Update_memberid_in_rsmembership_transaction(recRSMembershipTransactions t1)
         {
-            puls3060_dkEntities dbPuls3060_dk = new puls3060_dkEntities(true);
+            puls3060_nyEntities dbPuls3060_dk = new puls3060_nyEntities(true);
 
             var qry2 = from s2 in dbPuls3060_dk.ecpwt_rsmembership_transactions where s2.id == t1.id select s2;
             int c2 = qry2.Count();
@@ -178,7 +181,7 @@ WHERE 17 NOT IN (SELECT ugm.group_id FROM ecpwt_user_usergroup_map ugm WHERE ugm
 
         public static void Update_rsmembership_transactions(dbData3060DataContext p_dbData3060)
         {
-            puls3060_dkEntities dbPuls3060_dk = new puls3060_dkEntities(true);
+            puls3060_nyEntities dbPuls3060_dk = new puls3060_nyEntities(true);
             var qry1 = from s1 in p_dbData3060.tblrsmembership_transactions where s1.type == "new" select s1;
             foreach (var t1 in qry1)
             {
@@ -197,6 +200,78 @@ WHERE 17 NOT IN (SELECT ugm.group_id FROM ecpwt_user_usergroup_map ugm WHERE ugm
                 }
             }
             return;
+        }
+
+        public static void update_rsmembership_transactions_user_data()
+        {
+            puls3060_nyEntities db = new puls3060_nyEntities(true);
+            db.ecpwt_rsmembership_membership_subscribers.Load();
+            db.ecpwt_rsmembership_transactions.Load();
+            db.ecpwt_rsmembership_transactions_user_data.Load();
+
+            var qry = from s in db.ecpwt_rsmembership_membership_subscribers.Local
+                      where s.membership_id == 6
+                      join t in db.ecpwt_rsmembership_transactions.Local on s.last_transaction_id equals t.id
+                      join ud in db.ecpwt_rsmembership_transactions_user_data.Local on t.id equals ud.id into data
+                      from a in data.DefaultIfEmpty(new ecpwt_rsmembership_transactions_user_data { id = -1, adresse = "", bynavn = "", email = "", fodtaar = "", kon = "", memberid = "", mobil = "", name = "", postnr = "" })
+                      where a.id == -1
+                      select new
+                      {
+                          t.id,
+                          t.user_data,
+                          t.user_email,
+                          s.user_id
+                      };
+
+            int n = 0;
+            foreach (var trn in qry)
+            {
+                n++;
+                ecpwt_rsmembership_transactions_user_data rec = unpack_UserData(trn.id, trn.user_data, trn.user_email);
+                db.ecpwt_rsmembership_transactions_user_data.Local.Add(rec);
+                //if (n > 5) break;
+            }
+            db.SaveChanges();
+        }
+
+        public static ecpwt_rsmembership_transactions_user_data unpack_UserData(int id, string user_data, string user_email)
+        {
+            ecpwt_rsmembership_transactions_user_data rec = new ecpwt_rsmembership_transactions_user_data();
+            rec.id = id;
+            string st_php = "a" + user_data.Substring(14);
+            PHPSerializationLibrary.Serializer serializer = new PHPSerializationLibrary.Serializer();
+            Hashtable php = (Hashtable)serializer.Deserialize(st_php);
+
+            rec.name = (string)php["name"];
+            if (rec.name == null) rec.name = "";
+
+            rec.email = (string)php["email"];
+            if (String.IsNullOrEmpty(rec.email)) rec.email = user_email;
+            if (rec.email == null) rec.email = "";
+
+            Hashtable fields = (Hashtable)php["fields"];
+            rec.adresse = (string)fields["adresse"];
+            if (rec.adresse == null) rec.adresse = "";
+
+            rec.postnr = (string)fields["postnr"];
+            if (rec.postnr == null) rec.postnr = "";
+
+            rec.bynavn = (string)fields["bynavn"];
+            if (rec.bynavn == null) rec.bynavn = "";
+
+            rec.mobil = (string)fields["mobil"];
+            if (rec.mobil == null) rec.mobil = "";
+
+            rec.memberid = (string)fields["memberid"];
+            if (String.IsNullOrEmpty(rec.memberid)) rec.memberid = "";
+
+            rec.kon = (string)((ArrayList)((Hashtable)php["membership_fields"])["kon"])[0];
+            if (rec.kon == null) rec.kon = "";
+
+            rec.fodtaar = (string)((ArrayList)((Hashtable)php["membership_fields"])["fodtaar"])[0];
+            if (rec.fodtaar == null) rec.fodtaar = "";
+
+            return rec;
         }
     }
 }

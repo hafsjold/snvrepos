@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\regns\Documents\Visual Studio 2015\Projects\Puls3060Medlem3060\Pbs3060\puls3060_dk.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\regns\Documents\Visual Studio 2015\Projects\Puls3060Medlem3060\Pbs3060\puls3060_ny.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
