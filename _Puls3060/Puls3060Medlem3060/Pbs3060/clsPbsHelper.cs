@@ -15,7 +15,7 @@ namespace nsPbs3060
             //DateTime Nu = new DateTime(2016, 7, 10);
             DateTime Nu = DateTime.Now;
             int Dag = Nu.Day;
-            if (Dag > 12)
+            if (Dag > 13)
                 return;
 
             DateTime Nu_plus_1 = Nu.AddMonths(1);
