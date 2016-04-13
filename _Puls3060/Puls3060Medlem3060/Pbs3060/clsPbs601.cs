@@ -982,6 +982,7 @@ namespace nsPbs3060
 
             foreach (recKontingentforslag rec in memKontingentforslag)
             {
+                string wmemberid = rec.memberid.ToString();
                 var qry_rsmembership = from s in p_dbPuls3060_dk.ecpwt_rsmembership_membership_subscribers
                                        where s.id == rec.subscriber_id && s.membership_id == rec.membership_id
                                        join tf in p_dbPuls3060_dk.ecpwt_rsmembership_transactions on s.from_transaction_id equals tf.id
@@ -990,7 +991,7 @@ namespace nsPbs3060
                                        join u in p_dbPuls3060_dk.ecpwt_users on s.user_id equals u.id
                                        select new
                                        {
-                                           Nr = rec.memberid.ToString(), //m.f14,
+                                           Nr = wmemberid, //m.f14,
                                            Navn = rec.name, //u.name,
                                            Adresse = m.f1,
                                            Postnr = m.f4,
