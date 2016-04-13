@@ -581,8 +581,8 @@ namespace nsPbs3060
                 {
                     DateTime TodayMinus90 = DateTime.Now.AddDays(-90);
                     var qry_fak = from f in p_dbData3060.tblfaks
-                                  where f.Nr == iNr && f.betalingsdato > TodayMinus90
                                   join t in p_dbData3060.tblrsmembership_transactions on f.id equals t.id
+                                  where t.subscriber_id == m.subscriber_id && f.betalingsdato > TodayMinus90
                                   select f;
 
                     if (qry_fak.Count() > 0) //Der findes en opkrævning
