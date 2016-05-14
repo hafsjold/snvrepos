@@ -101,7 +101,8 @@ namespace Trans2Summa3060
         public void load()
         {
             var qry = from w in this
-                      join b in Program.dbDataTransSumma.tblbankkontos on new { dato = w.bdato, belob = w.bbeløb, saldo = w.bsaldo, bankkontoid = w.bbankkontoid } equals new { dato = b.dato, belob = b.belob, saldo = b.saldo, bankkontoid = b.bankkontoid } into bankkonto
+//mha 14-5-2016       join b in Program.dbDataTransSumma.tblbankkontos on new { dato = w.bdato, belob = w.bbeløb, saldo = w.bsaldo, bankkontoid = w.bbankkontoid } equals new { dato = b.dato, belob = b.belob, saldo = b.saldo, bankkontoid = b.bankkontoid } into bankkonto
+                      join b in Program.dbDataTransSumma.tblbankkontos on new { dato = w.bdato, belob = w.bbeløb, tekst = w.btekst, bankkontoid = w.bbankkontoid } equals new { dato = b.dato, belob = b.belob, tekst = b.tekst, bankkontoid = b.bankkontoid } into bankkonto
                       from b in bankkonto.DefaultIfEmpty(new tblbankkonto { pid = 0, belob = null })
                       where b.belob == null
                       orderby w.bdato
