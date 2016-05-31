@@ -25,10 +25,10 @@
                 <local:menuButton ServerName="Revi35" ServerOS="Win2008" ToolTip="Terminal Server" Margin="3" Grid.Row="2" Grid.Column="1" />
                 <local:menuButton Grid.Row="4" Margin="3" ServerName="vRevi09" ServerOS="freeBSD" ToolTip="Zabbix Server" />
                 <local:menuButton Grid.Row="4" Margin="3" ServerName="vRevi52" ServerOS="Win2012" ToolTip="Sharepoint Server" Grid.Column="1"  />
-                <local:menuButton Grid.Row="7" Margin="3" ServerName="BuusTools" ServerOS="Win7" ToolTip="Udvikling" Grid.Column="1" />
-                <local:menuButton Grid.Row="7" Margin="3" ServerName="vRevi12scc" ServerOS="Win2012" ToolTip="SCCM Server" />
+                <local:menuButton Grid.Row="7" Margin="3" ServerName="vRevi12sccm" ServerOS="Win2012" ToolTip="SCCM Server" />
                 <local:menuButton Grid.Row="5" Margin="3" ServerName="vRevi51" ServerOS="Win2012" ToolTip="NAV Test Server" />
                 <local:menuButton Grid.Row="2" Margin="3" ServerName="vRevi11" ServerOS="Win2012" ToolTip="Domain Server" />
+                <local:menuButton Grid.Row="5" Margin="3" ServerName="vRevi53" ServerOS="Win2012" ToolTip="NAV 2016 Test Server" Grid.Column="1"  />
             </Grid>
         </GroupBox>
         <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="157" HorizontalAlignment="Left"  Margin="194,252,0,0" Name="pRevi37" VerticalAlignment="Top" Width="183">
