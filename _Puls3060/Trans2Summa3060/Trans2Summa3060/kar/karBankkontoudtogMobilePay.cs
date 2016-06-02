@@ -81,13 +81,29 @@ namespace Trans2Summa3060
                     {
                         wdatotid = new DateTime(wdato.Value.Year, wdato.Value.Month, wdato.Value.Day, wtid.Value.Hour, wtid.Value.Minute, wtid.Value.Second);
                     }
+
+                    decimal? wbeløb;
+                    if (Microsoft.VisualBasic.Information.IsNumeric(value[2]))
+                        wbeløb = decimal.Parse(value[2]);
+                    else
+                    {
+                        try
+                        {
+                            wbeløb = -decimal.Parse(value[2].Replace("-", "").Trim());
+                        }
+                        catch
+                        {
+                            wbeløb = (decimal?)null;
+                        }
+                    }
+                    
                     if (wdatotid != null)
                     {
                         rec = new recBankkontoudtogMobilePay
                         {
                             bnavn = value[0],
                             bmobilnummer = value[1],
-                            bbeløb = Microsoft.VisualBasic.Information.IsNumeric(value[2]) ? decimal.Parse(value[2]) : (decimal?)null,
+                            bbeløb = wbeløb,
                             bdato = wdatotid,
                             bid = value[5], 
                             btekst = value[6],
@@ -120,7 +136,7 @@ namespace Trans2Summa3060
                     mobilnummer = b.bmobilnummer.Length > 10 ? b.bmobilnummer.Substring(0, 10) : b.bmobilnummer,
                     belob = b.bbeløb,
                     dato = b.bdato,
-                    mobilepay_id = b.bid.Length > 15 ? b.bid.Substring(0, 15) : b.bid,
+                    mobilepay_id = b.bid.Length > 25 ? b.bid.Substring(0, 25) : b.bid,
                     tekst = b.btekst.Length > 50 ? b.btekst.Substring(0, 50) : b.btekst,
                 };
                 Program.dbDataTransSumma.tblmobilepays.InsertOnSubmit(recBankkonto);
