@@ -227,8 +227,12 @@ WHERE 17 NOT IN (SELECT ugm.group_id FROM ecpwt_user_usergroup_map ugm WHERE ugm
             foreach (var trn in qry)
             {
                 n++;
-                ecpwt_rsmembership_transactions_user_data rec = unpack_UserData(trn.id, trn.user_data, trn.user_email);
-                db.ecpwt_rsmembership_transactions_user_data.Local.Add(rec);
+                try
+                {
+                    ecpwt_rsmembership_transactions_user_data rec = unpack_UserData(trn.id, trn.user_data, trn.user_email);
+                    db.ecpwt_rsmembership_transactions_user_data.Local.Add(rec);
+                }
+                catch {  }
                 //if (n > 5) break;
             }
             db.SaveChanges();
