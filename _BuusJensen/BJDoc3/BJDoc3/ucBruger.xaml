@@ -1,0 +1,26 @@
+﻿<UserControl x:Class="BJDoc3.ucBruger"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BJDoc3"
+             mc:Ignorable="d" Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="tblBrugersViewSource" d:DesignSource="{d:DesignInstance {x:Type local:tblBrugers}, CreateList=True}"/>
+    </UserControl.Resources>
+    <Grid DataContext="{StaticResource tblBrugersViewSource}">
+        <DataGrid x:Name="tblBrugersDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="10,10,10,10" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader" Visibility="Hidden"/>
+                <DataGridTextColumn x:Name="initialerColumn" Binding="{Binding initialer}" Header="Ini" Width="Auto"/>
+                <DataGridTextColumn x:Name="navnColumn" Binding="{Binding navn}" Header="Navn" Width="Auto"/>
+                <DataGridTextColumn x:Name="telefonColumn" Binding="{Binding telefon}" Header="Telefon" Width="Auto"/>
+                <DataGridTextColumn x:Name="emailColumn" Binding="{Binding email}" Header="Email" Width="Auto"/>
+                <DataGridTextColumn x:Name="mobilColumn" Binding="{Binding mobil}" Header="Mobil" Width="Auto"/>
+                <DataGridCheckBoxColumn x:Name="statsautColumn" Binding="{Binding statsaut}" Header="StatsAut" Width="Auto"/>
+                <DataGridCheckBoxColumn x:Name="partnerColumn" Binding="{Binding partner}" Header="Partner" Width="Auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</UserControl>

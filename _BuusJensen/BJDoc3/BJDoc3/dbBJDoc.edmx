@@ -1,0 +1,1001 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="dbBuusjensenModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblBrugerRelations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Created" Type="datetimeoffset" Precision="7" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Modified" Type="datetimeoffset" Precision="7" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="tblBrugerRelation_tblBruger" Type="int" Nullable="false" />
+          <Property Name="tblBrugerRelation_tblComputer" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblBrugers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="initialer" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="navn" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="telefon" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="mobil" Type="nvarchar" MaxLength="255" />
+          <Property Name="email" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="statsaut" Type="bit" />
+          <Property Name="partner" Type="bit" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Created" Type="datetimeoffset" Precision="7" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Modified" Type="datetimeoffset" Precision="7" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="tblLokale_tblBruger1" Type="int" />
+        </EntityType>
+        <EntityType Name="tblComputers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="serienr" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="note" Type="nvarchar" MaxLength="255" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Created" Type="datetimeoffset" Precision="7" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Modified" Type="datetimeoffset" Precision="7" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="tblComputer_tblBruger" Type="int" />
+          <Property Name="tblComputer_tblHW" Type="int" Nullable="false" />
+          <Property Name="tblLokale_tblComputer1" Type="int" />
+        </EntityType>
+        <EntityType Name="tblFeatureRelations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Created" Type="datetimeoffset" Precision="7" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Modified" Type="datetimeoffset" Precision="7" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="tblFeatureRelation_tblComputer" Type="int" />
+          <Property Name="tblFeatureRelation_tblFeatures" Type="int" />
+        </EntityType>
+        <EntityType Name="tblFeatures">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="navn" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Created" Type="datetimeoffset" Precision="7" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Modified" Type="datetimeoffset" Precision="7" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="tblFeatures_tblFeatureType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblFeatureTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Created" Type="datetimeoffset" Precision="7" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Modified" Type="datetimeoffset" Precision="7" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblHWs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="hw" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="navn" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="fabrikat" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Created" Type="datetimeoffset" Precision="7" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Modified" Type="datetimeoffset" Precision="7" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="tblHW_tblHWtype" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblHWtypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Created" Type="datetimeoffset" Precision="7" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Modified" Type="datetimeoffset" Precision="7" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblIpRelations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Created" Type="datetimeoffset" Precision="7" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Modified" Type="datetimeoffset" Precision="7" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="tblIpRelation_tblComputer" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblIps">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ip" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Created" Type="datetimeoffset" Precision="7" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Modified" Type="datetimeoffset" Precision="7" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="tblIp_tblComputer" Type="int" />
+        </EntityType>
+        <EntityType Name="tblLokales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lokale" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="etage" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="note" Type="nvarchar" MaxLength="255" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Created" Type="datetimeoffset" Precision="7" />
+          <Property Name="ModifiedBy" Type="nvarchar" MaxLength="255" />
+          <Property Name="Modified" Type="datetimeoffset" Precision="7" />
+          <Property Name="RowVersion" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <Association Name="tblBrugerRelation_tblBruger">
+          <End Role="tblBrugers" Type="Self.tblBrugers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblBrugerRelations" Type="Self.tblBrugerRelations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBrugers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblBrugerRelations">
+              <PropertyRef Name="tblBrugerRelation_tblBruger" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblBrugerRelation_tblComputer">
+          <End Role="tblComputers" Type="Self.tblComputers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblBrugerRelations" Type="Self.tblBrugerRelations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblComputers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblBrugerRelations">
+              <PropertyRef Name="tblBrugerRelation_tblComputer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblComputer_tblBruger">
+          <End Role="tblBrugers" Type="Self.tblBrugers" Multiplicity="0..1" />
+          <End Role="tblComputers" Type="Self.tblComputers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBrugers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblComputers">
+              <PropertyRef Name="tblComputer_tblBruger" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblComputer_tblHW">
+          <End Role="tblHWs" Type="Self.tblHWs" Multiplicity="1" />
+          <End Role="tblComputers" Type="Self.tblComputers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHWs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblComputers">
+              <PropertyRef Name="tblComputer_tblHW" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblFeature_tblFeatureType">
+          <End Role="tblFeatureTypes" Type="Self.tblFeatureTypes" Multiplicity="1" />
+          <End Role="tblFeatures" Type="Self.tblFeatures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFeatureTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblFeatures">
+              <PropertyRef Name="tblFeatures_tblFeatureType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblFeatureRelation_tblComputer">
+          <End Role="tblComputers" Type="Self.tblComputers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblFeatureRelations" Type="Self.tblFeatureRelations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblComputers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblFeatureRelations">
+              <PropertyRef Name="tblFeatureRelation_tblComputer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblFeatureRelation_tblFeature">
+          <End Role="tblFeatures" Type="Self.tblFeatures" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblFeatureRelations" Type="Self.tblFeatureRelations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFeatures">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblFeatureRelations">
+              <PropertyRef Name="tblFeatureRelation_tblFeatures" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblHW_tblHWtype">
+          <End Role="tblHWtypes" Type="Self.tblHWtypes" Multiplicity="1" />
+          <End Role="tblHWs" Type="Self.tblHWs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHWtypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblHWs">
+              <PropertyRef Name="tblHW_tblHWtype" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblIp_tblComputer">
+          <End Role="tblComputers" Type="Self.tblComputers" Multiplicity="0..1" />
+          <End Role="tblIps" Type="Self.tblIps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblComputers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblIps">
+              <PropertyRef Name="tblIp_tblComputer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblIp_tblIpRelation">
+          <End Role="tblIps" Type="Self.tblIps" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblIpRelations" Type="Self.tblIpRelations" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblIps">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblIpRelations">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblIpRelation_tblComputer">
+          <End Role="tblComputers" Type="Self.tblComputers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblIpRelations" Type="Self.tblIpRelations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblComputers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblIpRelations">
+              <PropertyRef Name="tblIpRelation_tblComputer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblLokale_tblBruger">
+          <End Role="tblLokales" Type="Self.tblLokales" Multiplicity="0..1" />
+          <End Role="tblBrugers" Type="Self.tblBrugers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLokales">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblBrugers">
+              <PropertyRef Name="tblLokale_tblBruger1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblLokale_tblComputer">
+          <End Role="tblLokales" Type="Self.tblLokales" Multiplicity="0..1" />
+          <End Role="tblComputers" Type="Self.tblComputers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLokales">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblComputers">
+              <PropertyRef Name="tblLokale_tblComputer1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbBuusjensenModelStoreContainer">
+          <EntitySet Name="tblBrugerRelations" EntityType="Self.tblBrugerRelations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblBrugers" EntityType="Self.tblBrugers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblComputers" EntityType="Self.tblComputers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFeatureRelations" EntityType="Self.tblFeatureRelations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFeatures" EntityType="Self.tblFeatures" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblFeatureTypes" EntityType="Self.tblFeatureTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblHWs" EntityType="Self.tblHWs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblHWtypes" EntityType="Self.tblHWtypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblIpRelations" EntityType="Self.tblIpRelations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblIps" EntityType="Self.tblIps" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblLokales" EntityType="Self.tblLokales" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="tblBrugerRelation_tblBruger" Association="Self.tblBrugerRelation_tblBruger">
+            <End Role="tblBrugers" EntitySet="tblBrugers" />
+            <End Role="tblBrugerRelations" EntitySet="tblBrugerRelations" />
+          </AssociationSet>
+          <AssociationSet Name="tblBrugerRelation_tblComputer" Association="Self.tblBrugerRelation_tblComputer">
+            <End Role="tblComputers" EntitySet="tblComputers" />
+            <End Role="tblBrugerRelations" EntitySet="tblBrugerRelations" />
+          </AssociationSet>
+          <AssociationSet Name="tblComputer_tblBruger" Association="Self.tblComputer_tblBruger">
+            <End Role="tblBrugers" EntitySet="tblBrugers" />
+            <End Role="tblComputers" EntitySet="tblComputers" />
+          </AssociationSet>
+          <AssociationSet Name="tblComputer_tblHW" Association="Self.tblComputer_tblHW">
+            <End Role="tblHWs" EntitySet="tblHWs" />
+            <End Role="tblComputers" EntitySet="tblComputers" />
+          </AssociationSet>
+          <AssociationSet Name="tblFeature_tblFeatureType" Association="Self.tblFeature_tblFeatureType">
+            <End Role="tblFeatureTypes" EntitySet="tblFeatureTypes" />
+            <End Role="tblFeatures" EntitySet="tblFeatures" />
+          </AssociationSet>
+          <AssociationSet Name="tblFeatureRelation_tblComputer" Association="Self.tblFeatureRelation_tblComputer">
+            <End Role="tblComputers" EntitySet="tblComputers" />
+            <End Role="tblFeatureRelations" EntitySet="tblFeatureRelations" />
+          </AssociationSet>
+          <AssociationSet Name="tblFeatureRelation_tblFeature" Association="Self.tblFeatureRelation_tblFeature">
+            <End Role="tblFeatures" EntitySet="tblFeatures" />
+            <End Role="tblFeatureRelations" EntitySet="tblFeatureRelations" />
+          </AssociationSet>
+          <AssociationSet Name="tblHW_tblHWtype" Association="Self.tblHW_tblHWtype">
+            <End Role="tblHWtypes" EntitySet="tblHWtypes" />
+            <End Role="tblHWs" EntitySet="tblHWs" />
+          </AssociationSet>
+          <AssociationSet Name="tblIp_tblComputer" Association="Self.tblIp_tblComputer">
+            <End Role="tblComputers" EntitySet="tblComputers" />
+            <End Role="tblIps" EntitySet="tblIps" />
+          </AssociationSet>
+          <AssociationSet Name="tblIp_tblIpRelation" Association="Self.tblIp_tblIpRelation">
+            <End Role="tblIps" EntitySet="tblIps" />
+            <End Role="tblIpRelations" EntitySet="tblIpRelations" />
+          </AssociationSet>
+          <AssociationSet Name="tblIpRelation_tblComputer" Association="Self.tblIpRelation_tblComputer">
+            <End Role="tblComputers" EntitySet="tblComputers" />
+            <End Role="tblIpRelations" EntitySet="tblIpRelations" />
+          </AssociationSet>
+          <AssociationSet Name="tblLokale_tblBruger" Association="Self.tblLokale_tblBruger">
+            <End Role="tblLokales" EntitySet="tblLokales" />
+            <End Role="tblBrugers" EntitySet="tblBrugers" />
+          </AssociationSet>
+          <AssociationSet Name="tblLokale_tblComputer" Association="Self.tblLokale_tblComputer">
+            <End Role="tblLokales" EntitySet="tblLokales" />
+            <End Role="tblComputers" EntitySet="tblComputers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="dbBuusjensenModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblBrugerRelations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTimeOffset" Precision="7" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Modified" Type="DateTimeOffset" Precision="7" />
+          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="tblBrugerRelation_tblBruger" Type="Int32" Nullable="false" />
+          <Property Name="tblBrugerRelation_tblComputer" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblBrugers" Relationship="Self.tblBrugerRelation_tblBruger" FromRole="tblBrugerRelations" ToRole="tblBrugers" />
+          <NavigationProperty Name="tblComputers" Relationship="Self.tblBrugerRelation_tblComputer" FromRole="tblBrugerRelations" ToRole="tblComputers" />
+        </EntityType>
+        <EntityType Name="tblBrugers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="initialer" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="navn" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="telefon" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mobil" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="statsaut" Type="Boolean" />
+          <Property Name="partner" Type="Boolean" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTimeOffset" Precision="7" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Modified" Type="DateTimeOffset" Precision="7" />
+          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="tblLokale_tblBruger1" Type="Int32" />
+          <NavigationProperty Name="tblBrugerRelations" Relationship="Self.tblBrugerRelation_tblBruger" FromRole="tblBrugers" ToRole="tblBrugerRelations" />
+          <NavigationProperty Name="tblComputers" Relationship="Self.tblComputer_tblBruger" FromRole="tblBrugers" ToRole="tblComputers" />
+          <NavigationProperty Name="tblLokales" Relationship="Self.tblLokale_tblBruger" FromRole="tblBrugers" ToRole="tblLokales" />
+        </EntityType>
+        <EntityType Name="tblComputers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="serienr" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="note" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTimeOffset" Precision="7" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Modified" Type="DateTimeOffset" Precision="7" />
+          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="tblComputer_tblBruger" Type="Int32" />
+          <Property Name="tblComputer_tblHW" Type="Int32" Nullable="false" />
+          <Property Name="tblLokale_tblComputer1" Type="Int32" />
+          <NavigationProperty Name="tblBrugerRelations" Relationship="Self.tblBrugerRelation_tblComputer" FromRole="tblComputers" ToRole="tblBrugerRelations" />
+          <NavigationProperty Name="tblBrugers" Relationship="Self.tblComputer_tblBruger" FromRole="tblComputers" ToRole="tblBrugers" />
+          <NavigationProperty Name="tblHWs" Relationship="Self.tblComputer_tblHW" FromRole="tblComputers" ToRole="tblHWs" />
+          <NavigationProperty Name="tblFeatureRelations" Relationship="Self.tblFeatureRelation_tblComputer" FromRole="tblComputers" ToRole="tblFeatureRelations" />
+          <NavigationProperty Name="tblIps" Relationship="Self.tblIp_tblComputer" FromRole="tblComputers" ToRole="tblIps" />
+          <NavigationProperty Name="tblIpRelations" Relationship="Self.tblIpRelation_tblComputer" FromRole="tblComputers" ToRole="tblIpRelations" />
+          <NavigationProperty Name="tblLokales" Relationship="Self.tblLokale_tblComputer" FromRole="tblComputers" ToRole="tblLokales" />
+        </EntityType>
+        <EntityType Name="tblFeatureRelations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTimeOffset" Precision="7" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Modified" Type="DateTimeOffset" Precision="7" />
+          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="tblFeatureRelation_tblComputer" Type="Int32" />
+          <Property Name="tblFeatureRelation_tblFeatures" Type="Int32" />
+          <NavigationProperty Name="tblComputers" Relationship="Self.tblFeatureRelation_tblComputer" FromRole="tblFeatureRelations" ToRole="tblComputers" />
+          <NavigationProperty Name="tblFeatures" Relationship="Self.tblFeatureRelation_tblFeature" FromRole="tblFeatureRelations" ToRole="tblFeatures" />
+        </EntityType>
+        <EntityType Name="tblFeatures">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="navn" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTimeOffset" Precision="7" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Modified" Type="DateTimeOffset" Precision="7" />
+          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="tblFeatures_tblFeatureType" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblFeatureRelations" Relationship="Self.tblFeatureRelation_tblFeature" FromRole="tblFeatures" ToRole="tblFeatureRelations" />
+          <NavigationProperty Name="tblFeatureTypes" Relationship="Self.tblFeature_tblFeatureType" FromRole="tblFeatures" ToRole="tblFeatureTypes" />
+        </EntityType>
+        <EntityType Name="tblFeatureTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTimeOffset" Precision="7" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Modified" Type="DateTimeOffset" Precision="7" />
+          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="tblFeatures" Relationship="Self.tblFeature_tblFeatureType" FromRole="tblFeatureTypes" ToRole="tblFeatures" />
+        </EntityType>
+        <EntityType Name="tblHWs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="hw" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="navn" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="fabrikat" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTimeOffset" Precision="7" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Modified" Type="DateTimeOffset" Precision="7" />
+          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="tblHW_tblHWtype" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblComputers" Relationship="Self.tblComputer_tblHW" FromRole="tblHWs" ToRole="tblComputers" />
+          <NavigationProperty Name="tblHWtypes" Relationship="Self.tblHW_tblHWtype" FromRole="tblHWs" ToRole="tblHWtypes" />
+        </EntityType>
+        <EntityType Name="tblHWtypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTimeOffset" Precision="7" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Modified" Type="DateTimeOffset" Precision="7" />
+          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="tblHWs" Relationship="Self.tblHW_tblHWtype" FromRole="tblHWtypes" ToRole="tblHWs" />
+        </EntityType>
+        <EntityType Name="tblIpRelations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTimeOffset" Precision="7" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Modified" Type="DateTimeOffset" Precision="7" />
+          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="tblIpRelation_tblComputer" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblComputers" Relationship="Self.tblIpRelation_tblComputer" FromRole="tblIpRelations" ToRole="tblComputers" />
+          <NavigationProperty Name="tblIps" Relationship="Self.tblIp_tblIpRelation" FromRole="tblIpRelations" ToRole="tblIps" />
+        </EntityType>
+        <EntityType Name="tblIps">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ip" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTimeOffset" Precision="7" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Modified" Type="DateTimeOffset" Precision="7" />
+          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="tblIp_tblComputer" Type="Int32" />
+          <NavigationProperty Name="tblComputers" Relationship="Self.tblIp_tblComputer" FromRole="tblIps" ToRole="tblComputers" />
+          <NavigationProperty Name="tblIpRelations" Relationship="Self.tblIp_tblIpRelation" FromRole="tblIps" ToRole="tblIpRelations" />
+        </EntityType>
+        <EntityType Name="tblLokales">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lokale" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="etage" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="note" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTimeOffset" Precision="7" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Modified" Type="DateTimeOffset" Precision="7" />
+          <Property Name="RowVersion" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="tblBrugers" Relationship="Self.tblLokale_tblBruger" FromRole="tblLokales" ToRole="tblBrugers" />
+          <NavigationProperty Name="tblComputers" Relationship="Self.tblLokale_tblComputer" FromRole="tblLokales" ToRole="tblComputers" />
+        </EntityType>
+        <Association Name="tblBrugerRelation_tblBruger">
+          <End Role="tblBrugers" Type="Self.tblBrugers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblBrugerRelations" Type="Self.tblBrugerRelations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBrugers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblBrugerRelations">
+              <PropertyRef Name="tblBrugerRelation_tblBruger" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblBrugerRelation_tblComputer">
+          <End Role="tblComputers" Type="Self.tblComputers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblBrugerRelations" Type="Self.tblBrugerRelations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblComputers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblBrugerRelations">
+              <PropertyRef Name="tblBrugerRelation_tblComputer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblComputer_tblBruger">
+          <End Role="tblBrugers" Type="Self.tblBrugers" Multiplicity="0..1" />
+          <End Role="tblComputers" Type="Self.tblComputers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblBrugers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblComputers">
+              <PropertyRef Name="tblComputer_tblBruger" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblLokale_tblBruger">
+          <End Role="tblLokales" Type="Self.tblLokales" Multiplicity="0..1" />
+          <End Role="tblBrugers" Type="Self.tblBrugers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLokales">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblBrugers">
+              <PropertyRef Name="tblLokale_tblBruger1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblComputer_tblHW">
+          <End Role="tblHWs" Type="Self.tblHWs" Multiplicity="1" />
+          <End Role="tblComputers" Type="Self.tblComputers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHWs">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblComputers">
+              <PropertyRef Name="tblComputer_tblHW" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblFeatureRelation_tblComputer">
+          <End Role="tblComputers" Type="Self.tblComputers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblFeatureRelations" Type="Self.tblFeatureRelations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblComputers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblFeatureRelations">
+              <PropertyRef Name="tblFeatureRelation_tblComputer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblIp_tblComputer">
+          <End Role="tblComputers" Type="Self.tblComputers" Multiplicity="0..1" />
+          <End Role="tblIps" Type="Self.tblIps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblComputers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblIps">
+              <PropertyRef Name="tblIp_tblComputer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblIpRelation_tblComputer">
+          <End Role="tblComputers" Type="Self.tblComputers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblIpRelations" Type="Self.tblIpRelations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblComputers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblIpRelations">
+              <PropertyRef Name="tblIpRelation_tblComputer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblLokale_tblComputer">
+          <End Role="tblLokales" Type="Self.tblLokales" Multiplicity="0..1" />
+          <End Role="tblComputers" Type="Self.tblComputers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblLokales">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblComputers">
+              <PropertyRef Name="tblLokale_tblComputer1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblFeatureRelation_tblFeature">
+          <End Role="tblFeatures" Type="Self.tblFeatures" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblFeatureRelations" Type="Self.tblFeatureRelations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFeatures">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblFeatureRelations">
+              <PropertyRef Name="tblFeatureRelation_tblFeatures" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblFeature_tblFeatureType">
+          <End Role="tblFeatureTypes" Type="Self.tblFeatureTypes" Multiplicity="1" />
+          <End Role="tblFeatures" Type="Self.tblFeatures" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblFeatureTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblFeatures">
+              <PropertyRef Name="tblFeatures_tblFeatureType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblHW_tblHWtype">
+          <End Role="tblHWtypes" Type="Self.tblHWtypes" Multiplicity="1" />
+          <End Role="tblHWs" Type="Self.tblHWs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHWtypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblHWs">
+              <PropertyRef Name="tblHW_tblHWtype" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblIp_tblIpRelation">
+          <End Role="tblIps" Type="Self.tblIps" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblIpRelations" Type="Self.tblIpRelations" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblIps">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblIpRelations">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="dbBuusjensenEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblBrugerRelations" EntityType="Self.tblBrugerRelations" />
+          <EntitySet Name="tblBrugers" EntityType="Self.tblBrugers" />
+          <EntitySet Name="tblComputers" EntityType="Self.tblComputers" />
+          <EntitySet Name="tblFeatureRelations" EntityType="Self.tblFeatureRelations" />
+          <EntitySet Name="tblFeatures" EntityType="Self.tblFeatures" />
+          <EntitySet Name="tblFeatureTypes" EntityType="Self.tblFeatureTypes" />
+          <EntitySet Name="tblHWs" EntityType="Self.tblHWs" />
+          <EntitySet Name="tblHWtypes" EntityType="Self.tblHWtypes" />
+          <EntitySet Name="tblIpRelations" EntityType="Self.tblIpRelations" />
+          <EntitySet Name="tblIps" EntityType="Self.tblIps" />
+          <EntitySet Name="tblLokales" EntityType="Self.tblLokales" />
+          <AssociationSet Name="tblBrugerRelation_tblBruger" Association="Self.tblBrugerRelation_tblBruger">
+            <End Role="tblBrugers" EntitySet="tblBrugers" />
+            <End Role="tblBrugerRelations" EntitySet="tblBrugerRelations" />
+          </AssociationSet>
+          <AssociationSet Name="tblBrugerRelation_tblComputer" Association="Self.tblBrugerRelation_tblComputer">
+            <End Role="tblComputers" EntitySet="tblComputers" />
+            <End Role="tblBrugerRelations" EntitySet="tblBrugerRelations" />
+          </AssociationSet>
+          <AssociationSet Name="tblComputer_tblBruger" Association="Self.tblComputer_tblBruger">
+            <End Role="tblBrugers" EntitySet="tblBrugers" />
+            <End Role="tblComputers" EntitySet="tblComputers" />
+          </AssociationSet>
+          <AssociationSet Name="tblLokale_tblBruger" Association="Self.tblLokale_tblBruger">
+            <End Role="tblLokales" EntitySet="tblLokales" />
+            <End Role="tblBrugers" EntitySet="tblBrugers" />
+          </AssociationSet>
+          <AssociationSet Name="tblComputer_tblHW" Association="Self.tblComputer_tblHW">
+            <End Role="tblHWs" EntitySet="tblHWs" />
+            <End Role="tblComputers" EntitySet="tblComputers" />
+          </AssociationSet>
+          <AssociationSet Name="tblFeatureRelation_tblComputer" Association="Self.tblFeatureRelation_tblComputer">
+            <End Role="tblComputers" EntitySet="tblComputers" />
+            <End Role="tblFeatureRelations" EntitySet="tblFeatureRelations" />
+          </AssociationSet>
+          <AssociationSet Name="tblIp_tblComputer" Association="Self.tblIp_tblComputer">
+            <End Role="tblComputers" EntitySet="tblComputers" />
+            <End Role="tblIps" EntitySet="tblIps" />
+          </AssociationSet>
+          <AssociationSet Name="tblIpRelation_tblComputer" Association="Self.tblIpRelation_tblComputer">
+            <End Role="tblComputers" EntitySet="tblComputers" />
+            <End Role="tblIpRelations" EntitySet="tblIpRelations" />
+          </AssociationSet>
+          <AssociationSet Name="tblLokale_tblComputer" Association="Self.tblLokale_tblComputer">
+            <End Role="tblLokales" EntitySet="tblLokales" />
+            <End Role="tblComputers" EntitySet="tblComputers" />
+          </AssociationSet>
+          <AssociationSet Name="tblFeatureRelation_tblFeature" Association="Self.tblFeatureRelation_tblFeature">
+            <End Role="tblFeatures" EntitySet="tblFeatures" />
+            <End Role="tblFeatureRelations" EntitySet="tblFeatureRelations" />
+          </AssociationSet>
+          <AssociationSet Name="tblFeature_tblFeatureType" Association="Self.tblFeature_tblFeatureType">
+            <End Role="tblFeatureTypes" EntitySet="tblFeatureTypes" />
+            <End Role="tblFeatures" EntitySet="tblFeatures" />
+          </AssociationSet>
+          <AssociationSet Name="tblHW_tblHWtype" Association="Self.tblHW_tblHWtype">
+            <End Role="tblHWtypes" EntitySet="tblHWtypes" />
+            <End Role="tblHWs" EntitySet="tblHWs" />
+          </AssociationSet>
+          <AssociationSet Name="tblIp_tblIpRelation" Association="Self.tblIp_tblIpRelation">
+            <End Role="tblIps" EntitySet="tblIps" />
+            <End Role="tblIpRelations" EntitySet="tblIpRelations" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="dbBuusjensenModelStoreContainer" CdmEntityContainer="dbBuusjensenEntities">
+          <EntitySetMapping Name="tblBrugerRelations">
+            <EntityTypeMapping TypeName="dbBuusjensenModel.tblBrugerRelations">
+              <MappingFragment StoreEntitySet="tblBrugerRelations">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="tblBrugerRelation_tblBruger" ColumnName="tblBrugerRelation_tblBruger" />
+                <ScalarProperty Name="tblBrugerRelation_tblComputer" ColumnName="tblBrugerRelation_tblComputer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblBrugers">
+            <EntityTypeMapping TypeName="dbBuusjensenModel.tblBrugers">
+              <MappingFragment StoreEntitySet="tblBrugers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="initialer" ColumnName="initialer" />
+                <ScalarProperty Name="navn" ColumnName="navn" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="mobil" ColumnName="mobil" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="statsaut" ColumnName="statsaut" />
+                <ScalarProperty Name="partner" ColumnName="partner" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="tblLokale_tblBruger1" ColumnName="tblLokale_tblBruger1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblComputers">
+            <EntityTypeMapping TypeName="dbBuusjensenModel.tblComputers">
+              <MappingFragment StoreEntitySet="tblComputers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="serienr" ColumnName="serienr" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="tblComputer_tblBruger" ColumnName="tblComputer_tblBruger" />
+                <ScalarProperty Name="tblComputer_tblHW" ColumnName="tblComputer_tblHW" />
+                <ScalarProperty Name="tblLokale_tblComputer1" ColumnName="tblLokale_tblComputer1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFeatureRelations">
+            <EntityTypeMapping TypeName="dbBuusjensenModel.tblFeatureRelations">
+              <MappingFragment StoreEntitySet="tblFeatureRelations">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="tblFeatureRelation_tblComputer" ColumnName="tblFeatureRelation_tblComputer" />
+                <ScalarProperty Name="tblFeatureRelation_tblFeatures" ColumnName="tblFeatureRelation_tblFeatures" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFeatures">
+            <EntityTypeMapping TypeName="dbBuusjensenModel.tblFeatures">
+              <MappingFragment StoreEntitySet="tblFeatures">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="navn" ColumnName="navn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="tblFeatures_tblFeatureType" ColumnName="tblFeatures_tblFeatureType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblFeatureTypes">
+            <EntityTypeMapping TypeName="dbBuusjensenModel.tblFeatureTypes">
+              <MappingFragment StoreEntitySet="tblFeatureTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblHWs">
+            <EntityTypeMapping TypeName="dbBuusjensenModel.tblHWs">
+              <MappingFragment StoreEntitySet="tblHWs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="hw" ColumnName="hw" />
+                <ScalarProperty Name="navn" ColumnName="navn" />
+                <ScalarProperty Name="fabrikat" ColumnName="fabrikat" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="tblHW_tblHWtype" ColumnName="tblHW_tblHWtype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblHWtypes">
+            <EntityTypeMapping TypeName="dbBuusjensenModel.tblHWtypes">
+              <MappingFragment StoreEntitySet="tblHWtypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblIpRelations">
+            <EntityTypeMapping TypeName="dbBuusjensenModel.tblIpRelations">
+              <MappingFragment StoreEntitySet="tblIpRelations">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="tblIpRelation_tblComputer" ColumnName="tblIpRelation_tblComputer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblIps">
+            <EntityTypeMapping TypeName="dbBuusjensenModel.tblIps">
+              <MappingFragment StoreEntitySet="tblIps">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+                <ScalarProperty Name="tblIp_tblComputer" ColumnName="tblIp_tblComputer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblLokales">
+            <EntityTypeMapping TypeName="dbBuusjensenModel.tblLokales">
+              <MappingFragment StoreEntitySet="tblLokales">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="lokale" ColumnName="lokale" />
+                <ScalarProperty Name="etage" ColumnName="etage" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="RowVersion" ColumnName="RowVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
