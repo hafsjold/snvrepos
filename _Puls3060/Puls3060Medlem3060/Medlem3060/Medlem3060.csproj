@@ -135,14 +135,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MimeKit.1.0.3.0\lib\net40\MimeKit.dll</HintPath>
     </Reference>
-    <Reference Include="Spire.License, Version=1.3.2.40, Culture=neutral, PublicKeyToken=b1144360237c8b3f, processorArchitecture=MSIL">
-      <HintPath>..\packages\FreeSpire.PDF.3.2\lib\net40\Spire.License.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Spire.Pdf, Version=3.2.52.56040, Culture=neutral, PublicKeyToken=663f351905198cb3, processorArchitecture=MSIL">
-      <HintPath>..\packages\FreeSpire.PDF.3.2\lib\net40\Spire.Pdf.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -171,7 +163,6 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="cls\clsBankUdbetalingsUdskrift.cs" />
     <Compile Include="cls\clsImportMedlem.cs" />
     <Compile Include="cls\clsExcel.cs">
       <SubType>Form</SubType>
