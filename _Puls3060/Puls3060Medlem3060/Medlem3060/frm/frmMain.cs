@@ -11,8 +11,6 @@ using System.Reflection;
 using System.IO;
 using nsPbs3060;
 using System.Diagnostics;
-using Spire.Pdf;
-using Spire.Pdf.Graphics;
 using System.Collections;
 using PHPSerializationLibrary;
 using MimeKit;
