@@ -182,6 +182,7 @@
     <Compile Include="clsPbs603.cs" />
     <Compile Include="clsPbsHelper.cs" />
     <Compile Include="clsPDFTest.cs" />
+    <Compile Include="clsPDFTest02.cs" />
     <Compile Include="clsSFTP.cs" />
     <Compile Include="clsPbs686.cs" />
     <Compile Include="ConnectionTools.cs" />
