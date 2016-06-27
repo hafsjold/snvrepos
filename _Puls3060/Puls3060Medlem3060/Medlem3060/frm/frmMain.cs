@@ -579,7 +579,8 @@ namespace nsPuls3060
 
         private void testToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            clsPDFTest02.Main();
+            clsPDFMedlem objPDFMedlem = new clsPDFMedlem();
+            objPDFMedlem.imapSavePDFFile();
             int yy = 1;
             //clsPbsHelper.update_rsmembership_transactions_user_data();
             

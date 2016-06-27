@@ -181,6 +181,7 @@
     <Compile Include="clsPbs602.cs" />
     <Compile Include="clsPbs603.cs" />
     <Compile Include="clsPbsHelper.cs" />
+    <Compile Include="clsPDFMedlem.cs" />
     <Compile Include="clsPDFTest.cs" />
     <Compile Include="clsPDFTest02.cs" />
     <Compile Include="clsSFTP.cs" />
