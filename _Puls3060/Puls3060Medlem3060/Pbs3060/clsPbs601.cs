@@ -1219,12 +1219,14 @@ namespace nsPbs3060
                         sendtsom = p_dbData3060.SendtSomString(rstdeb.Faknr),
                         kundenr = rstdeb.Kundenr.ToString()
                     };
-                    string subject = "Betaling af Puls 3060 Kontingent";
-                    Boolean bBcc = false;
+                    string subject = "Rykker for Betaling af Puls 3060 Kontingent";
+                    Boolean bBcc = true;
+                    /*
                     if (rstdeb.indmeldelse != null)
                     {
                         if ((Boolean)(rstdeb.indmeldelse) == true) bBcc = true;
                     }
+                    */
                     //Send email
                     sendHtmlEmail(p_dbData3060, rstdeb.Navn, rstdeb.Email, subject, objInfotekst, bBcc);
                 }
