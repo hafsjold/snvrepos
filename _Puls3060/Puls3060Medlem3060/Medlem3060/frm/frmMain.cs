@@ -579,11 +579,14 @@ namespace nsPuls3060
 
         private void testToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            clsPDFMedlem objPDFMedlem = new clsPDFMedlem();
-            objPDFMedlem.imapSavePDFFile();
+            clsKontingent objKontingent = new clsKontingent(Program.dbData3060, new DateTime(2016,12,31));
             int yy = 1;
+
+            //clsPDFMedlem objPDFMedlem = new clsPDFMedlem();
+            //objPDFMedlem.imapSavePDFFile();
+            //int yy = 1;
             //clsPbsHelper.update_rsmembership_transactions_user_data();
-            
+
             //clsPbsHelper.Update_rsmembership_transactions(Program.dbData3060);
 
             //puls3060_nyEntities jdb = new puls3060_nyEntities(true);
