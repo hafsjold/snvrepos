@@ -502,7 +502,7 @@ namespace nsPbs3060
             string sNavn;
 
             var qry_rsmembership = from s in jdb.ecpwt_rsmembership_membership_subscribers
-                                   where s.membership_id == 6 && s.status != 3
+                                   where s.membership_id == 6 && s.status != 2 && s.status != 3
                                    join tf in jdb.ecpwt_rsmembership_transactions on s.from_transaction_id equals tf.id
                                    join tl in jdb.ecpwt_rsmembership_transactions on s.last_transaction_id equals tl.id
                                    join m in jdb.ecpwt_rsmembership_subscribers on s.user_id equals m.user_id
@@ -594,10 +594,12 @@ namespace nsPbs3060
 
                 if (bSelected)
                 {
+                    // beregn kontingent baseret på KontingentFradato !!!!!!!!!!!!!!!!!!!!!!!!
                     AntalForslag++;
                     tilmeldtpbs = (bool)p_dbData3060.erPBS(iNr);
-                    KontingentTildato = KontingentFradato.AddMonths(12);
-                    ikontingent = (int)m.Kontingent;
+                    clsKontingent objKontingent = new clsKontingent(p_dbData3060, KontingentFradato);
+                    KontingentTildato = objKontingent.KontingentTildato;
+                    ikontingent = (int)objKontingent.Kontingent;
 
                     string[] item = new string[11];
                     item[0] = m.user_id.ToString();
