@@ -33,7 +33,7 @@ namespace nsPuls3060
         public int int76;
         public int Nr;
         public int Id;
-        public int int88;
+        public int sag;
         public int int92;
     }
 
@@ -149,6 +149,18 @@ namespace nsPuls3060
             set
             {
                 m_rec_data.Id = value;
+            }
+        }
+
+        public int Sag
+        {
+            get
+            {
+                return m_rec_data.sag;
+            }
+            set
+            {
+                m_rec_data.sag = value;
             }
         }
 

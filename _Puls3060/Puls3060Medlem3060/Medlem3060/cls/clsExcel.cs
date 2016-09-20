@@ -366,7 +366,7 @@ namespace nsPuls3060
 
             var rec_regnskab = Program.qryAktivRegnskab();
             string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_HHmmss") + ".xlsx";
-            
+
             puls3060_nyEntities jdb = new puls3060_nyEntities(true);
 
             var qry = from u in jdb.ecpwt_users
@@ -409,7 +409,7 @@ namespace nsPuls3060
                     MedlemTil = m.membership_end
                 };
                 MedlemmerAll.Add(recMedlem);
-            }            
+            }
 
             using (new ExcelUILanguageHelper())
             {
@@ -558,20 +558,20 @@ namespace nsPuls3060
             var MedlemmerNotPBS = from h in MedlemmerAll
                                   where h.erMedlem == 1 && h.erPBS == 0
                                   select new clsMedlemNotPBS
-                                   {
-                                       Nr = h.Nr,
-                                       Navn = h.Navn,
-                                       Kaldenavn = h.Kaldenavn,
-                                       Adresse = h.Adresse,
-                                       Postnr = h.Postnr,
-                                       Bynavn = h.Bynavn,
-                                       Telefon = h.Telefon,
-                                       Email = h.Email,
-                                       Kon = h.Kon,
-                                       PBSnr = "03985644",
-                                       Debgrnr = "00001",
-                                       Kundenr = 032001610000000 + (int)h.Nr
-                                   };
+                                  {
+                                      Nr = h.Nr,
+                                      Navn = h.Navn,
+                                      Kaldenavn = h.Kaldenavn,
+                                      Adresse = h.Adresse,
+                                      Postnr = h.Postnr,
+                                      Bynavn = h.Bynavn,
+                                      Telefon = h.Telefon,
+                                      Email = h.Email,
+                                      Kon = h.Kon,
+                                      PBSnr = "03985644",
+                                      Debgrnr = "00001",
+                                      Kundenr = 032001610000000 + (int)h.Nr
+                                  };
 
             using (new ExcelUILanguageHelper())
             {
@@ -702,11 +702,13 @@ namespace nsPuls3060
         {
             DateTime pReadDate = DateTime.Now;
             string pSheetName = "Poster";
+            char[] dash = { '-' };
 
             _Excel.Application oXL = null; ;
             _Excel._Workbook oWB;
             _Excel._Worksheet oSheetPoster;
             _Excel._Worksheet oSheetRegnskab;
+            _Excel._Worksheet oSheetRegnskab_puls3060 = null;
             _Excel.Window oWindow;
             _Excel.Range oRng;
 
@@ -716,20 +718,26 @@ namespace nsPuls3060
 
             var JournalPoster = from h in Program.karPosteringer
                                 join d1 in Program.karKontoplan on h.Konto equals d1.Kontonr into details1
-                                from x in details1.DefaultIfEmpty()
+                                from x1 in details1.DefaultIfEmpty()
+                                join d2 in Program.karSag on h.Sag equals d2.Sagnr into details2
+                                from x2 in details2.DefaultIfEmpty(new recSag { Sagnr = 0, Sagnavn = "Ingen" })
                                 orderby h.Nr
                                 select new clsJournalposter
                                 {
-                                    ds = (x.Type == "Drift") ? "D" : "S",
-                                    k = IUAP(x.Type, x.DK),
-                                    Konto = h.Konto.ToString() + "-" + x.Kontonavn,
+                                    ds = (x1.Type == "Drift") ? "D" : "S",
+                                    k = IUAP(x1.Type, x1.DK),
+                                    Konto = h.Konto.ToString() + "-" + x1.Kontonavn,
                                     Dato = h.Dato,
                                     Bilag = h.Bilag,
                                     Nr = h.Nr,
                                     Id = h.Id,
                                     Tekst = h.Tekst,
                                     Beløb = h.Bruttobeløb,
+                                    Sag = ((x1.Type == "Drift") && (x2.Sagnr != 0)) ? h.Sag.ToString() + "-" + x2.Sagnavn : null,
                                 };
+
+            var QrySag = from s in Program.karPosteringer group s.Sag by new {s.Sag};
+
 
             using (new ExcelUILanguageHelper())
             {
@@ -741,167 +749,206 @@ namespace nsPuls3060
                     //oXL.Visible = true; //For debug
 
                     //Get a new workbook.
-
                     oWB = oXL.Workbooks.Add((Missing.Value));
+
                     oSheetPoster = (_Excel._Worksheet)oWB.ActiveSheet;
                     oWindow = oXL.ActiveWindow;
 
                     if (pSheetName.Length > 0) oSheetPoster.Name = pSheetName.Substring(0, pSheetName.Length > 34 ? 34 : pSheetName.Length);
-                    int row = 1;
+
                     this.MainformProgressBar.Value = 0;
                     this.MainformProgressBar.Minimum = 0;
                     this.MainformProgressBar.Maximum = (from h in Program.karPosteringer select h).Count();
                     this.MainformProgressBar.Step = 1;
                     this.MainformProgressBar.Visible = true;
-                    foreach (clsJournalposter m in JournalPoster)
-                    {
-                        this.MainformProgressBar.PerformStep();
-                        row++;
-                        Type objectType = m.GetType();
-                        PropertyInfo[] properties = objectType.GetProperties();
-                        int col = 0;
-                        foreach (PropertyInfo property in properties)
-                        {
-                            col++;
-                            string Name = property.Name;
-                            //string NamePropertyType = property.GetValue(m, null).GetType().ToString();
-                            oSheetPoster.Cells[row, col] = property.GetValue(m, null);
-                            if (row == 2)
-                            {
-                                object[] CustomAttributes = property.GetCustomAttributes(false);
-                                foreach (var att in CustomAttributes)
-                                {
-                                    Type tp = att.GetType();
-                                    if (tp.ToString() == "nsPuls3060.Fieldattr")
-                                    {
-                                        Fieldattr attr = (Fieldattr)att;
-                                        string heading = attr.Heading;
-                                        oSheetPoster.Cells[1, col] = heading;
 
+                    ////////////////////////////////////////////////////////////////////////
+                    foreach (var s in QrySag)
+                    {
+                        int xi = s.Key.Sag;
+                        if (xi != 0)
+                        {
+                            oSheetPoster = (_Excel._Worksheet)oWB.Worksheets.Add(System.Type.Missing, oSheetPoster, System.Type.Missing, System.Type.Missing);
+                        }
+
+                        if (xi == 0) oSheetPoster.Name = "Poster";
+                        else oSheetPoster.Name = "Poster" + xi.ToString();
+
+                        int row = 1;
+                        foreach (clsJournalposter m in JournalPoster)
+                        {
+                            if (xi != 0)
+                            { 
+                                if (m.ds != "D") continue;
+                                if (m.Sag == null) continue;
+                                string ssag = (m.Sag.Split(dash,2))[0];
+                                if (ssag != xi.ToString()) continue;
+                            }
+
+                            this.MainformProgressBar.PerformStep();
+                            row++;
+                            Type objectType = m.GetType();
+                            PropertyInfo[] properties = objectType.GetProperties();
+                            int col = 0;
+                            foreach (PropertyInfo property in properties)
+                            {
+                                col++;
+                                string Name = property.Name;
+                                //string NamePropertyType = property.GetValue(m, null).GetType().ToString();
+                                oSheetPoster.Cells[row, col] = property.GetValue(m, null);
+                                if (row == 2)
+                                {
+                                    object[] CustomAttributes = property.GetCustomAttributes(false);
+                                    foreach (var att in CustomAttributes)
+                                    {
+                                        Type tp = att.GetType();
+                                        if (tp.ToString() == "nsPuls3060.Fieldattr")
+                                        {
+                                            Fieldattr attr = (Fieldattr)att;
+                                            string heading = attr.Heading;
+                                            oSheetPoster.Cells[1, col] = heading;
+
+                                        }
                                     }
                                 }
                             }
                         }
-                    }
 
-                    oRng = (_Excel.Range)oSheetPoster.Rows[1, Missing.Value];
-                    oRng.Font.Name = "Arial";
-                    oRng.Font.Size = 12;
-                    oRng.Font.Strikethrough = false;
-                    oRng.Font.Superscript = false;
-                    oRng.Font.Subscript = false;
-                    oRng.Font.OutlineFont = false;
-                    oRng.Font.Shadow = false;
-                    oRng.Font.Bold = true;
-                    oRng.HorizontalAlignment = _Excel.Constants.xlCenter;
-                    oRng.VerticalAlignment = _Excel.Constants.xlBottom;
-                    oRng.WrapText = false;
-                    oRng.Orientation = 0;
-                    oRng.AddIndent = false;
-                    oRng.IndentLevel = 0;
-                    oRng.ShrinkToFit = false;
-                    oRng.MergeCells = false;
+                        oRng = (_Excel.Range)oSheetPoster.Rows[1, Missing.Value];
+                        oRng.Font.Name = "Arial";
+                        oRng.Font.Size = 12;
+                        oRng.Font.Strikethrough = false;
+                        oRng.Font.Superscript = false;
+                        oRng.Font.Subscript = false;
+                        oRng.Font.OutlineFont = false;
+                        oRng.Font.Shadow = false;
+                        oRng.Font.Bold = true;
+                        oRng.HorizontalAlignment = _Excel.Constants.xlCenter;
+                        oRng.VerticalAlignment = _Excel.Constants.xlBottom;
+                        oRng.WrapText = false;
+                        oRng.Orientation = 0;
+                        oRng.AddIndent = false;
+                        oRng.IndentLevel = 0;
+                        oRng.ShrinkToFit = false;
+                        oRng.MergeCells = false;
 
-                    string BottomRight = "D" + row.ToString();
-                    oRng = oSheetPoster.get_Range("D2", BottomRight);
-                    oRng.NumberFormat = "dd-mm-yyyy";
+                        string BottomRight = "E" + row.ToString();
+                        oRng = oSheetPoster.get_Range("E2", BottomRight);
+                        oRng.NumberFormat = "dd-mm-yyyy";
 
-                    oSheetPoster.Cells.EntireColumn.AutoFit();
+                        oSheetPoster.ListObjects.AddEx(_Excel.XlListObjectSourceType.xlSrcRange, oSheetPoster.UsedRange, System.Type.Missing, _Excel.XlYesNoGuess.xlYes).Name = "PosterList";
+                        oSheetPoster.Cells.EntireColumn.AutoFit();
 
-                    oWindow.SplitRow = 1;
-                    oWindow.FreezePanes = true;
+                        oWindow.SplitRow = 1;
+                        oWindow.FreezePanes = true;
 
-                    oSheetPoster.get_Range("A1", Missing.Value).Select();
+                        oSheetPoster.get_Range("A1", Missing.Value).Select();
 
 
-                    oSheetRegnskab = (_Excel._Worksheet)oWB.Worksheets.Add(System.Type.Missing, System.Type.Missing, System.Type.Missing, System.Type.Missing);
-                    //oXL.Visible = true; //For debug
+                        oSheetRegnskab = (_Excel._Worksheet)oWB.Worksheets.Add(oSheetPoster, System.Type.Missing, System.Type.Missing, System.Type.Missing);
+                        //oXL.Visible = true; //For debug
 
-                    _Excel.Range x1 = oSheetPoster.Cells[1, 1];
-                    _Excel.Range x2 = oSheetPoster.Cells[row, 9];
-                    _Excel.Range xx = oSheetPoster.get_Range(x1, x2);
-                    _Excel.PivotField _pvtField = null;
-                    _Excel.PivotTable _pivot = oSheetPoster.PivotTableWizard(
-                        _Excel.XlPivotTableSourceType.xlDatabase,  //SourceType
-                        xx, //SourceData
-                        oSheetRegnskab.get_Range("A3", Missing.Value),  //TableDestination
-                        "PivotTable1", //TableName
-                        System.Type.Missing, //RowGrand
-                        System.Type.Missing, //CollumnGrand
-                        System.Type.Missing, //SaveData
-                        System.Type.Missing, //HasAutoformat
-                        System.Type.Missing, //AutoPage
-                        System.Type.Missing, //Reserved
-                        System.Type.Missing, //BackgroundQuery
-                        System.Type.Missing, //OptimizeCache 
-                        System.Type.Missing, //PageFieldOrder 
-                        System.Type.Missing, //PageFieldWrapCount 
-                        System.Type.Missing, //ReadData 
-                        System.Type.Missing);//Connection 
+                        _Excel.Range x1 = oSheetPoster.Cells[1, 1];
+                        _Excel.Range x2 = oSheetPoster.Cells[row, 10];
+                        _Excel.Range xx = oSheetPoster.get_Range(x1, x2);
+                        _Excel.PivotField _pvtField = null;
+                        _Excel.PivotTable _pivot = oSheetPoster.PivotTableWizard(
+                            _Excel.XlPivotTableSourceType.xlDatabase,  //SourceType
+                            xx, //SourceData
+                            oSheetRegnskab.get_Range("A3", Missing.Value),  //TableDestination
+                            "PivotTable1", //TableName
+                            System.Type.Missing, //RowGrand
+                            System.Type.Missing, //CollumnGrand
+                            System.Type.Missing, //SaveData
+                            System.Type.Missing, //HasAutoformat
+                            System.Type.Missing, //AutoPage
+                            System.Type.Missing, //Reserved
+                            System.Type.Missing, //BackgroundQuery
+                            System.Type.Missing, //OptimizeCache 
+                            System.Type.Missing, //PageFieldOrder 
+                            System.Type.Missing, //PageFieldWrapCount 
+                            System.Type.Missing, //ReadData 
+                            System.Type.Missing);//Connection 
 
-                    _pvtField = (_Excel.PivotField)_pivot.PivotFields("ds");
-                    _pvtField.Orientation = _Excel.XlPivotFieldOrientation.xlRowField;
+                        _pvtField = (_Excel.PivotField)_pivot.PivotFields("ds");
+                        _pvtField.Orientation = _Excel.XlPivotFieldOrientation.xlRowField;
 
-                    _pvtField = (_Excel.PivotField)_pivot.PivotFields("k");
-                    _pvtField.Orientation = _Excel.XlPivotFieldOrientation.xlRowField;
+                        _pvtField = (_Excel.PivotField)_pivot.PivotFields("k");
+                        _pvtField.Orientation = _Excel.XlPivotFieldOrientation.xlRowField;
 
-                    _pvtField = (_Excel.PivotField)_pivot.PivotFields("Konto");
-                    _pvtField.Orientation = _Excel.XlPivotFieldOrientation.xlRowField;
+                        _pvtField = (_Excel.PivotField)_pivot.PivotFields("Konto");
+                        _pvtField.Orientation = _Excel.XlPivotFieldOrientation.xlRowField;
 
-                    _pvtField = (_Excel.PivotField)_pivot.PivotFields("Dato");
-                    _pvtField.Orientation = _Excel.XlPivotFieldOrientation.xlColumnField;
+                        _pvtField = (_Excel.PivotField)_pivot.PivotFields("Dato");
+                        _pvtField.Orientation = _Excel.XlPivotFieldOrientation.xlColumnField;
 
-                    _pvtField = (_Excel.PivotField)_pivot.PivotFields("Beløb");
-                    _pvtField.Orientation = _Excel.XlPivotFieldOrientation.xlDataField;
-                    _pvtField.Function = _Excel.XlConsolidationFunction.xlSum;
-                    _pvtField.NumberFormat = "#,##0";
+                        _pvtField = (_Excel.PivotField)_pivot.PivotFields("Beløb");
+                        _pvtField.Orientation = _Excel.XlPivotFieldOrientation.xlDataField;
+                        _pvtField.Function = _Excel.XlConsolidationFunction.xlSum;
+                        _pvtField.NumberFormat = "#,##0";
 
-                    oSheetRegnskab.Name = "Regnskab";
-                    oRng = oSheetRegnskab.get_Range("D3", Missing.Value);
-                    oRng.Select();
-                    bool[] Periods = { false, false, false, false, true, false, false };
-                    oRng.Group(true, true, Missing.Value, Periods);
+                        if (xi == 0) oSheetRegnskab.Name = "Regnskab";
+                        else oSheetRegnskab.Name = "Regnskab" + xi.ToString();
 
-                    oRng = oSheetRegnskab.get_Range("D4", "P4");
-                    oRng.HorizontalAlignment = _Excel.XlHAlign.xlHAlignRight;
-
-                    oSheetRegnskab.PageSetup.LeftHeader = "&14Regnskab Puls 3060";
-                    oSheetRegnskab.PageSetup.CenterHeader = "";
-                    oSheetRegnskab.PageSetup.RightHeader = "&P af &N";
-                    oSheetRegnskab.PageSetup.LeftFooter = "&Z&F";
-                    oSheetRegnskab.PageSetup.CenterFooter = "";
-                    oSheetRegnskab.PageSetup.RightFooter = "&D&T";
-                    oSheetRegnskab.PageSetup.LeftMargin = oXL.InchesToPoints(0.75);
-                    oSheetRegnskab.PageSetup.RightMargin = oXL.InchesToPoints(0.75);
-                    oSheetRegnskab.PageSetup.TopMargin = oXL.InchesToPoints(1);
-                    oSheetRegnskab.PageSetup.BottomMargin = oXL.InchesToPoints(1);
-                    oSheetRegnskab.PageSetup.HeaderMargin = oXL.InchesToPoints(0.5);
-                    oSheetRegnskab.PageSetup.FooterMargin = oXL.InchesToPoints(0.5);
-                    oSheetRegnskab.PageSetup.PrintHeadings = false;
-                    oSheetRegnskab.PageSetup.PrintGridlines = true;
-                    oSheetRegnskab.PageSetup.CenterHorizontally = false;
-                    oSheetRegnskab.PageSetup.CenterVertically = false;
-                    oSheetRegnskab.PageSetup.Orientation = _Excel.XlPageOrientation.xlLandscape;
-                    oSheetRegnskab.PageSetup.Draft = false;
-                    oSheetRegnskab.PageSetup.PaperSize = _Excel.XlPaperSize.xlPaperA4;
-                    oSheetRegnskab.PageSetup.FirstPageNumber = 1;
-                    oSheetRegnskab.PageSetup.Order = _Excel.XlOrder.xlDownThenOver;
-                    oSheetRegnskab.PageSetup.BlackAndWhite = false;
-                    oSheetRegnskab.PageSetup.Zoom = 100;
-                    oSheetRegnskab.PageSetup.PrintErrors = _Excel.XlPrintErrors.xlPrintErrorsDisplayed;
-
-                    oWB.ShowPivotTableFieldList = false;
-
-                    for (var i = oWB.Worksheets.Count; i > 0; i--)
-                    {
-                        _Excel._Worksheet oSheetWrk = (_Excel._Worksheet)oWB.Worksheets.get_Item(i);
-                        if ((oSheetWrk.Name != "Regnskab") && (oSheetWrk.Name != "Poster"))
+                        if (xi == 0) oSheetRegnskab.Cells[2, 3] = "Regnskab Puls 3060";
+                        else
                         {
-                            oSheetWrk.Delete();
+                            string Sagnavn = (from h in Program.karSag where h.Sagnr == xi select h.Sagnavn).FirstOrDefault();
+                            oSheetRegnskab.Cells[2, 3] = "Regnskab for " + Sagnavn;
                         }
-                    }
 
-                    oSheetRegnskab.get_Range("A1", Missing.Value).Select();
+                        oRng = oSheetRegnskab.get_Range("D3", Missing.Value);
+                        oRng.Select();
+                        bool[] Periods = { false, false, false, false, true, false, false };
+                        oRng.Group(true, true, Missing.Value, Periods);
+
+                        oRng = oSheetRegnskab.get_Range("D4", "P4");
+                        oRng.HorizontalAlignment = _Excel.XlHAlign.xlHAlignRight;
+
+                        oSheetRegnskab.PageSetup.LeftHeader = "&14Regnskab Puls 3060";
+                        oSheetRegnskab.PageSetup.CenterHeader = "";
+                        oSheetRegnskab.PageSetup.RightHeader = "&P af &N";
+                        oSheetRegnskab.PageSetup.LeftFooter = "&Z&F";
+                        oSheetRegnskab.PageSetup.CenterFooter = "";
+                        oSheetRegnskab.PageSetup.RightFooter = "&D&T";
+                        oSheetRegnskab.PageSetup.LeftMargin = oXL.InchesToPoints(0.75);
+                        oSheetRegnskab.PageSetup.RightMargin = oXL.InchesToPoints(0.75);
+                        oSheetRegnskab.PageSetup.TopMargin = oXL.InchesToPoints(1);
+                        oSheetRegnskab.PageSetup.BottomMargin = oXL.InchesToPoints(1);
+                        oSheetRegnskab.PageSetup.HeaderMargin = oXL.InchesToPoints(0.5);
+                        oSheetRegnskab.PageSetup.FooterMargin = oXL.InchesToPoints(0.5);
+                        oSheetRegnskab.PageSetup.PrintHeadings = false;
+                        oSheetRegnskab.PageSetup.PrintGridlines = true;
+                        oSheetRegnskab.PageSetup.CenterHorizontally = false;
+                        oSheetRegnskab.PageSetup.CenterVertically = false;
+                        oSheetRegnskab.PageSetup.Orientation = _Excel.XlPageOrientation.xlLandscape;
+                        oSheetRegnskab.PageSetup.Draft = false;
+                        oSheetRegnskab.PageSetup.PaperSize = _Excel.XlPaperSize.xlPaperA4;
+                        oSheetRegnskab.PageSetup.FirstPageNumber = 1;
+                        oSheetRegnskab.PageSetup.Order = _Excel.XlOrder.xlDownThenOver;
+                        oSheetRegnskab.PageSetup.BlackAndWhite = false;
+                        oSheetRegnskab.PageSetup.Zoom = 100;
+                        oSheetRegnskab.PageSetup.PrintErrors = _Excel.XlPrintErrors.xlPrintErrorsDisplayed;
+
+                        oWB.ShowPivotTableFieldList = false;
+
+                        /*
+                        for (var i = oWB.Worksheets.Count; i > 0; i--)
+                        {
+                            _Excel._Worksheet oSheetWrk = (_Excel._Worksheet)oWB.Worksheets.get_Item(i);
+                            if ((oSheetWrk.Name != "Regnskab") && (oSheetWrk.Name != "Poster"))
+                            {
+                                oSheetWrk.Delete();
+                            }
+                        }
+                        */
+
+                        if (xi == 0) oSheetRegnskab_puls3060 = oSheetRegnskab;
+                        oSheetRegnskab.get_Range("A1", Missing.Value).Select();
+
+                    }//////////////////////////////////////////////////////////////////////////////////////////////
+                    oSheetRegnskab_puls3060.Activate();
+                    oSheetRegnskab_puls3060.get_Range("A1", Missing.Value).Select();
 
                     oWB.SaveAs(SaveAs, _Excel.XlFileFormat.xlWorkbookDefault, "", "", false, false, _Excel.XlSaveAsAccessMode.xlExclusive, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
                     oWB.Saved = true;
@@ -950,7 +997,7 @@ namespace nsPuls3060
             {
                 List<string> list = new List<string>();
                 string heading = "";
-                char[] simikolon = {';'};
+                char[] simikolon = { ';' };
 
                 int row = 0;
                 foreach (clsMedlemMailSync m in MedlemmerAll)
@@ -988,7 +1035,7 @@ namespace nsPuls3060
                 {
                     foreach (var ln in list)
                     {
-                         sr.WriteLine(ln);
+                        sr.WriteLine(ln);
                     }
                 }
 
@@ -1222,6 +1269,8 @@ namespace nsPuls3060
         public string k { get; set; }
         [Fieldattr(Heading = "Konto")]
         public string Konto { get; set; }
+        [Fieldattr(Heading = "Sag")]
+        public string Sag { get; set; }
         [Fieldattr(Heading = "Dato")]
         public DateTime? Dato { get; set; }
         [Fieldattr(Heading = "Bilag")]
