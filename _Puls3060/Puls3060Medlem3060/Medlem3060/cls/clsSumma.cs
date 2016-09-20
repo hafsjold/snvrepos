@@ -138,61 +138,11 @@ namespace nsPuls3060
 
                     }
 
-                    /*
-                    var fak = from f in Program.dbData3060.tblfaks
-                              where f.faknr == b.faknr
-                              join m in Program.dbData3060.tblMedlems on f.Nr equals m.Nr
-                              select new { f.faknr, f.Nr, m.Navn, f.bogfkonto };
-                    */
-                    var bet = from bi in Program.dbData3060.tblbetalingsidentifikations
-                              where bi.betalingsidentifikation == b.debitorkonto
-                              join m in Program.dbData3060.tblMedlems on bi.Nr equals m.Nr
-                              select new { bi.Nr, m.Navn, bi.bogfkonto };
-
                     var msm = from f in Program.dbData3060.tblfaks
                               where f.faknr == b.faknr
-                              join m in Program.dbData3060.tblrsmembership_transactions on f.Nr equals m.memberid
+                              join m in Program.dbData3060.tblrsmembership_transactions on f.id equals m.id
                               select new { f.faknr, f.Nr, m.name, f.bogfkonto, f.fradato, f.tildato };
 
-                    /*
-                    if (fak.Count() == 1) //Kontingent betaling
-                    {
-                        var f = fak.First();
-                        recKladde kl = new recKladde
-                        {
-                            Dato = ToDay,
-                            Bilag = BS1_SidsteNr,
-                            Tekst = ("F" + f.faknr + " " + f.Nr + " " + f.Navn).PadRight(40, ' ').Substring(0, 40),
-                            Afstemningskonto = null,
-                            Belob = b.indbetalingsbelob,
-                            Kontonr = f.bogfkonto,
-                            Faknr = null,
-                            Sagnr = null
-                        };
-                        Program.karKladde.Add(kl);
-                    }
-                    else
-                    */
-                    /*
-                    if (bet.Count() == 1) //Betaling med betalingsidentifikation
-                    {
-                        var f = bet.First();
-                        recKladde kl = new recKladde
-                        {
-                            Dato = ToDay,
-                            Bilag = BS1_SidsteNr,
-                            Tekst = (f.Nr + " " + f.Navn).PadRight(40, ' ').Substring(0, 40),
-                            Afstemningskonto = null,
-                            Belob = b.indbetalingsbelob,
-                            Kontonr = f.bogfkonto,
-                            Faknr = null,
-                            Sagnr = null
-
-                        };
-                        Program.karKladde.Add(kl);
-                    }
-                    else 
-                    */ 
                     if (msm.Count() == 1) //Kontingent betaling for RSMembership
                     {
                         var f = msm.First();

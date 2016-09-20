@@ -84,6 +84,7 @@ namespace nsPuls3060
         private static KarPosteringer m_KarPosteringer;
         private static KarFakturaer_k m_KarFakturaer_k;
         private static KarMedlemPrivat m_KarMedlemPrivat;
+        private static KarSag m_KarSag;
 
         public static string Password
         {
@@ -260,6 +261,18 @@ namespace nsPuls3060
             set
             {
                 m_KarMedlemPrivat = value;
+            }
+        }
+        public static KarSag karSag
+        {
+            get
+            {
+                if (m_KarSag == null) m_KarSag = new KarSag();
+                return m_KarSag;
+            }
+            set
+            {
+                m_KarSag = value;
             }
         }
 
