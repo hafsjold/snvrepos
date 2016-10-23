@@ -21,14 +21,10 @@
                     <RowDefinition  Height="40"/>
                 </Grid.RowDefinitions>
                 <local:menuButton ServerName="pRevi36" ServerOS="Win2012" ToolTip="HyperV + File Server" Margin="3" Grid.Row="1" Grid.ColumnSpan="2" />
-                <local:menuButton ServerName="Revi24" ServerOS="Win2012" ToolTip="Certificate Server" Margin="3" Grid.Row="3" />
                 <local:menuButton ServerName="Revi35" ServerOS="Win2008" ToolTip="Terminal Server" Margin="3" Grid.Row="2" Grid.Column="1" />
-                <local:menuButton Grid.Row="4" Margin="3" ServerName="vRevi09" ServerOS="freeBSD" ToolTip="Zabbix Server" />
-                <local:menuButton Grid.Row="4" Margin="3" ServerName="vRevi52" ServerOS="Win2012" ToolTip="Sharepoint Server" Grid.Column="1"  />
-                <local:menuButton Grid.Row="7" Margin="3" ServerName="vRevi12sccm" ServerOS="Win2012" ToolTip="SCCM Server" />
-                <local:menuButton Grid.Row="5" Margin="3" ServerName="vRevi51" ServerOS="Win2012" ToolTip="NAV Test Server" />
+                <local:menuButton  Grid.Column="1" Grid.Row="3" Margin="3" ServerName="vRevi09" ServerOS="freeBSD" ToolTip="Zabbix Server" />
+                <local:menuButton Grid.Row="3" Margin="3" ServerName="vRevi12sccm" ServerOS="Win2012" ToolTip="SCCM Server" />
                 <local:menuButton Grid.Row="2" Margin="3" ServerName="vRevi11" ServerOS="Win2012" ToolTip="Domain Server" />
-                <local:menuButton Grid.Row="5" Margin="3" ServerName="vRevi53" ServerOS="Win2012" ToolTip="NAV 2016 Test Server" Grid.Column="1"  />
             </Grid>
         </GroupBox>
         <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="157" HorizontalAlignment="Left"  Margin="194,252,0,0" Name="pRevi37" VerticalAlignment="Top" Width="183">
@@ -113,6 +109,7 @@
                 <local:menuButton ServerName="vRevi32" ServerOS="Win2012" ToolTip="Print Server" Margin="3" Grid.Row="4" />
                 <local:menuButton Grid.Column="1" Grid.Row="4" Margin="3" ServerName="Post07" ServerOS="Win2012" ToolTip="Exchange Server" />
                 <local:menuButton Grid.Row="5" Margin="3" ServerName="vRevi44" ServerOS="Win2012" ToolTip="SQL Server" />
+                <local:menuButton Grid.Column="1" Grid.Row="5" Margin="3" ServerName="Revi24" ServerOS="Win2012" ToolTip="Certificate Server" />
             </Grid>
         </GroupBox>
         
