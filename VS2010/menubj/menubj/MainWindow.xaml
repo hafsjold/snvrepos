@@ -70,7 +70,7 @@
 
             </Grid>
         </GroupBox>
-    
+
         <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="244" HorizontalAlignment="Left" Margin="193,3,0,0" Name="pRevi41" VerticalAlignment="Top" Width="183">
             <Grid Height="238" Width="170">
                 <Grid.ColumnDefinitions>
@@ -98,8 +98,6 @@
                 <local:menuButton Grid.Column="1" Grid.Row="5" Margin="3" ServerName="Revi24" ServerOS="Win2012" ToolTip="Certificate Server" />
             </Grid>
         </GroupBox>
-        
-        <local:menuButton Margin="200,457,0,0" ServerName="Revi27" ServerOS="Win2012" ToolTip="Remote DPM Backup Server" Height="37" VerticalAlignment="Top" HorizontalAlignment="Left" Width="79" />
         <local:menuButton Margin="200,413,0,0" ServerName="WS04" ServerOS="Win8" ToolTip="UN's Arbejdsplads"  HorizontalAlignment="Left" Width="79" Height="37" VerticalAlignment="Top" />
         <local:menuButton Margin="288,413,0,0" ServerName="CZC3193Y46" ServerOS="Win8" ToolTip="MHA's Arbejdsplads i EDB-kælder"  Height="37" HorizontalAlignment="Left" VerticalAlignment="Top" Width="79" />
         <local:menuButton Margin="288,457,0,0" ServerName="WAN2" ServerOS="Win8" ToolTip="MHA's Arbejdsplads i EDB-kælder"  Height="37" HorizontalAlignment="Left" VerticalAlignment="Top" Width="79" />
