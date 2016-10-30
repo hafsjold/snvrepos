@@ -57,7 +57,6 @@
 
         <local:menuButton Height="34" Width="79" Margin="7,209,0,0" ServerName="pHD11" ServerOS="Win2012" ToolTip="DPM Backup Server" HorizontalAlignment="Left" VerticalAlignment="Top" />
         <local:menuButton Height="34" Width="79" Margin="99,209,0,0" ServerName="pHD12" ServerOS="Win2012" ToolTip="Domain Conrtoller" HorizontalAlignment="Left" VerticalAlignment="Top" />
-        <local:menuButton Height="34" Width="79" Margin="197,209,0,0" ServerName="Revi27" ServerOS="Win2012" ToolTip="DPM Backup Server for BuusJensen" HorizontalAlignment="Left" VerticalAlignment="Top" />
         <local:menuButton Height="34" Width="79" Margin="290,209,0,0" ServerName="pHD46" ServerOS="Win8" ToolTip="PC på Gang 1. sal" VerticalAlignment="Top" HorizontalAlignment="Left" />
         <local:menuButton ServerName="vPuls3060" ServerOS="Win2012" ToolTip="Puls 3060 Azure Server" Margin="6,251,0,0" HorizontalAlignment="Left" Width="79" Height="34" VerticalAlignment="Top" />
     </Grid>

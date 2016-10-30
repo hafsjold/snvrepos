@@ -196,7 +196,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy "$(TargetPath)" "C:\Users\mha\OneDrive\Install\$(ProjectName)"</PostBuildEvent>
+    <PostBuildEvent>copy "$(TargetPath)" "C:\Users\mha\OneDrive - Hafsjold Data Consult\Install_HDA\$(ProjectName)"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
