@@ -26,6 +26,7 @@
                 <local:menuButton Grid.Row="3" Margin="3" ServerName="Dos-n" ServerOS="Win7" ToolTip="Dos Arbejdsplads" />
                 <local:menuButton Grid.Row="2" Margin="3" ServerName="vRevi11" ServerOS="Win2012" ToolTip="Domain Server" />
                 <local:menuButton Grid.Row="4" Margin="3" ServerName="vRevi12sccm" ServerOS="Win2012" ToolTip="SCCM Server" />
+                <local:menuButton Grid.Row="4" Margin="3" ServerName="vRevi61" ServerOS="Win2012" ToolTip="FocusIT Server" Grid.Column="1"/>
             </Grid>
         </GroupBox>
         <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="157" HorizontalAlignment="Left"  Margin="194,252,0,0" Name="pRevi37" VerticalAlignment="Top" Width="183">
