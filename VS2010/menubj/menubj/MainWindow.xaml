@@ -29,8 +29,8 @@
                 <local:menuButton Grid.Row="4" Margin="3" ServerName="vRevi61" ServerOS="Win2012" ToolTip="FocusIT Server" Grid.Column="1"/>
             </Grid>
         </GroupBox>
-        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="157" HorizontalAlignment="Left"  Margin="194,252,0,0" Name="pRevi37" VerticalAlignment="Top" Width="183">
-            <Grid Height="156" Width="170">
+        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="119" HorizontalAlignment="Left"  Margin="194,292,0,0" Name="pRevi37" VerticalAlignment="Top" Width="183">
+            <Grid Height="116" Width="170">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="85" />
                     <ColumnDefinition />
@@ -40,8 +40,6 @@
                     <RowDefinition Height="30" />
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
-                    <RowDefinition Height="10*" />
                 </Grid.RowDefinitions>
                 <local:menuButton ServerOS="Win2012" ToolTip="HyperV + File Server" Grid.ColumnSpan="2" Grid.Row="1" Margin="3" ServerName="pRevi37" />
                 <local:menuButton Grid.Row="2" Margin="3" ServerName="vCC02" ToolTip="Domain Server"  ServerOS="Win2012"  />
@@ -72,8 +70,8 @@
             </Grid>
         </GroupBox>
 
-        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="244" HorizontalAlignment="Left" Margin="193,3,0,0" Name="pRevi41" VerticalAlignment="Top" Width="183">
-            <Grid Height="238" Width="170">
+        <GroupBox Background="{StaticResource {x:Static SystemColors.InactiveBorderBrushKey}}" BorderBrush="Black" Height="282" HorizontalAlignment="Left" Margin="193,3,0,0" Name="pRevi41" VerticalAlignment="Top" Width="183">
+            <Grid Height="278" Width="170">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="85" />
                     <ColumnDefinition />
@@ -81,6 +79,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="3" />
                     <RowDefinition Height="30" />
+                    <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
@@ -99,6 +98,7 @@
                 <local:menuButton Grid.Column="1" Grid.Row="5" Margin="3" ServerName="Revi24" ServerOS="Win2012" ToolTip="Certificate Server" />
                 <local:menuButton Grid.Row="6" Margin="3" ServerName="vRevi46" ServerOS="Win2012" ToolTip="Caseware" />
                 <local:menuButton Grid.Column="1" Grid.Row="6" Margin="3" ServerName="vRevi47" ServerOS="Win2012" ToolTip="SCCM Server" />
+                <local:menuButton Grid.Row="7" Margin="3" ServerName="Revi55" ServerOS="Win2012" ToolTip="Terminal Server" />
             </Grid>
         </GroupBox>
         <local:menuButton Margin="200,413,0,0" ServerName="WS04" ServerOS="Win8" ToolTip="UN's Arbejdsplads"  HorizontalAlignment="Left" Width="79" Height="37" VerticalAlignment="Top" />
