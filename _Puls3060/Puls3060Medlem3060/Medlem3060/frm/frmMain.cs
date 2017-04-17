@@ -579,8 +579,11 @@ namespace nsPuls3060
 
         private void testToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            clsKontingent objKontingent = new clsKontingent(Program.dbData3060, new DateTime(2016,12,31));
-            int yy = 1;
+            clsPbsHelper obj = new clsPbsHelper();
+            obj.OpdateringAfSlettet_rsmembership_transaction(2390, Program.dbData3060);
+
+            //clsKontingent objKontingent = new clsKontingent(Program.dbData3060, new DateTime(2016,12,31));
+            //int yy = 1;
 
             //clsPDFMedlem objPDFMedlem = new clsPDFMedlem();
             //objPDFMedlem.imapSavePDFFile();

@@ -145,7 +145,7 @@ namespace nsPbs3060
             puls3060_nyEntities jdb = new puls3060_nyEntities(true);
             jdb.Database.ExecuteSqlCommand(@"
 INSERT INTO ecpwt_user_usergroup_map  (user_id, group_id) 
-SELECT u.id, 17   
+SELECT DISTINCT u.id, 17   
 FROM ecpwt_users u 
 JOIN ecpwt_rsmembership_membership_subscribers m ON u.id = m.user_id 
 JOIN ecpwt_rsmembership_transactions t ON m.last_transaction_id = t.id 
