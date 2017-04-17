@@ -196,6 +196,7 @@ namespace nsMedlem3060Service
                             break;
 
                         case enumTask.SendEmailRykker:
+                            /*
                             puls3060_nyEntities bjdb = new puls3060_nyEntities(true);
                             clsPbs601 objPbs601b = new clsPbs601();
                             Tuple<int, int> tresultb = objPbs601b.rykker_auto(m_dbData3060, bjdb);
@@ -204,6 +205,7 @@ namespace nsMedlem3060Service
                             if ((AntalRykker > 0))
                                 objPbs601b.rykker_email(m_dbData3060, lobnrb);
                             objPbs601b = null;
+                            */
                             break;
 
                         case enumTask.UpdateMedlemStatus:
