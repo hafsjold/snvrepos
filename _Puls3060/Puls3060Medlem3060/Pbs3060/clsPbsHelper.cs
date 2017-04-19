@@ -77,6 +77,16 @@ namespace nsPbs3060
 
         }
 
+        public void Work_OpdateringAfSlettet_rsmembership_transaction(dbData3060DataContext p_dbData3060)
+        {
+            puls3060_nyEntities dbPuls3060_dk = new puls3060_nyEntities(true);
+            var qry1 = from s1 in dbPuls3060_dk.tblmembershippayments where s1.created_date == null select s1;
+            foreach (var trans in qry1 )
+            {
+                OpdateringAfSlettet_rsmembership_transaction(trans.rsmembership_transactions_id, p_dbData3060);
+            }
+        }
+
         public int OpdateringAfSlettet_rsmembership_transaction(int p_trans_id, dbData3060DataContext p_dbData3060)
         {
             int out_trans_id = p_trans_id;
@@ -103,14 +113,19 @@ namespace nsPbs3060
                     int c3 = qry3.Count();
                     if (c3 == 1)
                     {
+                        DateTime wDate = t2.date;
+                        int alder = DateTime.Now.Subtract(t2.date).Days;
+                        if (alder > 80) wDate = DateTime.Now.AddDays(-60);                       
+ 
                         ecpwt_rsmembership_transactions t1 = new ecpwt_rsmembership_transactions
                         {
+                            id = p_trans_id,
                             user_id = t2.user_id,
                             user_email = t2.user_email,
                             user_data = t2.user_data,
                             type = t2.type,
                             @params = t2.@params,
-                            date = t2.date,
+                            date = wDate,
                             ip = t2.ip,
                             price = t2.price,
                             coupon = t2.coupon,
@@ -125,6 +140,11 @@ namespace nsPbs3060
                         dbPuls3060_dk.SaveChanges();
 
                         ecpwt_rsmembership_transactions rec_trans = (from t in dbPuls3060_dk.ecpwt_rsmembership_transactions where t.custom == t2.custom select t).First();
+
+                        string sql = string.Format(@"UPDATE ecpwt_rsmembership_transactions SET id = {0} WHERE id = {1}", p_trans_id ,rec_trans.id);
+                        dbPuls3060_dk.Database.ExecuteSqlCommand(sql);
+
+                        rec_trans = (from t in dbPuls3060_dk.ecpwt_rsmembership_transactions where t.custom == t2.custom select t).First();
                         out_trans_id = rec_trans.id;
                     }
                     else
