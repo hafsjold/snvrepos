@@ -72,8 +72,6 @@ namespace nsPuls3060
         private static string m_Password;
         private static string m_path_to_lock_summasummarum_kontoplan;
         private static FileStream m_filestream_to_lock_summasummarum_kontoplan;
-        private static KarKartotek m_KarMedlemmer;
-        private static MemKartotekDictionary m_dicKartotek;
         private static MemAktivRegnskab m_memAktivRegnskab;
         private static MemRegnskaber m_memRegnskaber;
         private static MemPbsnetdir m_memPbsnetdir;
@@ -82,8 +80,6 @@ namespace nsPuls3060
         private static KarKladde m_KarKladde;
         private static KarKontoplan m_KarKontoplan;
         private static KarPosteringer m_KarPosteringer;
-        private static KarFakturaer_k m_KarFakturaer_k;
-        private static KarMedlemPrivat m_KarMedlemPrivat;
         private static KarSag m_KarSag;
 
         public static string Password
@@ -117,30 +113,6 @@ namespace nsPuls3060
             set
             {
                 m_filestream_to_lock_summasummarum_kontoplan = value;
-            }
-        }
-        public static KarKartotek karMedlemmer
-        {
-            get
-            {
-                if (m_KarMedlemmer == null) m_KarMedlemmer = new KarKartotek();
-                return m_KarMedlemmer;
-            }
-            set
-            {
-                m_KarMedlemmer = value;
-            }
-        }
-        public static MemKartotekDictionary memKartotekDictionary
-        {
-            get
-            {
-                if (m_dicKartotek == null) m_dicKartotek = new MemKartotekDictionary();
-                return m_dicKartotek;
-            }
-            set
-            {
-                m_dicKartotek = value;
             }
         }
         public static MemAktivRegnskab memAktivRegnskab
@@ -203,6 +175,7 @@ namespace nsPuls3060
                 m_KarStatus = value;
             }
         }
+
         public static KarKladde karKladde
         {
             get
@@ -215,6 +188,7 @@ namespace nsPuls3060
                 m_KarKladde = value;
             }
         }
+
         public static KarKontoplan karKontoplan
         {
             get
@@ -237,30 +211,6 @@ namespace nsPuls3060
             set
             {
                 m_KarPosteringer = value;
-            }
-        }
-        public static KarFakturaer_k karFakturaer_k
-        {
-            get
-            {
-                if (m_KarFakturaer_k == null) m_KarFakturaer_k = new KarFakturaer_k();
-                return m_KarFakturaer_k;
-            }
-            set
-            {
-                m_KarFakturaer_k = value;
-            }
-        }
-        public static KarMedlemPrivat karMedlemPrivat
-        {
-            get
-            {
-                if (m_KarMedlemPrivat == null) m_KarMedlemPrivat = new KarMedlemPrivat();
-                return m_KarMedlemPrivat;
-            }
-            set
-            {
-                m_KarMedlemPrivat = value;
             }
         }
         public static KarSag karSag
@@ -313,29 +263,6 @@ namespace nsPuls3060
 
         public static FrmMain frmMain { get; set; }
 
-        public static bool ValidatekBank(string Bank)
-        {
-            if (Bank == null) return false;
-            string[] value = new string[2];
-            Regex regex = new Regex("(^[0-9]*) ([0-9]*$)");
-            Match m = regex.Match(Bank);
-            if (m.Success)
-            {
-                for (int j = 1; j <= 2; j++)
-                {
-                    if (m.Groups[j].Success)
-                    {
-                        value[j - 1] = m.Groups[j].ToString().Trim();
-                    }
-                }
-                string wRegnr = value[0];
-                string wKonto = value[1];
-
-                if ((wRegnr.Length == 4) & (wKonto.Length == 10)) return true;
-                else return false;
-            }
-            return false;
-        }
         public static string Protect(string secret)
         {
             try

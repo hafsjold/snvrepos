@@ -89,16 +89,6 @@ namespace nsPuls3060
             return false;
         }
 
-        private void medlemmerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!FocusChild("Medlemmer"))
-            {
-                FrmMedlemmer frmMedlemmer = new FrmMedlemmer();
-                frmMedlemmer.MdiParent = this;
-                frmMedlemmer.Show();
-            }
-        }
-
         private void kerditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!FocusChild("Kreditor"))
@@ -387,17 +377,7 @@ namespace nsPuls3060
             ecxelPoster();
         }
 
-        private void betalingsForslagToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!FocusChild("Betalings Forslag"))
-            {
-                FrmBetalingsForslag m_frmBetalingsForslag = new FrmBetalingsForslag();
-                m_frmBetalingsForslag.MdiParent = this;
-                m_frmBetalingsForslag.Show();
-            }
-        }
-
-        private void emailRykkerToolStripMenuItem_Click(object sender, EventArgs e)
+         private void emailRykkerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!FocusChild("Rykker Forslag"))
             {
@@ -473,44 +453,14 @@ namespace nsPuls3060
             }
         }
 
-        private void pusterummetToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!FocusChild("Pusterummet"))
-            {
-                FrmPusterummet frmPusterummet = new FrmPusterummet();
-                frmPusterummet.MdiParent = this;
-                frmPusterummet.Show();
-            }
-        }
-
-        private void opdaterMedlemsstausToolStripMenuItem_Click(object sender, EventArgs e)
+         private void opdaterMedlemsstausToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Program.dbData3060.UpdateMedlemStatus();
-        }
-
-        private void medlemExtraToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!FocusChild("MedlemExtra"))
-            {
-                FrmMedlemExtra frmMedlemExtra = new FrmMedlemExtra();
-                frmMedlemExtra.MdiParent = this;
-                frmMedlemExtra.Show();
-            }
         }
 
         private void regnearkManagementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             excelManagement();
-        }
-
-        private void vedligeholdNyeMedlemmerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!FocusChild("Nye Medlemmer"))
-            {
-                FrmNyeMedlemmer frmNyeMedlemmer = new FrmNyeMedlemmer();
-                frmNyeMedlemmer.MdiParent = this;
-                frmNyeMedlemmer.Show();
-            }
         }
 
         private void regnearkMailSyncToolStripMenuItem_Click(object sender, EventArgs e)
