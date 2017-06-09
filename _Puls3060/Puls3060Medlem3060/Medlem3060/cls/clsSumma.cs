@@ -213,7 +213,7 @@ namespace nsPuls3060
             }
             return AntalBetalinger;
         }
-
+        
         public int BogforUdBetalinger(int lobnr)
         {
             var bogf = from f in Program.karFakturaer_k
@@ -280,6 +280,6 @@ namespace nsPuls3060
             }
             return AntalBetalinger;
         }
-
+        
     }
 }
