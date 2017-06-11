@@ -43,6 +43,11 @@ namespace Medlem3060uc
         public static bool IsUserPersist;
 
         /// <summary>
+        /// Proeprty for Current CompanyFinanceYear
+        /// </summary>
+        public static CompanyFinanceYear CurrentCompanyFinanceYear;
+
+        /// <summary>
         /// Readonly Property to Get base API instance
         /// </summary>
         public static CrudAPI GetBaseAPI
@@ -50,8 +55,21 @@ namespace Medlem3060uc
             get { return new CrudAPI(CurrentSession, CurrentCompany); }
         }
 
-        /// <summary>
-        /// 
+        /// </summary>
+        /// <returns></returns>
+        async public static Task SetCurrentCompanyFinanceYear()
+        {
+            var api = UCInitializer.GetBaseAPI;
+            var cols = await api.Query<CompanyFinanceYear>();
+            foreach (var col in cols)
+            {
+                if (col._Current)
+                {
+                    CurrentCompanyFinanceYear = col;
+                }
+            }
+        }
+
         /// </summary>
         /// <param name="companyId"></param>
         /// <returns></returns>

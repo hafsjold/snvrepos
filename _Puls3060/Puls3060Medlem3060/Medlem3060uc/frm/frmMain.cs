@@ -279,7 +279,7 @@ namespace Medlem3060uc
             if ((AntalAdvis > 0))
                 objPbs601.advis_email(Program.dbData3060, lobnr);
 
-            clsSumma objSumma = new clsSumma();
+            clsUniconta objSumma = new clsUniconta();
             int AntalBetalinger = objSumma.BogforIndBetalinger();
 
             if (AntalBetalinger > 0)
@@ -429,7 +429,7 @@ namespace Medlem3060uc
         {
             string bigString = null;
             string smallString = null;
-            clsSumma objSumma = new clsSumma();
+            clsUniconta objSumma = new clsUniconta();
             int AntalBetalinger = objSumma.BogforPaypalBetalinger();
             if (AntalBetalinger > 0)
             {
@@ -448,9 +448,11 @@ namespace Medlem3060uc
                 global::Medlem3060uc.Properties.Resources.Message_info); //iconSet
         }
 
-        async private void testToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void testToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
+            clsUniconta obj = new clsUniconta();
+            obj.BogforIndBetalinger();
+            /*
             var CurrentCompany = UCInitializer.CurrentCompany;
             var api = UCInitializer.GetBaseAPI;
             var TaskCollection = api.Query<CompanyFinanceYear>();
@@ -461,6 +463,7 @@ namespace Medlem3060uc
             {
                 var x = rec;
             }
+            */
             //clsPbsHelper obj = new clsPbsHelper();
             //obj.Work_OpdateringAfSlettet_rsmembership_transaction(Program.dbData3060);
 
@@ -563,17 +566,18 @@ namespace Medlem3060uc
             {
                 var comp = UCInitializer.Companies.Where(c => c.CompanyId == UCInitializer.CurrentSession.User._DefaultCompany).FirstOrDefault();
                 await UCInitializer.SetCompany(comp.CompanyId);
+                await UCInitializer.SetCurrentCompanyFinanceYear();
             }
             //else if (UCInitializer.Companies.Count() > 0)
             //    cmbCompanies.SelectedItem = UCInitializer.Companies[0];
             //else
             //    MessageBox.Show("You do not have any access to company.", "Information", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+
             var CurrentCompany = UCInitializer.CurrentCompany;
             this.toolStripStatusLabel1.Text = "Firma: " + CurrentCompany.CompanyId + " " + CurrentCompany.Name;
             this.toolStripStatusLabel1.Alignment = ToolStripItemAlignment.Right;
             this.toolStripStatusLabel2.Text = Program.ConnectStringWithoutPassword;
             this.toolStripStatusLabel2.Alignment = ToolStripItemAlignment.Right;
-
 
             return 0;
         }

@@ -3,27 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using Uniconta.DataModel;
 using nsPbs3060;
 
 namespace Medlem3060uc
 {
-    class clsSumma
+    class clsUniconta
     {
+
+
         public int BogforPaypalBetalinger()
         {
-            /*
-            var rec_regnskab = Program.qryAktivRegnskab();
-            if (rec_regnskab.Afsluttet == true) return 0;
+            var rec_regnskab = UCInitializer.CurrentCompanyFinanceYear;
+            if (rec_regnskab.Closed == true) return 0;
 
-            DateTime? Startdato = rec_regnskab.Start;
-            DateTime? Slutdato = rec_regnskab.Slut;
-            if (rec_regnskab.DatoLaas != null)
-            {
-                if (rec_regnskab.DatoLaas > Startdato) Startdato = rec_regnskab.DatoLaas;
-            }
-            */
-            DateTime? Startdato = DateTime.Now; //work
-            DateTime? Slutdato = DateTime.Now; // work
+            DateTime? Startdato = rec_regnskab._FromDate;
+            DateTime? Slutdato = rec_regnskab._ToDate;
 
             puls3060_nyEntities jdb = new puls3060_nyEntities(true);
             clsPbs602 objPbs602 = new clsPbs602();
@@ -71,26 +66,18 @@ namespace Medlem3060uc
 
         public int BogforIndBetalinger()
         {
-            /*
-            var rec_regnskab = Program.qryAktivRegnskab();
-            if (rec_regnskab.Afsluttet == true) return 0;
+            var rec_regnskab = UCInitializer.CurrentCompanyFinanceYear;
+            if (rec_regnskab.Closed == true) return 0;
 
-            DateTime? Startdato = rec_regnskab.Start;
-            DateTime? Slutdato = rec_regnskab.Slut;
-            if (rec_regnskab.DatoLaas != null)
-            {
-                if (rec_regnskab.DatoLaas > Startdato) Startdato = rec_regnskab.DatoLaas;
-            }
-            */
-            DateTime? Startdato = DateTime.Now; //work
-            DateTime? Slutdato = DateTime.Now; // work
+            DateTime? Startdato = rec_regnskab._FromDate;
+            DateTime? Slutdato = rec_regnskab._ToDate;
 
 
             int saveBetid = 0;
             var bogf = from bl in Program.dbData3060.tblbetlins
                        where (bl.pbstranskode == "0236" || bl.pbstranskode == "0297") && (Startdato <= bl.indbetalingsdato && bl.indbetalingsdato <= Slutdato)
                        join b in Program.dbData3060.tblbets on bl.betid equals b.id
-                       where b.summabogfort == null || b.summabogfort == false
+                       //where b.summabogfort == null || b.summabogfort == false <<-------------------------------
                        join p in Program.dbData3060.tblfrapbs on b.frapbsid equals p.id
                        orderby p.id, b.id, bl.id
                        select new
@@ -145,7 +132,7 @@ namespace Medlem3060uc
                         Program.karKladde.Add(gkl);
 
                         var rec_bet = (from ub in Program.dbData3060.tblbets where ub.id == b.Betid select ub).First();
-                        rec_bet.summabogfort = true;
+                        //rec_bet.summabogfort = true; <<-------------------------------
 
                     }
 
@@ -220,7 +207,7 @@ namespace Medlem3060uc
                 }
                 Program.karStatus.save();
                 Program.karKladde.save();
-                Program.dbData3060.SubmitChanges();
+                //Program.dbData3060.SubmitChanges(); <<-------------------------------
             }
             return AntalBetalinger;
         }
