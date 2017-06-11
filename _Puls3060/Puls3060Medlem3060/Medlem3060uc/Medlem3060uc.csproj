@@ -178,7 +178,7 @@
     <Compile Include="cls\clsExcel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="cls\clsSumma.cs" />
+    <Compile Include="cls\clsUniconta.cs" />
     <Compile Include="dsMedlem.cs">
       <DependentUpon>dsMedlem.xsd</DependentUpon>
     </Compile>
@@ -322,9 +322,7 @@
     <None Include="dsMedlem.xss">
       <DependentUpon>dsMedlem.xsd</DependentUpon>
     </None>
-    <None Include="Medlem3060_1_TemporaryKey.pfx" />
     <None Include="Medlem3060_2_TemporaryKey.pfx" />
-    <None Include="Medlem3060_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\DataSources\memNytMedlem.datasource" />
