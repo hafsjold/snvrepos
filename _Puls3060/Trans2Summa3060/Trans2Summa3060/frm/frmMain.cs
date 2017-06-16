@@ -32,6 +32,10 @@ using Microsoft.Synchronization;
 using Microsoft.Synchronization.Data;
 using Microsoft.Synchronization.Data.SqlServer;
 
+using Uniconta.Common;
+using Uniconta.DataModel;
+using System.Threading.Tasks;
+
 namespace Trans2Summa3060
 {
     public partial class FrmMain : Form
@@ -42,7 +46,7 @@ namespace Trans2Summa3060
             Program.frmMain = this;
         }
 
-        private void FrmMain_Load(object sender, EventArgs e)
+        async private void FrmMain_Load(object sender, EventArgs e)
         {
 #if (DEBUG)
             testToolStripMenuItem.Visible = true;
@@ -85,7 +89,7 @@ namespace Trans2Summa3060
                 Program.path_to_lock_summasummarum_kontoplan = rec_regnskab.Placering + "kontoplan.dat";
                 Program.filestream_to_lock_summasummarum_kontoplan = new FileStream(Program.path_to_lock_summasummarum_kontoplan, FileMode.Open, FileAccess.Read, FileShare.None);
             }
-
+            var xx = await UnicontaLogin();
 #if (!DEBUG)
             if (Program.HafsjoldDataApS)
 #endif
@@ -108,6 +112,7 @@ namespace Trans2Summa3060
                 printBilagToolStripMenuItem.Visible = true;
                 importNordeaToolStripMenuItem.Visible = true;
             }
+
         }
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -142,6 +147,14 @@ namespace Trans2Summa3060
 
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var com = UCInitializer.CurrentCompany;
+            clsUnicontaKladde obj = new clsUnicontaKladde();
+            //obj.DeleteVouchersClients();
+            obj.InsertAllVouchersClient();
+            int zsd = 1;
+            //KarKontoplan.UpdateKontoplan();
+            //var xxx = KarNyKontoplan.NytKontonr("Bank");
+            //var CurrentCompany = UCInitializer.CurrentCompany;
 #if (DEBUG)
             //KarSag sag = Program.karSag;
 
@@ -676,6 +689,69 @@ namespace Trans2Summa3060
         {
             KarBankkontoudtogMobilePay recBankkontoudtogMobilePay = new KarBankkontoudtogMobilePay(6);
             recBankkontoudtogMobilePay.load();
+        }
+ 
+        async Task<int> UnicontaLogin()
+        {
+            int ret = await simulatedloginButton();
+
+            await UCInitializer.SetupCompanies();
+
+            var cmbCompanies = UCInitializer.Companies;
+
+            if (UCInitializer.CurrentSession.User._DefaultCompany != 0)
+            {
+                var comp = UCInitializer.Companies.Where(c => c.CompanyId == UCInitializer.CurrentSession.User._DefaultCompany).FirstOrDefault();
+                await UCInitializer.SetCompany(comp.CompanyId);
+                await UCInitializer.SetCurrentCompanyFinanceYear();
+            }
+            //else if (UCInitializer.Companies.Count() > 0)
+            //    cmbCompanies.SelectedItem = UCInitializer.Companies[0];
+            //else
+            //    MessageBox.Show("You do not have any access to company.", "Information", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+
+            var CurrentCompany = UCInitializer.CurrentCompany;
+
+            return 0;
+        }
+
+        async Task<int> simulatedloginButton()
+        {
+            string password = "Puls3060";
+            string userName = "mha";
+
+            ErrorCodes errorCode = await SetLogin(userName, password);
+
+            switch (errorCode)
+            {
+                case ErrorCodes.Succes:
+                    Uniconta.ClientTools.Localization.SetDefault((Language)UCInitializer.CurrentSession.User._Language);
+                    break;
+
+                case ErrorCodes.UserOrPasswordIsWrong:
+                    System.Windows.Forms.MessageBox.Show("Please Check Your Credentials & Try again !!!", "Warning");
+                    break;
+
+                default:
+                    System.Windows.Forms.MessageBox.Show(string.Format("{0} : {1}", "Unable to login", errorCode.ToString()), "Information");
+                    break;
+            }
+            return 0;
+        }
+
+        async Task<ErrorCodes> SetLogin(string username, string password)
+        {
+            try
+            {
+                var ses = UCInitializer.GetSession();
+                return await ses.LoginAsync(username, password, Uniconta.Common.User.LoginType.API, new Guid("73c93c84-af78-41e4-ada1-b8101c95ba89"), Uniconta.ClientTools.Localization.InititalLanguageCode);
+            }
+            catch
+            {
+                System.Windows.Forms.MessageBox.Show("System Exception. Application Will Close.", "Fatal Error");
+                this.Close();
+                return ErrorCodes.Exception;
+            }
         }
 
     }
