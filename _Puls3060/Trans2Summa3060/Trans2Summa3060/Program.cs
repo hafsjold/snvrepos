@@ -100,6 +100,7 @@ namespace Trans2Summa3060
         private static KarVarer m_KarVarer;
         private static KarTrans2Summa m_KarTrans2Summa;
         private static KarSag m_KarSag;
+        private static KarNyKontoplan m_KarNyKontoplan;
 
         public static string path_to_lock_summasummarum_kontoplan
         {
@@ -388,6 +389,18 @@ namespace Trans2Summa3060
                 m_KarSag = value;
             }
         }
+        public static KarNyKontoplan karNyKontoplan
+        {
+            get
+            {
+                if (m_KarNyKontoplan == null) m_KarNyKontoplan = new KarNyKontoplan();
+                return m_KarNyKontoplan;
+            }
+            set
+            {
+                m_KarNyKontoplan = value;
+            }
+        }
         public static recMemRegnskab qryAktivRegnskab()
         {
             try
@@ -430,6 +443,7 @@ namespace Trans2Summa3060
                 else
                     return false;
             }
+ 
         }
 
         public static FrmMain frmMain { get; set; }
@@ -447,6 +461,9 @@ namespace Trans2Summa3060
             }
             else
             {
+                Uniconta.ClientTools.Localization.SetLocalizationStrings(System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName);
+                Uniconta.WindowsAPI.Startup.OnLoad();
+                UCInitializer.InitUniconta();
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new FrmMain());
