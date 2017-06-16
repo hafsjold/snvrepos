@@ -14,9 +14,16 @@ namespace Trans2Summa3060
 {
     public class clsUnicontaKladde
     {
+        string m_BilagPath;
+
+        public clsUnicontaKladde()
+        {
+            KarTrans2Summa obj = new KarTrans2Summa();
+            m_BilagPath = obj.BilagPath();
+        }
         async public void InsertAllVouchersClient()
         {
-            var qryKladder = from k in Program.karKladder where k.Regnskabid == 10 orderby k.Bilag, k.Id select k;
+            var qryKladder = from k in Program.karKladder orderby k.Bilag, k.Id select k;
             int antal = qryKladder.Count();
             foreach(var rec in qryKladder)
             {
@@ -48,7 +55,7 @@ namespace Trans2Summa3060
             var col = await api.Query<GLDailyJournalClient>(null, crit);
             var rec_Master = col.FirstOrDefault();
 
-            var qryKladder = from k in Program.karKladder where k.Regnskabid == 10 orderby k.Id select k;
+            var qryKladder = from k in Program.karKladder orderby k.Id select k;
             int antal = qryKladder.Count();
 
             foreach (var k in qryKladder)
@@ -109,7 +116,7 @@ namespace Trans2Summa3060
 
         async public Task<int> InsertVouchersClients(recKladder rec)
         {
-            string mask_bilag = @"C:\Users\regns\Documents\SummaSummarum\RegnskabsBilag\2017\Bogføringsbilag\Bilag {0}.pdf";
+            string mask_bilag = m_BilagPath + @"\Bilag {0}.pdf";
             var api = UCInitializer.GetBaseAPI;
             string hash = null;
             byte[] attachment = null;
