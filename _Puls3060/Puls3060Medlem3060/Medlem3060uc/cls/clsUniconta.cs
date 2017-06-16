@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-using Uniconta.DataModel;
 using nsPbs3060;
+using Uniconta.ClientTools.DataModel;
+using Uniconta.DataModel;
+using Uniconta.Common;
+using Uniconta.API.GeneralLedger;
 
 namespace Medlem3060uc
 {
@@ -111,12 +114,14 @@ namespace Medlem3060uc
 
                 Program.karKladde = null;
 
-
+                int count = 0;
                 foreach (var b in bogf)
                 {
 
                     if (saveBetid != b.Betid) // ny gruppe
                     {
+                        if (count++ >1) break; // <<-------------------------------
+
                         saveBetid = b.Betid;
                         recKladde gkl = new recKladde
                         {
@@ -208,8 +213,66 @@ namespace Medlem3060uc
                 Program.karStatus.save();
                 Program.karKladde.save();
                 //Program.dbData3060.SubmitChanges(); <<-------------------------------
+                InsertGLDailyJournalLines(Program.karKladde);
             }
             return AntalBetalinger;
+        }
+
+        async public void InsertGLDailyJournalLines(KarKladde karKladde)
+        {
+            var api = UCInitializer.GetBaseAPI;
+            var col3 = await api.Query<NumberSerieClient>();
+            int NR = 4;
+            var crit = new List<PropValuePair>();
+            var pair = PropValuePair.GenereteWhereElements("KeyStr", typeof(String), "Dag");
+            crit.Add(pair);
+            var col = await api.Query<GLDailyJournalClient>(null, crit);
+            var rec_Master = col.FirstOrDefault();
+
+            foreach (var kk in karKladde)
+            {
+
+                GLDailyJournalLineClient jl = new GLDailyJournalLineClient()
+                {
+                    Date = (DateTime)kk.Dato,
+                    //Voucher = (kk.Bilag != null) ? (int)kk.Bilag + NR : 0,
+                    Text = kk.Tekst,
+                    //Debit = (double)kk.Belob,
+                    //Credit = (double)kk.Belob,
+                    //Account = (kk.Kontonr != null) ? kk.Kontonr.ToString() : "",
+                };
+                if((kk.Afstemningskonto == "Bank") 
+                && (kk.Kontonr == null))
+                {
+                    jl.Account = "5820";
+                    if (kk.Belob > 0)
+                    {
+                        jl.Debit = (double)kk.Belob;
+                    }
+                    else
+                    {
+                        jl.Credit = -(double)kk.Belob;
+                    }
+                }
+
+                if ((kk.Afstemningskonto == null)
+                && (kk.Kontonr != null))
+                {
+                    jl.Account = "1010";
+                    if (kk.Belob > 0)
+                    {
+                        jl.Credit = (double)kk.Belob;
+                    }
+                    else
+                    {
+                        jl.Debit = -(double)kk.Belob;
+                    }
+                }
+                jl.SetMaster(rec_Master);
+                var err = await api.Insert(jl);
+            }
+
+
         }
     }
 }
