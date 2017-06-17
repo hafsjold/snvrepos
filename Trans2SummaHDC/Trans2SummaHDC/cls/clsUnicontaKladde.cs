@@ -159,5 +159,177 @@ namespace Trans2SummaHDC
             var err = await api.Insert(vc);
             return vc.PrimaryKeyId;
         }
+
+        public void InsertSalgsfakturaer()
+        {
+            int? lastFakid = null;
+            tblfak recFak = null;
+            var rec_regnskab = Program.qryAktivRegnskab();
+            var qrySFak = from sfv in Program.karFakturavarer_s
+                          join sf in Program.karFakturaer_s on new { fakid = sfv.Fakid } equals new { fakid = sf.fakid }
+                          where sf.faknr != 0 && sf.faktype == 0
+                          orderby sfv.Fakid, sfv.Line
+                          select new
+                          {
+                              Regnskabid = rec_regnskab.Rid,
+                              Sk = "S",
+                              Fakid = sfv.Fakid,
+                              Faknr = sf.faknr,
+                              Dato = sf.dato,
+                              debitornr = sf.debitornr,
+                              Faklinnr = sfv.Line,
+                              Varenr = sfv.Varenr,
+                              Tekst = sfv.VareTekst,
+                              Konto = sfv.Bogfkonto,
+                              Momskode = KarKontoplan.getMomskode(sfv.Bogfkonto),
+                              Antal = sfv.Antal,
+                              Enhed = sfv.Enhed,
+                              Pris = sfv.Pris,
+                              Rabat = sfv.Rabat,
+                              Moms = sfv.Moms,
+                              Nettobelob = sfv.Nettobelob,
+                              Bruttobelob = sfv.Bruttobelob,
+                          };
+
+            int antal = qrySFak.Count();
+
+            foreach (var s in qrySFak)
+            {
+                if ((!(s.Fakid == 0)) && (lastFakid != s.Fakid))
+                {
+                    try
+                    {
+                        recFak = (from f in Program.dbDataTransSumma.tblfaks
+                                  where f.regnskabid == rec_regnskab.Rid && f.sk == "S" && f.fakid == s.Fakid
+                                  select f).First();
+                    }
+                    catch
+                    {
+                        recFak = new tblfak
+                        {
+                            udskriv = true,
+                            regnskabid = s.Regnskabid,
+                            sk = s.Sk,
+                            fakid = s.Fakid,
+                            faknr = s.Faknr,
+                            dato = s.Dato,
+                            konto = s.debitornr
+                        };
+                        Program.dbDataTransSumma.tblfaks.InsertOnSubmit(recFak);
+                    }
+                }
+
+
+                tblfaklin recFaklin = new tblfaklin
+                {
+                    sk = s.Sk,
+                    regnskabid = s.Regnskabid,
+                    fakid = s.Fakid,
+                    faklinnr = s.Faklinnr,
+                    varenr = s.Varenr.ToString(),
+                    tekst = s.Tekst,
+                    konto = s.Konto,
+                    momskode = s.Momskode,
+                    antal = s.Antal,
+                    enhed = s.Enhed,
+                    pris = s.Pris,
+                    rabat = s.Rabat,
+                    moms = s.Moms,
+                    nettobelob = s.Nettobelob,
+                    bruttobelob = s.Bruttobelob
+                };
+                Program.dbDataTransSumma.tblfaklins.InsertOnSubmit(recFaklin);
+                if (!(s.Fakid == 0)) recFak.tblfaklins.Add(recFaklin);
+                lastFakid = s.Fakid;
+            }
+            //Program.dbDataTransSumma.SubmitChanges();
+
+        }
+
+        public void InsertKøbsfakturaer()
+        {
+            int? lastFakid = null;
+            tblfak recFak = null;
+            var rec_regnskab = Program.qryAktivRegnskab();
+            var qryKFak = from kfv in Program.karFakturavarer_k
+                          join kf in Program.karFakturaer_k on new { fakid = kfv.Fakid } equals new { fakid = kf.fakid }
+                          where kf.faknr != 0 && kf.faktype == 2
+                          orderby kfv.Fakid, kfv.Line
+                          select new
+                          {
+                              Regnskabid = rec_regnskab.Rid,
+                              Sk = "K",
+                              Fakid = kfv.Fakid,
+                              Faknr = kf.faknr,
+                              Dato = kf.dato,
+                              kreditornr = kf.kreditornr,
+                              Faklinnr = kfv.Line,
+                              Varenr = kfv.Varenr,
+                              Tekst = kfv.VareTekst,
+                              Konto = kfv.Bogfkonto,
+                              Momskode = KarKontoplan.getMomskode(kfv.Bogfkonto),
+                              Antal = kfv.Antal,
+                              Enhed = kfv.Enhed,
+                              Pris = kfv.Pris,
+                              Rabat = kfv.Rabat,
+                              Moms = kfv.Moms,
+                              Nettobelob = kfv.Nettobelob,
+                              Bruttobelob = kfv.Bruttobelob,
+                          };
+
+            int antal = qryKFak.Count();
+
+            foreach (var k in qryKFak)
+            {
+                if ((!(k.Fakid == 0)) && (lastFakid != k.Fakid))
+                {
+                    try
+                    {
+                        recFak = (from f in Program.dbDataTransSumma.tblfaks
+                                  where f.regnskabid == rec_regnskab.Rid && f.sk == "K" && f.fakid == k.Fakid
+                                  select f).First();
+                    }
+                    catch
+                    {
+                        recFak = new tblfak
+                        {
+                            udskriv = true,
+                            regnskabid = k.Regnskabid,
+                            sk = k.Sk,
+                            fakid = k.Fakid,
+                            faknr = k.Faknr,
+                            dato = k.Dato,
+                            konto = k.kreditornr
+                        };
+                        Program.dbDataTransSumma.tblfaks.InsertOnSubmit(recFak);
+                    }
+                }
+
+
+                tblfaklin recFaklin = new tblfaklin
+                {
+                    sk = k.Sk,
+                    regnskabid = k.Regnskabid,
+                    fakid = k.Fakid,
+                    faklinnr = k.Faklinnr,
+                    varenr = k.Varenr.ToString(),
+                    tekst = k.Tekst,
+                    konto = k.Konto,
+                    momskode = k.Momskode,
+                    antal = k.Antal,
+                    enhed = k.Enhed,
+                    pris = k.Pris,
+                    rabat = k.Rabat,
+                    moms = k.Moms,
+                    nettobelob = k.Nettobelob,
+                    bruttobelob = k.Bruttobelob
+                };
+                Program.dbDataTransSumma.tblfaklins.InsertOnSubmit(recFaklin);
+                if (!(k.Fakid == 0)) recFak.tblfaklins.Add(recFaklin);
+                lastFakid = k.Fakid;
+            }
+            //Program.dbDataTransSumma.SubmitChanges();
+
+        }
     }
 }

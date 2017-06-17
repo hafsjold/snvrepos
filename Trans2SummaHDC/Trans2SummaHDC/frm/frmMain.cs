@@ -127,7 +127,8 @@ namespace Trans2SummaHDC
             var com = UCInitializer.CurrentCompany;
             clsUnicontaKladde obj = new clsUnicontaKladde();
             //obj.DeleteVouchersClients();
-            obj.InsertAllVouchersClient();
+            //obj.InsertAllVouchersClient();
+            obj.InsertKøbsfakturaer();
             int zsd = 1;
             //KarKontoplan.UpdateKontoplan();
             //var xxx = KarNyKontoplan.NytKontonr("Bank");
