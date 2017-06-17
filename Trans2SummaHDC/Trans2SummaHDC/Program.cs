@@ -75,6 +75,7 @@ namespace Trans2SummaHDC
         private static KarKartotek m_KarKartotek;
         private static KarVarer m_KarVarer;
         private static KarTrans2Summa m_KarTrans2Summa;
+        private static KarNyKontoplan m_KarNyKontoplan;
 
         public static string path_to_lock_summasummarum_kontoplan
         {
@@ -303,6 +304,20 @@ namespace Trans2SummaHDC
                 m_KarTrans2Summa = value;
             }
         }
+
+        public static KarNyKontoplan karNyKontoplan
+        {
+            get
+            {
+                if (m_KarNyKontoplan == null) m_KarNyKontoplan = new KarNyKontoplan();
+                return m_KarNyKontoplan;
+            }
+            set
+            {
+                m_KarNyKontoplan = value;
+            }
+        }
+
         public static KarFakturaer_k karFakturaer_k
         {
             get
@@ -410,6 +425,9 @@ namespace Trans2SummaHDC
             }
             else
             {
+                Uniconta.ClientTools.Localization.SetLocalizationStrings(System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName);
+                Uniconta.WindowsAPI.Startup.OnLoad();
+                UCInitializer.InitUniconta();
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 Application.Run(new FrmMain());

@@ -13,10 +13,6 @@ using System.Data.Common;
 using System.Xml.Linq;
 using System.Data.Linq.SqlClient;
 
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -26,7 +22,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.Threading.Tasks;
+using Uniconta.Common;
+using Uniconta.DataModel;
 
 namespace Trans2SummaHDC
 {
@@ -39,7 +37,7 @@ namespace Trans2SummaHDC
             Program.frmMain = this;
         }
 
-        private void FrmMain_Load(object sender, EventArgs e)
+        async private void FrmMain_Load(object sender, EventArgs e)
         {
 #if (DEBUG)
             testToolStripMenuItem.Visible = true;
@@ -82,14 +80,15 @@ namespace Trans2SummaHDC
                 Program.path_to_lock_summasummarum_kontoplan = rec_regnskab.Placering + "kontoplan.dat";
                 Program.filestream_to_lock_summasummarum_kontoplan = new FileStream(Program.path_to_lock_summasummarum_kontoplan, FileMode.Open, FileAccess.Read, FileShare.None);
             }
+            var xx = await UnicontaLogin();
 
-                importDanskebankToolStripMenuItem.Visible = true;
-                importerMasterCardToolStripMenuItem.Visible = true;
-                importActebisToolStripMenuItem.Visible = true;
-                actebisFakturaToolStripMenuItem.Visible = true;
-                toolStripButtonPrintBilag.Visible = true;
-                toolStripSeparator3.Visible = true;
-                printBilagToolStripMenuItem.Visible = true;
+            importDanskebankToolStripMenuItem.Visible = true;
+            importerMasterCardToolStripMenuItem.Visible = true;
+            importActebisToolStripMenuItem.Visible = true;
+            actebisFakturaToolStripMenuItem.Visible = true;
+            toolStripButtonPrintBilag.Visible = true;
+            toolStripSeparator3.Visible = true;
+            printBilagToolStripMenuItem.Visible = true;
 
         }
 
@@ -125,12 +124,20 @@ namespace Trans2SummaHDC
 
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            var com = UCInitializer.CurrentCompany;
+            clsUnicontaKladde obj = new clsUnicontaKladde();
+            //obj.DeleteVouchersClients();
+            obj.InsertAllVouchersClient();
+            int zsd = 1;
+            //KarKontoplan.UpdateKontoplan();
+            //var xxx = KarNyKontoplan.NytKontonr("Bank");
+            //var CurrentCompany = UCInitializer.CurrentCompany;
 #if (DEBUG)
-            KarPaypal objPaypal = new KarPaypal(5);
-            objPaypal.load_paypal();
-            objPaypal.load_bankkonto1();
-            objPaypal.load_bankkonto2();
-            
+            //KarPaypal objPaypal = new KarPaypal(5);
+            //objPaypal.load_paypal();
+            //objPaypal.load_bankkonto1();
+            //objPaypal.load_bankkonto2();
+
             //clsBilagsudskriftPDF objBilagsudskriftPDF = new clsBilagsudskriftPDF();
             //clsBilagsudskriftPDF.BilagsudskriftPDF();
 
@@ -496,6 +503,69 @@ namespace Trans2SummaHDC
             clsImportFaktura objImportFaktura = new clsImportFaktura();
         }
 
+        async Task<int> UnicontaLogin()
+        {
+            int ret = await simulatedloginButton();
+
+            await UCInitializer.SetupCompanies();
+
+            var cmbCompanies = UCInitializer.Companies;
+
+            if (UCInitializer.CurrentSession.User._DefaultCompany != 0)
+            {
+                var comp = UCInitializer.Companies.Where(c => c.CompanyId == UCInitializer.CurrentSession.User._DefaultCompany).FirstOrDefault();
+                await UCInitializer.SetCompany(comp.CompanyId);
+                await UCInitializer.SetCurrentCompanyFinanceYear();
+            }
+            //else if (UCInitializer.Companies.Count() > 0)
+            //    cmbCompanies.SelectedItem = UCInitializer.Companies[0];
+            //else
+            //    MessageBox.Show("You do not have any access to company.", "Information", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+
+            var CurrentCompany = UCInitializer.CurrentCompany;
+
+            return 0;
+        }
+
+        async Task<int> simulatedloginButton()
+        {
+            string password = "Puls3060";
+            string userName = "mha";
+
+            ErrorCodes errorCode = await SetLogin(userName, password);
+
+            switch (errorCode)
+            {
+                case ErrorCodes.Succes:
+                    Uniconta.ClientTools.Localization.SetDefault((Language)UCInitializer.CurrentSession.User._Language);
+                    break;
+
+                case ErrorCodes.UserOrPasswordIsWrong:
+                    System.Windows.Forms.MessageBox.Show("Please Check Your Credentials & Try again !!!", "Warning");
+                    break;
+
+                default:
+                    System.Windows.Forms.MessageBox.Show(string.Format("{0} : {1}", "Unable to login", errorCode.ToString()), "Information");
+                    break;
+            }
+            return 0;
+        }
+
+        async Task<ErrorCodes> SetLogin(string username, string password)
+        {
+            try
+            {
+                var ses = UCInitializer.GetSession();
+                var ret = await ses.LoginAsync(username, password, Uniconta.Common.User.LoginType.API, new Guid("73c93c84-af78-41e4-ada1-b8101c95ba89"), Uniconta.ClientTools.Localization.InititalLanguageCode);
+                return ret;
+            }
+            catch
+            {
+                System.Windows.Forms.MessageBox.Show("System Exception. Application Will Close.", "Fatal Error");
+                this.Close();
+                return ErrorCodes.Exception;
+            }
+        }
 
     }
 
