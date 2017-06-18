@@ -754,6 +754,22 @@ namespace Trans2Summa3060
             }
         }
 
+        private void nyKontoplanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("NyKontoplan"))
+            {
+                FrmNyKontoplan m_NyKontoplan = new FrmNyKontoplan();
+                m_NyKontoplan.MdiParent = this;
+                m_NyKontoplan.Show();
+            }
+
+        }
+
+        private void updateNyKontoplanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.karNyKontoplan.update();
+            Program.karNyKontoplan = null;
+        }
     }
 
     public class Xrec
