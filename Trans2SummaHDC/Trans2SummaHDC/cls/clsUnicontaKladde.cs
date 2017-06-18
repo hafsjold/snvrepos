@@ -21,11 +21,12 @@ namespace Trans2SummaHDC
             KarTrans2Summa obj = new KarTrans2Summa();
             m_BilagPath = obj.BilagPath();
         }
+
         async public void InsertAllVouchersClient()
         {
             var qryKladder = from k in Program.karKladder orderby k.Bilag, k.Id select k;
             int antal = qryKladder.Count();
-            foreach(var rec in qryKladder)
+            foreach (var rec in qryKladder)
             {
                 int refbilag = await InsertVouchersClients(rec);
             }
@@ -41,6 +42,49 @@ namespace Trans2SummaHDC
                 {
                     var err = await api.Delete(vc);
                 }
+            }
+        }
+
+        async public void InsertGLDailyJournalLinesYearEnd()
+        {
+            var api = UCInitializer.GetBaseAPI;
+            var col3 = await api.Query<NumberSerieClient>();
+
+            var crit = new List<PropValuePair>();
+            var pair = PropValuePair.GenereteWhereElements("KeyStr", typeof(String), "Dag");
+            crit.Add(pair);
+            var col = await api.Query<GLDailyJournalClient>(null, crit);
+            var rec_Master = col.FirstOrDefault();
+
+
+            var qryPosteringer = from p in Program.karPosteringer
+                                 where p.Bilag == 0 && (p.Tekst.StartsWith("ÅP:") || p.Tekst.StartsWith("EP:"))
+                                 orderby p.Nr
+                                 select p;
+
+            int antal = qryPosteringer.Count();
+
+            foreach (var p in qryPosteringer)
+            {
+                GLDailyJournalLineClient jl = new GLDailyJournalLineClient()
+                {
+                    Date = (DateTime)p.Dato,
+                    Voucher = (p.Bilag != null) ? (int)p.Bilag : 0,
+                    Text = p.Tekst,
+                    Account = KarNyKontoplan.NytKontonr(p.Konto)
+                };
+
+                if (p.Nettobeløb > 0)
+                {
+                    jl.Debit = (double)p.Nettobeløb;
+                }
+                else
+                {
+                    jl.Credit = -(double)p.Nettobeløb;
+                }
+
+                jl.SetMaster(rec_Master);
+                var err = await api.Insert(jl);
             }
         }
 
@@ -160,7 +204,7 @@ namespace Trans2SummaHDC
             return vc.PrimaryKeyId;
         }
 
-        public void InsertSalgsfakturaer()
+        async public void InsertSalgsfakturaer()
         {
             int? lastFakid = null;
             tblfak recFak = null;
@@ -193,12 +237,26 @@ namespace Trans2SummaHDC
 
             int antal = qrySFak.Count();
 
+            var api = UCInitializer.GetBaseAPI;
+            var col3 = await api.Query<DebtorOrderClient>();
+            var col4 = await api.Query<DebtorOrderLineClient>();
+            var col5 = await api.Query<DebtorInvoiceClient>();
+            var col6 = await api.Query<DebtorInvoiceLines>();
+
+
             foreach (var s in qrySFak)
             {
                 if ((!(s.Fakid == 0)) && (lastFakid != s.Fakid))
                 {
                     try
                     {
+                        DebtorOrderClient jl = new DebtorOrderClient()
+                        {
+                            Account = s.debitornr.ToString(),
+                            InvoiceDate = s.Dato,
+
+                        };
+
                         recFak = (from f in Program.dbDataTransSumma.tblfaks
                                   where f.regnskabid == rec_regnskab.Rid && f.sk == "S" && f.fakid == s.Fakid
                                   select f).First();
@@ -246,7 +304,7 @@ namespace Trans2SummaHDC
 
         }
 
-        public void InsertKøbsfakturaer()
+        async public void InsertKøbsfakturaer()
         {
             int? lastFakid = null;
             tblfak recFak = null;
@@ -278,6 +336,13 @@ namespace Trans2SummaHDC
                           };
 
             int antal = qryKFak.Count();
+
+            var api = UCInitializer.GetBaseAPI;
+            var col3 = await api.Query<CreditorOrderClient>();
+            var col4 = await api.Query<CreditorOrderLineClient>();
+            var col5 = await api.Query<CreditorInvoiceClient>();
+            var col6 = await api.Query<CreditorInvoiceLines>();
+
 
             foreach (var k in qryKFak)
             {
