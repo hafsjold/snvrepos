@@ -159,6 +159,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbDataTransSumma.dbml</DependentUpon>
     </Compile>
+    <Compile Include="frm\frmNyKontoplan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmNyKontoplan.Designer.cs">
+      <DependentUpon>frmNyKontoplan.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm\frmSagList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -307,6 +313,9 @@
     <None Include="dbDataTransSumma.dbml.layout">
       <DependentUpon>dbDataTransSumma.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="frm\frmNyKontoplan.resx">
+      <DependentUpon>frmNyKontoplan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm\frmKontoudtog.resx">
       <DependentUpon>frmKontoudtog.cs</DependentUpon>
     </EmbeddedResource>
@@ -376,6 +385,7 @@
     <None Include="MHA.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
+    <None Include="Properties\DataSources\KarNyKontoplan.datasource" />
     <None Include="Properties\DataSources\tblactebisfaktura.datasource" />
     <None Include="Properties\DataSources\tblactebisordre.datasource" />
     <None Include="Properties\DataSources\tblafstem.datasource" />

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
+            Trans2Summa3060.Properties.Settings settings1 = new Trans2Summa3060.Properties.Settings();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -59,6 +60,7 @@
             this.importNordeaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importPayPalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importActebisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importMobilePayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.excelRegnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,6 +73,8 @@
             this.runSyncToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.setupScopeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.removeScopeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.konverteringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nyKontoplanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -82,7 +86,7 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonIndtastBilag = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.importMobilePayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateNyKontoplanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -131,7 +135,7 @@
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.MainformProgressText.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.MainformProgressText.Name = "MainformProgressText";
-            this.MainformProgressText.Size = new System.Drawing.Size(131, 19);
+            this.MainformProgressText.Size = new System.Drawing.Size(130, 19);
             this.MainformProgressText.Text = "MainformProgressText";
             this.MainformProgressText.Visible = false;
             // 
@@ -143,6 +147,7 @@
             this.faktureringToolStripMenuItem,
             this.regnskabToolStripMenuItem,
             this.systemToolStripMenuItem,
+            this.konverteringToolStripMenuItem,
             this.hjælpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -163,19 +168,19 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(102, 6);
             // 
             // afslutToolStripMenuItem
             // 
             this.afslutToolStripMenuItem.Name = "afslutToolStripMenuItem";
-            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.afslutToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.afslutToolStripMenuItem.Text = "Afslut";
             this.afslutToolStripMenuItem.Click += new System.EventHandler(this.afslutToolStripMenuItem_Click);
             // 
             // testToolStripMenuItem
             // 
             this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.testToolStripMenuItem.Text = "Test";
             this.testToolStripMenuItem.Visible = false;
             this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
@@ -344,6 +349,13 @@
             this.importActebisToolStripMenuItem.Visible = false;
             this.importActebisToolStripMenuItem.Click += new System.EventHandler(this.importActebisToolStripMenuItem_Click);
             // 
+            // importMobilePayToolStripMenuItem
+            // 
+            this.importMobilePayToolStripMenuItem.Name = "importMobilePayToolStripMenuItem";
+            this.importMobilePayToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.importMobilePayToolStripMenuItem.Text = "Import MobilePay";
+            this.importMobilePayToolStripMenuItem.Click += new System.EventHandler(this.importMobilePayToolStripMenuItem_Click);
+            // 
             // excelRegnskabToolStripMenuItem
             // 
             this.excelRegnskabToolStripMenuItem.Name = "excelRegnskabToolStripMenuItem";
@@ -438,6 +450,22 @@
             this.removeScopeToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.removeScopeToolStripMenuItem.Text = "RemoveScope";
             this.removeScopeToolStripMenuItem.Click += new System.EventHandler(this.removeScopeToolStripMenuItem_Click);
+            // 
+            // konverteringToolStripMenuItem
+            // 
+            this.konverteringToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nyKontoplanToolStripMenuItem,
+            this.updateNyKontoplanToolStripMenuItem});
+            this.konverteringToolStripMenuItem.Name = "konverteringToolStripMenuItem";
+            this.konverteringToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
+            this.konverteringToolStripMenuItem.Text = "Konvertering";
+            // 
+            // nyKontoplanToolStripMenuItem
+            // 
+            this.nyKontoplanToolStripMenuItem.Name = "nyKontoplanToolStripMenuItem";
+            this.nyKontoplanToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.nyKontoplanToolStripMenuItem.Text = "NyKontoplan";
+            this.nyKontoplanToolStripMenuItem.Click += new System.EventHandler(this.nyKontoplanToolStripMenuItem_Click);
             // 
             // hjælpToolStripMenuItem
             // 
@@ -534,25 +562,78 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
-            // importMobilePayToolStripMenuItem
+            // updateNyKontoplanToolStripMenuItem
             // 
-            this.importMobilePayToolStripMenuItem.Name = "importMobilePayToolStripMenuItem";
-            this.importMobilePayToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.importMobilePayToolStripMenuItem.Text = "Import MobilePay";
-            this.importMobilePayToolStripMenuItem.Click += new System.EventHandler(this.importMobilePayToolStripMenuItem_Click);
+            this.updateNyKontoplanToolStripMenuItem.Name = "updateNyKontoplanToolStripMenuItem";
+            this.updateNyKontoplanToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.updateNyKontoplanToolStripMenuItem.Text = "Update NyKontoplan";
+            this.updateNyKontoplanToolStripMenuItem.Click += new System.EventHandler(this.updateNyKontoplanToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = global::Trans2Summa3060.Properties.Settings.Default.frmMainSize;
+            settings1.BankafstemningSize = new System.Drawing.Size(829, 513);
+            settings1.BankafstemningSplitterDistancr = 383;
+            settings1.BetalingsFristiDageGamleMedlemmer = 31;
+            settings1.BetalingsFristiDageNyeMedlemmer = 61;
+            settings1.checkBoxMedsaldo = true;
+            settings1.FrmActebisfakturaLocation = new System.Drawing.Point(0, 0);
+            settings1.FrmActebisfakturaSize = new System.Drawing.Size(1081, 495);
+            settings1.FrmBankkontoudtogLocation = new System.Drawing.Point(0, 0);
+            settings1.frmBankkontoudtogSize = new System.Drawing.Size(393, 416);
+            settings1.FrmBetalingsForslagPoint = new System.Drawing.Point(0, 0);
+            settings1.FrmBetalingsForslagSize = new System.Drawing.Size(800, 600);
+            settings1.frmBilagLoacation = new System.Drawing.Point(0, 0);
+            settings1.frmBilagSize = new System.Drawing.Size(870, 346);
+            settings1.frmBilagSplitDistance = 246;
+            settings1.frmFakturaerLocation = new System.Drawing.Point(0, 0);
+            settings1.frmFakturaerSize = new System.Drawing.Size(825, 260);
+            settings1.frmKladderLocation = new System.Drawing.Point(0, 0);
+            settings1.frmKladderSize = new System.Drawing.Size(530, 259);
+            settings1.frmKontingentForslagPoint = new System.Drawing.Point(0, 0);
+            settings1.frmKontingentForslagSize = new System.Drawing.Size(829, 513);
+            settings1.frmKontoplanListCheckboxmedsaldo = true;
+            settings1.frmKontoplanListLocation = new System.Drawing.Point(0, 0);
+            settings1.frmKontoudtogLocation = new System.Drawing.Point(0, 0);
+            settings1.frmKontoudtogSize = new System.Drawing.Size(324, 250);
+            settings1.frmKreditorPoint = new System.Drawing.Point(10, 10);
+            settings1.frmKreditorSize = new System.Drawing.Size(304, 300);
+            settings1.frmKreditorState = System.Windows.Forms.FormWindowState.Normal;
+            settings1.frmMainPoint = new System.Drawing.Point(100, 100);
+            settings1.frmMainSize = new System.Drawing.Size(1024, 800);
+            settings1.frmMedlemmerPoint = new System.Drawing.Point(100, 100);
+            settings1.frmMedlemmerSize = new System.Drawing.Size(800, 600);
+            settings1.frmMedlemmerSplitteDist = 280;
+            settings1.frmNyeFakturaerLocation = new System.Drawing.Point(0, 0);
+            settings1.frmNyeFakturaerSize = new System.Drawing.Size(803, 354);
+            settings1.frmNyeKladderLocation = new System.Drawing.Point(0, 0);
+            settings1.frmNyeKladderSize = new System.Drawing.Size(521, 259);
+            settings1.frmPbsfilesPoint = new System.Drawing.Point(0, 0);
+            settings1.frmPbsfilesSize = new System.Drawing.Size(707, 511);
+            settings1.frmPbsnetdirPoint = new System.Drawing.Point(100, 100);
+            settings1.frmPbsnetdirSize = new System.Drawing.Size(416, 211);
+            settings1.frmRegnskabPoint = new System.Drawing.Point(0, 0);
+            settings1.frmRegnskabSize = new System.Drawing.Size(531, 398);
+            settings1.frmRegnskabState = System.Windows.Forms.FormWindowState.Normal;
+            settings1.frmRykkerForslagClientSize = new System.Drawing.Size(829, 513);
+            settings1.frmRykkerForslagPoint = new System.Drawing.Point(0, 0);
+            settings1.frmSagListLocation = new System.Drawing.Point(0, 0);
+            settings1.frmTemplateLocation = new System.Drawing.Point(0, 0);
+            settings1.frmTemplateSize = new System.Drawing.Size(730, 297);
+            settings1.frmTemplateWinState = System.Windows.Forms.FormWindowState.Normal;
+            settings1.FrmVarekontoTypeLocation = new System.Drawing.Point(0, 0);
+            settings1.FrmVarekontoTypeSize = new System.Drawing.Size(302, 106);
+            settings1.frmVareListLocation = new System.Drawing.Point(0, 0);
+            settings1.SettingsKey = "";
+            this.ClientSize = settings1.frmMainSize;
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::Trans2Summa3060.Properties.Settings.Default, "frmMainPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::Trans2Summa3060.Properties.Settings.Default, "frmMainSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", settings1, "frmMainPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", settings1, "frmMainSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.IsMdiContainer = true;
-            this.Location = global::Trans2Summa3060.Properties.Settings.Default.frmMainPoint;
+            this.Location = settings1.frmMainPoint;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmMain";
             this.ShowInTaskbar = false;
@@ -627,6 +708,9 @@
         private System.Windows.Forms.ToolStripMenuItem setupScopeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem removeScopeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importMobilePayToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem konverteringToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nyKontoplanToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem updateNyKontoplanToolStripMenuItem;
     }
 }
 

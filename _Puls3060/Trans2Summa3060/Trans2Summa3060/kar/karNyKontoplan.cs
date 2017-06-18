@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Text.RegularExpressions;
-
+using Uniconta.Common;
+using Uniconta.ClientTools.DataModel;
 
 namespace Trans2Summa3060
 {
@@ -14,6 +15,9 @@ namespace Trans2Summa3060
 
         public int? Kontonr { get; set; }
         public string NytKontonr { get; set; }
+        public string Kontonavn { get; set; }
+        public Boolean SkalOprettes { get; set; }
+
     }
 
     public class KarNyKontoplan : List<recNyKontoplan>
@@ -23,23 +27,27 @@ namespace Trans2Summa3060
         public KarNyKontoplan()
         {
             var rec_regnskab = Program.qryAktivRegnskab();
-            //m_path = rec_regnskab.Placering + "nykontoplan.dat";
-            m_path = @"C:\Users\regns\Documents\SummaSummarum\nykontoplan.csv";
+            m_path = rec_regnskab.Placering + "nykontoplan.csv";
+
             open();
         }
 
         public void open()
         {
+            var fileinfo = new FileInfo(m_path);
+            if (!fileinfo.Exists) return;
+
+            var api = UCInitializer.GetBaseAPI;
             recNyKontoplan rec;
             FileStream ts = new FileStream(m_path, FileMode.Open, FileAccess.Read, FileShare.None);
             string ln = null;
-            Regex regexKontoplan = new Regex(@"""(.*?)"";|([^,]*);|(.*)$");
+            Regex regexKontoplan = new Regex(@"""(.*?)"";|([^;]*);|(.*)$");
             using (StreamReader sr = new StreamReader(ts, Encoding.Default))
             {
                 while ((ln = sr.ReadLine()) != null)
                 {
                     int i = 0;
-                    int iMax = 2;
+                    int iMax = 4;
                     string[] value = new string[iMax];
                     foreach (Match m in regexKontoplan.Matches(ln))
                     {
@@ -56,16 +64,33 @@ namespace Trans2Summa3060
                         }
                     }
 
+                    Boolean wSkalOprettes = false;
+
+                    if (value[1] != "x")
+                    {
+                        var crit = new List<PropValuePair>();
+                        var pair = PropValuePair.GenereteWhereElements("Account", typeof(String), value[1]);
+                        crit.Add(pair);
+                        var task = api.Query<GLAccountClient>(null, crit);
+                        task.Wait();
+                        var col = task.Result;
+                        if (col.Count() == 0)
+                            wSkalOprettes = true;
+                    }
+
                     rec = new recNyKontoplan
                     {
                         Kontonr = Microsoft.VisualBasic.Information.IsNumeric(value[0]) ? int.Parse(value[0]) : (int?)null,
                         NytKontonr = value[1],
+                        Kontonavn = value[2],
+                        SkalOprettes = wSkalOprettes
                     };
                     this.Add(rec);
 
                 }
             }
         }
+
         public static string NytKontonr(int? kontonr)
         {
             try
@@ -90,8 +115,8 @@ namespace Trans2Summa3060
                     intarrAfstemKonti[i] = int.Parse(strarrAfstemKonti[i]);
                 }
                 var kontonr = (from k in Program.karKontoplan
-                          where intarrAfstemKonti.Contains(k.Kontonr) && k.Kontonavn == AfstemningsKonto
-                          select k.Kontonr).First();
+                               where intarrAfstemKonti.Contains(k.Kontonr) && k.Kontonavn == AfstemningsKonto
+                               select k.Kontonr).First();
 
                 return (from m in Program.karNyKontoplan where m.Kontonr == kontonr select m.NytKontonr).First();
             }
@@ -101,5 +126,60 @@ namespace Trans2Summa3060
             }
         }
 
+        public void update()
+        {
+            int count1 = 0;
+            var qry = from p in Program.karPosteringer
+                      join k in Program.karKontoplan on p.Konto equals k.Kontonr
+                      orderby p.Konto, p.Nr, p.Id
+                      select new
+                      {
+                          p.Konto,
+                          k.Kontonavn
+                      };
+            int antal = qry.Count();
+
+            FileStream ts = new FileStream(m_path, FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
+            using (StreamWriter sr = new StreamWriter(ts, Encoding.Default))
+            {
+                int last_Konto = 0;
+
+                foreach (var p in qry)
+                {
+                    if (p.Konto != last_Konto)
+                    {
+                        last_Konto = p.Konto;
+                        string line;
+                        try
+                        {
+                            var rec = (from x in this where x.Kontonr == p.Konto && x.NytKontonr != "x" select x).First();
+                            line = string.Format("{0};{1};{2};{3}", rec.Kontonr, rec.NytKontonr, rec.Kontonavn, rec.SkalOprettes);
+                        }
+                        catch
+                        {
+                            line = string.Format("{0};{1};{2};{3}", p.Konto, "x", p.Kontonavn, false);
+                        }
+                        sr.WriteLine(line);
+                        count1++;
+                    }
+
+                }
+            }
+        }
+
+        public void save()
+        {
+            FileStream ts = new FileStream(m_path, FileMode.Truncate, FileAccess.Write, FileShare.None);
+            using (StreamWriter sr = new StreamWriter(ts, Encoding.Default))
+            {
+                var qry = from x in this select x;
+                foreach (var p in qry)
+                {
+                    string line = string.Format("{0};{1};{2};{3}", p.Kontonr, p.NytKontonr, p.Kontonavn, p.SkalOprettes);
+                    sr.WriteLine(line);
+                }
+            }
+        }
     }
 }
+
