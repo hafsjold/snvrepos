@@ -101,5 +101,31 @@ namespace Trans2SummaHDC
                 return "Konto findes ikke";
             }
         }
+
+        public static void UpdateKontoplan()
+        {
+            var qryKontoplan = from k in Program.karKontoplan select k;
+            int antal = qryKontoplan.Count();
+            foreach (var k in qryKontoplan)
+            {
+                try
+                {
+                    var reqKonto = (from x in Program.dbDataTransSumma.tblkontos where x.kontonr == k.Kontonr select x).First();
+                }
+                catch
+                {
+                    var reqKonto2 = new tblkonto()
+                    {
+                        kontonr = (int)k.Kontonr,
+                        kontonavn = k.Kontonavn,
+                        momskode = k.Moms,
+                        type = k.Type
+                    };
+                    Program.dbDataTransSumma.tblkontos.InsertOnSubmit(reqKonto2);
+                }
+            }
+            Program.dbDataTransSumma.SubmitChanges();
+        }
+
     }
 }

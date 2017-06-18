@@ -66,6 +66,9 @@
             this.actebisFakturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.templatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kontoudtogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importAfEcxelKøbsordreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.konverteringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nyKontoPlanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -77,7 +80,6 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonIndtastBilag = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.importAfEcxelKøbsordreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -127,7 +129,7 @@
             | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.MainformProgressText.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.MainformProgressText.Name = "MainformProgressText";
-            this.MainformProgressText.Size = new System.Drawing.Size(131, 19);
+            this.MainformProgressText.Size = new System.Drawing.Size(130, 19);
             this.MainformProgressText.Text = "MainformProgressText";
             this.MainformProgressText.Visible = false;
             // 
@@ -139,6 +141,7 @@
             this.faktureringToolStripMenuItem,
             this.regnskabToolStripMenuItem,
             this.systemToolStripMenuItem,
+            this.konverteringToolStripMenuItem,
             this.hjælpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -395,6 +398,28 @@
             this.kontoudtogToolStripMenuItem.Text = "Kontoudtog";
             this.kontoudtogToolStripMenuItem.Click += new System.EventHandler(this.kontoudtogToolStripMenuItem_Click);
             // 
+            // importAfEcxelKøbsordreToolStripMenuItem
+            // 
+            this.importAfEcxelKøbsordreToolStripMenuItem.Name = "importAfEcxelKøbsordreToolStripMenuItem";
+            this.importAfEcxelKøbsordreToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.importAfEcxelKøbsordreToolStripMenuItem.Text = "Import af Ecxel Købsordre";
+            this.importAfEcxelKøbsordreToolStripMenuItem.Click += new System.EventHandler(this.importAfEcxelKøbsordreToolStripMenuItem_Click);
+            // 
+            // konverteringToolStripMenuItem
+            // 
+            this.konverteringToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nyKontoPlanToolStripMenuItem});
+            this.konverteringToolStripMenuItem.Name = "konverteringToolStripMenuItem";
+            this.konverteringToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
+            this.konverteringToolStripMenuItem.Text = "Konvertering";
+            // 
+            // nyKontoPlanToolStripMenuItem
+            // 
+            this.nyKontoPlanToolStripMenuItem.Name = "nyKontoPlanToolStripMenuItem";
+            this.nyKontoPlanToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
+            this.nyKontoPlanToolStripMenuItem.Text = "UpdateNyKontoplan";
+            this.nyKontoPlanToolStripMenuItem.Click += new System.EventHandler(this.UpdateNyKontoplanToolStripMenuItem_Click);
+            // 
             // hjælpToolStripMenuItem
             // 
             this.hjælpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -490,13 +515,6 @@
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
-            // importAfEcxelKøbsordreToolStripMenuItem
-            // 
-            this.importAfEcxelKøbsordreToolStripMenuItem.Name = "importAfEcxelKøbsordreToolStripMenuItem";
-            this.importAfEcxelKøbsordreToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
-            this.importAfEcxelKøbsordreToolStripMenuItem.Text = "Import af Ecxel Købsordre";
-            this.importAfEcxelKøbsordreToolStripMenuItem.Click += new System.EventHandler(this.importAfEcxelKøbsordreToolStripMenuItem_Click);
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -578,6 +596,8 @@
         private System.Windows.Forms.ToolStripMenuItem kontoudtogToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importPayPalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importAfEcxelKøbsordreToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem konverteringToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nyKontoPlanToolStripMenuItem;
     }
 }
 

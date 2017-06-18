@@ -128,7 +128,7 @@ namespace Trans2SummaHDC
             clsUnicontaKladde obj = new clsUnicontaKladde();
             //obj.DeleteVouchersClients();
             //obj.InsertAllVouchersClient();
-            obj.InsertKøbsfakturaer();
+            obj.InsertGLDailyJournalLinesYearEnd();
             int zsd = 1;
             //KarKontoplan.UpdateKontoplan();
             //var xxx = KarNyKontoplan.NytKontonr("Bank");
@@ -568,6 +568,10 @@ namespace Trans2SummaHDC
             }
         }
 
+        private void UpdateNyKontoplanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Program.karNyKontoplan.update();
+        }
     }
 
     public class Xrec
