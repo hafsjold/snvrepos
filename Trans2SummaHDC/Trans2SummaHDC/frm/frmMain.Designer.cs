@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
+            Trans2SummaHDC.Properties.Settings settings1 = new Trans2SummaHDC.Properties.Settings();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -72,14 +73,15 @@
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButtonImportBilag = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonPrintBilag = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonAfstemBank = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonIndtastBilag = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonImportBilag = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonPrintBilag = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonAfstemBank = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonIndtastBilag = new System.Windows.Forms.ToolStripButton();
+            this.nyKontoplanToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -408,6 +410,7 @@
             // konverteringToolStripMenuItem
             // 
             this.konverteringToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nyKontoplanToolStripMenuItem1,
             this.nyKontoPlanToolStripMenuItem});
             this.konverteringToolStripMenuItem.Name = "konverteringToolStripMenuItem";
             this.konverteringToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
@@ -453,6 +456,27 @@
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            this.toolStripSeparator3.Visible = false;
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            // 
             // toolStripButtonImportBilag
             // 
             this.toolStripButtonImportBilag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -462,11 +486,6 @@
             this.toolStripButtonImportBilag.Size = new System.Drawing.Size(76, 22);
             this.toolStripButtonImportBilag.Text = "Import Bilag";
             this.toolStripButtonImportBilag.Click += new System.EventHandler(this.importerTransaktionerToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripButtonPrintBilag
             // 
@@ -479,12 +498,6 @@
             this.toolStripButtonPrintBilag.Visible = false;
             this.toolStripButtonPrintBilag.Click += new System.EventHandler(this.printBilagToolStripMenuItem_Click);
             // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-            this.toolStripSeparator3.Visible = false;
-            // 
             // toolStripButtonAfstemBank
             // 
             this.toolStripButtonAfstemBank.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -494,11 +507,6 @@
             this.toolStripButtonAfstemBank.Size = new System.Drawing.Size(78, 22);
             this.toolStripButtonAfstemBank.Text = "Afstem Bank";
             this.toolStripButtonAfstemBank.Click += new System.EventHandler(this.BankafstemningToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripButtonIndtastBilag
             // 
@@ -510,23 +518,77 @@
             this.toolStripButtonIndtastBilag.Text = "Indtast Bilag";
             this.toolStripButtonIndtastBilag.Click += new System.EventHandler(this.bilagsindtastningToolStripMenuItem_Click);
             // 
-            // toolStripSeparator5
+            // nyKontoplanToolStripMenuItem1
             // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            this.nyKontoplanToolStripMenuItem1.Name = "nyKontoplanToolStripMenuItem1";
+            this.nyKontoplanToolStripMenuItem1.Size = new System.Drawing.Size(182, 22);
+            this.nyKontoplanToolStripMenuItem1.Text = "NyKontoplan";
+            this.nyKontoplanToolStripMenuItem1.Click += new System.EventHandler(this.nyKontoplanToolStripMenuItem1_Click);
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = global::Trans2SummaHDC.Properties.Settings.Default.frmMainSize;
+            settings1.BankafstemningSize = new System.Drawing.Size(829, 513);
+            settings1.BankafstemningSplitterDistancr = 383;
+            settings1.BetalingsFristiDageGamleMedlemmer = 31;
+            settings1.BetalingsFristiDageNyeMedlemmer = 61;
+            settings1.checkBoxMedsaldo = true;
+            settings1.FrmActebisfakturaLocation = new System.Drawing.Point(0, 0);
+            settings1.FrmActebisfakturaSize = new System.Drawing.Size(1081, 495);
+            settings1.FrmBankkontoudtogLocation = new System.Drawing.Point(0, 0);
+            settings1.frmBankkontoudtogSize = new System.Drawing.Size(393, 416);
+            settings1.FrmBetalingsForslagPoint = new System.Drawing.Point(0, 0);
+            settings1.FrmBetalingsForslagSize = new System.Drawing.Size(800, 600);
+            settings1.frmBilagLoacation = new System.Drawing.Point(0, 0);
+            settings1.frmBilagSize = new System.Drawing.Size(870, 346);
+            settings1.frmBilagSplitDistance = 246;
+            settings1.frmFakturaerLocation = new System.Drawing.Point(0, 0);
+            settings1.frmFakturaerSize = new System.Drawing.Size(825, 260);
+            settings1.frmKladderLocation = new System.Drawing.Point(0, 0);
+            settings1.frmKladderSize = new System.Drawing.Size(530, 259);
+            settings1.frmKontingentForslagPoint = new System.Drawing.Point(0, 0);
+            settings1.frmKontingentForslagSize = new System.Drawing.Size(829, 513);
+            settings1.frmKontoplanListCheckboxmedsaldo = true;
+            settings1.frmKontoplanListLocation = new System.Drawing.Point(0, 0);
+            settings1.frmKontoudtogLocation = new System.Drawing.Point(0, 0);
+            settings1.frmKontoudtogSize = new System.Drawing.Size(324, 250);
+            settings1.frmKreditorPoint = new System.Drawing.Point(10, 10);
+            settings1.frmKreditorSize = new System.Drawing.Size(304, 300);
+            settings1.frmKreditorState = System.Windows.Forms.FormWindowState.Normal;
+            settings1.frmMainPoint = new System.Drawing.Point(100, 100);
+            settings1.frmMainSize = new System.Drawing.Size(1024, 800);
+            settings1.frmMedlemmerPoint = new System.Drawing.Point(100, 100);
+            settings1.frmMedlemmerSize = new System.Drawing.Size(800, 600);
+            settings1.frmMedlemmerSplitteDist = 280;
+            settings1.frmNyeFakturaerLocation = new System.Drawing.Point(0, 0);
+            settings1.frmNyeFakturaerSize = new System.Drawing.Size(803, 354);
+            settings1.frmNyeKladderLocation = new System.Drawing.Point(0, 0);
+            settings1.frmNyeKladderSize = new System.Drawing.Size(521, 259);
+            settings1.frmPbsfilesPoint = new System.Drawing.Point(0, 0);
+            settings1.frmPbsfilesSize = new System.Drawing.Size(707, 511);
+            settings1.frmPbsnetdirPoint = new System.Drawing.Point(100, 100);
+            settings1.frmPbsnetdirSize = new System.Drawing.Size(416, 211);
+            settings1.frmRegnskabPoint = new System.Drawing.Point(0, 0);
+            settings1.frmRegnskabSize = new System.Drawing.Size(531, 398);
+            settings1.frmRegnskabState = System.Windows.Forms.FormWindowState.Normal;
+            settings1.frmRykkerForslagClientSize = new System.Drawing.Size(829, 513);
+            settings1.frmRykkerForslagPoint = new System.Drawing.Point(0, 0);
+            settings1.frmTemplateLocation = new System.Drawing.Point(0, 0);
+            settings1.frmTemplateSize = new System.Drawing.Size(730, 297);
+            settings1.frmTemplateWinState = System.Windows.Forms.FormWindowState.Normal;
+            settings1.FrmVarekontoTypeLocation = new System.Drawing.Point(0, 0);
+            settings1.FrmVarekontoTypeSize = new System.Drawing.Size(302, 106);
+            settings1.frmVareListLocation = new System.Drawing.Point(0, 0);
+            settings1.SettingsKey = "";
+            this.ClientSize = settings1.frmMainSize;
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
-            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::Trans2SummaHDC.Properties.Settings.Default, "frmMainPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", global::Trans2SummaHDC.Properties.Settings.Default, "frmMainSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Location", settings1, "frmMainPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.DataBindings.Add(new System.Windows.Forms.Binding("ClientSize", settings1, "frmMainSize", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.IsMdiContainer = true;
-            this.Location = global::Trans2SummaHDC.Properties.Settings.Default.frmMainPoint;
+            this.Location = settings1.frmMainPoint;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmMain";
             this.ShowInTaskbar = false;
@@ -598,6 +660,7 @@
         private System.Windows.Forms.ToolStripMenuItem importAfEcxelKøbsordreToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem konverteringToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nyKontoPlanToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nyKontoplanToolStripMenuItem1;
     }
 }
 
