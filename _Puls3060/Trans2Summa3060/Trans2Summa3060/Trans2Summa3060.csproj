@@ -130,12 +130,12 @@
     <Reference Include="UIAutomationProvider">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="Uniconta.Common, Version=1.0.6362.30157, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Uniconta.WindowsAPI.1.1.56\lib\net45\Uniconta.Common.dll</HintPath>
+    <Reference Include="Uniconta.Common, Version=1.0.6378.13787, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Uniconta.WindowsAPI.1.1.57\lib\net45\Uniconta.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Uniconta.WindowsAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Uniconta.WindowsAPI.1.1.56\lib\net45\Uniconta.WindowsAPI.dll</HintPath>
+      <HintPath>..\packages\Uniconta.WindowsAPI.1.1.57\lib\net45\Uniconta.WindowsAPI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WindowsBase">
