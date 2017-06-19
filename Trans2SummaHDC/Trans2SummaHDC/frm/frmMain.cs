@@ -71,16 +71,21 @@ namespace Trans2SummaHDC
             else
             {
                 var rec_regnskab = Program.qryAktivRegnskab();
-                this.toolStripStatusLabel1.Text = "Regnskab: " + rec_regnskab.Rid + " " + rec_regnskab.Navn;
+                var xx = await UnicontaLogin();
+                var com = UCInitializer.CurrentCompany;
+                
+
+                this.toolStripStatusLabel1.Text = "Regnskab: " + rec_regnskab.Rid + " " + rec_regnskab.Navn + " - " + com.Name;
                 this.toolStripStatusLabel1.Alignment = ToolStripItemAlignment.Right;
                 this.toolStripStatusLabel2.Text = Program.ConnectStringWithoutPassword;
                 this.toolStripStatusLabel2.Alignment = ToolStripItemAlignment.Right;
+
 
                 object ReadKontoplan = Program.karKontoplan;
                 Program.path_to_lock_summasummarum_kontoplan = rec_regnskab.Placering + "kontoplan.dat";
                 Program.filestream_to_lock_summasummarum_kontoplan = new FileStream(Program.path_to_lock_summasummarum_kontoplan, FileMode.Open, FileAccess.Read, FileShare.None);
             }
-            var xx = await UnicontaLogin();
+
 
             importDanskebankToolStripMenuItem.Visible = true;
             importerMasterCardToolStripMenuItem.Visible = true;
@@ -514,7 +519,8 @@ namespace Trans2SummaHDC
 
             if (UCInitializer.CurrentSession.User._DefaultCompany != 0)
             {
-                var comp = UCInitializer.Companies.Where(c => c.CompanyId == UCInitializer.CurrentSession.User._DefaultCompany).FirstOrDefault();
+                //var comp = UCInitializer.Companies.Where(c => c.CompanyId == UCInitializer.CurrentSession.User._DefaultCompany).FirstOrDefault();
+                var comp = UCInitializer.Companies.Where(c => c.CompanyId == 4377).FirstOrDefault();
                 await UCInitializer.SetCompany(comp.CompanyId);
                 await UCInitializer.SetCurrentCompanyFinanceYear();
             }
@@ -571,6 +577,17 @@ namespace Trans2SummaHDC
         private void UpdateNyKontoplanToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Program.karNyKontoplan.update();
+            Program.karNyKontoplan = null;
+        }
+
+        private void nyKontoplanToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("NyKontoplan"))
+            {
+                FrmNyKontoplan m_NyKontoplan = new FrmNyKontoplan();
+                m_NyKontoplan.MdiParent = this;
+                m_NyKontoplan.Show();
+            }
         }
     }
 
