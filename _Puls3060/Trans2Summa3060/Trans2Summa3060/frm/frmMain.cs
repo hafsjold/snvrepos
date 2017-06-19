@@ -705,8 +705,12 @@ namespace Trans2Summa3060
                 await UCInitializer.SetCompany(comp.CompanyId);
                 await UCInitializer.SetCurrentCompanyFinanceYear();
             }
-            //else if (UCInitializer.Companies.Count() > 0)
-            //    cmbCompanies.SelectedItem = UCInitializer.Companies[0];
+            else if (UCInitializer.Companies.Count() > 0)
+            {
+                var comp = UCInitializer.Companies[0];
+                await UCInitializer.SetCompany(comp.CompanyId);
+                await UCInitializer.SetCurrentCompanyFinanceYear();
+            }
             //else
             //    MessageBox.Show("You do not have any access to company.", "Information", MessageBoxButton.OK, MessageBoxImage.Asterisk);
 
@@ -717,8 +721,8 @@ namespace Trans2Summa3060
 
         async Task<int> simulatedloginButton()
         {
+            string userName = "buus";
             string password = "Puls3060";
-            string userName = "mha";
 
             ErrorCodes errorCode = await SetLogin(userName, password);
 
@@ -770,6 +774,30 @@ namespace Trans2Summa3060
             Program.karNyKontoplan.update();
             Program.karNyKontoplan = null;
         }
+
+        private void åbningsposterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clsUnicontaKladde obj = new clsUnicontaKladde();
+            obj.InsertGLDailyJournalLinesYearEnd();
+        }
+
+        private void dagligePosterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clsUnicontaKladde obj = new clsUnicontaKladde();
+            obj.InsertGLDailyJournalLines();
+        }
+
+        private void salgsfakturaerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clsUnicontaKladde obj = new clsUnicontaKladde();
+            obj.InsertSalgsfakturaer();
+        }
+
+        private void købsfakturaerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clsUnicontaKladde obj = new clsUnicontaKladde();
+            obj.InsertKøbsfakturaer();
+        }
     }
 
     public class Xrec
@@ -778,7 +806,5 @@ namespace Trans2Summa3060
         public int? Xid { get; set; }
         public int? Xnr { get; set; }
     }
-
-
 
 }
