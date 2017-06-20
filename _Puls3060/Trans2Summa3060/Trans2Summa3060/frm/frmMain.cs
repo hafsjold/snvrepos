@@ -798,6 +798,21 @@ namespace Trans2Summa3060
             clsUnicontaKladde obj = new clsUnicontaKladde();
             obj.InsertKøbsfakturaer();
         }
+
+        private void debitorKreditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("DebitorKreditor"))
+            {
+                FrmDebKrd m_DebKrd = new FrmDebKrd();
+                m_DebKrd.MdiParent = this;
+                m_DebKrd.Show();
+            }
+        }
+
+        private void salgsfakturaerToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class Xrec

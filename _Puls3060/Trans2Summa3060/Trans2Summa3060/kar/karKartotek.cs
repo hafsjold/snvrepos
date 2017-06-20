@@ -24,6 +24,7 @@ namespace Trans2Summa3060
         public decimal? Saldo { get; set; }
         public string DK { get; set; }
         public string Cvrnr { get; set; }
+        public string bankkonto { get; set; }
     }
     public class KarKartotek : List<recKartotek>
     {
@@ -116,7 +117,8 @@ namespace Trans2Summa3060
                             Type = "Kreditor",
                             Saldo = Microsoft.VisualBasic.Information.IsNumeric(value[24]) ? decimal.Parse(value[24]) : (decimal?)null,
                             DK = "1",
-                            Cvrnr = value[14]
+                            Cvrnr = value[14],
+                            bankkonto = value[15]
                         };
                         this.Add(rec);
                     }
