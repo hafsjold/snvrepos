@@ -203,10 +203,11 @@ namespace Trans2Summa3060
             return vc.PrimaryKeyId;
         }
 
-        async public void InsertSalgsfakturaer()
+        public void InsertSalgsfakturaer()
         {
             int? lastFakid = null;
-            tblfak recFak = null;
+            DebtorOrderClient recOrder = null;
+
             var rec_regnskab = Program.qryAktivRegnskab();
             var qrySFak = from sfv in Program.karFakturavarer_s
                           join sf in Program.karFakturaer_s on new { fakid = sfv.Fakid } equals new { fakid = sf.fakid }
@@ -219,6 +220,7 @@ namespace Trans2Summa3060
                               Fakid = sfv.Fakid,
                               Faknr = sf.faknr,
                               Dato = sf.dato,
+                              forfdato = sf.forfdato,
                               debitornr = sf.debitornr,
                               Faklinnr = sfv.Line,
                               Varenr = sfv.Varenr,
@@ -237,11 +239,8 @@ namespace Trans2Summa3060
             int antal = qrySFak.Count();
 
             var api = UCInitializer.GetBaseAPI;
-            var col3 = await api.Query<DebtorOrderClient>();
-            var col4 = await api.Query<DebtorOrderLineClient>();
-            var col5 = await api.Query<DebtorInvoiceClient>();
-            var col6 = await api.Query<DebtorInvoiceLines>();
-
+            //var col3 = await api.Query<DebtorOrderClient>();
+            //var col4 = await api.Query<DebtorOrderLineClient>();
 
             foreach (var s in qrySFak)
             {
@@ -249,64 +248,55 @@ namespace Trans2Summa3060
                 {
                     try
                     {
-                        DebtorOrderClient jl = new DebtorOrderClient()
+                        var crit = new List<PropValuePair>();
+                        var pair = PropValuePair.GenereteWhereElements("OrderNumber", typeof(int), s.Fakid.ToString());
+                        crit.Add(pair);
+                        var taskDebtorOrder = api.Query<DebtorOrderClient>(null, crit);
+                        taskDebtorOrder.Wait();
+                        var col = taskDebtorOrder.Result;
+                        if (col.Count() == 0)
                         {
-                            Account = s.debitornr.ToString(),
-                            InvoiceDate = s.Dato,
-
-                        };
-
-                        recFak = (from f in Program.dbDataTransSumma.tblfaks
-                                  where f.regnskabid == rec_regnskab.Rid && f.sk == "S" && f.fakid == s.Fakid
-                                  select f).First();
-                    }
-                    catch
-                    {
-                        recFak = new tblfak
+                            recOrder = new DebtorOrderClient()
+                            {
+                                OrderNumber = s.Fakid,
+                                Account = s.debitornr.ToString(),
+                                InvoiceDate = s.Dato,
+                                DeliveryDate = s.Dato,
+                                 
+                                 
+                            };
+                            var taskInsertDebtorOrder = api.Insert(recOrder);
+                            taskInsertDebtorOrder.Wait();
+                            var err = taskInsertDebtorOrder.Result;
+                        }
+                        else
                         {
-                            udskriv = true,
-                            regnskabid = s.Regnskabid,
-                            sk = s.Sk,
-                            fakid = s.Fakid,
-                            faknr = s.Faknr,
-                            dato = s.Dato,
-                            konto = s.debitornr
-                        };
-                        Program.dbDataTransSumma.tblfaks.InsertOnSubmit(recFak);
+                            recOrder = col[0];
+                        }
                     }
+                    catch { }
                 }
 
-
-                tblfaklin recFaklin = new tblfaklin
+                DebtorOrderLineClient recOrderLine = new DebtorOrderLineClient()
                 {
-                    sk = s.Sk,
-                    regnskabid = s.Regnskabid,
-                    fakid = s.Fakid,
-                    faklinnr = s.Faklinnr,
-                    varenr = s.Varenr.ToString(),
-                    tekst = s.Tekst,
-                    konto = s.Konto,
-                    momskode = s.Momskode,
-                    antal = s.Antal,
-                    enhed = s.Enhed,
-                    pris = s.Pris,
-                    rabat = s.Rabat,
-                    moms = s.Moms,
-                    nettobelob = s.Nettobelob,
-                    bruttobelob = s.Bruttobelob
+                     Text = s.Tekst,
+                     Qty = (double)s.Antal,
+                     Price  = (double)s.Pris,
+                     PostingAccount = KarNyKontoplan.NytKontonr(s.Konto)
                 };
-                Program.dbDataTransSumma.tblfaklins.InsertOnSubmit(recFaklin);
-                if (!(s.Fakid == 0)) recFak.tblfaklins.Add(recFaklin);
-                lastFakid = s.Fakid;
+                recOrderLine.SetMaster(recOrder);
+                var taskInsertDebtorOrderLine = api.Insert(recOrderLine);
+                taskInsertDebtorOrderLine.Wait();
+                var err1 = taskInsertDebtorOrderLine.Result;
             }
-            //Program.dbDataTransSumma.SubmitChanges();
 
         }
 
-        async public void InsertKøbsfakturaer()
+        public void InsertKøbsfakturaer()
         {
             int? lastFakid = null;
-            tblfak recFak = null;
+            CreditorOrderClient recOrder = null;
+
             var rec_regnskab = Program.qryAktivRegnskab();
             var qryKFak = from kfv in Program.karFakturavarer_k
                           join kf in Program.karFakturaer_k on new { fakid = kfv.Fakid } equals new { fakid = kf.fakid }
@@ -337,11 +327,8 @@ namespace Trans2Summa3060
             int antal = qryKFak.Count();
 
             var api = UCInitializer.GetBaseAPI;
-            var col3 = await api.Query<CreditorOrderClient>();
-            var col4 = await api.Query<CreditorOrderLineClient>();
-            var col5 = await api.Query<CreditorInvoiceClient>();
-            var col6 = await api.Query<CreditorInvoiceLines>();
-
+            //var col3 = await api.Query<CreditorOrderClient>();
+            //var col4 = await api.Query<CreditorOrderLineClient>();
 
             foreach (var k in qryKFak)
             {
@@ -349,50 +336,47 @@ namespace Trans2Summa3060
                 {
                     try
                     {
-                        recFak = (from f in Program.dbDataTransSumma.tblfaks
-                                  where f.regnskabid == rec_regnskab.Rid && f.sk == "K" && f.fakid == k.Fakid
-                                  select f).First();
-                    }
-                    catch
-                    {
-                        recFak = new tblfak
+                        var crit = new List<PropValuePair>();
+                        var pair = PropValuePair.GenereteWhereElements("OrderNumber", typeof(int), k.Fakid.ToString());
+                        crit.Add(pair);
+                        var taskCreditorOrder = api.Query<CreditorOrderClient>(null, crit);
+                        taskCreditorOrder.Wait();
+                        var col = taskCreditorOrder.Result;
+                        if (col.Count() == 0)
                         {
-                            udskriv = true,
-                            regnskabid = k.Regnskabid,
-                            sk = k.Sk,
-                            fakid = k.Fakid,
-                            faknr = k.Faknr,
-                            dato = k.Dato,
-                            konto = k.kreditornr
-                        };
-                        Program.dbDataTransSumma.tblfaks.InsertOnSubmit(recFak);
+                            recOrder = new CreditorOrderClient()
+                            {
+                                OrderNumber = k.Fakid,
+                                Account = k.kreditornr.ToString(),
+                                InvoiceDate = k.Dato,
+                                DeliveryDate = k.Dato,
+
+
+                            };
+                            var taskInsertCreditorOrder = api.Insert(recOrder);
+                            taskInsertCreditorOrder.Wait();
+                            var err = taskInsertCreditorOrder.Result;
+                        }
+                        else
+                        {
+                            recOrder = col[0];
+                        }
                     }
+                    catch { }
                 }
 
-
-                tblfaklin recFaklin = new tblfaklin
+                CreditorOrderLineClient recOrderLine = new CreditorOrderLineClient()
                 {
-                    sk = k.Sk,
-                    regnskabid = k.Regnskabid,
-                    fakid = k.Fakid,
-                    faklinnr = k.Faklinnr,
-                    varenr = k.Varenr.ToString(),
-                    tekst = k.Tekst,
-                    konto = k.Konto,
-                    momskode = k.Momskode,
-                    antal = k.Antal,
-                    enhed = k.Enhed,
-                    pris = k.Pris,
-                    rabat = k.Rabat,
-                    moms = k.Moms,
-                    nettobelob = k.Nettobelob,
-                    bruttobelob = k.Bruttobelob
+                    Text = k.Tekst,
+                    Qty = (double)k.Antal,
+                    Price = (double)k.Pris,
+                    PostingAccount = KarNyKontoplan.NytKontonr(k.Konto)
                 };
-                Program.dbDataTransSumma.tblfaklins.InsertOnSubmit(recFaklin);
-                if (!(k.Fakid == 0)) recFak.tblfaklins.Add(recFaklin);
-                lastFakid = k.Fakid;
+                recOrderLine.SetMaster(recOrder);
+                var taskInsertCreditorOrderLine = api.Insert(recOrderLine);
+                taskInsertCreditorOrderLine.Wait();
+                var err1 = taskInsertCreditorOrderLine.Result;
             }
-            //Program.dbDataTransSumma.SubmitChanges();
 
         }
     }

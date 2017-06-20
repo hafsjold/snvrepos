@@ -79,6 +79,8 @@
             this.åbningsposterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dagligePosterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salgsfakturaerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.købsfakturaerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.debitorKreditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -90,7 +92,6 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonIndtastBilag = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.købsfakturaerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -463,7 +464,8 @@
             this.åbningsposterToolStripMenuItem,
             this.dagligePosterToolStripMenuItem,
             this.salgsfakturaerToolStripMenuItem,
-            this.købsfakturaerToolStripMenuItem});
+            this.købsfakturaerToolStripMenuItem,
+            this.debitorKreditorToolStripMenuItem});
             this.konverteringToolStripMenuItem.Name = "konverteringToolStripMenuItem";
             this.konverteringToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
             this.konverteringToolStripMenuItem.Text = "Konvertering";
@@ -502,6 +504,20 @@
             this.salgsfakturaerToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.salgsfakturaerToolStripMenuItem.Text = "Salgsfakturaer";
             this.salgsfakturaerToolStripMenuItem.Click += new System.EventHandler(this.salgsfakturaerToolStripMenuItem_Click);
+            // 
+            // købsfakturaerToolStripMenuItem
+            // 
+            this.købsfakturaerToolStripMenuItem.Name = "købsfakturaerToolStripMenuItem";
+            this.købsfakturaerToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.købsfakturaerToolStripMenuItem.Text = "Købsfakturaer";
+            this.købsfakturaerToolStripMenuItem.Click += new System.EventHandler(this.købsfakturaerToolStripMenuItem_Click);
+            // 
+            // debitorKreditorToolStripMenuItem
+            // 
+            this.debitorKreditorToolStripMenuItem.Name = "debitorKreditorToolStripMenuItem";
+            this.debitorKreditorToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.debitorKreditorToolStripMenuItem.Text = "DebitorKreditor";
+            this.debitorKreditorToolStripMenuItem.Click += new System.EventHandler(this.debitorKreditorToolStripMenuItem_Click);
             // 
             // hjælpToolStripMenuItem
             // 
@@ -597,13 +613,6 @@
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
-            // 
-            // købsfakturaerToolStripMenuItem
-            // 
-            this.købsfakturaerToolStripMenuItem.Name = "købsfakturaerToolStripMenuItem";
-            this.købsfakturaerToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.købsfakturaerToolStripMenuItem.Text = "Købsfakturaer";
-            this.købsfakturaerToolStripMenuItem.Click += new System.EventHandler(this.købsfakturaerToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -752,6 +761,7 @@
         private System.Windows.Forms.ToolStripMenuItem dagligePosterToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salgsfakturaerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem købsfakturaerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem debitorKreditorToolStripMenuItem;
     }
 }
 
