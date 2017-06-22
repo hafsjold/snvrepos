@@ -57,10 +57,13 @@ namespace Trans2Summa3060
 
         /// </summary>
         /// <returns></returns>
-        async public static Task SetCurrentCompanyFinanceYear()
+        public static void SetCurrentCompanyFinanceYear()
         {
             var api = UCInitializer.GetBaseAPI;
-            var cols = await api.Query<CompanyFinanceYear>();
+            //var cols = await api.Query<CompanyFinanceYear>();
+            var taskCompanyFinanceYear = api.Query<CompanyFinanceYear>();
+            taskCompanyFinanceYear.Wait();
+            var cols = taskCompanyFinanceYear.Result;
             foreach (var col in cols)
             {
                 if (col._Current)
@@ -73,13 +76,18 @@ namespace Trans2Summa3060
         /// </summary>
         /// <param name="companyId"></param>
         /// <returns></returns>
-        async public static Task SetCompany(int companyId)
+        public static void SetCompany(int companyId)
         {
             CurrentCompany = CurrentSession.GetOpenCompany(companyId);
             if (CurrentCompany != null)
                 CurrentSession.DefaultCompany = CurrentCompany;
             else
-                CurrentCompany = await CurrentSession.OpenCompany(companyId, true);
+            {
+                //CurrentCompany = await CurrentSession.OpenCompany(companyId, true);
+                var taskOpenCompany = CurrentSession.OpenCompany(companyId, true);
+                taskOpenCompany.Wait(10000);
+                CurrentCompany = taskOpenCompany.Result;
+            }
         }
 
         /// <summary>
@@ -93,10 +101,14 @@ namespace Trans2Summa3060
         /// Method to Set all the Companies for the Loged In User
         /// </summary>
         /// <returns></returns>
-        async public static Task SetupCompanies()
+        public static void SetupCompanies()
         {
             if (CurrentSession != null)
-                Companies = await CurrentSession.GetCompanies();
+            {
+                var taskCompanies = CurrentSession.GetCompanies();
+                taskCompanies.Wait(10000);
+                Companies = taskCompanies.Result;
+            }
         }
 
         /// <summary>

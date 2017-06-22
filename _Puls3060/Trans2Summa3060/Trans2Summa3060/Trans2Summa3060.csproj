@@ -159,10 +159,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbDataTransSumma.dbml</DependentUpon>
     </Compile>
-    <Compile Include="frmDebKrd.cs">
+    <Compile Include="frm\frmDebKrd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDebKrd.Designer.cs">
+    <Compile Include="frm\frmDebKrd.Designer.cs">
       <DependentUpon>frmDebKrd.cs</DependentUpon>
     </Compile>
     <Compile Include="frm\frmNyKontoplan.cs">
@@ -257,6 +257,7 @@
     </Compile>
     <Compile Include="kar\karNyKontoplan.cs" />
     <Compile Include="kar\karBankkontoudtogMobilePay.cs" />
+    <Compile Include="kar\karDimensionSag.cs" />
     <Compile Include="kar\karSag.cs" />
     <Compile Include="kar\karPaypal.cs" />
     <Compile Include="kar\karTrans2Summa.cs" />
@@ -319,7 +320,7 @@
     <None Include="dbDataTransSumma.dbml.layout">
       <DependentUpon>dbDataTransSumma.dbml</DependentUpon>
     </None>
-    <EmbeddedResource Include="frmDebKrd.resx">
+    <EmbeddedResource Include="frm\frmDebKrd.resx">
       <DependentUpon>frmDebKrd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm\frmNyKontoplan.resx">

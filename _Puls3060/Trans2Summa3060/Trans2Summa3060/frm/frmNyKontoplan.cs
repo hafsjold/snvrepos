@@ -57,6 +57,9 @@ namespace Trans2Summa3060
                             };
                             if (recKontoplan.Type == "Drift")
                             {
+                                recGLAccount.Dim1Parm = DimActive.Active;
+                                recGLAccount.Dim2Parm = DimActive.Active;
+
                                 if (recKontoplan.DK == "1")
                                 {
                                     recGLAccount.AccountTypeEnum = Uniconta.DataModel.GLAccountTypes.Revenue;

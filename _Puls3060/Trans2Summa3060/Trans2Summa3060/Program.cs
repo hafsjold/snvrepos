@@ -101,6 +101,8 @@ namespace Trans2Summa3060
         private static KarTrans2Summa m_KarTrans2Summa;
         private static KarSag m_KarSag;
         private static KarNyKontoplan m_KarNyKontoplan;
+        private static KarDimensionSag m_KarDimensionSag;
+
 
         public static string path_to_lock_summasummarum_kontoplan
         {
@@ -399,6 +401,18 @@ namespace Trans2Summa3060
             set
             {
                 m_KarNyKontoplan = value;
+            }
+        }
+        public static KarDimensionSag karDimensionSag
+        {
+            get
+            {
+                if (m_KarDimensionSag == null) m_KarDimensionSag = new KarDimensionSag();
+                return m_KarDimensionSag;
+            }
+            set
+            {
+                m_KarDimensionSag = value;
             }
         }
         public static recMemRegnskab qryAktivRegnskab()
