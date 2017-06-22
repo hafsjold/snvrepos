@@ -78,9 +78,9 @@
             this.updateNyKontoplanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.åbningsposterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dagligePosterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.debitorKreditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salgsfakturaerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.købsfakturaerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.debitorKreditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
@@ -92,6 +92,7 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonIndtastBilag = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.cbCompagny = new System.Windows.Forms.ToolStripComboBox();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -463,9 +464,9 @@
             this.updateNyKontoplanToolStripMenuItem,
             this.åbningsposterToolStripMenuItem,
             this.dagligePosterToolStripMenuItem,
+            this.debitorKreditorToolStripMenuItem,
             this.salgsfakturaerToolStripMenuItem,
-            this.købsfakturaerToolStripMenuItem,
-            this.debitorKreditorToolStripMenuItem});
+            this.købsfakturaerToolStripMenuItem});
             this.konverteringToolStripMenuItem.Name = "konverteringToolStripMenuItem";
             this.konverteringToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
             this.konverteringToolStripMenuItem.Text = "Konvertering";
@@ -498,6 +499,13 @@
             this.dagligePosterToolStripMenuItem.Text = "Daglige Poster";
             this.dagligePosterToolStripMenuItem.Click += new System.EventHandler(this.dagligePosterToolStripMenuItem_Click);
             // 
+            // debitorKreditorToolStripMenuItem
+            // 
+            this.debitorKreditorToolStripMenuItem.Name = "debitorKreditorToolStripMenuItem";
+            this.debitorKreditorToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.debitorKreditorToolStripMenuItem.Text = "DebitorKreditor";
+            this.debitorKreditorToolStripMenuItem.Click += new System.EventHandler(this.debitorKreditorToolStripMenuItem_Click);
+            // 
             // salgsfakturaerToolStripMenuItem
             // 
             this.salgsfakturaerToolStripMenuItem.Name = "salgsfakturaerToolStripMenuItem";
@@ -511,13 +519,6 @@
             this.købsfakturaerToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.købsfakturaerToolStripMenuItem.Text = "Købsfakturaer";
             this.købsfakturaerToolStripMenuItem.Click += new System.EventHandler(this.købsfakturaerToolStripMenuItem_Click);
-            // 
-            // debitorKreditorToolStripMenuItem
-            // 
-            this.debitorKreditorToolStripMenuItem.Name = "debitorKreditorToolStripMenuItem";
-            this.debitorKreditorToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.debitorKreditorToolStripMenuItem.Text = "DebitorKreditor";
-            this.debitorKreditorToolStripMenuItem.Click += new System.EventHandler(this.debitorKreditorToolStripMenuItem_Click);
             // 
             // hjælpToolStripMenuItem
             // 
@@ -545,7 +546,8 @@
             this.toolStripButtonAfstemBank,
             this.toolStripSeparator4,
             this.toolStripButtonIndtastBilag,
-            this.toolStripSeparator5});
+            this.toolStripSeparator5,
+            this.cbCompagny});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1024, 25);
@@ -613,6 +615,16 @@
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            // 
+            // cbCompagny
+            // 
+            this.cbCompagny.DropDownWidth = 200;
+            this.cbCompagny.Items.AddRange(new object[] {
+            "firma 1",
+            "firma 2",
+            "firma 3"});
+            this.cbCompagny.Name = "cbCompagny";
+            this.cbCompagny.Size = new System.Drawing.Size(121, 25);
             // 
             // FrmMain
             // 
@@ -762,6 +774,7 @@
         private System.Windows.Forms.ToolStripMenuItem salgsfakturaerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem købsfakturaerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem debitorKreditorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripComboBox cbCompagny;
     }
 }
 

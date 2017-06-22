@@ -89,7 +89,7 @@ namespace Trans2Summa3060
                 Program.path_to_lock_summasummarum_kontoplan = rec_regnskab.Placering + "kontoplan.dat";
                 Program.filestream_to_lock_summasummarum_kontoplan = new FileStream(Program.path_to_lock_summasummarum_kontoplan, FileMode.Open, FileAccess.Read, FileShare.None);
             }
-            var xx = await UnicontaLogin();
+            UnicontaLogin();
 #if (!DEBUG)
             if (Program.HafsjoldDataApS)
 #endif
@@ -148,9 +148,10 @@ namespace Trans2Summa3060
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var com = UCInitializer.CurrentCompany;
-            clsUnicontaKladde obj = new clsUnicontaKladde();
+            Program.karDimensionSag.update();
+            //clsUnicontaKladde obj = new clsUnicontaKladde();
             //obj.DeleteVouchersClients();
-            obj.InsertAllVouchersClient();
+            //obj.InsertAllVouchersClient();
             int zsd = 1;
             //KarKontoplan.UpdateKontoplan();
             //var xxx = KarNyKontoplan.NytKontonr("Bank");
@@ -691,40 +692,44 @@ namespace Trans2Summa3060
             recBankkontoudtogMobilePay.load();
         }
  
-        async Task<int> UnicontaLogin()
+        int UnicontaLogin()
         {
-            int ret = await simulatedloginButton();
+            int ret = simulatedloginButton();
 
-            await UCInitializer.SetupCompanies();
+            UCInitializer.SetupCompanies();
 
             var cmbCompanies = UCInitializer.Companies;
+            this.cbCompagny.Items.Add("Test");
 
             if (UCInitializer.CurrentSession.User._DefaultCompany != 0)
             {
-                var comp = UCInitializer.Companies.Where(c => c.CompanyId == UCInitializer.CurrentSession.User._DefaultCompany).FirstOrDefault();
-                await UCInitializer.SetCompany(comp.CompanyId);
-                await UCInitializer.SetCurrentCompanyFinanceYear();
+                //var comp = UCInitializer.Companies.Where(c => c.CompanyId == UCInitializer.CurrentSession.User._DefaultCompany).FirstOrDefault();
+                var comp = UCInitializer.Companies.Where(c => c.CompanyId == 4852).FirstOrDefault(); //Løbeklubben Puls 3060
+                //var comp = UCInitializer.Companies.Where(c => c.CompanyId == 4850).FirstOrDefault(); //Puls 3060 Ref
+                UCInitializer.SetCompany(comp.CompanyId);
+                UCInitializer.SetCurrentCompanyFinanceYear();
             }
             else if (UCInitializer.Companies.Count() > 0)
             {
                 var comp = UCInitializer.Companies[0];
-                await UCInitializer.SetCompany(comp.CompanyId);
-                await UCInitializer.SetCurrentCompanyFinanceYear();
+                UCInitializer.SetCompany(comp.CompanyId);
+                UCInitializer.SetCurrentCompanyFinanceYear();
             }
             //else
             //    MessageBox.Show("You do not have any access to company.", "Information", MessageBoxButton.OK, MessageBoxImage.Asterisk);
 
             var CurrentCompany = UCInitializer.CurrentCompany;
+            this.toolStripStatusLabel1.Text += " - " + CurrentCompany.CompanyId + " - " + CurrentCompany.Name;
 
             return 0;
         }
 
-        async Task<int> simulatedloginButton()
+        int simulatedloginButton()
         {
-            string userName = "buus";
-            string password = "Puls3060";
+            string userName = "puls3060";
+            string password = "1234West+";
 
-            ErrorCodes errorCode = await SetLogin(userName, password);
+            ErrorCodes errorCode = SetLogin(userName, password);
 
             switch (errorCode)
             {
@@ -743,12 +748,15 @@ namespace Trans2Summa3060
             return 0;
         }
 
-        async Task<ErrorCodes> SetLogin(string username, string password)
+        ErrorCodes SetLogin(string username, string password)
         {
             try
             {
                 var ses = UCInitializer.GetSession();
-                return await ses.LoginAsync(username, password, Uniconta.Common.User.LoginType.API, new Guid("73c93c84-af78-41e4-ada1-b8101c95ba89"), Uniconta.ClientTools.Localization.InititalLanguageCode);
+                var task = ses.LoginAsync(username, password, Uniconta.Common.User.LoginType.API, new Guid("73c93c84-af78-41e4-ada1-b8101c95ba89"), Uniconta.ClientTools.Localization.InititalLanguageCode);
+                task.Wait();
+                var res = task.Result;
+                return res;
             }
             catch
             {

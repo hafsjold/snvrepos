@@ -25,7 +25,7 @@ namespace Trans2Summa3060
         {
             var qryKladder = from k in Program.karKladder orderby k.Bilag, k.Id select k;
             int antal = qryKladder.Count();
-            foreach(var rec in qryKladder)
+            foreach (var rec in qryKladder)
             {
                 int refbilag = await InsertVouchersClients(rec);
             }
@@ -50,7 +50,7 @@ namespace Trans2Summa3060
             var col3 = await api.Query<NumberSerieClient>();
 
             var crit = new List<PropValuePair>();
-            var pair = PropValuePair.GenereteWhereElements("KeyStr", typeof(String), "ÅP");
+            var pair = PropValuePair.GenereteWhereElements("KeyStr", typeof(String), "Dag");
             crit.Add(pair);
             var col = await api.Query<GLDailyJournalClient>(null, crit);
             var rec_Master = col.FirstOrDefault();
@@ -58,28 +58,66 @@ namespace Trans2Summa3060
 
             var qryPosteringer = from p in Program.karPosteringer
                                  where p.Bilag == 0 && (p.Tekst.StartsWith("ÅP:") || p.Tekst.StartsWith("EP:"))
-                                 orderby p.Nr
+                                 orderby p.Konto, p.Nr
                                  select p;
 
             int antal = qryPosteringer.Count();
 
+            DateTime Dato_last  = DateTime.Today;
+            int Konto_last = 0;
+            decimal Nettobeløb_sum = 0;
+
             foreach (var p in qryPosteringer)
+            {
+                if (p.Konto != Konto_last)
+                {
+                    if (Konto_last != 0)
+                    {
+                        GLDailyJournalLineClient jl = new GLDailyJournalLineClient()
+                        {
+                            Date = Dato_last,
+                            Voucher = 9999,
+                            Text = "Primo SummaSummarum",
+                            Account = KarNyKontoplan.NytKontonr(Konto_last)
+                        };
+
+                        if (Nettobeløb_sum > 0)
+                        {
+                            jl.Debit = (double)Nettobeløb_sum;
+                        }
+                        else
+                        {
+                            jl.Credit = -(double)Nettobeløb_sum;
+                        }
+
+                        jl.SetMaster(rec_Master);
+                        var err = await api.Insert(jl);
+
+                    }
+                    Nettobeløb_sum = 0;
+                }
+                Dato_last = p.Dato;
+                Konto_last = p.Konto;
+                Nettobeløb_sum += p.Nettobeløb;
+            }
+
+            if (antal > 0)
             {
                 GLDailyJournalLineClient jl = new GLDailyJournalLineClient()
                 {
-                    Date = (DateTime)p.Dato,
-                    Voucher = (p.Bilag != null) ? (int)p.Bilag : 0,
-                    Text = p.Tekst,
-                    Account = KarNyKontoplan.NytKontonr(p.Konto)
+                    Date = Dato_last,
+                    Voucher = 9999,
+                    Text = "Primo SummaSummarum",
+                    Account = KarNyKontoplan.NytKontonr(Konto_last)
                 };
 
-                if (p.Nettobeløb > 0)
+                if (Nettobeløb_sum > 0)
                 {
-                    jl.Debit = (double)p.Nettobeløb;
+                    jl.Debit = (double)Nettobeløb_sum;
                 }
                 else
                 {
-                    jl.Credit = -(double)p.Nettobeløb;
+                    jl.Credit = -(double)Nettobeløb_sum;
                 }
 
                 jl.SetMaster(rec_Master);
@@ -90,7 +128,7 @@ namespace Trans2Summa3060
         async public void InsertGLDailyJournalLines()
         {
             var api = UCInitializer.GetBaseAPI;
-            var col3 = await api.Query<NumberSerieClient>();
+            //var col3 = await api.Query<NumberSerieClient>();
 
             var crit = new List<PropValuePair>();
             var pair = PropValuePair.GenereteWhereElements("KeyStr", typeof(String), "Dag");
@@ -98,11 +136,15 @@ namespace Trans2Summa3060
             var col = await api.Query<GLDailyJournalClient>(null, crit);
             var rec_Master = col.FirstOrDefault();
 
-            var qryKladder = from k in Program.karKladder orderby k.Id select k;
+            var qryKladder = from k in Program.karKladder
+                             orderby k.Bilag, k.Id
+                             select k;
             int antal = qryKladder.Count();
 
             foreach (var k in qryKladder)
             {
+                //if (k.Bilag > 3)
+                //    break;
                 int refbilag = await InsertVouchersClients(k);
 
                 GLDailyJournalLineClient jl = new GLDailyJournalLineClient()
@@ -112,6 +154,7 @@ namespace Trans2Summa3060
                     Text = k.Tekst,
                     DocumentRef = refbilag,
                 };
+
 
                 if (!String.IsNullOrWhiteSpace(k.Afstemningskonto)) //Afstemningskonto er udfyldt
                 {
@@ -152,6 +195,8 @@ namespace Trans2Summa3060
                         jl.Account = KarNyKontoplan.NytKontonr(k.Konto);
                     }
                 }
+                jl.Dimension1 = KarDimensionSag.getDimension1(k.Sag);
+                jl.Dimension2 = KarDimensionSag.getDimension2(k.Sag);
                 jl.SetMaster(rec_Master);
                 var err = await api.Insert(jl);
             }
@@ -262,8 +307,8 @@ namespace Trans2Summa3060
                                 Account = s.debitornr.ToString(),
                                 InvoiceDate = s.Dato,
                                 DeliveryDate = s.Dato,
-                                 
-                                 
+
+
                             };
                             var taskInsertDebtorOrder = api.Insert(recOrder);
                             taskInsertDebtorOrder.Wait();
@@ -279,10 +324,10 @@ namespace Trans2Summa3060
 
                 DebtorOrderLineClient recOrderLine = new DebtorOrderLineClient()
                 {
-                     Text = s.Tekst,
-                     Qty = (double)s.Antal,
-                     Price  = (double)s.Pris,
-                     PostingAccount = KarNyKontoplan.NytKontonr(s.Konto)
+                    Text = s.Tekst,
+                    Qty = (double)s.Antal,
+                    Price = (double)s.Pris,
+                    PostingAccount = KarNyKontoplan.NytKontonr(s.Konto)
                 };
                 recOrderLine.SetMaster(recOrder);
                 var taskInsertDebtorOrderLine = api.Insert(recOrderLine);
