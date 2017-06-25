@@ -62,6 +62,7 @@
             this.importActebisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importMobilePayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.excelRegnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportPayPalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.varekontoTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -93,6 +94,7 @@
             this.toolStripButtonIndtastBilag = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.cbCompagny = new System.Windows.Forms.ToolStripComboBox();
+            this.exportDanskeErhvervToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -292,9 +294,11 @@
             this.importerTransaktionerToolStripMenuItem,
             this.importFakturaToolStripMenuItem,
             this.importDanskebankToolStripMenuItem,
+            this.exportDanskeErhvervToolStripMenuItem,
             this.importerMasterCardToolStripMenuItem,
             this.importNordeaToolStripMenuItem,
             this.importPayPalToolStripMenuItem,
+            this.exportPayPalToolStripMenuItem,
             this.importActebisToolStripMenuItem,
             this.importMobilePayToolStripMenuItem,
             this.excelRegnskabToolStripMenuItem});
@@ -368,6 +372,13 @@
             this.excelRegnskabToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.excelRegnskabToolStripMenuItem.Text = "Excel Regnskab";
             this.excelRegnskabToolStripMenuItem.Click += new System.EventHandler(this.excelRegnskabToolStripMenuItem_Click);
+            // 
+            // exportPayPalToolStripMenuItem
+            // 
+            this.exportPayPalToolStripMenuItem.Name = "exportPayPalToolStripMenuItem";
+            this.exportPayPalToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.exportPayPalToolStripMenuItem.Text = "Export PayPal";
+            this.exportPayPalToolStripMenuItem.Click += new System.EventHandler(this.exportPayPalToolStripMenuItem_Click);
             // 
             // systemToolStripMenuItem
             // 
@@ -626,6 +637,13 @@
             this.cbCompagny.Name = "cbCompagny";
             this.cbCompagny.Size = new System.Drawing.Size(121, 25);
             // 
+            // exportDanskeErhvervToolStripMenuItem
+            // 
+            this.exportDanskeErhvervToolStripMenuItem.Name = "exportDanskeErhvervToolStripMenuItem";
+            this.exportDanskeErhvervToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.exportDanskeErhvervToolStripMenuItem.Text = "Export Danske Erhverv";
+            this.exportDanskeErhvervToolStripMenuItem.Click += new System.EventHandler(this.exportDanskeErhvervToolStripMenuItem_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -775,6 +793,8 @@
         private System.Windows.Forms.ToolStripMenuItem købsfakturaerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem debitorKreditorToolStripMenuItem;
         private System.Windows.Forms.ToolStripComboBox cbCompagny;
+        private System.Windows.Forms.ToolStripMenuItem exportPayPalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportDanskeErhvervToolStripMenuItem;
     }
 }
 

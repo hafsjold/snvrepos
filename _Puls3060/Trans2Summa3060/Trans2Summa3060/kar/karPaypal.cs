@@ -4,11 +4,14 @@ using Microsoft.Synchronization.Data.SqlServer;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using Uniconta.ClientTools.DataModel;
+using Uniconta.Common;
 
 namespace Trans2Summa3060
 {
@@ -62,29 +65,105 @@ namespace Trans2Summa3060
 
     class KarPaypal : List<recPaypal>
     {
-        private string m_path { get; set; }
+        public enum action
+        {
+            import,
+            export
+        };
+        private string m_importpath { get; set; }
+        private string m_exportpath { get; set; }
         private int m_bankkontoid { get; set; }
 
-        public KarPaypal(int bankkontoid)
+
+        public KarPaypal(int bankkontoid, action act)
         {
             m_bankkontoid = bankkontoid;
-            string csvfile;
-            try
+            string csvimportfile = "NoFile";
+            string csvexportfile = "NoFile";
+            if (act == action.import)
             {
-                csvfile = (from w in Program.dbDataTransSumma.tblkontoudtogs where w.pid == m_bankkontoid select w).First().savefile;
+                try
+                {
+                    csvimportfile = (from w in Program.dbDataTransSumma.tblkontoudtogs where w.pid == m_bankkontoid select w).First().savefile;
+                }
+                catch
+                {
+                    csvimportfile = "NoFile";
+                }
+                var rec_regnskab = Program.qryAktivRegnskab();
+                m_importpath = rec_regnskab.Eksportmappe + csvimportfile;
+                open();
             }
-            catch
+            if (act == action.export)
             {
-                csvfile = "NoFile";
+                csvexportfile = "paypal_uniconta.csv";
+
+                var rec_regnskab = Program.qryAktivRegnskab();
+                m_exportpath = rec_regnskab.Eksportmappe + csvexportfile;
+                export();
             }
-            var rec_regnskab = Program.qryAktivRegnskab();
-            m_path = rec_regnskab.Eksportmappe + csvfile;
-            open();
+
         }
+
+        public void export()
+        {
+            DateTime ExportFromDate = DateTime.Now.AddDays(-3); 
+            var api = UCInitializer.GetBaseAPI;
+            var crit = new List<PropValuePair>();
+            var pair = PropValuePair.GenereteWhereElements("KeyName", typeof(string), "PayPal");
+            crit.Add(pair);
+            var taskQryBankStatment = api.Query<BankStatementClient>(null, crit);
+            taskQryBankStatment.Wait();
+            var col = taskQryBankStatment.Result;
+            if (col.Count() == 1)
+            {
+                ExportFromDate = col[0].LastTransaction;
+                var DaysSlip = col[0].DaysSlip;
+                ExportFromDate.AddDays(-DaysSlip);
+            }
+
+            using (StringWriter sr = new StringWriter())
+            {
+                var qry = from w in Program.dbDataTransSumma.tblbankkontos
+                          where w.bankkontoid == m_bankkontoid && (w.skjul == null || w.skjul == false) && w.dato >= ExportFromDate
+                          orderby w.dato
+                          select w;
+
+                int antal = qry.Count();
+
+                string ln = @"pid;dato;tekst;beløb;saldo";
+                sr.WriteLine(ln);
+
+                foreach (var b in qry)
+                {
+                    ln = "";
+                    ln += b.pid.ToString() + ";";
+                    ln += (b.dato == null) ? ";" : ((DateTime)b.dato).ToString("dd.MM.yyyy") + ";";
+                    ln += (b.tekst == null) ? ";" : b.tekst + ";";
+                    ln += (b.belob == null) ? ";" : ((decimal)(b.belob)).ToString("0.00") + @";";
+                    ln += (b.saldo == null) ? ";" : ((decimal)(b.saldo)).ToString("0.00");
+                    sr.WriteLine(ln);
+                }
+                byte[] attachment = Encoding.Default.GetBytes(sr.ToString());
+                VouchersClient vc = new VouchersClient()
+                {
+                    Text = string.Format("PayPal Kontoudtog {0}", DateTime.Now),
+                    Content = "Bankkontoudtog",
+                    DocumentDate = DateTime.Now,
+                    Fileextension = FileextensionsTypes.CSV,
+                    VoucherAttachment = attachment,
+                };
+                var taskInsertVouchers = api.Insert(vc);
+                taskInsertVouchers.Wait();
+                var err = taskInsertVouchers.Result;
+
+            }
+        }
+
 
         public void open()
         {
-            FileStream ts = new FileStream(m_path, FileMode.Open, FileAccess.Read, FileShare.None);
+            FileStream ts = new FileStream(m_importpath, FileMode.Open, FileAccess.Read, FileShare.None);
             string ln = null;
             recPaypal rec;
             Regex regexPaypal = new Regex(@"""(.*?)""\t|([^\t]*)\t|(.*)$");
@@ -171,16 +250,16 @@ namespace Trans2Summa3060
             return d;
         }
 
-        public DateTime? readDateTime(string sDate, string sTime) 
+        public DateTime? readDateTime(string sDate, string sTime)
         {
-            DateTime? dt = null; 
+            DateTime? dt = null;
             DateTime? d = Microsoft.VisualBasic.Information.IsDate(sDate) ? DateTime.Parse(sDate) : (DateTime?)null;
             DateTime? t = Microsoft.VisualBasic.Information.IsDate(sTime) ? DateTime.Parse(sTime) : (DateTime?)null;
-             try
+            try
             {
                 dt = new DateTime(d.Value.Year, d.Value.Month, d.Value.Day, t.Value.Hour, t.Value.Hour, t.Value.Second);
             }
-            catch { } 
+            catch { }
             return dt;
         }
 
@@ -193,12 +272,12 @@ namespace Trans2Summa3060
         public void load_paypal()
         {
             var qry = from w in this
-                      join b in Program.dbDataTransSumma.tblpaypals 
-                        on new { date = w.Date, name = w.Name, type = w.Type, gross = w.Gross , balance = w.Balance, transaction_id = w.Transaction_ID}
+                      join b in Program.dbDataTransSumma.tblpaypals
+                        on new { date = w.Date, name = w.Name, type = w.Type, gross = w.Gross, balance = w.Balance, transaction_id = w.Transaction_ID }
                         equals new { date = b.Date, name = b.Name, type = b.Type, gross = b.Gross, balance = b.Balance, transaction_id = b.Transaction_ID } into paypalkonto
                       from b in paypalkonto.DefaultIfEmpty(new tblpaypal { pid = 0, Gross = null })
-                      where b.Gross  == null
-                      orderby w.Date 
+                      where b.Gross == null
+                      orderby w.Date
                       select w;
 
             int iLinenr = 0;
@@ -212,7 +291,7 @@ namespace Trans2Summa3060
                     Date = b.Date,
                     Time_Zone = b.Time_Zone,
                     Name = b.Name,
-                    Type = b.Type,                 
+                    Type = b.Type,
                     Status = b.Status,
                     Currency = b.Currency,
                     Gross = b.Gross,
@@ -285,11 +364,11 @@ namespace Trans2Summa3060
                     bankkontoid = m_bankkontoid,
                     saldo = b.Balance,
                     dato = b.Date,
-                    tekst ="Overført til PayPal",
+                    tekst = "Overført til PayPal",
                     belob = b.Gross,
                 };
                 b.Imported = true;
-                b.tblbankkontos.Add(recBankkonto); 
+                b.tblbankkontos.Add(recBankkonto);
                 Program.dbDataTransSumma.SubmitChanges();
             }
         }
@@ -390,7 +469,7 @@ namespace Trans2Summa3060
                     dato = b.Date,
                     tekst = "PayPal Fee",
                     belob = b.Fee,
-                }; 
+                };
                 b.Imported = true;
                 b.tblbankkontos.Add(recBankkonto); Program.dbDataTransSumma.tblbankkontos.InsertOnSubmit(recBankkonto);
 
@@ -428,11 +507,11 @@ namespace Trans2Summa3060
         {
             var qry = from w in Program.dbDataTransSumma.tblpaypals
                       where w.Imported == null //&& w.Currency == "DKK"
-                      && (w.Type == "Express Checkout Payment Sent" 
-                      || w.Type == "Preapproved Payment Sent" 
-                      || w.Type == "Recurring Payment Sent" 
-                      || w.Type == "Web Accept Payment Sent" 
-                      || w.Type == "Shopping Cart Payment Sent" 
+                      && (w.Type == "Express Checkout Payment Sent"
+                      || w.Type == "Preapproved Payment Sent"
+                      || w.Type == "Recurring Payment Sent"
+                      || w.Type == "Web Accept Payment Sent"
+                      || w.Type == "Shopping Cart Payment Sent"
                       )
                       orderby w.Date
                       select w;
@@ -453,12 +532,12 @@ namespace Trans2Summa3060
                         GrossDKK = qry2.First().Gross;
                     }
                 }
-                else 
+                else
                 {
                     kontoudtogstekst = b.Name;
                     GrossDKK = b.Gross;
                 }
-                
+
                 tblbankkonto recBankkonto = new tblbankkonto
                 {
                     pid = clsPbs.nextval("Tblbankkonto"),
@@ -478,7 +557,7 @@ namespace Trans2Summa3060
         {
             var qry = from w in Program.dbDataTransSumma.tblpaypals
                       where w.Imported == null && w.Currency == "DKK"
-                      && (w.Type == "Web Accept Payment Received" 
+                      && (w.Type == "Web Accept Payment Received"
                       || w.Type == "Recurring Payment Received"
                       )
                       orderby w.Date

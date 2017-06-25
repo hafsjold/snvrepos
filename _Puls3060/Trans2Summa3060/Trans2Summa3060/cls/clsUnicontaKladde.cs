@@ -137,6 +137,7 @@ namespace Trans2Summa3060
             var rec_Master = col.FirstOrDefault();
 
             var qryKladder = from k in Program.karKladder
+                             where k.Bilag == 345 // <-----------------------
                              orderby k.Bilag, k.Id
                              select k;
             int antal = qryKladder.Count();
