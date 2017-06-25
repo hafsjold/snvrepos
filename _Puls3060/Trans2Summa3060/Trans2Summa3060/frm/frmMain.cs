@@ -147,8 +147,11 @@ namespace Trans2Summa3060
 
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var com = UCInitializer.CurrentCompany;
-            Program.karDimensionSag.update();
+            KarBankkontoudtogMobilePay sss = new KarBankkontoudtogMobilePay(6, KarBankkontoudtogMobilePay.action.export);
+            sss.test();
+
+            //var com = UCInitializer.CurrentCompany;
+            //Program.karDimensionSag.update();
             //clsUnicontaKladde obj = new clsUnicontaKladde();
             //obj.DeleteVouchersClients();
             //obj.InsertAllVouchersClient();
@@ -390,13 +393,13 @@ namespace Trans2Summa3060
 
         private void importDanskebankToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            KarBankkontoudtogDanskebank recBankkontoudtogDanskebank = new KarBankkontoudtogDanskebank(1);
+            KarBankkontoudtogDanskebank recBankkontoudtogDanskebank = new KarBankkontoudtogDanskebank(1, KarBankkontoudtogDanskebank.action.import);
             recBankkontoudtogDanskebank.load();
         }
 
         private void importMasterCardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            KarBankkontoudtogDanskebank recBankkontoudtogDanskebank = new KarBankkontoudtogDanskebank(2);
+            KarBankkontoudtogDanskebank recBankkontoudtogDanskebank = new KarBankkontoudtogDanskebank(2, KarBankkontoudtogDanskebank.action.import);
             recBankkontoudtogDanskebank.load();
         }
 
@@ -510,7 +513,7 @@ namespace Trans2Summa3060
 
         private void importPayPalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            KarPaypal objPaypal = new KarPaypal(5);
+            KarPaypal objPaypal = new KarPaypal(5, KarPaypal.action.import);
             objPaypal.load_paypal();
             objPaypal.load_bankkonto();
          }
@@ -688,7 +691,7 @@ namespace Trans2Summa3060
 
         private void importMobilePayToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            KarBankkontoudtogMobilePay recBankkontoudtogMobilePay = new KarBankkontoudtogMobilePay(6);
+            KarBankkontoudtogMobilePay recBankkontoudtogMobilePay = new KarBankkontoudtogMobilePay(6, KarBankkontoudtogMobilePay.action.import);
             recBankkontoudtogMobilePay.load();
         }
  
@@ -820,6 +823,18 @@ namespace Trans2Summa3060
         private void salgsfakturaerToolStripMenuItem1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void exportPayPalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KarPaypal objPaypal = new KarPaypal(5, KarPaypal.action.export);
+
+        }
+
+        private void exportDanskeErhvervToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KarBankkontoudtogDanskebank recBankkontoudtogDanskebank = new KarBankkontoudtogDanskebank(1, KarBankkontoudtogDanskebank.action.export);
+            recBankkontoudtogDanskebank.export();
         }
     }
 

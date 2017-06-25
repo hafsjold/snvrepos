@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Text.RegularExpressions;
-
+using Uniconta.Common;
+using Uniconta.ClientTools.DataModel;
 
 namespace Trans2Summa3060
 {
@@ -24,25 +25,39 @@ namespace Trans2Summa3060
 
     public class KarBankkontoudtogDanskebank : List<recBankkontoudtogDanskebank>
     {
+        public enum action
+        {
+            import,
+            export
+        };
+
         private int m_bankkontoid { get; set; }
         private string m_path { get; set; }
 
-        public KarBankkontoudtogDanskebank(int bankkontoid)
+        public KarBankkontoudtogDanskebank(int bankkontoid, action act)
         {
             m_bankkontoid = bankkontoid;
             string csvfile;
-            try
+            if (act == action.import)
             {
-                csvfile = (from w in Program.dbDataTransSumma.tblkontoudtogs where w.pid == m_bankkontoid select w).First().savefile;
-            }
-            catch
-            {
-                csvfile = "NoFile";
-            }
+                try
+                {
+                    csvfile = (from w in Program.dbDataTransSumma.tblkontoudtogs where w.pid == m_bankkontoid select w).First().savefile;
+                }
+                catch
+                {
+                    csvfile = "NoFile";
+                }
 
-            var rec_regnskab = Program.qryAktivRegnskab();
-            m_path = rec_regnskab.Eksportmappe + csvfile;
-            open();
+                csvfile = "BO-4F6824-20170625-14114945.csv";
+                var rec_regnskab = Program.qryAktivRegnskab();
+                m_path = rec_regnskab.Eksportmappe + csvfile;
+                open();
+            }
+            if (act == action.export)
+            {
+                export();
+            }
         }
 
         public void open()
@@ -56,7 +71,7 @@ namespace Trans2Summa3060
                 while ((ln = sr.ReadLine()) != null)
                 {
                     int i = 0;
-                    int iMax = 6;
+                    int iMax = 9;
                     string[] value = new string[iMax];
                     foreach (Match m in regexKontoplan.Matches(ln))
                     {
@@ -79,11 +94,10 @@ namespace Trans2Summa3060
                         rec = new recBankkontoudtogDanskebank
                         {
                             bdato = wdato,
-                            btekst = value[1],
-                            bbeløb = Microsoft.VisualBasic.Information.IsNumeric(value[2]) ? decimal.Parse(value[2]) : (decimal?)null,
-                            bsaldo = Microsoft.VisualBasic.Information.IsNumeric(value[3]) ? decimal.Parse(value[3]) : (decimal?)null,
-                            bstatus = value[4],
-                            bafstemt = value[5],
+                            btekst = extract_tekst(value[2]),
+                            bbeløb = Microsoft.VisualBasic.Information.IsNumeric(value[4]) ? decimal.Parse(value[4]) : (decimal?)null,
+                            bsaldo = Microsoft.VisualBasic.Information.IsNumeric(value[5]) ? decimal.Parse(value[5]) : (decimal?)null,
+                            bstatus = value[6],
                             bbankkontoid = m_bankkontoid
                         };
                         if (rec.bstatus == "Udført")
@@ -92,6 +106,33 @@ namespace Trans2Summa3060
                 }
             }
             ts.Close();
+        }
+
+        public string extract_tekst(string iTekst)
+        {
+            //string iTekst = @"MP 1785409448 Business Modtaget: 24.06.2017 15:34          Telefonnummer på salgssted: +45 29  82 38 08                            Salgssted: Løbeklubben Puls 3060";
+            Regex regexMobilepay = new Regex(@"(^MP\s+.+)\s+Business");
+            var m = regexMobilepay.Matches(iTekst);
+            if (m.Count == 1)
+            {
+                string mp = m[0].Groups[1].Value;
+
+                Regex regexMobilepayBesked = new Regex(@"Besked:\s+(.+)");
+                var b = regexMobilepayBesked.Matches(iTekst);
+                if (b.Count == 1)
+                {
+                    string msg = b[0].Groups[1].Value;
+                    msg = Regex.Replace(msg, @"\s+", " ");
+                    string newtekst = mp + " " + msg;
+                    return newtekst;
+                }
+                else
+                {
+                    string newtekst = mp;
+                    return newtekst;
+                }
+            }
+            return iTekst;
         }
 
 
@@ -114,13 +155,68 @@ namespace Trans2Summa3060
                     bankkontoid = b.bbankkontoid,
                     saldo = b.bsaldo,
                     dato = b.bdato,
-                    tekst = b.btekst,
+                    tekst = (b.btekst.Length > 60) ? b.btekst.Substring(0, 60) : b.btekst,
                     belob = b.bbeløb
                 };
                 Program.dbDataTransSumma.tblbankkontos.InsertOnSubmit(recBankkonto);
+                Program.dbDataTransSumma.SubmitChanges();
+            }
+
+        }
+
+        public void export()
+        {
+            DateTime ExportFromDate = DateTime.Now.AddDays(-3);
+            var api = UCInitializer.GetBaseAPI;
+            var crit = new List<PropValuePair>();
+            var pair = PropValuePair.GenereteWhereElements("KeyName", typeof(string), "Danske Bank");
+            crit.Add(pair);
+            var taskQryBankStatment = api.Query<BankStatementClient>(null, crit);
+            taskQryBankStatment.Wait();
+            var col = taskQryBankStatment.Result;
+            if (col.Count() == 1)
+            {
+                ExportFromDate = col[0].LastTransaction;
+                var DaysSlip = col[0].DaysSlip;
+                ExportFromDate.AddDays(-DaysSlip);
+            }
+
+            using (StringWriter sr = new StringWriter())
+            {
+                var qry = from w in Program.dbDataTransSumma.tblbankkontos
+                          where w.bankkontoid == m_bankkontoid && (w.skjul == null || w.skjul == false) && w.dato >= ExportFromDate
+                          orderby w.dato
+                          select w;
+
+                int antal = qry.Count();
+
+                string ln = @"pid;dato;tekst;beløb;saldo";
+                sr.WriteLine(ln);
+
+                foreach (var b in qry)
+                {
+                    ln = "";
+                    ln += b.pid.ToString() + ";";
+                    ln += (b.dato == null) ? ";" : ((DateTime)b.dato).ToString("dd.MM.yyyy") + ";";
+                    ln += (b.tekst == null) ? ";" : b.tekst + ";";
+                    ln += (b.belob == null) ? ";" : ((decimal)(b.belob)).ToString("0.00") + @";";
+                    ln += (b.saldo == null) ? ";" : ((decimal)(b.saldo)).ToString("0.00");
+                    sr.WriteLine(ln);
+                }
+                byte[] attachment = Encoding.Default.GetBytes(sr.ToString());
+                VouchersClient vc = new VouchersClient()
+                {
+                    Text = string.Format("Danske Bank Kontoudtog {0}", DateTime.Now),
+                    Content = "Bankkontoudtog",
+                    DocumentDate = DateTime.Now,
+                    Fileextension = FileextensionsTypes.CSV,
+                    VoucherAttachment = attachment,
+                };
+                var taskInsertVouchers = api.Insert(vc);
+                taskInsertVouchers.Wait();
+                var err = taskInsertVouchers.Result;
 
             }
-            Program.dbDataTransSumma.SubmitChanges();
         }
 
     }

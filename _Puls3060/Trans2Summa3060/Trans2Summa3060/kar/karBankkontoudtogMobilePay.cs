@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Text.RegularExpressions;
-
+using Uniconta.Common;
+using Uniconta.ClientTools.DataModel;
 
 namespace Trans2Summa3060
 {
@@ -25,10 +26,16 @@ namespace Trans2Summa3060
 
     public class KarBankkontoudtogMobilePay : List<recBankkontoudtogMobilePay>
     {
+        public enum action
+        {
+            import,
+            export
+        };
+
         private int m_bankkontoid { get; set; }
         private string m_path { get; set; }
 
-        public KarBankkontoudtogMobilePay(int bankkontoid)
+        public KarBankkontoudtogMobilePay(int bankkontoid, action act)
         {
             m_bankkontoid = bankkontoid;
             string csvfile;
@@ -43,7 +50,7 @@ namespace Trans2Summa3060
 
             var rec_regnskab = Program.qryAktivRegnskab();
             m_path = rec_regnskab.Eksportmappe + csvfile;
-            open();
+            if (act == action.import) open();
         }
 
         public void open()
@@ -96,7 +103,7 @@ namespace Trans2Summa3060
                             wbeløb = (decimal?)null;
                         }
                     }
-                    
+
                     if (wdatotid != null)
                     {
                         rec = new recBankkontoudtogMobilePay
@@ -105,7 +112,7 @@ namespace Trans2Summa3060
                             bmobilnummer = value[1],
                             bbeløb = wbeløb,
                             bdato = wdatotid,
-                            bid = value[5], 
+                            bid = value[5],
                             btekst = value[6],
                             bbankkontoid = m_bankkontoid
                         };
@@ -120,11 +127,11 @@ namespace Trans2Summa3060
         public void load()
         {
             var qry1 = from w in this
-                      join b in Program.dbDataTransSumma.tblmobilepays on w.bid equals b.mobilepay_id into bankkonto
-                      from b in bankkonto.DefaultIfEmpty(new tblmobilepay { pid = 0, belob = null })
-                      where b.belob == null
-                      orderby w.bdato
-                      select w;
+                       join b in Program.dbDataTransSumma.tblmobilepays on w.bid equals b.mobilepay_id into bankkonto
+                       from b in bankkonto.DefaultIfEmpty(new tblmobilepay { pid = 0, belob = null })
+                       where b.belob == null
+                       orderby w.bdato
+                       select w;
 
 
             int antal1 = qry1.Count();
@@ -132,7 +139,7 @@ namespace Trans2Summa3060
             {
                 tblmobilepay recBankkonto = new tblmobilepay
                 {
-                    navn =  b.bnavn.Length > 35 ?  b.bnavn.Substring(0,35) : b.bnavn,
+                    navn = b.bnavn.Length > 35 ? b.bnavn.Substring(0, 35) : b.bnavn,
                     mobilnummer = b.bmobilnummer.Length > 10 ? b.bmobilnummer.Substring(0, 10) : b.bmobilnummer,
                     belob = b.bbeløb,
                     dato = b.bdato,
@@ -145,14 +152,14 @@ namespace Trans2Summa3060
             Program.dbDataTransSumma.SubmitChanges();
 
             var qry2 = from w in Program.dbDataTransSumma.tblmobilepays
-                      where w.Imported == null
-                      orderby w.dato
-                      select w;
+                       where w.Imported == null
+                       orderby w.dato
+                       select w;
 
             int antal2 = qry2.Count();
             foreach (var b in qry2)
             {
-                if (b.tekst.Length < 3) 
+                if (b.tekst.Length < 3)
                 {
                     b.tekst += " " + b.navn + " " + b.mobilnummer;
                     b.tekst.Trim();
@@ -171,5 +178,36 @@ namespace Trans2Summa3060
                 Program.dbDataTransSumma.SubmitChanges();
             }
         }
+
+        public void test()
+        {
+            var api = UCInitializer.GetBaseAPI;
+            var crit = new List<PropValuePair>();
+            var pair = PropValuePair.GenereteWhereElements("KeyName", typeof(string), "Danske Bank");
+            crit.Add(pair);
+            var taskQryBankStatment = api.Query<BankStatementClient>(null, crit);
+            taskQryBankStatment.Wait();
+            var col = taskQryBankStatment.Result;
+            if (col.Count() == 1)
+            {
+                var crit2 = new List<PropValuePair>();
+                var pair1 = PropValuePair.GenereteWhereElements("BankId", typeof(int), "917755");
+                crit2.Add(pair1);
+                var pair2 = PropValuePair.GenereteOrderByElement("Date", true);
+                crit2.Add(pair2);
+                var taskQryBankStatmentLine = api.Query<BankStatementLineClient>(col, crit2);
+                taskQryBankStatment.Wait();
+                var col1 = taskQryBankStatmentLine.Result;
+                foreach (var rec1 in col1)
+                {
+                    //BankStatementLineClient nyrac = rec1.clo
+                    rec1._Text += " Test";
+                    var task = api.Update(rec1);
+                    task.Wait();
+                    var res = task.Result;
+                }
+            }
+        }
+
     }
 }
