@@ -49,7 +49,7 @@ namespace Trans2Summa3060
                     csvfile = "NoFile";
                 }
 
-                csvfile = "BO-4F6824-20170625-14114945.csv";
+                //csvfile = "BO-4F6824-20170625-14114945.csv";
                 var rec_regnskab = Program.qryAktivRegnskab();
                 m_path = rec_regnskab.Eksportmappe + csvfile;
                 open();

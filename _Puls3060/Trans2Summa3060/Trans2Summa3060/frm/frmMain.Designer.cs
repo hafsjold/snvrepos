@@ -56,13 +56,14 @@
             this.importerTransaktionerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importFakturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importDanskebankToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportDanskeErhvervToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importerMasterCardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importNordeaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importPayPalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportPayPalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importActebisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importMobilePayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.excelRegnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportPayPalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.varekontoTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -94,7 +95,6 @@
             this.toolStripButtonIndtastBilag = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.cbCompagny = new System.Windows.Forms.ToolStripComboBox();
-            this.exportDanskeErhvervToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -328,6 +328,13 @@
             this.importDanskebankToolStripMenuItem.Visible = false;
             this.importDanskebankToolStripMenuItem.Click += new System.EventHandler(this.importDanskebankToolStripMenuItem_Click);
             // 
+            // exportDanskeErhvervToolStripMenuItem
+            // 
+            this.exportDanskeErhvervToolStripMenuItem.Name = "exportDanskeErhvervToolStripMenuItem";
+            this.exportDanskeErhvervToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.exportDanskeErhvervToolStripMenuItem.Text = "Export Danske Erhverv";
+            this.exportDanskeErhvervToolStripMenuItem.Click += new System.EventHandler(this.exportDanskeErhvervToolStripMenuItem_Click);
+            // 
             // importerMasterCardToolStripMenuItem
             // 
             this.importerMasterCardToolStripMenuItem.Name = "importerMasterCardToolStripMenuItem";
@@ -351,6 +358,13 @@
             this.importPayPalToolStripMenuItem.Text = "Import PayPal";
             this.importPayPalToolStripMenuItem.Click += new System.EventHandler(this.importPayPalToolStripMenuItem_Click);
             // 
+            // exportPayPalToolStripMenuItem
+            // 
+            this.exportPayPalToolStripMenuItem.Name = "exportPayPalToolStripMenuItem";
+            this.exportPayPalToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.exportPayPalToolStripMenuItem.Text = "Export PayPal";
+            this.exportPayPalToolStripMenuItem.Click += new System.EventHandler(this.exportPayPalToolStripMenuItem_Click);
+            // 
             // importActebisToolStripMenuItem
             // 
             this.importActebisToolStripMenuItem.Name = "importActebisToolStripMenuItem";
@@ -372,13 +386,6 @@
             this.excelRegnskabToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
             this.excelRegnskabToolStripMenuItem.Text = "Excel Regnskab";
             this.excelRegnskabToolStripMenuItem.Click += new System.EventHandler(this.excelRegnskabToolStripMenuItem_Click);
-            // 
-            // exportPayPalToolStripMenuItem
-            // 
-            this.exportPayPalToolStripMenuItem.Name = "exportPayPalToolStripMenuItem";
-            this.exportPayPalToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.exportPayPalToolStripMenuItem.Text = "Export PayPal";
-            this.exportPayPalToolStripMenuItem.Click += new System.EventHandler(this.exportPayPalToolStripMenuItem_Click);
             // 
             // systemToolStripMenuItem
             // 
@@ -637,13 +644,6 @@
             this.cbCompagny.Name = "cbCompagny";
             this.cbCompagny.Size = new System.Drawing.Size(121, 25);
             // 
-            // exportDanskeErhvervToolStripMenuItem
-            // 
-            this.exportDanskeErhvervToolStripMenuItem.Name = "exportDanskeErhvervToolStripMenuItem";
-            this.exportDanskeErhvervToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.exportDanskeErhvervToolStripMenuItem.Text = "Export Danske Erhverv";
-            this.exportDanskeErhvervToolStripMenuItem.Click += new System.EventHandler(this.exportDanskeErhvervToolStripMenuItem_Click);
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -653,7 +653,7 @@
             settings1.BetalingsFristiDageGamleMedlemmer = 31;
             settings1.BetalingsFristiDageNyeMedlemmer = 61;
             settings1.checkBoxMedsaldo = true;
-            //settings1.dbDataTransSummaConnectionString = resources.GetString("settings1.dbDataTransSummaConnectionString");
+            settings1.dbDataTransSummaConnectionString = resources.GetString("settings1.dbDataTransSummaConnectionString");
             settings1.FrmActebisfakturaLocation = new System.Drawing.Point(0, 0);
             settings1.FrmActebisfakturaSize = new System.Drawing.Size(1081, 495);
             settings1.FrmBankkontoudtogLocation = new System.Drawing.Point(0, 0);
