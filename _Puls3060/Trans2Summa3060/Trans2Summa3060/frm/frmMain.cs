@@ -111,6 +111,7 @@ namespace Trans2Summa3060
                 toolStripSeparator3.Visible = true;
                 printBilagToolStripMenuItem.Visible = true;
                 importNordeaToolStripMenuItem.Visible = true;
+                importDanskebankToolStripMenuItem.Visible = true;
             }
 
         }
@@ -147,11 +148,11 @@ namespace Trans2Summa3060
 
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            KarBankkontoudtogMobilePay sss = new KarBankkontoudtogMobilePay(6, KarBankkontoudtogMobilePay.action.export);
-            sss.test();
+            //KarBankkontoudtogMobilePay sss = new KarBankkontoudtogMobilePay(6, KarBankkontoudtogMobilePay.action.export);
+            //sss.test();
 
             //var com = UCInitializer.CurrentCompany;
-            //Program.karDimensionSag.update();
+            Program.karDimensionSag.update();
             //clsUnicontaKladde obj = new clsUnicontaKladde();
             //obj.DeleteVouchersClients();
             //obj.InsertAllVouchersClient();
@@ -827,13 +828,14 @@ namespace Trans2Summa3060
 
         private void exportPayPalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            KarPaypal objPaypal = new KarPaypal(5, KarPaypal.action.export);
+            KarPaypal objPaypal = new KarPaypal(5, KarPaypal.action.import);
+            objPaypal.export();
 
         }
 
         private void exportDanskeErhvervToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            KarBankkontoudtogDanskebank recBankkontoudtogDanskebank = new KarBankkontoudtogDanskebank(1, KarBankkontoudtogDanskebank.action.export);
+            KarBankkontoudtogDanskebank recBankkontoudtogDanskebank = new KarBankkontoudtogDanskebank(1, KarBankkontoudtogDanskebank.action.import);
             recBankkontoudtogDanskebank.export();
         }
     }

@@ -79,7 +79,6 @@ namespace Trans2Summa3060
         {
             m_bankkontoid = bankkontoid;
             string csvimportfile = "NoFile";
-            string csvexportfile = "NoFile";
             if (act == action.import)
             {
                 try
@@ -96,10 +95,6 @@ namespace Trans2Summa3060
             }
             if (act == action.export)
             {
-                csvexportfile = "paypal_uniconta.csv";
-
-                var rec_regnskab = Program.qryAktivRegnskab();
-                m_exportpath = rec_regnskab.Eksportmappe + csvexportfile;
                 export();
             }
 
