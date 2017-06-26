@@ -691,7 +691,7 @@ namespace nsPbs3060
                                 Tekst = (rsmembership.Navn + stdate).PadRight(40, ' ').Substring(0, 40),
                                 Afstemningskonto = "",
                                 Belob = arrBeløb[0],
-                                Kontonr = 1800,
+                                Kontonr = 1003, //1800,
                                 Faknr = null,
                                 Sagnr = null
                             };
@@ -707,7 +707,7 @@ namespace nsPbs3060
                                 Tekst = (rsmembership.Navn + stdate).PadRight(40, ' ').Substring(0, 40),
                                 Afstemningskonto = "",
                                 Belob = arrBeløb[1],
-                                Kontonr = 64200,
+                                Kontonr = 6831, //64200,
                                 Faknr = null,
                                 Sagnr = null
                             };
@@ -721,7 +721,7 @@ namespace nsPbs3060
                             Tekst = ("PayPal Gebyr").PadRight(40, ' ').Substring(0, 40),
                             Afstemningskonto = "PayPal",
                             Belob = decimal.Parse(paypal_trans.FeeAmount.Value.Replace(".", ",")),
-                            Kontonr = 9950,
+                            Kontonr = 4471,  //9950,
                             Faknr = null,
                             Sagnr = null
                         };
