@@ -71,7 +71,6 @@ namespace Medlem3060uc
         private static string m_ConnectStringWithoutPassword;
         private static string m_Password;
         private static MemPbsnetdir m_memPbsnetdir;
-        private static KarStatus m_KarStatus;
         private static KarKladde m_KarKladde;
 
         public static string Password
@@ -95,18 +94,6 @@ namespace Medlem3060uc
             set
             {
                 m_memPbsnetdir = value;
-            }
-        }
-        public static KarStatus karStatus
-        {
-            get
-            {
-                if (m_KarStatus == null) m_KarStatus = new KarStatus();
-                return m_KarStatus;
-            }
-            set
-            {
-                m_KarStatus = value;
             }
         }
 

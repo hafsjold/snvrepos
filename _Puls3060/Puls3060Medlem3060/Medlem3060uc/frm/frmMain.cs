@@ -584,8 +584,8 @@ namespace Medlem3060uc
 
         async Task<int> simulatedloginButton()
         {
-            string password = "Puls3060";
-            string userName = "mha";
+            string password = "1234West+";
+            string userName = "puls3060";
 
             ErrorCodes errorCode = await SetLogin(userName, password);
 

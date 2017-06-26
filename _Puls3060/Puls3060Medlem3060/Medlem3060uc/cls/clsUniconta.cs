@@ -33,23 +33,13 @@ namespace Medlem3060uc
                 DateTime nu = DateTime.Now;
                 DateTime ToDay = new DateTime(nu.Year, nu.Month, nu.Day); ;
 
-                int BS1_SidsteNr = 0;
-                try
-                {
-                    recStatus rec_Status = (from s in Program.karStatus where s.key == "BS1_SidsteNr" select s).First();
-                    BS1_SidsteNr = int.Parse(rec_Status.value);
-                }
-                catch (System.InvalidOperationException)
-                {
-                }
-
                 Program.karKladde = null;
                 foreach (var b in bogf)
                 {
                     recKladde kl = new recKladde
                     {
                         Dato = b.Dato,
-                        Bilag = b.Bilag + BS1_SidsteNr,
+                        Bilag = b.Bilag,
                         Tekst = b.Tekst,
                         Afstemningskonto = b.Afstemningskonto,
                         Belob = b.Belob,
@@ -60,8 +50,7 @@ namespace Medlem3060uc
                     Program.karKladde.Add(kl);
                     AntalBetalinger = (int)b.Bilag;
                 }
-                Program.karStatus.save();
-                Program.karKladde.save();
+                InsertGLDailyJournalLines(Program.karKladde);
                 Program.dbData3060.SubmitChanges();
             }
             return AntalBetalinger;
@@ -80,7 +69,7 @@ namespace Medlem3060uc
             var bogf = from bl in Program.dbData3060.tblbetlins
                        where (bl.pbstranskode == "0236" || bl.pbstranskode == "0297") && (Startdato <= bl.indbetalingsdato && bl.indbetalingsdato <= Slutdato)
                        join b in Program.dbData3060.tblbets on bl.betid equals b.id
-                       //where b.summabogfort == null || b.summabogfort == false <<-------------------------------
+                       where b.summabogfort == null || b.summabogfort == false //<<-------------------------------
                        join p in Program.dbData3060.tblfrapbs on b.frapbsid equals p.id
                        orderby p.id, b.id, bl.id
                        select new
@@ -103,15 +92,6 @@ namespace Medlem3060uc
                 DateTime ToDay = new DateTime(nu.Year, nu.Month, nu.Day); ;
 
                 int BS1_SidsteNr = 0;
-                try
-                {
-                    recStatus rec_Status = (from s in Program.karStatus where s.key == "BS1_SidsteNr" select s).First();
-                    BS1_SidsteNr = int.Parse(rec_Status.value);
-                }
-                catch (System.InvalidOperationException)
-                {
-                }
-
                 Program.karKladde = null;
 
                 int count = 0;
@@ -120,8 +100,6 @@ namespace Medlem3060uc
 
                     if (saveBetid != b.Betid) // ny gruppe
                     {
-                        if (count++ >1) break; // <<-------------------------------
-
                         saveBetid = b.Betid;
                         recKladde gkl = new recKladde
                         {
@@ -137,7 +115,7 @@ namespace Medlem3060uc
                         Program.karKladde.Add(gkl);
 
                         var rec_bet = (from ub in Program.dbData3060.tblbets where ub.id == b.Betid select ub).First();
-                        //rec_bet.summabogfort = true; <<-------------------------------
+                        rec_bet.summabogfort = true;
 
                     }
 
@@ -170,7 +148,7 @@ namespace Medlem3060uc
                                 Tekst = wTekst,
                                 Afstemningskonto = null,
                                 Belob = arrBelob[0],
-                                Kontonr = f.bogfkonto,
+                                Kontonr = 1003,  //f.bogfkonto,
                                 Faknr = null,
                                 Sagnr = null
                             };
@@ -186,7 +164,7 @@ namespace Medlem3060uc
                                 Tekst = wTekst,
                                 Afstemningskonto = null,
                                 Belob = arrBelob[1],
-                                Kontonr = 64200,
+                                Kontonr = 6831, //64200,
                                 Faknr = null,
                                 Sagnr = null
                             };
@@ -202,7 +180,7 @@ namespace Medlem3060uc
                             Tekst = ("Ukendt betaling").PadRight(40, ' ').Substring(0, 40),
                             Afstemningskonto = null,
                             Belob = b.indbetalingsbelob,
-                            Kontonr = 65050,
+                            Kontonr = 6833, //65050,
                             Faknr = null,
                             Sagnr = null
 
@@ -210,10 +188,8 @@ namespace Medlem3060uc
                         Program.karKladde.Add(kl);
                     }
                 }
-                Program.karStatus.save();
-                Program.karKladde.save();
-                //Program.dbData3060.SubmitChanges(); <<-------------------------------
                 InsertGLDailyJournalLines(Program.karKladde);
+                Program.dbData3060.SubmitChanges();
             }
             return AntalBetalinger;
         }
@@ -235,11 +211,7 @@ namespace Medlem3060uc
                 GLDailyJournalLineClient jl = new GLDailyJournalLineClient()
                 {
                     Date = (DateTime)kk.Dato,
-                    //Voucher = (kk.Bilag != null) ? (int)kk.Bilag + NR : 0,
                     Text = kk.Tekst,
-                    //Debit = (double)kk.Belob,
-                    //Credit = (double)kk.Belob,
-                    //Account = (kk.Kontonr != null) ? kk.Kontonr.ToString() : "",
                 };
                 if((kk.Afstemningskonto == "Bank") 
                 && (kk.Kontonr == null))
@@ -255,10 +227,24 @@ namespace Medlem3060uc
                     }
                 }
 
+                if ((kk.Afstemningskonto == "PayPal")
+                && (kk.Kontonr == null))
+                {
+                    jl.Account = "5830";
+                    if (kk.Belob > 0)
+                    {
+                        jl.Debit = (double)kk.Belob;
+                    }
+                    else
+                    {
+                        jl.Credit = -(double)kk.Belob;
+                    }
+                }
+
                 if ((kk.Afstemningskonto == null)
                 && (kk.Kontonr != null))
                 {
-                    jl.Account = "1010";
+                    jl.Account = kk.Kontonr.ToString();
                     if (kk.Belob > 0)
                     {
                         jl.Credit = (double)kk.Belob;
