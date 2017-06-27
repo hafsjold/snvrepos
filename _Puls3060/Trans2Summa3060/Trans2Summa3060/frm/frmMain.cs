@@ -838,6 +838,13 @@ namespace Trans2Summa3060
             objPaypal.load_paypal();
             objPaypal.load_bankkonto();
             objPaypal.export();
+            DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
+                "Trans2Summa3060", //titleString   
+                "PayPal Kontoudtog uploaded til UniConta.", //bigString 
+                null, //smallString
+                null, //leftButton
+                "OK", //rightButton
+                global::Trans2Summa3060.Properties.Resources.Message_info); //iconSet
         }
 
         private void toolStripLabel2_Click(object sender, EventArgs e)
@@ -845,6 +852,13 @@ namespace Trans2Summa3060
             KarBankkontoudtogDanskebank recBankkontoudtogDanskebank = new KarBankkontoudtogDanskebank(1, KarBankkontoudtogDanskebank.action.import);
             recBankkontoudtogDanskebank.load();
             recBankkontoudtogDanskebank.export();
+            DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
+                "Trans2Summa3060", //titleString   
+                "Danske Erhverv Kontoudtog uploaded til UniConta.", //bigString 
+                null, //smallString
+                null, //leftButton
+                "OK", //rightButton
+                global::Trans2Summa3060.Properties.Resources.Message_info); //iconSet       
         }
     }
 
