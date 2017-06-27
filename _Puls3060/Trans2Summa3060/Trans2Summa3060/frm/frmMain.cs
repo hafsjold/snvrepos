@@ -98,8 +98,6 @@ namespace Trans2Summa3060
                 importerMasterCardToolStripMenuItem.Visible = true;
                 importActebisToolStripMenuItem.Visible = true;
                 actebisFakturaToolStripMenuItem.Visible = true;
-                toolStripButtonPrintBilag.Visible = true;
-                toolStripSeparator3.Visible = true;
                 printBilagToolStripMenuItem.Visible = true;
             }
 
@@ -107,8 +105,6 @@ namespace Trans2Summa3060
             if (Program.Puls3060)
 #endif
             {
-                toolStripButtonPrintBilag.Visible = true;
-                toolStripSeparator3.Visible = true;
                 printBilagToolStripMenuItem.Visible = true;
                 importNordeaToolStripMenuItem.Visible = true;
                 importDanskebankToolStripMenuItem.Visible = true;
@@ -703,7 +699,6 @@ namespace Trans2Summa3060
             UCInitializer.SetupCompanies();
 
             var cmbCompanies = UCInitializer.Companies;
-            this.cbCompagny.Items.Add("Test");
 
             if (UCInitializer.CurrentSession.User._DefaultCompany != 0)
             {
@@ -821,14 +816,11 @@ namespace Trans2Summa3060
             }
         }
 
-        private void salgsfakturaerToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void exportPayPalToolStripMenuItem_Click(object sender, EventArgs e)
         {
             KarPaypal objPaypal = new KarPaypal(5, KarPaypal.action.import);
+            objPaypal.load_paypal();
+            objPaypal.load_bankkonto();
             objPaypal.export();
 
         }
@@ -836,6 +828,22 @@ namespace Trans2Summa3060
         private void exportDanskeErhvervToolStripMenuItem_Click(object sender, EventArgs e)
         {
             KarBankkontoudtogDanskebank recBankkontoudtogDanskebank = new KarBankkontoudtogDanskebank(1, KarBankkontoudtogDanskebank.action.import);
+            recBankkontoudtogDanskebank.load();
+            recBankkontoudtogDanskebank.export();
+        }
+
+        private void toolStripLabel1_Click(object sender, EventArgs e)
+        {
+            KarPaypal objPaypal = new KarPaypal(5, KarPaypal.action.import);
+            objPaypal.load_paypal();
+            objPaypal.load_bankkonto();
+            objPaypal.export();
+        }
+
+        private void toolStripLabel2_Click(object sender, EventArgs e)
+        {
+            KarBankkontoudtogDanskebank recBankkontoudtogDanskebank = new KarBankkontoudtogDanskebank(1, KarBankkontoudtogDanskebank.action.import);
+            recBankkontoudtogDanskebank.load();
             recBankkontoudtogDanskebank.export();
         }
     }
