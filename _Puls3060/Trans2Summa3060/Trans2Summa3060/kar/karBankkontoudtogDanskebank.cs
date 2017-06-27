@@ -100,7 +100,7 @@ namespace Trans2Summa3060
                             bstatus = value[6],
                             bbankkontoid = m_bankkontoid
                         };
-                        if (rec.bstatus == "Udført")
+                        if ((rec.bstatus == "Udført")|| (rec.bstatus == "Completed"))
                             this.Add(rec);
                     }
                 }
@@ -117,11 +117,14 @@ namespace Trans2Summa3060
             {
                 string mp = m[0].Groups[1].Value;
 
-                Regex regexMobilepayBesked = new Regex(@"Besked:\s+(.+)");
+                Regex regexMobilepayBesked = new Regex(@"Besked:\s+(.+)|Message:\s+(.+)");
                 var b = regexMobilepayBesked.Matches(iTekst);
                 if (b.Count == 1)
                 {
                     string msg = b[0].Groups[1].Value;
+                    if (msg.Length == 0)
+                        msg = b[0].Groups[2].Value;
+
                     msg = Regex.Replace(msg, @"\s+", " ");
                     string newtekst = mp + " " + msg;
                     return newtekst;
