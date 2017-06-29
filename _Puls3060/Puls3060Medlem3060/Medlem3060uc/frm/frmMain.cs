@@ -450,8 +450,12 @@ namespace Medlem3060uc
 
         private void testToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            clsUniconta obj = new clsUniconta();
-            obj.BogforIndBetalinger();
+
+            clsUnicontaHelp obj = new clsUnicontaHelp();
+            obj.GetEmailBilag(UCInitializer.GetBaseAPI); 
+            
+            //clsUniconta obj = new clsUniconta();
+            //obj.BogforIndBetalinger();
             /*
             var CurrentCompany = UCInitializer.CurrentCompany;
             var api = UCInitializer.GetBaseAPI;

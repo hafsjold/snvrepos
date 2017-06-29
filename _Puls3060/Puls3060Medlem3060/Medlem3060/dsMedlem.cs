@@ -7,7 +7,7 @@ namespace nsPuls3060
 {
     public partial class dsMedlem
     {
-         public void filldstblMedlemmer()
+        public void filldstblMedlemmer()
         {
             var qry_medlemmer = from h in Program.dbData3060.tblMedlems
                                 select new
