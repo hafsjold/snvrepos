@@ -115,6 +115,12 @@
   <PropertyGroup>
     <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Medlem3060_2_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.1.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>..\packages\BouncyCastle.1.8.1\lib\BouncyCastle.Crypto.dll</HintPath>
@@ -126,6 +132,10 @@
     </Reference>
     <Reference Include="Excel">
       <HintPath>Library\Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlRenderer, Version=1.5.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlRenderer.Core.1.5.0.6\lib\net45\HtmlRenderer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Interop.VBIDE, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -161,11 +171,13 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="Uniconta.Common">
-      <HintPath>Library\Uniconta.Common.dll</HintPath>
+    <Reference Include="Uniconta.Common, Version=1.0.6378.13787, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Uniconta.WindowsAPI.1.1.57\lib\net45\Uniconta.Common.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Uniconta.WindowsAPI">
-      <HintPath>Library\Uniconta.WindowsAPI.dll</HintPath>
+    <Reference Include="Uniconta.WindowsAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Uniconta.WindowsAPI.1.1.57\lib\net45\Uniconta.WindowsAPI.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
