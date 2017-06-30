@@ -1,6 +1,9 @@
 ﻿using MailKit;
 using MailKit.Net.Imap;
 using MailKit.Search;
+using MigraDoc.DocumentObjectModel;
+using MigraDoc.DocumentObjectModel.Tables;
+using MigraDoc.Rendering;
 using MimeKit;
 using PdfSharp;
 using PdfSharp.Drawing;
@@ -34,7 +37,7 @@ namespace nsPbs3060
                     PdfSharp.Pdf.PdfPage page = document.Pages[0];
                     PdfSharp.Drawing.XGraphics gfx = PdfSharp.Drawing.XGraphics.FromPdfPage(page);
                     PdfSharp.Drawing.XImage ximg = PdfSharp.Drawing.XImage.FromGdiPlusImage(image);
-
+                    
                     gfx.DrawImage(
                         ximg,
                         position.X,
@@ -126,6 +129,106 @@ namespace nsPbs3060
             }
         }
 
+        void SamplePage1(PdfDocument document)
+        {
+            PdfPage page = document.AddPage();
+            XGraphics gfx = XGraphics.FromPdfPage(page);
+            // HACK²
+            gfx.MUH = PdfFontEncoding.Unicode;
+            gfx.MFEH = PdfFontEmbedding.Default;
+
+            XFont font = new XFont("Verdana", 13, XFontStyle.Bold);
+
+            // You always need a MigraDoc document for rendering.
+            MigraDoc.DocumentObjectModel.Document doc = new MigraDoc.DocumentObjectModel.Document();
+
+            Section sec = doc.AddSection();
+            var table = sec.AddTable();
+            // Before you can add a row, you must define the columns 
+            Column column =table.AddColumn("3cm");
+            column.Format.Alignment = ParagraphAlignment.Left;
+            column = table.AddColumn("8cm");
+            column.Format.Alignment = ParagraphAlignment.Left;
+            Row row = table.AddRow();
+            row.Cells[0].Borders.Visible = false;
+            row.Cells[0].AddParagraph("Fra:");
+            row.Cells[0].Format.Font.Bold = true;
+            row.Cells[0].Format.Alignment = ParagraphAlignment.Left;
+            row.Cells[1].Borders.Visible = false;
+            row.Cells[1].AddParagraph(@"xyz@dddfg.dk");
+            row.Cells[1].Format.Font.Bold = true;
+            row.Cells[1].Format.Alignment = ParagraphAlignment.Left;
+            row = table.AddRow();
+            row.Cells[0].Borders.Visible = false;
+            row.Cells[0].AddParagraph("Subject:");
+            row.Cells[0].Format.Font.Bold = true;
+            row.Cells[0].Format.Alignment = ParagraphAlignment.Left;
+            row.Cells[1].Borders.Visible = false;
+            row.Cells[1].AddParagraph(@"udlæg for xys");
+            row.Cells[1].Format.Font.Bold = true;
+            row.Cells[1].Format.Alignment = ParagraphAlignment.Left;
+
+            // Create a renderer and prepare (=layout) the document
+            MigraDoc.Rendering.DocumentRenderer docRenderer = new DocumentRenderer(doc);
+            docRenderer.PrepareDocument();
+
+            // Render the paragraph. You can render tables or shapes the same way.
+            docRenderer.RenderObject(gfx, 25, 25, "12cm", table);
+        }
+
+        public MemoryStream Message2Pdf(MimeMessage message)
+        {
+            MemoryStream msMail = new MemoryStream();
+            string html = message.GetTextBody(MimeKit.Text.TextFormat.Html);
+            string txt = message.GetTextBody(MimeKit.Text.TextFormat.Text);
+            PdfDocument pdfMail = null;
+            if (html != null)
+            {
+                pdfMail = PdfGenerator.GeneratePdf(html, PageSize.A4);
+            }
+            else
+            {
+                pdfMail = PdfGenerator.GeneratePdf(txt, PageSize.A4);
+            }
+            pdfMail.Save(msMail, false);
+            XPdfForm form1 = XPdfForm.FromStream(msMail);
+
+            PdfDocument outputDocument = new PdfDocument();
+
+            XFont font = new XFont("Verdana", 8, XFontStyle.Bold);
+            XStringFormat format = new XStringFormat();
+            format.Alignment = XStringAlignment.Near;
+            format.LineAlignment = XLineAlignment.Near;
+            XGraphics gfx;
+            XRect box;
+            int count = form1.PageCount;
+
+            for (int idx = 0; idx < count; idx++)
+            {
+                PdfPage page1 = outputDocument.AddPage();
+                if (form1.PageCount > idx)
+                {
+                    // Get a graphics object for page1
+                    gfx = XGraphics.FromPdfPage(page1);
+
+                    // Set page number (which is one-based)
+                    form1.PageNumber = idx + 1;
+
+                    // Draw the page identified by the page number like an image
+                    gfx.DrawImage(form1, new XRect(form1.PointWidth * 0.01, form1.PointHeight * 0.10, form1.PointWidth*0.90, form1.PointHeight*0.90));
+
+                    // Write document file name and page number on each page
+                    box = page1.MediaBox.ToXRect();
+                    box.Inflate(-25, -25);
+                    gfx.DrawString(String.Format("{0}", message.From.ToString()), font, XBrushes.Black, box, format);
+                }
+                SamplePage1(outputDocument);
+            }
+            msMail = new MemoryStream();
+            outputDocument.Save(msMail, false);
+            return msMail;
+        }
+
         public void GetEmailBilag(CrudAPI api)
         {
             MimeMessage message;
@@ -142,23 +245,8 @@ namespace nsPbs3060
                 foreach (var result in results)
                 {
                     message = Puls3060Bilag.GetMessage(result);
-                    MemoryStream msMail = new MemoryStream();
-                    string html = message.GetTextBody(MimeKit.Text.TextFormat.Html);
-                    string txt = message.GetTextBody(MimeKit.Text.TextFormat.Text);
-                    if (html != null)
-                    {
-                        PdfDocument pdfMail = PdfGenerator.GeneratePdf(html, PageSize.A4);
-                        pdfMail.Save(msMail, false);
-                    }
-                    else
-                    {
-                        PdfDocument pdfMail = PdfGenerator.GeneratePdf(txt, PageSize.A4);
-                        pdfMail.Save(msMail, false);
-                    }
-
-
+                    var msMail = Message2Pdf(message);
                     List<VouchersClient> documents = new List<VouchersClient>();
-
                     VouchersClient mail = new VouchersClient()
                     {
                         Fileextension = FileextensionsTypes.PDF,
