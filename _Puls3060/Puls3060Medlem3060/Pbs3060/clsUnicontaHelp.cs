@@ -27,7 +27,7 @@ namespace nsPbs3060
 {
     public class clsUnicontaHelp
     {
-        public void GetEmailBilag(CrudAPI api)
+        public void ImportEmailBilag(CrudAPI api)
         {
             MimeMessage message;
 
@@ -36,8 +36,10 @@ namespace nsPbs3060
                 imap_client.Connect("imap.gigahost.dk", 993, true);
                 imap_client.AuthenticationMechanisms.Remove("XOAUTH");
                 imap_client.Authenticate("regnskab@puls3060.dk", "1234West+");
-                var Puls3060Bilag = imap_client.GetFolder("_Puls3060BilagArkiv");
-                Puls3060Bilag.Open(FolderAccess.ReadOnly);
+                var Puls3060Bilag = imap_client.GetFolder("_Puls3060Bilag");   // <-----------------------------------PROD 
+                //var Puls3060Bilag = imap_client.GetFolder("_Puls3060BilagTest"); // <-----------------------------------TEST
+                var Puls3060BilagArkiv = imap_client.GetFolder("_Puls3060BilagArkiv");
+                Puls3060Bilag.Open(FolderAccess.ReadWrite);
 
                 var results = Puls3060Bilag.Search(SearchQuery.All);
                 foreach (var result in results)
@@ -133,6 +135,8 @@ namespace nsPbs3060
                         var res5 = task5.Result;
                         var ref2 = folder.PrimaryKeyId;
 
+                        int DocumentRef = ref2;
+
                         if (ref1 != ref2) //Delete ref1
                         {
                             var crit = new List<PropValuePair>();
@@ -147,6 +151,11 @@ namespace nsPbs3060
                                 api.DeleteNoResponse(rec);
                             }
                         }
+
+                        InsertKøbsOrder(api, message, DocumentRef);
+
+                        // move email to arkiv
+                        var newId = Puls3060Bilag.MoveTo(result, Puls3060BilagArkiv);
                     }
 
                 }
@@ -315,8 +324,56 @@ namespace nsPbs3060
             docRenderer.RenderObject(gfx, box.Location.X, box.Location.X, box.Width, table);
         }
 
+        public void InsertKøbsOrder(CrudAPI api, MimeMessage message, int DocumentRef)
+        {
+            var From = message.From.ToString();
+            From = ExtractEmails(From);
+            var Date = message.Date.DateTime;
+            var Subject = message.Subject;
+            string Account = "100567";
 
+            var crit = new List<PropValuePair>();
+            var pair = PropValuePair.GenereteWhereElements("ContactEmail", typeof(string), From);
+            crit.Add(pair);
+            var taskCreditorOrder = api.Query<CreditorClient>(null, crit);
+            taskCreditorOrder.Wait();
+            var col = taskCreditorOrder.Result;
+            if (col.Count( ) == 1)
+            {
+                Account = col[0].Account;
+            }
 
+            CreditorOrderClient recOrder = new CreditorOrderClient()
+            {
+                Account = Account,
+                InvoiceDate = Date,
+                DeliveryDate = Date,
+                DocumentRef = DocumentRef
+            };
+            var taskInsertCreditorOrder = api.Insert(recOrder);
+            taskInsertCreditorOrder.Wait();
+            var err1 = taskInsertCreditorOrder.Result;
+
+            CreditorOrderLineClient recOrderLine = new CreditorOrderLineClient()
+            {
+                Text = Subject,
+            };
+            recOrderLine.SetMaster(recOrder);
+            var taskInsertCreditorOrderLine = api.Insert(recOrderLine);
+            taskInsertCreditorOrderLine.Wait();
+            var err2 = taskInsertCreditorOrderLine.Result;
+        }
+
+        public string ExtractEmails(string data)
+        {
+            Regex emailRegex = new Regex(@"\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", RegexOptions.IgnoreCase);
+            MatchCollection emailMatches = emailRegex.Matches(data);
+            foreach (Match emailMatch in emailMatches)
+            {
+                return emailMatch.Value;
+            }
+            return "";
+        }
 
         public static byte[] AppendImageToPdf(byte[] pdf, byte[] img, Point position, double scale)
         {
@@ -420,5 +477,6 @@ namespace nsPbs3060
                 to.AddPage(from.Pages[i]);
             }
         }
+
     }
 }
