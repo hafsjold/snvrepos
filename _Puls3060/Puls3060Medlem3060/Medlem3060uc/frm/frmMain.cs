@@ -451,8 +451,7 @@ namespace Medlem3060uc
         private void testToolStripMenuItem1_Click(object sender, EventArgs e)
         {
 
-            clsUnicontaHelp obj = new clsUnicontaHelp();
-            obj.GetEmailBilag(UCInitializer.GetBaseAPI); 
+
             
             //clsUniconta obj = new clsUniconta();
             //obj.BogforIndBetalinger();
@@ -623,6 +622,12 @@ namespace Medlem3060uc
                 this.Close();
                 return ErrorCodes.Exception;
             }
+        }
+
+        private void impoerEmailBilagToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clsUnicontaHelp obj = new clsUnicontaHelp();
+            obj.ImportEmailBilag(UCInitializer.GetBaseAPI);
         }
     }
 }

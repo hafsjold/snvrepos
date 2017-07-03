@@ -63,6 +63,8 @@
             this.testToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.uniContaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.impoerEmailBilagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -121,6 +123,7 @@
             this.medlemToolStripMenuItem,
             this.pBSToolStripMenuItem,
             this.systemToolStripMenuItem,
+            this.uniContaToolStripMenuItem,
             this.hjælpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -352,6 +355,21 @@
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
+            // uniContaToolStripMenuItem
+            // 
+            this.uniContaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.impoerEmailBilagToolStripMenuItem});
+            this.uniContaToolStripMenuItem.Name = "uniContaToolStripMenuItem";
+            this.uniContaToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
+            this.uniContaToolStripMenuItem.Text = "UniConta";
+            // 
+            // impoerEmailBilagToolStripMenuItem
+            // 
+            this.impoerEmailBilagToolStripMenuItem.Name = "impoerEmailBilagToolStripMenuItem";
+            this.impoerEmailBilagToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
+            this.impoerEmailBilagToolStripMenuItem.Text = "Impoert Email Bilag";
+            this.impoerEmailBilagToolStripMenuItem.Click += new System.EventHandler(this.impoerEmailBilagToolStripMenuItem_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -416,6 +434,8 @@
         private System.Windows.Forms.ToolStripMenuItem payPalBetalingerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem opdaterKanSlettesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem uniContaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem impoerEmailBilagToolStripMenuItem;
     }
 }
 
