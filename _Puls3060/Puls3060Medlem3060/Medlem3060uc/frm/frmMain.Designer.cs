@@ -61,10 +61,12 @@
             this.opdaterRSMembershipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testEmailRykkerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.uniContaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.impoerEmailBilagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportDanskeErhvervToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportPayPalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -340,6 +342,30 @@
             this.testToolStripMenuItem1.Text = "Test";
             this.testToolStripMenuItem1.Click += new System.EventHandler(this.testToolStripMenuItem1_Click);
             // 
+            // uniContaToolStripMenuItem
+            // 
+            this.uniContaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.impoerEmailBilagToolStripMenuItem,
+            this.exportDanskeErhvervToolStripMenuItem,
+            this.exportPayPalToolStripMenuItem});
+            this.uniContaToolStripMenuItem.Name = "uniContaToolStripMenuItem";
+            this.uniContaToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
+            this.uniContaToolStripMenuItem.Text = "UniConta";
+            // 
+            // impoerEmailBilagToolStripMenuItem
+            // 
+            this.impoerEmailBilagToolStripMenuItem.Name = "impoerEmailBilagToolStripMenuItem";
+            this.impoerEmailBilagToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.impoerEmailBilagToolStripMenuItem.Text = "Impoert Email Bilag";
+            this.impoerEmailBilagToolStripMenuItem.Click += new System.EventHandler(this.impoerEmailBilagToolStripMenuItem_Click);
+            // 
+            // exportDanskeErhvervToolStripMenuItem
+            // 
+            this.exportDanskeErhvervToolStripMenuItem.Name = "exportDanskeErhvervToolStripMenuItem";
+            this.exportDanskeErhvervToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.exportDanskeErhvervToolStripMenuItem.Text = "Export Danske Erhverv";
+            this.exportDanskeErhvervToolStripMenuItem.Click += new System.EventHandler(this.exportDanskeErhvervToolStripMenuItem_Click);
+            // 
             // hjælpToolStripMenuItem
             // 
             this.hjælpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -355,20 +381,12 @@
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
-            // uniContaToolStripMenuItem
+            // exportPayPalToolStripMenuItem
             // 
-            this.uniContaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.impoerEmailBilagToolStripMenuItem});
-            this.uniContaToolStripMenuItem.Name = "uniContaToolStripMenuItem";
-            this.uniContaToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
-            this.uniContaToolStripMenuItem.Text = "UniConta";
-            // 
-            // impoerEmailBilagToolStripMenuItem
-            // 
-            this.impoerEmailBilagToolStripMenuItem.Name = "impoerEmailBilagToolStripMenuItem";
-            this.impoerEmailBilagToolStripMenuItem.Size = new System.Drawing.Size(177, 22);
-            this.impoerEmailBilagToolStripMenuItem.Text = "Impoert Email Bilag";
-            this.impoerEmailBilagToolStripMenuItem.Click += new System.EventHandler(this.impoerEmailBilagToolStripMenuItem_Click);
+            this.exportPayPalToolStripMenuItem.Name = "exportPayPalToolStripMenuItem";
+            this.exportPayPalToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.exportPayPalToolStripMenuItem.Text = "Export PayPal";
+            this.exportPayPalToolStripMenuItem.Click += new System.EventHandler(this.exportPayPalToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -436,6 +454,8 @@
         private System.Windows.Forms.ToolStripMenuItem opdaterKanSlettesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem uniContaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem impoerEmailBilagToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportDanskeErhvervToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportPayPalToolStripMenuItem;
     }
 }
 

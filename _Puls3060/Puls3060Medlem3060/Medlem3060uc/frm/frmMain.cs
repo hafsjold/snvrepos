@@ -452,7 +452,7 @@ namespace Medlem3060uc
         {
 
 
-            
+
             //clsUniconta obj = new clsUniconta();
             //obj.BogforIndBetalinger();
             /*
@@ -626,8 +626,24 @@ namespace Medlem3060uc
 
         private void impoerEmailBilagToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            clsUnicontaHelp obj = new clsUnicontaHelp();
-            obj.ImportEmailBilag(UCInitializer.GetBaseAPI);
+            clsUnicontaHelp obj = new clsUnicontaHelp(UCInitializer.GetBaseAPI);
+            obj.ImportEmailBilag();
+        }
+
+        private void exportDanskeErhvervToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KarBankkontoudtogDanskebank recBankkontoudtogDanskebank = new KarBankkontoudtogDanskebank(Program.dbData3060, UCInitializer.GetBaseAPI, 1, KarBankkontoudtogDanskebank.action.import);
+            recBankkontoudtogDanskebank.load();
+            recBankkontoudtogDanskebank.export();
+
+        }
+
+        private void exportPayPalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KarPaypal objPaypal = new nsPbs3060.KarPaypal(Program.dbData3060, UCInitializer.GetBaseAPI, 5, KarPaypal.action.import);
+            objPaypal.load_paypal();
+            objPaypal.load_bankkonto();
+            objPaypal.export();
         }
     }
 }

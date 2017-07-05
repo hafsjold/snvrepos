@@ -27,18 +27,29 @@ namespace nsPbs3060
 {
     public class clsUnicontaHelp
     {
-        public void ImportEmailBilag(CrudAPI api)
+        public CrudAPI m_api;
+        public CreditorClient[] m_Creditors;
+         
+        public clsUnicontaHelp(CrudAPI api)
+        {
+            m_api = api;
+            var task = api.Query<CreditorClient>();
+            task.Wait();
+            m_Creditors = task.Result;
+        }
+
+        public void ImportEmailBilag()
         {
             MimeMessage message;
-
             using (var imap_client = new ImapClient())
             {
                 imap_client.Connect("imap.gigahost.dk", 993, true);
                 imap_client.AuthenticationMechanisms.Remove("XOAUTH");
                 imap_client.Authenticate("regnskab@puls3060.dk", "1234West+");
-                var Puls3060Bilag = imap_client.GetFolder("_Puls3060Bilag");   // <-----------------------------------PROD 
-                //var Puls3060Bilag = imap_client.GetFolder("_Puls3060BilagTest"); // <-----------------------------------TEST
-                var Puls3060BilagArkiv = imap_client.GetFolder("_Puls3060BilagArkiv");
+                //var Puls3060Bilag = imap_client.GetFolder("_Puls3060Bilag");
+                //var Puls3060BilagArkiv = imap_client.GetFolder("_Puls3060BilagArkiv");
+                var Puls3060Bilag = imap_client.GetFolder("_TestPuls3060Bilag");          // <-----------------------------------TEST
+                var Puls3060BilagArkiv = imap_client.GetFolder("_TestPuls3060BilagArkiv");// <-----------------------------------TEST
                 Puls3060Bilag.Open(FolderAccess.ReadWrite);
 
                 var results = Puls3060Bilag.Search(SearchQuery.All);
@@ -56,7 +67,7 @@ namespace nsPbs3060
                         VoucherAttachment = msMail.ToArray(),
                         DocumentDate = DateTime.Now,
                     };
-                    var task1 = api.Insert(mail);
+                    var task1 = m_api.Insert(mail);
                     task1.Wait();
                     var res1 = task1.Result;
                     documents.Add(mail);
@@ -107,7 +118,7 @@ namespace nsPbs3060
                                 VoucherAttachment = msstream.ToArray(),
                                 DocumentDate = DateTime.Now,
                             };
-                            var task3 = api.Insert(attm);
+                            var task3 = m_api.Insert(attm);
                             task3.Wait();
                             var res3 = task3.Result;
                             documents.Add(attm);
@@ -124,12 +135,12 @@ namespace nsPbs3060
 
                         };
                         var ref3 = folder.PrimaryKeyId;
-                        var task4 = api.Insert(folder);
+                        var task4 = m_api.Insert(folder);
                         task4.Wait();
                         var res4 = task4.Result;
                         var ref1 = folder.PrimaryKeyId;
 
-                        DocumentAPI docapi = new DocumentAPI(api);
+                        DocumentAPI docapi = new DocumentAPI(m_api);
                         var task5 = docapi.CreateFolder(folder, documents);
                         task5.Wait();
                         var res5 = task5.Result;
@@ -142,17 +153,17 @@ namespace nsPbs3060
                             var crit = new List<PropValuePair>();
                             var pair = PropValuePair.GenereteWhereElements("PrimaryKeyId", typeof(int), ref1.ToString());
                             crit.Add(pair);
-                            var task6 = api.Query<VouchersClient>(null, crit);
+                            var task6 = m_api.Query<VouchersClient>(null, crit);
                             task6.Wait();
                             var col = task6.Result;
                             if (col.Count() == 1)
                             {
                                 var rec = col[0];
-                                api.DeleteNoResponse(rec);
+                                m_api.DeleteNoResponse(rec);
                             }
                         }
 
-                        InsertKøbsOrder(api, message, DocumentRef);
+                        InsertKøbsOrder(message, DocumentRef);
 
                         // move email to arkiv
                         var newId = Puls3060Bilag.MoveTo(result, Puls3060BilagArkiv);
@@ -324,23 +335,22 @@ namespace nsPbs3060
             docRenderer.RenderObject(gfx, box.Location.X, box.Location.X, box.Width, table);
         }
 
-        public void InsertKøbsOrder(CrudAPI api, MimeMessage message, int DocumentRef)
+        public void InsertKøbsOrder(MimeMessage message, int DocumentRef)
         {
             var From = message.From.ToString();
             From = ExtractEmails(From);
             var Date = message.Date.DateTime;
             var Subject = message.Subject;
-            string Account = "100567";
 
-            var crit = new List<PropValuePair>();
-            var pair = PropValuePair.GenereteWhereElements("ContactEmail", typeof(string), From);
-            crit.Add(pair);
-            var taskCreditorOrder = api.Query<CreditorClient>(null, crit);
-            taskCreditorOrder.Wait();
-            var col = taskCreditorOrder.Result;
-            if (col.Count( ) == 1)
+            string Account;
+            try
             {
-                Account = col[0].Account;
+                var Creditor = (from c in this.m_Creditors where ((c.ContactEmail != null) &&(c.ContactEmail.ToLower() == From.ToLower()) ) || ((c._InvoiceEmail != null) && ( c._InvoiceEmail.ToLower() == From.ToLower())) select c).First();
+                Account = Creditor.Account;
+            }
+            catch
+            {
+                Account = "100000"; //Ukendt kreditor
             }
 
             CreditorOrderClient recOrder = new CreditorOrderClient()
@@ -350,7 +360,7 @@ namespace nsPbs3060
                 DeliveryDate = Date,
                 DocumentRef = DocumentRef
             };
-            var taskInsertCreditorOrder = api.Insert(recOrder);
+            var taskInsertCreditorOrder = m_api.Insert(recOrder);
             taskInsertCreditorOrder.Wait();
             var err1 = taskInsertCreditorOrder.Result;
 
@@ -359,7 +369,7 @@ namespace nsPbs3060
                 Text = Subject,
             };
             recOrderLine.SetMaster(recOrder);
-            var taskInsertCreditorOrderLine = api.Insert(recOrderLine);
+            var taskInsertCreditorOrderLine = m_api.Insert(recOrderLine);
             taskInsertCreditorOrderLine.Wait();
             var err2 = taskInsertCreditorOrderLine.Result;
         }

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 21.75, 24.25" name="dbData3060">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 24.75, 24.25" name="dbData3060">
   <DataContextMoniker Name="/dbData3060DataContext" />
   <nestedChildShapes>
     <classShape Id="4c0225d2-e49c-40d2-92c5-e9189c0232d9" absoluteBounds="19.25, 0.75, 2, 2.5401025390625">
@@ -312,7 +312,7 @@
         <elementListCompartment Id="57266566-9ec8-45ba-ac4d-ff88a0f23705" absoluteBounds="0.515, 3.835, 1.9700000000000002, 4.2877197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(0.96875 : 8.2227197265625); (0.96875 : 12.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(0.96875 : 8.2227197265625); (0.96875 : 12.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/dbData3060DataContext/tblfak/tblfak_tblrsmembership_transaction" />
       <nodes>
         <classShapeMoniker Id="53741e6d-01c7-47e1-8ffc-0c3ecd7d4b84" />
@@ -330,6 +330,31 @@
       <DataClassMoniker Name="/dbData3060DataContext/tblrsmembership_payment" />
       <nestedChildShapes>
         <elementListCompartment Id="a9d06ac3-30b5-4b12-bc77-a9486dc44369" absoluteBounds="0.64, 18.71, 1.9700000000000002, 5.249226888020833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5878ae9b-22ab-4c97-9301-30d691fe5803" absoluteBounds="22.5, 3.5, 2, 2.5401025390625">
+      <DataClassMoniker Name="/dbData3060DataContext/tblbankkonto" />
+      <nestedChildShapes>
+        <elementListCompartment Id="87946e99-17d7-4f00-a4d1-d3389e071ab5" absoluteBounds="22.515, 3.96, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a906c4de-2e36-42ab-8d8f-f679b6ad97a4" absoluteBounds="22.5, 7.125, 2, 9.4629541015625">
+      <DataClassMoniker Name="/dbData3060DataContext/tblpaypal" />
+      <nestedChildShapes>
+        <elementListCompartment Id="906c0719-71a2-457d-913b-b5b589da1964" absoluteBounds="22.515, 7.585, 1.9700000000000002, 8.9029541015625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(23.5 : 7.125); (23.5 : 6.0401025390625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/dbData3060DataContext/tblpaypal/tblpaypal_tblbankkonto" />
+      <nodes>
+        <classShapeMoniker Id="a906c4de-2e36-42ab-8d8f-f679b6ad97a4" />
+        <classShapeMoniker Id="5878ae9b-22ab-4c97-9301-30d691fe5803" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="f3906146-453d-4e2a-a264-045c82a6e19a" absoluteBounds="22.375, 1, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/dbData3060DataContext/tblkontoudtog" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fcf22686-ca85-45bc-ba98-2a5f76ef87ab" absoluteBounds="22.39, 1.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>

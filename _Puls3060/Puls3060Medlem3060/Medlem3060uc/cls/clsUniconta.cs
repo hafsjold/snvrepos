@@ -216,7 +216,7 @@ namespace Medlem3060uc
                 if((kk.Afstemningskonto == "Bank") 
                 && (kk.Kontonr == null))
                 {
-                    jl.Account = "5820";
+                    jl.Account = "5840";
                     if (kk.Belob > 0)
                     {
                         jl.Debit = (double)kk.Belob;
@@ -241,7 +241,7 @@ namespace Medlem3060uc
                     }
                 }
 
-                if ((kk.Afstemningskonto == null)
+                if ((String.IsNullOrEmpty(kk.Afstemningskonto))
                 && (kk.Kontonr != null))
                 {
                     jl.Account = kk.Kontonr.ToString();
