@@ -645,5 +645,26 @@ namespace Medlem3060uc
             objPaypal.load_bankkonto();
             objPaypal.export();
         }
+
+        private void toolStripDanskeErhvervExport_Click(object sender, EventArgs e)
+        {
+            KarBankkontoudtogDanskebank recBankkontoudtogDanskebank = new KarBankkontoudtogDanskebank(Program.dbData3060, UCInitializer.GetBaseAPI, 1, KarBankkontoudtogDanskebank.action.import);
+            recBankkontoudtogDanskebank.load();
+            recBankkontoudtogDanskebank.export();
+        }
+
+        private void toolStripExportPayPal_Click(object sender, EventArgs e)
+        {
+            KarPaypal objPaypal = new nsPbs3060.KarPaypal(Program.dbData3060, UCInitializer.GetBaseAPI, 5, KarPaypal.action.import);
+            objPaypal.load_paypal();
+            objPaypal.load_bankkonto();
+            objPaypal.export();
+        }
+
+        private void toolStripImpoetEmailBilag_Click(object sender, EventArgs e)
+        {
+            clsUnicontaHelp obj = new clsUnicontaHelp(UCInitializer.GetBaseAPI);
+            obj.ImportEmailBilag();
+        }
     }
 }

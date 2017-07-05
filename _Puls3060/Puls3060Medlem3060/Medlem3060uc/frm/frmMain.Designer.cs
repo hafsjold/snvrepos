@@ -64,11 +64,19 @@
             this.uniContaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.impoerEmailBilagToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportDanskeErhvervToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exportPayPalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exportPayPalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripDanskeErhvervExport = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripExportPayPal = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripImpoetEmailBilag = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -124,8 +132,8 @@
             this.fileToolStripMenuItem,
             this.medlemToolStripMenuItem,
             this.pBSToolStripMenuItem,
-            this.systemToolStripMenuItem,
             this.uniContaToolStripMenuItem,
+            this.systemToolStripMenuItem,
             this.hjælpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -366,6 +374,13 @@
             this.exportDanskeErhvervToolStripMenuItem.Text = "Export Danske Erhverv";
             this.exportDanskeErhvervToolStripMenuItem.Click += new System.EventHandler(this.exportDanskeErhvervToolStripMenuItem_Click);
             // 
+            // exportPayPalToolStripMenuItem
+            // 
+            this.exportPayPalToolStripMenuItem.Name = "exportPayPalToolStripMenuItem";
+            this.exportPayPalToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.exportPayPalToolStripMenuItem.Text = "Export PayPal";
+            this.exportPayPalToolStripMenuItem.Click += new System.EventHandler(this.exportPayPalToolStripMenuItem_Click);
+            // 
             // hjælpToolStripMenuItem
             // 
             this.hjælpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -381,18 +396,63 @@
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
-            // exportPayPalToolStripMenuItem
+            // toolStrip1
             // 
-            this.exportPayPalToolStripMenuItem.Name = "exportPayPalToolStripMenuItem";
-            this.exportPayPalToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
-            this.exportPayPalToolStripMenuItem.Text = "Export PayPal";
-            this.exportPayPalToolStripMenuItem.Click += new System.EventHandler(this.exportPayPalToolStripMenuItem_Click);
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripImpoetEmailBilag,
+            this.toolStripSeparator5,
+            this.toolStripDanskeErhvervExport,
+            this.toolStripSeparator3,
+            this.toolStripExportPayPal,
+            this.toolStripSeparator4});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 24);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(1024, 25);
+            this.toolStrip1.TabIndex = 4;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripDanskeErhvervExport
+            // 
+            this.toolStripDanskeErhvervExport.Name = "toolStripDanskeErhvervExport";
+            this.toolStripDanskeErhvervExport.Size = new System.Drawing.Size(126, 22);
+            this.toolStripDanskeErhvervExport.Text = " Export Danske Erhverv";
+            this.toolStripDanskeErhvervExport.Click += new System.EventHandler(this.toolStripDanskeErhvervExport_Click);
+            // 
+            // toolStripExportPayPal
+            // 
+            this.toolStripExportPayPal.Name = "toolStripExportPayPal";
+            this.toolStripExportPayPal.Size = new System.Drawing.Size(78, 22);
+            this.toolStripExportPayPal.Text = "Export Paypal";
+            this.toolStripExportPayPal.Click += new System.EventHandler(this.toolStripExportPayPal_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripImpoetEmailBilag
+            // 
+            this.toolStripImpoetEmailBilag.Name = "toolStripImpoetEmailBilag";
+            this.toolStripImpoetEmailBilag.Size = new System.Drawing.Size(104, 22);
+            this.toolStripImpoetEmailBilag.Text = "Import Email Bilag";
+            this.toolStripImpoetEmailBilag.Click += new System.EventHandler(this.toolStripImpoetEmailBilag_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = global::Medlem3060uc.Properties.Settings.Default.frmMainSize;
+            this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.DataBindings.Add(new System.Windows.Forms.Binding("Location", global::Medlem3060uc.Properties.Settings.Default, "frmMainPoint", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
@@ -410,6 +470,8 @@
             this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -456,6 +518,13 @@
         private System.Windows.Forms.ToolStripMenuItem impoerEmailBilagToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportDanskeErhvervToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportPayPalToolStripMenuItem;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripLabel toolStripDanskeErhvervExport;
+        private System.Windows.Forms.ToolStripLabel toolStripExportPayPal;
+        private System.Windows.Forms.ToolStripLabel toolStripImpoetEmailBilag;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     }
 }
 
