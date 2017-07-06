@@ -8,20 +8,38 @@ using Uniconta.ClientTools.DataModel;
 using Uniconta.DataModel;
 using Uniconta.Common;
 using Uniconta.API.GeneralLedger;
+using Uniconta.API.System;
 
-namespace Medlem3060uc
+namespace nsPbs3060
 {
-    class clsUniconta
+    public class clsUniconta
     {
+        private CrudAPI m_api { get; set; }
+        private CompanyFinanceYear m_CurrentCompanyFinanceYear { get; set; }
+        private dbData3060DataContext m_dbData3060 { get; set; }
 
+        public clsUniconta(dbData3060DataContext p_dbData3060, CrudAPI api)
+        {
+            m_dbData3060 = p_dbData3060; 
+            m_api = api;
+            var task = api.Query<CompanyFinanceYear>();
+            task.Wait();
+            var cols = task.Result;
+            foreach (var col in cols)
+            {
+                if (col._Current)
+                {
+                    m_CurrentCompanyFinanceYear = col;
+                }
+            }
+        }
 
         public int BogforPaypalBetalinger()
         {
-            var rec_regnskab = UCInitializer.CurrentCompanyFinanceYear;
-            if (rec_regnskab.Closed == true) return 0;
+            if (m_CurrentCompanyFinanceYear.Closed == true) return 0;
 
-            DateTime? Startdato = rec_regnskab._FromDate;
-            DateTime? Slutdato = rec_regnskab._ToDate;
+            DateTime? Startdato = m_CurrentCompanyFinanceYear._FromDate;
+            DateTime? Slutdato = m_CurrentCompanyFinanceYear._ToDate;
 
             puls3060_nyEntities jdb = new puls3060_nyEntities(true);
             clsPbs602 objPbs602 = new clsPbs602();
@@ -32,45 +50,26 @@ namespace Medlem3060uc
             {
                 DateTime nu = DateTime.Now;
                 DateTime ToDay = new DateTime(nu.Year, nu.Month, nu.Day); ;
-
-                Program.karKladde = null;
-                foreach (var b in bogf)
-                {
-                    recKladde kl = new recKladde
-                    {
-                        Dato = b.Dato,
-                        Bilag = b.Bilag,
-                        Tekst = b.Tekst,
-                        Afstemningskonto = b.Afstemningskonto,
-                        Belob = b.Belob,
-                        Kontonr = b.Kontonr,
-                        Faknr = b.Faknr,
-                        Sagnr = b.Sagnr
-                    };
-                    Program.karKladde.Add(kl);
-                    AntalBetalinger = (int)b.Bilag;
-                }
-                InsertGLDailyJournalLines(Program.karKladde);
-                Program.dbData3060.SubmitChanges();
+                InsertGLDailyJournalLines(bogf);
+                m_dbData3060.SubmitChanges();
             }
             return AntalBetalinger;
         }
 
         public int BogforIndBetalinger()
         {
-            var rec_regnskab = UCInitializer.CurrentCompanyFinanceYear;
-            if (rec_regnskab.Closed == true) return 0;
+            if (m_CurrentCompanyFinanceYear.Closed == true) return 0;
 
-            DateTime? Startdato = rec_regnskab._FromDate;
-            DateTime? Slutdato = rec_regnskab._ToDate;
+            DateTime? Startdato = m_CurrentCompanyFinanceYear._FromDate;
+            DateTime? Slutdato = m_CurrentCompanyFinanceYear._ToDate;
 
 
             int saveBetid = 0;
-            var bogf = from bl in Program.dbData3060.tblbetlins
+            var bogf = from bl in m_dbData3060.tblbetlins
                        where (bl.pbstranskode == "0236" || bl.pbstranskode == "0297") && (Startdato <= bl.indbetalingsdato && bl.indbetalingsdato <= Slutdato)
-                       join b in Program.dbData3060.tblbets on bl.betid equals b.id
+                       join b in m_dbData3060.tblbets on bl.betid equals b.id
                        where b.summabogfort == null || b.summabogfort == false //<<-------------------------------
-                       join p in Program.dbData3060.tblfrapbs on b.frapbsid equals p.id
+                       join p in m_dbData3060.tblfrapbs on b.frapbsid equals p.id
                        orderby p.id, b.id, bl.id
                        select new
                        {
@@ -92,7 +91,7 @@ namespace Medlem3060uc
                 DateTime ToDay = new DateTime(nu.Year, nu.Month, nu.Day); ;
 
                 int BS1_SidsteNr = 0;
-                Program.karKladde = null;
+                MemBogfoeringsKlader karKladde = new MemBogfoeringsKlader();
 
                 int count = 0;
                 foreach (var b in bogf)
@@ -101,7 +100,7 @@ namespace Medlem3060uc
                     if (saveBetid != b.Betid) // ny gruppe
                     {
                         saveBetid = b.Betid;
-                        recKladde gkl = new recKladde
+                        recBogfoeringsKlader gkl = new recBogfoeringsKlader
                         {
                             Dato = ToDay,
                             Bilag = ++BS1_SidsteNr,
@@ -112,23 +111,23 @@ namespace Medlem3060uc
                             Faknr = null,
                             Sagnr = null
                         };
-                        Program.karKladde.Add(gkl);
+                        karKladde.Add(gkl);
 
-                        var rec_bet = (from ub in Program.dbData3060.tblbets where ub.id == b.Betid select ub).First();
+                        var rec_bet = (from ub in m_dbData3060.tblbets where ub.id == b.Betid select ub).First();
                         rec_bet.summabogfort = true;
 
                     }
 
-                    var msm = from f in Program.dbData3060.tblfaks
+                    var msm = from f in m_dbData3060.tblfaks
                               where f.faknr == b.faknr
-                              join m in Program.dbData3060.tblrsmembership_transactions on f.id equals m.id
+                              join m in m_dbData3060.tblrsmembership_transactions on f.id equals m.id
                               select new { f.faknr, f.Nr, m.name, f.bogfkonto, f.fradato, f.tildato };
 
                     if (msm.Count() == 1) //Kontingent betaling for RSMembership
                     {
                         var f = msm.First();
                         decimal[] arrBelob = clsPbs602.fordeling((decimal)b.indbetalingsbelob, (DateTime)f.fradato, (DateTime)f.tildato, (DateTime)Startdato, (DateTime)Slutdato);
-                        recKladde kl;
+                        recBogfoeringsKlader kl;
                         string wTekst = ("F" + f.faknr + " " + f.Nr + " " + f.name).PadRight(40, ' ').Substring(0, 40);
                         try
                         {
@@ -141,7 +140,7 @@ namespace Medlem3060uc
 
                         if (arrBelob[0] > 0)
                         {
-                            kl = new recKladde
+                            kl = new recBogfoeringsKlader
                             {
                                 Dato = ToDay,
                                 Bilag = BS1_SidsteNr,
@@ -152,12 +151,12 @@ namespace Medlem3060uc
                                 Faknr = null,
                                 Sagnr = null
                             };
-                            Program.karKladde.Add(kl);
+                            karKladde.Add(kl);
                         }
 
                         if (arrBelob[1] > 0)
                         {
-                            kl = new recKladde
+                            kl = new recBogfoeringsKlader
                             {
                                 Dato = ToDay,
                                 Bilag = BS1_SidsteNr,
@@ -168,12 +167,12 @@ namespace Medlem3060uc
                                 Faknr = null,
                                 Sagnr = null
                             };
-                            Program.karKladde.Add(kl);
+                            karKladde.Add(kl);
                         }
                     }
                     else //Anden betaling
                     {
-                        recKladde kl = new recKladde
+                        recBogfoeringsKlader kl = new recBogfoeringsKlader
                         {
                             Dato = ToDay,
                             Bilag = BS1_SidsteNr,
@@ -185,24 +184,23 @@ namespace Medlem3060uc
                             Sagnr = null
 
                         };
-                        Program.karKladde.Add(kl);
+                        karKladde.Add(kl);
                     }
                 }
-                InsertGLDailyJournalLines(Program.karKladde);
-                Program.dbData3060.SubmitChanges();
+                InsertGLDailyJournalLines(karKladde);
+                m_dbData3060.SubmitChanges();
             }
             return AntalBetalinger;
         }
 
-        async public void InsertGLDailyJournalLines(KarKladde karKladde)
+        public void InsertGLDailyJournalLines(MemBogfoeringsKlader karKladde)
         {
-            var api = UCInitializer.GetBaseAPI;
-            var col3 = await api.Query<NumberSerieClient>();
-            int NR = 4;
             var crit = new List<PropValuePair>();
             var pair = PropValuePair.GenereteWhereElements("KeyStr", typeof(String), "Dag");
             crit.Add(pair);
-            var col = await api.Query<GLDailyJournalClient>(null, crit);
+            var task1 = m_api.Query<GLDailyJournalClient>(null, crit);
+            task1.Wait();
+            var col = task1.Result;
             var rec_Master = col.FirstOrDefault();
 
             foreach (var kk in karKladde)
@@ -255,10 +253,10 @@ namespace Medlem3060uc
                     }
                 }
                 jl.SetMaster(rec_Master);
-                var err = await api.Insert(jl);
+                var task2 = m_api.Insert(jl);
+                task2.Wait();
+                var err = task2.Result;
             }
-
-
         }
     }
 }

@@ -215,6 +215,7 @@
     <Compile Include="clsPDFTest02.cs" />
     <Compile Include="clsSFTP.cs" />
     <Compile Include="clsPbs686.cs" />
+    <Compile Include="clsUniconta.cs" />
     <Compile Include="clsUnicontaHelp.cs" />
     <Compile Include="ConnectionTools.cs" />
     <Compile Include="dbData3060.cs">

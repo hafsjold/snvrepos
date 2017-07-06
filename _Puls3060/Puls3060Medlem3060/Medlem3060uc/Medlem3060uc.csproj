@@ -190,7 +190,6 @@
     <Compile Include="cls\clsExcel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="cls\clsUniconta.cs" />
     <Compile Include="dsMedlem.cs">
       <DependentUpon>dsMedlem.xsd</DependentUpon>
     </Compile>
