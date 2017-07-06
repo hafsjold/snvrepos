@@ -279,7 +279,7 @@ namespace Medlem3060uc
             if ((AntalAdvis > 0))
                 objPbs601.advis_email(Program.dbData3060, lobnr);
 
-            clsUniconta objSumma = new clsUniconta();
+            clsUniconta objSumma = new clsUniconta(Program.dbData3060, UCInitializer.GetBaseAPI);
             int AntalBetalinger = objSumma.BogforIndBetalinger();
 
             if (AntalBetalinger > 0)
@@ -429,7 +429,7 @@ namespace Medlem3060uc
         {
             string bigString = null;
             string smallString = null;
-            clsUniconta objSumma = new clsUniconta();
+            clsUniconta objSumma = new clsUniconta(Program.dbData3060, UCInitializer.GetBaseAPI);
             int AntalBetalinger = objSumma.BogforPaypalBetalinger();
             if (AntalBetalinger > 0)
             {
