@@ -29,9 +29,9 @@ namespace Medlem3060uc
             Program.frmMain = this;
         }
 
-        async private void FrmMain_Load(object sender, EventArgs e)
+        private void FrmMain_Load(object sender, EventArgs e)
         {
-            var xx = await UnicontaLogin();
+            var xx = UnicontaLogin();
 #if (DEBUG)
             testToolStripMenuItem.Visible = true;
 #endif
@@ -557,19 +557,19 @@ namespace Medlem3060uc
             objPbsHelper.opdaterKanSlettes();
         }
 
-        async Task<int> UnicontaLogin()
+        int UnicontaLogin()
         {
-            int ret = await simulatedloginButton();
+            int ret = simulatedloginButton();
 
-            await UCInitializer.SetupCompanies();
+            UCInitializer.SetupCompanies();
 
             var cmbCompanies = UCInitializer.Companies;
 
             if (UCInitializer.CurrentSession.User._DefaultCompany != 0)
             {
                 var comp = UCInitializer.Companies.Where(c => c.CompanyId == UCInitializer.CurrentSession.User._DefaultCompany).FirstOrDefault();
-                await UCInitializer.SetCompany(comp.CompanyId);
-                await UCInitializer.SetCurrentCompanyFinanceYear();
+                UCInitializer.SetCompany(comp.CompanyId);
+                UCInitializer.SetCurrentCompanyFinanceYear();
             }
             //else if (UCInitializer.Companies.Count() > 0)
             //    cmbCompanies.SelectedItem = UCInitializer.Companies[0];
@@ -585,12 +585,12 @@ namespace Medlem3060uc
             return 0;
         }
 
-        async Task<int> simulatedloginButton()
+        int simulatedloginButton()
         {
             string password = "1234West+";
             string userName = "puls3060";
 
-            ErrorCodes errorCode = await SetLogin(userName, password);
+            ErrorCodes errorCode = SetLogin(userName, password);
 
             switch (errorCode)
             {
@@ -609,12 +609,15 @@ namespace Medlem3060uc
             return 0;
         }
 
-        async Task<ErrorCodes> SetLogin(string username, string password)
+        ErrorCodes SetLogin(string username, string password)
         {
             try
             {
                 var ses = UCInitializer.GetSession();
-                return await ses.LoginAsync(username, password, Uniconta.Common.User.LoginType.API, new Guid("73c93c84-af78-41e4-ada1-b8101c95ba89"), Uniconta.ClientTools.Localization.InititalLanguageCode);
+                var task = ses.LoginAsync(username, password, Uniconta.Common.User.LoginType.API, new Guid("73c93c84-af78-41e4-ada1-b8101c95ba89"), Uniconta.ClientTools.Localization.InititalLanguageCode);
+                task.Wait();
+                var res = task.Result;
+                return res;
             }
             catch
             {

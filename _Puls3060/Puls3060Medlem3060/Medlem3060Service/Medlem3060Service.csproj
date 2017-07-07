@@ -141,6 +141,14 @@
     <Reference Include="System.Data" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml" />
+    <Reference Include="Uniconta.Common, Version=1.0.6391.31045, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Uniconta.WindowsAPI.1.1.58\lib\net45\Uniconta.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Uniconta.WindowsAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Uniconta.WindowsAPI.1.1.58\lib\net45\Uniconta.WindowsAPI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="dbJobQ.designer.cs">
