@@ -86,9 +86,9 @@
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripExportPayPal = new System.Windows.Forms.ToolStripLabel();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -553,24 +553,12 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripLabel2,
             this.toolStripSeparator4,
-            this.toolStripLabel1});
+            this.toolStripExportPayPal});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1024, 25);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripLabel1
-            // 
-            this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(78, 22);
-            this.toolStripLabel1.Text = "Export PayPal";
-            this.toolStripLabel1.Click += new System.EventHandler(this.toolStripLabel1_Click);
             // 
             // toolStripLabel2
             // 
@@ -578,6 +566,18 @@
             this.toolStripLabel2.Size = new System.Drawing.Size(123, 22);
             this.toolStripLabel2.Text = "Export Danske Erhverv";
             this.toolStripLabel2.Click += new System.EventHandler(this.toolStripLabel2_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripExportPayPal
+            // 
+            this.toolStripExportPayPal.Name = "toolStripExportPayPal";
+            this.toolStripExportPayPal.Size = new System.Drawing.Size(78, 22);
+            this.toolStripExportPayPal.Text = "Export PayPal";
+            this.toolStripExportPayPal.Click += new System.EventHandler(this.toolStripLabel1_Click);
             // 
             // FrmMain
             // 
@@ -722,7 +722,7 @@
         private System.Windows.Forms.ToolStripMenuItem debitorKreditorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportPayPalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exportDanskeErhvervToolStripMenuItem;
-        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripLabel toolStripExportPayPal;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
     }
 }
