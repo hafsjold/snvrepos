@@ -710,5 +710,10 @@ namespace Medlem3060uc
                 "OK", //rightButton
                 global::Medlem3060uc.Properties.Resources.Message_info); //iconSet   
         }
+
+        private void posterTilRegnskabToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ecxelPoster();
+        }
     }
 }
