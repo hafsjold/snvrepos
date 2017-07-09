@@ -631,6 +631,13 @@ namespace Medlem3060uc
         {
             clsUnicontaHelp obj = new clsUnicontaHelp(UCInitializer.GetBaseAPI);
             obj.ImportEmailBilag();
+            DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
+                "Medlem3060uc", //titleString   
+                "Email Bilag uploaded til UniConta.", //bigString 
+                null, //smallString
+                null, //leftButton
+                "OK", //rightButton
+                global::Medlem3060uc.Properties.Resources.Message_info); //iconSet   
         }
 
         private void exportDanskeErhvervToolStripMenuItem_Click(object sender, EventArgs e)
@@ -638,15 +645,28 @@ namespace Medlem3060uc
             KarBankkontoudtogDanskebank recBankkontoudtogDanskebank = new KarBankkontoudtogDanskebank(Program.dbData3060, UCInitializer.GetBaseAPI, 1, KarBankkontoudtogDanskebank.action.import);
             recBankkontoudtogDanskebank.load();
             recBankkontoudtogDanskebank.export();
-
+            DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
+                "Medlem3060uc", //titleString   
+                "Danske Erhverv Kontoudtog uploaded til UniConta.", //bigString 
+                null, //smallString
+                null, //leftButton
+                "OK", //rightButton
+                global::Medlem3060uc.Properties.Resources.Message_info); //iconSet   
         }
 
-        private void exportPayPalToolStripMenuItem_Click(object sender, EventArgs e)
+            private void exportPayPalToolStripMenuItem_Click(object sender, EventArgs e)
         {
             KarPaypal objPaypal = new nsPbs3060.KarPaypal(Program.dbData3060, UCInitializer.GetBaseAPI, 5, KarPaypal.action.import);
             objPaypal.load_paypal();
             objPaypal.load_bankkonto();
             objPaypal.export();
+            DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
+                "Medlem3060uc", //titleString   
+                "PayPal Kontoudtog uploaded til UniConta.", //bigString 
+                null, //smallString
+                null, //leftButton
+                "OK", //rightButton
+                global::Medlem3060uc.Properties.Resources.Message_info); //iconSet     
         }
 
         private void toolStripDanskeErhvervExport_Click(object sender, EventArgs e)
@@ -654,6 +674,13 @@ namespace Medlem3060uc
             KarBankkontoudtogDanskebank recBankkontoudtogDanskebank = new KarBankkontoudtogDanskebank(Program.dbData3060, UCInitializer.GetBaseAPI, 1, KarBankkontoudtogDanskebank.action.import);
             recBankkontoudtogDanskebank.load();
             recBankkontoudtogDanskebank.export();
+            DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
+                "Medlem3060uc", //titleString   
+                "Danske Erhverv Kontoudtog uploaded til UniConta.", //bigString 
+                null, //smallString
+                null, //leftButton
+                "OK", //rightButton
+                global::Medlem3060uc.Properties.Resources.Message_info); //iconSet     
         }
 
         private void toolStripExportPayPal_Click(object sender, EventArgs e)
@@ -662,12 +689,26 @@ namespace Medlem3060uc
             objPaypal.load_paypal();
             objPaypal.load_bankkonto();
             objPaypal.export();
+            DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
+                "Medlem3060uc", //titleString   
+                "PayPal Kontoudtog uploaded til UniConta.", //bigString 
+                null, //smallString
+                null, //leftButton
+                "OK", //rightButton
+                global::Medlem3060uc.Properties.Resources.Message_info); //iconSet     
         }
 
         private void toolStripImpoetEmailBilag_Click(object sender, EventArgs e)
         {
             clsUnicontaHelp obj = new clsUnicontaHelp(UCInitializer.GetBaseAPI);
             obj.ImportEmailBilag();
+            DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
+                "Medlem3060uc", //titleString   
+                "Email Bilag uploaded til UniConta.", //bigString 
+                null, //smallString
+                null, //leftButton
+                "OK", //rightButton
+                global::Medlem3060uc.Properties.Resources.Message_info); //iconSet   
         }
     }
 }

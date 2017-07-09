@@ -82,6 +82,9 @@ namespace nsMedlem3060Service
             Program.Log("Medlem3060Service Starter");
             EventLog.WriteEntry("Medlem3060", "Medlem3060Service Starter", EventLogEntryType.Information, 101);
 
+            Uniconta.ClientTools.Localization.SetLocalizationStrings(System.Threading.Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName);
+            Uniconta.WindowsAPI.Startup.OnLoad();
+            UCInitializer.InitUniconta();
 
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[] 

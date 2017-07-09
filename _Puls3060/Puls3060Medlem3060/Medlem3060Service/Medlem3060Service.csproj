@@ -175,6 +175,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="UCInitializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App - Copy %282%29.Config">
