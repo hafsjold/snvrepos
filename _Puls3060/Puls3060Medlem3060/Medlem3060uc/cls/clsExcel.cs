@@ -18,6 +18,7 @@ using MimeKit;
 using MailKit.Net.Imap;
 using nsPbs3060;
 using Uniconta.DataModel;
+using Uniconta.Common;
 
 namespace Medlem3060uc
 {
@@ -331,13 +332,43 @@ namespace Medlem3060uc
                     CurrentCompanyFinanceYear = col;
                 }
             }
-            var task2 = api.Query<GLAccount>();
-            task2.Wait();
-            var karKontoplan = task2.Result;
-            var task3 = api.Query<GLTrans>();
-            task3.Wait();
-            var karPosteringer = task3.Result;
+            var task2a = api.Query<Debtor>();
+            task2a.Wait();
+            var karDebtor = task2a.Result;
+            var task2b = api.Query<Creditor>();
+            task2b.Wait();
+            var karCreditor = task2b.Result;
+            KarDebCred karDebCred = new KarDebCred();
+            foreach (var d in karDebtor)
+            {
+                RecDebCred recDebCred = new RecDebCred()
+                {
+                     _Account = d._Account,
+                      _Name = d._Name
+                };
+                karDebCred.Add(recDebCred);
+            }
+            foreach (var k in karCreditor)
+            {
+                RecDebCred recDebCred = new RecDebCred()
+                {
+                    _Account = k._Account,
+                    _Name = k._Name
+                };
+                karDebCred.Add(recDebCred);
+            }
 
+            var task3 = api.Query<GLAccount>();
+            task3.Wait();
+            var karGLAccount = task3.Result;
+
+            var crit = new List<PropValuePair>();
+            string dateinterval = string.Format("{0}..{1}", CurrentCompanyFinanceYear._FromDate.ToShortDateString(), CurrentCompanyFinanceYear._ToDate.ToShortDateString());
+            var pair = PropValuePair.GenereteWhereElements("Date", typeof(DateTime), dateinterval);
+            crit.Add(pair);
+            var task4 = api.Query<GLTrans>(null,crit);
+            task4.Wait();
+            var karGLTrans = task4.Result;
 
             DateTime pReadDate = DateTime.Now;
             string pSheetName = "Poster";
@@ -355,25 +386,30 @@ namespace Medlem3060uc
             rec_regnskab_Eksportmappe = Environment.ExpandEnvironmentVariables(rec_regnskab_Eksportmappe);
             string SaveAs = rec_regnskab_Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_HHmmss") + ".xlsx";
 
-            var JournalPoster = from h in karPosteringer
-                                join d1 in karKontoplan on h._Account equals d1._Account into details1
+            var JournalPoster = from h in karGLTrans
+                                join d1 in karGLAccount on h._Account equals d1._Account into details1
                                 from x1 in details1.DefaultIfEmpty()
-                                where h._Date.Year == CurrentCompanyFinanceYear._FromDate.Year
-                                orderby h._JournalPostedId, h._VoucherLine
+                                join d2 in karDebCred on h._DCAccount equals d2._Account into details2
+                                from x2 in details2.DefaultIfEmpty(new RecDebCred() { _Account = null, _Name = null })
+                                orderby h._JournalPostedId, h._Voucher, h._VoucherLine
                                 select new clsJournalposter
                                 {
                                     ds = DS(x1.AccountTypeEnum),
                                     k = IUAP(x1.AccountTypeEnum),
                                     Konto = h._Account + "-" + x1._Name,
+                                    DebKrd = x2._Name,
+                                    //DebKrd = h._DCAccount,
+                                    Udvalg = h._Dimension1,
+                                    Aktivitet = h._Dimension2,
                                     Dato = h._Date,
+                                    Klade = h._JournalPostedId,
+                                    Serie = h._NumberSerie,
                                     Bilag = h._Voucher,
-                                    Nr = h._JournalPostedId,
-                                    Id = h._VoucherLine,
+                                    Linie = h._VoucherLine,
                                     Tekst = h._Text,
                                     Beløb = h._Amount,
-                                    Sag = h._Dimension2
                                 };
-
+            var count = JournalPoster.Count();
             using (new ExcelUILanguageHelper())
             {
                 try
@@ -393,7 +429,7 @@ namespace Medlem3060uc
 
                     this.MainformProgressBar.Value = 0;
                     this.MainformProgressBar.Minimum = 0;
-                    this.MainformProgressBar.Maximum = (from h in karPosteringer select h).Count();
+                    this.MainformProgressBar.Maximum = (from h in karGLTrans select h).Count();
                     this.MainformProgressBar.Step = 1;
                     this.MainformProgressBar.Visible = true;
 
@@ -452,8 +488,8 @@ namespace Medlem3060uc
                     oRng.ShrinkToFit = false;
                     oRng.MergeCells = false;
 
-                    string BottomRight = "E" + row.ToString();
-                    oRng = oSheetPoster.get_Range("E2", BottomRight);
+                    string BottomRight = "G" + row.ToString();          //<------------------HUSK
+                    oRng = oSheetPoster.get_Range("G2", BottomRight);
                     oRng.NumberFormat = "dd-mm-yyyy";
 
                     oSheetPoster.ListObjects.AddEx(_Excel.XlListObjectSourceType.xlSrcRange, oSheetPoster.UsedRange, System.Type.Missing, _Excel.XlYesNoGuess.xlYes).Name = "PosterList";
@@ -469,7 +505,7 @@ namespace Medlem3060uc
                     //oXL.Visible = true; //For debug
 
                     _Excel.Range x1 = oSheetPoster.Cells[1, 1];
-                    _Excel.Range x2 = oSheetPoster.Cells[row, 10];
+                    _Excel.Range x2 = oSheetPoster.Cells[row, 13]; //<--------------------HUSK
                     _Excel.Range xx = oSheetPoster.get_Range(x1, x2);
                     _Excel.PivotField _pvtField = null;
                     _Excel.PivotTable _pivot = oSheetPoster.PivotTableWizard(
@@ -621,20 +657,36 @@ namespace Medlem3060uc
         public string k { get; set; }
         [Fieldattr(Heading = "Konto")]
         public string Konto { get; set; }
-        [Fieldattr(Heading = "Sag")]
-        public string Sag { get; set; }
+        [Fieldattr(Heading = "Deb/Krd")]
+        public string DebKrd { get; set; }
+        [Fieldattr(Heading = "Udvalg")]
+        public string Udvalg { get; set; }
+        [Fieldattr(Heading = "Aktivitet")]
+        public string Aktivitet { get; set; }
         [Fieldattr(Heading = "Dato")]
         public DateTime? Dato { get; set; }
+        [Fieldattr(Heading = "Klade")]
+        public int? Klade { get; set; }
+        [Fieldattr(Heading = "Serie")]
+        public string Serie { get; set; }
         [Fieldattr(Heading = "Bilag")]
         public int? Bilag { get; set; }
-        [Fieldattr(Heading = "Nr")]
-        public int? Nr { get; set; }
-        [Fieldattr(Heading = "Id")]
-        public int? Id { get; set; }
+        [Fieldattr(Heading = "Linie")]
+        public int? Linie { get; set; }
         [Fieldattr(Heading = "Tekst")]
         public string Tekst { get; set; }
         [Fieldattr(Heading = "Beløb")]
         public double? Beløb { get; set; }
+    }
+
+    public class RecDebCred
+    {
+        public string _Account { get; set; }
+        public string _Name { get; set; }
+    }
+    public class KarDebCred : List<RecDebCred>
+    {
+
     }
 
 }
