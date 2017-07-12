@@ -1091,8 +1091,8 @@ namespace nsPuls3060
             MimeMessage message = new MimeMessage();
             TextPart body;
 
-            message.To.Add(new MailboxAddress(@"regnskab@puls3060.dk", @"Regnskab Puls3060"));
-            message.From.Add(new MailboxAddress(@"regnskab@puls3060.dk", @"Regnskab Puls3060"));
+            message.To.Add(new MailboxAddress(@"Regnskab Puls3060", @"regnskab@puls3060.dk"));
+            message.From.Add(new MailboxAddress(@"Regnskab Puls3060", @"regnskab@puls3060.dk"));
             message.Subject = PSubjectBody + ": " + local_filename;
             body = new TextPart("plain") { Text = PSubjectBody + ": " + local_filename };
 
