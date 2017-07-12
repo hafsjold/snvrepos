@@ -477,8 +477,8 @@ namespace nsPbs3060
             MimeMessage message = new MimeMessage();
             TextPart body;
             
-            message.To.Add(new MailboxAddress(@"regnskab@puls3060.dk", @"Regnskab Puls3060"));
-            message.From.Add(new MailboxAddress(@"regnskab@puls3060.dk", @"Regnskab Puls3060"));
+            message.To.Add(new MailboxAddress(@"Regnskab Puls3060",@"regnskab@puls3060.dk"));
+            message.From.Add(new MailboxAddress(@"Regnskab Puls3060", @"regnskab@puls3060.dk"));
              
             if (bTilPBS)
             {
