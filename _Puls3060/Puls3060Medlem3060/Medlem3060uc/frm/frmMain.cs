@@ -638,11 +638,26 @@ namespace Medlem3060uc
 
         private void impoerEmailBilagToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            impoerEmailBilag(sender, e);
+        }
+
+        private void impoerEmailBilag(object sender, EventArgs e)
+        {
             clsUnicontaHelp obj = new clsUnicontaHelp(UCInitializer.GetBaseAPI);
-            obj.ImportEmailBilag();
+            int antalbilag = obj.ImportEmailBilag();
+            string bigString;
+            if (antalbilag == 0)
+            {
+                bigString = "Der er ingen Kreditor Ordre klar til uploaded til UniConta";
+            }
+            else
+            {
+                bigString = string.Format("Der er uploaded {0} Kreditor Ordre til UniConta.", antalbilag);
+            }
+
             DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
                 "Medlem3060uc", //titleString   
-                "Email Bilag uploaded til UniConta.", //bigString 
+                bigString, //bigString 
                 null, //smallString
                 null, //leftButton
                 "OK", //rightButton
@@ -709,15 +724,7 @@ namespace Medlem3060uc
 
         private void toolStripImpoetEmailBilag_Click(object sender, EventArgs e)
         {
-            clsUnicontaHelp obj = new clsUnicontaHelp(UCInitializer.GetBaseAPI);
-            obj.ImportEmailBilag();
-            DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
-                "Medlem3060uc", //titleString   
-                "Email Bilag uploaded til UniConta.", //bigString 
-                null, //smallString
-                null, //leftButton
-                "OK", //rightButton
-                global::Medlem3060uc.Properties.Resources.Message_info); //iconSet   
+            impoerEmailBilag(sender, e);
         }
 
         private void posterTilRegnskabToolStripMenuItem_Click(object sender, EventArgs e)
