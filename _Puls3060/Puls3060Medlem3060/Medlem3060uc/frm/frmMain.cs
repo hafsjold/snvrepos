@@ -35,7 +35,7 @@ namespace Medlem3060uc
         {
             try
             {
-                UnicontaLogin();
+                UCInitializer.UnicontaLogin();
                 var CurrentCompany = UCInitializer.CurrentCompany;
                 this.toolStripStatusLabel1.Text = "Firma: " + CurrentCompany.CompanyId + " " + CurrentCompany.Name;
                 this.toolStripStatusLabel1.Alignment = ToolStripItemAlignment.Right;
@@ -583,63 +583,6 @@ namespace Medlem3060uc
         {
             clsPbsHelper objPbsHelper = new clsPbsHelper();
             objPbsHelper.opdaterKanSlettes();
-        }
-
-        void UnicontaLogin()
-        {
-            UC_Login();
-
-            UCInitializer.SetupCompanies();
-
-            var cmbCompanies = UCInitializer.Companies;
-
-            if (UCInitializer.CurrentSession.User._DefaultCompany != 0)
-            {
-                var comp = UCInitializer.Companies.Where(c => c.CompanyId == UCInitializer.CurrentSession.User._DefaultCompany).FirstOrDefault();
-                UCInitializer.SetCompany(comp.CompanyId);
-                UCInitializer.SetCurrentCompanyFinanceYear();
-            }
-            //else if (UCInitializer.Companies.Count() > 0)
-            //    cmbCompanies.SelectedItem = UCInitializer.Companies[0];
-            //else
-            //    MessageBox.Show("You do not have any access to company.", "Information", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-        }
-
-        void UC_Login()
-        {
-            ErrorCodes errorCode = SetLogin(clsApp.UniContaUser, clsApp.UniContaPW);
-            switch (errorCode)
-            {
-                case ErrorCodes.Succes:
-                    Uniconta.ClientTools.Localization.SetDefault((Language)UCInitializer.CurrentSession.User._Language);
-                    break;
-
-                case ErrorCodes.UserOrPasswordIsWrong:
-                    MessageBox.Show("Please Check Your Credentials & Try again !!!", "Warning");
-                    break;
-
-                default:
-                    MessageBox.Show(string.Format("{0} : {1}", "Unable to login", errorCode.ToString()), "Information");
-                    break;
-            }
-        }
-
-        ErrorCodes SetLogin(string username, string password)
-        {
-            try
-            {
-                var ses = UCInitializer.GetSession();
-                var task = ses.LoginAsync(username, password, Uniconta.Common.User.LoginType.API, new Guid("73c93c84-af78-41e4-ada1-b8101c95ba89"), Uniconta.ClientTools.Localization.InititalLanguageCode);
-                task.Wait();
-                var res = task.Result;
-                return res;
-            }
-            catch
-            {
-                MessageBox.Show("System Exception. Application Will Close.", "Fatal Error");
-                this.Close();
-                return ErrorCodes.Exception;
-            }
         }
 
         private void impoerEmailBilagToolStripMenuItem_Click(object sender, EventArgs e)

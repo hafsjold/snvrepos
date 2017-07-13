@@ -292,6 +292,7 @@
     <Compile Include="tblpaypalpayment.cs">
       <DependentUpon>puls3060_ny.tt</DependentUpon>
     </Compile>
+    <Compile Include="UCInitializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="dbData3060.dbml">

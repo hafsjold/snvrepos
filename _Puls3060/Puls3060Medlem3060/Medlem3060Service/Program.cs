@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceProcess;
-using System.Text;
 using System.Diagnostics;
 using System.Data.SqlClient;
+using nsPbs3060;
 
 namespace nsMedlem3060Service
 {
