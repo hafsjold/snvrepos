@@ -254,6 +254,11 @@ namespace Medlem3060uc
 
         private void betalingerFraPBSToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            betalingerFraPBS(sender, e);
+        }
+
+        private void betalingerFraPBS(object sender, EventArgs e)
+        {
             string bigString = null;
             string smallString = null;
             int AntalImportFiler = 0;
@@ -267,7 +272,6 @@ namespace Medlem3060uc
             //AntalImportFiler = objSFTP.ReadFraSFtp(Program.dbData3060);  //Læs direkte SFTP
             //objSFTP.DisconnectSFtp();
             //objSFTP = null;
-            //AntalImportFiler = objPbs602.ReadFraPbsFile(); //Læs fra Directory FraPBS
 
             int Antal602Filer = objPbs602.betalinger_fra_pbs(Program.dbData3060);
             int Antal603Filer = objPbs603.aftaleoplysninger_fra_pbs(Program.dbData3060);
@@ -426,6 +430,11 @@ namespace Medlem3060uc
         }
 
         private void payPalBetalingerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            payPalBetalinger(sender, e);
+        }
+
+        private void payPalBetalinger(object sender, EventArgs e)
         {
             string bigString = null;
             string smallString = null;
@@ -714,6 +723,16 @@ namespace Medlem3060uc
         private void posterTilRegnskabToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ecxelPoster();
+        }
+
+        private void toolStripBogførPBSFiler_Click(object sender, EventArgs e)
+        {
+            betalingerFraPBS(sender, e);
+        }
+
+        private void toolStripPayPalBetalinger_Click(object sender, EventArgs e)
+        {
+            payPalBetalinger(sender, e);
         }
     }
 }
