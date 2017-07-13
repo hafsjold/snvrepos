@@ -38,9 +38,10 @@ namespace nsPbs3060
             m_Creditors = task.Result;
         }
 
-        public void ImportEmailBilag()
+        public int ImportEmailBilag()
         {
             MimeMessage message;
+            int antalbilag = 0;
             using (var imap_client = new ImapClient())
             {
                 imap_client.Connect("imap.gigahost.dk", 993, true);
@@ -53,6 +54,7 @@ namespace nsPbs3060
                 Puls3060Bilag.Open(FolderAccess.ReadWrite);
 
                 var results = Puls3060Bilag.Search(SearchQuery.All);
+                antalbilag = results.Count();
                 foreach (var result in results)
                 {
                     message = Puls3060Bilag.GetMessage(result);
@@ -174,7 +176,7 @@ namespace nsPbs3060
                 Puls3060Bilag.Close();
                 imap_client.Disconnect(true);
             }
-            return;// message;
+            return antalbilag;// message;
         }
 
         public MemoryStream Message2Pdf(MimeMessage message)
