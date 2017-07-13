@@ -204,7 +204,7 @@
         <elementListCompartment Id="59c8268a-3709-4af8-9492-8ad9da39dbcd" absoluteBounds="1.3900000000000001, 9.085, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.90625 : 3.59780110677083); (2.90625 : 8.625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.90625 : 3.59780110677083); (2.90625 : 8.625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/dbData3060DataContext/tbltilpb/tbltilpb_tbladvi" />
       <nodes>
         <classShapeMoniker Id="512c98fb-4ca7-431e-9308-35363ce288d8" />
@@ -312,14 +312,14 @@
         <elementListCompartment Id="57266566-9ec8-45ba-ac4d-ff88a0f23705" absoluteBounds="0.515, 3.835, 1.9700000000000002, 4.2877197265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(0.96875 : 8.2227197265625); (0.96875 : 12.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(0.96875 : 8.2227197265625); (0.96875 : 12.25)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/dbData3060DataContext/tblfak/tblfak_tblrsmembership_transaction" />
       <nodes>
         <classShapeMoniker Id="53741e6d-01c7-47e1-8ffc-0c3ecd7d4b84" />
         <classShapeMoniker Id="5b1db27e-dd62-43a9-a712-a3cc9b411a52" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 2.3124995); (1.5 : 2.3124995); (1.5 : 3.375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 2.3124995); (1.5 : 2.3124995); (1.5 : 3.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/dbData3060DataContext/tbltilpb/tbltilpb_tblfak" />
       <nodes>
         <classShapeMoniker Id="512c98fb-4ca7-431e-9308-35363ce288d8" />
@@ -344,7 +344,7 @@
         <elementListCompartment Id="906c0719-71a2-457d-913b-b5b589da1964" absoluteBounds="22.515, 7.585, 1.9700000000000002, 8.9029541015625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(23.5 : 7.125); (23.5 : 6.0401025390625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(23.5 : 7.125); (23.5 : 6.0401025390625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/dbData3060DataContext/tblpaypal/tblpaypal_tblbankkonto" />
       <nodes>
         <classShapeMoniker Id="a906c4de-2e36-42ab-8d8f-f679b6ad97a4" />

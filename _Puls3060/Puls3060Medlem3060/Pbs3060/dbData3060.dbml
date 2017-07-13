@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dbPuls3060Medlem" Class="dbData3060DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=qynhbd9h4f.database.windows.net;Initial Catalog=dbPuls3060Medlem;User ID=sqlUser;Connect Timeout=60" SettingsObjectName="nsPbs3060.Properties.Settings" SettingsPropertyName="dbPuls3060MedlemConnectionString3" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=qynhbd9h4f.database.windows.net;Initial Catalog=dbPuls3060Medlem;User ID=sqlUser;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True" SettingsObjectName="nsPbs3060.Properties.Settings" SettingsPropertyName="dbPuls3060MedlemConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tblsftp" Member="tblsftps">
     <Type Name="tblsftp">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />

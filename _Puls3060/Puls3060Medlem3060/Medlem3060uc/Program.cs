@@ -39,13 +39,8 @@ namespace Medlem3060uc
         }
         public static string dbConnectionString()
         {
-            DialogResult res = DialogResult.OK;
-            m_Password = global::Medlem3060uc.Properties.Settings.Default.UserPassword;
-            if (Unprotect(m_Password) == null)
-                res = (new FrmPassword()).ShowDialog();
-            if (res != DialogResult.OK) return null;
-            Program.Log(ConnectStringWithoutPassword, "ConnectString");
-            return ConnectStringWithoutPassword + ";Password=" + Unprotect(m_Password);
+           Program.Log(ConnectStringWithoutPassword, "ConnectString");
+            return ConnectStringWithoutPassword + ";Password=" + clsApp.dbPuls3060MedlemPW;
         }
         public static dbData3060DataContext dbData3060DataContextFactory()
         {
@@ -67,23 +62,10 @@ namespace Medlem3060uc
             }
         }
 
-        static byte[] s_aditionalEntropy = { 9, 8, 7, 6, 5 };
         private static string m_ConnectStringWithoutPassword;
-        private static string m_Password;
         private static MemPbsnetdir m_memPbsnetdir;
         private static KarKladde m_KarKladde;
 
-        public static string Password
-        {
-            get
-            {
-                return m_Password;
-            }
-            set
-            {
-                m_Password = value;
-            }
-        }
         public static MemPbsnetdir memPbsnetdir
         {
             get
@@ -111,35 +93,7 @@ namespace Medlem3060uc
         }
 
         public static FrmMain frmMain { get; set; }
-
-        public static string Protect(string secret)
-        {
-            try
-            {
-                var data = Encoding.Unicode.GetBytes(secret);
-                byte[] encrypted = ProtectedData.Protect(data, s_aditionalEntropy, DataProtectionScope.CurrentUser);
-                return Convert.ToBase64String(encrypted);
-            }
-            catch (CryptographicException)
-            {
-                return null;
-            }
-        }
-        public static string Unprotect(string cipher)
-        {
-            try
-            {
-                byte[] data = Convert.FromBase64String(cipher);
-                byte[] decrypted = ProtectedData.Unprotect(data, s_aditionalEntropy, DataProtectionScope.CurrentUser);
-                return Encoding.Unicode.GetString(decrypted);
-
-            }
-            catch (CryptographicException)
-            {
-                return null;
-            }
-        }
-
+ 
         public static void Log(string message)
         {
             string msg = DateTime.Now.ToString() + "||" + message;
