@@ -17,6 +17,7 @@ namespace nsPbs3060
         public static string GigaHostImapUser { get { return PH(); } }
         public static string GigaHostImapPW { get { return PH(); } }
         public static string dbPuls3060MedlemPW { get { return PH(); } }
+        public static string puls3060_dkUser { get { return PH(); } }
         public static string puls3060_dkPW { get { return PH(); } }
 
         private static string PH()

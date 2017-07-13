@@ -519,7 +519,7 @@ namespace nsPbs3060
             {
                 client.Connect("imap.gigahost.dk", 993, true);
                 client.AuthenticationMechanisms.Remove("XOAUTH");
-                client.Authenticate(@"regnskab@puls3060.dk", "1234West+");
+                client.Authenticate(clsApp.GigaHostImapUser, clsApp.GigaHostImapPW);
 
                 var PBS = client.GetFolder("INBOX.PBS");
                 PBS.Open(FolderAccess.ReadWrite);
