@@ -305,6 +305,10 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>puls3060_ny.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="puls3060_ny.edmx.diagram">
       <DependentUpon>puls3060_ny.edmx</DependentUpon>
     </None>
@@ -502,10 +506,6 @@
       <DependentUpon>dbData3060.dbml</DependentUpon>
     </None>
     <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

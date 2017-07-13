@@ -18,9 +18,9 @@ namespace nsMedlem3060Service
             lock (_locker1)
             {
 #if (DEBUG)
-            con = global::nsMedlem3060Service.Properties.Settings.Default.puls3061_dk_dbConnectionString_Test + ";Password=Puls3060";
+            con = global::nsMedlem3060Service.Properties.Settings.Default.puls3061_dk_dbConnectionString_Test + ";Password=" + clsApp.dbPuls3060MedlemPW;
 #else
-            con = global::nsMedlem3060Service.Properties.Settings.Default.puls3061_dk_dbConnectionString_Prod + ";Password=Puls3060";
+            con = global::nsMedlem3060Service.Properties.Settings.Default.puls3061_dk_dbConnectionString_Prod + ";Password=" + clsApp.dbPuls3060MedlemPW;
 #endif
             var cb = new SqlConnectionStringBuilder(con);
             Program.Log(string.Format("Medlem3060Service ConnectString to SQL Database {0} on {1}", cb.InitialCatalog, cb.DataSource)); 

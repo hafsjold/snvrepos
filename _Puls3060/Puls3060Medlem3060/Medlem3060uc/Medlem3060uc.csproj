@@ -37,7 +37,7 @@
     <ProductName>Medlem3060uc</ProductName>
     <PublisherName>Hafsjold</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>9</ApplicationRevision>
+    <ApplicationRevision>10</ApplicationRevision>
     <ApplicationVersion>8.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -205,12 +205,6 @@
     <Compile Include="frm\frmImportPBSFile.Designer.cs">
       <DependentUpon>frmImportPBSFile.cs</DependentUpon>
     </Compile>
-    <Compile Include="frm\frmPassword.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frm\frmPassword.Designer.cs">
-      <DependentUpon>frmPassword.cs</DependentUpon>
-    </Compile>
     <Compile Include="frm\frmKontingent.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -295,9 +289,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frm\frmPassword.resx">
-      <DependentUpon>frmPassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm\frmPbsfiles.resx">
       <DependentUpon>frmPbsfiles.cs</DependentUpon>

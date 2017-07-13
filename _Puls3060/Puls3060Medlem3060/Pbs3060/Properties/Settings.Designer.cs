@@ -26,44 +26,11 @@ namespace nsPbs3060.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=qynhbd9h4f.database.windows.net;Initial Catalog=dbPuls3060Medlem;Pers" +
-            "ist Security Info=True;User ID=sqlUser;Password=Puls3060;MultipleActiveResultSet" +
-            "s=True;Encrypt=True;TrustServerCertificate=True;Application Name=EntityFramework" +
-            "")]
-        public string puls3061_dk_dbConnectionString3 {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=qynhbd9h4f.database.windows.net;Initial Catalog=dbPuls3060Medlem;User" +
+            " ID=sqlUser;Connect Timeout=60")]
+        public string dbPuls3060MedlemConnectionString3 {
             get {
-                return ((string)(this["puls3061_dk_dbConnectionString3"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=vhd50;Initial Catalog=dbPuls3060Medlem;User ID=sa;Password=Puls3060")]
-        public string dbPuls3060MedlemConnectionString {
-            get {
-                return ((string)(this["dbPuls3060MedlemConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=qynhbd9h4f.database.windows.net;Initial Catalog=dbPuls3060Medlem;Pers" +
-            "ist Security Info=True;User ID=sqlUser;Password=Puls3060")]
-        public string dbPuls3060MedlemConnectionString1 {
-            get {
-                return ((string)(this["dbPuls3060MedlemConnectionString1"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=VHD50;Initial Catalog=dbPuls3060Medlem;Integrated Security=True")]
-        public string dbPuls3060MedlemConnectionString2 {
-            get {
-                return ((string)(this["dbPuls3060MedlemConnectionString2"]));
+                return ((string)(this["dbPuls3060MedlemConnectionString3"]));
             }
         }
         
@@ -71,10 +38,10 @@ namespace nsPbs3060.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=qynhbd9h4f.database.windows.net;Initial Catalog=dbPuls3060Medlem;User" +
-            " ID=sqlUser;Password=Puls3060;Connect Timeout=60")]
-        public string dbPuls3060MedlemConnectionString3 {
+            " ID=sqlUser;Connect Timeout=60;Encrypt=False;TrustServerCertificate=True")]
+        public string dbPuls3060MedlemConnectionString {
             get {
-                return ((string)(this["dbPuls3060MedlemConnectionString3"]));
+                return ((string)(this["dbPuls3060MedlemConnectionString"]));
             }
         }
     }

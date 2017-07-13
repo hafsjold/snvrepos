@@ -135,7 +135,7 @@ namespace nsPbs3060
     #endregion
 		
 		public dbData3060DataContext() : 
-				base(global::nsPbs3060.Properties.Settings.Default.dbPuls3060MedlemConnectionString3, mappingSource)
+				base(global::nsPbs3060.Properties.Settings.Default.dbPuls3060MedlemConnectionString, mappingSource)
 		{
 			OnCreated();
 		}

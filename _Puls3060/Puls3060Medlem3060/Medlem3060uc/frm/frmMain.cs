@@ -383,16 +383,6 @@ namespace Medlem3060uc
             }
         }
 
-        private void databasePasswordToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!FocusChild("Indtast Password"))
-            {
-                FrmPassword m_frmPassword = new FrmPassword();
-                m_frmPassword.MdiParent = this;
-                m_frmPassword.Show();
-            }
-        }
-
         private void importerFileFraPBSToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!FocusChild("Importer file fra PBS"))

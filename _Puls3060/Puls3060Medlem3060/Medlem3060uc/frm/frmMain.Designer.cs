@@ -61,7 +61,6 @@
             this.infoTekstToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.opdaterMedlemsstausToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reSendToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.databasePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importerFileFraPBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.payPalTilPBSNyeMedlemmerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.opdaterRSMembershipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,15 +69,15 @@
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripImpoetEmailBilag = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripDanskeErhvervExport = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripExportPayPal = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripBogførPBSFiler = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripPayPalBetalinger = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripImpoetEmailBilag = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripDanskeErhvervExport = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripExportPayPal = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -300,7 +299,6 @@
             this.infoTekstToolStripMenuItem,
             this.opdaterMedlemsstausToolStripMenuItem,
             this.reSendToolStripMenuItem,
-            this.databasePasswordToolStripMenuItem,
             this.importerFileFraPBSToolStripMenuItem,
             this.payPalTilPBSNyeMedlemmerToolStripMenuItem,
             this.opdaterRSMembershipToolStripMenuItem,
@@ -352,13 +350,6 @@
             this.reSendToolStripMenuItem.Text = "ReSend";
             this.reSendToolStripMenuItem.Click += new System.EventHandler(this.reSendToolStripMenuItem_Click);
             // 
-            // databasePasswordToolStripMenuItem
-            // 
-            this.databasePasswordToolStripMenuItem.Name = "databasePasswordToolStripMenuItem";
-            this.databasePasswordToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.databasePasswordToolStripMenuItem.Text = "Database Password";
-            this.databasePasswordToolStripMenuItem.Click += new System.EventHandler(this.databasePasswordToolStripMenuItem_Click);
-            // 
             // importerFileFraPBSToolStripMenuItem
             // 
             this.importerFileFraPBSToolStripMenuItem.Name = "importerFileFraPBSToolStripMenuItem";
@@ -405,7 +396,7 @@
             // omToolStripMenuItem
             // 
             this.omToolStripMenuItem.Name = "omToolStripMenuItem";
-            this.omToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
+            this.omToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
@@ -427,51 +418,6 @@
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripImpoetEmailBilag
-            // 
-            this.toolStripImpoetEmailBilag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripImpoetEmailBilag.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripImpoetEmailBilag.Name = "toolStripImpoetEmailBilag";
-            this.toolStripImpoetEmailBilag.Size = new System.Drawing.Size(108, 22);
-            this.toolStripImpoetEmailBilag.Text = "Import Email Bilag";
-            this.toolStripImpoetEmailBilag.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
-            this.toolStripImpoetEmailBilag.Click += new System.EventHandler(this.toolStripImpoetEmailBilag_Click);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripDanskeErhvervExport
-            // 
-            this.toolStripDanskeErhvervExport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripDanskeErhvervExport.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDanskeErhvervExport.Image")));
-            this.toolStripDanskeErhvervExport.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripDanskeErhvervExport.Name = "toolStripDanskeErhvervExport";
-            this.toolStripDanskeErhvervExport.Size = new System.Drawing.Size(130, 22);
-            this.toolStripDanskeErhvervExport.Text = " Export Danske Erhverv";
-            this.toolStripDanskeErhvervExport.Click += new System.EventHandler(this.toolStripDanskeErhvervExport_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripExportPayPal
-            // 
-            this.toolStripExportPayPal.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripExportPayPal.Image = ((System.Drawing.Image)(resources.GetObject("toolStripExportPayPal.Image")));
-            this.toolStripExportPayPal.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripExportPayPal.Name = "toolStripExportPayPal";
-            this.toolStripExportPayPal.Size = new System.Drawing.Size(82, 22);
-            this.toolStripExportPayPal.Text = "Export Paypal";
-            this.toolStripExportPayPal.Click += new System.EventHandler(this.toolStripExportPayPal_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
-            // 
             // toolStripBogførPBSFiler
             // 
             this.toolStripBogførPBSFiler.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
@@ -481,6 +427,11 @@
             this.toolStripBogførPBSFiler.Size = new System.Drawing.Size(95, 22);
             this.toolStripBogførPBSFiler.Text = "Bogfør PBS Filer";
             this.toolStripBogførPBSFiler.Click += new System.EventHandler(this.toolStripBogførPBSFiler_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripPayPalBetalinger
             // 
@@ -496,6 +447,46 @@
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
             this.toolStripSeparator6.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripImpoetEmailBilag
+            // 
+            this.toolStripImpoetEmailBilag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripImpoetEmailBilag.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripImpoetEmailBilag.Name = "toolStripImpoetEmailBilag";
+            this.toolStripImpoetEmailBilag.Size = new System.Drawing.Size(108, 22);
+            this.toolStripImpoetEmailBilag.Text = "Import Email Bilag";
+            this.toolStripImpoetEmailBilag.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            this.toolStripImpoetEmailBilag.Click += new System.EventHandler(this.toolStripImpoetEmailBilag_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripDanskeErhvervExport
+            // 
+            this.toolStripDanskeErhvervExport.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripDanskeErhvervExport.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDanskeErhvervExport.Image")));
+            this.toolStripDanskeErhvervExport.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDanskeErhvervExport.Name = "toolStripDanskeErhvervExport";
+            this.toolStripDanskeErhvervExport.Size = new System.Drawing.Size(130, 22);
+            this.toolStripDanskeErhvervExport.Text = " Export Danske Erhverv";
+            this.toolStripDanskeErhvervExport.Click += new System.EventHandler(this.toolStripDanskeErhvervExport_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripExportPayPal
+            // 
+            this.toolStripExportPayPal.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripExportPayPal.Image = ((System.Drawing.Image)(resources.GetObject("toolStripExportPayPal.Image")));
+            this.toolStripExportPayPal.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripExportPayPal.Name = "toolStripExportPayPal";
+            this.toolStripExportPayPal.Size = new System.Drawing.Size(82, 22);
+            this.toolStripExportPayPal.Text = "Export Paypal";
+            this.toolStripExportPayPal.Click += new System.EventHandler(this.toolStripExportPayPal_Click);
             // 
             // FrmMain
             // 
@@ -554,7 +545,6 @@
         internal System.Windows.Forms.ToolStripStatusLabel MainformProgressText;
         private System.Windows.Forms.ToolStripMenuItem reSendToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kontingentToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem databasePasswordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importerFileFraPBSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem opdaterMedlemsstausToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem regnearkManagementToolStripMenuItem;
