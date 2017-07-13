@@ -17,6 +17,8 @@ using MimeKit;
 using Uniconta.Common;
 using Uniconta.DataModel;
 using System.Threading.Tasks;
+using System.Collections.Specialized;
+using System.Configuration;
 
 namespace Medlem3060uc
 {
@@ -31,7 +33,25 @@ namespace Medlem3060uc
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            var xx = UnicontaLogin();
+            try
+            {
+                UnicontaLogin();
+                var CurrentCompany = UCInitializer.CurrentCompany;
+                this.toolStripStatusLabel1.Text = "Firma: " + CurrentCompany.CompanyId + " " + CurrentCompany.Name;
+                this.toolStripStatusLabel1.Alignment = ToolStripItemAlignment.Right;
+                this.toolStripStatusLabel2.Text = Program.ConnectStringWithoutPassword;
+                this.toolStripStatusLabel2.Alignment = ToolStripItemAlignment.Right;
+                this.toolStripStatusLabel2.AutoSize = true;
+            }
+            catch (Exception)
+            {
+                this.toolStripStatusLabel1.Text = "LogIn to UniConta Failed";
+                this.toolStripStatusLabel1.Alignment = ToolStripItemAlignment.Right;
+                this.toolStripStatusLabel2.Text = Program.ConnectStringWithoutPassword;
+                this.toolStripStatusLabel2.Alignment = ToolStripItemAlignment.Right;
+                this.toolStripStatusLabel2.AutoSize = true;
+            }
+
 #if (DEBUG)
             testToolStripMenuItem.Visible = true;
 #endif
@@ -88,8 +108,8 @@ namespace Medlem3060uc
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
 #if (DEBUG)
-            clsPbs601 objPbs601 = new clsPbs601();
-            objPbs601.advis_autoxxx(Program.dbData3060, 5046);
+            //clsPbs601 objPbs601 = new clsPbs601();
+            //objPbs601.advis_autoxxx(Program.dbData3060, 5046);
             /*
             string card = clsHelper.generateIndbetalerident(Program.dbData3060);
             bool test = clsHelper.Mod10Check(card);
@@ -459,8 +479,7 @@ namespace Medlem3060uc
 
         private void testToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-
-
+            clsApp.AddUpdateAppSettings("UniContaUser", "puls3060_new");
 
             //clsUniconta obj = new clsUniconta();
             //obj.BogforIndBetalinger();
@@ -566,9 +585,9 @@ namespace Medlem3060uc
             objPbsHelper.opdaterKanSlettes();
         }
 
-        int UnicontaLogin()
+        void UnicontaLogin()
         {
-            int ret = simulatedloginButton();
+            UC_Login();
 
             UCInitializer.SetupCompanies();
 
@@ -584,23 +603,11 @@ namespace Medlem3060uc
             //    cmbCompanies.SelectedItem = UCInitializer.Companies[0];
             //else
             //    MessageBox.Show("You do not have any access to company.", "Information", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-
-            var CurrentCompany = UCInitializer.CurrentCompany;
-            this.toolStripStatusLabel1.Text = "Firma: " + CurrentCompany.CompanyId + " " + CurrentCompany.Name;
-            this.toolStripStatusLabel1.Alignment = ToolStripItemAlignment.Right;
-            this.toolStripStatusLabel2.Text = Program.ConnectStringWithoutPassword;
-            this.toolStripStatusLabel2.Alignment = ToolStripItemAlignment.Right;
-
-            return 0;
         }
 
-        int simulatedloginButton()
+        void UC_Login()
         {
-            string password = "1234West+";
-            string userName = "puls3060";
-
-            ErrorCodes errorCode = SetLogin(userName, password);
-
+            ErrorCodes errorCode = SetLogin(clsApp.UniContaUser, clsApp.UniContaPW);
             switch (errorCode)
             {
                 case ErrorCodes.Succes:
@@ -615,7 +622,6 @@ namespace Medlem3060uc
                     MessageBox.Show(string.Format("{0} : {1}", "Unable to login", errorCode.ToString()), "Information");
                     break;
             }
-            return 0;
         }
 
         ErrorCodes SetLogin(string username, string password)
