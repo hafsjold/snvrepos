@@ -177,12 +177,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App - Copy %282%29.Config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="App - Copy.Config">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="dbJobQ.dbml.layout">
       <DependentUpon>dbJobQ.dbml</DependentUpon>
     </None>

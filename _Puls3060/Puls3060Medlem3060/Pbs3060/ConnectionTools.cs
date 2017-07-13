@@ -19,8 +19,8 @@ namespace nsPbs3060
                 this.ChangeDatabase
                   (
                       initialCatalog: "puls3060_dk",
-                      userId: "puls3060",
-                      password: "tasja123",
+                      userId: clsApp.puls3060_dkUser,
+                      password: clsApp.puls3060_dkPW,
                       integratedSecuity: false,
                       dataSource: @"mysql3.gigahost.dk"
                   );

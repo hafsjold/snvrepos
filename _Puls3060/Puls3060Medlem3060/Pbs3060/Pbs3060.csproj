@@ -295,6 +295,7 @@
     <Compile Include="UCInitializer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="dbData3060.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>dbData3060.designer.cs</LastGenOutput>
@@ -497,7 +498,6 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="dbData3060.dbml.layout">
       <DependentUpon>dbData3060.dbml</DependentUpon>
     </None>

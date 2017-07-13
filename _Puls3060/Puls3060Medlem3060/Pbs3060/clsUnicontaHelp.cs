@@ -46,7 +46,7 @@ namespace nsPbs3060
             {
                 imap_client.Connect("imap.gigahost.dk", 993, true);
                 imap_client.AuthenticationMechanisms.Remove("XOAUTH");
-                imap_client.Authenticate("regnskab@puls3060.dk", "1234West+");
+                imap_client.Authenticate(clsApp.GigaHostImapUser, clsApp.GigaHostImapPW);
                 var Puls3060Bilag = imap_client.GetFolder("_Puls3060Bilag");
                 var Puls3060BilagArkiv = imap_client.GetFolder("_Puls3060BilagArkiv");
                 //var Puls3060Bilag = imap_client.GetFolder("_TestPuls3060Bilag");          // <-----------------------------------TEST
@@ -425,7 +425,7 @@ namespace nsPbs3060
             {
                 imap_client.Connect("imap.gigahost.dk", 993, true);
                 imap_client.AuthenticationMechanisms.Remove("XOAUTH");
-                imap_client.Authenticate("regnskab@puls3060.dk", "1234West+");
+                imap_client.Authenticate(clsApp.GigaHostImapUser, clsApp.GigaHostImapPW);
                 var Puls3060Bilag = imap_client.GetFolder("_Puls3060Bilag");
                 Puls3060Bilag.Open(FolderAccess.ReadOnly);
 
