@@ -55,8 +55,12 @@ namespace nsMedlem3060Service
 
         protected override void OnStart(string[] args)
         {
-            UnicontaLogin(); // <<-------------------------------------
             Program.Log("Medlem3060Service OnStart()");
+            try
+            {
+                UCInitializer.UnicontaLogin();
+            }
+            catch { }
             _SchedulerThread = new Thread(Scheduler);
             _SchedulerThread.Name = "Scheduler";
             _SchedulerThread.Start();
@@ -266,75 +270,5 @@ namespace nsMedlem3060Service
                 Program.Log(string.Format("Medlem3060Service LoadSchedule() failed with message: {0}", e.Message));
             }
         }
-
-        //********************* UniConta
-        int UnicontaLogin()
-        {
-            int ret = simulatedloginButton();
-
-            UCInitializer.SetupCompanies();
-
-            var cmbCompanies = UCInitializer.Companies;
-
-            if (UCInitializer.CurrentSession.User._DefaultCompany != 0)
-            {
-                //var comp = UCInitializer.Companies.Where(c => c.CompanyId == UCInitializer.CurrentSession.User._DefaultCompany).FirstOrDefault();
-                var comp = UCInitializer.Companies.Where(c => c.CompanyId == 4852).FirstOrDefault(); //Løbeklubben Puls 3060
-                //var comp = UCInitializer.Companies.Where(c => c.CompanyId == 4850).FirstOrDefault(); //Puls 3060 Ref
-                UCInitializer.SetCompany(comp.CompanyId);
-                UCInitializer.SetCurrentCompanyFinanceYear();
-            }
-            else if (UCInitializer.Companies.Count() > 0)
-            {
-                var comp = UCInitializer.Companies[0];
-                UCInitializer.SetCompany(comp.CompanyId);
-                UCInitializer.SetCurrentCompanyFinanceYear();
-            }
-            else
-                Program.Log(string.Format("Medlem3060Service UnicontaLogin() failed with message: You do not have any access to company"));
-
-            return 0;
-        }
-        int simulatedloginButton()
-        {
-            string userName = "puls3060";
-            string password = "1234West+";
-
-            ErrorCodes errorCode = SetLogin(userName, password);
-
-            switch (errorCode)
-            {
-                case ErrorCodes.Succes:
-                    Uniconta.ClientTools.Localization.SetDefault((Language)UCInitializer.CurrentSession.User._Language);
-                    Program.Log(string.Format("Medlem3060Service simulatedloginButton() login as {0} OK", userName));
-                    break;
-
-                case ErrorCodes.UserOrPasswordIsWrong:
-                    Program.Log(string.Format("Medlem3060Service simulatedloginButton() failed with message: Please Check Your Credentials & Try again !!!"));
-                    break;
-
-                default:
-                    Program.Log(string.Format("Medlem3060Service simulatedloginButton() failed with message: {0} {1}", "Unable to login", errorCode.ToString()));
-                    break;
-            }
-            return 0;
-        }
-        ErrorCodes SetLogin(string username, string password)
-        {
-            try
-            {
-                var ses = UCInitializer.GetSession();
-                var task = ses.LoginAsync(username, password, Uniconta.Common.User.LoginType.API, new Guid("73c93c84-af78-41e4-ada1-b8101c95ba89"), Uniconta.ClientTools.Localization.InititalLanguageCode);
-                task.Wait();
-                var res = task.Result;
-                return res;
-            }
-            catch
-            {
-                Program.Log(string.Format("Medlem3060Service SetLogin() failed with message: {0}", "Fatal Error"));
-                return ErrorCodes.Exception;
-            }
-        }
-
     }
 }
