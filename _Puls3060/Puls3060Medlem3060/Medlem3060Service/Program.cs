@@ -67,6 +67,7 @@ namespace nsMedlem3060Service
         static void Main()
         {
             Trace.Listeners.RemoveAt(0);
+            Trace.AutoFlush = true;
             DefaultTraceListener defaultListener;
             defaultListener = new DefaultTraceListener();
             defaultListener.LogFileName = "Application.log";
@@ -90,6 +91,7 @@ namespace nsMedlem3060Service
 				new mcMedlem3060Service() 
 			};
             ServiceBase.Run(ServicesToRun);
+            Trace.Flush();
         }
     }
 }

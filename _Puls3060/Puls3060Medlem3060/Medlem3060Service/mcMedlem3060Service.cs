@@ -38,6 +38,7 @@ namespace nsMedlem3060Service
         static Thread _pipeThread;
         static pipeServer _PipeServer;
 
+ 
         public mcMedlem3060Service()
         {
             InitializeComponent();
@@ -81,6 +82,7 @@ namespace nsMedlem3060Service
             Service_waitStopHandle.Set();
             _pipeThread.Join();
             _SchedulerThread.Join();
+            Program.Log("Medlem3060Service OnStop()");
         }
 
         private void Pipe()

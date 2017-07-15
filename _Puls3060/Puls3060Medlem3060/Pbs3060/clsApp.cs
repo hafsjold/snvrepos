@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -85,8 +86,16 @@ namespace nsPbs3060
         private static void EncryptAppSettings(clsAppData recAppData)
         {
             var processName = Process.GetCurrentProcess().ProcessName;
-            ExeConfigurationFileMap configurationFileMap = new ExeConfigurationFileMap { ExeConfigFilename = string.Format("{0}.exe.config", processName) };
+            var strExeConfigFilename = string.Format("{0}.exe.config", processName);
+            //Program.Log(string.Format("DEBUG1 EncryptAppSettings() strExeConfigFilename={0}", strExeConfigFilename));
+
+            var uri = new Uri(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase));
+            ExeConfigurationFileMap configurationFileMap = new ExeConfigurationFileMap { ExeConfigFilename = Path.Combine(uri.LocalPath, strExeConfigFilename) };
+            //Program.Log(string.Format("DEBUG2 EncryptAppSettings() ExeConfigFilename={0}, RoamingUserConfigFilename={1}, LocalUserConfigFilename={2} ", configurationFileMap.ExeConfigFilename, configurationFileMap.RoamingUserConfigFilename, configurationFileMap.LocalUserConfigFilename));
+
             Configuration config = ConfigurationManager.OpenMappedExeConfiguration(configurationFileMap, ConfigurationUserLevel.None, true);
+            //Program.Log(string.Format("DEBUG3 EncryptAppSettings() FilePath={0}", config.FilePath));
+
             ConfigurationSection sectionToEncrypt = config.GetSection("PrivateAppSettings");
 
             if (sectionToEncrypt == null)
