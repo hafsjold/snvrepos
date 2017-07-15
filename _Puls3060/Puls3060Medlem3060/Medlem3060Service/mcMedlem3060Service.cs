@@ -33,17 +33,23 @@ namespace nsMedlem3060Service
 
     public partial class mcMedlem3060Service : ServiceBase
     {
-        static EventWaitHandle _waitStopHandle = new ManualResetEvent(false);
+        public static EventWaitHandle Service_waitStopHandle = new ManualResetEvent(false);
         static Thread _SchedulerThread;
+        static Thread _pipeThread;
+        static pipeServer _PipeServer;
 
         public mcMedlem3060Service()
         {
             InitializeComponent();
             /*
-                        Program.Log("Medlem3060Service Starter #2");
+                        Program.Log("Medlem3060Service Starter #2")
+                        _pipeThread = new Thread(Scheduler);
+                        _pipeThread.Name = "Pipe";
+                        _pipeThread.Start();
                         _SchedulerThread = new Thread(Scheduler);
                         _SchedulerThread.Name = "Scheduler";
                         _SchedulerThread.Start();
+                        _pipeThread.Join();
                         _SchedulerThread.Join();
             */
         }
@@ -61,6 +67,10 @@ namespace nsMedlem3060Service
                 UCInitializer.UnicontaLogin();
             }
             catch { }
+            _pipeThread = new Thread(Pipe);
+            _pipeThread.Name = "Pipe";
+            _pipeThread.Start();
+
             _SchedulerThread = new Thread(Scheduler);
             _SchedulerThread.Name = "Scheduler";
             _SchedulerThread.Start();
@@ -68,8 +78,14 @@ namespace nsMedlem3060Service
 
         protected override void OnStop()
         {
-            _waitStopHandle.Set();
+            Service_waitStopHandle.Set();
+            _pipeThread.Join();
             _SchedulerThread.Join();
+        }
+
+        private void Pipe()
+        {
+            _PipeServer = new pipeServer("MyPipe");
         }
 
         private void Scheduler()
@@ -99,14 +115,14 @@ namespace nsMedlem3060Service
                     else
                     {
 
-                        if (_waitStopHandle.WaitOne(2 * 60000))
+                        if (Service_waitStopHandle.WaitOne(2 * 60000))
                             break;
                     }
                 }
                 catch (Exception e)
                 {
                     Program.Log(string.Format("Medlem3060Service Scheduler() loop failed with message: {0}", e.Message));
-                    if (_waitStopHandle.WaitOne(5 * 60000))
+                    if (Service_waitStopHandle.WaitOne(5 * 60000))
                         break;
                 }
             }

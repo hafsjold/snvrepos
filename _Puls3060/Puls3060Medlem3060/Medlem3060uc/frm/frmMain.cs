@@ -19,12 +19,12 @@ using Uniconta.DataModel;
 using System.Threading.Tasks;
 using System.Collections.Specialized;
 using System.Configuration;
+using System.Threading;
 
 namespace Medlem3060uc
 {
     public partial class FrmMain : Form
     {
-
         public FrmMain()
         {
             InitializeComponent();
@@ -33,7 +33,6 @@ namespace Medlem3060uc
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
-
             try
             {
                 UCInitializer.UnicontaLogin();
@@ -56,10 +55,17 @@ namespace Medlem3060uc
 #if (DEBUG)
             testToolStripMenuItem.Visible = true;
 #endif
+            if (!FocusChild("pipeServer"))
+            {
+                pipeServer m_pipeServer = new pipeServer();
+                m_pipeServer.MdiParent = this;
+                m_pipeServer.Show();
+            }
         }
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
+            //_PipeThread.Join();
             Program.dbData3060.SubmitChanges();
             Properties.Settings.Default.Save();
         }
@@ -470,9 +476,7 @@ namespace Medlem3060uc
 
         private void testToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            clsApp.AddUpdateAppSettings("UniContaUser", "puls3060_new");
-
-            //clsUniconta obj = new clsUniconta();
+             //clsUniconta obj = new clsUniconta();
             //obj.BogforIndBetalinger();
             /*
             var CurrentCompany = UCInitializer.CurrentCompany;
@@ -680,6 +684,16 @@ namespace Medlem3060uc
         private void toolStripPayPalBetalinger_Click(object sender, EventArgs e)
         {
             payPalBetalinger(sender, e);
+        }
+
+        private void opdaterAppDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("App Data"))
+            {
+                FrmApp frmApp = new FrmApp();
+                frmApp.MdiParent = this;
+                frmApp.Show();
+            }
         }
     }
 }
