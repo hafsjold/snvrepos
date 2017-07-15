@@ -26,17 +26,27 @@ namespace nsMedlem3060Service
         private void OnClientConnected(NamedPipeConnection<clsAppData, clsAppData> connection)
         {
             Program.Log(string.Format("Medlem3060Service OnClientConnected(): Client {0} is now connected!", connection.Id));
-            connection.PushMessage(new clsAppData { });
+            connection.PushMessage(new clsAppData { Id = new Random().Next(), message = "Welcome!  You are now connected to the server."});
+        }
+
+        private void OnClientMessage(NamedPipeConnection<clsAppData, clsAppData> connection, clsAppData appdata)
+        {
+            try
+            {
+                Program.Log(string.Format("Medlem3060Service OnClientMessage(): Client {0} send {1}", connection.Id, appdata.ToString()));
+                clsApp.AddUpdateAppSettings(appdata);
+                appdata.message = "Your request has been executed on the server.";
+                connection.PushMessage(appdata);
+            }
+            catch (Exception exception)
+            {
+                Program.Log(string.Format("Medlem3060Service OnClientMessage() ERROR: {0}", exception));
+            }
         }
 
         private void OnClientDisconnected(NamedPipeConnection<clsAppData, clsAppData> connection)
         {
             Program.Log(string.Format("Medlem3060Service OnClientDisconnected(): Client {0} disconnected", connection.Id));
-        }
-
-        private void OnClientMessage(NamedPipeConnection<clsAppData, clsAppData> connection, clsAppData message)
-        {
-            Program.Log(string.Format("Medlem3060Service OnClientMessage(): Client {0} send {1}", connection.Id, message.ToString()));
         }
 
         private void OnError(Exception exception)
@@ -46,3 +56,4 @@ namespace nsMedlem3060Service
 
     }
 }
+       
