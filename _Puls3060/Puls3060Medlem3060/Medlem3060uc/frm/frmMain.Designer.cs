@@ -78,6 +78,7 @@
             this.toolStripDanskeErhvervExport = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripExportPayPal = new System.Windows.Forms.ToolStripButton();
+            this.opdaterAppDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -302,6 +303,7 @@
             this.importerFileFraPBSToolStripMenuItem,
             this.payPalTilPBSNyeMedlemmerToolStripMenuItem,
             this.opdaterRSMembershipToolStripMenuItem,
+            this.opdaterAppDataToolStripMenuItem,
             this.testEmailRykkerToolStripMenuItem,
             this.testToolStripMenuItem1});
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
@@ -396,7 +398,7 @@
             // omToolStripMenuItem
             // 
             this.omToolStripMenuItem.Name = "omToolStripMenuItem";
-            this.omToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.omToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
             this.omToolStripMenuItem.Text = "Om ...";
             this.omToolStripMenuItem.Click += new System.EventHandler(this.omToolStripMenuItem_Click);
             // 
@@ -488,6 +490,13 @@
             this.toolStripExportPayPal.Text = "Export Paypal";
             this.toolStripExportPayPal.Click += new System.EventHandler(this.toolStripExportPayPal_Click);
             // 
+            // opdaterAppDataToolStripMenuItem
+            // 
+            this.opdaterAppDataToolStripMenuItem.Name = "opdaterAppDataToolStripMenuItem";
+            this.opdaterAppDataToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.opdaterAppDataToolStripMenuItem.Text = "Opdater AppData";
+            this.opdaterAppDataToolStripMenuItem.Click += new System.EventHandler(this.opdaterAppDataToolStripMenuItem_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -569,6 +578,7 @@
         private System.Windows.Forms.ToolStripButton toolStripBogførPBSFiler;
         private System.Windows.Forms.ToolStripButton toolStripPayPalBetalinger;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripMenuItem opdaterAppDataToolStripMenuItem;
     }
 }
 

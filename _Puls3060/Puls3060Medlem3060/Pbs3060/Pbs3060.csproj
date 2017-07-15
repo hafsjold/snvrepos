@@ -201,6 +201,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="clsApp.cs" />
+    <Compile Include="clsAppData.cs" />
     <Compile Include="clsAzure.cs" />
     <Compile Include="clsHelper.cs" />
     <Compile Include="clsInfotekst.cs" />

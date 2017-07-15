@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PHPSerializationLibrary", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medlem3060uc", "Medlem3060uc\Medlem3060uc.csproj", "{CF9D71AF-4CA3-417B-AE1D-E0111A700763}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pipeClient", "pipeClient\pipeClient.csproj", "{2E82B309-C303-48BF-BE59-79D515FB65F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -118,6 +120,22 @@ Global
 		{CF9D71AF-4CA3-417B-AE1D-E0111A700763}.Release|x64.Build.0 = Release|x64
 		{CF9D71AF-4CA3-417B-AE1D-E0111A700763}.Release|x86.ActiveCfg = Release|x86
 		{CF9D71AF-4CA3-417B-AE1D-E0111A700763}.Release|x86.Build.0 = Release|x86
+		{2E82B309-C303-48BF-BE59-79D515FB65F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E82B309-C303-48BF-BE59-79D515FB65F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E82B309-C303-48BF-BE59-79D515FB65F5}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{2E82B309-C303-48BF-BE59-79D515FB65F5}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{2E82B309-C303-48BF-BE59-79D515FB65F5}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2E82B309-C303-48BF-BE59-79D515FB65F5}.Debug|x64.Build.0 = Debug|Any CPU
+		{2E82B309-C303-48BF-BE59-79D515FB65F5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2E82B309-C303-48BF-BE59-79D515FB65F5}.Debug|x86.Build.0 = Debug|Any CPU
+		{2E82B309-C303-48BF-BE59-79D515FB65F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E82B309-C303-48BF-BE59-79D515FB65F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E82B309-C303-48BF-BE59-79D515FB65F5}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{2E82B309-C303-48BF-BE59-79D515FB65F5}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{2E82B309-C303-48BF-BE59-79D515FB65F5}.Release|x64.ActiveCfg = Release|Any CPU
+		{2E82B309-C303-48BF-BE59-79D515FB65F5}.Release|x64.Build.0 = Release|Any CPU
+		{2E82B309-C303-48BF-BE59-79D515FB65F5}.Release|x86.ActiveCfg = Release|Any CPU
+		{2E82B309-C303-48BF-BE59-79D515FB65F5}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
