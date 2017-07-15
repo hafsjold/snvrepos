@@ -84,7 +84,8 @@ namespace nsPbs3060
 
         private static void EncryptAppSettings(clsAppData recAppData)
         {
-            ExeConfigurationFileMap configurationFileMap = new ExeConfigurationFileMap { ExeConfigFilename = "Medlem3060uc.exe.config" };
+            var processName = Process.GetCurrentProcess().ProcessName;
+            ExeConfigurationFileMap configurationFileMap = new ExeConfigurationFileMap { ExeConfigFilename = string.Format("{0}.exe.config", processName) };
             Configuration config = ConfigurationManager.OpenMappedExeConfiguration(configurationFileMap, ConfigurationUserLevel.None, true);
             ConfigurationSection sectionToEncrypt = config.GetSection("PrivateAppSettings");
 
