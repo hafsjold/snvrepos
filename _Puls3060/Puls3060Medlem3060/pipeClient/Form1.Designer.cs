@@ -58,10 +58,11 @@
             this.uniContaPWTextBox = new System.Windows.Forms.TextBox();
             this.uniContaUserTextBox = new System.Windows.Forms.TextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnSaveEncrypted = new System.Windows.Forms.Button();
             this.btnOpdatermarkerededata = new System.Windows.Forms.Button();
             this.EncryptAppconfig = new System.Windows.Forms.Button();
             this.richTextBoxMessages = new System.Windows.Forms.RichTextBox();
-            this.btnSaveEncrypted = new System.Windows.Forms.Button();
+            this.txtPassword = new System.Windows.Forms.TextBox();
             dbPuls3060MedlemPWLabel = new System.Windows.Forms.Label();
             dbPuls3060MedlemUserLabel = new System.Windows.Forms.Label();
             gigaHostImapPWLabel = new System.Windows.Forms.Label();
@@ -325,6 +326,7 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.txtPassword);
             this.splitContainer1.Panel1.Controls.Add(this.btnSaveEncrypted);
             this.splitContainer1.Panel1.Controls.Add(this.btnOpdatermarkerededata);
             this.splitContainer1.Panel1.Controls.Add(this.EncryptAppconfig);
@@ -364,6 +366,16 @@
             this.splitContainer1.SplitterDistance = 280;
             this.splitContainer1.TabIndex = 45;
             // 
+            // btnSaveEncrypted
+            // 
+            this.btnSaveEncrypted.Location = new System.Drawing.Point(351, 239);
+            this.btnSaveEncrypted.Name = "btnSaveEncrypted";
+            this.btnSaveEncrypted.Size = new System.Drawing.Size(106, 23);
+            this.btnSaveEncrypted.TabIndex = 46;
+            this.btnSaveEncrypted.Text = "Save Encrypted";
+            this.btnSaveEncrypted.UseVisualStyleBackColor = true;
+            this.btnSaveEncrypted.Click += new System.EventHandler(this.btnSaveEncrypted_Click);
+            // 
             // btnOpdatermarkerededata
             // 
             this.btnOpdatermarkerededata.Location = new System.Drawing.Point(169, 239);
@@ -394,15 +406,13 @@
             this.richTextBoxMessages.TabIndex = 0;
             this.richTextBoxMessages.Text = "";
             // 
-            // btnSaveEncrypted
+            // txtPassword
             // 
-            this.btnSaveEncrypted.Location = new System.Drawing.Point(351, 239);
-            this.btnSaveEncrypted.Name = "btnSaveEncrypted";
-            this.btnSaveEncrypted.Size = new System.Drawing.Size(106, 23);
-            this.btnSaveEncrypted.TabIndex = 46;
-            this.btnSaveEncrypted.Text = "Save Encrypted";
-            this.btnSaveEncrypted.UseVisualStyleBackColor = true;
-            this.btnSaveEncrypted.Click += new System.EventHandler(this.btnSaveEncrypted_Click);
+            this.txtPassword.Location = new System.Drawing.Point(351, 216);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(106, 20);
+            this.txtPassword.TabIndex = 47;
             // 
             // Form1
             // 
@@ -448,6 +458,7 @@
         private System.Windows.Forms.Button btnOpdatermarkerededata;
         private System.Windows.Forms.Button EncryptAppconfig;
         private System.Windows.Forms.Button btnSaveEncrypted;
+        private System.Windows.Forms.TextBox txtPassword;
     }
 }
 
