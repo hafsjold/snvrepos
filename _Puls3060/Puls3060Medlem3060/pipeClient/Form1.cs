@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using NamedPipeWrapper;
 using nsPbs3060;
 using Microsoft.Win32;
+using System.Security.Cryptography;
 
 namespace pipeClient
 {
@@ -23,11 +24,11 @@ namespace pipeClient
         public Form1()
         {
             InitializeComponent();
-            masterKey = Registry.CurrentUser.OpenSubKey(regKey);
+            masterKey = Registry.CurrentUser.OpenSubKey(regKey,true);
             if (masterKey == null)
             {
                 RegistryKey masterKeyCreate = Registry.CurrentUser.OpenSubKey(@"Software", true);
-                masterKey = masterKeyCreate.CreateSubKey(@"Hafsjold\pipeClient");
+                masterKey = masterKeyCreate.CreateSubKey(@"Hafsjold\pipeClient", RegistryKeyPermissionCheck.ReadWriteSubTree);
             }
         }
 
@@ -98,11 +99,53 @@ namespace pipeClient
         private void btnSaveEncrypted_Click(object sender, EventArgs e)
         {
             string password = txtPassword.Text;
+            var res = CheckPassword(password);
             //var encryptData = _appdata.encryptClass(password);
             //masterKey.SetValue("clsAppData", encryptData, RegistryValueKind.String);
 
             var encryptData = (string)masterKey.GetValue("clsAppData", "");
             clsAppData udata = new clsAppData(encryptData, password);
+        }
+
+        bool CheckPassword(string password)
+        {
+            byte[] plainText = System.Text.Encoding.Unicode.GetBytes(password);
+            bool newPassword = false;
+            byte[] salt;
+            var savedsalt = (string)masterKey.GetValue("salt", "");
+            if (savedsalt == "")
+            {
+                newPassword = true;
+                RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
+                salt = new byte[32];
+                rng.GetBytes(salt);
+                masterKey.SetValue("salt", Convert.ToBase64String(salt), RegistryValueKind.String);
+            }
+            else
+            {
+                salt = Convert.FromBase64String(savedsalt);
+            }
+            byte[] plainTextWithSaltBytes = new byte[plainText.Length + salt.Length];
+            for (int i = 0; i < plainText.Length; i++)
+            {
+                plainTextWithSaltBytes[i] = plainText[i];
+            }
+            for (int i = 0; i < salt.Length; i++)
+            {
+                plainTextWithSaltBytes[plainText.Length + i] = salt[i];
+            }
+            HashAlgorithm algorithm = new SHA256Managed();
+            byte[] hash =  algorithm.ComputeHash(plainTextWithSaltBytes);
+            if (newPassword)
+            {
+                masterKey.SetValue("hash", Convert.ToBase64String(hash), RegistryValueKind.String);
+                return true;
+            }
+            var savedhash = (string)masterKey.GetValue("hash", "");
+            if (Convert.ToBase64String(hash) == savedhash)
+                return true;
+            else
+                return false;
         }
     }
 }
