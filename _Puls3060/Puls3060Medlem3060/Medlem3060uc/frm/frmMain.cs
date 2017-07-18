@@ -695,5 +695,15 @@ namespace Medlem3060uc
                 frmApp.Show();
             }
         }
+
+        private void sysInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("frmSysInfo"))
+            {
+                FrmSysInfo frmSysInfo = new FrmSysInfo();
+                frmSysInfo.MdiParent = this;
+                frmSysInfo.Show();
+            }
+        }
     }
 }

@@ -64,6 +64,7 @@
             this.importerFileFraPBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.payPalTilPBSNyeMedlemmerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.opdaterRSMembershipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.opdaterAppDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testEmailRykkerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.testToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,7 +79,7 @@
             this.toolStripDanskeErhvervExport = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripExportPayPal = new System.Windows.Forms.ToolStripButton();
-            this.opdaterAppDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sysInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -294,6 +295,7 @@
             // systemToolStripMenuItem
             // 
             this.systemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sysInfoToolStripMenuItem,
             this.kontingentToolStripMenuItem,
             this.toolStripMenuItem1,
             this.pbsfilesToolStripMenuItem,
@@ -372,6 +374,13 @@
             this.opdaterRSMembershipToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
             this.opdaterRSMembershipToolStripMenuItem.Text = "Opdater RSMembership";
             this.opdaterRSMembershipToolStripMenuItem.Click += new System.EventHandler(this.opdaterRSMembershipToolStripMenuItem_Click);
+            // 
+            // opdaterAppDataToolStripMenuItem
+            // 
+            this.opdaterAppDataToolStripMenuItem.Name = "opdaterAppDataToolStripMenuItem";
+            this.opdaterAppDataToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.opdaterAppDataToolStripMenuItem.Text = "Opdater AppData";
+            this.opdaterAppDataToolStripMenuItem.Click += new System.EventHandler(this.opdaterAppDataToolStripMenuItem_Click);
             // 
             // testEmailRykkerToolStripMenuItem
             // 
@@ -490,12 +499,12 @@
             this.toolStripExportPayPal.Text = "Export Paypal";
             this.toolStripExportPayPal.Click += new System.EventHandler(this.toolStripExportPayPal_Click);
             // 
-            // opdaterAppDataToolStripMenuItem
+            // sysInfoToolStripMenuItem
             // 
-            this.opdaterAppDataToolStripMenuItem.Name = "opdaterAppDataToolStripMenuItem";
-            this.opdaterAppDataToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.opdaterAppDataToolStripMenuItem.Text = "Opdater AppData";
-            this.opdaterAppDataToolStripMenuItem.Click += new System.EventHandler(this.opdaterAppDataToolStripMenuItem_Click);
+            this.sysInfoToolStripMenuItem.Name = "sysInfoToolStripMenuItem";
+            this.sysInfoToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.sysInfoToolStripMenuItem.Text = "SysInfo";
+            this.sysInfoToolStripMenuItem.Click += new System.EventHandler(this.sysInfoToolStripMenuItem_Click);
             // 
             // FrmMain
             // 
@@ -579,6 +588,7 @@
         private System.Windows.Forms.ToolStripButton toolStripPayPalBetalinger;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem opdaterAppDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sysInfoToolStripMenuItem;
     }
 }
 

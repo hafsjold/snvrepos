@@ -16,6 +16,7 @@ namespace pipeClient
     {
         private readonly NamedPipeClient<clsAppData> _client = new NamedPipeClient<clsAppData>("MyPipe");
         clsAppData _appdata;
+        static string keyContainerName = "pipeClientContainerKeys";
 
         public Form1()
         {
@@ -84,6 +85,15 @@ namespace pipeClient
             _client.PushMessage(data);
             _appdata = new clsAppData();
             dsAppData.DataSource = _appdata;
+        }
+
+        private void btnSaveEncrypted_Click(object sender, EventArgs e)
+        {
+            string password = "MyNewPassword";
+            string data = _appdata.ToXml();
+            clsCrypt crypt = new clsCrypt();
+            var encryptData = crypt.Encrypt(data, password);
+            var unencryptData = crypt.Decrypt(encryptData, password);
         }
     }
 }
