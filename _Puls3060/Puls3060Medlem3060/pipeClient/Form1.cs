@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using NamedPipeWrapper;
 using nsPbs3060;
+using Microsoft.Win32;
 
 namespace pipeClient
 {
@@ -16,12 +17,19 @@ namespace pipeClient
     {
         private readonly NamedPipeClient<clsAppData> _client = new NamedPipeClient<clsAppData>("MyPipe");
         clsAppData _appdata;
-        static string keyContainerName = "pipeClientContainerKeys";
+        private RegistryKey masterKey = null;
+        private string regKey = @"Software\Hafsjold\pipeClient";
 
         public Form1()
         {
             InitializeComponent();
-         }
+            masterKey = Registry.CurrentUser.OpenSubKey(regKey);
+            if (masterKey == null)
+            {
+                RegistryKey masterKeyCreate = Registry.CurrentUser.OpenSubKey(@"Software", true);
+                masterKey = masterKeyCreate.CreateSubKey(@"Hafsjold\pipeClient");
+            }
+        }
 
         private void OnLoad(object sender, EventArgs eventArgs)
         {
@@ -89,11 +97,12 @@ namespace pipeClient
 
         private void btnSaveEncrypted_Click(object sender, EventArgs e)
         {
-            string password = "MyNewPassword";
-            string data = _appdata.ToXml();
-            clsCrypt crypt = new clsCrypt();
-            var encryptData = crypt.Encrypt(data, password);
-            var unencryptData = crypt.Decrypt(encryptData, password);
+            string password = txtPassword.Text;
+            //var encryptData = _appdata.encryptClass(password);
+            //masterKey.SetValue("clsAppData", encryptData, RegistryValueKind.String);
+
+            var encryptData = (string)masterKey.GetValue("clsAppData", "");
+            clsAppData udata = new clsAppData(encryptData, password);
         }
     }
 }
