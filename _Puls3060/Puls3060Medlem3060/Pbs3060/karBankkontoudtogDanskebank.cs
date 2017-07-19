@@ -182,8 +182,10 @@ namespace nsPbs3060
             {
                 ExportFromDate = col[0].LastTransaction;
                 var DaysSlip = col[0].DaysSlip;
-                ExportFromDate.AddDays(-DaysSlip);
+                ExportFromDate = ExportFromDate.AddDays(-DaysSlip);
             }
+
+            //ExportFromDate = DateTime.Now.AddDays(-30); //<-------------------Fjernes
 
             using (StringWriter sr = new StringWriter())
             {
