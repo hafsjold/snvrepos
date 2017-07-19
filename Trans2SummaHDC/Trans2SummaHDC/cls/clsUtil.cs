@@ -313,7 +313,10 @@ namespace Trans2SummaHDC
             {
                 if (p.ProcessName.Contains(name))
                 {
-                    if (!p.ProcessName.Contains("Trans2SummaHDC")) return true;
+                    if (!p.ProcessName.Contains("vshost"))
+                    {
+                        if (!p.ProcessName.Contains("Trans2SummaHDC")) return true;
+                    }
                 }
             }
             return false;

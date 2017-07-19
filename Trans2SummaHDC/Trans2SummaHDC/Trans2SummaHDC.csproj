@@ -160,6 +160,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dbDataTransSumma.dbml</DependentUpon>
     </Compile>
+    <Compile Include="frm\frmDebKrd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm\frmDebKrd.Designer.cs">
+      <DependentUpon>frmDebKrd.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm\frmNyKontoplan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -304,6 +310,9 @@
     <None Include="dbDataTransSumma.dbml.layout">
       <DependentUpon>dbDataTransSumma.dbml</DependentUpon>
     </None>
+    <EmbeddedResource Include="frm\frmDebKrd.resx">
+      <DependentUpon>frmDebKrd.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frm\frmKontoudtog.resx">
       <DependentUpon>frmKontoudtog.cs</DependentUpon>
     </EmbeddedResource>
@@ -372,6 +381,7 @@
     </Compile>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
+    <None Include="Properties\DataSources\KarKartotek.datasource" />
     <None Include="Properties\DataSources\KarNyKontoplan.datasource" />
     <None Include="Properties\DataSources\tblactebisfaktura.datasource" />
     <None Include="Properties\DataSources\tblactebisordre.datasource" />

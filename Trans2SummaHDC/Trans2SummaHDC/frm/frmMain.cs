@@ -520,7 +520,7 @@ namespace Trans2SummaHDC
             if (UCInitializer.CurrentSession.User._DefaultCompany != 0)
             {
                 //var comp = UCInitializer.Companies.Where(c => c.CompanyId == UCInitializer.CurrentSession.User._DefaultCompany).FirstOrDefault();
-                var comp = UCInitializer.Companies.Where(c => c.CompanyId == 4377).FirstOrDefault();
+                var comp = UCInitializer.Companies.Where(c => c.CompanyId == 5364).FirstOrDefault();
                 await UCInitializer.SetCompany(comp.CompanyId);
                 await UCInitializer.SetCurrentCompanyFinanceYear();
             }
@@ -588,6 +588,34 @@ namespace Trans2SummaHDC
                 m_NyKontoplan.MdiParent = this;
                 m_NyKontoplan.Show();
             }
+        }
+
+        private void dagligePosterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clsUnicontaKladde obj = new clsUnicontaKladde();
+            obj.InsertGLDailyJournalLines();
+        }
+
+        private void debitorKreditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("DebitorKreditor"))
+            {
+                FrmDebKrd m_DebKrd = new FrmDebKrd();
+                m_DebKrd.MdiParent = this;
+                m_DebKrd.Show();
+            }
+        }
+
+        private void salgsfakturaerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clsUnicontaKladde obj = new clsUnicontaKladde();
+            obj.InsertSalgsfakturaer();
+        }
+
+        private void købsfakturaerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            clsUnicontaKladde obj = new clsUnicontaKladde();
+            obj.InsertKøbsfakturaer();
         }
     }
 
