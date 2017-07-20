@@ -199,6 +199,10 @@ namespace Trans2SummaHDC
                 }
                 jl.SetMaster(rec_Master);
                 var err = await api.Insert(jl);
+                if (err != ErrorCodes.Succes)
+                {
+                    int xx = 1;
+                }
             }
         }
 
@@ -256,7 +260,8 @@ namespace Trans2SummaHDC
             var rec_regnskab = Program.qryAktivRegnskab();
             var qrySFak = from sfv in Program.karFakturavarer_s
                           join sf in Program.karFakturaer_s on new { fakid = sfv.Fakid } equals new { fakid = sf.fakid }
-                          where sf.faknr != 0 && sf.faktype == 0
+                         // where sf.faknr != 0 && sf.faktype == 0
+                          where sf.faknr > 28 && sf.faktype == 0
                           orderby sfv.Fakid, sfv.Line
                           select new
                           {
