@@ -130,10 +130,12 @@ namespace Trans2SummaHDC
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var com = UCInitializer.CurrentCompany;
-            clsUnicontaKladde obj = new clsUnicontaKladde();
+            clsUnicontaHelp obj = new clsUnicontaHelp(UCInitializer.GetBaseAPI);
+            obj.ImportEmailBilag();
+            //clsUnicontaKladde obj = new clsUnicontaKladde();
             //obj.DeleteVouchersClients();
             //obj.InsertAllVouchersClient();
-            obj.InsertGLDailyJournalLinesYearEnd();
+            //obj.InsertGLDailyJournalLinesYearEnd();
             int zsd = 1;
             //KarKontoplan.UpdateKontoplan();
             //var xxx = KarNyKontoplan.NytKontonr("Bank");
