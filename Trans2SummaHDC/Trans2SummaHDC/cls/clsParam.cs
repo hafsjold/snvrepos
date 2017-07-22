@@ -18,6 +18,14 @@ namespace Trans2SummaHDC
         public double? Debit { get; set; }
         public double? Kredit { get; set; }
 
+        public int? Faktura_Nr  { get; set; }
+        public string Lin0_Tekst { get; set; }
+        public double Lin0_Antal { get; set; }
+        public double Lin0_Pris { get; set; }
+        public string Lin0_Konto { get; set; }
+        public string Lin0_Moms { get; set; }
+
+
         public clsParam() { }
         public clsParam(string[] arrParam)
         {
@@ -62,8 +70,33 @@ namespace Trans2SummaHDC
                             case "#debit":
                                 Debit = double.Parse(p[1].Trim(), System.Globalization.NumberStyles.Any);
                                 break;
+
                             case "#kredit":
                                 Kredit = double.Parse(p[1].Trim(), System.Globalization.NumberStyles.Any);
+                                break;
+
+                            case "#faktura_nr":
+                                Faktura_Nr = int.Parse(p[1].Trim(), System.Globalization.NumberStyles.Any);
+                                break;
+
+                            case "#lin0_tekst":
+                                Lin0_Tekst = p[1].Trim();
+                                break;
+
+                            case "#lin0_antal":
+                                Lin0_Antal = double.Parse(p[1].Trim(), System.Globalization.NumberStyles.Any);
+                                break;
+
+                            case "#lin0_pris":
+                                Lin0_Pris = double.Parse(p[1].Trim(), System.Globalization.NumberStyles.Any);
+                                break;
+
+                            case "#lin0_konto":
+                                Lin0_Konto = p[1].Trim();
+                                break;
+
+                            case "#lin0_moms":
+                                Lin0_Moms = p[1].Trim();
                                 break;
 
                             default:
