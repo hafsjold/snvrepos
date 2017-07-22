@@ -25,11 +25,13 @@ using Uniconta.DataModel;
 
 namespace Trans2SummaHDC
 {
+
+
     public class clsUnicontaHelp
     {
         public CrudAPI m_api;
         public CreditorClient[] m_Creditors;
-         
+
         public clsUnicontaHelp(CrudAPI api)
         {
             m_api = api;
@@ -42,11 +44,12 @@ namespace Trans2SummaHDC
         {
             MimeMessage message;
             int antalbilag = 0;
+            string[] arrParams = null;
             using (var imap_client = new ImapClient())
             {
                 imap_client.Connect("outlook.office365.com", 993, true);
                 imap_client.AuthenticationMechanisms.Remove("XOAUTH");
-                imap_client.Authenticate("mha@hafsjold.com", "Password");
+                imap_client.Authenticate("mha@hafsjold.com", "password");
                 var HafsjoldDataBilag = imap_client.GetFolder("_HafsjoldDataBilag");
                 var HafsjoldDataBilagArkiv = imap_client.GetFolder("_HafsjoldDataBilagArkiv");
                 //var Puls3060Bilag = imap_client.GetFolder("_TestPuls3060Bilag");          // <-----------------------------------TEST
@@ -76,9 +79,8 @@ namespace Trans2SummaHDC
 
                     foreach (var msg_attachment in message.Attachments)
                     {
-                        if (!(msg_attachment is MessagePart))
+                        if (msg_attachment is MimePart)
                         {
-
                             FileextensionsTypes type = FileextensionsTypes.PDF;
                             switch (msg_attachment.ContentType.MediaSubtype.ToUpper())
                             {
@@ -125,7 +127,16 @@ namespace Trans2SummaHDC
                             var res3 = task3.Result;
                             documents.Add(attm);
                         }
+                        else if (msg_attachment is MessagePart)
+                        {
+                            var msgpart = msg_attachment as MessagePart;
+                            var msgtext = Regex.Replace(msgpart.Message.HtmlBody, "<[^>]*>", String.Empty).Replace("&nbsp;", String.Empty).Trim();
+                            string[] splitstring = { "\r\n" };
+                            arrParams = msgtext.Split(splitstring, StringSplitOptions.RemoveEmptyEntries);
+                            clsParam objParam = new clsParam(arrParams);
+                        }
                     }
+
                     if (documents.Count > 0)
                     {
 
@@ -354,7 +365,7 @@ namespace Trans2SummaHDC
             string Account;
             try
             {
-                var Creditor = (from c in this.m_Creditors where ((c.ContactEmail != null) &&(c.ContactEmail.ToLower() == From.ToLower()) ) || ((c._InvoiceEmail != null) && ( c._InvoiceEmail.ToLower() == From.ToLower())) select c).First();
+                var Creditor = (from c in this.m_Creditors where ((c.ContactEmail != null) && (c.ContactEmail.ToLower() == From.ToLower())) || ((c._InvoiceEmail != null) && (c._InvoiceEmail.ToLower() == From.ToLower())) select c).First();
                 Account = Creditor.Account;
             }
             catch
