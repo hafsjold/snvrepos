@@ -44,7 +44,7 @@ namespace Trans2SummaHDC
         {
             MimeMessage message;
             int antalbilag = 0;
-            string[] arrParams = null;
+            clsParam objParam = null;
             using (var imap_client = new ImapClient())
             {
                 imap_client.Connect("outlook.office365.com", 993, true);
@@ -132,8 +132,8 @@ namespace Trans2SummaHDC
                             var msgpart = msg_attachment as MessagePart;
                             var msgtext = Regex.Replace(msgpart.Message.HtmlBody, "<[^>]*>", String.Empty).Replace("&nbsp;", String.Empty).Trim();
                             string[] splitstring = { "\r\n" };
-                            arrParams = msgtext.Split(splitstring, StringSplitOptions.RemoveEmptyEntries);
-                            clsParam objParam = new clsParam(arrParams);
+                            string[] arrParams = msgtext.Split(splitstring, StringSplitOptions.RemoveEmptyEntries);
+                            objParam = new clsParam(arrParams);
                         }
                     }
 
@@ -175,9 +175,20 @@ namespace Trans2SummaHDC
                                 m_api.DeleteNoResponse(rec);
                             }
                         }
+                         
+                        switch (objParam.Delsystem.ToLower())
+                        {
+                            case "finans":
+                                InsertFinansJournal(message, DocumentRef, objParam);
+                                break;
 
-                        InsertKøbsOrder(message, DocumentRef);
+                            case "kreditor":
+                                InsertKøbsOrder(message, DocumentRef, objParam);
+                                break;
 
+                            default:
+                                break;
+                        }
                         // move email to arkiv
                         var newId = HafsjoldDataBilag.MoveTo(result, HafsjoldDataBilagArkiv);
                     }
@@ -355,7 +366,46 @@ namespace Trans2SummaHDC
             docRenderer.RenderObject(gfx, box.Location.X, box.Location.X, box.Width, table);
         }
 
-        public void InsertKøbsOrder(MimeMessage message, int DocumentRef)
+        public void InsertFinansJournal(MimeMessage message, int DocumentRef, clsParam objParam)
+        {
+            var From = message.From.ToString();
+            From = ExtractEmails(From);
+            var Date = message.Date.DateTime;
+            var Subject = message.Subject;
+
+            var crit = new List<PropValuePair>();
+            var pair = PropValuePair.GenereteWhereElements("KeyStr", typeof(String), "Dag");
+            crit.Add(pair);
+            var task = m_api.Query<GLDailyJournalClient>(null, crit);
+            task.Wait();
+            var col = task.Result;
+            var rec_Master = col.FirstOrDefault();
+
+            GLDailyJournalLineClient jl = new GLDailyJournalLineClient()
+            {
+                Date = Date,
+                Text = Subject,
+                DocumentRef = DocumentRef,
+                AccountType = objParam.Kontotype,
+                Account = objParam.Konto,
+                Vat = objParam.Moms_Konto,
+                OffsetAccountType = objParam.Modkontotype,
+                OffsetAccount = objParam.Modkonto,
+                OffsetVat = objParam.Moms_Modkonto,
+                Debit = objParam.Debit,
+                Credit = objParam.Kredit,
+            };
+            jl.SetMaster(rec_Master);
+            var task2 = m_api.Insert(jl);
+            task2.Wait();
+            var err = task2.Result; 
+            if (err != ErrorCodes.Succes)
+            {
+                int xx = 1;
+            }
+        }
+
+        public void InsertKøbsOrder(MimeMessage message, int DocumentRef, clsParam objParam)
         {
             var From = message.From.ToString();
             From = ExtractEmails(From);
