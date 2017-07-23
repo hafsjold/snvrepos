@@ -207,6 +207,7 @@
     <Compile Include="clsInfotekst.cs" />
     <Compile Include="clsKontingent.cs" />
     <Compile Include="clsOverfoersel.cs" />
+    <Compile Include="clsParam.cs" />
     <Compile Include="clsPayPal.cs" />
     <Compile Include="clsPbs601.cs" />
     <Compile Include="clsPbs602.cs" />

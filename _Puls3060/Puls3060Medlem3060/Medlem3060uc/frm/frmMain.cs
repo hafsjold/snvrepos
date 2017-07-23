@@ -592,11 +592,11 @@ namespace Medlem3060uc
             string bigString;
             if (antalbilag == 0)
             {
-                bigString = "Der er ingen Kreditor Ordre klar til uploaded til UniConta";
+                bigString = "Der er ingen Email Bilag klar til uploaded til UniConta";
             }
             else
             {
-                bigString = string.Format("Der er uploaded {0} Kreditor Ordre til UniConta.", antalbilag);
+                bigString = string.Format("Der er uploaded {0} Email Bilag til UniConta.", antalbilag);
             }
 
             DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
