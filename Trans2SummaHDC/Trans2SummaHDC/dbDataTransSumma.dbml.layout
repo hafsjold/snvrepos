@@ -129,7 +129,7 @@
         <classShapeMoniker Id="4185e6b9-7ffb-40a1-af8d-1be6dde71c60" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(6.5 : 7.34699625651042); (4.5 : 7.34699625651042); (4.5 : 5.84780110677083)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(6.5 : 7.34699625651042); (6.17708333333333 : 7.34699625651042 : JumpStart); (6.01041666666667 : 7.34699625651042 : JumpEnd); (4.5 : 7.34699625651042); (4.5 : 5.84780110677083)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DbDataTransSumma/tblafstem/tblafstem_tblbankkonto" />
       <nodes>
         <classShapeMoniker Id="e533742e-3c89-4ec8-8313-0695ab26d1bf" />
@@ -143,7 +143,7 @@
         <classShapeMoniker Id="c7200220-2d60-405d-8d5a-67f48a7305cc" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(0.65625 : 3.02089680989583); (0.65625 : 12.1546541341146); (6.01041666666667 : 12.1546541341146 : JumpStart); (6.17708333333333 : 12.1546541341146 : JumpEnd); (6.5 : 12.1546541341146)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(0.65625 : 3.02089680989583); (0.65625 : 12.1546541341146); (6.01041666666667 : 12.1546541341146 : JumpStart); (6.17708333333333 : 12.1546541341146 : JumpEnd); (6.5 : 12.1546541341146)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/DbDataTransSumma/tblbilag/tblbilag_tblkladder" />
       <nodes>
         <classShapeMoniker Id="ae7ad7e8-f3e7-427b-bb70-fe19f0317d51" />

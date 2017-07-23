@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="dbDataTransSumma" Class="DbDataTransSumma" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=(localdb)\v11.0;Initial Catalog=dbDataTransSumma;Integrated Security=True" SettingsObjectName="Trans2SummaHDC.Properties.Settings" SettingsPropertyName="dbDataTransSummaConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tblactebisfaktura" Member="tblactebisfakturas">
     <Type Name="tblactebisfaktura">
       <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
