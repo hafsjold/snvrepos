@@ -4,7 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.IO;
 using System.Text.RegularExpressions;
-
+using System.Diagnostics;
 
 namespace Trans2SummaHDC
 {
@@ -408,6 +408,18 @@ namespace Trans2SummaHDC
                 else
                     return false;
             }
+        }
+
+        public static void Log(string message)
+        {
+            string msg = DateTime.Now.ToString() + "||" + message;
+            Trace.WriteLine(msg);
+        }
+
+        public static void Log(string message, string category)
+        {
+            string msg = DateTime.Now.ToString() + "|" + category + "|" + message;
+            Trace.WriteLine(msg);
         }
 
         public static FrmMain frmMain { get; set; }
