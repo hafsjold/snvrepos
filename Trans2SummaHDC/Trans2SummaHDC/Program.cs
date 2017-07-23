@@ -430,6 +430,12 @@ namespace Trans2SummaHDC
         [STAThread]
         static void Main()
         {
+            Trace.Listeners.RemoveAt(0);
+            DefaultTraceListener defaultListener;
+            defaultListener = new DefaultTraceListener();
+            defaultListener.LogFileName = "Application.log";
+            Trace.Listeners.Add(defaultListener);
+
             System.Diagnostics.Process[] p = System.Diagnostics.Process.GetProcessesByName("Trans2SummaHDC");
             if (p.Length > 1)
             {

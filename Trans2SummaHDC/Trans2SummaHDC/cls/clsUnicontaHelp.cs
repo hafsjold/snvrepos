@@ -25,8 +25,6 @@ using Uniconta.DataModel;
 
 namespace Trans2SummaHDC
 {
-
-
     public class clsUnicontaHelp
     {
         public CrudAPI m_api;
@@ -49,7 +47,7 @@ namespace Trans2SummaHDC
             {
                 imap_client.Connect("outlook.office365.com", 993, true);
                 imap_client.AuthenticationMechanisms.Remove("XOAUTH");
-                imap_client.Authenticate("mha@hafsjold.com", "password");
+                imap_client.Authenticate(clsApp.ImapUser, clsApp.ImapPW);
                 var HafsjoldDataBilag = imap_client.GetFolder("_HafsjoldDataBilag");
                 var HafsjoldDataBilagArkiv = imap_client.GetFolder("_HafsjoldDataBilagArkiv");
                 //var Puls3060Bilag = imap_client.GetFolder("_TestPuls3060Bilag");          // <-----------------------------------TEST
@@ -493,7 +491,7 @@ namespace Trans2SummaHDC
             {
                 imap_client.Connect("outlook.office365.com", 993, true);
                 imap_client.AuthenticationMechanisms.Remove("XOAUTH");
-                imap_client.Authenticate("mha@hafsjold.com", "Password");
+                imap_client.Authenticate(clsApp.ImapUser, clsApp.ImapPW);
                 var HafsjoldDataBilag = imap_client.GetFolder("_HafsjoldDataBilag");
                 HafsjoldDataBilag.Open(FolderAccess.ReadOnly);
 
