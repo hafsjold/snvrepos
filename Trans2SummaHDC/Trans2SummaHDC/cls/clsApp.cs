@@ -15,10 +15,8 @@ namespace Trans2SummaHDC
         public static string UniContaUser { get { return PH("UniContaUser"); } }
         public static string UniContaPW { get { return PH("UniContaPW"); } }
         public static string UniContaCompanyId { get { return PH("UniContaCompanyId"); } }
-        public static string GigaHostImapUser { get { return PH("GigaHostImapUser"); } }
-        public static string GigaHostImapPW { get { return PH("GigaHostImapPW"); } }
-        public static string dbPuls3060MedlemUser { get { return PH("dbPuls3060MedlemUser"); } }
-        public static string dbPuls3060MedlemPW { get { return PH("dbPuls3060MedlemPW"); } }
+        public static string ImapUser { get { return PH("ImapUser"); } }
+        public static string ImapPW { get { return PH("ImapPW"); } }
         public static string puls3060_dkUser { get { return PH("puls3060_dkUser"); } }
         public static string puls3060_dkPW { get { return PH("puls3060_dkPW"); } }
 
@@ -27,18 +25,18 @@ namespace Trans2SummaHDC
             try
             {
                 var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                var settings = ((AppSettingsSection)configFile.GetSection("PrivateAppSettings")).Settings;
+                var settings = ((AppSettingsSection)configFile.GetSection("PrivateHDCAppSettings")).Settings;
                 if (settings[key] != null)
                     return settings[key].Value;
                 else
                 {
-                    Program.Log(string.Format("Medlem3060Service clsApp() key {0} NOT found", key));
+                    Program.Log(string.Format("Trans2SummaHDC clsApp() key {0} NOT found", key));
                     return null;
                 }
             }
             catch (Exception)
             {
-                Program.Log(string.Format("Medlem3060Service clsApp() key {0} NOT found", key));
+                Program.Log(string.Format("Trans2SummaHDC clsApp() key {0} NOT found", key));
                 return null;
             }
         }
@@ -61,51 +59,51 @@ namespace Trans2SummaHDC
             try
             {
                 var configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                var settings = ((AppSettingsSection)configFile.GetSection("PrivateAppSettings")).Settings;
+                var settings = ((AppSettingsSection)configFile.GetSection("PrivateHDCAppSettings")).Settings;
                 if (settings[key] == null)
                 {
                     settings.Add(key, value);
-                    Program.Log(string.Format("Medlem3060Service clsApp() key {0} Tilføjet", key));
+                    Program.Log(string.Format("Trans2SummaHDC clsApp() key {0} Tilføjet", key));
                 }
                 else
                 {
                     settings[key].Value = value;
-                    Program.Log(string.Format("Medlem3060Service clsApp() key {0} Opdateret", key));
+                    Program.Log(string.Format("Trans2SummaHDC clsApp() key {0} Opdateret", key));
                 }
                 configFile.Save(ConfigurationSaveMode.Modified);
                 ConfigurationManager.RefreshSection(configFile.AppSettings.SectionInformation.Name);
             }
             catch (ConfigurationErrorsException)
             {
-                Program.Log(string.Format("Medlem3060Service clsApp() key {0} IKKE Opdateret", key));
+                Program.Log(string.Format("Trans2SummaHDC clsApp() key {0} IKKE Opdateret", key));
             }
         }
 
         private static void EncryptAppSettings(clsAppData recAppData)
         {
             var processName = Process.GetCurrentProcess().ProcessName;
-            var strExeConfigFilename = string.Format("{0}.exe.config", processName);
-            //Program.Log(string.Format("DEBUG1 EncryptAppSettings() strExeConfigFilename={0}", strExeConfigFilename));
+            var strExeConfigFilename = string.Format("{0}.exe.config", processName).Replace(@".vshost","");
+            Program.Log(string.Format("DEBUG1 EncryptAppSettings() strExeConfigFilename={0}", strExeConfigFilename));
 
             var uri = new Uri(Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().CodeBase));
             ExeConfigurationFileMap configurationFileMap = new ExeConfigurationFileMap { ExeConfigFilename = Path.Combine(uri.LocalPath, strExeConfigFilename) };
-            //Program.Log(string.Format("DEBUG2 EncryptAppSettings() ExeConfigFilename={0}, RoamingUserConfigFilename={1}, LocalUserConfigFilename={2} ", configurationFileMap.ExeConfigFilename, configurationFileMap.RoamingUserConfigFilename, configurationFileMap.LocalUserConfigFilename));
+            Program.Log(string.Format("DEBUG2 EncryptAppSettings() ExeConfigFilename={0}, RoamingUserConfigFilename={1}, LocalUserConfigFilename={2} ", configurationFileMap.ExeConfigFilename, configurationFileMap.RoamingUserConfigFilename, configurationFileMap.LocalUserConfigFilename));
 
             Configuration config = ConfigurationManager.OpenMappedExeConfiguration(configurationFileMap, ConfigurationUserLevel.None, true);
-            //Program.Log(string.Format("DEBUG3 EncryptAppSettings() FilePath={0}", config.FilePath));
+            Program.Log(string.Format("DEBUG3 EncryptAppSettings() FilePath={0}", config.FilePath));
 
-            ConfigurationSection sectionToEncrypt = config.GetSection("PrivateAppSettings");
+            ConfigurationSection sectionToEncrypt = config.GetSection("PrivateHDCAppSettings");
 
             if (sectionToEncrypt == null)
             {
-                Program.Log("Medlem3060Service clsApp() EncryptAppSettings Error - unable to find section to encrypt: PrivateAppSetting");
+                Program.Log("Trans2SummaHDC clsApp() EncryptAppSettings Error - unable to find section to encrypt: PrivateAppSetting");
                 return;
             }
 
             if (sectionToEncrypt.SectionInformation.IsProtected == false)
             {
-                sectionToEncrypt.SectionInformation.ProtectSection("MyProvider");
-                config.Save(ConfigurationSaveMode.Modified);
+                sectionToEncrypt.SectionInformation.ProtectSection("MyHDCProvider");
+                config.Save(ConfigurationSaveMode.Full);
             }
         }
      }

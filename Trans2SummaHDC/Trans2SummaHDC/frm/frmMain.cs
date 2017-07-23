@@ -37,7 +37,7 @@ namespace Trans2SummaHDC
             Program.frmMain = this;
         }
 
-        async private void FrmMain_Load(object sender, EventArgs e)
+        private void FrmMain_Load(object sender, EventArgs e)
         {
 #if (DEBUG)
             testToolStripMenuItem.Visible = true;
@@ -71,15 +71,23 @@ namespace Trans2SummaHDC
             else
             {
                 var rec_regnskab = Program.qryAktivRegnskab();
-                var xx = await UnicontaLogin();
-                var com = UCInitializer.CurrentCompany;
-                
+                try
+                {
+                    UCInitializer.UnicontaLogin();
+                    var CurrentCompany = UCInitializer.CurrentCompany;
+                    this.toolStripStatusLabel1.Text = "Firma: " + CurrentCompany.CompanyId + " " + CurrentCompany.Name;
+                    this.toolStripStatusLabel1.Alignment = ToolStripItemAlignment.Right;
+                    this.toolStripStatusLabel2.Text = Program.ConnectStringWithoutPassword;
+                    this.toolStripStatusLabel2.Alignment = ToolStripItemAlignment.Right;
 
-                this.toolStripStatusLabel1.Text = "Regnskab: " + rec_regnskab.Rid + " " + rec_regnskab.Navn + " - " + com.Name;
-                this.toolStripStatusLabel1.Alignment = ToolStripItemAlignment.Right;
-                this.toolStripStatusLabel2.Text = Program.ConnectStringWithoutPassword;
-                this.toolStripStatusLabel2.Alignment = ToolStripItemAlignment.Right;
-
+                }
+                catch (Exception)
+                {
+                    this.toolStripStatusLabel1.Text = "LogIn to UniConta Failed";
+                    this.toolStripStatusLabel1.Alignment = ToolStripItemAlignment.Right;
+                    this.toolStripStatusLabel2.Text = Program.ConnectStringWithoutPassword;
+                    this.toolStripStatusLabel2.Alignment = ToolStripItemAlignment.Right;
+                }
 
                 object ReadKontoplan = Program.karKontoplan;
                 Program.path_to_lock_summasummarum_kontoplan = rec_regnskab.Placering + "kontoplan.dat";
@@ -91,8 +99,6 @@ namespace Trans2SummaHDC
             importerMasterCardToolStripMenuItem.Visible = true;
             importActebisToolStripMenuItem.Visible = true;
             actebisFakturaToolStripMenuItem.Visible = true;
-            toolStripButtonPrintBilag.Visible = true;
-            toolStripSeparator3.Visible = true;
             printBilagToolStripMenuItem.Visible = true;
 
         }
@@ -130,8 +136,6 @@ namespace Trans2SummaHDC
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var com = UCInitializer.CurrentCompany;
-            clsUnicontaHelp obj = new clsUnicontaHelp(UCInitializer.GetBaseAPI);
-            obj.ImportEmailBilag();
             //clsUnicontaKladde obj = new clsUnicontaKladde();
             //obj.DeleteVouchersClients();
             //obj.InsertAllVouchersClient();
@@ -511,71 +515,6 @@ namespace Trans2SummaHDC
             clsImportFaktura objImportFaktura = new clsImportFaktura();
         }
 
-        async Task<int> UnicontaLogin()
-        {
-            int ret = await simulatedloginButton();
-
-            await UCInitializer.SetupCompanies();
-
-            var cmbCompanies = UCInitializer.Companies;
-
-            if (UCInitializer.CurrentSession.User._DefaultCompany != 0)
-            {
-                //var comp = UCInitializer.Companies.Where(c => c.CompanyId == UCInitializer.CurrentSession.User._DefaultCompany).FirstOrDefault();
-                var comp = UCInitializer.Companies.Where(c => c.CompanyId == 5364).FirstOrDefault();
-                await UCInitializer.SetCompany(comp.CompanyId);
-                await UCInitializer.SetCurrentCompanyFinanceYear();
-            }
-            //else if (UCInitializer.Companies.Count() > 0)
-            //    cmbCompanies.SelectedItem = UCInitializer.Companies[0];
-            //else
-            //    MessageBox.Show("You do not have any access to company.", "Information", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-
-            var CurrentCompany = UCInitializer.CurrentCompany;
-
-            return 0;
-        }
-
-        async Task<int> simulatedloginButton()
-        {
-            string password = "Puls3060";
-            string userName = "mha";
-
-            ErrorCodes errorCode = await SetLogin(userName, password);
-
-            switch (errorCode)
-            {
-                case ErrorCodes.Succes:
-                    Uniconta.ClientTools.Localization.SetDefault((Language)UCInitializer.CurrentSession.User._Language);
-                    break;
-
-                case ErrorCodes.UserOrPasswordIsWrong:
-                    System.Windows.Forms.MessageBox.Show("Please Check Your Credentials & Try again !!!", "Warning");
-                    break;
-
-                default:
-                    System.Windows.Forms.MessageBox.Show(string.Format("{0} : {1}", "Unable to login", errorCode.ToString()), "Information");
-                    break;
-            }
-            return 0;
-        }
-
-        async Task<ErrorCodes> SetLogin(string username, string password)
-        {
-            try
-            {
-                var ses = UCInitializer.GetSession();
-                var ret = await ses.LoginAsync(username, password, Uniconta.Common.User.LoginType.API, new Guid("73c93c84-af78-41e4-ada1-b8101c95ba89"), Uniconta.ClientTools.Localization.InititalLanguageCode);
-                return ret;
-            }
-            catch
-            {
-                System.Windows.Forms.MessageBox.Show("System Exception. Application Will Close.", "Fatal Error");
-                this.Close();
-                return ErrorCodes.Exception;
-            }
-        }
-
         private void UpdateNyKontoplanToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Program.karNyKontoplan.update();
@@ -618,6 +557,33 @@ namespace Trans2SummaHDC
         {
             clsUnicontaKladde obj = new clsUnicontaKladde();
             obj.InsertKøbsfakturaer();
+        }
+
+        private void passwordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("Password"))
+            {
+                FrmPassword m_Password = new FrmPassword();
+                m_Password.MdiParent = this;
+                m_Password.Show();
+            }
+
+        }
+
+        private void sysInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("frmSysInfo"))
+            {
+                FrmSysInfo frmSysInfo = new FrmSysInfo();
+                frmSysInfo.MdiParent = this;
+                frmSysInfo.Show();
+            }
+        }
+
+        private void toolStripButtonImportEmailBilag_Click(object sender, EventArgs e)
+        {
+            clsUnicontaHelp obj = new clsUnicontaHelp(UCInitializer.GetBaseAPI);
+            obj.ImportEmailBilag();
         }
     }
 

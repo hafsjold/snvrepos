@@ -62,30 +62,18 @@
             this.importActebisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.excelRegnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.sysInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.varekontoTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.actebisFakturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.templatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kontoudtogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importAfEcxelKøbsordreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.konverteringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nyKontoplanToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.nyKontoPlanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dagligePosterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.debitorKreditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salgsfakturaerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.købsfakturaerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.passwordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolStripButtonImportBilag = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonImportEmailBilag = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonPrintBilag = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonAfstemBank = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonIndtastBilag = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -147,7 +135,6 @@
             this.faktureringToolStripMenuItem,
             this.regnskabToolStripMenuItem,
             this.systemToolStripMenuItem,
-            this.konverteringToolStripMenuItem,
             this.hjælpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -358,7 +345,8 @@
             // systemToolStripMenuItem
             // 
             this.systemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem2,
+            this.sysInfoToolStripMenuItem,
+            this.passwordToolStripMenuItem,
             this.varekontoTypeToolStripMenuItem,
             this.actebisFakturaToolStripMenuItem,
             this.templatesToolStripMenuItem,
@@ -368,12 +356,12 @@
             this.systemToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.systemToolStripMenuItem.Text = "System";
             // 
-            // toolStripMenuItem2
+            // sysInfoToolStripMenuItem
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(209, 22);
-            this.toolStripMenuItem2.Text = "Regnskab";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.regnskabToolStripMenuItem_Click);
+            this.sysInfoToolStripMenuItem.Name = "sysInfoToolStripMenuItem";
+            this.sysInfoToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.sysInfoToolStripMenuItem.Text = "SysInfo";
+            this.sysInfoToolStripMenuItem.Click += new System.EventHandler(this.sysInfoToolStripMenuItem_Click);
             // 
             // varekontoTypeToolStripMenuItem
             // 
@@ -411,60 +399,12 @@
             this.importAfEcxelKøbsordreToolStripMenuItem.Text = "Import af Ecxel Købsordre";
             this.importAfEcxelKøbsordreToolStripMenuItem.Click += new System.EventHandler(this.importAfEcxelKøbsordreToolStripMenuItem_Click);
             // 
-            // konverteringToolStripMenuItem
+            // passwordToolStripMenuItem
             // 
-            this.konverteringToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.nyKontoplanToolStripMenuItem1,
-            this.nyKontoPlanToolStripMenuItem,
-            this.dagligePosterToolStripMenuItem,
-            this.debitorKreditorToolStripMenuItem,
-            this.salgsfakturaerToolStripMenuItem,
-            this.købsfakturaerToolStripMenuItem});
-            this.konverteringToolStripMenuItem.Name = "konverteringToolStripMenuItem";
-            this.konverteringToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
-            this.konverteringToolStripMenuItem.Text = "Konvertering";
-            // 
-            // nyKontoplanToolStripMenuItem1
-            // 
-            this.nyKontoplanToolStripMenuItem1.Name = "nyKontoplanToolStripMenuItem1";
-            this.nyKontoplanToolStripMenuItem1.Size = new System.Drawing.Size(182, 22);
-            this.nyKontoplanToolStripMenuItem1.Text = "NyKontoplan";
-            this.nyKontoplanToolStripMenuItem1.Click += new System.EventHandler(this.nyKontoplanToolStripMenuItem1_Click);
-            // 
-            // nyKontoPlanToolStripMenuItem
-            // 
-            this.nyKontoPlanToolStripMenuItem.Name = "nyKontoPlanToolStripMenuItem";
-            this.nyKontoPlanToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.nyKontoPlanToolStripMenuItem.Text = "UpdateNyKontoplan";
-            this.nyKontoPlanToolStripMenuItem.Click += new System.EventHandler(this.UpdateNyKontoplanToolStripMenuItem_Click);
-            // 
-            // dagligePosterToolStripMenuItem
-            // 
-            this.dagligePosterToolStripMenuItem.Name = "dagligePosterToolStripMenuItem";
-            this.dagligePosterToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.dagligePosterToolStripMenuItem.Text = "Daglige Poster";
-            this.dagligePosterToolStripMenuItem.Click += new System.EventHandler(this.dagligePosterToolStripMenuItem_Click);
-            // 
-            // debitorKreditorToolStripMenuItem
-            // 
-            this.debitorKreditorToolStripMenuItem.Name = "debitorKreditorToolStripMenuItem";
-            this.debitorKreditorToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.debitorKreditorToolStripMenuItem.Text = "DebitorKreditor";
-            this.debitorKreditorToolStripMenuItem.Click += new System.EventHandler(this.debitorKreditorToolStripMenuItem_Click);
-            // 
-            // salgsfakturaerToolStripMenuItem
-            // 
-            this.salgsfakturaerToolStripMenuItem.Name = "salgsfakturaerToolStripMenuItem";
-            this.salgsfakturaerToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.salgsfakturaerToolStripMenuItem.Text = "Salgsfakturaer";
-            this.salgsfakturaerToolStripMenuItem.Click += new System.EventHandler(this.salgsfakturaerToolStripMenuItem_Click);
-            // 
-            // købsfakturaerToolStripMenuItem
-            // 
-            this.købsfakturaerToolStripMenuItem.Name = "købsfakturaerToolStripMenuItem";
-            this.købsfakturaerToolStripMenuItem.Size = new System.Drawing.Size(182, 22);
-            this.købsfakturaerToolStripMenuItem.Text = "Købsfakturaer";
-            this.købsfakturaerToolStripMenuItem.Click += new System.EventHandler(this.købsfakturaerToolStripMenuItem_Click);
+            this.passwordToolStripMenuItem.Name = "passwordToolStripMenuItem";
+            this.passwordToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.passwordToolStripMenuItem.Text = "Password";
+            this.passwordToolStripMenuItem.Click += new System.EventHandler(this.passwordToolStripMenuItem_Click);
             // 
             // hjælpToolStripMenuItem
             // 
@@ -485,81 +425,28 @@
             // 
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButtonImportBilag,
-            this.toolStripSeparator2,
-            this.toolStripButtonPrintBilag,
-            this.toolStripSeparator3,
-            this.toolStripButtonAfstemBank,
-            this.toolStripSeparator4,
-            this.toolStripButtonIndtastBilag,
-            this.toolStripSeparator5});
+            this.toolStripButtonImportEmailBilag,
+            this.toolStripSeparator2});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1024, 25);
             this.toolStrip1.TabIndex = 4;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // toolStripButtonImportBilag
+            // toolStripButtonImportEmailBilag
             // 
-            this.toolStripButtonImportBilag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonImportBilag.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonImportBilag.Image")));
-            this.toolStripButtonImportBilag.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonImportBilag.Name = "toolStripButtonImportBilag";
-            this.toolStripButtonImportBilag.Size = new System.Drawing.Size(76, 22);
-            this.toolStripButtonImportBilag.Text = "Import Bilag";
-            this.toolStripButtonImportBilag.Click += new System.EventHandler(this.importerTransaktionerToolStripMenuItem_Click);
+            this.toolStripButtonImportEmailBilag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonImportEmailBilag.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonImportEmailBilag.Image")));
+            this.toolStripButtonImportEmailBilag.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonImportEmailBilag.Name = "toolStripButtonImportEmailBilag";
+            this.toolStripButtonImportEmailBilag.Size = new System.Drawing.Size(108, 22);
+            this.toolStripButtonImportEmailBilag.Text = "Import Email Bilag";
+            this.toolStripButtonImportEmailBilag.Click += new System.EventHandler(this.toolStripButtonImportEmailBilag_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButtonPrintBilag
-            // 
-            this.toolStripButtonPrintBilag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonPrintBilag.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonPrintBilag.Image")));
-            this.toolStripButtonPrintBilag.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonPrintBilag.Name = "toolStripButtonPrintBilag";
-            this.toolStripButtonPrintBilag.Size = new System.Drawing.Size(65, 22);
-            this.toolStripButtonPrintBilag.Text = "Print Bilag";
-            this.toolStripButtonPrintBilag.Visible = false;
-            this.toolStripButtonPrintBilag.Click += new System.EventHandler(this.printBilagToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-            this.toolStripSeparator3.Visible = false;
-            // 
-            // toolStripButtonAfstemBank
-            // 
-            this.toolStripButtonAfstemBank.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonAfstemBank.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonAfstemBank.Image")));
-            this.toolStripButtonAfstemBank.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonAfstemBank.Name = "toolStripButtonAfstemBank";
-            this.toolStripButtonAfstemBank.Size = new System.Drawing.Size(78, 22);
-            this.toolStripButtonAfstemBank.Text = "Afstem Bank";
-            this.toolStripButtonAfstemBank.Click += new System.EventHandler(this.BankafstemningToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButtonIndtastBilag
-            // 
-            this.toolStripButtonIndtastBilag.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonIndtastBilag.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonIndtastBilag.Image")));
-            this.toolStripButtonIndtastBilag.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonIndtastBilag.Name = "toolStripButtonIndtastBilag";
-            this.toolStripButtonIndtastBilag.Size = new System.Drawing.Size(76, 22);
-            this.toolStripButtonIndtastBilag.Text = "Indtast Bilag";
-            this.toolStripButtonIndtastBilag.Click += new System.EventHandler(this.bilagsindtastningToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 25);
             // 
             // FrmMain
             // 
@@ -570,7 +457,7 @@
             settings1.BetalingsFristiDageGamleMedlemmer = 31;
             settings1.BetalingsFristiDageNyeMedlemmer = 61;
             settings1.checkBoxMedsaldo = true;
-            //settings1.dbDataTransSummaConnectionString = resources.GetString("settings1.dbDataTransSummaConnectionString");
+            //settings1.dbDataTransSummaConnectionString = null;
             settings1.FrmActebisfakturaLocation = new System.Drawing.Point(0, 0);
             settings1.FrmActebisfakturaSize = new System.Drawing.Size(1081, 495);
             settings1.FrmBankkontoudtogLocation = new System.Drawing.Point(0, 0);
@@ -656,7 +543,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem medlemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem systemToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem hjælpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem omToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem regnskabToolStripMenuItem;
@@ -671,14 +557,7 @@
         private System.Windows.Forms.ToolStripMenuItem bilagToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importDanskebankToolStripMenuItem;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ToolStripButton toolStripButtonImportBilag;
-        private System.Windows.Forms.ToolStripButton toolStripButtonPrintBilag;
-        private System.Windows.Forms.ToolStripButton toolStripButtonAfstemBank;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
-        private System.Windows.Forms.ToolStripButton toolStripButtonIndtastBilag;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         public System.Windows.Forms.ToolStripProgressBar MainformProgressBar;
         public System.Windows.Forms.ToolStripStatusLabel MainformProgressText;
         private System.Windows.Forms.ToolStripMenuItem excelRegnskabToolStripMenuItem;
@@ -695,13 +574,9 @@
         private System.Windows.Forms.ToolStripMenuItem kontoudtogToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importPayPalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem importAfEcxelKøbsordreToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem konverteringToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nyKontoPlanToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem nyKontoplanToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem dagligePosterToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem debitorKreditorToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem salgsfakturaerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem købsfakturaerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem passwordToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sysInfoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton toolStripButtonImportEmailBilag;
     }
 }
 
