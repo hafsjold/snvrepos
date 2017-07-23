@@ -43,7 +43,7 @@ namespace Trans2SummaHDC
             testToolStripMenuItem.Visible = true;
 #endif
 
-
+            /*
             if (clsUtil.IsProcessOpen("Summa"))
             {
                 DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
@@ -55,7 +55,7 @@ namespace Trans2SummaHDC
                     global::Trans2SummaHDC.Properties.Resources.Message_info); //iconSet
                 this.Close();
             }
-
+            */
             DialogResult res = (new frmSelectRegnskab()).ShowDialog();
             if (res != DialogResult.OK)
             {
@@ -89,9 +89,11 @@ namespace Trans2SummaHDC
                     this.toolStripStatusLabel2.Alignment = ToolStripItemAlignment.Right;
                 }
 
+                /*
                 object ReadKontoplan = Program.karKontoplan;
                 Program.path_to_lock_summasummarum_kontoplan = rec_regnskab.Placering + "kontoplan.dat";
                 Program.filestream_to_lock_summasummarum_kontoplan = new FileStream(Program.path_to_lock_summasummarum_kontoplan, FileMode.Open, FileAccess.Read, FileShare.None);
+                */
             }
 
 
@@ -583,7 +585,15 @@ namespace Trans2SummaHDC
         private void toolStripButtonImportEmailBilag_Click(object sender, EventArgs e)
         {
             clsUnicontaHelp obj = new clsUnicontaHelp(UCInitializer.GetBaseAPI);
-            obj.ImportEmailBilag();
+            int antalbilag = obj.ImportEmailBilag();
+            string bigString = string.Format("{0} Email Bilag Uploaded til UniConta", antalbilag);
+            DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
+                "Trans2SummaHDC", //titleString   
+                bigString, //bigString 
+                null, //smallString
+                null, //leftButton
+                "OK", //rightButton
+                global::Trans2SummaHDC.Properties.Resources.Message_info); //iconSet    
         }
     }
 
