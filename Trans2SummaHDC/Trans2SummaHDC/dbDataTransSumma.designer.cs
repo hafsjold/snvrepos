@@ -95,12 +95,6 @@ namespace Trans2SummaHDC
     partial void Deletetblpaypal(tblpaypal instance);
     #endregion
 		
-		public DbDataTransSumma() : 
-				base(global::Trans2SummaHDC.Properties.Settings.Default.dbDataTransSummaConnectionString, mappingSource)
-		{
-			OnCreated();
-		}
-		
 		public DbDataTransSumma(string connection) : 
 				base(connection, mappingSource)
 		{

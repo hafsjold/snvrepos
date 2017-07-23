@@ -56,6 +56,10 @@ namespace Trans2SummaHDC
                 this.Close();
             }
             */
+            clsPbs objPbs = new clsPbs();
+            objPbs.ReadRegnskaber();
+            var rec_AktivRegnskab = Program.qryAktivRegnskab();
+            /*
             DialogResult res = (new frmSelectRegnskab()).ShowDialog();
             if (res != DialogResult.OK)
             {
@@ -68,7 +72,7 @@ namespace Trans2SummaHDC
                     global::Trans2SummaHDC.Properties.Resources.Message_info); //iconSet
                 this.Close();
             }
-            else
+            else */
             {
                 var rec_regnskab = Program.qryAktivRegnskab();
                 try
