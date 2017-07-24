@@ -134,8 +134,12 @@ namespace nsPbs3060
             byte[] cipherBytes = Convert.FromBase64String(cipherText);
             PasswordDeriveBytes pdb = new PasswordDeriveBytes(Password, new byte[] { 0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76 });
             byte[] decryptedData = Decrypt(cipherBytes, pdb.GetBytes(32), pdb.GetBytes(16));
-            return Encoding.Unicode.GetString(decryptedData);
+            if (decryptedData != null)
+                return Encoding.Unicode.GetString(decryptedData); 
+            else
+                return null;
         }
+
         private byte[] Decrypt(byte[] cipherData, byte[] Key, byte[] IV)
         {
             byte[] decryptedData;
@@ -143,14 +147,21 @@ namespace nsPbs3060
             {
                 using (Rijndael alg = Rijndael.Create())
                 {
-                    alg.Key = Key;
-                    alg.IV = IV;
-                     using (CryptoStream cs = new CryptoStream(ms,
-                        alg.CreateDecryptor(), CryptoStreamMode.Write))
+                    try
                     {
-                        cs.Write(cipherData, 0, cipherData.Length);
+                        alg.Key = Key;
+                        alg.IV = IV;
+                        using (CryptoStream cs = new CryptoStream(ms,
+                           alg.CreateDecryptor(), CryptoStreamMode.Write))
+                        {
+                            cs.Write(cipherData, 0, cipherData.Length);
+                        }
+                        decryptedData = ms.ToArray();
                     }
-                    decryptedData = ms.ToArray();
+                    catch 
+                    {
+                        decryptedData = null;
+                    }
                 }
             }
             return decryptedData;
