@@ -5,18 +5,15 @@ using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
 using MimeKit;
-using PdfSharp;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
-using PdfSharp.Pdf.IO;
+using SelectPdf;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using TheArtOfDev.HtmlRenderer.PdfSharp;
 using Uniconta.API.GeneralLedger;
 using Uniconta.API.System;
 using Uniconta.ClientTools.DataModel;
@@ -204,32 +201,28 @@ namespace Trans2SummaHDC
             MemoryStream msMail = new MemoryStream();
             string html = message.GetTextBody(MimeKit.Text.TextFormat.Html);
             string txt = message.GetTextBody(MimeKit.Text.TextFormat.Text);
-            PdfDocument pdfMail = null;
+
+            HtmlToPdf converter = new HtmlToPdf();
+            SelectPdf.PdfDocument pdfdok = null;
             if (html != null)
             {
-                try
-                {
-                    pdfMail = PdfGenerator.GeneratePdf(html, PageSize.A4);
-                }
-                catch (Exception e)
-                {
-                    pdfMail = PdfGenerator.GeneratePdf(txt, PageSize.A4);
-                }
+                pdfdok = converter.ConvertHtmlString(html);
             }
             else
             {
-                pdfMail = PdfGenerator.GeneratePdf(txt, PageSize.A4);
+                pdfdok = converter.ConvertHtmlString(txt);
             }
-            pdfMail.Save(msMail, false);
+            pdfdok.Save(msMail);
+            msMail.Position = 0;
 
             XPdfForm form = XPdfForm.FromStream(msMail);
-            PdfDocument outputDocument = new PdfDocument();
+            PdfSharp.Pdf.PdfDocument outputDocument = new PdfSharp.Pdf.PdfDocument();
             XGraphics gfx;
 
             int count = form.PageCount;
             for (int idx = 0; idx < count; idx++)
             {
-                PdfPage page = outputDocument.AddPage();
+                PdfSharp.Pdf.PdfPage page = outputDocument.AddPage();
                 if (form.PageCount > idx)
                 {
                     // Get a graphics object for page
@@ -252,7 +245,7 @@ namespace Trans2SummaHDC
             return msMail;
         }
 
-        void DrawPageHeading(PdfPage page, XGraphics gfx, MimeMessage message)
+        void DrawPageHeading(PdfSharp.Pdf.PdfPage page, XGraphics gfx, MimeMessage message)
         {
             var From = message.From.ToString();
             From = Regex.Replace(From, @"""", "");
@@ -485,6 +478,7 @@ namespace Trans2SummaHDC
 
         public void TestGetEmailBilag()
         {
+            /*
             MimeMessage message;
 
             using (var imap_client = new ImapClient())
@@ -524,17 +518,17 @@ namespace Trans2SummaHDC
                     }
                 }
 
-                PdfDocument one = PdfGenerator.GeneratePdf(html, PageSize.A4);
-                PdfDocument two = PdfGenerator.GeneratePdf(html, PageSize.A4);
+                PdfSharp.Pdf.PdfDocument one = PdfGenerator.GeneratePdf(html, PageSize.A4);
+                PdfSharp.Pdf.PdfDocument two = PdfGenerator.GeneratePdf(html, PageSize.A4);
                 MemoryStream s1 = new MemoryStream();
                 MemoryStream s2 = new MemoryStream();
                 one.Save(s1, false);
                 two.Save(s2, false);
 
-                using (PdfDocument onex = PdfReader.Open(s1, PdfDocumentOpenMode.Import))
-                using (PdfDocument twox = PdfReader.Open(s2, PdfDocumentOpenMode.Import))
-                using (PdfDocument treex = PdfReader.Open(s3, PdfDocumentOpenMode.Import))
-                using (PdfDocument outPdf = new PdfDocument())
+                using (PdfSharp.Pdf.PdfDocument onex = PdfReader.Open(s1, PdfDocumentOpenMode.Import))
+                using (PdfSharp.Pdf.PdfDocument twox = PdfReader.Open(s2, PdfDocumentOpenMode.Import))
+                using (PdfSharp.Pdf.PdfDocument treex = PdfReader.Open(s3, PdfDocumentOpenMode.Import))
+                using (PdfSharp.Pdf.PdfDocument outPdf = new PdfSharp.Pdf.PdfDocument())
                 {
                     CopyPages(onex, outPdf);
                     CopyPages(twox, outPdf);
@@ -546,9 +540,10 @@ namespace Trans2SummaHDC
                 imap_client.Disconnect(true);
             }
             return;// message;
+            */
         }
 
-        void CopyPages(PdfDocument from, PdfDocument to)
+        void CopyPages(PdfSharp.Pdf.PdfDocument from, PdfSharp.Pdf.PdfDocument to)
         {
             for (int i = 0; i < from.PageCount; i++)
             {
