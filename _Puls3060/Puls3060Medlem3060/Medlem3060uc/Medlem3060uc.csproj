@@ -133,10 +133,6 @@
     <Reference Include="Excel">
       <HintPath>Library\Excel.dll</HintPath>
     </Reference>
-    <Reference Include="HtmlRenderer, Version=1.5.0.6, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\HtmlRenderer.Core.1.5.0.6\lib\net45\HtmlRenderer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Interop.VBIDE, Version=5.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Library\Interop.VBIDE.dll</HintPath>
