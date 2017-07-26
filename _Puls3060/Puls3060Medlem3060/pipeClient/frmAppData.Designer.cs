@@ -1,6 +1,6 @@
 ﻿namespace pipeClient
 {
-    partial class FrmPipeClient
+    partial class FrmAppData
     {
         /// <summary>
         /// Required designer variable.
@@ -82,7 +82,7 @@
             // dbPuls3060MedlemPWLabel
             // 
             dbPuls3060MedlemPWLabel.AutoSize = true;
-            dbPuls3060MedlemPWLabel.Location = new System.Drawing.Point(12, 261);
+            dbPuls3060MedlemPWLabel.Location = new System.Drawing.Point(12, 229);
             dbPuls3060MedlemPWLabel.Name = "dbPuls3060MedlemPWLabel";
             dbPuls3060MedlemPWLabel.Size = new System.Drawing.Size(127, 13);
             dbPuls3060MedlemPWLabel.TabIndex = 22;
@@ -91,7 +91,7 @@
             // dbPuls3060MedlemUserLabel
             // 
             dbPuls3060MedlemUserLabel.AutoSize = true;
-            dbPuls3060MedlemUserLabel.Location = new System.Drawing.Point(12, 235);
+            dbPuls3060MedlemUserLabel.Location = new System.Drawing.Point(12, 203);
             dbPuls3060MedlemUserLabel.Name = "dbPuls3060MedlemUserLabel";
             dbPuls3060MedlemUserLabel.Size = new System.Drawing.Size(131, 13);
             dbPuls3060MedlemUserLabel.TabIndex = 24;
@@ -100,7 +100,7 @@
             // gigaHostImapPWLabel
             // 
             gigaHostImapPWLabel.AutoSize = true;
-            gigaHostImapPWLabel.Location = new System.Drawing.Point(12, 209);
+            gigaHostImapPWLabel.Location = new System.Drawing.Point(12, 177);
             gigaHostImapPWLabel.Name = "gigaHostImapPWLabel";
             gigaHostImapPWLabel.Size = new System.Drawing.Size(101, 13);
             gigaHostImapPWLabel.TabIndex = 26;
@@ -109,7 +109,7 @@
             // gigaHostImapUserLabel
             // 
             gigaHostImapUserLabel.AutoSize = true;
-            gigaHostImapUserLabel.Location = new System.Drawing.Point(12, 183);
+            gigaHostImapUserLabel.Location = new System.Drawing.Point(12, 151);
             gigaHostImapUserLabel.Name = "gigaHostImapUserLabel";
             gigaHostImapUserLabel.Size = new System.Drawing.Size(105, 13);
             gigaHostImapUserLabel.TabIndex = 28;
@@ -118,7 +118,7 @@
             // puls3060_dkPWLabel
             // 
             puls3060_dkPWLabel.AutoSize = true;
-            puls3060_dkPWLabel.Location = new System.Drawing.Point(12, 157);
+            puls3060_dkPWLabel.Location = new System.Drawing.Point(12, 125);
             puls3060_dkPWLabel.Name = "puls3060_dkPWLabel";
             puls3060_dkPWLabel.Size = new System.Drawing.Size(89, 13);
             puls3060_dkPWLabel.TabIndex = 34;
@@ -127,7 +127,7 @@
             // puls3060_dkUserLabel
             // 
             puls3060_dkUserLabel.AutoSize = true;
-            puls3060_dkUserLabel.Location = new System.Drawing.Point(12, 131);
+            puls3060_dkUserLabel.Location = new System.Drawing.Point(12, 99);
             puls3060_dkUserLabel.Name = "puls3060_dkUserLabel";
             puls3060_dkUserLabel.Size = new System.Drawing.Size(99, 13);
             puls3060_dkUserLabel.TabIndex = 36;
@@ -136,7 +136,7 @@
             // uniContaCompanyIdLabel
             // 
             uniContaCompanyIdLabel.AutoSize = true;
-            uniContaCompanyIdLabel.Location = new System.Drawing.Point(12, 105);
+            uniContaCompanyIdLabel.Location = new System.Drawing.Point(12, 73);
             uniContaCompanyIdLabel.Name = "uniContaCompanyIdLabel";
             uniContaCompanyIdLabel.Size = new System.Drawing.Size(113, 13);
             uniContaCompanyIdLabel.TabIndex = 38;
@@ -145,7 +145,7 @@
             // uniContaPWLabel
             // 
             uniContaPWLabel.AutoSize = true;
-            uniContaPWLabel.Location = new System.Drawing.Point(12, 78);
+            uniContaPWLabel.Location = new System.Drawing.Point(12, 46);
             uniContaPWLabel.Name = "uniContaPWLabel";
             uniContaPWLabel.Size = new System.Drawing.Size(78, 13);
             uniContaPWLabel.TabIndex = 40;
@@ -154,7 +154,7 @@
             // uniContaUserLabel
             // 
             uniContaUserLabel.AutoSize = true;
-            uniContaUserLabel.Location = new System.Drawing.Point(12, 54);
+            uniContaUserLabel.Location = new System.Drawing.Point(12, 22);
             uniContaUserLabel.Name = "uniContaUserLabel";
             uniContaUserLabel.Size = new System.Drawing.Size(82, 13);
             uniContaUserLabel.TabIndex = 42;
@@ -167,7 +167,7 @@
             // bdbPuls3060MedlemPWCheckBox
             // 
             this.bdbPuls3060MedlemPWCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.dsAppData, "bdbPuls3060MedlemPW", true));
-            this.bdbPuls3060MedlemPWCheckBox.Location = new System.Drawing.Point(150, 262);
+            this.bdbPuls3060MedlemPWCheckBox.Location = new System.Drawing.Point(150, 230);
             this.bdbPuls3060MedlemPWCheckBox.Name = "bdbPuls3060MedlemPWCheckBox";
             this.bdbPuls3060MedlemPWCheckBox.Size = new System.Drawing.Size(13, 13);
             this.bdbPuls3060MedlemPWCheckBox.TabIndex = 3;
@@ -176,7 +176,7 @@
             // bdbPuls3060MedlemUserCheckBox
             // 
             this.bdbPuls3060MedlemUserCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.dsAppData, "bdbPuls3060MedlemUser", true));
-            this.bdbPuls3060MedlemUserCheckBox.Location = new System.Drawing.Point(150, 236);
+            this.bdbPuls3060MedlemUserCheckBox.Location = new System.Drawing.Point(150, 204);
             this.bdbPuls3060MedlemUserCheckBox.Name = "bdbPuls3060MedlemUserCheckBox";
             this.bdbPuls3060MedlemUserCheckBox.Size = new System.Drawing.Size(13, 13);
             this.bdbPuls3060MedlemUserCheckBox.TabIndex = 5;
@@ -185,7 +185,7 @@
             // bGigaHostImapPWCheckBox
             // 
             this.bGigaHostImapPWCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.dsAppData, "bGigaHostImapPW", true));
-            this.bGigaHostImapPWCheckBox.Location = new System.Drawing.Point(150, 210);
+            this.bGigaHostImapPWCheckBox.Location = new System.Drawing.Point(150, 178);
             this.bGigaHostImapPWCheckBox.Name = "bGigaHostImapPWCheckBox";
             this.bGigaHostImapPWCheckBox.Size = new System.Drawing.Size(13, 13);
             this.bGigaHostImapPWCheckBox.TabIndex = 9;
@@ -194,7 +194,7 @@
             // bGigaHostImapUserCheckBox
             // 
             this.bGigaHostImapUserCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.dsAppData, "bGigaHostImapUser", true));
-            this.bGigaHostImapUserCheckBox.Location = new System.Drawing.Point(150, 184);
+            this.bGigaHostImapUserCheckBox.Location = new System.Drawing.Point(150, 152);
             this.bGigaHostImapUserCheckBox.Name = "bGigaHostImapUserCheckBox";
             this.bGigaHostImapUserCheckBox.Size = new System.Drawing.Size(13, 13);
             this.bGigaHostImapUserCheckBox.TabIndex = 11;
@@ -203,7 +203,7 @@
             // bpuls3060_dkPWCheckBox
             // 
             this.bpuls3060_dkPWCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.dsAppData, "bpuls3060_dkPW", true));
-            this.bpuls3060_dkPWCheckBox.Location = new System.Drawing.Point(150, 158);
+            this.bpuls3060_dkPWCheckBox.Location = new System.Drawing.Point(150, 126);
             this.bpuls3060_dkPWCheckBox.Name = "bpuls3060_dkPWCheckBox";
             this.bpuls3060_dkPWCheckBox.Size = new System.Drawing.Size(13, 13);
             this.bpuls3060_dkPWCheckBox.TabIndex = 13;
@@ -212,7 +212,7 @@
             // bpuls3060_dkUserCheckBox
             // 
             this.bpuls3060_dkUserCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.dsAppData, "bpuls3060_dkUser", true));
-            this.bpuls3060_dkUserCheckBox.Location = new System.Drawing.Point(150, 132);
+            this.bpuls3060_dkUserCheckBox.Location = new System.Drawing.Point(150, 100);
             this.bpuls3060_dkUserCheckBox.Name = "bpuls3060_dkUserCheckBox";
             this.bpuls3060_dkUserCheckBox.Size = new System.Drawing.Size(13, 13);
             this.bpuls3060_dkUserCheckBox.TabIndex = 15;
@@ -221,7 +221,7 @@
             // bUniContaCompanyIdCheckBox
             // 
             this.bUniContaCompanyIdCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.dsAppData, "bUniContaCompanyId", true));
-            this.bUniContaCompanyIdCheckBox.Location = new System.Drawing.Point(150, 106);
+            this.bUniContaCompanyIdCheckBox.Location = new System.Drawing.Point(150, 74);
             this.bUniContaCompanyIdCheckBox.Name = "bUniContaCompanyIdCheckBox";
             this.bUniContaCompanyIdCheckBox.Size = new System.Drawing.Size(13, 13);
             this.bUniContaCompanyIdCheckBox.TabIndex = 17;
@@ -230,7 +230,7 @@
             // bUniContaPWCheckBox
             // 
             this.bUniContaPWCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.dsAppData, "bUniContaPW", true));
-            this.bUniContaPWCheckBox.Location = new System.Drawing.Point(150, 79);
+            this.bUniContaPWCheckBox.Location = new System.Drawing.Point(150, 47);
             this.bUniContaPWCheckBox.Name = "bUniContaPWCheckBox";
             this.bUniContaPWCheckBox.Size = new System.Drawing.Size(13, 13);
             this.bUniContaPWCheckBox.TabIndex = 19;
@@ -239,7 +239,7 @@
             // bUniContaUserCheckBox
             // 
             this.bUniContaUserCheckBox.DataBindings.Add(new System.Windows.Forms.Binding("CheckState", this.dsAppData, "bUniContaUser", true));
-            this.bUniContaUserCheckBox.Location = new System.Drawing.Point(150, 54);
+            this.bUniContaUserCheckBox.Location = new System.Drawing.Point(150, 22);
             this.bUniContaUserCheckBox.Name = "bUniContaUserCheckBox";
             this.bUniContaUserCheckBox.Size = new System.Drawing.Size(13, 13);
             this.bUniContaUserCheckBox.TabIndex = 21;
@@ -248,7 +248,7 @@
             // dbPuls3060MedlemPWTextBox
             // 
             this.dbPuls3060MedlemPWTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dsAppData, "dbPuls3060MedlemPW", true));
-            this.dbPuls3060MedlemPWTextBox.Location = new System.Drawing.Point(169, 258);
+            this.dbPuls3060MedlemPWTextBox.Location = new System.Drawing.Point(169, 226);
             this.dbPuls3060MedlemPWTextBox.Name = "dbPuls3060MedlemPWTextBox";
             this.dbPuls3060MedlemPWTextBox.Size = new System.Drawing.Size(159, 20);
             this.dbPuls3060MedlemPWTextBox.TabIndex = 23;
@@ -256,7 +256,7 @@
             // dbPuls3060MedlemUserTextBox
             // 
             this.dbPuls3060MedlemUserTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dsAppData, "dbPuls3060MedlemUser", true));
-            this.dbPuls3060MedlemUserTextBox.Location = new System.Drawing.Point(169, 232);
+            this.dbPuls3060MedlemUserTextBox.Location = new System.Drawing.Point(169, 200);
             this.dbPuls3060MedlemUserTextBox.Name = "dbPuls3060MedlemUserTextBox";
             this.dbPuls3060MedlemUserTextBox.Size = new System.Drawing.Size(159, 20);
             this.dbPuls3060MedlemUserTextBox.TabIndex = 25;
@@ -264,7 +264,7 @@
             // gigaHostImapPWTextBox
             // 
             this.gigaHostImapPWTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dsAppData, "GigaHostImapPW", true));
-            this.gigaHostImapPWTextBox.Location = new System.Drawing.Point(169, 206);
+            this.gigaHostImapPWTextBox.Location = new System.Drawing.Point(169, 174);
             this.gigaHostImapPWTextBox.Name = "gigaHostImapPWTextBox";
             this.gigaHostImapPWTextBox.Size = new System.Drawing.Size(159, 20);
             this.gigaHostImapPWTextBox.TabIndex = 27;
@@ -272,7 +272,7 @@
             // gigaHostImapUserTextBox
             // 
             this.gigaHostImapUserTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dsAppData, "GigaHostImapUser", true));
-            this.gigaHostImapUserTextBox.Location = new System.Drawing.Point(169, 180);
+            this.gigaHostImapUserTextBox.Location = new System.Drawing.Point(169, 148);
             this.gigaHostImapUserTextBox.Name = "gigaHostImapUserTextBox";
             this.gigaHostImapUserTextBox.Size = new System.Drawing.Size(159, 20);
             this.gigaHostImapUserTextBox.TabIndex = 29;
@@ -280,7 +280,7 @@
             // puls3060_dkPWTextBox
             // 
             this.puls3060_dkPWTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dsAppData, "puls3060_dkPW", true));
-            this.puls3060_dkPWTextBox.Location = new System.Drawing.Point(169, 154);
+            this.puls3060_dkPWTextBox.Location = new System.Drawing.Point(169, 122);
             this.puls3060_dkPWTextBox.Name = "puls3060_dkPWTextBox";
             this.puls3060_dkPWTextBox.Size = new System.Drawing.Size(159, 20);
             this.puls3060_dkPWTextBox.TabIndex = 35;
@@ -288,7 +288,7 @@
             // puls3060_dkUserTextBox
             // 
             this.puls3060_dkUserTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dsAppData, "puls3060_dkUser", true));
-            this.puls3060_dkUserTextBox.Location = new System.Drawing.Point(169, 128);
+            this.puls3060_dkUserTextBox.Location = new System.Drawing.Point(169, 96);
             this.puls3060_dkUserTextBox.Name = "puls3060_dkUserTextBox";
             this.puls3060_dkUserTextBox.Size = new System.Drawing.Size(159, 20);
             this.puls3060_dkUserTextBox.TabIndex = 37;
@@ -296,7 +296,7 @@
             // uniContaCompanyIdTextBox
             // 
             this.uniContaCompanyIdTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dsAppData, "UniContaCompanyId", true));
-            this.uniContaCompanyIdTextBox.Location = new System.Drawing.Point(169, 102);
+            this.uniContaCompanyIdTextBox.Location = new System.Drawing.Point(169, 70);
             this.uniContaCompanyIdTextBox.Name = "uniContaCompanyIdTextBox";
             this.uniContaCompanyIdTextBox.Size = new System.Drawing.Size(159, 20);
             this.uniContaCompanyIdTextBox.TabIndex = 39;
@@ -304,7 +304,7 @@
             // uniContaPWTextBox
             // 
             this.uniContaPWTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dsAppData, "UniContaPW", true));
-            this.uniContaPWTextBox.Location = new System.Drawing.Point(169, 76);
+            this.uniContaPWTextBox.Location = new System.Drawing.Point(169, 44);
             this.uniContaPWTextBox.Name = "uniContaPWTextBox";
             this.uniContaPWTextBox.Size = new System.Drawing.Size(159, 20);
             this.uniContaPWTextBox.TabIndex = 41;
@@ -312,7 +312,7 @@
             // uniContaUserTextBox
             // 
             this.uniContaUserTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.dsAppData, "UniContaUser", true));
-            this.uniContaUserTextBox.Location = new System.Drawing.Point(169, 50);
+            this.uniContaUserTextBox.Location = new System.Drawing.Point(169, 18);
             this.uniContaUserTextBox.Name = "uniContaUserTextBox";
             this.uniContaUserTextBox.Size = new System.Drawing.Size(159, 20);
             this.uniContaUserTextBox.TabIndex = 43;
@@ -362,14 +362,14 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.richTextBoxMessages);
-            this.splitContainer1.Size = new System.Drawing.Size(585, 538);
-            this.splitContainer1.SplitterDistance = 320;
+            this.splitContainer1.Size = new System.Drawing.Size(527, 460);
+            this.splitContainer1.SplitterDistance = 280;
             this.splitContainer1.TabIndex = 45;
             // 
             // btnLoadEncrypted
             // 
             this.btnLoadEncrypted.Enabled = false;
-            this.btnLoadEncrypted.Location = new System.Drawing.Point(409, 173);
+            this.btnLoadEncrypted.Location = new System.Drawing.Point(372, 223);
             this.btnLoadEncrypted.Name = "btnLoadEncrypted";
             this.btnLoadEncrypted.Size = new System.Drawing.Size(136, 23);
             this.btnLoadEncrypted.TabIndex = 50;
@@ -380,7 +380,7 @@
             // btnSaveEncrypted
             // 
             this.btnSaveEncrypted.Enabled = false;
-            this.btnSaveEncrypted.Location = new System.Drawing.Point(409, 132);
+            this.btnSaveEncrypted.Location = new System.Drawing.Point(372, 193);
             this.btnSaveEncrypted.Name = "btnSaveEncrypted";
             this.btnSaveEncrypted.Size = new System.Drawing.Size(137, 23);
             this.btnSaveEncrypted.TabIndex = 46;
@@ -391,7 +391,7 @@
             // btnOpdatermarkerededata
             // 
             this.btnOpdatermarkerededata.Enabled = false;
-            this.btnOpdatermarkerededata.Location = new System.Drawing.Point(409, 96);
+            this.btnOpdatermarkerededata.Location = new System.Drawing.Point(372, 17);
             this.btnOpdatermarkerededata.Name = "btnOpdatermarkerededata";
             this.btnOpdatermarkerededata.Size = new System.Drawing.Size(137, 23);
             this.btnOpdatermarkerededata.TabIndex = 45;
@@ -402,7 +402,7 @@
             // btnEncryptAppconfig
             // 
             this.btnEncryptAppconfig.Enabled = false;
-            this.btnEncryptAppconfig.Location = new System.Drawing.Point(409, 54);
+            this.btnEncryptAppconfig.Location = new System.Drawing.Point(372, 46);
             this.btnEncryptAppconfig.Name = "btnEncryptAppconfig";
             this.btnEncryptAppconfig.Size = new System.Drawing.Size(137, 23);
             this.btnEncryptAppconfig.TabIndex = 44;
@@ -416,18 +416,19 @@
             this.richTextBoxMessages.Location = new System.Drawing.Point(0, 0);
             this.richTextBoxMessages.Name = "richTextBoxMessages";
             this.richTextBoxMessages.ReadOnly = true;
-            this.richTextBoxMessages.Size = new System.Drawing.Size(585, 214);
+            this.richTextBoxMessages.Size = new System.Drawing.Size(527, 176);
             this.richTextBoxMessages.TabIndex = 0;
             this.richTextBoxMessages.Text = "";
             // 
-            // FrmPipeClient
+            // FrmAppData
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(585, 538);
+            this.ClientSize = new System.Drawing.Size(527, 460);
             this.Controls.Add(this.splitContainer1);
-            this.Name = "FrmPipeClient";
-            this.Text = "pipe Client";
+            this.Name = "FrmAppData";
+            this.RightToLeftLayout = true;
+            this.Text = "AppData";
             this.Load += new System.EventHandler(this.OnLoad);
             ((System.ComponentModel.ISupportInitialize)(this.dsAppData)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);

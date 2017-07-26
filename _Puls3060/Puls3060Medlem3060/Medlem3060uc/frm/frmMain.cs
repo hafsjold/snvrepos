@@ -476,7 +476,8 @@ namespace Medlem3060uc
 
         private void testToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-             //clsUniconta obj = new clsUniconta();
+            var stat = clsStatus.GetStatus(Program.dbConnectionString());
+            //clsUniconta obj = new clsUniconta();
             //obj.BogforIndBetalinger();
             /*
             var CurrentCompany = UCInitializer.CurrentCompany;
