@@ -14,7 +14,7 @@ namespace Medlem3060uc
 {
     public partial class pipeServer : Form
     {
-        private readonly NamedPipeServer<clsAppData> _server = new NamedPipeServer<clsAppData>("MyPipe");
+        private readonly NamedPipeServer<clsPipeData> _server = new NamedPipeServer<clsPipeData>("MyPipe");
 
         public pipeServer()
         {
@@ -30,21 +30,24 @@ namespace Medlem3060uc
             _server.Start();
         }
  
-        private void OnClientConnected(NamedPipeConnection<clsAppData, clsAppData> connection)
+        private void OnClientConnected(NamedPipeConnection<clsPipeData, clsPipeData> connection)
         {
             //connection.PushMessage("Welcome!  You are now connected to the server.");
             Program.Log(string.Format("Medlem306uc OnClientConnected(): Client {0} is now connected!", connection.Id));
-            connection.PushMessage(new clsAppData { Id = new Random().Next(), message = "Welcome!  You are now connected to the server." });
+            connection.PushMessage(new clsPipeData { Id = new Random().Next(), message = "Welcome!  You are now connected to the server." });
         }
 
-        private void OnClientMessage(NamedPipeConnection<clsAppData, clsAppData> connection, clsAppData appdata)
+        private void OnClientMessage(NamedPipeConnection<clsPipeData, clsPipeData> connection, clsPipeData pipedata)
         {
             try
             {
-                Program.Log(string.Format("Medlem306uc OnClientMessage(): Client {0} send {1}", connection.Id, appdata.ToString()));
-                clsApp.AddUpdateAppSettings(appdata);
-                appdata.message = "Your request has been executed on the server.";
-                connection.PushMessage(appdata);
+                Program.Log(string.Format("Medlem306uc OnClientMessage(): Client {0} send {1}", connection.Id, pipedata.ToString()));
+                if (pipedata.cmd == clsPipeData.command.ProcessAppData)
+                {
+                    clsApp.AddUpdateAppSettings(pipedata.AppData);
+                    pipedata.message = "Your request has been executed on the server.";
+                    connection.PushMessage(pipedata);
+                }
             }
             catch (Exception exception)
             {
@@ -52,7 +55,7 @@ namespace Medlem3060uc
             }
         }
 
-        private void OnClientDisconnected(NamedPipeConnection<clsAppData, clsAppData> connection)
+        private void OnClientDisconnected(NamedPipeConnection<clsPipeData, clsPipeData> connection)
         {
             Program.Log(string.Format("Medlem306uc OnClientDisconnected(): Client {0} disconnected", connection.Id));
         }

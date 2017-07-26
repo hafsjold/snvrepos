@@ -59,14 +59,9 @@
             this.uniContaUserTextBox = new System.Windows.Forms.TextBox();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.btnLoadEncrypted = new System.Windows.Forms.Button();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolLogedInStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.btnSaveEncrypted = new System.Windows.Forms.Button();
             this.btnOpdatermarkerededata = new System.Windows.Forms.Button();
             this.btnEncryptAppconfig = new System.Windows.Forms.Button();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.richTextBoxMessages = new System.Windows.Forms.RichTextBox();
             dbPuls3060MedlemPWLabel = new System.Windows.Forms.Label();
             dbPuls3060MedlemUserLabel = new System.Windows.Forms.Label();
@@ -82,8 +77,6 @@
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            this.statusStrip1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dbPuls3060MedlemPWLabel
@@ -334,7 +327,6 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.Controls.Add(this.btnLoadEncrypted);
-            this.splitContainer1.Panel1.Controls.Add(this.statusStrip1);
             this.splitContainer1.Panel1.Controls.Add(this.btnSaveEncrypted);
             this.splitContainer1.Panel1.Controls.Add(this.btnOpdatermarkerededata);
             this.splitContainer1.Panel1.Controls.Add(this.btnEncryptAppconfig);
@@ -365,7 +357,6 @@
             this.splitContainer1.Panel1.Controls.Add(this.dbPuls3060MedlemUserTextBox);
             this.splitContainer1.Panel1.Controls.Add(this.gigaHostImapPWTextBox);
             this.splitContainer1.Panel1.Controls.Add(gigaHostImapPWLabel);
-            this.splitContainer1.Panel1.Controls.Add(this.menuStrip1);
             this.splitContainer1.Panel1MinSize = 280;
             // 
             // splitContainer1.Panel2
@@ -385,21 +376,6 @@
             this.btnLoadEncrypted.Text = "Load Encrypted";
             this.btnLoadEncrypted.UseVisualStyleBackColor = true;
             this.btnLoadEncrypted.Click += new System.EventHandler(this.btnLoadEncrypted_Click);
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolLogedInStatus});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 298);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(585, 22);
-            this.statusStrip1.TabIndex = 49;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolLogedInStatus
-            // 
-            this.toolLogedInStatus.Name = "toolLogedInStatus";
-            this.toolLogedInStatus.Size = new System.Drawing.Size(0, 17);
             // 
             // btnSaveEncrypted
             // 
@@ -434,30 +410,6 @@
             this.btnEncryptAppconfig.UseVisualStyleBackColor = true;
             this.btnEncryptAppconfig.Click += new System.EventHandler(this.EncryptAppconfig_Click);
             // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.loginToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(585, 24);
-            this.menuStrip1.TabIndex = 48;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
-            // loginToolStripMenuItem
-            // 
-            this.loginToolStripMenuItem.Name = "loginToolStripMenuItem";
-            this.loginToolStripMenuItem.Size = new System.Drawing.Size(49, 20);
-            this.loginToolStripMenuItem.Text = "Login";
-            this.loginToolStripMenuItem.Click += new System.EventHandler(this.loginToolStripMenuItem_Click);
-            // 
             // richTextBoxMessages
             // 
             this.richTextBoxMessages.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -474,7 +426,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(585, 538);
             this.Controls.Add(this.splitContainer1);
-            this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmPipeClient";
             this.Text = "pipe Client";
             this.Load += new System.EventHandler(this.OnLoad);
@@ -484,10 +435,6 @@
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -517,11 +464,6 @@
         private System.Windows.Forms.Button btnOpdatermarkerededata;
         private System.Windows.Forms.Button btnEncryptAppconfig;
         private System.Windows.Forms.Button btnSaveEncrypted;
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem loginToolStripMenuItem;
-        private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolLogedInStatus;
         private System.Windows.Forms.Button btnLoadEncrypted;
     }
 }

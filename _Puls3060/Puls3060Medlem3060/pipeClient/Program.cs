@@ -8,15 +8,21 @@ namespace pipeClient
 {
     static class Program
     {
+        static public bool bLogedIn { get; set; }
+        static public string User { get; set; }
+
+        static public FrmLogin frmLogin { get; set; }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
         static void Main()
         {
+            bLogedIn = false;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmPipeClient());
+            Application.Run(new FrmMain());
         }
     }
 }

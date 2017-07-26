@@ -23,6 +23,7 @@ namespace nsPbs3060
             var xml = Decrypt(encryptData, password);
             FromXml(xml);
         }
+
         public string UniContaUser { get; set; }
         public string UniContaPW { get; set; }
         public string UniContaCompanyId { get; set; }
@@ -45,14 +46,6 @@ namespace nsPbs3060
 
         public bool bEncryptApp { get; set; }
 
-        public int Id { get; set; }
-        public string message { get; set; }
-        public override string ToString() {return string.Format("\"{0}\" (message ID = {1})", message, Id); }
-        public string encryptClass(string password)
-        {
-            return Encrypt(ToXml(), password);
-        }
-
         private string ToXml()
         {
             XmlSerializer xsSubmit = new XmlSerializer(typeof(clsAppData));
@@ -69,6 +62,7 @@ namespace nsPbs3060
             }
             return xml;
         }
+
         private void FromXml(string xml)
         {
             try
@@ -98,11 +92,15 @@ namespace nsPbs3060
                 bpuls3060_dkUser = data.bpuls3060_dkUser;
                 bpuls3060_dkPW = data.bpuls3060_dkPW;
                 bEncryptApp = data.bEncryptApp;
-                Id = data.Id;
-                message = data.message;
             }
             catch { }
         }
+
+        public string encryptClass(string password)
+        {
+            return Encrypt(ToXml(), password);
+        }
+
         private string Encrypt(string clearText, string Password)
         {
             byte[] clearBytes = System.Text.Encoding.Unicode.GetBytes(clearText);
