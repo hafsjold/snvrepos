@@ -29,7 +29,7 @@ namespace Medlem3060uc
             _server.Error += OnError;
             _server.Start();
         }
- 
+
         private void OnClientConnected(NamedPipeConnection<clsPipeData, clsPipeData> connection)
         {
             //connection.PushMessage("Welcome!  You are now connected to the server.");
@@ -42,11 +42,24 @@ namespace Medlem3060uc
             try
             {
                 Program.Log(string.Format("Medlem306uc OnClientMessage(): Client {0} send {1}", connection.Id, pipedata.ToString()));
-                if (pipedata.cmd == clsPipeData.command.ProcessAppData)
+                switch (pipedata.cmd)
                 {
-                    clsApp.AddUpdateAppSettings(pipedata.AppData);
-                    pipedata.message = "Your request has been executed on the server.";
-                    connection.PushMessage(pipedata);
+                    case clsPipeData.command.ProcessAppData:
+                        clsApp.AddUpdateAppSettings(pipedata.AppData);
+                        pipedata.message = "Your request has been executed on the server.";
+                        pipedata.cmd = clsPipeData.command.ResponseAppData;
+                        connection.PushMessage(pipedata);
+                        break;
+
+                    case clsPipeData.command.ProcessStatusData:
+                        pipedata.StatusData =clsStatus.GetStatus(Program.dbConnectionString());
+                        pipedata.message = "Your request has been executed on the server.";
+                        pipedata.cmd = clsPipeData.command.ResponseStatusData;
+                        connection.PushMessage(pipedata);
+                        break;
+
+                     default:
+                        break;
                 }
             }
             catch (Exception exception)

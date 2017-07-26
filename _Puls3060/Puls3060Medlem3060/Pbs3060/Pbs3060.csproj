@@ -213,6 +213,8 @@
     <Compile Include="clsPipeData.cs" />
     <Compile Include="clsSFTP.cs" />
     <Compile Include="clsPbs686.cs" />
+    <Compile Include="clsStatus.cs" />
+    <Compile Include="clsStatusData.cs" />
     <Compile Include="clsUniconta.cs" />
     <Compile Include="clsUnicontaHelp.cs" />
     <Compile Include="ConnectionTools.cs" />

@@ -14,12 +14,12 @@ using System.Security.Cryptography;
 
 namespace pipeClient
 {
-    public partial class FrmPipeClient : Form
+    public partial class FrmAppData : Form
     {
         private readonly NamedPipeClient<clsPipeData> _client = new NamedPipeClient<clsPipeData>("MyPipe");
         clsAppData m_appdata;
 
-        public FrmPipeClient()
+        public FrmAppData()
         {
             InitializeComponent();
         }

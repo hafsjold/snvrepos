@@ -40,22 +40,24 @@ namespace pipeClient
             if (Program.bLogedIn)
             {
                 appDataToolStripMenuItem.Enabled = true;
+                statusToolStripMenuItem.Enabled = true;
                 toolStripStatusLogedinUser.Text = string.Format("Loged in som {0}", Program.User);
             }
             else
             {
                 appDataToolStripMenuItem.Enabled = false;
+                statusToolStripMenuItem.Enabled = false;
                 toolStripStatusLogedinUser.Text = "NOT Loged in, Vælg Action-->Login";
             }
         }
 
         private void appDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (!FocusChild("pipeClienr"))
+            if (!FocusChild("AppData"))
             {
-                FrmPipeClient frmPipeClient = new FrmPipeClient();
-                frmPipeClient.MdiParent = this;
-                frmPipeClient.Show();
+                FrmAppData frmAppData = new FrmAppData();
+                frmAppData.MdiParent = this;
+                frmAppData.Show();
             }
         }
 
@@ -101,5 +103,14 @@ namespace pipeClient
             }
         }
 
+        private void statusToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (!FocusChild("frmStatus"))
+            {
+                FrmStatus frmStatus = new FrmStatus();
+                frmStatus.MdiParent = this;
+                frmStatus.Show();
+            }
+        }
     }
 }

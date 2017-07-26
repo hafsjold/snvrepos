@@ -34,11 +34,25 @@ namespace nsMedlem3060Service
             try
             {
                 Program.Log(string.Format("Medlem3060Service OnClientMessage(): Client {0} send {1}", connection.Id, pipedata.ToString()));
-                if (pipedata.cmd == clsPipeData.command.ProcessAppData)
+                switch (pipedata.cmd)
                 {
-                    clsApp.AddUpdateAppSettings(pipedata.AppData);
-                    pipedata.message = "Your request has been executed on the server.";
-                    connection.PushMessage(pipedata);
+                    case clsPipeData.command.ProcessAppData:
+                        clsApp.AddUpdateAppSettings(pipedata.AppData);
+                        pipedata.message = "Your request has been executed on the server.";
+                        pipedata.cmd = clsPipeData.command.ResponseAppData;
+                        connection.PushMessage(pipedata);
+                        break;
+
+                    case clsPipeData.command.ProcessStatusData:
+                        var dbConnectionString = Program.dbConnectionString();
+                        pipedata.StatusData = clsStatus.GetStatus(dbConnectionString);
+                        pipedata.message = "Your request has been executed on the server.";
+                        pipedata.cmd = clsPipeData.command.ResponseStatusData;
+                        connection.PushMessage(pipedata);
+                        break;
+
+                    default:
+                        break;
                 }
             }
             catch (Exception exception)
