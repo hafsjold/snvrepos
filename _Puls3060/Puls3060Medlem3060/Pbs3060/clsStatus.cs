@@ -30,10 +30,12 @@ namespace nsPbs3060
             {
                 var testCurrentCompany = UCInitializer.CurrentCompany;
                 m_statusdata.bUniConta_Online = true;
+                Program.Log("Medlem3060Service getUniContaStatus() OK");
             }
             catch
             {
                 m_statusdata.bUniConta_Online = false;
+                Program.Log("Medlem3060Service getUniContaStatus() ERROR");
             }
         }
 
@@ -50,11 +52,13 @@ namespace nsPbs3060
                     var Puls3060Bilag = imap_client.GetFolder("_Puls3060Bilag");
                     Puls3060Bilag.Open(FolderAccess.ReadWrite);
                     m_statusdata.bGigaHostImap_Online = true;
+                    Program.Log("Medlem3060Service getGigaHostImap() OK");
                 }
             }
             catch 
             {
                 m_statusdata.bGigaHostImap_Online = false;
+                Program.Log("Medlem3060Service getGigaHostImap() ERROR");
             }
         }
 
@@ -67,10 +71,12 @@ namespace nsPbs3060
                 var qry = from b in m_dbData3060.tblbankkontos select b;
                 int antal = qry.Count();
                 m_statusdata.bdbPuls3060Medlem_Online = true;
+                Program.Log("Medlem3060Service getPuls3060Medlem() OK");
             }
             catch
             {
                 m_statusdata.bdbPuls3060Medlem_Online = false;
+                Program.Log("Medlem3060Service getPuls3060Medlem() ERROR");
             }
         }
 
@@ -83,10 +89,12 @@ namespace nsPbs3060
                 var qry = from u in cjdb.ecpwt_users select u;
                 int antal = qry.Count();
                 m_statusdata.bpuls3060_dk_Online = true;
+                Program.Log("Medlem3060Service getPuls3060_dk() OK");
             }
             catch
             {
                 m_statusdata.bpuls3060_dk_Online = false;
+                Program.Log("Medlem3060Service getPuls3060_dk() ERROR");
             }
         }
 
@@ -101,10 +109,12 @@ namespace nsPbs3060
                 objSFTP.DisconnectSFtp();
                 objSFTP = null;
                 m_statusdata.bSFTP_Online = true;
+                Program.Log("Medlem3060Service getSFTP() OK");
             }
             catch 
             {
                 m_statusdata.bSFTP_Online = false;
+                Program.Log("Medlem3060Service getSFTP() ERROR");
             }
         }
     }
