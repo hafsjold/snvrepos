@@ -55,7 +55,7 @@ namespace nsPbs3060
 
 
                     var qrypbsfile = from d in p_dbData3060.tblpbsfiles
-                                     where d.pbsfilesid == wpbsfilesid && d.data.Substring(0,6) != "PBCNET"
+                                     where d.pbsfilesid == wpbsfilesid && d.data.Substring(0, 6) != "PBCNET"
                                      orderby d.seqnr
                                      select d;
 
@@ -85,7 +85,7 @@ namespace nsPbs3060
                                              select c).Count();
                                 if (antal > 0) { throw new Exception("242 - Leverance med pbsfilesid: " + wpbsfilesid + " og leverancespecifikation: " + leverancespecifikation + " er indlæst tidligere"); }
 
-                                wleveranceid = (int)(from r in p_dbData3060.nextval("leveranceid") select r.id).First(); 
+                                wleveranceid = (int)(from r in p_dbData3060.nextval("leveranceid") select r.id).First();
                                 m_rec_pbsforsendelse = new tblpbsforsendelse
                                 {
                                     delsystem = "BS1",
@@ -329,7 +329,7 @@ namespace nsPbs3060
                                 throw new Exception("250 - Rec# " + rstpbsfile.seqnr + " ukendt: " + rec);
                             };
                         }
-                   
+
                         else
                         {
                             throw new Exception("251 - Rec# " + rstpbsfile.seqnr + " ukendt: " + rec);
@@ -421,11 +421,9 @@ namespace nsPbs3060
                 m_rec_aftalelin.aftaleslutdato = null;
             };
 
-            if ((from h in p_dbData3060.tblMedlems where h.Nr == m_rec_aftalelin.Nr select h).Count() == 1)
-            {
-                // Add tblaftalelin
-                m_rec_frapbs.tblaftalelins.Add(m_rec_aftalelin);
-            }
+            // Add tblaftalelin
+            m_rec_frapbs.tblaftalelins.Add(m_rec_aftalelin);
+
         }
 
         public void readgirokort042(dbData3060DataContext p_dbData3060, string sektion, string transkode, string rec)
@@ -451,7 +449,7 @@ namespace nsPbs3060
             {
                 m_rec_indbetalingskort.Nr = 0;
             }
-            
+
             //  debitorkonto
             m_rec_indbetalingskort.debitorkonto = rec.Substring(25, 15);
 
@@ -462,10 +460,10 @@ namespace nsPbs3060
             m_rec_indbetalingskort.kortartkode = rec.Substring(40, 2);
 
             //  FI-kreditor
-            m_rec_indbetalingskort.fikreditornr  = rec.Substring(42, 8);
+            m_rec_indbetalingskort.fikreditornr = rec.Substring(42, 8);
 
             //  Indbetalerident
-            m_rec_indbetalingskort.indbetalerident  = rec.Substring(50, 19);
+            m_rec_indbetalingskort.indbetalerident = rec.Substring(50, 19);
 
             //  dato
             if (rec.Substring(55, 6) != "000000")
@@ -485,7 +483,7 @@ namespace nsPbs3060
             //  Faknr
             m_rec_indbetalingskort.faknr = int.Parse(rec.Substring(88, 9));
 
-            if ((from h in p_dbData3060.tblMedlems where h.Nr == m_rec_indbetalingskort.Nr select h).Count() == 1)
+            //if ((from h in p_dbData3060.tblMedlems where h.Nr == m_rec_indbetalingskort.Nr select h).Count() == 1) <<--------------------------------RETTET 2017-07-28
             {
                 if ((from k in p_dbData3060.tblindbetalingskorts where k.Nr == m_rec_indbetalingskort.Nr && k.indbetalerident == m_rec_indbetalingskort.indbetalerident select k).Count() == 0)
                 {
