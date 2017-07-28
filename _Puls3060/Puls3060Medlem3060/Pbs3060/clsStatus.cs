@@ -28,9 +28,17 @@ namespace nsPbs3060
             m_statusdata.bUniConta_Online = false;
             try
             {
-                var testCurrentCompany = UCInitializer.CurrentCompany;
-                m_statusdata.bUniConta_Online = true;
-                Program.Log("Medlem3060Service getUniContaStatus() OK");
+                var testCompanies = UCInitializer.Companies;
+                if (testCompanies.Count() > 0)
+                {
+                    m_statusdata.bUniConta_Online = true;
+                    Program.Log("Medlem3060Service getUniContaStatus() OK");
+                }
+                else
+                {
+                    m_statusdata.bUniConta_Online = false;
+                    Program.Log("Medlem3060Service getUniContaStatus() ERROR");
+                }
             }
             catch
             {
