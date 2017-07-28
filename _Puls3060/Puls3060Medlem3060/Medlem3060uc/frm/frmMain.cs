@@ -295,10 +295,10 @@ namespace Medlem3060uc
             clsPbs603 objPbs603 = new clsPbs603();
             clsPbs686 objPbs686 = new clsPbs686();
 
-            //clsSFTP objSFTP = new clsSFTP(Program.dbData3060);
-            //AntalImportFiler = objSFTP.ReadFraSFtp(Program.dbData3060);  //Læs direkte SFTP
-            //objSFTP.DisconnectSFtp();
-            //objSFTP = null;
+            clsSFTP objSFTP = new clsSFTP(Program.dbData3060);
+            AntalImportFiler = objSFTP.ReadFraSFtp(Program.dbData3060);  //Læs direkte SFTP
+            objSFTP.DisconnectSFtp();
+            objSFTP = null;
 
             int Antal602Filer = objPbs602.betalinger_fra_pbs(Program.dbData3060);
             int Antal603Filer = objPbs603.aftaleoplysninger_fra_pbs(Program.dbData3060);
@@ -476,7 +476,10 @@ namespace Medlem3060uc
 
         private void testToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            var stat = clsStatus.GetStatus(Program.dbConnectionString());
+            clsPbsHelper obj = new clsPbsHelper();
+            obj.Work_OpdateringAfSlettet_rsmembership_transaction(Program.dbData3060);
+            var xtest = 1;
+            //var stat = clsStatus.GetStatus(Program.dbConnectionString());
             //clsUniconta obj = new clsUniconta();
             //obj.BogforIndBetalinger();
             /*
@@ -491,8 +494,6 @@ namespace Medlem3060uc
                 var x = rec;
             }
             */
-            //clsPbsHelper obj = new clsPbsHelper();
-            //obj.Work_OpdateringAfSlettet_rsmembership_transaction(Program.dbData3060);
 
             //clsKontingent objKontingent = new clsKontingent(Program.dbData3060, new DateTime(2016,12,31));
             //int yy = 1;
