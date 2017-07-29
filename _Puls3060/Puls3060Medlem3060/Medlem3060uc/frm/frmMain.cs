@@ -249,11 +249,12 @@ namespace Medlem3060uc
         {
             puls3060_nyEntities jdb = new puls3060_nyEntities(true);
             clsPbs601 objPbs601 = new clsPbs601();
-            Tuple<int, int> tresultc = objPbs601.rsmembeshhip_fakturer_auto(Program.dbData3060, jdb);
+            Tuple<int, int> tresultc = objPbs601.paypal_pending_rsmembeshhip_fakturer_auto(Program.dbData3060, jdb);
             int AntalKontingent = tresultc.Item1;
             int lobnrc = tresultc.Item2;
             if ((AntalKontingent > 0))
             {
+                //pbsType.indbetalingskort
                 objPbs601.faktura_og_rykker_601_action_lobnr(Program.dbData3060, lobnrc);
                 clsSFTP objSFTPc = new clsSFTP(Program.dbData3060);
                 objSFTPc.WriteTilSFtp(Program.dbData3060, lobnrc);
@@ -314,101 +315,6 @@ namespace Medlem3060uc
             clsPbsHelper obj = new clsPbsHelper();
             obj.Work_OpdateringAfSlettet_rsmembership_transaction(Program.dbData3060);
             var xtest = 1;
-            //var stat = clsStatus.GetStatus(Program.dbConnectionString());
-            //clsUniconta obj = new clsUniconta();
-            //obj.BogforIndBetalinger();
-            /*
-            var CurrentCompany = UCInitializer.CurrentCompany;
-            var api = UCInitializer.GetBaseAPI;
-            var TaskCollection = api.Query<CompanyFinanceYear>();
-
-           
-            var collection = await TaskCollection;
-            foreach (var rec in collection)
-            {
-                var x = rec;
-            }
-            */
-
-            //clsKontingent objKontingent = new clsKontingent(Program.dbData3060, new DateTime(2016,12,31));
-            //int yy = 1;
-
-            //clsPDFMedlem objPDFMedlem = new clsPDFMedlem();
-            //objPDFMedlem.imapSavePDFFile();
-            //int yy = 1;
-            //clsPbsHelper.update_rsmembership_transactions_user_data();
-
-            //clsPbsHelper.Update_rsmembership_transactions(Program.dbData3060);
-
-            //puls3060_nyEntities jdb = new puls3060_nyEntities(true);
-            //clsPbs601 objPbs601x = new clsPbs601();
-            //objPbs601x.rsmembeshhip_betalinger_auto(Program.dbData3060, jdb);
-
-            //string xx = clsHelper.generateIndbetalerident(13696);
-            //if (xx == null) return;
-            //bool yy = clsHelper.Mod10Check("0000000001369610");
-            //if (yy == false) return;
-
-            //clsPbsHelper objPbsHelperd = new clsPbsHelper();
-            //objPbsHelperd.OpdateringAfSlettet_rsmembership_transaction(930, Program.dbData3060);
-
-            //clsPbsHelper objPbsHelperd = new clsPbsHelper();
-            //objPbsHelperd.PbsAutoKontingent(Program.dbData3060);
-            //objPbsHelperd = null; 
-
-            /*
-            puls3060_nyEntities jdb = new puls3060_nyEntities();
-
-            var qry = from u in jdb.ecpwt_users
-                      join m in jdb.ecpwt_rsmembership_membership_subscribers on u.id equals m.user_id
-                      where m.membership_id == 6 && m.status == 0
-                      join t in jdb.ecpwt_rsmembership_transactions on m.last_transaction_id equals t.id
-                      join a in jdb.ecpwt_rsmembership_subscribers on m.user_id equals a.user_id
-                      select new 
-                      {
-                          u.id,
-                          u.name,
-                          a.f1,
-                          a.f4,
-                          a.f2,
-                          a.f6,
-                          u.email,
-                          a.f14,
-                          m.membership_start,
-                          m.membership_end,
-                          t.user_data
-                      };
-
-            List<clsMedlemExternAll> xList = new List<clsMedlemExternAll>();
-            foreach (var x in qry) 
-            {
-
-                User_data recud = clsHelper.unpack_UserData(x.user_data);
-                clsMedlemExternAll xl = new clsMedlemExternAll
-                {
-                    Nr = x.id,
-                    Navn = x.name,
-                    Adresse = x.f1,
-                    Postnr = x.f4,
-                    Bynavn = x.f2,
-                    Telefon = x.f6,
-                    Email = x.email,
-                    Kon = recud.kon,
-                    FodtAar = recud.fodtaar,                     
-                };
-                xList.Add(xl); 
-            }                  
-            return;
-            
-            int lobnrc = 5100;
-            clsPbs601 objPbs601c = new clsPbs601();
-            Tuple<int, int> tresultd = objPbs601c.advis_autoxxx(Program.dbData3060, lobnrc);
-            int AntalAdvisd = tresultd.Item1;
-            int lobnrd = tresultd.Item2;
-            if ((AntalAdvisd > 0))
-                objPbs601c.advis_email(Program.dbData3060, lobnrd);
-            objPbs601c = null;
-            */
         }
 
         private void opdaterKanSlettesToolStripMenuItem_Click(object sender, EventArgs e)

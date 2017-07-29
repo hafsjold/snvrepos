@@ -61,17 +61,32 @@ namespace nsPbs3060
                     memKontingentforslag.Add(rec_Kontingentforslag);
                 }
 
-                Tuple<int, int> tresulte = objPbs601d.rsmembeshhip_kontingent_fakturer_bs1(m_dbData3060, jdbd, memKontingentforslag);
+                Tuple<int, int> tresulte = objPbs601d.rsmembeshhip_kontingent_fakturer_bs1(m_dbData3060, jdbd, memKontingentforslag, pbsType.betalingsservice);
                 int AntalFakturaer = tresulte.Item1;
                 int lobnr = tresulte.Item2;
                 if ((AntalFakturaer > 0))
                 {
+                    //pbsType.indbetalingskort
                     objPbs601d.faktura_og_rykker_601_action_lobnr(m_dbData3060, lobnr);
                     clsSFTP objSFTPd = new clsSFTP(m_dbData3060);
                     objSFTPd.WriteTilSFtp(m_dbData3060, lobnr);
                     objSFTPd.DisconnectSFtp();
                     objSFTPd = null;
                 }
+
+                tresulte = objPbs601d.rsmembeshhip_kontingent_fakturer_bs1(m_dbData3060, jdbd, memKontingentforslag, pbsType.indbetalingskort);
+                AntalFakturaer = tresulte.Item1;
+                lobnr = tresulte.Item2;
+                if ((AntalFakturaer > 0))
+                {
+                    //pbsType.indbetalingskort
+                    objPbs601d.faktura_og_rykker_601_action_lobnr(m_dbData3060, lobnr);
+                    clsSFTP objSFTPd = new clsSFTP(m_dbData3060);
+                    objSFTPd.WriteTilSFtp(m_dbData3060, lobnr);
+                    objSFTPd.DisconnectSFtp();
+                    objSFTPd = null;
+                }
+
                 Program.Log(string.Format("Medlem3060Service {0} end", "Send Kontingent File til PBS"));
             }
 
