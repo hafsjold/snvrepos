@@ -483,13 +483,10 @@ namespace nsPbs3060
             //  Faknr
             m_rec_indbetalingskort.faknr = int.Parse(rec.Substring(88, 9));
 
-            //if ((from h in p_dbData3060.tblMedlems where h.Nr == m_rec_indbetalingskort.Nr select h).Count() == 1) <<--------------------------------RETTET 2017-07-28
+            if ((from k in p_dbData3060.tblindbetalingskorts where k.Nr == m_rec_indbetalingskort.Nr && k.indbetalerident == m_rec_indbetalingskort.indbetalerident select k).Count() == 0)
             {
-                if ((from k in p_dbData3060.tblindbetalingskorts where k.Nr == m_rec_indbetalingskort.Nr && k.indbetalerident == m_rec_indbetalingskort.indbetalerident select k).Count() == 0)
-                {
-                    // Add tblindbetalingskort
-                    m_rec_frapbs.tblindbetalingskorts.Add(m_rec_indbetalingskort);
-                }
+                // Add tblindbetalingskort
+                m_rec_frapbs.tblindbetalingskorts.Add(m_rec_indbetalingskort);
             }
         }
     }
