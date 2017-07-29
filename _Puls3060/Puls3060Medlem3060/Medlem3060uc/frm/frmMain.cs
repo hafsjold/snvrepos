@@ -153,7 +153,7 @@ namespace Medlem3060uc
             int AntalAdvis = tresult.Item1;
             int lobnr = tresult.Item2;
             if ((AntalAdvis > 0))
-                objPbs601.advis_email(Program.dbData3060, lobnr);
+                objPbs601.advis_email_lobnr(Program.dbData3060, lobnr);
 
             clsUniconta objSumma = new clsUniconta(Program.dbData3060, UCInitializer.GetBaseAPI);
             int AntalBetalinger = objSumma.BogforIndBetalinger();
@@ -254,7 +254,7 @@ namespace Medlem3060uc
             int lobnrc = tresultc.Item2;
             if ((AntalKontingent > 0))
             {
-                objPbs601.faktura_og_rykker_601_action(Program.dbData3060, lobnrc, fakType.fdrsmembership);
+                objPbs601.faktura_og_rykker_601_action_lobnr(Program.dbData3060, lobnrc);
                 clsSFTP objSFTPc = new clsSFTP(Program.dbData3060);
                 objSFTPc.WriteTilSFtp(Program.dbData3060, lobnrc);
                 objSFTPc.DisconnectSFtp();
@@ -277,7 +277,7 @@ namespace Medlem3060uc
             int AntalRykker = tresult.Item1;
             int lobnr = tresult.Item2;
             if ((AntalRykker > 0))
-                objPbs601.rykker_email(Program.dbData3060, lobnr);
+                objPbs601.rykker_email_lobnr(Program.dbData3060, lobnr);
             objPbs601 = null;
         }
 

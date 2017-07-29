@@ -175,7 +175,7 @@ namespace nsMedlem3060Service
                             int AntalAdvis = tresult.Item1;
                             int lobnra = tresult.Item2;
                             if ((AntalAdvis > 0))
-                                objPbs601a.advis_email(m_dbData3060, lobnra);
+                                objPbs601a.advis_email_lobnr(m_dbData3060, lobnra);
                             objPbs601a = null;
                             break;
 
@@ -203,7 +203,7 @@ namespace nsMedlem3060Service
                             int lobnrc = tresultc.Item2;
                             if ((AntalKontingent > 0))
                             {
-                                objPbs601c.faktura_og_rykker_601_action(m_dbData3060, lobnrc, fakType.fdrsmembership);
+                                objPbs601c.faktura_og_rykker_601_action_lobnr(m_dbData3060, lobnrc);
                                 clsSFTP objSFTPc = new clsSFTP(m_dbData3060);
                                 objSFTPc.WriteTilSFtp(m_dbData3060, lobnrc);
                                 objSFTPc.DisconnectSFtp();
@@ -213,7 +213,7 @@ namespace nsMedlem3060Service
                                 int AntalAdvisd = tresultd.Item1;
                                 int lobnrd = tresultd.Item2;
                                 if ((AntalAdvisd > 0))
-                                    objPbs601c.advis_email(m_dbData3060, lobnrd);
+                                    objPbs601c.advis_email_lobnr(m_dbData3060, lobnrd);
                                 objPbs601c = null;
                             }
                             break;
@@ -225,7 +225,7 @@ namespace nsMedlem3060Service
                             int AntalRykker = tresultb.Item1;
                             int lobnrb = tresultb.Item2;
                             if ((AntalRykker > 0))
-                                objPbs601b.rykker_email(m_dbData3060, lobnrb);
+                                objPbs601b.rykker_email_lobnr(m_dbData3060, lobnrb);
                             objPbs601b = null;
                             break;
 

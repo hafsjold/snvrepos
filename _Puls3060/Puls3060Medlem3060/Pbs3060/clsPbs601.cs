@@ -15,13 +15,6 @@ namespace nsPbs3060
         fdmmddyyyyhhmmss = 1,
     }
 
-    public enum fakType
-    {
-        //fdfaktura = 0,
-        //fdrykker = 1,
-        fdrsmembership = 2,
-    }
-
     public class clsPbs601
     {
         public clsPbs601() { }
@@ -146,7 +139,7 @@ namespace nsPbs3060
             return new Tuple<int, int>(wantaladvis, lobnr);
         }
 
-        public void advis_email(dbData3060DataContext p_dbData3060, int lobnr)
+        public void advis_email_lobnr(dbData3060DataContext p_dbData3060, int lobnr)
         {
             int wleveranceid;
             int? wSaveFaknr;
@@ -809,7 +802,7 @@ namespace nsPbs3060
 
         }
 
-        public void rykker_email(dbData3060DataContext p_dbData3060, int lobnr)
+        public void rykker_email_lobnr(dbData3060DataContext p_dbData3060, int lobnr)
         {
             int wleveranceid;
             int? wSaveFaknr;
@@ -919,7 +912,7 @@ namespace nsPbs3060
             p_dbData3060.SubmitChanges();
         }
 
-        public void faktura_og_rykker_601_action(dbData3060DataContext p_dbData3060, int lobnr, fakType fakryk)
+        public void faktura_og_rykker_601_action_lobnr(dbData3060DataContext p_dbData3060, int lobnr)
         {
             string rec;
             //lintype lin;
@@ -979,7 +972,7 @@ namespace nsPbs3060
                              select c).Count();
                 if (antal > 0) { throw new Exception("102 - Pbsforsendelse for id: " + lobnr + " er allerede sendt"); }
             }
-            if (fakryk == fakType.fdrsmembership) //KONTINGENT FAKTURA
+            
             {
                 var antal = (from c in p_dbData3060.tblfaks
                              where c.tilpbsid == lobnr
@@ -1040,8 +1033,7 @@ namespace nsPbs3060
             antalsek++;
 
             IEnumerable<clsRstdeb> rstdebs;
-            if (fakryk == fakType.fdrsmembership) //KONTINGENT FAKTURA
-            {
+ 
                 rstdebs = from k in p_dbData3060.tblrsmembership_transactions
                           join f in p_dbData3060.tblfaks on k.id equals f.id
                           where f.tilpbsid == lobnr && f.Nr != null
@@ -1065,11 +1057,7 @@ namespace nsPbs3060
                               indbetalerident = f.indbetalerident,
                               indmeldelse = f.indmeldelse,
                           };
-            }
-            else
-            {
-                rstdebs = null;
-            }
+
 
             foreach (var rstdeb in rstdebs)
             {
