@@ -693,7 +693,7 @@ namespace nsPbs3060
                     {
                         Nr = m.Nr,
                         Navn = m.Navn,
-                        betalingsdato = clsOverfoersel.bankdageplus(DateTime.Today, 8),
+                        betalingsdato = clsHelper.bankdageplus(DateTime.Today, 8),
                         advisbelob = objKontingent.Kontingent,
                         fradato = KontingentFradato,
                         tildato = objKontingent.KontingentTildato,
@@ -840,7 +840,7 @@ namespace nsPbs3060
                     string windbetalerident = clsHelper.generateIndbetalerident(next_faknr); //?????????????????????????????????
                     tblfak rec_fak = new tblfak
                     {
-                        betalingsdato = clsOverfoersel.bankdageplus(DateTime.Today, 8),
+                        betalingsdato = clsHelper.bankdageplus(DateTime.Today, 8),
                         Nr = rec_trans.memberid,
                         faknr = next_faknr,
                         advistekst = wadvistekst,
