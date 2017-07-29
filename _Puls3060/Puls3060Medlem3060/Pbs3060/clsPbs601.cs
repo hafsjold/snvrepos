@@ -486,8 +486,7 @@ namespace nsPbs3060
             return new Tuple<int, int>(wantalrykkere, lobnr);
         }
 
-        //******************************************************************************************************
-        public List<string[]> RSMembership_KontingentForslag(DateTime p_DatoBetaltKontingentTil, dbData3060DataContext p_dbData3060)
+         public List<string[]> RSMembership_KontingentForslag(DateTime p_DatoBetaltKontingentTil, dbData3060DataContext p_dbData3060)
         {
             List<string[]> items = new List<string[]>();
             puls3060_nyEntities jdb = new puls3060_nyEntities(true);
@@ -617,133 +616,6 @@ namespace nsPbs3060
                 }
             }
             return items;
-        }
-        //******************************************************************************************************
-
-        public Tuple<int, int> kontingent_fakturer_auto(dbData3060DataContext p_dbData3060)
-        {
-            int lobnr = 0;
-            string wadvistekst = "";
-            int winfotekst = 0;
-            int wantalfakturaer = 0;
-            string wDelsystem;
-            wDelsystem = "BSH";
-
-            DateTime KontingentFradato = DateTime.MinValue;
-            bool tilmeldtpbs = false;
-            bool indmeldelse = false;
-            int AntalForslag = 0;
-            MemKont memKont = new MemKont();
-
-            var qry_medlemmer = from h in p_dbData3060.tblMedlems
-                                select new
-                                {
-                                    Nr = h.Nr,
-                                    Navn = h.Navn,
-                                    FodtDato = h.FodtDato,
-                                    erMedlem = ((bool)p_dbData3060.erMedlem(h.Nr)) ? 1 : 0,
-                                    indmeldelsesDato = p_dbData3060.indmeldtdato(h.Nr),
-                                    udmeldelsesDato = p_dbData3060.udmeldtdato(h.Nr),
-                                    kontingentBetaltTilDato = p_dbData3060.kontingentdato(h.Nr),
-                                    opkrævningsDato = p_dbData3060.forfaldsdato(h.Nr),
-                                };
-
-            foreach (var m in qry_medlemmer)
-            {
-                bool bSelected = true;
-                tilmeldtpbs = false;
-                indmeldelse = false;
-
-                if (m.erMedlem == 0) //er ikke medlem
-                {
-                    bSelected = false;
-                }
-                else //Er medlem
-                {
-                    if ((m.kontingentBetaltTilDato != null) && (m.kontingentBetaltTilDato > m.indmeldelsesDato))  //'Der findes en kontingent-betaling
-                    {
-                        bSelected = false;
-                    }
-                    else  //Der findes ingen kontingent-betaling
-                    {
-                        KontingentFradato = (DateTime)m.indmeldelsesDato;
-                        indmeldelse = true;
-                    }
-                }
-
-                if (bSelected)
-                {
-                    if (m.opkrævningsDato != null) //Der findes en opkrævning
-                    {
-                        if (((DateTime)m.opkrævningsDato) > KontingentFradato)
-                        {
-                            bSelected = false;
-                        }
-                    }
-                }
-
-
-                if (bSelected && indmeldelse)
-                {
-                    AntalForslag++;
-                    tilmeldtpbs = (bool)p_dbData3060.erPBS(m.Nr);
-                    clsKontingent objKontingent = new clsKontingent(p_dbData3060, KontingentFradato, m.Nr);
-
-                    recKont rec = new recKont
-                    {
-                        Nr = m.Nr,
-                        Navn = m.Navn,
-                        betalingsdato = clsHelper.bankdageplus(DateTime.Today, 8),
-                        advisbelob = objKontingent.Kontingent,
-                        fradato = KontingentFradato,
-                        tildato = objKontingent.KontingentTildato,
-                        indmeldelse = true,
-                        tilmeldtpbs = tilmeldtpbs
-                    };
-                    memKont.Add(rec);
-                }
-            }
-
-
-            if (AntalForslag > 0)
-            {
-                tbltilpb rec_tilpbs = new tbltilpb
-                {
-                    delsystem = wDelsystem,
-                    leverancetype = "0601",
-                    udtrukket = DateTime.Now
-                };
-                p_dbData3060.tbltilpbs.InsertOnSubmit(rec_tilpbs);
-                p_dbData3060.SubmitChanges();
-                lobnr = rec_tilpbs.id;
-
-                foreach (var rstmedlem in memKont)
-                {
-                    if (rstmedlem.indmeldelse) winfotekst = 11;
-                    else winfotekst = (rstmedlem.tilmeldtpbs) ? 10 : 12;
-                    int next_faknr = (int)(from r in p_dbData3060.nextval("faknr") select r.id).First();
-                    tblfak rec_fak = new tblfak
-                    {
-                        betalingsdato = rstmedlem.betalingsdato,
-                        Nr = rstmedlem.Nr,
-                        faknr = next_faknr,
-                        advistekst = wadvistekst,
-                        advisbelob = rstmedlem.advisbelob,
-                        infotekst = winfotekst,
-                        bogfkonto = 1800,
-                        vnr = 1,
-                        fradato = rstmedlem.fradato,
-                        tildato = rstmedlem.tildato,
-                        indmeldelse = rstmedlem.indmeldelse,
-                        tilmeldtpbs = rstmedlem.tilmeldtpbs
-                    };
-                    rec_tilpbs.tblfaks.Add(rec_fak);
-                    wantalfakturaer++;
-                }
-                p_dbData3060.SubmitChanges();
-            }
-            return new Tuple<int, int>(wantalfakturaer, lobnr);
-
         }
 
         public Tuple<int, int> rsmembeshhip_fakturer_auto(dbData3060DataContext p_dbData3060, puls3060_nyEntities p_dbPuls3060_dk)
@@ -887,73 +759,6 @@ namespace nsPbs3060
                 p_dbData3060.SubmitChanges();
             }
 
-            return new Tuple<int, int>(wantalfakturaer, lobnr);
-
-        }
-
-        public Tuple<int, int> kontingent_fakturer_bs1(dbData3060DataContext p_dbData3060)
-        {
-            int lobnr;
-            string wadvistekst = "";
-            int winfotekst;
-            int wantalfakturaer;
-            wantalfakturaer = 0;
-
-            bool? wbsh = (from h in p_dbData3060.tempKontforslags select h.bsh).First();
-            bool bsh = (wbsh == null) ? false : (bool)wbsh;
-            string wDelsystem;
-            if (bsh) wDelsystem = "BSH";
-            else wDelsystem = "BS1";
-
-            tbltilpb rec_tilpbs = new tbltilpb
-            {
-                delsystem = wDelsystem,
-                leverancetype = "0601",
-                udtrukket = DateTime.Now
-            };
-            p_dbData3060.tbltilpbs.InsertOnSubmit(rec_tilpbs);
-            p_dbData3060.SubmitChanges();
-            lobnr = rec_tilpbs.id;
-
-            var rstmedlems = from k in p_dbData3060.tblMedlems
-                             join l in p_dbData3060.tempKontforslaglinies on k.Nr equals l.Nr
-                             join h in p_dbData3060.tempKontforslags on l.Kontforslagid equals h.id
-                             select new
-                             {
-                                 k.Nr,
-                                 k.Navn,
-                                 h.betalingsdato,
-                                 l.advisbelob,
-                                 l.fradato,
-                                 l.tildato,
-                                 l.indmeldelse,
-                                 l.tilmeldtpbs,
-                             };
-
-            foreach (var rstmedlem in rstmedlems)
-            {
-                if (rstmedlem.indmeldelse) winfotekst = 11;
-                else winfotekst = (rstmedlem.tilmeldtpbs) ? 10 : 12;
-                int next_faknr = (int)(from r in p_dbData3060.nextval("faknr") select r.id).First();
-                tblfak rec_fak = new tblfak
-                {
-                    betalingsdato = rstmedlem.betalingsdato,
-                    Nr = rstmedlem.Nr,
-                    faknr = next_faknr,
-                    advistekst = wadvistekst,
-                    advisbelob = rstmedlem.advisbelob,
-                    infotekst = winfotekst,
-                    bogfkonto = 1800,
-                    vnr = 1,
-                    fradato = rstmedlem.fradato,
-                    tildato = rstmedlem.tildato,
-                    indmeldelse = rstmedlem.indmeldelse,
-                    tilmeldtpbs = rstmedlem.tilmeldtpbs
-                };
-                rec_tilpbs.tblfaks.Add(rec_fak);
-                wantalfakturaer++;
-            }
-            p_dbData3060.SubmitChanges();
             return new Tuple<int, int>(wantalfakturaer, lobnr);
 
         }
