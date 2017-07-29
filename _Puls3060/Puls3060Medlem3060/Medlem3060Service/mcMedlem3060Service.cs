@@ -209,7 +209,7 @@ namespace nsMedlem3060Service
                                 objSFTPc.DisconnectSFtp();
                                 objSFTPc = null;
 
-                                Tuple<int, int> tresultd = objPbs601c.advis_autoxxx(m_dbData3060, lobnrc);
+                                Tuple<int, int> tresultd = objPbs601c.advis_auto_lobnr(m_dbData3060, lobnrc);
                                 int AntalAdvisd = tresultd.Item1;
                                 int lobnrd = tresultd.Item2;
                                 if ((AntalAdvisd > 0))

@@ -33,7 +33,7 @@ namespace nsPbs3060
     {
         public clsPbs601() { }
 
-        public Tuple<int, int> advis_autoxxx(dbData3060DataContext p_dbData3060, int ref_lobnr)
+        public Tuple<int, int> advis_auto_lobnr(dbData3060DataContext p_dbData3060, int ref_lobnr)
         {
             int lobnr = 0;
             string wadvistekst = "";
@@ -421,73 +421,8 @@ namespace nsPbs3060
             return new Tuple<int, int>(wantalrykkere, lobnr);
         }
 
-        public Tuple<int, int> rykkere_bsh(dbData3060DataContext p_dbData3060)
-        {
-            int lobnr;
-            string wadvistekst = "";
-            int winfotekst;
-            int wantalrykkere;
-            wantalrykkere = 0;
-
-            bool? wbsh = (from h in p_dbData3060.tempRykkerforslags select h.bsh).First();
-            bool bsh = (wbsh == null) ? false : (bool)wbsh;
-            string wDelsystem;
-            if (bsh) wDelsystem = "BSH";
-            else wDelsystem = "EML";
-
-
-            tbltilpb rec_tilpbs = new tbltilpb
-            {
-                delsystem = wDelsystem,
-                leverancetype = "0601",
-                udtrukket = DateTime.Now
-            };
-            p_dbData3060.tbltilpbs.InsertOnSubmit(rec_tilpbs);
-            p_dbData3060.SubmitChanges();
-            lobnr = rec_tilpbs.id;
-
-            var rstmedlems = from k in p_dbData3060.tblMedlems
-                             join l in p_dbData3060.tempRykkerforslaglinies on k.Nr equals l.Nr
-                             join f in p_dbData3060.tblfaks on l.faknr equals f.faknr
-                             join h in p_dbData3060.tempRykkerforslags on l.Rykkerforslagid equals h.id
-                             select new
-                             {
-                                 k.Nr,
-                                 k.Navn,
-                                 h.betalingsdato,
-                                 l.advisbelob,
-                                 l.faknr,
-                                 f.fradato,
-                                 f.tildato,
-                                 f.indmeldelse,
-                                 f.tilmeldtpbs
-                             };
-
-            foreach (var rstmedlem in rstmedlems)
-            {
-                if (bsh) winfotekst = (rstmedlem.indmeldelse) ? 21 : 20;
-                else winfotekst = (rstmedlem.indmeldelse) ? 31 : 30;
-
-                tblrykker rec_rykker = new tblrykker
-                {
-                    betalingsdato = rstmedlem.betalingsdato,
-                    Nr = rstmedlem.Nr,
-                    faknr = rstmedlem.faknr,
-                    advistekst = wadvistekst,
-                    advisbelob = rstmedlem.advisbelob,
-                    infotekst = winfotekst,
-                    rykkerdato = DateTime.Today,
-                };
-                rec_tilpbs.tblrykkers.Add(rec_rykker);
-                wantalrykkere++;
-                if (wantalrykkere >= 30) break; //max 30 rykkere på gang
-            }
-            p_dbData3060.SubmitChanges();
-            return new Tuple<int, int>(wantalrykkere, lobnr);
-        }
-
-         public List<string[]> RSMembership_KontingentForslag(DateTime p_DatoBetaltKontingentTil, dbData3060DataContext p_dbData3060)
-        {
+        public List<string[]> RSMembership_KontingentForslag(DateTime p_DatoBetaltKontingentTil, dbData3060DataContext p_dbData3060)
+         {
             List<string[]> items = new List<string[]>();
             puls3060_nyEntities jdb = new puls3060_nyEntities(true);
             DateTime KontingentFradato = DateTime.MinValue;
@@ -986,31 +921,6 @@ namespace nsPbs3060
             {
                 if (rstdeb.Faknr != wSaveFaknr) //Løser problem med mere flere PBS Tblindbetalingskort records pr Faknr
                 {
-                    /*
-                    string infotekst = new clsInfotekst
-                    {
-                        infotekst_id = rstdeb.Infotekst,
-                        numofcol = null,
-                        navn_medlem = rstdeb.Navn,
-                        kaldenavn = rstdeb.Kaldenavn,
-                        fradato = rstdeb.Fradato,
-                        tildato = rstdeb.Tildato,
-                        betalingsdato = rstdeb.Betalingsdato,
-                        advisbelob = rstdeb.Belob,
-                        ocrstring = p_dbData3060.OcrString(rstdeb.Faknr),
-                        underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører",
-                        sendtsom = p_dbData3060.SendtSomString(rstdeb.Faknr),
-                        kundenr = rstdeb.Kundenr.ToString()
-                    }.getinfotekst(p_dbData3060);
-
-                    if (infotekst.Length > 0)
-                    {
-
-                        //Send email
-                        sendAdvisRykkerEmail(p_dbData3060, rstdeb.Navn, rstdeb.Email, "Betaling af Puls 3060 Kontingent", infotekst);
-
-                    }
-                    */
                     clsInfotekst objInfotekst = new clsInfotekst
                     {
                         infotekst_id = rstdeb.Infotekst,

@@ -41,7 +41,6 @@
             this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medlemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.regnearkManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.emailRykkerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.opdaterKanSlettesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pBSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
@@ -55,6 +54,7 @@
             this.exportPayPalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.posterTilRegnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sysInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kontingentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.pbsfilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -79,7 +79,6 @@
             this.toolStripDanskeErhvervExport = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripExportPayPal = new System.Windows.Forms.ToolStripButton();
-            this.sysInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -181,7 +180,6 @@
             // 
             this.medlemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.regnearkManagementToolStripMenuItem,
-            this.emailRykkerToolStripMenuItem,
             this.opdaterKanSlettesToolStripMenuItem});
             this.medlemToolStripMenuItem.Name = "medlemToolStripMenuItem";
             this.medlemToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
@@ -193,13 +191,6 @@
             this.regnearkManagementToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
             this.regnearkManagementToolStripMenuItem.Text = "Regneark management";
             this.regnearkManagementToolStripMenuItem.Click += new System.EventHandler(this.regnearkManagementToolStripMenuItem_Click);
-            // 
-            // emailRykkerToolStripMenuItem
-            // 
-            this.emailRykkerToolStripMenuItem.Name = "emailRykkerToolStripMenuItem";
-            this.emailRykkerToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-            this.emailRykkerToolStripMenuItem.Text = "E-mail rykker";
-            this.emailRykkerToolStripMenuItem.Click += new System.EventHandler(this.emailRykkerToolStripMenuItem_Click);
             // 
             // opdaterKanSlettesToolStripMenuItem
             // 
@@ -311,6 +302,13 @@
             this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
             this.systemToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
             this.systemToolStripMenuItem.Text = "System";
+            // 
+            // sysInfoToolStripMenuItem
+            // 
+            this.sysInfoToolStripMenuItem.Name = "sysInfoToolStripMenuItem";
+            this.sysInfoToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.sysInfoToolStripMenuItem.Text = "SysInfo";
+            this.sysInfoToolStripMenuItem.Click += new System.EventHandler(this.sysInfoToolStripMenuItem_Click);
             // 
             // kontingentToolStripMenuItem
             // 
@@ -499,13 +497,6 @@
             this.toolStripExportPayPal.Text = "Export Paypal";
             this.toolStripExportPayPal.Click += new System.EventHandler(this.toolStripExportPayPal_Click);
             // 
-            // sysInfoToolStripMenuItem
-            // 
-            this.sysInfoToolStripMenuItem.Name = "sysInfoToolStripMenuItem";
-            this.sysInfoToolStripMenuItem.Size = new System.Drawing.Size(214, 22);
-            this.sysInfoToolStripMenuItem.Text = "SysInfo";
-            this.sysInfoToolStripMenuItem.Click += new System.EventHandler(this.sysInfoToolStripMenuItem_Click);
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -556,7 +547,6 @@
         private System.Windows.Forms.ToolStripMenuItem pbsfilesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem hjælpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem omToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem emailRykkerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem infoTekstToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         internal System.Windows.Forms.ToolStripProgressBar MainformProgressBar;

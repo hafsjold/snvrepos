@@ -340,16 +340,6 @@ namespace Medlem3060uc
             DialogResult res = (new AboutBox()).ShowDialog();
         }
 
-        private void emailRykkerToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (!FocusChild("Rykker Forslag"))
-            {
-                FrmRykkerForslag m_frmRykkerForslag = new FrmRykkerForslag();
-                m_frmRykkerForslag.MdiParent = this;
-                m_frmRykkerForslag.Show();
-            }
-        }
-
         private void infoTekstToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (!FocusChild("Info tekst"))
