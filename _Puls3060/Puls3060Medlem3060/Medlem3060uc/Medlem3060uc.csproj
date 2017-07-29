@@ -191,14 +191,6 @@
     <Compile Include="cls\clsExcel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="dsMedlem.cs">
-      <DependentUpon>dsMedlem.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="dsMedlem.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>dsMedlem.xsd</DependentUpon>
-    </Compile>
     <Compile Include="frm\frmSysInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -340,17 +332,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.Debug.config" />
-    <None Include="dsMedlem.xsc">
-      <DependentUpon>dsMedlem.xsd</DependentUpon>
-    </None>
-    <None Include="dsMedlem.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <SubType>Designer</SubType>
-      <LastGenOutput>dsMedlem.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="dsMedlem.xss">
-      <DependentUpon>dsMedlem.xsd</DependentUpon>
-    </None>
     <None Include="Medlem3060_2_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
