@@ -1,18 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.IO;
-using System.Net;
-using System.Net.Mail;
-using MailKit.Net.Smtp;
 using MailKit;
 using MimeKit;
 using MailKit.Net.Imap;
 using MailKit.Search;
-using System.Collections;
 
 namespace nsPbs3060
 {
@@ -24,8 +17,8 @@ namespace nsPbs3060
 
     public enum fakType
     {
-        fdfaktura = 0,
-        fdrykker = 1,
+        //fdfaktura = 0,
+        //fdrykker = 1,
         fdrsmembership = 2,
     }
 
@@ -199,62 +192,33 @@ namespace nsPbs3060
             rec_pbsforsendelse.tbltilpbs.Add(rsttil);
 
             IEnumerable<clsRstdeb> rstdebs;
-            if (true)
-            {
-                rstdebs = from k in p_dbData3060.tblrsmembership_transactions
-                          join f in p_dbData3060.tblfaks on k.id equals f.id
-                          join r in p_dbData3060.tbladvis on f.faknr equals r.faknr
-                          where r.tilpbsid == lobnr && r.Nr != null
-                          orderby r.faknr
-                          select new clsRstdeb
-                          {
-                              Nr = f.Nr,
-                              Kundenr = 32001610000000 + f.Nr,
-                              Kaldenavn = k.name,
-                              Navn = k.name,
-                              Adresse = k.adresse,
-                              Postnr = k.postnr,
-                              Faknr = r.faknr,
-                              Betalingsdato = f.betalingsdato,
-                              Fradato = f.fradato,
-                              Tildato = f.tildato,
-                              Infotekst = r.infotekst,
-                              Tilpbsid = r.tilpbsid,
-                              Advistekst = r.advistekst,
-                              Belob = r.advisbelob,
-                              Email = k.user_email,
-                              indbetalerident = f.indbetalerident,
-                              indmeldelse = f.indmeldelse,
-                          };
-            }
-            else
-            {
-                rstdebs = from k in p_dbData3060.tblMedlems
-                          join r in p_dbData3060.tbladvis on k.Nr equals r.Nr
-                          where r.tilpbsid == lobnr && r.Nr != null
-                          join f in p_dbData3060.tblfaks on r.faknr equals f.faknr
-                          orderby r.faknr
-                          select new clsRstdeb
-                          {
-                              Nr = k.Nr,
-                              Kundenr = 32001610000000 + k.Nr,
-                              Kaldenavn = k.Kaldenavn,
-                              Navn = k.Navn,
-                              Adresse = k.Adresse,
-                              Postnr = k.Postnr,
-                              Faknr = r.faknr,
-                              Betalingsdato = f.betalingsdato,
-                              Fradato = f.fradato,
-                              Tildato = f.tildato,
-                              Infotekst = r.infotekst,
-                              Tilpbsid = r.tilpbsid,
-                              Advistekst = r.advistekst,
-                              Belob = r.advisbelob,
-                              Email = k.Email,
-                              indbetalerident = f.indbetalerident,
-                              indmeldelse = f.indmeldelse,
-                          };
-            }
+
+            rstdebs = from k in p_dbData3060.tblrsmembership_transactions
+                      join f in p_dbData3060.tblfaks on k.id equals f.id
+                      join r in p_dbData3060.tbladvis on f.faknr equals r.faknr
+                      where r.tilpbsid == lobnr && r.Nr != null
+                      orderby r.faknr
+                      select new clsRstdeb
+                      {
+                          Nr = f.Nr,
+                          Kundenr = 32001610000000 + f.Nr,
+                          Kaldenavn = k.name,
+                          Navn = k.name,
+                          Adresse = k.adresse,
+                          Postnr = k.postnr,
+                          Faknr = r.faknr,
+                          Betalingsdato = f.betalingsdato,
+                          Fradato = f.fradato,
+                          Tildato = f.tildato,
+                          Infotekst = r.infotekst,
+                          Tilpbsid = r.tilpbsid,
+                          Advistekst = r.advistekst,
+                          Belob = r.advisbelob,
+                          Email = k.user_email,
+                          indbetalerident = f.indbetalerident,
+                          indmeldelse = f.indmeldelse,
+                      };
+
 
             wSaveFaknr = 0;
             foreach (var rstdeb in rstdebs)
@@ -422,7 +386,7 @@ namespace nsPbs3060
         }
 
         public List<string[]> RSMembership_KontingentForslag(DateTime p_DatoBetaltKontingentTil, dbData3060DataContext p_dbData3060)
-         {
+        {
             List<string[]> items = new List<string[]>();
             puls3060_nyEntities jdb = new puls3060_nyEntities(true);
             DateTime KontingentFradato = DateTime.MinValue;
@@ -1015,21 +979,13 @@ namespace nsPbs3060
                              select c).Count();
                 if (antal > 0) { throw new Exception("102 - Pbsforsendelse for id: " + lobnr + " er allerede sendt"); }
             }
-            if ((fakryk == fakType.fdfaktura) || (fakryk == fakType.fdrsmembership)) //KONTINGENT FAKTURA
+            if (fakryk == fakType.fdrsmembership) //KONTINGENT FAKTURA
             {
                 var antal = (from c in p_dbData3060.tblfaks
                              where c.tilpbsid == lobnr
                              select c).Count();
                 if (antal == 0) { throw new Exception("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr); }
             }
-            if (fakryk == fakType.fdrykker) //RYKKER
-            {
-                var antal = (from c in p_dbData3060.tblrykkers
-                             where c.tilpbsid == lobnr
-                             select c).Count();
-                if (antal == 0) { throw new Exception("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr); }
-            }
-
             var rsttil = (from c in p_dbData3060.tbltilpbs
                           where c.id == lobnr
                           select c).First();
@@ -1084,61 +1040,7 @@ namespace nsPbs3060
             antalsek++;
 
             IEnumerable<clsRstdeb> rstdebs;
-            if (fakryk == fakType.fdfaktura) //KONTINGENT FAKTURA
-            {
-
-                rstdebs = from k in p_dbData3060.tblMedlems
-                          join f in p_dbData3060.tblfaks on k.Nr equals f.Nr
-                          where f.tilpbsid == lobnr && f.Nr != null
-                          orderby f.Nr
-                          select new clsRstdeb
-                          {
-                              Nr = k.Nr,
-                              Kundenr = 32001610000000 + k.Nr,
-                              Kaldenavn = k.Kaldenavn,
-                              Navn = k.Navn,
-                              Adresse = k.Adresse,
-                              Postnr = k.Postnr,
-                              Faknr = f.faknr,
-                              Betalingsdato = f.betalingsdato,
-                              Fradato = f.fradato,
-                              Tildato = f.tildato,
-                              Infotekst = f.infotekst,
-                              Tilpbsid = f.tilpbsid,
-                              Advistekst = f.advistekst,
-                              Belob = f.advisbelob,
-                              indbetalerident = f.indbetalerident,
-                              indmeldelse = f.indmeldelse,
-                          };
-            }
-            else if (fakryk == fakType.fdrykker) //RYKKER
-            {
-                rstdebs = from k in p_dbData3060.tblMedlems
-                          join r in p_dbData3060.tblrykkers on k.Nr equals r.Nr
-                          where r.tilpbsid == lobnr && r.Nr != null
-                          join f in p_dbData3060.tblfaks on r.faknr equals f.faknr
-                          orderby r.Nr
-                          select new clsRstdeb
-                          {
-                              Nr = k.Nr,
-                              Kundenr = 32001610000000 + k.Nr,
-                              Kaldenavn = k.Kaldenavn,
-                              Navn = k.Navn,
-                              Adresse = k.Adresse,
-                              Postnr = k.Postnr,
-                              Faknr = r.faknr,
-                              Betalingsdato = r.betalingsdato,
-                              Fradato = f.fradato,
-                              Tildato = f.tildato,
-                              Infotekst = r.infotekst,
-                              Tilpbsid = r.tilpbsid,
-                              Advistekst = r.advistekst,
-                              Belob = r.advisbelob,
-                              indbetalerident = f.indbetalerident,
-                              indmeldelse = f.indmeldelse,
-                          };
-            }
-            else if (fakryk == fakType.fdrsmembership) //KONTINGENT FAKTURA
+            if (fakryk == fakType.fdrsmembership) //KONTINGENT FAKTURA
             {
                 rstdebs = from k in p_dbData3060.tblrsmembership_transactions
                           join f in p_dbData3060.tblfaks on k.id equals f.id
@@ -1972,7 +1874,7 @@ namespace nsPbs3060
             {
                 message.Bcc.Add(new MailboxAddress("Bjarne V. Hansen", "formand@puls3060.dk"));
                 message.Bcc.Add(new MailboxAddress("Morten Wiberg", "mw@puls3060.dk"));
-            }            
+            }
             message.Subject = subject;
 #endif
 

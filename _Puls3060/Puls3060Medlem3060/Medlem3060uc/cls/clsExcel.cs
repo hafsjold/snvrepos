@@ -100,7 +100,7 @@ namespace Medlem3060uc
                     int row = 1;
                     this.MainformProgressBar.Value = 0;
                     this.MainformProgressBar.Minimum = 0;
-                    this.MainformProgressBar.Maximum = (from h in Program.dbData3060.tblMedlems select h).Count();
+                    this.MainformProgressBar.Maximum = MedlemmerAll.Count();
                     this.MainformProgressBar.Step = 1;
                     this.MainformProgressBar.Visible = true;
                     foreach (clsMedlemExternAll m in MedlemmerAll)
