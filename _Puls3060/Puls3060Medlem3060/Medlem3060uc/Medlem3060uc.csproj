@@ -328,7 +328,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="app.Debug.config" />
+    <None Include="app.Debug.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Medlem3060_2_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />

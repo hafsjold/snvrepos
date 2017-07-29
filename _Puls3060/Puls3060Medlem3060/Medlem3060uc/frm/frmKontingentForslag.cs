@@ -289,7 +289,7 @@ namespace Medlem3060uc
                 this.pgmFaktura.Value = imax * 2;
                 if ((AntalFakturaer > 0))
                 {
-                    objPbs601.faktura_og_rykker_601_action(Program.dbData3060, lobnr, fakType.fdrsmembership);
+                    objPbs601.faktura_og_rykker_601_action_lobnr(Program.dbData3060, lobnr);
                     this.pgmFaktura.Value = (imax * 3);
                     clsSFTP objSFTP = new clsSFTP(Program.dbData3060);
                     TilPBSFilename = objSFTP.WriteTilSFtp(Program.dbData3060, lobnr);

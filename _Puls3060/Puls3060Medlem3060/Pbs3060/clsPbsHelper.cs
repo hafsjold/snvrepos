@@ -66,7 +66,7 @@ namespace nsPbs3060
                 int lobnr = tresulte.Item2;
                 if ((AntalFakturaer > 0))
                 {
-                    objPbs601d.faktura_og_rykker_601_action(m_dbData3060, lobnr, fakType.fdrsmembership);
+                    objPbs601d.faktura_og_rykker_601_action_lobnr(m_dbData3060, lobnr);
                     clsSFTP objSFTPd = new clsSFTP(m_dbData3060);
                     objSFTPd.WriteTilSFtp(m_dbData3060, lobnr);
                     objSFTPd.DisconnectSFtp();
