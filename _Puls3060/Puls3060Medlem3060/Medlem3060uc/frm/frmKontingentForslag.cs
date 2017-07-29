@@ -283,12 +283,28 @@ namespace Medlem3060uc
 
                 clsPbs601 objPbs601 = new clsPbs601();
 
-                Tuple<int, int> tresult = objPbs601.rsmembeshhip_kontingent_fakturer_bs1(Program.dbData3060, jdb, memKontingentforslag);
+                Tuple<int, int> tresult = objPbs601.rsmembeshhip_kontingent_fakturer_bs1(Program.dbData3060, jdb, memKontingentforslag, pbsType.indbetalingskort);
                 AntalFakturaer = tresult.Item1;
                 lobnr = tresult.Item2;
                 this.pgmFaktura.Value = imax * 2;
                 if ((AntalFakturaer > 0))
                 {
+                    //pbsType.indbetalingskort
+                    objPbs601.faktura_og_rykker_601_action_lobnr(Program.dbData3060, lobnr); 
+                    this.pgmFaktura.Value = (imax * 3);
+                    clsSFTP objSFTP = new clsSFTP(Program.dbData3060);
+                    TilPBSFilename = objSFTP.WriteTilSFtp(Program.dbData3060, lobnr);
+                    objSFTP.DisconnectSFtp();
+                    objSFTP = null;
+                }
+
+                tresult = objPbs601.rsmembeshhip_kontingent_fakturer_bs1(Program.dbData3060, jdb, memKontingentforslag, pbsType.betalingsservice);
+                AntalFakturaer = tresult.Item1;
+                lobnr = tresult.Item2;
+                this.pgmFaktura.Value = imax * 2;
+                if ((AntalFakturaer > 0))
+                {
+                    //pbsType.betalingsservice
                     objPbs601.faktura_og_rykker_601_action_lobnr(Program.dbData3060, lobnr);
                     this.pgmFaktura.Value = (imax * 3);
                     clsSFTP objSFTP = new clsSFTP(Program.dbData3060);
@@ -296,6 +312,7 @@ namespace Medlem3060uc
                     objSFTP.DisconnectSFtp();
                     objSFTP = null;
                 }
+
                 this.pgmFaktura.Value = (imax * 4);
                 cmdFakturer.Text = "Afslut";
                 this.DelsystemBSH.Visible = false;

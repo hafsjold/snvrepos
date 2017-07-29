@@ -15,6 +15,12 @@ namespace nsPbs3060
         fdmmddyyyyhhmmss = 1,
     }
 
+    public enum pbsType
+    {
+        betalingsservice = 0,
+        indbetalingskort = 1,
+    }
+
     public class clsPbs601
     {
         public clsPbs601() { }
@@ -229,31 +235,6 @@ namespace nsPbs3060
                         }
                     }
 
-                    /*
-                    string infotekst = new clsInfotekst
-                    {
-                        infotekst_id = rstdeb.Infotekst,
-                        numofcol = null,
-                        navn_medlem = rstdeb.Navn,
-                        kaldenavn = rstdeb.Kaldenavn,
-                        fradato = rstdeb.Fradato,
-                        tildato = rstdeb.Tildato,
-                        betalingsdato = rstdeb.Betalingsdato,
-                        advisbelob = rstdeb.Belob,
-                        ocrstring = OcrString,
-                        underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører",
-                        sendtsom = p_dbData3060.SendtSomString(rstdeb.Faknr),
-                        kundenr = rstdeb.Kundenr.ToString()
-                    }.getinfotekst(p_dbData3060);
-
-                    if (infotekst.Length > 0)
-                    {
-
-                        //Send email
-                        sendAdvisRykkerEmail(p_dbData3060, rstdeb.Navn, rstdeb.Email, "Betaling af Puls 3060 Kontingent", infotekst);
-
-                    }
-                    */
                     clsInfotekst objInfotekst = new clsInfotekst
                     {
                         infotekst_id = rstdeb.Infotekst,
@@ -440,33 +421,26 @@ namespace nsPbs3060
                                              where g.title == "Pusterummet" && um.user_id == m.user_id
                                              select um.user_id).Count() > 0);
 
-                if (erMedlemPusterummet)
-                {
-                    bSelected = false;
-                }
-                else //Er medlem
-                {
-                    if ((m.kontingentBetaltTilDato != null) && (m.kontingentBetaltTilDato > m.indmeldelsesDato))  //'Der findes en kontingent-betaling
-                    {
-                        if (m.kontingentBetaltTilDato > p_DatoBetaltKontingentTil)   //der er betalt kontingent efter DatoBetaltKontingentTil
-                        {
-                            bSelected = false;
-                        }
-                        else
-                        {
-                            if (m.kontingentBetaltTilDato >= m.indmeldelsesDato)
-                            {
-                                KontingentFradato = ((DateTime)m.kontingentBetaltTilDato);
-                            }
-                        }
-                    }
-                    else  //Der findes ingen kontingent-betaling
-                    {
-                        KontingentFradato = (DateTime)m.indmeldelsesDato;
-                        indmeldelse = true;
-                    }
-                }
 
+                if ((m.kontingentBetaltTilDato != null) && (m.kontingentBetaltTilDato > m.indmeldelsesDato))  //Der findes en kontingent-betaling
+                {
+                    if (m.kontingentBetaltTilDato > p_DatoBetaltKontingentTil)   //der er betalt kontingent efter DatoBetaltKontingentTil
+                    {
+                        bSelected = false;
+                    }
+                    else
+                    {
+                        if (m.kontingentBetaltTilDato >= m.indmeldelsesDato)
+                        {
+                            KontingentFradato = ((DateTime)m.kontingentBetaltTilDato);
+                        }
+                    }
+                }
+                else  //Der findes ingen kontingent-betaling
+                {
+                    KontingentFradato = (DateTime)m.indmeldelsesDato;
+                    indmeldelse = true;
+                }
 
                 if (bSelected)
                 {
@@ -510,7 +484,7 @@ namespace nsPbs3060
             return items;
         }
 
-        public Tuple<int, int> rsmembeshhip_fakturer_auto(dbData3060DataContext p_dbData3060, puls3060_nyEntities p_dbPuls3060_dk)
+        public Tuple<int, int> paypal_pending_rsmembeshhip_fakturer_auto(dbData3060DataContext p_dbData3060, puls3060_nyEntities p_dbPuls3060_dk)
         {
             int lobnr = 0;
             string wadvistekst = "";
@@ -655,7 +629,7 @@ namespace nsPbs3060
 
         }
 
-        public Tuple<int, int> rsmembeshhip_kontingent_fakturer_bs1(dbData3060DataContext p_dbData3060, puls3060_nyEntities p_dbPuls3060_dk, Memkontingentforslag memKontingentforslag)
+        public Tuple<int, int> rsmembeshhip_kontingent_fakturer_bs1(dbData3060DataContext p_dbData3060, puls3060_nyEntities p_dbPuls3060_dk, Memkontingentforslag memKontingentforslag, pbsType forsType)
         {
             int lobnr;
             string wadvistekst = "";
@@ -669,7 +643,7 @@ namespace nsPbs3060
             if (bsh) wDelsystem = "BSH";
             else wDelsystem = "BS1";
 
-            tbltilpb rec_tilpbs = new tbltilpb
+            tbltilpb rec_tilpbs = new tbltilpb   //<------------------------------------
             {
                 delsystem = wDelsystem,
                 leverancetype = "0601",
@@ -679,7 +653,36 @@ namespace nsPbs3060
             p_dbData3060.SubmitChanges();
             lobnr = rec_tilpbs.id;
 
-            foreach (recKontingentforslag rec in memKontingentforslag)
+            IEnumerable<recKontingentforslag> qry;
+            if (wDelsystem == "BS1")
+            {
+                if (forsType == pbsType.betalingsservice)
+                {
+                    qry = from k in memKontingentforslag where k.tilmeldtpbs select k;
+                }
+                else
+                {
+                    qry = from k in memKontingentforslag where (!k.tilmeldtpbs) select k;
+                } 
+            }
+            else if (wDelsystem == "BSH")
+            {
+                if (forsType == pbsType.betalingsservice)
+                {
+                    qry = from k in memKontingentforslag where k.user_id < 0 select k; // ingen skal vælges her
+                }
+                else
+                {
+                    qry = from k in memKontingentforslag select k; // Alle skal vælges her
+                }
+            }
+            else
+            {
+                qry = from k in memKontingentforslag where k.user_id < 0 select k; // ingen skal vælges her
+            }
+
+
+            foreach (recKontingentforslag rec in qry)
             {
                 string wmemberid = rec.memberid.ToString();
                 var qry_rsmembership = from s in p_dbPuls3060_dk.ecpwt_rsmembership_membership_subscribers
@@ -752,6 +755,7 @@ namespace nsPbs3060
                     if (rec.indmeldelse) winfotekst = 11;
                     else winfotekst = (rec.tilmeldtpbs) ? 10 : 12;
                     int next_faknr = (int)(from r in p_dbData3060.nextval("faknr") select r.id).First();
+                    string windbetalerident = clsHelper.generateIndbetalerident(next_faknr); //?????????????????????????????????
                     tblfak rec_fak = new tblfak
                     {
                         betalingsdato = rec.betalingsdato,
@@ -766,6 +770,7 @@ namespace nsPbs3060
                         tildato = rec.tildato,
                         indmeldelse = rec.indmeldelse,
                         tilmeldtpbs = rec.tilmeldtpbs,
+                        indbetalerident = windbetalerident, // ToDo generer indbetalerident
                         tblrsmembership_transaction = new tblrsmembership_transaction()
                         {
                             trans_id = rec_trans.id,
@@ -972,7 +977,7 @@ namespace nsPbs3060
                              select c).Count();
                 if (antal > 0) { throw new Exception("102 - Pbsforsendelse for id: " + lobnr + " er allerede sendt"); }
             }
-            
+
             {
                 var antal = (from c in p_dbData3060.tblfaks
                              where c.tilpbsid == lobnr
@@ -1033,30 +1038,30 @@ namespace nsPbs3060
             antalsek++;
 
             IEnumerable<clsRstdeb> rstdebs;
- 
-                rstdebs = from k in p_dbData3060.tblrsmembership_transactions
-                          join f in p_dbData3060.tblfaks on k.id equals f.id
-                          where f.tilpbsid == lobnr && f.Nr != null
-                          orderby f.Nr
-                          select new clsRstdeb
-                          {
-                              Nr = f.Nr,
-                              Kundenr = 32001610000000 + f.Nr,
-                              Kaldenavn = k.name,
-                              Navn = k.name,
-                              Adresse = k.adresse,
-                              Postnr = k.postnr,
-                              Faknr = f.faknr,
-                              Betalingsdato = f.betalingsdato,
-                              Fradato = f.fradato,
-                              Tildato = f.tildato,
-                              Infotekst = f.infotekst,
-                              Tilpbsid = f.tilpbsid,
-                              Advistekst = f.advistekst,
-                              Belob = f.advisbelob,
-                              indbetalerident = f.indbetalerident,
-                              indmeldelse = f.indmeldelse,
-                          };
+
+            rstdebs = from k in p_dbData3060.tblrsmembership_transactions
+                      join f in p_dbData3060.tblfaks on k.id equals f.id
+                      where f.tilpbsid == lobnr && f.Nr != null
+                      orderby f.Nr
+                      select new clsRstdeb
+                      {
+                          Nr = f.Nr,
+                          Kundenr = 32001610000000 + f.Nr,
+                          Kaldenavn = k.name,
+                          Navn = k.name,
+                          Adresse = k.adresse,
+                          Postnr = k.postnr,
+                          Faknr = f.faknr,
+                          Betalingsdato = f.betalingsdato,
+                          Fradato = f.fradato,
+                          Tildato = f.tildato,
+                          Infotekst = f.infotekst,
+                          Tilpbsid = f.tilpbsid,
+                          Advistekst = f.advistekst,
+                          Belob = f.advisbelob,
+                          indbetalerident = f.indbetalerident,
+                          indmeldelse = f.indmeldelse,
+                      };
 
 
             foreach (var rstdeb in rstdebs)

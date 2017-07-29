@@ -198,11 +198,12 @@ namespace nsMedlem3060Service
                         case enumTask.KontingentNyeMedlemmer:
                             puls3060_nyEntities cjdb = new puls3060_nyEntities(true);
                             clsPbs601 objPbs601c = new clsPbs601();
-                            Tuple<int, int> tresultc = objPbs601c.rsmembeshhip_fakturer_auto(m_dbData3060, cjdb);
+                            Tuple<int, int> tresultc = objPbs601c.paypal_pending_rsmembeshhip_fakturer_auto(m_dbData3060, cjdb);
                             int AntalKontingent = tresultc.Item1;
                             int lobnrc = tresultc.Item2;
                             if ((AntalKontingent > 0))
                             {
+                                //pbsType.indbetalingskort
                                 objPbs601c.faktura_og_rykker_601_action_lobnr(m_dbData3060, lobnrc);
                                 clsSFTP objSFTPc = new clsSFTP(m_dbData3060);
                                 objSFTPc.WriteTilSFtp(m_dbData3060, lobnrc);
