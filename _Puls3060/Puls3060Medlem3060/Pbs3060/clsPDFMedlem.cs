@@ -1,17 +1,13 @@
 ﻿using MailKit;
 using MailKit.Net.Imap;
 using MigraDoc.DocumentObjectModel;
-using MigraDoc.DocumentObjectModel.Shapes.Charts;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
 using MimeKit;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 
 namespace nsPbs3060
 {

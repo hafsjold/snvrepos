@@ -270,7 +270,7 @@ namespace Medlem3060uc
             {
                 nsPbs3060.tempRykkerforslag rec_tempRykkerforslag = new nsPbs3060.tempRykkerforslag
                 {
-                    betalingsdato = clsOverfoersel.bankdageplus(DateTime.Today, 5),
+                    betalingsdato = clsHelper.bankdageplus(DateTime.Today, 5),
                     bsh = this.DelsystemBSH.Checked
                 };
                 Program.dbData3060.tempRykkerforslags.InsertOnSubmit(rec_tempRykkerforslag);

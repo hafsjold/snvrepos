@@ -45,7 +45,7 @@ namespace nsPbs3060
 
                     recKontingentforslag rec_Kontingentforslag = new recKontingentforslag
                     {
-                        betalingsdato = clsOverfoersel.bankdageplus(p_DatoKontingentForfald, 0),
+                        betalingsdato = clsHelper.bankdageplus(p_DatoKontingentForfald, 0),
                         bsh = false,
                         user_id = int.Parse(user_id),
                         membership_id = 6,

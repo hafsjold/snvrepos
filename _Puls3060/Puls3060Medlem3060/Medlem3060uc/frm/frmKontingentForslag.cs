@@ -56,7 +56,7 @@ namespace Medlem3060uc
                 this.DatoKontingentTil.Value = this.DatoKontingentTil.Value.AddYears(1);
             }
             wt = m_initdate.AddMonths(1);
-            this.DatoKontingentForfald.Value = clsOverfoersel.bankdageplus(wt.AddDays(-wt.Day + 2), 0);
+            this.DatoKontingentForfald.Value = clsHelper.bankdageplus(wt.AddDays(-wt.Day + 2), 0);
 
         }
 
@@ -67,12 +67,12 @@ namespace Medlem3060uc
 
             if (this.DelsystemBSH.Checked)
             {
-                this.DatoKontingentForfald.Value = clsOverfoersel.bankdageplus(wt, 5);
+                this.DatoKontingentForfald.Value = clsHelper.bankdageplus(wt, 5);
             }
             else
             {
                 wt = m_initdate.AddMonths(1);
-                this.DatoKontingentForfald.Value = clsOverfoersel.bankdageplus(wt.AddDays(-wt.Day + 2), 0);
+                this.DatoKontingentForfald.Value = clsHelper.bankdageplus(wt.AddDays(-wt.Day + 2), 0);
             }
         }
 
@@ -265,7 +265,7 @@ namespace Medlem3060uc
 
                     recKontingentforslag rec_Kontingentforslag = new recKontingentforslag
                     {
-                        betalingsdato = clsOverfoersel.bankdageplus(this.DatoKontingentForfald.Value, 0),
+                        betalingsdato = clsHelper.bankdageplus(this.DatoKontingentForfald.Value, 0),
                         bsh = this.DelsystemBSH.Checked,
                         user_id = int.Parse(keyval),
                         membership_id = 6,
