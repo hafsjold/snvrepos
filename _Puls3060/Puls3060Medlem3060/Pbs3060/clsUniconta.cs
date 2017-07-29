@@ -20,7 +20,7 @@ namespace nsPbs3060
 
         public clsUniconta(dbData3060DataContext p_dbData3060, CrudAPI api)
         {
-            m_dbData3060 = p_dbData3060; 
+            m_dbData3060 = p_dbData3060;
             m_api = api;
             var task = api.Query<CompanyFinanceYear>();
             task.Wait();
@@ -118,10 +118,38 @@ namespace nsPbs3060
 
                     }
 
-                    var msm = from f in m_dbData3060.tblfaks
+                    char[] trim0 = {'0'};
+                    IQueryable<msmrecs> msm;
+                    if (b.faknr != 0)
+                    {
+                        msm = from f in m_dbData3060.tblfaks
                               where f.faknr == b.faknr
                               join m in m_dbData3060.tblrsmembership_transactions on f.id equals m.id
-                              select new { f.faknr, f.Nr, m.name, f.bogfkonto, f.fradato, f.tildato };
+                              select new msmrecs
+                              {
+                                  faknr = f.faknr,
+                                  Nr = f.Nr,
+                                  name = m.name,
+                                  bogfkonto = f.bogfkonto,
+                                  fradato = f.fradato,
+                                  tildato = f.tildato
+                              }; 
+                    }
+                    else
+                    {
+                        msm = from f in m_dbData3060.tblfaks
+                              where f.indbetalerident.TrimStart(trim0) == b.debitorkonto.TrimStart(trim0)
+                              join m in m_dbData3060.tblrsmembership_transactions on f.id equals m.id
+                              select new msmrecs
+                              {
+                                  faknr = f.faknr,
+                                  Nr = f.Nr,
+                                  name = m.name,
+                                  bogfkonto = f.bogfkonto,
+                                  fradato = f.fradato,
+                                  tildato = f.tildato
+                              };
+                    }
 
                     if (msm.Count() == 1) //Kontingent betaling for RSMembership
                     {
@@ -211,7 +239,7 @@ namespace nsPbs3060
                     Date = (DateTime)kk.Dato,
                     Text = kk.Tekst,
                 };
-                if((kk.Afstemningskonto == "Bank") 
+                if ((kk.Afstemningskonto == "Bank")
                 && (kk.Kontonr == null))
                 {
                     jl.Account = "5840";
@@ -258,5 +286,15 @@ namespace nsPbs3060
                 var err = task2.Result;
             }
         }
+    }
+
+    public class msmrecs
+    {
+        public int? faknr { get; set; }
+        public int? Nr { get; set; }
+        public string name { get; set; }
+        public int? bogfkonto { get; set; }
+        public DateTime? fradato { get; set; }
+        public DateTime? tildato { get; set; }
     }
 }
