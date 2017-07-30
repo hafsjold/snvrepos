@@ -9,6 +9,7 @@ using Uniconta.DataModel;
 using Uniconta.Common;
 using Uniconta.API.GeneralLedger;
 using Uniconta.API.System;
+using Uniconta.API.DebtorCreditor;
 
 namespace nsPbs3060
 {
@@ -118,7 +119,7 @@ namespace nsPbs3060
 
                     }
 
-                    char[] trim0 = {'0'};
+                    char[] trim0 = { '0' };
                     IQueryable<msmrecs> msm;
                     if (b.faknr != 0)
                     {
@@ -133,7 +134,7 @@ namespace nsPbs3060
                                   bogfkonto = f.bogfkonto,
                                   fradato = f.fradato,
                                   tildato = f.tildato
-                              }; 
+                              };
                     }
                     else
                     {
@@ -284,6 +285,36 @@ namespace nsPbs3060
                 var task2 = m_api.Insert(jl);
                 task2.Wait();
                 var err = task2.Result;
+            }
+        }
+
+        public void TestFakturering()
+        {
+            InvoiceAPI invoiceAPI = new InvoiceAPI(m_api);
+
+            var taskDebtorOrder = m_api.Query<DebtorOrderClient>();
+            taskDebtorOrder.Wait();
+            var DebtorOrders = taskDebtorOrder.Result;
+            foreach (var DebtorOrder in DebtorOrders)
+            {
+                List<DebtorOrderClient> Masters = new List<DebtorOrderClient>();
+                Masters.Add(DebtorOrder);
+                var taskDebtorOrderLines = m_api.Query<DebtorOrderLineClient>(Masters, null);
+                taskDebtorOrderLines.Wait();
+                var DebtorOrderLines = taskDebtorOrderLines.Result;
+                var taskInvoice = invoiceAPI.PostInvoice(DebtorOrder, DebtorOrderLines, DateTime.Now, 0, true, null, null);
+                taskInvoice.Wait();
+                InvoicePostingResult resultInvoice = taskInvoice.Result;
+                ErrorCodes Err = resultInvoice.Err;
+                DCInvoice Header = resultInvoice.Header; 
+                IEnumerable<InvTrans> Lines = resultInvoice.Lines;
+                PostingResult ledgerRes = resultInvoice.ledgerRes;
+                if(Err == ErrorCodes.Succes)
+                {
+                    var xxx = DebtorOrder.InvoiceInterval;
+                    var yyy = DebtorOrder.Invoices;
+                }
+
             }
         }
     }
