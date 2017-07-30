@@ -210,6 +210,7 @@
     <Compile Include="clsPDFTest.cs" />
     <Compile Include="clsPDFTest02.cs" />
     <Compile Include="clsPipeData.cs" />
+    <Compile Include="clsRSMembership2UniConta.cs" />
     <Compile Include="clsSFTP.cs" />
     <Compile Include="clsPbs686.cs" />
     <Compile Include="clsStatus.cs" />
