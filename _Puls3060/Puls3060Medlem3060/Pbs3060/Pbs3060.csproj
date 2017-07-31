@@ -218,6 +218,9 @@
     <Compile Include="clsUniconta.cs" />
     <Compile Include="clsUnicontaHelp.cs" />
     <Compile Include="ConnectionTools.cs" />
+    <Compile Include="data\DebtorClientUser.cs" />
+    <Compile Include="data\DebtorOrderClientUser.cs" />
+    <Compile Include="data\DebtorOrderLineClientUser.cs" />
     <Compile Include="dbData3060.cs">
       <DependentUpon>dbData3060.dbml</DependentUpon>
     </Compile>

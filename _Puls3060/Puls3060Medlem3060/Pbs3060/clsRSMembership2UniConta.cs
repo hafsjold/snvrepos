@@ -52,29 +52,32 @@ namespace nsPbs3060
             var rsm = qry_rsmembership.ToArray();
             foreach (var m in rsm)
             {
-                var crit = new List<PropValuePair>();
-                var pair = PropValuePair.GenereteWhereElements("subscriberid", typeof(String), m.subscriber_id.ToString());
-                crit.Add(pair);
-                var taskDebtor = m_api.Query<DebtorClientUser>(null, crit);
+                var critDebtor = new List<PropValuePair>();
+                var pairDebtor = PropValuePair.GenereteWhereElements("subscriberid", typeof(String), m.subscriber_id.ToString());
+                critDebtor.Add(pairDebtor);
+                var taskDebtor = m_api.Query<DebtorClientUser>(null, critDebtor);
                 taskDebtor.Wait();
                 var resultDebtor = taskDebtor.Result;
-                var xantal = resultDebtor.Count();
-                if (xantal == 1)
+                var antalDebtor = resultDebtor.Count();
+
+                if (antalDebtor == 1)
                 {
-                    List<DebtorClientUser> master = new List<DebtorClientUser>();
-                    master.Add(resultDebtor[0]);
                     var recDebtor = resultDebtor[0];
-                    var crit2 = new List<PropValuePair>();
-                    var pair2 = PropValuePair.GenereteWhereElements("Group", typeof(String), "Kont");
-                    crit2.Add(pair2);
-                    var taskOrder = m_api.Query<DebtorOrderClientUser>(master, crit);
+
+                    var masterDebtorOrder = new List<DebtorClientUser>();
+                    masterDebtorOrder.Add(recDebtor);
+                    var critDebtorOrder = new List<PropValuePair>();
+                    var pairDebtorOrder = PropValuePair.GenereteWhereElements("Group", typeof(String), "Kont");
+                    critDebtorOrder.Add(pairDebtorOrder);
+                    var taskOrder = m_api.Query<DebtorOrderClientUser>(masterDebtorOrder, critDebtorOrder);
                     taskOrder.Wait();
                     var resultOrder = taskOrder.Result;
-                    var yantal = resultOrder.Count();
-                    if (yantal == 0)
+                    var antalOrder = resultOrder.Count();
+
+                    if (antalOrder == 0)
                     {
                         DateTime root;
-                        if ((m.kontingentBetaltTilDato.Month == 1)&& (m.kontingentBetaltTilDato.Day ==1))
+                        if ((m.kontingentBetaltTilDato.Month == 1) && (m.kontingentBetaltTilDato.Day == 1))
                         {
                             root = m.kontingentBetaltTilDato.AddDays(-1);
                         }
@@ -88,6 +91,7 @@ namespace nsPbs3060
                         DateTime wfakdato = tildato.AddMonths(-1);
                         DateTime fakdato = new DateTime(wfakdato.Year, wfakdato.Month, 12);
 
+                        // Order Header
                         DebtorOrderClientUser rec_order = new DebtorOrderClientUser()
                         {
                             Account = recDebtor.Account,
@@ -97,23 +101,41 @@ namespace nsPbs3060
                             NextInvoice = fakdato,
                             Group = "Kont",
                             DeleteLines = false,
-                            DeleteOrder = false
+                            DeleteOrder = false,
+
                         };
                         var taskInsert = m_api.Insert(rec_order);
                         taskInsert.Wait();
                         var Err = taskInsert.Result;
 
-                        DebtorOrderLineClient rec_line = new DebtorOrderLineClient()
+                        // Order Lines
+                        List<UnicontaBaseEntity> new_recs = new List<UnicontaBaseEntity>();
+                        DebtorOrderLineClientUser rec_line = new DebtorOrderLineClientUser()
                         {
                             Qty = 1,
                             Price = 250,
-                            Text = string.Format("Puls 3060 Medlemskontingent for {0} for Perioden fra {1} til {2}", m.Navn, rec_order.medlemfra, rec_order.medlemtil),
-
+                            Text = string.Format("Puls 3060 Medlemskontingent for {0} for Perioden fra {1} til {2}", m.Navn, rec_order.medlemfra.ToShortDateString(), rec_order.medlemtil.ToShortDateString()),
+                            lintype = "Kontingent"
                         };
                         rec_line.SetMaster(rec_order);
-                        var task2Insert = m_api.Insert(rec_line);
+                        new_recs.Add(rec_line);
+
+                        /*
+                        rec_line = new DebtorOrderLineClient()
+                        {
+                            Qty = 1,
+                            Price = 15,
+                            Text ="Administrationsgebyr",
+                            lintype = "Gebyr"
+                        };
+                        rec_line.SetMaster(rec_order);
+                        new_recs.Add(rec_line);
+                        */
+
+                        var task2Insert = m_api.Insert(new_recs);
                         task2Insert.Wait();
-                        Err = task2Insert.Result; 
+                        Err = task2Insert.Result;
+
                     }
                 }
             }
@@ -154,47 +176,46 @@ namespace nsPbs3060
             var rsm = qry_rsmembership.ToArray();
             foreach (var m in rsm)
             {
-                // opdater Nr fra m.user_data 
-                User_data recud = clsHelper.unpack_UserData(m.user_data);
-                if (!string.IsNullOrEmpty(recud.memberid))
-                {
-                    iNr = int.Parse(recud.memberid);
-                }
-                else
-                {
-                    if (!string.IsNullOrEmpty(m.Nr))
-                        iNr = int.Parse(m.Nr);
-                    else
-                        iNr = (int)(from r in m_dbData3060.nextval("memberid") select r.id).First();
-                }
-                var email = recud.email;
-
-                DebtorClientUser rec_debtor = new DebtorClientUser()
-                {
-                    Account = iNr.ToString(),
-                    Name = m.Navn,
-                    Address1 = m.Adresse,
-                    ZipCode = m.Postnr,
-                    City = m.Bynavn,
-                    subscriberid = m.subscriber_id.ToString(),
-                    Phone = m.telefon,
-                    Group = "Medlem",
-                    ContactEmail = email,
-                    InvoiceEmail = email,
-                };
-
-                var crit = new List<PropValuePair>();
-                var pair = PropValuePair.GenereteWhereElements("subscriberid", typeof(String), rec_debtor.subscriberid);
-                crit.Add(pair);
-                var taskDebtor = m_api.Query<DebtorClientUser>(null, crit);
+                var critDebtor = new List<PropValuePair>();
+                var pairDebtor = PropValuePair.GenereteWhereElements("subscriberid", typeof(String), m.subscriber_id.ToString());
+                critDebtor.Add(pairDebtor);
+                var taskDebtor = m_api.Query<DebtorClientUser>(null, critDebtor);
                 taskDebtor.Wait();
                 var resultDebtor = taskDebtor.Result;
-                var xantal = resultDebtor.Count();
-                if (xantal == 0)
+                var antalDebtor = resultDebtor.Count();
+                if (antalDebtor == 0)
                 {
-                    var taskInsert = m_api.Insert(rec_debtor);
-                    taskInsert.Wait();
-                    var Err = taskInsert.Result;
+                    // opdater Nr fra m.user_data 
+                    User_data recud = clsHelper.unpack_UserData(m.user_data);
+                    if (!string.IsNullOrEmpty(recud.memberid))
+                    {
+                        iNr = int.Parse(recud.memberid);
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(m.Nr))
+                            iNr = int.Parse(m.Nr);
+                        else
+                            iNr = (int)(from r in m_dbData3060.nextval("memberid") select r.id).First();
+                    }
+                    var email = recud.email;
+
+                    DebtorClientUser rec_debtor = new DebtorClientUser()
+                    {
+                        Account = iNr.ToString(),
+                        Name = m.Navn,
+                        Address1 = m.Adresse,
+                        ZipCode = m.Postnr,
+                        City = m.Bynavn,
+                        subscriberid = m.subscriber_id.ToString(),
+                        Phone = m.telefon,
+                        Group = "Medlem",
+                        ContactEmail = email,
+                        InvoiceEmail = email,
+                    };
+                    var taskDebtorInsert = m_api.Insert(rec_debtor);
+                    taskDebtorInsert.Wait();
+                    var Err = taskDebtorInsert.Result;
                 }
             }
 
@@ -207,39 +228,10 @@ namespace nsPbs3060
             var resultDebtor = taskDebtor.Result;
             foreach (var xx in resultDebtor)
             {
-
+                DebtorInvoiceLines cc;
             }
-
-
-        }
-    }
-
-
-
-
-    public class DebtorClientUser : DebtorClient
-    {
-        public string subscriberid
-        {
-            get { return this.GetUserFieldString(0); }
-            set { this.SetUserFieldString(0, value); }
         }
 
     }
 
-    public class DebtorOrderClientUser : DebtorOrderClient
-    {
-        public DateTime medlemfra
-        {
-            get { return this.GetUserFieldDateTime(0); }
-            set { this.SetUserFieldDateTime(0, value); }
-        }
-
-        public DateTime medlemtil
-        {
-            get { return this.GetUserFieldDateTime(1); }
-            set { this.SetUserFieldDateTime(1, value); }
-        }
-
-    }
 }
