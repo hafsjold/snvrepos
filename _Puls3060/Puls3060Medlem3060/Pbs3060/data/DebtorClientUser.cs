@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Uniconta.ClientTools.DataModel;
+﻿using Uniconta.ClientTools.DataModel;
 
 namespace nsPbs3060
 {
