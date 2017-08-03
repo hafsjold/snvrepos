@@ -29,13 +29,18 @@ namespace nsPbs3060
     {
         public CrudAPI m_api;
         public CreditorClient[] m_Creditors;
-         
+        public GLAccountClient[] m_GLAccounts;
+
+
         public clsUnicontaHelp(CrudAPI api)
         {
             m_api = api;
-            var task = api.Query<CreditorClient>();
-            task.Wait();
-            m_Creditors = task.Result;
+            var Creditor = api.Query<CreditorClient>();
+            Creditor.Wait();
+            m_Creditors = Creditor.Result;
+            var GLAccount = api.Query<GLAccountClient>();
+            GLAccount.Wait();
+            m_GLAccounts = GLAccount.Result;
         }
 
         public int ImportEmailBilag()
@@ -62,7 +67,7 @@ namespace nsPbs3060
 
                     var msMail = Message2Pdf(message);
 
-                    List<VouchersClient> documents = new List<VouchersClient>();
+                    List<VouchersClient> documentlist = new List<VouchersClient>();
                     VouchersClient mail = new VouchersClient()
                     {
                         Fileextension = FileextensionsTypes.PDF,
@@ -73,7 +78,7 @@ namespace nsPbs3060
                     var task1 = m_api.Insert(mail);
                     task1.Wait();
                     var res1 = task1.Result;
-                    documents.Add(mail);
+                    documentlist.Add(mail);
 
                     foreach (var msg_attachment in message.Attachments)
                     {
@@ -124,19 +129,28 @@ namespace nsPbs3060
                             var task3 = m_api.Insert(attm);
                             task3.Wait();
                             var res3 = task3.Result;
-                            documents.Add(attm);
+                            documentlist.Add(attm);
                         }
 
                         else if (msg_attachment is MessagePart)
                         {
+                            string wmsgtext;
                             var msgpart = msg_attachment as MessagePart;
-                            var msgtext = Regex.Replace(msgpart.Message.HtmlBody, "<[^>]*>", String.Empty).Replace("&nbsp;", String.Empty).Trim();
+                            if (string.IsNullOrEmpty(msgpart.Message.HtmlBody))
+                            {
+                                wmsgtext = msgpart.Message.TextBody;
+                            }
+                            else
+                            {
+                                wmsgtext = msgpart.Message.HtmlBody;
+                            }
+                            var msgtext = Regex.Replace(wmsgtext, "<[^>]*>", String.Empty).Replace("&nbsp;", String.Empty).Trim();
                             string[] splitstring = { "\r\n" };
                             string[] arrParams = msgtext.Split(splitstring, StringSplitOptions.RemoveEmptyEntries);
                             objParam = new clsParam(arrParams);
                         }
                     }
-                    if (documents.Count > 0)
+                    if (documentlist.Count > 0)
                     {
 
                         VouchersClient folder = new VouchersClient()
@@ -153,7 +167,10 @@ namespace nsPbs3060
                         var ref1 = folder.PrimaryKeyId;
 
                         DocumentAPI docapi = new DocumentAPI(m_api);
-                        var task5 = docapi.CreateFolder(folder, documents);
+                        //TEST
+                        //var task5 = docapi.CreateFolder(folder, null);
+                        //var task5 = docapi.AppendToFolder(folder, documentlist);
+                        var task5 = docapi.CreateFolder(folder, documentlist);
                         task5.Wait();
                         var res5 = task5.Result;
                         var ref2 = folder.PrimaryKeyId;
@@ -369,6 +386,32 @@ namespace nsPbs3060
             var Date = message.Date.DateTime;
             var Subject = message.Subject;
 
+            string wAccount = null;
+            if (!string.IsNullOrEmpty(objParam.Konto))
+            {
+                try
+                {
+                    wAccount = (from c in this.m_GLAccounts where c.Account == objParam.Konto select c.Account).First();
+                }
+                catch (Exception)
+                {
+                    wAccount = "9900"; //Fejlkonto
+                } 
+            }
+
+            string wOffsetAccount = null;
+            if (!string.IsNullOrEmpty(objParam.Modkonto))
+            {
+                try
+                {
+                    wOffsetAccount = (from c in this.m_GLAccounts where c.Account == objParam.Modkonto select c.Account).First();
+                }
+                catch (Exception)
+                {
+                    wOffsetAccount = "9900"; //Fejlkonto
+                }
+            }
+
             var crit = new List<PropValuePair>();
             var pair = PropValuePair.GenereteWhereElements("KeyStr", typeof(String), "Dag");
             crit.Add(pair);
@@ -383,11 +426,9 @@ namespace nsPbs3060
                 Text = Subject,
                 DocumentRef = DocumentRef,
                 AccountType = objParam.Kontotype,
-                Account = objParam.Konto,
-                Vat = objParam.Moms_Konto,
+                Account = wAccount,
                 OffsetAccountType = objParam.Modkontotype,
-                OffsetAccount = objParam.Modkonto,
-                OffsetVat = objParam.Moms_Modkonto,
+                OffsetAccount = wOffsetAccount,
                 Debit = objParam.Debit,
                 Credit = objParam.Kredit,
             };
@@ -408,23 +449,32 @@ namespace nsPbs3060
             var Date = message.Date.DateTime;
             var Subject = message.Subject;
 
-            string Account;
+
+            string wAccount = null;
             try
             {
-                var Creditor = (from c in this.m_Creditors where ((c.ContactEmail != null) &&(c.ContactEmail.ToLower() == From.ToLower()) ) || ((c._InvoiceEmail != null) && ( c._InvoiceEmail.ToLower() == From.ToLower())) select c).First();
-                Account = Creditor.Account;
+                wAccount = (from c in this.m_Creditors where c.Account == objParam.Konto select c.Account).First();
             }
-            catch
+            catch (Exception)
             {
-                Account = "100000"; //Ukendt kreditor
+                 try
+                {
+                    wAccount = (from c in this.m_Creditors where ((c.ContactEmail != null) && (c.ContactEmail.ToLower() == From.ToLower())) || ((c._InvoiceEmail != null) && (c._InvoiceEmail.ToLower() == From.ToLower())) select c.Account).First();
+                }
+                catch
+                {
+                    wAccount = "100000"; //Ukendt kreditor
+                }
             }
 
             CreditorOrderClient recOrder = new CreditorOrderClient()
             {
-                Account = Account,
+                Account = wAccount,
                 InvoiceDate = Date,
                 DeliveryDate = Date,
-                DocumentRef = DocumentRef
+                DocumentRef = DocumentRef,
+                DeleteLines = true,
+                DeleteOrder = true 
             };
             var taskInsertCreditorOrder = m_api.Insert(recOrder);
             taskInsertCreditorOrder.Wait();
@@ -433,6 +483,9 @@ namespace nsPbs3060
             CreditorOrderLineClient recOrderLine = new CreditorOrderLineClient()
             {
                 Text = Subject,
+                Qty = 1,
+                Price = objParam.Kredit ==  null ? 0 : (double)objParam.Kredit,
+                PostingAccount = objParam.Modkonto,               
             };
             recOrderLine.SetMaster(recOrder);
             var taskInsertCreditorOrderLine = m_api.Insert(recOrderLine);
