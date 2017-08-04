@@ -63,17 +63,19 @@
             this.excelRegnskabToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sysInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.passwordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.varekontoTypeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.actebisFakturaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.templatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.kontoudtogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.importAfEcxelKøbsordreToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.passwordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.hjælpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonImportEmailBilag = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolExportDanskeErhverv = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -285,29 +287,29 @@
             // importerTransaktionerToolStripMenuItem
             // 
             this.importerTransaktionerToolStripMenuItem.Name = "importerTransaktionerToolStripMenuItem";
-            this.importerTransaktionerToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.importerTransaktionerToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.importerTransaktionerToolStripMenuItem.Text = "Import Bilag";
             this.importerTransaktionerToolStripMenuItem.Click += new System.EventHandler(this.importerTransaktionerToolStripMenuItem_Click);
             // 
             // importFakturaToolStripMenuItem
             // 
             this.importFakturaToolStripMenuItem.Name = "importFakturaToolStripMenuItem";
-            this.importFakturaToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.importFakturaToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.importFakturaToolStripMenuItem.Text = "Import Faktura";
             this.importFakturaToolStripMenuItem.Click += new System.EventHandler(this.importFakturaToolStripMenuItem_Click);
             // 
             // importDanskebankToolStripMenuItem
             // 
             this.importDanskebankToolStripMenuItem.Name = "importDanskebankToolStripMenuItem";
-            this.importDanskebankToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.importDanskebankToolStripMenuItem.Text = "Import Danske Erhverv";
+            this.importDanskebankToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.importDanskebankToolStripMenuItem.Text = "Export Danske Erhverv";
             this.importDanskebankToolStripMenuItem.Visible = false;
             this.importDanskebankToolStripMenuItem.Click += new System.EventHandler(this.importDanskebankToolStripMenuItem_Click);
             // 
             // importerMasterCardToolStripMenuItem
             // 
             this.importerMasterCardToolStripMenuItem.Name = "importerMasterCardToolStripMenuItem";
-            this.importerMasterCardToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.importerMasterCardToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.importerMasterCardToolStripMenuItem.Text = "Import MasterCard     ";
             this.importerMasterCardToolStripMenuItem.Visible = false;
             this.importerMasterCardToolStripMenuItem.Click += new System.EventHandler(this.importMasterCardToolStripMenuItem_Click);
@@ -315,14 +317,14 @@
             // importPayPalToolStripMenuItem
             // 
             this.importPayPalToolStripMenuItem.Name = "importPayPalToolStripMenuItem";
-            this.importPayPalToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.importPayPalToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.importPayPalToolStripMenuItem.Text = "Import PayPal";
             this.importPayPalToolStripMenuItem.Click += new System.EventHandler(this.importPayPalToolStripMenuItem_Click);
             // 
             // importNordeaToolStripMenuItem
             // 
             this.importNordeaToolStripMenuItem.Name = "importNordeaToolStripMenuItem";
-            this.importNordeaToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.importNordeaToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.importNordeaToolStripMenuItem.Text = "Import Nordea";
             this.importNordeaToolStripMenuItem.Visible = false;
             this.importNordeaToolStripMenuItem.Click += new System.EventHandler(this.importNordeaToolStripMenuItem_Click);
@@ -330,7 +332,7 @@
             // importActebisToolStripMenuItem
             // 
             this.importActebisToolStripMenuItem.Name = "importActebisToolStripMenuItem";
-            this.importActebisToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.importActebisToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.importActebisToolStripMenuItem.Text = "Import Actebis";
             this.importActebisToolStripMenuItem.Visible = false;
             this.importActebisToolStripMenuItem.Click += new System.EventHandler(this.importActebisToolStripMenuItem_Click);
@@ -338,7 +340,7 @@
             // excelRegnskabToolStripMenuItem
             // 
             this.excelRegnskabToolStripMenuItem.Name = "excelRegnskabToolStripMenuItem";
-            this.excelRegnskabToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.excelRegnskabToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
             this.excelRegnskabToolStripMenuItem.Text = "Excel Regnskab";
             this.excelRegnskabToolStripMenuItem.Click += new System.EventHandler(this.excelRegnskabToolStripMenuItem_Click);
             // 
@@ -362,6 +364,13 @@
             this.sysInfoToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
             this.sysInfoToolStripMenuItem.Text = "SysInfo";
             this.sysInfoToolStripMenuItem.Click += new System.EventHandler(this.sysInfoToolStripMenuItem_Click);
+            // 
+            // passwordToolStripMenuItem
+            // 
+            this.passwordToolStripMenuItem.Name = "passwordToolStripMenuItem";
+            this.passwordToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
+            this.passwordToolStripMenuItem.Text = "Password";
+            this.passwordToolStripMenuItem.Click += new System.EventHandler(this.passwordToolStripMenuItem_Click);
             // 
             // varekontoTypeToolStripMenuItem
             // 
@@ -399,13 +408,6 @@
             this.importAfEcxelKøbsordreToolStripMenuItem.Text = "Import af Ecxel Købsordre";
             this.importAfEcxelKøbsordreToolStripMenuItem.Click += new System.EventHandler(this.importAfEcxelKøbsordreToolStripMenuItem_Click);
             // 
-            // passwordToolStripMenuItem
-            // 
-            this.passwordToolStripMenuItem.Name = "passwordToolStripMenuItem";
-            this.passwordToolStripMenuItem.Size = new System.Drawing.Size(209, 22);
-            this.passwordToolStripMenuItem.Text = "Password";
-            this.passwordToolStripMenuItem.Click += new System.EventHandler(this.passwordToolStripMenuItem_Click);
-            // 
             // hjælpToolStripMenuItem
             // 
             this.hjælpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -426,7 +428,9 @@
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonImportEmailBilag,
-            this.toolStripSeparator2});
+            this.toolStripSeparator2,
+            this.toolExportDanskeErhverv,
+            this.toolStripSeparator3});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1024, 25);
@@ -448,6 +452,21 @@
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
+            // toolExportDanskeErhverv
+            // 
+            this.toolExportDanskeErhverv.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolExportDanskeErhverv.Image = ((System.Drawing.Image)(resources.GetObject("toolExportDanskeErhverv.Image")));
+            this.toolExportDanskeErhverv.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolExportDanskeErhverv.Name = "toolExportDanskeErhverv";
+            this.toolExportDanskeErhverv.Size = new System.Drawing.Size(127, 22);
+            this.toolExportDanskeErhverv.Text = "Export Danske Erhverv";
+            this.toolExportDanskeErhverv.Click += new System.EventHandler(this.toolExportDanskeErhverv_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -457,7 +476,7 @@
             settings1.BetalingsFristiDageGamleMedlemmer = 31;
             settings1.BetalingsFristiDageNyeMedlemmer = 61;
             settings1.checkBoxMedsaldo = true;
-            //settings1.dbDataTransSummaConnectionString = null;
+            //settings1.dbDataTransSummaConnectionString = resources.GetString("settings1.dbDataTransSummaConnectionString");
             settings1.FrmActebisfakturaLocation = new System.Drawing.Point(0, 0);
             settings1.FrmActebisfakturaSize = new System.Drawing.Size(1081, 495);
             settings1.FrmBankkontoudtogLocation = new System.Drawing.Point(0, 0);
@@ -577,6 +596,8 @@
         private System.Windows.Forms.ToolStripMenuItem passwordToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sysInfoToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButtonImportEmailBilag;
+        private System.Windows.Forms.ToolStripButton toolExportDanskeErhverv;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
     }
 }
 
