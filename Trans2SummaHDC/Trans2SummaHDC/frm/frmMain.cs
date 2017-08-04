@@ -385,13 +385,26 @@ namespace Trans2SummaHDC
 
         private void importDanskebankToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            KarBankkontoudtogDanskebank recBankkontoudtogDanskebank = new KarBankkontoudtogDanskebank(1);
+            ExportDanskeErhverv_Click( sender, e);
+        }
+
+        private void ExportDanskeErhverv_Click(object sender, EventArgs e){
+            KarBankkontoudtogDanskebank recBankkontoudtogDanskebank = new KarBankkontoudtogDanskebank(UCInitializer.GetBaseAPI, 1);
             recBankkontoudtogDanskebank.load();
+            recBankkontoudtogDanskebank.export();
+
+            DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
+                "Medlem3060uc", //titleString   
+                "Danske Erhverv Kontoudtog uploaded til UniConta.", //bigString 
+                null, //smallString
+                null, //leftButton
+                "OK", //rightButton
+                global::Trans2SummaHDC.Properties.Resources.Message_info); //iconSet   
         }
 
         private void importMasterCardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            KarBankkontoudtogDanskebank recBankkontoudtogDanskebank = new KarBankkontoudtogDanskebank(2);
+            KarBankkontoudtogDanskebank recBankkontoudtogDanskebank = new KarBankkontoudtogDanskebank(UCInitializer.GetBaseAPI, 2);
             recBankkontoudtogDanskebank.load();
         }
 
@@ -598,6 +611,11 @@ namespace Trans2SummaHDC
                 null, //leftButton
                 "OK", //rightButton
                 global::Trans2SummaHDC.Properties.Resources.Message_info); //iconSet    
+        }
+
+        private void toolExportDanskeErhverv_Click(object sender, EventArgs e)
+        {
+            ExportDanskeErhverv_Click(sender, e);
         }
     }
 

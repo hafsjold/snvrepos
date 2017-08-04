@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Text.RegularExpressions;
-
+using Uniconta.Common;
+using Uniconta.ClientTools.DataModel;
+using Uniconta.API.System;
 
 namespace Trans2SummaHDC
 {
@@ -26,10 +28,12 @@ namespace Trans2SummaHDC
     {
         private int m_bankkontoid { get; set; }
         private string m_path { get; set; }
+        private CrudAPI m_api { get; set; }
 
-        public KarBankkontoudtogDanskebank(int bankkontoid)
+        public KarBankkontoudtogDanskebank(CrudAPI p_api, int bankkontoid)
         {
             m_bankkontoid = bankkontoid;
+            m_api = p_api;
             string csvfile;
             try
             {
@@ -123,5 +127,60 @@ namespace Trans2SummaHDC
             Program.dbDataTransSumma.SubmitChanges();
         }
 
+        public void export()
+        {
+            DateTime ExportFromDate = DateTime.Now.AddDays(-3);
+            var crit = new List<PropValuePair>();
+            var pair = PropValuePair.GenereteWhereElements("KeyName", typeof(string), "DanskeBank");
+            crit.Add(pair);
+            var taskQryBankStatment = m_api.Query<BankStatementClient>(null, crit);
+            taskQryBankStatment.Wait();
+            var col = taskQryBankStatment.Result;
+            if (col.Count() == 1)
+            {
+                ExportFromDate = col[0].LastTransaction;
+                var DaysSlip = col[0].DaysSlip;
+                ExportFromDate = ExportFromDate.AddDays(-DaysSlip);
+            }
+
+            //ExportFromDate = DateTime.Now.AddDays(-30); //<-------------------Fjernes
+
+            using (StringWriter sr = new StringWriter())
+            {
+                var qry = from w in Program.dbDataTransSumma.tblbankkontos
+                          where w.bankkontoid == m_bankkontoid && (w.skjul == null || w.skjul == false) && w.dato >= ExportFromDate
+                          orderby w.dato
+                          select w;
+
+                int antal = qry.Count();
+
+                string ln = @"pid;dato;tekst;beløb;saldo";
+                sr.WriteLine(ln);
+
+                foreach (var b in qry)
+                {
+                    ln = "";
+                    ln += b.pid.ToString() + ";";
+                    ln += (b.dato == null) ? ";" : ((DateTime)b.dato).ToString("dd.MM.yyyy") + ";";
+                    ln += (b.tekst == null) ? ";" : b.tekst + ";";
+                    ln += (b.belob == null) ? ";" : ((decimal)(b.belob)).ToString("0.00") + @";";
+                    ln += (b.saldo == null) ? ";" : ((decimal)(b.saldo)).ToString("0.00");
+                    sr.WriteLine(ln);
+                }
+                byte[] attachment = Encoding.Default.GetBytes(sr.ToString());
+                VouchersClient vc = new VouchersClient()
+                {
+                    Text = string.Format("Danske Bank Kontoudtog {0}", DateTime.Now),
+                    Content = "Bankkontoudtog",
+                    DocumentDate = DateTime.Now,
+                    Fileextension = FileextensionsTypes.CSV,
+                    VoucherAttachment = attachment,
+                };
+                var taskInsertVouchers = m_api.Insert(vc);
+                taskInsertVouchers.Wait();
+                var err = taskInsertVouchers.Result;
+
+            }
+        }
     }
 }
