@@ -5,6 +5,7 @@ using MigraDoc.DocumentObjectModel;
 using MigraDoc.DocumentObjectModel.Tables;
 using MigraDoc.Rendering;
 using MimeKit;
+using MimeKit.Tnef;
 using PdfSharp;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
@@ -55,8 +56,6 @@ namespace nsPbs3060
                 imap_client.Authenticate(clsApp.GigaHostImapUser, clsApp.GigaHostImapPW);
                 var Puls3060Bilag = imap_client.GetFolder("_Puls3060Bilag");
                 var Puls3060BilagArkiv = imap_client.GetFolder("_Puls3060BilagArkiv");
-                //var Puls3060Bilag = imap_client.GetFolder("_TestPuls3060Bilag");          // <-----------------------------------TEST
-                //var Puls3060BilagArkiv = imap_client.GetFolder("_TestPuls3060BilagArkiv");// <-----------------------------------TEST
                 Puls3060Bilag.Open(FolderAccess.ReadWrite);
 
                 var results = Puls3060Bilag.Search(SearchQuery.All);
@@ -64,10 +63,27 @@ namespace nsPbs3060
                 foreach (var result in results)
                 {
                     message = Puls3060Bilag.GetMessage(result);
+                    List<VouchersClient> documentlist = new List<VouchersClient>();
 
+                    if (message.Body.ContentType.MimeType == "application/ms-tnef")
+                    {
+                        antalbilag--;
+                        continue;
+
+                        foreach (var msg_attachment in message.Attachments)
+                        {
+                            var part = (TnefPart)msg_attachment;
+                            //FileStream msstream = new FileStream(@"testfile.pdf", FileMode.CreateNew);
+                            MemoryStream msstream = new MemoryStream();
+                            part.ContentObject.DecodeTo(msstream);
+                            msstream.Position = 0;
+                            var parser = new MimeParser(msstream, MimeFormat.Default);
+                            var xmessage = parser.ParseMessage();
+
+                        }
+                    }
                     var msMail = Message2Pdf(message);
 
-                    List<VouchersClient> documentlist = new List<VouchersClient>();
                     VouchersClient mail = new VouchersClient()
                     {
                         Fileextension = FileextensionsTypes.PDF,
@@ -79,6 +95,7 @@ namespace nsPbs3060
                     task1.Wait();
                     var res1 = task1.Result;
                     documentlist.Add(mail);
+
 
                     foreach (var msg_attachment in message.Attachments)
                     {
@@ -190,6 +207,19 @@ namespace nsPbs3060
                                 var rec = col[0];
                                 m_api.DeleteNoResponse(rec);
                             }
+                        }
+
+                        if (objParam == null)
+                        {
+                            objParam = new clsParam()
+                            {
+                                 Delsystem = "Kreditor",
+                                 Kontotype = "Kreditor",
+                                 Konto = "100000",
+                                 Modkontotype = "Finans",
+                                 Modkonto = "9900",
+                                 Kredit = 0.00
+                            };
                         }
 
                         switch (objParam.Delsystem.ToLower())
@@ -396,7 +426,7 @@ namespace nsPbs3060
                 catch (Exception)
                 {
                     wAccount = "9900"; //Fejlkonto
-                } 
+                }
             }
 
             string wOffsetAccount = null;
@@ -457,7 +487,7 @@ namespace nsPbs3060
             }
             catch (Exception)
             {
-                 try
+                try
                 {
                     wAccount = (from c in this.m_Creditors where ((c.ContactEmail != null) && (c.ContactEmail.ToLower() == From.ToLower())) || ((c._InvoiceEmail != null) && (c._InvoiceEmail.ToLower() == From.ToLower())) select c.Account).First();
                 }
@@ -474,7 +504,7 @@ namespace nsPbs3060
                 DeliveryDate = Date,
                 DocumentRef = DocumentRef,
                 DeleteLines = true,
-                DeleteOrder = true 
+                DeleteOrder = true
             };
             var taskInsertCreditorOrder = m_api.Insert(recOrder);
             taskInsertCreditorOrder.Wait();
@@ -484,8 +514,8 @@ namespace nsPbs3060
             {
                 Text = Subject,
                 Qty = 1,
-                Price = objParam.Kredit ==  null ? 0 : (double)objParam.Kredit,
-                PostingAccount = objParam.Modkonto,               
+                Price = objParam.Kredit == null ? 0 : (double)objParam.Kredit,
+                PostingAccount = objParam.Modkonto,
             };
             recOrderLine.SetMaster(recOrder);
             var taskInsertCreditorOrderLine = m_api.Insert(recOrderLine);
