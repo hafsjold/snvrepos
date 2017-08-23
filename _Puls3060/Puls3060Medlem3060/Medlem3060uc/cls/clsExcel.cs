@@ -44,43 +44,66 @@ namespace Medlem3060uc
             var qry = from u in jdb.ecpwt_users
                       join m in jdb.ecpwt_rsmembership_membership_subscribers on u.id equals m.user_id
                       where m.membership_id == 6 && m.status == 0
-                      join t in jdb.ecpwt_rsmembership_transactions on m.last_transaction_id equals t.id
                       join a in jdb.ecpwt_rsmembership_subscribers on m.user_id equals a.user_id
                       orderby u.name
-                      select new
+                      select new recMedlem
                       {
-                          u.id,
-                          u.name,
-                          a.f1,
-                          a.f4,
-                          a.f2,
-                          a.f6,
-                          u.email,
-                          a.f14,
-                          m.membership_start,
-                          m.membership_end,
-                          t.user_data
+                          id =u.id,
+                          name =u.name,
+                          f1 = a.f1,
+                          f4 = a.f4,
+                          f2 = a.f2,
+                          f6 = a.f6,
+                          email = u.email,
+                          f14 = a.f14,
+                          membership_start = m.membership_start,
+                          membership_end = m.membership_end,
+                          last_transaction_id = m.last_transaction_id,
                       };
 
-            List<clsMedlemExternAll> MedlemmerAll = new List<clsMedlemExternAll>();
-            foreach (var m in qry)
-            {
+            List<recMedlem> listMedlem = qry.ToList();
+            int count = listMedlem.Count();
 
-                User_data recud = clsHelper.unpack_UserData(m.user_data);
-                clsMedlemExternAll recMedlem = new clsMedlemExternAll
+            List<clsMedlemExternAll> MedlemmerAll = new List<clsMedlemExternAll>();
+            foreach (var m in listMedlem)
+            {
+                User_data recud = null;
+                clsMedlemExternAll recMedlem = null;
+                try
                 {
-                    Nr = m.id,
-                    Navn = m.name,
-                    Adresse = m.f1,
-                    Postnr = m.f4,
-                    Bynavn = m.f2,
-                    Telefon = m.f6,
-                    Email = m.email,
-                    Kon = recud.kon,
-                    FodtAar = recud.fodtaar,
-                    MedlemTil = m.membership_end
-                };
-                MedlemmerAll.Add(recMedlem);
+                    var user_data = (from t in jdb.ecpwt_rsmembership_transactions where t.id == m.last_transaction_id select t.user_data).First();
+                    recud = clsHelper.unpack_UserData(user_data);
+                    recMedlem = new clsMedlemExternAll
+                    {
+                        Nr = m.id,
+                        Navn = m.name,
+                        Adresse = m.f1,
+                        Postnr = m.f4,
+                        Bynavn = m.f2,
+                        Telefon = m.f6,
+                        Email = m.email,
+                        Kon = recud.kon,
+                        FodtAar = recud.fodtaar,
+                        MedlemTil = m.membership_end
+                    };
+                    MedlemmerAll.Add(recMedlem); }
+                catch
+                {
+                    recMedlem = new clsMedlemExternAll
+                    {
+                        Nr = m.id,
+                        Navn = m.name,
+                        Adresse = m.f1,
+                        Postnr = m.f4,
+                        Bynavn = m.f2,
+                        Telefon = m.f6,
+                        Email = m.email,
+                        Kon = string.Empty,
+                        FodtAar = string.Empty,
+                        MedlemTil = m.membership_end
+                    };
+                    MedlemmerAll.Add(recMedlem);
+                }
             }
 
             using (new ExcelUILanguageHelper())
@@ -205,13 +228,13 @@ namespace Medlem3060uc
             MimeMessage message = new MimeMessage();
             TextPart body;
 
-            var To = new MailboxAddress( @"Regnskab Puls3060", @"regnskab@puls3060.dk");
-            var From = new MailboxAddress(@"Regnskab Puls3060",@"regnskab@puls3060.dk");
+            var To = new MailboxAddress(@"Regnskab Puls3060", @"regnskab@puls3060.dk");
+            var From = new MailboxAddress(@"Regnskab Puls3060", @"regnskab@puls3060.dk");
             message.To.Add(To);
             message.From.Add(From);
             message.Subject = PSubjectBody + ": " + local_filename;
             body = new TextPart("plain") { Text = PSubjectBody + ": " + local_filename };
-            
+
             var attachment = new MimePart("application", "vnd.ms-excel")
             {
                 ContentObject = new ContentObject(fs, ContentEncoding.Default),
@@ -276,7 +299,7 @@ namespace Medlem3060uc
 
                 case GLAccountTypes.Header:
                 case GLAccountTypes.Sum:
-                case GLAccountTypes.CalculationExpression: 
+                case GLAccountTypes.CalculationExpression:
                 default:
                     return "Y";
             }
@@ -315,7 +338,7 @@ namespace Medlem3060uc
                 case GLAccountTypes.CalculationExpression:
                 default:
                     return "Y";
-             }
+            }
         }
 
         private void ecxelPoster()
@@ -343,8 +366,8 @@ namespace Medlem3060uc
             {
                 RecDebCred recDebCred = new RecDebCred()
                 {
-                     _Account = d._Account,
-                      _Name = d._Name
+                    _Account = d._Account,
+                    _Name = d._Name
                 };
                 karDebCred.Add(recDebCred);
             }
@@ -366,7 +389,7 @@ namespace Medlem3060uc
             string dateinterval = string.Format("{0}..{1}", CurrentCompanyFinanceYear._FromDate.ToShortDateString(), CurrentCompanyFinanceYear._ToDate.ToShortDateString());
             var pair = PropValuePair.GenereteWhereElements("Date", typeof(DateTime), dateinterval);
             crit.Add(pair);
-            var task4 = api.Query<GLTrans>(null,crit);
+            var task4 = api.Query<GLTrans>(null, crit);
             task4.Wait();
             var karGLTrans = task4.Result;
 
@@ -687,6 +710,21 @@ namespace Medlem3060uc
     public class KarDebCred : List<RecDebCred>
     {
 
+    }
+
+    public class recMedlem
+    {
+        public int id { get; set; }
+        public string name { get; set; }
+        public string f1 { get; set; }
+        public string f4 { get; set; }
+        public string f2 { get; set; }
+        public string f6 { get; set; }
+        public string email { get; set; }
+        public string f14 { get; set; }
+        public DateTime membership_start { get; set; }
+        public DateTime membership_end { get; set; }
+        public int last_transaction_id { get; set; }
     }
 
 }
