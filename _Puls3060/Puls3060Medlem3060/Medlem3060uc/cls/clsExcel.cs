@@ -43,7 +43,7 @@ namespace Medlem3060uc
 
             var qry = from u in jdb.ecpwt_users
                       join m in jdb.ecpwt_rsmembership_membership_subscribers on u.id equals m.user_id
-                      where m.membership_id == 6 && m.status == 0
+                      where m.membership_id == 6 && (m.status == 0 || (m.status == 3 && m.membership_end > DateTime.Now))
                       join a in jdb.ecpwt_rsmembership_subscribers on m.user_id equals a.user_id
                       orderby u.name
                       select new recMedlem
@@ -59,6 +59,7 @@ namespace Medlem3060uc
                           membership_start = m.membership_start,
                           membership_end = m.membership_end,
                           last_transaction_id = m.last_transaction_id,
+                          status = m.status
                       };
 
             List<recMedlem> listMedlem = qry.ToList();
@@ -84,7 +85,8 @@ namespace Medlem3060uc
                         Email = m.email,
                         Kon = recud.kon,
                         FodtAar = recud.fodtaar,
-                        MedlemTil = m.membership_end
+                        MedlemTil = m.membership_end,
+                        Status = m.status == 3 ? "Udmeldt" : ""
                     };
                     MedlemmerAll.Add(recMedlem); }
                 catch
@@ -100,7 +102,8 @@ namespace Medlem3060uc
                         Email = m.email,
                         Kon = string.Empty,
                         FodtAar = string.Empty,
-                        MedlemTil = m.membership_end
+                        MedlemTil = m.membership_end,
+                        Status = m.status == 3 ? "Udmeldt" : ""
                     };
                     MedlemmerAll.Add(recMedlem);
                 }
@@ -669,7 +672,8 @@ namespace Medlem3060uc
         public string FodtAar { get; set; }
         [Fieldattr(Heading = "Medlem Til")]
         public DateTime? MedlemTil { get; set; }
-
+        [Fieldattr(Heading = "Status")]
+        public string Status { get; set; }
     }
 
     public class clsJournalposter
@@ -725,6 +729,7 @@ namespace Medlem3060uc
         public DateTime membership_start { get; set; }
         public DateTime membership_end { get; set; }
         public int last_transaction_id { get; set; }
+        public int status { get; set; }
     }
 
 }
