@@ -24,9 +24,27 @@ namespace Medlem3060uc
 {
     public partial class FrmMain : Form
     {
+        private string medlemStatus(int status)
+        {
+            switch (status)
+            {
+                case 0:
+                    return string.Empty;
+                case 1:
+                    return string.Empty;
+                case 2:
+                    return "Restance";
+                case 3:
+                    return "Udmeldt";
+                default:
+                    return "Ukendt";
+            }
+        }
+
         private void excelManagement()
         {
             DateTime pReadDate = DateTime.Now;
+            DateTime pRestance30Date = pReadDate.AddDays(-30);
             string pSheetName = "MedlemManagement";
 
             _Excel.Application oXL = null; ;
@@ -43,7 +61,13 @@ namespace Medlem3060uc
 
             var qry = from u in jdb.ecpwt_users
                       join m in jdb.ecpwt_rsmembership_membership_subscribers on u.id equals m.user_id
-                      where m.membership_id == 6 && (m.status == 0 || (m.status == 3 && m.membership_end > DateTime.Now))
+                      where m.membership_id == 6 
+                      &&
+                      (
+                        m.status == 0 
+                        || (m.status == 2 && m.membership_end > pRestance30Date)
+                        || (m.status == 3 && m.membership_end > pReadDate)
+                      )
                       join a in jdb.ecpwt_rsmembership_subscribers on m.user_id equals a.user_id
                       orderby u.name
                       select new recMedlem
@@ -86,7 +110,7 @@ namespace Medlem3060uc
                         Kon = recud.kon,
                         FodtAar = recud.fodtaar,
                         MedlemTil = m.membership_end,
-                        Status = m.status == 3 ? "Udmeldt" : ""
+                        Status = medlemStatus(m.status)
                     };
                     MedlemmerAll.Add(recMedlem); }
                 catch
@@ -103,7 +127,7 @@ namespace Medlem3060uc
                         Kon = string.Empty,
                         FodtAar = string.Empty,
                         MedlemTil = m.membership_end,
-                        Status = m.status == 3 ? "Udmeldt" : ""
+                        Status = medlemStatus(m.status)
                     };
                     MedlemmerAll.Add(recMedlem);
                 }
