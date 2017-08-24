@@ -49,6 +49,7 @@ namespace nsPbs3060
             int AntalBetalinger = 0;
             if (bogf.Count() > 0)
             {
+                AntalBetalinger = bogf.Count();
                 DateTime nu = DateTime.Now;
                 DateTime ToDay = new DateTime(nu.Year, nu.Month, nu.Day); ;
                 InsertGLDailyJournalLines(bogf);
@@ -258,6 +259,21 @@ namespace nsPbs3060
                 && (kk.Kontonr == null))
                 {
                     jl.Account = "5830";
+                    if (kk.Belob > 0)
+                    {
+                        jl.Debit = (double)kk.Belob;
+                    }
+                    else
+                    {
+                        jl.Credit = -(double)kk.Belob;
+                    }
+                }
+
+                if ((kk.Afstemningskonto == "PayPal") //NEW
+                && (kk.Kontonr != null))
+                {
+                    jl.Account = "5830";
+                    jl.OffsetAccount = kk.Kontonr.ToString();
                     if (kk.Belob > 0)
                     {
                         jl.Debit = (double)kk.Belob;
