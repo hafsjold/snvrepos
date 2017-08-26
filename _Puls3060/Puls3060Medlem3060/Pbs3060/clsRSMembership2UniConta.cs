@@ -401,6 +401,18 @@ namespace nsPbs3060
             //Uniconta.ClientTools.DataModel.TableFieldsClient ss;       
         }
 
+        public void testBetalinger()
+        {
+            var taskCreditorOrder = m_api.Query<CreditorTransOpenClient>();
+            taskCreditorOrder.Wait();
+            var resultCreditorOrder = taskCreditorOrder.Result;
+            foreach (var c in resultCreditorOrder)
+            {
+  
+            }
+
+        }
+
     }
 
 }

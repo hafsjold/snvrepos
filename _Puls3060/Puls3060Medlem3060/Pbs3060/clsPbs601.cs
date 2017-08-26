@@ -498,8 +498,9 @@ namespace nsPbs3060
             MemRSMembershipTransactions memRSMembershipTransactions = new MemRSMembershipTransactions();
 
             var qrytrans = from t in p_dbPuls3060_dk.ecpwt_rsmembership_transactions
-                           where (t.status == "pending" && t.type == "new" && t.@params == "membership_id=6" && t.gateway == "PBS")
-                              || (t.status == "pending" && t.type == "new" && t.@params == "membership_id=6" && t.gateway == "PayPal" && t.date < now_minus60)
+                           where (t.status == "pending" && t.type == "new" && t.@params == "membership_id=6" && t.gateway.ToUpper() == "PBS")
+                              //|| (t.status == "pending" && t.type == "new" && t.@params == "membership_id=6" && t.gateway.ToUpper() == "PAYPAL" && t.date < now_minus60)
+                              || (t.status == "pending" && t.type == "new" && t.@params == "membership_id=6" && t.gateway.ToUpper() == "INDBETALINGSKORT")
                            select t;
             List<ecpwt_rsmembership_transactions> trans = qrytrans.ToList();
 
@@ -1875,7 +1876,12 @@ namespace nsPbs3060
             using (var smtp_client = new MailKit.Net.Smtp.SmtpClient())
             {
                 smtp_client.Connect("smtp.gigahost.dk", 587, false);
-                smtp_client.AuthenticationMechanisms.Remove("XOAUTH2");
+                var AuthenticationMechanisms = smtp_client.AuthenticationMechanisms;
+                smtp_client.AuthenticationMechanisms.Remove("CRAM-MD5");
+                smtp_client.AuthenticationMechanisms.Remove("LOGIN");
+                //smtp_client.AuthenticationMechanisms.Remove("PLAIN");
+                smtp_client.AuthenticationMechanisms.Remove("NTLM");
+                smtp_client.AuthenticationMechanisms.Remove("DIGEST-MD5");
                 smtp_client.Authenticate(clsApp.GigaHostImapUser, clsApp.GigaHostImapPW);
 
                 using (var imap_client = new ImapClient())
