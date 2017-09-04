@@ -210,6 +210,8 @@ namespace Trans2SummaHDC
             }
             else
             {
+                if (string.IsNullOrEmpty(txt))
+                    txt = "Tom email";
                 pdfdok = converter.ConvertHtmlString(txt);
             }
             pdfdok.Save(msMail);
@@ -362,7 +364,9 @@ namespace Trans2SummaHDC
             var From = message.From.ToString();
             From = ExtractEmails(From);
             var Date = message.Date.DateTime;
-            var Subject = message.Subject;
+            var Subject = objParam.Tekst;
+            if (string.IsNullOrEmpty(Subject))
+                Subject = message.Subject;
 
             var crit = new List<PropValuePair>();
             var pair = PropValuePair.GenereteWhereElements("KeyStr", typeof(String), "Dag");
@@ -401,7 +405,9 @@ namespace Trans2SummaHDC
             var From = message.From.ToString();
             From = ExtractEmails(From);
             var Date = message.Date.DateTime;
-            var Subject = message.Subject;
+            var Subject = objParam.Tekst;
+            if (string.IsNullOrEmpty(Subject))
+                Subject = message.Subject;
 
             string Account;
             try
