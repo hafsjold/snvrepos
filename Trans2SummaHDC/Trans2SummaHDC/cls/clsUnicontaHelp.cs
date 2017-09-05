@@ -125,7 +125,10 @@ namespace Trans2SummaHDC
                         else if (msg_attachment is MessagePart)
                         {
                             var msgpart = msg_attachment as MessagePart;
-                            var msgtext = Regex.Replace(msgpart.Message.HtmlBody, "<[^>]*>", String.Empty).Replace("&nbsp;", String.Empty).Trim();
+                            var MessageBody = msgpart.Message.HtmlBody;
+                            if (string.IsNullOrEmpty(MessageBody))
+                                MessageBody = msgpart.Message.TextBody;
+                            var msgtext = Regex.Replace(MessageBody, "<[^>]*>", String.Empty).Replace("&nbsp;", String.Empty).Trim();
                             string[] splitstring = { "\r\n" };
                             string[] arrParams = msgtext.Split(splitstring, StringSplitOptions.RemoveEmptyEntries);
                             objParam = new clsParam(arrParams);
