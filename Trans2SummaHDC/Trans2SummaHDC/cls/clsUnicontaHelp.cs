@@ -170,7 +170,21 @@ namespace Trans2SummaHDC
                                 m_api.DeleteNoResponse(rec);
                             }
                         }
-                         
+
+                        if (objParam == null)
+                        {
+                            objParam = new clsParam()
+                            {
+                                Delsystem = "Finans",
+                                Tekst = "Ukendt post",
+                                Kontotype = "Finans",
+                                Konto = "5820",
+                                Modkontotype = "Finans",
+                                Modkonto = "9900",
+                                Kredit = 0.00
+                            };
+                        }
+
                         switch (objParam.Delsystem.ToLower())
                         {
                             case "finans":
