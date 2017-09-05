@@ -11,20 +11,13 @@ namespace nsPbs3060
         public string Delsystem { get; set; }
         public string Kontotype { get; set; }
         public string Konto { get; set; }
+        public string Tekst { get; set; }
         public string Moms_Konto { get; set; }
         public string Modkontotype { get; set; }
         public string Modkonto { get; set; }
         public string Moms_Modkonto { get; set; }
         public double? Debit { get; set; }
         public double? Kredit { get; set; }
-
-        public int? Faktura_Nr  { get; set; }
-        public string Lin0_Tekst { get; set; }
-        public double Lin0_Antal { get; set; }
-        public double Lin0_Pris { get; set; }
-        public string Lin0_Konto { get; set; }
-        public string Lin0_Moms { get; set; }
-
 
         public clsParam() { }
         public clsParam(string[] arrParam)
@@ -51,6 +44,10 @@ namespace nsPbs3060
                                 Konto = p[1].Trim();
                                 break;
 
+                            case "#tekst":
+                                Tekst = p[1].Trim();
+                                break;
+
                             case "#moms_konto":
                                 Moms_Konto = p[1].Trim();
                                 break;
@@ -73,30 +70,6 @@ namespace nsPbs3060
 
                             case "#kredit":
                                 Kredit = double.Parse(p[1].Trim(), System.Globalization.NumberStyles.Any);
-                                break;
-
-                            case "#faktura_nr":
-                                Faktura_Nr = int.Parse(p[1].Trim(), System.Globalization.NumberStyles.Any);
-                                break;
-
-                            case "#lin0_tekst":
-                                Lin0_Tekst = p[1].Trim();
-                                break;
-
-                            case "#lin0_antal":
-                                Lin0_Antal = double.Parse(p[1].Trim(), System.Globalization.NumberStyles.Any);
-                                break;
-
-                            case "#lin0_pris":
-                                Lin0_Pris = double.Parse(p[1].Trim(), System.Globalization.NumberStyles.Any);
-                                break;
-
-                            case "#lin0_konto":
-                                Lin0_Konto = p[1].Trim();
-                                break;
-
-                            case "#lin0_moms":
-                                Lin0_Moms = p[1].Trim();
                                 break;
 
                             default:
