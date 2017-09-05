@@ -214,6 +214,7 @@ namespace nsPbs3060
                             objParam = new clsParam()
                             {
                                  Delsystem = "Kreditor",
+                                 Tekst = "Ukendt post",
                                  Kontotype = "Kreditor",
                                  Konto = "100000",
                                  Modkontotype = "Finans",
@@ -414,7 +415,9 @@ namespace nsPbs3060
             var From = message.From.ToString();
             From = ExtractEmails(From);
             var Date = message.Date.DateTime;
-            var Subject = message.Subject;
+            var Subject = objParam.Tekst;
+            if (string.IsNullOrEmpty(Subject))
+                Subject = message.Subject;
 
             string wAccount = null;
             if (!string.IsNullOrEmpty(objParam.Konto))
@@ -477,7 +480,9 @@ namespace nsPbs3060
             var From = message.From.ToString();
             From = ExtractEmails(From);
             var Date = message.Date.DateTime;
-            var Subject = message.Subject;
+            var Subject = objParam.Tekst;
+            if (string.IsNullOrEmpty(Subject))
+                Subject = message.Subject;
 
 
             string wAccount = null;
