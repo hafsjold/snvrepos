@@ -11,71 +11,204 @@ using System.IO;
 using _Excel = Microsoft.Office.Interop.Excel;
 using System.Globalization;
 using System.Threading;
+using Uniconta.DataModel;
+using Uniconta.Common;
 
 namespace Trans2SummaHDC
 {
     public class clsExcel
     {
+         private string IUAP(GLAccountTypes Type)
+        {
+            switch (Type)
+            {
+                case GLAccountTypes.PL:
+                case GLAccountTypes.Revenue:
+                case GLAccountTypes.Income:
+                    return "I";
+
+                case GLAccountTypes.Cost:
+                case GLAccountTypes.CostOfGoodSold:
+                case GLAccountTypes.Expense:
+                case GLAccountTypes.Depreciasions:
+                    return "U";
+
+                case GLAccountTypes.BalanceSheet:
+                    return "X";
+
+                case GLAccountTypes.Asset:
+                case GLAccountTypes.FixedAssets:
+                case GLAccountTypes.CurrentAsset:
+                case GLAccountTypes.Inventory:
+                case GLAccountTypes.Debtor:
+                case GLAccountTypes.LiquidAsset:
+                case GLAccountTypes.Bank:
+                    return "A";
+
+                case GLAccountTypes.Liability:
+                case GLAccountTypes.Equity:
+                case GLAccountTypes.Creditor:
+                    return "P";
+
+                case GLAccountTypes.Header:
+                case GLAccountTypes.Sum:
+                case GLAccountTypes.CalculationExpression:
+                default:
+                    return "Y";
+            }
+        }
+
+        private string DS(GLAccountTypes Type)
+        {
+            switch (Type)
+            {
+                case GLAccountTypes.PL:
+                case GLAccountTypes.Revenue:
+                case GLAccountTypes.Income:
+                case GLAccountTypes.Cost:
+                case GLAccountTypes.CostOfGoodSold:
+                case GLAccountTypes.Expense:
+                case GLAccountTypes.Depreciasions:
+                    return "D";
+
+                case GLAccountTypes.BalanceSheet:
+                    return "X";
+
+                case GLAccountTypes.Asset:
+                case GLAccountTypes.FixedAssets:
+                case GLAccountTypes.CurrentAsset:
+                case GLAccountTypes.Inventory:
+                case GLAccountTypes.Debtor:
+                case GLAccountTypes.LiquidAsset:
+                case GLAccountTypes.Bank:
+                case GLAccountTypes.Liability:
+                case GLAccountTypes.Equity:
+                case GLAccountTypes.Creditor:
+                    return "S";
+
+                case GLAccountTypes.Header:
+                case GLAccountTypes.Sum:
+                case GLAccountTypes.CalculationExpression:
+                default:
+                    return "Y";
+            }
+        }
+
         public void ecxelPoster()
         {
+            var api = UCInitializer.GetBaseAPI;
+            CompanyFinanceYear CurrentCompanyFinanceYear = null;
+            var task1 = api.Query<CompanyFinanceYear>();
+            task1.Wait();
+            var cols1 = task1.Result;
+            foreach (var col in cols1)
+            {
+                if (col._Current)
+                {
+                    CurrentCompanyFinanceYear = col;
+                }
+            }
+            var task2a = api.Query<Debtor>();
+            task2a.Wait();
+            var karDebtor = task2a.Result;
+            var task2b = api.Query<Creditor>();
+            task2b.Wait();
+            var karCreditor = task2b.Result;
+            KarDebCred karDebCred = new KarDebCred();
+            foreach (var d in karDebtor)
+            {
+                RecDebCred recDebCred = new RecDebCred()
+                {
+                    _Account = d._Account,
+                    _Name = d._Name
+                };
+                karDebCred.Add(recDebCred);
+            }
+            foreach (var k in karCreditor)
+            {
+                RecDebCred recDebCred = new RecDebCred()
+                {
+                    _Account = k._Account,
+                    _Name = k._Name
+                };
+                karDebCred.Add(recDebCred);
+            }
+
+            var task3 = api.Query<GLAccount>();
+            task3.Wait();
+            var karGLAccount = task3.Result;
+
+            var crit = new List<PropValuePair>();
+            string dateinterval = string.Format("{0}..{1}", CurrentCompanyFinanceYear._FromDate.ToShortDateString(), CurrentCompanyFinanceYear._ToDate.ToShortDateString());
+            var pair = PropValuePair.GenereteWhereElements("Date", typeof(DateTime), dateinterval);
+            crit.Add(pair);
+            var task4 = api.Query<GLTrans>(null, crit);
+            task4.Wait();
+            var karGLTrans = task4.Result;
+
             DateTime pReadDate = DateTime.Now;
             string pSheetName = "Poster";
+            char[] dash = { '-' };
 
             _Excel.Application oXL = null; ;
             _Excel._Workbook oWB;
             _Excel._Worksheet oSheetPoster;
             _Excel._Worksheet oSheetRegnskab;
+            _Excel._Worksheet oSheetRegnskab_puls3060 = null;
             _Excel.Window oWindow;
             _Excel.Range oRng;
 
-            var rec_regnskab = Program.qryAktivRegnskab();
-            string SaveAs = rec_regnskab.Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_hhmmss") + ".xlsx";
+            string rec_regnskab_Eksportmappe = @"%userprofile%\Documents\SummaSummarum\"; // work
+            rec_regnskab_Eksportmappe = Environment.ExpandEnvironmentVariables(rec_regnskab_Eksportmappe);
+            string SaveAs = rec_regnskab_Eksportmappe + pSheetName + pReadDate.ToString("_yyyyMMdd_HHmmss") + ".xlsx";
 
-
-            var JournalPoster = from h in Program.karPosteringer
-                                join d1 in Program.karKontoplan on h.Konto equals d1.Kontonr into details1
-                                from x in details1.DefaultIfEmpty()
-                                orderby h.Nr
+            var JournalPoster = from h in karGLTrans
+                                join d1 in karGLAccount on h._Account equals d1._Account into details1
+                                from x1 in details1.DefaultIfEmpty()
+                                join d2 in karDebCred on h._DCAccount equals d2._Account into details2
+                                from x2 in details2.DefaultIfEmpty(new RecDebCred() { _Account = null, _Name = null })
+                                orderby h._JournalPostedId, h._Voucher, h._VoucherLine
                                 select new clsJournalposter
                                 {
-                                    ds = (x.Type == "Drift") ? "D" : "S",
-                                    k = IUAP(x.Type, x.DK),
-                                    Konto = h.Konto.ToString() + "-" + x.Kontonavn,
-                                    Dato = h.Dato,
-                                    Bilag = h.Bilag,
-                                    Nr = h.Nr,
-                                    Id = h.Id,
-                                    Tekst = h.Tekst,
-                                    Beløb = h.Nettobeløb,
+                                    ds = DS(x1.AccountTypeEnum),
+                                    k = IUAP(x1.AccountTypeEnum),
+                                    Konto = h._Account + "-" + x1._Name,
+                                    DebKrd = x2._Name,
+                                    //DebKrd = h._DCAccount,
+                                    Dato = h._Date,
+                                    Klade = h._JournalPostedId,
+                                    Serie = h._NumberSerie,
+                                    Bilag = h._Voucher,
+                                    Linie = h._VoucherLine,
+                                    Tekst = h._Text,
+                                    Beløb = h._Amount,
                                 };
-
-
-
+            var count = JournalPoster.Count();
             using (new ExcelUILanguageHelper())
             {
                 try
                 {
                     //Start Excel and get Application object.
                     oXL = new _Excel.Application();
-                    //oXL.Visible = false;
-                    oXL.Visible = true; //For debug
+                    oXL.Visible = true;
+                    //oXL.Visible = true; //For debug
 
                     //Get a new workbook.
                     oWB = oXL.Workbooks.Add((Missing.Value));
+
                     oSheetPoster = (_Excel._Worksheet)oWB.ActiveSheet;
                     oWindow = oXL.ActiveWindow;
 
                     if (pSheetName.Length > 0) oSheetPoster.Name = pSheetName.Substring(0, pSheetName.Length > 34 ? 34 : pSheetName.Length);
+                    ////////////////////////////////////////////////////////////////////////
+
+                    oSheetPoster.Name = "Poster";
+
                     int row = 1;
-                    Program.frmMain.MainformProgressBar.Value = 0;
-                    Program.frmMain.MainformProgressBar.Minimum = 0;
-                    Program.frmMain.MainformProgressBar.Maximum = (from h in Program.karPosteringer select h).Count();
-                    Program.frmMain.MainformProgressBar.Step = 1;
-                    Program.frmMain.MainformProgressBar.Visible = true;
                     foreach (clsJournalposter m in JournalPoster)
                     {
-                        Program.frmMain.MainformProgressBar.PerformStep();
                         row++;
+                        //if (row > 500) break; //<----------------------------------------------
                         Type objectType = m.GetType();
                         PropertyInfo[] properties = objectType.GetProperties();
                         int col = 0;
@@ -96,7 +229,6 @@ namespace Trans2SummaHDC
                                         Fieldattr attr = (Fieldattr)att;
                                         string heading = attr.Heading;
                                         oSheetPoster.Cells[1, col] = heading;
-
                                     }
                                 }
                             }
@@ -121,10 +253,11 @@ namespace Trans2SummaHDC
                     oRng.ShrinkToFit = false;
                     oRng.MergeCells = false;
 
-                    string BottomRight = "D" + row.ToString();
-                    oRng = oSheetPoster.get_Range("D2", BottomRight);
+                    string BottomRight = "E" + row.ToString();          //<------------------HUSK
+                    oRng = oSheetPoster.get_Range("E2", BottomRight);
                     oRng.NumberFormat = "dd-mm-yyyy";
 
+                    oSheetPoster.ListObjects.AddEx(_Excel.XlListObjectSourceType.xlSrcRange, oSheetPoster.UsedRange, System.Type.Missing, _Excel.XlYesNoGuess.xlYes).Name = "PosterList";
                     oSheetPoster.Cells.EntireColumn.AutoFit();
 
                     oWindow.SplitRow = 1;
@@ -133,12 +266,11 @@ namespace Trans2SummaHDC
                     oSheetPoster.get_Range("A1", Missing.Value).Select();
 
 
-                    oSheetRegnskab = (_Excel._Worksheet)oWB.Worksheets.Add(System.Type.Missing, System.Type.Missing, System.Type.Missing, System.Type.Missing);
-
+                    oSheetRegnskab = (_Excel._Worksheet)oWB.Worksheets.Add(oSheetPoster, System.Type.Missing, System.Type.Missing, System.Type.Missing);
                     //oXL.Visible = true; //For debug
 
                     _Excel.Range x1 = oSheetPoster.Cells[1, 1];
-                    _Excel.Range x2 = oSheetPoster.Cells[row, 9];
+                    _Excel.Range x2 = oSheetPoster.Cells[row, 11]; //<--------------------HUSK
                     _Excel.Range xx = oSheetPoster.get_Range(x1, x2);
                     _Excel.PivotField _pvtField = null;
                     _Excel.PivotTable _pivot = oSheetPoster.PivotTableWizard(
@@ -177,15 +309,17 @@ namespace Trans2SummaHDC
                     _pvtField.NumberFormat = "#,##0";
 
                     oSheetRegnskab.Name = "Regnskab";
+
+                    oSheetRegnskab.Cells[2, 3] = "Regnskab Hafsjold Data Consult";
                     oRng = oSheetRegnskab.get_Range("D3", Missing.Value);
                     oRng.Select();
-                    bool[] Periods = { false, false, false, false, true, false, true };
+                    bool[] Periods = { false, false, false, false, true, false, false };
                     oRng.Group(true, true, Missing.Value, Periods);
 
                     oRng = oSheetRegnskab.get_Range("D4", "P4");
                     oRng.HorizontalAlignment = _Excel.XlHAlign.xlHAlignRight;
 
-                    oSheetRegnskab.PageSetup.LeftHeader = "&14" + rec_regnskab.Navn;
+                    oSheetRegnskab.PageSetup.LeftHeader = "&14Regnskab Hafsjold Data Consult";
                     oSheetRegnskab.PageSetup.CenterHeader = "";
                     oSheetRegnskab.PageSetup.RightHeader = "&P af &N";
                     oSheetRegnskab.PageSetup.LeftFooter = "&Z&F";
@@ -212,21 +346,17 @@ namespace Trans2SummaHDC
 
                     oWB.ShowPivotTableFieldList = false;
 
-                    for (var i = oWB.Worksheets.Count; i > 0; i--)
-                    {
-                        _Excel._Worksheet oSheetWrk = (_Excel._Worksheet)oWB.Worksheets.get_Item(i);
-                        if ((oSheetWrk.Name != "Regnskab") && (oSheetWrk.Name != "Poster"))
-                        {
-                            oSheetWrk.Delete();
-                        }
-                    }
-
+                    oSheetRegnskab_puls3060 = oSheetRegnskab;
                     oSheetRegnskab.get_Range("A1", Missing.Value).Select();
+
+                    //////////////////////////////////////////////////////////////////////////////////////////////
+                    oSheetRegnskab_puls3060.Activate();
+                    oSheetRegnskab_puls3060.get_Range("A1", Missing.Value).Select();
 
                     oWB.SaveAs(SaveAs, _Excel.XlFileFormat.xlWorkbookDefault, "", "", false, false, _Excel.XlSaveAsAccessMode.xlExclusive, Missing.Value, Missing.Value, Missing.Value, Missing.Value, Missing.Value);
                     oWB.Saved = true;
                     oXL.Visible = true;
-                    Program.frmMain.MainformProgressBar.Visible = false;
+
 
                     //oXL.Quit();
                     //oXL = null;
@@ -243,18 +373,42 @@ namespace Trans2SummaHDC
                 }
             }
         }
+    }
 
-        private string IUAP(string Type, string DK)
-        {
-            if (Type == "Drift")
-            {
-                return (DK == "1") ? "I" : "U";
-            }
-            else
-            {
-                return (DK == "1") ? "P" : "A";
-            }
-        }
+    public class clsJournalposter
+    {
+        [Fieldattr(Heading = "ds")]
+        public string ds { get; set; }
+        [Fieldattr(Heading = "k")]
+        public string k { get; set; }
+        [Fieldattr(Heading = "Konto")]
+        public string Konto { get; set; }
+        [Fieldattr(Heading = "Deb/Krd")]
+        public string DebKrd { get; set; }
+        [Fieldattr(Heading = "Dato")]
+        public DateTime? Dato { get; set; }
+        [Fieldattr(Heading = "Klade")]
+        public int? Klade { get; set; }
+        [Fieldattr(Heading = "Serie")]
+        public string Serie { get; set; }
+        [Fieldattr(Heading = "Bilag")]
+        public int? Bilag { get; set; }
+        [Fieldattr(Heading = "Linie")]
+        public int? Linie { get; set; }
+        [Fieldattr(Heading = "Tekst")]
+        public string Tekst { get; set; }
+        [Fieldattr(Heading = "Beløb")]
+        public double? Beløb { get; set; }
+    }
+
+    public class RecDebCred
+    {
+        public string _Account { get; set; }
+        public string _Name { get; set; }
+    }
+    public class KarDebCred : List<RecDebCred>
+    {
+
     }
 
     public class Fieldattr : Attribute
@@ -282,25 +436,5 @@ namespace Trans2SummaHDC
 
         #endregion
     }
-    public class clsJournalposter
-    {
-        [Fieldattr(Heading = "ds")]
-        public string ds { get; set; }
-        [Fieldattr(Heading = "k")]
-        public string k { get; set; }
-        [Fieldattr(Heading = "Konto")]
-        public string Konto { get; set; }
-        [Fieldattr(Heading = "Dato")]
-        public DateTime? Dato { get; set; }
-        [Fieldattr(Heading = "Bilag")]
-        public int? Bilag { get; set; }
-        [Fieldattr(Heading = "Nr")]
-        public int? Nr { get; set; }
-        [Fieldattr(Heading = "Id")]
-        public int? Id { get; set; }
-        [Fieldattr(Heading = "Tekst")]
-        public string Tekst { get; set; }
-        [Fieldattr(Heading = "Beløb")]
-        public decimal? Beløb { get; set; }
-    }
+
 }

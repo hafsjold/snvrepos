@@ -37,7 +37,7 @@
     <ProductName>Trans2SummaHDC</ProductName>
     <PublisherName>Hafsjold</PublisherName>
     <OpenBrowserOnPublish>false</OpenBrowserOnPublish>
-    <ApplicationRevision>19</ApplicationRevision>
+    <ApplicationRevision>20</ApplicationRevision>
     <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -168,12 +168,12 @@
     <Reference Include="UIAutomationProvider">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="Uniconta.Common, Version=1.0.6455.12887, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Uniconta.WindowsAPI.1.1.61\lib\net45\Uniconta.Common.dll</HintPath>
+    <Reference Include="Uniconta.Common, Version=1.0.6476.13284, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Uniconta.WindowsAPI.1.1.63.0\lib\net45\Uniconta.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Uniconta.WindowsAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Uniconta.WindowsAPI.1.1.61\lib\net45\Uniconta.WindowsAPI.dll</HintPath>
+      <HintPath>..\packages\Uniconta.WindowsAPI.1.1.63.0\lib\net45\Uniconta.WindowsAPI.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WindowsBase">
