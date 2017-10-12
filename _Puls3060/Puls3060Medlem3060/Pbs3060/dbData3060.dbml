@@ -318,20 +318,6 @@
       <Column Name="membership_end" Type="System.DateTime" DbType="Date" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tblbankkonto" Member="tblbankkontos">
-    <Type Name="tblbankkonto">
-      <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="saldo" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="skjul" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="dato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="tekst" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
-      <Column Name="belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
-      <Column Name="afstem" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="bankkontoid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="paypal_pid" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="tblpaypal_tblbankkonto" Member="tblpaypal" ThisKey="paypal_pid" OtherKey="pid" Type="tblpaypal" IsForeignKey="true" DeleteRule="CASCADE" />
-    </Type>
-  </Table>
   <Table Name="dbo.tblpaypal" Member="tblpaypals">
     <Type Name="tblpaypal">
       <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -389,6 +375,41 @@
       <Column Name="savefile" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="bogfkonto" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="afstemningskonto" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblmobilepay" Member="tblmobilepays">
+    <Type Name="tblmobilepay">
+      <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Type" Type="System.String" DbType="NVarChar(25)" CanBeNull="true" />
+      <Column Name="Navn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MobilNummer" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="Belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="MobilePayNummer" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="NavnBetalingssted" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TransaktionsID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Besked" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Gebyr" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Saldo" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="Imported" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Bogfoert" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="tblmobilepay_tblbankkonto" Member="tblbankkontos" ThisKey="pid" OtherKey="mobilepay_pid" Type="tblbankkonto" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tblbankkonto" Member="tblbankkontos">
+    <Type Name="tblbankkonto">
+      <Column Name="pid" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="saldo" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="skjul" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="dato" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="tekst" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="belob" Type="System.Decimal" DbType="Decimal(18,2)" CanBeNull="true" />
+      <Column Name="afstem" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="bankkontoid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="paypal_pid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="mobilepay_pid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tblmobilepay_tblbankkonto" Member="tblmobilepay" ThisKey="mobilepay_pid" OtherKey="pid" Type="tblmobilepay" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="tblpaypal_tblbankkonto" Member="tblpaypal" ThisKey="paypal_pid" OtherKey="pid" Type="tblpaypal" IsForeignKey="true" DeleteRule="CASCADE" />
     </Type>
   </Table>
   <Function Name="dbo.GetSysinfo" Method="GetSysinfo" IsComposable="true">

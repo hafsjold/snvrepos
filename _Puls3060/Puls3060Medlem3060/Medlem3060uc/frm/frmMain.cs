@@ -456,5 +456,31 @@ namespace Medlem3060uc
                 frmSysInfo.Show();
             }
         }
+
+        private void exportMobilePayToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            exportMobilePayTool(sender, e);
+        }
+
+        private void toolExportMobilePay_Click(object sender, EventArgs e)
+        {
+            exportMobilePayTool(sender, e);
+        }
+
+        private void exportMobilePayTool(object sender, EventArgs e)
+        {
+            KarMobilepay objMobilepay = new KarMobilepay(Program.dbData3060, UCInitializer.GetBaseAPI, 7, KarMobilepay.action.import);
+            objMobilepay.load_Mobilepay();
+            objMobilepay.load_bankkonto();
+            int GLDailyJournalLines = objMobilepay.export();
+            string smallString = string.Format("{0} bilag uploaded til UniConta.", GLDailyJournalLines.ToString());
+            DialogResult result = DotNetPerls.BetterDialog.ShowDialog(
+                "Medlem3060uc", //titleString   
+                "MobilePay Kontoudtog uploaded til UniConta.", //bigString 
+                smallString, //smallString
+                null, //leftButton
+                "OK", //rightButton
+                global::Medlem3060uc.Properties.Resources.Message_info); //iconSet  
+        }
     }
 }
