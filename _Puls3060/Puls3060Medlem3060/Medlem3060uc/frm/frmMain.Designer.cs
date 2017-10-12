@@ -79,6 +79,9 @@
             this.toolStripDanskeErhvervExport = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripExportPayPal = new System.Windows.Forms.ToolStripButton();
+            this.exportMobilePayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolExportMobilePay = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -249,6 +252,7 @@
             this.uniContaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.impoerEmailBilagToolStripMenuItem,
             this.exportDanskeErhvervToolStripMenuItem,
+            this.exportMobilePayToolStripMenuItem,
             this.exportPayPalToolStripMenuItem,
             this.posterTilRegnskabToolStripMenuItem});
             this.uniContaToolStripMenuItem.Name = "uniContaToolStripMenuItem";
@@ -419,6 +423,8 @@
             this.toolStripImpoetEmailBilag,
             this.toolStripSeparator3,
             this.toolStripDanskeErhvervExport,
+            this.toolStripSeparator7,
+            this.toolExportMobilePay,
             this.toolStripSeparator5,
             this.toolStripExportPayPal});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
@@ -496,6 +502,28 @@
             this.toolStripExportPayPal.Size = new System.Drawing.Size(82, 22);
             this.toolStripExportPayPal.Text = "Export Paypal";
             this.toolStripExportPayPal.Click += new System.EventHandler(this.toolStripExportPayPal_Click);
+            // 
+            // exportMobilePayToolStripMenuItem
+            // 
+            this.exportMobilePayToolStripMenuItem.Name = "exportMobilePayToolStripMenuItem";
+            this.exportMobilePayToolStripMenuItem.Size = new System.Drawing.Size(190, 22);
+            this.exportMobilePayToolStripMenuItem.Text = "Export MobilePay";
+            this.exportMobilePayToolStripMenuItem.Click += new System.EventHandler(this.exportMobilePayToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolExportMobilePay
+            // 
+            this.toolExportMobilePay.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolExportMobilePay.Image = ((System.Drawing.Image)(resources.GetObject("toolExportMobilePay.Image")));
+            this.toolExportMobilePay.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolExportMobilePay.Name = "toolExportMobilePay";
+            this.toolExportMobilePay.Size = new System.Drawing.Size(103, 22);
+            this.toolExportMobilePay.Text = "Export MobilePay";
+            this.toolExportMobilePay.Click += new System.EventHandler(this.toolExportMobilePay_Click);
             // 
             // FrmMain
             // 
@@ -579,6 +607,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem opdaterAppDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sysInfoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exportMobilePayToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripButton toolExportMobilePay;
     }
 }
 
