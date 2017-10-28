@@ -185,7 +185,7 @@ namespace nsPbs3060
                 ExportFromDate = ExportFromDate.AddDays(-DaysSlip);
             }
 
-            //ExportFromDate = DateTime.Now.AddDays(-30); //<-------------------Fjernes
+            ExportFromDate = DateTime.Now.AddDays(-30); //<-------------------Fjernes
 
             using (StringWriter sr = new StringWriter())
             {
@@ -204,7 +204,7 @@ namespace nsPbs3060
                     ln = "";
                     ln += b.pid.ToString() + ";";
                     ln += (b.dato == null) ? ";" : ((DateTime)b.dato).ToString("dd.MM.yyyy") + ";";
-                    ln += (b.tekst == null) ? ";" : b.tekst + ";";
+                    ln += (b.tekst == null) ? ";" : b.tekst.Replace(";"," ") + ";";
                     ln += (b.belob == null) ? ";" : ((decimal)(b.belob)).ToString("0.00") + @";";
                     ln += (b.saldo == null) ? ";" : ((decimal)(b.saldo)).ToString("0.00");
                     sr.WriteLine(ln);
