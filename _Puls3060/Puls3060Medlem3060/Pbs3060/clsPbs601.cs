@@ -1867,7 +1867,6 @@ namespace nsPbs3060
             if (bBcc)
             {
                 message.Bcc.Add(new MailboxAddress("Bjarne V. Hansen", "formand@puls3060.dk"));
-                message.Bcc.Add(new MailboxAddress("Morten Wiberg", "mw@puls3060.dk"));
             }
             message.Subject = subject;
 #endif
