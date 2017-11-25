@@ -104,7 +104,7 @@ namespace Trans2SummaHDC
                                     break;
 
                                 default:
-                                    type = FileextensionsTypes.UNK;
+                                    type = FileextensionsTypes.PDF;
                                     break;
                             }
                             var part = (MimePart)msg_attachment;
@@ -426,23 +426,32 @@ namespace Trans2SummaHDC
             if (string.IsNullOrEmpty(Subject))
                 Subject = message.Subject;
 
-            string Account;
+            string wAccount = null;
             try
             {
-                var Creditor = (from c in this.m_Creditors where ((c.ContactEmail != null) && (c.ContactEmail.ToLower() == From.ToLower())) || ((c._InvoiceEmail != null) && (c._InvoiceEmail.ToLower() == From.ToLower())) select c).First();
-                Account = Creditor.Account;
+                wAccount = (from c in this.m_Creditors where c.Account == objParam.Konto select c.Account).First();
             }
-            catch
+            catch (Exception)
             {
-                Account = "100001"; //Ukendt kreditor
+                try
+                {
+                    wAccount = (from c in this.m_Creditors where ((c.ContactEmail != null) && (c.ContactEmail.ToLower() == From.ToLower())) || ((c._InvoiceEmail != null) && (c._InvoiceEmail.ToLower() == From.ToLower())) select c.Account).First();
+                }
+                catch
+                {
+                    wAccount = "100000"; //Ukendt kreditor
+                }
             }
 
             CreditorOrderClient recOrder = new CreditorOrderClient()
             {
-                Account = Account,
+                Account = wAccount,
                 InvoiceDate = Date,
                 DeliveryDate = Date,
-                DocumentRef = DocumentRef
+                DocumentRef = DocumentRef,
+                DeleteLines = true,
+                DeleteOrder = true
+
             };
             var taskInsertCreditorOrder = m_api.Insert(recOrder);
             taskInsertCreditorOrder.Wait();
@@ -451,6 +460,9 @@ namespace Trans2SummaHDC
             CreditorOrderLineClient recOrderLine = new CreditorOrderLineClient()
             {
                 Text = Subject,
+                Qty = 1,
+                Price = objParam.Kredit == null ? 0 : (double)objParam.Kredit,
+                PostingAccount = objParam.Modkonto,
             };
             recOrderLine.SetMaster(recOrder);
             var taskInsertCreditorOrderLine = m_api.Insert(recOrderLine);
