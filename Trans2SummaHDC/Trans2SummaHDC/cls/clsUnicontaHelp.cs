@@ -104,17 +104,25 @@ namespace Trans2SummaHDC
                                     break;
 
                                 default:
-                                    type = FileextensionsTypes.PDF;
+                                    type = FileextensionsTypes.UNK;
                                     break;
                             }
                             var part = (MimePart)msg_attachment;
                             MemoryStream msstream = new MemoryStream();
                             part.ContentObject.DecodeTo(msstream);
+                            byte[] arrStream = msstream.ToArray();
+                            if (type == FileextensionsTypes.UNK)
+                            {
+                                if (arrStream[0] == 0x25 && arrStream[1] == 0x50 && arrStream[2] == 0x44 && arrStream[3] == 0x46) // PDF Magic number
+                                {
+                                    type = FileextensionsTypes.PDF;
+                                }
+                            }
                             VouchersClient attm = new VouchersClient()
                             {
                                 Fileextension = type,
                                 Text = (msg_attachment as MimePart).FileName,
-                                VoucherAttachment = msstream.ToArray(),
+                                VoucherAttachment = arrStream,
                                 DocumentDate = DateTime.Now,
                             };
                             var task3 = m_api.Insert(attm);
