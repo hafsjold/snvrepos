@@ -457,8 +457,8 @@ namespace Trans2SummaHDC
                 InvoiceDate = Date,
                 DeliveryDate = Date,
                 DocumentRef = DocumentRef,
-                DeleteLines = true,
-                DeleteOrder = true
+                //DeleteLines = true,
+                //DeleteOrder = true
 
             };
             var taskInsertCreditorOrder = m_api.Insert(recOrder);
