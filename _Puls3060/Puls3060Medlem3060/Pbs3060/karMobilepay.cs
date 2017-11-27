@@ -90,7 +90,7 @@ namespace nsPbs3060
                 ExportFromDate.AddDays(-DaysSlip);
             }
 
-            //ExportFromDate = DateTime.Now.AddDays(-60);  //<<-----------------------------
+            ExportFromDate = DateTime.Now.AddDays(-20);  //<<-----------------------------
 
             IOrderedQueryable<tblbankkonto> qrybankkonto =
                 from w in m_dbData3060.tblbankkontos
