@@ -515,7 +515,21 @@ namespace nsPbs3060
                 if (!newTrans)
                     continue;
 
-                User_data recud = clsHelper.unpack_UserData(tr.user_data);
+                User_data recud = null;
+                try
+                {
+                    recud = clsHelper.unpack_UserData(tr.user_data);
+
+                }
+                catch 
+                {
+                    continue;
+                }
+                if (recud.postnr.Length != 4)
+                {
+                    continue;
+                }
+
                 recRSMembershipTransactions rec = new recRSMembershipTransactions
                 {
                     id = tr.id,
@@ -621,9 +635,9 @@ namespace nsPbs3060
                     };
                     rec_tilpbs.tblfaks.Add(rec_fak);
                     clsPbsHelper.Update_memberid_in_rsmembership_transaction(rec_trans);
+                    p_dbData3060.SubmitChanges();
                     wantalfakturaer++;
                 }
-                p_dbData3060.SubmitChanges();
             }
 
             return new Tuple<int, int>(wantalfakturaer, lobnr);
