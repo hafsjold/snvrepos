@@ -1705,7 +1705,7 @@ namespace nsPbs3060
             Boolean bBcc = false;
             int wantalbetalinger = 0;
             int AntalBetalinger = 0;
-            DateTime now_minus5days = DateTime.UtcNow.AddDays(-5);
+            DateTime now_minus5days = DateTime.UtcNow.AddDays(-5);//<------------------
             MemRSMembershipTransactions memRSMembershipTransactions = new MemRSMembershipTransactions();
 
             var qrytrans = from s in p_dbPuls3060_dk.ecpwt_rsmembership_membership_subscribers
@@ -1742,48 +1742,55 @@ namespace nsPbs3060
             foreach (var tr in trans)
             {
                 bool newTrans = ((from q in p_dbData3060.tblrsmembership_payments where q.trans_id == tr.id select q.id).Count() == 0);
-                if (!newTrans)
+                if (!newTrans) //<------------------Debug
                     continue;
 
-                User_data recud = clsHelper.unpack_UserData(tr.user_data);
-                recRSMembershipTransactions rec = new recRSMembershipTransactions
+                try  //<------------------Opdateret 29-6-2018 MHA
                 {
-                    id = tr.id,
-                    user_id = tr.user_id,
-                    user_email = tr.user_email,
-                    user_data = tr.user_data,
-                    type = tr.type,
-                    @params = tr.@params,
-                    date = tr.date,
-                    ip = tr.ip,
-                    price = tr.price,
-                    coupon = tr.coupon,
-                    currency = tr.currency,
-                    hash = tr.hash,
-                    custom = tr.custom,
-                    gateway = tr.gateway,
-                    status = tr.status,
-                    response_log = tr.response_log,
-                    indmeldelse = (tr.type == "new") ? true : false,
-                    tilmeldtpbs = false, // ?????
-                    name = recud.name,
-                    username = recud.username,
-                    adresse = recud.adresse,
-                    postnr = recud.postnr,
-                    bynavn = recud.bynavn,
-                    mobil = recud.mobil,
-                    memberid = (!string.IsNullOrEmpty(recud.memberid)) ? int.Parse(recud.memberid) : 0,
-                    kon = recud.kon,
-                    fodtaar = recud.fodtaar,
-                    message = recud.message,
-                    password = recud.password,
-                    fradato = tr.membership_start,
-                    tildato = tr.membership_end,
-                    membership_id = tr.membership_id,
-                    subscriber_id = tr.subscriber_id
-                };
-                memRSMembershipTransactions.Add(rec);
-                AntalBetalinger++;
+                    User_data recud = clsHelper.unpack_UserData(tr.user_data);
+                    recRSMembershipTransactions rec = new recRSMembershipTransactions
+                    {
+                        id = tr.id,
+                        user_id = tr.user_id,
+                        user_email = tr.user_email,
+                        user_data = tr.user_data,
+                        type = tr.type,
+                        @params = tr.@params,
+                        date = tr.date,
+                        ip = tr.ip,
+                        price = tr.price,
+                        coupon = tr.coupon,
+                        currency = tr.currency,
+                        hash = tr.hash,
+                        custom = tr.custom,
+                        gateway = tr.gateway,
+                        status = tr.status,
+                        response_log = tr.response_log,
+                        indmeldelse = (tr.type == "new") ? true : false,
+                        tilmeldtpbs = false, // ?????
+                        name = recud.name,
+                        username = recud.username,
+                        adresse = recud.adresse,
+                        postnr = recud.postnr,
+                        bynavn = recud.bynavn,
+                        mobil = recud.mobil,
+                        memberid = (!string.IsNullOrEmpty(recud.memberid)) ? int.Parse(recud.memberid) : 0,
+                        kon = recud.kon,
+                        fodtaar = recud.fodtaar,
+                        message = recud.message,
+                        password = recud.password,
+                        fradato = tr.membership_start,
+                        tildato = tr.membership_end,
+                        membership_id = tr.membership_id,
+                        subscriber_id = tr.subscriber_id
+                    };
+                    memRSMembershipTransactions.Add(rec);
+                    AntalBetalinger++;
+                }
+                catch (Exception ex)
+                {
+
+                }
             }
 
 

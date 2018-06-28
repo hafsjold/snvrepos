@@ -312,9 +312,13 @@ namespace Medlem3060uc
 
         private void testToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            //puls3060_nyEntities p_dbPuls3060_dk = new puls3060_nyEntities(true);
+            //puls3060_nyEntities djdb = new puls3060_nyEntities(true);
             //clsPbs601 objPbs601d = new clsPbs601();
-            //objPbs601d.rsmembeshhip_betalinger_auto(Program.dbData3060, p_dbPuls3060_dk);
+            //objPbs601d.rsmembeshhip_betalinger_auto(Program.dbData3060, djdb);
+
+            puls3060_nyEntities p_dbPuls3060_dk = new puls3060_nyEntities(true);
+            clsPbs601 objPbs601d = new clsPbs601();
+            objPbs601d.rsmembeshhip_betalinger_auto(Program.dbData3060, p_dbPuls3060_dk);
 
             //clsRSMembership2UniConta obj = new nsPbs3060.clsRSMembership2UniConta(Program.dbData3060, p_dbPuls3060_dk, UCInitializer.GetBaseAPI);
             //obj.testBetalinger();
