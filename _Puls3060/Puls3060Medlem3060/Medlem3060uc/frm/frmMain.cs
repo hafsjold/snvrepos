@@ -312,13 +312,40 @@ namespace Medlem3060uc
 
         private void testToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            //clsPbsHelper.Verifye_rsmembership_transactions_data();
+            clsPbsHelper.update_rsmembership_transactions_user_data();
+
+            /*
+            //case enumTask.KontingentNyeMedlemmer:
+            puls3060_nyEntities cjdb = new puls3060_nyEntities(true);
+            clsPbs601 objPbs601c = new clsPbs601();
+            Tuple<int, int> tresultc = objPbs601c.paypal_pending_rsmembeshhip_fakturer_auto(Program.dbData3060, cjdb);
+            int AntalKontingent = tresultc.Item1;
+            int lobnrc = tresultc.Item2;
+            if ((AntalKontingent > 0))
+            {
+                //pbsType.indbetalingskort
+                objPbs601c.faktura_og_rykker_601_action_lobnr(Program.dbData3060, lobnrc);
+                clsSFTP objSFTPc = new clsSFTP(Program.dbData3060);
+                objSFTPc.WriteTilSFtp(Program.dbData3060, lobnrc);
+                objSFTPc.DisconnectSFtp();
+                objSFTPc = null;
+
+                Tuple<int, int> tresultd = objPbs601c.advis_auto_lobnr(Program.dbData3060, lobnrc);
+                int AntalAdvisd = tresultd.Item1;
+                int lobnrd = tresultd.Item2;
+                if ((AntalAdvisd > 0))
+                    objPbs601c.advis_email_lobnr(Program.dbData3060, lobnrd);
+                objPbs601c = null;
+            }
+            */
             //puls3060_nyEntities djdb = new puls3060_nyEntities(true);
             //clsPbs601 objPbs601d = new clsPbs601();
             //objPbs601d.rsmembeshhip_betalinger_auto(Program.dbData3060, djdb);
 
-            puls3060_nyEntities p_dbPuls3060_dk = new puls3060_nyEntities(true);
-            clsPbs601 objPbs601d = new clsPbs601();
-            objPbs601d.rsmembeshhip_betalinger_auto(Program.dbData3060, p_dbPuls3060_dk);
+            //puls3060_nyEntities p_dbPuls3060_dk = new puls3060_nyEntities(true);
+            //clsPbs601 objPbs601d = new clsPbs601();
+            //objPbs601d.rsmembeshhip_betalinger_auto(Program.dbData3060, p_dbPuls3060_dk);
 
             //clsRSMembership2UniConta obj = new nsPbs3060.clsRSMembership2UniConta(Program.dbData3060, p_dbPuls3060_dk, UCInitializer.GetBaseAPI);
             //obj.testBetalinger();

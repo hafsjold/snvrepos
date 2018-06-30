@@ -1789,7 +1789,7 @@ namespace nsPbs3060
                 }
                 catch (Exception ex)
                 {
-
+                    Program.Log(string.Format("rsmembeshhip_betalinger_auto failed: {0} end", tr.user_data));
                 }
             }
 

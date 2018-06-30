@@ -138,28 +138,36 @@ namespace nsPbs3060
 
         public static User_data unpack_UserData(string user_data)
         {
-            User_data rec = new User_data();
+            try
+            {
+                User_data rec = new User_data();
 
-            string st_php = "a" + user_data.Substring(14);
-            PHPSerializationLibrary.Serializer serializer = new PHPSerializationLibrary.Serializer();
-            Hashtable php = (Hashtable)serializer.Deserialize(st_php);
+                string st_php = "a" + user_data.Substring(14);
+                PHPSerializationLibrary.Serializer serializer = new PHPSerializationLibrary.Serializer();
+                Hashtable php = (Hashtable)serializer.Deserialize(st_php);
 
-            rec.name = (string)php["name"];
-            rec.username = (string)php["username"];
-            rec.email = (string)php["email"];
-            Hashtable fields = (Hashtable)php["fields"];
-            rec.adresse = (string)fields["adresse"];
-            rec.postnr = (string)fields["postnr"];
-            rec.bynavn = (string)fields["bynavn"];
-            rec.mobil = (string)fields["mobil"];
-            rec.memberid = (string)fields["memberid"];
-            rec.kon = (string)((ArrayList)((Hashtable)php["membership_fields"])["kon"])[0];
-            rec.fodtaar = (string)((ArrayList)((Hashtable)php["membership_fields"])["fodtaar"])[0];
-            rec.message = (string)((Hashtable)php["membership_fields"])["message"];
-            rec.fiknr = (string)((Hashtable)php["membership_fields"])["fiknr"];
-            rec.password = (string)php["password"];
+                rec.name = (string)php["name"];
+                rec.username = (string)php["username"];
+                rec.email = (string)php["email"];
+                Hashtable fields = (Hashtable)php["fields"];
+                rec.adresse = (string)fields["adresse"];
+                rec.postnr = (string)fields["postnr"];
+                rec.bynavn = (string)fields["bynavn"];
+                rec.mobil = (string)fields["mobil"];
+                rec.memberid = (string)fields["memberid"];
+                rec.kon = (string)((ArrayList)((Hashtable)php["membership_fields"])["kon"])[0];
+                rec.fodtaar = (string)((ArrayList)((Hashtable)php["membership_fields"])["fodtaar"])[0];
+                rec.message = (string)((Hashtable)php["membership_fields"])["message"];
+                rec.fiknr = (string)((Hashtable)php["membership_fields"])["fiknr"];
+                rec.password = (string)php["password"];
 
-            return rec;
+                return rec;
+            }
+            catch (Exception ex)
+            {
+                Program.Log(string.Format("unpack_UserData failed: {0} end", user_data));
+                throw ex;
+            }
         }
 
         public static string pack_UserData(User_data rec_user_data)
