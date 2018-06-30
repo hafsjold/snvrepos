@@ -180,14 +180,14 @@ namespace nsPbs3060
             puls3060_nyEntities jdb = new puls3060_nyEntities(true);
             jdb.Database.ExecuteSqlCommand(@"
 INSERT INTO ecpwt_user_usergroup_map  (user_id, group_id) 
-SELECT DISTINCT u.id, 17   
+SELECT DISTINCT u.id, 20   
 FROM ecpwt_users u 
 JOIN ecpwt_rsmembership_membership_subscribers m ON u.id = m.user_id 
 JOIN ecpwt_rsmembership_transactions t ON m.last_transaction_id = t.id 
 JOIN ecpwt_rsmembership_subscribers a ON m.user_id = a.user_id 
-WHERE 17 NOT IN (SELECT ugm.group_id FROM ecpwt_user_usergroup_map ugm WHERE ugm.user_id = u.id) 
+WHERE 20 NOT IN (SELECT ugm.group_id FROM ecpwt_user_usergroup_map ugm WHERE ugm.user_id = u.id) 
   AND (m.membership_id = 6 
-  AND (m.status = 2 AND m.membership_end < DATE_ADD(  NOW(), INTERVAL -30 DAY ))
+  AND (m.status = 2 AND m.membership_end < DATE_ADD(  NOW(), INTERVAL -100 DAY ))
   OR  (m.status = 3 AND m.membership_end < NOW() ) );
             ");
         }
@@ -258,6 +258,7 @@ WHERE 17 NOT IN (SELECT ugm.group_id FROM ecpwt_user_usergroup_map ugm WHERE ugm
                           s.user_id
                       };
 
+            int antal = qry.Count();
             int n = 0;
             foreach (var trn in qry)
             {
@@ -311,6 +312,37 @@ WHERE 17 NOT IN (SELECT ugm.group_id FROM ecpwt_user_usergroup_map ugm WHERE ugm
             if (rec.fodtaar == null) rec.fodtaar = "";
 
             return rec;
+        }
+
+        public static void Verifye_rsmembership_transactions_data()
+        {
+            puls3060_nyEntities db = new puls3060_nyEntities(true);
+            db.ecpwt_rsmembership_transactions.Load();
+
+            var qry = from t in db.ecpwt_rsmembership_transactions.Local select t;
+
+
+            int n = 0;
+            int x = 0;
+
+            foreach (var trn in qry)
+            {
+ 
+                ++n;
+                try
+                {
+                    //ecpwt_rsmembership_transactions_user_data rec = unpack_UserData(trn.id, trn.user_data, trn.user_email);
+                    User_data rec = clsHelper.unpack_UserData(trn.user_data);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    trn.coupon = "user_data";
+
+                    x++;
+                }
+                db.SaveChanges();
+            }
         }
     }
 }
