@@ -8,8 +8,9 @@
     {
        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseMySql("server=vHD62;port=3306;user=root;database=puls3060_dk;convert zero datetime=True");
-            optionsBuilder.UseMySql("server=mysql3.gigahost.dk;port=3306;user=puls3060;password=tasja123;database=puls3060_dk;convert zero datetime=True");
+            string connectionString = string.Format(@"server=mysql3.gigahost.dk;port=3306;user={0};password={1};database=puls3060_dk;convert zero datetime=True", clsApp.puls3060_dkUser, clsApp.puls3060_dkPW);
+            optionsBuilder.UseMySql(connectionString);
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
