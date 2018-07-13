@@ -4,12 +4,14 @@
     using Microsoft.EntityFrameworkCore;
     using System.Linq;
     using System.Data.SqlClient;
+    using Pbs3060;
 
     public partial class dbJobQEntities : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("data source=qynhbd9h4f.database.windows.net;initial catalog=dbPuls3060Medlem;user id=sqlUser;password=Puls3060;encrypt=True;MultipleActiveResultSets=True;App=EntityFramework");
+            string connectionString = string.Format("data source=qynhbd9h4f.database.windows.net;initial catalog=dbPuls3060Medlem;user id=s{0};password={1};encrypt=True;MultipleActiveResultSets=True;App=EntityFramework", clsApp.dbPuls3060MedlemUser, clsApp.dbPuls3060MedlemPW);
+            optionsBuilder.UseSqlServer(connectionString);
         }
 
         /*
@@ -18,7 +20,7 @@
             throw new UnintentionalCodeFirstException();
         }
         */
-    
+
         public virtual DbSet<tblJobqueue> tblJobqueue { get; set; }
         public virtual DbSet<tblSchedule> tblSchedule { get; set; }
 
