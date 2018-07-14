@@ -72,11 +72,20 @@ namespace MedlemServicePuls3060
 
         private void Scheduler()
         {
-            using (Pbs3060.dbData3060DataContext xdb = new Pbs3060.dbData3060DataContext())
-            {
-                var oct = xdb.OcrString(10747);
+            //Test
+            using (dbData3060DataContext m_dbData3060 = new dbData3060DataContext()) {
+                clsSFTP objSFTP = new clsSFTP(m_dbData3060);
+                int AntalImportFiler = objSFTP.ReadFromLocalFile(m_dbData3060, @"C:\Users\Public\Documents\F1900601.BS1");  //Læs direkte SFTP
+                objSFTP.DisconnectSFtp();
+                objSFTP = null;
             }
-            JobQueueNext_copy();
+            //JobWorker("ReceiveFilesFromPBS", 99999);
+            // JobWorker("SendEmailAdvis", 99999);
+            // JobWorker("SendKontingentFileToPBS", 99999);
+            // JobWorker("KontingentNyeMedlemmer", 99999);
+            // JobWorker("SendEmailRykker", 99999);
+            // JobWorker("SendEmailKviteringer", 99999);
+
             JobQMaintenance();
             LoadSchedule();
 

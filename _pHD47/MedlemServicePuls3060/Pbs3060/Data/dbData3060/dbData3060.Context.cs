@@ -13,12 +13,17 @@
             optionsBuilder.UseSqlServer(connectionString);
         }
 
-        /*
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+            /*
+            modelBuilder.Entity<tblpbsfilename>()
+                .HasOne(p => p.tblpbsforsendelse)
+                .WithMany(b => b.tblpbsfilename)
+                .HasForeignKey(p => p.pbsforsendelseid)
+                .HasConstraintName("pbsforsendelse_tblpbsfiles");
+            */
         }
-        */
 
         public virtual DbSet<tbladvis> tbladvis { get; set; }
         public virtual DbSet<tblaftalelin> tblaftalelin { get; set; }

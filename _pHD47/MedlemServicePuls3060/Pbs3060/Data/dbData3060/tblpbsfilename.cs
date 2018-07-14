@@ -3,6 +3,7 @@ namespace Pbs3060
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public partial class tblpbsfilename
     {
@@ -27,6 +28,6 @@ namespace Pbs3060
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblpbsfile> tblpbsfile { get; set; }
-        public virtual tblpbsforsendelse tblpbsforsendelse { get; set; }
+        public virtual tblpbsforsendelse tblpbsforsendelse{ get; set; }
     }
 }
