@@ -304,7 +304,15 @@ namespace Pbs3060
                     m_rec_pbsfiles.transmittime = DateTime.Now;
                     //var cb = new SqlConnectionStringBuilder(p_dbData3060.Connection.ConnectionString);
                     Console.WriteLine(string.Format("Start Write {0} to SQL Database {1} on {2}", rec_pbsnetdir.Filename, "cb.InitialCatalog", "cb.DataSource"));
-                    p_dbData3060.SaveChanges();
+                    try
+                    {
+                        p_dbData3060.SaveChanges();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(string.Format("p_dbData3060.SaveChanges() failed with message: {0}", e.Message));
+                        throw;
+                    }
                     Console.WriteLine(string.Format("{0} Write to SQL Database Completed", rec_pbsnetdir.Filename));
                 }
             }
@@ -388,7 +396,12 @@ namespace Pbs3060
             int seqnr = 0;
             string ln0_6;
 
-            tblpbsfilename m_rec_pbsfiles = new tblpbsfilename
+            tblpbsforsendelse m_recpbsforsendelse = new tblpbsforsendelse
+            {
+                delsystem = "Wrk"   
+            };
+
+            tblpbsfilename m_rec_pbsfilename = new tblpbsfilename
             {
                 type = 8,
                 path = file.Directory.FullName,
@@ -397,7 +410,7 @@ namespace Pbs3060
                 atime = file.LastAccessTime,
                 mtime = file.LastWriteTime
             };
-            p_dbData3060.tblpbsfilename.Add(m_rec_pbsfiles);
+
             for (int idx = 0; idx < lines.Count(); idx++)
             {
                 ln = lines[idx].TrimEnd('\r');
@@ -411,14 +424,24 @@ namespace Pbs3060
                         seqnr = seqnr,
                         data = ln
                     };
-                    m_rec_pbsfiles.tblpbsfile.Add(m_rec_pbsfile);
+                    m_rec_pbsfilename.tblpbsfile.Add(m_rec_pbsfile);
                 }
             }
+            m_rec_pbsfilename.transmittime = DateTime.Now;
+            m_recpbsforsendelse.tblpbsfilename.Add(m_rec_pbsfilename);
+            p_dbData3060.tblpbsforsendelse.Add(m_recpbsforsendelse);
 
-            m_rec_pbsfiles.transmittime = DateTime.Now;
             //var cb = new SqlConnectionStringBuilder(p_dbData3060.Connection.ConnectionString);
             Console.WriteLine(string.Format("Start Write {0} to SQL Database {1} on {2}", file.Name, "cb.InitialCatalog", "cb.DataSource"));
-            p_dbData3060.SaveChanges();
+            try
+            {
+                p_dbData3060.SaveChanges();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(string.Format("p_dbData3060.SaveChanges() failed with message: {0}", e.Message));
+                throw;
+            }
             Console.WriteLine(string.Format("{0} Write to SQL Database Completed", file.Name));
             return 1;
         }
