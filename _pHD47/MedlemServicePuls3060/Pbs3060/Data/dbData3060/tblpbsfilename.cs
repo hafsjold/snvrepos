@@ -2,32 +2,27 @@ namespace Pbs3060
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
 
-    public partial class tblpbsfilename
+    public partial class Tblpbsfilename
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblpbsfilename()
+        public Tblpbsfilename()
         {
-            this.tblpbsfile = new HashSet<tblpbsfile>();
+            this.Tblpbsfile = new HashSet<Tblpbsfile>();
         }
-        [Key]
-        public int id { get; set; }
-        public Nullable<int> type { get; set; }
-        public string path { get; set; }
-        public string filename { get; set; }
-        public Nullable<int> size { get; set; }
-        public Nullable<System.DateTime> atime { get; set; }
-        public Nullable<System.DateTime> mtime { get; set; }
-        public string perm { get; set; }
-        public Nullable<int> uid { get; set; }
-        public Nullable<int> gid { get; set; }
-        public Nullable<System.DateTime> transmittime { get; set; }
-        public Nullable<int> pbsforsendelseid { get; set; }
+        public int Id { get; set; }
+        public int? Type { get; set; }
+        public string Path { get; set; }
+        public string Filename { get; set; }
+        public int? Size { get; set; }
+        public DateTime? Atime { get; set; }
+        public DateTime? Mtime { get; set; }
+        public string Perm { get; set; }
+        public int? Uid { get; set; }
+        public int? Gid { get; set; }
+        public DateTime? Transmittime { get; set; }
+        public int? Pbsforsendelseid { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblpbsfile> tblpbsfile { get; set; }
-        public virtual tblpbsforsendelse tblpbsforsendelse{ get; set; }
+        public Tblpbsforsendelse Pbsforsendelse{ get; set; }
+        public ICollection<Tblpbsfile> Tblpbsfile { get; set; }
     }
 }

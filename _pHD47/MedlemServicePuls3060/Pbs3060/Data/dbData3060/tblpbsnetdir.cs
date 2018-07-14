@@ -2,20 +2,18 @@ namespace Pbs3060
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
 
-    public partial class tblpbsnetdir
+    public partial class Tblpbsnetdir
     {
-        [Key]
-        public int id { get; set; }
-        public Nullable<int> type { get; set; }
-        public string path { get; set; }
-        public string filename { get; set; }
-        public Nullable<int> size { get; set; }
-        public Nullable<System.DateTime> atime { get; set; }
-        public Nullable<System.DateTime> mtime { get; set; }
-        public string perm { get; set; }
-        public Nullable<int> uid { get; set; }
-        public Nullable<int> gid { get; set; }
+        public int Id { get; set; }
+        public int? Type { get; set; }
+        public string Path { get; set; }
+        public string Filename { get; set; }
+        public int? Size { get; set; }
+        public DateTime? Atime { get; set; }
+        public DateTime? Mtime { get; set; }
+        public string Perm { get; set; }
+        public int? Uid { get; set; }
+        public int? Gid { get; set; }
     }
 }

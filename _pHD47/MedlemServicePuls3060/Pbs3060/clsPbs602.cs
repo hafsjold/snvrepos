@@ -7,11 +7,11 @@ namespace Pbs3060
 {
     public class clsPbs602
     {
-        private tblpbsforsendelse m_rec_pbsforsendelse;
-        private tblpbsfilename m_rec_pbsfiles;
-        private tblfrapbs m_rec_frapbs;
-        private tblbet m_rec_bet;
-        private tblbetlin m_rec_betlin;
+        private Tblpbsforsendelse m_rec_pbsforsendelse;
+        private Tblpbsfilename m_rec_pbsfiles;
+        private Tblfrapbs m_rec_frapbs;
+        private Tblbet m_rec_bet;
+        private Tblbetlin m_rec_betlin;
 
         public clsPbs602() { }
 
@@ -42,39 +42,39 @@ namespace Pbs3060
             //  sektion = "0211"
             //  rec = "BS0420398564402360000000100000000001231312345678910120310000000012755000000125                         3112031112030000000012755"
 
-            var qrypbsfiles = from h in p_dbData3060.tblpbsfilename
-                              where h.pbsforsendelseid == null
-                              join d in p_dbData3060.tblpbsfile on h.id equals d.pbsfilesid
-                              where d.seqnr == 1 && d.data.Substring(16, 4) == "0602" && d.data.Substring(0, 2) == "BS"
+            var qrypbsfiles = from h in p_dbData3060.Tblpbsfilename
+                              where h.Pbsforsendelseid == null
+                              join d in p_dbData3060.Tblpbsfile on h.Id equals d.Pbsfilesid
+                              where d.Seqnr == 1 && d.Data.Substring(16, 4) == "0602" && d.Data.Substring(0, 2) == "BS"
                               select new
                               {
-                                  h.id,
-                                  h.path,
-                                  h.filename,
-                                  leverancetype = d.data.Substring(16, 4),
-                                  delsystem = d.data.Substring(13, 3),
+                                  h.Id,
+                                  h.Path,
+                                  h.Filename,
+                                  leverancetype = d.Data.Substring(16, 4),
+                                  delsystem = d.Data.Substring(13, 3),
                               };
 
             foreach (var rstpbsfiles in qrypbsfiles)
             {
                 try
                 {
-                    wpbsfilesid = rstpbsfiles.id;
+                    wpbsfilesid = rstpbsfiles.Id;
                     AntalFiler++;
                     leverancetype = "";
                     sektion = "";
                     leverancespecifikation = "";
 
-                    var qrypbsfile = from d in p_dbData3060.tblpbsfile
-                                     where d.pbsfilesid == wpbsfilesid && d.data.Substring(0, 6) != "PBCNET"
-                                     orderby d.seqnr
+                    var qrypbsfile = from d in p_dbData3060.Tblpbsfile
+                                     where d.Pbsfilesid == wpbsfilesid && d.Data.Substring(0, 6) != "PBCNET"
+                                     orderby d.Seqnr
                                      select d;
 
                     foreach (var rstpbsfile in qrypbsfile)
                     {
-                        rec = rstpbsfile.data;
+                        rec = rstpbsfile.Data;
                         // -- Bestem Leverance Type
-                        if (rstpbsfile.seqnr == 1)
+                        if (rstpbsfile.Seqnr == 1)
                         {
                             if ((rec.Substring(0, 5) == "BS002"))
                             {
@@ -90,36 +90,36 @@ namespace Pbs3060
                             if ((leverancetype == "0602"))
                             {
                                 // -- Leverance 0602
-                                var antal = (from c in p_dbData3060.tblfrapbs
-                                             where c.leverancespecifikation == leverancespecifikation
+                                var antal = (from c in p_dbData3060.Tblfrapbs
+                                             where c.Leverancespecifikation == leverancespecifikation
                                              select c).Count();
                                 if (antal > 0) { throw new Exception("242 - Leverance med pbsfilesid: " + wpbsfilesid + " og leverancespecifikation: " + leverancespecifikation + " er indlæst tidligere"); }
 
                                 wleveranceid = p_dbData3060.nextval_v2("leveranceid");
-                                m_rec_pbsforsendelse = new tblpbsforsendelse
+                                m_rec_pbsforsendelse = new Tblpbsforsendelse
                                 {
-                                    delsystem = "BS1",
-                                    leverancetype = "0602",
-                                    oprettetaf = "Bet",
-                                    oprettet = DateTime.Now,
-                                    leveranceid = wleveranceid
+                                    Delsystem = "BS1",
+                                    Leverancetype = "0602",
+                                    Oprettetaf = "Bet",
+                                    Oprettet = DateTime.Now,
+                                    Leveranceid = wleveranceid
                                 };
-                                p_dbData3060.tblpbsforsendelse.Add(m_rec_pbsforsendelse);
+                                p_dbData3060.Tblpbsforsendelse.Add(m_rec_pbsforsendelse);
 
-                                m_rec_frapbs = new tblfrapbs
+                                m_rec_frapbs = new Tblfrapbs
                                 {
-                                    delsystem = "BS1",
-                                    leverancetype = "0602",
-                                    leverancespecifikation = leverancespecifikation,
-                                    leverancedannelsesdato = leverancedannelsesdato,
-                                    udtrukket = DateTime.Now
+                                    Delsystem = "BS1",
+                                    Leverancetype = "0602",
+                                    Leverancespecifikation = leverancespecifikation,
+                                    Leverancedannelsesdato = leverancedannelsesdato,
+                                    Udtrukket = DateTime.Now
                                 };
-                                m_rec_pbsforsendelse.tblfrapbs.Add(m_rec_frapbs);
+                                m_rec_pbsforsendelse.Tblfrapbs.Add(m_rec_frapbs);
 
-                                m_rec_pbsfiles = (from c in p_dbData3060.tblpbsfilename
-                                                  where c.id == rstpbsfiles.id
+                                m_rec_pbsfiles = (from c in p_dbData3060.Tblpbsfilename
+                                                  where c.Id == rstpbsfiles.Id
                                                   select c).First();
-                                m_rec_pbsforsendelse.tblpbsfilename.Add(m_rec_pbsfiles);
+                                m_rec_pbsforsendelse.Tblpbsfilename.Add(m_rec_pbsfiles);
                             }
                         }
                         if ((leverancetype == "0602"))
@@ -189,7 +189,7 @@ namespace Pbs3060
                                 }
                                 else
                                 {
-                                    throw new Exception("244 - Rec# " + rstpbsfile.seqnr + " ukendt: " + rec);
+                                    throw new Exception("244 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
                                 }
                             }
                             else if ((sektion == "0215"))
@@ -224,7 +224,7 @@ namespace Pbs3060
                                 }
                                 else
                                 {
-                                    throw new Exception("245 - Rec# " + rstpbsfile.seqnr + " ukendt: " + rec);
+                                    throw new Exception("245 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
                                 }
                             }
                             else if ((rec.Substring(0, 5) == "BS992"))
@@ -235,17 +235,17 @@ namespace Pbs3060
                             }
                             else
                             {
-                                throw new Exception("246 - Rec# " + rstpbsfile.seqnr + " ukendt: " + rec);
+                                throw new Exception("246 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
                             }
                         }
                         else
                         {
-                            throw new Exception("247 - Rec# " + rstpbsfile.seqnr + " ukendt: " + rec);
+                            throw new Exception("247 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
                         }
                     }  // slut rstpbsfile
 
                     // -- Update indbetalingsbelob
-                    foreach (tblbet rec_bet in m_rec_frapbs.tblbet)
+                    foreach (Tblbet rec_bet in m_rec_frapbs.Tblbet)
                     {
                         var SumIndbetalingsbelob = (
                             from c in rec_bet.tblbetlin
@@ -292,7 +292,7 @@ namespace Pbs3060
             // - transkode 0237, afvist automatisk betaling
             // - transkode 0238, afmeldt automatisk betaling
             // - transkode 0239, tilbageført betaling
-            m_rec_betlin = new tblbetlin
+            m_rec_betlin = new Tblbetlin
             {
                 pbssektionnr = sektion,
                 pbstranskode = transkode
@@ -535,7 +535,7 @@ namespace Pbs3060
             // Find or Create tblber record
             try
             {
-                m_rec_bet = (from c in m_rec_frapbs.tblbet
+                m_rec_bet = (from c in m_rec_frapbs.Tblbet
                              where c.pbssektionnr == sektion
                                 && c.transkode == transkode
                                 && c.bogforingsdato == m_rec_betlin.bogforingsdato
@@ -544,13 +544,13 @@ namespace Pbs3060
             }
             catch (System.InvalidOperationException)
             {
-                m_rec_bet = new tblbet
+                m_rec_bet = new Tblbet
                 {
                     pbssektionnr = sektion,
                     transkode = transkode,
                     bogforingsdato = m_rec_betlin.bogforingsdato
                 };
-                m_rec_frapbs.tblbet.Add(m_rec_bet);
+                m_rec_frapbs.Tblbet.Add(m_rec_bet);
             }
 
             // Add tblbetlin
@@ -560,16 +560,16 @@ namespace Pbs3060
         public int betalinger_til_rsmembership(dbData3060DataContext p_dbData3060, puls3060_nyEntities p_dbPuls3060_dk)
         {
             int saveBetid = 0;
-            var rsmbrshp = from bl in p_dbData3060.tblbetlin
+            var rsmbrshp = from bl in p_dbData3060.Tblbetlin
                            where (bl.pbstranskode == "0236" || bl.pbstranskode == "0297")
-                           join b in p_dbData3060.tblbet on bl.betid equals b.id
+                           join b in p_dbData3060.Tblbet on bl.betid equals b.id
                            where b.rsmembership == null || b.rsmembership == false
-                           join p in p_dbData3060.tblfrapbs on b.frapbsid equals p.id
-                           orderby p.id, b.id, bl.id
+                           join p in p_dbData3060.Tblfrapbs on b.frapbsid equals p.Id
+                           orderby p.Id, b.id, bl.id
                            select new
                            {
-                               Frapbsid = p.id,
-                               p.leverancespecifikation,
+                               Frapbsid = p.Id,
+                               p.Leverancespecifikation,
                                Betid = b.id,
                                Betlinid = bl.id,
                                bl.betalingsdato,
@@ -589,17 +589,17 @@ namespace Pbs3060
                     if (saveBetid != b.Betid) // ny gruppe
                     {
                         saveBetid = b.Betid;
-                        var rec_bet = (from ub in p_dbData3060.tblbet where ub.id == b.Betid select ub).First();
+                        var rec_bet = (from ub in p_dbData3060.Tblbet where ub.id == b.Betid select ub).First();
                         rec_bet.rsmembership = true;
                     }
 
                     // Do somthing here
-                    var qry = from f in p_dbData3060.tblfak
-                              where f.faknr == b.faknr
-                              join m in p_dbData3060.tblrsmembership_transactions on f.id equals m.id
+                    var qry = from f in p_dbData3060.Tblfak
+                              where f.Faknr == b.faknr
+                              join m in p_dbData3060.TblrsmembershipTransactions on f.Id equals m.Id
                               select new tblmembershippayment
                               {
-                                  rsmembership_transactions_id = m.trans_id,
+                                  rsmembership_transactions_id = m.TransId,
                               };
                     if (qry.Count() == 1)
                     {

@@ -4,7 +4,7 @@ namespace Pbs3060
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public partial class tblbetalingsidentifikation
+    public partial class Tblbetalingsidentifikation
     {
         [Key]
         public int id { get; set; }

@@ -4,7 +4,7 @@ namespace Pbs3060
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public partial class tbladvis
+    public partial class Tbladvis
     {
         [Key]
         public int id { get; set; }
@@ -17,6 +17,6 @@ namespace Pbs3060
         public Nullable<int> infotekst { get; set; }
         public Nullable<System.DateTime> maildato { get; set; }
     
-        public virtual tbltilpbs tbltilpbs { get; set; }
+        public virtual Tbltilpbs tbltilpbs { get; set; }
     }
 }

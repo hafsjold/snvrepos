@@ -4,7 +4,7 @@ namespace Pbs3060
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public partial class tbloverforsel
+    public partial class Tbloverforsel
     {
         [Key]
         public int id { get; set; }
@@ -23,6 +23,6 @@ namespace Pbs3060
         public string bankkontonr { get; set; }
         public Nullable<System.DateTime> betalingsdato { get; set; }
     
-        public virtual tbltilpbs tbltilpbs { get; set; }
+        public virtual Tbltilpbs tbltilpbs { get; set; }
     }
 }

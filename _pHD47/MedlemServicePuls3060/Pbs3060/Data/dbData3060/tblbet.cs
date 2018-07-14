@@ -4,12 +4,12 @@ namespace Pbs3060
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public partial class tblbet
+    public partial class Tblbet
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblbet()
+        public Tblbet()
         {
-            this.tblbetlin = new HashSet<tblbetlin>();
+            this.tblbetlin = new HashSet<Tblbetlin>();
         }
         [Key]
         public int id { get; set; }
@@ -22,7 +22,7 @@ namespace Pbs3060
         public Nullable<bool> rsmembership { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblbetlin> tblbetlin { get; set; }
-        public virtual tblfrapbs tblfrapbs { get; set; }
+        public virtual ICollection<Tblbetlin> tblbetlin { get; set; }
+        public virtual Tblfrapbs tblfrapbs { get; set; }
     }
 }

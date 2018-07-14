@@ -4,7 +4,7 @@ namespace Pbs3060
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public partial class tblindbetalingskort
+    public partial class Tblindbetalingskort
     {
         [Key]
         public int id { get; set; }
@@ -22,6 +22,6 @@ namespace Pbs3060
         public string pbssektionnr { get; set; }
         public string regnr { get; set; }
     
-        public virtual tblfrapbs tblfrapbs { get; set; }
+        public virtual Tblfrapbs tblfrapbs { get; set; }
     }
 }

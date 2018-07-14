@@ -4,7 +4,7 @@ namespace Pbs3060
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public partial class tblbetlin
+    public partial class Tblbetlin
     {
         [Key]
         public int id { get; set; }
@@ -24,6 +24,6 @@ namespace Pbs3060
         public Nullable<decimal> pbsgebyrbelob { get; set; }
         public string pbsarkivnr { get; set; }
     
-        public virtual tblbet tblbet { get; set; }
+        public virtual Tblbet tblbet { get; set; }
     }
 }

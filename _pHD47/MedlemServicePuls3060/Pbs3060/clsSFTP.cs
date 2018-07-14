@@ -16,7 +16,7 @@ namespace Pbs3060
     {
         public MemPbsnetdir m_memPbsnetdir;
         private SftpClient m_sftp;
-        private tblpbsfile m_rec_pbsfile;
+        private Tblpbsfile m_rec_pbsfile;
         private tblsftp m_rec_sftp;
 
         private clsSFTP() { }
@@ -50,24 +50,24 @@ namespace Pbs3060
             int FilesSize;
 
             var qry_selectfiles =
-                from h in p_dbData3060.tblpbsforsendelse
-                join d1 in p_dbData3060.tblpbsfilename on h.id equals d1.pbsforsendelseid into details1
+                from h in p_dbData3060.Tblpbsforsendelse
+                join d1 in p_dbData3060.Tblpbsfilename on h.Id equals d1.Pbsforsendelseid into details1
                 from d1 in details1.DefaultIfEmpty()
-                where d1.id != null && d1.filename == null
-                join d2 in p_dbData3060.tbltilpbs on h.id equals d2.pbsforsendelseid into details2
+                where d1.Id != null && d1.Filename == null
+                join d2 in p_dbData3060.Tbltilpbs on h.Id equals d2.Pbsforsendelseid into details2
                 from d2 in details2.DefaultIfEmpty()
-                where d2.id == lobnr
+                where d2.Id == lobnr
                 select new
                 {
-                    tilpbsid = (int?)d2.id,
-                    d2.leverancespecifikation,
-                    d2.delsystem,
-                    d2.leverancetype,
-                    Bilagdato = (DateTime?)d2.bilagdato,
-                    Pbsforsendelseid = (int?)d2.pbsforsendelseid,
-                    Udtrukket = (DateTime?)d2.udtrukket,
-                    pbsfilesid = (int?)d1.id,
-                    Leveranceid = (int)h.leveranceid
+                    tilpbsid = (int?)d2.Id,
+                    d2.Leverancespecifikation,
+                    d2.Delsystem,
+                    d2.Leverancetype,
+                    Bilagdato = (DateTime?)d2.Bilagdato,
+                    Pbsforsendelseid = (int?)d2.Pbsforsendelseid,
+                    Udtrukket = (DateTime?)d2.Udtrukket,
+                    pbsfilesid = (int?)d1.Id,
+                    Leveranceid = (int)h.Leveranceid
                 };
 
             int antal = qry_selectfiles.Count();
@@ -75,17 +75,17 @@ namespace Pbs3060
             {
                 var rec_selecfiles = qry_selectfiles.First();
 
-                var qry_pbsfiles = from h in p_dbData3060.tblpbsfilename
-                                   where h.id == rec_selecfiles.pbsfilesid
+                var qry_pbsfiles = from h in p_dbData3060.Tblpbsfilename
+                                   where h.Id == rec_selecfiles.pbsfilesid
                                    select h;
                 if (qry_pbsfiles.Count() > 0)
                 {
-                    tblpbsfilename m_rec_pbsfiles = qry_pbsfiles.First();
-                    TilPBSFilename = AddPbcnetRecords(p_dbData3060, rec_selecfiles.delsystem, rec_selecfiles.Leveranceid, m_rec_pbsfiles.id);
+                    Tblpbsfilename m_rec_pbsfiles = qry_pbsfiles.First();
+                    TilPBSFilename = AddPbcnetRecords(p_dbData3060, rec_selecfiles.Delsystem, rec_selecfiles.Leveranceid, m_rec_pbsfiles.Id);
 
                     var qry_pbsfile =
-                        from h in m_rec_pbsfiles.tblpbsfile
-                        orderby h.seqnr
+                        from h in m_rec_pbsfiles.Tblpbsfile
+                        orderby h.Seqnr
                         select h;
 
                     string TilPBSFile = "";
@@ -93,7 +93,7 @@ namespace Pbs3060
                     foreach (var rec_pbsfile in qry_pbsfile)
                     {
                         if (i++ > 0) TilPBSFile += "\r\n";
-                        TilPBSFile += rec_pbsfile.data;
+                        TilPBSFile += rec_pbsfile.Data;
                     }
                     char[] c_TilPBSFile = TilPBSFile.ToCharArray();
                     byte[] b_TilPBSFile = System.Text.Encoding.GetEncoding("windows-1252").GetBytes(c_TilPBSFile);
@@ -111,13 +111,13 @@ namespace Pbs3060
                     m_sftp.UploadFile(ms_TilPBSFile, fullpath);
                     Console.WriteLine(string.Format("{0} Upload Completed", fullpath));
 
-                    m_rec_pbsfiles.type = 8;
-                    m_rec_pbsfiles.path = m_rec_sftp.inbound;
-                    m_rec_pbsfiles.filename = TilPBSFilename;
-                    m_rec_pbsfiles.size = FilesSize;
-                    m_rec_pbsfiles.atime = DateTime.Now;
-                    m_rec_pbsfiles.mtime = DateTime.Now;
-                    m_rec_pbsfiles.transmittime = DateTime.Now;
+                    m_rec_pbsfiles.Type = 8;
+                    m_rec_pbsfiles.Path = m_rec_sftp.inbound;
+                    m_rec_pbsfiles.Filename = TilPBSFilename;
+                    m_rec_pbsfiles.Size = FilesSize;
+                    m_rec_pbsfiles.Atime = DateTime.Now;
+                    m_rec_pbsfiles.Mtime = DateTime.Now;
+                    m_rec_pbsfiles.Transmittime = DateTime.Now;
                     p_dbData3060.SaveChanges();
                 }
             }
@@ -130,23 +130,23 @@ namespace Pbs3060
             int FilesSize;
 
             var qry_selectfiles =
-                from h in p_dbData3060.tblpbsforsendelse
-                join d1 in p_dbData3060.tblpbsfilename on h.id equals d1.pbsforsendelseid into details1
+                from h in p_dbData3060.Tblpbsforsendelse
+                join d1 in p_dbData3060.Tblpbsfilename on h.Id equals d1.Pbsforsendelseid into details1
                 from d1 in details1.DefaultIfEmpty()
-                where d1.id == ppbsfilesid
-                join d2 in p_dbData3060.tbltilpbs on h.id equals d2.pbsforsendelseid into details2
+                where d1.Id == ppbsfilesid
+                join d2 in p_dbData3060.Tbltilpbs on h.Id equals d2.Pbsforsendelseid into details2
                 from d2 in details2.DefaultIfEmpty()
                 select new
                 {
-                    tilpbsid = (int?)d2.id,
-                    d2.leverancespecifikation,
-                    d2.delsystem,
-                    d2.leverancetype,
-                    Bilagdato = (DateTime?)d2.bilagdato,
-                    Pbsforsendelseid = (int?)d2.pbsforsendelseid,
-                    Udtrukket = (DateTime?)d2.udtrukket,
-                    pbsfilesid = (int?)d1.id,
-                    Leveranceid = (int)h.leveranceid,
+                    tilpbsid = (int?)d2.Id,
+                    d2.Leverancespecifikation,
+                    d2.Delsystem,
+                    d2.Leverancetype,
+                    Bilagdato = (DateTime?)d2.Bilagdato,
+                    Pbsforsendelseid = (int?)d2.Pbsforsendelseid,
+                    Udtrukket = (DateTime?)d2.Udtrukket,
+                    pbsfilesid = (int?)d1.Id,
+                    Leveranceid = (int)h.Leveranceid,
                 };
 
             int antal = qry_selectfiles.Count();
@@ -154,20 +154,20 @@ namespace Pbs3060
             {
                 var rec_selecfiles = qry_selectfiles.First();
 
-                var qry_pbsfiles = from h in p_dbData3060.tblpbsfilename
-                                   where h.id == rec_selecfiles.pbsfilesid
+                var qry_pbsfiles = from h in p_dbData3060.Tblpbsfilename
+                                   where h.Id == rec_selecfiles.pbsfilesid
                                    select h;
                 if (qry_pbsfiles.Count() > 0)
                 {
-                    tblpbsfilename m_rec_pbsfiles = qry_pbsfiles.First();
-                    if (m_rec_pbsfiles.filename != null)
+                    Tblpbsfilename m_rec_pbsfiles = qry_pbsfiles.First();
+                    if (m_rec_pbsfiles.Filename != null)
                     {
-                        if (m_rec_pbsfiles.filename.Length > 0) TilPBSFilename = m_rec_pbsfiles.filename;
+                        if (m_rec_pbsfiles.Filename.Length > 0) TilPBSFilename = m_rec_pbsfiles.Filename;
                     }
 
                     var qry_pbsfile =
-                        from h in m_rec_pbsfiles.tblpbsfile
-                        orderby h.seqnr
+                        from h in m_rec_pbsfiles.Tblpbsfile
+                        orderby h.Seqnr
                         select h;
 
                     string TilPBSFile = "";
@@ -175,7 +175,7 @@ namespace Pbs3060
                     foreach (var rec_pbsfile in qry_pbsfile)
                     {
                         if (i++ > 0) TilPBSFile += "\r\n";
-                        TilPBSFile += rec_pbsfile.data;
+                        TilPBSFile += rec_pbsfile.Data;
                     }
                     char[] c_TilPBSFile = TilPBSFile.ToCharArray();
                     byte[] b_TilPBSFile = System.Text.Encoding.GetEncoding("windows-1252").GetBytes(c_TilPBSFile);
@@ -193,13 +193,13 @@ namespace Pbs3060
                     m_sftp.UploadFile(ms_TilPBSFile, fullpath);
                     Console.WriteLine(string.Format("{0} Upload Completed", fullpath));
 
-                    m_rec_pbsfiles.type = 8;
-                    m_rec_pbsfiles.path = m_rec_sftp.inbound;
-                    m_rec_pbsfiles.filename = TilPBSFilename;
-                    m_rec_pbsfiles.size = FilesSize;
-                    m_rec_pbsfiles.atime = DateTime.Now;
-                    m_rec_pbsfiles.mtime = DateTime.Now;
-                    m_rec_pbsfiles.transmittime = DateTime.Now;
+                    m_rec_pbsfiles.Type = 8;
+                    m_rec_pbsfiles.Path = m_rec_sftp.inbound;
+                    m_rec_pbsfiles.Filename = TilPBSFilename;
+                    m_rec_pbsfiles.Size = FilesSize;
+                    m_rec_pbsfiles.Atime = DateTime.Now;
+                    m_rec_pbsfiles.Mtime = DateTime.Now;
+                    m_rec_pbsfiles.Transmittime = DateTime.Now;
                     p_dbData3060.SaveChanges();
                 }
             }
@@ -243,19 +243,19 @@ namespace Pbs3060
             {
                 foreach (var rec_pbsnetdir in leftqry_pbsnetdir)
                 {
-                    tblpbsfilename m_rec_pbsfiles = new tblpbsfilename
+                    Tblpbsfilename m_rec_pbsfiles = new Tblpbsfilename
                     {
-                        type = rec_pbsnetdir.Type,
-                        path = rec_pbsnetdir.Path,
-                        filename = rec_pbsnetdir.Filename,
-                        size = rec_pbsnetdir.Size,
-                        atime = rec_pbsnetdir.Atime,
-                        mtime = rec_pbsnetdir.Mtime,
-                        perm = rec_pbsnetdir.Perm,
-                        uid = rec_pbsnetdir.Uid,
-                        gid = rec_pbsnetdir.Gid
+                        Type = rec_pbsnetdir.Type,
+                        Path = rec_pbsnetdir.Path,
+                        Filename = rec_pbsnetdir.Filename,
+                        Size = rec_pbsnetdir.Size,
+                        Atime = rec_pbsnetdir.Atime,
+                        Mtime = rec_pbsnetdir.Mtime,
+                        Perm = rec_pbsnetdir.Perm,
+                        Uid = rec_pbsnetdir.Uid,
+                        Gid = rec_pbsnetdir.Gid
                     };
-                    p_dbData3060.tblpbsfilename.Add(m_rec_pbsfiles);
+                    p_dbData3060.Tblpbsfilename.Add(m_rec_pbsfiles);
 
                     //***********************************************************************
                     //  Open a file on the server:
@@ -292,16 +292,16 @@ namespace Pbs3060
                         if (((seqnr == 0) && !(ln0_6 == "PBCNET")) || (seqnr > 0)) { seqnr++; }
                         if (ln.Length > 0)
                         {
-                            m_rec_pbsfile = new tblpbsfile
+                            m_rec_pbsfile = new Tblpbsfile
                             {
-                                seqnr = seqnr,
-                                data = ln
+                                Seqnr = seqnr,
+                                Data = ln
                             };
-                            m_rec_pbsfiles.tblpbsfile.Add(m_rec_pbsfile);
+                            m_rec_pbsfiles.Tblpbsfile.Add(m_rec_pbsfile);
                         }
                     }
                     //this.Database.GetDbConnection()
-                    m_rec_pbsfiles.transmittime = DateTime.Now;
+                    m_rec_pbsfiles.Transmittime = DateTime.Now;
                     //var cb = new SqlConnectionStringBuilder(p_dbData3060.Connection.ConnectionString);
                     Console.WriteLine(string.Format("Start Write {0} to SQL Database {1} on {2}", rec_pbsnetdir.Filename, "cb.InitialCatalog", "cb.DataSource"));
                     try
@@ -396,19 +396,14 @@ namespace Pbs3060
             int seqnr = 0;
             string ln0_6;
 
-            tblpbsforsendelse m_recpbsforsendelse = new tblpbsforsendelse
+            Tblpbsfilename m_rec_pbsfilename = new Tblpbsfilename
             {
-                delsystem = "Wrk"   
-            };
-
-            tblpbsfilename m_rec_pbsfilename = new tblpbsfilename
-            {
-                type = 8,
-                path = file.Directory.FullName,
-                filename = file.Name,
-                size = (int)file.Length,
-                atime = file.LastAccessTime,
-                mtime = file.LastWriteTime
+                Type = 8,
+                Path = file.Directory.FullName,
+                Filename = file.Name,
+                Size = (int)file.Length,
+                Atime = file.LastAccessTime,
+                Mtime = file.LastWriteTime
             };
 
             for (int idx = 0; idx < lines.Count(); idx++)
@@ -419,18 +414,16 @@ namespace Pbs3060
                 if (((seqnr == 0) && !(ln0_6 == "PBCNET")) || (seqnr > 0)) { seqnr++; }
                 if (ln.Length > 0)
                 {
-                    m_rec_pbsfile = new tblpbsfile
+                    m_rec_pbsfile = new Tblpbsfile
                     {
-                        seqnr = seqnr,
-                        data = ln
+                        Seqnr = seqnr,
+                        Data = ln
                     };
-                    m_rec_pbsfilename.tblpbsfile.Add(m_rec_pbsfile);
+                    m_rec_pbsfilename.Tblpbsfile.Add(m_rec_pbsfile);
                 }
             }
-            m_rec_pbsfilename.transmittime = DateTime.Now;
-            m_recpbsforsendelse.tblpbsfilename.Add(m_rec_pbsfilename);
-            p_dbData3060.tblpbsforsendelse.Add(m_recpbsforsendelse);
-
+            m_rec_pbsfilename.Transmittime = DateTime.Now;
+            p_dbData3060.Tblpbsfilename.Add(m_rec_pbsfilename);
             //var cb = new SqlConnectionStringBuilder(p_dbData3060.Connection.ConnectionString);
             Console.WriteLine(string.Format("Start Write {0} to SQL Database {1} on {2}", file.Name, "cb.InitialCatalog", "cb.DataSource"));
             try
@@ -516,29 +509,29 @@ namespace Pbs3060
             string filename;
             string rec;
 
-            pbcnetrecords = (from h in p_dbData3060.tblpbsfile
-                             where h.pbsfilesid == pbsfilesid & (h.seqnr == 0 | h.seqnr == 9999)
+            pbcnetrecords = (from h in p_dbData3060.Tblpbsfile
+                             where h.Pbsfilesid == pbsfilesid & (h.Seqnr == 0 | h.Seqnr == 9999)
                              select h).Count();
 
             if (pbcnetrecords == 0)
             {
                 // Find antal records
-                antal = (from h in p_dbData3060.tblpbsfile
-                         where h.pbsfilesid == pbsfilesid & h.seqnr != 0 & h.seqnr != 9999
+                antal = (from h in p_dbData3060.Tblpbsfile
+                         where h.Pbsfilesid == pbsfilesid & h.Seqnr != 0 & h.Seqnr != 9999
                          select h).Count();
                 transmisionsdato = DateTime.Now;
 
                 idlev = p_dbData3060.nextval_v2("idlev");
 
-                tblpbsfilename rec_pbsfiles = (from h in p_dbData3060.tblpbsfilename where h.id == pbsfilesid select h).First();
+                Tblpbsfilename rec_pbsfiles = (from h in p_dbData3060.Tblpbsfilename where h.Id == pbsfilesid select h).First();
 
                 rec = write00(delsystem, transmisionsdato, idlev, leveranceid);
-                tblpbsfile rec_pbsfile = new tblpbsfile { seqnr = 0, data = rec };
-                rec_pbsfiles.tblpbsfile.Add(rec_pbsfile);
+                Tblpbsfile rec_pbsfile = new Tblpbsfile { Seqnr = 0, Data = rec };
+                rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
 
                 rec = write90(delsystem, transmisionsdato, idlev, leveranceid, antal);
-                rec_pbsfile = new tblpbsfile { seqnr = 9999, data = rec };
-                rec_pbsfiles.tblpbsfile.Add(rec_pbsfile);
+                rec_pbsfile = new Tblpbsfile { Seqnr = 9999, Data = rec };
+                rec_pbsfiles.Tblpbsfile.Add(rec_pbsfile);
 
                 p_dbData3060.SaveChanges();
 

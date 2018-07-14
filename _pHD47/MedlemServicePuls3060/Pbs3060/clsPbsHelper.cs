@@ -118,55 +118,55 @@ WHERE 20 NOT IN (SELECT ugm.group_id FROM ecpwt_user_usergroup_map ugm WHERE ugm
             int c1 = qry1.Count();
             if (c1 == 0)
             {
-                var qry2 = from s2 in p_dbData3060.tblrsmembership_transactions where s2.trans_id == p_trans_id select s2;
+                var qry2 = from s2 in p_dbData3060.TblrsmembershipTransactions where s2.TransId == p_trans_id select s2;
                 try
                 {
-                    tblrsmembership_transactions t2 = qry2.First();
+                    TblrsmembershipTransactions t2 = qry2.First();
                     //*****
-                    User_data recud = clsHelper.unpack_UserData(t2.user_data);
+                    User_data recud = clsHelper.unpack_UserData(t2.UserData);
                     if (string.IsNullOrEmpty(recud.memberid))
                     {
-                        recud.memberid = t2.memberid.ToString();
-                        t2.user_data = clsHelper.pack_UserData(recud);
+                        recud.memberid = t2.Memberid.ToString();
+                        t2.UserData = clsHelper.pack_UserData(recud);
                     }
                     //*****
-                    int? subscriber_id = t2.subscriber_id;
+                    int? subscriber_id = t2.SubscriberId;
                     var qry3 = from s3 in dbPuls3060_dk.ecpwt_rsmembership_membership_subscribers where s3.id == subscriber_id select s3;
                     int c3 = qry3.Count();
                     if (c3 == 1)
                     {
-                        DateTime wDate = t2.date;
-                        int alder = DateTime.Now.Subtract(t2.date).Days;
+                        DateTime wDate = t2.Date;
+                        int alder = DateTime.Now.Subtract(t2.Date).Days;
                         if (alder > 80) wDate = DateTime.Now.AddDays(-60);
 
                         ecpwt_rsmembership_transactions t1 = new ecpwt_rsmembership_transactions
                         {
                             id = p_trans_id,
-                            user_id = t2.user_id,
-                            user_email = t2.user_email,
-                            user_data = t2.user_data,
-                            type = t2.type,
-                            @params = t2.@params,
+                            user_id = t2.UserId,
+                            user_email = t2.UserEmail,
+                            user_data = t2.UserData,
+                            type = t2.Type,
+                            @params = t2.Params,
                             date = wDate,
-                            ip = t2.ip,
-                            price = t2.price,
-                            coupon = t2.coupon,
-                            currency = t2.currency,
-                            hash = t2.hash,
-                            custom = t2.custom,
-                            gateway = t2.gateway,
-                            status = t2.status,
-                            response_log = t2.response_log
+                            ip = t2.Ip,
+                            price = t2.Price,
+                            coupon = t2.Coupon,
+                            currency = t2.Currency,
+                            hash = t2.Hash,
+                            custom = t2.Custom,
+                            gateway = t2.Gateway,
+                            status = t2.Status,
+                            response_log = t2.ResponseLog
                         };
                         dbPuls3060_dk.ecpwt_rsmembership_transactions.Add(t1);
                         dbPuls3060_dk.SaveChanges();
 
-                        ecpwt_rsmembership_transactions rec_trans = (from t in dbPuls3060_dk.ecpwt_rsmembership_transactions where t.custom == t2.custom select t).First();
+                        ecpwt_rsmembership_transactions rec_trans = (from t in dbPuls3060_dk.ecpwt_rsmembership_transactions where t.custom == t2.Custom select t).First();
 
                         string sql = string.Format(@"UPDATE ecpwt_rsmembership_transactions SET id = {0} WHERE id = {1}", p_trans_id, rec_trans.id);
                         dbPuls3060_dk.Database.ExecuteSqlCommand(sql);
 
-                        rec_trans = (from t in dbPuls3060_dk.ecpwt_rsmembership_transactions where t.custom == t2.custom select t).First();
+                        rec_trans = (from t in dbPuls3060_dk.ecpwt_rsmembership_transactions where t.custom == t2.Custom select t).First();
                         out_trans_id = rec_trans.id;
                     }
                     else

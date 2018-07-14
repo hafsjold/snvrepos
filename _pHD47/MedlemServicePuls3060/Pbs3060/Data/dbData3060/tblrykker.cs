@@ -4,7 +4,7 @@ namespace Pbs3060
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public partial class tblrykker
+    public partial class Tblrykker
     {
         [Key]
         public int id { get; set; }
@@ -18,6 +18,6 @@ namespace Pbs3060
         public Nullable<System.DateTime> rykkerdato { get; set; }
         public Nullable<System.DateTime> maildato { get; set; }
     
-        public virtual tbltilpbs tbltilpbs { get; set; }
+        public virtual Tbltilpbs tbltilpbs { get; set; }
     }
 }
