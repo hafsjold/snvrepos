@@ -2,16 +2,14 @@ namespace Pbs3060
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
 
-    public partial class tblpbsfile
+    public partial class Tblpbsfile
     {
-        [Key]
-        public int id { get; set; }
-        public int pbsfilesid { get; set; }
-        public int seqnr { get; set; }
-        public string data { get; set; }
+        public int Id { get; set; }
+        public int Pbsfilesid { get; set; }
+        public int Seqnr { get; set; }
+        public string Data { get; set; }
     
-        public virtual tblpbsfilename tblpbsfilename { get; set; }
+        public Tblpbsfilename Pbsfiles { get; set; }
     }
 }

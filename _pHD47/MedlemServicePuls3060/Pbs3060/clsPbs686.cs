@@ -7,10 +7,10 @@ namespace Pbs3060
 {
     public class clsPbs686
     {
-        private tblpbsforsendelse m_rec_pbsforsendelse;
-        private tblpbsfilename m_rec_pbsfiles;
-        private tblfrapbs m_rec_frapbs;
-        private tblindbetalingskort m_rec_indbetalingskort;
+        private Tblpbsforsendelse m_rec_pbsforsendelse;
+        private Tblpbsfilename m_rec_pbsfiles;
+        private Tblfrapbs m_rec_frapbs;
+        private Tblindbetalingskort m_rec_indbetalingskort;
 
         public clsPbs686() { }
 
@@ -28,17 +28,17 @@ namespace Pbs3060
             int AntalFiler = 0;
 
 
-            var qrypbsfiles = from h in p_dbData3060.tblpbsfilename
-                              where h.pbsforsendelseid == null
-                              join d in p_dbData3060.tblpbsfile on h.id equals d.pbsfilesid
-                              where d.seqnr == 1 && d.data.Substring(16, 4) == "0686" && d.data.Substring(0, 2) == "BS"
+            var qrypbsfiles = from h in p_dbData3060.Tblpbsfilename
+                              where h.Pbsforsendelseid == null
+                              join d in p_dbData3060.Tblpbsfile on h.Id equals d.Pbsfilesid
+                              where d.Seqnr == 1 && d.Data.Substring(16, 4) == "0686" && d.Data.Substring(0, 2) == "BS"
                               select new
                               {
-                                  h.id,
-                                  h.path,
-                                  h.filename,
-                                  leverancetype = d.data.Substring(16, 4),
-                                  delsystem = d.data.Substring(13, 3),
+                                  h.Id,
+                                  h.Path,
+                                  h.Filename,
+                                  leverancetype = d.Data.Substring(16, 4),
+                                  delsystem = d.Data.Substring(13, 3),
                               };
 
             int DebugCount = qrypbsfiles.Count();
@@ -46,23 +46,23 @@ namespace Pbs3060
             {
                 //try
                 {
-                    wpbsfilesid = rstpbsfiles.id;
+                    wpbsfilesid = rstpbsfiles.Id;
                     AntalFiler++;
                     leverance = "";
                     sektion = "";
                     leverancespecifikation = "";
 
 
-                    var qrypbsfile = from d in p_dbData3060.tblpbsfile
-                                     where d.pbsfilesid == wpbsfilesid && d.data.Substring(0, 6) != "PBCNET"
-                                     orderby d.seqnr
+                    var qrypbsfile = from d in p_dbData3060.Tblpbsfile
+                                     where d.Pbsfilesid == wpbsfilesid && d.Data.Substring(0, 6) != "PBCNET"
+                                     orderby d.Seqnr
                                      select d;
 
                     foreach (var rstpbsfile in qrypbsfile)
                     {
-                        rec = rstpbsfile.data;
+                        rec = rstpbsfile.Data;
                         //  Bestem Leverance Type
-                        if (rstpbsfile.seqnr == 1)
+                        if (rstpbsfile.Seqnr == 1)
                         {
                             if (rec.Substring(0, 5) == "BS002")
                             {  //  Leverance Start
@@ -79,36 +79,36 @@ namespace Pbs3060
                             if (leverance == "0686")
                             {
                                 // -- Leverance 0686
-                                var antal = (from c in p_dbData3060.tblfrapbs
-                                             where c.leverancespecifikation == leverancespecifikation
+                                var antal = (from c in p_dbData3060.Tblfrapbs
+                                             where c.Leverancespecifikation == leverancespecifikation
                                              select c).Count();
                                 if (antal > 0) { throw new Exception("242 - Leverance med pbsfilesid: " + wpbsfilesid + " og leverancespecifikation: " + leverancespecifikation + " er indlæst tidligere"); }
 
                                 wleveranceid = p_dbData3060.nextval_v2("leveranceid");
-                                m_rec_pbsforsendelse = new tblpbsforsendelse
+                                m_rec_pbsforsendelse = new Tblpbsforsendelse
                                 {
-                                    delsystem = "BS1",
-                                    leverancetype = "0686",
-                                    oprettetaf = "Bet",
-                                    oprettet = DateTime.Now,
-                                    leveranceid = wleveranceid
+                                    Delsystem = "BS1",
+                                    Leverancetype = "0686",
+                                    Oprettetaf = "Bet",
+                                    Oprettet = DateTime.Now,
+                                    Leveranceid = wleveranceid
                                 };
-                                p_dbData3060.tblpbsforsendelse.Add(m_rec_pbsforsendelse);
+                                p_dbData3060.Tblpbsforsendelse.Add(m_rec_pbsforsendelse);
 
-                                m_rec_frapbs = new tblfrapbs
+                                m_rec_frapbs = new Tblfrapbs
                                 {
-                                    delsystem = "BS1",
-                                    leverancetype = "0686",
-                                    leverancespecifikation = leverancespecifikation,
-                                    leverancedannelsesdato = leverancedannelsesdato,
-                                    udtrukket = DateTime.Now
+                                    Delsystem = "BS1",
+                                    Leverancetype = "0686",
+                                    Leverancespecifikation = leverancespecifikation,
+                                    Leverancedannelsesdato = leverancedannelsesdato,
+                                    Udtrukket = DateTime.Now
                                 };
-                                m_rec_pbsforsendelse.tblfrapbs.Add(m_rec_frapbs);
+                                m_rec_pbsforsendelse.Tblfrapbs.Add(m_rec_frapbs);
 
-                                m_rec_pbsfiles = (from c in p_dbData3060.tblpbsfilename
-                                                  where c.id == rstpbsfiles.id
+                                m_rec_pbsfiles = (from c in p_dbData3060.Tblpbsfilename
+                                                  where c.Id == rstpbsfiles.Id
                                                   select c).First();
-                                m_rec_pbsforsendelse.tblpbsfilename.Add(m_rec_pbsfiles);
+                                m_rec_pbsforsendelse.Tblpbsfilename.Add(m_rec_pbsfiles);
                             };
                         };
 
@@ -159,7 +159,7 @@ namespace Pbs3060
                                 }
                                 else
                                 {
-                                    throw new Exception("244 - Rec# " + rstpbsfile.seqnr + " ukendt: " + rec);
+                                    throw new Exception("244 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
                                 };
                                 // -******************************************************************************************************
                                 // -******************************************************************************************************
@@ -185,7 +185,7 @@ namespace Pbs3060
                                 }
                                 else
                                 {
-                                    throw new Exception("245 - Rec# " + rstpbsfile.seqnr + " ukendt: " + rec);
+                                    throw new Exception("245 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
                                 };
                                 // -******************************************************************************************************
                                 // -******************************************************************************************************
@@ -211,7 +211,7 @@ namespace Pbs3060
                                 }
                                 else
                                 {
-                                    throw new Exception("246 - Rec# " + rstpbsfile.seqnr + " ukendt: " + rec);
+                                    throw new Exception("246 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
                                 };
                                 // -******************************************************************************************************
                                 // -******************************************************************************************************
@@ -237,7 +237,7 @@ namespace Pbs3060
                                 }
                                 else
                                 {
-                                    throw new Exception("247 - Rec# " + rstpbsfile.seqnr + " ukendt: " + rec);
+                                    throw new Exception("247 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
                                 };
                                 // -******************************************************************************************************
                                 // -******************************************************************************************************
@@ -263,7 +263,7 @@ namespace Pbs3060
                                 }
                                 else
                                 {
-                                    throw new Exception("248 - Rec# " + rstpbsfile.seqnr + " ukendt: " + rec);
+                                    throw new Exception("248 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
                                 };
                                 // -******************************************************************************************************
                                 // -******************************************************************************************************
@@ -275,13 +275,13 @@ namespace Pbs3060
                             }
                             else
                             {
-                                throw new Exception("249 - Rec# " + rstpbsfile.seqnr + " ukendt: " + rec);
+                                throw new Exception("249 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
                             };
                         }
 
                         else
                         {
-                            throw new Exception("250 - Rec# " + rstpbsfile.seqnr + " ukendt: " + rec);
+                            throw new Exception("250 - Rec# " + rstpbsfile.Seqnr + " ukendt: " + rec);
                         };
 
                     }
@@ -327,7 +327,7 @@ namespace Pbs3060
             decimal belobmun;
             int belob;
 
-            m_rec_indbetalingskort = new tblindbetalingskort
+            m_rec_indbetalingskort = new Tblindbetalingskort
             {
                 pbssektionnr = sektion,
                 pbstranskode = transkode
@@ -380,12 +380,12 @@ namespace Pbs3060
             if (sektion == "0196")
                 m_rec_indbetalingskort.regnr = rec.Substring(138, 4);
 
-            if ((from h in p_dbData3060.tblfak where h.faknr == m_rec_indbetalingskort.faknr select h).Count() == 1)
+            if ((from h in p_dbData3060.Tblfak where h.Faknr == m_rec_indbetalingskort.faknr select h).Count() == 1)
             {
-                if ((from k in p_dbData3060.tblindbetalingskort where k.Nr == m_rec_indbetalingskort.Nr && k.indbetalerident == m_rec_indbetalingskort.indbetalerident select k).Count() == 0)
+                if ((from k in p_dbData3060.Tblindbetalingskort where k.Nr == m_rec_indbetalingskort.Nr && k.indbetalerident == m_rec_indbetalingskort.indbetalerident select k).Count() == 0)
                 {
                     // Add tblindbetalingskort
-                    m_rec_frapbs.tblindbetalingskort.Add(m_rec_indbetalingskort);
+                    m_rec_frapbs.Tblindbetalingskort.Add(m_rec_indbetalingskort);
                 }
             }
         }

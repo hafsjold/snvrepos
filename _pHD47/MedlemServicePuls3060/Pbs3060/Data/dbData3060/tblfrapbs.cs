@@ -2,33 +2,27 @@ namespace Pbs3060
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
 
-    public partial class tblfrapbs
+    public partial class Tblfrapbs
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblfrapbs()
+        public Tblfrapbs()
         {
-            this.tblaftalelin = new HashSet<tblaftalelin>();
-            this.tblbet = new HashSet<tblbet>();
-            this.tblindbetalingskort = new HashSet<tblindbetalingskort>();
+            Tblaftalelin = new HashSet<Tblaftalelin>();
+            Tblbet = new HashSet<Tblbet>();
+            Tblindbetalingskort = new HashSet<Tblindbetalingskort>();
         }
-        [Key]
-        public int id { get; set; }
-        public string delsystem { get; set; }
-        public string leverancetype { get; set; }
-        public Nullable<System.DateTime> udtrukket { get; set; }
-        public Nullable<System.DateTime> bilagdato { get; set; }
-        public Nullable<int> pbsforsendelseid { get; set; }
-        public string leverancespecifikation { get; set; }
-        public Nullable<System.DateTime> leverancedannelsesdato { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblaftalelin> tblaftalelin { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblbet> tblbet { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblindbetalingskort> tblindbetalingskort { get; set; }
-        public virtual tblpbsforsendelse tblpbsforsendelse { get; set; }
+        public int Id { get; set; }
+        public string Delsystem { get; set; }
+        public string Leverancetype { get; set; }
+        public DateTime? Udtrukket { get; set; }
+        public DateTime? Bilagdato { get; set; }
+        public int? Pbsforsendelseid { get; set; }
+        public string Leverancespecifikation { get; set; }
+        public DateTime? Leverancedannelsesdato { get; set; }
+
+        public ICollection<Tblaftalelin> Tblaftalelin { get; set; }
+        public ICollection<Tblbet> Tblbet { get; set; }
+        public ICollection<Tblindbetalingskort> Tblindbetalingskort { get; set; }
+        public Tblpbsforsendelse Pbsforsendelse { get; set; }
     }
 }

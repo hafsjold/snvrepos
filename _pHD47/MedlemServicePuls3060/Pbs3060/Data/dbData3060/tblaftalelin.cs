@@ -4,7 +4,7 @@ namespace Pbs3060
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public partial class tblaftalelin
+    public partial class Tblaftalelin
     {
         [Key]
         public int id { get; set; }
@@ -18,6 +18,6 @@ namespace Pbs3060
         public Nullable<System.DateTime> aftaleslutdato { get; set; }
         public string pbssektionnr { get; set; }
     
-        public virtual tblfrapbs tblfrapbs { get; set; }
+        public virtual Tblfrapbs tblfrapbs { get; set; }
     }
 }

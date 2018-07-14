@@ -41,11 +41,11 @@ namespace Pbs3060
 
         public string OcrString(int pFaknr)
         {
-            var qry = from x in this.tblfak
-                      where x.faknr == pFaknr
+            var qry = from x in this.Tblfak
+                      where x.Faknr == pFaknr
                       select new
                       {
-                          Ocr = this.OcrString_Qry(x.faknr)
+                          Ocr = this.OcrString_Qry(x.Faknr)
                       };
 
             if (qry.Count() == 1)
@@ -60,7 +60,7 @@ namespace Pbs3060
 
         public string SendtSomString(int pFaknr)
         {
-            var qry = from x in this.tblindbetalingskort
+            var qry = from x in this.Tblindbetalingskort
                       where x.faknr == pFaknr
                       select new
                       {
@@ -79,7 +79,7 @@ namespace Pbs3060
 
         public bool erPBS(int pNr)
         {
-            var qry = from x in this.tblaftalelin
+            var qry = from x in this.Tblaftalelin
                       where x.Nr == pNr
                       select new
                       {

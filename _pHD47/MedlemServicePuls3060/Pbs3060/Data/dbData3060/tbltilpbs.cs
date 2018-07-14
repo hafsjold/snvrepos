@@ -4,34 +4,28 @@ namespace Pbs3060
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public partial class tbltilpbs
+    public partial class Tbltilpbs
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tbltilpbs()
+        public Tbltilpbs()
         {
-            this.tbladvis = new HashSet<tbladvis>();
-            this.tblfak = new HashSet<tblfak>();
-            this.tbloverforsel = new HashSet<tbloverforsel>();
-            this.tblrykker = new HashSet<tblrykker>();
+            this.Tbladvis = new HashSet<Tbladvis>();
+            this.Tblfak = new HashSet<Tblfak>();
+            this.Tbloverforsel = new HashSet<Tbloverforsel>();
+            this.Tblrykker = new HashSet<Tblrykker>();
         }
-        [Key]
-        public int id { get; set; }
-        public string delsystem { get; set; }
-        public string leverancetype { get; set; }
-        public Nullable<System.DateTime> bilagdato { get; set; }
-        public Nullable<int> pbsforsendelseid { get; set; }
-        public Nullable<System.DateTime> udtrukket { get; set; }
-        public string leverancespecifikation { get; set; }
-        public Nullable<System.DateTime> leverancedannelsesdato { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbladvis> tbladvis { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblfak> tblfak { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tbloverforsel> tbloverforsel { get; set; }
-        public virtual tblpbsforsendelse tblpbsforsendelse { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblrykker> tblrykker { get; set; }
+        public int Id { get; set; }
+        public string Delsystem { get; set; }
+        public string Leverancetype { get; set; }
+        public DateTime? Bilagdato { get; set; }
+        public int? Pbsforsendelseid { get; set; }
+        public DateTime? Udtrukket { get; set; }
+        public string Leverancespecifikation { get; set; }
+        public DateTime? Leverancedannelsesdato { get; set; }
+
+        public ICollection<Tbladvis> Tbladvis { get; set; }
+        public ICollection<Tblfak> Tblfak { get; set; }
+        public ICollection<Tbloverforsel> Tbloverforsel { get; set; }
+        public Tblpbsforsendelse Pbsforsendelse { get; set; }
+        public ICollection<Tblrykker> Tblrykker { get; set; }
     }
 }
