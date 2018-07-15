@@ -2,28 +2,26 @@ namespace Pbs3060
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
 
     public partial class Tblbetlin
     {
-        [Key]
-        public int id { get; set; }
-        public Nullable<int> betid { get; set; }
-        public string pbssektionnr { get; set; }
-        public string pbstranskode { get; set; }
-        public Nullable<int> Nr { get; set; }
-        public Nullable<int> faknr { get; set; }
-        public string debitorkonto { get; set; }
-        public Nullable<int> aftalenr { get; set; }
-        public Nullable<System.DateTime> betalingsdato { get; set; }
-        public Nullable<decimal> belob { get; set; }
-        public Nullable<System.DateTime> indbetalingsdato { get; set; }
-        public Nullable<System.DateTime> bogforingsdato { get; set; }
-        public Nullable<decimal> indbetalingsbelob { get; set; }
-        public string pbskortart { get; set; }
-        public Nullable<decimal> pbsgebyrbelob { get; set; }
-        public string pbsarkivnr { get; set; }
+        public int Id { get; set; }
+        public int? Betid { get; set; }
+        public string Pbssektionnr { get; set; }
+        public string Pbstranskode { get; set; }
+        public int? Nr { get; set; }
+        public int? Faknr { get; set; }
+        public string Debitorkonto { get; set; }
+        public int? Aftalenr { get; set; }
+        public DateTime? Betalingsdato { get; set; }
+        public decimal? Belob { get; set; }
+        public DateTime? Indbetalingsdato { get; set; }
+        public DateTime? Bogforingsdato { get; set; }
+        public decimal? Indbetalingsbelob { get; set; }
+        public string Pbskortart { get; set; }
+        public decimal? Pbsgebyrbelob { get; set; }
+        public string Pbsarkivnr { get; set; }
     
-        public virtual Tblbet tblbet { get; set; }
+        public virtual Tblbet Bet { get; set; }
     }
 }

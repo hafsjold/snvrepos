@@ -61,10 +61,10 @@ namespace Pbs3060
         public string SendtSomString(int pFaknr)
         {
             var qry = from x in this.Tblindbetalingskort
-                      where x.faknr == pFaknr
+                      where x.Faknr == pFaknr
                       select new
                       {
-                          SomString = this.SendtSomString_Qry(x.faknr)
+                          SomString = this.SendtSomString_Qry(x.Faknr)
                       };
 
             if (qry.Count() == 1)

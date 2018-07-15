@@ -17,7 +17,7 @@ namespace Pbs3060
         public MemPbsnetdir m_memPbsnetdir;
         private SftpClient m_sftp;
         private Tblpbsfile m_rec_pbsfile;
-        private tblsftp m_rec_sftp;
+        private Tblsftp m_rec_sftp;
 
         private clsSFTP() { }
         public clsSFTP(dbData3060DataContext p_dbData3060)
@@ -25,16 +25,16 @@ namespace Pbs3060
 #if (DEBUG)
             //m_rec_sftp = (from s in p_dbData3060.tblsftp where s.navn == "TestHD36" select s).First();
             //m_rec_sftp = (from s in p_dbData3060.tblsftp where s.navn == "Test" select s).First();
-            m_rec_sftp = (from s in p_dbData3060.tblsftp where s.navn == "Produktion" select s).First();
+            m_rec_sftp = (from s in p_dbData3060.Tblsftp where s.Navn == "Produktion" select s).First();
 #else
             //m_rec_sftp = (from s in p_dbData3060.tblsftp where s.navn == "Test" select s).First();
             m_rec_sftp = (from s in p_dbData3060.tblsftp where s.navn == "Produktion" select s).First();
 #endif
-            Console.WriteLine(string.Format("host={0}, port={1}, user={2}", m_rec_sftp.host, int.Parse(m_rec_sftp.port), m_rec_sftp.user), "SFTP ConnectionString");
-            byte[] bPK = Encoding.UTF8.GetBytes(m_rec_sftp.certificate);
+            Console.WriteLine(string.Format("host={0}, port={1}, user={2}", m_rec_sftp.Host, int.Parse(m_rec_sftp.Port), m_rec_sftp.User), "SFTP ConnectionString");
+            byte[] bPK = Encoding.UTF8.GetBytes(m_rec_sftp.Certificate);
             MemoryStream mPK = new MemoryStream(bPK);
-            PrivateKeyFile PK = new PrivateKeyFile(mPK, m_rec_sftp.pincode);
-            m_sftp = new SftpClient(m_rec_sftp.host, int.Parse(m_rec_sftp.port), m_rec_sftp.user, PK);
+            PrivateKeyFile PK = new PrivateKeyFile(mPK, m_rec_sftp.Pincode);
+            m_sftp = new SftpClient(m_rec_sftp.Host, int.Parse(m_rec_sftp.Port), m_rec_sftp.User, PK);
             m_sftp.Connect();
             Console.WriteLine("SFTP Connected");
         }
@@ -104,7 +104,7 @@ namespace Pbs3060
 
                     imapSaveAttachedFile(p_dbData3060, TilPBSFilename, b_TilPBSFile, true);
 
-                    string fullpath = m_rec_sftp.inbound + "/" + TilPBSFilename;
+                    string fullpath = m_rec_sftp.Inbound + "/" + TilPBSFilename;
                     MemoryStream ms_TilPBSFile = new MemoryStream(b_TilPBSFile);
 
                     Console.WriteLine(string.Format("Start Upload of {0}", fullpath));
@@ -112,7 +112,7 @@ namespace Pbs3060
                     Console.WriteLine(string.Format("{0} Upload Completed", fullpath));
 
                     m_rec_pbsfiles.Type = 8;
-                    m_rec_pbsfiles.Path = m_rec_sftp.inbound;
+                    m_rec_pbsfiles.Path = m_rec_sftp.Inbound;
                     m_rec_pbsfiles.Filename = TilPBSFilename;
                     m_rec_pbsfiles.Size = FilesSize;
                     m_rec_pbsfiles.Atime = DateTime.Now;
@@ -186,7 +186,7 @@ namespace Pbs3060
 
                     imapSaveAttachedFile(p_dbData3060, TilPBSFilename, b_TilPBSFile, true);
 
-                    string fullpath = m_rec_sftp.inbound + "/" + TilPBSFilename;
+                    string fullpath = m_rec_sftp.Inbound + "/" + TilPBSFilename;
                     MemoryStream ms_TilPBSFile = new MemoryStream(b_TilPBSFile);
 
                     Console.WriteLine(string.Format("Start Upload of {0}", fullpath));
@@ -194,7 +194,7 @@ namespace Pbs3060
                     Console.WriteLine(string.Format("{0} Upload Completed", fullpath));
 
                     m_rec_pbsfiles.Type = 8;
-                    m_rec_pbsfiles.Path = m_rec_sftp.inbound;
+                    m_rec_pbsfiles.Path = m_rec_sftp.Inbound;
                     m_rec_pbsfiles.Filename = TilPBSFilename;
                     m_rec_pbsfiles.Size = FilesSize;
                     m_rec_pbsfiles.Atime = DateTime.Now;
@@ -210,14 +210,14 @@ namespace Pbs3060
             m_memPbsnetdir = new MemPbsnetdir(); //opret ny memPbsnetdir
 
             //  Iterate over the files.
-            foreach (SftpFile fileObj in m_sftp.ListDirectory(m_rec_sftp.outbound))
+            foreach (SftpFile fileObj in m_sftp.ListDirectory(m_rec_sftp.Outbound))
             {
                 if (fileObj.Name != "." && fileObj.Name != "..")
                 {
                     recPbsnetdir rec = new recPbsnetdir
                     {
                         Type = 8,
-                        Path = m_rec_sftp.outbound,
+                        Path = m_rec_sftp.Outbound,
                         Filename = fileObj.Name,
                         Size = (int)fileObj.Length,
                         Atime = fileObj.LastAccessTime,
@@ -327,14 +327,14 @@ namespace Pbs3060
             m_memPbsnetdir = new MemPbsnetdir(); //opret ny memPbsnetdir
 
             //  Iterate over the files. 
-            foreach (SftpFile fileObj in m_sftp.ListDirectory(m_rec_sftp.outbound))
+            foreach (SftpFile fileObj in m_sftp.ListDirectory(m_rec_sftp.Outbound))
             {
                 if (fileObj.Name != "." && fileObj.Name != "..")
                 {
                     recPbsnetdir rec = new recPbsnetdir
                     {
                         Type = 8,
-                        Path = m_rec_sftp.outbound,
+                        Path = m_rec_sftp.Outbound,
                         Filename = fileObj.Name,
                         Size = (int)fileObj.Length,
                         Atime = fileObj.LastAccessTime,

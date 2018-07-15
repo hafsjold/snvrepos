@@ -23,9 +23,9 @@ namespace Pbs3060
             DateTime KontingentFradato = startdato;
             DateTime KontingentTildato = KontingentFradato.AddYears(1).AddDays(-1);
 
-            var qry1 = from k in p_dbData3060.tblKontingent
-                       where k.startdato.Date >= KontingentFradato.Date || k.slutdato.Date >= KontingentFradato.Date
-                       orderby k.startdato
+            var qry1 = from k in p_dbData3060.TblKontingent
+                       where k.Startdato.Date >= KontingentFradato.Date || k.Slutdato.Date >= KontingentFradato.Date
+                       orderby k.Startdato
                        select k;
 
             int antal = qry1.Count();
@@ -34,7 +34,7 @@ namespace Pbs3060
             foreach (var k in qry1)
             {
                 if (n == 1)
-                    kont += k.aarskontingent;
+                    kont += k.Aarskontingent;
                 n++;
             }
             this.Kontingent = kont;

@@ -14,16 +14,85 @@
             optionsBuilder.UseSqlServer(connectionString);
         }
 
-        /*
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+            modelBuilder.Entity<TblJobqueue>(entity =>
+            {
+                entity.ToTable("tblJobqueue");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Completed)
+                    .HasColumnName("completed")
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.Jobname)
+                    .IsRequired()
+                    .HasColumnName("jobname")
+                    .HasMaxLength(25);
+
+                entity.Property(e => e.Onhold)
+                    .HasColumnName("onhold")
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.Scheduleid).HasColumnName("scheduleid");
+
+                entity.Property(e => e.Selected)
+                    .HasColumnName("selected")
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.Starttime)
+                    .HasColumnName("starttime")
+                    .HasColumnType("datetime");
+
+                entity.HasOne(d => d.Schedule)
+                    .WithMany(p => p.TblJobqueue)
+                    .HasForeignKey(d => d.Scheduleid)
+                    .OnDelete(DeleteBehavior.SetNull)
+                    .HasConstraintName("tblJobqueue_fk");
+            });
+
+            modelBuilder.Entity<TblJobqueue>(entity =>
+            {
+                entity.ToTable("tblJobqueue");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Completed)
+                    .HasColumnName("completed")
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.Jobname)
+                    .IsRequired()
+                    .HasColumnName("jobname")
+                    .HasMaxLength(25);
+
+                entity.Property(e => e.Onhold)
+                    .HasColumnName("onhold")
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.Scheduleid).HasColumnName("scheduleid");
+
+                entity.Property(e => e.Selected)
+                    .HasColumnName("selected")
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.Starttime)
+                    .HasColumnName("starttime")
+                    .HasColumnType("datetime");
+                
+                entity.HasOne(d => d.Schedule)
+                    .WithMany(p => p.TblJobqueue)
+                    .HasForeignKey(d => d.Scheduleid)
+                    .OnDelete(DeleteBehavior.SetNull)
+                    .HasConstraintName("tblJobqueue_fk");
+                
+            });
         }
-        */
 
-        public virtual DbSet<tblJobqueue> tblJobqueue { get; set; }
-        public virtual DbSet<tblSchedule> tblSchedule { get; set; }
 
+        public virtual DbSet<TblJobqueue> tblJobqueue { get; set; }
+        public virtual DbSet<TblSchedule> tblSchedule { get; set; }
 
 
         /*

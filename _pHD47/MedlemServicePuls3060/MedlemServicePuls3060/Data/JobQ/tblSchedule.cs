@@ -3,21 +3,19 @@ namespace MedlemServicePuls3060
     using System;
     using System.Collections.Generic;
     
-    public partial class tblSchedule
+    public partial class TblSchedule
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tblSchedule()
+        public TblSchedule()
         {
-            this.tblJobqueues = new HashSet<tblJobqueue>();
+            this.TblJobqueue = new HashSet<TblJobqueue>();
         }
     
-        public int id { get; set; }
-        public string schedule { get; set; }
-        public string jobname { get; set; }
-        public Nullable<System.DateTime> start { get; set; }
-        public Nullable<System.DateTime> end { get; set; }
+        public int Id { get; set; }
+        public string Schedule { get; set; }
+        public string Jobname { get; set; }
+        public DateTime? Start { get; set; }
+        public DateTime? End { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tblJobqueue> tblJobqueues { get; set; }
+        public ICollection<TblJobqueue> TblJobqueue { get; set; }
     }
 }

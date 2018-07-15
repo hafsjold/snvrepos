@@ -248,12 +248,12 @@ namespace Pbs3060
                     foreach (Tblbet rec_bet in m_rec_frapbs.Tblbet)
                     {
                         var SumIndbetalingsbelob = (
-                            from c in rec_bet.tblbetlin
-                            group c by c.betid into g
-                            select new { Betid = g.Key, SumIndbetalingsbelob = g.Sum(c => c.indbetalingsbelob) }
+                            from c in rec_bet.Tblbetlin
+                            group c by c.Betid into g
+                            select new { Betid = g.Key, SumIndbetalingsbelob = g.Sum(c => c.Indbetalingsbelob) }
                             ).First().SumIndbetalingsbelob;
 
-                        rec_bet.indbetalingsbelob = SumIndbetalingsbelob;
+                        rec_bet.Indbetalingsbelob = SumIndbetalingsbelob;
                     }
 
                 }
@@ -294,45 +294,45 @@ namespace Pbs3060
             // - transkode 0239, tilbageført betaling
             m_rec_betlin = new Tblbetlin
             {
-                pbssektionnr = sektion,
-                pbstranskode = transkode
+                Pbssektionnr = sektion,
+                Pbstranskode = transkode
             };
 
             // --  debitorkonto
             if ((sektion == "0211"))
             {
                 m_rec_betlin.Nr = int.Parse(rec.Substring(33, 7)); //***MHA***
-                m_rec_betlin.debitorkonto = rec.Substring(25, 15);
+                m_rec_betlin.Debitorkonto = rec.Substring(25, 15);
             }
             else if ((sektion == "0215"))
             {
                 m_rec_betlin.Nr = int.Parse(rec.Substring(37, 7));
-                m_rec_betlin.debitorkonto = rec.Substring(29, 15);
+                m_rec_betlin.Debitorkonto = rec.Substring(29, 15);
             }
             else
             {
                 m_rec_betlin.Nr = null;
-                m_rec_betlin.debitorkonto = null;
+                m_rec_betlin.Debitorkonto = null;
             }
 
             // --  aftalenr
             if ((sektion == "0211"))
             {
-                m_rec_betlin.aftalenr = int.Parse(rec.Substring(40, 9));
+                m_rec_betlin.Aftalenr = int.Parse(rec.Substring(40, 9));
             }
             else
             {
-                m_rec_betlin.aftalenr = null;
+                m_rec_betlin.Aftalenr = null;
             }
 
             // --  pbskortart
             if ((sektion == "0215"))
             {
-                m_rec_betlin.pbskortart = rec.Substring(44, 2);
+                m_rec_betlin.Pbskortart = rec.Substring(44, 2);
             }
             else
             {
-                m_rec_betlin.pbskortart = null;
+                m_rec_betlin.Pbskortart = null;
             }
 
             // --  pbsgebyrbelob
@@ -343,20 +343,20 @@ namespace Pbs3060
                 belobmun = (belob / 100);
                 if ((fortegn == 0))
                 {
-                    m_rec_betlin.pbsgebyrbelob = 0;
+                    m_rec_betlin.Pbsgebyrbelob = 0;
                 }
                 else if ((fortegn == 1))
                 {
-                    m_rec_betlin.pbsgebyrbelob = belobmun;
+                    m_rec_betlin.Pbsgebyrbelob = belobmun;
                 }
                 else
                 {
-                    m_rec_betlin.pbsgebyrbelob = 0;
+                    m_rec_betlin.Pbsgebyrbelob = 0;
                 }
             }
             else
             {
-                m_rec_betlin.pbsgebyrbelob = 0;
+                m_rec_betlin.Pbsgebyrbelob = 0;
             }
 
             // --  betalingsdato
@@ -364,31 +364,31 @@ namespace Pbs3060
             {
                 if ((rec.Substring(49, 6) != "000000"))
                 {
-                    m_rec_betlin.betalingsdato = DateTime.Parse("20"
+                    m_rec_betlin.Betalingsdato = DateTime.Parse("20"
                                 + (rec.Substring(53, 2) + ("-"
                                 + (rec.Substring(51, 2) + ("-" + rec.Substring(49, 2))))));
                 }
                 else
                 {
-                    m_rec_betlin.betalingsdato = null;
+                    m_rec_betlin.Betalingsdato = null;
                 }
             }
             else if ((sektion == "0215"))
             {
                 if ((rec.Substring(52, 6) != "000000"))
                 {
-                    m_rec_betlin.betalingsdato = DateTime.Parse("20"
+                    m_rec_betlin.Betalingsdato = DateTime.Parse("20"
                                 + (rec.Substring(56, 2) + ("-"
                                 + (rec.Substring(54, 2) + ("-" + rec.Substring(52, 2))))));
                 }
                 else
                 {
-                    m_rec_betlin.betalingsdato = null;
+                    m_rec_betlin.Betalingsdato = null;
                 }
             }
             else
             {
-                m_rec_betlin.betalingsdato = null;
+                m_rec_betlin.Betalingsdato = null;
             }
 
             // --  belob
@@ -399,19 +399,19 @@ namespace Pbs3060
                 belobmun = (belob / 100);
                 if ((fortegn == 0))
                 {
-                    m_rec_betlin.belob = 0;
+                    m_rec_betlin.Belob = 0;
                 }
                 else if ((fortegn == 1))
                 {
-                    m_rec_betlin.belob = belobmun;
+                    m_rec_betlin.Belob = belobmun;
                 }
                 else if ((fortegn == 2))
                 {
-                    m_rec_betlin.belob = (belobmun * -1);
+                    m_rec_betlin.Belob = (belobmun * -1);
                 }
                 else
                 {
-                    m_rec_betlin.belob = null;
+                    m_rec_betlin.Belob = null;
                 }
             }
             else if ((sektion == "0215"))
@@ -421,68 +421,68 @@ namespace Pbs3060
                 belobmun = (belob / 100);
                 if ((fortegn == 0))
                 {
-                    m_rec_betlin.belob = 0;
+                    m_rec_betlin.Belob = 0;
                 }
                 else if ((fortegn == 1))
                 {
-                    m_rec_betlin.belob = belobmun;
+                    m_rec_betlin.Belob = belobmun;
                 }
                 else
                 {
-                    m_rec_betlin.belob = null;
+                    m_rec_betlin.Belob = null;
                 }
             }
             else
             {
-                m_rec_betlin.belob = null;
+                m_rec_betlin.Belob = null;
             }
 
             // --  faknr
             if ((sektion == "0211"))
             {
-                m_rec_betlin.faknr = int.Parse("0" + rec.Substring(69, 9).Trim()); //***MHA***
+                m_rec_betlin.Faknr = int.Parse("0" + rec.Substring(69, 9).Trim()); //***MHA***
             }
             else if ((sektion == "0215"))
             {
-                m_rec_betlin.faknr = int.Parse("0" + rec.Substring(72, 9).Trim());
+                m_rec_betlin.Faknr = int.Parse("0" + rec.Substring(72, 9).Trim());
             }
             else
             {
-                m_rec_betlin.faknr = null;
+                m_rec_betlin.Faknr = null;
             }
 
             // --  pbsarkivnr
             if ((sektion == "0215"))
             {
-                m_rec_betlin.pbsarkivnr = rec.Substring(81, 22);
+                m_rec_betlin.Pbsarkivnr = rec.Substring(81, 22);
             }
             else
             {
-                m_rec_betlin.pbsarkivnr = null;
+                m_rec_betlin.Pbsarkivnr = null;
             }
 
             // --  indbetalingsdato
             if ((rec.Substring(103, 6) != "000000"))
             {
-                m_rec_betlin.indbetalingsdato = DateTime.Parse("20"
+                m_rec_betlin.Indbetalingsdato = DateTime.Parse("20"
                             + (rec.Substring(107, 2) + ("-"
                             + (rec.Substring(105, 2) + ("-" + rec.Substring(103, 2))))));
             }
             else
             {
-                m_rec_betlin.indbetalingsdato = null;
+                m_rec_betlin.Indbetalingsdato = null;
             }
 
             // --  bogforingsdato
             if ((rec.Substring(109, 6) != "000000"))
             {
-                m_rec_betlin.bogforingsdato = DateTime.Parse("20"
+                m_rec_betlin.Bogforingsdato = DateTime.Parse("20"
                             + (rec.Substring(113, 2) + ("-"
                             + (rec.Substring(111, 2) + ("-" + rec.Substring(109, 2))))));
             }
             else
             {
-                m_rec_betlin.bogforingsdato = null;
+                m_rec_betlin.Bogforingsdato = null;
             }
 
             // --  indbetalingsbelob
@@ -493,19 +493,19 @@ namespace Pbs3060
                 belobmun = (belob / 100);
                 if ((fortegn == 0))
                 {
-                    m_rec_betlin.indbetalingsbelob = 0;
+                    m_rec_betlin.Indbetalingsbelob = 0;
                 }
                 else if ((fortegn == 1))
                 {
-                    m_rec_betlin.indbetalingsbelob = belobmun;
+                    m_rec_betlin.Indbetalingsbelob = belobmun;
                 }
                 else if ((fortegn == 2))
                 {
-                    m_rec_betlin.indbetalingsbelob = (belobmun * -1);
+                    m_rec_betlin.Indbetalingsbelob = (belobmun * -1);
                 }
                 else
                 {
-                    m_rec_betlin.indbetalingsbelob = null;
+                    m_rec_betlin.Indbetalingsbelob = null;
                 }
             }
             else if ((sektion == "0215"))
@@ -515,20 +515,20 @@ namespace Pbs3060
                 belobmun = (belob / 100);
                 if ((fortegn == 0))
                 {
-                    m_rec_betlin.indbetalingsbelob = 0;
+                    m_rec_betlin.Indbetalingsbelob = 0;
                 }
                 else if ((fortegn == 1))
                 {
-                    m_rec_betlin.indbetalingsbelob = belobmun;
+                    m_rec_betlin.Indbetalingsbelob = belobmun;
                 }
                 else
                 {
-                    m_rec_betlin.indbetalingsbelob = null;
+                    m_rec_betlin.Indbetalingsbelob = null;
                 }
             }
             else
             {
-                m_rec_betlin.indbetalingsbelob = null;
+                m_rec_betlin.Indbetalingsbelob = null;
             }
 
 
@@ -536,9 +536,9 @@ namespace Pbs3060
             try
             {
                 m_rec_bet = (from c in m_rec_frapbs.Tblbet
-                             where c.pbssektionnr == sektion
-                                && c.transkode == transkode
-                                && c.bogforingsdato == m_rec_betlin.bogforingsdato
+                             where c.Pbssektionnr == sektion
+                                && c.Transkode == transkode
+                                && c.Bogforingsdato == m_rec_betlin.Bogforingsdato
                              select c).First();
 
             }
@@ -546,37 +546,37 @@ namespace Pbs3060
             {
                 m_rec_bet = new Tblbet
                 {
-                    pbssektionnr = sektion,
-                    transkode = transkode,
-                    bogforingsdato = m_rec_betlin.bogforingsdato
+                    Pbssektionnr = sektion,
+                    Transkode = transkode,
+                    Bogforingsdato = m_rec_betlin.Bogforingsdato
                 };
                 m_rec_frapbs.Tblbet.Add(m_rec_bet);
             }
 
             // Add tblbetlin
-            m_rec_bet.tblbetlin.Add(m_rec_betlin);
+            m_rec_bet.Tblbetlin.Add(m_rec_betlin);
         }
 
         public int betalinger_til_rsmembership(dbData3060DataContext p_dbData3060, puls3060_nyEntities p_dbPuls3060_dk)
         {
             int saveBetid = 0;
             var rsmbrshp = from bl in p_dbData3060.Tblbetlin
-                           where (bl.pbstranskode == "0236" || bl.pbstranskode == "0297")
-                           join b in p_dbData3060.Tblbet on bl.betid equals b.id
-                           where b.rsmembership == null || b.rsmembership == false
-                           join p in p_dbData3060.Tblfrapbs on b.frapbsid equals p.Id
-                           orderby p.Id, b.id, bl.id
+                           where (bl.Pbstranskode == "0236" || bl.Pbstranskode == "0297")
+                           join b in p_dbData3060.Tblbet on bl.Betid equals b.Id
+                           where b.Rsmembership == null || b.Rsmembership == false
+                           join p in p_dbData3060.Tblfrapbs on b.Frapbsid equals p.Id
+                           orderby p.Id, b.Id, bl.Id
                            select new
                            {
                                Frapbsid = p.Id,
                                p.Leverancespecifikation,
-                               Betid = b.id,
-                               Betlinid = bl.id,
-                               bl.betalingsdato,
-                               bl.indbetalingsdato,
-                               bl.indbetalingsbelob,
-                               bl.faknr,
-                               bl.debitorkonto
+                               Betid = b.Id,
+                               Betlinid = bl.Id,
+                               bl.Betalingsdato,
+                               bl.Indbetalingsdato,
+                               bl.Indbetalingsbelob,
+                               bl.Faknr,
+                               bl.Debitorkonto
                            };
 
             int AntalBetalinger = rsmbrshp.Count();
@@ -589,13 +589,13 @@ namespace Pbs3060
                     if (saveBetid != b.Betid) // ny gruppe
                     {
                         saveBetid = b.Betid;
-                        var rec_bet = (from ub in p_dbData3060.Tblbet where ub.id == b.Betid select ub).First();
-                        rec_bet.rsmembership = true;
+                        var rec_bet = (from ub in p_dbData3060.Tblbet where ub.Id == b.Betid select ub).First();
+                        rec_bet.Rsmembership = true;
                     }
 
                     // Do somthing here
                     var qry = from f in p_dbData3060.Tblfak
-                              where f.Faknr == b.faknr
+                              where f.Faknr == b.Faknr
                               join m in p_dbData3060.TblrsmembershipTransactions on f.Id equals m.Id
                               select new tblmembershippayment
                               {
@@ -611,7 +611,7 @@ namespace Pbs3060
                         //*********************************************************
                         p_dbPuls3060_dk.tblmembershippayment.Add(rec_membershippayment);
                         p_dbPuls3060_dk.SaveChanges();
-                        Console.WriteLine(string.Format("betalinger_til_rsmembership - faknr {0} betalt", b.faknr));
+                        Console.WriteLine(string.Format("betalinger_til_rsmembership - faknr {0} betalt", b.Faknr));
                     }
                 }
                 p_dbData3060.SaveChanges();
