@@ -2,22 +2,20 @@ namespace Pbs3060
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
 
     public partial class Tblaftalelin
     {
-        [Key]
-        public int id { get; set; }
-        public int frapbsid { get; set; }
-        public string pbstranskode { get; set; }
+        public int Id { get; set; }
+        public int Frapbsid { get; set; }
+        public string Pbstranskode { get; set; }
         public int Nr { get; set; }
-        public string debitorkonto { get; set; }
-        public string debgrpnr { get; set; }
-        public Nullable<int> aftalenr { get; set; }
-        public Nullable<System.DateTime> aftalestartdato { get; set; }
-        public Nullable<System.DateTime> aftaleslutdato { get; set; }
-        public string pbssektionnr { get; set; }
+        public string Debitorkonto { get; set; }
+        public string Debgrpnr { get; set; }
+        public int? Aftalenr { get; set; }
+        public DateTime? Aftalestartdato { get; set; }
+        public DateTime? Aftaleslutdato { get; set; }
+        public string Pbssektionnr { get; set; }
     
-        public virtual Tblfrapbs tblfrapbs { get; set; }
+        public Tblfrapbs Frapbs { get; set; }
     }
 }

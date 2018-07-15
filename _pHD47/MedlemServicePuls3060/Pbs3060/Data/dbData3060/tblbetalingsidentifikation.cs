@@ -2,16 +2,14 @@ namespace Pbs3060
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
 
     public partial class Tblbetalingsidentifikation
     {
-        [Key]
-        public int id { get; set; }
-        public string betalingsidentifikation { get; set; }
-        public Nullable<System.DateTime> betalingsdato { get; set; }
-        public Nullable<decimal> belob { get; set; }
-        public Nullable<int> Nr { get; set; }
-        public Nullable<int> bogfkonto { get; set; }
+        public int Id { get; set; }
+        public string Betalingsidentifikation { get; set; }
+        public DateTime? Betalingsdato { get; set; }
+        public decimal? Belob { get; set; }
+        public int? Nr { get; set; }
+        public int? Bogfkonto { get; set; }
     }
 }

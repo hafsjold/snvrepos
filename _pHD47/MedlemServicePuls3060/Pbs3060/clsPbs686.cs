@@ -329,8 +329,8 @@ namespace Pbs3060
 
             m_rec_indbetalingskort = new Tblindbetalingskort
             {
-                pbssektionnr = sektion,
-                pbstranskode = transkode
+                Pbssektionnr = sektion,
+                Pbstranskode = transkode
             };
 
             //  Medlem Nr
@@ -344,45 +344,45 @@ namespace Pbs3060
             }
 
             //  debitorkonto
-            m_rec_indbetalingskort.debitorkonto = rec.Substring(27, 15);
+            m_rec_indbetalingskort.Debitorkonto = rec.Substring(27, 15);
 
             //  debgrpnr
-            m_rec_indbetalingskort.debgrpnr = rec.Substring(22, 5);
+            m_rec_indbetalingskort.Debgrpnr = rec.Substring(22, 5);
 
             //  Kortartkode
-            m_rec_indbetalingskort.kortartkode = rec.Substring(128, 2);
+            m_rec_indbetalingskort.Kortartkode = rec.Substring(128, 2);
 
             //  FI-kreditor
-            m_rec_indbetalingskort.fikreditornr = rec.Substring(130, 8);
+            m_rec_indbetalingskort.Fikreditornr = rec.Substring(130, 8);
 
             //  Indbetalerident
-            m_rec_indbetalingskort.indbetalerident = "000" + rec.Substring(82, 16); //Tidligere 19 lang i 217 record
+            m_rec_indbetalingskort.Indbetalerident = "000" + rec.Substring(82, 16); //Tidligere 19 lang i 217 record
 
             //  dato
             if (rec.Substring(51, 8) != "00000000")
             {
-                m_rec_indbetalingskort.dato = DateTime.Parse(rec.Substring(55, 4) + "-" + rec.Substring(53, 2) + "-" + rec.Substring(51, 2));
+                m_rec_indbetalingskort.Dato = DateTime.Parse(rec.Substring(55, 4) + "-" + rec.Substring(53, 2) + "-" + rec.Substring(51, 2));
             }
             else
             {
-                m_rec_indbetalingskort.dato = null;
+                m_rec_indbetalingskort.Dato = null;
             };
 
             //  Beløb
             belob = int.Parse(rec.Substring(60, 13));
             belobmun = ((decimal)belob) / 100;
-            m_rec_indbetalingskort.belob = belobmun;
+            m_rec_indbetalingskort.Belob = belobmun;
 
             //  Faknr
-            m_rec_indbetalingskort.faknr = int.Parse(rec.Substring(73, 9));
+            m_rec_indbetalingskort.Faknr = int.Parse(rec.Substring(73, 9));
 
             //  Netbank regnr
             if (sektion == "0196")
-                m_rec_indbetalingskort.regnr = rec.Substring(138, 4);
+                m_rec_indbetalingskort.Regnr = rec.Substring(138, 4);
 
-            if ((from h in p_dbData3060.Tblfak where h.Faknr == m_rec_indbetalingskort.faknr select h).Count() == 1)
+            if ((from h in p_dbData3060.Tblfak where h.Faknr == m_rec_indbetalingskort.Faknr select h).Count() == 1)
             {
-                if ((from k in p_dbData3060.Tblindbetalingskort where k.Nr == m_rec_indbetalingskort.Nr && k.indbetalerident == m_rec_indbetalingskort.indbetalerident select k).Count() == 0)
+                if ((from k in p_dbData3060.Tblindbetalingskort where k.Nr == m_rec_indbetalingskort.Nr && k.Indbetalerident == m_rec_indbetalingskort.Indbetalerident select k).Count() == 0)
                 {
                     // Add tblindbetalingskort
                     m_rec_frapbs.Tblindbetalingskort.Add(m_rec_indbetalingskort);

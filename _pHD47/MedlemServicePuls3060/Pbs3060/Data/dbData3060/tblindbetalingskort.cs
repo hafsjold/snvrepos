@@ -2,26 +2,24 @@ namespace Pbs3060
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
 
     public partial class Tblindbetalingskort
     {
-        [Key]
-        public int id { get; set; }
-        public int frapbsid { get; set; }
-        public string pbstranskode { get; set; }
+        public int Id { get; set; }
+        public int Frapbsid { get; set; }
+        public string Pbstranskode { get; set; }
         public int Nr { get; set; }
-        public Nullable<int> faknr { get; set; }
-        public string debitorkonto { get; set; }
-        public string debgrpnr { get; set; }
-        public string kortartkode { get; set; }
-        public string fikreditornr { get; set; }
-        public string indbetalerident { get; set; }
-        public Nullable<System.DateTime> dato { get; set; }
-        public Nullable<decimal> belob { get; set; }
-        public string pbssektionnr { get; set; }
-        public string regnr { get; set; }
+        public int? Faknr { get; set; }
+        public string Debitorkonto { get; set; }
+        public string Debgrpnr { get; set; }
+        public string Kortartkode { get; set; }
+        public string Fikreditornr { get; set; }
+        public string Indbetalerident { get; set; }
+        public DateTime? Dato { get; set; }
+        public decimal? Belob { get; set; }
+        public string Pbssektionnr { get; set; }
+        public string Regnr { get; set; }
     
-        public virtual Tblfrapbs tblfrapbs { get; set; }
+        public Tblfrapbs Frapbs { get; set; }
     }
 }

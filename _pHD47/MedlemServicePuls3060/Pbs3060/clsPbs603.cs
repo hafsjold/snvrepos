@@ -379,8 +379,8 @@ namespace Pbs3060
             // - transkode 0234, aftale afmeldt af betalingsservice
             m_rec_aftalelin = new Tblaftalelin
             {
-                pbssektionnr = sektion,
-                pbstranskode = transkode
+                Pbssektionnr = sektion,
+                Pbstranskode = transkode
             };
 
             //  Medlem Nr
@@ -393,32 +393,32 @@ namespace Pbs3060
                 m_rec_aftalelin.Nr = 0;
             }
             //  debitorkonto
-            m_rec_aftalelin.debitorkonto = rec.Substring(25, 15);
+            m_rec_aftalelin.Debitorkonto = rec.Substring(25, 15);
 
             //  debgrpnr
-            m_rec_aftalelin.debgrpnr = rec.Substring(20, 5);
+            m_rec_aftalelin.Debgrpnr = rec.Substring(20, 5);
 
             //  aftalenr
-            m_rec_aftalelin.aftalenr = int.Parse(rec.Substring(40, 9));
+            m_rec_aftalelin.Aftalenr = int.Parse(rec.Substring(40, 9));
 
             //  aftalestartdato
             if (rec.Substring(49, 6) != "000000")
             {
-                m_rec_aftalelin.aftalestartdato = DateTime.Parse("20" + rec.Substring(53, 2) + "-" + rec.Substring(51, 2) + "-" + rec.Substring(49, 2));
+                m_rec_aftalelin.Aftalestartdato = DateTime.Parse("20" + rec.Substring(53, 2) + "-" + rec.Substring(51, 2) + "-" + rec.Substring(49, 2));
             }
             else
             {
-                m_rec_aftalelin.aftalestartdato = null;
+                m_rec_aftalelin.Aftalestartdato = null;
             };
 
             //  aftaleslutdato
             if (rec.Substring(55, 6) != "000000")
             {
-                m_rec_aftalelin.aftaleslutdato = DateTime.Parse("20" + rec.Substring(59, 2) + "-" + rec.Substring(57, 2) + "-" + rec.Substring(55, 2));
+                m_rec_aftalelin.Aftaleslutdato = DateTime.Parse("20" + rec.Substring(59, 2) + "-" + rec.Substring(57, 2) + "-" + rec.Substring(55, 2));
             }
             else
             {
-                m_rec_aftalelin.aftaleslutdato = null;
+                m_rec_aftalelin.Aftaleslutdato = null;
             };
 
             // Add tblaftalelin
@@ -436,8 +436,8 @@ namespace Pbs3060
 
             m_rec_indbetalingskort = new Tblindbetalingskort
             {
-                pbssektionnr = sektion,
-                pbstranskode = transkode
+                Pbssektionnr = sektion,
+                Pbstranskode = transkode
             };
 
             //  Medlem Nr
@@ -451,39 +451,39 @@ namespace Pbs3060
             }
 
             //  debitorkonto
-            m_rec_indbetalingskort.debitorkonto = rec.Substring(25, 15);
+            m_rec_indbetalingskort.Debitorkonto = rec.Substring(25, 15);
 
             //  debgrpnr
-            m_rec_indbetalingskort.debgrpnr = rec.Substring(20, 5);
+            m_rec_indbetalingskort.Debgrpnr = rec.Substring(20, 5);
 
             //  Kortartkode
-            m_rec_indbetalingskort.kortartkode = rec.Substring(40, 2);
+            m_rec_indbetalingskort.Kortartkode = rec.Substring(40, 2);
 
             //  FI-kreditor
-            m_rec_indbetalingskort.fikreditornr = rec.Substring(42, 8);
+            m_rec_indbetalingskort.Fikreditornr = rec.Substring(42, 8);
 
             //  Indbetalerident
-            m_rec_indbetalingskort.indbetalerident = rec.Substring(50, 19);
+            m_rec_indbetalingskort.Indbetalerident = rec.Substring(50, 19);
 
             //  dato
             if (rec.Substring(55, 6) != "000000")
             {
-                m_rec_indbetalingskort.dato = DateTime.Parse("20" + rec.Substring(73, 2) + "-" + rec.Substring(71, 2) + "-" + rec.Substring(69, 2));
+                m_rec_indbetalingskort.Dato = DateTime.Parse("20" + rec.Substring(73, 2) + "-" + rec.Substring(71, 2) + "-" + rec.Substring(69, 2));
             }
             else
             {
-                m_rec_indbetalingskort.dato = null;
+                m_rec_indbetalingskort.Dato = null;
             };
 
             //  Beløb
             belob = int.Parse(rec.Substring(75, 13));
             belobmun = ((decimal)belob) / 100;
-            m_rec_indbetalingskort.belob = belobmun;
+            m_rec_indbetalingskort.Belob = belobmun;
 
             //  Faknr
-            m_rec_indbetalingskort.faknr = int.Parse(rec.Substring(88, 9));
+            m_rec_indbetalingskort.Faknr = int.Parse(rec.Substring(88, 9));
 
-            if ((from k in p_dbData3060.Tblindbetalingskort where k.Nr == m_rec_indbetalingskort.Nr && k.indbetalerident == m_rec_indbetalingskort.indbetalerident select k).Count() == 0)
+            if ((from k in p_dbData3060.Tblindbetalingskort where k.Nr == m_rec_indbetalingskort.Nr && k.Indbetalerident == m_rec_indbetalingskort.Indbetalerident select k).Count() == 0)
             {
                 // Add tblindbetalingskort
                 m_rec_frapbs.Tblindbetalingskort.Add(m_rec_indbetalingskort);

@@ -264,14 +264,14 @@ namespace MedlemServicePuls3060
             {
                 try
                 {
-                    var Schedules = from s in db.tblSchedule orderby s.start select s;
+                    var Schedules = from s in db.tblSchedule orderby s.Start select s;
                     foreach (var s in Schedules)
                     {
-                        if (Enum.IsDefined(typeof(enumTask), s.jobname))
+                        if (Enum.IsDefined(typeof(enumTask), s.Jobname))
                         {
-                            var occurrence = CrontabSchedule.Parse(s.schedule).GetNextOccurrences(DateTime.UtcNow, DateTime.UtcNow.AddDays(days)).GetEnumerator();
+                            var occurrence = CrontabSchedule.Parse(s.Schedule).GetNextOccurrences(DateTime.UtcNow, DateTime.UtcNow.AddDays(days)).GetEnumerator();
                             while (occurrence.MoveNext())
-                                JobQueueAdd(occurrence.Current, s.jobname, s.id, false);
+                                JobQueueAdd(occurrence.Current, s.Jobname, s.Id, false);
                         }
                     }
                 }
@@ -288,19 +288,19 @@ namespace MedlemServicePuls3060
             {
                 var qry = from jq in db.tblJobqueue
                           where
-                          jq.starttime == starttime
-                          && jq.jobname == jobname
+                          jq.Starttime == starttime
+                          && jq.Jobname == jobname
                           select jq;
                 if (qry.Count() == 0)
                 {
-                    tblJobqueue rec = new tblJobqueue
+                    TblJobqueue rec = new TblJobqueue
                     {
-                        scheduleid = scheduleid,
-                        starttime = starttime,
-                        jobname = jobname,
-                        onhold = onhold,
-                        selected = false,
-                        completed = false
+                        Scheduleid = scheduleid,
+                        Starttime = starttime,
+                        Jobname = jobname,
+                        Onhold = onhold,
+                        Selected = false,
+                        Completed = false
                     };
                     db.tblJobqueue.Add(rec);
                     db.SaveChanges();
@@ -316,36 +316,36 @@ namespace MedlemServicePuls3060
             {
                 var qry1 = from jq in db.tblJobqueue
                            where
-                           nu > jq.starttime
+                           nu > jq.Starttime
                            && nu < nuplus2
-                           && jq.onhold == false
-                           && jq.selected == true
-                           && jq.completed == false
-                           orderby jq.starttime
+                           && jq.Onhold == false
+                           && jq.Selected == true
+                           && jq.Completed == false
+                           orderby jq.Starttime
                            select jq;
                 if (qry1.Count() > 0)
                 {
                     var rec = qry1.First();
-                    id = rec.id;
-                    jobname = rec.jobname;
+                    id = rec.Id;
+                    jobname = rec.Jobname;
                     return -id;
                 }
 
                 var qry2 = from jq in db.tblJobqueue
                            where
-                           nu > jq.starttime
+                           nu > jq.Starttime
                            && nu < nuplus2
-                           && jq.onhold == false
-                           && jq.selected == false
-                           && jq.completed == false
-                           orderby jq.starttime
+                           && jq.Onhold == false
+                           && jq.Selected == false
+                           && jq.Completed == false
+                           orderby jq.Starttime
                            select jq;
                 if (qry2.Count() > 1)
                 {
                     var rec = qry2.First();
-                    id = rec.id;
-                    jobname = rec.jobname;
-                    rec.selected = true;
+                    id = rec.Id;
+                    jobname = rec.Jobname;
+                    rec.Selected = true;
                     db.SaveChanges();
                     return 0;
                 }
@@ -360,12 +360,12 @@ namespace MedlemServicePuls3060
         {
             using (dbJobQEntities db = new dbJobQEntities())
             {
-                var qry = from jq in db.tblJobqueue where jq.id == id select jq;
+                var qry = from jq in db.tblJobqueue where jq.Id == id select jq;
                 if (qry.Count() == 1)
                 {
                     var rec = qry.First();
-                    rec.selected = false;
-                    rec.completed = true;
+                    rec.Selected = false;
+                    rec.Completed = true;
                     db.SaveChanges();
                 }
             }

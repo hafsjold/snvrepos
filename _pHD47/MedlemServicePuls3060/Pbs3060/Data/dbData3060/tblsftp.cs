@@ -2,19 +2,17 @@ namespace Pbs3060
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
 
-    public partial class tblsftp
+    public partial class Tblsftp
     {
-        [Key]
-        public int id { get; set; }
-        public string navn { get; set; }
-        public string host { get; set; }
-        public string port { get; set; }
-        public string user { get; set; }
-        public string outbound { get; set; }
-        public string inbound { get; set; }
-        public string pincode { get; set; }
-        public string certificate { get; set; }
+        public int Id { get; set; }
+        public string Navn { get; set; }
+        public string Host { get; set; }
+        public string Port { get; set; }
+        public string User { get; set; }
+        public string Outbound { get; set; }
+        public string Inbound { get; set; }
+        public string Pincode { get; set; }
+        public string Certificate { get; set; }
     }
 }

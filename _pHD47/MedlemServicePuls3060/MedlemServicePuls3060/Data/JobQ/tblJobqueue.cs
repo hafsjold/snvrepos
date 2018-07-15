@@ -3,16 +3,16 @@ namespace MedlemServicePuls3060
     using System;
     using System.Collections.Generic;
     
-    public partial class tblJobqueue
+    public partial class TblJobqueue
     {
-        public int id { get; set; }
-        public Nullable<int> scheduleid { get; set; }
-        public System.DateTime starttime { get; set; }
-        public string jobname { get; set; }
-        public Nullable<bool> onhold { get; set; }
-        public Nullable<bool> selected { get; set; }
-        public Nullable<bool> completed { get; set; }
+        public int Id { get; set; }
+        public int? Scheduleid { get; set; }
+        public DateTime Starttime { get; set; }
+        public string Jobname { get; set; }
+        public bool? Onhold { get; set; }
+        public bool? Selected { get; set; }
+        public bool? Completed { get; set; }
     
-        public virtual tblSchedule tblSchedule { get; set; }
+        public virtual TblSchedule Schedule { get; set; }
     }
 }

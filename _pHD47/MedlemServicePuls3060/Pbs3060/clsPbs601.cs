@@ -35,15 +35,15 @@ namespace Pbs3060
 
             var rstmedlems = from f in p_dbData3060.Tblfak
                              where f.Tilpbsid == ref_lobnr && f.Betalingsdato > DateTime.Today
-                             join a in p_dbData3060.Tbladvis on f.Faknr equals a.faknr into jadvis
+                             join a in p_dbData3060.Tbladvis on f.Faknr equals a.Faknr into jadvis
                              from a in jadvis.DefaultIfEmpty()
-                             where a.id == null
-                             join b in p_dbData3060.Tblbetlin on f.Faknr equals b.faknr into jbetlins
+                             where a.Id == null
+                             join b in p_dbData3060.Tblbetlin on f.Faknr equals b.Faknr into jbetlins
                              from b in jbetlins.DefaultIfEmpty()
-                             where b.id == null
-                             join r in p_dbData3060.tblrykker on f.Faknr equals r.faknr into jrykkers
+                             where b.Id == null
+                             join r in p_dbData3060.Tblrykker on f.Faknr equals r.Faknr into jrykkers
                              from r in jrykkers.DefaultIfEmpty()
-                             where r.id == null
+                             where r.Id == null
                              select new
                              {
                                  f.Nr,
@@ -72,13 +72,13 @@ namespace Pbs3060
 
                     Tbladvis rec_advis = new Tbladvis
                     {
-                        betalingsdato = rstmedlem.Betalingsdato,
+                        Betalingsdato = rstmedlem.Betalingsdato,
                         Nr = rstmedlem.Nr,
-                        faknr = rstmedlem.Faknr,
-                        advistekst = wadvistekst,
-                        advisbelob = rstmedlem.Advisbelob,
-                        infotekst = winfotekst,
-                        maildato = DateTime.Today,
+                        Faknr = rstmedlem.Faknr,
+                        Advistekst = wadvistekst,
+                        Advisbelob = rstmedlem.Advisbelob,
+                        Infotekst = winfotekst,
+                        Maildato = DateTime.Today,
                     };
                     rec_tilpbs.Tbladvis.Add(rec_advis);
                     wantaladvis++;
@@ -128,13 +128,13 @@ namespace Pbs3060
 
                     Tbladvis rec_advis = new Tbladvis
                     {
-                        betalingsdato = rstmedlem.betalingsdato,
+                        Betalingsdato = rstmedlem.betalingsdato,
                         Nr = rstmedlem.Nr,
-                        faknr = rstmedlem.faknr,
-                        advistekst = wadvistekst,
-                        advisbelob = rstmedlem.advisbelob,
-                        infotekst = winfotekst,
-                        maildato = DateTime.Today,
+                        Faknr = rstmedlem.faknr,
+                        Advistekst = wadvistekst,
+                        Advisbelob = rstmedlem.advisbelob,
+                        Infotekst = winfotekst,
+                        Maildato = DateTime.Today,
                     };
                     rec_tilpbs.Tbladvis.Add(rec_advis);
                     wantaladvis++;
@@ -164,7 +164,7 @@ namespace Pbs3060
             }
             {
                 var antal = (from c in p_dbData3060.Tbladvis
-                             where c.tilpbsid == lobnr
+                             where c.Tilpbsid == lobnr
                              select c).Count();
                 if (antal == 0) { throw new Exception("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr); }
             }
@@ -194,9 +194,9 @@ namespace Pbs3060
 
             rstdebs = from k in p_dbData3060.TblrsmembershipTransactions
                       join f in p_dbData3060.Tblfak on k.Id equals f.Id
-                      join r in p_dbData3060.Tbladvis on f.Faknr equals r.faknr
-                      where r.tilpbsid == lobnr && r.Nr != null
-                      orderby r.faknr
+                      join r in p_dbData3060.Tbladvis on f.Faknr equals r.Faknr
+                      where r.Tilpbsid == lobnr && r.Nr != null
+                      orderby r.Faknr
                       select new clsRstdeb
                       {
                           Nr = f.Nr,
@@ -205,14 +205,14 @@ namespace Pbs3060
                           Navn = k.Name,
                           Adresse = k.Adresse,
                           Postnr = k.Postnr,
-                          Faknr = r.faknr,
+                          Faknr = r.Faknr,
                           Betalingsdato = f.Betalingsdato,
                           Fradato = f.Fradato,
                           Tildato = f.Tildato,
-                          Infotekst = r.infotekst,
-                          Tilpbsid = r.tilpbsid,
-                          Advistekst = r.advistekst,
-                          Belob = r.advisbelob,
+                          Infotekst = r.Infotekst,
+                          Tilpbsid = r.Tilpbsid,
+                          Advistekst = r.Advistekst,
+                          Belob = r.Advisbelob,
                           Email = k.UserEmail,
                           indbetalerident = f.Indbetalerident,
                           indmeldelse = f.Indmeldelse,
@@ -285,7 +285,7 @@ namespace Pbs3060
                                    f.Rykkerstop == false &&
                                    f.Betalingsdato.Value.AddDays(90) > now && //må ikke være ælder end 90 dage <<<============mha 2014-01-11=====
                                    f.Betalingsdato.Value.AddDays(7) <= now && //skal have været forfalden i 7 dage
-                                   (int)(from q in p_dbData3060.tblrykker where q.faknr == f.Faknr select q).Count() == 0
+                                   (int)(from q in p_dbData3060.Tblrykker where q.Faknr == f.Faknr select q).Count() == 0
                              orderby f.Fradato, f.Id
                              select new
                              {
@@ -342,13 +342,13 @@ namespace Pbs3060
 
                         Tblrykker rec_rykker = new Tblrykker
                         {
-                            betalingsdato = rstmedlem.betalingsdato,
+                            Betalingsdato = rstmedlem.betalingsdato,
                             Nr = rstmedlem.Nr,
-                            faknr = rstmedlem.faknr,
-                            advistekst = wadvistekst,
-                            advisbelob = rstmedlem.advisbelob,
-                            infotekst = winfotekst,
-                            rykkerdato = DateTime.Today,
+                            Faknr = rstmedlem.faknr,
+                            Advistekst = wadvistekst,
+                            Advisbelob = rstmedlem.advisbelob,
+                            Infotekst = winfotekst,
+                            Rykkerdato = DateTime.Today,
                         };
                         rec_tilpbs.Tblrykker.Add(rec_rykker);
                     }
@@ -840,8 +840,8 @@ namespace Pbs3060
                 if (antal > 0) { throw new Exception("102 - Pbsforsendelse for id: " + lobnr + " er allerede sendt"); }
             }
             {
-                var antal = (from c in p_dbData3060.tblrykker
-                             where c.tilpbsid == lobnr
+                var antal = (from c in p_dbData3060.Tblrykker
+                             where c.Tilpbsid == lobnr
                              select c).Count();
                 if (antal == 0) { throw new Exception("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr); }
             }
@@ -867,11 +867,11 @@ namespace Pbs3060
             p_dbData3060.Tblpbsforsendelse.Add(rec_pbsforsendelse);
             rec_pbsforsendelse.Tbltilpbs.Add(rsttil);
 
-            var rstdebs = from r in p_dbData3060.tblrykker
-                          where r.tilpbsid == lobnr && r.Nr != null
-                          join f in p_dbData3060.Tblfak on r.faknr equals f.Faknr
+            var rstdebs = from r in p_dbData3060.Tblrykker
+                          where r.Tilpbsid == lobnr && r.Nr != null
+                          join f in p_dbData3060.Tblfak on r.Faknr equals f.Faknr
                           join k in p_dbData3060.TblrsmembershipTransactions on f.Id equals k.Id
-                          orderby r.faknr
+                          orderby r.Faknr
                           select new clsRstdeb
                           {
                               Nr = k.Memberid,
@@ -880,14 +880,14 @@ namespace Pbs3060
                               Navn = k.Name,
                               Adresse = k.Adresse,
                               Postnr = k.Postnr,
-                              Faknr = r.faknr,
+                              Faknr = r.Faknr,
                               Betalingsdato = f.Betalingsdato,
                               Fradato = f.Fradato,
                               Tildato = f.Tildato,
-                              Infotekst = r.infotekst,
-                              Tilpbsid = r.tilpbsid,
-                              Advistekst = r.advistekst,
-                              Belob = r.advisbelob,
+                              Infotekst = r.Infotekst,
+                              Tilpbsid = r.Tilpbsid,
+                              Advistekst = r.Advistekst,
+                              Belob = r.Advisbelob,
                               Email = k.UserEmail,
                               indbetalerident = f.Indbetalerident,
                               indmeldelse = f.Indmeldelse,
@@ -1764,7 +1764,7 @@ namespace Pbs3060
             int antal = trans.Count();
             foreach (var tr in trans)
             {
-                bool newTrans = ((from q in p_dbData3060.tblrsmembership_payments where q.trans_id == tr.id select q.id).Count() == 0);
+                bool newTrans = ((from q in p_dbData3060.TblrsmembershipPayments where q.TransId == tr.id select q.Id).Count() == 0);
                 if (!newTrans) //<------------------Debug
                     continue;
 
@@ -1828,33 +1828,33 @@ namespace Pbs3060
                     //else winfotekst = (rec_trans.tilmeldtpbs) ? 10 : 12;
                     winfotekst = 72;
 
-                    tblrsmembership_payments rec_payment = new tblrsmembership_payments()
+                    TblrsmembershipPayments rec_payment = new TblrsmembershipPayments()
                     {
-                        trans_id = rec_trans.id,
-                        user_id = rec_trans.user_id,
-                        user_email = rec_trans.user_email,
-                        user_data = rec_trans.user_data,
-                        type = rec_trans.type,
-                        @params = rec_trans.@params,
-                        ip = rec_trans.ip,
-                        date = rec_trans.date,
-                        price = rec_trans.price,
-                        coupon = rec_trans.coupon,
-                        currency = rec_trans.currency,
-                        hash = rec_trans.hash,
-                        custom = rec_trans.custom,
-                        gateway = rec_trans.gateway,
-                        status = rec_trans.status,
-                        response_log = rec_trans.response_log,
-                        name = rec_trans.name,
-                        adresse = rec_trans.adresse,
-                        postnr = rec_trans.postnr,
-                        bynavn = rec_trans.bynavn,
-                        memberid = rec_trans.memberid,
-                        membership_id = rec_trans.membership_id,
-                        subscriber_id = rec_trans.subscriber_id,
-                        membership_start = rec_trans.fradato,
-                        membership_end = rec_trans.tildato
+                        TransId = rec_trans.id,
+                        UserId = rec_trans.user_id,
+                        UserEmail = rec_trans.user_email,
+                        UserData = rec_trans.user_data,
+                        Type = rec_trans.type,
+                        Params = rec_trans.@params,
+                        Ip = rec_trans.ip,
+                        Date = rec_trans.date,
+                        Price = rec_trans.price,
+                        Coupon = rec_trans.coupon,
+                        Currency = rec_trans.currency,
+                        Hash = rec_trans.hash,
+                        Custom = rec_trans.custom,
+                        Gateway = rec_trans.gateway,
+                        Status = rec_trans.status,
+                        ResponseLog = rec_trans.response_log,
+                        Name = rec_trans.name,
+                        Adresse = rec_trans.adresse,
+                        Postnr = rec_trans.postnr,
+                        Bynavn = rec_trans.bynavn,
+                        Memberid = rec_trans.memberid,
+                        MembershipId = rec_trans.membership_id,
+                        SubscriberId = rec_trans.subscriber_id,
+                        MembershipStart = rec_trans.fradato,
+                        MembershipEnd = rec_trans.tildato
                     };
 
                     clsInfotekst objInfotekst = new clsInfotekst
@@ -1876,7 +1876,7 @@ namespace Pbs3060
                     string subject = "Kvittering for medlemsskab af Puls 3060";
                     sendHtmlEmail(p_dbData3060, ToName, ToAddr, subject, objInfotekst, bBcc);
 
-                    p_dbData3060.tblrsmembership_payments.Add(rec_payment);
+                    p_dbData3060.TblrsmembershipPayments.Add(rec_payment);
                     wantalbetalinger++;
                 }
                 p_dbData3060.SaveChanges();
