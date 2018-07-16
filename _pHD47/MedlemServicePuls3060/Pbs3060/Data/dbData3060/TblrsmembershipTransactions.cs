@@ -30,6 +30,6 @@ namespace Pbs3060
         public int MembershipId { get; set; }
         public int? SubscriberId { get; set; }
 
-        public Tblfak IdNavigation { get; set; }
+        //public Tblfak IdNavigation { get; set; }
     }
 }

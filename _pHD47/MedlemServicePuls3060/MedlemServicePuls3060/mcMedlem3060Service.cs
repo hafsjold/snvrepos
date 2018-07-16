@@ -38,6 +38,11 @@ namespace MedlemServicePuls3060
             this.ServiceName = "mcMedlem3060Service";
             SystemEvents.SessionEnded += new SessionEndedEventHandler(SystemEvents_SessionEnded);
             Console.WriteLine("Medlem3060Service Starter #2");
+            try
+            {
+                UCInitializer.UnicontaLogin();
+            }
+            catch { }
             _SchedulerThread = new Thread(Scheduler);
             _SchedulerThread.Name = "Scheduler";
             _SchedulerThread.Start();
@@ -58,6 +63,11 @@ namespace MedlemServicePuls3060
         protected override void OnStart(string[] args)
         {
             Console.WriteLine("Medlem3060Service OnStart()");
+            try
+            {
+                UCInitializer.UnicontaLogin();
+            }
+            catch { }
             _SchedulerThread = new Thread(Scheduler);
             _SchedulerThread.Name = "Scheduler";
             _SchedulerThread.Start();

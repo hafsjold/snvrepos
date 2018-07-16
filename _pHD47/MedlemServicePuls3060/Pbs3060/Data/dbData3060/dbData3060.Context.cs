@@ -1130,9 +1130,10 @@
                 entity.Property(e => e.UserId).HasColumnName("user_id");
                 /*
                 entity.HasOne(d => d.IdNavigation)
-                    .WithOne(p => p.TblrsmembershipTransactions)
+                    .WithMany(p => p.TblrsmembershipTransactions)
                     .HasForeignKey<TblrsmembershipTransactions>(d => d.Id);
                 */
+
             });
 
             modelBuilder.Entity<Tblrykker>(entity =>
