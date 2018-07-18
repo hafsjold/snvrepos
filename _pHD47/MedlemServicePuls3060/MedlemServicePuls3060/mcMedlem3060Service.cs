@@ -83,14 +83,35 @@ namespace MedlemServicePuls3060
         private void Scheduler()
         {
             //Test
+            /*
             using (dbData3060DataContext m_dbData3060 = new dbData3060DataContext()) {
                 clsSFTP objSFTP = new clsSFTP(m_dbData3060);
-                int AntalImportFiler = objSFTP.ReadFromLocalFile(m_dbData3060, @"C:\Users\Public\Documents\F1900601.BS1");  //Læs direkte SFTP
+                int AntalImportFiler = objSFTP.ReadFromLocalFile(m_dbData3060, @"C:\Users\Public\Documents\D1900601.BS1");  //Læs direkte SFTP
                 objSFTP.DisconnectSFtp();
                 objSFTP = null;
+
+                clsPbs602 objPbs602 = new clsPbs602();
+                int Antal602Filer = objPbs602.betalinger_fra_pbs(m_dbData3060);
+                if (Antal602Filer > 0)
+                {
+                    Console.WriteLine(string.Format("Medlem3060Service {0} begin", "Betalinger til RSMembership"));
+                    puls3060_nyEntities jdb = new puls3060_nyEntities();
+                    objPbs602.betalinger_til_rsmembership(m_dbData3060, jdb);
+                    Console.WriteLine(string.Format("Medlem3060Service {0} end", "Betalinger til RSMembership"));
+                }
+                objPbs602 = null;
+
+                clsPbs603 objPbs603 = new clsPbs603();
+                int Antal603Filer = objPbs603.aftaleoplysninger_fra_pbs(m_dbData3060);
+                objPbs603 = null;
+
+                clsPbs686 objPbs686 = new clsPbs686();
+                int Antal686Filer = objPbs686.aftaleoplysninger_fra_pbs(m_dbData3060);
+                objPbs686 = null;
             }
+            */
             //JobWorker("ReceiveFilesFromPBS", 99999);
-            // JobWorker("SendEmailAdvis", 99999);
+            //JobWorker("SendEmailAdvis", 99999);
             // JobWorker("SendKontingentFileToPBS", 99999);
             // JobWorker("KontingentNyeMedlemmer", 99999);
             // JobWorker("SendEmailRykker", 99999);
