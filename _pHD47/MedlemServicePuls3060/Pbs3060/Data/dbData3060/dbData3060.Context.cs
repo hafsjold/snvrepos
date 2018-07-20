@@ -1378,6 +1378,7 @@
         public virtual DbSet<TblSysinfo> TblSysinfo { get; set; }
         public virtual DbSet<Tbltilpbs> Tbltilpbs { get; set; }
         public virtual DbSet<EcpwtRsmembershipTransactionsCompleted> EcpwtRsmembershipTransactionsCompleted { get; set; }
+        public virtual DbSet<tblIndmeldelse> tblIndmeldelse { get; set; }
 
         public virtual DbSet<tblAktivitet> tblAktivitet { get; set; }
         public virtual DbSet<tblbanker> tblbanker { get; set; }

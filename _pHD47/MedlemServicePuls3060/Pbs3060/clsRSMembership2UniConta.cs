@@ -33,7 +33,7 @@ namespace Pbs3060
             }
 
         }
-       
+
         public void Subscriber2Invoice()
         {
             var qry_rsmembership = from s in m_dbPuls3060_dk.ecpwt_rsmembership_membership_subscribers
@@ -179,7 +179,6 @@ namespace Pbs3060
                 var critDebtor = new List<PropValuePair>();
                 var pairDebtor = PropValuePair.GenereteWhereElements("subscriberid", typeof(String), m.subscriber_id.ToString());
                 critDebtor.Add(pairDebtor);
-//                var taskDebtor = m_api.Query<DebtorClientUser>(null, critDebtor); <----------MHA
                 var taskDebtor = m_api.Query<DebtorClientUser>(critDebtor);
                 taskDebtor.Wait();
                 var resultDebtor = taskDebtor.Result;
@@ -251,15 +250,45 @@ namespace Pbs3060
 
         }
 
+        public void EngangsSletningAfMedlem()
+        {
+            var taskMedlem = m_api.Query<Medlem>();
+            taskMedlem.Wait();
+            var resultMedlem = taskMedlem.Result;
+            foreach (var m in resultMedlem)
+            {
+                var taskMedlemDelete = m_api.Delete(m);
+                taskMedlemDelete.Wait();
+                var Err = taskMedlemDelete.Result;
+            }
+
+        }
+
+        public void EngangsSletningAfDebitor()
+        {
+            var taskDebtor = m_api.Query<DebtorClientUser>();
+            taskDebtor.Wait();
+            var resultDebtor = taskDebtor.Result;
+            foreach (var d in resultDebtor)
+            {
+                if (!string.IsNullOrEmpty(d.subscriberid))
+                {
+                    var taskDebitorDelete = m_api.Delete(d);
+                    taskDebitorDelete.Wait();
+                    var Err = taskDebitorDelete.Result;
+                }
+            }
+
+        }
+
         public void Subscriber2Medlem()
         {
-
             //s.status == 0 Activ
             //s.status == 1 Pending
             //s.status == 2 Expired
             //s.status == 3 Cancelled
             var qry_rsmembership = from s in m_dbPuls3060_dk.ecpwt_rsmembership_membership_subscribers
-                                   where s.membership_id == 6 && s.status != 2 && s.status != 3
+                                   where s.membership_id == 6 /*&& s.status != 2 && s.status != 3*/
                                    join tf in m_dbPuls3060_dk.ecpwt_rsmembership_transactions on s.from_transaction_id equals tf.id
                                    join tl in m_dbPuls3060_dk.ecpwt_rsmembership_transactions on s.last_transaction_id equals tl.id
                                    join m in m_dbPuls3060_dk.ecpwt_rsmembership_subscribers on s.user_id equals m.user_id
@@ -279,53 +308,91 @@ namespace Pbs3060
                                        user_data_l = tl.user_data,
                                        user_data_f = tf.user_data,
                                        subscriber_id = s.id,
-                                       u.email
+                                       u.email,
+                                       s.status,
+                                       sidstetFaktureret = s.membership_start
                                    };
 
             var antal = qry_rsmembership.Count();
             var rsm = qry_rsmembership.ToArray();
             foreach (var rs in rsm)
             {
-                var critMedlem = new List<PropValuePair>();
-                var pairMedlem = PropValuePair.GenereteWhereElements("subscriberid", typeof(String), rs.subscriber_id.ToString());
-                critMedlem.Add(pairMedlem);
-                //var taskMedlem = m_api.Query<Medlem>(null, critMedlem);
-                var taskMedlem = m_api.Query<Medlem>(critMedlem);
-                taskMedlem.Wait();
-                var resultMedlem = taskMedlem.Result;
-                var antalMedlem = resultMedlem.Count();
-                if (antalMedlem == 1)
+                Medlem m = new Medlem();
+
+                User_data recud;
+                if (!string.IsNullOrEmpty(rs.user_data_l))
                 {
-                    var m = resultMedlem[0];
-
-                    User_data recud;
-                    if (!string.IsNullOrEmpty(rs.user_data_l))
-                    {
-                        recud = clsHelper.unpack_UserData(rs.user_data_l);
-                    }
-                    else if (!string.IsNullOrEmpty(rs.user_data_f))
-                    {
-                        recud = clsHelper.unpack_UserData(rs.user_data_f);
-                    }
-                    else
-                    {
-                        recud = null;
-                    }
-
-                    if ((recud != null) && (string.IsNullOrEmpty(m.Email)))
-                    {
-                        m.Email = rs.email;
-                        /*
-                        m.Gender = recud.kon;
-                        m.Fodtaar = int.Parse(recud.fodtaar);
-                        m.username = recud.username;
-                        m.userid = rs.user_id;
-                        */
-                        var taskMedlemUpdate = m_api.Update(m);
-                        taskMedlemUpdate.Wait();
-                        var Err = taskMedlemUpdate.Result;
-                    }
+                    recud = clsHelper.unpack_UserData(rs.user_data_l);
                 }
+                else if (!string.IsNullOrEmpty(rs.user_data_f))
+                {
+                    recud = clsHelper.unpack_UserData(rs.user_data_f);
+                }
+                else
+                {
+                    recud = null;
+                }
+
+                int iNr;
+                if (!string.IsNullOrEmpty(recud.memberid))
+                {
+                    iNr = int.Parse(recud.memberid);
+                }
+                else
+                {
+                    if (!string.IsNullOrEmpty(rs.Nr))
+                        iNr = int.Parse(rs.Nr);
+                    else
+                        iNr = m_dbData3060.nextval_v2("memberid");
+                }
+
+                m.KeyStr = iNr.ToString(); ;
+                m.KeyName = rs.Navn;
+
+                m.Adresse = rs.Adresse;
+                m.Postnr = rs.Postnr;
+                m.By = rs.Bynavn;
+                m.Mobil = rs.telefon;
+                m.Email = rs.email;
+                m.Gender = recud.kon;
+                m.Fodtaar = int.Parse(recud.fodtaar);
+                m.username = recud.username;
+                m.userid = rs.user_id;
+                m.subscriberid = rs.subscriber_id.ToString();
+                m.medlemfra = rs.indmeldelsesDato;
+                m.medlemtil = rs.kontingentBetaltTilDato;
+                switch (rs.status)
+                {
+                    case 0:
+                        m.status = "Medlem";
+                        m.sidstfaktureret = rs.sidstetFaktureret.AddDays(-21);
+                        break;
+
+                    case 1:
+                        m.status = "NytMedlem";
+                        m.sidstfaktureret = rs.sidstetFaktureret.AddDays(-1);
+                        break;
+
+                    case 2:
+                        m.status = "Restance";
+                        m.sidstfaktureret = rs.kontingentBetaltTilDato.AddDays(-21);
+                        break;
+
+                    case 3:
+                        m.status = "Udmeldt";
+                        m.sidstfaktureret = rs.kontingentBetaltTilDato.AddDays(-21);
+                        break;
+
+                    default:
+                        break;
+                }
+
+
+                var taskMedlemInsert = m_api.Insert(m);
+                taskMedlemInsert.Wait();
+                var Err = taskMedlemInsert.Result;
+
+
             }
         }
 

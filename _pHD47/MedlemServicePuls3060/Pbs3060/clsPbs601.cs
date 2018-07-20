@@ -6,9 +6,11 @@ using MailKit;
 using MimeKit;
 using MailKit.Net.Imap;
 using MailKit.Search;
+using Uniconta.API.System;
 
 namespace Pbs3060
 {
+
     public enum datefmtType
     {
         fdmmddyyyy = 0,
@@ -23,6 +25,8 @@ namespace Pbs3060
 
     public class clsPbs601
     {
+        private CrudAPI m_api { get; set; }
+
         public clsPbs601() { }
 
         public Tuple<int, int> advis_auto_lobnr(dbData3060DataContext p_dbData3060, int ref_lobnr)
@@ -416,12 +420,6 @@ namespace Pbs3060
                 tilmeldtpbs = false;
                 indmeldelse = false;
 
-                bool erMedlemPusterummet = ((from um in jdb.ecpwt_user_usergroup_map
-                                             join g in jdb.ecpwt_usergroups on um.group_id equals g.id
-                                             where g.title == "Pusterummet" && um.user_id == m.user_id
-                                             select um.user_id).Count() > 0);
-
-
                 if ((m.kontingentBetaltTilDato != null) && (m.kontingentBetaltTilDato > m.indmeldelsesDato))  //Der findes en kontingent-betaling
                 {
                     if (m.kontingentBetaltTilDato > p_DatoBetaltKontingentTil)   //der er betalt kontingent efter DatoBetaltKontingentTil
@@ -482,6 +480,167 @@ namespace Pbs3060
                 }
             }
             return items;
+        }
+
+        public List<string[]> UniConta_KontingentForslag(DateTime p_DatoBetaltKontingentTil, dbData3060DataContext p_dbData3060)
+        {
+            List<string[]> items = new List<string[]>();
+            DateTime KontingentFradato = DateTime.MinValue;
+            DateTime KontingentTildato = DateTime.MinValue;
+            bool tilmeldtpbs = false;
+            bool indmeldelse = false;
+            int AntalMedlemmer = 0;
+            int AntalForslag = 0;
+            int ikontingent;
+            int? iNr;
+            string sNavn;
+
+            var taskMedlem = m_api.Query<Medlem>();
+            taskMedlem.Wait();
+            var qry_Medlem = taskMedlem.Result;
+
+            var antal = qry_Medlem.Count();
+            var rsm = qry_Medlem.ToArray();
+            foreach (var m in rsm)
+            {
+                // opdater Nr og Navn fra m.user_data 
+                if (!string.IsNullOrEmpty(m.KeyStr))
+                {
+                    iNr = int.Parse(m.KeyStr);
+                }
+                else
+                {
+                    iNr = null;
+                }
+                sNavn = m.KeyName;
+
+                bool bSelected = true;
+                AntalMedlemmer++;
+                tilmeldtpbs = false;
+                indmeldelse = false;
+
+                if ((m.medlemtil != null) && (m.medlemtil > m.medlemfra))  //Der findes en kontingent-betaling
+                {
+                    if (m.medlemtil > p_DatoBetaltKontingentTil)   //der er betalt kontingent efter DatoBetaltKontingentTil
+                    {
+                        bSelected = false;
+                    }
+                    else
+                    {
+                        if (m.medlemtil >= m.medlemfra)
+                        {
+                            KontingentFradato = ((DateTime)m.medlemtil);
+                        }
+                    }
+                }
+                else  //Der findes ingen kontingent-betaling
+                {
+                    KontingentFradato = m.medlemfra;
+                    indmeldelse = true;
+                }
+
+                if (bSelected)
+                {
+                    DateTime TodayMinus90 = DateTime.Now.AddDays(-90);
+                    var qry_fak = from f in p_dbData3060.Tblfak
+                                  where f.Nr == iNr && f.Betalingsdato > TodayMinus90
+                                  select f;
+
+                    if (qry_fak.Count() > 0) //Der findes en opkrævning
+                    {
+                        bSelected = false;
+                    }
+                }
+
+
+                if (bSelected)
+                {
+                    // beregn kontingent baseret på KontingentFradato !!!!!!!!!!!!!!!!!!!!!!!!
+                    AntalForslag++;
+                    tilmeldtpbs = (bool)p_dbData3060.erPBS((int)iNr);
+                    clsKontingent objKontingent = new clsKontingent(p_dbData3060, KontingentFradato);
+                    KontingentTildato = objKontingent.KontingentTildato;
+                    ikontingent = (int)objKontingent.Kontingent;
+
+                    string[] item = new string[11];
+                    item[0] = m.userid.ToString();
+                    item[1] = sNavn;
+                    item[2] = m.Adresse;
+                    item[3] = m.Postnr;
+                    item[4] = string.Format("{0:dd-MM-yyy}", KontingentFradato);
+                    item[5] = ikontingent.ToString();
+                    item[6] = string.Format("{0:dd-MM-yyy}", KontingentTildato);
+                    item[7] = (indmeldelse) ? "J" : "N";
+                    item[8] = (tilmeldtpbs) ? "J" : "N";
+                    item[9] = m.subscriberid.ToString(); ;
+                    item[10] = (iNr != null) ? iNr.ToString() : "";
+                    items.Add(item);
+                }
+            }
+            return items;
+        }
+
+        public int pending_rsform_indmeldelser(dbData3060DataContext p_dbData3060, puls3060_nyEntities p_dbPuls3060_dk)
+        {
+            int Antal = 0;
+            var qry1 = from s in p_dbPuls3060_dk.ecpwt_rsform_submissions select s;
+            List<ecpwt_rsform_submissions> arrSubmission = qry1.ToList();
+
+            var qry2 = from s in arrSubmission
+                      join i in p_dbData3060.tblIndmeldelse on s.SubmissionId equals i.SubmissionId into indmeldelse
+                      from j in indmeldelse.DefaultIfEmpty(new tblIndmeldelse { Id = 0, SubmissionId = 0, DateSubmitted = DateTime.Now })
+                      where j.Id == 0
+                      select s;
+
+            foreach (var frm in qry2)
+            {
+                tblIndmeldelse recIndmeldelse = new tblIndmeldelse()
+                {
+                    SubmissionId = frm.SubmissionId,
+                    DateSubmitted = frm.DateSubmitted
+                };
+                var qry3 = from m in p_dbPuls3060_dk.ecpwt_rsform_submission_values where m.SubmissionId == frm.SubmissionId select m;
+                foreach(var fld in qry3)
+                {
+                    switch (fld.FieldName)
+                    {
+                        case "Fornavn":
+                            recIndmeldelse.Fornavn = fld.FieldValue;
+                            break;
+                        case "Efternavn":
+                            recIndmeldelse.Efternavn = fld.FieldValue;
+                            break;
+                        case "Adresse":
+                            recIndmeldelse.Adresse = fld.FieldValue;
+                            break;
+                        case "Postnr":
+                            recIndmeldelse.Postnr = fld.FieldValue;
+                            break;
+                        case "By":
+                            recIndmeldelse.Bynavn = fld.FieldValue;
+                            break;
+                        case "Mobil":
+                            recIndmeldelse.Mobil = fld.FieldValue;
+                            break;
+                        case "Mail2":
+                            recIndmeldelse.Email = fld.FieldValue;
+                            break;
+                        case "Fodtaar":
+                            recIndmeldelse.FodtAar = int.Parse(fld.FieldValue);
+                            break;
+                        case "Kon":
+                            recIndmeldelse.Kon = fld.FieldValue;
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+                p_dbData3060.tblIndmeldelse.Add(recIndmeldelse);
+                p_dbData3060.SaveChanges();
+                Antal++;
+            }
+            return Antal;
         }
 
         public Tuple<int, int> paypal_pending_rsmembeshhip_fakturer_auto(dbData3060DataContext p_dbData3060, puls3060_nyEntities p_dbPuls3060_dk)
@@ -589,7 +748,7 @@ namespace Pbs3060
                 {
                     if (rec_trans.indmeldelse) winfotekst = 11;
                     else winfotekst = (rec_trans.tilmeldtpbs) ? 10 : 12;
-                    int next_faknr = p_dbData3060.nextval_v2("faknr") ;
+                    int next_faknr = p_dbData3060.nextval_v2("faknr");
                     string windbetalerident = clsHelper.generateIndbetalerident(next_faknr); //?????????????????????????????????
                     Tblfak rec_fak = new Tblfak
                     {
@@ -821,6 +980,89 @@ namespace Pbs3060
             return new Tuple<int, int>(wantalfakturaer, lobnr);
 
         }
+
+        public Tuple<int, int> UniConta_kontingent_fakturer_bs1(dbData3060DataContext p_dbData3060, Memkontingentforslag memKontingentforslag, pbsType forsType)
+        {
+            int lobnr;
+            string wadvistekst = "";
+            int winfotekst;
+            int wantalfakturaer;
+            wantalfakturaer = 0;
+
+            bool? wbsh = (from h in memKontingentforslag select h.bsh).First();
+            bool bsh = (wbsh == null) ? false : (bool)wbsh;
+            string wDelsystem;
+            if (bsh) wDelsystem = "BSH";
+            else wDelsystem = "BS1";
+
+            Tbltilpbs rec_tilpbs = new Tbltilpbs   //<------------------------------------
+            {
+                Delsystem = wDelsystem,
+                Leverancetype = "0601",
+                Udtrukket = DateTime.Now
+            };
+            p_dbData3060.Tbltilpbs.Add(rec_tilpbs);
+            p_dbData3060.SaveChanges();
+            lobnr = rec_tilpbs.Id;
+
+            IEnumerable<recKontingentforslag> qry;
+            if (wDelsystem == "BS1")
+            {
+                if (forsType == pbsType.betalingsservice)
+                {
+                    qry = from k in memKontingentforslag where k.tilmeldtpbs select k;
+                }
+                else
+                {
+                    qry = from k in memKontingentforslag where (!k.tilmeldtpbs) select k;
+                }
+            }
+            else if (wDelsystem == "BSH")
+            {
+                if (forsType == pbsType.betalingsservice)
+                {
+                    qry = from k in memKontingentforslag where k.user_id < 0 select k; // ingen skal vælges her
+                }
+                else
+                {
+                    qry = from k in memKontingentforslag select k; // Alle skal vælges her
+                }
+            }
+            else
+            {
+                qry = from k in memKontingentforslag where k.user_id < 0 select k; // ingen skal vælges her
+            }
+
+            foreach (recKontingentforslag rec in qry)
+            {
+                if (rec.indmeldelse) winfotekst = 11;
+                else winfotekst = (rec.tilmeldtpbs) ? 10 : 12;
+                int next_faknr = p_dbData3060.nextval_v2("faknr");
+                string windbetalerident = clsHelper.generateIndbetalerident(next_faknr); //?????????????????????????????????
+                Tblfak rec_fak = new Tblfak
+                {
+                    Betalingsdato = rec.betalingsdato,
+                    Nr = rec.memberid,
+                    Faknr = next_faknr,
+                    Advistekst = wadvistekst,
+                    Advisbelob = rec.advisbelob,
+                    Infotekst = winfotekst,
+                    Bogfkonto = 1800,
+                    Vnr = 1,
+                    Fradato = rec.fradato,
+                    Tildato = rec.tildato,
+                    Indmeldelse = rec.indmeldelse,
+                    Tilmeldtpbs = rec.tilmeldtpbs,
+                    Indbetalerident = windbetalerident, // ToDo generer indbetalerident
+                };
+                rec_tilpbs.Tblfak.Add(rec_fak);
+                wantalfakturaer++;
+            }
+            p_dbData3060.SaveChanges();
+            return new Tuple<int, int>(wantalfakturaer, lobnr);
+
+        }
+
 
         public void rykker_email_lobnr(dbData3060DataContext p_dbData3060, int lobnr)
         {
