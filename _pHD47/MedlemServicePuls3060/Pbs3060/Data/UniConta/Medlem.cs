@@ -1,10 +1,14 @@
-﻿using Uniconta.DataModel;
+﻿using System;
+using Uniconta.DataModel;
 
 namespace Pbs3060
 {
+
     public class Medlem : TableDataWithKey
     {
         public override int UserTableId { get { return 1155; } }
+        public override int CompanyId { get { return 4852; } }
+
         public string Adresse
         {
             get { return this.GetUserFieldString(0); }
@@ -71,5 +75,30 @@ namespace Pbs3060
             set { this.SetUserFieldString(10, value); }
         }
 
+        public DateTime medlemfra
+        {
+            get { return this.GetUserFieldDateTime(11); }
+            set { this.SetUserFieldDateTime(11, value); }
+        }
+
+        public DateTime medlemtil
+        {
+            get { return this.GetUserFieldDateTime(12); }
+            set { this.SetUserFieldDateTime(12, value); }
+        }
+
+        public string status
+        {
+            get { return this.GetUserFieldString(13); }
+            set { this.SetUserFieldString(13, value); }
+        }
+
+        public DateTime sidstfaktureret
+        {
+            get { return this.GetUserFieldDateTime(14); }
+            set { this.SetUserFieldDateTime(14, value); }
+        }
     }
+
+
 }

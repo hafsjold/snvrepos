@@ -618,5 +618,29 @@ namespace Pbs3060
             }
             return AntalBetalinger;
         }
+
+        public static decimal[] fordeling(decimal Belob, DateTime Bilag_Startdato, DateTime Bilag_Slutdato, DateTime Regnskabsaar_Startdato, DateTime Regnskabsaar_Slutdato)
+        {
+            DateTime yearend = Regnskabsaar_Slutdato;
+            double DaysThisYear = (yearend - Bilag_Startdato).TotalDays;
+            if (DaysThisYear <= 0)
+                DaysThisYear = 0;
+            var membership_days = (int)(Bilag_Slutdato - Bilag_Startdato).Days;
+
+            decimal BelobThisYear = (decimal)((int)((decimal)(DaysThisYear / membership_days) * Belob));
+            decimal BelobNextYear = Belob - BelobThisYear;
+            if (BelobNextYear < 2)
+            {
+                BelobThisYear = Belob;
+                BelobNextYear = 0;
+            }
+            if (BelobThisYear < 2)
+            {
+                BelobThisYear = 0;
+                BelobNextYear = Belob;
+            }
+            decimal[] arrBelob = { BelobThisYear, BelobNextYear };
+            return arrBelob;
+        }
     }
 }

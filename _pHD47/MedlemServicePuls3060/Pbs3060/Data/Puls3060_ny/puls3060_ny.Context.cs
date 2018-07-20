@@ -40,5 +40,8 @@
         public DbSet<ecpwt_rsmembership_memberships> ecpwt_rsmembership_memberships { get; set; }
         public DbSet<tblmembershippayment> tblmembershippayment { get; set; }
         public DbSet<tblpaypalpayment> tblpaypalpayment { get; set; }
+        public DbSet<ecpwt_rsform_submission_values> ecpwt_rsform_submission_values { get; set; }
+        public DbSet<ecpwt_rsform_submissions> ecpwt_rsform_submissions { get; set; }
+
     }
 }
