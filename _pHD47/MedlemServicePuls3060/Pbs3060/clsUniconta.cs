@@ -42,25 +42,25 @@ namespace Pbs3060
 
 
             int saveBetid = 0;
-            var bogf = from bl in m_dbData3060.Tblbetlin
+            var bogf = (from bl in m_dbData3060.Tblbetlin
                        where (bl.Pbstranskode == "0236" || bl.Pbstranskode == "0297") && (Startdato <= bl.Indbetalingsdato && bl.Indbetalingsdato <= Slutdato)
                        join b in m_dbData3060.Tblbet on bl.Betid equals b.Id
                        where b.Summabogfort == null || b.Summabogfort == false //<<-------------------------------
                        join p in m_dbData3060.Tblfrapbs on b.Frapbsid equals p.Id
                        orderby p.Id, b.Id, bl.Id
-                       select new
+                       select new betrec
                        {
                            Frapbsid = p.Id,
-                           p.Leverancespecifikation,
+                           Leverancespecifikation = p.Leverancespecifikation,
                            Betid = b.Id,
                            GruppeIndbetalingsbelob = b.Indbetalingsbelob,
                            Betlinid = bl.Id,
-                           bl.Betalingsdato,
-                           bl.Indbetalingsdato,
-                           bl.Indbetalingsbelob,
-                           bl.Faknr,
-                           bl.Debitorkonto
-                       };
+                           Betalingsdato = bl.Betalingsdato,
+                           Indbetalingsdato = bl.Indbetalingsdato,
+                           Indbetalingsbelob = bl.Indbetalingsbelob,
+                           Faknr = bl.Faknr,
+                           Debitorkonto = bl.Debitorkonto
+                       }).ToList();
             int AntalBetalinger = bogf.Count();
             if (bogf.Count() > 0)
             {
@@ -319,5 +319,19 @@ namespace Pbs3060
         public int? bogfkonto { get; set; }
         public DateTime? fradato { get; set; }
         public DateTime? tildato { get; set; }
+    }
+
+    public class betrec
+    {
+        public int Frapbsid { get; set; }
+        public string Leverancespecifikation { get; set; }
+        public int Betid { get; set; }
+        public decimal? GruppeIndbetalingsbelob { get; set; }
+        public int Betlinid { get; set; }
+        public DateTime? Betalingsdato { get; set; }
+        public DateTime? Indbetalingsdato { get; set; }
+        public decimal? Indbetalingsbelob { get; set; }
+        public int? Faknr { get; set; }
+        public string Debitorkonto { get; set; }
     }
 }

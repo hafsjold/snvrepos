@@ -178,23 +178,6 @@ namespace Pbs3060
             return dato;
         }
 
-        public static void Update_memberid_in_rsmembership_transaction(recRSMembershipTransactions t1)
-        {
-            puls3060_nyEntities dbPuls3060_dk = new puls3060_nyEntities();
-
-            var qry2 = from s2 in dbPuls3060_dk.ecpwt_rsmembership_transactions where s2.id == t1.id select s2;
-            int c2 = qry2.Count();
-            if (c2 == 1)
-            {
-                ecpwt_rsmembership_transactions t2 = qry2.First();
-                User_data recud = clsHelper.unpack_UserData(t2.user_data);
-                recud.memberid = t1.memberid.ToString();
-                t2.user_data = clsHelper.pack_UserData(recud);
-                dbPuls3060_dk.SaveChanges();
-            }
-            return;
-        }
-
         public static string GenerateStringHash(string thisString)
         {
             MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();

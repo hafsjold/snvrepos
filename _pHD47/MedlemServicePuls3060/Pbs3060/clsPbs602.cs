@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Uniconta.API.System;
+using Uniconta.Common;
 
 namespace Pbs3060
 {
@@ -557,7 +559,7 @@ namespace Pbs3060
             m_rec_bet.Tblbetlin.Add(m_rec_betlin);
         }
 
-        public int betalinger_til_rsmembership(dbData3060DataContext p_dbData3060, puls3060_nyEntities p_dbPuls3060_dk)
+        public int betalinger_opdate_uniconta(dbData3060DataContext p_dbData3060, puls3060_nyEntities p_dbPuls3060_dk, CrudAPI api)
         {
             int saveBetid = 0;
             var rsmbrshp = from bl in p_dbData3060.Tblbetlin
@@ -583,7 +585,6 @@ namespace Pbs3060
             Console.Write(string.Format("betalinger_til_rsmembership - AntalBetalinger {0}", AntalBetalinger));
             if (rsmbrshp.Count() > 0)
             {
-                clsPbsHelper objPbsHelperd = new clsPbsHelper();
                 foreach (var b in rsmbrshp)
                 {
                     if (saveBetid != b.Betid) // ny gruppe
@@ -596,22 +597,24 @@ namespace Pbs3060
                     // Do somthing here
                     var qry = from f in p_dbData3060.Tblfak
                               where f.Faknr == b.Faknr
-                              join m in p_dbData3060.TblrsmembershipTransactions on f.Id equals m.Id
-                              select new tblmembershippayment
-                              {
-                                  rsmembership_transactions_id = m.TransId,
-                              };
+                              select f;
                     if (qry.Count() == 1)
                     {
-                        tblmembershippayment rec_membershippayment = qry.First();
-                        //*********************************************************
-                        int new_rsmembership_transactions_id = objPbsHelperd.OpdateringAfSlettet_rsmembership_transaction(rec_membershippayment.rsmembership_transactions_id, p_dbData3060);
-                        Console.WriteLine(string.Format("betalinger_til_rsmembership - transactions_id {0} --> {1}", rec_membershippayment.rsmembership_transactions_id, p_dbData3060, new_rsmembership_transactions_id));
-                        rec_membershippayment.rsmembership_transactions_id = new_rsmembership_transactions_id;
-                        //*********************************************************
-                        p_dbPuls3060_dk.tblmembershippayment.Add(rec_membershippayment);
-                        p_dbPuls3060_dk.SaveChanges();
-                        Console.WriteLine(string.Format("betalinger_til_rsmembership - faknr {0} betalt", b.Faknr));
+                        var fak = qry.First();
+                        var critMedlem = new List<PropValuePair>();
+                        var pairMedlem = PropValuePair.GenereteWhereElements("KeyStr", typeof(String), fak.Nr.ToString());
+                        critMedlem.Add(pairMedlem);
+                        var taskMedlem = api.Query<Medlem>(critMedlem);
+                        taskMedlem.Wait();
+                        var resultMedlem = taskMedlem.Result;
+                        var antalMedlem = resultMedlem.Count();
+                        if (antalMedlem == 1)
+                        {
+                            var recMedlem = resultMedlem.First();
+                            recMedlem.medlemtil = (DateTime)fak.Tildato;
+                            recMedlem.status = "Medlem";
+                            var taskMedlemUpdate = api.Update(recMedlem); //Opdater Medlem
+                        }
                     }
                 }
                 p_dbData3060.SaveChanges();
