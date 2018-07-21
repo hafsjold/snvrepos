@@ -8,6 +8,7 @@ using NCrontab;
 using Microsoft.EntityFrameworkCore;
 using System.Data.SqlClient;
 using Pbs3060;
+using Uniconta.API.System;
 
 namespace MedlemServicePuls3060
 {
@@ -83,39 +84,12 @@ namespace MedlemServicePuls3060
         private void Scheduler()
         {
             //Test
-            /*
-            using (dbData3060DataContext m_dbData3060 = new dbData3060DataContext()) {
-                clsSFTP objSFTP = new clsSFTP(m_dbData3060);
-                int AntalImportFiler = objSFTP.ReadFromLocalFile(m_dbData3060, @"C:\Users\Public\Documents\D1900601.BS1");  //Læs direkte SFTP
-                objSFTP.DisconnectSFtp();
-                objSFTP = null;
-
-                clsPbs602 objPbs602 = new clsPbs602();
-                int Antal602Filer = objPbs602.betalinger_fra_pbs(m_dbData3060);
-                if (Antal602Filer > 0)
-                {
-                    Console.WriteLine(string.Format("Medlem3060Service {0} begin", "Betalinger til RSMembership"));
-                    puls3060_nyEntities jdb = new puls3060_nyEntities();
-                    objPbs602.betalinger_til_rsmembership(m_dbData3060, jdb);
-                    Console.WriteLine(string.Format("Medlem3060Service {0} end", "Betalinger til RSMembership"));
-                }
-                objPbs602 = null;
-
-                clsPbs603 objPbs603 = new clsPbs603();
-                int Antal603Filer = objPbs603.aftaleoplysninger_fra_pbs(m_dbData3060);
-                objPbs603 = null;
-
-                clsPbs686 objPbs686 = new clsPbs686();
-                int Antal686Filer = objPbs686.aftaleoplysninger_fra_pbs(m_dbData3060);
-                objPbs686 = null;
-            }
-            */
             //JobWorker("ReceiveFilesFromPBS", 99999);
             //JobWorker("SendEmailAdvis", 99999);
-            // JobWorker("SendKontingentFileToPBS", 99999);
-            // JobWorker("KontingentNyeMedlemmer", 99999);
-            // JobWorker("SendEmailRykker", 99999);
-            // JobWorker("SendEmailKviteringer", 99999);
+            //JobWorker("SendKontingentFileToPBS", 99999);
+            //JobWorker("KontingentNyeMedlemmer", 99999);
+            //JobWorker("SendEmailRykker", 99999);
+            //JobWorker("SendEmailKviteringer", 99999);
 
             JobQMaintenance();
             LoadSchedule();
@@ -164,6 +138,7 @@ namespace MedlemServicePuls3060
                     switch (job)
                     {
                         case enumTask.ReceiveFilesFromPBS:
+                            CrudAPI api = UCInitializer.GetBaseAPI;
                             clsSFTP objSFTP = new clsSFTP(m_dbData3060);
                             int AntalImportFiler = objSFTP.ReadFraSFtp(m_dbData3060);  //Læs direkte SFTP
                             objSFTP.DisconnectSFtp();
@@ -175,7 +150,7 @@ namespace MedlemServicePuls3060
                             {
                                 Console.WriteLine(string.Format("Medlem3060Service {0} begin", "Betalinger til RSMembership"));
                                 puls3060_nyEntities jdb = new puls3060_nyEntities();
-                                objPbs602.betalinger_til_rsmembership(m_dbData3060, jdb);
+                                objPbs602.betalinger_opdate_uniconta(m_dbData3060, jdb, api);
                                 Console.WriteLine(string.Format("Medlem3060Service {0} end", "Betalinger til RSMembership"));
                             }
                             objPbs602 = null;
@@ -192,11 +167,12 @@ namespace MedlemServicePuls3060
 
                         case enumTask.SendEmailAdvis:
                             clsPbs601 objPbs601a = new clsPbs601();
+                            CrudAPI aapi = UCInitializer.GetBaseAPI;
                             Tuple<int, int> tresult = objPbs601a.advis_auto(m_dbData3060);
                             int AntalAdvis = tresult.Item1;
                             int lobnra = tresult.Item2;
                             if ((AntalAdvis > 0))
-                                objPbs601a.advis_email_lobnr(m_dbData3060, lobnra);
+                                objPbs601a.advis_email_lobnr(m_dbData3060, lobnra, aapi);
                             objPbs601a = null;
                             break;
 
@@ -207,8 +183,9 @@ namespace MedlemServicePuls3060
                             break;
 
                         case enumTask.SendKontingentFileToPBS:
+                            CrudAPI dapi = UCInitializer.GetBaseAPI;
                             clsPbsHelper objPbsHelperd = new clsPbsHelper();
-                            objPbsHelperd.PbsAutoKontingent(m_dbData3060);
+                            objPbsHelperd.PbsAutoKontingent(m_dbData3060, dapi);
                             objPbsHelperd = null;
                             break;
 
@@ -218,14 +195,15 @@ namespace MedlemServicePuls3060
 
                         case enumTask.KontingentNyeMedlemmer:
                             puls3060_nyEntities cjdb = new puls3060_nyEntities();
+                            CrudAPI capi = UCInitializer.GetBaseAPI;
                             clsPbs601 objPbs601c = new clsPbs601();
-                            Tuple<int, int> tresultc = objPbs601c.paypal_pending_rsmembeshhip_fakturer_auto(m_dbData3060, cjdb);
+                            Tuple<int, int> tresultc = objPbs601c.pending_rsform_indmeldelser(m_dbData3060, cjdb, capi);
                             int AntalKontingent = tresultc.Item1;
                             int lobnrc = tresultc.Item2;
                             if ((AntalKontingent > 0))
                             {
                                 //pbsType.indbetalingskort
-                                objPbs601c.faktura_og_rykker_601_action_lobnr(m_dbData3060, lobnrc);
+                                objPbs601c.faktura_og_rykker_601_action_lobnr(m_dbData3060, lobnrc, capi);
                                 clsSFTP objSFTPc = new clsSFTP(m_dbData3060);
                                 objSFTPc.WriteTilSFtp(m_dbData3060, lobnrc);
                                 objSFTPc.DisconnectSFtp();
@@ -235,7 +213,7 @@ namespace MedlemServicePuls3060
                                 int AntalAdvisd = tresultd.Item1;
                                 int lobnrd = tresultd.Item2;
                                 if ((AntalAdvisd > 0))
-                                    objPbs601c.advis_email_lobnr(m_dbData3060, lobnrd);
+                                    objPbs601c.advis_email_lobnr(m_dbData3060, lobnrd, capi);
                                 objPbs601c = null;
                             }
                             break;
@@ -243,20 +221,16 @@ namespace MedlemServicePuls3060
                         case enumTask.SendEmailRykker:
                             puls3060_nyEntities bjdb = new puls3060_nyEntities();
                             clsPbs601 objPbs601b = new clsPbs601();
-                            Tuple<int, int> tresultb = objPbs601b.rykker_auto(m_dbData3060, bjdb);
+                            CrudAPI bapi = UCInitializer.GetBaseAPI;
+                            Tuple<int, int> tresultb = objPbs601b.rykker_auto(m_dbData3060, bjdb, bapi);
                             int AntalRykker = tresultb.Item1;
                             int lobnrb = tresultb.Item2;
                             if ((AntalRykker > 0))
-                                objPbs601b.rykker_email_lobnr(m_dbData3060, lobnrb);
+                                objPbs601b.rykker_email_lobnr(m_dbData3060, lobnrb, bapi);
                             objPbs601b = null;
                             break;
 
                         case enumTask.UpdateMedlemStatus:
-                            break;
-
-                        case enumTask.UpdateKanSlettes:
-                            clsPbsHelper objPbsHelpera = new clsPbsHelper();
-                            objPbsHelpera.opdaterKanSlettes();
                             break;
 
                         case enumTask.JobQMaintenance:
@@ -266,11 +240,7 @@ namespace MedlemServicePuls3060
                         case enumTask.SendEmailKviteringer:
                             puls3060_nyEntities djdb = new puls3060_nyEntities();
                             clsPbs601 objPbs601d = new clsPbs601();
-                            objPbs601d.rsmembeshhip_betalinger_auto(m_dbData3060, djdb);
-                            break;
-
-                        case enumTask.OpdaterTransUserData:
-                            clsPbsHelper.update_rsmembership_transactions_user_data();
+                            //objPbs601d.rsmembeshhip_betalinger_auto(m_dbData3060, djdb);
                             break;
 
                         default:

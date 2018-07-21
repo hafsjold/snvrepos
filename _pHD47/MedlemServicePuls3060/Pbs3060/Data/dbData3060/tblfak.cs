@@ -27,7 +27,7 @@ namespace Pbs3060
         public bool Indmeldelse { get; set; }
         public string Indbetalerident { get; set; }
 
-        public TblrsmembershipTransactions Tblrsmembership_transactions { get; set; }
+        //public TblrsmembershipTransactions Tblrsmembership_transactions { get; set; }
         public Tbltilpbs Tilpbs { get; set; }
     }
 }
