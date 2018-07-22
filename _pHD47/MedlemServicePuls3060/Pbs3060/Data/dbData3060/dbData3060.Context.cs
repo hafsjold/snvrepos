@@ -296,6 +296,9 @@
                 entity.HasIndex(e => new { e.Nr, e.Faknr })
                     .HasName("medlem_fak");
 
+                entity.HasIndex(e => new { e.Indbetalerident })
+                    .HasName("IDX_tblfak_indbetalerident");
+
                 entity.Property(e => e.Id).HasColumnName("id");
 
                 entity.Property(e => e.Advisbelob)

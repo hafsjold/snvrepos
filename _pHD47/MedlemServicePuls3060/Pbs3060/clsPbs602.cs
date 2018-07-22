@@ -26,7 +26,7 @@ namespace Pbs3060
             transkode = "0236";
             rec = "BS0420398564402360000000100000000001231312345678910120310000000012755000000125                       " +
             "  1212031212030000000012755";
-            read042(sektion, transkode, rec);
+            //read042(sektion, transkode, rec);
         }
 
         public int betalinger_fra_pbs(dbData3060DataContext p_dbData3060)
@@ -159,28 +159,28 @@ namespace Pbs3060
                                 {
                                     // -- Gennemf?rt automatisk betaling
                                     // -- BEHANDL: Gennemf?rt automatisk betaling
-                                    read042(sektion, "0236", rec);
+                                    read042(sektion, "0236", rec, p_dbData3060);
                                 }
                                 else if (((rec.Substring(0, 5) == "BS042")
                                             && (rec.Substring(13, 4) == "0237")))
                                 {
                                     // -- Afvist betaling
                                     // -- BEHANDL: Afvist betaling
-                                    read042(sektion, "0237", rec);
+                                    read042(sektion, "0237", rec, p_dbData3060);
                                 }
                                 else if (((rec.Substring(0, 5) == "BS042")
                                             && (rec.Substring(13, 4) == "0238")))
                                 {
                                     // -- Afmeldt betaling
                                     // -- BEHANDL: Afmeldt betaling
-                                    read042(sektion, "0238", rec);
+                                    read042(sektion, "0238", rec, p_dbData3060);
                                 }
                                 else if (((rec.Substring(0, 5) == "BS042")
                                             && (rec.Substring(13, 4) == "0239")))
                                 {
                                     // -- Tilbagef?rt betaling
                                     // -- BEHANDL: Tilbagef?rt betaling
-                                    read042(sektion, "0239", rec);
+                                    read042(sektion, "0239", rec, p_dbData3060);
                                 }
                                 else if (((rec.Substring(0, 5) == "BS092")
                                             && (rec.Substring(13, 4) == "0211")))
@@ -208,14 +208,14 @@ namespace Pbs3060
                                 {
                                     // -- Gennemf?rt FI-betaling
                                     // -- BEHANDL: Gennemf?rt FI-betaling
-                                    read042(sektion, "0297", rec);
+                                    read042(sektion, "0297", rec, p_dbData3060);
                                 }
                                 else if (((rec.Substring(0, 5) == "BS042")
                                             && (rec.Substring(13, 4) == "0299")))
                                 {
                                     // -- Tilbagef?rt FI-betaling
                                     // -- BEHANDL: Tilbagef?rt FI-betaling
-                                    read042(sektion, "0299", rec);
+                                    read042(sektion, "0299", rec, p_dbData3060);
                                 }
                                 else if (((rec.Substring(0, 5) == "BS092")
                                             && (rec.Substring(13, 4) == "0215")))
@@ -282,7 +282,7 @@ namespace Pbs3060
             return AntalFiler;
         }
 
-        public void read042(string sektion, string transkode, string rec)
+        public void read042(string sektion, string transkode, string rec, dbData3060DataContext p_dbData3060)
         {
             int fortegn;
             decimal belobmun;
@@ -303,13 +303,19 @@ namespace Pbs3060
             // --  debitorkonto
             if ((sektion == "0211"))
             {
-                m_rec_betlin.Nr = int.Parse(rec.Substring(33, 7)); //***MHA***
                 m_rec_betlin.Debitorkonto = rec.Substring(25, 15);
+                if (m_rec_betlin.Debitorkonto.StartsWith("03200161"))
+                    m_rec_betlin.Nr = int.Parse(rec.Substring(33, 7)); //***MHA***
+                else
+                    m_rec_betlin.Nr = null;
             }
             else if ((sektion == "0215"))
             {
-                m_rec_betlin.Nr = int.Parse(rec.Substring(37, 7));
                 m_rec_betlin.Debitorkonto = rec.Substring(29, 15);
+                if (m_rec_betlin.Debitorkonto.StartsWith("03200161"))
+                    m_rec_betlin.Nr = int.Parse(rec.Substring(37, 7));
+                else
+                    m_rec_betlin.Nr = null;
             }
             else
             {
@@ -556,7 +562,46 @@ namespace Pbs3060
             }
 
             // Add tblbetlin
-            m_rec_bet.Tblbetlin.Add(m_rec_betlin);
+            Tblbetlin w_rec_betlin = Update_Nr_Faknr(m_rec_betlin, p_dbData3060);
+
+            m_rec_bet.Tblbetlin.Add(w_rec_betlin);
+        }
+
+        public Tblbetlin Update_Nr_Faknr(Tblbetlin m_rec_betlin, dbData3060DataContext p_dbData3060)
+        {
+            Tblbetlin m_rec_betlin_save = m_rec_betlin;
+            try
+            {
+                var xFaknr = m_rec_betlin.Faknr;
+                var xDebitorkonto = m_rec_betlin.Debitorkonto;
+                var xNr = m_rec_betlin.Nr;
+
+                // find Tblfak
+                var qry1 = from f in p_dbData3060.Tblfak where f.Faknr == xFaknr select f;
+                var count1 = qry1.Count();
+                if (count1 > 0)
+                {
+                    var recfak1 = qry1.First();
+                    m_rec_betlin.Nr = recfak1.Nr;
+                }
+                else
+                {
+                    var qry2 = from f in p_dbData3060.Tblfak where f.Indbetalerident == xDebitorkonto select f;
+                    var count2 = qry2.Count();
+                    if (count2 > 0)
+                    {
+                        var recfak2 = qry2.First();
+                        m_rec_betlin.Nr = recfak2.Nr;
+                        m_rec_betlin.Faknr = recfak2.Faknr;
+                    }
+                }
+            }
+            catch
+            {
+                return m_rec_betlin_save;
+
+            }
+            return m_rec_betlin;
         }
 
         public int betalinger_opdate_uniconta(dbData3060DataContext p_dbData3060, puls3060_nyEntities p_dbPuls3060_dk, CrudAPI api)
