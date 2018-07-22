@@ -19,7 +19,8 @@ namespace TestPbs3060
             CrudAPI api = UCInitializer.GetBaseAPI;
             dbData3060DataContext p_dbData3060 = new dbData3060DataContext();
             puls3060_nyEntities p_dbPuls3060_dk = new puls3060_nyEntities();
-            clsRSMembership2UniConta obj = new clsRSMembership2UniConta(p_dbData3060, p_dbPuls3060_dk, api);
+
+            //clsRSMembership2UniConta obj = new clsRSMembership2UniConta(p_dbData3060, p_dbPuls3060_dk, api);
             //obj.Subscriber2Debtor();
             //obj.EngangsSletningAfDebitor();
             //obj.Subscriber2Medlem();
@@ -73,6 +74,8 @@ namespace TestPbs3060
             clsUniconta objUniconta = new clsUniconta(p_dbData3060, api);
             objUniconta.BogforIndBetalinger();
 
+            //clsHelp.konverterNytMedlem(p_dbData3060, api);
+            //clsHelp.update_betlin(p_dbData3060);
         }
     }
 }

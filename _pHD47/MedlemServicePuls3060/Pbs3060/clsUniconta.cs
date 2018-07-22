@@ -43,24 +43,46 @@ namespace Pbs3060
 
             int saveBetid = 0;
             var bogf = (from bl in m_dbData3060.Tblbetlin
-                       where (bl.Pbstranskode == "0236" || bl.Pbstranskode == "0297") && (Startdato <= bl.Indbetalingsdato && bl.Indbetalingsdato <= Slutdato)
-                       join b in m_dbData3060.Tblbet on bl.Betid equals b.Id
-                       where b.Summabogfort == null || b.Summabogfort == false //<<-------------------------------
-                       join p in m_dbData3060.Tblfrapbs on b.Frapbsid equals p.Id
-                       orderby p.Id, b.Id, bl.Id
-                       select new betrec
-                       {
-                           Frapbsid = p.Id,
-                           Leverancespecifikation = p.Leverancespecifikation,
-                           Betid = b.Id,
-                           GruppeIndbetalingsbelob = b.Indbetalingsbelob,
-                           Betlinid = bl.Id,
-                           Betalingsdato = bl.Betalingsdato,
-                           Indbetalingsdato = bl.Indbetalingsdato,
-                           Indbetalingsbelob = bl.Indbetalingsbelob,
-                           Faknr = bl.Faknr,
-                           Debitorkonto = bl.Debitorkonto
-                       }).ToList();
+                        where (bl.Pbstranskode == "0236" || bl.Pbstranskode == "0297") && (Startdato <= bl.Indbetalingsdato && bl.Indbetalingsdato <= Slutdato)
+                        join b in m_dbData3060.Tblbet on bl.Betid equals b.Id
+                        where b.Summabogfort == null || b.Summabogfort == false //<<-------------------------------
+                        join p in m_dbData3060.Tblfrapbs on b.Frapbsid equals p.Id
+                        orderby p.Id, b.Id, bl.Id
+                        select new betrec
+                        {
+                            Frapbsid = p.Id,
+                            Leverancespecifikation = p.Leverancespecifikation,
+                            Betid = b.Id,
+                            GruppeIndbetalingsbelob = b.Indbetalingsbelob,
+                            Betlinid = bl.Id,
+                            Betalingsdato = bl.Betalingsdato,
+                            Indbetalingsdato = bl.Indbetalingsdato,
+                            Indbetalingsbelob = bl.Indbetalingsbelob,
+                            Faknr = bl.Faknr,
+                            Debitorkonto = bl.Debitorkonto,
+                            Nr = bl.Nr
+                        }).ToList();
+
+            foreach (var b in bogf)
+            {
+                var critMedlem = new List<PropValuePair>();
+                var pairMedlem = PropValuePair.GenereteWhereElements("KeyStr", typeof(String), b.Nr.ToString());
+                critMedlem.Add(pairMedlem);
+                var taskMedlem = m_api.Query<Medlem>(critMedlem);
+                taskMedlem.Wait();
+                var resultMedlem = taskMedlem.Result;
+                var antalMedlem = resultMedlem.Count();
+                if (antalMedlem == 1)
+                {
+                    var recMedlem = resultMedlem.First();
+                    b.DebitorNavn = recMedlem.KeyName;
+                }
+                else
+                {
+                    b.DebitorNavn = "Ukendt medlem";
+                }
+            }
+
             int AntalBetalinger = bogf.Count();
             if (bogf.Count() > 0)
             {
@@ -97,31 +119,30 @@ namespace Pbs3060
 
                     char[] trim0 = { '0' };
                     IQueryable<msmrecs> msm;
-                    if (b.Faknr != 0)
+                    if (b.Faknr != 0) //Indbetalingskort sendt af Nets
                     {
                         msm = from f in m_dbData3060.Tblfak
                               where f.Faknr == b.Faknr
-                              join m in m_dbData3060.TblrsmembershipTransactions on f.Id equals m.Id
                               select new msmrecs
                               {
                                   faknr = f.Faknr,
                                   Nr = f.Nr,
-                                  name = m.Name,
+                                  name = b.DebitorNavn,
                                   bogfkonto = f.Bogfkonto,
                                   fradato = f.Fradato,
                                   tildato = f.Tildato
                               };
+
                     }
-                    else
+                    else //Indbetalingskort ikke sendt af Nets
                     {
                         msm = from f in m_dbData3060.Tblfak
                               where f.Indbetalerident.TrimStart(trim0) == b.Debitorkonto.TrimStart(trim0)
-                              join m in m_dbData3060.TblrsmembershipTransactions on f.Id equals m.Id
                               select new msmrecs
                               {
                                   faknr = f.Faknr,
                                   Nr = f.Nr,
-                                  name = m.Name,
+                                  name = b.DebitorNavn,
                                   bogfkonto = f.Bogfkonto,
                                   fradato = f.Fradato,
                                   tildato = f.Tildato
@@ -203,7 +224,6 @@ namespace Pbs3060
             var crit = new List<PropValuePair>();
             var pair = PropValuePair.GenereteWhereElements("KeyStr", typeof(String), "Dag");
             crit.Add(pair);
-            //var task1 = m_api.Query<GLDailyJournalClient>(null, crit);
             var task1 = m_api.Query<GLDailyJournalClient>(crit);
             task1.Wait();
             var col = task1.Result;
@@ -333,5 +353,7 @@ namespace Pbs3060
         public decimal? Indbetalingsbelob { get; set; }
         public int? Faknr { get; set; }
         public string Debitorkonto { get; set; }
+        public int? Nr { get; set; }
+        public string DebitorNavn { get; set; }
     }
 }
