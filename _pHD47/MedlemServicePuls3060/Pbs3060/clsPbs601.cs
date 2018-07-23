@@ -211,13 +211,21 @@ namespace Pbs3060
                         Betalingsdato = f.Betalingsdato,
                         Fradato = f.Fradato,
                         Tildato = f.Tildato,
-                        Infotekst = f.Infotekst,
-                        Tilpbsid = f.Tilpbsid,
-                        Advistekst = f.Advistekst,
-                        Belob = f.Advisbelob,
                         indbetalerident = f.Indbetalerident,
                         indmeldelse = f.Indmeldelse,
                     };
+
+                    var qry2 = from r in p_dbData3060.Tbladvis where r.Faknr == f.Faknr select r;
+                    int antalAdvis = qry2.Count();
+                    if (antalAdvis == 1)
+                    {
+                        var recAdvis = qry2.First();
+                        recRstdeb.Infotekst = recAdvis.Infotekst;
+                        recRstdeb.Tilpbsid = recAdvis.Tilpbsid;
+                        recRstdeb.Advistekst = recAdvis.Advistekst;
+                        recRstdeb.Belob = recAdvis.Advisbelob;
+                    }
+
                     var critMedlem = new List<PropValuePair>();
                     var pairMedlem = PropValuePair.GenereteWhereElements("KeyStr", typeof(String), f.Nr.ToString());
                     critMedlem.Add(pairMedlem);
@@ -1020,8 +1028,19 @@ namespace Pbs3060
             wSaveFaknr = 0;
             foreach (var rstdeb in rstdebs)
             {
+                string OcrString = null;
+                string windbetalerident = rstdeb.indbetalerident;
                 if (rstdeb.Faknr != wSaveFaknr) //Løser problem med mere flere PBS Tblindbetalingskort records pr Faknr
                 {
+                    OcrString = p_dbData3060.OcrString((int)rstdeb.Faknr);
+                    if (string.IsNullOrEmpty(OcrString))
+                    {
+                        if (Mod10Check(windbetalerident))
+                        {
+                            OcrString = string.Format(@"+71< {0}+81131945<", windbetalerident);
+                        }
+                    }
+
                     clsInfotekst objInfotekst = new clsInfotekst
                     {
                         infotekst_id = rstdeb.Infotekst,
@@ -1032,7 +1051,7 @@ namespace Pbs3060
                         tildato = rstdeb.Tildato,
                         betalingsdato = rstdeb.Betalingsdato,
                         advisbelob = rstdeb.Belob,
-                        ocrstring = p_dbData3060.OcrString((int)rstdeb.Faknr),
+                        ocrstring = OcrString,
                         underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører",
                         sendtsom = p_dbData3060.SendtSomString((int)rstdeb.Faknr),
                         kundenr = rstdeb.Kundenr.ToString()
