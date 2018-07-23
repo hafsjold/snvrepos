@@ -89,7 +89,7 @@ namespace MedlemServicePuls3060
             //JobWorker("SendKontingentFileToPBS", 99999);
             //JobWorker("KontingentNyeMedlemmer", 99999);
             //JobWorker("SendEmailRykker", 99999); // Tested OK 23-7-2018
-            //JobWorker("SendEmailKviteringer", 99999);
+            JobWorker("SendEmailKviteringer", 99999);
 
             JobQMaintenance();
             LoadSchedule();
@@ -240,9 +240,14 @@ namespace MedlemServicePuls3060
                             break;
 
                         case enumTask.SendEmailKviteringer:
-                            puls3060_nyEntities djdb = new puls3060_nyEntities();
                             clsPbs601 objPbs601d = new clsPbs601();
-                            //objPbs601d.rsmembeshhip_betalinger_auto(m_dbData3060, djdb);
+                            CrudAPI apif = UCInitializer.GetBaseAPI;
+                            Tuple<int, int> tresultf = objPbs601d.kvitering_auto(m_dbData3060);
+                            int AntalKvit = tresultf.Item1;
+                            int lobnrf = tresultf.Item2;
+                            if ((AntalKvit > 0))
+                                objPbs601d.kvitering_email_lobnr(m_dbData3060, lobnrf, apif);
+                            objPbs601d = null;
                             break;
 
                         default:
