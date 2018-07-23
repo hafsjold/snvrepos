@@ -370,6 +370,10 @@ namespace Pbs3060
                         recRstdeb.Email = recMedlem.Email;
                         recRstdeb.status = recMedlem.status;
                     }
+                    else
+                    {
+                        recRstdeb.status = "Slettet";
+                    }
                     rstmedlems.Add(recRstdeb);
                 }
             }
@@ -384,7 +388,7 @@ namespace Pbs3060
             {
                 foreach (var m in rstmedlems)
                 {
-                    bool AllreadyPayedOrCancelledOrDeleted = (m.status == "Udmeldt");
+                    bool AllreadyPayedOrCancelledOrDeleted = ((m.status == "Udmeldt") || (m.status == "Slettet"));
                     if (!AllreadyPayedOrCancelledOrDeleted)
                     {
                         //Endnu ikke forfalden
@@ -403,7 +407,7 @@ namespace Pbs3060
                         };
                         memRyk.Add(rec);
                         wantalrykkere++;
-                        if (wantalrykkere >= 30) break; //max 30 rykkere på gang
+                        if (wantalrykkere >= 30) break; //max 30 rykkere på gang <<-------------HUSK HUSK
                     }
                 }
 
@@ -949,28 +953,46 @@ namespace Pbs3060
             try
             {
                 var qry1 = from r in p_dbData3060.Tblrykker
-                           where r.Tilpbsid == lobnr && r.Nr != null
-                           join f in p_dbData3060.Tblfak on r.Faknr equals f.Faknr
-                           orderby f.Nr
-                           select f;
+                            where r.Tilpbsid == lobnr && r.Nr != null
+                            join f in p_dbData3060.Tblfak on r.Faknr equals f.Faknr
+                            orderby f.Nr
+                            select f;
+
+                int debugAntal = qry1.Count();
 
                 foreach (var f in qry1)
                 {
-                    clsRstdeb recRstdeb = new clsRstdeb()
+                    clsRstdeb recRstDeb = new clsRstdeb()
                     {
                         Nr = f.Nr,
                         Kundenr = 32001610000000 + f.Nr,
+                        //Kaldenavn = k.Name,
+                        //Navn = k.Name,
+                        //Adresse = k.Adresse,
+                        //Postnr = k.Postnr,
                         Faknr = f.Faknr,
                         Betalingsdato = f.Betalingsdato,
                         Fradato = f.Fradato,
                         Tildato = f.Tildato,
-                        Infotekst = f.Infotekst,
-                        Tilpbsid = f.Tilpbsid,
-                        Advistekst = f.Advistekst,
-                        Belob = f.Advisbelob,
+                        //Infotekst = r.Infotekst,
+                        //Tilpbsid = r.Tilpbsid,
+                        //Advistekst = r.Advistekst,
+                        //Belob = r.Advisbelob,
+                        //Email = k.UserEmail,
                         indbetalerident = f.Indbetalerident,
                         indmeldelse = f.Indmeldelse,
                     };
+                    var qry2 = from r in p_dbData3060.Tblrykker where r.Faknr == f.Faknr select r;
+                    int antalRykker = qry2.Count();
+                    if (antalRykker == 1)
+                    {
+                        var recRykker = qry2.First();
+                        recRstDeb.Infotekst = recRykker.Infotekst;
+                        recRstDeb.Tilpbsid = recRykker.Tilpbsid;
+                        recRstDeb.Advistekst = recRykker.Advistekst;
+                        recRstDeb.Belob = recRykker.Advisbelob;
+                    }
+
                     var critMedlem = new List<PropValuePair>();
                     var pairMedlem = PropValuePair.GenereteWhereElements("KeyStr", typeof(String), f.Nr.ToString());
                     critMedlem.Add(pairMedlem);
@@ -981,13 +1003,13 @@ namespace Pbs3060
                     if (antalMedlem == 1)
                     {
                         var recMedlem = resultMedlem.First();
-                        recRstdeb.Kaldenavn = recMedlem.KeyName;
-                        recRstdeb.Navn = recMedlem.KeyName;
-                        recRstdeb.Adresse = recMedlem.Adresse;
-                        recRstdeb.Postnr = recMedlem.Postnr;
-                        recRstdeb.Email = recMedlem.Email;
+                        recRstDeb.Kaldenavn = recMedlem.KeyName;
+                        recRstDeb.Navn = recMedlem.KeyName;
+                        recRstDeb.Adresse = recMedlem.Adresse;
+                        recRstDeb.Postnr = recMedlem.Postnr;
+                        recRstDeb.Email = recMedlem.Email;
                     }
-                    rstdebs.Add(recRstdeb);
+                    rstdebs.Add(recRstDeb);
                 }
             }
             catch (Exception e)
@@ -2009,17 +2031,12 @@ namespace Pbs3060
             var message = new MimeMessage();
             message.Body = builder.ToMessageBody();
 
-#if (DEBUG)
-            message.To.Add(new MailboxAddress("Regnskab Puls3060", "regnskab@puls3060.dk"));
-            message.Subject = "TEST " + subject + " skal sendes til: " + ToName + " - " + ToAddr;
-#else
             message.To.Add(new MailboxAddress(ToName, ToAddr));
             if (bBcc)
             {
                 message.Bcc.Add(new MailboxAddress("Bjarne V. Hansen", "formand@puls3060.dk"));
             }
             message.Subject = subject;
-#endif
 
             message.From.Add(new MailboxAddress("Regnskab Puls3060", "regnskab@puls3060.dk"));
             using (var smtp_client = new MailKit.Net.Smtp.SmtpClient())

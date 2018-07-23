@@ -63,6 +63,8 @@ namespace Pbs3060
                             Nr = bl.Nr
                         }).ToList();
 
+            int AntalBetalinger = bogf.Count();
+
             foreach (var b in bogf)
             {
                 var critMedlem = new List<PropValuePair>();
@@ -83,7 +85,6 @@ namespace Pbs3060
                 }
             }
 
-            int AntalBetalinger = bogf.Count();
             if (bogf.Count() > 0)
             {
                 DateTime nu = DateTime.Now;

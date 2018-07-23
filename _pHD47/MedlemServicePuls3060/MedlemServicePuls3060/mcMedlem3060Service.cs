@@ -88,7 +88,7 @@ namespace MedlemServicePuls3060
             //JobWorker("SendEmailAdvis", 99999);
             //JobWorker("SendKontingentFileToPBS", 99999);
             //JobWorker("KontingentNyeMedlemmer", 99999);
-            //JobWorker("SendEmailRykker", 99999);
+            //JobWorker("SendEmailRykker", 99999); // Tested OK 23-7-2018
             //JobWorker("SendEmailKviteringer", 99999);
 
             JobQMaintenance();
@@ -152,6 +152,9 @@ namespace MedlemServicePuls3060
                                 puls3060_nyEntities jdb = new puls3060_nyEntities();
                                 objPbs602.betalinger_opdate_uniconta(m_dbData3060, jdb, api);
                                 Console.WriteLine(string.Format("Medlem3060Service {0} end", "Betalinger til RSMembership"));
+
+                                clsUniconta objSumma = new clsUniconta(m_dbData3060, api);
+                                int AntalBetalinger = objSumma.BogforIndBetalinger();
                             }
                             objPbs602 = null;
 
@@ -162,7 +165,6 @@ namespace MedlemServicePuls3060
                             clsPbs686 objPbs686 = new clsPbs686();
                             int Antal686Filer = objPbs686.aftaleoplysninger_fra_pbs(m_dbData3060);
                             objPbs686 = null;
-
                             break;
 
                         case enumTask.SendEmailAdvis:

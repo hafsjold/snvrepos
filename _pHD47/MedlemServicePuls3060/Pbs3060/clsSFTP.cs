@@ -22,14 +22,7 @@ namespace Pbs3060
         private clsSFTP() { }
         public clsSFTP(dbData3060DataContext p_dbData3060)
         {
-#if (DEBUG)
-            //m_rec_sftp = (from s in p_dbData3060.tblsftp where s.navn == "TestHD36" select s).First();
-            //m_rec_sftp = (from s in p_dbData3060.tblsftp where s.navn == "Test" select s).First();
             m_rec_sftp = (from s in p_dbData3060.Tblsftp where s.Navn == "Produktion" select s).First();
-#else
-            //m_rec_sftp = (from s in p_dbData3060.tblsftp where s.navn == "Test" select s).First();
-            m_rec_sftp = (from s in p_dbData3060.tblsftp where s.navn == "Produktion" select s).First();
-#endif
             Console.WriteLine(string.Format("host={0}, port={1}, user={2}", m_rec_sftp.Host, int.Parse(m_rec_sftp.Port), m_rec_sftp.User), "SFTP ConnectionString");
             byte[] bPK = Encoding.UTF8.GetBytes(m_rec_sftp.Certificate);
             MemoryStream mPK = new MemoryStream(bPK);
@@ -451,23 +444,13 @@ namespace Pbs3060
 
             if (bTilPBS)
             {
-#if (DEBUG)
-                message.Subject = "Test Til PBS: " + local_filename;
-                body = new TextPart("plain") { Text = @"Test Til PBS: " + local_filename };
-#else
                 message.Subject = "Til PBS: " + local_filename;
                 body = new TextPart("plain") { Text = @"Til PBS: " + local_filename};
-#endif
             }
             else
             {
-#if (DEBUG)
-                message.Subject = "Test Fra PBS: " + local_filename;
-                body = new TextPart("plain") { Text = @"Test Fra PBS: " + local_filename };
-#else
                 message.Subject = "Fra PBS: " + local_filename;
                 body = new TextPart("plain") { Text = @"Fra PBS: " + local_filename };
-#endif
             }
 
             var attachment = new MimePart("text", "plain")
