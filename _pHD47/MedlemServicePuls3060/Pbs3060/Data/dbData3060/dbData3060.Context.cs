@@ -16,6 +16,49 @@
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Tblkvitering>(entity =>
+            {
+                entity.ToTable("tblkvitering");
+
+                entity.HasIndex(e => e.Id)
+                    .HasName("UQ__tblkvitering__3213E83E6E3AB7F5")
+                    .IsUnique();
+
+                entity.HasIndex(e => new { e.Nr, e.Faknr })
+                    .HasName("tblmedlem_tbladvis");
+
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.Kvitbelob)
+                    .HasColumnName("kvitbelob")
+                    .HasColumnType("numeric(18, 2)");
+
+                entity.Property(e => e.Kvittekst)
+                    .HasColumnName("kvittekst")
+                    .HasMaxLength(4000);
+
+                entity.Property(e => e.Betalingsdato)
+                    .HasColumnName("betalingsdato")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.Faknr).HasColumnName("faknr");
+
+                entity.Property(e => e.Infotekst).HasColumnName("infotekst");
+
+                entity.Property(e => e.Maildato)
+                    .HasColumnName("maildato")
+                    .HasColumnType("datetime");
+
+                entity.Property(e => e.Tilpbsid).HasColumnName("tilpbsid");
+                
+                entity.HasOne(d => d.Tilpbs)
+                    .WithMany(p => p.Tblkvitering)
+                    .HasForeignKey(d => d.Tilpbsid)
+                    .OnDelete(DeleteBehavior.Cascade)
+                    .HasConstraintName("FK_tbltilpbs_tblkvitering");
+                
+            });
+
             modelBuilder.Entity<Tbladvis>(entity =>
             {
                 entity.ToTable("tbladvis");
@@ -1355,6 +1398,7 @@
             });
         }
 
+        public virtual DbSet<Tblkvitering> Tblkvitering { get; set; }
         public virtual DbSet<Tbladvis> Tbladvis { get; set; }
         public virtual DbSet<Tblaftalelin> Tblaftalelin { get; set; }
         public virtual DbSet<Tblbankkonto> Tblbankkonto { get; set; }

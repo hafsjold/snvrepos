@@ -12,6 +12,7 @@ namespace Pbs3060
             this.Tblfak = new HashSet<Tblfak>();
             this.Tbloverforsel = new HashSet<Tbloverforsel>();
             this.Tblrykker = new HashSet<Tblrykker>();
+            this.Tblkvitering = new HashSet<Tblkvitering>();
         }
         public int Id { get; set; }
         public string Delsystem { get; set; }
@@ -27,5 +28,6 @@ namespace Pbs3060
         public ICollection<Tbloverforsel> Tbloverforsel { get; set; }
         public Tblpbsforsendelse Pbsforsendelse { get; set; }
         public ICollection<Tblrykker> Tblrykker { get; set; }
+        public ICollection<Tblkvitering> Tblkvitering { get; set; }
     }
 }

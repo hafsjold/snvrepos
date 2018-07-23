@@ -2031,6 +2031,220 @@ namespace Pbs3060
             return wantalbetalinger;
         }
 
+        public Tuple<int, int> kvitering_auto(dbData3060DataContext p_dbData3060)
+        {
+            int lobnr = 0;
+            string wadvistekst = "";
+            int winfotekst;
+            int wantalkvit = 0;
+            string wDelsystem = "EML";
+
+
+            var rstmedlems = from b in p_dbData3060.Tblbet
+                             join bl in p_dbData3060.Tblbetlin on b.Id equals bl.Betid
+                             join f in p_dbData3060.Tblfak on bl.Faknr equals f.Faknr
+                             where b.Bogforingsdato > DateTime.Now.AddDays(-25)
+                             && (int)(from q in p_dbData3060.Tblkvitering where q.Faknr == f.Faknr select q).Count() == 0
+                             select new
+                             {
+                                 f.Nr,
+                                 betalingsdato = bl.Indbetalingsdato,
+                                 advisbelob = bl.Indbetalingsbelob,
+                                 f.Faknr,
+                                 f.Indmeldelse
+                             };
+
+
+            int adviscount = rstmedlems.Count();
+            if (adviscount > 0)
+            {
+                Tbltilpbs rec_tilpbs = new Tbltilpbs
+                {
+                    Delsystem = wDelsystem,
+                    Leverancetype = "0601",
+                    Udtrukket = DateTime.Now
+                };
+                p_dbData3060.Tbltilpbs.Add(rec_tilpbs);
+                p_dbData3060.SaveChanges();
+                lobnr = rec_tilpbs.Id;
+
+                foreach (var rstmedlem in rstmedlems)
+                {
+                    winfotekst = (rstmedlem.Indmeldelse) ? 51 : 50; //<-------------------HUSK HUSK
+                    //if (rstmedlem.Indmeldelse) winfotekst = 72;
+                    //else winfotekst = (rstmedlem.Tilmeldtpbs) ? 10 : 12;
+
+
+                    Tblkvitering rec_kvit = new Tblkvitering
+                    {
+                        Betalingsdato = rstmedlem.betalingsdato,
+                        Nr = rstmedlem.Nr,
+                        Faknr = rstmedlem.Faknr,
+                        Kvittekst = wadvistekst,
+                        Kvitbelob = rstmedlem.advisbelob,
+                        Infotekst = winfotekst,
+                        Maildato = DateTime.Today,
+                    };
+                    rec_tilpbs.Tblkvitering.Add(rec_kvit);
+                    wantalkvit++;
+                    if (wantalkvit >= 30) break; //max 30 advis på gang
+                }
+                p_dbData3060.SaveChanges();
+            }
+            return new Tuple<int, int>(wantalkvit, lobnr);
+        }
+
+        public void kvitering_email_lobnr(dbData3060DataContext p_dbData3060, int lobnr, CrudAPI api)
+        {
+            int wleveranceid;
+            int? wSaveFaknr;
+
+            {
+                var antal = (from c in p_dbData3060.Tbltilpbs
+                             where c.Id == lobnr
+                             select c).Count();
+                if (antal == 0) { throw new Exception("101 - Der er ingen PBS forsendelse for id: " + lobnr); }
+            }
+            {
+                var antal = (from c in p_dbData3060.Tbltilpbs
+                             where c.Id == lobnr && c.Pbsforsendelseid != null
+                             select c).Count();
+                if (antal > 0) { throw new Exception("102 - Pbsforsendelse for id: " + lobnr + " er allerede sendt"); }
+            }
+            {
+                var antal = (from c in p_dbData3060.Tbladvis
+                             where c.Tilpbsid == lobnr
+                             select c).Count();
+                if (antal == 0) { throw new Exception("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr); }
+            }
+
+            var rsttil = (from c in p_dbData3060.Tbltilpbs
+                          where c.Id == lobnr
+                          select c).First();
+            if (rsttil.Udtrukket == null) { rsttil.Udtrukket = DateTime.Now; }
+            if (rsttil.Bilagdato == null) { rsttil.Bilagdato = rsttil.Udtrukket; }
+            if (rsttil.Delsystem == null) { rsttil.Delsystem = "EML"; }
+            if (rsttil.Leverancetype == null) { rsttil.Leverancetype = ""; }
+            p_dbData3060.SaveChanges();
+
+            wleveranceid = p_dbData3060.nextval_v2("leveranceid");
+            Tblpbsforsendelse rec_pbsforsendelse = new Tblpbsforsendelse
+            {
+                Delsystem = rsttil.Delsystem,
+                Leverancetype = rsttil.Leverancetype,
+                Oprettetaf = "Adv",
+                Oprettet = DateTime.Now,
+                Leveranceid = wleveranceid
+            };
+            p_dbData3060.Tblpbsforsendelse.Add(rec_pbsforsendelse);
+            rec_pbsforsendelse.Tbltilpbs.Add(rsttil);
+
+            List<clsRstdeb> rstdebs = new List<clsRstdeb>();
+            try
+            {
+                var qry1 = from f in p_dbData3060.Tblfak
+                           join r in p_dbData3060.Tblkvitering on f.Faknr equals r.Faknr
+                           where r.Tilpbsid == lobnr && r.Nr != null
+                           orderby f.Nr
+                           select f;
+
+                foreach (var f in qry1)
+                {
+                    clsRstdeb recRstdeb = new clsRstdeb()
+                    {
+                        Nr = f.Nr,
+                        Kundenr = 32001610000000 + f.Nr,
+                        Faknr = f.Faknr,
+                        Betalingsdato = f.Betalingsdato,
+                        Fradato = f.Fradato,
+                        Tildato = f.Tildato,
+                        indbetalerident = f.Indbetalerident,
+                        indmeldelse = f.Indmeldelse,
+                    };
+
+                    var qry2 = from r in p_dbData3060.Tblkvitering where r.Faknr == f.Faknr select r;
+                    int antalAdvis = qry2.Count();
+                    if (antalAdvis == 1)
+                    {
+                        var recAdvis = qry2.First();
+                        recRstdeb.Infotekst = recAdvis.Infotekst;
+                        recRstdeb.Tilpbsid = recAdvis.Tilpbsid;
+                        recRstdeb.Advistekst = recAdvis.Kvittekst;
+                        recRstdeb.Belob = recAdvis.Kvitbelob;
+                    }
+
+                    var critMedlem = new List<PropValuePair>();
+                    var pairMedlem = PropValuePair.GenereteWhereElements("KeyStr", typeof(String), f.Nr.ToString());
+                    critMedlem.Add(pairMedlem);
+                    var taskMedlem = api.Query<Medlem>(critMedlem);
+                    taskMedlem.Wait();
+                    var resultMedlem = taskMedlem.Result;
+                    var antalMedlem = resultMedlem.Count();
+                    if (antalMedlem == 1)
+                    {
+                        var recMedlem = resultMedlem.First();
+                        recRstdeb.Kaldenavn = recMedlem.KeyName;
+                        recRstdeb.Navn = recMedlem.KeyName;
+                        recRstdeb.Adresse = recMedlem.Adresse;
+                        recRstdeb.Postnr = recMedlem.Postnr;
+                        recRstdeb.Email = recMedlem.Email;
+                    }
+                    rstdebs.Add(recRstdeb);
+                }
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+
+            wSaveFaknr = 0;
+            foreach (var rstdeb in rstdebs)
+            {
+                string OcrString = null;
+                string windbetalerident = rstdeb.indbetalerident;
+                if (rstdeb.Faknr != wSaveFaknr) //Løser problem med mere flere PBS Tblindbetalingskort records pr Faknr
+                {
+                    OcrString = p_dbData3060.OcrString((int)rstdeb.Faknr);
+                    if (string.IsNullOrEmpty(OcrString))
+                    {
+                        if (Mod10Check(windbetalerident))
+                        {
+                            OcrString = string.Format(@"+71< {0}+81131945<", windbetalerident);
+                        }
+                    }
+
+                    clsInfotekst objInfotekst = new clsInfotekst
+                    {
+                        infotekst_id = rstdeb.Infotekst,
+                        numofcol = null,
+                        navn_medlem = rstdeb.Navn,
+                        kaldenavn = rstdeb.Kaldenavn,
+                        fradato = rstdeb.Fradato,
+                        tildato = rstdeb.Tildato,
+                        betalingsdato = rstdeb.Betalingsdato,
+                        advisbelob = rstdeb.Belob,
+                        ocrstring = OcrString,
+                        underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører",
+                        sendtsom = p_dbData3060.SendtSomString((int)rstdeb.Faknr),
+                        kundenr = rstdeb.Kundenr.ToString()
+                    };
+                    string subject = "Kvittering for medlemsskab af Puls 3060";
+                    Boolean bBcc = false;
+                    if (rstdeb.indmeldelse != null)
+                    {
+                        if ((Boolean)(rstdeb.indmeldelse) == true) bBcc = true;
+                    }
+                    //Send email
+                    sendHtmlEmail(p_dbData3060, rstdeb.Navn, rstdeb.Email, subject, objInfotekst, bBcc);
+                }
+                wSaveFaknr = rstdeb.Faknr;
+            } // -- End rstdebs
+
+            rsttil.Udtrukket = DateTime.Now;
+            rsttil.Leverancespecifikation = wleveranceid.ToString();
+            p_dbData3060.SaveChanges();
+        }
+
         public void sendHtmlEmail(dbData3060DataContext p_dbData3060, string ToName, string ToAddr, string subject, clsInfotekst objInfotekst, Boolean bBcc)
         {
             string TemplateName = "Template-" + objInfotekst.infotekst_id.ToString();
