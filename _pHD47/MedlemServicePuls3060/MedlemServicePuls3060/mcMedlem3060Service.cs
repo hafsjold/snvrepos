@@ -84,12 +84,12 @@ namespace MedlemServicePuls3060
         private void Scheduler()
         {
             //Test
-            //JobWorker("ReceiveFilesFromPBS", 99999);
+            //JobWorker("ReceiveFilesFromPBS", 99999);Tested OK 25-5-2018
             //JobWorker("SendEmailAdvis", 99999);
-            //JobWorker("SendKontingentFileToPBS", 99999);
+            JobWorker("SendKontingentFileToPBS", 99999);
             //JobWorker("KontingentNyeMedlemmer", 99999);
             //JobWorker("SendEmailRykker", 99999); // Tested OK 23-7-2018
-            JobWorker("SendEmailKviteringer", 99999);
+            //JobWorker("SendEmailKviteringer", 99999);
 
             JobQMaintenance();
             LoadSchedule();
@@ -149,8 +149,7 @@ namespace MedlemServicePuls3060
                             if (Antal602Filer > 0)
                             {
                                 Console.WriteLine(string.Format("Medlem3060Service {0} begin", "Betalinger til RSMembership"));
-                                puls3060_nyEntities jdb = new puls3060_nyEntities();
-                                objPbs602.betalinger_opdate_uniconta(m_dbData3060, jdb, api);
+                                objPbs602.betalinger_opdate_uniconta(m_dbData3060, api);
                                 Console.WriteLine(string.Format("Medlem3060Service {0} end", "Betalinger til RSMembership"));
 
                                 clsUniconta objSumma = new clsUniconta(m_dbData3060, api);
@@ -221,10 +220,9 @@ namespace MedlemServicePuls3060
                             break;
 
                         case enumTask.SendEmailRykker:
-                            puls3060_nyEntities bjdb = new puls3060_nyEntities();
                             clsPbs601 objPbs601b = new clsPbs601();
                             CrudAPI bapi = UCInitializer.GetBaseAPI;
-                            Tuple<int, int> tresultb = objPbs601b.rykker_auto(m_dbData3060, bjdb, bapi);
+                            Tuple<int, int> tresultb = objPbs601b.rykker_auto(m_dbData3060, bapi);
                             int AntalRykker = tresultb.Item1;
                             int lobnrb = tresultb.Item2;
                             if ((AntalRykker > 0))

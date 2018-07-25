@@ -299,7 +299,7 @@ namespace Pbs3060
             p_dbData3060.SaveChanges();
         }
 
-        public Tuple<int, int> rykker_auto(dbData3060DataContext p_dbData3060, puls3060_nyEntities p_dbPuls3060_dk, CrudAPI api)
+        public Tuple<int, int> rykker_auto(dbData3060DataContext p_dbData3060, CrudAPI api)
         {
             int lobnr = 0;
             string wadvistekst = "";
@@ -721,8 +721,9 @@ namespace Pbs3060
             return new Tuple<int, int>(wantalfakturaer, lobnr);
         }
 
-        public Tuple<int, int> rsmembeshhip_kontingent_fakturer_bs1(dbData3060DataContext p_dbData3060, puls3060_nyEntities p_dbPuls3060_dk, Memkontingentforslag memKontingentforslag, pbsType forsType)
+        public Tuple<int, int> rsmembeshhip_kontingent_fakturer_bs1(dbData3060DataContext p_dbData3060,  Memkontingentforslag memKontingentforslag, pbsType forsType)
         {
+            // KAN SLETTES
             int lobnr;
             string wadvistekst = "";
             int winfotekst;
@@ -1900,137 +1901,6 @@ namespace Pbs3060
             return sumOfDigits % 10 == 0;
         }
 
-        public int rsmembeshhip_betalinger_auto(dbData3060DataContext p_dbData3060, puls3060_nyEntities p_dbPuls3060_dk)
-        {
-            int winfotekst = 0;
-            Boolean bBcc = false;
-            int wantalbetalinger = 0;
-            int AntalBetalinger = 0;
-            DateTime now_minus5days = DateTime.UtcNow.AddDays(-5);//<------------------
-            MemRSMembershipTransactions memRSMembershipTransactions = new MemRSMembershipTransactions();
-
-            var qrytrans = from s in p_dbPuls3060_dk.ecpwt_rsmembership_membership_subscribers
-                           where s.membership_id == 6 && s.status == 0
-                           join t in p_dbPuls3060_dk.ecpwt_rsmembership_transactions on s.last_transaction_id equals t.id
-                           where t.status == "completed" && t.date > now_minus5days
-                           orderby t.date ascending
-                           select new
-                           {
-                               subscriber_id = s.id,
-                               s.membership_id,
-                               s.membership_start,
-                               s.membership_end,
-                               t.id,
-                               t.user_id,
-                               t.user_email,
-                               t.user_data,
-                               t.type,
-                               t.@params,
-                               t.date,
-                               t.ip,
-                               t.price,
-                               t.coupon,
-                               t.currency,
-                               t.hash,
-                               t.custom,
-                               t.gateway,
-                               t.status,
-                               t.response_log
-                           };
-            var trans = qrytrans.ToList();
-
-            int antal = trans.Count();
-            foreach (var tr in trans)
-            {
-                bool newTrans = ((from q in p_dbData3060.TblrsmembershipPayments where q.TransId == tr.id select q.Id).Count() == 0);
-                if (!newTrans) //<------------------Debug
-                    continue;
-
-                try  //<------------------Opdateret 29-6-2018 MHA
-                {
-                    User_data recud = clsHelper.unpack_UserData(tr.user_data);
-                    recRSMembershipTransactions rec = new recRSMembershipTransactions
-                    {
-                        id = tr.id,
-                        user_id = tr.user_id,
-                        user_email = tr.user_email,
-                        user_data = tr.user_data,
-                        type = tr.type,
-                        @params = tr.@params,
-                        date = tr.date,
-                        ip = tr.ip,
-                        price = tr.price,
-                        coupon = tr.coupon,
-                        currency = tr.currency,
-                        hash = tr.hash,
-                        custom = tr.custom,
-                        gateway = tr.gateway,
-                        status = tr.status,
-                        response_log = tr.response_log,
-                        indmeldelse = (tr.type == "new") ? true : false,
-                        tilmeldtpbs = false, // ?????
-                        name = recud.name,
-                        username = recud.username,
-                        adresse = recud.adresse,
-                        postnr = recud.postnr,
-                        bynavn = recud.bynavn,
-                        mobil = recud.mobil,
-                        memberid = (!string.IsNullOrEmpty(recud.memberid)) ? int.Parse(recud.memberid) : 0,
-                        kon = recud.kon,
-                        fodtaar = recud.fodtaar,
-                        message = recud.message,
-                        password = recud.password,
-                        fradato = tr.membership_start,
-                        tildato = tr.membership_end,
-                        membership_id = tr.membership_id,
-                        subscriber_id = tr.subscriber_id
-                    };
-                    memRSMembershipTransactions.Add(rec);
-                    AntalBetalinger++;
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(string.Format("rsmembeshhip_betalinger_auto failed: {0} end", tr.user_data));
-                }
-            }
-
-
-            if (AntalBetalinger > 0)
-            {
-                foreach (var rec_trans in memRSMembershipTransactions)
-                {
-                    if (rec_trans.indmeldelse) bBcc = true;
-                    else bBcc = false;
-
-                    if (rec_trans.indmeldelse) winfotekst = 72;
-                    else winfotekst = (rec_trans.tilmeldtpbs) ? 10 : 12;
-
-                    clsInfotekst objInfotekst = new clsInfotekst
-                    {
-                        infotekst_id = winfotekst,
-                        numofcol = null,
-                        navn_medlem = rec_trans.name,
-                        kaldenavn = rec_trans.name,
-                        fradato = rec_trans.fradato,
-                        tildato = rec_trans.tildato,
-                        betalingsdato = rec_trans.date,
-                        advisbelob = rec_trans.price,
-                        //ocrstring = p_dbData3060.OcrString(rstdeb.Faknr),
-                        underskrift_navn = "\r\nMogens Hafsjold\r\nRegnskabsfører",
-                        kundenr = rec_trans.memberid.ToString()
-                    };
-                    string ToName = rec_trans.name;
-                    string ToAddr = rec_trans.user_email;
-                    string subject = "Kvittering for medlemsskab af Puls 3060";
-                    sendHtmlEmail(p_dbData3060, ToName, ToAddr, subject, objInfotekst, bBcc);
-
-                    wantalbetalinger++;
-                }
-                p_dbData3060.SaveChanges();
-            }
-            return wantalbetalinger;
-        }
-
         public Tuple<int, int> kvitering_auto(dbData3060DataContext p_dbData3060)
         {
             int lobnr = 0;
@@ -2070,7 +1940,8 @@ namespace Pbs3060
 
                 foreach (var rstmedlem in rstmedlems)
                 {
-                    winfotekst = (rstmedlem.Indmeldelse) ? 51 : 50; //<-------------------HUSK HUSK
+                    winfotekst = 72;                                //<-------------------HUSK HUSK
+                    //winfotekst = (rstmedlem.Indmeldelse) ? 51 : 50;
                     //if (rstmedlem.Indmeldelse) winfotekst = 72;
                     //else winfotekst = (rstmedlem.Tilmeldtpbs) ? 10 : 12;
 
@@ -2087,7 +1958,7 @@ namespace Pbs3060
                     };
                     rec_tilpbs.Tblkvitering.Add(rec_kvit);
                     wantalkvit++;
-                    if (wantalkvit >= 30) break; //max 30 advis på gang
+                    if (wantalkvit >= 30) break; //max 30 advis på gang <----------- HUSK HUSK
                 }
                 p_dbData3060.SaveChanges();
             }
@@ -2112,7 +1983,7 @@ namespace Pbs3060
                 if (antal > 0) { throw new Exception("102 - Pbsforsendelse for id: " + lobnr + " er allerede sendt"); }
             }
             {
-                var antal = (from c in p_dbData3060.Tbladvis
+                var antal = (from c in p_dbData3060.Tblkvitering
                              where c.Tilpbsid == lobnr
                              select c).Count();
                 if (antal == 0) { throw new Exception("103 - Der er ingen pbs transaktioner for tilpbsid: " + lobnr); }
@@ -2404,7 +2275,6 @@ namespace Pbs3060
         public DateTime? fradato { get; set; }
         public DateTime? tildato { get; set; }
     }
-
     public class MemRSMembershipTransactions : List<recRSMembershipTransactions>
     {
 

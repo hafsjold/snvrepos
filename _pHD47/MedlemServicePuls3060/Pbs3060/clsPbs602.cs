@@ -604,7 +604,7 @@ namespace Pbs3060
             return m_rec_betlin;
         }
 
-        public int betalinger_opdate_uniconta(dbData3060DataContext p_dbData3060, puls3060_nyEntities p_dbPuls3060_dk, CrudAPI api)
+        public int betalinger_opdate_uniconta(dbData3060DataContext p_dbData3060,  CrudAPI api)
         {
             int saveBetid = 0;
             var rsmbrshp = from bl in p_dbData3060.Tblbetlin

@@ -12,8 +12,8 @@ namespace Pbs3060
     {
         public void PbsAutoKontingent(dbData3060DataContext m_dbData3060, CrudAPI api)
         {
-            //DateTime Nu = new DateTime(2018, 8, 10); //<-------- DEBUG
-            DateTime Nu = DateTime.Now;
+            DateTime Nu = new DateTime(2018, 8, 13); //<-------- DEBUG
+            //DateTime Nu = DateTime.Now;
             int Dag = Nu.Day;
             if (Dag > 13)
                 return;
@@ -23,7 +23,6 @@ namespace Pbs3060
             DateTime Nu_plus_2 = Nu.AddMonths(2);
             DateTime p_DatoBetaltKontingentTil = new DateTime(Nu_plus_2.Year, Nu_plus_2.Month, 12);
 
-            puls3060_nyEntities jdbd = new puls3060_nyEntities();
             clsPbs601 objPbs601d = new clsPbs601();
             List<string[]> items = objPbs601d.UniConta_KontingentForslag(p_DatoBetaltKontingentTil, m_dbData3060, api);
             int AntalForslag = items.Count();
@@ -61,12 +60,12 @@ namespace Pbs3060
                     memKontingentforslag.Add(rec_Kontingentforslag);
                 }
 
-                Tuple<int, int> tresulte = objPbs601d.rsmembeshhip_kontingent_fakturer_bs1(m_dbData3060, jdbd, memKontingentforslag, pbsType.betalingsservice);
+                Tuple<int, int> tresulte = objPbs601d.UniConta_kontingent_fakturer_bs1(m_dbData3060, memKontingentforslag, pbsType.betalingsservice);
                 int AntalFakturaer = tresulte.Item1;
                 int lobnr = tresulte.Item2;
                 if ((AntalFakturaer > 0))
                 {
-                    //pbsType.indbetalingskort
+                    //pbsType.betalingsservice
                     objPbs601d.faktura_og_rykker_601_action_lobnr(m_dbData3060, lobnr, api);
                     clsSFTP objSFTPd = new clsSFTP(m_dbData3060);
                     objSFTPd.WriteTilSFtp(m_dbData3060, lobnr);
@@ -74,7 +73,7 @@ namespace Pbs3060
                     objSFTPd = null;
                 }
 
-                tresulte = objPbs601d.rsmembeshhip_kontingent_fakturer_bs1(m_dbData3060, jdbd, memKontingentforslag, pbsType.indbetalingskort);
+                tresulte = objPbs601d.UniConta_kontingent_fakturer_bs1(m_dbData3060, memKontingentforslag, pbsType.indbetalingskort);
                 AntalFakturaer = tresulte.Item1;
                 lobnr = tresulte.Item2;
                 if ((AntalFakturaer > 0))
