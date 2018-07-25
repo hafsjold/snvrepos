@@ -558,7 +558,7 @@ namespace Pbs3060
             return items;
         }
 
-        public Tuple<int, int> pending_rsform_indmeldelser(dbData3060DataContext p_dbData3060, puls3060_nyEntities p_dbPuls3060_dk, CrudAPI api)
+        public Tuple<int, int> pending_rsform_indmeldelser(dbData3060DataContext p_dbData3060, puls3060_dkEntities p_dbPuls3060_dk, CrudAPI api)
         {
             int lobnr = 0;
             string wadvistekst = "";

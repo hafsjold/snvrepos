@@ -18,7 +18,7 @@ namespace TestPbs3060
 
             CrudAPI api = UCInitializer.GetBaseAPI;
             dbData3060DataContext p_dbData3060 = new dbData3060DataContext();
-            puls3060_nyEntities p_dbPuls3060_dk = new puls3060_nyEntities();
+            puls3060_dkEntities p_dbPuls3060_dk = new puls3060_dkEntities();
 
             //clsRSMembership2UniConta obj = new clsRSMembership2UniConta(p_dbData3060, p_dbPuls3060_dk, api);
             //obj.Subscriber2Debtor();
