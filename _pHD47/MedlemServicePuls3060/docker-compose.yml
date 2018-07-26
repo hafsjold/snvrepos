@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  medlemservicepuls3060:
+    image: ${DOCKER_REGISTRY}medlemservicepuls3060
+    build:
+      context: .
+      dockerfile: MedlemServicePuls3060\Dockerfile

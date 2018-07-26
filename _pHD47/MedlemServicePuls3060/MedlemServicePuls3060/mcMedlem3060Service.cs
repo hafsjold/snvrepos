@@ -37,7 +37,6 @@ namespace MedlemServicePuls3060
         public mcMedlem3060Service()
         {
             this.ServiceName = "mcMedlem3060Service";
-            SystemEvents.SessionEnded += new SessionEndedEventHandler(SystemEvents_SessionEnded);
             Console.WriteLine("Medlem3060Service Starter #2");
             try
             {
@@ -47,13 +46,6 @@ namespace MedlemServicePuls3060
             _SchedulerThread = new Thread(Scheduler);
             _SchedulerThread.Name = "Scheduler";
             _SchedulerThread.Start();
-        }
-
-        private void SystemEvents_SessionEnded(object sender, SessionEndedEventArgs e)
-        {
-            Service_waitStopHandle.Set();
-            _SchedulerThread.Join();
-            Console.WriteLine("Medlem3060Service SessionEnded()");
         }
 
         private T StringToEnum<T>(string name)
@@ -84,9 +76,9 @@ namespace MedlemServicePuls3060
         private void Scheduler()
         {
             //Test
-            //JobWorker("ReceiveFilesFromPBS", 99999);Tested OK 25-5-2018
+            //JobWorker("ReceiveFilesFromPBS", 99999); //Tested OK 25-5-2018
             //JobWorker("SendEmailAdvis", 99999);
-            JobWorker("SendKontingentFileToPBS", 99999);
+            //JobWorker("SendKontingentFileToPBS", 99999);
             //JobWorker("KontingentNyeMedlemmer", 99999);
             //JobWorker("SendEmailRykker", 99999); // Tested OK 23-7-2018
             //JobWorker("SendEmailKviteringer", 99999);
@@ -98,7 +90,7 @@ namespace MedlemServicePuls3060
             {
                 try
                 {
-                    Console.WriteLine("Medlem3060Service Scheduler() loop start");
+                    Console.WriteLine(string.Format("Medlem3060Service Scheduler() loop start {0}", DateTime.Now.ToShortTimeString()));
                     int? id = null;
                     string jobname = null;
                     if (JobQueueNext(ref id, ref jobname) == 0)
