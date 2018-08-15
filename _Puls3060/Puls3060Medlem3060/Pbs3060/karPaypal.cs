@@ -108,7 +108,7 @@ namespace nsPbs3060
             var crit = new List<PropValuePair>();
             var pair = PropValuePair.GenereteWhereElements("KeyName", typeof(string), "PayPal");
             crit.Add(pair);
-            var taskQryBankStatment = m_api.Query<BankStatementClient>(null, crit);
+            var taskQryBankStatment = m_api.Query<BankStatementClient>(crit);
             taskQryBankStatment.Wait();
             var col = taskQryBankStatment.Result;
             if (col.Count() == 1)

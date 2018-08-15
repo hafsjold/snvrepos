@@ -47,10 +47,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>2B0C204C13FFB3EA5F0DD8C7A6E69D2D7581FFB4</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>4989B7FE7DEE4B5069A80B108AC2319B8E5F73E8</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>pipeClient_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>pipeClient_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -136,6 +136,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
+    <None Include="pipeClient_1_TemporaryKey.pfx" />
     <None Include="pipeClient_TemporaryKey.pfx" />
     <None Include="Properties\DataSources\nsPbs3060.clsAppData.datasource" />
     <None Include="Properties\DataSources\nsPbs3060.clsStatusData.datasource" />
